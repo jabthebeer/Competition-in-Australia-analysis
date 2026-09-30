@@ -46,7 +46,7 @@ Sources and access status are tracked in [`data/SOURCES.md`](data/SOURCES.md).
 data/raw/         Unmodified downloads (large files git-ignored; document in SOURCES.md)
 data/processed/   Cleaned, analysis-ready datasets
 literature/       Reading notes, bibliography, review summaries
-analysis/         Scripts and notebooks (econometrics)
+analysis/         R scripts and Quarto documents (econometrics)
 docs/             Methods notes, outputs handed to Cowork
 ```
 
