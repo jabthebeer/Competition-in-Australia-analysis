@@ -3,9 +3,10 @@
 Sources read so far:
 
 - **H&F**: Hambur, J. and Freestone, O. (2025), RBA RDP 2025-05, read in full (`literature/rdp2025-05.pdf`, 33 pp., including Appendices A and B). Page numbers below are the paper's printed page numbers.
-- **EMX**: Edmond, C., Midrigan, V. and Xu, D.Y. (2023), *JPE* 131(7). **Not yet read.** The paper, online appendix and replication package could not be downloaded because the session's network policy blocks the hosts (see `../data/raw/SOURCES.md`).
+- **EMX**: Edmond, C., Midrigan, V. and Xu, D.Y. (2023), *JPE* 131(7). The model (Section II), efficient allocation (III), calibration (IV.A) and oligopoly set-up (VI) were read on 2026-10-05 (`literature/emx2023_jpe.pdf`, git-ignored).
+- **H&F replication code**: the RBA supplementary-information zip, which contains H&F's edited copy of the EMX MATLAB code and their input moments (`data/raw/hf2025_supplementary/`). Read on 2026-10-05.
 
-Anything tagged **[EMX: verify]** below is my reconstruction of EMX. It is not stated in H&F, and it must be checked against the EMX paper or code before it is used in any result. Everything else is either quoted from H&F (equation and table numbers given) or derived algebraically from H&F's equations, with the derivation shown.
+Items tagged **[EMX: verify]** below were open when this note was first written. **§4 now records how each was resolved**, with the source file. Everything else is either quoted from H&F (equation and table numbers given) or derived algebraically from H&F's equations, with the derivation shown.
 
 ---
 
@@ -194,9 +195,55 @@ All other change rows checked out: Table 4, Table B6, Table B8 vs Table 7, and T
 
 ---
 
-## 4. What I still need from EMX before implementing
+## 4. Resolved from the H&F code and the EMX paper (2026-10-05)
 
-1. The full model appendix: the Kimball constraint with inactive firms, the choke cut-off vs the Pareto lower bound, how the planner treats the active set, and the definition of the loss metric.
-2. The GE block: the entry-cost units, the normalisations of $\varphi$ and $\kappa$, the welfare metric, and how the uniform subsidy is implemented.
-3. The oligopoly simulation design: the distribution of $n$, the number of sectors, the seed and draw scheme, the labour-share–HHI regression in the model, and the moment weighting.
-4. The replication code. If H&F's adapted code is in the RBA's RDP 2025-05 replication files (an RBA "read me" page for this RDP turned up in a web search but could not be opened), it should be the primary reference.
+`hf/` below refers to `Model/Tables/Benchmark/` inside `data/raw/hf2025_supplementary/rdp-2025-05-supplementary-information.zip`.
+
+| Open item | Resolution | Source |
+|---|---|---|
+| Productivity distribution | $\log z \sim$ Exponential($\xi$), i.e. $z\sim$ Pareto($\xi$) on $[1,\infty)$. Discretised with 5,000 Gauss–Legendre nodes on $[0, -\ln(10^{-22})/\xi]$, with weights renormalised. | `hf/objective.m`, `hf/start_aggr.m` |
+| Choke cut-off vs Pareto lower bound | Both exist. Firms with $z < \frac{\bar\sigma}{\bar\sigma-1}e^{-1/\varepsilon}D$ are inactive ($q=0$), and the Kimball constraint $N\sum w\,\Upsilon(q)=1$ includes their $\Upsilon(0)$. **At all four Table 2 parameter sets the cut-off is below 1 (0.46–0.57), so it does not bind: every firm is active.** | `hf/findequilibrium.m`; Octave check |
+| Normalisations | $Y=1$ and $N=1$ in the calibrated steady state. The entry cost $\kappa$ (`p.F`, in **labour** units) and the disutility weight $\psi$ are backed out from these. | `hf/objective.m`; EMX §IV.A |
+| $\nu$ | **Inverse** Frisch elasticity ("We set the inverse of the Frisch elasticity of labor supply to $\nu=1$"). H&F Table 3's "elasticity of labour supply = 1" is this parameter. | EMX p. 1638; code comment `p.nu` |
+| Materials share | 0.47 = intermediates' share of **sales** ($B/Y$). Matched exactly by resetting $\phi = 1 - m\,\Omega^{1-\theta}M$. | `hf/objective.m` |
+| Calibration algorithm | Nelder–Mead (`fminsearchbnd`) over $(\xi,\bar\sigma)\in[2,20]\times[4,20]$, starting at (3, 8.0084), with TolX $10^{-5}$ and MaxFunEvals 200. It minimises the RMS of percentage deviations of ($M$, $B/Y$, top-5% share) from the data. The superelasticity is **imposed** ($\varepsilon = 0.13\,\bar\sigma$), not targeted. | `hf/start_calibration_main.m`, `hf/objective.m` |
+| Top-5% share | Share of sales of firms above the 95th percentile of the productivity distribution. The calibration counts all entrants; the reporting script counts active firms only. These are identical when the cut-off does not bind (see above). | `hf/objective.m` vs `hf/start_aggr.m` |
+| Static misallocation loss (Table 4) | **$(1 - Z/Z^\ast)\times 100$**, likewise for value added (`GDP/GDPp`) and value added with $M=1$ (`GDP1/GDPp`), holding $K$ and $L_p$ fixed. Note that `objective.m` prints $\log(Z^\ast/Z)$, but the tables use $1-Z/Z^\ast$. | `hf/start_aggr.m` (report `T3`) |
+| Planner's static allocation | $q^\ast = \left(1-\min\{\varepsilon\ln(\tfrac{\bar\sigma}{\bar\sigma-1}D^\ast/z),1\}\right)^{\bar\sigma/\varepsilon}$. The planner also has a choke, so the active set is re-optimised. | `hf/findequilibrium.m` (`planner`) |
+| Table 5 percentile weights | Labour-weighted (`w.*l`), which equals cost-weighted because input proportions are common across firms. | `hf/start_aggr.m` |
+| Steady-state welfare (Table 11) | Consumption-equivalent between steady states: $dW = \left(\exp[(1-\beta)(W_{new}-W_{old})]-1\right)\times 100$, where $W = \frac{1}{1-\beta}\left(\log C - \frac{\psi}{1+\nu}L^{1+\nu}\right)$ and $L = L_p + \kappa\cdot\text{exit}\cdot N$. Transitions are ignored. | `hf/start_planner.m` |
+| First best | `findequilibrium(…,'planner','new')` solves for $(D, Y, N)$ jointly with the planner's entry condition. | `hf/start_planner.m` |
+| Uniform subsidy (Table B9) | `start_aggr.m` calls `start_subsidy`, but **no `start_subsidy.m` exists in the H&F Benchmark folder**. The EMX Dataverse package has only an autosave, `Benchmark/start_subsidy.asv`, plus `Cournot/start_subsidy.m`. **Open: Phase 1 must establish which file H&F ran.** | package listings |
+| Oligopoly design | EMX: Poisson entry per sector, so $n(s)$ is random with mean $N$; Cournot; indirect inference on the labour-share–HHI slope (EMX use long differences; H&F's preferred annual specification gives −0.15). H&F inputs: firms per sector 3,439.8 / 3,884.0, top-4 0.394 / 0.412, top-20 0.593 / 0.633. **Simulation details (number of sectors, seeds, weighting) are still to be read from `Cournot/start_calibration_agg.m` and `start_olig.m` in Phase 1.** | EMX §VI; `Inputs for model.xlsx` |
+
+### 4.1 New findings from the H&F input file and an Octave smoke test
+
+1. **Unrounded targets** (`Inputs for model.xlsx`, sheets `Pre_main` / `Post_main`):
+
+   | Target | Mid-2000s | Mid-2010s |
+   |---|---|---|
+   | Harmonic markup | 1.181255 | 1.249878 |
+   | Cost-weighted markup | 1.252905 | 1.330354 |
+   | Top-5% share | 0.682845 | 0.695717 |
+
+   Specification 1 is cost-weighted and 2 is harmonic. Specifications 3–8 are unreported variants (median superelasticity, sales-weighted concentration).
+2. **Table B1 is garbled, not just swapped.** The input file's smaller-sample markups are:
+
+   | | Harmonic | Cost-weighted |
+   |---|---|---|
+   | Mid-2000s | 1.372 | 1.473 |
+   | Mid-2010s | 1.459 | 1.587 |
+
+   The paper prints 1.37 / 1.59 and 1.25 / 1.46. This supersedes the "rows swapped" hypothesis in §3, item 3.
+3. **Table B4 used the baseline markups** (1.18 / 1.25 and 1.25 / 1.33), with superelasticities 0.107 (mid-2000s) and 0.088 (mid-2010s). The printed B4 target rows were copied from B1. This confirms the hypothesis in §3, item 3.
+4. **Table B2's cost-weighted mid-2010s value of $\xi = 2.000$ sits exactly on the calibration's lower bound** ($\xi \ge 2$), so it is a corner solution, not an interior fit. The mid-2000s value of 2.121 is close to the bound as well.
+5. **Smoke test** (Octave 8.4; the only change is that the `fsolve` calls are wrapped for Octave's syntax). One `objective()` call takes about 0.7 s. At the published Table 2 parameters:
+
+   | Calibration | ($\xi$, $\bar\sigma$) | Model markup | Target markup | Model top-5% | Target top-5% | Result |
+   |---|---|---|---|---|---|---|
+   | Mid-2000s harmonic | (5.59, 9.45) | 1.1813 | 1.1813 | 0.6833 | 0.6828 | Matches |
+   | Mid-2000s cost-weighted | (4.00, 7.26) | 1.2526 | 1.2529 | 0.6822 | 0.6828 | Matches |
+   | Mid-2010s cost-weighted | (3.05, 6.03) | 1.3299 | 1.3304 | 0.6954 | 0.6957 | Matches |
+   | **Mid-2010s harmonic** | **(4.04, 7.02)** | 1.2518 | 1.2499 | **0.6380** | **0.6957** | **Misses by 5.8 ppt** |
+
+   So either Table 2's mid-2010s harmonic parameters are mis-printed, or H&F's Nelder–Mead stopped before converging (MaxFunEvals = 200). Phase 1 will re-run the calibration to tell which. If it is the latter, the Table 4 mid-2010s harmonic costs would also be affected.

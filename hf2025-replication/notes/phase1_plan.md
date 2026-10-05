@@ -1,96 +1,73 @@
-# Phase 1 implementation plan (proposal, awaiting approval)
+# Phase 1 implementation plan (revised 2026-10-05; awaiting approval)
 
-Goal: reproduce H&F (2025) model results from the paper's own published targets, and validate them against Tables 2, 4, 5, 8–11, B2–B3, B5–B6 and B9.
+Goal: reproduce H&F (2025) model results from the paper's own targets, and validate them against Tables 2, 4, 5, 7–11, B2–B3 and B5–B9.
 
-## 0. Inputs still required
+**What changed since the first draft:** H&F's own model code is public. It is an edited copy of the EMX MATLAB code, together with their unrounded input moments, in the RBA supplementary zip. It runs in GNU Octave 8.4: one calibration-objective evaluation takes about 0.7 s, and the only change needed was wrapping the `fsolve` calls. So Phase 1 becomes **"run the authors' code, faithfully and reproducibly, then audit it"**, not a re-implementation. That is Path A of the first draft.
 
-| Input | Why | Status |
-|---|---|---|
-| EMX (2023) paper and online appendix (*JPE*, or NBER WP 24800) | Model details listed in `model_summary.md` §4 | **Blocked** by network policy |
-| EMX replication package (*JPE* Harvard Dataverse, or Chris Edmond's site) | Reference implementation | **Blocked** |
-| RBA RDP 2025-05 replication files (a "read me" page appears to exist on rba.gov.au) | Possibly H&F's adapted code, the best reference | **Blocked**; contents unknown |
+## 1. Engine
 
-Either upload these files or allowlist the hosts (see `../data/raw/SOURCES.md`). Nothing below starts until at least the EMX paper and appendix are available.
+- **Source.** `data/raw/hf2025_supplementary/*.zip` (RBA, CC BY 4.0) is never edited. `make phase1` extracts it to `build/hf_model/` and applies **one patch file**, `src/model/octave_compat.patch`. Every hunk is listed and justified in DECISIONS.md.
+- **Expected patch hunks (Octave or environment only; no economics changes):**
+  1. Octave's `fsolve` does not accept the legacy extra-argument syntax, so `fsolve('findequilibrium', x0, options, args…)` becomes `fsolve(@(X) findequilibrium(X, args…), x0, options)`.
+  2. Windows absolute paths are replaced with repo-relative paths.
+  3. `xlsread('Inputs for model.xlsx', …)` is replaced by reading CSVs that a Python script exports once from that workbook, with values unchanged (`data/processed/hf_inputs_*.csv`).
+  4. `writematrix` becomes `csvwrite` into `output/hf_model/`.
+  5. Plotting and `groot` calls are removed or guarded, because Octave runs without a display.
+  6. MATLAB-only `string`, `categorical` and `table` display code is replaced by `fprintf`.
+- **Not needed for any table we reproduce:** Dynare (transitions are excluded, as in H&F) and the CompEcon `.mex` files (the `.m` versions are used).
+- **Orchestration:** a thin Python wrapper (`src/analysis/run_hf.py`) calls `octave-cli`, collects the CSV outputs, and builds comparison tables.
+- **Python re-implementation:** none for the main engine, per the language rule ("port only if Octave fails"). Independent Python code is limited to the unit-test identities and the comparison tables.
 
-## 1. Engine: which code computes the results
+## 2. Runs
 
-I'll follow the user's language rule (Python preferred; Octave for MATLAB code; port only if Octave fails):
+| Step | Script (H&F) | Reproduces | Notes |
+|---|---|---|---|
+| 1a | `Benchmark/start_calibration_main.m` as written (Nelder–Mead, MaxFunEvals 200) | Tables 2, B2, B5 | Faithful replication of their procedure |
+| 1b | Same objective, solved to convergence: root-find the two free moments (markup, top-5% share), since $B/Y$ is matched exactly through $\phi$; tolerance 1e-10; multi-start | Tables 2, B2, B5, converged | Tests whether 1a converged. Explains the smoke-test miss for mid-2010s harmonic ($\xi$ = 4.04 gives top-5% = 0.638 vs 0.696) |
+| 2 | `Benchmark/start_aggr.m`, report T3, using the 1a and the 1b parameters | Tables 4, 5, B3, B6 | Losses $= (1 - Z/Z^\ast)\times100$ |
+| 3 | `start_aggr.m` T4 + `start_planner.m` (`efficient`) | Table 11; Table B9 first-best rows | Steady-state comparisons only |
+| 4 | Uniform subsidy (`start_subsidy`) | Table B9 subsidy rows | **No `start_subsidy.m` exists in H&F's Benchmark folder.** Try EMX's `Benchmark/start_subsidy.asv`, then the Cournot version adapted. Report which one reproduces B9, or that none does |
+| 5 | `start_calibration_div.m`, `start_div.m` | Tables 7, B7, B8 | Division-level results |
+| 6 | `Cournot/start_calibration_agg.m`, `Cournot/start_olig.m` | Tables 9, 10 | Monte Carlo with `rng(0)`, Poisson firms per sector (mean about 3,440 / 3,884), weights 100 on markup and 10 on the regression. EMX report up to 12 h runtimes. **Timing test first**: if a full run is impractical, reduce the number of sectors and report simulation error across seeds |
 
-- **Path A, code obtained** (preferred):
-  - run the MATLAB code unmodified in GNU Octave 8.4 (installable from the Ubuntu archive, which is reachable);
-  - drive it from Python through a thin wrapper (parameters in, CSV out, via `octave-cli`);
-  - log any Octave compatibility shims in DECISIONS.md;
-  - all sensitivity and extension runs reuse this engine with different inputs.
-- **Path B, code not obtained, or Octave cannot run it:**
-  - implement the model in Python (`src/model/`) from the EMX paper and H&F Section 3;
-  - if Path A also exists, require the Python port to match the Octave output to 1e-6 relative error on every reported statistic before using it.
+## 3. Validation (output/report.md §1)
 
-## 2. Numerical method for the Python implementation (Path B, and for the tests)
+- Side-by-side tables for paper vs replication 1a vs replication 1b, with absolute and relative differences.
+- Pass criterion for the calibrated parameters: ≤ 2% relative error. Anything above that is diagnosed.
+- Every discrepancy goes in a numbered list. Already known:
+  1. Table 10's value added (no input) column;
+  2. Table B3's harmonic change rows;
+  3. Table B1's garbled targets;
+  4. Table B4's copied targets;
+  5. Table B2's corner solution ($\xi = 2$);
+  6. the text's "1.12" vs the table's 1.16;
+  7. Table 2's mid-2010s harmonic parameters.
 
-### 2.1 Kimball static block
+## 4. Unit tests (pytest; they call the Octave engine, plus independent Python algebra)
 
-- **Change of variables.** Integrate over the Pareto CDF, $u = 1 - x^{-\xi} \in [0,1)$, so that "top 5% of firms" is simply $u \ge 0.95$ and the fat tail becomes a finite interval.
-- **Quadrature.** Composite Gauss–Legendre on $[0,0.95]$ and $[0.95,1)$, with geometric refinement towards $u \to 1$. Accuracy is verified by doubling the number of nodes until every reported statistic changes by less than 1e-9 in relative terms.
-- **Firm allocation.** For each node, solve the firm first-order condition for $q(x)$ with a vectorised safeguarded Newton–bisection. The equation is monotone in $q$, and the solution is bracketed in $(0,\bar\sigma^{\bar\sigma/\varepsilon})$.
-- **Planner allocation.** Same method with $\mu\equiv1$.
-- **Calibration.** Solve for $(\xi, \bar\sigma)$ from the two moments with `scipy.optimize.root` (hybrid Powell), using transformed unknowns $\log(\xi-1)$ and $\log(\bar\sigma-1)$. Moment tolerance 1e-10.
-- **Robustness check.** Run a multi-start from a 5×5 grid to confirm the solution is unique within the plausible region.
-
-### 2.2 General-equilibrium steady state
-
-- Given the static block, the steady state reduces to a small system: $K/L$ from $R=1/\beta-1+\delta$, labour supply, free entry and the materials first-order condition.
-- Solve it with `scipy.optimize.root`, residual tolerance 1e-12.
-- Solve the planner and uniform-subsidy steady states the same way. Normalisations of $\varphi$ and $\kappa$ will follow EMX.
-
-### 2.3 Cournot oligopoly
-
-- Simulate $S$ sectors, each with $n$ firms (fixed at 3,440 / 3,884, or drawn as in EMX), with Pareto($\xi$) productivities.
-- Fix the seed (`numpy.random.default_rng(20250805)`) and use **common random numbers** across parameter evaluations, so the objective is smooth.
-- Within each sector, solve for the Cournot equilibrium by fixed-point iteration on sales shares (eqs 19–20 with CES within sector), with a damped update and tolerance 1e-12.
-- Calibrate $(\xi,\eta,\gamma)$ by minimum distance on the four Table 8 moments, using the EMX weighting if documented. Otherwise use the identity matrix on percentage deviations, and log that choice.
-- Choose $S$ so that simulation error on each moment is below 0.1 ppt, checked by re-running with five seeds.
-
-## 3. Validation (deliverable: `output/report.md` §1)
-
-| Paper table | Statistic | Pass criterion |
-|---|---|---|
-| Table 2 | $\xi$, $\bar\sigma$ (4 calibrations) | ≤ 2% relative error. If missed, diagnose (definition of the top-5% share, choke cut-off, rounding of targets) before moving on |
-| Table 4 | GO / VA / VA($\mu$=1) losses, 2 weightings × 2 periods, plus changes | Report absolute and relative differences. Goal ≤ 2% relative on levels |
-| Table 5 | Model markup percentiles (cost-weighted run) | Report differences. Also confirms the weighting convention |
-| Table 11 / B9 | Output, consumption, hours, welfare gains; uniform subsidy | Report differences |
-| Tables 9–10 | Oligopoly parameters and losses | ≤ 2% on parameters. Report what the model implies for the inconsistent Table 10 VA (no input) column |
-| B2–B3, B5–B6 | Robustness variants | Report differences. Test the B1/B4 swapped-rows hypothesis and the B3 copy-paste hypothesis |
-
-Every discrepancy goes in a numbered list in the report, with a diagnosis or "unexplained".
-
-**Rounding sensitivity.** The targets are published to two decimal places (markups) or whole percentages (shares). For each calibration I'll also re-solve at the edges of the rounding interval (e.g. $M\in[1.175,1.185]$, top-5% $\in[0.675,0.685]$) and report the implied range of $\xi$, $\bar\sigma$ and the losses. This shows whether a ~2% mismatch can be explained by rounding alone.
-
-## 4. Unit tests (`tests/`, pytest)
-
-1. **CES limit.** Superelasticity → 0 (e.g. 1e-6) gives a misallocation loss of ≈ 0 (< 1e-6). Markups are then uniform at $\bar\sigma/(\bar\sigma-1)$.
-2. **Planner dominance.**
-   - Planner $Z \ge$ market $Z$ across a grid of $(\xi,\bar\sigma,\varepsilon/\bar\sigma)$.
-   - First-best steady-state welfare ≥ market steady-state welfare.
-3. **Harmonic-mean identities on a toy example.** With 3–5 discrete firms in 2 sectors, eq. (10) $z(s)$ and $Z$ computed as harmonic sales-weighted means equal output divided by input-bundle use. Also eqs (11–12) and (13–14).
+1. **CES limit.** Superelasticity $10^{-6}$ gives a misallocation loss below $10^{-6}$ and uniform markups at $\bar\sigma/(\bar\sigma-1)$.
+2. **Planner dominance.** On a grid of $(\xi,\bar\sigma,\varepsilon/\bar\sigma)$:
+   - static: $Z^\ast \ge Z$;
+   - steady state: first-best welfare ≥ market welfare.
+3. **Harmonic identities (toy example).** With 3–5 discrete firms in 2 sectors, eq. (10) harmonic means equal $Y/X$. Eqs (11)–(14) hold.
 4. **Klenow–Willis algebra:**
-   - $\Upsilon'$ is the derivative of $\Upsilon$ (finite differences);
+   - $\Upsilon' = d\Upsilon/dq$;
    - $\Upsilon(1)=1$;
-   - $\sigma(q)=\bar\sigma q^{-\varepsilon/\bar\sigma}$;
-   - the (A2) slope recovered from simulated firms equals $\varepsilon/\bar\sigma$.
-5. **Cournot identities.** Eq. (21) holds exactly in simulated sectors. With $\gamma=\eta$, markups are uniform.
-6. **Model weighting identity.** Cost-weighted mean markup = harmonic sales-weighted markup inside the model.
-7. **Calibration round-trip.** Simulate moments at known parameters, re-calibrate, and recover the parameters to 1e-6.
+   - $\sigma(q) = \bar\sigma q^{-\varepsilon/\bar\sigma}$;
+   - the (A2) regression slope on model firms equals $\varepsilon/\bar\sigma$ (the code reports this as `bhat`).
+5. **Model weighting identity.** Inside the model, cost-weighted mean markup = harmonic sales-weighted markup.
+6. **Cournot identities.** Eq. (21) holds exactly in a simulated sector. With $\gamma=\eta$, markups are uniform.
+7. **Patch guard.** Applying `octave_compat.patch` changes no line that contains arithmetic. This is checked by a diff filter.
 
 ## 5. Reproducibility
 
-- **Entry point:** `make all` → `phase1` (the `phase2`–`phase4` targets are added later). Each target writes `output/tables/*.csv` and regenerates `output/report.md` sections from them, so no numbers are pasted by hand.
-- **Pinned dependencies:** `requirements.txt` with exact versions (numpy, scipy, pandas, matplotlib, pytest; `oct2py` only if needed). Octave version recorded in the report.
-- **Paper benchmarks:** transcribed once into `data/paper/hf2025_published.csv`, with table and page references, and checked against the PDF text by a test.
-- **Seeds:** fixed seeds for all simulations; the seed list is recorded in the report.
+- `make all` runs `fetch` (`src/fetch_raw.py`), then `phase1`, then `test`.
+- Pinned `requirements.txt` (the Python venv already uses numpy 2.4.6, scipy 1.17.1, pandas 3.0.6).
+- The Octave version is logged in the output.
+- Raw downloads are recorded in `data/raw/MANIFEST.csv` with sha256 hashes.
 
-## 6. Rough effort and risks
+## 6. Effort and risk
 
-- Static Kimball block plus calibration: small once EMX details are confirmed.
-- GE block: moderate. Most of the risk is in matching EMX normalisations and the welfare definition.
-- Oligopoly: the largest piece, with about 3,500 firms per sector × thousands of sectors. Vectorised numpy should handle tens of millions of firm draws per evaluation, but calibration may take minutes to hours.
-- **Main risk.** Without EMX code, conventions such as the loss metric, choke cut-off, percentile weighting and oligopoly design may have to be inferred by matching H&F's published numbers. Any such inference will be logged in DECISIONS.md as an inference, not a fact.
+- Steps 1–3 and 5 are minutes of compute.
+- Step 6 (oligopoly) is the long pole: hours of compute, so it runs in the background.
+- Main risk: missing pieces of H&F's code (step 4's subsidy script, and output files the read-me references but the zip does not contain).
