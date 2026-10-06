@@ -52,7 +52,7 @@ interface Proposal {
   durationYears: number;                                // 1–10, default 10 (A-11)
   durationOverride?: Override;                          // required if ≠ 10
   jurisdiction: "commonwealthOnly" | "interJurisdictional";   // R-33 (A-18)
-  baseline: "statusQuo" | "noInstrument";               // N-01: sunsetting remake [decision needed]
+  baseline: "statusQuo" | "noInstrument";               // N-01: toggle approved; both always computed
   parameterVintage: string;                             // e.g. "RBM-2026-07"; must match parameters.ts
   rates: RateTable;
   populations: Population[];
@@ -71,6 +71,7 @@ interface Population {                                  // who is affected, and 
   group: "business" | "communityOrg" | "individual";
   cohort: "small" | "medium" | "large" | "all";         // R-32 (A-17)
   count: Quantity;                                      // denominator for per-entity results
+  industry?: string;                                    // ANZSIC code; links to ABS entry/exit data (scope expansion, #42)
   source?: Source;
   flags?: {
     nonResident?: boolean;                              // R-53 → W-04
@@ -95,6 +96,7 @@ interface Obligation {
   group: "business" | "communityOrg" | "individual";
   category: "administrative" | "substantive" | "delay";
   jurisdiction: "commonwealth" | "stateTerritory";
+  legalReference?: { instrument: string; provision?: string };   // e.g. "CCA Sch 2 (ACL)", "s 131" (#42)
   scope: {                                              // Appendix 3 (A-19)
     classification: "compliance" | "enforcement" | "split";   // default "compliance" (R-57)
     complianceShare?: number;                           // required for "split"
@@ -176,7 +178,8 @@ interface ProposalResult {
 interface OptionResult {
   optionId: string;
   rbe: { business: Dec; communityOrg: Dec; individual: Dec; total: Dec };  // average annual Δ, $ (exact strings)
-  durationTotal: Dec;                                    // N-02 [decision needed]
+  durationTotal: Dec;                                    // N-02: 10-year total (approved)
+  alternativeBaseline: { rbe: OptionResult["rbe"]; durationTotal: Dec };  // the baseline not selected, shown as context
   verdict: { kind: "increase" | "reduction" | "none"; amount: Dec };
   gross: { increases: Dec; reductions: Dec };
   context: { currentAnnual: Dec; reformedAnnual: Dec; transitionAnnual: Dec; shareRemoved: Dec | null };  // labelled "context, not RBE"
@@ -309,7 +312,7 @@ regulatory-burden-tool/
 | T-RBE-07 | Several options, including the status quo | one RBE table per option; status quo is all `$0`; comparison rows line up |
 | T-RBE-08 | Breakdowns (by group, category, cohort, timing, jurisdiction, obligation) | each reconciles exactly to the total |
 | T-RBE-09 | Per-entity change by cohort | Δ ÷ population count, per cohort |
-| T-RBE-10 | Duration total (N-02) | Σ Δ_t; equals 10 × average annual when T = 10 |
+| T-RBE-10 | 10-year total (N-02, approved) | Σ Δ_t; equals 10 × average annual when T = 10; T-REF-01 gives −$127,240,600 |
 
 ### Reform comparison
 
@@ -328,7 +331,7 @@ regulatory-burden-tool/
 | T-REF-11 | Rate consistency | reformed side defaults to the current rate; a changed rate without justification raises W-06; with justification, no warning |
 | T-REF-12 | Copy-on-reform diff | the diff lists only the changed fields (e.g. `hours`, `timesPerYear`) |
 | T-REF-13 | Waterfall | current − removed − reduced + increased + new = reformed; + transition = net change; reconciles to the RBE total |
-| T-REF-14 | Baseline `noInstrument` (N-01, if approved) | RBE = reformed regime vs nothing; the saving vs the current regime is reported as context only |
+| T-REF-14 | Baseline toggle (N-01, approved) on T-REF-01 | "Current settings": RBE `($12.7)`. "No instrument": RBE = reformed regime + transition vs nothing = $1,830,800 + $91,540 = $1,922,340 → `$1.9`. The non-selected figure appears as context. |
 
 ### Scope and exclusions
 

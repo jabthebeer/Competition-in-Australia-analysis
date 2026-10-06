@@ -22,8 +22,8 @@ Every assumption, interpretation of an ambiguous rule, and design choice is reco
 | 11 | 2026-10-06 | "Every *k* years" requires a first-occurrence year (default 1) [A-10] | The anchor changes the occurrence count when *k* doesn't divide T | Proposed |
 | 12 | 2026-10-06 | Duration 1–10 years; ≠ 10 needs a justification; > 10 needs recorded OIA agreement [A-11] | The RBM only contemplates shorter periods | Proposed |
 | 13 | 2026-10-06 | Sole traders are businesses. Employees meeting requirements in their own time are individuals at the leisure rate [A-12] | RBM p. 9: the leisure rate is for time "not in the course of their employment" | Proposed |
-| 14 | 2026-10-06 | Volunteers are valued at the $41 leisure rate, flagged "seek OIA advice" [A-13] | The work rate is defined for employees | Proposed: **decision needed** |
-| 15 | 2026-10-06 | GBEs and foreign-government-owned businesses → Business. Public universities → user must choose [A-14] | The RBM is silent on which group | Proposed: **decision needed** |
+| 14 | 2026-10-06 | Volunteers are valued at the $41 leisure rate, flagged "seek OIA advice" [A-13] | The work rate is defined for employees | Superseded by #40 |
+| 15 | 2026-10-06 | GBEs and foreign-government-owned businesses → Business. Public universities get no special handling; the user picks the group [A-14] | The RBM is silent; user decision 6 Oct 2026 | Approved |
 | 16 | 2026-10-06 | Mandatory payments to non-government bodies (private certifiers, scheme memberships, private insurance) are in-scope purchase costs [A-15] | The exclusion covers only charges payable or remitted to government | Proposed |
 | 17 | 2026-10-06 | Purchase costs are entered excluding GST [A-16] | Taxes are out of scope | Proposed |
 | 18 | 2026-10-06 | Default cohorts use ABS employment bands (< 20, 20–199, 200+), to be verified in Phase 3; users can redefine them [A-17] | The RBM names cohorts but doesn't define them | Proposed |
@@ -44,8 +44,8 @@ Every assumption, interpretation of an ambiguous rule, and design choice is reco
 
 | # | Date | Decision | Rationale | Status |
 |---|---|---|---|---|
-| 26 | 2026-10-06 | Add a `baseline` setting: `statusQuo` (default) or `noInstrument` (remaking a sunsetting instrument) [N-01, F-03] | IAF-PG pp. 21–22 | Proposed: **decision needed** |
-| 27 | 2026-10-06 | Report a duration total ("$X over 10 years") alongside the RBE [N-02] | Required by the Dashboard IA template | Proposed: **decision needed** |
+| 26 | 2026-10-06 | Baseline toggle: "current settings" or "no instrument" (remaking a sunsetting instrument). Both are always computed; the toggle picks which fills the RBE table; the screener sets the default and warns on a mismatch [N-01, F-03] | IAF-PG pp. 21–22; user approved 6 Oct 2026 | Approved |
+| 27 | 2026-10-06 | Report a 10-year total ("$X over 10 years") alongside the RBE; for shorter policies, the total over the policy's life [N-02] | Required by the Dashboard IA template; user approved 6 Oct 2026 | Approved |
 | 28 | 2026-10-06 | Show an IA threshold 1 indicator, using the absolute value [N-03] | IAF-PG p. 7; it's unclear whether reductions trigger the threshold | Proposed: **decision needed** |
 | 29 | 2026-10-06 | Make the `.xlsx` export formula-driven [N-04] | Agencies are told to share their "regulatory burden workbook" with OIA (IAF-PG p. 20) | Proposed |
 | 30 | 2026-10-06 | Use OIA calculator examples as tests against OIA's *stated* answers only [N-05] | The workbook has verified formula defects (`docs/oia_calculator_review.md`) | Proposed |
@@ -63,3 +63,12 @@ Every assumption, interpretation of an ambiguous rule, and design choice is reco
 | 37 | 2026-10-06 | Add a strict CSP (`connect-src 'none'`), an auto-save toggle, "clear all data", and a single-file offline build [F-07] | Enforces "no network calls"; supports agency hosting and offline use | Proposed |
 | 38 | 2026-10-06 | Waterfall has an "increased" step for modified obligations whose cost rises | The prompt's waterfall only lists removed, reduced and new | Proposed |
 | 39 | 2026-10-06 | The proposal type (reform / new / repeal) is only a UI preset; the engine treats all three the same | One model, fewer code paths | Proposed |
+
+## Decisions and proposals of 6 October 2026 (second round)
+
+| # | Date | Decision | Rationale | Status |
+|---|---|---|---|---|
+| 40 | 2026-10-06 | Volunteer time valued at **half the full-time labour rate** (paid staff at the work rate). Base to confirm: $91.54 ÷ 2 = $45.77, or $52.31 ÷ 2 = $26.16. Labelled in the tool as a policy choice, not an RBM rule [A-13] | User decision. Claude recommends the RBM's $41 leisure rate (traceable to pp. 9, 13) as the alternative, and replacement cost for skilled tasks | Approved: base rate to confirm |
+| 41 | 2026-10-06 | Scope expansion (ACL/CCA stocktake, cost–benefit module, business dynamism and competition module) planned as stages after Phase 5, each a separate module that never alters the RBE (`docs/scope_expansion.md`) | User request; keeps the RBE pure and the core tool on schedule | Proposed: scope questions open |
+| 42 | 2026-10-06 | Add optional `legalReference` (Act or instrument, provision) to Obligation and `industry` (ANZSIC code) to Population in schema v1 | Lets the stocktake aggregate by provision, and the dynamism module link to ABS industry data, without a later schema migration | Proposed |
+

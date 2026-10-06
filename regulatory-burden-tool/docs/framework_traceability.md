@@ -194,6 +194,8 @@ Worked illustration (synthetic): current cost $1,000 per entity per year, *v* = 
 | Reduced to $500 (still above the floor) | **$500** (the requirement still binds) | $375 (understated) |
 | Reduced to $100 (below the floor) | **$750** (capped: firms still do $250) | $675 (overstated) |
 
+Policy illustration (synthetic): a quarterly report takes 4 × 4 h = 16 h a year per firm. Firms would prepare an internal annual summary anyway, taking about 4 h, so *v* = 25%. The reform requires one 2 h annual report. That is below the 4 h firms do anyway, so the reformed version imposes no burden. The saving is 16 − 4 = **12 h** per firm, not the 16 − 2 = 14 h a naive comparison gives.
+
 - **Implementation.** Each side's yearly profile is scaled by an effective BAU share. This is *v* on the reference side, and min(1, floor ÷ that side's average gross cost per entity) on the other. Lumpy profiles (e.g. every 3 years) therefore never show negative years.
 - **Alternative.** The proportional rule (the same *v* on both sides) is simpler, but it assumes voluntary activity shrinks in proportion to the requirement.
 
@@ -246,6 +248,10 @@ Example: time 1–3 hours and entities 1,000–3,000, at $100/hour.
 - Midpoints of the inputs give $400,000.
 - The midpoint of the output range ($100,000–$900,000) is $500,000.
 
+**Why they differ.** For two multiplied ranges, the output midpoint always exceeds the product of the input midpoints by (width of range A × width of range B) ÷ 4. In the example that is (2 × 2,000) ÷ 4 × $100 = $100,000. The gap grows with every extra ranged input.
+
+**Why input midpoints are better.** When the inputs are independent and their ranges symmetric, input midpoints give the *expected* cost (for independent inputs, E[XY] = E[X]·E[Y]). The output midpoint averages two extreme corners, all-low and all-high, which are unlikely to occur together.
+
 **Proposed rule:**
 
 - Follow the prompt: use input midpoints, because that is a genuine most-likely point estimate and the RBM asks for one.
@@ -287,19 +293,29 @@ The RBM only contemplates shorter periods (p. 6).
 - An employee meeting an occupational requirement *in their own time* is an **individual**, at the leisure rate (p. 9: "not in the course of their employment").
 - If the employer pays for that time, the cost falls on the **business**, at the work rate.
 
-### A-13 Volunteers in community organisations **[decision needed]**
+### A-13 Volunteers in community organisations **[user decision; base rate to confirm]**
 
-The RBM's labour rate is defined for employees (p. 9), so it doesn't fit volunteers.
+The RBM's work rate is defined for employees (p. 9), so it doesn't fit volunteers.
 
-**Proposed rule:**
+**User decision (6 Oct 2026):** value volunteer time at **half the full-time labour rate**. Paid staff stay at the work rate. It still needs confirming which base is meant:
 
-- Paid staff are costed at the work rate.
-- Volunteer time is costed at the **non-work rate ($41)**, as the opportunity cost of leisure, and flagged "seek OIA advice".
+- half the default work rate, $91.54 ÷ 2 = **$45.77/h**; or
+- half the base wage, $52.31 ÷ 2 = **$26.16/h** (no on-cost multiplier, since volunteers attract no payroll tax or superannuation).
 
-### A-14 Which stakeholder group for the R-14 exceptions? **[decision needed]**
+**Alternatives considered:**
+
+| Approach | Rate | Traces to RBM? | When it fits |
+|---|---|---|---|
+| RBM leisure rate | $41/h | Yes. p. 9 values time "not in the course of their employment"; p. 13 | The volunteer's own time is the cost (the RBM's own concept). **Recommended default.** |
+| Replacement cost | Market wage for the task + on-costs, e.g. a bookkeeper | Partly (R-50: a more accurate rate, with evidence) | Skilled tasks (treasurer, accounts) where the organisation would otherwise pay someone |
+| Half the work rate | $45.77/h | No (a user policy choice) | Pragmatic; within 12% of $41 |
+
+Whichever is chosen is stored in `parameters.ts` and shown in the assumptions register. A non-RBM default is labelled as a policy choice, not a framework rule.
+
+### A-14 Which stakeholder group for the R-14 exceptions? **[resolved]**
 
 - GBEs and foreign-government-owned businesses go in **Business**.
-- For public universities, the RBM doesn't say whether they are Business or Community organisations. **Proposed:** the user must choose, and the choice is recorded in the assumptions register.
+- Public universities get no special handling (user decision, 6 Oct 2026). The user picks the group, as for any other entity.
 
 ### A-15 Mandatory payments to *non-government* bodies
 
@@ -370,8 +386,8 @@ The new Impact Analysis Framework came into effect on 1 July 2026. The OIA web p
 
 | ID | Source | What it says | Effect on this tool |
 |---|---|---|---|
-| N-01 | IAF-PG pp. 21–22 | Remaking a **sunsetting legislative instrument**, "as is" or with amendments, is assessed "relative to the status quo of there being no instrument in place". Burden changes from remaking an instrument are not included in the Estimated Annual Impact on Regulatory Burden. | **Material to the core use case.** If the reform is delivered by remaking a sunsetting instrument, the official RBE baseline is *no regulation*, not the current regime. The reformed regime is costed as new; the saving against today's regime becomes context only. Proposal: a `baseline` setting (`statusQuo` / `noInstrument`) **[decision needed]**. |
-| N-02 | Dashboard IA template; IAF-PG p. 11 | The Dashboard IA reports regulatory burden as "$X over 10 years". The final RBE is "a point estimate of the average annual change in regulatory burden over 10 years (without discounting)". | Report a **duration total** alongside the RBE table. Where the duration is under 10 years, the total covers the policy's life; average = total ÷ duration (p. 6). **[decision needed]** |
+| N-01 | IAF-PG pp. 21–22 | Remaking a **sunsetting legislative instrument**, "as is" or with amendments, is assessed "relative to the status quo of there being no instrument in place". Burden changes from remaking an instrument are not included in the Estimated Annual Impact on Regulatory Burden. | **Material to the core use case.** If the reform is delivered by remaking a sunsetting instrument, the official RBE baseline is *no regulation*, not the current regime. The reformed regime is costed as new; the saving against today's regime becomes context only. **Approved (6 Oct 2026):** a baseline toggle, "current settings" vs "no instrument". Both figures are always computed. The toggle chooses which one fills the RBE table, and the other is shown as context. The screener sets the default from how the change will be legally made, and the tool warns if the toggle contradicts that answer. Proposed interpretation: under "no instrument", the reformed regime's ongoing costs plus its transition costs are counted. Set-up costs already sunk under the current regime are not re-counted as if firms started from scratch. Flagged "seek OIA advice". |
+| N-02 | Dashboard IA template; IAF-PG p. 11 | The Dashboard IA reports regulatory burden as "$X over 10 years". The final RBE is "a point estimate of the average annual change in regulatory burden over 10 years (without discounting)". | **Approved (6 Oct 2026):** report a 10-year total alongside the RBE table. Where the duration is under 10 years, the total covers the policy's life; average = total ÷ duration (p. 6). |
 | N-03 | IAF-PG p. 7; Preliminary Analysis checklist | IA threshold 1: a change in burden of **$20 million or more in total over 10 years**. The checklist's per-entity test is Y1 = $20m ÷ number of entities. | Show a threshold indicator ("likely meets IA threshold 1; confirm with OIA") and a per-entity comparison. It is unclear whether the threshold applies to reductions; proposed: use the absolute value. **[decision needed]** |
 | N-04 | IAF-PG p. 20 | Agencies should retain the final "regulatory burden workbook" and share it with OIA. | The `.xlsx` export (Phase 4) should be a formula-driven workbook OIA can audit, not just values. |
 | N-05 | OIA-calc | OIA's official calculator uses 91.54. It describes delay costs as "standby expenses + lost income", and gives four illustrative examples with stated answers. It also has formula defects (see `docs/oia_calculator_review.md`). | Settles A-02 and supports A-01. Its *stated* example answers become extra illustrative tests. Its *computed* outputs are not a validation benchmark. |
