@@ -1,0 +1,281 @@
+{
+  "ticker": "WES",
+  "company": "Wesfarmers Limited",
+  "fiscal_year": 2005,
+  "period_end": "2005-06-30",
+  "currency": "AUD",
+  "unit_as_printed": "$000",
+  "accounting_basis": "AGAAP pre-IFRS",
+  "source_url": "https://www.wesfarmers.com.au/docs/default-source/reports/2004-2005-annual-report.pdf?sfvrsn=ff299fba_2",
+  "accessed_utc": "2026-10-05T00:16:53Z",
+  "pdf_sha256": "0066518d2007ea8f9af3892cfc524188ba9abc591784921355fc06c8c98b92ad",
+  "pdf_pages": 120,
+  "robots_txt_ok": true,
+  "expense_presentation": "by_function",
+  "sign_convention": "All values recorded with the sign as printed (brackets = negative). Values taken from notes are printed unsigned and recorded as positive.",
+  "income_statement_page": {
+    "pdf_page": 56,
+    "printed_page": "54"
+  },
+  "income_statement_title": "STATEMENT OF FINANCIAL PERFORMANCE for the year ended 30 June 2005 - Wesfarmers Limited and its controlled entities (CONSOLIDATED 2005 column)",
+  "income_statement_lines": [
+    {
+      "label": "Revenues from ordinary activities",
+      "value": 8190389,
+      "pdf_page": 56
+    },
+    {
+      "label": "Expenses from ordinary activities",
+      "value": -7156621,
+      "pdf_page": 56,
+      "note": "detailed by function in note 4 (pdf 69)"
+    },
+    {
+      "label": "Amortisation of goodwill",
+      "value": -90430,
+      "pdf_page": 56
+    },
+    {
+      "label": "Borrowing expenses",
+      "value": -102837,
+      "pdf_page": 56
+    },
+    {
+      "label": "Share of net profits of associates",
+      "value": 39803,
+      "pdf_page": 56
+    },
+    {
+      "label": "Profit from ordinary activities before income tax expense",
+      "value": 880304,
+      "pdf_page": 56
+    },
+    {
+      "label": "Income tax (expense) benefit relating to ordinary activities",
+      "value": -261430,
+      "pdf_page": 56
+    },
+    {
+      "label": "Profit from ordinary activities after income tax expense",
+      "value": 618874,
+      "pdf_page": 56
+    },
+    {
+      "label": "Net (gain) loss attributable to outside equity interests",
+      "value": -574,
+      "pdf_page": 56
+    },
+    {
+      "label": "Net profit attributable to members of the parent entity",
+      "value": 618300,
+      "pdf_page": 56
+    }
+  ],
+  "fields": {
+    "revenue": {
+      "value": 8190389,
+      "label": "Revenues from ordinary activities",
+      "pdf_page": 56,
+      "printed_page": "54",
+      "unit": "$000",
+      "note": "AGAAP total revenue. Note 3 (pdf 68, p66) components: Revenue from the sale of goods 6,858,310; Revenue from insurance premiums 1,069,033; Revenue from other services 98,977; Proceeds on sale of non-current assets 35,817 (gross proceeds, AGAAP); Dividends other corporations 1,487; Interest received 19 + 52,757; Rent received 2,025; Other income 71,964. Includes interest, asset-sale proceeds and insurance premiums, so it is broader than sales."
+    },
+    "other_income": {
+      "value": null,
+      "label": null,
+      "pdf_page": null,
+      "printed_page": null,
+      "unit": null,
+      "note": "Not presented separately under AGAAP. Note 3 line 'Other income' 71,964 ($000, pdf 68) is a component of 'Revenues from ordinary activities' and is NOT additional to revenue."
+    },
+    "cost_of_sales": {
+      "value": 4523007,
+      "label": "Cost of goods sold",
+      "pdf_page": 69,
+      "printed_page": "67",
+      "unit": "$000",
+      "note": "Note 4 'Expenses and other gains/losses', first line of 'Expenses'. Group also has insurance (premium revenue 1,069,033); insurance claims/underwriting costs are not shown as a separate functional line in note 4."
+    },
+    "gross_profit": {
+      "value": null,
+      "label": null,
+      "pdf_page": null,
+      "printed_page": null,
+      "unit": null,
+      "note": "Not printed."
+    },
+    "raw_materials_and_inventory": {
+      "value": null,
+      "label": null,
+      "pdf_page": null,
+      "printed_page": null,
+      "unit": null,
+      "note": "By-function presentation; no by-nature materials line. The unaudited 'Creating wealth and adding value' table (pdf 7, p5) prints 'Total cost of materials, goods and services and other external costs' $m 5,818, which is broader than raw materials and inventory."
+    },
+    "employee_benefits_expense": {
+      "value": 950,
+      "label": "to employees as salaries, wages and other benefits",
+      "pdf_page": 7,
+      "printed_page": "5",
+      "unit": "$m",
+      "note": "NOT from the audited accounts: from the unaudited 'Creating wealth and adding value' (value-added) table in the front section, rounded to $m. AGAAP notes do not print total employee benefits expense; note 4 prints only 'Provision charged against profits - Employee benefits' 69,956 ($000), which is a provision charge, not total labour cost."
+    },
+    "depreciation_and_amortisation": {
+      "value": 277533,
+      "label": "Depreciation and amortisation (total of note 4 sub-items)",
+      "pdf_page": 69,
+      "printed_page": "67",
+      "unit": "$000",
+      "note": "Printed subtotal in note 4: buildings 10,616; plant and equipment 161,423; leasehold improvements 3,011; mineral exploration and development 12,053; goodwill 90,430. Goodwill amortisation (90,430) is also shown as a separate line on the face; the remaining D&A sits inside 'Expenses from ordinary activities'. Segment note (pdf 67, p65) prints consolidated 'Depreciation and amortisation of property, plant and equipment' (187,103)."
+    },
+    "impairment": {
+      "value": 451,
+      "label": "Write down of non-current assets - Property, plant and equipment",
+      "pdf_page": 69,
+      "printed_page": "67",
+      "unit": "$000",
+      "note": "Note 4 disclosure item (within expenses from ordinary activities). Bad and doubtful debts 1,887 also printed in note 4."
+    },
+    "selling_general_admin_lines": [
+      {
+        "label": "Distribution expenses",
+        "value": 189471,
+        "pdf_page": 69,
+        "printed_page": "67",
+        "unit": "$000"
+      },
+      {
+        "label": "Sales and marketing expenses",
+        "value": 1222676,
+        "pdf_page": 69,
+        "printed_page": "67",
+        "unit": "$000"
+      },
+      {
+        "label": "Direct selling expenses",
+        "value": 798872,
+        "pdf_page": 69,
+        "printed_page": "67",
+        "unit": "$000"
+      },
+      {
+        "label": "Administration expenses",
+        "value": 343229,
+        "pdf_page": 69,
+        "printed_page": "67",
+        "unit": "$000"
+      },
+      {
+        "label": "Cost of rural services business sold",
+        "value": 0,
+        "pdf_page": 69,
+        "printed_page": "67",
+        "unit": "$000",
+        "note": "printed as '-' in 2005"
+      },
+      {
+        "label": "Other expenses",
+        "value": 79366,
+        "pdf_page": 69,
+        "printed_page": "67",
+        "unit": "$000"
+      }
+    ],
+    "ebit": {
+      "value": null,
+      "label": null,
+      "pdf_page": null,
+      "printed_page": null,
+      "unit": null,
+      "note": "No consolidated EBIT line in the statement of financial performance. Alternatives printed, not equivalent: segment note (pdf 67, p65) 'Earnings before interest paid, tax (EBIT) and corporate overheads' consolidated 1,035,417 $000 (before consolidation adjustment (4,523) and corporate overheads (47,753)); financial summary (pdf 7, p5) 'Net profit before interest and tax' $m 949, which does not equal PBT + borrowing expenses, apparently a net-interest definition."
+    },
+    "finance_costs": {
+      "value": -102837,
+      "label": "Borrowing expenses",
+      "pdf_page": 56,
+      "printed_page": "54",
+      "unit": "$000",
+      "note": "Note 4: interest paid 100,916 + other borrowing costs 3,504, less borrowing expenses capitalised (1,583) = total borrowing costs expensed 102,837."
+    },
+    "profit_before_tax": {
+      "value": 880304,
+      "label": "Profit from ordinary activities before income tax expense",
+      "pdf_page": 56,
+      "printed_page": "54",
+      "unit": "$000",
+      "note": ""
+    },
+    "income_tax_expense": {
+      "value": -261430,
+      "label": "Income tax (expense) benefit relating to ordinary activities",
+      "pdf_page": 56,
+      "printed_page": "54",
+      "unit": "$000",
+      "note": ""
+    },
+    "net_profit_after_tax": {
+      "value": 618300,
+      "label": "Net profit attributable to members of the parent entity",
+      "pdf_page": 56,
+      "printed_page": "54",
+      "unit": "$000",
+      "note": "Attributable to members. Total (before outside equity interests): 'Profit from ordinary activities after income tax expense' 618,874 (pdf 56). No discontinued operations line under AGAAP; FY2004 comparative includes sale of rural services (Landmark)."
+    },
+    "ppe_net": {
+      "value": 1961395,
+      "label": "Property, plant and equipment",
+      "pdf_page": 57,
+      "printed_page": "55",
+      "unit": "$000",
+      "note": "Statement of financial position, non-current assets (note 14)."
+    },
+    "intangible_assets": {
+      "value": 1376511,
+      "label": "Intangible assets",
+      "pdf_page": 57,
+      "printed_page": "55",
+      "unit": "$000",
+      "note": "INCLUDES GOODWILL. Note 15 (pdf 78, p76): Trade names at cost 41,600; Goodwill at cost 1,728,215 less provision for amortisation (393,304) = 1,334,911."
+    },
+    "total_assets": {
+      "value": 7314348,
+      "label": "Total assets",
+      "pdf_page": 57,
+      "printed_page": "55",
+      "unit": "$000",
+      "note": ""
+    },
+    "employees": {
+      "value": 30000,
+      "label": "EMPLOYEES*",
+      "pdf_page": 3,
+      "printed_page": "1",
+      "unit": "persons",
+      "note": "Rounded headcount ('* As at 30 June 2005'). Corporate citizenship section (pdf 50, printed p48): 'At the end of June 2005, almost 30,000 people worked for Wesfarmers with about 90 per cent of employees located in Australia'. Not FTE."
+    },
+    "australian_revenue_share": {
+      "value": null,
+      "label": null,
+      "pdf_page": null,
+      "printed_page": null,
+      "unit": null,
+      "note": "No geographic revenue split printed. Note 2 states segments operate 'predominantly in Australia'; activities focused in Australia and New Zealand."
+    }
+  },
+  "checks": {
+    "income_statement_identity": "Revenues from ordinary activities 8,190,389 - Expenses from ordinary activities 7,156,621 - Amortisation of goodwill 90,430 - Borrowing expenses 102,837 + Share of net profits of associates 39,803 = 880,304 vs printed PBT 880,304",
+    "identity_difference": 0,
+    "derived_note4_expense_sum": "4,523,007 + 189,471 + 1,222,676 + 798,872 + 343,229 + 0 + 79,366 = 7,156,621 = printed 'Total expenses from ordinary activities' (difference 0)",
+    "derived_note3_revenue_sum": "6,858,310 + 1,069,033 + 98,977 + 35,817 + 0 + 1,487 + 19 + 52,757 + 2,025 + 71,964 = 8,190,389 = printed total (difference 0)"
+  },
+  "minutes_spent": 3,
+  "confidence": "high",
+  "issues": [
+    "Pre-IFRS AGAAP statement of financial performance: 'Revenues from ordinary activities' includes gross proceeds on sale of non-current assets (35,817), interest and insurance premiums; not directly comparable to AIFRS revenue.",
+    "Expenses presented by function in note 4; no total employee benefits expense in the audited accounts. Employee figure ($950m) is taken from the unaudited value-added table and is in $m, unlike the other fields ($000).",
+    "Goodwill amortised under AGAAP (90,430 shown separately on the face); intangible assets include goodwill.",
+    "Report has an AIFRS transition note (note 1(w)) with expected adjustments; numbers recorded are as originally reported under AGAAP.",
+    "Diversified group incl. insurance (Lumley/WFI): insurance underwriting expenses are embedded in functional lines, so COGS/revenue markups mix retail, industrial and insurance activity."
+  ],
+  "minutes_spent_note": "Wall-clock from `date -u`; whole WES session 00:15:52-00:23Z (~7 min) incl. shared site/robots discovery and JSON/log writing, apportioned across the 3 reports."
+}

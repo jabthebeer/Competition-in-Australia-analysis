@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+*.egg-info/
+.ipynb_checkpoints/
+octave-workspace
+
+# Annual-report PDFs: company copyright, large; keep locally only (sha256 + URL recorded in extractions)
+data/raw/annual_reports/pdfs/
+
+# Copyrighted papers: fetched by src/fetch_raw.py for reading only (RDP 2025-05 is CC BY 4.0 and is committed)
+literature/*.pdf
+!literature/rdp2025-05.pdf
+
+# Woolworths pilot files withheld pending user decision (DECISIONS D-011): site terms prohibit robot retrieval
+data/raw/annual_reports/extractions/WOW_*.json
+data/raw/annual_reports/logs/WOW.md

@@ -1,0 +1,311 @@
+{
+  "ticker": "TLS",
+  "company": "Telstra Corporation Limited (now Telstra Group Limited)",
+  "fiscal_year": 2005,
+  "period_end": "2005-06-30",
+  "currency": "AUD",
+  "unit_as_printed": "$m",
+  "accounting_basis": "AGAAP pre-IFRS",
+  "source_url": "https://www.telstra.com.au/content/dam/tcom/about-us/investors/pdf%20C/fin-statements.pdf",
+  "source_note": "The 2005 Annual Report is published on telstra.com.au only as separate section PDFs (listed under '2005 > Annual Report' on https://www.telstra.com.au/aboutus/investors/reports). The file used is the 'Financial Statements' section (printed pages 227 onwards of the full report: financial statements, notes, directors' declaration and audit reports). Employee numbers come from a second section PDF: https://www.telstra.com.au/content/dam/tcom/about-us/investors/pdf%20C/directors-mgt-emp-share.pdf (sha256 eea8a72051e8ad43968ddb6d686f125f249db6924ebaf0dcbbdb35a6bbad2e0c, 50 pages, saved as TLS_FY2005_annual_report_sec_directors_mgt_employees.pdf).",
+  "accessed_utc": "2026-10-05T00:16:54Z",
+  "pdf_sha256": "a03c6f7a38ca6042b99d523483e333b6d689295a0ad9bf90945a60d1ea22a858",
+  "pdf_pages": 170,
+  "robots_txt_ok": true,
+  "expense_presentation": "by_nature",
+  "income_statement_page": {
+    "pdf_page": 2,
+    "printed_page": "228"
+  },
+  "income_statement_lines": [
+    {
+      "label": "Sales revenue",
+      "value": 22161,
+      "pdf_page": 2,
+      "note": "Telstra Group, 2005 $m column (not the US$m convenience column next to it)"
+    },
+    {
+      "label": "Other revenue (excluding interest revenue)",
+      "value": 496,
+      "pdf_page": 2,
+      "note": "AGAAP: includes gross proceeds from sale of non-current assets (226, note 2); the book value of assets sold (215) is inside Other expenses"
+    },
+    {
+      "label": "[subtotal: sales + other revenue]",
+      "value": 22657,
+      "pdf_page": 2,
+      "note": "unlabelled subtotal as printed"
+    },
+    {
+      "label": "Labour",
+      "value": 3693,
+      "pdf_page": 2,
+      "note": "expense block, printed positive"
+    },
+    {
+      "label": "Goods and services purchased",
+      "value": 4147,
+      "pdf_page": 2,
+      "note": "expense block, printed positive"
+    },
+    {
+      "label": "Other expenses",
+      "value": 4055,
+      "pdf_page": 2,
+      "note": "expense block, printed positive"
+    },
+    {
+      "label": "[subtotal: expenses]",
+      "value": 11895,
+      "pdf_page": 2,
+      "note": "unlabelled subtotal as printed"
+    },
+    {
+      "label": "Share of net (profit)/loss from joint venture entities and associated entities",
+      "value": -9,
+      "pdf_page": 2,
+      "note": "printed (9) inside the expense block = share of net PROFIT of 9 (reduces expenses)"
+    },
+    {
+      "label": "[subtotal: expenses after share of JV/associates]",
+      "value": 11886,
+      "pdf_page": 2,
+      "note": "unlabelled subtotal as printed"
+    },
+    {
+      "label": "Earnings before interest, income tax expense, depreciation and amortisation (EBITDA)",
+      "value": 10771,
+      "pdf_page": 2,
+      "note": ""
+    },
+    {
+      "label": "Depreciation and amortisation",
+      "value": 3766,
+      "pdf_page": 2,
+      "note": ""
+    },
+    {
+      "label": "Earnings before interest and income tax expense (EBIT)",
+      "value": 7005,
+      "pdf_page": 2,
+      "note": ""
+    },
+    {
+      "label": "Interest revenue",
+      "value": 103,
+      "pdf_page": 2,
+      "note": ""
+    },
+    {
+      "label": "Borrowing costs",
+      "value": 839,
+      "pdf_page": 2,
+      "note": ""
+    },
+    {
+      "label": "Net borrowing costs",
+      "value": 736,
+      "pdf_page": 2,
+      "note": ""
+    },
+    {
+      "label": "Profit before income tax expense",
+      "value": 6269,
+      "pdf_page": 2,
+      "note": ""
+    },
+    {
+      "label": "Income tax expense",
+      "value": 1822,
+      "pdf_page": 2,
+      "note": ""
+    },
+    {
+      "label": "Net profit",
+      "value": 4447,
+      "pdf_page": 2,
+      "note": ""
+    },
+    {
+      "label": "Outside equity interests in net loss",
+      "value": 0,
+      "pdf_page": 2,
+      "note": "printed as '-'"
+    },
+    {
+      "label": "Net profit available to Telstra Entity shareholders",
+      "value": 4447,
+      "pdf_page": 2,
+      "note": ""
+    }
+  ],
+  "fields": {
+    "revenue": {
+      "value": 22161,
+      "label": "Sales revenue",
+      "pdf_page": 2,
+      "note": "Face of Statement of Financial Performance. Note 2 (pdf 38) splits it: Delivery of services 12,522; Sale of goods 691; Rent of network facilities 7,233; Construction contracts 130; Advertising and directory services 1,585. 'Total revenue from ordinary activities' incl. other and interest revenue = 22,760 (pdf 38)."
+    },
+    "other_income": {
+      "value": 496,
+      "label": "Other revenue (excluding interest revenue)",
+      "pdf_page": 2,
+      "note": "AGAAP gross treatment: includes 'Revenue from the sale of non current assets' 226 (note 2, pdf 38); the matching net book value of assets sold (215) is included in Other expenses (note 3, pdf 39). Interest revenue 103 shown separately below EBIT."
+    },
+    "cost_of_sales": {
+      "value": null,
+      "label": null,
+      "pdf_page": null,
+      "note": "Not presented: by-nature statement. Note 3 (pdf 39) discloses 'Cost of goods sold' 726, described as included in 'Goods and services purchased' and relating to sale of goods only; it is not a by-function cost of sales for the whole business."
+    },
+    "gross_profit": {
+      "value": null,
+      "label": null,
+      "pdf_page": null,
+      "note": "Not printed (by-nature statement)."
+    },
+    "raw_materials_and_inventory": {
+      "value": 4147,
+      "label": "Goods and services purchased",
+      "pdf_page": 2,
+      "note": "By-nature purchases line on the face. Includes cost of goods sold 726 and rental expense on managed services 67 (note 3, pdf 39)."
+    },
+    "employee_benefits_expense": {
+      "value": 3693,
+      "label": "Labour",
+      "pdf_page": 2,
+      "note": "Face line. Includes employee redundancy 91 and ownership based remuneration schemes 20 (note 3, pdf 39). Whether 'Labour' includes labour substitution (contractor) costs, as it does in FY2015, was not checked for FY2005."
+    },
+    "depreciation_and_amortisation": {
+      "value": 3766,
+      "label": "Depreciation and amortisation",
+      "pdf_page": 2,
+      "note": "Note 3 (pdf 40): depreciation of PP&E 2,946; amortisation of intangible and other assets 820 (incl. goodwill amortisation 145, software 534)."
+    },
+    "impairment": {
+      "value": null,
+      "label": null,
+      "pdf_page": null,
+      "note": "No impairment line on the face or as a total in the notes. Note 3 (pdf 39) lists provision movements within Other expenses, e.g. 'reduction in value of investments' 6, 'reduction in value of amounts owed by joint ventures' 5, 'reduction in value of inventories (finished goods)' 11; not summed here."
+    },
+    "selling_general_admin_lines": [
+      {
+        "label": "Other expenses",
+        "value": 4055,
+        "pdf_page": 2,
+        "note": "face line, by-nature residual; not a by-function SG&A"
+      },
+      {
+        "label": "General and administration",
+        "value": 806,
+        "pdf_page": 39,
+        "note": "component of Other expenses (note 3)"
+      },
+      {
+        "label": "Promotion and advertising",
+        "value": 330,
+        "pdf_page": 39,
+        "note": "component of Other expenses (note 3)"
+      },
+      {
+        "label": "Service contracts and other agreements",
+        "value": 1556,
+        "pdf_page": 39,
+        "note": "component of Other expenses (note 3)"
+      },
+      {
+        "label": "Rental expense on operating leases",
+        "value": 597,
+        "pdf_page": 39,
+        "note": "component of Other expenses (note 3)"
+      }
+    ],
+    "ebit": {
+      "value": 7005,
+      "label": "Earnings before interest and income tax expense (EBIT)",
+      "pdf_page": 2,
+      "note": "Printed. EBITDA 10,771 also printed."
+    },
+    "finance_costs": {
+      "value": 839,
+      "label": "Borrowing costs",
+      "pdf_page": 2,
+      "note": "Interest revenue 103 shown separately; Net borrowing costs 736 printed."
+    },
+    "profit_before_tax": {
+      "value": 6269,
+      "label": "Profit before income tax expense",
+      "pdf_page": 2,
+      "note": ""
+    },
+    "income_tax_expense": {
+      "value": 1822,
+      "label": "Income tax expense",
+      "pdf_page": 2,
+      "note": ""
+    },
+    "net_profit_after_tax": {
+      "value": 4447,
+      "label": "Net profit",
+      "pdf_page": 2,
+      "note": "Total net profit 4,447; 'Net profit available to Telstra Entity shareholders' also 4,447 (outside equity interests '-'). No discontinued operations."
+    },
+    "ppe_net": {
+      "value": 23351,
+      "label": "Property, plant and equipment",
+      "pdf_page": 3,
+      "note": "Non current; Statement of Financial Position, Telstra Group 2005 $m column."
+    },
+    "intangible_assets": {
+      "value": null,
+      "label": null,
+      "pdf_page": 3,
+      "note": "No single intangibles total printed. Two lines printed on pdf 3: 'Intangibles - goodwill' 2,287 and 'Intangibles - other' 1,581 (see components). Not summed per protocol. Note 3 (pdf 40) amortises 'software assets' (534) under 'Amortisation of intangible assets and other assets', but software is not one of the two intangibles lines; where it sits on the balance sheet was not checked.",
+      "components": [
+        {
+          "label": "Intangibles - goodwill",
+          "value": 2287,
+          "pdf_page": 3
+        },
+        {
+          "label": "Intangibles - other",
+          "value": 1581,
+          "pdf_page": 3
+        }
+      ]
+    },
+    "total_assets": {
+      "value": 36310,
+      "label": "Total assets",
+      "pdf_page": 3,
+      "note": ""
+    },
+    "employees": {
+      "value": 46336,
+      "label": "Full-time equivalent total for the Telstra Group",
+      "pdf_page": 6,
+      "note": "FTE as at 30 June 2005. Page 6 of the SEPARATE section PDF directors-mgt-emp-share.pdf (printed page 141), not the main financial-statements PDF. Same section (pdf 5, printed 140) also prints 42,523 full-time employees plus 3,813 FTE under flexible arrangements; 39,657 full-time Australian based employees.",
+      "source_file": "TLS_FY2005_annual_report_sec_directors_mgt_employees.pdf"
+    },
+    "australian_revenue_share": {
+      "value": 20855,
+      "label": "Australian customers (Segment revenue from external customers)",
+      "pdf_page": 53,
+      "note": "Note 5 geographic information: Australian customers 20,855; International customers 1,626; total segment revenue from external customers 22,481 (differs from Sales revenue 22,161 because it includes part of other revenue). Share not computed here."
+    }
+  },
+  "checks": {
+    "income_statement_identity": "Sales revenue 22,161 + Other revenue 496 - (Labour 3,693 + Goods and services purchased 4,147 + Other expenses 4,055) + share of net profit of JV/associates 9 - D&A 3,766 + Interest revenue 103 - Borrowing costs 839 = 6,269 (derived) vs printed Profit before income tax expense 6,269",
+    "identity_difference": 0,
+    "printed_subtotals_consistent": "EBITDA 10,771 and EBIT 7,005 also reproduce from the printed lines (derived check only)"
+  },
+  "minutes_spent": 6,
+  "confidence": "high",
+  "issues": [
+    "FY2005 Annual Report is only available on the company site as 7 separate section PDFs; the financial statements are in 'Financial Statements' (fin-statements.pdf). Employee numbers required a second section PDF.",
+    "Statement of Financial Performance has a US$m convenience-translation column immediately right of the A$ 2005 column (and Telstra Entity/parent columns further right); values here are Telstra Group 2005 $m. Automated column extraction could easily pick the wrong column.",
+    "AGAAP pre-IFRS: Other revenue includes gross proceeds from asset sales (226) with the book value (215) in Other expenses; goodwill was amortised (145). Not comparable one-for-one with AIFRS years.",
+    "By-nature presentation: no cost of sales / gross profit. 'Cost of goods sold' 726 in note 3 covers only sale of goods.",
+    "The report also contains USGAAP reconciliation disclosures (note 30) - not used."
+  ]
+}
