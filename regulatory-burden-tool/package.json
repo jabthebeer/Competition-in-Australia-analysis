@@ -1,0 +1,29 @@
+{
+  "name": "regulatory-burden-tool",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unofficial aid for estimating regulatory burden under the OIA Regulatory Burden Measurement framework (July 2026).",
+  "type": "module",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "rbe": "tsx src/cli/rbe.ts",
+    "trace": "tsx scripts/check-traceability.ts",
+    "check": "npm run typecheck && npm test && npm run trace"
+  },
+  "dependencies": {
+    "decimal.js": "^10.6.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}

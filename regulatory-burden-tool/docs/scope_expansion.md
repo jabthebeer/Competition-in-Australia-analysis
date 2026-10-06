@@ -1,6 +1,13 @@
 # Scope expansion: Competition and Consumer Act (CCA) stocktake, cost–benefit analysis, business dynamism
 
-**Status:** Planning note for discussion (6 October 2026). Nothing here is approved or built.
+**Status:** Planning note (6 October 2026).
+
+**Decision (DECISIONS #44).** The tool will not do econometrics itself. It is built so competition costings plug in later as extensions, and its outputs feed econometric work easily. Phase 1 delivers:
+- a read-only extension interface (`src/engine/extensions.ts`);
+- a tidy long-format export with a data dictionary (`src/engine/tidy.ts`);
+- ABS-aligned industry (ANZSIC) and employment-size identifiers.
+
+The stages below remain a roadmap. The CCA scope question (A/B/C) is deferred until that work starts.
 
 ## The request
 

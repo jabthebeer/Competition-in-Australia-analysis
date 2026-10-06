@@ -1,0 +1,10 @@
+node_modules/
+dist/
+coverage/
+*.log
+# Proposal files may be Cabinet-in-confidence: never commit them.
+# Only the illustrative files in examples/ are tracked.
+*.rbm.json
+*.proposal.json
+!examples/*.json
+out/
