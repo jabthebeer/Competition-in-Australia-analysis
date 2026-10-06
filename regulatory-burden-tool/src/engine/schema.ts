@@ -25,7 +25,11 @@ export const ShareSchema = z.union([
     .refine((r) => r.low <= r.high, { message: "The low value must not exceed the high value" }),
 ]);
 
-const Id = z.string().min(1).max(120);
+const Id = z
+  .string()
+  .min(1)
+  .max(120)
+  .regex(/^[A-Za-z0-9_-]+$/, "Use letters, digits, hyphens or underscores only");
 
 export const SourceSchema = z.strictObject({
   description: z.string().min(1),
@@ -39,6 +43,25 @@ export const OverrideSchema = z.strictObject({
   justification: z.string().min(1),
   source: SourceSchema,
 });
+
+/**
+ * Where an input value came from (DECISIONS #58). Keys of a provenance map are field paths:
+ * on a population, "count"; on an obligation, the same paths `reformDiff` reports, prefixed
+ * by side, e.g. "reformed.lines.<populationId>.labour.hours", or top-level fields such as
+ * "doAnywayShare". A missing entry means the value was entered by the user.
+ */
+export const ProvenanceSchema = z
+  .strictObject({
+    origin: z.enum(["default", "entered", "description", "modelEstimate", "sourced"]),
+    note: z.string().optional(),
+    source: SourceSchema.optional(),
+  })
+  .refine((p) => p.origin !== "sourced" || p.source !== undefined, {
+    message: "A sourced value needs a source",
+    path: ["source"],
+  });
+
+export const ProvenanceMapSchema = z.record(z.string().min(1), ProvenanceSchema);
 
 const RateKind = z.enum(["work", "leisure", "volunteer"]);
 
@@ -92,7 +115,7 @@ export const AnzsicSchema = z
 
 export const PopulationSchema = z.strictObject({
   id: Id,
-  label: z.string().min(1),
+  label: z.string(),
   group: GroupSchema,
   cohort: CohortSchema.default("all"),
   employmentBand: EmploymentBandSchema.optional(),
@@ -101,6 +124,7 @@ export const PopulationSchema = z.strictObject({
   source: SourceSchema.optional(),
   nonResident: z.boolean().default(false),
   entityType: EntityTypeSchema.default("private"),
+  provenance: ProvenanceMapSchema.optional(),
 });
 
 export const TimingSchema = z.discriminatedUnion("type", [
@@ -227,7 +251,7 @@ export const ScopeSchema = z
 export const ObligationSchema = z
   .strictObject({
     id: Id,
-    name: z.string().min(1),
+    name: z.string(),
     description: z.string().optional(),
     category: z.enum(["administrative", "substantive", "delay"]),
     jurisdiction: z.enum(["commonwealth", "stateTerritory"]).default("commonwealth"),
@@ -243,6 +267,7 @@ export const ObligationSchema = z
     timingOverride: z
       .strictObject({ reformStartYear: int.min(1).optional(), overlapYears: int.min(0).optional() })
       .optional(),
+    provenance: ProvenanceMapSchema.optional(),
   })
   .superRefine((o, ctx) => {
     if (!o.current && !o.reformed) {
@@ -272,7 +297,7 @@ export const ObligationSchema = z
 export const OptionSchema = z
   .strictObject({
     id: Id,
-    name: z.string().min(1),
+    name: z.string(),
     description: z.string().optional(),
     isStatusQuo: z.boolean().default(false),
     timing: z
@@ -301,7 +326,7 @@ export const OptionSchema = z
 export const ProposalSchema = z
   .strictObject({
     id: Id,
-    title: z.string().min(1),
+    title: z.string(),
     description: z.string().optional(),
     proposalType: z.enum(["reform", "new", "repeal"]).default("reform"),
     durationYears: int.min(PARAMETERS.duration.minYears).max(PARAMETERS.duration.maxYears).default(10),
@@ -386,6 +411,7 @@ export const ProposalFileSchema = z.strictObject({
 
 export type Quantity = z.output<typeof QuantitySchema>;
 export type Source = z.output<typeof SourceSchema>;
+export type Provenance = z.output<typeof ProvenanceSchema>;
 export type Override = z.output<typeof OverrideSchema>;
 export type RateTable = z.output<typeof RateTableSchema>;
 export type Group = z.output<typeof GroupSchema>;

@@ -9,8 +9,9 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 | Phase | Scope | Status |
 |---|---|---|
 | 0 | Specification: traceability, ambiguities, data model, test list | Approved 6 Oct 2026 |
-| 1 | Calculation engine (pure TypeScript), tests, CLI | **Complete. Awaiting review.** |
-| 2 | Core web app (MVP), built around reform mode | Not started |
+| 1 | Calculation engine (pure TypeScript), tests, CLI | Complete |
+| 2 | Core web app (MVP), built around reform mode | **Complete. Awaiting review.** |
+| 2b | Copy-and-paste AI drafting assistant (prompt generator; provenance review) | Not started (engine groundwork done: provenance labels, draft import) |
 | 3 | Framework completeness: screener UI, warnings UI, assumptions register UI, option comparison | Not started (the engine already supports these) |
 | 4 | Reporting (docx, xlsx, CSV, print) and sensitivity | Not started |
 | 5 | Validation against published Impact Analyses; accessibility audit; user guide | Not started |
@@ -21,19 +22,37 @@ Requires Node 20 or later.
 
 ```bash
 npm install
-npm test                 # unit tests (Vitest)
+npm run dev              # the web app at http://localhost:5173 (development)
+npm run build            # static site in dist/ (adds the Content-Security-Policy)
+npm run preview          # serve the built site at http://localhost:4173
+
+npm test                 # unit tests (Vitest): engine and UI helpers
+npm run e2e              # end-to-end tests (Playwright) against the built site
 npm run typecheck        # TypeScript
 npm run trace            # checks the traceability document against the code and tests
-npm run check            # all three
+npm run check            # typecheck + unit tests + trace
 
-# Print the RBE table for a proposal file (illustrative example included):
+# Command line: print the RBE table for a proposal file (illustrative example included)
 npm run rbe -- examples/illustrative-reform.json
 npm run rbe -- examples/illustrative-reform.json --precision dollars   # or 2, 3
 npm run rbe -- examples/illustrative-reform.json --json                # full results
 npm run rbe -- examples/illustrative-reform.json --tidy out/tidy.csv   # analysis-ready data + dictionary
 ```
 
+The built site in `dist/` is static: copy it to any web server or internal host. It makes no network requests (its security policy blocks them), stores proposals only in the browser (auto-save can be turned off) and in files the user downloads.
+
 Proposal files may be Cabinet-in-confidence. `.gitignore` keeps `*.rbm.json` and `*.proposal.json` out of the repository; only the synthetic files in `examples/` are tracked.
+
+## The web app (`src/ui/`)
+
+Four steps, plus save/load and about pages:
+
+1. **Proposal:** type (reform, new, repeal), period, jurisdiction, baseline toggle, affected groups (with optional ABS size band and ANZSIC code), and the options to compare.
+2. **Current regime:** obligations as they are today, with plain-language help, defaults from `parameters.ts`, scope checks, and a live formula preview with the year-by-year profile.
+3. **Reform options:** per option, keep / modify / remove each obligation; reform levers highlight the inputs they change; changed fields show today's value; a diff lists what changes. Also new replacement obligations, transition costs, deferred start and dual running.
+4. **Results:** the RBE table in the framework's layout for every option, net verdict, gross increases and reductions, 10-year total and IA threshold 1 flag, the alternative baseline, context totals, a waterfall chart, breakdowns, per-entity results with cliff flags, excluded items, warnings and the assumptions register.
+
+`src/ui/model.ts` holds the pure editing helpers (tested in `tests/ui/`); pages and components only call them.
 
 ## The engine (`src/engine/`)
 

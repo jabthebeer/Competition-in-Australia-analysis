@@ -92,3 +92,22 @@ Every assumption, interpretation of an ambiguous rule, and design choice is reco
 | 56 | 2026-10-06 | The cliff flag fires when a cohort's cost falls to zero (exempt) while the next larger cohort of the same group and industry gets no per-entity relief | Simple, transparent test of a threshold cliff (brief section 6) | Approved (implementation) |
 | 57 | 2026-10-06 | Plausibility check on staff per entity uses the cohort's upper employment bound (small 19, medium 199) | The only defined bounds; non-blocking warning only | Approved (implementation) |
 
+## Phase 2 (6 October 2026): web app
+
+| # | Date | Decision | Rationale | Status |
+|---|---|---|---|---|
+| 58 | 2026-10-06 | Inputs can carry a provenance label (`default`, `entered`, `description`, `modelEstimate`, `sourced`), stored as a map keyed by field path on each population and obligation; a missing entry means "entered by the user" | Prepares the copy-and-paste AI drafting (Phase 2b) without changing any numbers; keys reuse the diff paths | Approved |
+| 59 | 2026-10-06 | Unconfirmed model estimates **watermark** results (draft banner, W-22, assumptions register) rather than block them | User left the choice open; non-blocking matches every other warning in the tool | Approved (default; revisit in Phase 4 exports) |
+| 60 | 2026-10-06 | `importDraft` accepts a saved file, a bare proposal, or an AI reply with the JSON in a code fence, and returns problems as a list | One checked path for files and pasted drafts | Approved |
+| 61 | 2026-10-06 | Only the copy-and-paste route to an AI tool; no direct connection | User decision | Approved |
+| 62 | 2026-10-06 | The UI keeps one shared current regime across options. Each reformed version follows it, except for the fields the reform changed (`rebaseReformed`); a changed cost type or timing pattern stays as the reform set it | Brief §6: "users only edit what changes" | Approved (implementation) |
+| 63 | 2026-10-06 | Titles, group labels, option and obligation names may be blank (the UI shows a fallback) | Found by the end-to-end tests: a blank name blocked all results, and forced defaults made text fields jump while typing | Approved (implementation) |
+| 64 | 2026-10-06 | Changing the proposal type resets the default options only while nothing has been entered | e.g. choosing "Remove outright" should give an "Outright repeal" option | Approved (implementation) |
+| 65 | 2026-10-06 | IDs are restricted to letters, digits, hyphens and underscores | IDs appear inside field paths (provenance, diffs) | Approved (implementation) |
+| 66 | 2026-10-06 | The Content-Security-Policy is added to the production build only; end-to-end tests run against the build | The dev server needs a WebSocket for hot reload | Approved (implementation) |
+| 67 | 2026-10-06 | Charts use a diverging pair, blue `#2a78d6` for reductions and red `#e34948` for increases, with neutral `#52514e` for regime totals. Validated on the white chart surface: colour-blind ΔE ≥ 10.4, normal-vision ΔE ≥ 26.6, all ≥ 3:1 contrast. Each chart has a legend, tooltip and table view. The app is light-theme only for now | Dataviz method: the job is polarity, so a diverging pair; status colours (green/red "good/bad") avoided | Approved (implementation) |
+| 68 | 2026-10-06 | The results page (with the charting library) loads only when first opened | Halves the first download (≈ 460 kB before compression instead of ≈ 840 kB) | Approved (implementation) |
+| 69 | 2026-10-06 | `@playwright/test` is pinned to 1.56.1, with a `playwright-core` override | Matches the preinstalled Chromium build; avoids a browser download | Approved (implementation) |
+| 70 | 2026-10-06 | The single-file offline build (DECISIONS #37) moves to Phase 4 | Inlined scripts need CSP hashes, best done alongside the export work | Approved (deferral) |
+| 71 | 2026-10-06 | Hash-based routing; focus moves to the page heading on navigation; a skip link | Works from any static host or folder; screen-reader friendly | Approved (implementation) |
+

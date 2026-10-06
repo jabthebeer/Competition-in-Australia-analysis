@@ -6,7 +6,7 @@ import { PARAMETERS } from "./parameters";
 import { computeOptionItems } from "./reform";
 import { SCHEMA_VERSION, type Proposal } from "./schema";
 import type { ProposalResult } from "./types";
-import { assumptionsRegister, collectWarnings } from "./validate";
+import { assumptionsRegister, collectWarnings, unconfirmedEstimates } from "./validate";
 
 export const ENGINE_VERSION = "0.1.0";
 
@@ -28,5 +28,6 @@ export function computeProposal(input: unknown): ProposalResult {
     options: computed.map((c) => c.result),
     warnings: collectWarnings(proposal, computed),
     assumptions: assumptionsRegister(proposal),
+    unconfirmedEstimates: unconfirmedEstimates(proposal),
   };
 }

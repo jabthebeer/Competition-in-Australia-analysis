@@ -1,8 +1,8 @@
 # Framework traceability
 
-**Status:** Phase 1 implemented (6 October 2026).
+**Status:** Phases 1 and 2 implemented (6 October 2026).
 - The **Code** column points to the implementation in `src/engine/`.
-- The **Test** column gives test IDs, which appear in the test titles under `tests/engine/`.
+- The **Test** column gives test IDs, which appear in the test titles under `tests/engine/`, `tests/ui/` and `e2e/`.
 - `npm run trace` checks that every cited test, warning and code reference exists.
 
 ## 1. Source documents
@@ -147,6 +147,12 @@ These come from the prompt. They are listed so that each traces back to the fram
 | X-11 | Extensions read results and can't change the RBE. | Brief ground rules; DECISIONS #44 | `extensions.ts#runExtensions` | T-EXT-01 |
 | X-12 | Tidy export with ABS-aligned identifiers, for econometric work. | DECISIONS #44, #50 | `tidy.ts#toTidyRows` | T-TIDY-01 |
 | X-13 | Exact decimal arithmetic; versioned, strict schema; pure, deterministic engine. | Brief technical stack | `decimal.ts`, `schema.ts`, `migrate.ts#loadProposalFile` | T-NUM-01, T-SCH-01..03 |
+| X-14 | Provenance labels on inputs; unconfirmed model estimates mark results as a draft. | R-36 (reasonable, defensible assumptions); DECISIONS #58-#59 | `schema.ts#ProvenanceSchema`, `validate.ts#unconfirmedEstimates` | T-PROV-01, W-22 |
+| X-15 | Pasted drafts (saved files or AI replies) are validated before loading. | DECISIONS #60 | `migrate.ts#importDraft` | T-DRAFT-01, T-E2E-06 |
+| X-16 | One shared current regime; each reformed version follows it except for the fields the reform changes. | Brief §6 ("users only edit what changes") | `src/ui/model.ts#rebaseReformed`, `src/ui/model.ts#updateCurrentObligation` | T-UI-01..08 |
+| X-17 | The web app shows the RBE table in the framework's layout for every option, with the net verdict, gross figures, context, waterfall and breakdowns. | R-18 to R-21, R-34; brief §5-6 | `src/ui/pages/ResultsPage.tsx#RbeTable`, `src/ui/components/Charts.tsx#WaterfallChart` | T-E2E-01..05 |
+| X-18 | Privacy by design: no network requests (enforced by a Content-Security-Policy), data kept in the browser or exported files. | Brief ground rules; DECISIONS #37 | `src/ui/persistence.ts#saveProposal` | T-E2E-06, T-E2E-07 |
+| X-19 | Accessibility: WCAG 2.2 A/AA checked with axe on every page. | Brief technical stack | `src/ui/components/fields.tsx#QuantityField` | T-E2E-08 |
 
 ## 3. Ambiguities and proposed interpretations
 

@@ -71,3 +71,38 @@ export function toProposalFile(proposal: Proposal, savedAt?: string): ProposalFi
     ? { schemaVersion: SCHEMA_VERSION, proposal }
     : { schemaVersion: SCHEMA_VERSION, savedAt, proposal };
 }
+
+export type DraftImport =
+  | { ok: true; file: ProposalFile }
+  | { ok: false; issues: string[] };
+
+/**
+ * Loads pasted text as a draft proposal (DECISIONS #60): a saved file, or the reply from a
+ * language model, which may wrap the JSON in a code fence or omit the file envelope.
+ * Problems come back as a list, so they can be shown to the user or pasted back to the model.
+ */
+export function importDraft(text: string): DraftImport {
+  const fenced = /```(?:json)?\s*([\s\S]*?)```/i.exec(text);
+  let body = (fenced?.[1] ?? text).trim();
+  const first = body.indexOf("{");
+  const last = body.lastIndexOf("}");
+  if (first < 0 || last < first) return { ok: false, issues: ["(text): no JSON object found"] };
+  body = body.slice(first, last + 1);
+  let json: unknown;
+  try {
+    json = JSON.parse(body);
+  } catch (e) {
+    return { ok: false, issues: [`(text): not valid JSON (${e instanceof Error ? e.message : String(e)})`] };
+  }
+  if (typeof json !== "object" || json === null || Array.isArray(json)) {
+    return { ok: false, issues: ["(text): expected a JSON object"] };
+  }
+  const obj = json as Record<string, unknown>;
+  const file = "schemaVersion" in obj ? obj : "proposal" in obj ? { schemaVersion: SCHEMA_VERSION, ...obj } : { schemaVersion: SCHEMA_VERSION, proposal: obj };
+  try {
+    return { ok: true, file: loadProposalFile(file) };
+  } catch (e) {
+    return { ok: false, issues: e instanceof ProposalValidationError ? e.issues : [String(e)] };
+  }
+}
+

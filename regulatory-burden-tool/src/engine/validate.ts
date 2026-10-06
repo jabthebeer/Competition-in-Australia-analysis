@@ -6,7 +6,7 @@ import { findCliffs } from "./aggregate";
 import { PARAMETERS, deriveWorkRate } from "./parameters";
 import type { ItemCalc } from "./reform";
 import type { Obligation, Option, Proposal, Side, Timing } from "./schema";
-import type { AssumptionRow, Warning, WarningCode } from "./types";
+import type { AssumptionRow, UnconfirmedEstimate, Warning, WarningCode } from "./types";
 
 export const WARNING_CATALOGUE: Record<WarningCode, { title: string; ref: string }> = {
   "W-01": { title: "Fee, levy, charge or tax entered as a purchase cost", ref: "RBM pp. 2, 4" },
@@ -30,7 +30,30 @@ export const WARNING_CATALOGUE: Record<WarningCode, { title: string; ref: string
   "W-19": { title: "Expected compliance rate differs between versions", ref: "RBM pp. 8-9" },
   "W-20": { title: "Timing falls outside the analysis period", ref: "RBM p. 6" },
   "W-21": { title: "Baseline doesn't match how the change will be made", ref: "IA Framework Practical Guide pp. 21-22" },
+  "W-22": { title: "Unconfirmed model estimate", ref: "RBM p. 7 (reasonable and defensible assumptions); DECISIONS #59" },
 };
+
+/** Every input whose provenance is still an unconfirmed language-model estimate. */
+export function unconfirmedEstimates(p: Proposal): UnconfirmedEstimate[] {
+  const out: UnconfirmedEstimate[] = [];
+  for (const pop of p.populations) {
+    for (const [path, prov] of Object.entries(pop.provenance ?? {})) {
+      if (prov.origin === "modelEstimate") {
+        out.push({ kind: "population", id: pop.id, label: pop.label, path, ...(prov.note ? { note: prov.note } : {}) });
+      }
+    }
+  }
+  for (const option of p.options) {
+    for (const o of [...option.obligations, ...option.transitions]) {
+      for (const [path, prov] of Object.entries(o.provenance ?? {})) {
+        if (prov.origin === "modelEstimate") {
+          out.push({ kind: "obligation", id: o.id, label: o.name, optionId: option.id, path, ...(prov.note ? { note: prov.note } : {}) });
+        }
+      }
+    }
+  }
+  return out;
+}
 
 interface Ctx {
   option?: Option;
@@ -195,6 +218,16 @@ export function collectWarnings(p: Proposal, computed: { option: Option; items: 
   if (p.remakesSunsettingInstrument === false && p.baseline === "noInstrument") {
     out.push(warn("W-21", "The baseline is \"no instrument\", but the change isn't a remake of a sunsetting instrument. Compare against current settings unless OIA advises otherwise."));
   }
+  for (const e of unconfirmedEstimates(p)) {
+    out.push({
+      code: "W-22",
+      severity: "warning",
+      message: `"${e.label}": ${e.path} is a language-model estimate that hasn't been confirmed. Replace it, or confirm it with a source; results stay marked as a draft until then.`,
+      ref: WARNING_CATALOGUE["W-22"].ref,
+      ...(e.optionId ? { optionId: e.optionId } : {}),
+      ...(e.kind === "obligation" ? { obligationId: e.id } : { populationId: e.id }),
+    });
+  }
   for (const { option, items } of computed) {
     for (const o of option.obligations) out.push(...obligationWarnings(p, option, o, false));
     for (const o of option.transitions) out.push(...obligationWarnings(p, option, o, true));
@@ -261,6 +294,9 @@ export function assumptionsRegister(p: Proposal): AssumptionRow[] {
         }
       }
     }
+  }
+  for (const e of unconfirmedEstimates(p)) {
+    row({ item: `Unconfirmed model estimate: ${e.label}`, value: e.path, justification: e.note, ref: "DECISIONS #59" });
   }
   return rows;
 }

@@ -8,7 +8,7 @@ export type Money = string;
 
 export type WarningCode =
   | "W-01" | "W-02" | "W-03" | "W-04" | "W-05" | "W-06" | "W-07" | "W-08" | "W-09" | "W-10"
-  | "W-11" | "W-12" | "W-13" | "W-14" | "W-15" | "W-16" | "W-17" | "W-18" | "W-19" | "W-20" | "W-21";
+  | "W-11" | "W-12" | "W-13" | "W-14" | "W-15" | "W-16" | "W-17" | "W-18" | "W-19" | "W-20" | "W-21" | "W-22";
 
 export interface Warning {
   code: WarningCode;
@@ -151,6 +151,16 @@ export interface AssumptionRow {
   ref?: string;
 }
 
+/** An input that came from a language-model draft and hasn't been confirmed or sourced yet. */
+export interface UnconfirmedEstimate {
+  kind: "population" | "obligation";
+  id: string;
+  label: string;
+  optionId?: string;
+  path: string;
+  note?: string;
+}
+
 export interface ProposalResult {
   engineVersion: string;
   schemaVersion: number;
@@ -162,4 +172,6 @@ export interface ProposalResult {
   options: OptionResult[];
   warnings: Warning[];
   assumptions: AssumptionRow[];
+  /** Results are a draft while any of these remain (DECISIONS #59). */
+  unconfirmedEstimates: UnconfirmedEstimate[];
 }

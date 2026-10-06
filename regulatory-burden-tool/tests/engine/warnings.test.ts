@@ -135,4 +135,10 @@ describe("Validation warnings (brief section 7)", () => {
     expect(codes(one(newOb(), { remakesSunsettingInstrument: false, baseline: "noInstrument" }))).toContain("W-21");
     expect(codes(one(newOb(), { remakesSunsettingInstrument: false }))).not.toContain("W-21");
   });
+
+  it("W-22 unconfirmed language-model estimate", () => {
+    const est = (origin: string) => newOb({ provenance: { "reformed.lines.biz.purchase.unitCost": { origin } } });
+    expect(codes(one(est("modelEstimate")))).toContain("W-22");
+    expect(codes(one(est("entered")))).not.toContain("W-22");
+  });
 });
