@@ -1,5 +1,6 @@
 import { ENGINE_VERSION, PARAMETERS } from "../../engine/index";
 import { PageHeading } from "../App";
+import { HOSTED } from "../env";
 
 export function AboutPage() {
   const r = PARAMETERS.rates;
@@ -41,7 +42,7 @@ export function AboutPage() {
       <section aria-labelledby="privacy-heading">
         <h2 id="privacy-heading">Your data</h2>
         <p>
-          The tool runs entirely in your browser. It has no server, no analytics and makes no network requests: its security policy blocks them. Your proposal is stored only in this browser (if auto-save is on) and in files you download. Proposals may be Cabinet-in-confidence: follow your agency's rules about where such material may be handled.
+          The tool runs entirely in your browser. It has no server, no analytics and makes no network requests{HOSTED ? ". This test copy is hosted in a viewer, so use illustrative or public information only" : ": its security policy blocks them"}. Your proposal is stored only in this browser (if auto-save is on) and in files or text you choose to keep. Proposals may be Cabinet-in-confidence: follow your agency's rules about where such material may be handled.
         </p>
       </section>
       <section aria-labelledby="version-heading">

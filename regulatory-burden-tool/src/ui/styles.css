@@ -183,6 +183,7 @@ main:focus {
 /* Banners */
 .banner {
   max-width: 64rem;
+  width: calc(100% - 2rem);
   margin: 0.75rem auto 0;
   padding: 0.75rem 1rem;
   border-radius: var(--radius);
@@ -703,4 +704,19 @@ thead th {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--warn);
+}
+
+.confirm {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--bad);
+  border-radius: var(--radius);
+  background: var(--bad-soft);
+}
+
+.confirm-question {
+  font-weight: 600;
 }

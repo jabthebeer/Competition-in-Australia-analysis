@@ -18,7 +18,8 @@
     "typecheck": "tsc --noEmit",
     "rbe": "tsx src/cli/rbe.ts",
     "trace": "tsx scripts/check-traceability.ts",
-    "check": "npm run typecheck && npm test && npm run trace"
+    "check": "npm run typecheck && npm test && npm run trace",
+    "build:artifact": "ARTIFACT_BUILD=1 VITE_DEMO=1 VITE_HOSTED=1 vite build && node scripts/build-artifact.mjs"
   },
   "dependencies": {
     "decimal.js": "^10.6.0",

@@ -26,9 +26,15 @@ function contentSecurityPolicy(): Plugin {
   };
 }
 
+// ARTIFACT_BUILD=1 produces the hosted test copy (see scripts/build-artifact.mjs): one JavaScript
+// file, no CSP meta tag (the host applies its own policy, which also blocks outside requests).
+const artifact = process.env.ARTIFACT_BUILD === "1";
+
 export default defineConfig({
   base: "./",
-  plugins: [react(), contentSecurityPolicy()],
-  build: { outDir: "dist", sourcemap: false },
+  plugins: artifact ? [react()] : [react(), contentSecurityPolicy()],
+  build: artifact
+    ? { outDir: "dist-artifact", sourcemap: false, cssCodeSplit: false, rolldownOptions: { output: { inlineDynamicImports: true } } }
+    : { outDir: "dist", sourcemap: false },
   preview: { port: 4173, strictPort: true },
 });

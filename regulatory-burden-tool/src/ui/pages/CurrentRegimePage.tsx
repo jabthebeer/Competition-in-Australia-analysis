@@ -2,6 +2,7 @@ import { useState } from "react";
 import { dec } from "../../engine/decimal";
 import type { Obligation, OptionResult } from "../../engine/index";
 import { NextStep, PageHeading, type PageProps } from "../App";
+import { ConfirmButton } from "../components/ConfirmButton";
 import { ObligationEditor } from "../components/ObligationEditor";
 import { CATEGORY_LABELS, formatMoney, moneyText } from "../format";
 import { addCurrentObligation, currentObligations, newObligation, removeCurrentObligation, updateCurrentObligation, type Category } from "../model";
@@ -66,15 +67,13 @@ export function CurrentRegimePage({ proposal, update, computed, go }: PageProps)
                 <button type="button" aria-expanded={expanded} aria-controls={panelId} onClick={() => toggle(o.id)}>
                   {expanded ? "Close" : "Edit"}
                 </button>
-                <button
-                  type="button"
+                <ConfirmButton
+                  label="Remove"
+                  question={`Remove "${o.name || "this obligation"}" from the current regime and every option?`}
+                  confirmLabel="Yes, remove it"
                   className="danger"
-                  onClick={() => {
-                    if (window.confirm(`Remove "${o.name || "this obligation"}" from the current regime and every option?`)) update((p) => removeCurrentObligation(p, o.id));
-                  }}
-                >
-                  Remove
-                </button>
+                  onConfirm={() => update((p) => removeCurrentObligation(p, o.id))}
+                />
               </div>
             </div>
             {expanded && (

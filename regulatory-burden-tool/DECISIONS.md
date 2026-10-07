@@ -110,4 +110,8 @@ Every assumption, interpretation of an ambiguous rule, and design choice is reco
 | 69 | 2026-10-06 | `@playwright/test` is pinned to 1.56.1, with a `playwright-core` override | Matches the preinstalled Chromium build; avoids a browser download | Approved (implementation) |
 | 70 | 2026-10-06 | The single-file offline build (DECISIONS #37) moves to Phase 4 | Inlined scripts need CSP hashes, best done alongside the export work | Approved (deferral) |
 | 71 | 2026-10-06 | Hash-based routing; focus moves to the page heading on navigation; a skip link | Works from any static host or folder; screen-reader friendly | Approved (implementation) |
-
+| 72 | 2026-10-07 | Confirmations happen on the page (a "Yes, …" / "Cancel" pair) instead of `window.confirm` | Browser dialogs are blocked in embedded viewers and are awkward with screen readers | Approved (implementation) |
+| 73 | 2026-10-07 | Page links are plain tokens (`#results`); the older `#/results` form still works | Some hosts pass only a plain `#token` through to the page | Approved (implementation) |
+| 74 | 2026-10-07 | Save and load adds "Copy this proposal as text", falling back to a selected text box if the clipboard is refused; pasted text loads through the same checked path as files | A way to keep work where downloads are blocked | Approved (implementation) |
+| 75 | 2026-10-07 | First visit (nothing entered) offers the illustrative example, labelled synthetic | Quicker to explore; the example stays clearly illustrative | Approved (implementation) |
+| 76 | 2026-10-07 | `npm run build:artifact` makes a one-file hosted test copy: opens on the example, carries a "test copy, illustrative or public information only" notice, hides the download button, and omits the app's CSP meta (the host applies its own). The normal build is unchanged | Lets reviewers try the tool without installing anything, without weakening the privacy rules for real use | Approved (implementation) |

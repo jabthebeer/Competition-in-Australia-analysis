@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import { PARAMETERS, type Population } from "../../engine/index";
 import { NextStep, PageHeading, type PageProps } from "../App";
+import { exampleProposal, isUntouched } from "../example";
 import { Checkbox, Help, IntegerField, QuantityField, RadioGroup, SelectField, TextField } from "../components/fields";
 import { COHORT_LABELS, GROUP_LABELS } from "../format";
 import { addOption, addPopulation, populationBlockers, removeOption, removePopulation, setDuration, setProposalType, updateOption, updatePopulation } from "../model";
@@ -14,6 +15,11 @@ export function ProposalPage({ proposal: p, update, go }: PageProps) {
     <>
       <PageHeading>Step 1: The proposal</PageHeading>
       <p>Describe the proposal, who it affects, and the options you want to compare. Each option gets its own Regulatory Burden Estimate (RBE) table.</p>
+      {isUntouched(p) && (
+        <div className="summary-box" data-testid="first-run">
+          New here? <button type="button" className="link" onClick={() => update(() => exampleProposal())}>Load the illustrative example</button> (synthetic data) to see a worked reform, or start with your own proposal below.
+        </div>
+      )}
 
       <section aria-labelledby="about-heading">
         <h2 id="about-heading">About the proposal</h2>

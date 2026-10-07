@@ -21,6 +21,12 @@ async function fill(scope: Locator | Page, testId: string, value: string) {
   await scope.getByTestId(`${testId}-input`).fill(value);
 }
 
+async function loadExample(page: Page) {
+  await page.goto("/#data");
+  await page.getByTestId("load-example").click();
+  await page.getByTestId("load-example-confirm").click();
+}
+
 async function goTo(page: Page, name: RegExp) {
   await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name }).click();
 }
@@ -143,8 +149,7 @@ test("T-E2E-05 faster approvals: a delay cost reform (100 applications, 6 → 3 
 });
 
 test("T-E2E-06 save and load: auto-save, download, open a file, paste a draft", async ({ page }) => {
-  await page.goto("/#/data");
-  await page.getByTestId("load-example").click();
+  await loadExample(page);
   await goTo(page, /Results/);
   expect(await rbeCells(page, "annual")).toEqual(["($12.7)", "$0", "$0", "($12.7)"]);
   expect(await rbeCells(page, "annual-dual-running")).toEqual(["($11.3)", "$0", "$0", "($11.3)"]);
@@ -156,20 +161,21 @@ test("T-E2E-06 save and load: auto-save, download, open a file, paste a draft", 
   await expect(page.locator(".proposal-title")).toContainText("ILLUSTRATIVE");
 
   // Download, start again, then open the downloaded file.
-  await page.goto("/#/data");
+  await page.goto("/#data");
   const [download] = await Promise.all([page.waitForEvent("download"), page.getByTestId("download").click()]);
   expect(download.suggestedFilename()).toMatch(/\.rbm\.json$/);
   const path = await download.path();
-  await page.getByRole("button", { name: "Start a new proposal" }).click();
+  await page.getByTestId("start-new").click();
+  await page.getByTestId("start-new-confirm").click();
   await expect(page.locator(".proposal-title")).toHaveText("Untitled proposal");
-  await page.goto("/#/data");
+  await page.goto("/#data");
   await page.getByTestId("open-file").setInputFiles(path);
   await expect(page.getByText(/Loaded file/)).toBeVisible();
   await goTo(page, /Results/);
   expect(await rbeCells(page, "annual")).toEqual(["($12.7)", "$0", "$0", "($12.7)"]);
 
   // A pasted draft with an unconfirmed model estimate loads, and the results are marked as a draft.
-  await page.goto("/#/data");
+  await page.goto("/#data");
   const draft = {
     id: "draft",
     title: "Pasted draft (illustrative)",
@@ -207,8 +213,7 @@ test("T-E2E-07 privacy: no requests leave the app, and the security policy block
   const errors = watchErrors(page);
   const requests: string[] = [];
   page.on("request", (r) => requests.push(r.url()));
-  await page.goto("/#/data");
-  await page.getByTestId("load-example").click();
+  await loadExample(page);
   for (const name of [/Proposal/, /Current regime/, /Reform options/, /Results/]) await goTo(page, name);
   await page.getByRole("link", { name: "About" }).click();
   expect(requests.filter((u) => !u.startsWith(baseURL ?? "http://localhost:4173"))).toEqual([]);
@@ -220,13 +225,34 @@ test("T-E2E-07 privacy: no requests leave the app, and the security policy block
 });
 
 test("T-E2E-08 accessibility: axe finds no WCAG 2.2 A/AA violations on any page", async ({ page }) => {
-  await page.goto("/#/data");
-  await page.getByTestId("load-example").click();
+  await loadExample(page);
   for (const route of ["proposal", "current", "options", "results", "data", "about"]) {
-    await page.goto(`/#/${route}`);
+    await page.goto(`/#${route}`);
     await page.locator("main h1").waitFor();
     const r = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
     const summary = r.violations.map((v) => `${route}: ${v.id} (${v.impact}) ×${v.nodes.length}: ${v.nodes[0]?.target.join(" ")}`);
     expect(summary).toEqual([]);
   }
 });
+
+test("T-E2E-09 first visit offers the illustrative example; a proposal copied as text loads back", async ({ page, context }) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.goto("/");
+  await page.getByTestId("first-run").getByRole("button", { name: "Load the illustrative example" }).click();
+  await expect(page.getByTestId("first-run")).toHaveCount(0);
+  await goTo(page, /Results/);
+  expect(await rbeCells(page, "annual")).toEqual(["($12.7)", "$0", "$0", "($12.7)"]);
+  // Copy as text (the route that works where downloads are blocked), start again, paste it back.
+  await page.goto("/#data");
+  await page.getByTestId("copy-text").click();
+  await expect(page.getByText(/Copied/)).toBeVisible();
+  const copied = await page.evaluate(() => navigator.clipboard.readText());
+  await page.getByTestId("start-new").click();
+  await page.getByTestId("start-new-confirm").click();
+  await page.goto("/#data");
+  await page.getByTestId("paste").fill(copied);
+  await page.getByTestId("load-paste").click();
+  await goTo(page, /Results/);
+  expect(await rbeCells(page, "annual")).toEqual(["($12.7)", "$0", "$0", "($12.7)"]);
+});
+

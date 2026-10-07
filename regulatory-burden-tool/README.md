@@ -25,6 +25,7 @@ npm install
 npm run dev              # the web app at http://localhost:5173 (development)
 npm run build            # static site in dist/ (adds the Content-Security-Policy)
 npm run preview          # serve the built site at http://localhost:4173
+npm run build:artifact   # one-file hosted test copy in dist-artifact/ (see below)
 
 npm test                 # unit tests (Vitest): engine and UI helpers
 npm run e2e              # end-to-end tests (Playwright) against the built site
@@ -41,11 +42,13 @@ npm run rbe -- examples/illustrative-reform.json --tidy out/tidy.csv   # analysi
 
 The built site in `dist/` is static: copy it to any web server or internal host. It makes no network requests (its security policy blocks them), stores proposals only in the browser (auto-save can be turned off) and in files the user downloads.
 
+`npm run build:artifact` makes a single-file test copy for a hosted viewer: it opens on the illustrative example, shows a "test copy: illustrative or public information only" notice, and replaces the download button with "Copy this proposal as text" (the viewer blocks downloads). It omits the app's own security policy because the host applies its own. Don't use it for real proposals.
+
 Proposal files may be Cabinet-in-confidence. `.gitignore` keeps `*.rbm.json` and `*.proposal.json` out of the repository; only the synthetic files in `examples/` are tracked.
 
 ## The web app (`src/ui/`)
 
-Four steps, plus save/load and about pages:
+Four steps, plus save/load and about pages. Each has a plain link (`#proposal`, `#current`, `#options`, `#results`, `#data`, `#about`). On first visit the app offers to load the illustrative example. Save and load can download or open a file, copy the proposal as text, or check and load pasted text (including an AI draft). Destructive actions (remove, start again, delete stored data) ask for confirmation on the page rather than in a browser dialog.
 
 1. **Proposal:** type (reform, new, repeal), period, jurisdiction, baseline toggle, affected groups (with optional ABS size band and ANZSIC code), and the options to compare.
 2. **Current regime:** obligations as they are today, with plain-language help, defaults from `parameters.ts`, scope checks, and a live formula preview with the year-by-year profile.

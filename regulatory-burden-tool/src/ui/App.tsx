@@ -1,5 +1,7 @@
 import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ProposalValidationError, computeProposal, type Proposal, type ProposalResult } from "../engine/index";
+import { DEMO, HOSTED } from "./env";
+import { exampleProposal } from "./example";
 import { describeIssue, newProposal } from "./model";
 import { AboutPage } from "./pages/AboutPage";
 import { CurrentRegimePage } from "./pages/CurrentRegimePage";
@@ -42,7 +44,8 @@ function readRoute(): Route {
 export function App() {
   const [route, setRoute] = useState<Route>(readRoute);
   const [settings, setSettingsState] = useState<Settings>(loadSettings);
-  const [proposal, setProposal] = useState<Proposal>(() => loadSavedProposal() ?? newProposal("reform"));
+  // The demo build (used for hosted test copies) opens on the illustrative example.
+  const [proposal, setProposal] = useState<Proposal>(() => loadSavedProposal() ?? (DEMO ? exampleProposal() : newProposal("reform")));
   const [saved, setSaved] = useState<"saved" | "off" | "failed">(settings.autosave ? "saved" : "off");
   const mainRef = useRef<HTMLElement>(null);
   const firstRender = useRef(true);
@@ -64,7 +67,7 @@ export function App() {
 
   const update: Update = useCallback((fn) => setProposal((prev) => fn(prev)), []);
   const go = useCallback((r: Route) => {
-    window.location.hash = `/${r}`;
+    window.location.hash = r;
   }, []);
 
   const computed = useMemo<Computed>(() => {
@@ -90,6 +93,7 @@ export function App() {
   };
 
   const pageProps: PageProps = { proposal, update, computed, go };
+  const keepAdvice = HOSTED ? "copy it as text under Save and load" : "download a file";
   const estimates = computed.ok ? computed.result.unconfirmedEstimates.length : 0;
 
   return (
@@ -113,7 +117,7 @@ export function App() {
           <ol className="steps">
             {STEPS.map((s, i) => (
               <li key={s.path}>
-                <a href={`#/${s.path}`} aria-current={route === s.path ? "page" : undefined}>
+                <a href={`#${s.path}`} aria-current={route === s.path ? "page" : undefined}>
                   <span className="step-number">{i + 1}</span> {s.label}
                 </a>
               </li>
@@ -122,7 +126,7 @@ export function App() {
           <ul className="secondary-nav">
             {OTHER.map((s) => (
               <li key={s.path}>
-                <a href={`#/${s.path}`} aria-current={route === s.path ? "page" : undefined}>
+                <a href={`#${s.path}`} aria-current={route === s.path ? "page" : undefined}>
                   {s.label}
                 </a>
               </li>
@@ -133,9 +137,14 @@ export function App() {
       <div className="status-bar">
         <span className="proposal-title">{proposal.title || "Untitled proposal"}</span>
         <span className="save-status" data-testid="save-status">
-          {saved === "saved" ? "Saved in this browser only" : saved === "off" ? "Auto-save is off: download a file to keep your work" : "Couldn't save in this browser: download a file to keep your work"}
+          {saved === "saved" ? "Saved in this browser only" : `${saved === "off" ? "Auto-save is off" : "Couldn't save in this browser"}: ${keepAdvice} to keep your work`}
         </span>
       </div>
+      {HOSTED && (
+        <div className="banner draft" data-testid="hosted-banner">
+          <strong>Test copy:</strong> this copy runs in a hosted viewer, not on your own computer. Use illustrative or public information only, never Cabinet-in-confidence or other sensitive material.
+        </div>
+      )}
       {!computed.ok && (
         <div className="banner error" role="alert" data-testid="validation-banner">
           <strong>Some inputs need fixing before results can be calculated:</strong>
@@ -165,7 +174,7 @@ export function App() {
       </main>
       <footer className="site-footer">
         <p>
-          This is an unofficial aid, not an Australian Government tool. You remain responsible for your estimates; contact the Office of Impact Analysis for formal advice. Everything you enter stays in this browser unless you download it.
+          This is an unofficial aid, not an Australian Government tool. You remain responsible for your estimates; contact the Office of Impact Analysis for formal advice. Everything you enter stays in this browser unless you {HOSTED ? "copy it out" : "download it"}.
         </p>
       </footer>
     </>
