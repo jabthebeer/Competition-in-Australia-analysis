@@ -1,6 +1,6 @@
 # Scope expansion: Competition and Consumer Act (CCA) stocktake, cost–benefit analysis, business dynamism
 
-**Status:** Planning note (6 October 2026).
+**Status:** Planning note (6 October 2026). Stage S3 below is superseded by the wider [econometric foundation scoping note](../../docs/econometric_foundation_scoping.md) (14 October 2026).
 
 **Decision (DECISIONS #44).** The tool will not do econometrics itself. It is built so competition costings plug in later as extensions, and its outputs feed econometric work easily. Phase 1 delivers:
 - a read-only extension interface (`src/engine/extensions.ts`);

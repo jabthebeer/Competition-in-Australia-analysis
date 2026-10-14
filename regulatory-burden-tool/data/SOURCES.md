@@ -16,6 +16,7 @@
 | Dashboard Impact Analysis template (dotx) | OIA, PM&C | 1 Jul 2026 | <https://oia.pmc.gov.au/sites/default/files/2026-06/dashboard-impact-analysis-template.dotx> | 6 Oct 2026 | `21bcb343c02c0a8378e5d1d1fd37af91cb5dad1ac606c634badb7ea171eeaf76` |
 | Preliminary Analysis checklist (docx) | OIA, PM&C | 1 Jul 2026 | <https://oia.pmc.gov.au/sites/default/files/2026-06/preliminary-analysis-checklist.docx> | 6 Oct 2026 | `495518732a0d1ab2a8339681144248f785f72115a0407ce0b1f1635c1934661e` |
 | Cost Benefit Analysis guidance note (consulted for the scope-expansion note: 7% real discount rate, 3% and 10% sensitivity) | OIA, PM&C | 3 Aug 2023 (still listed; OIA notes references to the previous IA framework are out of date) | <https://oia.pmc.gov.au/resources/cost-benefit-analysis> | 6 Oct 2026 | not stored |
+| *How to consider competition in impact analysis* (supplementary guidance, PDF, 13 pp.), consulted for the econometric foundation scoping note: three "competition tests"; compliance costs estimated under the RBM can describe a barrier to entry | OIA, PM&C | July 2026 (page dated 1 Jul 2026) | <https://oia.pmc.gov.au/sites/default/files/2026-06/competition-guidance.pdf> (landing page: <https://oia.pmc.gov.au/resources/guidance-assessing-impacts/impacts-competition>) | 14 Oct 2026 | `8408469f1c9de92a472f33cf74e264bc50f05822dc1145696f389676b5888678` |
 
 These documents are **not** committed to this public repository (see `docs/phase0_proposal.md` F-06). Check them by hash against the URLs above.
 

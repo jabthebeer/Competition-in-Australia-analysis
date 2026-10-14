@@ -115,3 +115,10 @@ Every assumption, interpretation of an ambiguous rule, and design choice is reco
 | 74 | 2026-10-07 | Save and load adds "Copy this proposal as text", falling back to a selected text box if the clipboard is refused; pasted text loads through the same checked path as files | A way to keep work where downloads are blocked | Approved (implementation) |
 | 75 | 2026-10-07 | First visit (nothing entered) offers the illustrative example, labelled synthetic | Quicker to explore; the example stays clearly illustrative | Approved (implementation) |
 | 76 | 2026-10-07 | `npm run build:artifact` makes a one-file hosted test copy: opens on the example, carries a "test copy, illustrative or public information only" notice, hides the download button, and omits the app's CSP meta (the host applies its own). The normal build is unchanged | Lets reviewers try the tool without installing anything, without weakening the privacy rules for real use | Approved (implementation) |
+
+## Scoping the econometric foundation (14 October 2026)
+
+| # | Date | Decision | Rationale | Status |
+|---|---|---|---|---|
+| 77 | 2026-10-14 | Phase 2b (copy-and-paste AI drafting assistant) is deferred. The engine groundwork (provenance labels, draft import) stays | User decision: scope the econometric foundation first | Approved |
+| 78 | 2026-10-14 | A wider econometric foundation (regulation register, outcome panels, tested methods, BLADE track, a competition and innovation screen) is scoped in `docs/econometric_foundation_scoping.md` at the repository root. It supersedes stage S3 of `docs/scope_expansion.md`. The calculator still does no econometrics (#44); the screen would only apply published estimates, outside the RBE | User request | Proposed: awaiting the decisions in section 11 of the note |

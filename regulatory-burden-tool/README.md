@@ -11,7 +11,7 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 | 0 | Specification: traceability, ambiguities, data model, test list | Approved 6 Oct 2026 |
 | 1 | Calculation engine (pure TypeScript), tests, CLI | Complete |
 | 2 | Core web app (MVP), built around reform mode | **Complete. Awaiting review.** |
-| 2b | Copy-and-paste AI drafting assistant (prompt generator; provenance review) | Not started (engine groundwork done: provenance labels, draft import) |
+| 2b | Copy-and-paste AI drafting assistant (prompt generator; provenance review) | **Deferred** (14 Oct 2026) while the econometric foundation is scoped ([scoping note](../docs/econometric_foundation_scoping.md)). Engine groundwork done: provenance labels, draft import |
 | 3 | Framework completeness: screener UI, warnings UI, assumptions register UI, option comparison | Not started (the engine already supports these) |
 | 4 | Reporting (docx, xlsx, CSV, print) and sensitivity | Not started |
 | 5 | Validation against published Impact Analyses; accessibility audit; user guide | Not started |
