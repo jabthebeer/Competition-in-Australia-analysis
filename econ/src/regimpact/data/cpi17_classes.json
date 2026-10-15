@@ -1,0 +1,531 @@
+{
+ "source": "https://data.api.abs.gov.au/rest/dataflow/ABS/CPI/1.1.0?references=codelist",
+ "codelist": "CL_CPI_INDEX_17 1.1.0",
+ "licence": "CC BY 4.0, Australian Bureau of Statistics",
+ "retrieved": "2026-10-15",
+ "response_sha256": "32fcbe51197392b759d714b140fa9d138381cce7051672afd49593c848ac5e50",
+ "classes": [
+  {
+   "code": "40005",
+   "name": "Bread",
+   "subgroup": "Bread and cereal products",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40006",
+   "name": "Cakes and biscuits",
+   "subgroup": "Bread and cereal products",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40007",
+   "name": "Breakfast cereals",
+   "subgroup": "Bread and cereal products",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40008",
+   "name": "Other cereal products",
+   "subgroup": "Bread and cereal products",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40009",
+   "name": "Beef and veal",
+   "subgroup": "Meat and seafoods",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "131178",
+   "name": "Pork",
+   "subgroup": "Meat and seafoods",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40010",
+   "name": "Lamb and goat",
+   "subgroup": "Meat and seafoods",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40012",
+   "name": "Poultry",
+   "subgroup": "Meat and seafoods",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40014",
+   "name": "Other meats",
+   "subgroup": "Meat and seafoods",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40015",
+   "name": "Fish and other seafood",
+   "subgroup": "Meat and seafoods",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40001",
+   "name": "Milk",
+   "subgroup": "Dairy and related products",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40002",
+   "name": "Cheese",
+   "subgroup": "Dairy and related products",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40004",
+   "name": "Ice cream and other dairy products",
+   "subgroup": "Dairy and related products",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "114121",
+   "name": "Fruit",
+   "subgroup": "Fruit and vegetables",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "114122",
+   "name": "Vegetables",
+   "subgroup": "Fruit and vegetables",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40027",
+   "name": "Eggs",
+   "subgroup": "Food products n.e.c.",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40029",
+   "name": "Jams, honey and spreads",
+   "subgroup": "Food products n.e.c.",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "97549",
+   "name": "Food additives and condiments",
+   "subgroup": "Food products n.e.c.",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "97550",
+   "name": "Oils and fats",
+   "subgroup": "Food products n.e.c.",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "115501",
+   "name": "Snacks and confectionery",
+   "subgroup": "Food products n.e.c.",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40034",
+   "name": "Other food products n.e.c.",
+   "subgroup": "Food products n.e.c.",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40030",
+   "name": "Coffee, tea and cocoa",
+   "subgroup": "Non-alcoholic beverages",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "115520",
+   "name": "Waters, soft drinks and juices",
+   "subgroup": "Non-alcoholic beverages",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40025",
+   "name": "Restaurant meals",
+   "subgroup": "Meals out and take away foods",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40026",
+   "name": "Take away and fast foods",
+   "subgroup": "Meals out and take away foods",
+   "group": "Food and non-alcoholic beverages"
+  },
+  {
+   "code": "40089",
+   "name": "Spirits",
+   "subgroup": "Alcoholic beverages",
+   "group": "Alcohol and tobacco"
+  },
+  {
+   "code": "40088",
+   "name": "Wine",
+   "subgroup": "Alcoholic beverages",
+   "group": "Alcohol and tobacco"
+  },
+  {
+   "code": "40087",
+   "name": "Beer",
+   "subgroup": "Alcoholic beverages",
+   "group": "Alcohol and tobacco"
+  },
+  {
+   "code": "40090",
+   "name": "Tobacco",
+   "subgroup": "Tobacco",
+   "group": "Alcohol and tobacco"
+  },
+  {
+   "code": "97551",
+   "name": "Garments for men",
+   "subgroup": "Garments",
+   "group": "Clothing and footwear"
+  },
+  {
+   "code": "97554",
+   "name": "Garments for women",
+   "subgroup": "Garments",
+   "group": "Clothing and footwear"
+  },
+  {
+   "code": "97555",
+   "name": "Garments for infants and children",
+   "subgroup": "Garments",
+   "group": "Clothing and footwear"
+  },
+  {
+   "code": "40045",
+   "name": "Footwear for men",
+   "subgroup": "Footwear",
+   "group": "Clothing and footwear"
+  },
+  {
+   "code": "40046",
+   "name": "Footwear for women",
+   "subgroup": "Footwear",
+   "group": "Clothing and footwear"
+  },
+  {
+   "code": "40047",
+   "name": "Footwear for infants and children",
+   "subgroup": "Footwear",
+   "group": "Clothing and footwear"
+  },
+  {
+   "code": "97557",
+   "name": "Accessories",
+   "subgroup": "Accessories and clothing services",
+   "group": "Clothing and footwear"
+  },
+  {
+   "code": "40048",
+   "name": "Cleaning, repair and hire of clothing and footwear",
+   "subgroup": "Accessories and clothing services",
+   "group": "Clothing and footwear"
+  },
+  {
+   "code": "30014",
+   "name": "Rents",
+   "subgroup": "Rents",
+   "group": "Housing"
+  },
+  {
+   "code": "97559",
+   "name": "New dwelling purchase by owner-occupiers",
+   "subgroup": "New dwelling purchase by owner-occupiers",
+   "group": "Housing"
+  },
+  {
+   "code": "40053",
+   "name": "Maintenance and repair of the dwelling",
+   "subgroup": "Other housing",
+   "group": "Housing"
+  },
+  {
+   "code": "97560",
+   "name": "Property rates and charges",
+   "subgroup": "Other housing",
+   "group": "Housing"
+  },
+  {
+   "code": "97558",
+   "name": "Water and sewerage",
+   "subgroup": "Utilities",
+   "group": "Housing"
+  },
+  {
+   "code": "40055",
+   "name": "Electricity",
+   "subgroup": "Utilities",
+   "group": "Housing"
+  },
+  {
+   "code": "115524",
+   "name": "Gas and other household fuels",
+   "subgroup": "Utilities",
+   "group": "Housing"
+  },
+  {
+   "code": "40058",
+   "name": "Furniture",
+   "subgroup": "Furniture and furnishings",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "131185",
+   "name": "Carpets and other floor coverings",
+   "subgroup": "Furniture and furnishings",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "131183",
+   "name": "Household textiles",
+   "subgroup": "Household textiles",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "40060",
+   "name": "Major household appliances",
+   "subgroup": "Household appliances, utensils and tools",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "115484",
+   "name": "Small electric household appliances",
+   "subgroup": "Household appliances, utensils and tools",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "115485",
+   "name": "Glassware, tableware and household utensils",
+   "subgroup": "Household appliances, utensils and tools",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "40066",
+   "name": "Tools and equipment for house and garden",
+   "subgroup": "Household appliances, utensils and tools",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "40067",
+   "name": "Cleaning and maintenance products",
+   "subgroup": "Non-durable household products",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "40095",
+   "name": "Personal care products",
+   "subgroup": "Non-durable household products",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "97564",
+   "name": "Other non-durable household products",
+   "subgroup": "Non-durable household products",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "115498",
+   "name": "Child care",
+   "subgroup": "Domestic and household services",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "40096",
+   "name": "Hairdressing and personal grooming services",
+   "subgroup": "Domestic and household services",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "115500",
+   "name": "Other household services",
+   "subgroup": "Domestic and household services",
+   "group": "Furnishings, household equipment and services"
+  },
+  {
+   "code": "40094",
+   "name": "Pharmaceutical products",
+   "subgroup": "Medical products, appliances and equipment",
+   "group": "Health"
+  },
+  {
+   "code": "40092",
+   "name": "Therapeutic appliances and equipment",
+   "subgroup": "Medical products, appliances and equipment",
+   "group": "Health"
+  },
+  {
+   "code": "40091",
+   "name": "Medical and hospital services",
+   "subgroup": "Medical, dental and hospital services",
+   "group": "Health"
+  },
+  {
+   "code": "40093",
+   "name": "Dental services",
+   "subgroup": "Medical, dental and hospital services",
+   "group": "Health"
+  },
+  {
+   "code": "40080",
+   "name": "Motor vehicles",
+   "subgroup": "Private motoring",
+   "group": "Transport"
+  },
+  {
+   "code": "40084",
+   "name": "Spare parts and accessories for motor vehicles",
+   "subgroup": "Private motoring",
+   "group": "Transport"
+  },
+  {
+   "code": "40081",
+   "name": "Automotive fuel",
+   "subgroup": "Private motoring",
+   "group": "Transport"
+  },
+  {
+   "code": "40085",
+   "name": "Maintenance and repair of motor vehicles",
+   "subgroup": "Private motoring",
+   "group": "Transport"
+  },
+  {
+   "code": "40083",
+   "name": "Other services in respect of motor vehicles",
+   "subgroup": "Private motoring",
+   "group": "Transport"
+  },
+  {
+   "code": "40086",
+   "name": "Urban transport fares",
+   "subgroup": "Urban transport fares",
+   "group": "Transport"
+  },
+  {
+   "code": "40077",
+   "name": "Postal services",
+   "subgroup": "Communication",
+   "group": "Communication"
+  },
+  {
+   "code": "40078",
+   "name": "Telecommunication equipment and services",
+   "subgroup": "Communication",
+   "group": "Communication"
+  },
+  {
+   "code": "40098",
+   "name": "Audio, visual and computing equipment",
+   "subgroup": "Audio, visual and computing equipment and services",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "131190",
+   "name": "Audio, visual and computing media and services",
+   "subgroup": "Audio, visual and computing equipment and services",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "97567",
+   "name": "Books",
+   "subgroup": "Newspapers, books and stationery",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "131192",
+   "name": "Newspapers, magazines and stationery",
+   "subgroup": "Newspapers, books and stationery",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "40101",
+   "name": "Domestic holiday travel and accommodation",
+   "subgroup": "Holiday travel and accommodation",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "40102",
+   "name": "International holiday travel and accommodation",
+   "subgroup": "Holiday travel and accommodation",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "97571",
+   "name": "Equipment for sports, camping and open-air recreation",
+   "subgroup": "Other recreation, sport and culture",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "97572",
+   "name": "Games, toys and hobbies",
+   "subgroup": "Other recreation, sport and culture",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "40073",
+   "name": "Pets and related products",
+   "subgroup": "Other recreation, sport and culture",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "40072",
+   "name": "Veterinary and other services for pets",
+   "subgroup": "Other recreation, sport and culture",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "97573",
+   "name": "Sports participation",
+   "subgroup": "Other recreation, sport and culture",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "97574",
+   "name": "Other recreational, sporting and cultural services",
+   "subgroup": "Other recreation, sport and culture",
+   "group": "Recreation and culture"
+  },
+  {
+   "code": "115495",
+   "name": "Preschool and primary education",
+   "subgroup": "Education",
+   "group": "Education"
+  },
+  {
+   "code": "115496",
+   "name": "Secondary education",
+   "subgroup": "Education",
+   "group": "Education"
+  },
+  {
+   "code": "115497",
+   "name": "Tertiary education",
+   "subgroup": "Education",
+   "group": "Education"
+  },
+  {
+   "code": "115529",
+   "name": "Insurance",
+   "subgroup": "Insurance",
+   "group": "Insurance and financial services"
+  },
+  {
+   "code": "131194",
+   "name": "Deposit and loan facilities (direct charges)",
+   "subgroup": "Financial services",
+   "group": "Insurance and financial services"
+  },
+  {
+   "code": "1144",
+   "name": "Other financial services",
+   "subgroup": "Financial services",
+   "group": "Insurance and financial services"
+  }
+ ]
+}

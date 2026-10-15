@@ -16,7 +16,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import anzsic
+from . import anzsic, cpi
 from .register.catalogue import families, filter_records, load_records
 from .register.schema import CHANNEL_LABELS, JURISDICTIONS, ChangeRecord
 
@@ -34,10 +34,15 @@ def cmd_validate(args) -> int:
     for r in result.records:
         for ind in r.industries:
             problems.extend(f"{r.id}.json: industries: {p}" for p in anzsic.check(ind.anzsic, ind.name))
+    warnings = [f"{r.id}.json: price_series names no CPI expenditure class: '{r.price_series}'"
+                for r in result.records if r.price_series and not cpi.matched_classes(r.price_series)]
     for p in problems:
         print(p)
+    for w in warnings:
+        print(f"warning: {w}")
     drafts = sum(r.review.status == "draft" for r in result.records)
-    print(f"{len(result.records)} record(s) loaded; {len(problems)} problem(s); {drafts} awaiting review.")
+    print(f"{len(result.records)} record(s) loaded; {len(problems)} problem(s); {len(warnings)} warning(s); "
+          f"{drafts} awaiting review.")
     return 1 if problems else 0
 
 
