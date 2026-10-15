@@ -1,0 +1,77 @@
+{
+  "id": "vic-energy-price-deregulation-2009",
+  "family": "retail-energy-price-deregulation",
+  "title": "Retail energy price deregulation (Victoria)",
+  "jurisdiction": "VIC",
+  "summary": "After the AEMC found retail energy competition effective, Victoria removed retail price controls on standing offers from 1 January 2009, moving to price monitoring by the Essential Services Commission.",
+  "instruments": [
+    {
+      "title": "Electricity Industry Act 2000",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "Reserve price-regulation power (s 13) conditioned on AEMC finding competition ineffective"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2009-01-01",
+        "what": "Retail electricity and gas standing-offer price controls removed",
+        "source": "https://www.aemc.gov.au/sites/default/files/content/41ccb3c4-7727-4e6a-ade8-9e2793067baa/Victoria-information-sheet.PDF",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "enhancing",
+  "direction_rationale": "Removing regulated standing-offer prices is hypothesised to strengthen retailer entry and discounting (regulators judged competition effective), although outcomes for disengaged customers are contested.",
+  "direction_sources": [
+    "https://www.aemc.gov.au/news-centre/media-releases/aemc-recommends-removal-of-price-regulation-of-vic",
+    "https://apo.org.au/node/102181"
+  ],
+  "channels": [
+    "prices-market-share",
+    "ability-incentive",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "2640",
+      "name": "On Selling Electricity and Electricity Market Operation",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "2700",
+      "name": "Gas Supply",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "NEM states that still had regulated retail prices (VIC 2009, SA 2013, NSW 2014, SEQ 2016; regional QLD, TAS, ACT still regulated)",
+  "confounders": [
+    "network (poles and wires) price increases 2009-15",
+    "carbon price 1 Jul 2012-30 Jun 2014",
+    "wholesale price spike 2016-17",
+    "solar feed-in tariff schemes",
+    "global financial crisis 2008-09"
+  ],
+  "price_series": "Electricity; Gas and other household fuels",
+  "notes": "2017 Thwaites independent review argued outcomes were poor for disengaged customers.",
+  "verified": {
+    "dates": true,
+    "notes": "Commencement date from AEMC Victoria information sheet (search snippet); the Victorian instrument giving effect was not identified."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "id": "nt-container-deposits-2012",
+  "title": "Northern Territory container deposit scheme (2012)",
+  "records": [
+    "nt-cds-2012"
+  ],
+  "family": "container-deposit-scheme",
+  "evaluated_on": "2026-10-15",
+  "hypothesis": "mixed",
+  "design": "One treated territory (NT, from January 2012) against states without a scheme; window ends 2016-17, before NSW's scheme. SA (scheme since 1977) is excluded. Method: stacked difference-in-differences, net of the same comparison for unaffected industries in the same states.",
+  "comparison": "Treated: NT. Comparison: ACT, NSW, QLD, TAS, VIC, WA.",
+  "window": "2007-08 to 2016-17 (first exposed year 2011-12)",
+  "verdict": "not-identified",
+  "finding_label": "Not measurable",
+  "grade": "Not identified",
+  "grade_reason": "Treated group has 12 businesses in the base year (rule: at least 100). Only 0 placebo groups (rule: at least 19).",
+  "headline": "Too few NT businesses make beverages or recover materials (12 in 2010-11) to measure entry or exit. Darwin soft-drink prices rose +8.7% relative to other capitals (p = 0.12), but they were already rising before the scheme; with each city's trend removed the change is +1.4%.",
+  "category_summaries": {
+    "competition": "Not measurable. The NT has too few beverage manufacturers and recyclers for business counts to show an effect.",
+    "prices": "No detectable effect. Soft drinks +8.7%, beer +4.3%; neither stands out from other prices, and the soft-drink rise began before the scheme.",
+    "productivity": "Not measurable. Manufacturing output per worker varies too much across industries. Shown for description only."
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "price-waters",
+      "label": "Waters, soft drinks and juices: prices relative to the CPI",
+      "category": "prices",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 8.68,
+      "interval": {
+        "low": 0.459,
+        "high": 21.486,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -12.806,
+        "high": 8.221,
+        "basis": "90% range across 82 placebo CPI classes"
+      },
+      "p_value": 0.1205,
+      "inference": "Rank among 82 placebo CPI classes in the same cities",
+      "mde_80": 18.55,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": true,
+      "note": "Expected up. Plain estimate +6.8."
+    },
+    {
+      "id": "price-waters-detrended",
+      "label": "Waters, soft drinks and juices: each city's pre-reform trend removed",
+      "category": "prices",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 1.429,
+      "interval": {
+        "low": -8.63,
+        "high": 8.907,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -7.478,
+        "high": 10.059,
+        "basis": "90% range across 82 placebo CPI classes"
+      },
+      "p_value": 0.7439,
+      "inference": "Rank among 82 placebo CPI classes in the same cities",
+      "mde_80": null,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered robustness check (decision E-31)."
+    },
+    {
+      "id": "price-beer",
+      "label": "Beer: prices relative to the CPI",
+      "category": "prices",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 4.279,
+      "interval": {
+        "low": -3.942,
+        "high": 17.085,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -12.806,
+        "high": 8.221,
+        "basis": "90% range across 82 placebo CPI classes"
+      },
+      "p_value": 0.4096,
+      "inference": "Rank among 82 placebo CPI classes in the same cities",
+      "mde_80": 18.55,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": true,
+      "note": "Expected up. Plain estimate +2.4."
+    },
+    {
+      "id": "price-beer-detrended",
+      "label": "Beer: each city's pre-reform trend removed",
+      "category": "prices",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 3.546,
+      "interval": {
+        "low": -6.513,
+        "high": 11.025,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -7.479,
+        "high": 10.059,
+        "basis": "90% range across 82 placebo CPI classes"
+      },
+      "p_value": 0.4634,
+      "inference": "Rank among 82 placebo CPI classes in the same cities",
+      "mde_80": null,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered robustness check (decision E-31)."
+    },
+    {
+      "id": "output-per-worker",
+      "label": "Output per worker, manufacturing",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 26.026,
+      "interval": null,
+      "no_effect_range": {
+        "low": -24.128,
+        "high": 32.892,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.2778,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    },
+    {
+      "id": "real-pay-per-worker",
+      "label": "Real pay per worker, manufacturing",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -16.882,
+      "interval": null,
+      "no_effect_range": {
+        "low": -24.124,
+        "high": 30.78,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.3889,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "price-waters",
+      "title": "Waters, soft drinks and juices prices, year by year",
+      "unit": "% (log points)",
+      "reference": "2010-11",
+      "band": "90% range across placebo CPI classes",
+      "points": [
+        {
+          "period": "2001-02",
+          "k": -10,
+          "estimate": -6.393,
+          "low": -25.979,
+          "high": 5.486
+        },
+        {
+          "period": "2002-03",
+          "k": -9,
+          "estimate": -7.949,
+          "low": -23.757,
+          "high": 4.128
+        },
+        {
+          "period": "2003-04",
+          "k": -8,
+          "estimate": -7.046,
+          "low": -20.186,
+          "high": 1.551
+        },
+        {
+          "period": "2004-05",
+          "k": -7,
+          "estimate": -6.398,
+          "low": -17.377,
+          "high": 2.784
+        },
+        {
+          "period": "2005-06",
+          "k": -6,
+          "estimate": -6.286,
+          "low": -15.815,
+          "high": 1.165
+        },
+        {
+          "period": "2006-07",
+          "k": -5,
+          "estimate": -5.599,
+          "low": -13.703,
+          "high": 2.08
+        },
+        {
+          "period": "2007-08",
+          "k": -4,
+          "estimate": -4.482,
+          "low": -13.111,
+          "high": 2.935
+        },
+        {
+          "period": "2008-09",
+          "k": -3,
+          "estimate": -1.271,
+          "low": -7.209,
+          "high": 3.871
+        },
+        {
+          "period": "2009-10",
+          "k": -2,
+          "estimate": 0.391,
+          "low": -3.033,
+          "high": 4.04
+        },
+        {
+          "period": "2010-11",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2011-12",
+          "k": 0,
+          "estimate": 2.433,
+          "low": -0.499,
+          "high": 8.176
+        },
+        {
+          "period": "2012-13",
+          "k": 1,
+          "estimate": 4.159,
+          "low": -1.105,
+          "high": 9.602
+        },
+        {
+          "period": "2013-14",
+          "k": 2,
+          "estimate": 3.706,
+          "low": -3.494,
+          "high": 9.451
+        },
+        {
+          "period": "2014-15",
+          "k": 3,
+          "estimate": 3.287,
+          "low": -3.878,
+          "high": 10.67
+        },
+        {
+          "period": "2015-16",
+          "k": 4,
+          "estimate": 5.495,
+          "low": -2.141,
+          "high": 13.541
+        },
+        {
+          "period": "2016-17",
+          "k": 5,
+          "estimate": 6.496,
+          "low": -2.408,
+          "high": 15.568
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Financial-year averages, relative to the all-groups CPI, treated cities against comparison cities, net of other CPI classes."
+    }
+  ],
+  "caveats": [
+    "Business counts: 12 treated businesses in the base year, below the plan's minimum of 100, so no entry or exit estimate is made.",
+    "Prices: a 10-cent deposit is a few per cent of a drink's price, well below the smallest effect these data can detect (19%)."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_high_evaluability.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_high_evaluability.md"
+    },
+    {
+      "label": "Case definitions",
+      "path": "econ/analyses/high_evaluability/cases.py"
+    },
+    {
+      "label": "Estimation code",
+      "path": "econ/analyses/high_evaluability/run.py"
+    }
+  ],
+  "built_by": "econ/analyses/high_evaluability/evaluations.py"
+}

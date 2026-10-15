@@ -1,0 +1,84 @@
+{
+  "id": "wa-stra-register-2025",
+  "family": "short-term-rental-regulation",
+  "title": "Mandatory short-term rental accommodation register (WA)",
+  "jurisdiction": "WA",
+  "summary": "Under the Short-Term Rental Accommodation Act 2024, WA opened a statewide STRA register on 1 July 2024 and made registration mandatory from 1 January 2025, with registration numbers required on advertisements and planning approvals phased in by 2026.",
+  "instruments": [
+    {
+      "title": "Short-Term Rental Accommodation Act 2024",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": null
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2024-07-01",
+        "what": "STRA register opened",
+        "source": "https://www.planning.wa.gov.au/planning-reform/short-term-rental-accommodation-planning-reforms",
+        "primary": false
+      },
+      {
+        "date": "2025-01-01",
+        "what": "Registration mandatory for all STRA",
+        "source": "https://www.wa.gov.au/government/media-statements/Cook%20Labor%20Government/Cook-Government%27s-STRA-reforms-taking-effect-through-planning-scheme-approvals-and-upcoming-register--20241212",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "weakening",
+  "direction_rationale": "Registration, night caps and levies raise costs or limit supply for short-term rental hosts, reducing competition faced by hotels and other accommodation providers.",
+  "direction_sources": [
+    "https://www.planning.wa.gov.au/planning-reform/short-term-rental-accommodation-planning-reforms"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "4400",
+      "name": "Accommodation",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6711",
+      "name": "Residential Property Operators",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6720",
+      "name": "Real Estate Services",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "States without registration (QLD, SA); NSW (registered since 2021)",
+  "confounders": [
+    "COVID-19 tourism collapse 2020-22",
+    "rental housing crisis 2022-25",
+    "local council caps (e.g. Byron Shire 60 days)"
+  ],
+  "price_series": "Domestic holiday travel and accommodation",
+  "notes": "WA also offered incentives to convert STRA to long-term rentals.",
+  "verified": {
+    "dates": true,
+    "notes": null
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. Primary commencement chosen on 15 October 2026 as the date the change described in the title took effect; confirm on review."
+  }
+}

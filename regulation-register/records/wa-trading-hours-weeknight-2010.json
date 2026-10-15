@@ -1,0 +1,84 @@
+{
+  "id": "wa-trading-hours-weeknight-2010",
+  "family": "retail-trading-hours",
+  "title": "Weeknight trading to 9pm in metropolitan Perth (WA)",
+  "jurisdiction": "WA",
+  "summary": "The Retail Trading Hours Amendment Act 2010 let general retail shops in the Perth metropolitan area open until 9pm on weeknights, from 1 November 2010.",
+  "instruments": [
+    {
+      "title": "Retail Trading Hours Amendment Act 2010",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_a696.html",
+      "register_id": "2010/038",
+      "role": "amending",
+      "provisions": "Amends Retail Trading Hours Act 1987"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": "2010-09-30",
+      "source": "https://www.wa.gov.au/government/media-statements/Barnett%20Liberal%20National%20Government/New-late-night-shopping-trading-hours-to-come-into-effect-in-November--20100930"
+    },
+    "assent_or_made": {
+      "date": "2010-10-01",
+      "source": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_a696.html"
+    },
+    "commenced": [
+      {
+        "date": "2010-11-01",
+        "what": "Act other than s 1 and 2: optional 9pm weeknight trading for general retail shops in metropolitan Perth (Gazette 22 Oct 2010 p 5207)",
+        "source": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_a696.html",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "enhancing",
+  "direction_rationale": "Longer permitted trading hours let smaller and new retailers compete with incumbents on convenience and give consumers more choice; the PC recommended full deregulation. Effects may favour large chains able to staff extra hours.",
+  "direction_sources": [
+    "https://www.pc.gov.au/inquiries-and-research/retail-industry/"
+  ],
+  "channels": [
+    "ability-incentive",
+    "consumer-choice",
+    "prices-market-share"
+  ],
+  "industries": [
+    {
+      "anzsic": "4110",
+      "name": "Supermarket and Grocery Stores",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "4260",
+      "name": "Department Stores",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "4251",
+      "name": "Clothing Retailing",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "4123",
+      "name": "Liquor Retailing",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "States with unchanged trading hours (SA, QLD) and non-metro WA; Victoria/ACT/NT already deregulated",
+  "confounders": [
+    "growth of online retail",
+    "mining boom/bust in WA",
+    "COVID-19 2020-21"
+  ],
+  "price_series": "Food and non-alcoholic beverages (group); Garments for women; Garments for men",
+  "notes": "Perth-only treatment: regional WA a within-state control if CABEE can be split by region (it is by SA2/LGA in some releases). Earlier in 2010-11, three Acts created special trading precincts with Sunday trading in Joondalup (from 8 Jul 2010), Armadale and Midland (from 23 Sep 2010), per the same history table. Evaluated 15 October 2026 (docs/results_wa_trading_hours.md, pre-registered): no detectable effect on general retail entry (+0.8 per 100, 90% interval -2.4 to +3.7) or exit (-0.1, -2.4 to +2.5) for this reform family; verdict inconclusive, grade Moderate. The direction field remains a hypothesis.",
+  "verified": {
+    "dates": true,
+    "notes": "Assent and commencement from the WA register history table (Gazette 22 Oct 2010 p 5207)."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. Checked on 15 October 2026 against the WA register's 'History of this Act' for the Retail Trading Hours Act 1987 (law_a696): dates confirmed. Still draft: industries and direction not yet reviewed by a person. Open question: packaged liquor (4123) hours are set under liquor licensing law; check whether these changes applied to liquor stores."
+  }
+}

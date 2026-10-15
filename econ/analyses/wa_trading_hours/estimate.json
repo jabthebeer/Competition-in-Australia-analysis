@@ -1,0 +1,905 @@
+{
+  "case": "Perth retail trading-hours deregulation (2010 weeknights and precincts; 2012 Sundays)",
+  "plan": "docs/pap_wa_trading_hours.md (registered 15 October 2026; clarifications C1-C8 in \u00a710)",
+  "mode": "UNBLINDED: registered analysis",
+  "units": "entries or exits per 100 businesses operating at the start of the financial year",
+  "treated_classes": [
+    "4110",
+    "4251",
+    "4260"
+  ],
+  "comparison_states": [
+    "NSW",
+    "VIC",
+    "QLD",
+    "TAS",
+    "ACT",
+    "NT"
+  ],
+  "window": "2007-08 to 2017-18",
+  "overlap_vintage_years": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017
+  ],
+  "broadened_treated_classes": [
+    "4110",
+    "4121",
+    "4122",
+    "4129",
+    "4211",
+    "4212",
+    "4213",
+    "4214",
+    "4221",
+    "4222",
+    "4229",
+    "4231",
+    "4232",
+    "4241",
+    "4242",
+    "4243",
+    "4244",
+    "4245",
+    "4251",
+    "4252",
+    "4253",
+    "4259",
+    "4260",
+    "4271",
+    "4272",
+    "4273",
+    "4274",
+    "4279"
+  ],
+  "placebo_pool_H_S_groups": 774,
+  "reproduces_design_review": {
+    "entries": {
+      "draws_kept": [
+        472,
+        472
+      ],
+      "mean": [
+        -1.577,
+        -1.577
+      ],
+      "sd": [
+        2.013,
+        2.013
+      ],
+      "match": true
+    },
+    "exits": {
+      "draws_kept": [
+        451,
+        451
+      ],
+      "mean": [
+        0.159,
+        0.159
+      ],
+      "sd": [
+        1.479,
+        1.479
+      ],
+      "match": true
+    }
+  },
+  "entries": {
+    "role": "primary",
+    "raw_means": {
+      "wa_pre": 16.08,
+      "wa_post": 13.43,
+      "comparison_states_pre": 15.98,
+      "comparison_states_post": 13.68,
+      "wa_by_year": {
+        "2008": 15.3,
+        "2009": 14.6,
+        "2010": 18.35,
+        "2011": 16.18,
+        "2012": 13.08,
+        "2013": 9.23,
+        "2014": 14.83,
+        "2015": 13.33,
+        "2016": 12.56,
+        "2017": 14.7,
+        "2018": 13.49
+      },
+      "comparison_states_by_year": {
+        "2008": 16.39,
+        "2009": 14.57,
+        "2010": 16.8,
+        "2011": 15.89,
+        "2012": 13.52,
+        "2013": 10.1,
+        "2014": 14.1,
+        "2015": 12.91,
+        "2016": 13.94,
+        "2017": 15.13,
+        "2018": 13.84
+      }
+    },
+    "primary": {
+      "delta": 0.779,
+      "delta_T_plain_did": -0.798,
+      "wa_wide_shock_placebo_mean": -1.577,
+      "placebo_groups": 472,
+      "placebo_sd": 2.013,
+      "mde_80pc": 5.639,
+      "p_industry_placebo": 0.6152,
+      "interval_90": [
+        -2.398,
+        3.749
+      ],
+      "interval_95_not_preregistered": [
+        -3.529,
+        5.109
+      ],
+      "p_state_placebo_for_delta_T": 0.714,
+      "p_state_placebo_for_delta_not_preregistered": 0.714,
+      "state_placebos": {
+        "ACT": 2.003,
+        "NSW": -0.883,
+        "NT": 2.718,
+        "QLD": -0.621,
+        "TAS": -0.296,
+        "VIC": -1.336
+      }
+    },
+    "event_study": {
+      "reference": "2009-10 (k = -1); k = 0 is 2010-11",
+      "plain": {
+        "-3": -2.091,
+        "-2": -0.979,
+        "0": -1.264,
+        "1": -1.992,
+        "2": -2.429,
+        "3": -0.834,
+        "4": -1.127,
+        "5": -2.933,
+        "6": -1.987,
+        "7": -1.908
+      },
+      "placebo_mean": {
+        "-3": 2.135,
+        "-2": 1.129,
+        "0": -0.087,
+        "1": -0.498,
+        "2": -0.77,
+        "3": 0.36,
+        "4": 0.174,
+        "5": -0.318,
+        "6": -1.036,
+        "7": -1.836
+      },
+      "net": {
+        "-3": -4.226,
+        "-2": -2.108,
+        "0": -1.176,
+        "1": -1.494,
+        "2": -1.658,
+        "3": -1.194,
+        "4": -1.3,
+        "5": -2.615,
+        "6": -0.95,
+        "7": -0.072
+      },
+      "net_band_90": {
+        "-3": [
+          -12.388,
+          1.897
+        ],
+        "-2": [
+          -7.87,
+          4.034
+        ],
+        "0": [
+          -6.277,
+          5.887
+        ],
+        "1": [
+          -6.776,
+          4.099
+        ],
+        "2": [
+          -6.615,
+          3.668
+        ],
+        "3": [
+          -5.696,
+          3.661
+        ],
+        "4": [
+          -6.724,
+          3.762
+        ],
+        "5": [
+          -8.003,
+          3.749
+        ],
+        "6": [
+          -6.86,
+          6.324
+        ],
+        "7": [
+          -5.112,
+          4.985
+        ]
+      },
+      "net_band_95": {
+        "-3": [
+          -13.028,
+          2.872
+        ],
+        "-2": [
+          -9.569,
+          6.312
+        ],
+        "0": [
+          -6.757,
+          7.305
+        ],
+        "1": [
+          -7.925,
+          6.633
+        ],
+        "2": [
+          -7.356,
+          4.428
+        ],
+        "3": [
+          -6.616,
+          4.495
+        ],
+        "4": [
+          -7.489,
+          5.175
+        ],
+        "5": [
+          -9.887,
+          5.555
+        ],
+        "6": [
+          -11.714,
+          7.817
+        ],
+        "7": [
+          -6.66,
+          5.681
+        ]
+      },
+      "pre_period_inside_95_band": true,
+      "sensitivity_net": {
+        "average_post_effect": -1.308,
+        "largest_pre_period_step": 2.118,
+        "relative_magnitude_breakdown": 0.137,
+        "pre_trend_slope_per_year": 2.113,
+        "breakeven_slope_per_year": -0.291,
+        "linear_trend_adjusted_average_post_effect": -10.816
+      },
+      "sensitivity_plain": {
+        "average_post_effect": -1.809,
+        "largest_pre_period_step": 1.112,
+        "relative_magnitude_breakdown": 0.362,
+        "pre_trend_slope_per_year": 1.045,
+        "breakeven_slope_per_year": -0.402,
+        "linear_trend_adjusted_average_post_effect": -6.513
+      }
+    },
+    "triple_difference": {
+      "estimate": -0.724,
+      "p_state_placebo": 0.571,
+      "state_placebo_sd": 1.054,
+      "event_study": {
+        "-3": -5.536,
+        "-2": 1.142,
+        "0": -2.035,
+        "1": -2.673,
+        "2": -3.482,
+        "3": -1.858,
+        "4": -2.818,
+        "5": -2.143,
+        "6": -1.177,
+        "7": -1.19
+      }
+    },
+    "robustness": {
+      "1_vintage_overlap": {
+        "delta": 0.638,
+        "delta_T_plain_did": -0.846,
+        "p_industry_placebo": 0.6617,
+        "interval_90": [
+          -2.777,
+          3.603
+        ],
+        "placebo_groups": 472,
+        "wa_wide_shock_placebo_mean": -1.484
+      },
+      "2_window_to_2018_19": {
+        "delta": 1.161,
+        "delta_T_plain_did": -0.612,
+        "p_industry_placebo": 0.4503,
+        "interval_90": [
+          -2.043,
+          4.151
+        ],
+        "placebo_groups": 472,
+        "wa_wide_shock_placebo_mean": -1.773
+      },
+      "3_leave_out_NSW": {
+        "delta": 0.592,
+        "delta_T_plain_did": -0.925,
+        "p_industry_placebo": 0.7104,
+        "interval_90": [
+          -2.898,
+          3.644
+        ],
+        "placebo_groups": 472,
+        "wa_wide_shock_placebo_mean": -1.517
+      },
+      "3_leave_out_VIC": {
+        "delta": 0.457,
+        "delta_T_plain_did": -1.03,
+        "p_industry_placebo": 0.7696,
+        "interval_90": [
+          -3.177,
+          3.89
+        ],
+        "placebo_groups": 472,
+        "wa_wide_shock_placebo_mean": -1.486
+      },
+      "3_leave_out_QLD": {
+        "delta": 0.958,
+        "delta_T_plain_did": -0.913,
+        "p_industry_placebo": 0.5645,
+        "interval_90": [
+          -2.613,
+          4.178
+        ],
+        "placebo_groups": 472,
+        "wa_wide_shock_placebo_mean": -1.871
+      },
+      "3_leave_out_TAS": {
+        "delta": 0.723,
+        "delta_T_plain_did": -0.884,
+        "p_industry_placebo": 0.6448,
+        "interval_90": [
+          -2.861,
+          4.054
+        ],
+        "placebo_groups": 472,
+        "wa_wide_shock_placebo_mean": -1.607
+      },
+      "3_leave_out_ACT": {
+        "delta": 0.782,
+        "delta_T_plain_did": -0.451,
+        "p_industry_placebo": 0.6364,
+        "interval_90": [
+          -2.138,
+          3.68
+        ],
+        "placebo_groups": 472,
+        "wa_wide_shock_placebo_mean": -1.233
+      },
+      "3_leave_out_NT": {
+        "delta": 1.126,
+        "delta_T_plain_did": -0.601,
+        "p_industry_placebo": 0.4503,
+        "interval_90": [
+          -1.817,
+          3.866
+        ],
+        "placebo_groups": 472,
+        "wa_wide_shock_placebo_mean": -1.728
+      },
+      "3_drop_NT_and_ACT": {
+        "delta": 1.253,
+        "delta_T_plain_did": -0.148,
+        "p_industry_placebo": 0.3953,
+        "interval_90": [
+          -1.311,
+          3.865
+        ],
+        "placebo_groups": 472,
+        "wa_wide_shock_placebo_mean": -1.401
+      },
+      "4_treated_subdivisions_41_42_less_liquor": {
+        "delta": -0.161,
+        "delta_T_plain_did": -1.738,
+        "p_industry_placebo": 0.9175,
+        "interval_90": [
+          -3.339,
+          2.808
+        ],
+        "placebo_groups": 472,
+        "wa_wide_shock_placebo_mean": -1.577
+      },
+      "5_placebo_pool_divisions_H_and_S": {
+        "delta": 0.292,
+        "delta_T_plain_did": -0.798,
+        "p_industry_placebo": 0.7665,
+        "interval_90": [
+          -2.784,
+          4.104
+        ],
+        "placebo_groups": 774,
+        "wa_wide_shock_placebo_mean": -1.089
+      }
+    },
+    "decision": {
+      "verdict": "inconclusive",
+      "conditions": {
+        "delta_sign": 1,
+        "p_below_0_05": false,
+        "plain_did_same_sign": false,
+        "triple_difference_same_sign": false,
+        "vintage_no_reversal": true
+      },
+      "interval_90_includes_0_and_5_per_100": false
+    },
+    "grade": {
+      "grade": "Moderate",
+      "best_possible": "Moderate (one treated state, three pre-reform years)",
+      "pre_period_inside_95_band": true,
+      "variants_outside_primary_90_interval": []
+    }
+  },
+  "exits": {
+    "role": "secondary",
+    "raw_means": {
+      "wa_pre": 15.07,
+      "wa_post": 14.49,
+      "comparison_states_pre": 15.81,
+      "comparison_states_post": 14.58,
+      "wa_by_year": {
+        "2008": 15.86,
+        "2009": 15.1,
+        "2010": 14.26,
+        "2011": 13.83,
+        "2012": 14.91,
+        "2013": 16.78,
+        "2014": 14.01,
+        "2015": 14.83,
+        "2016": 14.37,
+        "2017": 13.15,
+        "2018": 14.02
+      },
+      "comparison_states_by_year": {
+        "2008": 16.69,
+        "2009": 15.61,
+        "2010": 15.25,
+        "2011": 14.76,
+        "2012": 13.57,
+        "2013": 17.14,
+        "2014": 13.73,
+        "2015": 14.76,
+        "2016": 14.75,
+        "2017": 14.7,
+        "2018": 13.21
+      }
+    },
+    "primary": {
+      "delta": -0.07,
+      "delta_T_plain_did": 0.09,
+      "wa_wide_shock_placebo_mean": 0.159,
+      "placebo_groups": 451,
+      "placebo_sd": 1.479,
+      "mde_80pc": 4.144,
+      "p_industry_placebo": 0.9491,
+      "interval_90": [
+        -2.435,
+        2.495
+      ],
+      "interval_95_not_preregistered": [
+        -2.866,
+        2.755
+      ],
+      "p_state_placebo_for_delta_T": 1.0,
+      "p_state_placebo_for_delta_not_preregistered": 1.0,
+      "state_placebos": {
+        "ACT": -2.336,
+        "NSW": 0.651,
+        "NT": -1.138,
+        "QLD": 0.877,
+        "TAS": -0.158,
+        "VIC": 1.442
+      }
+    },
+    "event_study": {
+      "reference": "2009-10 (k = -1); k = 0 is 2010-11",
+      "plain": {
+        "-3": 1.067,
+        "-2": 1.387,
+        "0": 0.061,
+        "1": 2.322,
+        "2": 0.631,
+        "3": 1.264,
+        "4": 1.056,
+        "5": 0.611,
+        "6": -0.559,
+        "7": 1.799
+      },
+      "placebo_mean": {
+        "-3": -0.487,
+        "-2": -0.319,
+        "0": -0.009,
+        "1": -0.016,
+        "2": -0.687,
+        "3": -0.316,
+        "4": -0.186,
+        "5": -0.183,
+        "6": 0.31,
+        "7": 0.238
+      },
+      "net": {
+        "-3": 1.554,
+        "-2": 1.706,
+        "0": 0.07,
+        "1": 2.338,
+        "2": 1.317,
+        "3": 1.581,
+        "4": 1.242,
+        "5": 0.794,
+        "6": -0.869,
+        "7": 1.562
+      },
+      "net_band_90": {
+        "-3": [
+          -2.544,
+          6.263
+        ],
+        "-2": [
+          -2.628,
+          6.239
+        ],
+        "0": [
+          -4.326,
+          4.223
+        ],
+        "1": [
+          -1.853,
+          5.856
+        ],
+        "2": [
+          -2.08,
+          5.336
+        ],
+        "3": [
+          -2.296,
+          5.193
+        ],
+        "4": [
+          -2.528,
+          4.819
+        ],
+        "5": [
+          -2.894,
+          5.484
+        ],
+        "6": [
+          -4.594,
+          2.97
+        ],
+        "7": [
+          -2.794,
+          6.346
+        ]
+      },
+      "net_band_95": {
+        "-3": [
+          -3.356,
+          7.552
+        ],
+        "-2": [
+          -3.726,
+          7.139
+        ],
+        "0": [
+          -5.236,
+          4.716
+        ],
+        "1": [
+          -2.702,
+          6.983
+        ],
+        "2": [
+          -2.719,
+          6.132
+        ],
+        "3": [
+          -3.567,
+          5.943
+        ],
+        "4": [
+          -3.519,
+          5.393
+        ],
+        "5": [
+          -3.595,
+          6.291
+        ],
+        "6": [
+          -5.747,
+          4.001
+        ],
+        "7": [
+          -3.693,
+          7.526
+        ]
+      },
+      "pre_period_inside_95_band": true,
+      "sensitivity_net": {
+        "average_post_effect": 1.004,
+        "largest_pre_period_step": 1.706,
+        "relative_magnitude_breakdown": 0.131,
+        "pre_trend_slope_per_year": -0.777,
+        "breakeven_slope_per_year": 0.223,
+        "linear_trend_adjusted_average_post_effect": 4.5
+      },
+      "sensitivity_plain": {
+        "average_post_effect": 0.898,
+        "largest_pre_period_step": 1.387,
+        "relative_magnitude_breakdown": 0.144,
+        "pre_trend_slope_per_year": -0.533,
+        "breakeven_slope_per_year": 0.2,
+        "linear_trend_adjusted_average_post_effect": 3.298
+      }
+    },
+    "triple_difference": {
+      "estimate": 1.191,
+      "p_state_placebo": 0.571,
+      "state_placebo_sd": 2.431,
+      "event_study": {
+        "-3": 1.483,
+        "-2": -0.17,
+        "0": 0.372,
+        "1": 3.24,
+        "2": 1.247,
+        "3": 2.101,
+        "4": 2.16,
+        "5": 1.126,
+        "6": 0.071,
+        "7": 2.674
+      }
+    },
+    "robustness": {
+      "1_vintage_overlap": {
+        "delta": -0.028,
+        "delta_T_plain_did": 0.12,
+        "p_industry_placebo": 0.9889,
+        "interval_90": [
+          -2.355,
+          2.484
+        ],
+        "placebo_groups": 451,
+        "wa_wide_shock_placebo_mean": 0.148
+      },
+      "2_window_to_2018_19": {
+        "delta": 0.129,
+        "delta_T_plain_did": 0.28,
+        "p_industry_placebo": 0.9336,
+        "interval_90": [
+          -2.301,
+          2.664
+        ],
+        "placebo_groups": 451,
+        "wa_wide_shock_placebo_mean": 0.151
+      },
+      "3_leave_out_NSW": {
+        "delta": 0.048,
+        "delta_T_plain_did": 0.203,
+        "p_industry_placebo": 0.9845,
+        "interval_90": [
+          -2.51,
+          2.838
+        ],
+        "placebo_groups": 451,
+        "wa_wide_shock_placebo_mean": 0.155
+      },
+      "3_leave_out_VIC": {
+        "delta": 0.078,
+        "delta_T_plain_did": 0.352,
+        "p_industry_placebo": 0.9447,
+        "interval_90": [
+          -2.624,
+          2.792
+        ],
+        "placebo_groups": 451,
+        "wa_wide_shock_placebo_mean": 0.274
+      },
+      "3_leave_out_QLD": {
+        "delta": 0.065,
+        "delta_T_plain_did": 0.235,
+        "p_industry_placebo": 0.9602,
+        "interval_90": [
+          -2.648,
+          2.789
+        ],
+        "placebo_groups": 451,
+        "wa_wide_shock_placebo_mean": 0.17
+      },
+      "3_leave_out_TAS": {
+        "delta": -0.194,
+        "delta_T_plain_did": 0.017,
+        "p_industry_placebo": 0.9027,
+        "interval_90": [
+          -2.662,
+          2.699
+        ],
+        "placebo_groups": 451,
+        "wa_wide_shock_placebo_mean": 0.211
+      },
+      "3_leave_out_ACT": {
+        "delta": -0.33,
+        "delta_T_plain_did": -0.259,
+        "p_industry_placebo": 0.7677,
+        "interval_90": [
+          -2.456,
+          1.774
+        ],
+        "placebo_groups": 451,
+        "wa_wide_shock_placebo_mean": 0.071
+      },
+      "3_leave_out_NT": {
+        "delta": -0.068,
+        "delta_T_plain_did": 0.003,
+        "p_industry_placebo": 0.9646,
+        "interval_90": [
+          -2.325,
+          2.403
+        ],
+        "placebo_groups": 451,
+        "wa_wide_shock_placebo_mean": 0.071
+      },
+      "3_drop_NT_and_ACT": {
+        "delta": -0.455,
+        "delta_T_plain_did": -0.491,
+        "p_industry_placebo": 0.7212,
+        "interval_90": [
+          -2.404,
+          1.51
+        ],
+        "placebo_groups": 451,
+        "wa_wide_shock_placebo_mean": -0.036
+      },
+      "4_treated_subdivisions_41_42_less_liquor": {
+        "delta": -0.724,
+        "delta_T_plain_did": -0.564,
+        "p_industry_placebo": 0.6217,
+        "interval_90": [
+          -3.089,
+          1.841
+        ],
+        "placebo_groups": 451,
+        "wa_wide_shock_placebo_mean": 0.159
+      },
+      "5_placebo_pool_divisions_H_and_S": {
+        "delta": 0.113,
+        "delta_T_plain_did": 0.09,
+        "p_industry_placebo": 0.9497,
+        "interval_90": [
+          -2.328,
+          2.406
+        ],
+        "placebo_groups": 774,
+        "wa_wide_shock_placebo_mean": -0.024
+      }
+    },
+    "decision": {
+      "verdict": "inconclusive",
+      "conditions": {
+        "delta_sign": -1,
+        "p_below_0_05": false,
+        "plain_did_same_sign": false,
+        "triple_difference_same_sign": false,
+        "vintage_no_reversal": true
+      },
+      "interval_90_includes_0_and_5_per_100": false
+    },
+    "grade": {
+      "grade": "Moderate",
+      "best_possible": "Moderate (one treated state, three pre-reform years)",
+      "pre_period_inside_95_band": true,
+      "variants_outside_primary_90_interval": []
+    }
+  },
+  "prices": {
+    "Food and non-alcoholic beverages": {
+      "role": "secondary (pre-registered)",
+      "estimate_log_points": -2.218,
+      "p_state_placebo": 0.143,
+      "state_placebo_sd": 1.147,
+      "mde_80pc": 3.213,
+      "state_placebos": {
+        "ACT": 1.447,
+        "NSW": 0.552,
+        "NT": -1.512,
+        "QLD": -1.244,
+        "TAS": 0.211,
+        "VIC": 0.546
+      },
+      "perth_gap_vs_other_capitals_by_fy_relative_to_2009_10": {
+        "2000": 2.59,
+        "2001": 1.87,
+        "2002": 2.4,
+        "2003": 2.1,
+        "2004": 1.45,
+        "2005": 1.81,
+        "2006": 0.89,
+        "2007": -0.55,
+        "2008": 0.28,
+        "2009": 0.06,
+        "2010": 0.0,
+        "2011": -0.5,
+        "2012": 0.03,
+        "2013": -0.31,
+        "2014": -1.15,
+        "2015": -1.42,
+        "2016": -1.34,
+        "2017": -2.08,
+        "2018": -1.66,
+        "2019": -1.33,
+        "2020": -1.65
+      }
+    },
+    "Clothing and footwear": {
+      "role": "descriptive only",
+      "estimate_log_points": -1.988,
+      "p_state_placebo": 0.429,
+      "state_placebo_sd": 2.445,
+      "mde_80pc": 6.85,
+      "state_placebos": {
+        "ACT": -0.175,
+        "NSW": -0.009,
+        "NT": -0.288,
+        "QLD": 1.886,
+        "TAS": 2.844,
+        "VIC": -4.259
+      },
+      "perth_gap_vs_other_capitals_by_fy_relative_to_2009_10": {
+        "2000": 13.86,
+        "2001": 14.39,
+        "2002": 12.41,
+        "2003": 13.17,
+        "2004": 13.42,
+        "2005": 11.74,
+        "2006": 8.92,
+        "2007": 7.78,
+        "2008": 5.68,
+        "2009": 2.72,
+        "2010": 0.0,
+        "2011": 0.86,
+        "2012": 1.79,
+        "2013": 4.36,
+        "2014": 6.29,
+        "2015": 8.44,
+        "2016": 8.79,
+        "2017": 10.13,
+        "2018": 9.47,
+        "2019": 10.18,
+        "2020": 10.21
+      }
+    }
+  },
+  "results_chain": "consistent with 'enhancing' (entry up, food prices down)",
+  "descriptive_productivity_and_pay": {
+    "gva_per_worker": {
+      "label": "real value added per employed person (not blind)",
+      "years": "1989-90 to 2017-18",
+      "estimate_log_points": -0.336,
+      "p_state_placebo": 1.0,
+      "state_placebo_sd": 12.89
+    },
+    "real_coe_per_worker": {
+      "label": "real compensation of employees per employed person",
+      "years": "2000-01 to 2017-18",
+      "estimate_log_points": -8.882,
+      "p_state_placebo": 0.857,
+      "state_placebo_sd": 15.067
+    }
+  }
+}

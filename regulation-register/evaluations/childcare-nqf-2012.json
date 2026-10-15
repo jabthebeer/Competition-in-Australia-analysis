@@ -1,0 +1,401 @@
+{
+  "id": "childcare-nqf-2012",
+  "title": "National Quality Framework for childcare (2012): the WA stagger",
+  "records": [
+    "cth-nqf-childcare-2012",
+    "wa-nqf-childcare-2012"
+  ],
+  "family": "childcare-nqf",
+  "evaluated_on": "2026-10-15",
+  "hypothesis": "weakening",
+  "design": "The framework started in January 2012 everywhere except WA (August 2012). The only clean comparison is 2011-12, when the other states had it and WA did not: a first-year effect. Method: stacked difference-in-differences, net of the same comparison for unaffected industries in the same states.",
+  "comparison": "Treated: ACT, NSW, NT, QLD, SA, TAS, VIC. Comparison: WA.",
+  "window": "2007-08 to 2011-12 (first exposed year 2011-12)",
+  "verdict": "inconclusive",
+  "finding_label": "No detectable effect",
+  "grade": "Moderate",
+  "grade_reason": "Passes the plan's pre-reform check and robustness variants; one or few treated states, so only large effects are detectable.",
+  "headline": "In 2011-12, the framework's first year, childcare business entry in the states that had it changed by −0.3 per 100 relative to WA, which started seven months later (90% interval −5.9 to +4.3); exits by +3.1 (90% interval −1.4 to +6.9). Neither is distinguishable from zero.",
+  "category_summaries": {
+    "competition": "No detectable first-year effect on entry or exit. With one comparison state, only effects above about 10 per 100 could have been detected.",
+    "prices": "Descriptive only. Childcare fees move with subsidies, and only two quarters separate the states.",
+    "productivity": "Not measurable. Childcare is a small part of health care and social assistance. Shown for description only."
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "entry-rate",
+      "label": "Business entry rate",
+      "category": "competition",
+      "role": "primary",
+      "unit": "per 100 businesses a year",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -0.285,
+      "interval": {
+        "low": -5.875,
+        "high": 4.314,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -4.599,
+        "high": 5.59,
+        "basis": "90% range across 74 placebo industry groups"
+      },
+      "p_value": 0.9333,
+      "inference": "Rank among placebo industry groups (two-sided)",
+      "mde_80": 9.846,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "Net of a change of +1.3 per 100 in unaffected industries in the same states. Plain comparison: +1.0."
+    },
+    {
+      "id": "exit-rate",
+      "label": "Business exit rate",
+      "category": "competition",
+      "role": "secondary",
+      "unit": "per 100 businesses a year",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 3.053,
+      "interval": {
+        "low": -1.387,
+        "high": 6.885,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -3.832,
+        "high": 4.44,
+        "basis": "90% range across 74 placebo industry groups"
+      },
+      "p_value": 0.24,
+      "inference": "Rank among placebo industry groups (two-sided)",
+      "mde_80": 8.104,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "Net of a change of −0.1 per 100 in unaffected industries in the same states. Plain comparison: +2.9."
+    },
+    {
+      "id": "price-child-care",
+      "label": "Child care: prices relative to the CPI",
+      "category": "prices",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -4.268,
+      "interval": {
+        "low": -13.299,
+        "high": 7.57,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -11.838,
+        "high": 9.031,
+        "basis": "90% range across 84 placebo CPI classes"
+      },
+      "p_value": 0.4235,
+      "inference": "Rank among 84 placebo CPI classes in the same cities",
+      "mde_80": 18.358,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Expected up. Plain estimate −3.5."
+    },
+    {
+      "id": "price-child-care-detrended",
+      "label": "Child care: each city's pre-reform trend removed",
+      "category": "prices",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 4.836,
+      "interval": {
+        "low": 0.433,
+        "high": 9.802,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -4.966,
+        "high": 4.403,
+        "basis": "90% range across 84 placebo CPI classes"
+      },
+      "p_value": 0.1071,
+      "inference": "Rank among 84 placebo CPI classes in the same cities",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered robustness check (decision E-31)."
+    },
+    {
+      "id": "output-per-worker",
+      "label": "Output per worker, health care and social assistance",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 9.268,
+      "interval": null,
+      "no_effect_range": {
+        "low": -24.491,
+        "high": 14.524,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.6667,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    },
+    {
+      "id": "real-pay-per-worker",
+      "label": "Real pay per worker, health care and social assistance",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 11.531,
+      "interval": null,
+      "no_effect_range": {
+        "low": -30.491,
+        "high": 17.075,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.5556,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "entry-rate",
+      "title": "Business entries, year by year",
+      "unit": "per 100 businesses a year",
+      "reference": "2010-11",
+      "band": "90% range across placebo industry groups",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -4,
+          "estimate": 1.077,
+          "low": -7.216,
+          "high": 8.638
+        },
+        {
+          "period": "2008-09",
+          "k": -3,
+          "estimate": 0.128,
+          "low": -8.097,
+          "high": 6.546
+        },
+        {
+          "period": "2009-10",
+          "k": -2,
+          "estimate": 1.542,
+          "low": -4.405,
+          "high": 9.314
+        },
+        {
+          "period": "2010-11",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2011-12",
+          "k": 0,
+          "estimate": 0.403,
+          "low": -4.748,
+          "high": 4.597
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Treated states relative to comparison states, net of unaffected industries."
+    },
+    {
+      "outcome": "exit-rate",
+      "title": "Business exits, year by year",
+      "unit": "per 100 businesses a year",
+      "reference": "2010-11",
+      "band": "90% range across placebo industry groups",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -4,
+          "estimate": 2.361,
+          "low": -4.413,
+          "high": 9.22
+        },
+        {
+          "period": "2008-09",
+          "k": -3,
+          "estimate": 2.795,
+          "low": -2.338,
+          "high": 9.35
+        },
+        {
+          "period": "2009-10",
+          "k": -2,
+          "estimate": 1.465,
+          "low": -5.81,
+          "high": 8.08
+        },
+        {
+          "period": "2010-11",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2011-12",
+          "k": 0,
+          "estimate": 4.692,
+          "low": 0.133,
+          "high": 8.803
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Treated states relative to comparison states, net of unaffected industries."
+    },
+    {
+      "outcome": "price-child-care",
+      "title": "Child care prices, year by year",
+      "unit": "% (log points)",
+      "reference": "2010-11",
+      "band": "90% range across placebo CPI classes",
+      "points": [
+        {
+          "period": "2001-02",
+          "k": -10,
+          "estimate": 10.807,
+          "low": -2.387,
+          "high": 23.552
+        },
+        {
+          "period": "2002-03",
+          "k": -9,
+          "estimate": 12.329,
+          "low": 0.236,
+          "high": 24.684
+        },
+        {
+          "period": "2003-04",
+          "k": -8,
+          "estimate": 9.966,
+          "low": -1.5,
+          "high": 23.829
+        },
+        {
+          "period": "2004-05",
+          "k": -7,
+          "estimate": 2.742,
+          "low": -7.713,
+          "high": 12.858
+        },
+        {
+          "period": "2005-06",
+          "k": -6,
+          "estimate": 3.897,
+          "low": -5.297,
+          "high": 12.941
+        },
+        {
+          "period": "2006-07",
+          "k": -5,
+          "estimate": 5.886,
+          "low": -1.353,
+          "high": 13.84
+        },
+        {
+          "period": "2007-08",
+          "k": -4,
+          "estimate": 2.94,
+          "low": -4.84,
+          "high": 8.955
+        },
+        {
+          "period": "2008-09",
+          "k": -3,
+          "estimate": -3.039,
+          "low": -7.212,
+          "high": 1.867
+        },
+        {
+          "period": "2009-10",
+          "k": -2,
+          "estimate": -0.966,
+          "low": -4.258,
+          "high": 2.255
+        },
+        {
+          "period": "2010-11",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2011-12",
+          "k": 0,
+          "estimate": -1.503,
+          "low": -5.823,
+          "high": 1.862
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Financial-year averages, relative to the all-groups CPI, treated cities against comparison cities, net of other CPI classes."
+    }
+  ],
+  "caveats": [
+    "Only the first year can be compared: WA adopted the same framework in August 2012.",
+    "WA is the only comparison state; its mining boom is netted out using unaffected WA industries."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_high_evaluability.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_high_evaluability.md"
+    },
+    {
+      "label": "Case definitions",
+      "path": "econ/analyses/high_evaluability/cases.py"
+    },
+    {
+      "label": "Estimation code",
+      "path": "econ/analyses/high_evaluability/run.py"
+    }
+  ],
+  "built_by": "econ/analyses/high_evaluability/evaluations.py"
+}

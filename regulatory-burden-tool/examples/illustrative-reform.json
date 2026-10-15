@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "proposal": {
+    "id": "illustrative-reform",
+    "title": "ILLUSTRATIVE (synthetic data): quarterly report becomes an annual report",
+    "description": "Synthetic example from the project brief. The numbers are invented to test the engine and are not a real costing.",
+    "proposalType": "reform",
+    "durationYears": 10,
+    "jurisdiction": "commonwealthOnly",
+    "baseline": "statusQuo",
+    "populations": [
+      { "id": "biz", "label": "Regulated businesses (synthetic)", "group": "business", "count": 10000 }
+    ],
+    "options": [
+      {
+        "id": "annual",
+        "name": "Annual reporting with a shorter form",
+        "obligations": [
+          {
+            "id": "report",
+            "name": "Periodic report to the regulator",
+            "category": "administrative",
+            "levers": ["lessFrequent", "simplerForm"],
+            "current": {
+              "costType": "labour",
+              "timing": { "type": "ongoing" },
+              "lines": [{ "populationId": "biz", "labour": { "hours": 4, "timesPerYear": 4, "staff": 1 } }]
+            },
+            "reformed": {
+              "costType": "labour",
+              "timing": { "type": "ongoing" },
+              "lines": [{ "populationId": "biz", "labour": { "hours": 2, "timesPerYear": 1, "staff": 1 } }]
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "id": "familiarisation",
+            "name": "Familiarisation with the new rules",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": { "type": "oneOff", "year": 1 },
+              "lines": [{ "populationId": "biz", "labour": { "hours": 1, "timesPerYear": 1, "staff": 1 } }]
+            }
+          }
+        ]
+      },
+      {
+        "id": "annual-dual-running",
+        "name": "Annual reporting, with one year of dual running",
+        "timing": { "reformStartYear": 1, "overlapYears": 1 },
+        "obligations": [
+          {
+            "id": "report",
+            "name": "Periodic report to the regulator",
+            "category": "administrative",
+            "levers": ["lessFrequent", "simplerForm"],
+            "current": {
+              "costType": "labour",
+              "timing": { "type": "ongoing" },
+              "lines": [{ "populationId": "biz", "labour": { "hours": 4, "timesPerYear": 4, "staff": 1 } }]
+            },
+            "reformed": {
+              "costType": "labour",
+              "timing": { "type": "ongoing" },
+              "lines": [{ "populationId": "biz", "labour": { "hours": 2, "timesPerYear": 1, "staff": 1 } }]
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "id": "familiarisation",
+            "name": "Familiarisation with the new rules",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": { "type": "oneOff", "year": 1 },
+              "lines": [{ "populationId": "biz", "labour": { "hours": 1, "timesPerYear": 1, "staff": 1 } }]
+            }
+          }
+        ]
+      },
+      {
+        "id": "repeal",
+        "name": "Outright repeal",
+        "obligations": [
+          {
+            "id": "report",
+            "name": "Periodic report to the regulator",
+            "category": "administrative",
+            "levers": ["removeObligation"],
+            "current": {
+              "costType": "labour",
+              "timing": { "type": "ongoing" },
+              "lines": [{ "populationId": "biz", "labour": { "hours": 4, "timesPerYear": 4, "staff": 1 } }]
+            },
+            "reformed": null
+          }
+        ],
+        "transitions": []
+      },
+      { "id": "status-quo", "name": "Status quo", "isStatusQuo": true, "obligations": [], "transitions": [] }
+    ]
+  }
+}

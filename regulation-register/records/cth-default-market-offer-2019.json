@@ -1,0 +1,73 @@
+{
+  "id": "cth-default-market-offer-2019",
+  "family": "default-offer-reregulation",
+  "title": "Default Market Offer price cap (NSW, SEQ, SA)",
+  "jurisdiction": "CTH",
+  "summary": "A mandatory Electricity Retail Code introduced a Default Market Offer cap on standing offers and a reference price for advertising discounts in NSW, south-east Queensland and South Australia from 1 July 2019.",
+  "instruments": [
+    {
+      "title": "Competition and Consumer (Industry Code—Electricity Retail) Regulations 2019",
+      "register_url": "https://www.legislation.gov.au/F2019L00530/asmade/versions",
+      "register_id": "F2019L00530",
+      "role": "code",
+      "provisions": null
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": "2019-04-04",
+      "source": "https://legislation.gov.au/F2019L00530/asmade/2019-04-04/text/original/pdf"
+    },
+    "commenced": [
+      {
+        "date": "2019-07-01",
+        "what": "First DMO prices applied",
+        "source": "https://www.aer.gov.au/system/files/AER%20Final%20Determination%20-%20Default%20Market%20Offer%20Prices%20-%20April%202019.pdf",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "mixed",
+  "direction_rationale": "A cap on standing offers may compress retail margins and deter entry, while a common reference price improves comparability of offers and consumer switching.",
+  "direction_sources": [
+    "https://oia.pmc.gov.au/published-impact-analyses-and-reports/default-market-offer-price-cap-and-reference-bill-retail"
+  ],
+  "channels": [
+    "prices-market-share",
+    "consumer-choice",
+    "barriers"
+  ],
+  "industries": [
+    {
+      "anzsic": "2640",
+      "name": "On Selling Electricity and Electricity Market Operation",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "2700",
+      "name": "Gas Supply",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Regional Queensland, Tasmania and ACT (regulated prices, no DMO); Victoria has its own VDO on the same date",
+  "confounders": [
+    "COVID-19 2020",
+    "2022 wholesale price shock"
+  ],
+  "price_series": "Electricity; Gas and other household fuels",
+  "notes": "Applies in three jurisdictions on one date; jurisdiction coded CTH because the instrument is Commonwealth.",
+  "verified": {
+    "dates": true,
+    "notes": null
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  }
+}

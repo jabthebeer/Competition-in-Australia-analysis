@@ -1,0 +1,463 @@
+{
+  "id": "vic-taxi-licensing-2014",
+  "title": "As-of-right taxi licences in Victoria (2014)",
+  "records": [
+    "vic-taxi-licensing-2014"
+  ],
+  "family": null,
+  "evaluated_on": "2026-10-15",
+  "hypothesis": "enhancing",
+  "design": "Victoria against all other states, using only 2014-15, the one post-reform year before ride-share legalisation and driver GST registration. Method: stacked difference-in-differences, net of the same comparison for unaffected industries in the same states.",
+  "comparison": "Treated: VIC. Comparison: ACT, NSW, NT, QLD, SA, TAS, WA.",
+  "window": "2007-08 to 2014-15 (first exposed year 2014-15)",
+  "verdict": "inconclusive",
+  "finding_label": "No detectable effect",
+  "grade": "Weak",
+  "grade_reason": "Unlicensed UberX began in Melbourne in 2014, the same year, and only one post-reform year is usable.",
+  "headline": "In 2014-15, the first year of as-of-right taxi licences, entry into Victorian taxi and road transport changed by −1.4 per 100 relative to other states (90% interval −3.4 to +0.9); exits by −1.4. Neither is distinguishable from zero. Unlicensed UberX arrived in Melbourne the same year.",
+  "category_summaries": {
+    "competition": "No detectable first-year effect. A rise in entry of more than about 0.9 per 100 in 2014-15 is ruled out.",
+    "prices": "Descriptive only. Melbourne urban transport fares fell −10.7% relative to other capitals, most likely because of public transport fare changes from January 2015, not taxis.",
+    "productivity": "Not measurable at division level. Shown for description only."
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "entry-rate",
+      "label": "Business entry rate",
+      "category": "competition",
+      "role": "primary",
+      "unit": "per 100 businesses a year",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -1.386,
+      "interval": {
+        "low": -3.356,
+        "high": 0.9,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -2.286,
+        "high": 1.97,
+        "basis": "90% range across 43 placebo industry groups"
+      },
+      "p_value": 0.3182,
+      "inference": "Rank among placebo industry groups (two-sided)",
+      "mde_80": 4.238,
+      "finding": "no-detectable-effect",
+      "grade": "Weak",
+      "preregistered": true,
+      "note": "Net of a change of +0.7 per 100 in unaffected industries in the same states. Plain comparison: −0.7."
+    },
+    {
+      "id": "exit-rate",
+      "label": "Business exit rate",
+      "category": "competition",
+      "role": "secondary",
+      "unit": "per 100 businesses a year",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -1.448,
+      "interval": {
+        "low": -3.553,
+        "high": 0.771,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -2.219,
+        "high": 2.105,
+        "basis": "90% range across 43 placebo industry groups"
+      },
+      "p_value": 0.3182,
+      "inference": "Rank among placebo industry groups (two-sided)",
+      "mde_80": 3.714,
+      "finding": "no-detectable-effect",
+      "grade": "Weak",
+      "preregistered": true,
+      "note": "Net of a change of +0.4 per 100 in unaffected industries in the same states. Plain comparison: −1.0."
+    },
+    {
+      "id": "price-urban-transport-fares",
+      "label": "Urban transport fares: prices relative to the CPI",
+      "category": "prices",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -10.714,
+      "interval": {
+        "low": -17.094,
+        "high": -2.753,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -7.961,
+        "high": 6.38,
+        "basis": "90% range across 86 placebo CPI classes"
+      },
+      "p_value": 0.0345,
+      "inference": "Rank among 86 placebo CPI classes in the same cities",
+      "mde_80": 11.301,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Expected down. Plain estimate −9.8."
+    },
+    {
+      "id": "price-urban-transport-fares-detrended",
+      "label": "Urban transport fares: each city's pre-reform trend removed",
+      "category": "prices",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -9.599,
+      "interval": {
+        "low": -13.077,
+        "high": -5.562,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -4.037,
+        "high": 3.478,
+        "basis": "90% range across 86 placebo CPI classes"
+      },
+      "p_value": 0.0115,
+      "inference": "Rank among 86 placebo CPI classes in the same cities",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered robustness check (decision E-31)."
+    },
+    {
+      "id": "output-per-worker",
+      "label": "Output per worker, transport, postal and warehousing",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -9.194,
+      "interval": null,
+      "no_effect_range": {
+        "low": -16.628,
+        "high": 13.377,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.3889,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    },
+    {
+      "id": "real-pay-per-worker",
+      "label": "Real pay per worker, transport, postal and warehousing",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -8.599,
+      "interval": null,
+      "no_effect_range": {
+        "low": -16.993,
+        "high": 13.287,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.2778,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "entry-rate",
+      "title": "Business entries, year by year",
+      "unit": "per 100 businesses a year",
+      "reference": "2013-14",
+      "band": "90% range across placebo industry groups",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -7,
+          "estimate": 2.464,
+          "low": -2.548,
+          "high": 6.636
+        },
+        {
+          "period": "2008-09",
+          "k": -6,
+          "estimate": 0.191,
+          "low": -4.7,
+          "high": 5.038
+        },
+        {
+          "period": "2009-10",
+          "k": -5,
+          "estimate": -2.663,
+          "low": -6.281,
+          "high": 1.755
+        },
+        {
+          "period": "2010-11",
+          "k": -4,
+          "estimate": -1.726,
+          "low": -7.632,
+          "high": 3.41
+        },
+        {
+          "period": "2011-12",
+          "k": -3,
+          "estimate": -0.533,
+          "low": -6.443,
+          "high": 3.505
+        },
+        {
+          "period": "2012-13",
+          "k": -2,
+          "estimate": -1.31,
+          "low": -4.508,
+          "high": 1.05
+        },
+        {
+          "period": "2013-14",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2014-15",
+          "k": 0,
+          "estimate": -1.911,
+          "low": -6.404,
+          "high": 1.225
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Treated states relative to comparison states, net of unaffected industries."
+    },
+    {
+      "outcome": "exit-rate",
+      "title": "Business exits, year by year",
+      "unit": "per 100 businesses a year",
+      "reference": "2013-14",
+      "band": "90% range across placebo industry groups",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -7,
+          "estimate": 1.731,
+          "low": -1.423,
+          "high": 5.457
+        },
+        {
+          "period": "2008-09",
+          "k": -6,
+          "estimate": 3.753,
+          "low": 0.209,
+          "high": 6.769
+        },
+        {
+          "period": "2009-10",
+          "k": -5,
+          "estimate": 3.673,
+          "low": 0.425,
+          "high": 7.464
+        },
+        {
+          "period": "2010-11",
+          "k": -4,
+          "estimate": 1.803,
+          "low": -0.853,
+          "high": 5.346
+        },
+        {
+          "period": "2011-12",
+          "k": -3,
+          "estimate": 0.222,
+          "low": -2.219,
+          "high": 2.281
+        },
+        {
+          "period": "2012-13",
+          "k": -2,
+          "estimate": 1.392,
+          "low": -0.775,
+          "high": 5.805
+        },
+        {
+          "period": "2013-14",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2014-15",
+          "k": 0,
+          "estimate": 0.341,
+          "low": -1.947,
+          "high": 2.801
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Treated states relative to comparison states, net of unaffected industries."
+    },
+    {
+      "outcome": "price-urban-transport-fares",
+      "title": "Urban transport fares prices, year by year",
+      "unit": "% (log points)",
+      "reference": "2013-14",
+      "band": "90% range across placebo CPI classes",
+      "points": [
+        {
+          "period": "2001-02",
+          "k": -13,
+          "estimate": 0.423,
+          "low": -11.533,
+          "high": 8.879
+        },
+        {
+          "period": "2002-03",
+          "k": -12,
+          "estimate": 1.073,
+          "low": -9.574,
+          "high": 9.166
+        },
+        {
+          "period": "2003-04",
+          "k": -11,
+          "estimate": 2.161,
+          "low": -7.141,
+          "high": 11.613
+        },
+        {
+          "period": "2004-05",
+          "k": -10,
+          "estimate": 4.841,
+          "low": -4.842,
+          "high": 12.772
+        },
+        {
+          "period": "2005-06",
+          "k": -9,
+          "estimate": 4.714,
+          "low": -4.315,
+          "high": 13.345
+        },
+        {
+          "period": "2006-07",
+          "k": -8,
+          "estimate": 3.511,
+          "low": -3.728,
+          "high": 11.382
+        },
+        {
+          "period": "2007-08",
+          "k": -7,
+          "estimate": 3.073,
+          "low": -3.978,
+          "high": 10.667
+        },
+        {
+          "period": "2008-09",
+          "k": -6,
+          "estimate": 3.908,
+          "low": -2.104,
+          "high": 11.364
+        },
+        {
+          "period": "2009-10",
+          "k": -5,
+          "estimate": 2.446,
+          "low": -3.048,
+          "high": 9.194
+        },
+        {
+          "period": "2010-11",
+          "k": -4,
+          "estimate": -1.011,
+          "low": -4.973,
+          "high": 3.616
+        },
+        {
+          "period": "2011-12",
+          "k": -3,
+          "estimate": -0.459,
+          "low": -3.407,
+          "high": 3.14
+        },
+        {
+          "period": "2012-13",
+          "k": -2,
+          "estimate": 0.491,
+          "low": -1.864,
+          "high": 3.43
+        },
+        {
+          "period": "2013-14",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2014-15",
+          "k": 0,
+          "estimate": -8.824,
+          "low": -11.354,
+          "high": -5.732
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Financial-year averages, relative to the all-groups CPI, treated cities against comparison cities, net of other CPI classes."
+    }
+  ],
+  "caveats": [
+    "Only 2014-15 is usable: ride-share legalisation and driver GST registration followed.",
+    "The fare reading (public transport changes from January 2015, including the free CBD tram zone) was made after unblinding."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_high_evaluability.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_high_evaluability.md"
+    },
+    {
+      "label": "Case definitions",
+      "path": "econ/analyses/high_evaluability/cases.py"
+    },
+    {
+      "label": "Estimation code",
+      "path": "econ/analyses/high_evaluability/run.py"
+    }
+  ],
+  "built_by": "econ/analyses/high_evaluability/evaluations.py"
+}

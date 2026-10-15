@@ -1,6 +1,6 @@
 # Phase 0 proposal: engine data model, Phase 1 test list, feasibility
 
-**Status:** Draft for approval (6 October 2026). No code has been written yet.
+**Status:** Approved by the project owner on 6 October 2026, with the changes recorded in `DECISIONS.md`. The implemented schema in `src/engine/schema.ts` is authoritative where it differs from this sketch.
 
 Interpretation IDs (A-xx, N-xx, P-xx) refer to `docs/framework_traceability.md`.
 
@@ -23,7 +23,7 @@ Interpretation IDs (A-xx, N-xx, P-xx) refer to `docs/framework_traceability.md`.
   - Inputs are JSON numbers, converted via `new Decimal(String(n))`.
   - All arithmetic uses `decimal.js` at 40 significant digits.
   - Outputs are exact decimal strings. Rounding happens only when values are displayed or exported.
-  - Integer cents won't work, because annualising (÷ 3, ÷ 7) and the voluntary-floor ratio (A-03) produce non-terminating values.
+  - Integer cents won't work, because annualising (÷ 3, ÷ 7) and the do-anyway ratio (A-03) produce non-terminating values.
 - **Point estimates from ranges.** Any numeric input can be a `Quantity`: a number, or a `{ low, high }` range. The point estimate is the midpoint (A-07). The range is kept for sensitivity analysis only.
 - **Defaults are visible and overrides are audited.** Every default comes from `parameters.ts`. Every non-default rate, duration or classification needs an `Override { justification, source }`, which feeds the assumptions register.
 
@@ -52,7 +52,7 @@ interface Proposal {
   durationYears: number;                                // 1–10, default 10 (A-11)
   durationOverride?: Override;                          // required if ≠ 10
   jurisdiction: "commonwealthOnly" | "interJurisdictional";   // R-33 (A-18)
-  baseline: "statusQuo" | "noInstrument";               // N-01: sunsetting remake [decision needed]
+  baseline: "statusQuo" | "noInstrument";               // N-01: toggle approved; both always computed
   parameterVintage: string;                             // e.g. "RBM-2026-07"; must match parameters.ts
   rates: RateTable;
   populations: Population[];
@@ -71,6 +71,7 @@ interface Population {                                  // who is affected, and 
   group: "business" | "communityOrg" | "individual";
   cohort: "small" | "medium" | "large" | "all";         // R-32 (A-17)
   count: Quantity;                                      // denominator for per-entity results
+  industry?: string;                                    // ANZSIC code; links to ABS entry/exit data (scope expansion, #42)
   source?: Source;
   flags?: {
     nonResident?: boolean;                              // R-53 → W-04
@@ -95,13 +96,14 @@ interface Obligation {
   group: "business" | "communityOrg" | "individual";
   category: "administrative" | "substantive" | "delay";
   jurisdiction: "commonwealth" | "stateTerritory";
+  legalReference?: { instrument: string; provision?: string };   // e.g. "CCA Sch 2 (ACL)", "s 131" (#42)
   scope: {                                              // Appendix 3 (A-19)
     classification: "compliance" | "enforcement" | "split";   // default "compliance" (R-57)
     complianceShare?: number;                           // required for "split"
     override?: Override;                                // required to depart from the default (R-59)
   };
-  voluntaryShare: Quantity;                             // A-03: BAU share (new) / voluntary retention (reformed); default 0
-  voluntaryShareSource?: Source;
+  doAnywayShare: Quantity;                              // A-03: share of today's activity businesses would do anyway; default 0
+  doAnywaySource?: Source;
   tags: Tag[];                                          // "commonIndustryPractice" | "outsourcedService" | "governmentFee" | "tax" | …
   levers: Lever[];                                      // descriptive: "lessFrequent" | "simplerForm" | "threshold" | …
   current: Side | null;
@@ -151,7 +153,7 @@ This runs for each option, obligation, side and line.
    | Delay | entities × complianceRate × effectiveDelay × (netIncome + extraExpenses) |
 
 3. **Year profile.** G_t for t = 1…T, from `Timing` (R-29 to R-31).
-4. **Voluntary adjustment** (A-03). Multiply by (1 − b_side), where b is *v* on the reference side and min(1, floor ÷ average gross per entity) on the other.
+4. **Do-anyway adjustment** (A-03). Multiply by (1 − b_side), where b is the do-anyway share on the reference side and min(1, do-anyway level ÷ average gross per entity) on the other.
 5. **Enforcement share.** Multiply by `complianceShare`. The removed share goes to `excluded` (R-55 to R-60).
 6. **Subsidy.** Subtract it, capping so the duration total stays ≥ 0. Any excess goes to `excluded` (A-06).
 7. **Sunk and out-of-scope items.** `alreadyIncurred`, out-of-scope tags, and state items in a Commonwealth-only proposal are diverted to `excluded`.
@@ -176,7 +178,8 @@ interface ProposalResult {
 interface OptionResult {
   optionId: string;
   rbe: { business: Dec; communityOrg: Dec; individual: Dec; total: Dec };  // average annual Δ, $ (exact strings)
-  durationTotal: Dec;                                    // N-02 [decision needed]
+  durationTotal: Dec;                                    // N-02: 10-year total (approved)
+  alternativeBaseline: { rbe: OptionResult["rbe"]; durationTotal: Dec };  // the baseline not selected, shown as context
   verdict: { kind: "increase" | "reduction" | "none"; amount: Dec };
   gross: { increases: Dec; reductions: Dec };
   context: { currentAnnual: Dec; reformedAnnual: Dec; transitionAnnual: Dec; shareRemoved: Dec | null };  // labelled "context, not RBE"
@@ -209,7 +212,7 @@ This is the prompt's illustrative quarterly-to-annual reform, expressed in the s
       "id": "opt-a", "name": "Annual reporting", "timing": { "reformStartYear": 1, "overlapYears": 0 },
       "obligations": [{
         "id": "report", "name": "Periodic report", "group": "business", "category": "administrative",
-        "jurisdiction": "commonwealth", "scope": { "classification": "compliance" }, "voluntaryShare": 0,
+        "jurisdiction": "commonwealth", "scope": { "classification": "compliance" }, "doAnywayShare": 0,
         "tags": [], "levers": ["lessFrequent", "simplerForm"],
         "current":  { "costType": "labour", "timing": { "type": "ongoing", "startYear": 1 },
                       "lines": [{ "populationId": "biz", "complianceRate": 1,
@@ -220,7 +223,7 @@ This is the prompt's illustrative quarterly-to-annual reform, expressed in the s
       }],
       "transitions": [{
         "id": "familiarise", "name": "Familiarisation with new rules", "group": "business", "category": "administrative",
-        "jurisdiction": "commonwealth", "scope": { "classification": "compliance" }, "voluntaryShare": 0,
+        "jurisdiction": "commonwealth", "scope": { "classification": "compliance" }, "doAnywayShare": 0,
         "tags": [], "levers": [], "current": null,
         "reformed": { "costType": "labour", "timing": { "type": "oneOff", "year": 1 },
                       "lines": [{ "populationId": "biz", "complianceRate": 1,
@@ -253,6 +256,16 @@ regulatory-burden-tool/
 
 - All monetary inputs below are **illustrative or synthetic** unless marked *RBM* (a framework worked example) or *OIA-calc* (OIA's own training examples, with OIA's stated answers).
 - "RBE" strings are the formatted cells: Business | Community organisations | Individuals | Total.
+
+**Implementation note (Phase 1).** Every test below is implemented under the same ID in `tests/engine/`. Five tests were added:
+
+- T-SCOPE-01b: the time to pay a fee stays in scope;
+- T-SCH-03: structural errors are reported;
+- T-EXT-01: extensions can't change the RBE;
+- T-TIDY-01: the tidy export;
+- an overall check that every warning has a reference.
+
+The suite has 79 tests in total. Run `npm run check`.
 
 ### Parameters and rates
 
@@ -309,7 +322,7 @@ regulatory-burden-tool/
 | T-RBE-07 | Several options, including the status quo | one RBE table per option; status quo is all `$0`; comparison rows line up |
 | T-RBE-08 | Breakdowns (by group, category, cohort, timing, jurisdiction, obligation) | each reconciles exactly to the total |
 | T-RBE-09 | Per-entity change by cohort | Δ ÷ population count, per cohort |
-| T-RBE-10 | Duration total (N-02) | Σ Δ_t; equals 10 × average annual when T = 10 |
+| T-RBE-10 | 10-year total (N-02, approved) | Σ Δ_t; equals 10 × average annual when T = 10; T-REF-01 gives −$127,240,600 |
 
 ### Reform comparison
 
@@ -319,8 +332,8 @@ regulatory-burden-tool/
 | T-REF-02 | Identity: reformed = deep copy of current | Δ_t = 0 in every year and every breakdown |
 | T-REF-03 | Empty current regime | identical to a standalone new-regulation costing (T-COST-01) |
 | T-REF-04 | Removal with retention (A-03): $1,000,000/yr removed, *v* = 25% | Δ −$750,000 (−$1,000,000 when *v* = 0) |
-| T-REF-05 | Reduction above the voluntary floor: $1,000/entity → $500, *v* = 25% | saving $500/entity |
-| T-REF-06 | Reduction below the voluntary floor: $1,000 → $100, *v* = 25% | saving capped at $750/entity |
+| T-REF-05 | Reduction above the do-anyway level: $1,000/entity → $500, *v* = 25% | saving $500/entity |
+| T-REF-06 | Reduction below the do-anyway level: $1,000 → $100, *v* = 25% | saving capped at $750/entity |
 | T-REF-07 | 1-year overlap (A-04) on T-REF-01 | year-1 Δ = +$1,830,800 (reformed only); years 2–10 −$12,815,600; average **−$11,259,420** → `($11.3)` |
 | T-REF-08 | 1-year deferred commencement on T-REF-01 | year-1 Δ = 0; average −$11,442,500 → `($11.4)` |
 | T-REF-09 | Small-business exemption. Cohorts (synthetic): small 8,000, medium 1,500, large 500. Quarterly report at $1,464.64/entity/yr; small cohort set to 0 entities | Δ −$11,717,120 → `($11.7)`; per-entity change: small −$1,464.64, medium $0, large $0; cliff flag on medium |
@@ -328,7 +341,7 @@ regulatory-burden-tool/
 | T-REF-11 | Rate consistency | reformed side defaults to the current rate; a changed rate without justification raises W-06; with justification, no warning |
 | T-REF-12 | Copy-on-reform diff | the diff lists only the changed fields (e.g. `hours`, `timesPerYear`) |
 | T-REF-13 | Waterfall | current − removed − reduced + increased + new = reformed; + transition = net change; reconciles to the RBE total |
-| T-REF-14 | Baseline `noInstrument` (N-01, if approved) | RBE = reformed regime vs nothing; the saving vs the current regime is reported as context only |
+| T-REF-14 | Baseline toggle (N-01, approved) on T-REF-01 | "Current settings": RBE `($12.7)`. "No instrument": RBE = reformed regime + transition vs nothing = $1,830,800 + $91,540 = $1,922,340 → `$1.9`. The non-selected figure appears as context. |
 
 ### Scope and exclusions
 
@@ -359,7 +372,7 @@ Each warning has at least one firing test and one non-firing test.
 | W-04 | Leisure rate applied to non-resident individuals | p. 13 fn 5 |
 | W-05 | Default rate overridden without a justification or source | p. 12 |
 | W-06 | Labour rate differs between the current and reformed sides | p. 6 |
-| W-07 | Voluntary/BAU share of 0% on an item tagged "common industry practice" | p. 3 |
+| W-07 | Do-anyway share of 0% on an item tagged "common industry practice" | p. 3 |
 | W-08 | Current-side one-off not confirmed as future or already incurred (sunk) | — (A-05) |
 | W-09 | Reform with no transition costs ("Will entities need time to learn the new rules?") | p. 8 |
 | W-10 | Exemption threshold creates a cliff effect | p. 8 |

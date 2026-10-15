@@ -1,0 +1,46 @@
+{
+  "name": "regulatory-burden-tool",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unofficial aid for estimating regulatory burden under the OIA Regulatory Burden Measurement framework (July 2026).",
+  "type": "module",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "playwright test",
+    "typecheck": "tsc --noEmit",
+    "rbe": "tsx src/cli/rbe.ts",
+    "trace": "tsx scripts/check-traceability.ts",
+    "check": "npm run typecheck && npm test && npm run trace",
+    "build:artifact": "ARTIFACT_BUILD=1 VITE_DEMO=1 VITE_HOSTED=1 vite build && node scripts/build-artifact.mjs"
+  },
+  "dependencies": {
+    "decimal.js": "^10.6.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "recharts": "^3.10.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
+  },
+  "overrides": {
+    "playwright-core": "1.56.1"
+  }
+}

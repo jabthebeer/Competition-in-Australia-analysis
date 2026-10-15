@@ -1,3 +1,27 @@
+# Competition-in-Australia-analysis
+A series of econometric analyses for competition in Australia, aiming to ultimately assess where business dynamism is constrained and what policy drivers can be used to lift productivity through higher competition. 
+
+## Browse the regulatory change menu
+
+The menu explorer is one HTML page built from the register. Use it to search the 69 changes, filter for **Evaluated** ones and open the **Results** tab for each evaluation's estimated effects and charts.
+
+- **On GitHub Pages:** <https://jabthebeer.github.io/Competition-in-Australia-analysis/>
+  - It is published by `.github/workflows/menu-explorer-pages.yml` on every push to `main`.
+  - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+- **Locally:** `cd econ && uv run regimpact explorer --standalone -o menu.html`, then open `menu.html` in a browser.
+
+## Projects
+
+- [`regulatory-burden-tool/`](regulatory-burden-tool/): an unofficial calculator for regulatory burden under the OIA Regulatory Burden Measurement framework, with reform (remove-and-replace) comparisons and analysis-ready exports for competition and business-dynamism research.
+- [`econ/`](econ/): `regimpact`, a public-data toolkit for evaluating how regulatory changes affect competition. It has a register of changes, an effective-date gatherer that checks the legislation registers, an evaluability screen, a menu explorer that shows evaluated changes and their results, and the analyses behind those results.
+- [`regulation-register/`](regulation-register/): the register itself, with one record per regulatory change per jurisdiction, and dated reports from the date checks.
+
+## Planning
+
+- [`docs/econometric_foundation_scoping.md`](docs/econometric_foundation_scoping.md): scoping note (14 October 2026) for an econometric foundation that links regulatory changes and their compliance costs to competition, business dynamism and innovation outcomes. Decisions taken 14 October 2026 (`econ/DECISIONS.md`, E-01 to E-07).
+- [`docs/impact_evaluation_design.md`](docs/impact_evaluation_design.md): how each change will be evaluated against entry and exit, productivity, real prices and wages (draft, 15 October 2026).
+- [`docs/robustness_review_wa_trading_hours.md`](docs/robustness_review_wa_trading_hours.md): blinded design-stage robustness review of the first case, Perth trading-hours deregulation (2010, 2012), with its pre-analysis plan [`docs/pap_wa_trading_hours.md`](docs/pap_wa_trading_hours.md) and results [`docs/results_wa_trading_hours.md`](docs/results_wa_trading_hours.md) (15 October 2026): no detectable effect on retail entry or exit, grade Moderate.
+- [`docs/results_high_evaluability.md`](docs/results_high_evaluability.md): the other high-evaluability reforms (seven reforms, 16 records) under one plan, [`docs/pap_high_evaluability.md`](docs/pap_high_evaluability.md): no detectable effect on entry or exit; three not identified.
 # Competition in Australia Analysis
 
 A research project to understand **weak competition and constrained business dynamism in Australia**, using literature review and econometric analysis of publicly available data, and ultimately to identify **policy reforms** that could lift productivity through stronger competition.

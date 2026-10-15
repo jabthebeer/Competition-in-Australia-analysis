@@ -1,0 +1,548 @@
+{
+  "id": "wa-trading-hours-2010-2012",
+  "title": "Perth retail trading-hours deregulation (2010 and 2012)",
+  "records": [
+    "wa-trading-hours-weeknight-2010",
+    "wa-trading-hours-sunday-2012"
+  ],
+  "family": "retail-trading-hours",
+  "evaluated_on": "2026-10-15",
+  "hypothesis": "enhancing",
+  "design": "Difference-in-differences with one treated state: WA general retail (supermarkets, clothing and department stores) against comparison states, net of the same comparison for 472 groups of unaffected WA industries.",
+  "comparison": "NSW, Victoria, Queensland, Tasmania, ACT and NT (SA excluded: Adelaide trading change in 2012)",
+  "window": "2007-08 to 2017-18 (before COVID)",
+  "verdict": "inconclusive",
+  "finding_label": "No detectable effect",
+  "grade": "Moderate",
+  "grade_reason": "One treated state and three pre-reform years, so parallel trends cannot be checked well. The plan's diagnostics pass, and every robustness variant stays inside the main interval.",
+  "headline": "Perth's move to 9pm weeknight trading (November 2010) and Sunday trading (August 2012) had no detectable effect on how many general retail businesses started or closed. Entry changed by +0.8 per 100 businesses a year (90% interval −2.4 to +3.7), exit by −0.1 (−2.4 to +2.5).",
+  "category_summaries": {
+    "competition": "No detectable effect on business entry or exit. Large effects are ruled out if WA retail would otherwise have tracked other states.",
+    "prices": "No effect identified. Perth's food prices fell relative to other capitals, but they were already falling before the reform.",
+    "productivity": "Not measurable with public data. The spread across comparison states dwarfs any plausible effect, so these are shown for description only."
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "entry-rate",
+      "label": "Business entry rate",
+      "category": "competition",
+      "role": "primary",
+      "unit": "per 100 businesses a year",
+      "baseline": 16.08,
+      "baseline_label": "WA rate before the reform (2007-08 to 2009-10)",
+      "estimate": 0.779,
+      "interval": {
+        "low": -2.398,
+        "high": 3.749,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -2.97,
+        "high": 3.177,
+        "basis": "90% range across 472 placebo groups of unaffected WA industries"
+      },
+      "p_value": 0.6152,
+      "inference": "Rank among placebo industry groups (two-sided)",
+      "mde_80": 5.639,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "Net of a WA-wide change of −1.6 per 100 in unaffected WA industries. Plain WA-versus-states comparison: −0.8; triple difference: −0.7."
+    },
+    {
+      "id": "exit-rate",
+      "label": "Business exit rate",
+      "category": "competition",
+      "role": "secondary",
+      "unit": "per 100 businesses a year",
+      "baseline": 15.07,
+      "baseline_label": "WA rate before the reform (2007-08 to 2009-10)",
+      "estimate": -0.07,
+      "interval": {
+        "low": -2.435,
+        "high": 2.495,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -2.565,
+        "high": 2.365,
+        "basis": "90% range across 451 placebo groups of unaffected WA industries"
+      },
+      "p_value": 0.9491,
+      "inference": "Rank among placebo industry groups (two-sided)",
+      "mde_80": 4.144,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "Net of a WA-wide change of +0.2 per 100 in unaffected WA industries. Plain WA-versus-states comparison: +0.1; triple difference: +1.2."
+    },
+    {
+      "id": "food-prices",
+      "label": "Food prices, Perth vs other capitals",
+      "category": "prices",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -2.218,
+      "interval": null,
+      "no_effect_range": {
+        "low": -1.512,
+        "high": 1.447,
+        "basis": "Range across the 6 comparison capitals"
+      },
+      "p_value": 0.143,
+      "inference": "Rank among comparison capitals (smallest possible p is 0.14)",
+      "mde_80": 3.213,
+      "finding": "not-identified",
+      "grade": "Not identified",
+      "preregistered": true,
+      "note": "Continues a fall that began before the reform: Perth's relative food price fell 0.29 log points a year before it and 0.18 after. The grade is a judgement made after unblinding."
+    },
+    {
+      "id": "food-prices-detrended",
+      "label": "Food prices, each city's pre-reform trend removed",
+      "category": "prices",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 0.722,
+      "interval": null,
+      "no_effect_range": {
+        "low": -1.034,
+        "high": 2.472,
+        "basis": "Range across the 6 comparison capitals"
+      },
+      "p_value": 0.714,
+      "inference": "Rank among comparison capitals",
+      "mde_80": null,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": false,
+      "note": "Not pre-registered: added after unblinding to test whether the fall was a trend."
+    },
+    {
+      "id": "output-per-worker",
+      "label": "Retail output per worker",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -0.336,
+      "interval": null,
+      "no_effect_range": {
+        "low": -10.742,
+        "high": 24.194,
+        "basis": "Range across the 6 comparison states"
+      },
+      "p_value": 1.0,
+      "inference": "Rank among comparison states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Real value added per employed person, 1989-90 to 2017-18. Not blind: see the results, section 7."
+    },
+    {
+      "id": "real-pay-per-worker",
+      "label": "Retail real pay per worker",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -8.882,
+      "interval": null,
+      "no_effect_range": {
+        "low": -12.648,
+        "high": 21.642,
+        "basis": "Range across the 6 comparison states"
+      },
+      "p_value": 0.857,
+      "inference": "Rank among comparison states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Compensation of employees per employed person, deflated by each capital's CPI, 2000-01 to 2017-18."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "entry-rate",
+      "title": "Business entries, year by year",
+      "unit": "per 100 businesses a year",
+      "reference": "2009-10",
+      "band": "90% range across placebo industry groups",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -3,
+          "estimate": -4.226,
+          "low": -12.388,
+          "high": 1.897
+        },
+        {
+          "period": "2008-09",
+          "k": -2,
+          "estimate": -2.108,
+          "low": -7.87,
+          "high": 4.034
+        },
+        {
+          "period": "2009-10",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2010-11",
+          "k": 0,
+          "estimate": -1.176,
+          "low": -6.277,
+          "high": 5.887
+        },
+        {
+          "period": "2011-12",
+          "k": 1,
+          "estimate": -1.494,
+          "low": -6.776,
+          "high": 4.099
+        },
+        {
+          "period": "2012-13",
+          "k": 2,
+          "estimate": -1.658,
+          "low": -6.615,
+          "high": 3.668
+        },
+        {
+          "period": "2013-14",
+          "k": 3,
+          "estimate": -1.194,
+          "low": -5.696,
+          "high": 3.661
+        },
+        {
+          "period": "2014-15",
+          "k": 4,
+          "estimate": -1.3,
+          "low": -6.724,
+          "high": 3.762
+        },
+        {
+          "period": "2015-16",
+          "k": 5,
+          "estimate": -2.615,
+          "low": -8.003,
+          "high": 3.749
+        },
+        {
+          "period": "2016-17",
+          "k": 6,
+          "estimate": -0.95,
+          "low": -6.86,
+          "high": 6.324
+        },
+        {
+          "period": "2017-18",
+          "k": 7,
+          "estimate": -0.072,
+          "low": -5.112,
+          "high": 4.985
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Weeknights"
+        },
+        {
+          "k": 1.5,
+          "label": "Sundays"
+        }
+      ],
+      "caption": "WA general retail relative to comparison states, net of unaffected WA industries."
+    },
+    {
+      "outcome": "exit-rate",
+      "title": "Business exits, year by year",
+      "unit": "per 100 businesses a year",
+      "reference": "2009-10",
+      "band": "90% range across placebo industry groups",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -3,
+          "estimate": 1.554,
+          "low": -2.544,
+          "high": 6.263
+        },
+        {
+          "period": "2008-09",
+          "k": -2,
+          "estimate": 1.706,
+          "low": -2.628,
+          "high": 6.239
+        },
+        {
+          "period": "2009-10",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2010-11",
+          "k": 0,
+          "estimate": 0.07,
+          "low": -4.326,
+          "high": 4.223
+        },
+        {
+          "period": "2011-12",
+          "k": 1,
+          "estimate": 2.338,
+          "low": -1.853,
+          "high": 5.856
+        },
+        {
+          "period": "2012-13",
+          "k": 2,
+          "estimate": 1.317,
+          "low": -2.08,
+          "high": 5.336
+        },
+        {
+          "period": "2013-14",
+          "k": 3,
+          "estimate": 1.581,
+          "low": -2.296,
+          "high": 5.193
+        },
+        {
+          "period": "2014-15",
+          "k": 4,
+          "estimate": 1.242,
+          "low": -2.528,
+          "high": 4.819
+        },
+        {
+          "period": "2015-16",
+          "k": 5,
+          "estimate": 0.794,
+          "low": -2.894,
+          "high": 5.484
+        },
+        {
+          "period": "2016-17",
+          "k": 6,
+          "estimate": -0.869,
+          "low": -4.594,
+          "high": 2.97
+        },
+        {
+          "period": "2017-18",
+          "k": 7,
+          "estimate": 1.562,
+          "low": -2.794,
+          "high": 6.346
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Weeknights"
+        },
+        {
+          "k": 1.5,
+          "label": "Sundays"
+        }
+      ],
+      "caption": "WA general retail relative to comparison states, net of unaffected WA industries."
+    },
+    {
+      "outcome": "food-prices",
+      "title": "Food prices: Perth vs other capitals",
+      "unit": "% (log points)",
+      "reference": "2009-10",
+      "band": null,
+      "points": [
+        {
+          "period": "2000-01",
+          "k": -10,
+          "estimate": 1.87,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2001-02",
+          "k": -9,
+          "estimate": 2.4,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2002-03",
+          "k": -8,
+          "estimate": 2.1,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2003-04",
+          "k": -7,
+          "estimate": 1.45,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2004-05",
+          "k": -6,
+          "estimate": 1.81,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2005-06",
+          "k": -5,
+          "estimate": 0.89,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2006-07",
+          "k": -4,
+          "estimate": -0.55,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2007-08",
+          "k": -3,
+          "estimate": 0.28,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2008-09",
+          "k": -2,
+          "estimate": 0.06,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2009-10",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2010-11",
+          "k": 0,
+          "estimate": -0.5,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2011-12",
+          "k": 1,
+          "estimate": 0.03,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2012-13",
+          "k": 2,
+          "estimate": -0.31,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2013-14",
+          "k": 3,
+          "estimate": -1.15,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2014-15",
+          "k": 4,
+          "estimate": -1.42,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2015-16",
+          "k": 5,
+          "estimate": -1.34,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2016-17",
+          "k": 6,
+          "estimate": -2.08,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2017-18",
+          "k": 7,
+          "estimate": -1.66,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2018-19",
+          "k": 8,
+          "estimate": -1.33,
+          "low": null,
+          "high": null
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Weeknights"
+        },
+        {
+          "k": 1.5,
+          "label": "Sundays"
+        }
+      ],
+      "caption": "Perth's food prices relative to its all-groups CPI, minus the same for the comparison capitals. The fall starts well before the reform."
+    }
+  ],
+  "caveats": [
+    "The sign is fragile: a post-reform drift much smaller than the pre-reform year-to-year swings would flip it (relative-magnitudes breakdown 0.14; below 1 means the swings are enough).",
+    "The reform covered metropolitan Perth, but the data are for all of WA. A Perth-only effect would be about a quarter larger than measured.",
+    "Business counts cannot show who gained. Longer hours may shift sales from small shops to large chains without changing the totals.",
+    "Output per worker was seen once before the design review, so that reading is not blind.",
+    "Both register records are drafts: dates verified against the WA register; industries and direction not yet reviewed by a person."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_wa_trading_hours.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_wa_trading_hours.md"
+    },
+    {
+      "label": "Design-stage review",
+      "path": "docs/robustness_review_wa_trading_hours.md"
+    },
+    {
+      "label": "Estimation code",
+      "path": "econ/analyses/wa_trading_hours/estimate.py"
+    }
+  ],
+  "built_by": "econ/analyses/wa_trading_hours/evaluation.py"
+}

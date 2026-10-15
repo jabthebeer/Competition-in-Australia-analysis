@@ -1,0 +1,48 @@
+# Builds the regulatory change menu explorer from the register and publishes it with GitHub Pages.
+# One-time setup: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+# The page is then at https://<owner>.github.io/<repository>/ and is rebuilt on every push to main.
+name: Publish the menu explorer
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Check the register and build the page
+        working-directory: econ
+        run: |
+          uv sync --frozen
+          uv run pytest -q
+          uv run regimpact validate
+          mkdir -p ../site
+          dates="$(ls ../regulation-register/reports/effective_dates_*.json | sort | tail -n 1)"
+          uv run regimpact explorer --standalone -o ../site/index.html --dates "$dates" \
+            --repo-base "https://github.com/${{ github.repository }}/blob/${{ github.sha }}/"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

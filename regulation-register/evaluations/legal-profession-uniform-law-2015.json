@@ -1,0 +1,337 @@
+{
+  "id": "legal-profession-uniform-law-2015",
+  "title": "Legal Profession Uniform Law (NSW and Victoria, 2015)",
+  "records": [
+    "nsw-legal-profession-uniform-law-2015",
+    "vic-legal-profession-uniform-law-2015"
+  ],
+  "family": "legal-profession-uniform-law",
+  "evaluated_on": "2026-10-15",
+  "hypothesis": "enhancing",
+  "design": "NSW and Victoria adopted on 1 July 2015; the other jurisdictions had not by 2017-18. Method: stacked difference-in-differences, net of the same comparison for unaffected industries in the same states.",
+  "comparison": "Treated: NSW, VIC. Comparison: ACT, NT, QLD, SA, TAS, WA.",
+  "window": "2007-08 to 2017-18 (first exposed year 2015-16)",
+  "verdict": "inconclusive",
+  "finding_label": "No detectable effect",
+  "grade": "Moderate",
+  "grade_reason": "Passes the plan's pre-reform check and robustness variants; one or few treated states, so only large effects are detectable.",
+  "headline": "Legal services business entry in NSW and Victoria changed by −1.6 per 100 a year in the three years after the Uniform Law, relative to other states and net of other industries (90% interval −5.8 to +1.2); exits by −0.2 (90% interval −1.8 to +1.0). Neither is distinguishable from zero.",
+  "category_summaries": {
+    "competition": "No detectable effect. Exit changes beyond about 2 per 100 are ruled out; for entry, a rise of more than about 1.2 per 100 is ruled out, a fall is not.",
+    "productivity": "Not measurable. Legal services are a small part of professional services. Shown for description only."
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "entry-rate",
+      "label": "Business entry rate",
+      "category": "competition",
+      "role": "primary",
+      "unit": "per 100 businesses a year",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -1.629,
+      "interval": {
+        "low": -5.754,
+        "high": 1.199,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -2.828,
+        "high": 4.125,
+        "basis": "90% range across 39 placebo industry groups"
+      },
+      "p_value": 0.525,
+      "inference": "Rank among placebo industry groups (two-sided)",
+      "mde_80": 7.025,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "Net of a change of +1.7 per 100 in unaffected industries in the same states. Plain comparison: +0.0."
+    },
+    {
+      "id": "exit-rate",
+      "label": "Business exit rate",
+      "category": "competition",
+      "role": "secondary",
+      "unit": "per 100 businesses a year",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -0.153,
+      "interval": {
+        "low": -1.772,
+        "high": 0.998,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -1.151,
+        "high": 1.619,
+        "basis": "90% range across 39 placebo industry groups"
+      },
+      "p_value": 0.85,
+      "inference": "Rank among placebo industry groups (two-sided)",
+      "mde_80": 2.633,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "Net of a change of +0.4 per 100 in unaffected industries in the same states. Plain comparison: +0.2."
+    },
+    {
+      "id": "output-per-worker",
+      "label": "Output per worker, professional, scientific and technical services",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -8.051,
+      "interval": null,
+      "no_effect_range": {
+        "low": -6.306,
+        "high": 7.229,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.0556,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    },
+    {
+      "id": "real-pay-per-worker",
+      "label": "Real pay per worker, professional, scientific and technical services",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -11.457,
+      "interval": null,
+      "no_effect_range": {
+        "low": -11.308,
+        "high": 11.835,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.1667,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "entry-rate",
+      "title": "Business entries, year by year",
+      "unit": "per 100 businesses a year",
+      "reference": "2014-15",
+      "band": "90% range across placebo industry groups",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -8,
+          "estimate": 0.096,
+          "low": -3.56,
+          "high": 5.131
+        },
+        {
+          "period": "2008-09",
+          "k": -7,
+          "estimate": 3.223,
+          "low": -0.191,
+          "high": 7.682
+        },
+        {
+          "period": "2009-10",
+          "k": -6,
+          "estimate": -1.099,
+          "low": -4.381,
+          "high": 3.657
+        },
+        {
+          "period": "2010-11",
+          "k": -5,
+          "estimate": 0.862,
+          "low": -2.243,
+          "high": 3.32
+        },
+        {
+          "period": "2011-12",
+          "k": -4,
+          "estimate": 0.169,
+          "low": -3.729,
+          "high": 3.209
+        },
+        {
+          "period": "2012-13",
+          "k": -3,
+          "estimate": -0.748,
+          "low": -3.523,
+          "high": 1.434
+        },
+        {
+          "period": "2013-14",
+          "k": -2,
+          "estimate": 0.421,
+          "low": -1.924,
+          "high": 3.172
+        },
+        {
+          "period": "2014-15",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2015-16",
+          "k": 0,
+          "estimate": -0.201,
+          "low": -2.106,
+          "high": 1.843
+        },
+        {
+          "period": "2016-17",
+          "k": 1,
+          "estimate": -1.871,
+          "low": -5.948,
+          "high": 1.519
+        },
+        {
+          "period": "2017-18",
+          "k": 2,
+          "estimate": -1.775,
+          "low": -7.219,
+          "high": 2.08
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Treated states relative to comparison states, net of unaffected industries."
+    },
+    {
+      "outcome": "exit-rate",
+      "title": "Business exits, year by year",
+      "unit": "per 100 businesses a year",
+      "reference": "2014-15",
+      "band": "90% range across placebo industry groups",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -8,
+          "estimate": 0.46,
+          "low": -2.801,
+          "high": 3.974
+        },
+        {
+          "period": "2008-09",
+          "k": -7,
+          "estimate": -1.02,
+          "low": -3.535,
+          "high": 3.123
+        },
+        {
+          "period": "2009-10",
+          "k": -6,
+          "estimate": -0.339,
+          "low": -3.567,
+          "high": 4.21
+        },
+        {
+          "period": "2010-11",
+          "k": -5,
+          "estimate": 0.712,
+          "low": -1.798,
+          "high": 2.738
+        },
+        {
+          "period": "2011-12",
+          "k": -4,
+          "estimate": -0.147,
+          "low": -2.793,
+          "high": 2.317
+        },
+        {
+          "period": "2012-13",
+          "k": -3,
+          "estimate": -0.629,
+          "low": -2.458,
+          "high": 3.833
+        },
+        {
+          "period": "2013-14",
+          "k": -2,
+          "estimate": 0.679,
+          "low": -1.466,
+          "high": 2.25
+        },
+        {
+          "period": "2014-15",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2015-16",
+          "k": 0,
+          "estimate": -0.356,
+          "low": -2.335,
+          "high": 2.048
+        },
+        {
+          "period": "2016-17",
+          "k": 1,
+          "estimate": 0.481,
+          "low": -1.278,
+          "high": 2.916
+        },
+        {
+          "period": "2017-18",
+          "k": 2,
+          "estimate": -0.679,
+          "low": -3.494,
+          "high": 1.283
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Treated states relative to comparison states, net of unaffected industries."
+    }
+  ],
+  "caveats": [
+    "Three post-reform years (2015-16 to 2017-18); later years overlap COVID.",
+    "The Uniform Law mainly lowers costs for firms practising in both states, which business counts by main state cannot see directly."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_high_evaluability.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_high_evaluability.md"
+    },
+    {
+      "label": "Case definitions",
+      "path": "econ/analyses/high_evaluability/cases.py"
+    },
+    {
+      "label": "Estimation code",
+      "path": "econ/analyses/high_evaluability/run.py"
+    }
+  ],
+  "built_by": "econ/analyses/high_evaluability/evaluations.py"
+}
