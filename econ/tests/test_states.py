@@ -1,7 +1,8 @@
 """State and territory adapters, date-text parsing and register routing (offline).
 
 Fixtures in tests/fixtures/states are real register responses saved on 14-15 October 2026
-(the Queensland legislative history is trimmed). Instruments built here point at them.
+(the Queensland legislative history is trimmed; ACT, NT and Victoria are factual extracts, see
+SOURCES.md). Instruments built here point at them.
 """
 
 from __future__ import annotations
