@@ -1,0 +1,101 @@
+{
+  "id": "tas-amr-2021",
+  "family": "amr-occupational-licensing",
+  "title": "Automatic mutual recognition of occupational registrations (Tasmania)",
+  "jurisdiction": "TAS",
+  "summary": "Tasmania adopted the Commonwealth AMR amendments, entering the scheme on 22 December 2021; temporary exemptions for many licence types expired on 1 July 2022.",
+  "instruments": [
+    {
+      "title": "Mutual Recognition Amendment Act 2021",
+      "register_url": "https://www.legislation.gov.au/C2021A00050/asmade",
+      "register_id": "C2021A00050",
+      "role": "amending",
+      "provisions": "Amends Mutual Recognition Act 1992 to insert automatic deemed registration (Part 3A)"
+    },
+    {
+      "title": "Mutual Recognition (Tasmania) Amendment Act 2021",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/asmade/act-2021-020",
+      "register_id": "Act No. 20 of 2021",
+      "role": "amending",
+      "provisions": "Adopts Commonwealth AMR amendments for Tasmania"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2021-12-22",
+        "what": "Tasmania entered the AMR scheme",
+        "source": "https://health.vic.gov.au/radiation/automatic-mutual-recognition",
+        "primary": true
+      },
+      {
+        "date": "2022-07-01",
+        "what": "Temporary exemptions for most licence types expired (three licence types exempt to 1 July 2023)",
+        "source": "https://www.parliament.tas.gov.au/__data/assets/pdf_file/0025/47554/27_of_2022-srs.pdf",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "enhancing",
+  "direction_rationale": "Removes the need for a separate application and fee to work interstate, lowering the cost of entry for licensed tradespeople and agents from other participating jurisdictions; expected to increase the number of potential suppliers, especially near borders.",
+  "direction_sources": [
+    "https://health.vic.gov.au/radiation/automatic-mutual-recognition"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "3231",
+      "name": "Plumbing Services",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3232",
+      "name": "Electrical Services",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3233",
+      "name": "Air Conditioning and Heating Services",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6720",
+      "name": "Real Estate Services",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3011",
+      "name": "House Construction",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": "Queensland (never joined) and later-joining states (TAS Dec 2021, SA Feb 2022, WA Jul 2022); border vs non-border regions",
+  "confounders": [
+    "COVID-19 border closures 2020-22",
+    "HomeBuilder grant and 2020-22 construction boom",
+    "occupation-specific temporary exemptions in each jurisdiction"
+  ],
+  "price_series": "Maintenance and repair of the dwelling; Real estate services are not a separate CPI class",
+  "notes": "Tasmanian legislation in-force version history begins 22 Dec 2021 (https://legislation.tas.gov.au/view/whole/html/inforce/2021-12-22/act-2021-020).",
+  "verified": {
+    "dates": false,
+    "notes": "Royal Assent reported as 12 Nov 2021 only in a search summary of Tasmanian parliamentary papers (not opened; 403); left null. The 1 Jul 2022 exemption expiry is from the second reading speech for Act 27 of 2022 (not opened)."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. Primary commencement chosen on 15 October 2026 as the date the change described in the title took effect; confirm on review."
+  }
+}

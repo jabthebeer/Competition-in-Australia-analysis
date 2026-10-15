@@ -1,0 +1,452 @@
+{
+  "$defs": {
+    "Commencement": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "format": "date",
+          "title": "Date",
+          "type": "string"
+        },
+        "what": {
+          "description": "Which provisions, or what took effect",
+          "minLength": 1,
+          "title": "What",
+          "type": "string"
+        },
+        "source": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "primary": {
+          "default": false,
+          "description": "The commencement that changes competition conditions; used as the effective date",
+          "title": "Primary",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "date",
+        "what",
+        "source"
+      ],
+      "title": "Commencement",
+      "type": "object"
+    },
+    "DatedSource": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Date"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source"
+        }
+      },
+      "title": "DatedSource",
+      "type": "object"
+    },
+    "Dates": {
+      "additionalProperties": false,
+      "properties": {
+        "announced": {
+          "$ref": "#/$defs/DatedSource",
+          "default": {
+            "date": null,
+            "source": null
+          }
+        },
+        "assent_or_made": {
+          "$ref": "#/$defs/DatedSource",
+          "default": {
+            "date": null,
+            "source": null
+          }
+        },
+        "commenced": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Commencement"
+          },
+          "title": "Commenced",
+          "type": "array"
+        }
+      },
+      "title": "Dates",
+      "type": "object"
+    },
+    "Industry": {
+      "additionalProperties": false,
+      "properties": {
+        "anzsic": {
+          "title": "Anzsic",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "exposure": {
+          "enum": [
+            "direct",
+            "indirect"
+          ],
+          "title": "Exposure",
+          "type": "string"
+        }
+      },
+      "required": [
+        "anzsic",
+        "name",
+        "exposure"
+      ],
+      "title": "Industry",
+      "type": "object"
+    },
+    "Instrument": {
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "register_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Register Url"
+        },
+        "register_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Register identifier, e.g. C2021A00123",
+          "title": "Register Id"
+        },
+        "role": {
+          "enum": [
+            "principal",
+            "amending",
+            "regulation",
+            "code",
+            "other"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "provisions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provisions"
+        }
+      },
+      "required": [
+        "title",
+        "role"
+      ],
+      "title": "Instrument",
+      "type": "object"
+    },
+    "Review": {
+      "additionalProperties": false,
+      "description": "Whether a person has checked the record. Desk-research drafts start as ``draft``.",
+      "properties": {
+        "status": {
+          "default": "draft",
+          "enum": [
+            "draft",
+            "reviewed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "By"
+        },
+        "on": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "On"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "title": "Review",
+      "type": "object"
+    },
+    "Verification": {
+      "additionalProperties": false,
+      "properties": {
+        "dates": {
+          "title": "Dates",
+          "type": "boolean"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "required": [
+        "dates"
+      ],
+      "title": "Verification",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "family": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Shared by one reform across jurisdictions",
+      "title": "Family"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "jurisdiction": {
+      "enum": [
+        "CTH",
+        "NSW",
+        "VIC",
+        "QLD",
+        "WA",
+        "SA",
+        "TAS",
+        "ACT",
+        "NT"
+      ],
+      "title": "Jurisdiction",
+      "type": "string"
+    },
+    "summary": {
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+    },
+    "instruments": {
+      "items": {
+        "$ref": "#/$defs/Instrument"
+      },
+      "minItems": 1,
+      "title": "Instruments",
+      "type": "array"
+    },
+    "dates": {
+      "$ref": "#/$defs/Dates"
+    },
+    "direction": {
+      "description": "Hypothesised competition effect, to be tested",
+      "enum": [
+        "enhancing",
+        "weakening",
+        "mixed",
+        "unclear"
+      ],
+      "title": "Direction",
+      "type": "string"
+    },
+    "direction_rationale": {
+      "minLength": 1,
+      "title": "Direction Rationale",
+      "type": "string"
+    },
+    "direction_sources": {
+      "default": [],
+      "items": {
+        "format": "uri",
+        "maxLength": 2083,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Direction Sources",
+      "type": "array"
+    },
+    "channels": {
+      "items": {
+        "enum": [
+          "barriers",
+          "number-or-type",
+          "ability-incentive",
+          "prices-market-share",
+          "consumer-choice"
+        ],
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Channels",
+      "type": "array"
+    },
+    "industries": {
+      "items": {
+        "$ref": "#/$defs/Industry"
+      },
+      "minItems": 1,
+      "title": "Industries",
+      "type": "array"
+    },
+    "comparison": {
+      "minLength": 1,
+      "title": "Comparison",
+      "type": "string"
+    },
+    "confounders": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Confounders",
+      "type": "array"
+    },
+    "price_series": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Price Series"
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Notes"
+    },
+    "verified": {
+      "$ref": "#/$defs/Verification"
+    },
+    "review": {
+      "$ref": "#/$defs/Review",
+      "default": {
+        "status": "draft",
+        "by": null,
+        "on": null,
+        "notes": null
+      }
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "jurisdiction",
+    "summary",
+    "instruments",
+    "dates",
+    "direction",
+    "direction_rationale",
+    "channels",
+    "industries",
+    "comparison",
+    "verified"
+  ],
+  "title": "Regulatory change record",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

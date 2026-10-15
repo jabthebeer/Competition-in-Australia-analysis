@@ -77,9 +77,13 @@ def families(records: Iterable[ChangeRecord]) -> dict[str, list[ChangeRecord]]:
         if r.family:
             out.setdefault(r.family, []).append(r)
     for members in out.values():
-        members.sort(key=lambda r: (r.effective_commencement is None,
-                                    r.effective_commencement.date if r.effective_commencement else None,
-                                    r.jurisdiction))
+        members.sort(
+            key=lambda r: (
+                r.effective_commencement is None,
+                r.effective_commencement.date if r.effective_commencement else None,
+                r.jurisdiction,
+            )
+        )
     return dict(sorted(out.items()))
 
 
@@ -102,8 +106,7 @@ def filter_records(
             continue
         if channel and channel not in r.channels:
             continue
-        if industry and not any(i.anzsic.startswith(industry) or industry.startswith(i.anzsic)
-                                for i in r.industries):
+        if industry and not any(i.anzsic.startswith(industry) or industry.startswith(i.anzsic) for i in r.industries):
             continue
         if family and r.family != family:
             continue

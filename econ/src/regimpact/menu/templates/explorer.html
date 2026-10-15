@@ -1,0 +1,479 @@
+<title>Regulatory Change Menu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
+<style>
+/* Layout: a register ledger. Filters and summary on top; the list or timeline on the left; the selected change's file on the right (stacked on phones). */
+:root {
+  --bg: #f4f4f0;
+  --surface: #fcfcfb;
+  --ink: #1b1c1a;
+  --ink-2: #52514e;
+  --ink-3: #6b6a65;
+  --line: #e1e0d9;
+  --line-strong: #c3c2b7;
+  --accent: #1d5c57;
+  --accent-soft: #e2edeb;
+  --enh: #2a78d6;
+  --weak: #e34948;
+  --mixed: #52514e;
+  --band: #e8efed;
+  --covid: #e9e4da;
+  --warn-ink: #7a4b00;
+  --warn-soft: #fff4dc;
+  --font-display: "Literata", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.125rem;
+  --step-2: 1.5rem;
+  --step-3: 2rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --ink-3: #a5a49c;
+    --line: #2e2e2b; --line-strong: #4a4a46; --accent: #7cc2b9; --accent-soft: #1d3330;
+    --enh: #3987e5; --weak: #e66767; --mixed: #c3c2b7; --band: #1c2826; --covid: #2a2620;
+    --warn-ink: #f2c46b; --warn-soft: #2e2512; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121211; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --ink-3: #a5a49c;
+  --line: #2e2e2b; --line-strong: #4a4a46; --accent: #7cc2b9; --accent-soft: #1d3330;
+  --enh: #3987e5; --weak: #e66767; --mixed: #c3c2b7; --band: #1c2826; --covid: #2a2620;
+  --warn-ink: #f2c46b; --warn-soft: #2e2512; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink); font: var(--step-0)/1.5 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+}
+.wrap { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.main > * { min-width: 0; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); line-height: 1.15; letter-spacing: -0.01em; }
+h2 { font-size: var(--step-2); line-height: 1.2; }
+h3 { font-size: var(--step-0); font-family: var(--font-body); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.92em; }
+.muted { color: var(--ink-2); }
+header.top { display: grid; gap: 8px; }
+.lede { max-width: 70ch; color: var(--ink-2); margin: 0; }
+.meta-line { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--ink-3); font-size: var(--step--1); }
+.notice { background: var(--warn-soft); color: var(--ink); border-left: 3px solid var(--warn-ink); padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: var(--step--1); max-width: 100ch; }
+.notice strong { color: var(--warn-ink); }
+
+/* Filters */
+.filters { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+.filter-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.filter-label { font-size: var(--step--1); color: var(--ink-3); min-width: 7.5em; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: var(--step--1); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 3px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); font-weight: 600; }
+.chip .n { color: var(--ink-3); font-family: var(--font-mono); font-size: 0.85em; }
+.search { font: inherit; padding: 6px 10px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); color: var(--ink); min-width: 0; width: min(100%, 22rem); }
+select { font: inherit; font-size: var(--step--1); padding: 4px 8px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); color: var(--ink); max-width: 100%; }
+.reset { font: inherit; font-size: var(--step--1); background: none; border: 0; color: var(--accent); cursor: pointer; text-decoration: underline; padding: 0; }
+
+/* Shapes for direction */
+.shape { display: inline-block; width: 11px; height: 11px; flex: none; }
+.shape svg { display: block; }
+
+/* Main layout */
+.main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); gap: 20px; align-items: start; }
+@media (max-width: 1000px) { .main { grid-template-columns: minmax(0, 1fr); } .detail { order: -1; } .detail.empty { display: none; } }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+.tab { font: inherit; background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; cursor: pointer; color: var(--ink-2); }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+.count-line { font-size: var(--step--1); color: var(--ink-3); margin: 0 0 8px; }
+
+/* List */
+.list { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.list th { text-align: left; font-size: var(--step--1); font-weight: 500; color: var(--ink-3); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.list td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.list tr:last-child td { border-bottom: 0; }
+.list tr.sel td { background: var(--accent-soft); }
+.list tbody tr:hover td { background: color-mix(in oklab, var(--accent-soft) 55%, var(--surface)); }
+.rowbtn { font: inherit; text-align: left; background: none; border: 0; padding: 0; color: var(--ink); cursor: pointer; font-weight: 500; }
+.rowbtn:hover { color: var(--accent); }
+.fam { display: block; font-size: var(--step--1); color: var(--ink-3); }
+.dir { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: var(--step--1); }
+.rating { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: var(--step--1); }
+.dots { display: inline-flex; gap: 2px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--ink-2); display: block; }
+.dots i.on { background: var(--ink-2); }
+.pill { display: inline-block; font-size: 0.78rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
+.pill.ok { border-color: var(--accent); color: var(--accent); }
+.pill.warn { border-color: var(--warn-ink); color: var(--warn-ink); }
+@media (max-width: 640px) {
+  .list thead { display: none; }
+  .list, .list tbody, .list tr, .list td { display: block; width: 100%; }
+  .list tr { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; padding: 10px; border-bottom: 1px solid var(--line); }
+  .list td { border: 0; padding: 0; }
+  .list td.c-title { grid-column: 1 / -1; }
+}
+
+/* Timeline */
+.tl-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 6px 6px; }
+.tl-scroll { overflow-x: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: var(--step--1); color: var(--ink-2); padding: 0 8px 8px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 14px; height: 10px; border-radius: 2px; display: inline-block; }
+svg text { font-family: var(--font-body); }
+.tl-mark { cursor: pointer; }
+.tl-mark:focus-visible { outline: none; }
+.tl-mark:focus-visible .hit, .tl-mark:hover .hit { stroke: var(--accent); stroke-width: 1.5; }
+.tip { position: fixed; z-index: 10; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 6px; padding: 6px 9px; font-size: var(--step--1); box-shadow: 0 4px 14px rgb(0 0 0 / 0.12); max-width: 20rem; }
+
+/* Detail */
+.detail { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 16px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow: auto; }
+@media (max-width: 1000px) { .detail { position: static; max-height: none; } }
+.detail.empty { color: var(--ink-2); }
+.detail h2 { font-size: var(--step-1); }
+.d-head { display: grid; gap: 6px; }
+.d-meta { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: var(--step--1); color: var(--ink-2); }
+.d-sec { display: grid; gap: 6px; }
+.d-sec p { margin: 0; }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; font-size: var(--step--1); }
+.kv dt { color: var(--ink-3); }
+.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.d-list { margin: 0; padding-left: 1.1em; font-size: var(--step--1); display: grid; gap: 4px; }
+.d-list li { overflow-wrap: anywhere; }
+.close { justify-self: end; font: inherit; font-size: var(--step--1); background: none; border: 1px solid var(--line-strong); border-radius: 6px; color: var(--ink-2); padding: 2px 8px; cursor: pointer; }
+.big-date { font-family: var(--font-mono); font-size: var(--step-1); }
+footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; display: grid; gap: 4px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Regulatory Change Menu</h1>
+    <p class="lede">Commonwealth, state and territory changes that could be evaluated for their effects on competition (business entry and exit, prices and productivity) with public data. Each change carries a hypothesised direction, its effective date and an evaluability screen.</p>
+    <div class="meta-line" id="metaLine"></div>
+    <p class="notice" id="draftNotice"></p>
+  </header>
+
+  <section class="filters" aria-label="Filters">
+    <div class="filter-row">
+      <label class="filter-label" for="q">Search</label>
+      <input class="search" id="q" type="search" placeholder="Title, summary, ANZSIC code…" autocomplete="off">
+      <button class="reset" id="reset" type="button">Clear all filters</button>
+    </div>
+    <div class="filter-row"><span class="filter-label">Jurisdiction</span><div class="chips" id="f-jur"></div></div>
+    <div class="filter-row"><span class="filter-label">Hypothesised direction</span><div class="chips" id="f-dir"></div></div>
+    <div class="filter-row"><span class="filter-label">Evaluability</span><div class="chips" id="f-rating"></div></div>
+    <div class="filter-row">
+      <label class="filter-label" for="f-channel">Competition channel</label>
+      <select id="f-channel"></select>
+      <label class="filter-label" for="f-div">Industry division</label>
+      <select id="f-div"></select>
+    </div>
+  </section>
+
+  <div class="main">
+    <section aria-label="Changes">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tab-list" aria-selected="true" aria-controls="view-list">List</button>
+        <button class="tab" role="tab" id="tab-timeline" aria-selected="false" aria-controls="view-timeline">Timeline</button>
+      </div>
+      <p class="count-line" id="countLine" aria-live="polite"></p>
+      <div id="view-list" role="tabpanel" aria-labelledby="tab-list">
+        <table class="list">
+          <thead><tr><th>Effective</th><th>Jur.</th><th>Change</th><th>Direction</th><th>Evaluability</th><th>Register check</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div id="view-timeline" role="tabpanel" aria-labelledby="tab-timeline" hidden>
+        <div class="tl-wrap">
+          <div class="legend" id="tlLegend"></div>
+          <div class="tl-scroll"><svg id="tl" role="img" aria-label="Timeline of effective dates, grouped by reform family"></svg></div>
+        </div>
+      </div>
+    </section>
+    <aside class="detail empty" id="detail" aria-live="polite">
+      <p>Select a change to see its dates, sources, competition hypothesis and evaluability.</p>
+    </aside>
+  </div>
+
+  <footer id="foot"></footer>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script type="application/json" id="menu-data">__MENU_DATA__</script>
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById("menu-data").textContent);
+  const R = DATA.records;
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const safeUrl = (u) => (/^https?:\/\//i.test(u || "") ? u : null);
+  const link = (u, text) => (safeUrl(u) ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(text || u)}</a>` : esc(text || ""));
+  const fmtDate = (iso) => {
+    if (!iso) return "not commenced";
+    const [y, m, d] = iso.split("-").map(Number);
+    return `${d} ${["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][m - 1]} ${y}`;
+  };
+
+  const DIR = {
+    enhancing: { label: "Enhancing", color: "var(--enh)" },
+    weakening: { label: "Weakening", color: "var(--weak)" },
+    mixed: { label: "Mixed", color: "var(--mixed)" },
+    unclear: { label: "Unclear", color: "var(--ink-2)" },
+  };
+  const RATING = {
+    high: { label: "High", dots: 3 }, medium: { label: "Medium", dots: 2 }, low: { label: "Low", dots: 1 }, "not-yet": { label: "Not yet", dots: 0 },
+  };
+  const CHECK = {
+    confirmed: { label: "Confirmed", cls: "ok", help: "A register date matches the effective date" },
+    differs: { label: "Differs", cls: "warn", help: "The register has dates, but none matches the effective date" },
+    unconfirmed: { label: "Sourced only", cls: "", help: "No machine-readable register date to check against" },
+    "not-commenced": { label: "Not commenced", cls: "", help: "The change has not commenced" },
+  };
+  const JURS = ["CTH", "NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"];
+
+  function shapePath(dir, cx, cy, r) {
+    if (dir === "enhancing") return `<path d="M${cx} ${cy - r}L${cx + r} ${cy + r * 0.85}L${cx - r} ${cy + r * 0.85}Z" fill="${DIR[dir].color}"/>`;
+    if (dir === "weakening") return `<path d="M${cx} ${cy + r}L${cx + r} ${cy - r * 0.85}L${cx - r} ${cy - r * 0.85}Z" fill="${DIR[dir].color}"/>`;
+    if (dir === "mixed") return `<path d="M${cx} ${cy - r}L${cx + r} ${cy}L${cx} ${cy + r}L${cx - r} ${cy}Z" fill="${DIR[dir].color}"/>`;
+    return `<circle cx="${cx}" cy="${cy}" r="${r * 0.8}" fill="var(--surface)" stroke="${DIR.unclear.color}" stroke-width="1.6"/>`;
+  }
+  const shapeIcon = (dir) => `<span class="shape" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11">${shapePath(dir, 6, 6, 5)}</svg></span>`;
+  const dots = (n) => `<span class="dots" aria-hidden="true">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>`;
+
+  // --- State --------------------------------------------------------------------------------------
+  const state = { q: "", jur: new Set(), dir: new Set(), rating: new Set(), channel: "", div: "", selected: null, tab: "list" };
+
+  function matches(r) {
+    if (state.jur.size && !state.jur.has(r.jurisdiction)) return false;
+    if (state.dir.size && !state.dir.has(r.direction)) return false;
+    if (state.rating.size && !state.rating.has(r.screen.rating)) return false;
+    if (state.channel && !r.channels.includes(state.channel)) return false;
+    if (state.div && !r.industries.some((i) => i.division === state.div)) return false;
+    if (state.q) {
+      const hay = [r.id, r.title, r.summary, r.family, r.jurisdiction, ...r.industries.map((i) => `${i.anzsic} ${i.name}`)].join(" ").toLowerCase();
+      if (!state.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
+    }
+    return true;
+  }
+
+  // --- Filters ------------------------------------------------------------------------------------
+  function chipGroup(el, key, options) {
+    el.innerHTML = options.map((o) => `<button type="button" class="chip" data-key="${key}" data-val="${esc(o.value)}" aria-pressed="false">${o.icon || ""}${esc(o.label)} <span class="n">${o.n}</span></button>`).join("");
+  }
+  const count = (fn) => R.filter(fn).length;
+  chipGroup($("f-jur"), "jur", JURS.map((j) => ({ value: j, label: j, n: count((r) => r.jurisdiction === j) })));
+  chipGroup($("f-dir"), "dir", Object.keys(DIR).map((d) => ({ value: d, label: DIR[d].label, icon: shapeIcon(d), n: count((r) => r.direction === d) })));
+  chipGroup($("f-rating"), "rating", Object.keys(RATING).map((k) => ({ value: k, label: RATING[k].label, icon: dots(RATING[k].dots), n: count((r) => r.screen.rating === k) })));
+  $("f-channel").innerHTML = `<option value="">All channels</option>` + DATA.channels.map((c) => `<option value="${esc(c.id)}">${esc(c.label)}</option>`).join("");
+  const divs = [...new Set(R.flatMap((r) => r.industries.map((i) => i.division)))].filter(Boolean).sort();
+  $("f-div").innerHTML = `<option value="">All divisions</option>` + divs.map((d) => `<option value="${esc(d)}">${esc(d)} ${esc(DATA.divisions[d] || "")}</option>`).join("");
+
+  document.querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => {
+    const set = state[b.dataset.key];
+    set.has(b.dataset.val) ? set.delete(b.dataset.val) : set.add(b.dataset.val);
+    b.setAttribute("aria-pressed", set.has(b.dataset.val));
+    render();
+  }));
+  $("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
+  $("f-channel").addEventListener("change", (e) => { state.channel = e.target.value; render(); });
+  $("f-div").addEventListener("change", (e) => { state.div = e.target.value; render(); });
+  $("reset").addEventListener("click", () => {
+    state.q = ""; state.jur.clear(); state.dir.clear(); state.rating.clear(); state.channel = ""; state.div = "";
+    $("q").value = ""; $("f-channel").value = ""; $("f-div").value = "";
+    document.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", "false"));
+    render();
+  });
+
+  // --- Tabs ---------------------------------------------------------------------------------------
+  function setTab(t) {
+    state.tab = t;
+    $("tab-list").setAttribute("aria-selected", t === "list");
+    $("tab-timeline").setAttribute("aria-selected", t === "timeline");
+    $("view-list").hidden = t !== "list";
+    $("view-timeline").hidden = t !== "timeline";
+    if (t === "timeline") drawTimeline(R.filter(matches));
+  }
+  $("tab-list").addEventListener("click", () => setTab("list"));
+  $("tab-timeline").addEventListener("click", () => setTab("timeline"));
+
+  // --- List ---------------------------------------------------------------------------------------
+  const byDate = (a, b) => (a.effective || "9999").localeCompare(b.effective || "9999") || a.jurisdiction.localeCompare(b.jurisdiction);
+  function checkPill(r) {
+    if (!r.check) return `<span class="pill" title="Not checked against registers">Not checked</span>`;
+    const c = CHECK[r.check.status];
+    return `<span class="pill ${c.cls}" title="${esc(c.help)}">${esc(c.label)}</span>`;
+  }
+  function renderList(rows) {
+    $("rows").innerHTML = rows.map((r) => `
+      <tr class="${state.selected === r.id ? "sel" : ""}">
+        <td class="mono">${esc(r.effective ? fmtDate(r.effective) : "not yet")}</td>
+        <td class="mono">${esc(r.jurisdiction)}</td>
+        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(r.title)}</button>${r.family ? `<span class="fam">${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}</td>
+        <td><span class="dir">${shapeIcon(r.direction)}${esc(DIR[r.direction].label)}</span></td>
+        <td><span class="rating">${dots(RATING[r.screen.rating].dots)}${esc(RATING[r.screen.rating].label)}</span></td>
+        <td>${checkPill(r)}</td>
+      </tr>`).join("");
+    $("rows").querySelectorAll(".rowbtn").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
+  }
+
+  // --- Timeline -----------------------------------------------------------------------------------
+  function drawTimeline(rows) {
+    const svg = $("tl");
+    const dated = rows.filter((r) => r.effective);
+    const groups = [];
+    const fams = new Map();
+    dated.sort(byDate).forEach((r) => {
+      const key = r.family || "_single";
+      if (!fams.has(key)) { fams.set(key, []); groups.push(key); }
+      fams.get(key).push(r);
+    });
+    groups.sort((a, b) => (a === "_single") - (b === "_single") || fams.get(a)[0].effective.localeCompare(fams.get(b)[0].effective));
+    const LBL = 210, ROW = 22, HEAD = 24, TOP = 30, RIGHT = 16;
+    const width = Math.max(680, Math.min(1100, svg.parentElement.clientWidth || 800));
+    const years = dated.map((r) => +r.effective.slice(0, 4));
+    const y0 = Math.min(Number(DATA.coverage.firstStart.slice(0, 4)), ...years), y1 = Math.max(...years, 2026) + 1;
+    const t0 = Date.UTC(y0, 0, 1), t1 = Date.UTC(y1, 0, 1);
+    const x = (iso) => LBL + ((Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10)) - t0) / (t1 - t0)) * (width - LBL - RIGHT);
+    let y = TOP;
+    const parts = [];
+    const rowsOut = [];
+    groups.forEach((g) => {
+      const members = fams.get(g);
+      rowsOut.push({ head: g === "_single" ? "Single-jurisdiction and national changes" : (DATA.familyLabels[g] || g), y });
+      y += HEAD;
+      members.forEach((r) => { rowsOut.push({ r, y }); y += ROW; });
+      y += 6;
+    });
+    const height = y + 6;
+    const clampX = (iso) => Math.max(LBL, Math.min(width - RIGHT, x(iso)));
+    // Bands: outcome data coverage and COVID period
+    parts.push(`<rect x="${clampX(DATA.coverage.firstStart)}" y="${TOP - 6}" width="${clampX(DATA.coverage.lastEnd) - clampX(DATA.coverage.firstStart)}" height="${height - TOP}" fill="var(--band)"/>`);
+    parts.push(`<rect x="${clampX("2019-07-01")}" y="${TOP - 6}" width="${clampX("2022-06-30") - clampX("2019-07-01")}" height="${height - TOP}" fill="var(--covid)"/>`);
+    // Year gridlines and labels
+    for (let yr = y0; yr <= y1; yr++) {
+      const gx = x(`${yr}-01-01`);
+      parts.push(`<line x1="${gx}" x2="${gx}" y1="${TOP - 6}" y2="${height}" stroke="var(--line)" stroke-width="1"/>`);
+      if ((yr - y0) % (width < 800 ? 2 : 1) === 0 && yr < y1) parts.push(`<text x="${gx + 2}" y="${TOP - 12}" font-size="11" fill="var(--ink-3)">${yr}</text>`);
+    }
+    rowsOut.forEach((o) => {
+      if (o.head) {
+        parts.push(`<text x="6" y="${o.y + 15}" font-size="12" font-weight="600" fill="var(--ink)">${esc(o.head)}</text>`);
+        return;
+      }
+      const r = o.r;
+      const cy = o.y + ROW / 2;
+      const label = r.family ? r.jurisdiction : `${r.jurisdiction} · ${r.short}`;
+      parts.push(`<text x="14" y="${cy + 4}" font-size="11.5" fill="var(--ink-2)">${esc(label)}</text>`);
+      parts.push(`<line x1="${LBL}" x2="${width - RIGHT}" y1="${cy}" y2="${cy}" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 3"/>`);
+      const cx = x(r.effective);
+      const sel = state.selected === r.id;
+      parts.push(`<g class="tl-mark" tabindex="0" role="button" data-id="${esc(r.id)}" aria-label="${esc(`${r.jurisdiction}: ${r.title}, ${fmtDate(r.effective)}, ${DIR[r.direction].label}`)}">
+        <circle class="hit" cx="${cx}" cy="${cy}" r="10" fill="${sel ? "var(--accent-soft)" : "transparent"}" stroke="${sel ? "var(--accent)" : "none"}"/>
+        ${shapePath(r.direction, cx, cy, 5.5)}</g>`);
+    });
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    svg.setAttribute("width", width);
+    svg.setAttribute("height", height);
+    svg.innerHTML = parts.join("");
+    const tip = $("tip");
+    svg.querySelectorAll(".tl-mark").forEach((g) => {
+      const r = R.find((x) => x.id === g.dataset.id);
+      const show = (ev) => {
+        tip.innerHTML = `<strong>${esc(r.title)}</strong><br>${esc(r.jurisdiction)} · ${esc(fmtDate(r.effective))}<br>${esc(DIR[r.direction].label)} · evaluability ${esc(RATING[r.screen.rating].label.toLowerCase())}`;
+        tip.hidden = false;
+        const bx = ev.clientX ?? g.getBoundingClientRect().right, by = ev.clientY ?? g.getBoundingClientRect().top;
+        tip.style.left = `${Math.min(window.innerWidth - tip.offsetWidth - 8, bx + 12)}px`;
+        tip.style.top = `${Math.max(8, by - tip.offsetHeight - 10)}px`;
+      };
+      g.addEventListener("mousemove", show);
+      g.addEventListener("focus", (e) => show({ clientX: g.getBoundingClientRect().right, clientY: g.getBoundingClientRect().top }));
+      g.addEventListener("mouseleave", () => (tip.hidden = true));
+      g.addEventListener("blur", () => (tip.hidden = true));
+      g.addEventListener("click", () => select(r.id));
+      g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(r.id); } });
+    });
+    const undated = rows.length - dated.length;
+    $("tlLegend").innerHTML = Object.keys(DIR).map((d) => `<span>${shapeIcon(d)}${esc(DIR[d].label)}</span>`).join("") +
+      `<span><i class="swatch" style="background:var(--band)"></i>Years with entry and exit data (${esc(DATA.coverage.label)})</span>` +
+      `<span><i class="swatch" style="background:var(--covid)"></i>COVID period (2019-20 to 2021-22)</span>` +
+      (undated ? `<span>${undated} not yet commenced (not shown)</span>` : "");
+  }
+
+  // --- Detail -------------------------------------------------------------------------------------
+  function select(id, fromHash) {
+    state.selected = id;
+    const r = R.find((x) => x.id === id);
+    const el = $("detail");
+    if (!r) { el.className = "detail empty"; el.innerHTML = "<p>Select a change to see its dates, sources, competition hypothesis and evaluability.</p>"; return; }
+    if (!fromHash) { try { history.replaceState(null, "", `#${id}`); } catch (e) { /* ignore */ } }
+    el.className = "detail";
+    const t = r.timing;
+    const c = r.check;
+    const sec = (title, body) => body ? `<section class="d-sec"><h3>${esc(title)}</h3>${body}</section>` : "";
+    const li = (items) => items.length ? `<ul class="d-list">${items.join("")}</ul>` : "";
+    el.innerHTML = `
+      <button type="button" class="close" id="closeDetail">Close</button>
+      <div class="d-head">
+        <h2>${esc(r.title)}</h2>
+        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${r.family ? `<span>${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}<span class="dir">${shapeIcon(r.direction)}${esc(DIR[r.direction].label)} (hypothesis)</span></div>
+        <p>${esc(r.summary)}</p>
+      </div>
+      ${sec("Effective date", `
+        <div class="big-date">${esc(fmtDate(r.effective))}</div>
+        ${r.effectiveWhat ? `<p class="muted">${esc(r.effectiveWhat)}</p>` : ""}
+        ${t ? `<dl class="kv"><dt>First exposed year</dt><dd>${esc(t.first_exposed_fy)} (${Math.round(t.exposure_share_first_fy * 100)}% of the year)</dd><dt>First full year</dt><dd>${esc(t.first_full_fy)}</dd><dt>First full quarter</dt><dd>${esc(t.first_full_quarter)}</dd></dl>` : ""}
+        ${c ? `<p><span class="pill ${CHECK[c.status].cls}">${esc(CHECK[c.status].label)}</span> <span class="muted">${esc(CHECK[c.status].help)}.</span></p>${li(c.issues.map((i) => `<li>${esc(i)}</li>`))}` : `<p class="muted">Not yet checked against the legislation registers.</p>`}`)}
+      ${sec("Competition hypothesis", `<p>${esc(r.direction_rationale)}</p><p class="muted">Channels: ${esc(r.channelLabels.join("; "))}</p>${li(r.direction_sources.map((u) => `<li>${link(u)}</li>`))}`)}
+      ${sec(`Evaluability: ${RATING[r.screen.rating].label}`, `
+        ${r.screen.comparison ? `<p class="muted">Comparison: ${esc({ staggered: "staggered adoption across jurisdictions", "other-states": "other states and territories", "industry-only": "unaffected industries only (national change)" }[r.screen.comparison])}</p>` : ""}
+        ${li([...r.screen.strengths.map((s) => `<li>+ ${esc(s)}</li>`), ...r.screen.weaknesses.map((w) => `<li>− ${esc(w)}</li>`)])}
+        <p class="muted">${esc(r.comparison)}</p>`)}
+      ${sec("Industries (ANZSIC 2006)", li(r.industries.map((i) => `<li><span class="mono">${esc(i.anzsic)}</span> ${esc(i.name)} <span class="muted">(${esc(i.exposure)})</span></li>`)))}
+      ${sec("Confounders to handle", li(r.confounders.map((x) => `<li>${esc(x)}</li>`)))}
+      ${sec("Price series (CPI)", r.price_series ? `<p>${esc(r.price_series)}</p>` : "")}
+      ${sec("Instruments", li(r.instruments.map((i) => `<li>${link(i.register_url, i.title)} <span class="muted">(${esc(i.role)}${i.provisions ? `; ${esc(i.provisions)}` : ""})</span></li>`)))}
+      ${sec("Dates and sources", `<dl class="kv">
+        ${r.dates.announced.date ? `<dt>Announced</dt><dd>${link(r.dates.announced.source, fmtDate(r.dates.announced.date))}</dd>` : ""}
+        ${r.dates.assent_or_made.date ? `<dt>Assent or made</dt><dd>${link(r.dates.assent_or_made.source, fmtDate(r.dates.assent_or_made.date))}</dd>` : ""}
+        ${r.dates.commenced.map((cm) => `<dt>Commenced${cm.primary ? " (primary)" : ""}</dt><dd>${link(cm.source, fmtDate(cm.date))}: ${esc(cm.what)}</dd>`).join("")}
+      </dl>`)}
+      ${sec("Notes", r.notes ? `<p>${esc(r.notes)}</p>` : "")}
+      ${sec("Verification", `<p class="muted">${r.verified.dates ? "Dates verified against official sources." : "Dates not fully verified."} ${esc(r.verified.notes || "")}</p><p class="muted">Review: ${esc(r.review.status)}. ${esc(r.review.notes || "")}</p>`)}
+    `;
+    $("closeDetail").addEventListener("click", () => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* ignore */ } select(null); render(); });
+    render();
+  }
+
+  // --- Render -------------------------------------------------------------------------------------
+  function render() {
+    const rows = R.filter(matches).sort(byDate);
+    $("countLine").textContent = `${rows.length} of ${R.length} changes shown`;
+    renderList(rows);
+    if (state.tab === "timeline") drawTimeline(rows);
+  }
+
+  const counts = { enhancing: count((r) => r.direction === "enhancing"), weakening: count((r) => r.direction === "weakening") };
+  $("metaLine").innerHTML = [
+    `${R.length} changes`, `${new Set(R.map((r) => r.jurisdiction)).size} jurisdictions`,
+    `${counts.enhancing} hypothesised to enhance competition, ${counts.weakening} to weaken it`,
+    `Generated ${esc(fmtDate(DATA.generated))}`,
+  ].map((s) => `<span>${s}</span>`).join("");
+  const drafts = count((r) => r.review.status === "draft");
+  $("draftNotice").innerHTML = drafts
+    ? `<strong>Draft register.</strong> ${drafts} of ${R.length} records come from AI-assisted desk research (14–15 October 2026) and have not yet been checked by a person. Directions are hypotheses to be tested, not findings. Evaluability ratings are a screening aid; see the stated rules below.`
+    : `<strong>Reviewed register.</strong> Directions are hypotheses to be tested, not findings.`;
+  $("foot").innerHTML = `
+    <p><strong>Evaluability screen.</strong> ${esc(DATA.screenRules)}</p>
+    <p><strong>Register check.</strong> ${esc(DATA.checkNote)}</p>
+    <p><strong>Sources.</strong> Industry codes: ABS ANZSIC 2006 (Revision 2.0). Outcome coverage: ${esc(DATA.coverage.label)}. Every date in a record links to its source. Unofficial research, not an Australian Government product.</p>`;
+
+  render();
+  const fromHash = decodeURIComponent((location.hash || "").slice(1));
+  if (fromHash && R.some((r) => r.id === fromHash)) select(fromHash, true);
+})();
+</script>

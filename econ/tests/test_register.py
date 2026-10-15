@@ -27,8 +27,15 @@ def illustrative(**over) -> dict:
         "title": "ILLUSTRATIVE change (test fixture)",
         "jurisdiction": "NSW",
         "summary": "Illustrative record used only in tests.",
-        "instruments": [{"title": "Illustrative Act 2016", "register_url": None, "register_id": None,
-                         "role": "principal", "provisions": None}],
+        "instruments": [
+            {
+                "title": "Illustrative Act 2016",
+                "register_url": None,
+                "register_id": None,
+                "role": "principal",
+                "provisions": None,
+            }
+        ],
         "dates": {
             "announced": {"date": "2015-06-01", "source": SRC},
             "assent_or_made": {"date": "2016-03-01", "source": SRC},
@@ -130,13 +137,16 @@ def test_loader_reports_every_problem(tmp_path):
 
 def test_filters_and_families():
     a = ChangeRecord.model_validate(illustrative())
-    b = ChangeRecord.model_validate(illustrative(
-        id="vic-illustrative-2017", jurisdiction="VIC", direction="weakening",
-        dates={"commenced": [{"date": "2017-07-01", "what": "Whole Act", "source": SRC}]},
-        industries=[{"anzsic": "4520", "name": "Pubs, Taverns and Bars", "exposure": "direct"}],
-    ))
-    c = ChangeRecord.model_validate(illustrative(id="qld-illustrative", jurisdiction="QLD",
-                                                 dates={"commenced": []}))
+    b = ChangeRecord.model_validate(
+        illustrative(
+            id="vic-illustrative-2017",
+            jurisdiction="VIC",
+            direction="weakening",
+            dates={"commenced": [{"date": "2017-07-01", "what": "Whole Act", "source": SRC}]},
+            industries=[{"anzsic": "4520", "name": "Pubs, Taverns and Bars", "exposure": "direct"}],
+        )
+    )
+    c = ChangeRecord.model_validate(illustrative(id="qld-illustrative", jurisdiction="QLD", dates={"commenced": []}))
     recs = [b, c, a]
     assert [r.id for r in filter_records(recs, jurisdiction="vic")] == [b.id]
     assert [r.id for r in filter_records(recs, direction="weakening")] == [b.id]

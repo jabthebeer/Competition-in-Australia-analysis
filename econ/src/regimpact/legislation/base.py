@@ -50,6 +50,7 @@ class RegisterDates:
     status: str | None = None
     versions: tuple[Version, ...] = ()
     notes: tuple[str, ...] = ()
+    role: str | None = None  # the instrument's role in the record (set by gather)
 
     def as_dict(self) -> dict[str, object]:
         def iso(d: dt.date | None) -> str | None:
@@ -74,6 +75,7 @@ class RegisterDates:
                 for v in self.versions
             ],
             "notes": list(self.notes),
+            "role": self.role,
         }
 
 

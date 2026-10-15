@@ -1,6 +1,15 @@
 # Scoping: an econometric foundation for regulation, competition and innovation
 
-**Status:** Scoping note for decision, 14 October 2026. Nothing here is built yet.
+**Status:** Scoping note, 14 October 2026. **Decisions taken the same day** (`econ/DECISIONS.md`, E-01 to E-07):
+- evaluate past regulation first;
+- public data only, no BLADE;
+- Commonwealth and state changes;
+- explore the menu of assessable legislation before choosing pilots;
+- Python;
+- calculator paused;
+- all public.
+
+Work under way: `econ/` (register, date gatherer, menu explorer) and `docs/impact_evaluation_design.md`.
 
 **Request (project owner, 14 Oct 2026):**
 - Defer Phase 2b, the AI drafting assistant.

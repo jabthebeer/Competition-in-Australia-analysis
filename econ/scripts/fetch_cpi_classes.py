@@ -30,9 +30,16 @@ def main() -> None:
             code, d = parent, d + 1
         return d if code == "10001" else -1
 
-    classes = [{"code": c["id"], "name": c["name"],
-                "subgroup": by_id[c["parent"]]["name"], "group": by_id[by_id[c["parent"]]["parent"]]["name"]}
-               for c in codelist["codes"] if depth(c["id"]) == 3]
+    classes = [
+        {
+            "code": c["id"],
+            "name": c["name"],
+            "subgroup": by_id[c["parent"]]["name"],
+            "group": by_id[by_id[c["parent"]]["parent"]]["name"],
+        }
+        for c in codelist["codes"]
+        if depth(c["id"]) == 3
+    ]
     payload = {
         "source": URL,
         "codelist": f"{codelist['id']} {codelist['version']}",

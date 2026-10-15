@@ -6,6 +6,8 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 
 ## Status
 
+**Paused on 14 October 2026** (project owner's decision) while the econometric foundation in [`econ/`](../econ/) is built. The two projects will be folded together later.
+
 | Phase | Scope | Status |
 |---|---|---|
 | 0 | Specification: traceability, ambiguities, data model, test list | Approved 6 Oct 2026 |

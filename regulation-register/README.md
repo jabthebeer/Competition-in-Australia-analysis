@@ -1,0 +1,43 @@
+# Register of regulatory changes
+
+Candidate Commonwealth, state and territory changes whose effects on competition could be evaluated with public data. One JSON file per change per jurisdiction in `records/`, validated against `schema/change-record.schema.json` (generated from `econ/src/regimpact/register/schema.py`).
+
+Browse it with the menu explorer (`uv run regimpact explorer` in `econ/`) or the command line (`uv run regimpact menu`).
+
+> **Status (15 October 2026):** 69 records, all `draft`. They were compiled by AI-assisted desk research from the sources each record cites and have not yet been checked by a person. The `direction` of each change is a hypothesis to be tested.
+
+## What a record holds
+
+| Field | Meaning |
+|---|---|
+| `id`, `family` | `jurisdiction-topic-year`; `family` groups the same reform across jurisdictions (staggered adoption) |
+| `instruments` | Acts, regulations or codes, with register URL or ID and role (principal, amending, regulation, code, other) |
+| `dates` | Announced, assent or made, and commencements. **Every date has a source URL.** One commencement may be marked `primary`: the date the competition-relevant change took effect (otherwise the earliest is used) |
+| `direction`, `direction_rationale`, `direction_sources` | Hypothesised effect on competition: enhancing, weakening, mixed or unclear |
+| `channels` | OIA competition-guidance categories (July 2026): barriers; number or type of businesses; ability or incentive to compete; prices or market share; consumer choice |
+| `industries` | ANZSIC 2006 codes (validated against the ABS list), each direct or indirect |
+| `comparison`, `confounders`, `price_series` | How a comparison group could be formed; threats; matching CPI expenditure classes |
+| `verified`, `review` | Whether dates were verified against official sources; whether a person has reviewed the record |
+
+## Coding protocol
+
+1. **One record per jurisdiction.** A national scheme adopted by states on different dates gets one record per state, sharing a `family`.
+2. **Sources for every date.** Prefer the legislation register, then the gazette, then official government or regulator pages. A secondary source (news, law firm) sets `verified.dates = false` and is explained in `verified.notes`.
+3. **Primary commencement.** When provisions commence on several dates, mark the one that changes competition conditions as `primary`, and say why in `review.notes`.
+4. **Industries.** List only industries the change directly regulates as `direct`. Use the most specific ANZSIC level that fits (class, then group).
+5. **Direction.** State the mechanism in one or two sentences and cite the basis (Productivity Commission, ACCC, OECD, research).
+6. **Check dates.** Run `uv run regimpact dates <id>`. Resolve or explain any "differs" status or assent mismatch.
+7. **Review.** A person who has checked the record sets `review` to `{"status": "reviewed", "by": "<name>", "on": "<date>"}`. `uv run regimpact validate` must pass.
+
+## Reports
+
+`reports/effective_dates_<date>.json` is the output of `regimpact dates --all --json` on that date: each record's effective date, timing, register status and issues, with what each register returned. Federal Register content in these reports is CC BY 4.0: "Sourced from the Federal Register of Legislation" at each entry's `retrieved_at` date.
+
+Latest run (15 October 2026):
+
+| Status | Records | Meaning |
+|---|---|---|
+| confirmed | 19 | A register date matches the effective date |
+| differs | 1 | The register's commencement dates don't include the effective date. Default market offer: the instrument commenced on 5 April 2019, while the price caps applied from 1 July 2019 |
+| unconfirmed | 48 | Nothing readable to check against (NSW and SA registers block automated requests; other records lack a register link) |
+| not-commenced | 1 | |

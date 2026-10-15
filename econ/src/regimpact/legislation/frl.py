@@ -1,23 +1,30 @@
 """Federal Register of Legislation (legislation.gov.au) adapter.
 
-Uses the public REST API (https://api.prod.legislation.gov.au/v1/, OData style, no key).
+Uses the public REST API (https://api.prod.legislation.gov.au/v1/, OData style, no key;
+content CC BY 4.0, "Sourced from the Federal Register of Legislation").
 
-How dates are read:
+Where each date comes from:
 - assent (Acts) or making date (instruments): ``makingDate`` on the title;
 - registration: ``asMadeRegisteredAt``;
 - repeal or cessation: the first matching entry in ``statusHistory``;
-- commencement of a principal Act or instrument: the start of its first version;
-- commencement of an AMENDING Act or instrument: the register has no structured s 2
-  commencement table, but every compilation (version) of the principal it amends lists the
-  amendments it incorporates (``reasons[].affectedByTitle``). The start date of a version
-  that cites the amendment is when that amendment took effect in the principal. This is
-  the date that matters for evaluation, and it is reported per principal and provision.
+- the law's own commencement: the s 2 "Commencement information" table in the as-made
+  Word document (column 3 gives the date once known), or for instruments without a table,
+  a sentence such as "This instrument commences on 1 April 2017";
+- when an AMENDING law took effect in the law it amends: each compilation (version) of the
+  principal lists the amendments it incorporates (``reasons[].affectedByTitle``), so the
+  start of a version that cites the amendment is when it took effect, per schedule;
+- version starts of a principal law (a delayed commencement shows up as a version boundary).
+
+Known gaps: the API has no structured commencement field; a provision that amends nothing
+never appears in a version list; proclamation dates are only in the proclamation's text.
 """
 
 from __future__ import annotations
 
 import datetime as dt
 import re
+import time
+import zipfile
 from urllib.parse import quote
 
 import httpx
@@ -25,6 +32,8 @@ import httpx
 from ..register.schema import Instrument
 from .base import RegisterCommencement, RegisterDates, Version
 from .cache import JsonCache
+from .http import Fetcher
+from .text import commencement_in_prose, commencement_table, docx_tables, docx_text, find_dates
 
 API = "https://api.prod.legislation.gov.au/v1"
 SITE = "https://www.legislation.gov.au"
@@ -44,6 +53,13 @@ def _url(path: str, **params: str) -> str:
     return f"{API}/{path}?" + "&".join(f"{_q(k)}={_q(v)}" for k, v in params.items())
 
 
+def as_made_word_url(register_id: str) -> str:
+    return _url(
+        f"documents/find(registerId='{register_id}',type='Primary',format='Word',"
+        "uniqueTypeNumber=0,volumeNumber=0,rectificationVersionNumber=0)"
+    )
+
+
 def _date(value: str | None) -> dt.date | None:
     """API dates are local date-times without a zone, e.g. '2022-11-09T00:00:00'."""
     return dt.date.fromisoformat(value[:10]) if value else None
@@ -57,30 +73,28 @@ def _status(value: object) -> str | None:
 class FederalRegister:
     jurisdiction = "CTH"
 
-    def __init__(self, cache: JsonCache | None = None, max_principals: int = 6, today: dt.date | None = None):
+    def __init__(
+        self,
+        cache: JsonCache | None = None,
+        max_principals: int = 6,
+        today: dt.date | None = None,
+        read_commencement_text: bool = True,
+        sleep=time.sleep,
+    ):
         self.cache = cache
         self.max_principals = max_principals
         self.today = today or dt.date.today()
-
-    # --- HTTP -----------------------------------------------------------------------------
-    def _get(self, client: httpx.Client, url: str) -> dict:
-        if self.cache and (hit := self.cache.get(url)) is not None:
-            return hit
-        resp = client.get(url, headers={"Accept": "application/json"})
-        resp.raise_for_status()
-        data = resp.json()
-        if self.cache:
-            self.cache.put(url, data)
-        return data
+        self.read_commencement_text = read_commencement_text
+        self.sleep = sleep
 
     # --- Lookups --------------------------------------------------------------------------
-    def resolve_id(self, instrument: Instrument, client: httpx.Client) -> tuple[str | None, list[str]]:
+    def resolve_id(self, instrument: Instrument, fetch: Fetcher) -> tuple[str | None, list[str]]:
         """Register ID from the record, its URL, or an exact title search."""
         for candidate in (instrument.register_id, str(instrument.register_url or "")):
             if candidate and (m := ID_RE.search(candidate)):
                 return m.group(1), []
         name = instrument.title.replace("'", "''")
-        data = self._get(client, _url("titles", **{"$filter": f"name eq '{name}'", "$select": "id,name,collection"}))
+        data = fetch.json(_url("titles", **{"$filter": f"name eq '{name}'", "$select": "id,name,collection"}))
         hits = data.get("value", [])
         if len(hits) == 1:
             return hits[0]["id"], []
@@ -89,50 +103,95 @@ class FederalRegister:
         ids = ", ".join(h["id"] for h in hits)
         return None, [f"several Federal Register titles named '{instrument.title}' ({ids}); set register_id"]
 
-    def title(self, client: httpx.Client, title_id: str) -> dict:
-        return self._get(client, _url(f"titles('{title_id}')"))
+    def versions(self, fetch: Fetcher, title_id: str) -> list[dict]:
+        url = _url(
+            "Versions", **{"$filter": f"titleId eq '{title_id}'", "$orderby": "start asc", "$select": VERSION_FIELDS}
+        )
+        return fetch.json(url).get("value", [])
 
-    def versions(self, client: httpx.Client, title_id: str) -> list[dict]:
-        url = _url("Versions", **{"$filter": f"titleId eq '{title_id}'", "$orderby": "start asc",
-                                  "$select": VERSION_FIELDS})
-        return self._get(client, url).get("value", [])
-
-    def principals_affected(self, client: httpx.Client, title_id: str) -> list[dict]:
-        criteria = f"affects(\"{title_id}\",{AFFECT_KINDS})"
+    def principals_affected(self, fetch: Fetcher, title_id: str) -> list[dict]:
+        criteria = f'affects("{title_id}",{AFFECT_KINDS})'
         url = _url(f"titles/search(criteria='{criteria}')", **{"$select": "id,name,collection,isPrincipal"})
-        return [t for t in self._get(client, url).get("value", []) if t.get("isPrincipal")]
+        return [t for t in fetch.json(url).get("value", []) if t.get("isPrincipal")]
+
+    def own_commencement(self, fetch: Fetcher, title_id: str) -> tuple[list[RegisterCommencement], list[str]]:
+        """Commencement as stated in the law itself (s 2), read from the as-made Word document."""
+        url = as_made_word_url(title_id)
+        key = f"s2:{url}"
+        cached = fetch.cache.get(key) if fetch.cache else None
+        if cached is None:
+            try:
+                data = fetch.content(url)
+            except httpx.HTTPStatusError as exc:
+                return [], [f"as-made Word document unavailable ({exc.response.status_code})"]
+            try:
+                rows = commencement_table(docx_tables(data))
+                prose = [] if rows else [d.isoformat() for d in commencement_in_prose(docx_text(data))]
+            except (zipfile.BadZipFile, KeyError):
+                return [], ["as-made document is not a readable Word (.docx) file; s 2 not checked"]
+            cached = {"rows": rows, "prose": prose}
+            if fetch.cache:
+                fetch.cache.put(key, cached)
+        out = []
+        for provisions, rule, details in cached["rows"]:
+            for d in find_dates(details):
+                out.append(RegisterCommencement(d, f"{provisions}: {rule}", "s 2 commencement table (as made)"))
+        for iso in cached["prose"]:
+            out.append(
+                RegisterCommencement(
+                    dt.date.fromisoformat(iso), "commencement provision", "commencement sentence in the as-made text"
+                )
+            )
+        notes = (
+            []
+            if out
+            else [
+                "no dated commencement found in the as-made text (e.g. 'a day to be fixed by "
+                "Proclamation'); check the proclamation"
+            ]
+        )
+        return out, notes
 
     # --- Adapter interface ------------------------------------------------------------------
     def lookup(self, instrument: Instrument, client: httpx.Client) -> RegisterDates:
+        fetch = Fetcher(client, self.cache, sleep=self.sleep)
         now = dt.datetime.now(dt.UTC)
-        title_id, notes = self.resolve_id(instrument, client)
+        title_id, notes = self.resolve_id(instrument, fetch)
         if title_id is None:
-            return RegisterDates(jurisdiction="CTH", title=instrument.title, register_id=None, url=None,
-                                 method="api", retrieved_at=now, notes=tuple(notes))
+            return RegisterDates(
+                jurisdiction="CTH",
+                title=instrument.title,
+                register_id=None,
+                url=None,
+                method="api",
+                retrieved_at=now,
+                notes=tuple(notes),
+            )
 
-        t = self.title(client, title_id)
+        t = fetch.json(_url(f"titles('{title_id}')"))
         notes = list(notes)
         if t.get("name") and t["name"] != instrument.title:
             notes.append(f"register title is '{t['name']}'")
-        repealed = next((_date(h.get("start")) for h in t.get("statusHistory", [])
-                         if _status(h.get("status")) in ENDED_STATUSES), None)
+        repealed = next(
+            (_date(h.get("start")) for h in t.get("statusHistory", []) if _status(h.get("status")) in ENDED_STATUSES),
+            None,
+        )
 
         commencements: list[RegisterCommencement] = []
         versions: list[Version] = []
+        if self.read_commencement_text:
+            own, own_notes = self.own_commencement(fetch, title_id)
+            commencements += own
+            notes += own_notes
         if t.get("isPrincipal"):
-            raw = self.versions(client, title_id)
-            versions = [_version(v) for v in raw]
-            if versions:
-                commencements.append(RegisterCommencement(
-                    date=versions[0].start, what="first version in force (as made)",
-                    basis="start of the earliest version on the register"))
+            versions = [_version(v) for v in self.versions(fetch, title_id)]
         else:
-            principals = self.principals_affected(client, title_id)
+            principals = self.principals_affected(fetch, title_id)
             if len(principals) > self.max_principals:
                 notes.append(f"amends {len(principals)} principal titles; checked the first {self.max_principals}")
             for p in principals[: self.max_principals]:
                 found = False
-                for v in self.versions(client, p["id"]):
+                for v in self.versions(fetch, p["id"]):
                     for r in v.get("reasons") or []:
                         by = r.get("affectedByTitle") or {}
                         if by.get("titleId") != title_id:
@@ -140,14 +199,18 @@ class FederalRegister:
                         found = True
                         start = _date(v["start"])
                         scheduled = " (scheduled: not yet in force)" if start and start > self.today else ""
-                        commencements.append(RegisterCommencement(
-                            date=start,
-                            what=f"{by.get('provisions') or 'provisions'} amending {p['name']}{scheduled}",
-                            basis=f"start of {p['name']} compilation {v.get('compilationNumber')}",
-                        ))
+                        commencements.append(
+                            RegisterCommencement(
+                                date=start,
+                                what=f"{by.get('provisions') or 'provisions'} amending {p['name']}{scheduled}",
+                                basis=f"start of {p['name']} compilation {v.get('compilationNumber')}",
+                            )
+                        )
                 if not found:
-                    notes.append(f"no compilation of {p['name']} cites this instrument "
-                                 "(not yet compiled, never commenced, or repealed first)")
+                    notes.append(
+                        f"no compilation of {p['name']} cites this instrument "
+                        "(not yet compiled, never commenced, or repealed first)"
+                    )
 
         return RegisterDates(
             jurisdiction="CTH",
@@ -169,7 +232,12 @@ class FederalRegister:
 def _version(v: dict) -> Version:
     amended_by = tuple(
         f"{(r.get('affectedByTitle') or {}).get('titleId')}: {(r.get('affectedByTitle') or {}).get('provisions')}"
-        for r in v.get("reasons") or [] if r.get("affectedByTitle")
+        for r in v.get("reasons") or []
+        if r.get("affectedByTitle")
     )
-    return Version(start=_date(v["start"]), end=_date(v.get("end")),
-                   label=f"compilation {v.get('compilationNumber')} ({v.get('registerId')})", amended_by=amended_by)
+    return Version(
+        start=_date(v["start"]),
+        end=_date(v.get("end")),
+        label=f"compilation {v.get('compilationNumber')} ({v.get('registerId')})",
+        amended_by=amended_by,
+    )

@@ -85,12 +85,17 @@ def _comparison(rec: ChangeRecord, fam: list[ChangeRecord] | None) -> Comparison
 
 
 def _shares_industry(a: ChangeRecord, b: ChangeRecord) -> bool:
-    return any(x.anzsic.startswith(y.anzsic) or y.anzsic.startswith(x.anzsic)
-               for x in a.industries for y in b.industries)
+    return any(
+        x.anzsic.startswith(y.anzsic) or y.anzsic.startswith(x.anzsic) for x in a.industries for y in b.industries
+    )
 
 
-def screen_record(rec: ChangeRecord, all_records: list[ChangeRecord], coverage: Coverage = DEFAULT_COVERAGE,
-                  fam: list[ChangeRecord] | None = None) -> Screen:
+def screen_record(
+    rec: ChangeRecord,
+    all_records: list[ChangeRecord],
+    coverage: Coverage = DEFAULT_COVERAGE,
+    fam: list[ChangeRecord] | None = None,
+) -> Screen:
     eff = rec.effective_commencement
     if eff is None:
         return Screen("not-yet", None, None, None, (), ("not yet commenced: ex ante analysis only",), ())
@@ -136,8 +141,9 @@ def screen_record(rec: ChangeRecord, all_records: list[ChangeRecord], coverage: 
         if same_place and _shares_industry(rec, other) and abs(financial_year(oeff.date) - t.first_exposed_fy) <= 2:
             overlapping.append(other.id)
     if overlapping:
-        weaknesses.append("other recorded changes hit the same industry and place within two years: "
-                          + ", ".join(sorted(overlapping)))
+        weaknesses.append(
+            "other recorded changes hit the same industry and place within two years: " + ", ".join(sorted(overlapping))
+        )
 
     if not rec.verified.dates:
         weaknesses.append("dates not fully verified")

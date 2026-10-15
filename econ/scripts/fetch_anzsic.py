@@ -22,9 +22,7 @@ def main() -> None:
     resp.raise_for_status()
     codelist = resp.json()["data"]["codelists"][0]
     codes = [
-        {"code": c["id"], "name": c["name"], "parent": c.get("parent")}
-        for c in codelist["codes"]
-        if c["id"] != "TOT"
+        {"code": c["id"], "name": c["name"], "parent": c.get("parent")} for c in codelist["codes"] if c["id"] != "TOT"
     ]
     payload = {
         "source": URL,

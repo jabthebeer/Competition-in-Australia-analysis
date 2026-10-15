@@ -10,12 +10,12 @@ from __future__ import annotations
 
 import datetime as dt
 from collections.abc import Callable, Iterable
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Literal
 
 import httpx
 
-from ..register.schema import ChangeRecord
+from ..register.schema import ChangeRecord, Instrument
 from ..timing import Timing, timing
 from .base import RegisterAdapter, RegisterDates
 
@@ -64,53 +64,74 @@ class EffectiveDates:
         }
 
 
-def _register_dates_for(rd: RegisterDates) -> set[dt.date]:
-    dates = {c.date for c in rd.commencements}
-    dates.update(v.start for v in rd.versions)
-    return dates
+ACT_ROLES = ("principal", "amending")
+
+
+def _readable(rd: RegisterDates) -> bool:
+    return rd.method != "none"
 
 
 def reconcile(record: ChangeRecord, register: Iterable[RegisterDates]) -> EffectiveDates:
-    """Compare a record with what the registers say. Pure: no network."""
+    """Compare a record with what the registers say. Pure: no network.
+
+    Rules:
+    - Judge against the record's own jurisdiction's instruments when it lists any (a state
+      record may also cite a Commonwealth Act, whose dates are context only); otherwise
+      against all of them.
+    - "confirmed": the effective date equals a register commencement date or version start.
+    - "differs": the register states explicit commencement dates and none matches. Version
+      starts alone never contradict a date (a principal law's first version starts at assent
+      or registration, not necessarily at commencement).
+    - "unconfirmed": nothing readable to compare against.
+    - The assent/making date is checked against the Acts and principal instruments only.
+    """
     register = tuple(register)
     eff = record.effective_commencement
     issues: list[str] = []
 
+    own = [r for r in register if r.jurisdiction == record.jurisdiction]
+    basis = [r for r in (own or register) if _readable(r)]
+
     rec_assent = record.dates.assent_or_made.date
-    reg_assents = {r.assent_or_made for r in register if r.assent_or_made}
+    reg_assents = {r.assent_or_made for r in basis if r.assent_or_made and r.role in ACT_ROLES}
     if rec_assent and reg_assents and rec_assent not in reg_assents:
         shown = ", ".join(sorted(d.isoformat() for d in reg_assents))
         issues.append(f"assent/making date {rec_assent.isoformat()} not found in register ({shown})")
 
     for rd in register:
         if rd.repealed and eff and rd.repealed <= eff.date:
-            issues.append(f"{rd.title}: register shows repeal on {rd.repealed.isoformat()}, "
-                          f"on or before the effective date")
+            issues.append(
+                f"{rd.title}: register shows repeal on {rd.repealed.isoformat()}, on or before the effective date"
+            )
         issues.extend(f"{rd.title}: {n}" for n in rd.notes)
 
+    commenced = {c.date for r in basis for c in r.commencements}
+    starts = {v.start for r in basis for v in r.versions}
     if eff is None:
         status: Status = "not-commenced"
+    elif eff.date in commenced | starts:
+        status = "confirmed"
+    elif commenced:
+        status = "differs"
+        near = sorted(commenced | starts, key=lambda d: abs((d - eff.date).days))[:3]
+        issues.append(
+            f"effective date {eff.date.isoformat()} not among register commencement dates; nearest: "
+            + ", ".join(d.isoformat() for d in near)
+        )
     else:
-        known = set().union(*(_register_dates_for(r) for r in register)) if register else set()
-        if eff.date in known:
-            status = "confirmed"
-        elif known:
-            status = "differs"
-            near = sorted(known, key=lambda d: abs((d - eff.date).days))[:3]
-            issues.append(
-                f"effective date {eff.date.isoformat()} not among register dates; nearest: "
-                + ", ".join(d.isoformat() for d in near)
-            )
-        else:
-            status = "unconfirmed"
+        status = "unconfirmed"
+        if own and not basis:
+            issues.append(f"no readable {record.jurisdiction} register entry; other registers are context only")
 
     if record.dates.announced.date and eff and record.dates.announced.date > eff.date:
         issues.append("announcement date is after the effective date")
     if rec_assent and eff and rec_assent > eff.date:
         issues.append("assent/making date is after the effective date")
     if not record.verified.dates:
-        issues.append("record marks its dates as not fully verified" +
-                      (f": {record.verified.notes}" if record.verified.notes else ""))
+        issues.append(
+            "record marks its dates as not fully verified"
+            + (f": {record.verified.notes}" if record.verified.notes else "")
+        )
 
     return EffectiveDates(
         record_id=record.id,
@@ -128,26 +149,36 @@ def reconcile(record: ChangeRecord, register: Iterable[RegisterDates]) -> Effect
     )
 
 
-AdapterFor = Callable[[str], RegisterAdapter]
+AdapterFor = Callable[[Instrument, str], RegisterAdapter]
 
 
 def gather(record: ChangeRecord, client: httpx.Client | None, adapter_for: AdapterFor) -> EffectiveDates:
-    """Look up every instrument of a record in its register, then reconcile.
+    """Look up every instrument of a record in its own register, then reconcile.
 
-    With ``client=None`` (offline), registers are not consulted and the result relies on the
-    record's sourced dates alone.
+    Each instrument goes to the register its URL or identifier belongs to (a state record can
+    cite a Commonwealth Act). With ``client=None`` (offline), registers are not consulted and
+    the result relies on the record's sourced dates alone.
     """
     found: list[RegisterDates] = []
     if client is not None:
-        adapter = adapter_for(record.jurisdiction)
         for inst in record.instruments:
+            adapter = adapter_for(inst, record.jurisdiction)
             try:
-                found.append(adapter.lookup(inst, client))
-            except httpx.HTTPError as exc:
-                found.append(_failed(record.jurisdiction, inst.title, f"register request failed: {exc}"))
+                found.append(replace(adapter.lookup(inst, client), role=inst.role))
+            except Exception as exc:  # one unreadable page must not stop a batch; report it on the record
+                found.append(
+                    _failed(adapter.jurisdiction, inst.title, f"register lookup failed ({type(exc).__name__}): {exc}")
+                )
     return reconcile(record, found)
 
 
 def _failed(jurisdiction: str, title: str, note: str) -> RegisterDates:
-    return RegisterDates(jurisdiction=jurisdiction, title=title, register_id=None, url=None, method="none",
-                         retrieved_at=dt.datetime.now(dt.UTC), notes=(note,))
+    return RegisterDates(
+        jurisdiction=jurisdiction,
+        title=title,
+        register_id=None,
+        url=None,
+        method="none",
+        retrieved_at=dt.datetime.now(dt.UTC),
+        notes=(note,),
+    )

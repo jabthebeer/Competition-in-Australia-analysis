@@ -1,3 +1,95 @@
 # regimpact
 
-Public-data toolkit for evaluating how Australian regulatory changes affect competition.
+Public-data toolkit for evaluating how Australian regulatory changes affect competition. It is part of the econometric foundation scoped in [`docs/econometric_foundation_scoping.md`](../docs/econometric_foundation_scoping.md). The evaluation design it serves is [`docs/impact_evaluation_design.md`](../docs/impact_evaluation_design.md).
+
+> Unofficial research tooling. Not an Australian Government product.
+
+## Status (15 October 2026)
+
+| Part | What it does | Status |
+|---|---|---|
+| Register of changes | One validated record per regulatory change per jurisdiction, in [`regulation-register/`](../regulation-register/) | 69 draft records, none reviewed yet |
+| Effective-date gatherer | Reads assent, commencement and version dates from the legislation registers and checks each record's effective date against them | Commonwealth, Qld, Tas, ACT, WA and NT automated; Victoria version dates only; NSW and SA blocked (sourced dates only) |
+| Timing | Maps a commencement onto financial years and quarters, with the partly exposed first period | Done |
+| Evaluability screen | Rates each change high, medium or low for public-data evaluation, with reasons | Done (rules stated in `menu/screen.py`) |
+| Menu explorer | One interactive HTML page: filters, list, adoption timeline, record details | Done |
+| Outcome panels and estimators | CABEE entry and exit panel, prices, productivity; the recipes in the design document | Not started |
+
+## Setup
+
+Requires Python 3.11 or later and [uv](https://docs.astral.sh/uv/).
+
+```bash
+cd econ
+uv sync
+uv run pytest              # offline tests (76)
+uv run ruff check src tests scripts
+```
+
+## Commands
+
+```bash
+uv run regimpact validate                    # check every register record (schema, ANZSIC codes and names, CPI classes)
+uv run regimpact menu                        # list changes with their evaluability rating
+uv run regimpact menu --jurisdiction nsw --direction weakening
+uv run regimpact menu --industry 4623        # ANZSIC code or prefix
+uv run regimpact show nsw-rideshare-2015     # one record in full, with its screen
+uv run regimpact families                    # multi-jurisdiction reforms in date order
+uv run regimpact dates cth-uct-penalties-2023      # effective date, checked against the register
+uv run regimpact dates --all --json > ../regulation-register/reports/effective_dates_YYYY-MM-DD.json
+uv run regimpact dates --all --offline       # sourced dates and timing only, no network
+uv run regimpact explorer -o menu.html --dates ../regulation-register/reports/effective_dates_2026-10-15.json
+uv run regimpact explorer -o menu.html --standalone   # full HTML document for opening locally
+```
+
+`regimpact dates` reports, for each change:
+
+- the effective date (the record's primary commencement);
+- the first exposed and first full financial year, with the share of the first year exposed;
+- the first full quarter;
+- a status:
+  - **confirmed**: a register date matches;
+  - **differs**: the register states commencement dates and none matches;
+  - **unconfirmed**: nothing readable to compare;
+  - **not-commenced**;
+- every issue found, for example an assent date that disagrees with the register.
+
+## How effective dates are read
+
+| Register | Method | Notes |
+|---|---|---|
+| Commonwealth (legislation.gov.au) | REST API: title record (assent or making date, registration, repeal); the s 2 commencement table in the as-made Word document; for an amending law, the start of each compilation of the principal law that cites it | An amending Act's effective date is read per schedule, from the principal's compilations |
+| Queensland | As-made XML; for a principal Act, its legislative-history XML | Amending Acts are checked through their principal Act |
+| Tasmania | Amendment commencement table (JSON) searched by title | |
+| ACT | Landing page: notified date and commencement table | 10-second spacing (robots.txt) |
+| WA | Act page (assent) and "History of this Act" table | Commencement free text parsed per segment |
+| NT | As-assented page | Needs the as-assented link in the record |
+| Victoria | In-force version dates | Assent and commencement are in documents the site asks robots not to fetch |
+| NSW, SA | Not read | Both block automated requests; records rely on sourced dates |
+
+Requests carry a descriptive User-Agent, are spaced per host, are retried on timeouts and server errors, and are cached in `econ/.cache/` for seven days (not committed). See [`SOURCES.md`](SOURCES.md) for licences and attribution.
+
+## Layout
+
+```
+econ/
+  src/regimpact/
+    register/      schema.py (record model), catalogue.py (load, filter, families)
+    legislation/   frl.py (Commonwealth), states.py (states and territories), gather.py (reconcile),
+                   adapters.py (routing), http.py (polite fetching), cache.py, text.py (dates, Word tables)
+    menu/          screen.py (evaluability), explorer.py + templates/explorer.html (the page)
+    timing.py      financial years and quarters
+    anzsic.py, cpi.py, data/   bundled ABS classifications (CC BY 4.0)
+    cli.py
+  scripts/         regenerate bundled data; record test fixtures; import desk-research drafts; export the schema
+  tests/           offline tests; fixtures are real register responses
+```
+
+## Ground rules
+
+- **No invented data.** Every date in a record has a source URL. Test records are labelled illustrative.
+- **Draft until reviewed.** Records from desk research stay `draft` until a person has checked them.
+- **Hypotheses, not findings.** The direction (enhancing or weakening) is what the evaluation tests.
+- **Public data only.** No BLADE microdata, and no confidential proposals in the register.
+
+Decisions are logged in [`DECISIONS.md`](DECISIONS.md).

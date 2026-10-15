@@ -1,11 +1,11 @@
 """Command line: ``regimpact <command>``.
 
-  regimpact validate                      check every register record
-  regimpact menu [filters]                list candidate changes, with an evaluability screen
-  regimpact show <id>                     one record in full
-  regimpact families                      reforms adopted by several jurisdictions, in date order
-  regimpact dates <id>... | --all         gather effective dates and check them against registers
-  regimpact explorer [-o file.html]       build the interactive menu explorer (one HTML file)
+regimpact validate                      check every register record
+regimpact menu [filters]                list candidate changes, with an evaluability screen
+regimpact show <id>                     one record in full
+regimpact families                      reforms adopted by several jurisdictions, in date order
+regimpact dates <id>... | --all         gather effective dates and check them against registers
+regimpact explorer [-o file.html]       build the interactive menu explorer (one HTML file)
 """
 
 from __future__ import annotations
@@ -34,15 +34,20 @@ def cmd_validate(args) -> int:
     for r in result.records:
         for ind in r.industries:
             problems.extend(f"{r.id}.json: industries: {p}" for p in anzsic.check(ind.anzsic, ind.name))
-    warnings = [f"{r.id}.json: price_series names no CPI expenditure class: '{r.price_series}'"
-                for r in result.records if r.price_series and not cpi.matched_classes(r.price_series)]
+    warnings = [
+        f"{r.id}.json: price_series names no CPI expenditure class, group or subgroup: '{r.price_series}'"
+        for r in result.records
+        if r.price_series and not (cpi.matched_classes(r.price_series) or cpi.matched_aggregates(r.price_series))
+    ]
     for p in problems:
         print(p)
     for w in warnings:
         print(f"warning: {w}")
     drafts = sum(r.review.status == "draft" for r in result.records)
-    print(f"{len(result.records)} record(s) loaded; {len(problems)} problem(s); {len(warnings)} warning(s); "
-          f"{drafts} awaiting review.")
+    print(
+        f"{len(result.records)} record(s) loaded; {len(problems)} problem(s); {len(warnings)} warning(s); "
+        f"{drafts} awaiting review."
+    )
     return 1 if problems else 0
 
 
@@ -50,34 +55,51 @@ def cmd_menu(args) -> int:
     from .menu.screen import screen_all
 
     all_records = _load(args)
-    records = list(filter_records(all_records, jurisdiction=args.jurisdiction, direction=args.direction,
-                                  channel=args.channel, industry=args.industry, family=args.family,
-                                  text=args.text))
+    records = list(
+        filter_records(
+            all_records,
+            jurisdiction=args.jurisdiction,
+            direction=args.direction,
+            channel=args.channel,
+            industry=args.industry,
+            family=args.family,
+            text=args.text,
+        )
+    )
     screens = screen_all(all_records)
     rows = []
-    for r in sorted(records, key=lambda r: (r.effective_commencement is None,
-                                            r.effective_commencement.date if r.effective_commencement else None)):
+    for r in sorted(
+        records,
+        key=lambda r: (
+            r.effective_commencement is None,
+            r.effective_commencement.date if r.effective_commencement else None,
+        ),
+    ):
         s = screens[r.id]
         if args.rating and s.rating != args.rating:
             continue
         eff = r.effective_commencement
-        rows.append({
-            "id": r.id,
-            "jurisdiction": r.jurisdiction,
-            "effective": eff.date.isoformat() if eff else "",
-            "direction": r.direction,
-            "industries": " ".join(i.anzsic for i in r.industries),
-            "rating": s.rating,
-            "title": r.title,
-        })
+        rows.append(
+            {
+                "id": r.id,
+                "jurisdiction": r.jurisdiction,
+                "effective": eff.date.isoformat() if eff else "",
+                "direction": r.direction,
+                "industries": " ".join(i.anzsic for i in r.industries),
+                "rating": s.rating,
+                "title": r.title,
+            }
+        )
     if args.csv:
         w = csv.DictWriter(sys.stdout, fieldnames=list(rows[0]) if rows else ["id"])
         w.writeheader()
         w.writerows(rows)
         return 0
     for row in rows:
-        print(f"{row['effective'] or 'not yet':10}  {row['jurisdiction']:3}  {row['direction']:9}  "
-              f"{row['rating']:8}  {row['id']:38}  {row['title']}")
+        print(
+            f"{row['effective'] or 'not yet':10}  {row['jurisdiction']:3}  {row['direction']:9}  "
+            f"{row['rating']:8}  {row['id']:38}  {row['title']}"
+        )
     print(f"\n{len(rows)} change(s).")
     return 0
 
@@ -134,9 +156,11 @@ def cmd_dates(args) -> int:
     for res in results:
         t = res.timing.as_dict() if res.timing else {}
         print(f"{res.record_id}  [{res.status}: {STATUS_HELP[res.status]}]")
-        print(f"  effective {t.get('effective_date', 'n/a')}  first exposed FY {t.get('first_exposed_fy', 'n/a')}"
-              f" ({t.get('exposure_share_first_fy', '')} of the year)  first full FY {t.get('first_full_fy', 'n/a')}"
-              f"  first full quarter {t.get('first_full_quarter', 'n/a')}")
+        print(
+            f"  effective {t.get('effective_date', 'n/a')}  first exposed FY {t.get('first_exposed_fy', 'n/a')}"
+            f" ({t.get('exposure_share_first_fy', '')} of the year)  first full FY {t.get('first_full_fy', 'n/a')}"
+            f"  first full quarter {t.get('first_full_quarter', 'n/a')}"
+        )
         for issue in res.issues:
             print(f"  ! {issue}")
     return 0
@@ -146,14 +170,16 @@ def cmd_explorer(args) -> int:
     from .menu.explorer import build_explorer
 
     out = Path(args.output)
-    build_explorer(_load(args), out)
+    report = Path(args.dates) if args.dates else None
+    build_explorer(_load(args), out, dates_report=report, standalone=args.standalone)
     print(f"Wrote {out}")
     return 0
 
 
 def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(prog="regimpact", description=__doc__,
-                                formatter_class=argparse.RawDescriptionHelpFormatter)
+    p = argparse.ArgumentParser(
+        prog="regimpact", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     p.add_argument("--records", help="folder of register records (default: regulation-register/records)")
     sub = p.add_subparsers(dest="command", required=True)
 
@@ -185,6 +211,8 @@ def main(argv: list[str] | None = None) -> int:
 
     e = sub.add_parser("explorer", help="build the interactive menu explorer (one HTML file)")
     e.add_argument("-o", "--output", default="regulation-menu.html")
+    e.add_argument("--dates", help="a report from 'regimpact dates --all --json', to show register checks")
+    e.add_argument("--standalone", action="store_true", help="wrap in a full HTML document for local viewing")
     e.set_defaults(func=cmd_explorer)
 
     args = p.parse_args(argv)

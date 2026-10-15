@@ -1,0 +1,97 @@
+{
+  "id": "nsw-boxing-day-2015",
+  "family": "retail-trading-hours",
+  "title": "Statewide Boxing Day trading (NSW)",
+  "jurisdiction": "NSW",
+  "summary": "The Retail Trading Amendment Act 2015 allowed shops statewide to open on Boxing Day if staffed only by people who freely elected to work (trial for 2015 and 2016); the Retail Trading Amendment (Boxing Day) Act 2017 removed the sunset.",
+  "instruments": [
+    {
+      "title": "Retail Trading Amendment Act 2015 No 55",
+      "register_url": "https://legislation.nsw.gov.au/view/html/2015-11-19/act-2015-055/lh",
+      "register_id": "2015 No 55",
+      "role": "amending",
+      "provisions": "Inserts s 8A Retail Trading Act 2008"
+    },
+    {
+      "title": "Retail Trading Amendment (Boxing Day) Act 2017 No 45",
+      "register_url": "https://legislation.nsw.gov.au/view/html/2017-09-25/act-2017-045/lh",
+      "register_id": "2017 No 45",
+      "role": "amending",
+      "provisions": "Removes 1 Dec 2017 sunset"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": "2015-11-19",
+      "source": "https://legislation.nsw.gov.au/view/html/2015-11-19/act-2015-055/lh"
+    },
+    "commenced": [
+      {
+        "date": "2015-11-19",
+        "what": "Act commenced on assent (first statewide Boxing Day trading 26 Dec 2015)",
+        "source": "https://legislation.nsw.gov.au/view/html/2015-11-19/act-2015-055/lh",
+        "primary": true
+      },
+      {
+        "date": "2017-09-25",
+        "what": "Boxing Day trading made permanent",
+        "source": "https://legislation.nsw.gov.au/view/html/2017-09-25/act-2017-045/lh",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "enhancing",
+  "direction_rationale": "One extra trading day a year modestly increases retailers' ability to compete; effects on entry are likely small.",
+  "direction_sources": [
+    "https://www.pc.gov.au/inquiries-and-research/retail-industry/"
+  ],
+  "channels": [
+    "ability-incentive",
+    "consumer-choice",
+    "prices-market-share"
+  ],
+  "industries": [
+    {
+      "anzsic": "4110",
+      "name": "Supermarket and Grocery Stores",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "4260",
+      "name": "Department Stores",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "4251",
+      "name": "Clothing Retailing",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "4123",
+      "name": "Liquor Retailing",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Other states",
+  "confounders": [
+    "growth of online retail",
+    "mining boom/bust in WA",
+    "COVID-19 2020-21"
+  ],
+  "price_series": null,
+  "notes": "Small treatment; best used as a placebo/robustness case rather than a headline estimate.",
+  "verified": {
+    "dates": true,
+    "notes": null
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. Primary commencement chosen on 15 October 2026 as the date the change described in the title took effect; confirm on review."
+  }
+}
