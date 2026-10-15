@@ -22,7 +22,7 @@ Regenerate with `scripts/fetch_anzsic.py` and `scripts/fetch_cpi_classes.py`.
 | Victorian legislation | <https://www.legislation.vic.gov.au/in-force/…> (version dates only) | "Personal use only"; document hosts disallowed by robots.txt, so not fetched |
 | NSW, SA | Not read | Both return a Cloudflare challenge to automated requests |
 
-Register responses used as test fixtures (`tests/fixtures/`) were retrieved on 14–15 October 2026. Large responses are trimmed, with their structure unchanged.
+Register responses used as test fixtures (`tests/fixtures/`) were retrieved on 14–15 October 2026. Large responses are trimmed, with their structure unchanged. The ACT, NT and Victorian fixtures, whose content is not under a Creative Commons licence, are reduced to factual extracts: dates, provision labels and the markup the parsers read (`scripts/trim_state_fixtures.py`). The WA fixture is a whole page (CC BY 4.0).
 
 ## Outcome data (first case)
 
