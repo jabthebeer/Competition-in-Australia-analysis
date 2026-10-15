@@ -41,5 +41,29 @@
       "difference_in_differences": 0.0
     },
     "note": "Comparison states NSW, VIC, QLD, TAS, ACT (NT has no data for 2007-08 and 2008-09)"
+  },
+  "descriptive_placebos_for_display": {
+    "gva_per_worker": {
+      "estimate_log_points": -0.336,
+      "state_placebos": {
+        "ACT": 24.194,
+        "NSW": -8.687,
+        "NT": -3.043,
+        "QLD": -10.742,
+        "TAS": 3.821,
+        "VIC": -5.544
+      }
+    },
+    "real_coe_per_worker": {
+      "estimate_log_points": -8.882,
+      "state_placebos": {
+        "ACT": 15.038,
+        "NSW": -11.325,
+        "NT": 21.642,
+        "QLD": -12.648,
+        "TAS": -0.372,
+        "VIC": -12.336
+      }
+    }
   }
 }

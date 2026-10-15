@@ -4,7 +4,7 @@ A series of econometric analyses for competition in Australia, aiming to ultimat
 ## Projects
 
 - [`regulatory-burden-tool/`](regulatory-burden-tool/): an unofficial calculator for regulatory burden under the OIA Regulatory Burden Measurement framework, with reform (remove-and-replace) comparisons and analysis-ready exports for competition and business-dynamism research.
-- [`econ/`](econ/): `regimpact`, a public-data toolkit for evaluating how regulatory changes affect competition. It has a register of changes, an effective-date gatherer that checks the legislation registers, an evaluability screen and a menu explorer.
+- [`econ/`](econ/): `regimpact`, a public-data toolkit for evaluating how regulatory changes affect competition. It has a register of changes, an effective-date gatherer that checks the legislation registers, an evaluability screen, a menu explorer that shows evaluated changes and their results, and the analyses behind those results.
 - [`regulation-register/`](regulation-register/): the register itself, with one record per regulatory change per jurisdiction, and dated reports from the date checks.
 
 ## Planning

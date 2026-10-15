@@ -12,6 +12,7 @@ from importlib import resources
 from pathlib import Path
 
 from .. import anzsic
+from ..register.evaluation import CATEGORY_LABELS, Evaluation
 from ..register.schema import CHANNEL_LABELS, ChangeRecord
 from ..timing import fy_bounds, timing
 from .screen import COVID_FYS, DEFAULT_COVERAGE, screen_all
@@ -43,6 +44,14 @@ SCREEN_RULES = (
     "overlapping 2019-20 to 2021-22 (COVID); another recorded change in the same industry and place within "
     "two years; dates not fully verified. None: high. One: medium. Two or more: low."
 )
+# Evaluation documents are linked on GitHub; override with --repo-base once the work is merged.
+REPO_BASE = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/claude/sharp-bell-4dsvcz/"
+EVALUATION_NOTE = (
+    "Evaluated changes have a pre-registered analysis in this repository: a plan committed before the "
+    "results were estimated, a graded result and its caveats. A record's direction stays a hypothesis; the "
+    "evaluation says what the data showed. Grades follow the evaluation design: Strong, Moderate, Weak or "
+    "Not identified."
+)
 CHECK_NOTE = (
     "Effective dates are checked against the official legislation registers by 'regimpact dates'. "
     "Commonwealth, Queensland, Tasmania, ACT, WA and NT registers can be read automatically; Victoria gives "
@@ -64,10 +73,16 @@ def _division_names() -> dict[str, str]:
 
 
 def build_payload(
-    records: list[ChangeRecord], dates_report: list[dict] | None = None, generated: dt.date | None = None
+    records: list[ChangeRecord],
+    dates_report: list[dict] | None = None,
+    generated: dt.date | None = None,
+    evaluations: list[Evaluation] | None = None,
+    repo_base: str | None = None,
 ) -> dict:
     screens = screen_all(records)
     checks = {d["record_id"]: d for d in dates_report or []}
+    evaluations = evaluations or []
+    evaluated = {rid: ev.id for ev in evaluations for rid in ev.records}
     out = []
     for r in records:
         eff = r.effective_commencement
@@ -83,6 +98,7 @@ def build_payload(
                 "channelLabels": [CHANNEL_LABELS[c] for c in r.channels],
                 "short": _short(r.title),
                 "check": {"status": check["status"], "issues": check["issues"]} if check else None,
+                "evaluation": evaluated.get(r.id),
             }
         )
         if eff:
@@ -104,6 +120,10 @@ def build_payload(
             f"{last_end.year - 1}-{str(last_end.year)[2:]}",
         },
         "covidFys": [min(COVID_FYS), max(COVID_FYS)],
+        "evaluations": {ev.id: ev.model_dump(mode="json") for ev in evaluations},
+        "categoryLabels": CATEGORY_LABELS,
+        "repoBase": repo_base or REPO_BASE,
+        "evaluationNote": EVALUATION_NOTE,
         "screenRules": SCREEN_RULES,
         "checkNote": CHECK_NOTE,
     }
@@ -124,8 +144,14 @@ def render(payload: dict, standalone: bool = False) -> str:
 
 
 def build_explorer(
-    records: list[ChangeRecord], out: Path, dates_report: Path | None = None, standalone: bool = False
+    records: list[ChangeRecord],
+    out: Path,
+    dates_report: Path | None = None,
+    standalone: bool = False,
+    evaluations: list[Evaluation] | None = None,
+    repo_base: str | None = None,
 ) -> Path:
     report = json.loads(dates_report.read_text("utf-8")) if dates_report and dates_report.exists() else None
-    out.write_text(render(build_payload(records, report), standalone), encoding="utf-8")
+    payload = build_payload(records, report, evaluations=evaluations, repo_base=repo_base)
+    out.write_text(render(payload, standalone), encoding="utf-8")
     return out

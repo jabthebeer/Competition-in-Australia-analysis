@@ -12,7 +12,8 @@ Public-data toolkit for evaluating how Australian regulatory changes affect comp
 | Effective-date gatherer | Reads assent, commencement and version dates from the legislation registers and checks each record's effective date against them | Commonwealth, Qld, Tas, ACT, WA and NT automated; Victoria version dates only; NSW and SA blocked (sourced dates only) |
 | Timing | Maps a commencement onto financial years and quarters, with the partly exposed first period | Done |
 | Evaluability screen | Rates each change high, medium or low for public-data evaluation, with reasons | Done (rules stated in `menu/screen.py`) |
-| Menu explorer | One interactive HTML page: filters, list, adoption timeline, record details | Done |
+| Menu explorer | One interactive HTML page: search and filters (including **Evaluated**), list, adoption timeline, record details, and a **Results** view with each evaluation's verdict, grade, estimated effects and year-by-year charts | Done |
+| Evaluation results | One validated file per evaluation in [`regulation-register/evaluations/`](../regulation-register/evaluations/), written from the analysis outputs by the case's `evaluation.py` and checked against them by the tests | 1 evaluation (WA trading hours) |
 | Outcome panels | CABEE entry and exit by ANZSIC class, state and size (2007-08 to 2019-20, 10 releases stitched); CPI by capital city (ABS Data API); state retail output and pay per worker | Done for the first case |
 | Estimators | Two-way fixed effects, event study, blinding, comparison-state and industry placebos, planted-effect simulations (`evaluate/did.py`) | Done for single-treated-state designs; staggered estimators not started |
 | First case | Perth trading-hours deregulation (2010, 2012): blinded robustness review, pre-analysis plan and results ([review](../docs/robustness_review_wa_trading_hours.md), [plan](../docs/pap_wa_trading_hours.md), [results](../docs/results_wa_trading_hours.md)) | Done: no detectable effect on entry or exit; grade Moderate |
@@ -30,12 +31,13 @@ uv run python analyses/wa_trading_hours/design_review.py   # blinded design revi
 uv run python analyses/wa_trading_hours/estimate.py        # registered estimation (--blind for the dry run)
 uv run python analyses/wa_trading_hours/posthoc.py         # checks added after unblinding (not pre-registered)
 uv run python analyses/wa_trading_hours/figure.py          # event-study figure for the results
+uv run python analyses/wa_trading_hours/evaluation.py      # write the register's evaluation file from the outputs
 ```
 
 ## Commands
 
 ```bash
-uv run regimpact validate                    # check every register record (schema, ANZSIC codes and names, CPI classes)
+uv run regimpact validate                    # check every register record (schema, ANZSIC codes and names, CPI classes) and evaluation
 uv run regimpact menu                        # list changes with their evaluability rating
 uv run regimpact menu --jurisdiction nsw --direction weakening
 uv run regimpact menu --industry 4623        # ANZSIC code or prefix
@@ -80,7 +82,7 @@ Requests carry a descriptive User-Agent, are spaced per host, are retried on tim
 ```
 econ/
   src/regimpact/
-    register/      schema.py (record model), catalogue.py (load, filter, families)
+    register/      schema.py (record model), catalogue.py (load, filter, families), evaluation.py (results model)
     legislation/   frl.py (Commonwealth), states.py (states and territories), gather.py (reconcile),
                    adapters.py (routing), http.py (polite fetching), cache.py, text.py (dates, Word tables)
     menu/          screen.py (evaluability), explorer.py + templates/explorer.html (the page)

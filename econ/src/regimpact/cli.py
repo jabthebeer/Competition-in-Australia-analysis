@@ -1,6 +1,6 @@
 """Command line: ``regimpact <command>``.
 
-regimpact validate                      check every register record
+regimpact validate                      check every register record and evaluation
 regimpact menu [filters]                list candidate changes, with an evaluability screen
 regimpact show <id>                     one record in full
 regimpact families                      reforms adopted by several jurisdictions, in date order
@@ -18,6 +18,7 @@ from pathlib import Path
 
 from . import anzsic, cpi
 from .register.catalogue import families, filter_records, load_records
+from .register.evaluation import load_evaluations
 from .register.schema import CHANNEL_LABELS, JURISDICTIONS, ChangeRecord
 
 
@@ -39,14 +40,16 @@ def cmd_validate(args) -> int:
         for r in result.records
         if r.price_series and not (cpi.matched_classes(r.price_series) or cpi.matched_aggregates(r.price_series))
     ]
+    evals = load_evaluations(result.records, Path(args.evaluations) if args.evaluations else None)
+    problems.extend(evals.problems)
     for p in problems:
         print(p)
     for w in warnings:
         print(f"warning: {w}")
     drafts = sum(r.review.status == "draft" for r in result.records)
     print(
-        f"{len(result.records)} record(s) loaded; {len(problems)} problem(s); {len(warnings)} warning(s); "
-        f"{drafts} awaiting review."
+        f"{len(result.records)} record(s) and {len(evals.evaluations)} evaluation(s) loaded; {len(problems)} "
+        f"problem(s); {len(warnings)} warning(s); {drafts} record(s) awaiting review."
     )
     return 1 if problems else 0
 
@@ -171,7 +174,18 @@ def cmd_explorer(args) -> int:
 
     out = Path(args.output)
     report = Path(args.dates) if args.dates else None
-    build_explorer(_load(args), out, dates_report=report, standalone=args.standalone)
+    records = _load(args)
+    evals = load_evaluations(records, Path(args.evaluations) if args.evaluations else None)
+    if evals.problems:
+        print(f"{len(evals.problems)} problem(s) in the evaluations; run 'regimpact validate'.", file=sys.stderr)
+    build_explorer(
+        records,
+        out,
+        dates_report=report,
+        standalone=args.standalone,
+        evaluations=evals.evaluations,
+        repo_base=args.repo_base,
+    )
     print(f"Wrote {out}")
     return 0
 
@@ -181,6 +195,7 @@ def main(argv: list[str] | None = None) -> int:
         prog="regimpact", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     p.add_argument("--records", help="folder of register records (default: regulation-register/records)")
+    p.add_argument("--evaluations", help="folder of evaluation results (default: regulation-register/evaluations)")
     sub = p.add_subparsers(dest="command", required=True)
 
     sub.add_parser("validate", help="check every register record").set_defaults(func=cmd_validate)
@@ -213,6 +228,7 @@ def main(argv: list[str] | None = None) -> int:
     e.add_argument("-o", "--output", default="regulation-menu.html")
     e.add_argument("--dates", help="a report from 'regimpact dates --all --json', to show register checks")
     e.add_argument("--standalone", action="store_true", help="wrap in a full HTML document for local viewing")
+    e.add_argument("--repo-base", default=None, help="URL that evaluation document paths are linked under")
     e.set_defaults(func=cmd_explorer)
 
     args = p.parse_args(argv)

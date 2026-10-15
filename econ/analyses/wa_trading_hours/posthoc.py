@@ -5,6 +5,9 @@
    2000-Q1 to 2010-Q3), then re-run the registered estimator and its comparison-city placebos.
 2. Entry and exit means on a balanced panel (without NT, which has no data for 2007-08 and
    2008-09), so the simple before-and-after table matches the estimator.
+3. For display only: the comparison-state placebo estimates behind the descriptive productivity
+   and pay results (the registered run saved only their spread). The WA estimates are recomputed
+   by the same code and must equal estimate.json.
 
 Run: uv run python analyses/wa_trading_hours/posthoc.py
 Writes: analyses/wa_trading_hours/posthoc.json
@@ -21,6 +24,7 @@ from design_review import CONTROLS, FIRST_POST_FY, T_CLASSES, TREATED, WINDOW, c
 from estimate import FIRST_POST_Q, UNITS, cpi_quarterly, num, relative_price, series
 
 from regimpact.evaluate.did import placebo_in_space, twfe
+from regimpact.outcomes import productivity
 
 HERE = Path(__file__).resolve().parent
 
@@ -84,11 +88,35 @@ def balanced_means() -> dict:
     return out
 
 
+def descriptive_placebos(raw: pd.DataFrame) -> dict:
+    """Same steps as estimate.descriptive_productivity, keeping the comparison-state estimates."""
+    allg = raw[raw["index_code"] == "10001"].copy()
+    allg["fy"] = allg["q"] // 4 + (allg["q"] % 4 >= 2)
+    cpi = allg.groupby(["fy", "state"])["value"].agg(["mean", "count"]).reset_index()
+    cpi = cpi[cpi["count"] == 4].rename(columns={"mean": "cpi"})[["fy", "state", "cpi"]]
+    p = productivity.panel(cpi)
+    registered = json.loads((HERE / "estimate.json").read_text(encoding="utf-8"))["descriptive_productivity_and_pay"]
+    out = {}
+    for var, years in (("gva_per_worker", (1990, 2018)), ("real_coe_per_worker", (2001, 2018))):
+        g = p[(p["division"] == "G") & p["state"].isin(UNITS) & p["fy"].between(*years)].copy()
+        g = g.rename(columns={"state": "unit", "fy": "time"})
+        g["y"] = 100 * np.log(g[var])
+        df = g[["unit", "time", "y"]].dropna()
+        est = twfe(df, TREATED, FIRST_POST_FY)
+        assert num(est) == registered[var]["estimate_log_points"], f"{var} does not reproduce estimate.json"
+        out[var] = {
+            "estimate_log_points": num(est),
+            "state_placebos": series(placebo_in_space(df, TREATED, FIRST_POST_FY).estimates),
+        }
+    return out
+
+
 def main() -> None:
     report = {
         "label": "NOT PRE-REGISTERED: run after unblinding to read the registered results",
         "food_price_trend_check": food_trend_check(),
         "balanced_panel_means": balanced_means(),
+        "descriptive_placebos_for_display": descriptive_placebos(cpi_quarterly()),
     }
     (HERE / "posthoc.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report, indent=1))

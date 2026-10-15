@@ -75,3 +75,25 @@ def test_the_register_loads_and_validates():
     assert result.ok, result.problems
     assert len(result.records) >= 60
     assert all(r.review.status in ("draft", "reviewed") for r in result.records)
+
+
+def test_payload_marks_evaluated_records_and_embeds_their_results():
+    from regimpact.register.evaluation import load_evaluations
+
+    records = load_records().records
+    evals = load_evaluations(records).evaluations
+    data = build_payload(records, evaluations=evals, repo_base="https://example.org/repo/")
+    by_id = {r["id"]: r for r in data["records"]}
+    ev = data["evaluations"]["wa-trading-hours-2010-2012"]
+    assert by_id["wa-trading-hours-weeknight-2010"]["evaluation"] == ev["id"]
+    assert by_id["wa-trading-hours-sunday-2012"]["evaluation"] == ev["id"]
+    assert sum(r["evaluation"] is not None for r in data["records"]) == len(ev["records"])
+    assert {o["category"] for o in ev["outcomes"]} == {"competition", "prices", "productivity"}
+    assert data["repoBase"] == "https://example.org/repo/" and data["categoryLabels"]["competition"] == "Competition"
+
+
+def test_payload_without_evaluations_still_renders():
+    page = render(build_payload([illustrative("x")]))
+    blob = re.search(r'<script type="application/json" id="menu-data">(.*?)</script>', page, re.S).group(1)
+    data = json.loads(blob)
+    assert data["evaluations"] == {} and data["records"][0]["evaluation"] is None

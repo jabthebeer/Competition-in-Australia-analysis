@@ -29,6 +29,21 @@ Browse it with the menu explorer (`uv run regimpact explorer` in `econ/`) or the
 6. **Check dates.** Run `uv run regimpact dates <id>`. Resolve or explain any "differs" status or assent mismatch.
 7. **Review.** A person who has checked the record sets `review` to `{"status": "reviewed", "by": "<name>", "on": "<date>"}`. `uv run regimpact validate` must pass.
 
+## Evaluations
+
+A record's `direction` is a hypothesis. What an evaluation found is kept separately, in `evaluations/<id>.json`, validated against `schema/evaluation.schema.json` (generated from `econ/src/regimpact/register/evaluation.py`). One evaluation can cover several records, for example two steps of one reform.
+
+| Field | Meaning |
+|---|---|
+| `records`, `family` | The register records the evaluation covers (each must exist; one evaluation per record) |
+| `verdict`, `finding_label`, `grade`, `grade_reason` | The pre-registered decision rule's verdict (supports enhancing, supports weakening, inconclusive), a short label for the menu, and the credibility grade (Strong, Moderate, Weak, Not identified) |
+| `headline`, `category_summaries` | Plain-English result, and one line each for competition, prices, and productivity and pay |
+| `outcomes` | Each estimate with its unit, 90% interval, the range the estimator gives where there was no reform (placebos), p-value, smallest detectable effect, finding, role and whether it was pre-registered |
+| `event_studies` | Year-by-year estimates with their placebo bands, for the charts |
+| `caveats`, `documents` | Limits to read alongside the result; the plan, results and code in this repository |
+
+**Evaluation files are generated, never typed by hand.** Each case's `econ/analyses/<case>/evaluation.py` writes the file from the analysis outputs, and `econ/tests/test_evaluation.py` checks the numbers against them. The menu explorer reads these files to show the **Evaluated** filter and the **Results** view.
+
 ## Reports
 
 `reports/effective_dates_<date>.json` is the output of `regimpact dates --all --json` on that date: each record's effective date, timing, register status and issues, with what each register returned. Federal Register content in these reports is CC BY 4.0: "Sourced from the Federal Register of Legislation" at each entry's `retrieved_at` date.
