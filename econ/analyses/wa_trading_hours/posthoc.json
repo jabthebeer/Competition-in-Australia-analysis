@@ -1,0 +1,45 @@
+{
+  "label": "NOT PRE-REGISTERED: run after unblinding to read the registered results",
+  "food_price_trend_check": {
+    "label": "NOT PRE-REGISTERED",
+    "registered_estimate_log_points": -2.218,
+    "after_removing_each_citys_pre_reform_trend": 0.722,
+    "p_state_placebo_detrended": 0.714,
+    "state_placebos_detrended": {
+      "ACT": 2.472,
+      "NSW": -1.034,
+      "NT": -0.903,
+      "QLD": 0.112,
+      "TAS": 0.241,
+      "VIC": -0.887
+    },
+    "pre_reform_trend_by_city_log_points_per_year": {
+      "ACT": 0.728,
+      "NSW": 0.945,
+      "NT": 0.762,
+      "QLD": 0.7,
+      "TAS": 0.811,
+      "VIC": 0.933,
+      "WA": 0.519
+    },
+    "perth_gap_slope_before_log_points_per_year": -0.294,
+    "perth_gap_slope_after_log_points_per_year": -0.18
+  },
+  "balanced_panel_means": {
+    "entries": {
+      "wa_pre": 16.08,
+      "wa_post": 13.43,
+      "comparison_states_pre": 16.24,
+      "comparison_states_post": 14.18,
+      "difference_in_differences": -0.6
+    },
+    "exits": {
+      "wa_pre": 15.07,
+      "wa_post": 14.49,
+      "comparison_states_pre": 16.1,
+      "comparison_states_post": 15.51,
+      "difference_in_differences": 0.0
+    },
+    "note": "Comparison states NSW, VIC, QLD, TAS, ACT (NT has no data for 2007-08 and 2008-09)"
+  }
+}

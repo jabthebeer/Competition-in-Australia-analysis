@@ -101,3 +101,12 @@ No analysis has been changed.
 | C6 | Grade (§9 and evaluation design §8) | **Not identified** if either pre-period event coefficient (net of the placebo mean) lies outside its 95% placebo band. **Weak** if any §8.1–8.5 variant moves the estimate outside the primary 90% interval. Otherwise **Moderate** |
 | C7 | Event study and sensitivity (§5.3, §8.6) | The plain event study is reported, and alongside it the same coefficients net of the placebo-group mean for each year, which matches the primary estimator. The sensitivity bounds are the relative-magnitudes breakdown of Rambachan and Roth (2023), point-identified version, plus a linear pre-trend extrapolation |
 | C8 | Additional output, labelled "not pre-registered" | The 95% interval (the evaluation design's reporting standard); the comparison-state rank of the net estimate; real pay per worker deflated by each capital's CPI (descriptive) |
+
+**After unblinding (15 October 2026).**
+- **Run once.** The registered analysis was run once; results are in [`results_wa_trading_hours.md`](results_wa_trading_hours.md).
+- **No registered analysis was changed.**
+- **Added and labelled "not pre-registered":**
+  - a food-price estimate with each city's pre-reform trend removed (`posthoc.py`);
+  - balanced-panel means without NT;
+  - a back-of-envelope scaling for the Perth-only reach of the reform;
+  - a grade for food prices.

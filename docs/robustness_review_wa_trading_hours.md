@@ -122,4 +122,4 @@ Productivity is therefore reported as descriptive only. Measuring the productivi
 
 ## 7. Next step
 
-Unblinding: run the pre-registered estimation in [`pap_wa_trading_hours.md`](pap_wa_trading_hours.md), with the plan committed first so the record shows it came before the results.
+Done on 15 October 2026. The plan was committed first, then the pre-registered estimation was run once: see [`results_wa_trading_hours.md`](results_wa_trading_hours.md). There was no detectable effect on entry or exit, the result is graded Moderate, and the hypothesis is not settled.

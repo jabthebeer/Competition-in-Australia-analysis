@@ -15,7 +15,7 @@ Public-data toolkit for evaluating how Australian regulatory changes affect comp
 | Menu explorer | One interactive HTML page: filters, list, adoption timeline, record details | Done |
 | Outcome panels | CABEE entry and exit by ANZSIC class, state and size (2007-08 to 2019-20, 10 releases stitched); CPI by capital city (ABS Data API); state retail output and pay per worker | Done for the first case |
 | Estimators | Two-way fixed effects, event study, blinding, comparison-state and industry placebos, planted-effect simulations (`evaluate/did.py`) | Done for single-treated-state designs; staggered estimators not started |
-| First case | Perth trading-hours deregulation (2010, 2012): blinded robustness review and pre-analysis plan ([review](../docs/robustness_review_wa_trading_hours.md), [plan](../docs/pap_wa_trading_hours.md)) | Plan registered; estimation not yet run |
+| First case | Perth trading-hours deregulation (2010, 2012): blinded robustness review, pre-analysis plan and results ([review](../docs/robustness_review_wa_trading_hours.md), [plan](../docs/pap_wa_trading_hours.md), [results](../docs/results_wa_trading_hours.md)) | Done: no detectable effect on entry or exit; grade Moderate |
 
 ## Setup
 
@@ -27,6 +27,9 @@ uv sync
 uv run pytest              # offline tests (84)
 uv run ruff check src tests scripts analyses
 uv run python analyses/wa_trading_hours/design_review.py   # blinded design review (downloads ABS data on first run)
+uv run python analyses/wa_trading_hours/estimate.py        # registered estimation (--blind for the dry run)
+uv run python analyses/wa_trading_hours/posthoc.py         # checks added after unblinding (not pre-registered)
+uv run python analyses/wa_trading_hours/figure.py          # event-study figure for the results
 ```
 
 ## Commands
