@@ -1,0 +1,341 @@
+{
+  "id": "heavy-vehicle-national-law-2014",
+  "title": "Heavy Vehicle National Law (2014)",
+  "records": [
+    "act-heavy-vehicle-national-law-2014",
+    "nsw-heavy-vehicle-national-law-2014",
+    "qld-heavy-vehicle-national-law-2014",
+    "sa-heavy-vehicle-national-law-2014",
+    "tas-heavy-vehicle-national-law-2014",
+    "vic-heavy-vehicle-national-law-2014"
+  ],
+  "family": "heavy-vehicle-national-law",
+  "evaluated_on": "2026-10-15",
+  "hypothesis": "enhancing",
+  "design": "Stacked difference-in-differences: Six jurisdictions adopted on 10 February 2014; WA and NT never did. Estimates are net of the same comparison for unaffected industries in the same states.",
+  "comparison": "Treated: ACT, NSW, QLD, SA, TAS, VIC. Comparison: NT, WA.",
+  "window": "2007-08 to 2017-18 (first exposed year 2013-14)",
+  "verdict": "inconclusive",
+  "finding_label": "No detectable effect",
+  "grade": "Moderate",
+  "grade_reason": "Passes the plan's pre-reform check and robustness variants; one or few treated states, so only large effects are detectable.",
+  "headline": "Road freight business entry in the six jurisdictions that adopted the Heavy Vehicle National Law changed by −2.2 per 100 a year relative to WA and the NT, net of other industries (90% interval −5.9 to +0.9); exits by −1.5 (90% interval −3.8 to +0.8). Neither is distinguishable from zero.",
+  "category_summaries": {
+    "competition": "No detectable effect on entry or exit. A rise in entry of more than about 0.9 per 100 is ruled out, if road freight would otherwise have tracked WA and the NT; a fall is not.",
+    "productivity": "Not measurable. Transport output per worker fell −26.2% relative to WA and the NT, far more than a freight law could plausibly cause; it most likely reflects the resources boom there. Shown for description only."
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "entry-rate",
+      "label": "Business entry rate",
+      "category": "competition",
+      "role": "primary",
+      "unit": "per 100 businesses a year",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -2.153,
+      "interval": {
+        "low": -5.927,
+        "high": 0.936,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -3.089,
+        "high": 3.774,
+        "basis": "90% range across 41 placebo industry groups"
+      },
+      "p_value": 0.3333,
+      "inference": "Rank among placebo industry groups (two-sided)",
+      "mde_80": 9.447,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "Net of a change of +1.9 per 100 in unaffected industries in the same states. Plain comparison: −0.3."
+    },
+    {
+      "id": "exit-rate",
+      "label": "Business exit rate",
+      "category": "competition",
+      "role": "secondary",
+      "unit": "per 100 businesses a year",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -1.534,
+      "interval": {
+        "low": -3.849,
+        "high": 0.808,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -2.342,
+        "high": 2.315,
+        "basis": "90% range across 41 placebo industry groups"
+      },
+      "p_value": 0.3095,
+      "inference": "Rank among placebo industry groups (two-sided)",
+      "mde_80": 9.9,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "Net of a change of +0.2 per 100 in unaffected industries in the same states. Plain comparison: −1.3."
+    },
+    {
+      "id": "output-per-worker",
+      "label": "Output per worker, transport, postal and warehousing",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -26.162,
+      "interval": null,
+      "no_effect_range": {
+        "low": -20.458,
+        "high": 16.386,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.1111,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    },
+    {
+      "id": "real-pay-per-worker",
+      "label": "Real pay per worker, transport, postal and warehousing",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -23.319,
+      "interval": null,
+      "no_effect_range": {
+        "low": -16.192,
+        "high": 13.879,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.1111,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "entry-rate",
+      "title": "Business entries, year by year",
+      "unit": "per 100 businesses a year",
+      "reference": "2012-13",
+      "band": "90% range across placebo industry groups",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -6,
+          "estimate": 2.614,
+          "low": -1.468,
+          "high": 7.6
+        },
+        {
+          "period": "2008-09",
+          "k": -5,
+          "estimate": 1.049,
+          "low": -4.989,
+          "high": 5.011
+        },
+        {
+          "period": "2009-10",
+          "k": -4,
+          "estimate": 1.737,
+          "low": -3.368,
+          "high": 8.251
+        },
+        {
+          "period": "2010-11",
+          "k": -3,
+          "estimate": 6.877,
+          "low": 1.183,
+          "high": 10.562
+        },
+        {
+          "period": "2011-12",
+          "k": -2,
+          "estimate": 4.226,
+          "low": -4.137,
+          "high": 10.013
+        },
+        {
+          "period": "2012-13",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2013-14",
+          "k": 0,
+          "estimate": 2.485,
+          "low": -4.284,
+          "high": 8.388
+        },
+        {
+          "period": "2014-15",
+          "k": 1,
+          "estimate": -2.47,
+          "low": -7.455,
+          "high": 1.532
+        },
+        {
+          "period": "2015-16",
+          "k": 2,
+          "estimate": 1.492,
+          "low": -3.969,
+          "high": 6.197
+        },
+        {
+          "period": "2016-17",
+          "k": 3,
+          "estimate": 0.131,
+          "low": -5.691,
+          "high": 7.034
+        },
+        {
+          "period": "2017-18",
+          "k": 4,
+          "estimate": 2.223,
+          "low": -4.311,
+          "high": 6.361
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Treated states relative to comparison states, net of unaffected industries."
+    },
+    {
+      "outcome": "exit-rate",
+      "title": "Business exits, year by year",
+      "unit": "per 100 businesses a year",
+      "reference": "2012-13",
+      "band": "90% range across placebo industry groups",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -6,
+          "estimate": -0.377,
+          "low": -4.647,
+          "high": 7.718
+        },
+        {
+          "period": "2008-09",
+          "k": -5,
+          "estimate": -2.014,
+          "low": -8.545,
+          "high": 2.168
+        },
+        {
+          "period": "2009-10",
+          "k": -4,
+          "estimate": 0.619,
+          "low": -5.125,
+          "high": 8.879
+        },
+        {
+          "period": "2010-11",
+          "k": -3,
+          "estimate": -1.22,
+          "low": -5.988,
+          "high": 5.895
+        },
+        {
+          "period": "2011-12",
+          "k": -2,
+          "estimate": -3.762,
+          "low": -8.535,
+          "high": 1.039
+        },
+        {
+          "period": "2012-13",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "2013-14",
+          "k": 0,
+          "estimate": -2.685,
+          "low": -6.198,
+          "high": 2.293
+        },
+        {
+          "period": "2014-15",
+          "k": 1,
+          "estimate": -2.3,
+          "low": -5.463,
+          "high": 3.356
+        },
+        {
+          "period": "2015-16",
+          "k": 2,
+          "estimate": -4.464,
+          "low": -10.568,
+          "high": 1.435
+        },
+        {
+          "period": "2016-17",
+          "k": 3,
+          "estimate": -1.95,
+          "low": -7.844,
+          "high": 6.877
+        },
+        {
+          "period": "2017-18",
+          "k": 4,
+          "estimate": -1.831,
+          "low": -7.342,
+          "high": 2.915
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Treated states relative to comparison states, net of unaffected industries."
+    }
+  ],
+  "caveats": [
+    "WA and the NT are the only comparison jurisdictions, and both rode the resources cycle. Unaffected industries in the same states net out the common part of that cycle.",
+    "The pre-reform years pass the check, but the largest pre-reform gap (2010-11) is +6.9 per 100."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_high_evaluability.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_high_evaluability.md"
+    },
+    {
+      "label": "Case definitions",
+      "path": "econ/analyses/high_evaluability/cases.py"
+    },
+    {
+      "label": "Estimation code",
+      "path": "econ/analyses/high_evaluability/run.py"
+    }
+  ],
+  "built_by": "econ/analyses/high_evaluability/evaluations.py"
+}

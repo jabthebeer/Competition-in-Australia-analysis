@@ -26,7 +26,16 @@ CATEGORY_LABELS: dict[str, str] = {
     "productivity": "Productivity and pay",
 }
 Role = Literal["primary", "secondary", "descriptive"]
-Verdict = Literal["supports-enhancing", "supports-weakening", "inconclusive"]
+Verdict = Literal[
+    "supports-enhancing",
+    "supports-weakening",
+    "contradicts-enhancing",
+    "contradicts-weakening",
+    "detects-increase",
+    "detects-decrease",
+    "inconclusive",
+    "not-identified",
+]
 Grade = Literal["Strong", "Moderate", "Weak", "Not identified"]
 Finding = Literal["increase", "decrease", "no-detectable-effect", "not-identified", "descriptive-only"]
 

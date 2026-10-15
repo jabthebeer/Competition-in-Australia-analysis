@@ -13,10 +13,11 @@ Public-data toolkit for evaluating how Australian regulatory changes affect comp
 | Timing | Maps a commencement onto financial years and quarters, with the partly exposed first period | Done |
 | Evaluability screen | Rates each change high, medium or low for public-data evaluation, with reasons | Done (rules stated in `menu/screen.py`) |
 | Menu explorer | One interactive HTML page: search and filters (including **Evaluated**), list, adoption timeline, record details, and a **Results** view with each evaluation's verdict, grade, estimated effects and year-by-year charts | Done |
-| Evaluation results | One validated file per evaluation in [`regulation-register/evaluations/`](../regulation-register/evaluations/), written from the analysis outputs by the case's `evaluation.py` and checked against them by the tests | 1 evaluation (WA trading hours) |
+| Evaluation results | One validated file per evaluation in [`regulation-register/evaluations/`](../regulation-register/evaluations/), written from the analysis outputs by each analysis's builder script and checked against them by the tests | 8 evaluations covering 24 records |
 | Outcome panels | CABEE entry and exit by ANZSIC class, state and size (2007-08 to 2019-20, 10 releases stitched); CPI by capital city (ABS Data API); state retail output and pay per worker | Done for the first case |
 | Estimators | Two-way fixed effects, event study, blinding, comparison-state and industry placebos, planted-effect simulations (`evaluate/did.py`) | Done for single-treated-state designs; staggered estimators not started |
 | First case | Perth trading-hours deregulation (2010, 2012): blinded robustness review, pre-analysis plan and results ([review](../docs/robustness_review_wa_trading_hours.md), [plan](../docs/pap_wa_trading_hours.md), [results](../docs/results_wa_trading_hours.md)) | Done: no detectable effect on entry or exit; grade Moderate |
+| High-evaluability batch | The other 16 high-rated records as seven reforms, one plan, stacked difference-in-differences ([plan](../docs/pap_high_evaluability.md), [results](../docs/results_high_evaluability.md)) | Done: no detectable effects; three not identified |
 
 ## Setup
 
@@ -32,6 +33,8 @@ uv run python analyses/wa_trading_hours/estimate.py        # registered estimati
 uv run python analyses/wa_trading_hours/posthoc.py         # checks added after unblinding (not pre-registered)
 uv run python analyses/wa_trading_hours/figure.py          # event-study figure for the results
 uv run python analyses/wa_trading_hours/evaluation.py      # write the register's evaluation file from the outputs
+uv run python analyses/high_evaluability/run.py --blind    # batch design stage (outcomes hidden); without --blind: the registered run
+uv run python analyses/high_evaluability/evaluations.py    # batch evaluation files
 ```
 
 ## Commands
@@ -87,7 +90,7 @@ econ/
                    adapters.py (routing), http.py (polite fetching), cache.py, text.py (dates, Word tables)
     menu/          screen.py (evaluability), explorer.py + templates/explorer.html (the page)
     outcomes/      cabee.py (entries and exits), abs_series.py (ABS workbooks, CPI Data API), productivity.py
-    evaluate/      did.py (single-treated-unit DiD, placebos, simulations)
+    evaluate/      did.py (single-treated-unit DiD, placebos, simulations), stacked.py (several or staggered treated units)
     timing.py      financial years and quarters
     anzsic.py, cpi.py, data/   bundled ABS classifications (CC BY 4.0)
     cli.py

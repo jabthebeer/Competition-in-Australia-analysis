@@ -120,3 +120,26 @@ def test_wa_evaluation_numbers_match_the_analysis_outputs():
     entries_es = next(e for e in ev.event_studies if e.outcome == "entry-rate")
     assert {str(p.k): p.estimate for p in entries_es.points if p.k != -1} == net
     assert ev.verdict == "inconclusive" and ev.grade == est["entries"]["grade"]["grade"]
+
+
+def test_batch_evaluations_match_the_registered_run():
+    """Each high-evaluability evaluation file must equal estimate.json, case by case."""
+    est = json.loads((ANALYSIS.parent / "high_evaluability" / "estimate.json").read_text(encoding="utf-8"))
+    evs = {e.id: e for e in load_evaluations().evaluations}
+    assert est["mode"].startswith("UNBLINDED")
+    for r in est["cases"]:
+        ev = evs[r["id"]]
+        assert ev.verdict == r["verdict"] and ev.grade == r["grade"]
+        out = {o.id: o for o in ev.outcomes}
+        for oid, m in (("entry-rate", "entries"), ("exit-rate", "exits")):
+            if r[m] is None:
+                assert oid not in out
+                continue
+            main = r[m]["main"]
+            assert out[oid].estimate == main["estimate"] and out[oid].p_value == main["p"]
+            assert [out[oid].interval.low, out[oid].interval.high] == main["interval_90"]
+        for var, oid in (("gva_per_worker", "output-per-worker"), ("real_coe_per_worker", "real-pay-per-worker")):
+            assert out[oid].estimate == r["productivity"][var]["estimate"]
+        if r["prices"]:
+            prices = [o for o in ev.outcomes if o.category == "prices" and not o.id.endswith("-detrended")]
+            assert sorted(o.estimate for o in prices) == sorted(v["estimate"] for v in r["prices"]["classes"].values())

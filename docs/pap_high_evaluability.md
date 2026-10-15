@@ -128,4 +128,11 @@ Run on 15 October 2026 with every treated state's outcomes hidden from its first
 
 ## 11. Changes after registration
 
-None yet.
+**No registered analysis was changed.** The analysis was run once after this plan and `design.json` were committed. Results are in [`results_high_evaluability.md`](results_high_evaluability.md).
+
+**Readings made after unblinding** (labelled in the results and evaluation files):
+- the electricity price estimate is graded Not identified, because of a pre-existing trend shown by the registered detrended check;
+- the Melbourne fare fall is attributed to public transport fare changes from January 2015;
+- the Darwin soft-drink rise is read as a pre-existing trend;
+- transport productivity in the heavy-vehicle case is read as reflecting the resources boom in WA and the NT;
+- the sign-test observation across the three evaluated "enhancing" reforms is exploratory.

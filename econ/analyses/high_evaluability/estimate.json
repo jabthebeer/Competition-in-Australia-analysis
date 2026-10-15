@@ -1,0 +1,3430 @@
+{
+  "plan": "docs/pap_high_evaluability.md",
+  "mode": "UNBLINDED: registered analysis",
+  "units": "entries or exits per 100 businesses operating at the start of the financial year; productivity, pay and prices in log points (about %)",
+  "cases": [
+    {
+      "id": "nt-container-deposits-2012",
+      "title": "Northern Territory container deposit scheme (2012)",
+      "hypothesis": "mixed",
+      "classes": [
+        "1211",
+        "1212",
+        "2922"
+      ],
+      "cohorts": [
+        {
+          "treated": [
+            "NT"
+          ],
+          "first_post": 2012,
+          "last_post": 2017,
+          "controls": [
+            "NSW",
+            "VIC",
+            "QLD",
+            "WA",
+            "TAS",
+            "ACT"
+          ]
+        }
+      ],
+      "placebo_design": {
+        "base_fy": 2011,
+        "treated_size": 12.0,
+        "eligible": 65,
+        "band": [
+          0.1,
+          10.0
+        ],
+        "groups": 0
+      },
+      "feasible": {
+        "ok": false,
+        "reasons": [
+          "treated group has 12 businesses in the base year (rule: at least 100)",
+          "only 0 placebo groups (rule: at least 19)"
+        ]
+      },
+      "entries": null,
+      "exits": null,
+      "productivity": {
+        "gva_per_worker": {
+          "label": "Output per worker",
+          "division": "C",
+          "estimate": 26.026,
+          "plain": 37.901,
+          "placebo_mean": 11.875,
+          "placebos": 17,
+          "placebo_sd": 19.602,
+          "mde_80": 54.917,
+          "p": 0.2778,
+          "interval_90": [
+            -6.866,
+            50.154
+          ],
+          "interval_95": [
+            -7.425,
+            51.994
+          ]
+        },
+        "real_coe_per_worker": {
+          "label": "Real pay per worker",
+          "division": "C",
+          "estimate": -16.882,
+          "plain": -2.131,
+          "placebo_mean": 14.752,
+          "placebos": 17,
+          "placebo_sd": 23.704,
+          "mde_80": 66.408,
+          "p": 0.3889,
+          "interval_90": [
+            -47.662,
+            7.242
+          ],
+          "interval_95": [
+            -48.544,
+            27.295
+          ]
+        }
+      },
+      "prices": {
+        "role": "secondary",
+        "expected": "up",
+        "placebo_classes": 82,
+        "classes": {
+          "115520": {
+            "name": "Waters, soft drinks and juices",
+            "estimate": 8.68,
+            "plain": 6.766,
+            "placebo_mean": -1.914,
+            "placebos": 82,
+            "placebo_sd": 6.621,
+            "mde_80": 18.55,
+            "p": 0.1205,
+            "interval_90": [
+              0.459,
+              21.486
+            ],
+            "interval_95": [
+              0.165,
+              23.083
+            ],
+            "detrended": {
+              "estimate": 1.429,
+              "p": 0.7439,
+              "interval_90": [
+                -8.63,
+                8.907
+              ]
+            },
+            "event_net": {
+              "-10": -6.393,
+              "-9": -7.949,
+              "-8": -7.046,
+              "-7": -6.398,
+              "-6": -6.286,
+              "-5": -5.599,
+              "-4": -4.482,
+              "-3": -1.271,
+              "-2": 0.391,
+              "0": 2.433,
+              "1": 4.159,
+              "2": 3.706,
+              "3": 3.287,
+              "4": 5.495,
+              "5": 6.496
+            },
+            "event_band_90": {
+              "-10": [
+                -25.979,
+                5.486
+              ],
+              "-9": [
+                -23.757,
+                4.128
+              ],
+              "-8": [
+                -20.186,
+                1.551
+              ],
+              "-7": [
+                -17.377,
+                2.784
+              ],
+              "-6": [
+                -15.815,
+                1.165
+              ],
+              "-5": [
+                -13.703,
+                2.08
+              ],
+              "-4": [
+                -13.111,
+                2.935
+              ],
+              "-3": [
+                -7.209,
+                3.871
+              ],
+              "-2": [
+                -3.033,
+                4.04
+              ],
+              "0": [
+                -0.499,
+                8.176
+              ],
+              "1": [
+                -1.105,
+                9.602
+              ],
+              "2": [
+                -3.494,
+                9.451
+              ],
+              "3": [
+                -3.878,
+                10.67
+              ],
+              "4": [
+                -2.141,
+                13.541
+              ],
+              "5": [
+                -2.408,
+                15.568
+              ]
+            }
+          },
+          "40087": {
+            "name": "Beer",
+            "estimate": 4.279,
+            "plain": 2.365,
+            "placebo_mean": -1.914,
+            "placebos": 82,
+            "placebo_sd": 6.621,
+            "mde_80": 18.55,
+            "p": 0.4096,
+            "interval_90": [
+              -3.942,
+              17.085
+            ],
+            "interval_95": [
+              -4.236,
+              18.683
+            ],
+            "detrended": {
+              "estimate": 3.546,
+              "p": 0.4634,
+              "interval_90": [
+                -6.513,
+                11.025
+              ]
+            },
+            "event_net": {
+              "-10": -2.166,
+              "-9": 0.272,
+              "-8": -2.809,
+              "-7": -2.361,
+              "-6": -1.77,
+              "-5": -2.916,
+              "-4": -4.474,
+              "-3": -4.304,
+              "-2": -2.091,
+              "0": 5.17,
+              "1": 6.793,
+              "2": 2.468,
+              "3": -0.113,
+              "4": 0.238,
+              "5": 0.343
+            },
+            "event_band_90": {
+              "-10": [
+                -21.753,
+                9.712
+              ],
+              "-9": [
+                -15.537,
+                12.348
+              ],
+              "-8": [
+                -15.949,
+                5.788
+              ],
+              "-7": [
+                -13.34,
+                6.821
+              ],
+              "-6": [
+                -11.299,
+                5.681
+              ],
+              "-5": [
+                -11.02,
+                4.763
+              ],
+              "-4": [
+                -13.103,
+                2.942
+              ],
+              "-3": [
+                -10.242,
+                0.838
+              ],
+              "-2": [
+                -5.515,
+                1.557
+              ],
+              "0": [
+                2.238,
+                10.913
+              ],
+              "1": [
+                1.529,
+                12.237
+              ],
+              "2": [
+                -4.732,
+                8.212
+              ],
+              "3": [
+                -7.277,
+                7.271
+              ],
+              "4": [
+                -7.399,
+                8.284
+              ],
+              "5": [
+                -8.561,
+                9.415
+              ]
+            }
+          }
+        }
+      },
+      "verdict": "not-identified",
+      "grade": "Not identified",
+      "grade_reasons": [
+        "treated group has 12 businesses in the base year (rule: at least 100)",
+        "only 0 placebo groups (rule: at least 19)"
+      ]
+    },
+    {
+      "id": "childcare-nqf-2012",
+      "title": "National Quality Framework for childcare (2012): the WA stagger",
+      "hypothesis": "weakening",
+      "classes": [
+        "8710"
+      ],
+      "cohorts": [
+        {
+          "treated": [
+            "NSW",
+            "VIC",
+            "QLD",
+            "SA",
+            "TAS",
+            "ACT",
+            "NT"
+          ],
+          "first_post": 2012,
+          "last_post": 2012,
+          "controls": [
+            "WA"
+          ]
+        }
+      ],
+      "placebo_design": {
+        "base_fy": 2011,
+        "treated_size": 7223.0,
+        "eligible": 445,
+        "band": [
+          0.5,
+          2.0
+        ],
+        "groups": 75
+      },
+      "feasible": {
+        "ok": true,
+        "reasons": []
+      },
+      "entries": {
+        "main": {
+          "estimate": -0.285,
+          "plain": 1.027,
+          "placebo_mean": 1.312,
+          "placebos": 74,
+          "placebo_sd": 3.514,
+          "mde_80": 9.846,
+          "p": 0.9333,
+          "interval_90": [
+            -5.875,
+            4.314
+          ],
+          "interval_95": [
+            -6.413,
+            7.67
+          ]
+        },
+        "event": {
+          "net": {
+            "-4": 1.077,
+            "-3": 0.128,
+            "-2": 1.542,
+            "0": 0.403
+          },
+          "band_90": {
+            "-4": [
+              -7.216,
+              8.638
+            ],
+            "-3": [
+              -8.097,
+              6.546
+            ],
+            "-2": [
+              -4.405,
+              9.314
+            ],
+            "0": [
+              -4.748,
+              4.597
+            ]
+          },
+          "band_95": {
+            "-4": [
+              -9.571,
+              10.117
+            ],
+            "-3": [
+              -11.006,
+              7.771
+            ],
+            "-2": [
+              -6.205,
+              11.155
+            ],
+            "0": [
+              -5.206,
+              6.005
+            ]
+          },
+          "pre_inside_95": true,
+          "pre_years": 4
+        },
+        "robustness": {
+          "vintage_overlap": {
+            "estimate": -0.459,
+            "plain": 0.599,
+            "p": 0.8133,
+            "interval_90": [
+              -6.066,
+              3.564
+            ],
+            "placebos": 74
+          },
+          "employing_only": {
+            "estimate": -3.081,
+            "plain": -1.945,
+            "p": 0.375,
+            "interval_90": [
+              -8.466,
+              2.722
+            ],
+            "placebos": 63
+          },
+          "leave_out_treated_ACT": {
+            "estimate": 0.215,
+            "plain": 1.458,
+            "p": 0.9467,
+            "interval_90": [
+              -4.908,
+              4.679
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_NSW": {
+            "estimate": -0.321,
+            "plain": 0.976,
+            "p": 0.92,
+            "interval_90": [
+              -6.082,
+              4.512
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_NT": {
+            "estimate": 0.464,
+            "plain": 1.913,
+            "p": 0.7733,
+            "interval_90": [
+              -5.514,
+              5.098
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_QLD": {
+            "estimate": -0.44,
+            "plain": 0.988,
+            "p": 0.9333,
+            "interval_90": [
+              -6.031,
+              4.349
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_SA": {
+            "estimate": -0.185,
+            "plain": 1.087,
+            "p": 0.96,
+            "interval_90": [
+              -6.295,
+              4.506
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_TAS": {
+            "estimate": -1.198,
+            "plain": 0.076,
+            "p": 0.7067,
+            "interval_90": [
+              -6.828,
+              3.6
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_VIC": {
+            "estimate": -0.536,
+            "plain": 0.678,
+            "p": 0.88,
+            "interval_90": [
+              -6.114,
+              4.394
+            ],
+            "placebos": 74
+          }
+        }
+      },
+      "exits": {
+        "main": {
+          "estimate": 3.053,
+          "plain": 2.946,
+          "placebo_mean": -0.107,
+          "placebos": 74,
+          "placebo_sd": 2.893,
+          "mde_80": 8.104,
+          "p": 0.24,
+          "interval_90": [
+            -1.387,
+            6.885
+          ],
+          "interval_95": [
+            -2.385,
+            9.63
+          ]
+        },
+        "event": {
+          "net": {
+            "-4": 2.361,
+            "-3": 2.795,
+            "-2": 1.465,
+            "0": 4.692
+          },
+          "band_90": {
+            "-4": [
+              -4.413,
+              9.22
+            ],
+            "-3": [
+              -2.338,
+              9.35
+            ],
+            "-2": [
+              -5.81,
+              8.08
+            ],
+            "0": [
+              0.133,
+              8.803
+            ]
+          },
+          "band_95": {
+            "-4": [
+              -4.989,
+              9.357
+            ],
+            "-3": [
+              -5.342,
+              12.166
+            ],
+            "-2": [
+              -7.534,
+              8.763
+            ],
+            "0": [
+              -0.962,
+              11.091
+            ]
+          },
+          "pre_inside_95": true,
+          "pre_years": 4
+        },
+        "robustness": {
+          "vintage_overlap": {
+            "estimate": 2.877,
+            "plain": 2.739,
+            "p": 0.2133,
+            "interval_90": [
+              -1.231,
+              6.209
+            ],
+            "placebos": 74
+          },
+          "employing_only": {
+            "estimate": 1.357,
+            "plain": 2.086,
+            "p": 0.5625,
+            "interval_90": [
+              -4.901,
+              6.173
+            ],
+            "placebos": 63
+          },
+          "leave_out_treated_ACT": {
+            "estimate": 3.49,
+            "plain": 3.304,
+            "p": 0.1467,
+            "interval_90": [
+              -0.463,
+              6.851
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_NSW": {
+            "estimate": 3.013,
+            "plain": 2.896,
+            "p": 0.24,
+            "interval_90": [
+              -2.041,
+              7.181
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_NT": {
+            "estimate": 2.547,
+            "plain": 2.72,
+            "p": 0.24,
+            "interval_90": [
+              -1.743,
+              6.093
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_QLD": {
+            "estimate": 2.826,
+            "plain": 2.657,
+            "p": 0.2533,
+            "interval_90": [
+              -2.279,
+              7.169
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_SA": {
+            "estimate": 2.973,
+            "plain": 2.897,
+            "p": 0.2533,
+            "interval_90": [
+              -1.952,
+              7.408
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_TAS": {
+            "estimate": 3.269,
+            "plain": 3.02,
+            "p": 0.2133,
+            "interval_90": [
+              -0.717,
+              7.947
+            ],
+            "placebos": 74
+          },
+          "leave_out_treated_VIC": {
+            "estimate": 3.274,
+            "plain": 3.147,
+            "p": 0.24,
+            "interval_90": [
+              -1.722,
+              7.573
+            ],
+            "placebos": 74
+          }
+        }
+      },
+      "productivity": {
+        "gva_per_worker": {
+          "label": "Output per worker",
+          "division": "Q",
+          "estimate": 9.268,
+          "plain": -2.098,
+          "placebo_mean": -11.365,
+          "placebos": 17,
+          "placebo_sd": 13.962,
+          "mde_80": 39.116,
+          "p": 0.6667,
+          "interval_90": [
+            -5.256,
+            33.759
+          ],
+          "interval_95": [
+            -5.622,
+            34.745
+          ]
+        },
+        "real_coe_per_worker": {
+          "label": "Real pay per worker",
+          "division": "Q",
+          "estimate": 11.531,
+          "plain": 1.935,
+          "placebo_mean": -9.595,
+          "placebos": 17,
+          "placebo_sd": 17.211,
+          "mde_80": 48.217,
+          "p": 0.5556,
+          "interval_90": [
+            -5.544,
+            42.022
+          ],
+          "interval_95": [
+            -7.165,
+            45.322
+          ]
+        }
+      },
+      "prices": {
+        "role": "descriptive",
+        "expected": "up",
+        "placebo_classes": 84,
+        "classes": {
+          "115498": {
+            "name": "Child care",
+            "estimate": -4.268,
+            "plain": -3.497,
+            "placebo_mean": 0.772,
+            "placebos": 84,
+            "placebo_sd": 6.553,
+            "mde_80": 18.358,
+            "p": 0.4235,
+            "interval_90": [
+              -13.299,
+              7.57
+            ],
+            "interval_95": [
+              -16.08,
+              11.281
+            ],
+            "detrended": {
+              "estimate": 4.836,
+              "p": 0.1071,
+              "interval_90": [
+                0.433,
+                9.802
+              ]
+            },
+            "event_net": {
+              "-10": 10.807,
+              "-9": 12.329,
+              "-8": 9.966,
+              "-7": 2.742,
+              "-6": 3.897,
+              "-5": 5.886,
+              "-4": 2.94,
+              "-3": -3.039,
+              "-2": -0.966,
+              "0": -1.503
+            },
+            "event_band_90": {
+              "-10": [
+                -2.387,
+                23.552
+              ],
+              "-9": [
+                0.236,
+                24.684
+              ],
+              "-8": [
+                -1.5,
+                23.829
+              ],
+              "-7": [
+                -7.713,
+                12.858
+              ],
+              "-6": [
+                -5.297,
+                12.941
+              ],
+              "-5": [
+                -1.353,
+                13.84
+              ],
+              "-4": [
+                -4.84,
+                8.955
+              ],
+              "-3": [
+                -7.212,
+                1.867
+              ],
+              "-2": [
+                -4.258,
+                2.255
+              ],
+              "0": [
+                -5.823,
+                1.862
+              ]
+            }
+          }
+        }
+      },
+      "q_bh": 0.9333,
+      "verdict": "inconclusive",
+      "grade": "Moderate",
+      "grade_reasons": []
+    },
+    {
+      "id": "retail-energy-deregulation-2013-2016",
+      "title": "Retail energy price deregulation (SA 2013, NSW 2014, south-east Queensland 2016)",
+      "hypothesis": "enhancing",
+      "classes": [
+        "2640"
+      ],
+      "cohorts": [
+        {
+          "treated": [
+            "SA"
+          ],
+          "first_post": 2013,
+          "last_post": 2018,
+          "controls": [
+            "TAS",
+            "ACT",
+            "WA",
+            "NT"
+          ]
+        },
+        {
+          "treated": [
+            "NSW"
+          ],
+          "first_post": 2015,
+          "last_post": 2018,
+          "controls": [
+            "TAS",
+            "ACT",
+            "WA",
+            "NT"
+          ]
+        },
+        {
+          "treated": [
+            "QLD"
+          ],
+          "first_post": 2017,
+          "last_post": 2018,
+          "controls": [
+            "TAS",
+            "ACT",
+            "WA",
+            "NT"
+          ]
+        }
+      ],
+      "placebo_design": {
+        "base_fy": 2012,
+        "treated_size": 59.0,
+        "eligible": 431,
+        "band": [
+          0.5,
+          2.0
+        ],
+        "groups": 54
+      },
+      "feasible": {
+        "ok": false,
+        "reasons": [
+          "treated group has 59 businesses in the base year (rule: at least 100)"
+        ]
+      },
+      "entries": null,
+      "exits": null,
+      "productivity": {
+        "gva_per_worker": {
+          "label": "Output per worker",
+          "division": "D",
+          "estimate": 12.526,
+          "plain": 6.048,
+          "placebo_mean": -6.478,
+          "placebos": 17,
+          "placebo_sd": 10.298,
+          "mde_80": 28.85,
+          "p": 0.2222,
+          "interval_90": [
+            -7.147,
+            24.076
+          ],
+          "interval_95": [
+            -8.559,
+            27.678
+          ]
+        },
+        "real_coe_per_worker": {
+          "label": "Real pay per worker",
+          "division": "D",
+          "estimate": 15.562,
+          "plain": 5.935,
+          "placebo_mean": -9.627,
+          "placebos": 17,
+          "placebo_sd": 9.911,
+          "mde_80": 27.766,
+          "p": 0.2222,
+          "interval_90": [
+            -2.844,
+            27.602
+          ],
+          "interval_95": [
+            -3.244,
+            30.57
+          ]
+        }
+      },
+      "prices": {
+        "role": "secondary",
+        "expected": "down",
+        "placebo_classes": 84,
+        "classes": {
+          "40055": {
+            "name": "Electricity",
+            "estimate": 16.997,
+            "plain": 15.989,
+            "placebo_mean": -1.009,
+            "placebos": 84,
+            "placebo_sd": 3.38,
+            "mde_80": 9.47,
+            "p": 0.0118,
+            "interval_90": [
+              12.046,
+              23.018
+            ],
+            "interval_95": [
+              11.058,
+              23.333
+            ],
+            "detrended": {
+              "estimate": -0.55,
+              "p": 0.8571,
+              "interval_90": [
+                -7.485,
+                4.449
+              ]
+            },
+            "event_net": {
+              "-15": -37.31,
+              "-14": -35.704,
+              "-13": -36.19,
+              "-12": -34.385,
+              "-11": -29.441,
+              "-10": -22.398,
+              "-9": -16.483,
+              "-8": -15.511,
+              "-7": -16.975,
+              "-6": -14.577,
+              "-5": -14.089,
+              "-4": -13.825,
+              "-3": -9.743,
+              "-2": -4.512,
+              "0": 0.229,
+              "1": -4.268,
+              "2": 2.533,
+              "3": 1.813,
+              "4": 4.143,
+              "5": 18.53
+            },
+            "event_band_90": {
+              "-15": [
+                -49.389,
+                -24.841
+              ],
+              "-14": [
+                -48.037,
+                -22.498
+              ],
+              "-13": [
+                -45.425,
+                -26.936
+              ],
+              "-12": [
+                -43.269,
+                -24.559
+              ],
+              "-11": [
+                -36.127,
+                -21.836
+              ],
+              "-10": [
+                -28.676,
+                -15.0
+              ],
+              "-9": [
+                -22.728,
+                -10.443
+              ],
+              "-8": [
+                -21.6,
+                -9.902
+              ],
+              "-7": [
+                -22.299,
+                -11.913
+              ],
+              "-6": [
+                -19.042,
+                -9.845
+              ],
+              "-5": [
+                -17.614,
+                -10.167
+              ],
+              "-4": [
+                -17.009,
+                -10.419
+              ],
+              "-3": [
+                -12.223,
+                -6.849
+              ],
+              "-2": [
+                -5.891,
+                -2.691
+              ],
+              "0": [
+                -1.558,
+                1.91
+              ],
+              "1": [
+                -7.249,
+                -1.532
+              ],
+              "2": [
+                -1.07,
+                7.122
+              ],
+              "3": [
+                -2.324,
+                6.904
+              ],
+              "4": [
+                -1.72,
+                11.418
+              ],
+              "5": [
+                11.858,
+                26.038
+              ]
+            }
+          }
+        }
+      },
+      "verdict": "not-identified",
+      "grade": "Not identified",
+      "grade_reasons": [
+        "treated group has 59 businesses in the base year (rule: at least 100)"
+      ]
+    },
+    {
+      "id": "heavy-vehicle-national-law-2014",
+      "title": "Heavy Vehicle National Law (2014)",
+      "hypothesis": "enhancing",
+      "classes": [
+        "4610"
+      ],
+      "cohorts": [
+        {
+          "treated": [
+            "NSW",
+            "VIC",
+            "QLD",
+            "SA",
+            "TAS",
+            "ACT"
+          ],
+          "first_post": 2014,
+          "last_post": 2018,
+          "controls": [
+            "WA",
+            "NT"
+          ]
+        }
+      ],
+      "placebo_design": {
+        "base_fy": 2013,
+        "treated_size": 44908.0,
+        "eligible": 436,
+        "band": [
+          0.25,
+          4.0
+        ],
+        "groups": 41
+      },
+      "feasible": {
+        "ok": true,
+        "reasons": []
+      },
+      "entries": {
+        "main": {
+          "estimate": -2.153,
+          "plain": -0.269,
+          "placebo_mean": 1.884,
+          "placebos": 41,
+          "placebo_sd": 3.372,
+          "mde_80": 9.447,
+          "p": 0.3333,
+          "interval_90": [
+            -5.927,
+            0.936
+          ],
+          "interval_95": [
+            -6.167,
+            1.257
+          ]
+        },
+        "event": {
+          "net": {
+            "-6": 2.614,
+            "-5": 1.049,
+            "-4": 1.737,
+            "-3": 6.877,
+            "-2": 4.226,
+            "0": 2.485,
+            "1": -2.47,
+            "2": 1.492,
+            "3": 0.131,
+            "4": 2.223
+          },
+          "band_90": {
+            "-6": [
+              -1.468,
+              7.6
+            ],
+            "-5": [
+              -4.989,
+              5.011
+            ],
+            "-4": [
+              -3.368,
+              8.251
+            ],
+            "-3": [
+              1.183,
+              10.562
+            ],
+            "-2": [
+              -4.137,
+              10.013
+            ],
+            "0": [
+              -4.284,
+              8.388
+            ],
+            "1": [
+              -7.455,
+              1.532
+            ],
+            "2": [
+              -3.969,
+              6.197
+            ],
+            "3": [
+              -5.691,
+              7.034
+            ],
+            "4": [
+              -4.311,
+              6.361
+            ]
+          },
+          "band_95": {
+            "-6": [
+              -3.883,
+              8.085
+            ],
+            "-5": [
+              -5.05,
+              5.721
+            ],
+            "-4": [
+              -6.297,
+              12.184
+            ],
+            "-3": [
+              -1.092,
+              11.841
+            ],
+            "-2": [
+              -5.139,
+              27.548
+            ],
+            "0": [
+              -4.616,
+              13.854
+            ],
+            "1": [
+              -7.51,
+              2.043
+            ],
+            "2": [
+              -4.872,
+              6.357
+            ],
+            "3": [
+              -8.943,
+              7.087
+            ],
+            "4": [
+              -4.993,
+              6.862
+            ]
+          },
+          "pre_inside_95": true,
+          "pre_years": 6
+        },
+        "robustness": {
+          "vintage_overlap": {
+            "estimate": -0.974,
+            "plain": 0.551,
+            "p": 0.619,
+            "interval_90": [
+              -4.306,
+              2.162
+            ],
+            "placebos": 41
+          },
+          "employing_only": {
+            "estimate": -0.109,
+            "plain": -0.748,
+            "p": 0.9024,
+            "interval_90": [
+              -3.717,
+              9.446
+            ],
+            "placebos": 40
+          },
+          "leave_out_control_NT": {
+            "estimate": -0.313,
+            "plain": 0.719,
+            "p": 0.8571,
+            "interval_90": [
+              -1.957,
+              2.22
+            ],
+            "placebos": 41
+          },
+          "leave_out_control_WA": {
+            "estimate": -4.482,
+            "plain": -1.58,
+            "p": 0.3333,
+            "interval_90": [
+              -12.735,
+              1.273
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_ACT": {
+            "estimate": -1.851,
+            "plain": 0.053,
+            "p": 0.381,
+            "interval_90": [
+              -5.215,
+              1.159
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_NSW": {
+            "estimate": -2.252,
+            "plain": -0.577,
+            "p": 0.3333,
+            "interval_90": [
+              -5.657,
+              0.624
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_QLD": {
+            "estimate": -2.077,
+            "plain": -0.197,
+            "p": 0.3333,
+            "interval_90": [
+              -5.672,
+              1.016
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_SA": {
+            "estimate": -2.224,
+            "plain": -0.242,
+            "p": 0.3333,
+            "interval_90": [
+              -6.028,
+              1.002
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_TAS": {
+            "estimate": -1.959,
+            "plain": 0.049,
+            "p": 0.3571,
+            "interval_90": [
+              -5.627,
+              1.071
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_VIC": {
+            "estimate": -2.522,
+            "plain": -0.655,
+            "p": 0.2857,
+            "interval_90": [
+              -6.482,
+              0.333
+            ],
+            "placebos": 41
+          },
+          "add_2018_19": {
+            "estimate": -2.155,
+            "plain": -0.035,
+            "p": 0.3095,
+            "interval_90": [
+              -6.133,
+              0.873
+            ],
+            "placebos": 41
+          }
+        }
+      },
+      "exits": {
+        "main": {
+          "estimate": -1.534,
+          "plain": -1.312,
+          "placebo_mean": 0.222,
+          "placebos": 41,
+          "placebo_sd": 3.534,
+          "mde_80": 9.9,
+          "p": 0.3095,
+          "interval_90": [
+            -3.849,
+            0.808
+          ],
+          "interval_95": [
+            -7.535,
+            2.003
+          ]
+        },
+        "event": {
+          "net": {
+            "-6": -0.377,
+            "-5": -2.014,
+            "-4": 0.619,
+            "-3": -1.22,
+            "-2": -3.762,
+            "0": -2.685,
+            "1": -2.3,
+            "2": -4.464,
+            "3": -1.95,
+            "4": -1.831
+          },
+          "band_90": {
+            "-6": [
+              -4.647,
+              7.718
+            ],
+            "-5": [
+              -8.545,
+              2.168
+            ],
+            "-4": [
+              -5.125,
+              8.879
+            ],
+            "-3": [
+              -5.988,
+              5.895
+            ],
+            "-2": [
+              -8.535,
+              1.039
+            ],
+            "0": [
+              -6.198,
+              2.293
+            ],
+            "1": [
+              -5.463,
+              3.356
+            ],
+            "2": [
+              -10.568,
+              1.435
+            ],
+            "3": [
+              -7.844,
+              6.877
+            ],
+            "4": [
+              -7.342,
+              2.915
+            ]
+          },
+          "band_95": {
+            "-6": [
+              -8.574,
+              9.785
+            ],
+            "-5": [
+              -12.647,
+              5.831
+            ],
+            "-4": [
+              -5.296,
+              14.554
+            ],
+            "-3": [
+              -18.864,
+              10.803
+            ],
+            "-2": [
+              -21.065,
+              1.404
+            ],
+            "0": [
+              -21.658,
+              3.994
+            ],
+            "1": [
+              -20.805,
+              4.395
+            ],
+            "2": [
+              -12.117,
+              1.776
+            ],
+            "3": [
+              -19.231,
+              9.789
+            ],
+            "4": [
+              -20.463,
+              2.975
+            ]
+          },
+          "pre_inside_95": true,
+          "pre_years": 6
+        },
+        "robustness": {
+          "vintage_overlap": {
+            "estimate": -1.37,
+            "plain": -1.349,
+            "p": 0.2381,
+            "interval_90": [
+              -3.606,
+              1.177
+            ],
+            "placebos": 41
+          },
+          "employing_only": {
+            "estimate": -0.549,
+            "plain": -0.792,
+            "p": 0.6098,
+            "interval_90": [
+              -2.811,
+              2.998
+            ],
+            "placebos": 40
+          },
+          "leave_out_control_NT": {
+            "estimate": -0.432,
+            "plain": -0.539,
+            "p": 0.6905,
+            "interval_90": [
+              -1.95,
+              1.254
+            ],
+            "placebos": 41
+          },
+          "leave_out_control_WA": {
+            "estimate": -2.891,
+            "plain": -2.256,
+            "p": 0.2619,
+            "interval_90": [
+              -6.04,
+              2.072
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_ACT": {
+            "estimate": -1.731,
+            "plain": -1.366,
+            "p": 0.2619,
+            "interval_90": [
+              -3.826,
+              0.706
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_NSW": {
+            "estimate": -1.504,
+            "plain": -1.29,
+            "p": 0.3333,
+            "interval_90": [
+              -3.937,
+              0.862
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_QLD": {
+            "estimate": -1.609,
+            "plain": -1.385,
+            "p": 0.3095,
+            "interval_90": [
+              -4.182,
+              0.846
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_SA": {
+            "estimate": -1.456,
+            "plain": -1.298,
+            "p": 0.3571,
+            "interval_90": [
+              -3.668,
+              1.08
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_TAS": {
+            "estimate": -1.498,
+            "plain": -1.283,
+            "p": 0.2857,
+            "interval_90": [
+              -3.759,
+              1.079
+            ],
+            "placebos": 41
+          },
+          "leave_out_treated_VIC": {
+            "estimate": -1.403,
+            "plain": -1.254,
+            "p": 0.3571,
+            "interval_90": [
+              -3.74,
+              1.128
+            ],
+            "placebos": 41
+          },
+          "add_2018_19": {
+            "estimate": -1.431,
+            "plain": -1.042,
+            "p": 0.3095,
+            "interval_90": [
+              -3.673,
+              1.023
+            ],
+            "placebos": 41
+          }
+        }
+      },
+      "productivity": {
+        "gva_per_worker": {
+          "label": "Output per worker",
+          "division": "I",
+          "estimate": -26.162,
+          "plain": -39.221,
+          "placebo_mean": -13.059,
+          "placebos": 17,
+          "placebo_sd": 12.642,
+          "mde_80": 35.417,
+          "p": 0.1111,
+          "interval_90": [
+            -42.548,
+            -5.704
+          ],
+          "interval_95": [
+            -43.088,
+            -1.137
+          ]
+        },
+        "real_coe_per_worker": {
+          "label": "Real pay per worker",
+          "division": "I",
+          "estimate": -23.319,
+          "plain": -34.05,
+          "placebo_mean": -10.732,
+          "placebos": 17,
+          "placebo_sd": 12.294,
+          "mde_80": 34.443,
+          "p": 0.1111,
+          "interval_90": [
+            -37.198,
+            -7.127
+          ],
+          "interval_95": [
+            -37.61,
+            -0.812
+          ]
+        }
+      },
+      "prices": null,
+      "q_bh": 0.8332,
+      "verdict": "inconclusive",
+      "grade": "Moderate",
+      "grade_reasons": []
+    },
+    {
+      "id": "vic-taxi-licensing-2014",
+      "title": "As-of-right taxi licences in Victoria (2014)",
+      "hypothesis": "enhancing",
+      "classes": [
+        "4623"
+      ],
+      "cohorts": [
+        {
+          "treated": [
+            "VIC"
+          ],
+          "first_post": 2015,
+          "last_post": 2015,
+          "controls": [
+            "NSW",
+            "QLD",
+            "SA",
+            "WA",
+            "TAS",
+            "ACT",
+            "NT"
+          ]
+        }
+      ],
+      "placebo_design": {
+        "base_fy": 2014,
+        "treated_size": 3931.0,
+        "eligible": 368,
+        "band": [
+          0.5,
+          2.0
+        ],
+        "groups": 43
+      },
+      "feasible": {
+        "ok": true,
+        "reasons": []
+      },
+      "entries": {
+        "main": {
+          "estimate": -1.386,
+          "plain": -0.668,
+          "placebo_mean": 0.718,
+          "placebos": 43,
+          "placebo_sd": 1.513,
+          "mde_80": 4.238,
+          "p": 0.3182,
+          "interval_90": [
+            -3.356,
+            0.9
+          ],
+          "interval_95": [
+            -4.924,
+            1.414
+          ]
+        },
+        "event": {
+          "net": {
+            "-7": 2.464,
+            "-6": 0.191,
+            "-5": -2.663,
+            "-4": -1.726,
+            "-3": -0.533,
+            "-2": -1.31,
+            "0": -1.911
+          },
+          "band_90": {
+            "-7": [
+              -2.548,
+              6.636
+            ],
+            "-6": [
+              -4.7,
+              5.038
+            ],
+            "-5": [
+              -6.281,
+              1.755
+            ],
+            "-4": [
+              -7.632,
+              3.41
+            ],
+            "-3": [
+              -6.443,
+              3.505
+            ],
+            "-2": [
+              -4.508,
+              1.05
+            ],
+            "0": [
+              -6.404,
+              1.225
+            ]
+          },
+          "band_95": {
+            "-7": [
+              -2.633,
+              8.935
+            ],
+            "-6": [
+              -6.672,
+              7.181
+            ],
+            "-5": [
+              -9.956,
+              3.168
+            ],
+            "-4": [
+              -8.843,
+              5.935
+            ],
+            "-3": [
+              -7.267,
+              4.115
+            ],
+            "-2": [
+              -4.928,
+              1.773
+            ],
+            "0": [
+              -7.049,
+              1.701
+            ]
+          },
+          "pre_inside_95": true,
+          "pre_years": 7
+        },
+        "robustness": {
+          "vintage_overlap": {
+            "estimate": -1.454,
+            "plain": -0.589,
+            "p": 0.2727,
+            "interval_90": [
+              -3.47,
+              0.898
+            ],
+            "placebos": 43
+          },
+          "employing_only": {
+            "estimate": -1.522,
+            "plain": -0.623,
+            "p": 0.3636,
+            "interval_90": [
+              -5.373,
+              0.98
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_ACT": {
+            "estimate": -1.495,
+            "plain": -0.694,
+            "p": 0.2045,
+            "interval_90": [
+              -4.708,
+              0.651
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_NSW": {
+            "estimate": -1.534,
+            "plain": -0.583,
+            "p": 0.3636,
+            "interval_90": [
+              -3.75,
+              0.904
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_NT": {
+            "estimate": -1.116,
+            "plain": -1.014,
+            "p": 0.3409,
+            "interval_90": [
+              -2.861,
+              1.705
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_QLD": {
+            "estimate": -1.642,
+            "plain": -0.861,
+            "p": 0.2727,
+            "interval_90": [
+              -4.152,
+              0.854
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_SA": {
+            "estimate": -1.817,
+            "plain": -1.07,
+            "p": 0.2273,
+            "interval_90": [
+              -4.211,
+              0.854
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_TAS": {
+            "estimate": -0.546,
+            "plain": 0.228,
+            "p": 0.7273,
+            "interval_90": [
+              -2.595,
+              2.158
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_WA": {
+            "estimate": -1.533,
+            "plain": -0.669,
+            "p": 0.2955,
+            "interval_90": [
+              -3.787,
+              0.968
+            ],
+            "placebos": 43
+          }
+        }
+      },
+      "exits": {
+        "main": {
+          "estimate": -1.448,
+          "plain": -1.039,
+          "placebo_mean": 0.409,
+          "placebos": 43,
+          "placebo_sd": 1.326,
+          "mde_80": 3.714,
+          "p": 0.3182,
+          "interval_90": [
+            -3.553,
+            0.771
+          ],
+          "interval_95": [
+            -3.635,
+            0.816
+          ]
+        },
+        "event": {
+          "net": {
+            "-7": 1.731,
+            "-6": 3.753,
+            "-5": 3.673,
+            "-4": 1.803,
+            "-3": 0.222,
+            "-2": 1.392,
+            "0": 0.341
+          },
+          "band_90": {
+            "-7": [
+              -1.423,
+              5.457
+            ],
+            "-6": [
+              0.209,
+              6.769
+            ],
+            "-5": [
+              0.425,
+              7.464
+            ],
+            "-4": [
+              -0.853,
+              5.346
+            ],
+            "-3": [
+              -2.219,
+              2.281
+            ],
+            "-2": [
+              -0.775,
+              5.805
+            ],
+            "0": [
+              -1.947,
+              2.801
+            ]
+          },
+          "band_95": {
+            "-7": [
+              -2.387,
+              5.812
+            ],
+            "-6": [
+              -0.444,
+              13.572
+            ],
+            "-5": [
+              -0.14,
+              9.507
+            ],
+            "-4": [
+              -1.145,
+              6.286
+            ],
+            "-3": [
+              -2.288,
+              4.858
+            ],
+            "-2": [
+              -1.312,
+              6.078
+            ],
+            "0": [
+              -2.306,
+              2.96
+            ]
+          },
+          "pre_inside_95": true,
+          "pre_years": 7
+        },
+        "robustness": {
+          "vintage_overlap": {
+            "estimate": -0.913,
+            "plain": -0.502,
+            "p": 0.4773,
+            "interval_90": [
+              -2.766,
+              1.572
+            ],
+            "placebos": 43
+          },
+          "employing_only": {
+            "estimate": -4.887,
+            "plain": -4.717,
+            "p": 0.0227,
+            "interval_90": [
+              -7.02,
+              -2.699
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_ACT": {
+            "estimate": -1.751,
+            "plain": -1.421,
+            "p": 0.1591,
+            "interval_90": [
+              -3.61,
+              0.233
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_NSW": {
+            "estimate": -1.267,
+            "plain": -0.853,
+            "p": 0.4318,
+            "interval_90": [
+              -3.527,
+              1.246
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_NT": {
+            "estimate": -1.451,
+            "plain": -1.144,
+            "p": 0.2273,
+            "interval_90": [
+              -4.273,
+              0.76
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_QLD": {
+            "estimate": -1.617,
+            "plain": -1.183,
+            "p": 0.3182,
+            "interval_90": [
+              -3.881,
+              0.724
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_SA": {
+            "estimate": -1.722,
+            "plain": -1.253,
+            "p": 0.2955,
+            "interval_90": [
+              -4.058,
+              0.641
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_TAS": {
+            "estimate": -1.314,
+            "plain": -0.844,
+            "p": 0.25,
+            "interval_90": [
+              -3.59,
+              0.808
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_WA": {
+            "estimate": -1.008,
+            "plain": -0.569,
+            "p": 0.4545,
+            "interval_90": [
+              -3.114,
+              1.407
+            ],
+            "placebos": 43
+          }
+        }
+      },
+      "productivity": {
+        "gva_per_worker": {
+          "label": "Output per worker",
+          "division": "I",
+          "estimate": -9.194,
+          "plain": -17.242,
+          "placebo_mean": -8.048,
+          "placebos": 17,
+          "placebo_sd": 10.657,
+          "mde_80": 29.856,
+          "p": 0.3889,
+          "interval_90": [
+            -22.571,
+            7.434
+          ],
+          "interval_95": [
+            -22.906,
+            13.28
+          ]
+        },
+        "real_coe_per_worker": {
+          "label": "Real pay per worker",
+          "division": "I",
+          "estimate": -8.599,
+          "plain": -16.009,
+          "placebo_mean": -7.41,
+          "placebos": 17,
+          "placebo_sd": 11.306,
+          "mde_80": 31.674,
+          "p": 0.2778,
+          "interval_90": [
+            -21.886,
+            8.394
+          ],
+          "interval_95": [
+            -30.623,
+            11.547
+          ]
+        }
+      },
+      "prices": {
+        "role": "descriptive",
+        "expected": "down",
+        "placebo_classes": 86,
+        "classes": {
+          "40086": {
+            "name": "Urban transport fares",
+            "estimate": -10.714,
+            "plain": -9.844,
+            "placebo_mean": 0.87,
+            "placebos": 86,
+            "placebo_sd": 4.034,
+            "mde_80": 11.301,
+            "p": 0.0345,
+            "interval_90": [
+              -17.094,
+              -2.753
+            ],
+            "interval_95": [
+              -20.11,
+              -1.859
+            ],
+            "detrended": {
+              "estimate": -9.599,
+              "p": 0.0115,
+              "interval_90": [
+                -13.077,
+                -5.562
+              ]
+            },
+            "event_net": {
+              "-13": 0.423,
+              "-12": 1.073,
+              "-11": 2.161,
+              "-10": 4.841,
+              "-9": 4.714,
+              "-8": 3.511,
+              "-7": 3.073,
+              "-6": 3.908,
+              "-5": 2.446,
+              "-4": -1.011,
+              "-3": -0.459,
+              "-2": 0.491,
+              "0": -8.824
+            },
+            "event_band_90": {
+              "-13": [
+                -11.533,
+                8.879
+              ],
+              "-12": [
+                -9.574,
+                9.166
+              ],
+              "-11": [
+                -7.141,
+                11.613
+              ],
+              "-10": [
+                -4.842,
+                12.772
+              ],
+              "-9": [
+                -4.315,
+                13.345
+              ],
+              "-8": [
+                -3.728,
+                11.382
+              ],
+              "-7": [
+                -3.978,
+                10.667
+              ],
+              "-6": [
+                -2.104,
+                11.364
+              ],
+              "-5": [
+                -3.048,
+                9.194
+              ],
+              "-4": [
+                -4.973,
+                3.616
+              ],
+              "-3": [
+                -3.407,
+                3.14
+              ],
+              "-2": [
+                -1.864,
+                3.43
+              ],
+              "0": [
+                -11.354,
+                -5.732
+              ]
+            }
+          }
+        }
+      },
+      "q_bh": 0.8332,
+      "verdict": "inconclusive",
+      "grade": "Weak",
+      "grade_reasons": [
+        "Unlicensed UberX began in Melbourne in 2014, the same year, and only one post-reform year is usable."
+      ]
+    },
+    {
+      "id": "legal-profession-uniform-law-2015",
+      "title": "Legal Profession Uniform Law (NSW and Victoria, 2015)",
+      "hypothesis": "enhancing",
+      "classes": [
+        "6931"
+      ],
+      "cohorts": [
+        {
+          "treated": [
+            "NSW",
+            "VIC"
+          ],
+          "first_post": 2016,
+          "last_post": 2018,
+          "controls": [
+            "QLD",
+            "SA",
+            "WA",
+            "TAS",
+            "ACT",
+            "NT"
+          ]
+        }
+      ],
+      "placebo_design": {
+        "base_fy": 2015,
+        "treated_size": 13060.0,
+        "eligible": 420,
+        "band": [
+          0.5,
+          2.0
+        ],
+        "groups": 39
+      },
+      "feasible": {
+        "ok": true,
+        "reasons": []
+      },
+      "entries": {
+        "main": {
+          "estimate": -1.629,
+          "plain": 0.039,
+          "placebo_mean": 1.667,
+          "placebos": 39,
+          "placebo_sd": 2.508,
+          "mde_80": 7.025,
+          "p": 0.525,
+          "interval_90": [
+            -5.754,
+            1.199
+          ],
+          "interval_95": [
+            -7.402,
+            1.575
+          ]
+        },
+        "event": {
+          "net": {
+            "-8": 0.096,
+            "-7": 3.223,
+            "-6": -1.099,
+            "-5": 0.862,
+            "-4": 0.169,
+            "-3": -0.748,
+            "-2": 0.421,
+            "0": -0.201,
+            "1": -1.871,
+            "2": -1.775
+          },
+          "band_90": {
+            "-8": [
+              -3.56,
+              5.131
+            ],
+            "-7": [
+              -0.191,
+              7.682
+            ],
+            "-6": [
+              -4.381,
+              3.657
+            ],
+            "-5": [
+              -2.243,
+              3.32
+            ],
+            "-4": [
+              -3.729,
+              3.209
+            ],
+            "-3": [
+              -3.523,
+              1.434
+            ],
+            "-2": [
+              -1.924,
+              3.172
+            ],
+            "0": [
+              -2.106,
+              1.843
+            ],
+            "1": [
+              -5.948,
+              1.519
+            ],
+            "2": [
+              -7.219,
+              2.08
+            ]
+          },
+          "band_95": {
+            "-8": [
+              -3.834,
+              5.291
+            ],
+            "-7": [
+              -0.457,
+              8.857
+            ],
+            "-6": [
+              -5.289,
+              3.807
+            ],
+            "-5": [
+              -3.518,
+              6.145
+            ],
+            "-4": [
+              -4.065,
+              5.943
+            ],
+            "-3": [
+              -3.643,
+              3.364
+            ],
+            "-2": [
+              -3.056,
+              3.655
+            ],
+            "0": [
+              -3.079,
+              2.825
+            ],
+            "1": [
+              -6.643,
+              2.136
+            ],
+            "2": [
+              -11.173,
+              3.319
+            ]
+          },
+          "pre_inside_95": true,
+          "pre_years": 8
+        },
+        "robustness": {
+          "vintage_overlap": {
+            "estimate": -1.554,
+            "plain": 0.1,
+            "p": 0.45,
+            "interval_90": [
+              -5.708,
+              1.268
+            ],
+            "placebos": 39
+          },
+          "employing_only": {
+            "estimate": 0.37,
+            "plain": 0.948,
+            "p": 0.9,
+            "interval_90": [
+              -3.113,
+              4.035
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_ACT": {
+            "estimate": -1.602,
+            "plain": 0.445,
+            "p": 0.55,
+            "interval_90": [
+              -6.144,
+              1.716
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_NT": {
+            "estimate": -1.25,
+            "plain": -0.119,
+            "p": 0.425,
+            "interval_90": [
+              -3.685,
+              0.969
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_QLD": {
+            "estimate": -1.748,
+            "plain": 0.068,
+            "p": 0.475,
+            "interval_90": [
+              -6.702,
+              1.272
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_SA": {
+            "estimate": -1.813,
+            "plain": -0.068,
+            "p": 0.425,
+            "interval_90": [
+              -6.649,
+              1.235
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_TAS": {
+            "estimate": -1.717,
+            "plain": -0.003,
+            "p": 0.5,
+            "interval_90": [
+              -5.722,
+              1.19
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_WA": {
+            "estimate": -1.627,
+            "plain": -0.081,
+            "p": 0.475,
+            "interval_90": [
+              -6.145,
+              1.388
+            ],
+            "placebos": 39
+          },
+          "leave_out_treated_NSW": {
+            "estimate": -1.682,
+            "plain": -0.149,
+            "p": 0.475,
+            "interval_90": [
+              -6.055,
+              1.095
+            ],
+            "placebos": 39
+          },
+          "leave_out_treated_VIC": {
+            "estimate": -1.592,
+            "plain": 0.218,
+            "p": 0.55,
+            "interval_90": [
+              -5.404,
+              1.265
+            ],
+            "placebos": 39
+          },
+          "add_2018_19": {
+            "estimate": -0.631,
+            "plain": 0.721,
+            "p": 0.675,
+            "interval_90": [
+              -5.117,
+              2.115
+            ],
+            "placebos": 39
+          }
+        }
+      },
+      "exits": {
+        "main": {
+          "estimate": -0.153,
+          "plain": 0.229,
+          "placebo_mean": 0.382,
+          "placebos": 39,
+          "placebo_sd": 0.94,
+          "mde_80": 2.633,
+          "p": 0.85,
+          "interval_90": [
+            -1.772,
+            0.998
+          ],
+          "interval_95": [
+            -1.943,
+            1.273
+          ]
+        },
+        "event": {
+          "net": {
+            "-8": 0.46,
+            "-7": -1.02,
+            "-6": -0.339,
+            "-5": 0.712,
+            "-4": -0.147,
+            "-3": -0.629,
+            "-2": 0.679,
+            "0": -0.356,
+            "1": 0.481,
+            "2": -0.679
+          },
+          "band_90": {
+            "-8": [
+              -2.801,
+              3.974
+            ],
+            "-7": [
+              -3.535,
+              3.123
+            ],
+            "-6": [
+              -3.567,
+              4.21
+            ],
+            "-5": [
+              -1.798,
+              2.738
+            ],
+            "-4": [
+              -2.793,
+              2.317
+            ],
+            "-3": [
+              -2.458,
+              3.833
+            ],
+            "-2": [
+              -1.466,
+              2.25
+            ],
+            "0": [
+              -2.335,
+              2.048
+            ],
+            "1": [
+              -1.278,
+              2.916
+            ],
+            "2": [
+              -3.494,
+              1.283
+            ]
+          },
+          "band_95": {
+            "-8": [
+              -3.411,
+              4.356
+            ],
+            "-7": [
+              -3.813,
+              3.321
+            ],
+            "-6": [
+              -3.822,
+              5.38
+            ],
+            "-5": [
+              -2.284,
+              3.363
+            ],
+            "-4": [
+              -3.101,
+              3.71
+            ],
+            "-3": [
+              -2.88,
+              5.233
+            ],
+            "-2": [
+              -1.635,
+              2.52
+            ],
+            "0": [
+              -2.454,
+              2.258
+            ],
+            "1": [
+              -1.645,
+              3.848
+            ],
+            "2": [
+              -3.868,
+              1.79
+            ]
+          },
+          "pre_inside_95": true,
+          "pre_years": 8
+        },
+        "robustness": {
+          "vintage_overlap": {
+            "estimate": 0.495,
+            "plain": 0.644,
+            "p": 0.475,
+            "interval_90": [
+              -1.078,
+              2.156
+            ],
+            "placebos": 39
+          },
+          "employing_only": {
+            "estimate": 0.419,
+            "plain": 0.695,
+            "p": 0.75,
+            "interval_90": [
+              -1.689,
+              2.614
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_ACT": {
+            "estimate": -0.418,
+            "plain": -0.149,
+            "p": 0.625,
+            "interval_90": [
+              -2.095,
+              1.061
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_NT": {
+            "estimate": -0.026,
+            "plain": 0.425,
+            "p": 0.975,
+            "interval_90": [
+              -1.398,
+              0.915
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_QLD": {
+            "estimate": -0.039,
+            "plain": 0.334,
+            "p": 1.0,
+            "interval_90": [
+              -1.857,
+              1.316
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_SA": {
+            "estimate": 0.246,
+            "plain": 0.655,
+            "p": 0.875,
+            "interval_90": [
+              -1.273,
+              1.679
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_TAS": {
+            "estimate": -0.307,
+            "plain": -0.023,
+            "p": 0.85,
+            "interval_90": [
+              -2.085,
+              0.888
+            ],
+            "placebos": 39
+          },
+          "leave_out_control_WA": {
+            "estimate": -0.377,
+            "plain": 0.128,
+            "p": 0.75,
+            "interval_90": [
+              -2.837,
+              0.9
+            ],
+            "placebos": 39
+          },
+          "leave_out_treated_NSW": {
+            "estimate": -0.157,
+            "plain": 0.382,
+            "p": 0.8,
+            "interval_90": [
+              -1.568,
+              1.261
+            ],
+            "placebos": 39
+          },
+          "leave_out_treated_VIC": {
+            "estimate": -0.146,
+            "plain": 0.08,
+            "p": 0.875,
+            "interval_90": [
+              -2.377,
+              1.035
+            ],
+            "placebos": 39
+          },
+          "add_2018_19": {
+            "estimate": -0.432,
+            "plain": 0.063,
+            "p": 0.55,
+            "interval_90": [
+              -2.779,
+              0.583
+            ],
+            "placebos": 39
+          }
+        }
+      },
+      "productivity": {
+        "gva_per_worker": {
+          "label": "Output per worker",
+          "division": "M",
+          "estimate": -8.051,
+          "plain": -14.86,
+          "placebo_mean": -6.809,
+          "placebos": 17,
+          "placebo_sd": 5.045,
+          "mde_80": 14.134,
+          "p": 0.0556,
+          "interval_90": [
+            -15.28,
+            -1.745
+          ],
+          "interval_95": [
+            -15.286,
+            -1.044
+          ]
+        },
+        "real_coe_per_worker": {
+          "label": "Real pay per worker",
+          "division": "M",
+          "estimate": -11.457,
+          "plain": -19.214,
+          "placebo_mean": -7.757,
+          "placebos": 17,
+          "placebo_sd": 7.883,
+          "mde_80": 22.086,
+          "p": 0.1667,
+          "interval_90": [
+            -23.292,
+            -0.149
+          ],
+          "interval_95": [
+            -24.639,
+            0.122
+          ]
+        }
+      },
+      "prices": null,
+      "q_bh": 0.875,
+      "verdict": "inconclusive",
+      "grade": "Moderate",
+      "grade_reasons": []
+    },
+    {
+      "id": "rideshare-legalisation-2015-2018",
+      "title": "Ride-share legalisation (2015 to 2018)",
+      "hypothesis": "enhancing",
+      "classes": [
+        "4623"
+      ],
+      "cohorts": [
+        {
+          "treated": [
+            "ACT",
+            "NSW"
+          ],
+          "first_post": 2016,
+          "last_post": 2017,
+          "controls": [
+            "VIC",
+            "NT",
+            "WA"
+          ]
+        },
+        {
+          "treated": [
+            "SA",
+            "QLD",
+            "TAS"
+          ],
+          "first_post": 2017,
+          "last_post": 2017,
+          "controls": [
+            "VIC",
+            "NT",
+            "WA"
+          ]
+        },
+        {
+          "treated": [
+            "VIC",
+            "NT"
+          ],
+          "first_post": 2018,
+          "last_post": 2018,
+          "controls": [
+            "WA"
+          ]
+        }
+      ],
+      "placebo_design": {
+        "base_fy": 2015,
+        "treated_size": 14500.0,
+        "eligible": 437,
+        "band": [
+          0.5,
+          2.0
+        ],
+        "groups": 43
+      },
+      "feasible": {
+        "ok": true,
+        "reasons": []
+      },
+      "entries": {
+        "main": {
+          "estimate": 0.179,
+          "plain": 2.038,
+          "placebo_mean": 1.859,
+          "placebos": 43,
+          "placebo_sd": 2.153,
+          "mde_80": 6.032,
+          "p": 0.8636,
+          "interval_90": [
+            -3.226,
+            4.338
+          ],
+          "interval_95": [
+            -3.775,
+            4.572
+          ]
+        },
+        "event": {
+          "net": {
+            "-10": 15.728,
+            "-9": 12.607,
+            "-8": 11.595,
+            "-7": 10.342,
+            "-6": 9.946,
+            "-5": 10.966,
+            "-4": 10.574,
+            "-3": 12.469,
+            "-2": 6.15,
+            "0": 8.945,
+            "1": 4.626
+          },
+          "band_90": {
+            "-10": [
+              5.869,
+              22.438
+            ],
+            "-9": [
+              8.578,
+              17.011
+            ],
+            "-8": [
+              8.092,
+              14.961
+            ],
+            "-7": [
+              6.528,
+              14.355
+            ],
+            "-6": [
+              6.292,
+              13.253
+            ],
+            "-5": [
+              7.148,
+              15.622
+            ],
+            "-4": [
+              7.155,
+              16.241
+            ],
+            "-3": [
+              8.46,
+              18.252
+            ],
+            "-2": [
+              3.355,
+              9.189
+            ],
+            "0": [
+              5.861,
+              12.378
+            ],
+            "1": [
+              -4.168,
+              12.762
+            ]
+          },
+          "band_95": {
+            "-10": [
+              4.629,
+              23.499
+            ],
+            "-9": [
+              8.311,
+              17.079
+            ],
+            "-8": [
+              7.721,
+              17.097
+            ],
+            "-7": [
+              3.594,
+              14.685
+            ],
+            "-6": [
+              5.83,
+              14.741
+            ],
+            "-5": [
+              6.998,
+              16.724
+            ],
+            "-4": [
+              6.716,
+              17.113
+            ],
+            "-3": [
+              7.765,
+              18.83
+            ],
+            "-2": [
+              2.763,
+              10.192
+            ],
+            "0": [
+              5.503,
+              13.364
+            ],
+            "1": [
+              -5.111,
+              15.148
+            ]
+          },
+          "pre_inside_95": false,
+          "pre_years": 10
+        },
+        "robustness": {
+          "vintage_overlap": {
+            "estimate": 0.785,
+            "plain": 2.853,
+            "p": 0.6591,
+            "interval_90": [
+              -2.955,
+              3.663
+            ],
+            "placebos": 43
+          },
+          "employing_only": {
+            "estimate": -9.536,
+            "plain": -9.423,
+            "p": 0.0769,
+            "interval_90": [
+              -15.092,
+              -4.486
+            ],
+            "placebos": 38
+          },
+          "leave_out_control_NT": {
+            "estimate": -7.22,
+            "plain": -5.733,
+            "p": 0.0227,
+            "interval_90": [
+              -9.863,
+              -4.564
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_VIC": {
+            "estimate": 3.534,
+            "plain": 5.894,
+            "p": 0.1818,
+            "interval_90": [
+              -1.806,
+              9.52
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_WA": {
+            "estimate": 5.34,
+            "plain": 6.927,
+            "p": 0.2045,
+            "interval_90": [
+              -0.617,
+              12.021
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_ACT": {
+            "estimate": -0.83,
+            "plain": 1.117,
+            "p": 0.6364,
+            "interval_90": [
+              -4.668,
+              3.39
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_NSW": {
+            "estimate": 0.439,
+            "plain": 2.258,
+            "p": 0.7955,
+            "interval_90": [
+              -2.981,
+              4.078
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_NT": {
+            "estimate": 2.22,
+            "plain": 4.211,
+            "p": 0.3182,
+            "interval_90": [
+              -2.371,
+              7.359
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_QLD": {
+            "estimate": -0.582,
+            "plain": 1.319,
+            "p": 0.7273,
+            "interval_90": [
+              -4.116,
+              3.218
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_SA": {
+            "estimate": -0.308,
+            "plain": 1.631,
+            "p": 0.7955,
+            "interval_90": [
+              -4.2,
+              3.574
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_TAS": {
+            "estimate": 2.73,
+            "plain": 4.509,
+            "p": 0.1364,
+            "interval_90": [
+              0.015,
+              5.581
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_VIC": {
+            "estimate": -2.478,
+            "plain": -0.88,
+            "p": 0.25,
+            "interval_90": [
+              -5.656,
+              1.283
+            ],
+            "placebos": 43
+          }
+        }
+      },
+      "exits": {
+        "main": {
+          "estimate": -2.113,
+          "plain": -2.721,
+          "placebo_mean": -0.608,
+          "placebos": 43,
+          "placebo_sd": 2.049,
+          "mde_80": 5.742,
+          "p": 0.25,
+          "interval_90": [
+            -4.798,
+            0.715
+          ],
+          "interval_95": [
+            -5.145,
+            0.83
+          ]
+        },
+        "event": {
+          "net": {
+            "-10": 10.676,
+            "-9": 4.178,
+            "-8": 1.341,
+            "-7": 1.653,
+            "-6": 2.044,
+            "-5": 0.892,
+            "-4": 1.089,
+            "-3": 0.206,
+            "-2": 0.003,
+            "0": -0.725,
+            "1": 1.139
+          },
+          "band_90": {
+            "-10": [
+              4.627,
+              16.385
+            ],
+            "-9": [
+              -0.161,
+              7.988
+            ],
+            "-8": [
+              -3.321,
+              5.687
+            ],
+            "-7": [
+              -4.43,
+              6.623
+            ],
+            "-6": [
+              -1.042,
+              5.447
+            ],
+            "-5": [
+              -2.871,
+              3.249
+            ],
+            "-4": [
+              -2.948,
+              3.943
+            ],
+            "-3": [
+              -5.065,
+              3.67
+            ],
+            "-2": [
+              -3.664,
+              2.529
+            ],
+            "0": [
+              -3.176,
+              2.877
+            ],
+            "1": [
+              -4.041,
+              7.983
+            ]
+          },
+          "band_95": {
+            "-10": [
+              4.406,
+              16.616
+            ],
+            "-9": [
+              -2.505,
+              8.864
+            ],
+            "-8": [
+              -4.481,
+              6.133
+            ],
+            "-7": [
+              -6.398,
+              7.411
+            ],
+            "-6": [
+              -5.214,
+              10.829
+            ],
+            "-5": [
+              -8.267,
+              4.121
+            ],
+            "-4": [
+              -2.972,
+              4.854
+            ],
+            "-3": [
+              -7.619,
+              3.803
+            ],
+            "-2": [
+              -4.031,
+              3.065
+            ],
+            "0": [
+              -6.002,
+              3.199
+            ],
+            "1": [
+              -4.972,
+              9.435
+            ]
+          },
+          "pre_inside_95": false,
+          "pre_years": 10
+        },
+        "robustness": {
+          "vintage_overlap": {
+            "estimate": -2.654,
+            "plain": -3.337,
+            "p": 0.1591,
+            "interval_90": [
+              -5.347,
+              0.863
+            ],
+            "placebos": 43
+          },
+          "employing_only": {
+            "estimate": 2.977,
+            "plain": 2.729,
+            "p": 0.1026,
+            "interval_90": [
+              -0.176,
+              5.726
+            ],
+            "placebos": 38
+          },
+          "leave_out_control_NT": {
+            "estimate": -3.797,
+            "plain": -4.323,
+            "p": 0.0455,
+            "interval_90": [
+              -5.443,
+              -1.753
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_VIC": {
+            "estimate": -2.201,
+            "plain": -2.859,
+            "p": 0.3409,
+            "interval_90": [
+              -6.852,
+              1.556
+            ],
+            "placebos": 43
+          },
+          "leave_out_control_WA": {
+            "estimate": 2.19,
+            "plain": 1.272,
+            "p": 0.5455,
+            "interval_90": [
+              -1.689,
+              6.822
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_ACT": {
+            "estimate": -2.521,
+            "plain": -2.922,
+            "p": 0.1818,
+            "interval_90": [
+              -5.077,
+              0.655
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_NSW": {
+            "estimate": -2.77,
+            "plain": -3.368,
+            "p": 0.1364,
+            "interval_90": [
+              -5.43,
+              0.126
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_NT": {
+            "estimate": -0.644,
+            "plain": -1.371,
+            "p": 0.7727,
+            "interval_90": [
+              -3.894,
+              2.168
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_QLD": {
+            "estimate": -2.6,
+            "plain": -3.198,
+            "p": 0.1136,
+            "interval_90": [
+              -5.079,
+              -0.048
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_SA": {
+            "estimate": -1.583,
+            "plain": -2.27,
+            "p": 0.3409,
+            "interval_90": [
+              -4.063,
+              1.004
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_TAS": {
+            "estimate": -2.559,
+            "plain": -3.086,
+            "p": 0.1364,
+            "interval_90": [
+              -4.937,
+              0.137
+            ],
+            "placebos": 43
+          },
+          "leave_out_treated_VIC": {
+            "estimate": -2.076,
+            "plain": -2.797,
+            "p": 0.3409,
+            "interval_90": [
+              -4.86,
+              1.069
+            ],
+            "placebos": 43
+          }
+        }
+      },
+      "productivity": {
+        "gva_per_worker": {
+          "label": "Output per worker",
+          "division": "I",
+          "estimate": -11.286,
+          "plain": -15.778,
+          "placebo_mean": -4.492,
+          "placebos": 18,
+          "placebo_sd": 7.918,
+          "mde_80": 22.182,
+          "p": 0.1579,
+          "interval_90": [
+            -20.795,
+            2.439
+          ],
+          "interval_95": [
+            -20.844,
+            5.658
+          ]
+        },
+        "real_coe_per_worker": {
+          "label": "Real pay per worker",
+          "division": "I",
+          "estimate": -10.4,
+          "plain": -11.747,
+          "placebo_mean": -1.347,
+          "placebos": 18,
+          "placebo_sd": 6.658,
+          "mde_80": 18.653,
+          "p": 0.1053,
+          "interval_90": [
+            -20.334,
+            -0.806
+          ],
+          "interval_95": [
+            -21.624,
+            -0.784
+          ]
+        }
+      },
+      "prices": {
+        "role": "descriptive",
+        "expected": "down",
+        "placebo_classes": 86,
+        "classes": {
+          "40086": {
+            "name": "Urban transport fares",
+            "estimate": 1.427,
+            "plain": 1.022,
+            "placebo_mean": -0.405,
+            "placebos": 86,
+            "placebo_sd": 3.076,
+            "mde_80": 8.617,
+            "p": 0.6092,
+            "interval_90": [
+              -3.141,
+              6.124
+            ],
+            "interval_95": [
+              -5.353,
+              7.233
+            ],
+            "detrended": {
+              "estimate": -3.074,
+              "p": 0.2529,
+              "interval_90": [
+                -8.687,
+                2.374
+              ]
+            },
+            "event_net": {
+              "-16": 6.635,
+              "-15": -8.068,
+              "-14": -4.601,
+              "-13": -4.007,
+              "-12": -3.899,
+              "-11": -3.913,
+              "-10": -3.515,
+              "-9": -2.902,
+              "-8": -2.514,
+              "-7": -1.61,
+              "-6": 1.53,
+              "-5": 2.198,
+              "-4": 1.981,
+              "-3": -1.02,
+              "-2": -1.881,
+              "0": -0.801,
+              "1": 2.889
+            },
+            "event_band_90": {
+              "-16": [
+                -11.821,
+                21.276
+              ],
+              "-15": [
+                -17.542,
+                0.419
+              ],
+              "-14": [
+                -12.372,
+                1.843
+              ],
+              "-13": [
+                -10.944,
+                2.718
+              ],
+              "-12": [
+                -11.365,
+                1.09
+              ],
+              "-11": [
+                -10.578,
+                1.475
+              ],
+              "-10": [
+                -8.772,
+                1.803
+              ],
+              "-9": [
+                -8.911,
+                2.181
+              ],
+              "-8": [
+                -7.558,
+                1.648
+              ],
+              "-7": [
+                -5.313,
+                2.027
+              ],
+              "-6": [
+                -2.586,
+                6.392
+              ],
+              "-5": [
+                -1.659,
+                6.618
+              ],
+              "-4": [
+                -1.107,
+                6.222
+              ],
+              "-3": [
+                -3.929,
+                2.048
+              ],
+              "-2": [
+                -3.539,
+                0.009
+              ],
+              "0": [
+                -2.221,
+                0.918
+              ],
+              "1": [
+                -0.701,
+                6.352
+              ]
+            }
+          }
+        }
+      },
+      "q_bh": 0.9333,
+      "verdict": "inconclusive",
+      "grade": "Not identified",
+      "grade_reasons": [
+        "a pre-reform year lies outside its 95% placebo band"
+      ]
+    }
+  ]
+}

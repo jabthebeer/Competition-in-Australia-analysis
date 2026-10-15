@@ -310,7 +310,12 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
   const VERDICT = {
     "supports-enhancing": { label: "Supports “enhancing”", cls: "enh" },
     "supports-weakening": { label: "Supports “weakening”", cls: "weak" },
+    "contradicts-enhancing": { label: "Contradicts \u201cenhancing\u201d", cls: "weak" },
+    "contradicts-weakening": { label: "Contradicts \u201cweakening\u201d", cls: "enh" },
+    "detects-increase": { label: "Detects an increase", cls: "" },
+    "detects-decrease": { label: "Detects a decrease", cls: "" },
     inconclusive: { label: "Inconclusive", cls: "" },
+    "not-identified": { label: "Not identified", cls: "warn" },
   };
   const GRADE_CLS = { Strong: "ok", Moderate: "ok", Weak: "warn", "Not identified": "warn" };
   const FINDING = { increase: "Increase", decrease: "Decrease", "no-detectable-effect": "No detectable effect", "not-identified": "Not identified", "descriptive-only": "Descriptive only" };

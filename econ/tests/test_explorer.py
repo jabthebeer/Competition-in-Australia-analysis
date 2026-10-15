@@ -87,7 +87,8 @@ def test_payload_marks_evaluated_records_and_embeds_their_results():
     ev = data["evaluations"]["wa-trading-hours-2010-2012"]
     assert by_id["wa-trading-hours-weeknight-2010"]["evaluation"] == ev["id"]
     assert by_id["wa-trading-hours-sunday-2012"]["evaluation"] == ev["id"]
-    assert sum(r["evaluation"] is not None for r in data["records"]) == len(ev["records"])
+    covered = sum(len(e["records"]) for e in data["evaluations"].values())
+    assert sum(r["evaluation"] is not None for r in data["records"]) == covered
     assert {o["category"] for o in ev["outcomes"]} == {"competition", "prices", "productivity"}
     assert data["repoBase"] == "https://example.org/repo/" and data["categoryLabels"]["competition"] == "Competition"
 

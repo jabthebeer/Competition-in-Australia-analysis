@@ -1,0 +1,317 @@
+{
+  "id": "retail-energy-deregulation-2013-2016",
+  "title": "Retail energy price deregulation (SA 2013, NSW 2014, south-east Queensland 2016)",
+  "records": [
+    "sa-energy-price-deregulation-2013",
+    "nsw-energy-price-deregulation-2014",
+    "qld-seq-energy-price-deregulation-2016"
+  ],
+  "family": "retail-energy-price-deregulation",
+  "evaluated_on": "2026-10-15",
+  "hypothesis": "enhancing",
+  "design": "Stacked difference-in-differences: Staggered: each deregulating state against the states whose prices stayed regulated (Tasmania, ACT, WA, NT). Victoria (deregulated 2009) is excluded. Estimates are net of the same comparison for unaffected industries in the same states.",
+  "comparison": "Treated: NSW, QLD, SA. Comparison: ACT, NT, TAS, WA.",
+  "window": "2007-08 to 2017-18 (first exposed year 2012-13)",
+  "verdict": "not-identified",
+  "finding_label": "Not measurable",
+  "grade": "Not identified",
+  "grade_reason": "treated group has 59 businesses in the base year (rule: at least 100)",
+  "headline": "Business counts cannot measure this reform: the three states had 59 electricity retailers in the base year, each counted in its head-office state. Electricity prices in the deregulating states rose +17.0% relative to the regulated states (p = 0.01), but they had been rising faster for more than a decade before; with each city's trend removed the change is −0.6% (p = 0.86).",
+  "category_summaries": {
+    "competition": "Not measurable with business counts: too few retailers, each placed at its head office.",
+    "prices": "No effect identified. The registered estimate continues a long pre-existing rise (network charges); with trends removed it is close to zero.",
+    "productivity": "Not measurable at division level. Shown for description only."
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "price-electricity",
+      "label": "Electricity: prices relative to the CPI",
+      "category": "prices",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 16.997,
+      "interval": {
+        "low": 12.046,
+        "high": 23.018,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -6.021,
+        "high": 4.951,
+        "basis": "90% range across 84 placebo CPI classes"
+      },
+      "p_value": 0.0118,
+      "inference": "Rank among 84 placebo CPI classes in the same cities",
+      "mde_80": 9.47,
+      "finding": "not-identified",
+      "grade": "Not identified",
+      "preregistered": true,
+      "note": "Expected down. Plain estimate +16.0. The not-identified reading was made after unblinding."
+    },
+    {
+      "id": "price-electricity-detrended",
+      "label": "Electricity: each city's pre-reform trend removed",
+      "category": "prices",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -0.55,
+      "interval": {
+        "low": -7.485,
+        "high": 4.449,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -4.999,
+        "high": 6.935,
+        "basis": "90% range across 84 placebo CPI classes"
+      },
+      "p_value": 0.8571,
+      "inference": "Rank among 84 placebo CPI classes in the same cities",
+      "mde_80": null,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered robustness check (decision E-31)."
+    },
+    {
+      "id": "output-per-worker",
+      "label": "Output per worker, electricity, gas, water and waste services",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 12.526,
+      "interval": null,
+      "no_effect_range": {
+        "low": -11.55,
+        "high": 19.673,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.2222,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    },
+    {
+      "id": "real-pay-per-worker",
+      "label": "Real pay per worker, electricity, gas, water and waste services",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 15.562,
+      "interval": null,
+      "no_effect_range": {
+        "low": -12.04,
+        "high": 18.406,
+        "basis": "90% range across 17 other industry divisions"
+      },
+      "p_value": 0.2222,
+      "inference": "Rank among the other industry divisions in the same states",
+      "mde_80": null,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Division-level data dilute the reform's industry; descriptive only."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "price-electricity",
+      "title": "Electricity prices, year by year",
+      "unit": "% (log points)",
+      "reference": "the year before adoption",
+      "band": "90% range across placebo CPI classes",
+      "points": [
+        {
+          "period": "year −15",
+          "k": -15,
+          "estimate": -37.31,
+          "low": -49.389,
+          "high": -24.841
+        },
+        {
+          "period": "year −14",
+          "k": -14,
+          "estimate": -35.704,
+          "low": -48.037,
+          "high": -22.498
+        },
+        {
+          "period": "year −13",
+          "k": -13,
+          "estimate": -36.19,
+          "low": -45.425,
+          "high": -26.936
+        },
+        {
+          "period": "year −12",
+          "k": -12,
+          "estimate": -34.385,
+          "low": -43.269,
+          "high": -24.559
+        },
+        {
+          "period": "year −11",
+          "k": -11,
+          "estimate": -29.441,
+          "low": -36.127,
+          "high": -21.836
+        },
+        {
+          "period": "year −10",
+          "k": -10,
+          "estimate": -22.398,
+          "low": -28.676,
+          "high": -15.0
+        },
+        {
+          "period": "year −9",
+          "k": -9,
+          "estimate": -16.483,
+          "low": -22.728,
+          "high": -10.443
+        },
+        {
+          "period": "year −8",
+          "k": -8,
+          "estimate": -15.511,
+          "low": -21.6,
+          "high": -9.902
+        },
+        {
+          "period": "year −7",
+          "k": -7,
+          "estimate": -16.975,
+          "low": -22.299,
+          "high": -11.913
+        },
+        {
+          "period": "year −6",
+          "k": -6,
+          "estimate": -14.577,
+          "low": -19.042,
+          "high": -9.845
+        },
+        {
+          "period": "year −5",
+          "k": -5,
+          "estimate": -14.089,
+          "low": -17.614,
+          "high": -10.167
+        },
+        {
+          "period": "year −4",
+          "k": -4,
+          "estimate": -13.825,
+          "low": -17.009,
+          "high": -10.419
+        },
+        {
+          "period": "year −3",
+          "k": -3,
+          "estimate": -9.743,
+          "low": -12.223,
+          "high": -6.849
+        },
+        {
+          "period": "year −2",
+          "k": -2,
+          "estimate": -4.512,
+          "low": -5.891,
+          "high": -2.691
+        },
+        {
+          "period": "year −1",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "year +0",
+          "k": 0,
+          "estimate": 0.229,
+          "low": -1.558,
+          "high": 1.91
+        },
+        {
+          "period": "year +1",
+          "k": 1,
+          "estimate": -4.268,
+          "low": -7.249,
+          "high": -1.532
+        },
+        {
+          "period": "year +2",
+          "k": 2,
+          "estimate": 2.533,
+          "low": -1.07,
+          "high": 7.122
+        },
+        {
+          "period": "year +3",
+          "k": 3,
+          "estimate": 1.813,
+          "low": -2.324,
+          "high": 6.904
+        },
+        {
+          "period": "year +4",
+          "k": 4,
+          "estimate": 4.143,
+          "low": -1.72,
+          "high": 11.418
+        },
+        {
+          "period": "year +5",
+          "k": 5,
+          "estimate": 18.53,
+          "low": 11.858,
+          "high": 26.038
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Adoption"
+        }
+      ],
+      "caption": "Financial-year averages, relative to the all-groups CPI, treated cities against comparison cities, net of other CPI classes."
+    }
+  ],
+  "caveats": [
+    "The price grade (Not identified) is a judgement made after unblinding, based on the registered detrended check and the year-by-year path.",
+    "The carbon price (2012-14) applied in every state; network charges and the 2016-17 wholesale price spike did not.",
+    "Prices stop at June 2019, before the default market offer re-regulated standing offers."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_high_evaluability.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_high_evaluability.md"
+    },
+    {
+      "label": "Case definitions",
+      "path": "econ/analyses/high_evaluability/cases.py"
+    },
+    {
+      "label": "Estimation code",
+      "path": "econ/analyses/high_evaluability/run.py"
+    }
+  ],
+  "built_by": "econ/analyses/high_evaluability/evaluations.py"
+}
