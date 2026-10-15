@@ -83,4 +83,21 @@ Changes to this plan after unblinding must be listed in §10, with reasons. Resu
 
 ## 10. Changes after registration
 
-None yet.
+No analysis has been changed.
+
+**Clarifications made before unblinding (15 October 2026).** These settle points the plan left open.
+- They are fixed in `econ/analyses/wa_trading_hours/estimate.py`.
+- That script was checked in a dry run with the treated outcomes hidden (`estimate_blind.json`).
+- The dry run reproduced the design review's placebo draws exactly: 472 groups for entries and 451 for exits, with the same mean and SD.
+- They were committed before the unblinded run.
+
+| # | Point | Clarification |
+|---|---|---|
+| C1 | "Same sign under the comparison-state placebo" (§9) | The sign of the plain treated-group DiD, δ_T: the estimate that the comparison-state placebo evaluates. Its rank p-value is also computed for δ_T |
+| C2 | "Overlap vintage" (§8.1) | The CABEE cubes give one second vintage, for 2010-11 to 2016-17 only, from the following release. Those years are replaced; the others keep their own-release values. The placebo groups use the same vintage. "No reversal" means the net estimate keeps its sign |
+| C3 | Placebo draws (§3) | One random stream, seed 20261015. The first 1,000 draws are for entries and the next 1,000 for exits, as in the design review. Robustness variants reuse these groups. The divisions H and S pool (§8.5) uses a fresh stream with the same seed |
+| C4 | Broadened treated set (§8.4) | All classes in subdivisions 41 and 42 except 4123 (28 classes). It reuses the primary placebo groups, which are size-matched to the primary treated group. A larger pooled group is less noisy, so its p-value is conservative |
+| C5 | Interpretation rule (§7) | "Inconclusive" when the 90% interval contains 0 and also reaches +5 or −5 per 100 |
+| C6 | Grade (§9 and evaluation design §8) | **Not identified** if either pre-period event coefficient (net of the placebo mean) lies outside its 95% placebo band. **Weak** if any §8.1–8.5 variant moves the estimate outside the primary 90% interval. Otherwise **Moderate** |
+| C7 | Event study and sensitivity (§5.3, §8.6) | The plain event study is reported, and alongside it the same coefficients net of the placebo-group mean for each year, which matches the primary estimator. The sensitivity bounds are the relative-magnitudes breakdown of Rambachan and Roth (2023), point-identified version, plus a linear pre-trend extrapolation |
+| C8 | Additional output, labelled "not pre-registered" | The 95% interval (the evaluation design's reporting standard); the comparison-state rank of the net estimate; real pay per worker deflated by each capital's CPI (descriptive) |
