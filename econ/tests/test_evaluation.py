@@ -129,7 +129,8 @@ def test_batch_evaluations_match_the_registered_run():
     assert est["mode"].startswith("UNBLINDED")
     for r in est["cases"]:
         ev = evs[r["id"]]
-        assert ev.verdict == r["verdict"] and ev.grade == r["grade"]
+        assert ev.grade == r["grade"]
+        assert ev.verdict == ("not-identified" if r["grade"] == "Not identified" else r["verdict"])
         out = {o.id: o for o in ev.outcomes}
         for oid, m in (("entry-rate", "entries"), ("exit-rate", "exits")):
             if r[m] is None:

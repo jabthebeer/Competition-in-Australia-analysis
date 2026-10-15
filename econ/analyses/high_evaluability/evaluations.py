@@ -403,7 +403,7 @@ def build(case: Case, r: dict) -> dict:
     last = max(c.last_post for c in case.cohorts)
     reasons = r["grade_reasons"]
     grade_reason = (
-        " ".join(reasons)
+        " ".join(x[0].upper() + x[1:].rstrip(".") + "." for x in reasons)
         if reasons
         else (
             "Passes the plan's pre-reform check and robustness variants; one or few treated states, so only large "
@@ -417,11 +417,12 @@ def build(case: Case, r: dict) -> dict:
         "family": case.family,
         "evaluated_on": dt.date(2026, 10, 15).isoformat(),
         "hypothesis": case.hypothesis,
-        "design": f"Stacked difference-in-differences: {case.design} Estimates are net of the same comparison "
-        "for unaffected industries in the same states.",
+        "design": f"{case.design} Method: stacked difference-in-differences, net of the same comparison for "
+        "unaffected industries in the same states.",
         "comparison": f"Treated: {', '.join(tr)}. Comparison: {', '.join(ctl)}.",
         "window": f"{fy(case.start)} to {fy(last)} (first exposed year {fy(first)})",
-        "verdict": r["verdict"],
+        # Plan section 7: a not-identified case has no headline verdict.
+        "verdict": "not-identified" if grade == "Not identified" else r["verdict"],
         "finding_label": t["finding_label"],
         "grade": grade,
         "grade_reason": grade_reason,

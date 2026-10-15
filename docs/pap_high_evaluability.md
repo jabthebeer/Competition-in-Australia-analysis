@@ -136,3 +136,5 @@ Run on 15 October 2026 with every treated state's outcomes hidden from its first
 - the Darwin soft-drink rise is read as a pre-existing trend;
 - transport productivity in the heavy-vehicle case is read as reflecting the resources boom in WA and the NT;
 - the sign-test observation across the three evaluated "enhancing" reforms is exploratory.
+
+**Labelling.** The decision rule returned "inconclusive" for ride-share legalisation before its grade was applied. Its evaluation shows the verdict "Not identified", to match the grade. Under §7, a not-identified case has no headline estimate.

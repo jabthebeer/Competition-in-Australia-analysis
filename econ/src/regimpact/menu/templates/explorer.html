@@ -160,6 +160,20 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
 .small { font-size: var(--step--1); }
 .results { display: grid; gap: 16px; }
 .results-intro { margin: 0; color: var(--ink-2); font-size: var(--step--1); max-width: 80ch; }
+.ov-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; }
+.ov { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.ov th { text-align: left; font-weight: 500; color: var(--ink-3); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.ov td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.ov tr:last-child td { border-bottom: 0; }
+.ov .eff { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ov .linkbtn { text-align: left; }
+@media (max-width: 640px) {
+  .ov thead { display: none; }
+  .ov, .ov tbody, .ov tr, .ov td { display: block; width: 100%; }
+  .ov tr { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; padding: 10px; border-bottom: 1px solid var(--line); }
+  .ov td { border: 0; padding: 0; }
+  .ov td.ov-title { grid-column: 1 / -1; }
+}
 .ev-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 14px; }
 .ev-card h2 { font-size: var(--step-2); }
 .ev-kicker { font-size: 0.75rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; }
@@ -425,7 +439,7 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
   function evalCard(ev) {
     const recs = ev.records.map((id) => R.find((r) => r.id === id)).filter(Boolean).sort(byDate);
     const fam = ev.family && DATA.familyLabels[ev.family];
-    return `<article class="ev-card" aria-label="${esc(ev.title)}">
+    return `<article class="ev-card" id="ev-${esc(ev.id)}" aria-label="${esc(ev.title)}">
       <div class="ev-kicker">Evaluated ${esc(fmtDate(ev.evaluated_on))}${fam ? ` · ${esc(fam)}` : ""}</div>
       <h2>${esc(ev.title)}</h2>
       <div class="ev-recs">${recs.map((r) => `<button type="button" class="recbtn" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(fmtDate(r.effective))} · ${esc(r.short)}</button>`).join("")}</div>
@@ -488,15 +502,16 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
     const x = (k) => L + ((k - k0) / (k1 - k0)) * (w - L - RM);
     const y = (v) => T + ((hi - v) / (hi - lo)) * (H - T - B);
     const parts = [];
-    niceTicks(lo, hi, 4).forEach((t) => {
-      parts.push(`<line x1="${L}" x2="${w - RM}" y1="${y(t).toFixed(1)}" y2="${y(t).toFixed(1)}" stroke="${t === 0 ? "var(--ink-3)" : "var(--line)"}" stroke-width="1"/>`);
-      parts.push(`<text x="${L - 6}" y="${(y(t) + 3.5).toFixed(1)}" font-size="10.5" text-anchor="end" fill="var(--ink-3)">${esc(fmtTick(t))}</text>`);
-    });
+    // The band goes underneath, so the grid and the zero line stay visible across it.
     if (band) {
       const up = pts.map((p) => `${x(p.k).toFixed(1)},${y(p.high ?? p.estimate).toFixed(1)}`);
       const dn = pts.slice().reverse().map((p) => `${x(p.k).toFixed(1)},${y(p.low ?? p.estimate).toFixed(1)}`);
       parts.push(`<polygon points="${up.join(" ")} ${dn.join(" ")}" fill="var(--est-band)"/>`);
     }
+    niceTicks(lo, hi, 4).forEach((t) => {
+      parts.push(`<line x1="${L}" x2="${w - RM}" y1="${y(t).toFixed(1)}" y2="${y(t).toFixed(1)}" stroke="${t === 0 ? "var(--ink-3)" : "var(--line)"}" stroke-width="1"/>`);
+      parts.push(`<text x="${L - 6}" y="${(y(t) + 3.5).toFixed(1)}" font-size="10.5" text-anchor="end" fill="var(--ink-3)">${esc(fmtTick(t))}</text>`);
+    });
     let rowEnd = [-Infinity, -Infinity];
     es.markers.forEach((m) => {
       const mx = x(m.k);
@@ -635,9 +650,25 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
   }
   function renderResults(rows) {
     const ids = new Set(rows.map((r) => r.evaluation).filter(Boolean));
-    const list = Object.values(EV).filter((e) => ids.has(e.id)).sort((a, b) => b.evaluated_on.localeCompare(a.evaluated_on));
-    $("results").innerHTML = `<p class="results-intro">${esc(DATA.evaluationNote)}</p>` +
+    const firstDate = (e) => e.records.map((id) => (R.find((r) => r.id === id) || {}).effective || "9999").sort()[0];
+    const list = Object.values(EV).filter((e) => ids.has(e.id)).sort((a, b) => firstDate(a).localeCompare(firstDate(b)) || a.title.localeCompare(b.title));
+    const overview = list.length > 1 ? `<div class="ov-wrap"><table class="ov">
+      <thead><tr><th>Reform</th><th>Verdict</th><th>Entry, per 100 a year (90% interval)</th><th>Grade</th></tr></thead>
+      <tbody>${list.map((e) => {
+        const o = e.outcomes.find((x) => x.id === "entry-rate");
+        const eff = o && o.finding !== "not-identified"
+          ? `${esc(fmtNum(o.estimate))} <span class="muted">(${esc(fmtNum(o.interval.low))} to ${esc(fmtNum(o.interval.high))})</span>`
+          : `<span class="muted">${o ? "not headlined" : "not measurable"}</span>`;
+        return `<tr><td class="ov-title"><button type="button" class="linkbtn jump" data-ev="${esc(e.id)}">${esc(e.title)}</button></td>
+          <td><span class="pill ${VERDICT[e.verdict].cls}">${esc(VERDICT[e.verdict].label)}</span></td>
+          <td class="eff">${eff}</td><td><span class="pill ${GRADE_CLS[e.grade]}">${esc(e.grade)}</span></td></tr>`;
+      }).join("")}</tbody></table></div>` : "";
+    $("results").innerHTML = `<p class="results-intro">${esc(DATA.evaluationNote)}</p>` + overview +
       (list.length ? list.map(evalCard).join("") : `<p class="muted">${Object.keys(EV).length ? "No evaluated changes match these filters." : "No change has been evaluated yet."}</p>`);
+    $("results").querySelectorAll(".jump").forEach((b) => b.addEventListener("click", () => {
+      const card = document.getElementById(`ev-${b.dataset.ev}`);
+      if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
+    }));
     bindEval($("results"));
   }
   function renderList(rows) {

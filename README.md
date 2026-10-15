@@ -1,6 +1,15 @@
 # Competition-in-Australia-analysis
 A series of econometric analyses for competition in Australia, aiming to ultimately assess where business dynamism is constrained and what policy drivers can be used to lift productivity through higher competition. 
 
+## Browse the regulatory change menu
+
+The menu explorer is one HTML page built from the register. Use it to search the 69 changes, filter for **Evaluated** ones and open the **Results** tab for each evaluation's estimated effects and charts.
+
+- **On GitHub Pages:** <https://jabthebeer.github.io/Competition-in-Australia-analysis/>
+  - It is published by `.github/workflows/menu-explorer-pages.yml` on every push to `main`.
+  - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+- **Locally:** `cd econ && uv run regimpact explorer --standalone -o menu.html`, then open `menu.html` in a browser.
+
 ## Projects
 
 - [`regulatory-burden-tool/`](regulatory-burden-tool/): an unofficial calculator for regulatory burden under the OIA Regulatory Burden Measurement framework, with reform (remove-and-replace) comparisons and analysis-ready exports for competition and business-dynamism research.
