@@ -1,0 +1,369 @@
+{
+  "case": "Perth retail trading-hours deregulation (2010 weeknights and precincts; 2012 Sundays)",
+  "blinding": "WA affected-retail outcomes from 2010-11 and Perth CPI from 2010-Q4 are never reported here",
+  "z_80_power_5pc": 2.802,
+  "wa_pre_period_cell_sizes_mean_2008_2010": {
+    "4000": {
+      "start": 338.0,
+      "entries": 43.0,
+      "exits": 44.0
+    },
+    "4110": {
+      "start": 712.0,
+      "entries": 104.0,
+      "exits": 85.0
+    },
+    "4251": {
+      "start": 1050.0,
+      "entries": 181.0,
+      "exits": 181.0
+    },
+    "4260": {
+      "start": 19.0,
+      "entries": 1.0,
+      "exits": 3.0
+    },
+    "4511": {
+      "start": 2488.0,
+      "entries": 513.0,
+      "exits": 487.0
+    },
+    "4512": {
+      "start": 2213.0,
+      "entries": 404.0,
+      "exits": 403.0
+    }
+  },
+  "entry_exit": {
+    "entries": {
+      "did_treated_group": {
+        "wa_pre_mean": 16.08,
+        "controls_pre_mean": 15.98,
+        "pre_period_event_coefs": {
+          "-3": -2.09,
+          "-2": -0.98
+        },
+        "placebo_in_space": {
+          "n": 6,
+          "sd": 1.675,
+          "mde_80pc": 4.691,
+          "min_p": 0.143,
+          "estimates": {
+            "ACT": 2.003,
+            "NSW": -0.883,
+            "NT": 2.718,
+            "QLD": -0.621,
+            "TAS": -0.296,
+            "VIC": -1.336
+          }
+        },
+        "placebo_in_space_without_qld": {
+          "n": 5,
+          "sd": 1.877,
+          "mde_80pc": 5.258,
+          "min_p": 0.167,
+          "estimates": {
+            "ACT": 1.973,
+            "NSW": -1.075,
+            "NT": 2.623,
+            "TAS": -0.455,
+            "VIC": -1.553
+          }
+        },
+        "mde_relative_to_wa_pre_mean": 0.292
+      },
+      "triple_diff": {
+        "wa_pre_mean": -3.0,
+        "controls_pre_mean": -3.43,
+        "pre_period_event_coefs": {
+          "-3": -5.54,
+          "-2": 1.14
+        },
+        "placebo_in_space": {
+          "n": 6,
+          "sd": 1.054,
+          "mde_80pc": 2.953,
+          "min_p": 0.143,
+          "estimates": {
+            "ACT": 0.747,
+            "NSW": -1.451,
+            "NT": 1.726,
+            "QLD": -0.097,
+            "TAS": -0.141,
+            "VIC": 0.221
+          }
+        },
+        "placebo_in_space_without_qld": {
+          "n": 5,
+          "sd": 1.202,
+          "mde_80pc": 3.367,
+          "min_p": 0.167,
+          "estimates": {
+            "ACT": 0.774,
+            "NSW": -1.548,
+            "NT": 1.704,
+            "TAS": -0.164,
+            "VIC": 0.218
+          }
+        },
+        "mde_relative_to_wa_pre_mean": 0.983
+      },
+      "simulation_recovery_did": [
+        {
+          "planted": 0.0,
+          "mean_estimate": 0.264,
+          "mean_abs_error": 1.31,
+          "share_p_min": 0.167
+        },
+        {
+          "planted": 1.0,
+          "mean_estimate": 1.264,
+          "mean_abs_error": 1.31,
+          "share_p_min": 0.167
+        },
+        {
+          "planted": 2.0,
+          "mean_estimate": 2.264,
+          "mean_abs_error": 1.31,
+          "share_p_min": 0.333
+        },
+        {
+          "planted": 3.0,
+          "mean_estimate": 3.264,
+          "mean_abs_error": 1.31,
+          "share_p_min": 0.5
+        },
+        {
+          "planted": 5.0,
+          "mean_estimate": 5.264,
+          "mean_abs_error": 1.31,
+          "share_p_min": 1.0
+        }
+      ]
+    },
+    "exits": {
+      "did_treated_group": {
+        "wa_pre_mean": 15.07,
+        "controls_pre_mean": 15.81,
+        "pre_period_event_coefs": {
+          "-3": 1.07,
+          "-2": 1.39
+        },
+        "placebo_in_space": {
+          "n": 6,
+          "sd": 1.412,
+          "mde_80pc": 3.957,
+          "min_p": 0.143,
+          "estimates": {
+            "ACT": -2.336,
+            "NSW": 0.651,
+            "NT": -1.138,
+            "QLD": 0.877,
+            "TAS": -0.158,
+            "VIC": 1.442
+          }
+        },
+        "placebo_in_space_without_qld": {
+          "n": 5,
+          "sd": 1.525,
+          "mde_80pc": 4.273,
+          "min_p": 0.167,
+          "estimates": {
+            "ACT": -2.29,
+            "NSW": 0.865,
+            "NT": -0.675,
+            "TAS": 0.01,
+            "VIC": 1.7
+          }
+        },
+        "mde_relative_to_wa_pre_mean": 0.263
+      },
+      "triple_diff": {
+        "wa_pre_mean": -3.44,
+        "controls_pre_mean": -2.56,
+        "pre_period_event_coefs": {
+          "-3": 1.48,
+          "-2": -0.17
+        },
+        "placebo_in_space": {
+          "n": 6,
+          "sd": 2.431,
+          "mde_80pc": 6.811,
+          "min_p": 0.143,
+          "estimates": {
+            "ACT": -4.557,
+            "NSW": 0.118,
+            "NT": 0.874,
+            "QLD": 1.984,
+            "TAS": 0.062,
+            "VIC": 2.028
+          }
+        },
+        "placebo_in_space_without_qld": {
+          "n": 5,
+          "sd": 2.691,
+          "mde_80pc": 7.54,
+          "min_p": 0.167,
+          "estimates": {
+            "ACT": -4.37,
+            "NSW": 0.568,
+            "NT": 1.673,
+            "TAS": 0.509,
+            "VIC": 2.585
+          }
+        },
+        "mde_relative_to_wa_pre_mean": 1.98
+      },
+      "simulation_recovery_did": [
+        {
+          "planted": 0.0,
+          "mean_estimate": -0.111,
+          "mean_abs_error": 1.1,
+          "share_p_min": 0.333
+        },
+        {
+          "planted": 1.0,
+          "mean_estimate": 0.889,
+          "mean_abs_error": 1.1,
+          "share_p_min": 0.167
+        },
+        {
+          "planted": 2.0,
+          "mean_estimate": 1.889,
+          "mean_abs_error": 1.1,
+          "share_p_min": 0.5
+        },
+        {
+          "planted": 3.0,
+          "mean_estimate": 2.889,
+          "mean_abs_error": 1.1,
+          "share_p_min": 0.667
+        },
+        {
+          "planted": 5.0,
+          "mean_estimate": 4.889,
+          "mean_abs_error": 1.1,
+          "share_p_min": 0.833
+        }
+      ]
+    }
+  },
+  "placebo_industries_wa": {
+    "entries": {
+      "measure": "entries",
+      "draws_kept": 472,
+      "eligible_classes": 268,
+      "treated_group_wa_2010_start": 1760.0,
+      "mean": -1.577,
+      "sd": 2.013,
+      "mde_80pc": 5.639,
+      "critical_value_5pc": 4.329,
+      "power_by_effect_per_100": {
+        "1": 0.055,
+        "2": 0.102,
+        "3": 0.199,
+        "4": 0.419,
+        "5": 0.657,
+        "6": 0.841,
+        "8": 0.966
+      },
+      "min_p": 0.0021,
+      "note": "mean != 0 measures WA-wide shocks common to unaffected industries (e.g. the mining cycle)"
+    },
+    "exits": {
+      "measure": "exits",
+      "draws_kept": 451,
+      "eligible_classes": 268,
+      "treated_group_wa_2010_start": 1760.0,
+      "mean": 0.159,
+      "sd": 1.479,
+      "mde_80pc": 4.144,
+      "critical_value_5pc": 2.828,
+      "power_by_effect_per_100": {
+        "1": 0.118,
+        "2": 0.284,
+        "3": 0.563,
+        "4": 0.812,
+        "5": 0.914,
+        "6": 0.984,
+        "8": 1.0
+      },
+      "min_p": 0.0022,
+      "note": "mean != 0 measures WA-wide shocks common to unaffected industries (e.g. the mining cycle)"
+    }
+  },
+  "vintage_revisions": {
+    "treated_group": {
+      "pairs": 42,
+      "mean_abs_revision_pp": 0.856,
+      "max_abs_revision_pp": 4.95
+    },
+    "comparison_group": {
+      "pairs": 42,
+      "mean_abs_revision_pp": 0.618,
+      "max_abs_revision_pp": 2.085
+    }
+  },
+  "productivity": {
+    "outcome": "100 x log real retail value added per employed person, division G",
+    "years": "1989-90 to 2017-18",
+    "placebo_in_space": {
+      "n": 6,
+      "sd": 12.89,
+      "mde_80pc": 36.114,
+      "min_p": 0.143,
+      "estimates": {
+        "ACT": 24.194,
+        "NSW": -8.687,
+        "NT": -3.043,
+        "QLD": -10.742,
+        "TAS": 3.821,
+        "VIC": -5.544
+      }
+    },
+    "pre_period_placebo_in_time": {
+      "2005": 6.54,
+      "2007": 5.04
+    },
+    "store_based_share_of_wa_retail_businesses_2010": 0.827,
+    "blinding_note": "WA's post-2011 division G series was displayed once during data validation; results for this outcome are not blind and are graded accordingly"
+  },
+  "cpi": {
+    "Food and non-alcoholic beverages": {
+      "outcome": "100 x log(Food and non-alcoholic beverages / All groups), capital city, quarterly 2000-Q1 to 2019-Q4",
+      "placebo_in_space": {
+        "n": 6,
+        "sd": 1.147,
+        "mde_80pc": 3.213,
+        "min_p": 0.143,
+        "estimates": {
+          "ACT": 1.447,
+          "NSW": 0.552,
+          "NT": -1.512,
+          "QLD": -1.244,
+          "TAS": 0.211,
+          "VIC": 0.546
+        }
+      },
+      "pre_period_placebo_in_time_2006q1": -2.0
+    },
+    "Clothing and footwear": {
+      "outcome": "100 x log(Clothing and footwear / All groups), capital city, quarterly 2000-Q1 to 2019-Q4",
+      "placebo_in_space": {
+        "n": 6,
+        "sd": 2.445,
+        "mde_80pc": 6.85,
+        "min_p": 0.143,
+        "estimates": {
+          "ACT": -0.175,
+          "NSW": -0.009,
+          "NT": -0.288,
+          "QLD": 1.886,
+          "TAS": 2.844,
+          "VIC": -4.259
+        }
+      },
+      "pre_period_placebo_in_time_2006q1": -8.61
+    }
+  }
+}

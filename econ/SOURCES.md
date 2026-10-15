@@ -24,6 +24,19 @@ Regenerate with `scripts/fetch_anzsic.py` and `scripts/fetch_cpi_classes.py`.
 
 Register responses used as test fixtures (`tests/fixtures/`) were retrieved on 14–15 October 2026. Large responses are trimmed, with their structure unchanged.
 
+## Outcome data (first case)
+
+All Australian Bureau of Statistics, CC BY 4.0. Downloads are cached in `econ/.cache/` (not committed); the built CABEE panel is committed in `data/processed/`.
+
+| Data | Source | Used for |
+|---|---|---|
+| Counts of Australian Businesses, including Entries and Exits (8165.0): ANZSIC class × state × employment size cubes | 10 releases, Jun 2007–Jun 2009 to Jul 2016–Jun 2020; each release URL, publication date and SHA-256 are in `data/processed/cabee_manifest.json` | Entry and exit rates |
+| Consumer Price Index, 17th series | ABS Data API, dataflow `ABS,CPI,1.1.0` <https://data.api.abs.gov.au/rest/data/ABS,CPI,1.1.0/…> (index numbers by capital city, quarterly) | Relative food and clothing prices |
+| Australian National Accounts: State Accounts (5220.0), 2024-25 | <https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-state-accounts/2024-25-financial-year> (tables 5220002–5220009) | Retail gross value added (chain volume) and compensation of employees |
+| Labour Force, Australia, Detailed, March 2026, table 05 | <https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia-detailed/mar-2026/6291005.xlsx> | Employment by state and industry division |
+
+The WA trading-hours dates were checked against the WA register's *Retail Trading Hours Act 1987* page and its "History of this Act" (<https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_a696.html>, CC BY 4.0), retrieved 15 October 2026.
+
 ## Register records
 
 Every date in `regulation-register/records/*.json` carries its own source URL. The records were drafted by AI-assisted desk research on 14–15 October 2026 from official registers, gazettes, government and regulator pages, and published research. They have not yet been reviewed by a person (`review.status = "draft"`).

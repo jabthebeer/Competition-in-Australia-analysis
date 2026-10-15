@@ -13,7 +13,9 @@ Public-data toolkit for evaluating how Australian regulatory changes affect comp
 | Timing | Maps a commencement onto financial years and quarters, with the partly exposed first period | Done |
 | Evaluability screen | Rates each change high, medium or low for public-data evaluation, with reasons | Done (rules stated in `menu/screen.py`) |
 | Menu explorer | One interactive HTML page: filters, list, adoption timeline, record details | Done |
-| Outcome panels and estimators | CABEE entry and exit panel, prices, productivity; the recipes in the design document | Not started |
+| Outcome panels | CABEE entry and exit by ANZSIC class, state and size (2007-08 to 2019-20, 10 releases stitched); CPI by capital city (ABS Data API); state retail output and pay per worker | Done for the first case |
+| Estimators | Two-way fixed effects, event study, blinding, comparison-state and industry placebos, planted-effect simulations (`evaluate/did.py`) | Done for single-treated-state designs; staggered estimators not started |
+| First case | Perth trading-hours deregulation (2010, 2012): blinded robustness review and pre-analysis plan ([review](../docs/robustness_review_wa_trading_hours.md), [plan](../docs/pap_wa_trading_hours.md)) | Plan registered; estimation not yet run |
 
 ## Setup
 
@@ -22,8 +24,9 @@ Requires Python 3.11 or later and [uv](https://docs.astral.sh/uv/).
 ```bash
 cd econ
 uv sync
-uv run pytest              # offline tests (76)
-uv run ruff check src tests scripts
+uv run pytest              # offline tests (84)
+uv run ruff check src tests scripts analyses
+uv run python analyses/wa_trading_hours/design_review.py   # blinded design review (downloads ABS data on first run)
 ```
 
 ## Commands
@@ -78,9 +81,13 @@ econ/
     legislation/   frl.py (Commonwealth), states.py (states and territories), gather.py (reconcile),
                    adapters.py (routing), http.py (polite fetching), cache.py, text.py (dates, Word tables)
     menu/          screen.py (evaluability), explorer.py + templates/explorer.html (the page)
+    outcomes/      cabee.py (entries and exits), abs_series.py (ABS workbooks, CPI Data API), productivity.py
+    evaluate/      did.py (single-treated-unit DiD, placebos, simulations)
     timing.py      financial years and quarters
     anzsic.py, cpi.py, data/   bundled ABS classifications (CC BY 4.0)
     cli.py
+  analyses/        one folder per case: design review code and results (wa_trading_hours/)
+  data/processed/  CABEE panel built by `outcomes.cabee.build()` (CC BY 4.0, ABS; manifest has release URLs and SHA-256)
   scripts/         regenerate bundled data; record test fixtures; import desk-research drafts; export the schema
   tests/           offline tests; fixtures are real register responses
 ```
