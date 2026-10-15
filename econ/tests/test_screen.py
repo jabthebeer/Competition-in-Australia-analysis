@@ -76,7 +76,10 @@ def test_overlapping_changes_are_flagged_but_family_members_are_not():
         rec("cth-c-2016", "CTH", "2016-01-01", anzsic="46"),
     ]
     s = screen_all(recs, COV)["nsw-a-2016"]
-    assert s.overlapping == ("cth-c-2016", "nsw-b-2017")
+    # The national change hits every state alike, so it does not confound a state comparison.
+    assert s.overlapping == ("nsw-b-2017",)
+    national = screen_all(recs + [rec("cth-d-2016", "CTH", "2016-07-01", anzsic="46")], COV)["cth-c-2016"]
+    assert national.overlapping == ("cth-d-2016",)
 
 
 def test_not_commenced():

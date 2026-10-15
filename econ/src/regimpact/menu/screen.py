@@ -8,7 +8,7 @@ Rules (applied to the record's effective commencement):
 - weaknesses counted: no geographic comparison group (national change); too few years of
   outcome data before (< 3 financial years) or after (< 2); affected industries only at
   division or subdivision level; event window overlaps the COVID period (2019-20 to
-  2021-22); another register change hits the same jurisdiction and industry within two
+  2021-22); another register change in the same jurisdiction hits the same industry within two
   years; dates not fully verified;
 - 0 weaknesses -> "high", 1 -> "medium", 2 or more -> "low".
 """
@@ -137,7 +137,10 @@ def screen_record(
         oeff = other.effective_commencement
         if other.id == rec.id or oeff is None or (other.family and other.family == rec.family):
             continue
-        same_place = other.jurisdiction in (rec.jurisdiction, "CTH") or rec.jurisdiction == "CTH"
+        # A state design compares jurisdictions, so a national change that hits every state alike is
+        # absorbed by industry-year effects: only same-jurisdiction changes confound it. A national
+        # design compares industries, so only other national changes in the same industry confound it.
+        same_place = other.jurisdiction == rec.jurisdiction
         if same_place and _shares_industry(rec, other) and abs(financial_year(oeff.date) - t.first_exposed_fy) <= 2:
             overlapping.append(other.id)
     if overlapping:

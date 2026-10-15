@@ -281,17 +281,20 @@ class WesternAustralia(_Base):
             history = []
             notes.append("'History of this Act' table unavailable or not a Word document")
         want = _norm_title(instrument.title)
+        row_assent = None
         for rows in history:
             for r in rows:
                 if len(r) >= 4 and _norm_title(r[0]) == want:
                     commencements += self.parse_commencement(r[3], instrument.title)
+                    row_assent = row_assent or parse_date(r[2])
         if history and not commencements:
             notes.append("no commencement row for this title in 'History of this Act', or its text did not parse")
         return _result(
             "WA",
             instrument,
             url,
-            assent_or_made=parse_date(label.group(1)) if label else None,
+            # An amending Act listed in its principal Act's history: take its own assent from that row.
+            assent_or_made=row_assent or (parse_date(label.group(1)) if label else None),
             register_id=f"law_{law}",
             commencements=tuple(commencements),
             notes=tuple(notes),
