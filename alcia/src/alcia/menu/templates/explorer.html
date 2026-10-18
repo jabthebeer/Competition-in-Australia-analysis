@@ -654,7 +654,7 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
     const c = CHECK[r.check.status];
     return `<span class="pill ${c.cls}" title="${esc(c.help)}">${esc(c.label)}</span>`;
   }
-  const LEVEL = { class: "ANZSIC class", group: "ANZSIC group", subdivision: "ANZSIC subdivision", division: "ANZSIC division", inferred: "industry inferred from business names", occupation: "occupations", total: "all industries together" };
+  const LEVEL = { class: "ANZSIC class", group: "ANZSIC group", "retail-group": "ABS retail industry group", subdivision: "ANZSIC subdivision", division: "ANZSIC division", inferred: "industry inferred from business names", occupation: "occupations", total: "all industries together" };
   function dataList(r) {
     const rows = r.data || [];
     if (!rows.length) return `<p class="muted">No processed data panel covers this change's industries yet.</p>`;

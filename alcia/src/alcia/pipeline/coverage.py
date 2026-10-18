@@ -83,8 +83,13 @@ class Match:
         return asdict(self)
 
 
+RANK = {"class": 0, "group": 1, "retail-group": 2, "subdivision": 3, "division": 4, "inferred": 5}
+
+
 def _industry_match(entry: dict, code: str) -> tuple[str, str] | None:
     """Finest ANZSIC level in the panel covering ``code``: (panel code, level)."""
+    from .concord import composition
+
     ancestors = schema.anzsic_ancestors(code)
     best = None
     for scheme in ("ANZSIC06", "ANZSIC06-inferred"):
@@ -93,8 +98,15 @@ def _industry_match(entry: dict, code: str) -> tuple[str, str] | None:
             for level, codes in levels.items():
                 if anc in codes:
                     lvl = "inferred" if scheme == "ANZSIC06-inferred" else level
-                    if best is None or len(anc) > len(best[0]):
+                    if best is None or RANK.get(lvl, 9) < RANK.get(best[1], 9):
                         best = (anc, lvl)
+    # Composite source groupings (e.g. Retail Trade groups) that contain the record's code.
+    comp = composition()
+    for group_code in entry["industries"].get("ANZSIC06", {}).get("retail-group", []):
+        classes = [c.rstrip("*") for c in comp.get(group_code, [])]
+        contains = any(c == code or _within(c, code) for c in classes)
+        if contains and (best is None or RANK["retail-group"] < RANK.get(best[1], 9)):
+            best = (group_code, "retail-group")
     if best:
         return best
     # Finer codes can be summed up to the record's code (e.g. classes to a division).
@@ -149,5 +161,5 @@ def coverage(record: ChangeRecord, catalogue: list[dict] | None = None) -> list[
                     "/".join(entry["period_type"]),
                 )
             )
-    order = {"class": 0, "group": 1, "subdivision": 2, "division": 3, "inferred": 4, "occupation": 5, "total": 6}
+    order = {**RANK, "occupation": 6, "total": 7}
     return sorted(out, key=lambda m: (m.industry, order.get(m.matched_level, 9), m.source, m.measure))

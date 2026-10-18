@@ -2122,5 +2122,108 @@
    ]
   },
   "local_states": []
+ },
+ {
+  "source": "abs_retail",
+  "table": "turnover_state",
+  "measure": "turnover",
+  "unit": "AUD m",
+  "period_type": [
+   "month"
+  ],
+  "first": "1982-04-01",
+  "last": "2025-06-01",
+  "rows": 189364,
+  "industries": {
+   "ANZSIC06": {
+    "class": [
+     "4123",
+     "4244",
+     "4251",
+     "4260",
+     "4271",
+     "4512"
+    ],
+    "retail-group": [
+     "RT01",
+     "RT03",
+     "RT04",
+     "RT05",
+     "RT06",
+     "RT08",
+     "RT11",
+     "RT13",
+     "RT14",
+     "RT41",
+     "RT42",
+     "RT43",
+     "RT44",
+     "RT45",
+     "RT46"
+    ],
+    "total": [
+     ""
+    ]
+   }
+  },
+  "geo": {
+   "AUS": [
+    "AUS"
+   ],
+   "STE": [
+    "ACT",
+    "NSW",
+    "NT",
+    "QLD",
+    "SA",
+    "TAS",
+    "VIC",
+    "WA"
+   ]
+  },
+  "local_states": []
+ },
+ {
+  "source": "abs_retail",
+  "table": "turnover_state",
+  "measure": "turnover_volume",
+  "unit": "AUD m, chain volume",
+  "period_type": [
+   "quarter"
+  ],
+  "first": "1983-07-01",
+  "last": "2025-04-01",
+  "rows": 2501,
+  "industries": {
+   "ANZSIC06": {
+    "retail-group": [
+     "RT41",
+     "RT42",
+     "RT43",
+     "RT44",
+     "RT45",
+     "RT46"
+    ],
+    "total": [
+     ""
+    ]
+   }
+  },
+  "geo": {
+   "AUS": [
+    "AUS"
+   ],
+   "STE": [
+    "ACT",
+    "NSW",
+    "NT",
+    "QLD",
+    "SA",
+    "TAS",
+    "VIC",
+    "WA"
+   ]
+  },
+  "local_states": []
  }
 ]

@@ -68,3 +68,27 @@ def test_coverage_finds_the_finest_level_and_local_geography():
     assert matches[("a", "4610")].matched_level == "class" and matches[("a", "4610")].state
     assert matches[("b", "4610")].matched_level == "division"
     assert matches[("c", "4610")].matched_level == "total" and matches[("c", "4610")].local_levels == ("POA",)
+
+
+def test_retail_trade_codes_map_to_anzsic_and_states():
+    """ILLUSTRATIVE SDMX-CSV rows (not real values)."""
+    from alcia.pipeline import abs_retail, concord
+
+    raw = pd.DataFrame(
+        {
+            "INDUSTRY": ["02", "01", "20", "41", "02"],
+            "TSEST": ["10", "20", "10", "20", "10"],
+            "REGION": ["5", "1", "AUS", "2", "9"],
+            "FREQ": ["M", "M", "M", "Q", "M"],
+            "TIME_PERIOD": ["2012-08", "2012-08", "2012-08", "2012-Q3", "2012-08"],
+            "OBS_VALUE": ["1.0", "2.0", "3.0", "4.0", "5.0"],
+        }
+    )
+    t = abs_retail.tidy(raw, "turnover", "AUD m", {"02": "Liquor retailing"}, "test")
+    assert len(t) == 4  # Other Territories dropped
+    first = t.iloc[0]
+    assert (first.industry_level, first.industry_code, first.geo_code) == ("class", "4123", "WA")
+    assert tuple(t.iloc[1][["industry_level", "industry_code"]]) == ("retail-group", "RT01")
+    assert tuple(t.iloc[2][["industry_level", "geo_level"]]) == ("total", "AUS")
+    assert t.iloc[3].period == pd.Timestamp("2012-07-01") and t.iloc[3].adjustment == "seasonally adjusted"
+    assert "4110" in concord.composition()["RT01"] and concord.retail_classes("45")[-1] == "4320"

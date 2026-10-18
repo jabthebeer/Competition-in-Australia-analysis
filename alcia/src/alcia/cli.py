@@ -195,6 +195,7 @@ def cmd_explorer(args) -> int:
 
 BUILDERS = {
     "abs_cabee": "alcia.pipeline.abs_cabee",
+    "abs_retail": "alcia.pipeline.abs_retail",
 }
 
 

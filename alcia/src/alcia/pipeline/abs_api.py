@@ -59,6 +59,8 @@ def data(
     flow: str, key: str, version: str = "latest", start: str | None = None, end: str | None = None
 ) -> pd.DataFrame:
     """SDMX-CSV for one query, read from data/raw if already fetched."""
+    if version == "latest":  # the data endpoint needs an explicit version
+        version = structure(flow)["version"]
     params = "&".join(f"{k}={v}" for k, v in (("startPeriod", start), ("endPeriod", end)) if v)
     url = f"{BASE}/data/ABS,{flow},{version}/{key}" + (f"?{params}" if params else "")
     name = f"{flow}_{hashlib.sha256(url.encode()).hexdigest()[:16]}.csv"

@@ -72,7 +72,7 @@ def _division_names() -> dict[str, str]:
     return {code: anzsic.name(code) or "" for code in "ABCDEFGHIJKLMNOPQRS"}
 
 
-LEVEL_ORDER = ("class", "group", "subdivision", "division", "inferred", "occupation", "total")
+LEVEL_ORDER = ("class", "group", "retail-group", "subdivision", "division", "inferred", "occupation", "total")
 DATA_NOTE = (
     "Data that can measure a change: every processed panel in data/processed matched to the change's ANZSIC "
     "codes and jurisdiction, at the finest industry level the panel offers. 'Local' means areas finer than the "

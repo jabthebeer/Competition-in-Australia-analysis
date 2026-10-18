@@ -41,5 +41,16 @@ SOURCES: dict[str, Source] = {
             "state",
             "businesses operating, entries, exits, by employment size",
         ),
+        Source(
+            "abs_retail",
+            "Retail Trade, Australia",
+            "ABS",
+            "https://data.api.abs.gov.au/rest/dataflow/ABS/RT",
+            "CC BY 4.0",
+            "monthly (turnover); quarterly (volume)",
+            "15 retail subgroups (6 are single ANZSIC classes) and 6 groups",
+            "state",
+            "turnover, current prices, April 1982 to June 2025 (series ended); chain-volume turnover by group",
+        ),
     )
 }
