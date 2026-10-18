@@ -39,18 +39,20 @@ RETAIL_GROUPS: dict[str, tuple[str, ...]] = {
 
 
 def retail_classes(code: str) -> tuple[str, ...]:
-    """ANZSIC classes in a Retail Trade industry code (group or subgroup); () for the total."""
+    """ANZSIC classes in a Retail Trade industry code (subgroup, group, or "20" for all retail)."""
     if code in RETAIL_SUBGROUPS:
         return RETAIL_SUBGROUPS[code]
     if code in RETAIL_GROUPS:
         return tuple(c for sub in RETAIL_GROUPS[code] for c in RETAIL_SUBGROUPS[sub])
+    if code == "20":
+        return tuple(c for sub in RETAIL_SUBGROUPS.values() for c in sub)
     return ()
 
 
 def retail_industry(code: str) -> tuple[str, str]:
-    """(industry_level, industry_code) for the panel: exact single classes at class level."""
-    if code == "20":
-        return "total", ""
+    """(industry_level, industry_code) for the panel: exact single classes at class level. Total
+    retail ("20") is a grouping too: it covers retail and cafes, restaurants and takeaway, not all
+    industries."""
     classes = retail_classes(code)
     if code in RETAIL_SUBGROUPS and len(classes) == 1 and not classes[0].endswith("*"):
         return "class", classes[0]
@@ -60,7 +62,7 @@ def retail_industry(code: str) -> tuple[str, str]:
 def composition() -> dict[str, list[str]]:
     """Retail-group code -> ANZSIC classes (partial classes keep their '*')."""
     out = {}
-    for code in [*RETAIL_SUBGROUPS, *RETAIL_GROUPS]:
+    for code in [*RETAIL_SUBGROUPS, *RETAIL_GROUPS, "20"]:
         level, panel_code = retail_industry(code)
         if level == "retail-group":
             out[panel_code] = list(retail_classes(code))

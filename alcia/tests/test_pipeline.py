@@ -89,6 +89,6 @@ def test_retail_trade_codes_map_to_anzsic_and_states():
     first = t.iloc[0]
     assert (first.industry_level, first.industry_code, first.geo_code) == ("class", "4123", "WA")
     assert tuple(t.iloc[1][["industry_level", "industry_code"]]) == ("retail-group", "RT01")
-    assert tuple(t.iloc[2][["industry_level", "geo_level"]]) == ("total", "AUS")
+    assert tuple(t.iloc[2][["industry_level", "industry_code", "geo_level"]]) == ("retail-group", "RT20", "AUS")
     assert t.iloc[3].period == pd.Timestamp("2012-07-01") and t.iloc[3].adjustment == "seasonally adjusted"
     assert "4110" in concord.composition()["RT01"] and concord.retail_classes("45")[-1] == "4320"

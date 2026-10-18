@@ -195,7 +195,15 @@ def cmd_explorer(args) -> int:
 
 BUILDERS = {
     "abs_cabee": "alcia.pipeline.abs_cabee",
+    "abs_cabee_local": "alcia.pipeline.abs_cabee_local",
     "abs_retail": "alcia.pipeline.abs_retail",
+    "abs_lfs": "alcia.pipeline.abs_lfs",
+    "abs_regional": "alcia.pipeline.abs_regional",
+    "abs_asgs": "alcia.pipeline.geo",
+    "abr_abn": "alcia.pipeline.abr_abn",
+    "asic": "alcia.pipeline.asic",
+    "clue_melbourne": "alcia.pipeline.clue",
+    "jsa_ivi": "alcia.pipeline.jsa_ivi",  # needs workbooks saved by hand in data/raw/jsa_ivi/
 }
 
 

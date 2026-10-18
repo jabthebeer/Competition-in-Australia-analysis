@@ -25,6 +25,7 @@ import pandas as pd
 from alcia.evaluate.did import Z_80_POWER_5PC, Placebo, blind, event_study, placebo_in_space, recovery, twfe
 from alcia.outcomes import productivity
 from alcia.outcomes.abs_series import CITY_STATE, fetch_cpi
+from alcia.outcomes.cabee import as_registered
 from alcia.pipeline.store import PROCESSED
 
 HERE = Path(__file__).resolve().parent
@@ -41,7 +42,7 @@ RNG = np.random.default_rng(20261015)
 
 
 def cabee() -> pd.DataFrame:
-    p = pd.read_csv(PANEL / "cabee_class_state_fy.csv.gz", dtype={"anzsic": str})
+    p = as_registered(pd.read_csv(PANEL / "cabee_class_state_fy.csv.gz", dtype={"anzsic": str}))
     p = p[(p["band"] == "total") & p["measure"].isin(["start", "entries", "exits"])]
     return p.pivot_table(index=["fy", "state", "anzsic"], columns="measure", values="value").reset_index()
 
@@ -232,7 +233,7 @@ def cpi_design() -> dict:
 
 def main() -> None:
     w = cabee()
-    ov = pd.read_csv(PANEL / "cabee_class_state_fy_overlaps.csv.gz", dtype={"anzsic": str})
+    ov = as_registered(pd.read_csv(PANEL / "cabee_class_state_fy_overlaps.csv.gz", dtype={"anzsic": str}))
     ov = ov[(ov["band"] == "total") & ov["measure"].isin(["start", "entries"])]
     ov = ov.pivot_table(index=["release", "fy", "state", "anzsic"], columns="measure", values="value").reset_index()
     pre_cells = (

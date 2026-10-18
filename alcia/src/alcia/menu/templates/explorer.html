@@ -167,6 +167,8 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
 .ov td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .ov tr:last-child td { border-bottom: 0; }
 .ov .eff { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ov .ov-unit { display: block; font-family: var(--font-body, inherit); font-size: 0.8em; color: var(--ink-2); white-space: normal; max-width: 28ch; }
+.ev-chain { margin: 0.25rem 0 0; }
 .ov .linkbtn { text-align: left; }
 @media (max-width: 640px) {
   .ov thead { display: none; }
@@ -424,6 +426,7 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
       </div>
       <p class="ev-headline">${esc(ev.headline)}</p>
       ${currentId && others.length ? `<p class="small muted">This evaluation also covers ${others.map((r) => `<button type="button" class="linkbtn recbtn-inline" data-id="${esc(r.id)}">${esc(r.title)}</button>`).join(", ")}.</p>` : ""}
+      ${evalLinks(ev)}
       <div class="cats">${Object.entries(ev.category_summaries).map(([c, txt]) => {
         const [first, rest] = splitFirst(txt);
         return `<div class="cat"><span class="cat-label">${esc(CAT[c] || c)}</span><strong>${esc(first)}</strong>${rest ? `<p>${esc(rest)}</p>` : ""}</div>`;
@@ -452,6 +455,13 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
 
   function bindEval(root) {
     root.querySelectorAll(".recbtn, .recbtn-inline").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
+    root.querySelectorAll(".jump").forEach((b) => b.addEventListener("click", () => {
+      if (state.tab !== "results") setTab("results");
+      requestAnimationFrame(() => {
+        const card = document.getElementById(`ev-${b.dataset.ev}`);
+        if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }));
     root.querySelectorAll(".fx-row").forEach((row) => {
       const o = outcomeOf(row.dataset.ev, row.dataset.o);
       if (!o) return;
@@ -663,9 +673,18 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
       const src = (DATA.dataSources || {})[d.source];
       const lvl = `${LEVEL[d.level] || d.level}${d.codes.length && d.level !== "total" ? ` ${d.codes.join(", ")}` : ""}`;
       const geo = d.state ? `${where} covered` : "not by state";
-      return `<li><strong>${esc(src ? src.title : d.source)}</strong>: ${esc(d.measure)} <span class="muted">(${esc(d.unit)})</span><br>
+      return `<li><strong>${esc(src ? src.title : d.source)}</strong>: ${esc(d.measures.join("; "))}<br>
         <span class="muted">${esc(lvl)} · ${esc(geo)}${d.local.length ? ` · local: ${esc(d.local.join(", "))}` : ""} · ${esc(d.periodType)} ${esc(d.first.slice(0, 7))} to ${esc(d.last.slice(0, 7))}</span></li>`;
     }).join("")}</ul><p class="muted small">${esc(DATA.dataNote || "")}</p>`;
+  }
+  function evalLinks(ev) {
+    const earlier = ev.follows && EV[ev.follows];
+    const later = Object.values(EV).filter((e) => e.follows === ev.id);
+    const one = (e) => `<button type="button" class="linkbtn jump" data-ev="${esc(e.id)}">${esc(e.title)}</button> (${esc(fmtDate(e.evaluated_on))})`;
+    const parts = [];
+    if (earlier) parts.push(`Revisits an earlier evaluation: ${one(earlier)}.`);
+    if (later.length) parts.push(`Revisited by ${later.map(one).join(", ")}.`);
+    return parts.length ? `<p class="small muted ev-chain">${parts.join(" ")}</p>` : "";
   }
   function evalCell(r) {
     const ev = evalOf(r);
@@ -677,11 +696,11 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
     const firstDate = (e) => e.records.map((id) => (R.find((r) => r.id === id) || {}).effective || "9999").sort()[0];
     const list = Object.values(EV).filter((e) => ids.has(e.id)).sort((a, b) => firstDate(a).localeCompare(firstDate(b)) || a.title.localeCompare(b.title));
     const overview = list.length > 1 ? `<div class="ov-wrap"><table class="ov">
-      <thead><tr><th>Reform</th><th>Verdict</th><th>Entry, per 100 a year (90% interval)</th><th>Grade</th></tr></thead>
+      <thead><tr><th>Reform</th><th>Verdict</th><th>Main effect (90% interval)</th><th>Grade</th></tr></thead>
       <tbody>${list.map((e) => {
-        const o = e.outcomes.find((x) => x.id === "entry-rate");
-        const eff = o && o.finding !== "not-identified"
-          ? `${esc(fmtNum(o.estimate))} <span class="muted">(${esc(fmtNum(o.interval.low))} to ${esc(fmtNum(o.interval.high))})</span>`
+        const o = e.outcomes.find((x) => x.id === "entry-rate") || e.outcomes.find((x) => x.role === "primary");
+        const eff = o && o.finding !== "not-identified" && o.interval
+          ? `${esc(fmtNum(o.estimate))} <span class="muted">(${esc(fmtNum(o.interval.low))} to ${esc(fmtNum(o.interval.high))})</span><span class="ov-unit">${esc(o.label)}, ${esc(o.unit)}</span>`
           : `<span class="muted">${o ? "not headlined" : "not measurable"}</span>`;
         return `<tr><td class="ov-title"><button type="button" class="linkbtn jump" data-ev="${esc(e.id)}">${esc(e.title)}</button></td>
           <td><span class="pill ${VERDICT[e.verdict].cls}">${esc(VERDICT[e.verdict].label)}</span></td>
@@ -689,10 +708,6 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
       }).join("")}</tbody></table></div>` : "";
     $("results").innerHTML = `<p class="results-intro">${esc(DATA.evaluationNote)}</p>` + overview +
       (list.length ? list.map(evalCard).join("") : `<p class="muted">${Object.keys(EV).length ? "No evaluated changes match these filters." : "No change has been evaluated yet."}</p>`);
-    $("results").querySelectorAll(".jump").forEach((b) => b.addEventListener("click", () => {
-      const card = document.getElementById(`ev-${b.dataset.ev}`);
-      if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
-    }));
     bindEval($("results"));
   }
   function renderList(rows) {

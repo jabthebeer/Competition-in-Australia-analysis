@@ -14,10 +14,13 @@ Columns
   grouping such as "retail-group" (with ``industry_code`` holding the nearest ANZSIC code)
 - industry_code, industry_label
 - geo_level: "AUS", "STE", "GCCSA", "SA4", "SA3", "SA2", "LGA", "POA" or a source-specific region
-- geo_code: state abbreviation for STE (NSW, VIC, ...), ASGS code otherwise
+  ("SA2_2011": ASGS 2011 SA2s in older releases; "IVI_REGION": Jobs and Skills Australia regions;
+  "CLUE_AREA": City of Melbourne small areas). SA2 and the other ASGS levels are 2021 boundaries
+- geo_code: state abbreviation for STE (NSW, VIC, ...), ASGS code or postcode otherwise;
+  "<state>:<name>" for IVI_REGION and the small-area name for CLUE_AREA
 - breakdown: a further split within the cell, e.g. an employment-size band, entity type or sex
   ("" when none)
-- period_type: "day", "week", "month", "quarter" or "fy"; period: the period's first day
+- period_type: "day", "week", "month", "quarter", "fy" or "year" (calendar); period: the period's first day
 - value; vintage: release or retrieval date of the source data
 """
 
@@ -45,10 +48,20 @@ COLUMNS = (
 STRING_COLUMNS = tuple(c for c in COLUMNS if c not in ("period", "value"))
 INDUSTRY_SCHEMES = {"ANZSIC06", "ANZSCO", "ANZSIC06-inferred", "none"}
 INDUSTRY_LEVELS = {"total", "division", "subdivision", "group", "class", "retail-group", "occupation"}
-GEO_LEVELS = {"AUS", "STE", "GCCSA", "SA4", "SA3", "SA2", "LGA", "POA", "IVI_REGION"}
-PERIOD_TYPES = {"day", "week", "month", "quarter", "fy"}
+GEO_LEVELS = {"AUS", "STE", "GCCSA", "SA4", "SA3", "SA2", "SA2_2011", "LGA", "POA", "IVI_REGION", "CLUE_AREA"}
+PERIOD_TYPES = {"day", "week", "month", "quarter", "fy", "year"}
 STATES = ("NSW", "VIC", "QLD", "SA", "WA", "TAS", "NT", "ACT")
 STATE_CODES = {"1": "NSW", "2": "VIC", "3": "QLD", "4": "SA", "5": "WA", "6": "TAS", "7": "NT", "8": "ACT"}
+STATE_NAMES = {
+    "New South Wales": "NSW",
+    "Victoria": "VIC",
+    "Queensland": "QLD",
+    "South Australia": "SA",
+    "Western Australia": "WA",
+    "Tasmania": "TAS",
+    "Northern Territory": "NT",
+    "Australian Capital Territory": "ACT",
+}
 ANZSIC_LEVEL_BY_LENGTH = {1: "division", 2: "subdivision", 3: "group", 4: "class"}
 
 
@@ -142,6 +155,11 @@ def state_of(geo_level: str, code: str) -> str | None:
             if any(lo <= n <= hi for lo, hi in ranges):
                 return st
         return None
-    if geo_level in {"GCCSA", "SA4", "SA3", "SA2", "LGA"} and code[:1] in STATE_CODES:
+    if geo_level in {"GCCSA", "SA4", "SA3", "SA2", "SA2_2011", "LGA"} and code[:1] in STATE_CODES:
         return STATE_CODES[code[:1]]
+    if geo_level == "IVI_REGION":
+        st = code.split(":", 1)[0]
+        return st if st in STATES else None
+    if geo_level == "CLUE_AREA":
+        return "VIC"
     return None

@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+import time
 from functools import cache
 
 import httpx
@@ -66,9 +67,16 @@ def data(
     name = f"{flow}_{hashlib.sha256(url.encode()).hexdigest()[:16]}.csv"
     path = store.raw_dir(SOURCE) / name
     if not path.exists():
-        with _client() as c:
-            resp = c.get(url, headers={"Accept": CSV})
-            resp.raise_for_status()
+        for attempt in range(4):  # large responses are sometimes cut off; retry with backoff
+            try:
+                with _client() as c:
+                    resp = c.get(url, headers={"Accept": CSV})
+                    resp.raise_for_status()
+                break
+            except httpx.TransportError:
+                if attempt == 3:
+                    raise
+                time.sleep(2 ** (attempt + 1))
         path.write_text(resp.text, encoding="utf-8")
         store.record_download(SOURCE, path, url, LICENCE)
     return pd.read_csv(io.StringIO(path.read_text("utf-8")), dtype=str)

@@ -1,7 +1,14 @@
 """CABEE in the common panel format: businesses, entries and exits by ANZSIC class, state and year.
 
-Built from the stitched class x state x employment-size panel (``alcia.outcomes.cabee``, archived
-releases 2007-08 to 2019-20, each year from the release in which it is final). Data: ABS, CC BY 4.0.
+Built from the stitched class x state x employment-size panel (``alcia.outcomes.cabee``: releases
+from Jun 2007-Jun 2009 to Jul 2021-Jun 2025, years 2007-08 to 2024-25, each year from the release in
+which it is final). Data: ABS, CC BY 4.0.
+
+Levels jump where the releases join: the Jul 2017-Jun 2021 release put 2.31 million businesses at
+the end of 2019-20, against 2.42 million in the Jul 2016-Jun 2020 release. Compare rates (entries or
+exits per business at the start of the year) across that join, not counts; the overlaps file holds
+the second vintage of each year for checks. From 2021-22 the 1-19 employee band is the sum of the
+published 1-4 and 5-19 bands.
 """
 
 from __future__ import annotations
@@ -22,7 +29,12 @@ BANDS = {
 
 
 def build() -> pd.DataFrame:
-    p = pd.read_csv(store.PROCESSED / SOURCE / "cabee_class_state_fy.csv.gz", dtype={"anzsic": str})
+    path = store.PROCESSED / SOURCE / "cabee_class_state_fy.csv.gz"
+    if not path.exists():
+        from ..outcomes import cabee
+
+        cabee.build()
+    p = pd.read_csv(path, dtype={"anzsic": str})
     p = p[p["measure"].isin(MEASURES) & p["band"].isin(BANDS)]
     out = pd.DataFrame(
         {

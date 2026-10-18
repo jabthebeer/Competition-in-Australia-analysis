@@ -12,7 +12,7 @@ from importlib import resources
 from pathlib import Path
 
 from .. import anzsic
-from ..register.evaluation import CATEGORY_LABELS, Evaluation
+from ..register.evaluation import CATEGORY_LABELS, Evaluation, current_evaluation
 from ..register.schema import CHANNEL_LABELS, ChangeRecord
 from ..timing import fy_bounds, timing
 from .screen import COVID_FYS, DEFAULT_COVERAGE, screen_all
@@ -76,26 +76,27 @@ LEVEL_ORDER = ("class", "group", "retail-group", "subdivision", "division", "inf
 DATA_NOTE = (
     "Data that can measure a change: every processed panel in data/processed matched to the change's ANZSIC "
     "codes and jurisdiction, at the finest industry level the panel offers. 'Local' means areas finer than the "
-    "state (postcode, SA2, LGA and so on) are available in the change's state."
+    "state (postcode, SA2, LGA and so on) are available in the change's state. 'Inferred' industries come from "
+    "business names in the ABN and ASIC registers (81% precise on held-out names, and only some names say what a "
+    "business does), so read them as changes over time, not levels."
 )
 
 
 def data_summary(record: ChangeRecord, catalogue: list[dict]) -> list[dict]:
-    """Coverage matches grouped by source and measure, keeping the finest industry level found."""
+    """Coverage matches grouped by source panel: its measures, and the finest industry level found."""
     from ..pipeline.coverage import coverage
+    from ..pipeline.sources import measure_label
 
     if not catalogue:
         return []
-    groups: dict[tuple[str, str, str], dict] = {}
+    groups: dict[tuple[str, str], dict] = {}
     for m in coverage(record, catalogue):
-        key = (m.source, m.table, m.measure)
         g = groups.setdefault(
-            key,
+            (m.source, m.table),
             {
                 "source": m.source,
                 "table": m.table,
-                "measure": m.measure,
-                "unit": m.unit,
+                "measures": [],
                 "level": m.matched_level,
                 "codes": [],
                 "state": m.state,
@@ -105,11 +106,19 @@ def data_summary(record: ChangeRecord, catalogue: list[dict]) -> list[dict]:
                 "periodType": m.period_type,
             },
         )
+        label = f"{measure_label(m.measure)} ({m.unit})"
+        if label not in g["measures"]:
+            g["measures"].append(label)
         if LEVEL_ORDER.index(m.matched_level) < LEVEL_ORDER.index(g["level"]):
             g["level"] = m.matched_level
         if m.matched_code and m.matched_code not in g["codes"]:
             g["codes"].append(m.matched_code)
-    return sorted(groups.values(), key=lambda g: (LEVEL_ORDER.index(g["level"]), g["source"], g["measure"]))
+        g["first"], g["last"] = min(g["first"], m.first), max(g["last"], m.last)
+        g["state"] = g["state"] or m.state
+        g["local"] = sorted(set(g["local"]) | set(m.local_levels))
+        if m.period_type not in g["periodType"].split("/"):
+            g["periodType"] += f"/{m.period_type}"
+    return sorted(groups.values(), key=lambda g: (LEVEL_ORDER.index(g["level"]), g["source"]))
 
 
 def build_payload(
@@ -127,7 +136,7 @@ def build_payload(
     screens = screen_all(records)
     checks = {d["record_id"]: d for d in dates_report or []}
     evaluations = evaluations or []
-    evaluated = {rid: ev.id for ev in evaluations for rid in ev.records}
+    evaluated = current_evaluation(evaluations)
     out = []
     for r in records:
         eff = r.effective_commencement

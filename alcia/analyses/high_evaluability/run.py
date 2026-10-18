@@ -28,6 +28,7 @@ from alcia.evaluate.did import Placebo
 from alcia.evaluate.stacked import Cohort, blind_cohorts, stacked, stacked_event
 from alcia.outcomes import productivity
 from alcia.outcomes.abs_series import CITY_STATE, fetch_cpi
+from alcia.outcomes.cabee import as_registered
 from alcia.pipeline.store import PROCESSED
 
 HERE = Path(__file__).resolve().parent
@@ -107,7 +108,7 @@ def summarise(est: float, placebos: list[float]) -> dict:
 
 
 def cabee(path: str = "cabee_class_state_fy.csv.gz", employing: bool = False) -> pd.DataFrame:
-    p = pd.read_csv(PANEL / path, dtype={"anzsic": str})
+    p = as_registered(pd.read_csv(PANEL / path, dtype={"anzsic": str}))
     p = p[p["measure"].isin(["start", "entries", "exits"])]
     keys = ["fy", "state", "anzsic"]
     tot = p[p["band"] == "total"].pivot_table(index=keys, columns="measure", values="value")
@@ -118,7 +119,7 @@ def cabee(path: str = "cabee_class_state_fy.csv.gz", employing: bool = False) ->
 
 
 def overlap_vintage(w: pd.DataFrame) -> pd.DataFrame:
-    ov = pd.read_csv(PANEL / "cabee_class_state_fy_overlaps.csv.gz", dtype={"anzsic": str})
+    ov = as_registered(pd.read_csv(PANEL / "cabee_class_state_fy_overlaps.csv.gz", dtype={"anzsic": str}))
     ov = ov[(ov["band"] == "total") & ov["measure"].isin(["start", "entries", "exits"])]
     ov = ov.pivot_table(index=["fy", "state", "anzsic"], columns="measure", values="value").reset_index()
     return pd.concat([w[~w["fy"].isin(ov["fy"].unique())], ov], ignore_index=True)

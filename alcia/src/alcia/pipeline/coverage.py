@@ -18,7 +18,7 @@ from ..register.schema import ChangeRecord
 from . import schema, store
 
 CATALOGUE = store.PROCESSED / "catalogue.json"
-LOCAL_LEVELS = ("GCCSA", "SA4", "SA3", "SA2", "LGA", "POA", "IVI_REGION")
+LOCAL_LEVELS = ("GCCSA", "SA4", "SA3", "SA2", "SA2_2011", "LGA", "POA", "IVI_REGION", "CLUE_AREA")
 
 
 def summarise(df: pd.DataFrame, source: str, table: str) -> list[dict]:

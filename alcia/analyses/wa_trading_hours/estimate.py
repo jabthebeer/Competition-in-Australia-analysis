@@ -40,6 +40,7 @@ from alcia import anzsic
 from alcia.evaluate.did import Placebo, blind, event_study, placebo_in_space, twfe
 from alcia.outcomes import productivity
 from alcia.outcomes.abs_series import CITY_STATE, fetch_cpi
+from alcia.outcomes.cabee import as_registered
 
 HERE = Path(__file__).resolve().parent
 SEED = 20261015
@@ -243,7 +244,7 @@ def raw_means(w, measure, picks) -> dict:
 
 def overlap_vintage(w: pd.DataFrame) -> tuple[pd.DataFrame, list[int]]:
     """§8.1: replace each year that has a second vintage with that vintage (clarification C2)."""
-    ov = pd.read_csv(PANEL / "cabee_class_state_fy_overlaps.csv.gz", dtype={"anzsic": str})
+    ov = as_registered(pd.read_csv(PANEL / "cabee_class_state_fy_overlaps.csv.gz", dtype={"anzsic": str}))
     ov = ov[(ov["band"] == "total") & ov["measure"].isin(["start", "entries", "exits"])]
     assert ov.groupby("fy")["release"].nunique().max() == 1, "expected one alternative vintage per year"
     ov = ov.pivot_table(index=["fy", "state", "anzsic"], columns="measure", values="value").reset_index()

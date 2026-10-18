@@ -107,6 +107,15 @@ RELEASES: tuple[Release, ...] = (
         2018,
     ),
     Release("Jul 2016 to Jun 2020", "2021-02-19", CURRENT.format(slug="jul2016-jun2020", file="816502.xls"), 2020),
+    # From the Jul 2017 to Jun 2021 release the cubes are xlsx; from Jul 2018 to Jun 2022 the 1-19
+    # employee range is split into 1-4 and 5-19 (summed back to 1-19 here). Found 18 Oct 2026.
+    Release("Jul 2017 to Jun 2021", "2021-12-16", CURRENT.format(slug="jul2017-jun2021", file="816502.xlsx"), 2021),
+    Release("Jul 2018 to Jun 2022", "2022-12-16", CURRENT.format(slug="jul2018-jun2022", file="816502.xlsx"), 2022),
+    Release(
+        "Jul 2019 to Jun 2023", "2023-12-18", CURRENT.format(slug="jul2019-jun2023", file="8165DC02_revised.xlsx"), 2023
+    ),
+    Release("Jul 2020 to Jun 2024", "2024-12-17", CURRENT.format(slug="jul2020-jun2024", file="8165DC02.xlsx"), 2024),
+    Release("Jul 2021 to Jun 2025", "2025-12-16", CURRENT.format(slug="jul2021-jun2025", file="8165DC02.xlsx"), 2025),
 )
 
 STATES = {
@@ -135,7 +144,8 @@ def download(release: Release, folder: Path | None = None) -> Path:
     """Fetch a release's cube once; later calls reuse the cached file."""
     folder = folder or default_raw_dir()
     folder.mkdir(parents=True, exist_ok=True)
-    path = folder / (re.sub(r"[^A-Za-z0-9]+", "_", release.label) + ".xls")
+    suffix = ".xlsx" if release.url.endswith(".xlsx") else ".xls"
+    path = folder / (re.sub(r"[^A-Za-z0-9]+", "_", release.label) + suffix)
     if not path.exists():
         with make_client() as client:
             path.write_bytes(Fetcher(client).content(release.url))
@@ -146,29 +156,59 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _fy_of_sheet(name: str) -> int | None:
-    """'2008-09' -> 2009; 'June 2014' -> 2014; 'June 2020 b' -> None (experimental point-in-time table)."""
+def _fy_of_sheet(name: str, title: str = "") -> int | None:
+    """'2008-09' -> 2009; 'June 2014' -> 2014; 'June 2020 b' -> None (experimental point-in-time table).
+    Sheets named 'Table n' (from 2023) take the year from their title, '... Annualised ..., June 2025'."""
     name = name.strip()
     if m := re.fullmatch(r"(\d{4})-(\d{2})", name):
         return int(m.group(1)) + 1
     if m := re.fullmatch(r"June (\d{4})(?: a)?", name):
         return int(m.group(1))
+    table = re.fullmatch(r"Table \d+", name) and "Point in Time" not in title
+    if table and (m := re.search(r"Industry Class.*June (\d{4})", title)):
+        return int(m.group(1))
     return None
+
+
+MEASURE_HEADERS = ("Operating at start", "Entries", "Exits", "", "Operating at end")  # 4th: balancing / net movement
+SPLIT_BANDS = ("nonemp", "1-4", "5-19", "20-199", "200+", "total")
+
+
+def _columns(raw: pd.DataFrame, header_row: int) -> dict[str, int]:
+    """'measure|band' -> column index, from the measure header row. Blocks are 5 wide (one 1-19
+    range) or 6 wide (1-4 and 5-19)."""
+    starts = [
+        c for c in range(3, raw.shape[1]) if isinstance(raw.iat[header_row, c], str) and raw.iat[header_row, c].strip()
+    ]
+    starts = starts[:5]
+    for c, (measure, head) in zip(starts, zip(MEASURES, MEASURE_HEADERS, strict=True), strict=True):
+        if head and not str(raw.iat[header_row, c]).strip().startswith(head):
+            raise ValueError(f"unexpected header {raw.iat[header_row, c]!r} for {measure}")
+    width = starts[1] - starts[0]
+    bands = {5: BANDS, 6: SPLIT_BANDS}.get(width)
+    if bands is None or any(b - a != width for a, b in zip(starts, starts[1:], strict=False)):
+        raise ValueError(f"unexpected block width {width}")
+    if width == 6 and not str(raw.iat[header_row + 1, starts[0] + 1]).startswith("1-4"):
+        raise ValueError("expected a 1-4 employee column")
+    return {f"{m}|{b}": start + i for m, start in zip(MEASURES, starts, strict=True) for i, b in enumerate(bands)}
 
 
 def parse_cube(path: Path, release: Release) -> pd.DataFrame:
     """Long table: release, fy, state, anzsic (4-digit class), band, measure, value."""
     frames = []
-    for sheet in pd.ExcelFile(path).sheet_names:
-        fy = _fy_of_sheet(sheet)
+    book = pd.ExcelFile(path)
+    for sheet in book.sheet_names:
+        if _fy_of_sheet(sheet) is None and not re.fullmatch(r"Table \d+", sheet.strip()):
+            continue
+        raw = pd.read_excel(book, sheet_name=sheet, header=None, dtype=object)
+        fy = _fy_of_sheet(sheet, str(raw.iat[3, 0]))
         if fy is None:
             continue
-        raw = pd.read_excel(path, sheet_name=sheet, header=None, dtype=object)
         header_row = next(i for i in range(12) if str(raw.iat[i, 3]).startswith("Operating at start"))
-        if not str(raw.iat[header_row, 8]).startswith("Entries") or not str(raw.iat[header_row, 13]).startswith(
-            "Exits"
-        ):
-            raise ValueError(f"{release.label} / {sheet}: unexpected column layout")
+        try:
+            columns = _columns(raw, header_row)
+        except ValueError as exc:
+            raise ValueError(f"{release.label} / {sheet}: {exc}") from exc
         year_first = str(raw.iat[header_row + 1, 0]).startswith("Year")
         rows = []
         for i in range(header_row + 2, len(raw)):
@@ -185,12 +225,14 @@ def parse_cube(path: Path, release: Release) -> pd.DataFrame:
                 code = code.split(".")[0].zfill(4) if code.replace(".", "").isdigit() else None
             if code is None or code == "9999":
                 continue
-            values = pd.to_numeric(r.iloc[3:28], errors="coerce").tolist()
+            values = pd.to_numeric(r.iloc[list(columns.values())], errors="coerce").tolist()
             rows.append([state, code, *values])
         if not rows:
             raise ValueError(f"{release.label} / {sheet}: no data rows recognised")
-        cols = ["state", "anzsic"] + [f"{m}|{b}" for m in MEASURES for b in BANDS]
-        wide = pd.DataFrame(rows, columns=cols)
+        wide = pd.DataFrame(rows, columns=["state", "anzsic", *columns])
+        for m in MEASURES:
+            if f"{m}|1-4" in wide:  # perturbed cells, so the sum can differ slightly from a published 1-19
+                wide[f"{m}|1-19"] = wide.pop(f"{m}|1-4") + wide.pop(f"{m}|5-19")
         long = wide.melt(id_vars=["state", "anzsic"], var_name="key", value_name="value")
         long[["measure", "band"]] = long["key"].str.split("|", expand=True)
         long = long.drop(columns="key")
@@ -200,6 +242,17 @@ def parse_cube(path: Path, release: Release) -> pd.DataFrame:
     if not frames:
         raise ValueError(f"{release.label}: no year sheets found")
     return pd.concat(frames, ignore_index=True)
+
+
+REGISTERED_RELEASE = "Jul 2016 to Jun 2020"  # last release in the panel when the evaluations were registered
+
+
+def as_registered(df: pd.DataFrame, last_release: str = REGISTERED_RELEASE) -> pd.DataFrame:
+    """Rows the pre-registered analyses used: years up to that release's final year, from releases up
+    to it. Keeps their samples fixed now that later releases (FY2021-FY2025) are in the panel."""
+    labels = [r.label for r in RELEASES]
+    i = labels.index(last_release)
+    return df[df["release"].isin(labels[: i + 1]) & (df["fy"] <= RELEASES[i].final_fy)]
 
 
 def check_identity(df: pd.DataFrame) -> pd.DataFrame:

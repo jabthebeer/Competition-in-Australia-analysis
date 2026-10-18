@@ -120,6 +120,9 @@ class Evaluation(_Strict):
     title: str = Field(min_length=1)
     records: tuple[RecordId, ...] = Field(min_length=1)
     family: RecordId | None = None
+    follows: RecordId | None = Field(
+        None, description="An earlier evaluation of some of the same records that this one revisits; both stay on file"
+    )
     evaluated_on: dt.date
     hypothesis: Direction
     design: str = Field(min_length=1)
@@ -168,7 +171,7 @@ def load_evaluations(records: list[ChangeRecord] | None = None, evaluations_dir:
     folder = evaluations_dir or default_evaluations_dir()
     out = EvaluationLoad()
     by_id = {r.id: r for r in records or []}
-    covered: dict[str, str] = {}
+    covered: dict[str, list[str]] = {}
     for path in sorted(folder.glob("*.json")) if folder.exists() else []:
         try:
             ev = Evaluation.model_validate(json.loads(path.read_text(encoding="utf-8")))
@@ -187,10 +190,26 @@ def load_evaluations(records: list[ChangeRecord] | None = None, evaluations_dir:
                     out.problems.append(f"evaluations/{path.name}: unknown record '{rid}'")
                 elif ev.family and rec.family != ev.family:
                     out.problems.append(f"evaluations/{path.name}: record '{rid}' is not in family '{ev.family}'")
-                if rid in covered:
-                    out.problems.append(f"evaluations/{path.name}: record '{rid}' is also in '{covered[rid]}'")
-                covered[rid] = ev.id
+                covered.setdefault(rid, []).append(ev.id)
         out.evaluations.append(ev)
+    ids = {e.id: e for e in out.evaluations}
+    for ev in out.evaluations:
+        if ev.follows and ev.follows not in ids:
+            out.problems.append(f"evaluations/{ev.id}.json: follows unknown evaluation '{ev.follows}'")
+    for rid, evs in covered.items():
+        # A record may be in several evaluations only when each later one follows an earlier one.
+        chained = {e for e in evs if ids[e].follows in evs}
+        if len(evs) > 1 and len(evs) - len(chained) != 1:
+            out.problems.append(f"evaluations: record '{rid}' is in {', '.join(evs)} without a 'follows' link")
+    return out
+
+
+def current_evaluation(evaluations: list[Evaluation]) -> dict[str, str]:
+    """Record id -> the evaluation to show for it: the latest in its chain of follow-ups."""
+    out: dict[str, str] = {}
+    for ev in sorted(evaluations, key=lambda e: (e.evaluated_on, e.follows is not None)):
+        for rid in ev.records:
+            out[rid] = ev.id
     return out
 
 

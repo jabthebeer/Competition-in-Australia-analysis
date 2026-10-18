@@ -98,5 +98,12 @@ def read_panel(source: str, table: str) -> pd.DataFrame:
 
 
 def panels() -> list[tuple[str, str, Path]]:
-    """Every processed panel: (source, table, path)."""
-    return [(p.parent.name, p.stem, p) for p in sorted(PROCESSED.glob("*/*.parquet"))]
+    """Every processed panel: (source, table, path). Other parquet files (lookups such as the postcode
+    concordance) are skipped."""
+    import pyarrow.parquet as pq
+
+    out = []
+    for p in sorted(PROCESSED.glob("*/*.parquet")):
+        if set(schema.COLUMNS) <= set(pq.read_schema(p).names):
+            out.append((p.parent.name, p.stem, p))
+    return out
