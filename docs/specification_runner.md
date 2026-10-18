@@ -54,7 +54,7 @@ alicia spec run <id> [--stage NAME]    # run stages in order; report each output
 | `wa-trading-hours-2010-2012` | design, dry run, estimate, post-hoc, evaluation | 5 | **Identical** |
 | `wa-trading-hours-weeknight-2010-new-data` | design, dry run, estimate, evaluation | 4 | **Identical** |
 | `childcare-nqf-wa-delay-2012` | design, dry run, estimate, paths, evaluation | 5 | **Identical** |
-| `high-evaluability-batch` | design, estimate, evaluation | 9 (7 evaluation files) | **Identical** (baseline run with the specification-driven code); runner run: see below |
+| `high-evaluability-batch` | design, estimate, evaluation | 9 (7 evaluation files) | **Identical** |
 
 Every evaluation file in `regulation-register/evaluations/` is reproduced byte for byte from its specification.
 
