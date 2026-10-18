@@ -77,5 +77,5 @@ The last two rows show the problem the owner raised: without state × period eff
 ## 6. Still to do
 
 - **Phase 2:** an R run of the cross-check (deferred by the owner).
-- **Phase 3:** blinded power study: first run done ([`power_study.md`](power_study.md)); fake-date and placebo-state families and price outcomes still to do.
-- **Phase 4:** a specification runner that reproduces the three existing analyses exactly.
+- **Phase 3:** blinded power study done ([`power_study.md`](power_study.md)): placebo industries, states, fake dates and both; business counts and CPI prices; the new families from the gap scan.
+- **Phase 4:** specification runner started ([`specification_runner.md`](specification_runner.md)): the existing analyses are specifications and reproduce byte for byte.
