@@ -67,7 +67,15 @@ def test_build_site_writes_three_linked_pages(tmp_path):
     records = load_records().records
     evals = load_evaluations(records).evaluations
     paths = growth.build_site(tmp_path, records, evals)
-    assert sorted(p.name for p in paths) == ["conditions.html", "growth.html", "index.html"]
+    names = sorted(p.name for p in paths)
+    assert [n for n in names if not n.startswith("evaluation-")] == ["conditions.html", "growth.html", "index.html"]
+    assert sorted(n for n in names if n.startswith("evaluation-")) == sorted(f"evaluation-{e.id}.html" for e in evals)
+    one = (tmp_path / "evaluation-childcare-nqf-wa-delay-2012.html").read_text("utf-8")
+    payload = json.loads(re.search(r'id="menu-data">(.*?)</script>', one, re.S).group(1))
+    assert payload["single"] == "childcare-nqf-wa-delay-2012" and payload["evalPages"]
+    assert {r["id"] for r in payload["records"]} == {"cth-nqf-childcare-2012", "wa-nqf-childcare-2012"}
+    assert set(payload["evaluations"]) == {"childcare-nqf-wa-delay-2012", "childcare-nqf-2012"}  # follows link
+    assert "<title>National Quality Framework" in one
     index = (tmp_path / "index.html").read_text("utf-8")
     assert '<a href="index.html" aria-current="page">' in index and 'href="conditions.html"' in index
     data = re.search(r'id="page-data">(.*?)</script>', (tmp_path / "growth.html").read_text("utf-8"), re.S)

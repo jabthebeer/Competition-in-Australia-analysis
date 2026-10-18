@@ -346,8 +346,10 @@ def build_site(
             evaluations=evaluations,
             repo_base=explorer_base,
             nav=nav("index.html"),
+            evaluation_pages=True,
         )
     ]
+    written += sorted(out.glob("evaluation-*.html"))
     pages = (
         ("growth.html", growth_payload(data_base)),
         ("conditions.html", conditions_payload(records, evaluations, data_base)),

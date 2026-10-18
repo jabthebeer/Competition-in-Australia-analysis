@@ -49,6 +49,7 @@
   --warn-ink: #f2c46b; --warn-soft: #2e2512; --est: #3f9d8f; --est-band: #1f3532; --noeff: #2c2c29; color-scheme: dark;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body {
   margin: 0; background: var(--bg); color: var(--ink); font: var(--step-0)/1.5 var(--font-body);
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -198,6 +199,10 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
 .cat strong { font-size: var(--step-0); font-weight: 600; }
 .cat p { margin: 0; color: var(--ink-2); }
 .ev-sec { display: grid; gap: 8px; min-width: 0; }
+.open-page { margin-left: auto; font-size: var(--step--1); white-space: nowrap; }
+.ev-card[data-ev], tr[data-ev] { cursor: default; }
+.ev-page { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: clamp(14px, 3vw, 28px); display: grid; gap: 14px; max-width: 1080px; width: 100%; min-width: 0; }
+.single-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--ink-3); font-size: var(--step--1); align-items: center; }
 .ev-insights { background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; display: grid; gap: 6px; max-width: 80ch; }
 .ev-insights h3 { color: var(--accent); }
 .ev-insights ul { margin: 0; padding-left: 1.1em; display: grid; gap: 5px; font-size: var(--step--1); line-height: 1.5; }
@@ -477,12 +482,15 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
       ? `<details class="ev-deep"><summary>In depth: what we did, the econometric model and the full results</summary>`
       : `<div class="ev-deep"><h3 class="ev-deep-h">In depth</h3>`;
     const deepClose = currentId ? "</details>" : "</div>";
-    return `<div class="ev-body">
+    const pageLink = DATA.evalPages && !DATA.single
+      ? `<a class="open-page" href="${pageUrl(ev.id)}" target="_blank" rel="noopener" title="Or double-click the evaluation">Open as a page ↗</a>` : "";
+    return `<div class="ev-body"${currentId ? ` data-ev="${esc(ev.id)}"` : ""}>
       <div class="ev-badges">
         <span class="pill ${VERDICT[ev.verdict].cls}">${esc(VERDICT[ev.verdict].label)}</span>
         <span class="pill ${GRADE_CLS[ev.grade]}" title="${esc(ev.grade_reason)}">Grade: ${esc(ev.grade)}</span>
         ${ev.preregistered ? `<span class="pill">Pre-registered</span>` : ""}
         <span class="dir">${shapeIcon(ev.hypothesis)}Hypothesis tested: ${esc(DIR[ev.hypothesis].label.toLowerCase())}</span>
+        ${pageLink}
       </div>
       <p class="ev-headline">${esc(ev.headline)}</p>
       ${insightsHtml(ev)}
@@ -509,7 +517,7 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
   function evalCard(ev) {
     const recs = ev.records.map((id) => R.find((r) => r.id === id)).filter(Boolean).sort(byDate);
     const fam = ev.family && DATA.familyLabels[ev.family];
-    return `<article class="ev-card" id="ev-${esc(ev.id)}" aria-label="${esc(ev.title)}">
+    return `<article class="ev-card" id="ev-${esc(ev.id)}" aria-label="${esc(ev.title)}"${DATA.evalPages ? ` data-ev="${esc(ev.id)}" title="Double-click to open as a page"` : ""}>
       <div class="ev-kicker">Evaluated ${esc(fmtDate(ev.evaluated_on))}${fam ? ` · ${esc(fam)}` : ""}</div>
       <h2>${esc(ev.title)}</h2>
       <div class="ev-recs">${recs.map((r) => `<button type="button" class="recbtn" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(fmtDate(r.effective))} · ${esc(r.short)}</button>`).join("")}</div>
@@ -517,9 +525,22 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
     </article>`;
   }
 
+  // Each evaluation also has its own page (built by 'alicia site'), opened by double-click or link.
+  const pageUrl = (id) => `evaluation-${encodeURIComponent(id)}.html`;
+  function openEvalPage(id, e) {
+    if (!DATA.evalPages || !id) return;
+    if (e && e.target.closest("button, a, summary, input, select, textarea")) return;
+    if (e) e.preventDefault();
+    window.open(pageUrl(id), "_blank", "noopener");
+  }
   function bindEval(root) {
-    root.querySelectorAll(".recbtn, .recbtn-inline").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
+    root.querySelectorAll(".recbtn, .recbtn-inline").forEach((b) => b.addEventListener("click", () => {
+      if (DATA.single) location.href = `index.html#${encodeURIComponent(b.dataset.id)}`;
+      else select(b.dataset.id);
+    }));
+    root.querySelectorAll(".ev-card[data-ev], .ev-body[data-ev]").forEach((el) => el.addEventListener("dblclick", (e) => openEvalPage(el.dataset.ev, e)));
     root.querySelectorAll(".jump").forEach((b) => b.addEventListener("click", () => {
+      if (DATA.single) { location.href = pageUrl(b.dataset.ev); return; }
       if (state.tab !== "results") setTab("results");
       requestAnimationFrame(() => {
         const card = document.getElementById(`ev-${b.dataset.ev}`);
@@ -776,7 +797,7 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
   }
   function renderList(rows) {
     $("rows").innerHTML = rows.map((r) => `
-      <tr class="${state.selected === r.id ? "sel" : ""}">
+      <tr class="${state.selected === r.id ? "sel" : ""}"${r.evaluation && DATA.evalPages ? ` data-ev="${esc(r.evaluation)}" title="Double-click to open the evaluation as a page"` : ""}>
         <td class="mono">${esc(r.effective ? fmtDate(r.effective) : "not yet")}</td>
         <td class="mono">${esc(r.jurisdiction)}</td>
         <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(r.title)}</button>${r.family ? `<span class="fam">${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}</td>
@@ -786,6 +807,11 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
         <td>${evalCell(r)}</td>
       </tr>`).join("");
     $("rows").querySelectorAll(".rowbtn").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
+    $("rows").querySelectorAll("tr[data-ev]").forEach((tr) => tr.addEventListener("dblclick", (e) => {
+      if (e.target.closest("a, input, select")) return;
+      window.getSelection && window.getSelection().removeAllRanges();
+      window.open(pageUrl(tr.dataset.ev), "_blank", "noopener");
+    }));
   }
 
   // --- Timeline -----------------------------------------------------------------------------------
@@ -935,6 +961,30 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
     if (state.tab === "results") renderResults(rows);
     refreshCharts();
   }
+
+  // --- One evaluation as its own page -----------------------------------------------------------
+  function renderSingle(ev) {
+    document.querySelector(".filters").hidden = true;
+    document.querySelector(".main").hidden = true;
+    const head = document.querySelector("header.top");
+    head.querySelector("h1").textContent = ev.title;
+    const fam = ev.family && DATA.familyLabels[ev.family];
+    head.querySelector(".lede").innerHTML = `<a href="index.html#results">← All evaluations</a>`;
+    const recs = ev.records.map((id) => R.find((r) => r.id === id)).filter(Boolean).sort(byDate);
+    $("metaLine").innerHTML = [`Evaluated ${esc(fmtDate(ev.evaluated_on))}`, fam ? esc(fam) : "", `${recs.length} register record${recs.length === 1 ? "" : "s"}`]
+      .filter(Boolean).map((x) => `<span>${x}</span>`).join("");
+    $("draftNotice").hidden = true;
+    const page = document.createElement("article");
+    page.className = "ev-page";
+    page.setAttribute("aria-label", ev.title);
+    page.innerHTML = `<div class="ev-recs">${recs.map((r) => `<button type="button" class="recbtn" data-id="${esc(r.id)}" title="Open this record in the menu">${esc(r.jurisdiction)} · ${esc(fmtDate(r.effective))} · ${esc(r.short)}</button>`).join("")}</div>${evalBody(ev, null)}`;
+    head.after(page);
+    bindEval(page);
+    $("foot").innerHTML = `<p><strong>Evaluations.</strong> ${esc(DATA.evaluationNote)}</p>
+      <p><strong>Sources.</strong> Every number comes from the analysis outputs in the repository; documents are linked above. Unofficial research, not an Australian Government product.</p>`;
+    refreshCharts();
+  }
+  if (DATA.single && EV[DATA.single]) { renderSingle(EV[DATA.single]); return; }
 
   const counts = { enhancing: count((r) => r.direction === "enhancing"), weakening: count((r) => r.direction === "weakening") };
   $("metaLine").innerHTML = [
