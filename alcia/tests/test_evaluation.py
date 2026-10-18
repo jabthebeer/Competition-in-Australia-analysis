@@ -182,3 +182,25 @@ def test_current_evaluation_prefers_the_follow_up():
     current = current_evaluation(evs)
     assert current["wa-trading-hours-weeknight-2010"] == "wa-trading-hours-weeknight-2010-new-data"
     assert current["wa-trading-hours-sunday-2012"] == "wa-trading-hours-2010-2012"
+
+
+def test_nqf_wa_evaluation_matches_the_registered_run():
+    """The NQF-in-WA evaluation file must equal its estimate.json and follow the batch evaluation."""
+    folder = ANALYSIS.parent / "childcare_nqf_wa"
+    est = json.loads((folder / "estimate.json").read_text(encoding="utf-8"))
+    paths = json.loads((folder / "paths.json").read_text(encoding="utf-8"))
+    evs = {e.id: e for e in load_evaluations().evaluations}
+    ev = evs["childcare-nqf-wa-delay-2012"]
+    assert not est["blind"] and est["null_matches_design_stage"]
+    assert ev.follows == "childcare-nqf-2012"
+    out = {o.id: o for o in ev.outcomes}
+    for oid, key in (("childcare-exits", "exits"), ("child-care-prices", "prices"), ("childcare-entries", "entries")):
+        r = est[key]["main"]["pooled"]
+        o = out[oid]
+        assert (o.estimate, o.p_value, o.mde_80) == (r["estimate"], r["p"], r["null"]["mde_80"])
+        assert [o.interval.low, o.interval.high] == r["interval_90"]
+    assert out["childcare-exits"].finding == est["exits"]["main"]["pooled"]["finding"]
+    assert {o.finding for o in ev.outcomes if o.role == "descriptive"} == {"descriptive-only"}
+    es = {e.outcome: e for e in ev.event_studies}
+    assert [p.estimate for p in es["childcare-exits"].points] == [p["gap"] for p in paths["exits"]]
+    assert ev.verdict == ("inconclusive" if est["exits"]["main"]["pooled"]["p"] >= 0.10 else ev.verdict)
