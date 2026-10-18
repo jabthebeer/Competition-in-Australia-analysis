@@ -28,9 +28,10 @@ from alcia.evaluate.did import Placebo
 from alcia.evaluate.stacked import Cohort, blind_cohorts, stacked, stacked_event
 from alcia.outcomes import productivity
 from alcia.outcomes.abs_series import CITY_STATE, fetch_cpi
+from alcia.pipeline.store import PROCESSED
 
 HERE = Path(__file__).resolve().parent
-PANEL = HERE.parents[1] / "data" / "processed"
+PANEL = PROCESSED / "abs_cabee"
 CPI_CLASSES = json.loads((HERE.parents[1] / "src" / "alcia" / "data" / "cpi17_classes.json").read_text())["classes"]
 SEED = 20261015
 DRAWS = 1000

@@ -72,13 +72,58 @@ def _division_names() -> dict[str, str]:
     return {code: anzsic.name(code) or "" for code in "ABCDEFGHIJKLMNOPQRS"}
 
 
+LEVEL_ORDER = ("class", "group", "subdivision", "division", "inferred", "occupation", "total")
+DATA_NOTE = (
+    "Data that can measure a change: every processed panel in data/processed matched to the change's ANZSIC "
+    "codes and jurisdiction, at the finest industry level the panel offers. 'Local' means areas finer than the "
+    "state (postcode, SA2, LGA and so on) are available in the change's state."
+)
+
+
+def data_summary(record: ChangeRecord, catalogue: list[dict]) -> list[dict]:
+    """Coverage matches grouped by source and measure, keeping the finest industry level found."""
+    from ..pipeline.coverage import coverage
+
+    if not catalogue:
+        return []
+    groups: dict[tuple[str, str, str], dict] = {}
+    for m in coverage(record, catalogue):
+        key = (m.source, m.table, m.measure)
+        g = groups.setdefault(
+            key,
+            {
+                "source": m.source,
+                "table": m.table,
+                "measure": m.measure,
+                "unit": m.unit,
+                "level": m.matched_level,
+                "codes": [],
+                "state": m.state,
+                "local": list(m.local_levels),
+                "first": m.first,
+                "last": m.last,
+                "periodType": m.period_type,
+            },
+        )
+        if LEVEL_ORDER.index(m.matched_level) < LEVEL_ORDER.index(g["level"]):
+            g["level"] = m.matched_level
+        if m.matched_code and m.matched_code not in g["codes"]:
+            g["codes"].append(m.matched_code)
+    return sorted(groups.values(), key=lambda g: (LEVEL_ORDER.index(g["level"]), g["source"], g["measure"]))
+
+
 def build_payload(
     records: list[ChangeRecord],
     dates_report: list[dict] | None = None,
     generated: dt.date | None = None,
     evaluations: list[Evaluation] | None = None,
     repo_base: str | None = None,
+    catalogue: list[dict] | None = None,
 ) -> dict:
+    from ..pipeline.coverage import load_catalogue
+    from ..pipeline.sources import SOURCES
+
+    catalogue = load_catalogue() if catalogue is None else catalogue
     screens = screen_all(records)
     checks = {d["record_id"]: d for d in dates_report or []}
     evaluations = evaluations or []
@@ -99,6 +144,7 @@ def build_payload(
                 "short": _short(r.title),
                 "check": {"status": check["status"], "issues": check["issues"]} if check else None,
                 "evaluation": evaluated.get(r.id),
+                "data": data_summary(r, catalogue),
             }
         )
         if eff:
@@ -124,6 +170,8 @@ def build_payload(
         "categoryLabels": CATEGORY_LABELS,
         "repoBase": repo_base or REPO_BASE,
         "evaluationNote": EVALUATION_NOTE,
+        "dataSources": {k: v.as_dict() for k, v in SOURCES.items()},
+        "dataNote": DATA_NOTE,
         "screenRules": SCREEN_RULES,
         "checkNote": CHECK_NOTE,
     }

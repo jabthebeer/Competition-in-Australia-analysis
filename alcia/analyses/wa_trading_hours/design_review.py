@@ -25,9 +25,10 @@ import pandas as pd
 from alcia.evaluate.did import Z_80_POWER_5PC, Placebo, blind, event_study, placebo_in_space, recovery, twfe
 from alcia.outcomes import productivity
 from alcia.outcomes.abs_series import CITY_STATE, fetch_cpi
+from alcia.pipeline.store import PROCESSED
 
 HERE = Path(__file__).resolve().parent
-PANEL = HERE.parents[1] / "data" / "processed"
+PANEL = PROCESSED / "abs_cabee"
 
 TREATED = "WA"
 CONTROLS = ["NSW", "VIC", "QLD", "TAS", "ACT", "NT"]  # SA excluded: Adelaide CBD trading change in April 2012

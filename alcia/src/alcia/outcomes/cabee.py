@@ -125,7 +125,10 @@ BANDS = ("nonemp", "1-19", "20-199", "200+", "total")
 
 
 def default_raw_dir() -> Path:
-    return Path(__file__).resolve().parents[3] / ".cache" / "abs" / "cabee"
+    """Raw cubes live in data/raw/abs_cabee/ at the repository root (never edited, not committed)."""
+    from ..pipeline import store
+
+    return store.raw_dir("abs_cabee")
 
 
 def download(release: Release, folder: Path | None = None) -> Path:
@@ -243,7 +246,9 @@ def to_rates(panel: pd.DataFrame, band: str = "total") -> pd.DataFrame:
 
 def build(raw_dir: Path | None = None, out_dir: Path | None = None) -> dict:
     """Download (if needed), parse and stitch every release; write the panel, overlaps and a manifest."""
-    out_dir = out_dir or Path(__file__).resolve().parents[3] / "data" / "processed"
+    from ..pipeline import store
+
+    out_dir = out_dir or store.PROCESSED / "abs_cabee"
     out_dir.mkdir(parents=True, exist_ok=True)
     parts, manifest = [], []
     for rel in RELEASES:

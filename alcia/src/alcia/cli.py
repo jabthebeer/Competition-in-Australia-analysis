@@ -6,6 +6,9 @@ alcia show <id>                     one record in full
 alcia families                      reforms adopted by several jurisdictions, in date order
 alcia dates <id>... | --all         gather effective dates and check them against registers
 alcia explorer [-o file.html]       build the interactive menu explorer (one HTML file)
+alcia pipeline build <source>...    build outcome panels in data/processed (see alcia.pipeline.sources)
+alcia pipeline catalogue            summarise every processed panel for coverage matching
+alcia data <id>                     which data panels can measure a change, at what industry and area level
 """
 
 from __future__ import annotations
@@ -190,6 +193,53 @@ def cmd_explorer(args) -> int:
     return 0
 
 
+BUILDERS = {
+    "abs_cabee": "alcia.pipeline.abs_cabee",
+}
+
+
+def cmd_pipeline(args) -> int:
+    import importlib
+
+    from .pipeline import coverage
+
+    if args.action == "build":
+        names = args.sources or list(BUILDERS)
+        for name in names:
+            if name not in BUILDERS:
+                print(f"unknown source '{name}'; known: {', '.join(BUILDERS)}", file=sys.stderr)
+                return 2
+            panel = importlib.import_module(BUILDERS[name]).build()
+            print(f"{name}: {len(panel):,} rows")
+    entries = coverage.build_catalogue()
+    print(f"catalogue: {len(entries)} measure(s) across {len({(e['source'], e['table']) for e in entries})} panel(s)")
+    return 0
+
+
+def cmd_data(args) -> int:
+    from .pipeline.coverage import coverage
+
+    records = {r.id: r for r in _load(args)}
+    rec = records.get(args.id)
+    if rec is None:
+        print(f"no record '{args.id}'", file=sys.stderr)
+        return 2
+    matches = coverage(rec)
+    if not matches:
+        print("No processed panel covers this change's industries. Run 'alcia pipeline build'.")
+        return 0
+    print(f"{rec.id} ({rec.jurisdiction}): {', '.join(i.anzsic for i in rec.industries)}")
+    for m in matches:
+        where = "state" if m.state else "not by state"
+        local = f"; local: {', '.join(m.local_levels)}" if m.local_levels else ""
+        code = f" {m.matched_code}" if m.matched_code else ""
+        print(
+            f"  {m.industry}: {m.source}/{m.measure} at {m.matched_level}{code}, {where}{local}, "
+            f"{m.period_type} {m.first} to {m.last}"
+        )
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="alcia", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--records", help="folder of register records (default: regulation-register/records)")
@@ -228,6 +278,15 @@ def main(argv: list[str] | None = None) -> int:
     e.add_argument("--standalone", action="store_true", help="wrap in a full HTML document for local viewing")
     e.add_argument("--repo-base", default=None, help="URL that evaluation document paths are linked under")
     e.set_defaults(func=cmd_explorer)
+
+    pl = sub.add_parser("pipeline", help="build outcome panels and the coverage catalogue")
+    pl.add_argument("action", choices=["build", "catalogue"])
+    pl.add_argument("sources", nargs="*")
+    pl.set_defaults(func=cmd_pipeline)
+
+    dt_ = sub.add_parser("data", help="which data panels can measure a change")
+    dt_.add_argument("id")
+    dt_.set_defaults(func=cmd_data)
 
     args = p.parse_args(argv)
     return args.func(args)

@@ -244,6 +244,7 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
       <button class="reset" id="reset" type="button">Clear all filters</button>
     </div>
     <div class="filter-row"><span class="filter-label">Evaluation</span><div class="chips" id="f-eval"></div></div>
+    <div class="filter-row"><span class="filter-label">Outcome data</span><div class="chips" id="f-data"></div></div>
     <div class="filter-row"><span class="filter-label">Jurisdiction</span><div class="chips" id="f-jur"></div></div>
     <div class="filter-row"><span class="filter-label">Hypothesised direction</span><div class="chips" id="f-dir"></div></div>
     <div class="filter-row"><span class="filter-label">Evaluability</span><div class="chips" id="f-rating"></div></div>
@@ -580,10 +581,14 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
   const dots = (n) => `<span class="dots" aria-hidden="true">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>`;
 
   // --- State --------------------------------------------------------------------------------------
-  const state = { q: "", ev: new Set(), jur: new Set(), dir: new Set(), rating: new Set(), channel: "", div: "", selected: null, tab: "list" };
+  const hasFine = (r) => (r.data || []).some((d) => (d.level === "class" || d.level === "group") && d.state);
+  const hasLocal = (r) => (r.data || []).some((d) => d.local.length);
+  const state = { q: "", data: new Set(), ev: new Set(), jur: new Set(), dir: new Set(), rating: new Set(), channel: "", div: "", selected: null, tab: "list" };
 
   function matches(r) {
     if (state.ev.size && !state.ev.has(r.evaluation ? "evaluated" : "not-evaluated")) return false;
+    if (state.data.has("fine") && !hasFine(r)) return false;
+    if (state.data.has("local") && !hasLocal(r)) return false;
     if (state.jur.size && !state.jur.has(r.jurisdiction)) return false;
     if (state.dir.size && !state.dir.has(r.direction)) return false;
     if (state.rating.size && !state.rating.has(r.screen.rating)) return false;
@@ -606,6 +611,10 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
     { value: "evaluated", label: "Evaluated", icon: checkIcon, n: count((r) => r.evaluation) },
     { value: "not-evaluated", label: "Not yet evaluated", n: count((r) => !r.evaluation) },
   ]);
+  chipGroup($("f-data"), "data", [
+    { value: "fine", label: "Class or group level, by state", n: count(hasFine) },
+    { value: "local", label: "Local areas", n: count(hasLocal) },
+  ]);
   chipGroup($("f-jur"), "jur", JURS.map((j) => ({ value: j, label: j, n: count((r) => r.jurisdiction === j) })));
   chipGroup($("f-dir"), "dir", Object.keys(DIR).map((d) => ({ value: d, label: DIR[d].label, icon: shapeIcon(d), n: count((r) => r.direction === d) })));
   chipGroup($("f-rating"), "rating", Object.keys(RATING).map((k) => ({ value: k, label: RATING[k].label, icon: dots(RATING[k].dots), n: count((r) => r.screen.rating === k) })));
@@ -623,7 +632,7 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
   $("f-channel").addEventListener("change", (e) => { state.channel = e.target.value; render(); });
   $("f-div").addEventListener("change", (e) => { state.div = e.target.value; render(); });
   $("reset").addEventListener("click", () => {
-    state.q = ""; state.ev.clear(); state.jur.clear(); state.dir.clear(); state.rating.clear(); state.channel = ""; state.div = "";
+    state.q = ""; state.data.clear(); state.ev.clear(); state.jur.clear(); state.dir.clear(); state.rating.clear(); state.channel = ""; state.div = "";
     $("q").value = ""; $("f-channel").value = ""; $("f-div").value = "";
     document.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", "false"));
     render();
@@ -644,6 +653,19 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
     if (!r.check) return `<span class="pill" title="Not checked against registers">Not checked</span>`;
     const c = CHECK[r.check.status];
     return `<span class="pill ${c.cls}" title="${esc(c.help)}">${esc(c.label)}</span>`;
+  }
+  const LEVEL = { class: "ANZSIC class", group: "ANZSIC group", subdivision: "ANZSIC subdivision", division: "ANZSIC division", inferred: "industry inferred from business names", occupation: "occupations", total: "all industries together" };
+  function dataList(r) {
+    const rows = r.data || [];
+    if (!rows.length) return `<p class="muted">No processed data panel covers this change's industries yet.</p>`;
+    const where = r.jurisdiction === "CTH" ? "Australia" : r.jurisdiction;
+    return `<ul class="d-list">${rows.map((d) => {
+      const src = (DATA.dataSources || {})[d.source];
+      const lvl = `${LEVEL[d.level] || d.level}${d.codes.length && d.level !== "total" ? ` ${d.codes.join(", ")}` : ""}`;
+      const geo = d.state ? `${where} covered` : "not by state";
+      return `<li><strong>${esc(src ? src.title : d.source)}</strong>: ${esc(d.measure)} <span class="muted">(${esc(d.unit)})</span><br>
+        <span class="muted">${esc(lvl)} · ${esc(geo)}${d.local.length ? ` · local: ${esc(d.local.join(", "))}` : ""} · ${esc(d.periodType)} ${esc(d.first.slice(0, 7))} to ${esc(d.last.slice(0, 7))}</span></li>`;
+    }).join("")}</ul><p class="muted small">${esc(DATA.dataNote || "")}</p>`;
   }
   function evalCell(r) {
     const ev = evalOf(r);
@@ -802,6 +824,7 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
         ${r.screen.comparison ? `<p class="muted">Comparison: ${esc({ staggered: "staggered adoption across jurisdictions", "other-states": "other states and territories", "industry-only": "unaffected industries only (national change)" }[r.screen.comparison])}</p>` : ""}
         ${li([...r.screen.strengths.map((s) => `<li>+ ${esc(s)}</li>`), ...r.screen.weaknesses.map((w) => `<li>− ${esc(w)}</li>`)])}
         <p class="muted">${esc(r.comparison)}</p>`)}
+      ${sec("Data that can measure it", dataList(r))}
       ${sec("Industries (ANZSIC 2006)", li(r.industries.map((i) => `<li><span class="mono">${esc(i.anzsic)}</span> ${esc(i.name)} <span class="muted">(${esc(i.exposure)})</span></li>`)))}
       ${sec("Confounders to handle", li(r.confounders.map((x) => `<li>${esc(x)}</li>`)))}
       ${sec("Price series (CPI)", r.price_series ? `<p>${esc(r.price_series)}</p>` : "")}
