@@ -1,0 +1,157 @@
+"""Build the interactive menu explorer: one self-contained HTML page with the register embedded.
+
+The page is a fragment (title, styles, markup, data, script) so it can be published as a
+hosted page; ``standalone=True`` wraps it in a full HTML document for opening locally.
+"""
+
+from __future__ import annotations
+
+import datetime as dt
+import json
+from importlib import resources
+from pathlib import Path
+
+from .. import anzsic
+from ..register.evaluation import CATEGORY_LABELS, Evaluation
+from ..register.schema import CHANNEL_LABELS, ChangeRecord
+from ..timing import fy_bounds, timing
+from .screen import COVID_FYS, DEFAULT_COVERAGE, screen_all
+
+FAMILY_LABELS = {
+    "amr-occupational-licensing": "Automatic mutual recognition of occupational licences",
+    "building-practitioner-registration": "Building practitioner registration",
+    "childcare-nqf": "Childcare National Quality Framework",
+    "container-deposit-scheme": "Container deposit schemes",
+    "default-offer-reregulation": "Default electricity offers",
+    "harper-cca-2017": "Harper competition law reforms (2017)",
+    "heavy-vehicle-national-law": "Heavy Vehicle National Law",
+    "industry-codes": "Mandatory industry codes",
+    "legal-profession-uniform-law": "Legal Profession Uniform Law",
+    "liquor-lockouts-last-drinks": "Liquor lockouts and last drinks",
+    "merger-control": "Merger control",
+    "pharmacy-regulation": "Pharmacy regulation",
+    "retail-energy-price-deregulation": "Retail energy price deregulation",
+    "retail-trading-hours": "Retail trading hours",
+    "rideshare-legalisation": "Ride-share legalisation",
+    "short-term-rental-regulation": "Short-term rental regulation",
+    "unfair-contract-terms": "Unfair contract terms",
+}
+
+SCREEN_RULES = (
+    "A triage aid, not a judgement on the reform. Weaknesses counted: no geographic comparison group "
+    "(national change); fewer than 3 financial years of entry and exit data before the first full year, or "
+    "fewer than 2 from it; affected industries only at division or subdivision level; an event window "
+    "overlapping 2019-20 to 2021-22 (COVID); another recorded change in the same industry and place within "
+    "two years; dates not fully verified. None: high. One: medium. Two or more: low."
+)
+# Evaluation documents are linked on GitHub; override with --repo-base once the work is merged.
+REPO_BASE = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/claude/sharp-bell-4dsvcz/"
+EVALUATION_NOTE = (
+    "Evaluated changes have a pre-registered analysis in this repository: a plan committed before the "
+    "results were estimated, a graded result and its caveats. A record's direction stays a hypothesis; the "
+    "evaluation says what the data showed. Grades follow the evaluation design: Strong, Moderate, Weak or "
+    "Not identified."
+)
+CHECK_NOTE = (
+    "Effective dates are checked against the official legislation registers by 'alcia dates'. "
+    "Commonwealth, Queensland, Tasmania, ACT, WA and NT registers can be read automatically; Victoria gives "
+    "version dates only; NSW and SA block automated requests, so their records rely on sourced dates."
+)
+
+
+def _humanise(family: str) -> str:
+    return family.replace("-", " ").capitalize()
+
+
+def _short(title: str, limit: int = 30) -> str:
+    base = title.split(" (")[0]
+    return base if len(base) <= limit else base[: limit - 1].rstrip() + "…"
+
+
+def _division_names() -> dict[str, str]:
+    return {code: anzsic.name(code) or "" for code in "ABCDEFGHIJKLMNOPQRS"}
+
+
+def build_payload(
+    records: list[ChangeRecord],
+    dates_report: list[dict] | None = None,
+    generated: dt.date | None = None,
+    evaluations: list[Evaluation] | None = None,
+    repo_base: str | None = None,
+) -> dict:
+    screens = screen_all(records)
+    checks = {d["record_id"]: d for d in dates_report or []}
+    evaluations = evaluations or []
+    evaluated = {rid: ev.id for ev in evaluations for rid in ev.records}
+    out = []
+    for r in records:
+        eff = r.effective_commencement
+        t = screens[r.id]
+        check = checks.get(r.id)
+        data = r.model_dump(mode="json")
+        data.update(
+            {
+                "effective": eff.date.isoformat() if eff else None,
+                "effectiveWhat": eff.what if eff else None,
+                "timing": None,
+                "screen": t.as_dict(),
+                "channelLabels": [CHANNEL_LABELS[c] for c in r.channels],
+                "short": _short(r.title),
+                "check": {"status": check["status"], "issues": check["issues"]} if check else None,
+                "evaluation": evaluated.get(r.id),
+            }
+        )
+        if eff:
+            data["timing"] = timing(eff.date).as_dict()
+        data["industries"] = [{**i, "division": anzsic.division(i["anzsic"])} for i in data["industries"]]
+        out.append(data)
+    first_start, _ = fy_bounds(DEFAULT_COVERAGE.first_fy)
+    _, last_end = fy_bounds(DEFAULT_COVERAGE.last_fy)
+    return {
+        "generated": (generated or dt.date.today()).isoformat(),
+        "records": out,
+        "channels": [{"id": k, "label": v} for k, v in CHANNEL_LABELS.items()],
+        "familyLabels": {f: FAMILY_LABELS.get(f, _humanise(f)) for f in {r.family for r in records if r.family}},
+        "divisions": _division_names(),
+        "coverage": {
+            "firstStart": first_start.isoformat(),
+            "lastEnd": last_end.isoformat(),
+            "label": f"ABS CABEE, {first_start.year}-{str(first_start.year + 1)[2:]} to "
+            f"{last_end.year - 1}-{str(last_end.year)[2:]}",
+        },
+        "covidFys": [min(COVID_FYS), max(COVID_FYS)],
+        "evaluations": {ev.id: ev.model_dump(mode="json") for ev in evaluations},
+        "categoryLabels": CATEGORY_LABELS,
+        "repoBase": repo_base or REPO_BASE,
+        "evaluationNote": EVALUATION_NOTE,
+        "screenRules": SCREEN_RULES,
+        "checkNote": CHECK_NOTE,
+    }
+
+
+def render(payload: dict, standalone: bool = False) -> str:
+    template = resources.files("alcia.menu").joinpath("templates/explorer.html").read_text("utf-8")
+    # Embed the data safely inside <script type="application/json">.
+    blob = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    page = template.replace("__MENU_DATA__", blob)
+    if standalone:
+        page = (
+            '<!doctype html>\n<html lang="en-AU">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            "</head>\n<body>\n" + page + "\n</body>\n</html>\n"
+        )
+    return page
+
+
+def build_explorer(
+    records: list[ChangeRecord],
+    out: Path,
+    dates_report: Path | None = None,
+    standalone: bool = False,
+    evaluations: list[Evaluation] | None = None,
+    repo_base: str | None = None,
+) -> Path:
+    report = json.loads(dates_report.read_text("utf-8")) if dates_report and dates_report.exists() else None
+    payload = build_payload(records, report, evaluations=evaluations, repo_base=repo_base)
+    out.write_text(render(payload, standalone), encoding="utf-8")
+    return out

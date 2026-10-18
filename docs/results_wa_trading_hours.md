@@ -5,7 +5,7 @@
 **Files:**
 - Plan: [`pap_wa_trading_hours.md`](pap_wa_trading_hours.md)
 - Design-stage review: [`robustness_review_wa_trading_hours.md`](robustness_review_wa_trading_hours.md)
-- Code: `econ/analyses/wa_trading_hours/estimate.py`
+- Code: `alcia/analyses/wa_trading_hours/estimate.py`
 - Results: `estimate.json`
 - Checks that were not pre-registered: `posthoc.py` and `posthoc.json`
 

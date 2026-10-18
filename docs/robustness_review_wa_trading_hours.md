@@ -7,8 +7,8 @@
 **What was not used:** WA's post-reform outcomes for affected retail, and Perth prices after the reform. One exception is disclosed in §5.
 
 **Files:**
-- Code: `econ/analyses/wa_trading_hours/design_review.py`
-- Results: `econ/analyses/wa_trading_hours/design_review.json`
+- Code: `alcia/analyses/wa_trading_hours/design_review.py`
+- Results: `alcia/analyses/wa_trading_hours/design_review.json`
 - Pre-analysis plan: [`pap_wa_trading_hours.md`](pap_wa_trading_hours.md)
 
 ---
@@ -114,7 +114,7 @@ Productivity is therefore reported as descriptive only. Measuring the productivi
 ## 6. What this means for the wider programme
 
 1. **One treated state is the binding constraint.** Even a clean case can only detect large effects. Every future pilot should prefer reform families adopted by several states, which give more treated units and finer inference.
-2. **Industry placebos are the key tool for single-state cases.** They net out state-wide shocks and allow real p-values. They are now part of `regimpact.evaluate`.
+2. **Industry placebos are the key tool for single-state cases.** They net out state-wide shocks and allow real p-values. They are now part of `alcia.evaluate`.
 3. **Productivity effects need better data than state-by-division publications.** Options are hours by state and industry (from 2011-12), the BLADE TableBuilder's per-business sales and wages, or a case large enough to move a whole division.
 4. **Vintage choice matters.** Revisions between ABS releases are about half the noise level. Every result should be shown on both vintages.
 
