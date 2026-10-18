@@ -198,8 +198,9 @@ The single-state cases come after.
 | 0. Decisions | Done (E-55) |
 | 1. Controls data | Done (E-56): State Accounts, state final demand, Labour Force, ERP, WPI, building approvals, national GVA by division, Business Indicators, RBA commodity prices; sources in `data/SOURCES.md` |
 | 2. Estimator library | Done in Python (E-58, E-59): saturated fixed effects, wild cluster bootstrap, imputation, randomization inference, shift-share and measured controls, synthetic DiD and synthetic control, generalised synthetic control, matrix completion, conformal inference, Callaway–Sant'Anna, sensitivity bounds; simulation tests ([methods note](methods_panel_estimators.md)). The R run of the cross-check is deferred by the owner |
-| 3. Power study | First run done (E-60; [results](power_study.md)): business entry and exit; placebo industries. Still to do: fake-date and placebo-state families; price outcomes |
-| 4–7 | Not started |
+| 3. Power study | Done (E-60, E-65; [results](power_study.md)): business entry and exit and CPI prices; placebo industries, placebo states, fake dates and both; the new families from the gap scan |
+| 4. Specification runner | Started (E-67; [note](specification_runner.md)): the four existing analyses are JSON specifications read by their code, and reproduce byte for byte through `alicia spec run`. Still to do: a generic estimation stage and the side-by-side estimator comparison (§5.3) |
+| 5–7 | Not started |
 
 The website also shows the controls and state and industry growth (E-57).
 
