@@ -204,6 +204,8 @@ BUILDERS = {
     "asic": "alicia.pipeline.asic",
     "clue_melbourne": "alicia.pipeline.clue",
     "jsa_ivi": "alicia.pipeline.jsa_ivi",  # needs workbooks saved by hand in data/raw/jsa_ivi/
+    "abs_state_accounts": "alicia.pipeline.abs_state_accounts",
+    "controls": "alicia.pipeline.controls",  # macroeconomic controls, written to data/processed/controls/
 }
 
 
@@ -219,7 +221,8 @@ def cmd_pipeline(args) -> int:
                 print(f"unknown source '{name}'; known: {', '.join(BUILDERS)}", file=sys.stderr)
                 return 2
             panel = importlib.import_module(BUILDERS[name]).build()
-            print(f"{name}: {len(panel):,} rows")
+            rows = sum(map(len, panel.values())) if isinstance(panel, dict) else len(panel)
+            print(f"{name}: {rows:,} rows")
     entries = coverage.build_catalogue()
     print(f"catalogue: {len(entries)} measure(s) across {len({(e['source'], e['table']) for e in entries})} panel(s)")
     return 0

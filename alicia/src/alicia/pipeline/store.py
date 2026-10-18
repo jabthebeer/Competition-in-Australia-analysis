@@ -97,13 +97,16 @@ def read_panel(source: str, table: str) -> pd.DataFrame:
     return pd.read_parquet(PROCESSED / source / f"{table}.parquet")
 
 
+CONTROLS = "controls"  # macroeconomic control series (alicia.pipeline.controls), not outcomes
+
+
 def panels() -> list[tuple[str, str, Path]]:
-    """Every processed panel: (source, table, path). Other parquet files (lookups such as the postcode
-    concordance) are skipped."""
+    """Every processed outcome panel: (source, table, path). Other parquet files (lookups such as the
+    postcode concordance, and the control series in ``controls/``) are skipped."""
     import pyarrow.parquet as pq
 
     out = []
     for p in sorted(PROCESSED.glob("*/*.parquet")):
-        if set(schema.COLUMNS) <= set(pq.read_schema(p).names):
+        if p.parent.name != CONTROLS and set(schema.COLUMNS) <= set(pq.read_schema(p).names):
             out.append((p.parent.name, p.stem, p))
     return out

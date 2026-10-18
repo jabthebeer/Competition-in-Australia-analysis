@@ -222,3 +222,108 @@ def test_state_of_new_levels():
     assert schema.state_of("IVI_REGION", "NSW:Hunter") == "NSW"
     assert schema.state_of("CLUE_AREA", "Carlton") == "VIC"
     assert schema.state_of("LGA", "24600") == "VIC"
+
+
+def _time_series_workbook(path, series: dict[str, tuple[str, list[float]]], dates: list[dt.datetime]) -> None:
+    """A minimal ABS time series workbook: Index sheet and one Data sheet with the ten header rows."""
+    import openpyxl
+
+    wb = openpyxl.Workbook()
+    wb.active.title = "Index"
+    ws = wb.create_sheet("Data1")
+    ids = list(series)
+    header = [
+        [None, *[series[i][0] for i in ids]],
+        ["Unit", *["$ Millions"] * len(ids)],
+        ["Series Type", *["Original"] * len(ids)],
+        ["Data Type", *["DERIVED"] * len(ids)],
+        ["Frequency", *["Annual"] * len(ids)],
+        ["Collection Month", *[6] * len(ids)],
+        ["Series Start", *[dates[0]] * len(ids)],
+        ["Series End", *[dates[-1]] * len(ids)],
+        ["No. Obs", *[len(dates)] * len(ids)],
+        ["Series ID", *ids],
+    ]
+    for row in header:
+        ws.append(row)
+    for k, d in enumerate(dates):
+        ws.append([d, *[series[i][1][k] for i in ids]])
+    wb.save(path)
+
+
+def test_state_accounts_reader_keeps_divisions_and_totals(tmp_path):
+    from alicia.pipeline import abs_state_accounts, abs_tsw
+
+    path = tmp_path / "wa.xlsx"
+    dates = [dt.datetime(2023, 6, 1), dt.datetime(2024, 6, 1)]
+    _time_series_workbook(
+        path,
+        {
+            "S1": ("Mining (B) ;  Industry gross value added: Chain volume measures ;", [100.0, 110.0]),
+            "S2": ("Mining (B) ;  Industry gross value added: Current prices ;", [90.0, 120.0]),
+            "S3": ("Ownership of dwellings ;  Industry gross value added: Current prices ;", [5.0, 6.0]),
+            "S4": ("Total all industries ;  Industry gross value added: Current prices ;", [200.0, 230.0]),
+            "S5": ("Mining (B) ;  Industry gross value added: Chain volume measures - Percentage changes ;", [1, 10]),
+        },
+        dates,
+    )
+    raw = abs_tsw.read(path)
+    assert set(raw["series_id"]) == {"S1", "S2", "S3", "S4", "S5"} and len(raw) == 10
+    out = abs_state_accounts.tidy_industry(raw, "WA", "test")
+    panel = schema.make(out, source="abs_state_accounts", industry_scheme="ANZSIC06")
+    assert sorted(panel["measure"].unique()) == ["gva_current", "gva_volume"]
+    assert set(panel["industry_code"]) == {"B", ""}  # ownership of dwellings and percentage changes dropped
+    fy = panel.loc[(panel["measure"] == "gva_current") & (panel["industry_code"] == "B"), "period"]
+    assert list(fy.dt.strftime("%Y-%m-%d")) == ["2022-07-01", "2023-07-01"]  # year ending June -> FY start
+
+
+def test_rba_i2_reader(tmp_path):
+    import openpyxl
+
+    from alicia.pipeline import controls
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Data"
+    ws.append(["I2 COMMODITY PRICES", None, None])
+    ws.append(["Title", "Commodity prices – A$", "Rural commodity prices – A$"])
+    ws.append(["Description", "x", "y"])
+    ws.append(["Frequency", "Monthly", "Monthly"])
+    ws.append(["Type", "Original", "Original"])
+    ws.append(["Units", "Index, 2024/25=100", "Index, 2024/25=100"])
+    ws.append([None, None, None])
+    ws.append([None, None, None])
+    ws.append(["Source", "RBA", "RBA"])
+    ws.append(["Publication date", dt.datetime(2026, 10, 1), dt.datetime(2026, 10, 1)])
+    ws.append(["Series ID", "GRCPAIAD", "GRCPRCAD"])
+    ws.append([dt.datetime(2026, 7, 31), 101.5, 99.0])
+    ws.append([dt.datetime(2026, 8, 31), 102.0, None])
+    path = tmp_path / "i2.xlsx"
+    wb.save(path)
+    d = controls.read_rba_i2(path)
+    assert len(d) == 3 and set(d["series_id"]) == {"GRCPAIAD", "GRCPRCAD"}
+    assert d.loc[d["series_id"] == "GRCPAIAD", "value"].tolist() == [101.5, 102.0]
+
+
+def test_controls_are_kept_out_of_the_outcome_catalogue(tmp_path, monkeypatch):
+    from alicia.pipeline import store
+
+    monkeypatch.setattr(store, "PROCESSED", tmp_path)
+    row = schema.make(
+        pd.DataFrame(
+            {
+                "measure": ["population"],
+                "industry_level": ["total"],
+                "geo_level": ["STE"],
+                "geo_code": ["WA"],
+                "period_type": ["quarter"],
+                "period": ["2020-01-01"],
+                "value": [1.0],
+            }
+        ),
+        source="abs_erp",
+        industry_scheme="none",
+    )
+    store.write_panel(row, "controls", "state_quarter")
+    store.write_panel(row.assign(source="abs_x"), "abs_x", "outcome")
+    assert [(s, t) for s, t, _ in store.panels()] == [("abs_x", "outcome")]
