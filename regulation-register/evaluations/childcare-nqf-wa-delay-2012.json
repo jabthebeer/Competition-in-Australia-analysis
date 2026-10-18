@@ -805,5 +805,600 @@
       "path": "docs/results_high_evaluability.md"
     }
   ],
-  "built_by": "alicia/analyses/childcare_nqf_wa/evaluation.py"
+  "built_by": "alicia/analyses/childcare_nqf_wa/evaluation.py",
+  "tables": [
+    {
+      "id": "childcare-nqf-wa-delay-2012-on-off",
+      "title": "National Quality Framework for childcare (2012): WA's seven-month delay: on-off estimates",
+      "columns": [
+        {
+          "label": "Pooled",
+          "group": "Registered (seasonal means removed)"
+        },
+        {
+          "label": "Early",
+          "group": "Registered (seasonal means removed)"
+        },
+        {
+          "label": "Late",
+          "group": "Registered (seasonal means removed)"
+        },
+        {
+          "label": "Pooled",
+          "group": "Pre-trend also removed"
+        },
+        {
+          "label": "Early",
+          "group": "Pre-trend also removed"
+        },
+        {
+          "label": "Late",
+          "group": "Pre-trend also removed"
+        }
+      ],
+      "panels": [
+        {
+          "title": "Panel A. Childcare share of business exits, percentage points (primary outcome; 36 / 7 / 12 months before / on / off)",
+          "rows": [
+            {
+              "label": "Framework × WA timing (β)",
+              "coefficients": [
+                {
+                  "estimate": 0.35,
+                  "spread": 0.682,
+                  "p_value": 0.6829,
+                  "registered": true
+                },
+                {
+                  "estimate": 0.343,
+                  "spread": 0.711,
+                  "p_value": 0.6829,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.37,
+                  "spread": 0.931,
+                  "p_value": 0.6341,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.849,
+                  "spread": 0.815,
+                  "p_value": 0.3171,
+                  "registered": false
+                },
+                {
+                  "estimate": 1.123,
+                  "spread": 0.966,
+                  "p_value": 0.2683,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.025,
+                  "spread": 0.94,
+                  "p_value": 0.9756,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "No-effect estimates",
+              "coefficients": [],
+              "values": [
+                "40",
+                "40",
+                "40",
+                "40",
+                "40",
+                "40"
+              ]
+            },
+            {
+              "label": "MDE (80% power)",
+              "coefficients": [],
+              "values": [
+                "1.91",
+                "1.99",
+                "2.61",
+                "2.28",
+                "2.71",
+                "2.63"
+              ]
+            },
+            {
+              "label": "Gap after WA adopted vs pre-2012",
+              "coefficients": [],
+              "values": [
+                "0.03",
+                null,
+                null,
+                "−1.10",
+                null,
+                null
+              ]
+            },
+            {
+              "label": "WA share before 2012, %",
+              "coefficients": [],
+              "values": [
+                "1.55",
+                "1.55",
+                "1.55",
+                "1.55",
+                "1.55",
+                "1.55"
+              ]
+            },
+            {
+              "label": "BH q-value",
+              "coefficients": [],
+              "values": [
+                "0.837",
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Panel B. Child care prices relative to all prices, 100 × log points (primary outcome; 12 / 2 / 4 quarters before / on / off)",
+          "rows": [
+            {
+              "label": "Framework × WA timing (β)",
+              "coefficients": [
+                {
+                  "estimate": 0.288,
+                  "spread": 2.855,
+                  "p_value": 0.8367,
+                  "registered": true
+                },
+                {
+                  "estimate": 0.624,
+                  "spread": 3.51,
+                  "p_value": 0.8265,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.718,
+                  "spread": 2.144,
+                  "p_value": 0.6327,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.423,
+                  "spread": 1.783,
+                  "p_value": 0.7755,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.482,
+                  "spread": 2.176,
+                  "p_value": 0.8367,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.244,
+                  "spread": 2.846,
+                  "p_value": 0.8571,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "No-effect estimates",
+              "coefficients": [],
+              "values": [
+                "97",
+                "97",
+                "97",
+                "97",
+                "97",
+                "97"
+              ]
+            },
+            {
+              "label": "MDE (80% power)",
+              "coefficients": [],
+              "values": [
+                "8.00",
+                "9.83",
+                "6.01",
+                "5.00",
+                "6.10",
+                "7.97"
+              ]
+            },
+            {
+              "label": "Gap after WA adopted vs pre-2012",
+              "coefficients": [],
+              "values": [
+                "−1.34",
+                null,
+                null,
+                "0.24",
+                null,
+                null
+              ]
+            },
+            {
+              "label": "BH q-value",
+              "coefficients": [],
+              "values": [
+                "0.837",
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Panel C. Childcare share of new ABNs, percentage points (secondary outcome; 36 / 7 / 12 months before / on / off)",
+          "rows": [
+            {
+              "label": "Framework × WA timing (β)",
+              "coefficients": [
+                {
+                  "estimate": 0.441,
+                  "spread": 0.593,
+                  "p_value": 0.4872,
+                  "registered": true
+                },
+                {
+                  "estimate": 0.373,
+                  "spread": 0.649,
+                  "p_value": 0.5641,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.644,
+                  "spread": 0.678,
+                  "p_value": 0.3333,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.309,
+                  "spread": 0.747,
+                  "p_value": 0.6923,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.167,
+                  "spread": 0.929,
+                  "p_value": 0.7949,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.736,
+                  "spread": 0.689,
+                  "p_value": 0.3077,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "No-effect estimates",
+              "coefficients": [],
+              "values": [
+                "38",
+                "38",
+                "38",
+                "38",
+                "38",
+                "38"
+              ]
+            },
+            {
+              "label": "MDE (80% power)",
+              "coefficients": [],
+              "values": [
+                "1.66",
+                "1.82",
+                "1.90",
+                "2.09",
+                "2.60",
+                "1.93"
+              ]
+            },
+            {
+              "label": "Gap after WA adopted vs pre-2012",
+              "coefficients": [],
+              "values": [
+                "0.27",
+                null,
+                null,
+                "0.57",
+                null,
+                null
+              ]
+            },
+            {
+              "label": "WA share before 2012, %",
+              "coefficients": [],
+              "values": [
+                "2.04",
+                "2.04",
+                "2.04",
+                "2.04",
+                "2.04",
+                "2.04"
+              ]
+            }
+          ]
+        }
+      ],
+      "footer": [
+        {
+          "label": "Seasonal means removed",
+          "coefficients": [],
+          "values": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+          ]
+        },
+        {
+          "label": "Linear pre-trend removed",
+          "coefficients": [],
+          "values": [
+            "No",
+            "No",
+            "No",
+            "Yes",
+            "Yes",
+            "Yes"
+          ]
+        }
+      ],
+      "spread_label": "Placebo standard deviation",
+      "notes": [
+        "Panels A and C: businesses whose names say childcare, as a share of all named businesses' ABN cancellations (A) or of new ABNs still active in October 2026 (C), monthly from January 2009 to July 2013. Panel B: the child care CPI relative to All groups, Perth against the other capitals, quarterly from 2009-Q1 to 2013-Q2.",
+        "On-off difference-in-differences (alicia.evaluate.stagger) on the gap between WA and the mean of the other seven jurisdictions, less its pre-2012 mean for each season. The framework started in January 2012 everywhere but WA, which followed in August 2012 (2012-Q3 in quarterly data). Pooled: one effect from the gap opening and closing. Early: the other jurisdictions in January to July 2012 against WA, not yet treated. Late: WA's change when it adopted, against the others (assumes their effect did not build up). The gap row shows whether the gap returned to its pre-2012 level once both had adopted.",
+        "The placebo standard deviation is the spread of the no-effect estimates: the same estimator for placebo industries (CPI classes, Labour Force groups) over the same windows and for childcare at fake dates before 2012. p-values rank the estimate among them. BH q-value: Benjamini-Hochberg across the two primary outcomes. MDE: the smallest effect detectable with 80% power at the 5% level (2.8 × the placebo standard deviation).",
+        "Source: alicia/analyses/childcare_nqf_wa/estimate.json (registered run, 18 October 2026) and design.json (windows, pre-2012 levels)."
+      ]
+    },
+    {
+      "id": "childcare-nqf-wa-delay-2012-on-off-descriptive",
+      "title": "National Quality Framework for childcare (2012): WA's seven-month delay: hours and employment (descriptive)",
+      "columns": [
+        {
+          "label": "Pooled",
+          "group": "Registered (seasonal means removed)"
+        },
+        {
+          "label": "Early",
+          "group": "Registered (seasonal means removed)"
+        },
+        {
+          "label": "Late",
+          "group": "Registered (seasonal means removed)"
+        },
+        {
+          "label": "Pooled",
+          "group": "Pre-trend also removed"
+        },
+        {
+          "label": "Early",
+          "group": "Pre-trend also removed"
+        },
+        {
+          "label": "Late",
+          "group": "Pre-trend also removed"
+        }
+      ],
+      "panels": [
+        {
+          "title": "Panel A. Hours worked in child care, 100 × log points (descriptive; 12 / 2 / 4 quarters before / on / off)",
+          "rows": [
+            {
+              "label": "Framework × WA timing (β)",
+              "coefficients": [
+                {
+                  "estimate": -12.281,
+                  "spread": 19.725,
+                  "p_value": 0.5169,
+                  "registered": false
+                },
+                {
+                  "estimate": -12.138,
+                  "spread": 21.385,
+                  "p_value": 0.5506,
+                  "registered": false
+                },
+                {
+                  "estimate": -12.71,
+                  "spread": 22.018,
+                  "p_value": 0.5618,
+                  "registered": false
+                },
+                {
+                  "estimate": -10.396,
+                  "spread": 21.884,
+                  "p_value": 0.5955,
+                  "registered": false
+                },
+                {
+                  "estimate": -9.206,
+                  "spread": 26.326,
+                  "p_value": 0.7303,
+                  "registered": false
+                },
+                {
+                  "estimate": -13.967,
+                  "spread": 23.415,
+                  "p_value": 0.573,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "No-effect estimates",
+              "coefficients": [],
+              "values": [
+                "88",
+                "88",
+                "88",
+                "88",
+                "88",
+                "88"
+              ]
+            },
+            {
+              "label": "MDE (80% power)",
+              "coefficients": [],
+              "values": [
+                "55.26",
+                "59.91",
+                "61.69",
+                "61.31",
+                "73.75",
+                "65.60"
+              ]
+            },
+            {
+              "label": "Gap after WA adopted vs pre-2012",
+              "coefficients": [],
+              "values": [
+                "−0.57",
+                null,
+                null,
+                "−4.76",
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Panel B. Employment in child care, 100 × log points (descriptive; 12 / 2 / 4 quarters before / on / off)",
+          "rows": [
+            {
+              "label": "Framework × WA timing (β)",
+              "coefficients": [
+                {
+                  "estimate": -27.049,
+                  "spread": 19.727,
+                  "p_value": 0.1798,
+                  "registered": false
+                },
+                {
+                  "estimate": -29.149,
+                  "spread": 20.671,
+                  "p_value": 0.2022,
+                  "registered": false
+                },
+                {
+                  "estimate": -20.747,
+                  "spread": 21.963,
+                  "p_value": 0.3596,
+                  "registered": false
+                },
+                {
+                  "estimate": -24.178,
+                  "spread": 22.216,
+                  "p_value": 0.2584,
+                  "registered": false
+                },
+                {
+                  "estimate": -24.684,
+                  "spread": 25.62,
+                  "p_value": 0.2921,
+                  "registered": false
+                },
+                {
+                  "estimate": -22.66,
+                  "spread": 22.326,
+                  "p_value": 0.2809,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "No-effect estimates",
+              "coefficients": [],
+              "values": [
+                "88",
+                "88",
+                "88",
+                "88",
+                "88",
+                "88"
+              ]
+            },
+            {
+              "label": "MDE (80% power)",
+              "coefficients": [],
+              "values": [
+                "55.27",
+                "57.91",
+                "61.53",
+                "62.24",
+                "71.78",
+                "62.55"
+              ]
+            },
+            {
+              "label": "Gap after WA adopted vs pre-2012",
+              "coefficients": [],
+              "values": [
+                "8.40",
+                null,
+                null,
+                "2.02",
+                null,
+                null
+              ]
+            }
+          ]
+        }
+      ],
+      "footer": [
+        {
+          "label": "Seasonal means removed",
+          "coefficients": [],
+          "values": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+          ]
+        },
+        {
+          "label": "Linear pre-trend removed",
+          "coefficients": [],
+          "values": [
+            "No",
+            "No",
+            "No",
+            "Yes",
+            "Yes",
+            "Yes"
+          ]
+        }
+      ],
+      "spread_label": "Placebo standard deviation",
+      "notes": [
+        "Labour Force industry group 871 (child care services), WA against the other jurisdictions, quarterly from 2009-Q1 to 2013-Q2. Registered as descriptive: WA's quarterly estimates for one group are too noisy to test.",
+        "On-off difference-in-differences (alicia.evaluate.stagger) on the gap between WA and the mean of the other seven jurisdictions, less its pre-2012 mean for each season. The framework started in January 2012 everywhere but WA, which followed in August 2012 (2012-Q3 in quarterly data). Pooled: one effect from the gap opening and closing. Early: the other jurisdictions in January to July 2012 against WA, not yet treated. Late: WA's change when it adopted, against the others (assumes their effect did not build up). The gap row shows whether the gap returned to its pre-2012 level once both had adopted.",
+        "The placebo standard deviation is the spread of the no-effect estimates: the same estimator for placebo industries (CPI classes, Labour Force groups) over the same windows and for childcare at fake dates before 2012. p-values rank the estimate among them. BH q-value: Benjamini-Hochberg across the two primary outcomes. MDE: the smallest effect detectable with 80% power at the 5% level (2.8 × the placebo standard deviation).",
+        "Source: alicia/analyses/childcare_nqf_wa/estimate.json (registered run, 18 October 2026) and design.json (windows, pre-2012 levels)."
+      ]
+    }
+  ]
 }

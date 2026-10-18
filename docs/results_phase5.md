@@ -8,7 +8,7 @@
 
 **Evaluation files:** `regulation-register/evaluations/` (10 new). Eight are re-evaluations: each *supersedes* an earlier evaluation, which is now archived (§6).
 
-Tables come from `uv run python analyses/phase5/evaluations.py --spec <id> --table`. Estimates are per 100 businesses a year for entry and exit, and 100 × log points relative to the CPI for prices. MDE is the smallest effect detectable with 80% power at the 5% level.
+Tables come from `uv run python analyses/phase5/evaluations.py --spec <id> --table`. Full regression tables for each evaluation (every estimator, observations, fixed effects, notes) are in [`econometric_tables.md`](econometric_tables.md), with a LaTeX version in `econometric_tables.tex`. Estimates are per 100 businesses a year for entry and exit, and 100 × log points relative to the CPI for prices. MDE is the smallest effect detectable with 80% power at the 5% level.
 
 ## 1. Headline
 

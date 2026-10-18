@@ -156,9 +156,78 @@ class EstimatorRow(_Strict):
     registered: bool = False
 
 
+class TableCoef(_Strict):
+    """One coefficient in a results table: the estimate, its spread (in parentheses) and p-value (in brackets)."""
+
+    estimate: float
+    spread: float | None = Field(None, ge=0)
+    p_value: float | None = Field(None, ge=0, le=1)
+    registered: bool = False
+
+
+class TableRow(_Strict):
+    """A coefficient row (one coefficient per column) or a text row (sample sizes, fixed effects, tests)."""
+
+    label: str = Field(min_length=1)
+    coefficients: tuple[TableCoef | None, ...] = ()
+    values: tuple[str | None, ...] = ()
+
+    @model_validator(mode="after")
+    def _one_kind(self) -> TableRow:
+        if bool(self.coefficients) == bool(self.values):
+            raise ValueError("a table row has either coefficients or values")
+        return self
+
+    @property
+    def width(self) -> int:
+        return len(self.coefficients or self.values)
+
+
+class TablePanel(_Strict):
+    title: str = Field(min_length=1)
+    rows: tuple[TableRow, ...] = Field(min_length=1)
+
+
+class TableColumn(_Strict):
+    label: str = Field(min_length=1)
+    group: str | None = Field(None, description="Spanning header shared by adjacent columns")
+
+
+class ResultsTable(_Strict):
+    """A regression table in the usual academic layout: numbered columns (estimators or specifications), one
+    panel per outcome, coefficients with stars, spread and p-value, then sample rows, a footer of shared rows
+    (fixed effects, controls) and notes."""
+
+    id: RecordId
+    title: str = Field(min_length=1)
+    columns: tuple[TableColumn, ...] = Field(min_length=1)
+    panels: tuple[TablePanel, ...] = Field(min_length=1)
+    footer: tuple[TableRow, ...] = ()
+    spread_label: str = Field(min_length=1, description="What the parentheses hold")
+    notes: tuple[str, ...] = ()
+
+    @model_validator(mode="after")
+    def _widths(self) -> ResultsTable:
+        n = len(self.columns)
+        bad = [r.label for p in self.panels for r in p.rows if r.width != n] + [
+            r.label for r in self.footer if r.width != n
+        ]
+        if bad:
+            raise ValueError(f"rows must have one cell per column ({n}): {bad}")
+        return self
+
+
+# Significance stars from the p-value (two-sided), most stringent first.
+STARS = ((0.01, "***"), (0.05, "**"), (0.10, "*"))
+
+
+def stars(p: float | None) -> str:
+    return next((s for cut, s in STARS if p is not None and p < cut), "")
+
+
 # Fields added after the first evaluations were written; omitted from a file when empty, so that earlier files
 # reproduce byte for byte.
-OPTIONAL_FIELDS = ("supersedes", "evaluated_at", "estimators")
+OPTIONAL_FIELDS = ("supersedes", "evaluated_at", "estimators", "tables")
 
 
 class Evaluation(_Strict):
@@ -197,6 +266,7 @@ class Evaluation(_Strict):
     estimators: tuple[EstimatorRow, ...] = Field(
         (), description="Every estimator layer side by side for each outcome; the registered one marked"
     )
+    tables: tuple[ResultsTable, ...] = Field((), description="Regression tables in the usual academic layout")
 
     @model_validator(mode="after")
     def _consistent(self) -> Evaluation:

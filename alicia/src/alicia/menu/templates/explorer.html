@@ -184,6 +184,31 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
 .ev-archive > summary { cursor: pointer; font-weight: 500; color: var(--ink-2); }
 .ev-archive[open] > summary { margin-bottom: 12px; }
 .ev-archive .ev-card { border-style: dashed; margin-top: 12px; }
+/* Regression tables, booktabs style: heavy top and bottom rules, light rule under the header and above the footer. */
+.reg { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.reg + .reg { margin-top: 14px; }
+.reg figcaption { font-family: var(--font-display); font-size: var(--step-0); color: var(--ink); text-wrap: balance; }
+.reg-no { font-weight: 600; }
+.reg-wrap { overflow-x: auto; }
+.reg-table { border-collapse: collapse; font-family: var(--font-display); font-size: var(--step--1); font-variant-numeric: tabular-nums lining-nums; color: var(--ink); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.reg-table th, .reg-table td { padding: 1px 10px; white-space: nowrap; }
+.reg-table td { text-align: center; }
+.reg-table tbody th { text-align: left; font-weight: 400; }
+.reg-table thead th { font-weight: 500; text-align: center; padding-top: 5px; }
+.reg-table thead tr.labs th { white-space: normal; min-width: 6.5em; max-width: 9.5em; vertical-align: bottom; padding-bottom: 5px; border-bottom: 1px solid var(--ink); line-height: 1.25; }
+.reg-table tr.grp th span { display: block; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; font-style: italic; font-weight: 400; }
+.reg-table tr.panel th { font-style: italic; padding-top: 10px; padding-bottom: 3px; white-space: normal; }
+.reg-table tr.coef td { padding-top: 3px; }
+.reg-table tr.sd td, .reg-table tr.pv td { color: var(--ink-2); }
+.reg-table tr.pv td { padding-bottom: 4px; }
+.reg-table td.is-reg { font-weight: 600; }
+.reg-table sup { font-size: 0.72em; margin-left: 1px; }
+.reg-table tr.stat th { color: var(--ink-2); }
+.reg-table tbody.foot tr:first-child > * { border-top: 1px solid var(--ink); padding-top: 5px; }
+.reg-table tbody.foot tr:last-child > * { padding-bottom: 5px; }
+.reg-notes { margin: 0; font-size: var(--step--1); color: var(--ink-2); max-width: 110ch; line-height: 1.45; }
+.reg-tex summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); width: max-content; }
+.reg-tex pre { max-height: 260px; overflow: auto; margin: 6px 0 0; font: 11px/1.4 var(--font-mono); background: var(--bg); color: var(--ink); border: 1px solid var(--line); padding: 8px; border-radius: 6px; }
 .est-wrap { overflow-x: auto; }
 .est-table { border-collapse: collapse; font-size: var(--step--1); min-width: 520px; }
 .est-table th { text-align: left; font-weight: 500; color: var(--ink-3); padding: 5px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
@@ -534,6 +559,7 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
         return `<div class="cat"><span class="cat-label">${esc(CAT[c] || c)}</span><strong>${esc(first)}</strong>${rest ? `<p>${esc(rest)}</p>` : ""}</div>`;
       }).join("")}</div>
       <section class="ev-sec"><h3>Estimated effects</h3>${effectsHtml(ev)}</section>
+      ${regTablesHtml(ev)}
       ${estimatorsHtml(ev)}
       <section class="ev-sec"><h3>Year by year</h3>${eventsHtml(ev)}</section>
       <section class="ev-sec"><h3>Design summary</h3><dl class="kv">
@@ -562,6 +588,51 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
           <td class="num">${r.interval ? `${cell(r.interval.low)} to ${cell(r.interval.high)}` : "—"}</td>
           <td class="num">${esc(fmtP(r.p_value))}</td><td class="num">${esc(fmtAbs(r.mde_80))}</td></tr>`).join("")}</tbody></table></div>`;
     }).join("")}<p class="small muted">Each estimator is judged against its own placebo distribution. The registered estimator was chosen before the results were computed; the others are reported, not chosen among.</p></section>`;
+  }
+
+  // Regression tables in the academic layout: estimate with stars, (spread), [p]; one panel per outcome; footer rows
+  // shared by every panel; notes. The same tables as LaTeX come from the payload (alicia.register.tables).
+  const STARS = [[0.01, "***"], [0.05, "**"], [0.10, "*"]];
+  const starsOf = (p) => (p == null ? "" : (STARS.find(([cut]) => p < cut) || [0, ""])[1]);
+  const fmt2 = (v) => (v == null ? "" : v.toFixed(2).replace("-", "−"));
+  const fmtP3 = (p) => (p == null ? "" : p < 0.001 ? "< 0.001" : p.toFixed(3));
+  function regTableHtml(t, n) {
+    const k = t.columns.length;
+    const groups = [];
+    t.columns.forEach((c) => {
+      const last = groups[groups.length - 1];
+      if (last && last.g === (c.group || null)) last.n += 1; else groups.push({ g: c.group || null, n: 1 });
+    });
+    const grpRow = groups.some((g) => g.g)
+      ? `<tr class="grp"><th></th>${groups.map((g) => `<th colspan="${g.n}">${g.g ? `<span>${esc(g.g)}</span>` : ""}</th>`).join("")}</tr>` : "";
+    const head = `<thead>${grpRow}<tr class="nums"><th></th>${t.columns.map((c, i) => `<th>(${i + 1})</th>`).join("")}</tr>
+      <tr class="labs"><th></th>${t.columns.map((c) => `<th>${esc(c.label)}</th>`).join("")}</tr></thead>`;
+    const valueRow = (r) => `<tr class="stat"><th scope="row">${esc(r.label)}</th>${r.values.map((v) => `<td>${esc(v || "")}</td>`).join("")}</tr>`;
+    const coefRows = (r) => {
+      const cs = r.coefficients;
+      const top = cs.map((c) => (c
+        ? `<td${c.registered ? ' class="is-reg" title="Registered estimator"' : ""}>${esc(fmt2(c.estimate))}<sup>${esc(starsOf(c.p_value) + (c.registered ? "†" : ""))}</sup></td>`
+        : "<td></td>")).join("");
+      const sd = cs.map((c) => `<td>${c && c.spread != null ? `(${esc(fmt2(c.spread))})` : ""}</td>`).join("");
+      const pv = cs.map((c) => `<td>${c && c.p_value != null ? `[${esc(fmtP3(c.p_value))}]` : ""}</td>`).join("");
+      return `<tr class="coef"><th scope="row">${esc(r.label)}</th>${top}</tr><tr class="sd"><th></th>${sd}</tr><tr class="pv"><th></th>${pv}</tr>`;
+    };
+    const body = t.panels.map((p) => `<tbody><tr class="panel"><th colspan="${k + 1}">${esc(p.title)}</th></tr>${
+      p.rows.map((r) => ((r.coefficients || []).length ? coefRows(r) : valueRow(r))).join("")}</tbody>`).join("");
+    const foot = t.footer.length ? `<tbody class="foot">${t.footer.map(valueRow).join("")}</tbody>` : "";
+    const legend = `${t.spread_label} in parentheses; two-sided p-values in brackets. * p < 0.10, ** p < 0.05, *** p < 0.01. † The registered (pre-specified) estimator for that outcome.`;
+    const tex = DATA.tablesTex && DATA.tablesTex[t.id];
+    return `<figure class="reg" id="tbl-${esc(t.id)}">
+      <figcaption><span class="reg-no">Table ${n}.</span> ${esc(t.title)}</figcaption>
+      <div class="reg-wrap"><table class="reg-table">${head}${body}${foot}</table></div>
+      <p class="reg-notes"><em>Notes:</em> ${esc([...t.notes, legend].join(" "))}</p>
+      ${tex ? `<details class="reg-tex"><summary>LaTeX (booktabs)</summary><button type="button" class="linkbtn copy-tex" data-t="${esc(t.id)}">Copy</button><pre>${esc(tex)}</pre></details>` : ""}
+    </figure>`;
+  }
+  function regTablesHtml(ev) {
+    const ts = ev.tables || [];
+    if (!ts.length) return "";
+    return `<section class="ev-sec"><h3>Regression table${ts.length > 1 ? "s" : ""}</h3>${ts.map((t, i) => regTableHtml(t, i + 1)).join("")}</section>`;
   }
 
   // The evaluations this one replaced, summarised below the new results.
@@ -611,6 +682,20 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
         if (box) box.open = true;
         if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
       });
+    }));
+    root.querySelectorAll(".copy-tex").forEach((b) => b.addEventListener("click", () => {
+      const done = (msg) => { b.textContent = msg; setTimeout(() => { b.textContent = "Copy"; }, 1800); };
+      const pick = () => {
+        const range = document.createRange();
+        range.selectNodeContents(b.parentElement.querySelector("pre"));
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        done("Selected: press Ctrl+C");
+      };
+      const text = DATA.tablesTex[b.dataset.t];
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => done("Copied"), pick);
+      else pick();
     }));
     root.querySelectorAll(".fx-row").forEach((row) => {
       const o = outcomeOf(row.dataset.ev, row.dataset.o);

@@ -1,7 +1,7 @@
 """Write the register's evaluation file for the Perth weeknight re-evaluation from estimate.json.
 
-Every number comes from estimate.json (the registered run) or design.json; only the wording is
-written here, and tests/test_evaluation.py checks the file against the outputs.
+Every number comes from estimate.json (the registered run), design.json or the specification's windows; only
+the wording is written here, and tests/test_evaluation.py checks the file against the outputs.
 
 Run: uv run python analyses/wa_weeknight_2010/evaluation.py
 Writes: regulation-register/evaluations/wa-trading-hours-weeknight-2010-new-data.json
@@ -14,6 +14,7 @@ import json
 from pathlib import Path
 
 from alicia.register.evaluation import Evaluation, write_evaluation
+from alicia.runner.spec import load
 
 HERE = Path(__file__).resolve().parent
 EV_ID = "wa-trading-hours-weeknight-2010-new-data"
@@ -74,6 +75,183 @@ def points(es: list[dict], quarters_from: dt.date | None = None, last_pre: dt.da
         }
         for p in es
     ]
+
+
+def coef(res: dict, registered: bool = False) -> dict:
+    return {"estimate": res["estimate"], "spread": res["null"]["sd"], "p_value": res["p"], "registered": registered}
+
+
+def obs(units: list[str], key: str) -> str:
+    """Units x periods in the estimation window (the panels are balanced)."""
+    w = load("wa-trading-hours-weeknight-2010-new-data").outcome(key).window
+    return f"{len(units) * (w.pre + w.post)} ({len(units)} × {w.pre + w.post})"
+
+
+def tables(e: dict) -> list[dict]:
+    """Three regression tables, one per design: columns are the registered specification and its registered
+    variants."""
+    a, c, a2, c2, b = e["A"], e["C"], e["A_secondary"], e["C_secondary"], e["B_descriptive"]
+    q, units = e["q_values"], e["units"]
+    legend_sd = "Placebo standard deviation"
+    c_cols = [c, c2["small_businesses"], c2["with_mandurah"], c2["without_outback"], c2["no_size_floor"]]
+    businesses = {
+        "id": f"{EV_ID}-businesses",
+        "title": "Perth 9pm weeknight trading (2010): retail businesses in metropolitan Perth relative to regional WA",
+        "columns": [
+            {"label": "Registered", "group": "Main"},
+            {"label": "Small businesses only", "group": "Registered robustness checks"},
+            {"label": "Mandurah in Perth", "group": "Registered robustness checks"},
+            {"label": "WA outback left out", "group": "Registered robustness checks"},
+            {"label": "No size floor on placebos", "group": "Registered robustness checks"},
+        ],
+        "panels": [
+            {
+                "title": "Retail businesses, Perth minus regional WA, net of other industries (100 × log points; "
+                "primary outcome)",
+                "rows": [
+                    {"label": "WA × post (β)", "coefficients": [coef(x, i == 0) for i, x in enumerate(c_cols)]},
+                    *(
+                        {"label": k, "values": v}
+                        for k, v in {
+                            "Observations (units × years)": [obs(units["C"], "C")] * 5,
+                            "No-effect estimates": [str(x["null"]["n"]) for x in c_cols],
+                            "MDE (80% power)": [f"{x['null']['mde_80']:.2f}" for x in c_cols],
+                            "Perth retail businesses, June 2010": [
+                                f"{x['wa_retail_businesses']['cap']['2010-06-30']:,}" for x in c_cols
+                            ],
+                            "Regional WA retail businesses, June 2010": [
+                                f"{x['wa_retail_businesses']['rest']['2010-06-30']:,}" for x in c_cols
+                            ],
+                            "BH q-value": [f"{q['C']:.3f}", None, None, None, None],
+                        }.items()
+                    ),
+                ],
+            }
+        ],
+        "footer": [
+            {"label": "Unit and year fixed effects", "values": ["Yes"] * 5},
+            {"label": "Other industries netted out", "values": ["Yes"] * 5},
+        ],
+        "spread_label": legend_sd,
+        "notes": [
+            "Each unit is a state's capital-minus-rest gap in log retail businesses (ANZSIC division G), less the "
+            "same gap for other industries (CABEE by SA4). WA is treated (metropolitan Perth: SA4s 503-507); NSW, "
+            "Victoria, Queensland, Tasmania and the NT are comparisons. Counts at 30 June 2009 and 2010 (before) and "
+            "2011 and 2012 (after); two-way fixed effects on unit and year.",
+            "Columns: (2) non-employing businesses and those with fewer than 20 employees; (3) Mandurah (SA4 502) "
+            "counted in Perth; (4) the WA outback (SA4s 508, 510, 511) left out of regional WA; (5) placebo cells of "
+            "any size (otherwise at least 1,000 businesses in both parts at June 2010).",
+            "The placebo standard deviation is the spread of the same estimator for other industries in every state "
+            "and for retail in the comparison states; p-values rank the estimate among those placebo estimates. BH "
+            "q-value: Benjamini-Hochberg across the two primary outcomes. MDE: the smallest effect detectable with "
+            "80% power at the 5% level (2.8 × the placebo standard deviation).",
+            "Source: alicia/analyses/wa_weeknight_2010/estimate.json (registered run, 18 October 2026).",
+        ],
+    }
+    a_cols = [
+        a,
+        a2["detrended"],
+        a2["all_fake_dates"],
+        a2["minus_rest_of_retail_and_food"],
+        a2["triple_diff_food"],
+        a2["only_RT01"],
+        a2["only_4251"],
+        a2["only_4260"],
+        a2["supermarket_share"],
+    ]
+    turnover = {
+        "id": f"{EV_ID}-turnover",
+        "title": "Perth 9pm weeknight trading (2010): turnover of supermarkets, clothing and department stores, WA "
+        "against other states",
+        "columns": [
+            {"label": "Registered", "group": "Main"},
+            {"label": "Pre-trend removed", "group": "Registered robustness checks"},
+            {"label": "All fake dates", "group": "Registered robustness checks"},
+            {"label": "Net of other retail and food", "group": "Registered robustness checks"},
+            {"label": "Net of food services", "group": "Registered robustness checks"},
+            {"label": "Supermarkets", "group": "By store type"},
+            {"label": "Clothing", "group": "By store type"},
+            {"label": "Department stores", "group": "By store type"},
+            {"label": "Supermarkets vs specialised food", "group": "Composition"},
+        ],
+        "panels": [
+            {
+                "title": "Turnover, 100 × log points (primary outcome; column 9 a secondary outcome)",
+                "rows": [
+                    {"label": "WA × post (β)", "coefficients": [coef(x, i == 0) for i, x in enumerate(a_cols)]},
+                    {"label": "Observations (states × months)", "values": [obs(units["A"], "A")] * 9},
+                    {"label": "No-effect estimates", "values": [str(x["null"]["n"]) for x in a_cols]},
+                    {
+                        "label": "MDE (80% power)",
+                        "values": [f"{x['null']['mde_80']:.2f}" for x in a_cols],
+                    },
+                    {"label": "BH q-value", "values": [f"{q['A']:.3f}", *[None] * 8]},
+                ],
+            }
+        ],
+        "footer": [
+            {"label": "State and month fixed effects", "values": ["Yes"] * 9},
+            {"label": "Linear pre-trend removed", "values": ["No", "Yes", *["No"] * 7]},
+            {
+                "label": "Fake dates used",
+                "values": ["From 1995", "From 1995", "All", *["From 1995"] * 6],
+            },
+        ],
+        "spread_label": legend_sd,
+        "notes": [
+            "100 × log monthly turnover (ABS Retail Trade, seasonally adjusted), WA against NSW, Victoria, Queensland "
+            "and the ACT: July 2008 to June 2010 before, November 2010 to July 2012 after, July to October 2010 left "
+            "out. Treated stores: supermarkets and grocery stores, clothing retailing and department stores.",
+            "Columns: (2) each state's linear pre-reform trend removed; (3) every fake date in the data in the "
+            "no-effect set; (4) less other retail and cafes, restaurants and takeaway; (5) less cafes, restaurants "
+            "and takeaway only (triple difference); (6)-(8) one store type; (9) supermarkets relative to other "
+            "specialised food retailing.",
+            "The placebo standard deviation is the spread of the same estimator at fake dates for every state and "
+            "for each comparison state at the real date; p-values rank the estimate among them.",
+            "Source: alicia/analyses/wa_weeknight_2010/estimate.json (registered run, 18 October 2026).",
+        ],
+    }
+    b_cols = [b["hours"], b["employment"], b["hours_minus_food"], b["hours_detrended"]]
+    hours = {
+        "id": f"{EV_ID}-hours",
+        "title": "Perth 9pm weeknight trading (2010): hours worked and employment in the same stores (descriptive)",
+        "columns": [
+            {"label": "Hours worked"},
+            {"label": "Employment"},
+            {"label": "Hours net of food services"},
+            {"label": "Hours, pre-trend removed"},
+        ],
+        "panels": [
+            {
+                "title": "Hours and employment, 100 × log points (descriptive: failed the design-stage check)",
+                "rows": [
+                    {"label": "WA × post (β)", "coefficients": [coef(x) for x in b_cols]},
+                    {"label": "Observations (states × quarters)", "values": [obs(units["B"], "B")] * 4},
+                    {"label": "No-effect estimates", "values": [str(x["null"]["n"]) for x in b_cols]},
+                    {
+                        "label": "MDE (80% power)",
+                        "values": [f"{x['null']['mde_80']:.2f}" for x in b_cols],
+                    },
+                ],
+            }
+        ],
+        "footer": [
+            {"label": "State and quarter fixed effects", "values": ["Yes"] * 4},
+            {"label": "Linear pre-trend removed", "values": ["No", "No", "No", "Yes"]},
+        ],
+        "spread_label": legend_sd,
+        "notes": [
+            "Labour Force (EQ06), supermarkets, clothing and department stores (groups 411, 425, 426), WA against "
+            "NSW, Victoria and Queensland, quarterly: 24 quarters before (August 2004 to May 2010), August 2010 left "
+            "out, 7 after (November 2010 to May 2012). Column (3) less cafes, restaurants and takeaway (group 451).",
+            "Descriptive only: WA failed the fake-date test at the design stage, so none of these columns supports "
+            "a finding.",
+            "The placebo standard deviation is the spread of the same estimator at fake dates for every state and "
+            "for each comparison state at the real date.",
+            "Source: alicia/analyses/wa_weeknight_2010/estimate.json (registered run, 18 October 2026).",
+        ],
+    }
+    return [businesses, turnover, hours]
 
 
 def main() -> None:
@@ -382,6 +560,7 @@ def main() -> None:
             {"label": "Earlier evaluation", "path": "docs/results_wa_trading_hours.md"},
         ],
         "built_by": "alicia/analyses/wa_weeknight_2010/evaluation.py",
+        "tables": tables(e),
     }
     path = write_evaluation(Evaluation.model_validate(ev))
     print(f"wrote {path}")

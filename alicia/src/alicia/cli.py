@@ -8,6 +8,7 @@ alicia dates <id>... | --all         gather effective dates and check them again
 alicia explorer [-o file.html]       build the interactive menu explorer (one HTML file)
 alicia site [-o dir]                 build the website: the menu plus the growth and conditions pages
 alicia methods [-o file.md]          key insights and econometric methods of every evaluation, as Markdown
+alicia tables [-o file.md] [--latex file.tex]   every evaluation's regression tables, as Markdown and LaTeX
 alicia pipeline build <source>...    build outcome panels in data/processed (see alicia.pipeline.sources)
 alicia pipeline catalogue            summarise every processed panel for coverage matching
 alicia data <id>                     which data panels can measure a change, at what industry and area level
@@ -211,6 +212,23 @@ def cmd_methods(args) -> int:
     return 0
 
 
+def cmd_tables(args) -> int:
+    from .register.tables import tables_latex, tables_markdown
+
+    records = _load(args)
+    evals = load_evaluations(records, Path(args.evaluations) if args.evaluations else None).evaluations
+    text = tables_markdown(evals)
+    if args.output:
+        Path(args.output).write_text(text, encoding="utf-8")
+        print(f"Wrote {args.output}")
+    else:
+        print(text)
+    if args.latex:
+        Path(args.latex).write_text(tables_latex(evals), encoding="utf-8")
+        print(f"Wrote {args.latex}")
+    return 0
+
+
 def cmd_site(args) -> int:
     from .menu.growth import build_site
 
@@ -385,6 +403,11 @@ def main(argv: list[str] | None = None) -> int:
     me = sub.add_parser("methods", help="key insights and methods of every evaluation, as Markdown")
     me.add_argument("-o", "--output", help="file to write (default: print)")
     me.set_defaults(func=cmd_methods)
+
+    ta = sub.add_parser("tables", help="every evaluation's regression tables, as Markdown (and LaTeX)")
+    ta.add_argument("-o", "--output", help="Markdown file to write (default: print)")
+    ta.add_argument("--latex", help="also write the tables as LaTeX to this file")
+    ta.set_defaults(func=cmd_tables)
 
     pl = sub.add_parser("pipeline", help="build outcome panels and the coverage catalogue")
     pl.add_argument("action", choices=["build", "catalogue"])

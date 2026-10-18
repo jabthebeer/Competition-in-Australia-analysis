@@ -1,0 +1,283 @@
+{
+ "spec": "phase5-new-families",
+ "source": "estimate stage panels (treated cells restored)",
+ "cases": [
+  {
+   "id": "fuel-price-reporting-2016-2021",
+   "outcomes": {
+    "price-automotive-fuel": {
+     "reproduces": true,
+     "max_abs_difference": 0.000498,
+     "layers": {
+      "twoway": {
+       "nobs": 42480,
+       "units": 581
+      },
+      "state_year": {
+       "nobs": 42480,
+       "units": 581
+      },
+      "saturated": {
+       "nobs": 42480,
+       "units": 581
+      },
+      "controls": {
+       "nobs": 42480,
+       "units": 581
+      },
+      "imputation": {
+       "nobs": 42480,
+       "units": 581
+      },
+      "sdid": {
+       "nobs": 114810,
+       "units": 1695
+      },
+      "gsynth": {
+       "nobs": 114810,
+       "units": 1695
+      }
+     },
+     "cells": 581,
+     "treated_cells": 5,
+     "treated_observations": 72,
+     "periods": [
+      "2005-Q1",
+      "2025-Q2"
+     ],
+     "n_periods": 82,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC"
+     ],
+     "classes": 83,
+     "pre_mean_treated": -7.369
+    },
+    "entries": {
+     "reproduces": true,
+     "max_abs_difference": 0.000273,
+     "layers": {
+      "twoway": {
+       "nobs": 38060,
+       "units": 2901
+      },
+      "state_year": {
+       "nobs": 38060,
+       "units": 2901
+      },
+      "saturated": {
+       "nobs": 38060,
+       "units": 2901
+      },
+      "controls": {
+       "nobs": 38060,
+       "units": 2901
+      },
+      "imputation": {
+       "nobs": 38060,
+       "units": 2901
+      },
+      "sdid": {
+       "nobs": 65419,
+       "units": 5439
+      },
+      "gsynth": {
+       "nobs": 65419,
+       "units": 5439
+      }
+     },
+     "cells": 2901,
+     "treated_cells": 5,
+     "treated_observations": 19,
+     "periods": [
+      "2009-10",
+      "2024-25"
+     ],
+     "n_periods": 16,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC"
+     ],
+     "classes": 421,
+     "pre_mean_treated": 11.491
+    },
+    "exits": {
+     "reproduces": true,
+     "max_abs_difference": 0.000388,
+     "layers": {
+      "twoway": {
+       "nobs": 38060,
+       "units": 2901
+      },
+      "state_year": {
+       "nobs": 38060,
+       "units": 2901
+      },
+      "saturated": {
+       "nobs": 38060,
+       "units": 2901
+      },
+      "controls": {
+       "nobs": 38060,
+       "units": 2901
+      },
+      "imputation": {
+       "nobs": 38060,
+       "units": 2901
+      },
+      "sdid": {
+       "nobs": 65419,
+       "units": 5439
+      },
+      "gsynth": {
+       "nobs": 65419,
+       "units": 5439
+      }
+     },
+     "cells": 2901,
+     "treated_cells": 5,
+     "treated_observations": 19,
+     "periods": [
+      "2009-10",
+      "2024-25"
+     ],
+     "n_periods": 16,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC"
+     ],
+     "classes": 421,
+     "pre_mean_treated": 11.76
+    }
+   }
+  },
+  {
+   "id": "e-conveyancing-2018-2023",
+   "outcomes": {
+    "entries": {
+     "reproduces": true,
+     "max_abs_difference": 0.000412,
+     "layers": {
+      "twoway": {
+       "nobs": 46506,
+       "units": 3404
+      },
+      "state_year": {
+       "nobs": 46506,
+       "units": 3404
+      },
+      "saturated": {
+       "nobs": 46506,
+       "units": 3404
+      },
+      "controls": {
+       "nobs": 46506,
+       "units": 3404
+      },
+      "imputation": {
+       "nobs": 46506,
+       "units": 3404
+      },
+      "sdid": {
+       "nobs": 82209,
+       "units": 6114
+      },
+      "gsynth": {
+       "nobs": 82209,
+       "units": 6114
+      }
+     },
+     "cells": 3404,
+     "treated_cells": 5,
+     "treated_observations": 17,
+     "periods": [
+      "2009-10",
+      "2024-25"
+     ],
+     "n_periods": 16,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 431,
+     "pre_mean_treated": 9.624
+    },
+    "exits": {
+     "reproduces": true,
+     "max_abs_difference": 0.000369,
+     "layers": {
+      "twoway": {
+       "nobs": 46506,
+       "units": 3404
+      },
+      "state_year": {
+       "nobs": 46506,
+       "units": 3404
+      },
+      "saturated": {
+       "nobs": 46506,
+       "units": 3404
+      },
+      "controls": {
+       "nobs": 46506,
+       "units": 3404
+      },
+      "imputation": {
+       "nobs": 46506,
+       "units": 3404
+      },
+      "sdid": {
+       "nobs": 82209,
+       "units": 6114
+      },
+      "gsynth": {
+       "nobs": 82209,
+       "units": 6114
+      }
+     },
+     "cells": 3404,
+     "treated_cells": 5,
+     "treated_observations": 17,
+     "periods": [
+      "2009-10",
+      "2024-25"
+     ],
+     "n_periods": 16,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 431,
+     "pre_mean_treated": 7.817
+    }
+   }
+  }
+ ]
+}

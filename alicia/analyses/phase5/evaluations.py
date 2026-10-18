@@ -1,8 +1,8 @@
 """Write the register's evaluation files for a Phase 5 specification from its estimate.json.
 
-Every number comes from estimate.json (the registered run), from posthoc.json (checks made after unblinding,
-labelled as such) and, for re-evaluations, from the evaluation each case supersedes; only the wording is written
-here. tests/test_evaluation.py checks the files against the
+Every number comes from estimate.json (the registered run), table_stats.json (sample sizes for the regression
+tables), posthoc.json (checks made after unblinding, labelled as such) and, for re-evaluations, from the
+evaluation each case supersedes; only the wording is written here. tests/test_evaluation.py checks the files against the
 outputs. New results lead the key insights; the comparison with the earlier (archived) evaluation follows.
 
     uv run python analyses/phase5/evaluations.py --spec phase5-reevaluations
@@ -81,6 +81,10 @@ def s1(v) -> str:
 
 def a1(v) -> str:
     return "n/a" if v is None else f"{abs(v):.1f}"
+
+
+def a2(v) -> str:
+    return "" if v is None else f"{abs(v):.2f}"
 
 
 def fp(p) -> str:
@@ -279,6 +283,127 @@ def estimator_rows(o: dict, r: dict) -> list[dict]:
     return rows
 
 
+# Regression table: one column per estimator layer, in the power study's order.
+TABLE_COLUMNS = (
+    ("twoway", "Two-way FE", "Fixed effects"),
+    ("state_year", "State × period FE", "Fixed effects"),
+    ("saturated", "Saturated FE", "Fixed effects"),
+    ("controls", "Two-way + controls", "Fixed effects"),
+    ("imputation", "Imputation", "Fixed effects"),
+    ("sdid", "Synthetic DiD", "Synthetic comparison"),
+    ("gsynth", "Generalised SC", "Synthetic comparison"),
+)
+TABLE_FOOTER = (
+    ("Cell FE", "twoway state_year saturated controls imputation sdid gsynth"),
+    ("Period FE", "twoway state_year saturated controls imputation sdid gsynth"),
+    ("Class × period FE", "saturated imputation"),
+    ("State × period FE", "state_year saturated imputation"),
+    ("Measured state controls", "controls"),
+    ("Synthetic weights", "sdid"),
+    ("Interactive FE (factors)", "gsynth"),
+)
+
+
+def regression_table(spec_id: str, case: dict, res: dict, stats: dict, q_values: dict) -> dict:
+    """The case's estimates in the usual academic layout: estimators across, one panel per outcome."""
+    layers = [k for k, _, _ in TABLE_COLUMNS]
+    only = lambda key, value: [value if k == key else None for k in layers]  # noqa: E731
+    panels, samples = [], []
+    for o in case["outcomes"]:
+        r, st = res["outcomes"][o["key"]], stats.get(o["key"])
+        if not r["feasible"]["ok"] or st is None:
+            continue
+        letter = "ABCDEFGH"[len(panels)]
+        price = o["kind"] == "price"
+        unit = "100 × log points" if price else PER_100
+        coefs = [
+            None
+            if r["layers"][k]["estimate"] is None
+            else {
+                "estimate": r["layers"][k]["estimate"],
+                "spread": r["layers"][k]["placebo_sd"],
+                "p_value": r["layers"][k]["p"],
+                "registered": k == o["layer"],
+            }
+            for k in layers
+        ]
+        rows = [
+            {"label": "Reform × post (β)", "coefficients": coefs},
+            {"label": "Observations", "values": [f"{st['layers'][k]['nobs']:,}" for k in layers]},
+            {"label": "Units (cells)", "values": [f"{st['layers'][k]['units']:,}" for k in layers]},
+            {
+                "label": "Placebo groups",
+                "values": [str(r["layers"][k]["placebos"]) for k in layers],
+            },
+            {"label": "MDE (80% power)", "values": [a2(r["layers"][k]["mde_80"]) for k in layers]},
+        ]
+        if not price:
+            rows.append(
+                {"label": "Pre-reform mean, treated", "values": [f"{st['pre_mean_treated']:.2f}"] * len(layers)}
+            )
+        pre = {True: "Pass", False: "Fail"}.get(r["pre_inside_95"])
+        if pre:
+            rows.append({"label": "Pre-trend test (k ≤ −2)", "values": only("saturated", pre)})
+        q = q_values.get(f"{case['id']}:{o['key']}")
+        if o["role"] == "primary" and q is not None:
+            rows.append({"label": "BH q-value", "values": only(o["layer"], f"{q:.3f}")})
+        cells = f"{st['treated_cells']} treated cell{'s' if st['treated_cells'] > 1 else ''}"
+        panels.append(
+            {"title": f"Panel {letter}. {outcome_label(o)}, {unit} ({o['role']} outcome; {cells})", "rows": rows}
+        )
+        what = (
+            "100 × log of the CPI class relative to All groups, CPI class × capital city × quarter, unweighted"
+            if price
+            else "per 100 businesses operating at the start of the financial year, ANZSIC class × state, weighted "
+            "by those businesses"
+        )
+        sample = (
+            f"{what}; {st['periods'][0]} to {st['periods'][1]} ({st['n_periods']} periods), {st['classes']} "
+            f"classes, {len(st['states'])} {'cities' if price else 'states'}."
+        )
+        samples.append((letter, "" if price else o["key"], sample))
+    folder = FOLDERS[spec_id]
+    merged: dict[str, list[tuple[str, str]]] = {}
+    for letter, measure, sample in samples:
+        merged.setdefault(sample, []).append((letter, measure))
+    described = []
+    for sample, items in merged.items():
+        letters = [x[0] for x in items]
+        head = f"Panel {letters[0]}" if len(letters) == 1 else f"Panels {', '.join(letters[:-1])} and {letters[-1]}"
+        measures = " and ".join(x[1] for x in items if x[1])
+        described.append(f"{head}: {measures + ' ' if measures else ''}{sample}")
+    notes = [
+        *described,
+        "Each column applies one estimator to the same panel. β is the average effect on the reform's classes in "
+        "treated states (cities) over the window, net of the mean of the same estimator across the placebo groups. "
+        "Columns (6) and (7) compare the treated group's average with reweighted untreated cells over each "
+        "cohort's window; their observations and units are summed over cohorts.",
+        "The placebo standard deviation is the spread of the same estimator across up to 40 placebo industry "
+        "groups (or CPI classes) given the reform's states and dates: the randomization-inference analogue of a "
+        "standard error. p-values rank the estimate among the centred placebo estimates; with 40 placebos the "
+        "smallest attainable is about 0.024, so *** cannot occur. Clustered standard errors are not reported: with "
+        "seven or eight states they are unreliable, and the registered inference uses placebos.",
+        "MDE: the smallest effect detectable with 80% power at the 5% level (2.8 × the placebo standard "
+        "deviation). Placebo groups: placebo industry groups (business outcomes) or CPI classes (prices). "
+        "Pre-trend test: every event-study coefficient with k ≤ −2 (saturated model, net of the placebo mean) lies "
+        "inside its 95% placebo band; a failure means the outcome is not identified. BH q-value: Benjamini–Hochberg "
+        "across the specification's primary outcomes.",
+        f"Source: alicia/analyses/phase5/{folder}/estimate.json (registered run, {RUN_AT[spec_id]:%d %B %Y}) and "
+        "table_stats.json (samples, re-fitted to check every estimate reproduces).",
+    ]
+    return {
+        "id": f"{case['id']}-estimators",
+        "title": case["title"],
+        "columns": [{"label": lab, "group": grp} for _, lab, grp in TABLE_COLUMNS],
+        "panels": panels,
+        "footer": [
+            {"label": lab, "values": ["Yes" if k in on.split() else "No" for k in layers]} for lab, on in TABLE_FOOTER
+        ],
+        "spread_label": "Placebo standard deviation",
+        "notes": notes,
+    }
+
+
 def method(case: dict, prim: dict) -> dict:
     price = prim["kind"] == "price"
     i, s, t = ("c", "j", "q") if price else ("c", "s", "t")
@@ -465,6 +590,8 @@ def build(spec_id: str) -> list[Evaluation]:
     est = json.loads((HERE / FOLDERS[spec_id] / "estimate.json").read_text("utf-8"))
     ph_path = HERE / FOLDERS[spec_id] / "posthoc.json"
     ph = json.loads(ph_path.read_text("utf-8")) if ph_path.exists() else None
+    ts = json.loads((HERE / FOLDERS[spec_id] / "table_stats.json").read_text("utf-8"))
+    stats = {c["id"]: c["outcomes"] for c in ts["cases"]}
     by_id = {c["id"]: c for c in est["cases"]}
     out = []
     for case in spec.cases:
@@ -559,6 +686,7 @@ def build(spec_id: str) -> list[Evaluation]:
             "supersedes": case["supersedes"],
             "evaluated_at": RUN_AT[spec_id].isoformat(),
             "estimators": rows,
+            "tables": [regression_table(spec_id, case, res, stats[case["id"]], est["q_values"])],
         }
         out.append(Evaluation.model_validate(ev))
     return out

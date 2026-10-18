@@ -69,6 +69,126 @@ def points(path: list[dict], start: dt.date, months_per_step: int) -> list[dict]
     return out
 
 
+def periods(w: dict, months_per_step: int) -> str:
+    """Periods before, on (others adopted, WA not yet) and off (both adopted), from the registered windows."""
+
+    def months(a: str, b: str) -> int:
+        x, y = dt.date.fromisoformat(a), dt.date.fromisoformat(b)
+        return (y.year - x.year) * 12 + y.month - x.month
+
+    pre, on = months(w["pre_start"], w["t1"]), months(w["t1"], w["t2"])
+    off = months(w["t2"], w["end"]) + months_per_step  # the end period is included
+    return " / ".join(str(m // months_per_step) for m in (pre, on, off))
+
+
+def gap(v: float) -> str:
+    return f"{v:.2f}".replace("-", "−")
+
+
+def regression_tables(e: dict, d: dict) -> list[dict]:
+    """The on-off design's estimands across, one panel per outcome, registered and detrended: one table for the
+    registered outcomes, one for the descriptive ones."""
+    cols = [("main", "pooled"), ("main", "early"), ("main", "late")]
+    cols += [("detrended", k) for _, k in cols]
+    outcomes = [
+        ("exits", "Childcare share of business exits, percentage points (primary outcome)", 1, True),
+        ("prices", "Child care prices relative to all prices, 100 × log points (primary outcome)", 3, True),
+        ("entries", "Childcare share of new ABNs, percentage points (secondary outcome)", 1, True),
+        ("hours", "Hours worked in child care, 100 × log points (descriptive)", 3, False),
+        ("employment", "Employment in child care, 100 × log points (descriptive)", 3, False),
+    ]
+    panels = []
+    for k, title, step, registered in outcomes:
+        r = e[k]
+        res = [r[v][est] for v, est in cols]
+        rows = [
+            {
+                "label": "Framework × WA timing (β)",
+                "coefficients": [
+                    {
+                        "estimate": x["estimate"],
+                        "spread": x["null"]["sd"],
+                        "p_value": x["p"],
+                        "registered": registered and j == 0,
+                    }
+                    for j, x in enumerate(res)
+                ],
+            },
+            {"label": "No-effect estimates", "values": [str(x["null"]["n"]) for x in res]},
+            {"label": "MDE (80% power)", "values": [f"{x['null']['mde_80']:.2f}" for x in res]},
+            {
+                "label": "Gap after WA adopted vs pre-2012",
+                "values": [gap(r["main"]["off_vs_pre"]), None, None, gap(r["detrended"]["off_vs_pre"]), None, None],
+            },
+        ]
+        if k in ("exits", "entries"):
+            rows.append({"label": "WA share before 2012, %", "values": [f"{d[k]['wa_pre_level']:.2f}"] * 6})
+        if k in e.get("q_values", {}):
+            rows.append({"label": "BH q-value", "values": [f"{e['q_values'][k]:.3f}", *[None] * 5]})
+        per = periods(d[k if k != "employment" else "hours"]["windows"], step)
+        span = f"{per} {'months' if step == 1 else 'quarters'} before / on / off"
+        panels.append({"title": f"{title[:-1]}; {span})", "rows": rows})
+    main_panels = [p | {"title": f"Panel {'ABC'[i]}. {p['title']}"} for i, p in enumerate(panels[:3])]
+    desc_panels = [p | {"title": f"Panel {'AB'[i]}. {p['title']}"} for i, p in enumerate(panels[3:])]
+    base = {
+        "columns": [
+            {"label": "Pooled", "group": "Registered (seasonal means removed)"},
+            {"label": "Early", "group": "Registered (seasonal means removed)"},
+            {"label": "Late", "group": "Registered (seasonal means removed)"},
+            {"label": "Pooled", "group": "Pre-trend also removed"},
+            {"label": "Early", "group": "Pre-trend also removed"},
+            {"label": "Late", "group": "Pre-trend also removed"},
+        ],
+        "footer": [
+            {"label": "Seasonal means removed", "values": ["Yes"] * 6},
+            {"label": "Linear pre-trend removed", "values": ["No"] * 3 + ["Yes"] * 3},
+        ],
+        "spread_label": "Placebo standard deviation",
+        "notes": [
+            "On-off difference-in-differences (alicia.evaluate.stagger) on the gap between WA and the mean of the "
+            "other seven jurisdictions, less its pre-2012 mean for each season. The framework started in January "
+            "2012 everywhere but WA, which followed in August 2012 (2012-Q3 in quarterly data). Pooled: one effect "
+            "from the gap opening and closing. Early: the other jurisdictions in January to July 2012 against WA, not "
+            "yet treated. Late: WA's change when it adopted, against the others (assumes their effect did not build "
+            "up). The gap row shows whether the gap returned to its pre-2012 level once both had "
+            "adopted.",
+            "The placebo standard deviation is the spread of the no-effect estimates: the same estimator for "
+            "placebo industries (CPI classes, Labour Force groups) over the same windows and for childcare at fake "
+            "dates before 2012. p-values rank the estimate among them. BH q-value: Benjamini-Hochberg across the two "
+            "primary outcomes. MDE: the smallest effect detectable with 80% power at the 5% level (2.8 × the placebo "
+            "standard deviation).",
+            "Source: alicia/analyses/childcare_nqf_wa/estimate.json (registered run, 18 October 2026) and "
+            "design.json (windows, pre-2012 levels).",
+        ],
+    }
+    title = "National Quality Framework for childcare (2012): WA's seven-month delay"
+    data_main = (
+        "Panels A and C: businesses whose names say childcare, as a share of all named businesses' ABN cancellations "
+        "(A) or of new ABNs still active in October 2026 (C), monthly from January 2009 to July 2013. Panel B: the "
+        "child care CPI relative to All groups, Perth against the other capitals, quarterly from 2009-Q1 to 2013-Q2."
+    )
+    data_desc = (
+        "Labour Force industry group 871 (child care services), WA against the other jurisdictions, quarterly from "
+        "2009-Q1 to 2013-Q2. Registered as descriptive: WA's quarterly estimates for one group are too noisy to test."
+    )
+    return [
+        base
+        | {
+            "id": f"{EV_ID}-on-off",
+            "title": f"{title}: on-off estimates",
+            "panels": main_panels,
+            "notes": [data_main, *base["notes"]],
+        },
+        base
+        | {
+            "id": f"{EV_ID}-on-off-descriptive",
+            "title": f"{title}: hours and employment (descriptive)",
+            "panels": desc_panels,
+            "notes": [data_desc, *base["notes"]],
+        },
+    ]
+
+
 def main() -> None:
     e = json.loads((HERE / "estimate.json").read_text("utf-8"))
     d = json.loads((HERE / "design.json").read_text("utf-8"))
@@ -337,6 +457,7 @@ def main() -> None:
             {"label": "Earlier evaluation", "path": "docs/results_high_evaluability.md"},
         ],
         "built_by": "alicia/analyses/childcare_nqf_wa/evaluation.py",
+        "tables": regression_tables(e, d),
     }
     print(f"wrote {write_evaluation(Evaluation.model_validate(ev))}")
 

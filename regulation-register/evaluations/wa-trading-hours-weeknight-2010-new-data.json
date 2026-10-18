@@ -648,5 +648,514 @@
       "path": "docs/results_wa_trading_hours.md"
     }
   ],
-  "built_by": "alicia/analyses/wa_weeknight_2010/evaluation.py"
+  "built_by": "alicia/analyses/wa_weeknight_2010/evaluation.py",
+  "tables": [
+    {
+      "id": "wa-trading-hours-weeknight-2010-new-data-businesses",
+      "title": "Perth 9pm weeknight trading (2010): retail businesses in metropolitan Perth relative to regional WA",
+      "columns": [
+        {
+          "label": "Registered",
+          "group": "Main"
+        },
+        {
+          "label": "Small businesses only",
+          "group": "Registered robustness checks"
+        },
+        {
+          "label": "Mandurah in Perth",
+          "group": "Registered robustness checks"
+        },
+        {
+          "label": "WA outback left out",
+          "group": "Registered robustness checks"
+        },
+        {
+          "label": "No size floor on placebos",
+          "group": "Registered robustness checks"
+        }
+      ],
+      "panels": [
+        {
+          "title": "Retail businesses, Perth minus regional WA, net of other industries (100 × log points; primary outcome)",
+          "rows": [
+            {
+              "label": "WA × post (β)",
+              "coefficients": [
+                {
+                  "estimate": -1.751,
+                  "spread": 3.614,
+                  "p_value": 0.7,
+                  "registered": true
+                },
+                {
+                  "estimate": -1.188,
+                  "spread": 3.774,
+                  "p_value": 0.7667,
+                  "registered": false
+                },
+                {
+                  "estimate": -2.104,
+                  "spread": 3.602,
+                  "p_value": 0.6,
+                  "registered": false
+                },
+                {
+                  "estimate": -1.555,
+                  "spread": 3.748,
+                  "p_value": 0.6897,
+                  "registered": false
+                },
+                {
+                  "estimate": -1.751,
+                  "spread": 15.861,
+                  "p_value": 0.787,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Observations (units × years)",
+              "coefficients": [],
+              "values": [
+                "24 (6 × 4)",
+                "24 (6 × 4)",
+                "24 (6 × 4)",
+                "24 (6 × 4)",
+                "24 (6 × 4)"
+              ]
+            },
+            {
+              "label": "No-effect estimates",
+              "coefficients": [],
+              "values": [
+                "59",
+                "59",
+                "59",
+                "57",
+                "107"
+              ]
+            },
+            {
+              "label": "MDE (80% power)",
+              "coefficients": [],
+              "values": [
+                "10.12",
+                "10.57",
+                "10.09",
+                "10.50",
+                "44.44"
+              ]
+            },
+            {
+              "label": "Perth retail businesses, June 2010",
+              "coefficients": [],
+              "values": [
+                "10,284",
+                "9,299",
+                "10,793",
+                "10,284",
+                "10,284"
+              ]
+            },
+            {
+              "label": "Regional WA retail businesses, June 2010",
+              "coefficients": [],
+              "values": [
+                "3,271",
+                "2,966",
+                "3,271",
+                "2,184",
+                "3,271"
+              ]
+            },
+            {
+              "label": "BH q-value",
+              "coefficients": [],
+              "values": [
+                "0.700",
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        }
+      ],
+      "footer": [
+        {
+          "label": "Unit and year fixed effects",
+          "coefficients": [],
+          "values": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+          ]
+        },
+        {
+          "label": "Other industries netted out",
+          "coefficients": [],
+          "values": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+          ]
+        }
+      ],
+      "spread_label": "Placebo standard deviation",
+      "notes": [
+        "Each unit is a state's capital-minus-rest gap in log retail businesses (ANZSIC division G), less the same gap for other industries (CABEE by SA4). WA is treated (metropolitan Perth: SA4s 503-507); NSW, Victoria, Queensland, Tasmania and the NT are comparisons. Counts at 30 June 2009 and 2010 (before) and 2011 and 2012 (after); two-way fixed effects on unit and year.",
+        "Columns: (2) non-employing businesses and those with fewer than 20 employees; (3) Mandurah (SA4 502) counted in Perth; (4) the WA outback (SA4s 508, 510, 511) left out of regional WA; (5) placebo cells of any size (otherwise at least 1,000 businesses in both parts at June 2010).",
+        "The placebo standard deviation is the spread of the same estimator for other industries in every state and for retail in the comparison states; p-values rank the estimate among those placebo estimates. BH q-value: Benjamini-Hochberg across the two primary outcomes. MDE: the smallest effect detectable with 80% power at the 5% level (2.8 × the placebo standard deviation).",
+        "Source: alicia/analyses/wa_weeknight_2010/estimate.json (registered run, 18 October 2026)."
+      ]
+    },
+    {
+      "id": "wa-trading-hours-weeknight-2010-new-data-turnover",
+      "title": "Perth 9pm weeknight trading (2010): turnover of supermarkets, clothing and department stores, WA against other states",
+      "columns": [
+        {
+          "label": "Registered",
+          "group": "Main"
+        },
+        {
+          "label": "Pre-trend removed",
+          "group": "Registered robustness checks"
+        },
+        {
+          "label": "All fake dates",
+          "group": "Registered robustness checks"
+        },
+        {
+          "label": "Net of other retail and food",
+          "group": "Registered robustness checks"
+        },
+        {
+          "label": "Net of food services",
+          "group": "Registered robustness checks"
+        },
+        {
+          "label": "Supermarkets",
+          "group": "By store type"
+        },
+        {
+          "label": "Clothing",
+          "group": "By store type"
+        },
+        {
+          "label": "Department stores",
+          "group": "By store type"
+        },
+        {
+          "label": "Supermarkets vs specialised food",
+          "group": "Composition"
+        }
+      ],
+      "panels": [
+        {
+          "title": "Turnover, 100 × log points (primary outcome; column 9 a secondary outcome)",
+          "rows": [
+            {
+              "label": "WA × post (β)",
+              "coefficients": [
+                {
+                  "estimate": 2.042,
+                  "spread": 3.463,
+                  "p_value": 0.497,
+                  "registered": true
+                },
+                {
+                  "estimate": 7.865,
+                  "spread": 4.206,
+                  "p_value": 0.0599,
+                  "registered": false
+                },
+                {
+                  "estimate": 2.042,
+                  "spread": 4.334,
+                  "p_value": 0.5993,
+                  "registered": false
+                },
+                {
+                  "estimate": -6.098,
+                  "spread": 5.453,
+                  "p_value": 0.23,
+                  "registered": false
+                },
+                {
+                  "estimate": -19.279,
+                  "spread": 11.218,
+                  "p_value": 0.085,
+                  "registered": false
+                },
+                {
+                  "estimate": 2.876,
+                  "spread": 4.274,
+                  "p_value": 0.3665,
+                  "registered": false
+                },
+                {
+                  "estimate": -5.379,
+                  "spread": 14.8,
+                  "p_value": 0.7305,
+                  "registered": false
+                },
+                {
+                  "estimate": 1.045,
+                  "spread": 4.33,
+                  "p_value": 0.8168,
+                  "registered": false
+                },
+                {
+                  "estimate": 10.554,
+                  "spread": 19.485,
+                  "p_value": 0.548,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Observations (states × months)",
+              "coefficients": [],
+              "values": [
+                "225 (5 × 45)",
+                "225 (5 × 45)",
+                "225 (5 × 45)",
+                "225 (5 × 45)",
+                "225 (5 × 45)",
+                "225 (5 × 45)",
+                "225 (5 × 45)",
+                "225 (5 × 45)",
+                "225 (5 × 45)"
+              ]
+            },
+            {
+              "label": "No-effect estimates",
+              "coefficients": [],
+              "values": [
+                "834",
+                "834",
+                "1459",
+                "760",
+                "834",
+                "834",
+                "834",
+                "834",
+                "760"
+              ]
+            },
+            {
+              "label": "MDE (80% power)",
+              "coefficients": [],
+              "values": [
+                "9.70",
+                "11.78",
+                "12.14",
+                "15.28",
+                "31.43",
+                "11.97",
+                "41.46",
+                "12.13",
+                "54.59"
+              ]
+            },
+            {
+              "label": "BH q-value",
+              "coefficients": [],
+              "values": [
+                "0.700",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        }
+      ],
+      "footer": [
+        {
+          "label": "State and month fixed effects",
+          "coefficients": [],
+          "values": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+          ]
+        },
+        {
+          "label": "Linear pre-trend removed",
+          "coefficients": [],
+          "values": [
+            "No",
+            "Yes",
+            "No",
+            "No",
+            "No",
+            "No",
+            "No",
+            "No",
+            "No"
+          ]
+        },
+        {
+          "label": "Fake dates used",
+          "coefficients": [],
+          "values": [
+            "From 1995",
+            "From 1995",
+            "All",
+            "From 1995",
+            "From 1995",
+            "From 1995",
+            "From 1995",
+            "From 1995",
+            "From 1995"
+          ]
+        }
+      ],
+      "spread_label": "Placebo standard deviation",
+      "notes": [
+        "100 × log monthly turnover (ABS Retail Trade, seasonally adjusted), WA against NSW, Victoria, Queensland and the ACT: July 2008 to June 2010 before, November 2010 to July 2012 after, July to October 2010 left out. Treated stores: supermarkets and grocery stores, clothing retailing and department stores.",
+        "Columns: (2) each state's linear pre-reform trend removed; (3) every fake date in the data in the no-effect set; (4) less other retail and cafes, restaurants and takeaway; (5) less cafes, restaurants and takeaway only (triple difference); (6)-(8) one store type; (9) supermarkets relative to other specialised food retailing.",
+        "The placebo standard deviation is the spread of the same estimator at fake dates for every state and for each comparison state at the real date; p-values rank the estimate among them.",
+        "Source: alicia/analyses/wa_weeknight_2010/estimate.json (registered run, 18 October 2026)."
+      ]
+    },
+    {
+      "id": "wa-trading-hours-weeknight-2010-new-data-hours",
+      "title": "Perth 9pm weeknight trading (2010): hours worked and employment in the same stores (descriptive)",
+      "columns": [
+        {
+          "label": "Hours worked",
+          "group": null
+        },
+        {
+          "label": "Employment",
+          "group": null
+        },
+        {
+          "label": "Hours net of food services",
+          "group": null
+        },
+        {
+          "label": "Hours, pre-trend removed",
+          "group": null
+        }
+      ],
+      "panels": [
+        {
+          "title": "Hours and employment, 100 × log points (descriptive: failed the design-stage check)",
+          "rows": [
+            {
+              "label": "WA × post (β)",
+              "coefficients": [
+                {
+                  "estimate": 1.614,
+                  "spread": 6.895,
+                  "p_value": 0.8465,
+                  "registered": false
+                },
+                {
+                  "estimate": -1.518,
+                  "spread": 5.733,
+                  "p_value": 0.7895,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.211,
+                  "spread": 9.605,
+                  "p_value": 0.9825,
+                  "registered": false
+                },
+                {
+                  "estimate": -8.688,
+                  "spread": 7.445,
+                  "p_value": 0.2368,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Observations (states × quarters)",
+              "coefficients": [],
+              "values": [
+                "124 (4 × 31)",
+                "124 (4 × 31)",
+                "124 (4 × 31)",
+                "124 (4 × 31)"
+              ]
+            },
+            {
+              "label": "No-effect estimates",
+              "coefficients": [],
+              "values": [
+                "227",
+                "227",
+                "227",
+                "227"
+              ]
+            },
+            {
+              "label": "MDE (80% power)",
+              "coefficients": [],
+              "values": [
+                "19.32",
+                "16.06",
+                "26.91",
+                "20.86"
+              ]
+            }
+          ]
+        }
+      ],
+      "footer": [
+        {
+          "label": "State and quarter fixed effects",
+          "coefficients": [],
+          "values": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+          ]
+        },
+        {
+          "label": "Linear pre-trend removed",
+          "coefficients": [],
+          "values": [
+            "No",
+            "No",
+            "No",
+            "Yes"
+          ]
+        }
+      ],
+      "spread_label": "Placebo standard deviation",
+      "notes": [
+        "Labour Force (EQ06), supermarkets, clothing and department stores (groups 411, 425, 426), WA against NSW, Victoria and Queensland, quarterly: 24 quarters before (August 2004 to May 2010), August 2010 left out, 7 after (November 2010 to May 2012). Column (3) less cafes, restaurants and takeaway (group 451).",
+        "Descriptive only: WA failed the fake-date test at the design stage, so none of these columns supports a finding.",
+        "The placebo standard deviation is the spread of the same estimator at fake dates for every state and for each comparison state at the real date.",
+        "Source: alicia/analyses/wa_weeknight_2010/estimate.json (registered run, 18 October 2026)."
+      ]
+    }
+  ]
 }
