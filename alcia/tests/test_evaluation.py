@@ -144,3 +144,41 @@ def test_batch_evaluations_match_the_registered_run():
         if r["prices"]:
             prices = [o for o in ev.outcomes if o.category == "prices" and not o.id.endswith("-detrended")]
             assert sorted(o.estimate for o in prices) == sorted(v["estimate"] for v in r["prices"]["classes"].values())
+
+
+def test_weeknight_reevaluation_matches_the_registered_run():
+    """The 2010 weeknight re-evaluation file must equal its estimate.json and follow the first evaluation."""
+    folder = ANALYSIS.parent / "wa_weeknight_2010"
+    est = json.loads((folder / "estimate.json").read_text(encoding="utf-8"))
+    evs = {e.id: e for e in load_evaluations().evaluations}
+    ev = evs["wa-trading-hours-weeknight-2010-new-data"]
+    assert not est["blind"] and est["null_matches_design_stage"]
+    assert ev.follows == "wa-trading-hours-2010-2012" and ev.follows in evs
+    out = {o.id: o for o in ev.outcomes}
+    for oid, res in (("retail-businesses-perth", est["C"]), ("general-retail-turnover", est["A"])):
+        o = out[oid]
+        assert (o.estimate, o.p_value, o.mde_80) == (res["estimate"], res["p"], res["null"]["mde_80"])
+        assert [o.interval.low, o.interval.high] == res["interval_90"]
+        assert (o.no_effect_range.low, o.no_effect_range.high) == (res["null"]["q05"], res["null"]["q95"])
+        assert o.finding == res["finding"]
+    hours = est["B_descriptive"]["hours"]
+    assert out["general-retail-hours"].estimate == hours["estimate"]
+    assert out["general-retail-hours"].finding == "descriptive-only"
+    es = {e.outcome: e for e in ev.event_studies}
+    assert [p.estimate for p in es["retail-businesses-perth"].points] == [
+        p["estimate"] for p in est["C"]["event_study"]
+    ]
+    assert [p.estimate for p in es["general-retail-turnover"].points] == [
+        p["estimate"] for p in est["A"]["event_study"]
+    ]
+    verdict = "inconclusive" if est["C"]["finding"] == "no-detectable-effect" else None
+    assert ev.verdict == verdict
+
+
+def test_current_evaluation_prefers_the_follow_up():
+    from alcia.register.evaluation import current_evaluation
+
+    evs = load_evaluations().evaluations
+    current = current_evaluation(evs)
+    assert current["wa-trading-hours-weeknight-2010"] == "wa-trading-hours-weeknight-2010-new-data"
+    assert current["wa-trading-hours-sunday-2012"] == "wa-trading-hours-2010-2012"
