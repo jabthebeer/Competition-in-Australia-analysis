@@ -1,0 +1,649 @@
+{
+ "spec": "phase5-new-families",
+ "preregistered": false,
+ "mode": "post-hoc: written after the registered results were seen",
+ "flag_sd": 3.0,
+ "cases": [
+  {
+   "id": "fuel-price-reporting-2016-2021",
+   "title": "Mandatory fuel price reporting (NSW 2016, NT 2017, QLD 2018, TAS 2020, SA 2021)",
+   "known": {
+    "nsw-fuel-price-reporting-2016": [
+     "crude oil and terminal gate price movements",
+     "temporary halving of fuel excise (30 Mar to 28 Sep 2022)",
+     "COVID-19 demand collapse 2020"
+    ],
+    "nt-fuel-price-reporting-2017": [
+     "crude oil and terminal gate price movements",
+     "temporary halving of fuel excise (30 Mar to 28 Sep 2022)",
+     "COVID-19 demand collapse 2020"
+    ],
+    "qld-fuel-price-reporting-2018": [
+     "crude oil and terminal gate price movements",
+     "temporary halving of fuel excise (30 Mar to 28 Sep 2022)",
+     "COVID-19 demand collapse 2020"
+    ],
+    "tas-fuel-price-reporting-2020": [
+     "crude oil and terminal gate price movements",
+     "temporary halving of fuel excise (30 Mar to 28 Sep 2022)",
+     "COVID-19 demand collapse 2020"
+    ],
+    "sa-fuel-price-reporting-2021": [
+     "crude oil and terminal gate price movements",
+     "temporary halving of fuel excise (30 Mar to 28 Sep 2022)",
+     "COVID-19 demand collapse 2020"
+    ]
+   },
+   "register": [
+    {
+     "record": "cth-company-tax-turnover-2016",
+     "title": "Lower company tax rate for base rate entities, with a rising turnover threshold",
+     "jurisdiction": "CTH",
+     "date": "2016-07-01",
+     "where": "national",
+     "relation": "same division",
+     "relevance": "low",
+     "timing": "in window",
+     "outcomes": [
+      "entries",
+      "exits"
+     ]
+    },
+    {
+     "record": "cth-card-surcharging-2016",
+     "title": "Card surcharges limited to the cost of acceptance",
+     "jurisdiction": "CTH",
+     "date": "2016-09-01",
+     "where": "national",
+     "relation": "same division",
+     "relevance": "low",
+     "timing": "in window",
+     "outcomes": [
+      "entries",
+      "exits"
+     ]
+    },
+    {
+     "record": "cth-insolvency-safe-harbour-2017",
+     "title": "Safe harbour from insolvent trading for directors attempting a turnaround",
+     "jurisdiction": "CTH",
+     "date": "2017-09-19",
+     "where": "national",
+     "relation": "same division",
+     "relevance": "low",
+     "timing": "in window",
+     "outcomes": [
+      "entries",
+      "exits"
+     ]
+    },
+    {
+     "record": "cth-small-business-restructuring-2021",
+     "title": "Small business restructuring and simplified liquidation",
+     "jurisdiction": "CTH",
+     "date": "2021-01-01",
+     "where": "national",
+     "relation": "same division",
+     "relevance": "low",
+     "timing": "in window",
+     "outcomes": [
+      "entries",
+      "exits"
+     ]
+    }
+   ],
+   "timing": {
+    "price-automotive-fuel": [
+     {
+      "state": "NSW",
+      "reform": "2016-Q3",
+      "step_sd": 1.252,
+      "pre_steps": 45,
+      "at_reform": {
+       "2016-Q3": -1.64,
+       "2016-Q4": 0.14
+      },
+      "largest": {
+       "period": "2019-Q2",
+       "step": 4.471,
+       "in_sd": 3.57
+      },
+      "flagged": {
+       "2016-Q2": 3.28,
+       "2017-Q4": 3.07,
+       "2019-Q2": 3.57
+      },
+      "verdict": "largest move after the reform period"
+     },
+     {
+      "state": "NT",
+      "reform": "2017-Q4",
+      "step_sd": 2.549,
+      "pre_steps": 50,
+      "at_reform": {
+       "2017-Q4": 0.29,
+       "2018-Q1": 1.52
+      },
+      "largest": {
+       "period": "2020-Q2",
+       "step": 6.545,
+       "in_sd": 2.57
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "QLD",
+      "reform": "2018-Q4",
+      "step_sd": 1.604,
+      "pre_steps": 54,
+      "at_reform": {
+       "2018-Q4": -2.06,
+       "2019-Q1": 0.67
+      },
+      "largest": {
+       "period": "2019-Q2",
+       "step": 3.606,
+       "in_sd": 2.25
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "TAS",
+      "reform": "2020-Q3",
+      "step_sd": 2.247,
+      "pre_steps": 61,
+      "at_reform": {
+       "2020-Q3": -4.12,
+       "2020-Q4": -0.23
+      },
+      "largest": {
+       "period": "2020-Q3",
+       "step": -9.265,
+       "in_sd": -4.12
+      },
+      "flagged": {
+       "2020-Q3": -4.12
+      },
+      "verdict": "largest move at the reform"
+     },
+     {
+      "state": "SA",
+      "reform": "2021-Q1",
+      "step_sd": 1.589,
+      "pre_steps": 63,
+      "at_reform": {
+       "2021-Q1": 4.47,
+       "2021-Q2": -1.97
+      },
+      "largest": {
+       "period": "2021-Q1",
+       "step": 7.104,
+       "in_sd": 4.47
+      },
+      "flagged": {
+       "2020-Q4": -3.02,
+       "2021-Q1": 4.47,
+       "2022-Q3": -4.0,
+       "2022-Q4": 3.32
+      },
+      "verdict": "largest move at the reform"
+     }
+    ],
+    "entries": [
+     {
+      "state": "NSW",
+      "reform": "2016-17",
+      "step_sd": 1.216,
+      "pre_steps": 6,
+      "at_reform": {
+       "2016-17": 2.12,
+       "2017-18": -1.11
+      },
+      "largest": {
+       "period": "2016-17",
+       "step": 2.582,
+       "in_sd": 2.12
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "NT",
+      "reform": "2017-18",
+      "step_sd": 5.332,
+      "pre_steps": 7,
+      "at_reform": {
+       "2017-18": 0.39,
+       "2018-19": 0.84
+      },
+      "largest": {
+       "period": "2019-20",
+       "step": -9.776,
+       "in_sd": -1.83
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "QLD",
+      "reform": "2018-19",
+      "step_sd": 2.407,
+      "pre_steps": 8,
+      "at_reform": {
+       "2018-19": -1.46,
+       "2019-20": -0.21
+      },
+      "largest": {
+       "period": "2018-19",
+       "step": -3.509,
+       "in_sd": -1.46
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "TAS",
+      "reform": "2020-21",
+      "step_sd": 5.926,
+      "pre_steps": 10,
+      "at_reform": {
+       "2020-21": -0.83,
+       "2021-22": 0.77
+      },
+      "largest": {
+       "period": "2018-19",
+       "step": -9.77,
+       "in_sd": -1.65
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "SA",
+      "reform": "2020-21",
+      "step_sd": 4.264,
+      "pre_steps": 10,
+      "at_reform": {
+       "2020-21": -0.94,
+       "2021-22": 0.69
+      },
+      "largest": {
+       "period": "2022-23",
+       "step": -13.355,
+       "in_sd": -3.13
+      },
+      "flagged": {
+       "2022-23": -3.13
+      },
+      "verdict": "largest move after the reform period"
+     }
+    ],
+    "exits": [
+     {
+      "state": "NSW",
+      "reform": "2016-17",
+      "step_sd": 1.315,
+      "pre_steps": 6,
+      "at_reform": {
+       "2016-17": -0.9,
+       "2017-18": 1.13
+      },
+      "largest": {
+       "period": "2014-15",
+       "step": -1.86,
+       "in_sd": -1.41
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "NT",
+      "reform": "2017-18",
+      "step_sd": 6.936,
+      "pre_steps": 7,
+      "at_reform": {
+       "2017-18": 0.3,
+       "2018-19": 0.2
+      },
+      "largest": {
+       "period": "2017-18",
+       "step": 2.067,
+       "in_sd": 0.3
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "QLD",
+      "reform": "2018-19",
+      "step_sd": 1.216,
+      "pre_steps": 8,
+      "at_reform": {
+       "2018-19": -1.46,
+       "2019-20": 2.17
+      },
+      "largest": {
+       "period": "2019-20",
+       "step": 2.643,
+       "in_sd": 2.17
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "TAS",
+      "reform": "2020-21",
+      "step_sd": 5.682,
+      "pre_steps": 10,
+      "at_reform": {
+       "2020-21": 0.36,
+       "2021-22": -0.09
+      },
+      "largest": {
+       "period": "2019-20",
+       "step": -11.975,
+       "in_sd": -2.11
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "SA",
+      "reform": "2020-21",
+      "step_sd": 2.497,
+      "pre_steps": 10,
+      "at_reform": {
+       "2020-21": 0.4,
+       "2021-22": -2.84
+      },
+      "largest": {
+       "period": "2022-23",
+       "step": 8.047,
+       "in_sd": 3.22
+      },
+      "flagged": {
+       "2022-23": 3.22
+      },
+      "verdict": "largest move after the reform period"
+     }
+    ]
+   }
+  },
+  {
+   "id": "e-conveyancing-2018-2023",
+   "title": "Mandatory electronic conveyancing (NSW 2018, WA 2018, VIC 2019, SA 2020, QLD 2023)",
+   "known": {
+    "nsw-e-conveyancing-mandate-2018": [
+     "housing market swings and interest rate changes",
+     "COVID-19 property market 2020-21"
+    ],
+    "wa-e-conveyancing-mandate-2018": [
+     "housing market swings and interest rate changes",
+     "COVID-19 property market 2020-21"
+    ],
+    "vic-e-conveyancing-mandate-2019": [
+     "housing market swings and interest rate changes",
+     "COVID-19 property market 2020-21"
+    ],
+    "sa-e-conveyancing-mandate-2020": [
+     "housing market swings and interest rate changes",
+     "COVID-19 property market 2020-21"
+    ],
+    "qld-e-conveyancing-mandate-2023": [
+     "housing market swings and interest rate changes",
+     "COVID-19 property market 2020-21"
+    ]
+   },
+   "register": [
+    {
+     "record": "nsw-design-building-practitioners-2021",
+     "title": "Design and Building Practitioners Act registration scheme (NSW)",
+     "jurisdiction": "NSW",
+     "date": "2021-07-01",
+     "where": "treated state",
+     "relation": "same subdivision",
+     "relevance": "medium",
+     "timing": "in window",
+     "outcomes": [
+      "entries",
+      "exits"
+     ]
+    },
+    {
+     "record": "vic-engineers-registration-2021",
+     "title": "Professional engineers registration scheme (Victoria)",
+     "jurisdiction": "VIC",
+     "date": "2021-07-01",
+     "where": "treated state",
+     "relation": "same subdivision",
+     "relevance": "medium",
+     "timing": "in window",
+     "outcomes": [
+      "entries",
+      "exits"
+     ]
+    },
+    {
+     "record": "cth-company-tax-turnover-2016",
+     "title": "Lower company tax rate for base rate entities, with a rising turnover threshold",
+     "jurisdiction": "CTH",
+     "date": "2016-07-01",
+     "where": "national",
+     "relation": "same division",
+     "relevance": "low",
+     "timing": "in the year before",
+     "outcomes": [
+      "entries",
+      "exits"
+     ]
+    },
+    {
+     "record": "cth-rd-tax-incentive-2021",
+     "title": "R&D Tax Incentive redesign (premium rates, intensity tiers)",
+     "jurisdiction": "CTH",
+     "date": "2021-07-01",
+     "where": "national",
+     "relation": "same division",
+     "relevance": "low",
+     "timing": "in window",
+     "outcomes": [
+      "entries",
+      "exits"
+     ]
+    },
+    {
+     "record": "cth-right-to-disconnect-2024",
+     "title": "Right to disconnect",
+     "jurisdiction": "CTH",
+     "date": "2024-08-26",
+     "where": "national",
+     "relation": "same division",
+     "relevance": "low",
+     "timing": "in window",
+     "outcomes": [
+      "entries",
+      "exits"
+     ]
+    }
+   ],
+   "timing": {
+    "entries": [
+     {
+      "state": "NSW",
+      "reform": "2017-18",
+      "step_sd": 0.698,
+      "pre_steps": 7,
+      "at_reform": {
+       "2017-18": 0.2,
+       "2018-19": 1.21
+      },
+      "largest": {
+       "period": "2015-16",
+       "step": -1.526,
+       "in_sd": -2.19
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "WA",
+      "reform": "2018-19",
+      "step_sd": 1.058,
+      "pre_steps": 8,
+      "at_reform": {
+       "2018-19": -0.59,
+       "2019-20": -1.45
+      },
+      "largest": {
+       "period": "2019-20",
+       "step": -1.532,
+       "in_sd": -1.45
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "VIC",
+      "reform": "2019-20",
+      "step_sd": 1.891,
+      "pre_steps": 9,
+      "at_reform": {
+       "2019-20": -0.61,
+       "2020-21": -0.36
+      },
+      "largest": {
+       "period": "2021-22",
+       "step": -3.706,
+       "in_sd": -1.96
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "SA",
+      "reform": "2020-21",
+      "step_sd": 1.777,
+      "pre_steps": 10,
+      "at_reform": {
+       "2020-21": -1.18,
+       "2021-22": -0.2
+      },
+      "largest": {
+       "period": "2018-19",
+       "step": 2.44,
+       "in_sd": 1.37
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "QLD",
+      "reform": "2022-23",
+      "step_sd": 2.531,
+      "pre_steps": 12,
+      "at_reform": {
+       "2022-23": -0.31,
+       "2023-24": -0.02
+      },
+      "largest": {
+       "period": "2024-25",
+       "step": -1.584,
+       "in_sd": -0.63
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     }
+    ],
+    "exits": [
+     {
+      "state": "NSW",
+      "reform": "2017-18",
+      "step_sd": 0.659,
+      "pre_steps": 7,
+      "at_reform": {
+       "2017-18": -0.92,
+       "2018-19": 0.99
+      },
+      "largest": {
+       "period": "2016-17",
+       "step": 0.743,
+       "in_sd": 1.13
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "WA",
+      "reform": "2018-19",
+      "step_sd": 0.933,
+      "pre_steps": 8,
+      "at_reform": {
+       "2018-19": -0.48,
+       "2019-20": 1.27
+      },
+      "largest": {
+       "period": "2021-22",
+       "step": -1.713,
+       "in_sd": -1.84
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "VIC",
+      "reform": "2019-20",
+      "step_sd": 0.619,
+      "pre_steps": 9,
+      "at_reform": {
+       "2019-20": 0.91,
+       "2020-21": -0.76
+      },
+      "largest": {
+       "period": "2017-18",
+       "step": -1.124,
+       "in_sd": -1.82
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "SA",
+      "reform": "2020-21",
+      "step_sd": 0.674,
+      "pre_steps": 10,
+      "at_reform": {
+       "2020-21": -0.3,
+       "2021-22": -0.78
+      },
+      "largest": {
+       "period": "2019-20",
+       "step": -0.594,
+       "in_sd": -0.88
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     },
+     {
+      "state": "QLD",
+      "reform": "2022-23",
+      "step_sd": 2.449,
+      "pre_steps": 12,
+      "at_reform": {
+       "2022-23": 0.33,
+       "2023-24": -0.57
+      },
+      "largest": {
+       "period": "2020-21",
+       "step": -1.556,
+       "in_sd": -0.64
+      },
+      "flagged": {},
+      "verdict": "no large move"
+     }
+    ]
+   }
+  }
+ ]
+}

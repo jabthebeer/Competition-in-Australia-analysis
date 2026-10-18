@@ -317,6 +317,7 @@
   "caveats": [
     "capped before unblinding: Unlicensed UberX began in Melbourne in 2014, the same year, and only one post-reform year is usable.",
     "Urban transport fares (secondary): the fall is confounded. It came in 2015-Q1, the quarter public transport fare changes were reported to start, not in 2014-Q3 (post-unblinding check, analyses/phase5/posthoc.py; the fare changes are taken from commentary written before them, not checked against PTV's fare tables).",
+    "Confounder scan (not pre-registered; docs/confounder_scan.md): other register changes in the same states and industries: Heavy Vehicle National Law commences (Victoria) (2014-02-10, treated state, high); Heavy Vehicle National Law commences (ACT) (2014-02-10, comparison state, medium); Heavy Vehicle National Law commences (New South Wales) (2014-02-10, comparison state, medium); Heavy Vehicle National Law commences (Queensland) (2014-02-10, comparison state, medium); and 2 more. Timing: the treated series moved most away from the reform period in: urban transport fares: prices relative to the CPI, VIC, 2015-Q1 (−11.9 × the usual step).",
     "Re-evaluation: the earlier results were known when this specification was written; the estimator layers were fixed beforehand by the blinded power study."
   ],
   "documents": [

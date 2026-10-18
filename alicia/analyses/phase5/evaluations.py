@@ -152,6 +152,37 @@ def posthoc_reading(case_id: str, ph: dict | None) -> tuple[list[str], list[str]
     return [insight], [caveat]
 
 
+def confounder_caveat(case: dict, scan: dict | None) -> list[str]:
+    """One caveat from confounders.json (not pre-registered): overlapping register changes and series that moved
+    most away from the reform period."""
+    if not scan:
+        return []
+    c = next((x for x in scan["cases"] if x["id"] == case["id"]), None)
+    if c is None:
+        return []
+    hits = [h for h in c["register"] if h["relevance"] != "low"]
+    labels = {o["key"]: low1(outcome_label(o)) for o in case["outcomes"]}
+    moved = [
+        f"{labels[k]}, {r['state']}, {r['largest']['period']} ({s1(r['largest']['in_sd'])} × the usual step)"
+        for k, rows in c["timing"].items()
+        for r in rows
+        if r.get("verdict") in ("largest move before the reform", "largest move after the reform period")
+    ]
+    reg = (
+        "other register changes in the same states and industries: "
+        + "; ".join(f"{h['title']} ({h['date']}, {h['where']}, {h['relevance']})" for h in hits[:4])
+        + (f"; and {len(hits) - 4} more" if len(hits) > 4 else "")
+        if hits
+        else "no other register change of high or medium relevance"
+    )
+    when = (
+        "the treated series moved most away from the reform period in: " + "; ".join(moved[:4])
+        if moved
+        else "no treated series moved most away from the reform period"
+    )
+    return [f"Confounder scan (not pre-registered; docs/confounder_scan.md): {reg}. Timing: {when}."]
+
+
 def unit_of(o: dict) -> str:
     return LOG_POINTS if o["kind"] == "price" else PER_100
 
@@ -591,6 +622,8 @@ def build(spec_id: str) -> list[Evaluation]:
     ph_path = HERE / FOLDERS[spec_id] / "posthoc.json"
     ph = json.loads(ph_path.read_text("utf-8")) if ph_path.exists() else None
     ts = json.loads((HERE / FOLDERS[spec_id] / "table_stats.json").read_text("utf-8"))
+    cf_path = HERE / FOLDERS[spec_id] / "confounders.json"
+    scan = json.loads(cf_path.read_text("utf-8")) if cf_path.exists() else None
     stats = {c["id"]: c["outcomes"] for c in ts["cases"]}
     by_id = {c["id"]: c for c in est["cases"]}
     out = []
@@ -641,6 +674,7 @@ def build(spec_id: str) -> list[Evaluation]:
         caveats = [
             *reasons,
             *posthoc_reading(case["id"], ph)[1],
+            *confounder_caveat(case, scan),
             "Re-evaluation: the earlier results were known when this specification was written; the estimator layers "
             "were fixed beforehand by the blinded power study."
             if case["supersedes"]
