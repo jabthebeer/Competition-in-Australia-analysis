@@ -1,0 +1,3836 @@
+{
+ "spec": "phase5-reevaluations",
+ "plan": "docs/pap_phase5.md",
+ "mode": "DRY RUN: treated cells hidden",
+ "q_values": {},
+ "cases": [
+  {
+   "id": "wa-trading-hours-2010-2012-phase5",
+   "verdict": "hidden",
+   "grade": "hidden",
+   "grade_reasons": [],
+   "outcomes": {
+    "entries": {
+     "key": "entries",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "imputation": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      },
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 1760.0
+     },
+     "mean": 13.778,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.64,
+       "placebos": 40,
+       "placebo_sd": 3.211,
+       "mde_80": 8.996,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.662,
+       "placebos": 40,
+       "placebo_sd": 3.278,
+       "mde_80": 9.183,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.448,
+       "placebos": 40,
+       "placebo_sd": 1.65,
+       "mde_80": 4.622,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.188,
+       "placebos": 40,
+       "placebo_sd": 3.25,
+       "mde_80": 9.104,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.43,
+       "placebos": 40,
+       "placebo_sd": 1.641,
+       "mde_80": 4.598,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.048,
+       "placebos": 40,
+       "placebo_sd": 2.999,
+       "mde_80": 8.402,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 1.257,
+       "placebos": 40,
+       "placebo_sd": 5.135,
+       "mde_80": 14.387,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.448,
+      "placebos": 40,
+      "placebo_sd": 1.65,
+      "mde_80": 4.622,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-3": {
+       "plain": -0.4382,
+       "net": -0.7354,
+       "band_90": [
+        -4.7218,
+        3.9435
+       ],
+       "no_effect_90": [
+        -4.6789,
+        3.9864
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -0.118,
+       "net": -0.6141,
+       "band_90": [
+        -5.4735,
+        3.2616
+       ],
+       "no_effect_90": [
+        -3.8756,
+        4.8594
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    },
+    "exits": {
+     "key": "exits",
+     "kind": "business",
+     "layer": "sdid",
+     "checks": {
+      "saturated": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 1760.0
+     },
+     "mean": 13.033,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.243,
+       "placebos": 40,
+       "placebo_sd": 1.311,
+       "mde_80": 3.673,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.327,
+       "placebos": 40,
+       "placebo_sd": 1.323,
+       "mde_80": 3.705,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.586,
+       "placebos": 40,
+       "placebo_sd": 1.516,
+       "mde_80": 4.247,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.26,
+       "placebos": 40,
+       "placebo_sd": 1.314,
+       "mde_80": 3.681,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.558,
+       "placebos": 40,
+       "placebo_sd": 1.501,
+       "mde_80": 4.206,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.035,
+       "placebos": 40,
+       "placebo_sd": 1.071,
+       "mde_80": 3.0,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.219,
+       "placebos": 40,
+       "placebo_sd": 1.315,
+       "mde_80": 3.684,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.035,
+      "placebos": 40,
+      "placebo_sd": 1.071,
+      "mde_80": 3.0,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-3": {
+       "plain": 0.0041,
+       "net": -0.1778,
+       "band_90": [
+        -4.6975,
+        3.0855
+       ],
+       "no_effect_90": [
+        -3.2633,
+        4.5196
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -0.0164,
+       "net": -0.2979,
+       "band_90": [
+        -5.4706,
+        3.2103
+       ],
+       "no_effect_90": [
+        -3.5081,
+        5.1728
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    }
+   }
+  },
+  {
+   "id": "childcare-nqf-2012-phase5",
+   "verdict": "hidden",
+   "grade": "hidden",
+   "grade_reasons": [],
+   "outcomes": {
+    "entries": {
+     "key": "entries",
+     "kind": "business",
+     "layer": "sdid",
+     "checks": {
+      "twoway": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 7223.0
+     },
+     "mean": 13.782,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.225,
+       "placebos": 40,
+       "placebo_sd": 3.604,
+       "mde_80": 10.097,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.145,
+       "placebos": 40,
+       "placebo_sd": 3.607,
+       "mde_80": 10.106,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.277,
+       "placebos": 40,
+       "placebo_sd": 3.897,
+       "mde_80": 10.917,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.218,
+       "placebos": 40,
+       "placebo_sd": 3.605,
+       "mde_80": 10.099,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.276,
+       "placebos": 40,
+       "placebo_sd": 3.896,
+       "mde_80": 10.914,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.598,
+       "placebos": 40,
+       "placebo_sd": 2.132,
+       "mde_80": 5.973,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.2,
+       "placebos": 40,
+       "placebo_sd": 3.795,
+       "mde_80": 10.633,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.598,
+      "placebos": 40,
+      "placebo_sd": 2.132,
+      "mde_80": 5.973,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-4": {
+       "plain": 2.1845,
+       "net": 2.1924,
+       "band_90": [
+        -3.2982,
+        7.5972
+       ],
+       "no_effect_90": [
+        -5.4048,
+        5.4906
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": -1.2115,
+       "net": -1.115,
+       "band_90": [
+        -7.4969,
+        4.9151
+       ],
+       "no_effect_90": [
+        -6.0301,
+        6.3819
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -0.3612,
+       "net": 0.1447,
+       "band_90": [
+        -3.9429,
+        4.3667
+       ],
+       "no_effect_90": [
+        -4.222,
+        4.0877
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    },
+    "exits": {
+     "key": "exits",
+     "kind": "business",
+     "layer": "twoway",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 7223.0
+     },
+     "mean": 13.629,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.337,
+       "placebos": 40,
+       "placebo_sd": 0.799,
+       "mde_80": 2.24,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.417,
+       "placebos": 40,
+       "placebo_sd": 0.804,
+       "mde_80": 2.253,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.83,
+       "placebos": 40,
+       "placebo_sd": 1.729,
+       "mde_80": 4.844,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.362,
+       "placebos": 40,
+       "placebo_sd": 0.802,
+       "mde_80": 2.246,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.83,
+       "placebos": 40,
+       "placebo_sd": 1.733,
+       "mde_80": 4.856,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.608,
+       "placebos": 40,
+       "placebo_sd": 0.901,
+       "mde_80": 2.525,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.525,
+       "placebos": 40,
+       "placebo_sd": 0.874,
+       "mde_80": 2.45,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.337,
+      "placebos": 40,
+      "placebo_sd": 0.799,
+      "mde_80": 2.24,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-4": {
+       "plain": 1.9124,
+       "net": 2.3607,
+       "band_90": [
+        -2.2495,
+        6.446
+       ],
+       "no_effect_90": [
+        -4.0853,
+        4.6102
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": 2.6305,
+       "net": 3.542,
+       "band_90": [
+        -0.2464,
+        8.4324
+       ],
+       "no_effect_90": [
+        -4.8905,
+        3.7884
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": 3.0474,
+       "net": 4.3036,
+       "band_90": [
+        0.2446,
+        9.7842
+       ],
+       "no_effect_90": [
+        -5.4806,
+        4.059
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    },
+    "price-child-care": {
+     "key": "price-child-care",
+     "kind": "price",
+     "layer": "sdid",
+     "checks": {
+      "saturated": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": null
+     },
+     "mean": 2.027,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 1.124,
+       "placebos": 40,
+       "placebo_sd": 9.139,
+       "mde_80": 25.605,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 1.127,
+       "placebos": 40,
+       "placebo_sd": 9.153,
+       "mde_80": 25.644,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.287,
+       "placebos": 40,
+       "placebo_sd": 6.11,
+       "mde_80": 17.117,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 1.09,
+       "placebos": 40,
+       "placebo_sd": 9.14,
+       "mde_80": 25.607,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.287,
+       "placebos": 40,
+       "placebo_sd": 6.11,
+       "mde_80": 17.117,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.163,
+       "placebos": 39,
+       "placebo_sd": 1.783,
+       "mde_80": 4.995,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.905,
+       "placebos": 39,
+       "placebo_sd": 7.7,
+       "mde_80": 21.571,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.163,
+      "placebos": 39,
+      "placebo_sd": 1.783,
+      "mde_80": 4.995,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 5.8607,
+       "net": 5.7465,
+       "band_90": [
+        0.5457,
+        14.7939
+       ],
+       "no_effect_90": [
+        -9.0474,
+        5.2009
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": 1.2096,
+       "net": 1.2737,
+       "band_90": [
+        -3.941,
+        5.8733
+       ],
+       "no_effect_90": [
+        -4.5996,
+        5.2147
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": -1.5426,
+       "net": -1.2542,
+       "band_90": [
+        -5.2938,
+        3.1536
+       ],
+       "no_effect_90": [
+        -4.4078,
+        4.0396
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": 1.0498,
+       "net": 1.0508,
+       "band_90": [
+        -1.534,
+        3.9101
+       ],
+       "no_effect_90": [
+        -2.8593,
+        2.5849
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    }
+   }
+  },
+  {
+   "id": "heavy-vehicle-national-law-2014-phase5",
+   "verdict": "hidden",
+   "grade": "hidden",
+   "grade_reasons": [],
+   "outcomes": {
+    "entries": {
+     "key": "entries",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "imputation": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      },
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 44908.0
+     },
+     "mean": 13.605,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.238,
+       "placebos": 40,
+       "placebo_sd": 2.978,
+       "mde_80": 8.343,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.085,
+       "placebos": 40,
+       "placebo_sd": 2.975,
+       "mde_80": 8.335,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.109,
+       "placebos": 40,
+       "placebo_sd": 1.571,
+       "mde_80": 4.402,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.112,
+       "placebos": 40,
+       "placebo_sd": 2.977,
+       "mde_80": 8.34,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.109,
+       "placebos": 40,
+       "placebo_sd": 1.577,
+       "mde_80": 4.418,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.865,
+       "placebos": 40,
+       "placebo_sd": 3.096,
+       "mde_80": 8.673,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.284,
+       "placebos": 40,
+       "placebo_sd": 3.556,
+       "mde_80": 9.962,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.109,
+      "placebos": 40,
+      "placebo_sd": 1.571,
+      "mde_80": 4.402,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 1.1816,
+       "net": 1.206,
+       "band_90": [
+        -1.3652,
+        4.1008
+       ],
+       "no_effect_90": [
+        -2.8948,
+        2.5712
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": 1.9524,
+       "net": 2.0634,
+       "band_90": [
+        -0.6083,
+        5.6057
+       ],
+       "no_effect_90": [
+        -3.5423,
+        2.6717
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": 2.097,
+       "net": 2.3514,
+       "band_90": [
+        0.3175,
+        4.258
+       ],
+       "no_effect_90": [
+        -1.9066,
+        2.034
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": 1.405,
+       "net": 1.5207,
+       "band_90": [
+        -1.0569,
+        3.6403
+       ],
+       "no_effect_90": [
+        -2.1196,
+        2.5776
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    },
+    "exits": {
+     "key": "exits",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 44908.0
+     },
+     "mean": 12.929,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.025,
+       "placebos": 40,
+       "placebo_sd": 1.108,
+       "mde_80": 3.105,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.021,
+       "placebos": 40,
+       "placebo_sd": 1.109,
+       "mde_80": 3.108,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.015,
+       "placebos": 40,
+       "placebo_sd": 1.055,
+       "mde_80": 2.955,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.013,
+       "placebos": 40,
+       "placebo_sd": 1.109,
+       "mde_80": 3.108,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.012,
+       "placebos": 40,
+       "placebo_sd": 1.055,
+       "mde_80": 2.955,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.021,
+       "placebos": 40,
+       "placebo_sd": 0.997,
+       "mde_80": 2.793,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.011,
+       "placebos": 40,
+       "placebo_sd": 1.109,
+       "mde_80": 3.107,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.015,
+      "placebos": 40,
+      "placebo_sd": 1.055,
+      "mde_80": 2.955,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": -0.0651,
+       "net": 0.0644,
+       "band_90": [
+        -2.5332,
+        2.683
+       ],
+       "no_effect_90": [
+        -2.6186,
+        2.5976
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": -0.5071,
+       "net": -0.2822,
+       "band_90": [
+        -2.6086,
+        1.4037
+       ],
+       "no_effect_90": [
+        -1.6859,
+        2.3263
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": -0.9201,
+       "net": -0.9424,
+       "band_90": [
+        -3.2034,
+        0.7341
+       ],
+       "no_effect_90": [
+        -1.6765,
+        2.261
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -0.5398,
+       "net": -0.7423,
+       "band_90": [
+        -2.6088,
+        0.84
+       ],
+       "no_effect_90": [
+        -1.5824,
+        1.8665
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    }
+   }
+  },
+  {
+   "id": "vic-taxi-licensing-2014-phase5",
+   "verdict": "hidden",
+   "grade": "hidden",
+   "grade_reasons": [],
+   "outcomes": {
+    "entries": {
+     "key": "entries",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 3931.0
+     },
+     "mean": 13.034,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.288,
+       "placebos": 40,
+       "placebo_sd": 3.265,
+       "mde_80": 9.147,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.069,
+       "placebos": 40,
+       "placebo_sd": 3.283,
+       "mde_80": 9.197,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.417,
+       "placebos": 40,
+       "placebo_sd": 1.243,
+       "mde_80": 3.482,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.198,
+       "placebos": 40,
+       "placebo_sd": 3.267,
+       "mde_80": 9.153,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.417,
+       "placebos": 40,
+       "placebo_sd": 1.243,
+       "mde_80": 3.482,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.694,
+       "placebos": 40,
+       "placebo_sd": 3.267,
+       "mde_80": 9.154,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.187,
+       "placebos": 40,
+       "placebo_sd": 3.271,
+       "mde_80": 9.165,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.417,
+      "placebos": 40,
+      "placebo_sd": 1.243,
+      "mde_80": 3.482,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 1.1785,
+       "net": 1.1275,
+       "band_90": [
+        -1.3493,
+        3.1349
+       ],
+       "no_effect_90": [
+        -2.0074,
+        2.4768
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": -0.9973,
+       "net": -1.7176,
+       "band_90": [
+        -5.3385,
+        1.0757
+       ],
+       "no_effect_90": [
+        -2.7933,
+        3.6208
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": 0.0752,
+       "net": -0.5883,
+       "band_90": [
+        -4.3807,
+        2.239
+       ],
+       "no_effect_90": [
+        -2.8273,
+        3.7925
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -0.4705,
+       "net": -0.7315,
+       "band_90": [
+        -2.3005,
+        1.5833
+       ],
+       "no_effect_90": [
+        -2.3148,
+        1.5691
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    },
+    "exits": {
+     "key": "exits",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 3931.0
+     },
+     "mean": 13.242,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.148,
+       "placebos": 40,
+       "placebo_sd": 0.939,
+       "mde_80": 2.63,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.05,
+       "placebos": 40,
+       "placebo_sd": 0.944,
+       "mde_80": 2.644,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.072,
+       "placebos": 40,
+       "placebo_sd": 0.845,
+       "mde_80": 2.368,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.074,
+       "placebos": 40,
+       "placebo_sd": 0.94,
+       "mde_80": 2.632,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.072,
+       "placebos": 40,
+       "placebo_sd": 0.845,
+       "mde_80": 2.368,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.165,
+       "placebos": 40,
+       "placebo_sd": 0.883,
+       "mde_80": 2.474,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.152,
+       "placebos": 40,
+       "placebo_sd": 0.944,
+       "mde_80": 2.646,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.072,
+      "placebos": 40,
+      "placebo_sd": 0.845,
+      "mde_80": 2.368,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 1.7071,
+       "net": 1.8273,
+       "band_90": [
+        0.7998,
+        3.5977
+       ],
+       "no_effect_90": [
+        -1.7704,
+        1.0276
+       ],
+       "inside_95": false
+      },
+      "-4": {
+       "plain": 1.5747,
+       "net": 1.5888,
+       "band_90": [
+        0.1191,
+        3.1874
+       ],
+       "no_effect_90": [
+        -1.5987,
+        1.4697
+       ],
+       "inside_95": false
+      },
+      "-3": {
+       "plain": -0.3703,
+       "net": -0.5809,
+       "band_90": [
+        -2.1238,
+        0.9121
+       ],
+       "no_effect_90": [
+        -1.493,
+        1.5429
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": 0.3173,
+       "net": 0.141,
+       "band_90": [
+        -1.2656,
+        1.7706
+       ],
+       "no_effect_90": [
+        -1.6296,
+        1.4066
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": false
+    },
+    "price-urban-transport-fares": {
+     "key": "price-urban-transport-fares",
+     "kind": "price",
+     "layer": "saturated",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": null
+     },
+     "mean": 0.868,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.979,
+       "placebos": 40,
+       "placebo_sd": 12.763,
+       "mde_80": 35.758,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.674,
+       "placebos": 40,
+       "placebo_sd": 12.895,
+       "mde_80": 36.127,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.257,
+       "placebos": 40,
+       "placebo_sd": 2.947,
+       "mde_80": 8.257,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.817,
+       "placebos": 40,
+       "placebo_sd": 12.773,
+       "mde_80": 35.783,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.257,
+       "placebos": 40,
+       "placebo_sd": 2.947,
+       "mde_80": 8.257,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.147,
+       "placebos": 39,
+       "placebo_sd": 2.945,
+       "mde_80": 8.251,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.059,
+       "placebos": 39,
+       "placebo_sd": 4.316,
+       "mde_80": 12.09,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.257,
+      "placebos": 40,
+      "placebo_sd": 2.947,
+      "mde_80": 8.257,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 3.6279,
+       "net": 3.4183,
+       "band_90": [
+        -1.502,
+        8.1804
+       ],
+       "no_effect_90": [
+        -4.7621,
+        4.9203
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": -1.0166,
+       "net": -0.882,
+       "band_90": [
+        -3.6193,
+        3.2051
+       ],
+       "no_effect_90": [
+        -4.0872,
+        2.7373
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": -0.4591,
+       "net": -0.0848,
+       "band_90": [
+        -2.4218,
+        2.4734
+       ],
+       "no_effect_90": [
+        -2.5582,
+        2.337
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": 0.491,
+       "net": 0.9543,
+       "band_90": [
+        -1.3727,
+        3.8848
+       ],
+       "no_effect_90": [
+        -2.9306,
+        2.3269
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    }
+   }
+  },
+  {
+   "id": "legal-profession-uniform-law-2015-phase5",
+   "verdict": "hidden",
+   "grade": "hidden",
+   "grade_reasons": [],
+   "outcomes": {
+    "entries": {
+     "key": "entries",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "imputation": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      },
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 13060.0
+     },
+     "mean": 13.626,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 1.795,
+       "placebos": 39,
+       "placebo_sd": 7.058,
+       "mde_80": 19.774,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 1.227,
+       "placebos": 39,
+       "placebo_sd": 7.078,
+       "mde_80": 19.829,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.176,
+       "placebos": 39,
+       "placebo_sd": 1.604,
+       "mde_80": 4.493,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 1.386,
+       "placebos": 39,
+       "placebo_sd": 7.064,
+       "mde_80": 19.789,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.177,
+       "placebos": 39,
+       "placebo_sd": 1.607,
+       "mde_80": 4.502,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 2.26,
+       "placebos": 39,
+       "placebo_sd": 6.45,
+       "mde_80": 18.069,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 1.841,
+       "placebos": 39,
+       "placebo_sd": 6.889,
+       "mde_80": 19.3,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.176,
+      "placebos": 39,
+      "placebo_sd": 1.604,
+      "mde_80": 4.493,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": -0.026,
+       "net": -0.1216,
+       "band_90": [
+        -2.7022,
+        2.2296
+       ],
+       "no_effect_90": [
+        -2.3512,
+        2.5806
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": -0.5113,
+       "net": -0.997,
+       "band_90": [
+        -2.9174,
+        0.8397
+       ],
+       "no_effect_90": [
+        -1.8367,
+        1.9204
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": -0.5284,
+       "net": -0.7321,
+       "band_90": [
+        -2.8453,
+        1.9404
+       ],
+       "no_effect_90": [
+        -2.6725,
+        2.1132
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": 0.4806,
+       "net": 0.4153,
+       "band_90": [
+        -1.1899,
+        2.2822
+       ],
+       "no_effect_90": [
+        -1.8669,
+        1.6052
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    },
+    "exits": {
+     "key": "exits",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 13060.0
+     },
+     "mean": 12.946,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.003,
+       "placebos": 39,
+       "placebo_sd": 1.275,
+       "mde_80": 3.573,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.078,
+       "placebos": 39,
+       "placebo_sd": 1.28,
+       "mde_80": 3.586,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.048,
+       "placebos": 39,
+       "placebo_sd": 0.557,
+       "mde_80": 1.561,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.01,
+       "placebos": 39,
+       "placebo_sd": 1.277,
+       "mde_80": 3.579,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.049,
+       "placebos": 39,
+       "placebo_sd": 0.559,
+       "mde_80": 1.565,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.027,
+       "placebos": 39,
+       "placebo_sd": 1.097,
+       "mde_80": 3.074,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.032,
+       "placebos": 39,
+       "placebo_sd": 1.215,
+       "mde_80": 3.403,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.048,
+      "placebos": 39,
+      "placebo_sd": 0.557,
+      "mde_80": 1.561,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 0.8466,
+       "net": 0.8668,
+       "band_90": [
+        -0.434,
+        2.1845
+       ],
+       "no_effect_90": [
+        -1.3177,
+        1.3008
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": 0.4458,
+       "net": 0.1989,
+       "band_90": [
+        -1.1837,
+        1.4701
+       ],
+       "no_effect_90": [
+        -1.2712,
+        1.3826
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": 0.4683,
+       "net": 0.4227,
+       "band_90": [
+        -0.7968,
+        1.4037
+       ],
+       "no_effect_90": [
+        -0.9811,
+        1.2195
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": 1.0299,
+       "net": 1.2145,
+       "band_90": [
+        -0.0263,
+        2.1199
+       ],
+       "no_effect_90": [
+        -0.9054,
+        1.2407
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    }
+   }
+  },
+  {
+   "id": "rideshare-legalisation-2015-2018-phase5",
+   "verdict": "not-identified",
+   "grade": "Not identified",
+   "grade_reasons": [
+    "a pre-reform year of the primary outcome lies outside its 95% placebo band"
+   ],
+   "outcomes": {
+    "entries": {
+     "key": "entries",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "imputation": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      },
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 14500.0
+     },
+     "mean": 13.447,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.339,
+       "placebos": 40,
+       "placebo_sd": 2.393,
+       "mde_80": 6.704,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.026,
+       "placebos": 40,
+       "placebo_sd": 2.404,
+       "mde_80": 6.734,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.304,
+       "placebos": 40,
+       "placebo_sd": 1.542,
+       "mde_80": 4.319,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.035,
+       "placebos": 40,
+       "placebo_sd": 2.399,
+       "mde_80": 6.721,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.306,
+       "placebos": 40,
+       "placebo_sd": 1.684,
+       "mde_80": 4.717,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.676,
+       "placebos": 40,
+       "placebo_sd": 1.472,
+       "mde_80": 4.123,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.008,
+       "placebos": 40,
+       "placebo_sd": 1.53,
+       "mde_80": 4.286,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.304,
+      "placebos": 40,
+      "placebo_sd": 1.542,
+      "mde_80": 4.319,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 3.7663,
+       "net": 3.6819,
+       "band_90": [
+        1.3392,
+        6.2538
+       ],
+       "no_effect_90": [
+        -2.5719,
+        2.3428
+       ],
+       "inside_95": false
+      },
+      "-4": {
+       "plain": 4.2758,
+       "net": 4.3284,
+       "band_90": [
+        1.7884,
+        7.1016
+       ],
+       "no_effect_90": [
+        -2.7732,
+        2.54
+       ],
+       "inside_95": false
+      },
+      "-3": {
+       "plain": 3.6018,
+       "net": 3.8832,
+       "band_90": [
+        1.151,
+        6.2394
+       ],
+       "no_effect_90": [
+        -2.3561,
+        2.7322
+       ],
+       "inside_95": false
+      },
+      "-2": {
+       "plain": 4.0473,
+       "net": 4.1212,
+       "band_90": [
+        2.6018,
+        5.6726
+       ],
+       "no_effect_90": [
+        -1.5514,
+        1.5193
+       ],
+       "inside_95": false
+      }
+     },
+     "pre_inside_95": false
+    },
+    "exits": {
+     "key": "exits",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "imputation": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 14500.0
+     },
+     "mean": 12.969,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.298,
+       "placebos": 40,
+       "placebo_sd": 1.141,
+       "mde_80": 3.197,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.226,
+       "placebos": 40,
+       "placebo_sd": 1.145,
+       "mde_80": 3.208,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.252,
+       "placebos": 40,
+       "placebo_sd": 0.775,
+       "mde_80": 2.17,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.286,
+       "placebos": 40,
+       "placebo_sd": 1.142,
+       "mde_80": 3.199,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.206,
+       "placebos": 40,
+       "placebo_sd": 0.841,
+       "mde_80": 2.355,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.367,
+       "placebos": 40,
+       "placebo_sd": 0.96,
+       "mde_80": 2.689,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.387,
+       "placebos": 40,
+       "placebo_sd": 1.172,
+       "mde_80": 3.285,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.252,
+      "placebos": 40,
+      "placebo_sd": 0.775,
+      "mde_80": 2.17,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 1.0141,
+       "net": 0.9192,
+       "band_90": [
+        -0.6214,
+        2.562
+       ],
+       "no_effect_90": [
+        -1.6428,
+        1.5406
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": 0.8552,
+       "net": 0.7926,
+       "band_90": [
+        -0.8287,
+        2.4349
+       ],
+       "no_effect_90": [
+        -1.6423,
+        1.6213
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": 0.517,
+       "net": 0.47,
+       "band_90": [
+        -0.8524,
+        1.6827
+       ],
+       "no_effect_90": [
+        -1.2127,
+        1.3224
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": 0.5198,
+       "net": 0.4097,
+       "band_90": [
+        -0.5067,
+        1.3425
+       ],
+       "no_effect_90": [
+        -0.9328,
+        0.9163
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    },
+    "price-urban-transport-fares": {
+     "key": "price-urban-transport-fares",
+     "kind": "price",
+     "layer": "sdid",
+     "checks": {
+      "saturated": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": null
+     },
+     "mean": 0.074,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.6,
+       "placebos": 40,
+       "placebo_sd": 12.931,
+       "mde_80": 36.227,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.942,
+       "placebos": 40,
+       "placebo_sd": 13.0,
+       "mde_80": 36.42,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.088,
+       "placebos": 40,
+       "placebo_sd": 2.911,
+       "mde_80": 8.155,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.703,
+       "placebos": 40,
+       "placebo_sd": 12.939,
+       "mde_80": 36.25,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.086,
+       "placebos": 40,
+       "placebo_sd": 2.956,
+       "mde_80": 8.281,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.49,
+       "placebos": 39,
+       "placebo_sd": 1.772,
+       "mde_80": 4.966,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.665,
+       "placebos": 39,
+       "placebo_sd": 3.507,
+       "mde_80": 9.825,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.49,
+      "placebos": 39,
+      "placebo_sd": 1.772,
+      "mde_80": 4.966,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 2.0106,
+       "net": 2.2549,
+       "band_90": [
+        -2.9154,
+        7.52
+       ],
+       "no_effect_90": [
+        -5.2651,
+        5.1703
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": 2.7171,
+       "net": 2.7496,
+       "band_90": [
+        -1.7073,
+        7.0337
+       ],
+       "no_effect_90": [
+        -4.2841,
+        4.4569
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": 0.5069,
+       "net": 0.5694,
+       "band_90": [
+        -2.0927,
+        3.2817
+       ],
+       "no_effect_90": [
+        -2.7123,
+        2.6621
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -0.8748,
+       "net": -0.9006,
+       "band_90": [
+        -2.2917,
+        0.9267
+       ],
+       "no_effect_90": [
+        -1.8273,
+        1.3911
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    }
+   }
+  },
+  {
+   "id": "nt-container-deposits-2012-phase5",
+   "verdict": "not-identified",
+   "grade": "Not identified",
+   "grade_reasons": [
+    "a pre-reform year of the primary outcome lies outside its 95% placebo band"
+   ],
+   "outcomes": {
+    "price-soft-drinks": {
+     "key": "price-soft-drinks",
+     "kind": "price",
+     "layer": "saturated",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": null
+     },
+     "mean": 0.225,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.855,
+       "placebos": 40,
+       "placebo_sd": 16.483,
+       "mde_80": 46.178,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.472,
+       "placebos": 40,
+       "placebo_sd": 16.663,
+       "mde_80": 46.684,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.368,
+       "placebos": 40,
+       "placebo_sd": 7.847,
+       "mde_80": 21.983,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.5,
+       "placebos": 40,
+       "placebo_sd": 16.525,
+       "mde_80": 46.297,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.368,
+       "placebos": 40,
+       "placebo_sd": 7.847,
+       "mde_80": 21.983,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.752,
+       "placebos": 39,
+       "placebo_sd": 7.59,
+       "mde_80": 21.264,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.196,
+       "placebos": 39,
+       "placebo_sd": 10.297,
+       "mde_80": 28.848,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.368,
+      "placebos": 40,
+      "placebo_sd": 7.847,
+      "mde_80": 21.983,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": -7.6937,
+       "net": -8.8067,
+       "band_90": [
+        -21.5538,
+        -0.9562
+       ],
+       "no_effect_90": [
+        -7.8505,
+        12.7471
+       ],
+       "inside_95": false
+      },
+      "-4": {
+       "plain": -5.3197,
+       "net": -6.1428,
+       "band_90": [
+        -17.5426,
+        1.9309
+       ],
+       "no_effect_90": [
+        -8.0737,
+        11.3999
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": -1.4633,
+       "net": -1.8923,
+       "band_90": [
+        -8.7905,
+        4.1369
+       ],
+       "no_effect_90": [
+        -6.0292,
+        6.8981
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -2.3654,
+       "net": -2.9152,
+       "band_90": [
+        -8.4969,
+        2.1351
+       ],
+       "no_effect_90": [
+        -5.0503,
+        5.5817
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": false
+    },
+    "price-beer": {
+     "key": "price-beer",
+     "kind": "price",
+     "layer": "saturated",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": null
+     },
+     "mean": 0.249,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.923,
+       "placebos": 40,
+       "placebo_sd": 16.483,
+       "mde_80": 46.178,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.472,
+       "placebos": 40,
+       "placebo_sd": 16.663,
+       "mde_80": 46.684,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.368,
+       "placebos": 40,
+       "placebo_sd": 7.847,
+       "mde_80": 21.983,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.539,
+       "placebos": 40,
+       "placebo_sd": 16.525,
+       "mde_80": 46.297,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.368,
+       "placebos": 40,
+       "placebo_sd": 7.847,
+       "mde_80": 21.983,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.728,
+       "placebos": 39,
+       "placebo_sd": 7.596,
+       "mde_80": 21.28,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.187,
+       "placebos": 39,
+       "placebo_sd": 10.24,
+       "mde_80": 28.689,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.368,
+      "placebos": 40,
+      "placebo_sd": 7.847,
+      "mde_80": 21.983,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": -4.9821,
+       "net": -6.0616,
+       "band_90": [
+        -18.8086,
+        1.7889
+       ],
+       "no_effect_90": [
+        -7.8505,
+        12.7471
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": -6.8527,
+       "net": -7.6947,
+       "band_90": [
+        -19.0946,
+        0.3789
+       ],
+       "no_effect_90": [
+        -8.0737,
+        11.3999
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": -5.3035,
+       "net": -5.78,
+       "band_90": [
+        -12.6781,
+        0.2493
+       ],
+       "no_effect_90": [
+        -6.0293,
+        6.8981
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -3.9379,
+       "net": -4.5071,
+       "band_90": [
+        -10.0888,
+        0.5431
+       ],
+       "no_effect_90": [
+        -5.0503,
+        5.5816
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    }
+   }
+  },
+  {
+   "id": "retail-energy-deregulation-2013-2016-phase5",
+   "verdict": "not-identified",
+   "grade": "Not identified",
+   "grade_reasons": [
+    "a pre-reform year of the primary outcome lies outside its 95% placebo band"
+   ],
+   "outcomes": {
+    "price-electricity": {
+     "key": "price-electricity",
+     "kind": "price",
+     "layer": "saturated",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": null
+     },
+     "mean": -0.373,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 2.642,
+       "placebos": 40,
+       "placebo_sd": 17.328,
+       "mde_80": 48.545,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 3.609,
+       "placebos": 40,
+       "placebo_sd": 17.467,
+       "mde_80": 48.935,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.075,
+       "placebos": 40,
+       "placebo_sd": 3.242,
+       "mde_80": 9.083,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 2.727,
+       "placebos": 40,
+       "placebo_sd": 17.335,
+       "mde_80": 48.565,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.102,
+       "placebos": 40,
+       "placebo_sd": 3.419,
+       "mde_80": 9.579,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.21,
+       "placebos": 39,
+       "placebo_sd": 4.538,
+       "mde_80": 12.714,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.294,
+       "placebos": 39,
+       "placebo_sd": 9.383,
+       "mde_80": 26.288,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.075,
+      "placebos": 40,
+      "placebo_sd": 3.242,
+      "mde_80": 9.083,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": -18.0275,
+       "net": -18.2774,
+       "band_90": [
+        -23.4236,
+        -13.8877
+       ],
+       "no_effect_90": [
+        -4.3896,
+        5.1462
+       ],
+       "inside_95": false
+      },
+      "-4": {
+       "plain": -15.3573,
+       "net": -15.3918,
+       "band_90": [
+        -18.8625,
+        -12.2676
+       ],
+       "no_effect_90": [
+        -3.1242,
+        3.4706
+       ],
+       "inside_95": false
+      },
+      "-3": {
+       "plain": -10.6101,
+       "net": -10.6114,
+       "band_90": [
+        -13.1995,
+        -7.6906
+       ],
+       "no_effect_90": [
+        -2.9209,
+        2.5881
+       ],
+       "inside_95": false
+      },
+      "-2": {
+       "plain": -2.6543,
+       "net": -2.626,
+       "band_90": [
+        -4.439,
+        -1.0581
+       ],
+       "no_effect_90": [
+        -1.5679,
+        1.813
+       ],
+       "inside_95": false
+      }
+     },
+     "pre_inside_95": false
+    }
+   }
+  }
+ ]
+}

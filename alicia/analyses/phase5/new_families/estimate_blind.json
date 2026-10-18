@@ -1,0 +1,1094 @@
+{
+ "spec": "phase5-new-families",
+ "plan": "docs/pap_phase5.md",
+ "mode": "DRY RUN: treated cells hidden",
+ "q_values": {},
+ "cases": [
+  {
+   "id": "fuel-price-reporting-2016-2021",
+   "verdict": "hidden",
+   "grade": "hidden",
+   "grade_reasons": [],
+   "outcomes": {
+    "price-automotive-fuel": {
+     "key": "price-automotive-fuel",
+     "kind": "price",
+     "layer": "saturated",
+     "checks": {
+      "imputation": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      },
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": null
+     },
+     "mean": -1.781,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -1.213,
+       "placebos": 40,
+       "placebo_sd": 13.795,
+       "mde_80": 38.647,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.836,
+       "placebos": 40,
+       "placebo_sd": 13.897,
+       "mde_80": 38.934,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.566,
+       "placebos": 40,
+       "placebo_sd": 2.392,
+       "mde_80": 6.703,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -1.063,
+       "placebos": 40,
+       "placebo_sd": 13.808,
+       "mde_80": 38.683,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.593,
+       "placebos": 40,
+       "placebo_sd": 2.555,
+       "mde_80": 7.157,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.324,
+       "placebos": 39,
+       "placebo_sd": 3.084,
+       "mde_80": 8.641,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.408,
+       "placebos": 39,
+       "placebo_sd": 4.302,
+       "mde_80": 12.053,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.566,
+      "placebos": 40,
+      "placebo_sd": 2.392,
+      "mde_80": 6.703,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 0.7457,
+       "net": 1.4149,
+       "band_90": [
+        -2.2857,
+        6.0752
+       ],
+       "no_effect_90": [
+        -4.6603,
+        3.7006
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": 1.8267,
+       "net": 2.3281,
+       "band_90": [
+        0.1512,
+        5.2838
+       ],
+       "no_effect_90": [
+        -2.9557,
+        2.1769
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": 0.0169,
+       "net": 0.3294,
+       "band_90": [
+        -1.1801,
+        2.4659
+       ],
+       "no_effect_90": [
+        -2.1365,
+        1.5095
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -0.1158,
+       "net": 0.0828,
+       "band_90": [
+        -0.6589,
+        1.543
+       ],
+       "no_effect_90": [
+        -1.4602,
+        0.7417
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    },
+    "entries": {
+     "key": "entries",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 2716.0
+     },
+     "mean": 14.487,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -1.154,
+       "placebos": 40,
+       "placebo_sd": 1.737,
+       "mde_80": 4.866,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -1.094,
+       "placebos": 40,
+       "placebo_sd": 1.744,
+       "mde_80": 4.885,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.132,
+       "placebos": 40,
+       "placebo_sd": 0.783,
+       "mde_80": 2.192,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -1.149,
+       "placebos": 40,
+       "placebo_sd": 1.743,
+       "mde_80": 4.884,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.688,
+       "placebos": 40,
+       "placebo_sd": 3.92,
+       "mde_80": 10.981,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.603,
+       "placebos": 40,
+       "placebo_sd": 1.14,
+       "mde_80": 3.194,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.926,
+       "placebos": 40,
+       "placebo_sd": 1.958,
+       "mde_80": 5.486,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.132,
+      "placebos": 40,
+      "placebo_sd": 0.783,
+      "mde_80": 2.192,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": -1.3421,
+       "net": -1.1256,
+       "band_90": [
+        -3.6651,
+        0.6076
+       ],
+       "no_effect_90": [
+        -1.7332,
+        2.5394
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": -0.4698,
+       "net": -0.1254,
+       "band_90": [
+        -2.4673,
+        2.5046
+       ],
+       "no_effect_90": [
+        -2.6301,
+        2.3418
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": -1.3495,
+       "net": -1.2556,
+       "band_90": [
+        -2.8167,
+        0.5455
+       ],
+       "no_effect_90": [
+        -1.8012,
+        1.5611
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -2.7948,
+       "net": -2.1769,
+       "band_90": [
+        -4.1587,
+        -0.1812
+       ],
+       "no_effect_90": [
+        -1.9957,
+        1.9818
+       ],
+       "inside_95": false
+      }
+     },
+     "pre_inside_95": false
+    },
+    "exits": {
+     "key": "exits",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 2716.0
+     },
+     "mean": 12.672,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.763,
+       "placebos": 40,
+       "placebo_sd": 1.64,
+       "mde_80": 4.594,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.661,
+       "placebos": 40,
+       "placebo_sd": 1.639,
+       "mde_80": 4.593,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.051,
+       "placebos": 40,
+       "placebo_sd": 0.796,
+       "mde_80": 2.23,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.706,
+       "placebos": 40,
+       "placebo_sd": 1.64,
+       "mde_80": 4.596,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.064,
+       "placebos": 40,
+       "placebo_sd": 0.829,
+       "mde_80": 2.323,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.281,
+       "placebos": 40,
+       "placebo_sd": 1.531,
+       "mde_80": 4.29,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.384,
+       "placebos": 40,
+       "placebo_sd": 1.513,
+       "mde_80": 4.238,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.051,
+      "placebos": 40,
+      "placebo_sd": 0.796,
+      "mde_80": 2.23,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": 0.1188,
+       "net": 0.0298,
+       "band_90": [
+        -1.514,
+        2.0952
+       ],
+       "no_effect_90": [
+        -2.0655,
+        1.5438
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": 0.4391,
+       "net": 0.6067,
+       "band_90": [
+        -1.2648,
+        2.7103
+       ],
+       "no_effect_90": [
+        -2.1035,
+        1.8715
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": 0.5298,
+       "net": 0.368,
+       "band_90": [
+        -0.9746,
+        2.0201
+       ],
+       "no_effect_90": [
+        -1.6521,
+        1.3425
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": 0.6014,
+       "net": 0.478,
+       "band_90": [
+        -0.8947,
+        2.6121
+       ],
+       "no_effect_90": [
+        -2.1341,
+        1.3726
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    }
+   }
+  },
+  {
+   "id": "e-conveyancing-2018-2023",
+   "verdict": "hidden",
+   "grade": "hidden",
+   "grade_reasons": [],
+   "outcomes": {
+    "entries": {
+     "key": "entries",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "imputation": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      },
+      "sdid": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 19794.0
+     },
+     "mean": 14.585,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 1.067,
+       "placebos": 40,
+       "placebo_sd": 4.08,
+       "mde_80": 11.431,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.892,
+       "placebos": 40,
+       "placebo_sd": 4.092,
+       "mde_80": 11.463,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.065,
+       "placebos": 40,
+       "placebo_sd": 1.032,
+       "mde_80": 2.893,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.997,
+       "placebos": 40,
+       "placebo_sd": 4.082,
+       "mde_80": 11.435,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": -0.169,
+       "placebos": 40,
+       "placebo_sd": 1.187,
+       "mde_80": 3.326,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 1.357,
+       "placebos": 40,
+       "placebo_sd": 3.67,
+       "mde_80": 10.281,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.035,
+       "placebos": 40,
+       "placebo_sd": 9.512,
+       "mde_80": 26.65,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": -0.065,
+      "placebos": 40,
+      "placebo_sd": 1.032,
+      "mde_80": 2.893,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": -0.0754,
+       "net": -0.2898,
+       "band_90": [
+        -4.5464,
+        2.3846
+       ],
+       "no_effect_90": [
+        -2.6744,
+        4.2566
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": -0.2595,
+       "net": -0.5118,
+       "band_90": [
+        -3.3447,
+        1.6645
+       ],
+       "no_effect_90": [
+        -2.1764,
+        2.8329
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": 0.1977,
+       "net": -0.1067,
+       "band_90": [
+        -4.4782,
+        1.7423
+       ],
+       "no_effect_90": [
+        -1.849,
+        4.3715
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -0.7175,
+       "net": -0.9741,
+       "band_90": [
+        -3.9875,
+        0.8951
+       ],
+       "no_effect_90": [
+        -1.8691,
+        3.0135
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    },
+    "exits": {
+     "key": "exits",
+     "kind": "business",
+     "layer": "saturated",
+     "checks": {
+      "imputation": {
+       "estimate": null,
+       "inside_registered_90": null,
+       "same_sign": null
+      }
+     },
+     "feasible": {
+      "ok": true,
+      "reasons": [],
+      "treated_size": 19794.0
+     },
+     "mean": 12.575,
+     "layers": {
+      "twoway": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.305,
+       "placebos": 40,
+       "placebo_sd": 2.087,
+       "mde_80": 5.847,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "state_year": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.233,
+       "placebos": 40,
+       "placebo_sd": 2.096,
+       "mde_80": 5.873,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "saturated": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.051,
+       "placebos": 40,
+       "placebo_sd": 0.628,
+       "mde_80": 1.76,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "controls": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.288,
+       "placebos": 40,
+       "placebo_sd": 2.088,
+       "mde_80": 5.848,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "imputation": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.07,
+       "placebos": 40,
+       "placebo_sd": 0.851,
+       "mde_80": 2.384,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "sdid": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.645,
+       "placebos": 40,
+       "placebo_sd": 2.233,
+       "mde_80": 6.255,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      },
+      "gsynth": {
+       "estimate": null,
+       "plain": null,
+       "placebo_mean": 0.908,
+       "placebos": 40,
+       "placebo_sd": 2.414,
+       "mde_80": 6.763,
+       "p": null,
+       "interval_90": [
+        null,
+        null
+       ],
+       "interval_95": [
+        null,
+        null
+       ]
+      }
+     },
+     "registered": {
+      "estimate": null,
+      "plain": null,
+      "placebo_mean": 0.051,
+      "placebos": 40,
+      "placebo_sd": 0.628,
+      "mde_80": 1.76,
+      "p": null,
+      "interval_90": [
+       null,
+       null
+      ],
+      "interval_95": [
+       null,
+       null
+      ]
+     },
+     "own_class": {},
+     "event": {
+      "-5": {
+       "plain": -0.0997,
+       "net": 0.0605,
+       "band_90": [
+        -1.0417,
+        1.8834
+       ],
+       "no_effect_90": [
+        -1.8229,
+        1.1023
+       ],
+       "inside_95": true
+      },
+      "-4": {
+       "plain": 0.071,
+       "net": 0.1026,
+       "band_90": [
+        -0.9246,
+        1.304
+       ],
+       "no_effect_90": [
+        -1.2014,
+        1.0272
+       ],
+       "inside_95": true
+      },
+      "-3": {
+       "plain": 0.158,
+       "net": 0.2334,
+       "band_90": [
+        -0.5997,
+        2.0003
+       ],
+       "no_effect_90": [
+        -1.7669,
+        0.8332
+       ],
+       "inside_95": true
+      },
+      "-2": {
+       "plain": -0.4692,
+       "net": -0.4349,
+       "band_90": [
+        -1.58,
+        0.5568
+       ],
+       "no_effect_90": [
+        -0.9917,
+        1.1451
+       ],
+       "inside_95": true
+      }
+     },
+     "pre_inside_95": true
+    }
+   }
+  }
+ ]
+}
