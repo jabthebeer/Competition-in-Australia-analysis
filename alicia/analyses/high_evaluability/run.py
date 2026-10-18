@@ -21,7 +21,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from cases import CASES, Case, PriceSpec
+from cases import CASES, SPEC, Case, PriceSpec
 
 from alicia import anzsic
 from alicia.evaluate.did import Placebo
@@ -34,14 +34,15 @@ from alicia.pipeline.store import PROCESSED
 HERE = Path(__file__).resolve().parent
 PANEL = PROCESSED / "abs_cabee"
 CPI_CLASSES = json.loads((HERE.parents[1] / "src" / "alicia" / "data" / "cpi17_classes.json").read_text())["classes"]
-SEED = 20261015
-DRAWS = 1000
-MIN_TREATED = 100  # businesses in the treated group in the base year
-MIN_CLASS = 50  # businesses in a placebo class (treated states, base year)
-MIN_PLACEBOS = 19  # so that p can reach 0.05
-SIZE_BANDS = ((0.5, 2.0), (0.25, 4.0), (0.1, 10.0))
-EFFECT_OF_INTEREST = 5.0
-PROD_START = 2001
+# Design constants, from the batch's specification file (alicia/specs/high-evaluability-batch.json).
+SEED = SPEC.param("seed")
+DRAWS = SPEC.param("draws")
+MIN_TREATED = SPEC.param("min_treated")  # businesses in the treated group in the base year
+MIN_CLASS = SPEC.param("min_class")  # businesses in a placebo class (treated states, base year)
+MIN_PLACEBOS = SPEC.param("min_placebos")  # so that p can reach 0.05
+SIZE_BANDS = tuple(tuple(band) for band in SPEC.param("size_bands"))
+EFFECT_OF_INTEREST = SPEC.param("effect_of_interest")
+PROD_START = SPEC.param("productivity_start")
 DIVISIONS = "ABCDEFGHIJKLMNOPQRS"
 BLIND = False
 

@@ -10,7 +10,7 @@
   - productivity, tax and labour-market rules.
 - Each pass looked for reforms from about 2005 to 2026 that bear on competition or productivity and have no record.
 
-**Status:** candidates only. No register records have been created.
+**Status (updated 18 October 2026):** 102 draft register records added: 32 families plus 8 stand-alone national records (section 7). Dates were checked again before adding, and several changed (section 7.2).
 
 **Verification key (Ver.):**
 - **V:** date confirmed on an official legislation register or agency page.
@@ -144,3 +144,56 @@ Before any candidate becomes a record, its dates go through the usual check (`al
 
 - **Dates.** They were checked by research passes using official pages where reachable. Several official sites blocked direct fetching (ATO, TGA, NDIS, AER, NCVER, NSW legislation), so "P" often means a search extract of the official page. Nothing here is a finding.
 - **Hypotheses.** Effect directions are first hypotheses, to be tested.
+
+## 7. Records added (18 October 2026)
+
+All are `draft`, compiled by AI-assisted desk research; every date has a source URL. `verified.dates` is false where only a secondary source, an announcement or an unconfirmed day was found.
+
+### 7.1 What was added
+
+| Family | Records | Jurisdictions and dates (primary commencement) |
+|---|---|---|
+| Mandatory fuel price reporting | 6 | NSW 14 Jul 2016 (registration deadline; reporting start unconfirmed); NT 1 Nov 2017; QLD 3 Dec 2018; TAS 1 Sep 2020; SA 19 Mar 2021; VIC 6 Aug 2025 |
+| Next-day fuel price commitment | 2 | VIC 10 Mar 2026; NT 20 Apr 2026 |
+| Pharmacist UTI prescribing | 8 | QLD 19 Jun 2020 (day unconfirmed); NSW 15 May 2023; WA 4 Aug 2023; ACT 15 Aug 2023 (announcement); VIC 27 Oct 2023; SA and TAS 1 Mar 2024; NT 28 Oct 2024 |
+| National Energy Customer Framework | 5 | ACT and TAS 1 Jul 2012; SA 1 Feb 2013; NSW 1 Jul 2013; QLD 1 Jul 2015 |
+| Small-bar licences | 2 | WA 7 May 2007; NSW 1 Jul 2013 |
+| Mandatory e-conveyancing | 5 | NSW 1 May 2018; WA 1 Dec 2018; VIC 1 Aug 2019; SA 3 Aug 2020; QLD 20 Feb 2023 |
+| 2022 building code adoption | 8 | NSW and NT 1 Oct 2023; ACT 15 Jan 2024; VIC and QLD 1 May 2024; SA and TAS 1 Oct 2024; WA 1 May 2025 |
+| CTP insurance markets | 3 | NSW 1 Dec 2017; SA 1 Jul 2019 (price competition); ACT 1 Feb 2020 |
+| Contestable VET funding | 4 | VIC Jul 2009 (day unconfirmed); SA 1 Jul 2012; QLD 1 Jul 2013; NSW 1 Jan 2015 |
+| Commercial property duty | 3 | SA 7 Dec 2015 (three steps to 2018); ACT 6 Jun 2018; VIC 1 Jul 2024 |
+| Taxi and booked-hire licensing | 2 | QLD 1 Oct 2017; SA 8 Dec 2025 |
+| Gaming market structure | 2 | VIC 16 Aug 2012; TAS 1 Jul 2023 |
+| Liquor licence entry restrictions | 2 | NT takeaway moratorium 27 Oct 2017; VIC late-night freeze lifted 1 Jul 2023 |
+| NDIS Quality and Safeguards Commission | 8 | NSW and SA 1 Jul 2018; VIC, QLD, TAS, ACT, NT 1 Jul 2019; WA 1 Dec 2020 |
+| National health practitioner registration | 8 | 1 Jul 2010 (WA 18 Oct 2010) |
+| Port leases | 3 | Brisbane 10 Nov 2010; Darwin 16 Nov 2015; Melbourne 31 Oct 2016 |
+| Electricity full retail contestability | 2 | QLD 1 Jul 2007; TAS 1 Jul 2014 |
+| Planning and zoning | 2 | NSW employment zones 26 Apr 2023; NSW transport-oriented development 13 May 2024 |
+| National (Commonwealth) records | 24 | Company tax by turnover; instant asset write-off; small business restructuring; safe harbour; R&D Tax Incentive (2011, 2021); open banking; major bank levy; super performance test; right to disconnect; multi-employer bargaining; Same Job Same Pay; childcare fee cap; gas price cap and code; repair information; Sydney slots; 60-day dispensing; vapes; petrol retail repeal; wheat export; Sugar Code; card surcharging (2016, 2026); small amount credit caps |
+| Not yet in force, or only just | 3 | Non-compete ban (exposure draft); revitalised National Competition Policy (agreement only); EPBC reform, recorded with its announced 1 Jul 2026 start (unverified) |
+
+### 7.2 Corrections from the second date check
+
+- **NT fuel:** the register document cited for the 2017 scheme (id 6175) is the 2026 next-day amendment; the 2017 regulations are id 4617. Both were read on the NT register.
+- **NSW fuel:** the Act is the Fuel Price *Transparency* Act 2016 (assent 6 Apr 2016); the FuelCheck Order commenced 6 May 2016 with a registration deadline of 14 Jul 2016. No official date for the start of reporting was found.
+- **VIC fuel:** regulations commenced 6 Aug 2025 (not "about 26 Aug"); the public service was announced 15 Oct 2025.
+- **QLD Certificate 3 Guarantee:** 1 Jul 2013 (Minister's answer to Parliament), not 2014.
+- **ACT commercial duty:** nil duty from 6 Jun 2018 (determination DI2018-116), not 1 Jul 2018.
+- **e-conveyancing:** the ACT, Tasmania and the NT have **no mandate**, so they are clean comparisons. QLD's mandate (20 Feb 2023) is confirmed on the register.
+- **2022 building code:** QLD energy efficiency from 1 May 2024 (QBCC); its livable housing date (reported 1 Oct 2023) is unconfirmed. Tasmania did not adopt the housing energy provisions; the ACT adopted on 15 Jan 2024; the NT kept 5-star housing energy.
+- **Small amount credit:** the cost caps are in Schedule 4 (1 Jul 2013); Schedule 3 (1 Mar 2013) is the regime itself.
+- **Instant asset write-off caps:** $25,000 for turnover under $10m; $30,000 under $50m; $150,000 under $500m.
+- **Card surcharges:** the 1 Oct 2026 removal has commenced (RBA).
+
+### 7.3 Not added, and why
+
+- **SA small venue licence (2013):** commencement proclamation not found.
+- **VIC late-night licence freeze start (2008):** day not found; only the 2023 lifting is recorded.
+- **Home care packages (2017), Child Care Subsidy (2018), Cheaper Child Care (2023), energy Consumer Data Right, the Australian Domestic Gas Security Mechanism and gas reservation:** no official source with a day was at hand.
+- **NSW electricity network leases, port of Botany and Kembla, Newcastle:** close dates only from secondary sources.
+- **Section 4 "Others" row and the VIC commercial zones (2013):** lower priority or dates unconfirmed.
+
+The evaluability of each family is rated in [`evaluability_new_families.md`](evaluability_new_families.md).
+

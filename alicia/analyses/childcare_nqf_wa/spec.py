@@ -24,26 +24,28 @@ import pandas as pd
 from alicia import anzsic
 from alicia.evaluate import stagger
 from alicia.pipeline.store import PROCESSED
+from alicia.runner.spec import load
 
-LATE = "WA"
-EARLY = ["NSW", "VIC", "QLD", "SA", "TAS", "ACT", "NT"]
+# Design constants, from the specification file (alicia/specs/childcare-nqf-wa-delay-2012.json).
+SPEC = load("childcare-nqf-wa-delay-2012")
+_P = SPEC.parameters
+LATE = _P["late"]
+EARLY = _P["early"]
 OTHERS = "others"  # the early jurisdictions pooled
-NQF = pd.Timestamp("2012-01-01")  # all jurisdictions except WA
-NQF_WA = pd.Timestamp("2012-08-01")
-CHILDCARE_GROUP = "871"
-CHILDCARE_CLASS = "8710"
-EXCLUDED_DIVISIONS = {"P", "Q"}  # education and training; health care and social assistance
-LFS_SIZE = (4.0, 25.0)  # placebo groups: WA employment ('000) in this range, 2009-2011 (childcare 9.4)
-ABN_SIZE = (10.0, 150.0)  # placebo named industries: WA cancellations a year, 2009-2011
-CPI_CHILD_CARE = "115498"
-CPI_EXCLUDED_SUBGROUP = "Domestic and household services"
+NQF = pd.Timestamp(_P["nqf"])  # all jurisdictions except WA
+NQF_WA = pd.Timestamp(_P["nqf_wa"])
+CHILDCARE_GROUP = _P["childcare_group"]
+CHILDCARE_CLASS = _P["childcare_class"]
+EXCLUDED_DIVISIONS = set(_P["excluded_divisions"])  # education and training; health care and social assistance
+LFS_SIZE = tuple(_P["lfs_size"])  # placebo groups: WA employment ('000) in this range, 2009-2011 (childcare 9.4)
+ABN_SIZE = tuple(_P["abn_size"])  # placebo named industries: WA cancellations a year, 2009-2011
+CPI_CHILD_CARE = _P["cpi_child_care"]
+CPI_EXCLUDED_SUBGROUP = _P["cpi_excluded_subgroup"]
 
 # Windows: pre [pre_start, t1), on [t1, t2), off [t2, end]
-QUARTERLY = stagger.Windows(  # quarter starts: Feb 2009 survey .. May 2013 survey
-    pd.Timestamp("2009-01-01"), NQF, pd.Timestamp("2012-07-01"), pd.Timestamp("2013-04-01")
-)
-MONTHLY = stagger.Windows(pd.Timestamp("2009-01-01"), NQF, NQF_WA, pd.Timestamp("2013-07-01"))
-FAKE_YEARS = range(2, 40)  # shifts back in whole years; windows must end before January 2012
+QUARTERLY = stagger.Windows(*map(pd.Timestamp, _P["quarterly_windows"]))  # quarter starts: Feb 2009 .. May 2013 surveys
+MONTHLY = stagger.Windows(*map(pd.Timestamp, _P["monthly_windows"]))
+FAKE_YEARS = range(*_P["fake_years"])  # shifts back in whole years; windows must end before January 2012
 
 
 def quarter(t: pd.Timestamp) -> int:

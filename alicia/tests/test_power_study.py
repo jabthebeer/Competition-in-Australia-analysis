@@ -49,3 +49,24 @@ def test_placebo_assignment_marks_only_placebo_cells_in_treated_states_and_windo
     d = study.assign(study.hide(_rows(), case), case.cohorts, ["9000"])
     on = d[d["D"] == 1]
     assert set(on["cls"]) == {"9000"} and set(on["state"]) == {"WA"} and set(on["fy"]) == {2011, 2012}
+
+
+def test_fake_dates_end_before_real_exposure_and_keep_two_earlier_years(study):
+    for r in study.REFORMS:
+        case = r.case
+        for cohorts in study.date_draws(case.cohorts, case.start):
+            for fake, real in zip(cohorts, case.cohorts, strict=True):
+                assert fake.treated == real.treated
+                assert fake.first_post <= fake.last_post < real.first_post
+                assert fake.first_post - case.start >= study.MIN_PRE_FAKE
+
+
+def test_placebo_states_never_include_a_state_that_adopted(study):
+    for r in study.REFORMS:
+        real = {s for c in r.case.cohorts for s in c.treated}
+        for cohorts in study.state_draws(r.case):
+            fake = [s for c in cohorts for s in c.treated]
+            assert not set(fake) & real
+            assert len(fake) == len(set(fake))  # disjoint across cohorts
+            for c in cohorts:
+                assert not set(c.controls) & set(fake)

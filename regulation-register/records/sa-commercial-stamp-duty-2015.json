@@ -1,0 +1,81 @@
+{
+  "id": "sa-commercial-stamp-duty-2015",
+  "family": "commercial-property-transfer-tax",
+  "title": "Stamp duty on non-residential property phased out (South Australia)",
+  "jurisdiction": "SA",
+  "summary": "South Australia cut stamp duty on non-residential property transfers by a third for contracts from 7 December 2015, by two thirds from 1 July 2017, and abolished it from 1 July 2018.",
+  "instruments": [
+    {
+      "title": "Stamp Duties Act 1923 (SA)",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "s 105A"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2015-12-07",
+        "what": "Duty cut by one third",
+        "source": "https://www.revenuesa.sa.gov.au/forms-and-publications/information-circulars-and-revenue-rulings/information-circulars/ic_103",
+        "primary": true
+      },
+      {
+        "date": "2017-07-01",
+        "what": "Duty cut by two thirds",
+        "source": "https://www.revenuesa.sa.gov.au/forms-and-publications/information-circulars-and-revenue-rulings/information-circulars/ic_103",
+        "primary": false
+      },
+      {
+        "date": "2018-07-01",
+        "what": "Duty abolished",
+        "source": "https://www.revenuesa.sa.gov.au/forms-and-publications/information-circulars-and-revenue-rulings/information-circulars/ic_103",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "enhancing",
+  "direction_rationale": "Stamp duty on commercial and industrial property raises the cost of moving premises; abolishing or replacing it should make it cheaper for firms to relocate, expand and match to better sites.",
+  "direction_sources": [],
+  "channels": [
+    "barriers",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "6712",
+      "name": "Non-Residential Property Operators",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6720",
+      "name": "Real Estate Services",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Other states that kept commercial stamp duty",
+  "confounders": [
+    "commercial property cycle and interest rates"
+  ],
+  "price_series": null,
+  "notes": "Three steps allow a dose-response design. The property types covered at each step are to be checked on review.",
+  "verified": {
+    "dates": true,
+    "notes": "Dates from RevenueSA information circular 103."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. Primary commencement: the first cut (7 December 2015)."
+  }
+}

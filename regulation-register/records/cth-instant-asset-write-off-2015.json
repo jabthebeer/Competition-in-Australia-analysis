@@ -1,0 +1,105 @@
+{
+  "id": "cth-instant-asset-write-off-2015",
+  "family": "investment-incentives",
+  "title": "Instant asset write-off threshold increases and temporary full expensing",
+  "jurisdiction": "CTH",
+  "summary": "The instant asset write-off rose to $20,000 from 12 May 2015, $25,000 (turnover under $10 million) from 29 January 2019, $30,000 (under $50 million) from 2 April 2019 and $150,000 (under $500 million) from 12 March 2020; temporary full expensing applied from 6 October 2020 to 30 June 2023.",
+  "instruments": [
+    {
+      "title": "Income Tax Assessment Act 1997, Subdivision 328-D (simplified depreciation), as amended",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "amending Acts not checked"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2015-05-12",
+        "what": "Threshold $20,000 (from 7:30 pm, Budget night)",
+        "source": "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/interaction-of-tax-depreciation-incentives",
+        "primary": true
+      },
+      {
+        "date": "2019-01-29",
+        "what": "Threshold $25,000",
+        "source": "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/interaction-of-tax-depreciation-incentives",
+        "primary": false
+      },
+      {
+        "date": "2019-04-02",
+        "what": "Threshold $30,000",
+        "source": "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/interaction-of-tax-depreciation-incentives",
+        "primary": false
+      },
+      {
+        "date": "2020-03-12",
+        "what": "Threshold $150,000",
+        "source": "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/interaction-of-tax-depreciation-incentives",
+        "primary": false
+      },
+      {
+        "date": "2020-10-06",
+        "what": "Temporary full expensing (to 30 June 2023)",
+        "source": "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/interaction-of-tax-depreciation-incentives",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "enhancing",
+  "direction_rationale": "Immediate deduction lowers the cost of capital for small firms, raising investment and productivity, though some investment may only be brought forward.",
+  "direction_sources": [
+    "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/depreciation-and-capital-expenses-and-allowances/interaction-of-tax-depreciation-incentives"
+  ],
+  "channels": [
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "A",
+      "name": "Agriculture, Forestry and Fishing",
+      "exposure": "indirect"
+    },
+    {
+      "anzsic": "C",
+      "name": "Manufacturing",
+      "exposure": "indirect"
+    },
+    {
+      "anzsic": "E",
+      "name": "Construction",
+      "exposure": "indirect"
+    },
+    {
+      "anzsic": "I",
+      "name": "Transport, Postal and Warehousing",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Firms either side of the turnover caps and asset-cost thresholds (firm-level data); no state variation",
+  "confounders": [
+    "company tax rate changes 2016-2022",
+    "COVID-19 support 2020-21"
+  ],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Thresholds and dates from the ATO page on depreciation incentives; turnover caps from the ATO depreciating assets guide 2021 (search extract)."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  }
+}

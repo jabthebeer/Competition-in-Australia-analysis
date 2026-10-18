@@ -30,32 +30,36 @@ import pandas as pd
 from alicia import anzsic
 from alicia.evaluate.did import event_study, twfe
 from alicia.pipeline.store import PROCESSED
+from alicia.runner.spec import load
 
-TREATED = "WA"
-CONTROLS = ["NSW", "VIC", "QLD", "TAS", "ACT", "NT"]  # SA excluded: Adelaide CBD trading change in Apr 2012
-LARGE_STATES = ["NSW", "VIC", "QLD"]  # B: comparison states whose LFS group estimates are reliable
-GEO_UNITS = ["WA", "NSW", "VIC", "QLD", "TAS", "NT"]  # C: ACT has no rest-of-territory area
-REFORM = pd.Timestamp("2010-11-01")
-SUNDAY_TRADING = pd.Timestamp("2012-08-26")  # next step of the reform: post-periods stop before it
-FAKE_FROM = pd.Timestamp("1995-01-01")  # fake event dates from here (A, B)
+# Design constants, from the specification file (alicia/specs/wa-trading-hours-weeknight-2010-new-data.json).
+SPEC = load("wa-trading-hours-weeknight-2010-new-data")
+_P = SPEC.parameters
+TREATED = _P["treated"]
+CONTROLS = _P["controls"]  # SA excluded: Adelaide CBD trading change in Apr 2012
+LARGE_STATES = _P["large_states"]  # B: comparison states whose LFS group estimates are reliable
+GEO_UNITS = _P["geo_units"]  # C: ACT has no rest-of-territory area
+REFORM = pd.Timestamp(_P["reform"])
+SUNDAY_TRADING = pd.Timestamp(_P["sunday_trading"])  # next step of the reform: post-periods stop before it
+FAKE_FROM = pd.Timestamp(_P["fake_from"])  # fake event dates from here (A, B)
 
 # Design A: Retail Trade industries (panel codes; see alicia.pipeline.concord)
-A_TREATED = ["RT01", "4251", "4260"]  # supermarkets and grocery stores, clothing, department stores
-A_FOOD = ["RT14", "4512"]  # cafes, restaurants and catering; takeaway food
-A_OTHER = ["RT03", "RT04", "RT05", "RT06", "RT08", "RT11", "RT13", "4123", "4244", "4271"]  # rest of retail
-A_SHARE = ("RT01", "RT03")  # supermarkets vs other specialised food retailing (butchers, bakers, ...)
+A_TREATED = _P["a_treated"]  # supermarkets and grocery stores, clothing, department stores
+A_FOOD = _P["a_food"]  # cafes, restaurants and catering; takeaway food
+A_OTHER = _P["a_other"]  # rest of retail
+A_SHARE = tuple(_P["a_share"])  # supermarkets vs other specialised food retailing (butchers, bakers, ...)
 # Design B: Labour Force ANZSIC groups (industry of main job)
-B_TREATED = ["411", "425", "426"]  # supermarket and grocery; clothing, footwear, accessories; department stores
-B_FOOD = ["451"]  # cafes, restaurants and takeaway food services
+B_TREATED = _P["b_treated"]  # supermarket and grocery; clothing, footwear, accessories; department stores
+B_FOOD = _P["b_food"]  # cafes, restaurants and takeaway food services
 # Design C: CABEE divisions and areas
-C_RETAIL = "G"
-C_EXCLUDED = {"G", "H"}  # retail, and accommodation and food services (evening trade may move with it)
-PERTH_SA4 = ["503", "504", "505", "506", "507"]  # Perth - Inner, North East, North West, South East, South West
-MANDURAH_SA4 = "502"  # in Greater Perth but outside the trading-hours metropolitan area: excluded (main)
-WA_OUTBACK_SA4 = ["508", "510", "511"]  # 2011 code 508 (WA - Outback) split into 510 and 511 in 2016
-C_FLOOR = 1000  # placebo cells need this many businesses in both the capital and the rest (June 2010)
-SMALL = ["non-employing", "1-4 employees", "5-19 employees"]
-LARGER = ["20-199 employees", "200+ employees"]
+C_RETAIL = _P["c_retail"]
+C_EXCLUDED = set(_P["c_excluded"])  # retail, and accommodation and food services (evening trade may move with it)
+PERTH_SA4 = _P["perth_sa4"]  # Perth - Inner, North East, North West, South East, South West
+MANDURAH_SA4 = _P["mandurah_sa4"]  # in Greater Perth but outside the trading-hours metropolitan area: excluded (main)
+WA_OUTBACK_SA4 = _P["wa_outback_sa4"]  # 2011 code 508 (WA - Outback) split into 510 and 511 in 2016
+C_FLOOR = _P["c_floor"]  # placebo cells need this many businesses in both the capital and the rest (June 2010)
+SMALL = _P["small"]
+LARGER = _P["larger"]
 
 
 @dataclass(frozen=True)
@@ -92,9 +96,14 @@ class Design:
         return times[times.index(self.event) - self.gap]
 
 
-A = Design("A", REFORM, pre=24, gap=4, post=21, block=3)  # Jul 2008-Jun 2010 | Jul-Oct 2010 | Nov 2010-Jul 2012
-B = Design("B", pd.Timestamp("2010-10-01"), pre=24, gap=1, post=7)  # Aug 2004-May 2010 | Aug 2010 | Nov 2010-May 2012
-C = Design("C", pd.Timestamp("2011-06-30"), pre=2, gap=0, post=2)  # Jun 2009, Jun 2010 | Jun 2011, Jun 2012
+def _design(key: str) -> Design:
+    w = SPEC.outcome(key).window
+    return Design(key, pd.Timestamp(w.event), pre=w.pre, gap=w.gap, post=w.post, block=w.block)
+
+
+A = _design("A")  # Jul 2008-Jun 2010 | Jul-Oct 2010 | Nov 2010-Jul 2012 (3-month bins)
+B = _design("B")  # Aug 2004-May 2010 | Aug 2010 | Nov 2010-May 2012
+C = _design("C")  # Jun 2009, Jun 2010 | Jun 2011, Jun 2012
 
 
 def _log(x: pd.Series) -> pd.Series:

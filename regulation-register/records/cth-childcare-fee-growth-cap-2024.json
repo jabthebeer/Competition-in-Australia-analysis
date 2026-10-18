@@ -1,0 +1,65 @@
+{
+  "id": "cth-childcare-fee-growth-cap-2024",
+  "family": "childcare-subsidy",
+  "title": "Fee growth cap for services taking the early childhood worker retention payment",
+  "jurisdiction": "CTH",
+  "summary": "Services that opt into the worker retention payment must limit fee growth to 4.4% from 8 August 2024 to 7 August 2025, then 4.2%.",
+  "instruments": [
+    {
+      "title": "Early childhood worker retention payment grant conditions",
+      "register_url": null,
+      "register_id": null,
+      "role": "other",
+      "provisions": "grant opportunity, not legislation"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2024-08-08",
+        "what": "Fee growth cap applies to opted-in services",
+        "source": "https://www.education.gov.au/early-childhood/providers/workforce/worker-retention-payment",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "mixed",
+  "direction_rationale": "A cap restrains fee growth for opted-in services but may slow expansion and entry where costs rise faster.",
+  "direction_sources": [
+    "https://www.education.gov.au/early-childhood/providers/workforce/worker-retention-payment"
+  ],
+  "channels": [
+    "prices-market-share"
+  ],
+  "industries": [
+    {
+      "anzsic": "8710",
+      "name": "Child Care Services",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": "Opted-in versus other services",
+  "confounders": [
+    "Cheaper Child Care subsidy increase 10 Jul 2023"
+  ],
+  "price_series": "Child care",
+  "notes": "Child Care Subsidy (2 July 2018) and Cheaper Child Care (10 July 2023) records need official sources before they are added.",
+  "verified": {
+    "dates": true,
+    "notes": "Dates from the Department of Education's worker retention payment page."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  }
+}

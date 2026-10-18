@@ -4,7 +4,7 @@ Candidate Commonwealth, state and territory changes whose effects on competition
 
 Browse it with the menu explorer (`uv run alicia explorer` in `alicia/`) or the command line (`uv run alicia menu`).
 
-> **Status (15 October 2026):** 69 records, all `draft`. They were compiled by AI-assisted desk research from the sources each record cites and have not yet been checked by a person. The `direction` of each change is a hypothesis to be tested.
+> **Status (18 October 2026):** 171 records, all `draft` (102 added on 18 October from the [legislation gap scan](../docs/legislation_gap_scan.md)). Records not yet in force have no commencement and are screened as "not yet" (pre-registration candidates). They were compiled by AI-assisted desk research from the sources each record cites and have not yet been checked by a person. The `direction` of each change is a hypothesis to be tested.
 
 ## What a record holds
 
@@ -48,11 +48,11 @@ A record's `direction` is a hypothesis. What an evaluation found is kept separat
 
 `reports/effective_dates_<date>.json` is the output of `alicia dates --all --json` on that date: each record's effective date, timing, register status and issues, with what each register returned. Federal Register content in these reports is CC BY 4.0: "Sourced from the Federal Register of Legislation" at each entry's `retrieved_at` date.
 
-Latest run (15 October 2026):
+Latest run (18 October 2026, `effective_dates_2026-10-18.json`, 171 records):
 
 | Status | Records | Meaning |
 |---|---|---|
-| confirmed | 19 | A register date matches the effective date |
-| differs | 1 | The register's commencement dates don't include the effective date. Default market offer: the instrument commenced on 5 April 2019, while the price caps applied from 1 July 2019 |
-| unconfirmed | 48 | Nothing readable to check against (NSW and SA registers block automated requests; other records lack a register link) |
-| not-commenced | 1 | |
+| confirmed | 38 | A register date matches the effective date |
+| differs | 7 | The register's commencement dates don't include the effective date. In each case the rule applied later than the instrument commenced, and the record explains it: default market offer (caps from 1 July 2019), card surcharging standard, open banking phasing, major bank levy, R&D Tax Incentive income years, Same Job Same Pay orders, super performance test results |
+| unconfirmed | 123 | Nothing readable to check against: NSW and SA registers block automated requests, and many new records are programs, protocols or guidelines with no register entry |
+| not-commenced | 3 | No commencement: the non-compete ban and the National Competition Policy (pre-registration candidates), and Queensland's non-adoption of automatic mutual recognition |

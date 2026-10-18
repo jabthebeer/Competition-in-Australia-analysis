@@ -1,0 +1,78 @@
+{
+  "id": "cth-60-day-dispensing-2023",
+  "family": "pharmacy-regulation",
+  "title": "60-day dispensing of PBS medicines",
+  "jurisdiction": "CTH",
+  "summary": "Prescribers may order two months' supply of eligible PBS medicines, phased in by medicine on 1 September 2023, 1 March 2024 and 1 September 2024.",
+  "instruments": [
+    {
+      "title": "PBS listing changes for 60-day prescriptions",
+      "register_url": null,
+      "register_id": null,
+      "role": "other",
+      "provisions": "three tranches of medicines"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2023-09-01",
+        "what": "First tranche of medicines",
+        "source": "https://www.health.gov.au/sites/default/files/2024-11/information-kit-for-prescribers-60-day-prescriptions.pdf",
+        "primary": true
+      },
+      {
+        "date": "2024-03-01",
+        "what": "Second tranche",
+        "source": "https://www.health.gov.au/sites/default/files/2024-11/information-kit-for-prescribers-60-day-prescriptions.pdf",
+        "primary": false
+      },
+      {
+        "date": "2024-09-01",
+        "what": "Third tranche",
+        "source": "https://www.health.gov.au/sites/default/files/2024-11/information-kit-for-prescribers-60-day-prescriptions.pdf",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "unclear",
+  "direction_rationale": "Fewer dispensing events cut pharmacy revenue; with entry still limited by location rules, the effect on pharmacy numbers and services is unclear.",
+  "direction_sources": [
+    "https://www.health.gov.au/sites/default/files/2024-11/information-kit-for-prescribers-60-day-prescriptions.pdf"
+  ],
+  "channels": [
+    "ability-incentive",
+    "prices-market-share"
+  ],
+  "industries": [
+    {
+      "anzsic": "4271",
+      "name": "Pharmaceutical, Cosmetic and Toiletry Goods Retailing",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": "Tranche timing by medicine; pharmacies' exposure to tranche medicines",
+  "confounders": [
+    "Eighth Community Pharmacy Agreement from 1 Jul 2024"
+  ],
+  "price_series": "Pharmaceutical products",
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Dates from the Department of Health information kit for prescribers."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  }
+}

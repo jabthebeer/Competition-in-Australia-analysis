@@ -33,7 +33,7 @@ First case (all Australian Bureau of Statistics, CC BY 4.0). Downloads are cache
 | Data | Source | Used for |
 |---|---|---|
 | Counts of Australian Businesses, including Entries and Exits (8165.0): ANZSIC class × state × employment size cubes | 15 releases, Jun 2007–Jun 2009 to Jul 2021–Jun 2025 (the registered analyses use the first 10); each release URL, publication date and SHA-256 are in `data/processed/abs_cabee/cabee_manifest.json` | Entry and exit rates |
-| Consumer Price Index, 17th series | ABS Data API, dataflow `ABS,CPI,1.1.0` <https://data.api.abs.gov.au/rest/data/ABS,CPI,1.1.0/…> (index numbers by capital city, quarterly) | Relative food and clothing prices |
+| Consumer Price Index, 17th series | ABS Data API, dataflow `ABS,CPI,1.1.0` <https://data.api.abs.gov.au/rest/data/ABS,CPI,1.1.0/…> (index numbers by capital city, quarterly; 2001-Q1 to 2025-Q3, the last quarter of the quarterly series; retrieved 18 Oct 2026 for the power study) | Relative food and clothing prices; all 87 expenditure classes in the price power study (`analyses/power_study/prices.py`) |
 | Australian National Accounts: State Accounts (5220.0), 2024-25 | <https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-state-accounts/2024-25-financial-year> (tables 5220002–5220009) | Retail gross value added (chain volume) and compensation of employees |
 | Labour Force, Australia, Detailed, March 2026, table 05 | <https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia-detailed/mar-2026/6291005.xlsx> | Employment by state and industry division |
 

@@ -1,0 +1,245 @@
+{
+  "id": "wa-trading-hours-weeknight-2010-new-data",
+  "title": "Perth 9pm weeknight trading (1 November 2010): re-evaluation with the expanded data pipeline",
+  "analysis": "wa_weeknight_2010",
+  "plan": "docs/pap_wa_weeknight_2010.md",
+  "registered_on": "2026-10-18",
+  "follows": "wa-trading-hours-2010-2012",
+  "records": [
+    "wa-trading-hours-weeknight-2010"
+  ],
+  "evaluations": [
+    "wa-trading-hours-weeknight-2010-new-data"
+  ],
+  "hypothesis": "enhancing",
+  "outcomes": [
+    {
+      "key": "A",
+      "label": "Retail turnover of the general retail subgroups (supermarkets and grocery, clothing, department stores)",
+      "role": "primary",
+      "source": "data/processed/abs_retail/turnover_state.parquet (ABS Retail Trade, seasonally adjusted)",
+      "measure": "100 x log turnover",
+      "frequency": "monthly",
+      "unit": "state",
+      "industries": [
+        "RT01",
+        "4251",
+        "4260"
+      ],
+      "window": {
+        "event": "2010-11-01",
+        "pre": 24,
+        "gap": 4,
+        "post": 21,
+        "block": 3
+      },
+      "estimator": "difference-in-differences, state and month fixed effects, one treated state",
+      "placebo_pools": [
+        {
+          "kind": "dates",
+          "rule": "every unit at fake event dates from January 1995 whose windows end before the reform"
+        },
+        {
+          "kind": "units",
+          "rule": "each comparison state at the true date"
+        }
+      ],
+      "notes": [
+        "Comparison states: those with a complete series from 1992 to the end of the window."
+      ]
+    },
+    {
+      "key": "B",
+      "label": "Hours actually worked in supermarket and grocery, clothing and department stores",
+      "role": "descriptive",
+      "source": "data/processed/abs_lfs/industry_state_quarter.parquet (ABS Labour Force EQ06)",
+      "measure": "100 x log hours actually worked",
+      "frequency": "quarterly",
+      "unit": "state",
+      "industries": [
+        "411",
+        "425",
+        "426"
+      ],
+      "window": {
+        "event": "2010-10-01",
+        "pre": 24,
+        "gap": 1,
+        "post": 7,
+        "block": 1
+      },
+      "estimator": "difference-in-differences, WA against NSW, Victoria and Queensland",
+      "placebo_pools": [
+        {
+          "kind": "dates",
+          "rule": "every unit at fake event dates from January 1995"
+        },
+        {
+          "kind": "units",
+          "rule": "each comparison state at the true date"
+        }
+      ]
+    },
+    {
+      "key": "C",
+      "label": "Retail businesses by place: metropolitan Perth against the rest of WA",
+      "role": "primary",
+      "source": "data/processed/abs_cabee_local (CABEE businesses by division x SA2, 30 June 2009-2012)",
+      "measure": "capital minus rest-of-state gap in log retail businesses, minus the same gap for other industries",
+      "frequency": "annual",
+      "unit": "state (capital city vs rest of state)",
+      "industries": [
+        "G"
+      ],
+      "window": {
+        "event": "2011-06-30",
+        "pre": 2,
+        "gap": 0,
+        "post": 2,
+        "block": 1
+      },
+      "estimator": "difference-in-differences against the same contrast in comparison states",
+      "placebo_pools": [
+        {
+          "kind": "industries",
+          "rule": "every other division (not G or H) in every state with at least 1,000 businesses in both parts at 30 June 2010"
+        },
+        {
+          "kind": "units",
+          "rule": "retail in each comparison state"
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "name": "design",
+      "kind": "design",
+      "script": "design_review.py",
+      "writes": [
+        "analyses/wa_weeknight_2010/design.json"
+      ],
+      "blind": true
+    },
+    {
+      "name": "dry-run",
+      "kind": "dry-run",
+      "script": "estimate.py",
+      "args": [
+        "--blind"
+      ],
+      "writes": [
+        "analyses/wa_weeknight_2010/estimate_blind.json"
+      ],
+      "blind": true
+    },
+    {
+      "name": "estimate",
+      "kind": "estimate",
+      "script": "estimate.py",
+      "writes": [
+        "analyses/wa_weeknight_2010/estimate.json"
+      ]
+    },
+    {
+      "name": "evaluation",
+      "kind": "evaluation",
+      "script": "evaluation.py",
+      "writes": [
+        "../regulation-register/evaluations/wa-trading-hours-weeknight-2010-new-data.json"
+      ]
+    }
+  ],
+  "parameters": {
+    "treated": "WA",
+    "controls": [
+      "NSW",
+      "VIC",
+      "QLD",
+      "TAS",
+      "ACT",
+      "NT"
+    ],
+    "large_states": [
+      "NSW",
+      "VIC",
+      "QLD"
+    ],
+    "geo_units": [
+      "WA",
+      "NSW",
+      "VIC",
+      "QLD",
+      "TAS",
+      "NT"
+    ],
+    "reform": "2010-11-01",
+    "sunday_trading": "2012-08-26",
+    "fake_from": "1995-01-01",
+    "a_treated": [
+      "RT01",
+      "4251",
+      "4260"
+    ],
+    "a_food": [
+      "RT14",
+      "4512"
+    ],
+    "a_other": [
+      "RT03",
+      "RT04",
+      "RT05",
+      "RT06",
+      "RT08",
+      "RT11",
+      "RT13",
+      "4123",
+      "4244",
+      "4271"
+    ],
+    "a_share": [
+      "RT01",
+      "RT03"
+    ],
+    "b_treated": [
+      "411",
+      "425",
+      "426"
+    ],
+    "b_food": [
+      "451"
+    ],
+    "c_retail": "G",
+    "c_excluded": [
+      "G",
+      "H"
+    ],
+    "perth_sa4": [
+      "503",
+      "504",
+      "505",
+      "506",
+      "507"
+    ],
+    "mandurah_sa4": "502",
+    "wa_outback_sa4": [
+      "508",
+      "510",
+      "511"
+    ],
+    "c_floor": 1000,
+    "small": [
+      "non-employing",
+      "1-4 employees",
+      "5-19 employees"
+    ],
+    "larger": [
+      "20-199 employees",
+      "200+ employees"
+    ]
+  },
+  "notes": [
+    "SA is excluded from the comparison states: the Adelaide CBD trading change of April 2012.",
+    "Post periods stop before Sunday trading (26 August 2012). Mandurah is in Greater Perth but outside the trading-hours area, so it is excluded in the main design."
+  ]
+}

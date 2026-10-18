@@ -1,0 +1,86 @@
+{
+  "id": "cth-cdr-open-banking-2020",
+  "family": "consumer-data-right",
+  "title": "Consumer Data Right: open banking",
+  "jurisdiction": "CTH",
+  "summary": "The four major banks had to share consumer-authorised data on cards and deposit accounts from 1 July 2020 and on mortgages from 1 November 2020; other banks followed from 1 July 2021.",
+  "instruments": [
+    {
+      "title": "Treasury Laws Amendment (Consumer Data Right) Act 2019",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "Competition and Consumer Act 2010 Part IVD"
+    },
+    {
+      "title": "Competition and Consumer (Consumer Data Right) Rules 2020",
+      "register_url": null,
+      "register_id": null,
+      "role": "regulation",
+      "provisions": "phasing schedule"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2020-07-01",
+        "what": "Major banks: phase 1 products (cards, deposit and transaction accounts)",
+        "source": "https://www.cdr.gov.au/sites/default/files/2021-01/CDR%20phasing%20table%20-%20January%202021.pdf",
+        "primary": true
+      },
+      {
+        "date": "2020-11-01",
+        "what": "Major banks: phase 2 products (including mortgages)",
+        "source": "https://www.cdr.gov.au/sites/default/files/2021-01/CDR%20phasing%20table%20-%20January%202021.pdf",
+        "primary": false
+      },
+      {
+        "date": "2021-07-01",
+        "what": "Non-major banks: phase 1 products",
+        "source": "https://www.cdr.gov.au/sites/default/files/2021-01/CDR%20phasing%20table%20-%20January%202021.pdf",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "enhancing",
+  "direction_rationale": "Portable account data lower search and switching costs, so customers can compare offers and move to challengers.",
+  "direction_sources": [
+    "https://www.cdr.gov.au/rollout"
+  ],
+  "channels": [
+    "consumer-choice",
+    "prices-market-share"
+  ],
+  "industries": [
+    {
+      "anzsic": "6221",
+      "name": "Banking",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": "Major versus non-major banks during the year between their start dates",
+  "confounders": [
+    "COVID-19 and cash rate cuts 2020",
+    "Term Funding Facility 2020-21"
+  ],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Dates from the CDR phasing table (January 2021)."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. 'alicia dates' reports 'differs': the Rules' own commencement is not dated in the as-made text; data-sharing obligations for the major banks began on 1 July 2020 under the Rules' phasing schedule, which is the effective date used."
+  }
+}

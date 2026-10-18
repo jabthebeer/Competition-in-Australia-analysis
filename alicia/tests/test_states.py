@@ -115,6 +115,19 @@ def test_tasmania_commencement_table(client):
     assert all("Proclamation" not in c.what for c in r.commencements)
 
 
+def test_tasmania_single_row_table_is_an_object():
+    one = dict(TAS["body"], data=TAS["body"]["data"][0])
+
+    def single(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=one)
+
+    title = TAS["body"]["data"][0]["Commencement.Source Title"]
+    title = title["__value__"] if isinstance(title, dict) else title
+    with make_client(transport=httpx.MockTransport(single)) as c:
+        r = Tasmania(sleep=no_sleep).lookup(inst(title), c)
+    assert r.commencements or r.assent_or_made
+
+
 def test_act_commencement_table_and_notified_date(client):
     r = AustralianCapitalTerritory(sleep=no_sleep).lookup(
         inst(

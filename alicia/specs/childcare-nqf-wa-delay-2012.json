@@ -1,0 +1,265 @@
+{
+  "id": "childcare-nqf-wa-delay-2012",
+  "title": "National Quality Framework for childcare in WA: the seven-month delay, with monthly and quarterly data",
+  "analysis": "childcare_nqf_wa",
+  "plan": "docs/pap_childcare_nqf_wa.md",
+  "registered_on": "2026-10-18",
+  "follows": "childcare-nqf-2012",
+  "records": [
+    "cth-nqf-childcare-2012",
+    "wa-nqf-childcare-2012"
+  ],
+  "evaluations": [
+    "childcare-nqf-wa-delay-2012"
+  ],
+  "hypothesis": "weakening",
+  "outcomes": [
+    {
+      "key": "exits",
+      "label": "Childcare-named businesses' share of named-business ABN cancellations (%)",
+      "role": "primary",
+      "source": "data/processed/abr_abn (ABN Bulk Extract, 14 Oct 2026; industry inferred from business names)",
+      "measure": "share of cancellations",
+      "frequency": "monthly",
+      "unit": "WA vs the other seven jurisdictions pooled",
+      "industries": [
+        "8710"
+      ],
+      "window": {
+        "event": "2012-01-01",
+        "pre": 36,
+        "gap": 0,
+        "post": 19,
+        "block": 1
+      },
+      "estimator": "on-off difference-in-differences (alicia.evaluate.stagger): pooled, early and late",
+      "placebo_pools": [
+        {
+          "kind": "industries",
+          "rule": "named industries outside divisions P and Q with 10-150 WA cancellations a year (2009-2011)"
+        },
+        {
+          "kind": "dates",
+          "rule": "childcare itself at fake dates: the same windows shifted back 2 or more whole years, whole window before January 2012"
+        }
+      ]
+    },
+    {
+      "key": "prices",
+      "label": "100 x log(Child care CPI / All groups CPI), Perth vs the other capitals",
+      "role": "primary",
+      "source": "ABS CPI 17th series",
+      "measure": "relative price",
+      "frequency": "quarterly",
+      "unit": "capital city",
+      "window": {
+        "event": "2012-01-01",
+        "pre": 12,
+        "gap": 0,
+        "post": 6,
+        "block": 1
+      },
+      "estimator": "on-off difference-in-differences; detrended variant required (decision E-31)",
+      "placebo_pools": [
+        {
+          "kind": "cpi-classes",
+          "rule": "CPI classes outside Domestic and household services"
+        },
+        {
+          "kind": "dates",
+          "rule": "childcare itself at fake dates: the same windows shifted back 2 or more whole years, whole window before January 2012"
+        }
+      ],
+      "notes": [
+        "Kept as a primary because it is the only outcome precise enough to detect a plausible effect; it does not set the verdict."
+      ]
+    },
+    {
+      "key": "entries",
+      "label": "Childcare-named share of ABNs active since each month (survivors)",
+      "role": "secondary",
+      "source": "data/processed/abr_abn",
+      "measure": "share of active ABNs by start month",
+      "frequency": "monthly",
+      "unit": "WA vs the other seven jurisdictions pooled",
+      "industries": [
+        "8710"
+      ],
+      "window": {
+        "event": "2012-01-01",
+        "pre": 36,
+        "gap": 0,
+        "post": 19,
+        "block": 1
+      },
+      "estimator": "on-off difference-in-differences",
+      "placebo_pools": [
+        {
+          "kind": "industries",
+          "rule": "named industries as for exits"
+        },
+        {
+          "kind": "dates",
+          "rule": "childcare itself at fake dates: the same windows shifted back 2 or more whole years, whole window before January 2012"
+        }
+      ]
+    },
+    {
+      "key": "hours",
+      "label": "Hours actually worked, ANZSIC group 871 Child care services",
+      "role": "descriptive",
+      "source": "data/processed/abs_lfs/industry_state_quarter.parquet (LFS EQ06)",
+      "measure": "100 x log hours",
+      "frequency": "quarterly",
+      "unit": "WA vs the other seven jurisdictions pooled",
+      "industries": [
+        "871"
+      ],
+      "window": {
+        "event": "2012-01-01",
+        "pre": 12,
+        "gap": 0,
+        "post": 6,
+        "block": 1
+      },
+      "estimator": "on-off difference-in-differences",
+      "placebo_pools": [
+        {
+          "kind": "industries",
+          "rule": "ANZSIC groups with 4,000-25,000 WA workers (2009-2011), outside P and Q"
+        },
+        {
+          "kind": "dates",
+          "rule": "childcare itself at fake dates: the same windows shifted back 2 or more whole years, whole window before January 2012"
+        }
+      ]
+    },
+    {
+      "key": "employment",
+      "label": "Employed persons, ANZSIC group 871",
+      "role": "descriptive",
+      "source": "data/processed/abs_lfs/industry_state_quarter.parquet (LFS EQ06)",
+      "measure": "100 x log employed",
+      "frequency": "quarterly",
+      "unit": "WA vs the other seven jurisdictions pooled",
+      "industries": [
+        "871"
+      ],
+      "window": {
+        "event": "2012-01-01",
+        "pre": 12,
+        "gap": 0,
+        "post": 6,
+        "block": 1
+      },
+      "estimator": "on-off difference-in-differences",
+      "placebo_pools": [
+        {
+          "kind": "industries",
+          "rule": "as for hours"
+        },
+        {
+          "kind": "dates",
+          "rule": "childcare itself at fake dates: the same windows shifted back 2 or more whole years, whole window before January 2012"
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "name": "design",
+      "kind": "design",
+      "script": "design_review.py",
+      "writes": [
+        "analyses/childcare_nqf_wa/design.json"
+      ],
+      "blind": true
+    },
+    {
+      "name": "dry-run",
+      "kind": "dry-run",
+      "script": "estimate.py",
+      "args": [
+        "--blind"
+      ],
+      "writes": [
+        "analyses/childcare_nqf_wa/estimate_blind.json"
+      ],
+      "blind": true
+    },
+    {
+      "name": "estimate",
+      "kind": "estimate",
+      "script": "estimate.py",
+      "writes": [
+        "analyses/childcare_nqf_wa/estimate.json"
+      ]
+    },
+    {
+      "name": "paths",
+      "kind": "derived",
+      "script": "paths.py",
+      "writes": [
+        "analyses/childcare_nqf_wa/paths.json"
+      ]
+    },
+    {
+      "name": "evaluation",
+      "kind": "evaluation",
+      "script": "evaluation.py",
+      "writes": [
+        "../regulation-register/evaluations/childcare-nqf-wa-delay-2012.json"
+      ]
+    }
+  ],
+  "parameters": {
+    "late": "WA",
+    "early": [
+      "NSW",
+      "VIC",
+      "QLD",
+      "SA",
+      "TAS",
+      "ACT",
+      "NT"
+    ],
+    "nqf": "2012-01-01",
+    "nqf_wa": "2012-08-01",
+    "childcare_group": "871",
+    "childcare_class": "8710",
+    "excluded_divisions": [
+      "P",
+      "Q"
+    ],
+    "lfs_size": [
+      4.0,
+      25.0
+    ],
+    "abn_size": [
+      10.0,
+      150.0
+    ],
+    "cpi_child_care": "115498",
+    "cpi_excluded_subgroup": "Domestic and household services",
+    "quarterly_windows": [
+      "2009-01-01",
+      "2012-01-01",
+      "2012-07-01",
+      "2013-04-01"
+    ],
+    "monthly_windows": [
+      "2009-01-01",
+      "2012-01-01",
+      "2012-08-01",
+      "2013-07-01"
+    ],
+    "fake_years": [
+      2,
+      40
+    ]
+  },
+  "notes": [
+    "Windows: pre [pre_start, t1), on [t1, t2), off [t2, end]; quarter starts for quarterly outcomes.",
+    "fake_years is a half-open range of whole-year shifts."
+  ]
+}

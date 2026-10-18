@@ -1,0 +1,264 @@
+{
+  "id": "wa-trading-hours-2010-2012",
+  "title": "Perth retail trading-hours deregulation (2010 weeknights and precincts; 2012 Sundays)",
+  "analysis": "wa_trading_hours",
+  "plan": "docs/pap_wa_trading_hours.md",
+  "registered_on": "2026-10-15",
+  "follows": null,
+  "records": [
+    "wa-trading-hours-weeknight-2010",
+    "wa-trading-hours-sunday-2012"
+  ],
+  "evaluations": [
+    "wa-trading-hours-2010-2012"
+  ],
+  "hypothesis": "enhancing",
+  "outcomes": [
+    {
+      "key": "entries",
+      "label": "Entry rate, entries per 100 businesses operating at the start of the year",
+      "role": "primary",
+      "source": "data/processed/abs_cabee/cabee_class_state_fy.csv.gz (own-release vintage)",
+      "measure": "entries",
+      "frequency": "financial-year",
+      "unit": "state",
+      "industries": [
+        "4110",
+        "4251",
+        "4260"
+      ],
+      "cohorts": [
+        {
+          "treated": [
+            "WA"
+          ],
+          "first_post": 2011,
+          "last_post": 2018,
+          "controls": [
+            "NSW",
+            "VIC",
+            "QLD",
+            "TAS",
+            "ACT",
+            "NT"
+          ]
+        }
+      ],
+      "estimator": "two-way fixed effects (state, year) difference-in-differences net of the mean placebo-industry estimate",
+      "controls": [],
+      "placebo_pools": [
+        {
+          "kind": "industries",
+          "rule": "random groups of 3 ANZSIC classes outside division G, each with at least 50 WA businesses in 2009-10, total WA size half to twice the treated group; 1,000 draws, seed 20261015"
+        },
+        {
+          "kind": "units",
+          "rule": "each comparison state in turn as if treated"
+        }
+      ]
+    },
+    {
+      "key": "exits",
+      "label": "Exit rate (same definition)",
+      "role": "secondary",
+      "source": "data/processed/abs_cabee/cabee_class_state_fy.csv.gz (own-release vintage)",
+      "measure": "exits",
+      "frequency": "financial-year",
+      "unit": "state",
+      "industries": [
+        "4110",
+        "4251",
+        "4260"
+      ],
+      "cohorts": [
+        {
+          "treated": [
+            "WA"
+          ],
+          "first_post": 2011,
+          "last_post": 2018,
+          "controls": [
+            "NSW",
+            "VIC",
+            "QLD",
+            "TAS",
+            "ACT",
+            "NT"
+          ]
+        }
+      ],
+      "estimator": "as for entries",
+      "placebo_pools": [
+        {
+          "kind": "industries",
+          "rule": "random groups of 3 ANZSIC classes outside division G, each with at least 50 WA businesses in 2009-10, total WA size half to twice the treated group; 1,000 draws, seed 20261015"
+        },
+        {
+          "kind": "units",
+          "rule": "each comparison state in turn as if treated"
+        }
+      ]
+    },
+    {
+      "key": "prices",
+      "label": "100 x log(Perth Food and non-alcoholic beverages / All groups) vs the other capitals",
+      "role": "secondary",
+      "source": "ABS CPI 17th series",
+      "measure": "relative price",
+      "frequency": "quarterly",
+      "unit": "capital city",
+      "cohorts": [
+        {
+          "treated": [
+            "WA"
+          ],
+          "first_post": 8043,
+          "last_post": 8079,
+          "controls": [
+            "NSW",
+            "VIC",
+            "QLD",
+            "TAS",
+            "ACT",
+            "NT"
+          ]
+        }
+      ],
+      "estimator": "two-way fixed effects (city, quarter)",
+      "placebo_pools": [
+        {
+          "kind": "units",
+          "rule": "each comparison state in turn as if treated"
+        }
+      ],
+      "notes": [
+        "Quarters are indexed year x 4 + (quarter - 1): first post period 2010-Q4."
+      ]
+    },
+    {
+      "key": "productivity",
+      "label": "Retail output per worker; clothing relative prices; compensation per worker",
+      "role": "descriptive",
+      "source": "ABS State Accounts, Labour Force and CPI",
+      "measure": "various",
+      "frequency": "financial-year",
+      "unit": "state",
+      "industries": [
+        "G"
+      ],
+      "cohorts": [
+        {
+          "treated": [
+            "WA"
+          ],
+          "first_post": 2011,
+          "last_post": 2018,
+          "controls": [
+            "NSW",
+            "VIC",
+            "QLD",
+            "TAS",
+            "ACT",
+            "NT"
+          ]
+        }
+      ],
+      "estimator": "two-way fixed effects",
+      "placebo_pools": [
+        {
+          "kind": "units",
+          "rule": "each comparison state in turn as if treated"
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "name": "design",
+      "kind": "design",
+      "script": "design_review.py",
+      "writes": [
+        "analyses/wa_trading_hours/design_review.json"
+      ],
+      "blind": true
+    },
+    {
+      "name": "dry-run",
+      "kind": "dry-run",
+      "script": "estimate.py",
+      "args": [
+        "--blind"
+      ],
+      "writes": [
+        "analyses/wa_trading_hours/estimate_blind.json"
+      ],
+      "blind": true
+    },
+    {
+      "name": "estimate",
+      "kind": "estimate",
+      "script": "estimate.py",
+      "writes": [
+        "analyses/wa_trading_hours/estimate.json"
+      ]
+    },
+    {
+      "name": "post-hoc",
+      "kind": "post-hoc",
+      "script": "posthoc.py",
+      "writes": [
+        "analyses/wa_trading_hours/posthoc.json"
+      ]
+    },
+    {
+      "name": "evaluation",
+      "kind": "evaluation",
+      "script": "evaluation.py",
+      "writes": [
+        "../regulation-register/evaluations/wa-trading-hours-2010-2012.json"
+      ]
+    }
+  ],
+  "parameters": {
+    "treated": "WA",
+    "controls": [
+      "NSW",
+      "VIC",
+      "QLD",
+      "TAS",
+      "ACT",
+      "NT"
+    ],
+    "first_post_fy": 2011,
+    "window": [
+      2008,
+      2019
+    ],
+    "window_2019": [
+      2008,
+      2020
+    ],
+    "first_post_q": 8043,
+    "t_classes": [
+      "4110",
+      "4251",
+      "4260"
+    ],
+    "c_classes": [
+      "4511",
+      "4512",
+      "4000"
+    ],
+    "exclude_from_placebo_divs": [
+      "G"
+    ],
+    "seed": 20261015,
+    "draws": 1000,
+    "effect_of_interest": 5.0
+  },
+  "notes": [
+    "SA is excluded from the comparison states: the Adelaide CBD trading change in April 2012.",
+    "window and window_2019 are half-open ranges of financial years (2007-08 to 2017-18; 2018-19 has a vintage identity break and is a sensitivity only).",
+    "posthoc.py is not pre-registered; its output is labelled so."
+  ]
+}

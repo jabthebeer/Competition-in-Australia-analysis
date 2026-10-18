@@ -169,6 +169,8 @@ class Tasmania(_Base):
     def lookup(self, instrument: Instrument, client: httpx.Client) -> RegisterDates:
         fetch = self.fetcher(client)
         rows = fetch.json(self.table_url(instrument.title)).get("data", [])
+        if isinstance(rows, dict):  # a single matching row comes back as an object, not a list
+            rows = [rows]
         own = [
             r
             for r in rows
