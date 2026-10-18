@@ -4,7 +4,7 @@
 
 **What this covers:** the 16 register records rated "high" for evaluability that had not been evaluated yet (the two Perth trading-hours records were evaluated earlier: [`results_wa_trading_hours.md`](results_wa_trading_hours.md)). They form seven reforms, each evaluated once. Where a reform was adopted in other states too, those adoptions are part of the same evaluation.
 
-**Code:** `econ/analyses/high_evaluability/cases.py` (the case table in §8, as code) and `run.py` (`--blind` for the design stage). The same code runs both stages. Changes after registration go in §11 and are labelled "not pre-registered".
+**Code:** `alcia/analyses/high_evaluability/cases.py` (the case table in §8, as code) and `run.py` (`--blind` for the design stage). The same code runs both stages. Changes after registration go in §11 and are labelled "not pre-registered".
 
 ---
 
@@ -36,7 +36,7 @@ Business-count windows start in 2007-08 (2009-10 for NT) and end no later than 2
 2. Estimate a two-way fixed-effects difference-in-differences (state and year effects) over the cohort's window.
 3. Average the cohort estimates, weighted by the number of treated states.
 
-With one cohort this is ordinary difference-in-differences. Stacking avoids comparing treated states with already-treated ones. `regimpact.evaluate.stacked` implements it, and tests on simulated data show it recovers known effects that grow over time.
+With one cohort this is ordinary difference-in-differences. Stacking avoids comparing treated states with already-treated ones. `alcia.evaluate.stacked` implements it, and tests on simulated data show it recovers known effects that grow over time.
 
 **Net of a state-group shock.** The same estimator is applied to *placebo industry groups*: the same states and dates, but industries the reform did not touch. The primary estimate is the treated estimate minus the placebo mean. This removes shocks common to all industries in the treated states, as in the Perth case.
 
@@ -138,3 +138,5 @@ Run on 15 October 2026 with every treated state's outcomes hidden from its first
 - the sign-test observation across the three evaluated "enhancing" reforms is exploratory.
 
 **Labelling.** The decision rule returned "inconclusive" for ride-share legalisation before its grade was applied. Its evaluation shows the verdict "Not identified", to match the grade. Under §7, a not-identified case has no headline estimate.
+
+**Paths (18 October 2026).** File paths and the tool name were updated for the ALCIA rename (`econ/` became `alcia/`; `regimpact` became `alcia`). The content is unchanged.

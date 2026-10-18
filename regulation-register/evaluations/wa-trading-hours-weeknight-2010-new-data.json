@@ -1,0 +1,588 @@
+{
+  "id": "wa-trading-hours-weeknight-2010-new-data",
+  "title": "Perth 9pm weeknight trading (2010), re-evaluated with new data",
+  "records": [
+    "wa-trading-hours-weeknight-2010"
+  ],
+  "family": "retail-trading-hours",
+  "follows": "wa-trading-hours-2010-2012",
+  "evaluated_on": "2026-10-18",
+  "hypothesis": "enhancing",
+  "design": "Difference-in-differences with one treated state, on data the first evaluation did not use: retail business counts by place (metropolitan Perth against regional WA, retail against other industries, set against the same capital-versus-regional contrast in other states), monthly turnover of the general retail shops covered (WA against other states), and hours worked (descriptive).",
+  "comparison": "Business counts: regional WA and capital-vs-rest gaps in NSW, Victoria, Queensland, Tasmania and the NT. Turnover: NSW, Victoria, Queensland and the ACT. SA excluded (Adelaide trading change in 2012).",
+  "window": "Weeknight trading only: November 2010 to mid-2012, before Sunday trading began (26 Aug 2012). Business counts at 30 June 2009-2012; turnover monthly, July 2008 to July 2012.",
+  "verdict": "inconclusive",
+  "finding_label": "No detectable effect",
+  "grade": "Moderate",
+  "grade_reason": "One treated state caps the grade at Moderate. The plan's design checks pass for both primary outcomes and the business-count result holds in every robustness check; the turnover result does not (see caveats).",
+  "headline": "Letting Perth's general retail shops open until 9pm on weeknights (November 2010) made no detectable difference to the number of retail businesses in Perth compared with regional WA (−1.8 log points, 90% interval −5.8 to +4.2) or to the turnover of supermarkets, clothing and department stores (+2.0%, −4.4 to +7.2). Effects of about 10% or more in either can be ruled out; smaller ones cannot.",
+  "category_summaries": {
+    "competition": "No detectable change in the number of retail businesses. Metropolitan Perth's retail business count moved −1.8 log points relative to regional WA and other industries (p = 0.70); small businesses alone −1.2.",
+    "productivity": "No detectable change in sales, and the result is fragile. Turnover of the stores covered: +2.0% (p = 0.50). Hours worked are descriptive only: +1.6%.",
+    "prices": "Not re-estimated. The first evaluation's food-price estimate reflected a trend that began before the reform."
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "retail-businesses-perth",
+      "label": "Retail businesses in metropolitan Perth relative to regional WA",
+      "category": "competition",
+      "role": "primary",
+      "unit": "log points (x100)",
+      "baseline": 10284.0,
+      "baseline_label": "Retail businesses in metropolitan Perth, June 2010",
+      "estimate": -1.751,
+      "interval": {
+        "low": -5.838,
+        "high": 4.226,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -5.977,
+        "high": 4.087,
+        "basis": "90% range of 59 placebo industries and states of a similar size"
+      },
+      "p_value": 0.7,
+      "inference": "Rank among placebo industries in every state and retail in comparison states (two-sided)",
+      "mde_80": 10.124,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "Perth minus rest-of-WA gap in log retail businesses, net of the same gap for other industries, against capital-vs-regional gaps in NSW, Victoria, Queensland, Tasmania and the NT. Small businesses only: −1.2; Mandurah in Perth: −2.1; WA outback left out: −1.6."
+    },
+    {
+      "id": "general-retail-turnover",
+      "label": "Turnover of supermarkets, clothing and department stores",
+      "category": "productivity",
+      "role": "primary",
+      "unit": "% (log points)",
+      "baseline": 973.9,
+      "baseline_label": "WA turnover of these stores, $m a month, 2009-10",
+      "estimate": 2.042,
+      "interval": {
+        "low": -4.404,
+        "high": 7.222,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -5.181,
+        "high": 6.446,
+        "basis": "90% range of 834 estimates at fake dates since 1995 and in comparison states"
+      },
+      "p_value": 0.497,
+      "inference": "Rank among fake-date and comparison-state estimates (two-sided)",
+      "mde_80": 9.703,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "WA against NSW, Victoria, Queensland and the ACT, monthly, seasonally adjusted. Two registered robustness checks reach p < 0.10 in opposite directions: removing each state's pre-reform trend gives +7.9 (p = 0.06); netting out cafes, restaurants and takeaway gives −19.3 (p = 0.09). The turnover result depends on the comparison."
+    },
+    {
+      "id": "supermarket-turnover",
+      "label": "Supermarket and grocery turnover",
+      "category": "productivity",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 2.876,
+      "interval": {
+        "low": -6.24,
+        "high": 10.949,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -8.072,
+        "high": 9.116,
+        "basis": "90% range of 834 estimates at fake dates since 1995 and in comparison states"
+      },
+      "p_value": 0.3665,
+      "inference": "Rank among fake-date and comparison-state estimates (two-sided)",
+      "mde_80": 11.975,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": true,
+      "note": ""
+    },
+    {
+      "id": "general-retail-hours",
+      "label": "Hours worked in supermarkets, clothing and department stores",
+      "category": "productivity",
+      "role": "descriptive",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 1.614,
+      "interval": {
+        "low": -10.944,
+        "high": 11.966,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -10.351,
+        "high": 12.559,
+        "basis": "90% range of 227 fake-date and comparison-state estimates"
+      },
+      "p_value": 0.8465,
+      "inference": "Rank among fake-date and comparison-state estimates (two-sided)",
+      "mde_80": 19.317,
+      "finding": "descriptive-only",
+      "grade": null,
+      "preregistered": true,
+      "note": "Descriptive only: WA failed the fake-date test at the design stage (estimate +15.6 at a fake date in Oct 2008, p = 0.02). Employment: −1.5."
+    },
+    {
+      "id": "supermarket-share-of-food",
+      "label": "Supermarkets relative to specialised food stores (turnover)",
+      "category": "competition",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 10.554,
+      "interval": null,
+      "no_effect_range": {
+        "low": -33.475,
+        "high": 31.606,
+        "basis": "90% range of 834 estimates at fake dates since 1995 and in comparison states"
+      },
+      "p_value": 0.548,
+      "inference": "Rank among fake-date and comparison-state estimates (two-sided)",
+      "mde_80": 54.589,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": true,
+      "note": "Too noisy to be informative: the smallest detectable effect is about 55%."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "retail-businesses-perth",
+      "title": "Retail businesses, Perth relative to regional WA",
+      "unit": "log points (x100)",
+      "reference": "June 2010",
+      "band": "90% range across placebo industries and states",
+      "points": [
+        {
+          "period": "Jun 2009",
+          "k": -2,
+          "estimate": 0.012,
+          "low": -14.24,
+          "high": 6.464
+        },
+        {
+          "period": "Jun 2010",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "Jun 2011",
+          "k": 0,
+          "estimate": -1.76,
+          "low": -8.771,
+          "high": 4.459
+        },
+        {
+          "period": "Jun 2012",
+          "k": 1,
+          "estimate": -1.729,
+          "low": -10.163,
+          "high": 7.911
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.6666666666666667,
+          "label": "9pm weeknights (1 Nov 2010)"
+        }
+      ],
+      "caption": "Counts at 30 June each year; Sunday trading began after June 2012."
+    },
+    {
+      "outcome": "general-retail-turnover",
+      "title": "Turnover of supermarkets, clothing and department stores, WA vs other states",
+      "unit": "% (log points)",
+      "reference": "Apr-Jun 2010",
+      "band": "90% range across fake dates and comparison states",
+      "points": [
+        {
+          "period": "Jul 2008",
+          "k": -8,
+          "estimate": 6.734,
+          "low": -6.833,
+          "high": 5.971
+        },
+        {
+          "period": "Oct 2008",
+          "k": -7,
+          "estimate": 2.395,
+          "low": -6.136,
+          "high": 5.561
+        },
+        {
+          "period": "Jan 2009",
+          "k": -6,
+          "estimate": 0.486,
+          "low": -5.659,
+          "high": 5.085
+        },
+        {
+          "period": "Apr 2009",
+          "k": -5,
+          "estimate": -1.552,
+          "low": -5.262,
+          "high": 4.545
+        },
+        {
+          "period": "Jul 2009",
+          "k": -4,
+          "estimate": -1.832,
+          "low": -4.17,
+          "high": 3.821
+        },
+        {
+          "period": "Oct 2009",
+          "k": -3,
+          "estimate": -1.564,
+          "low": -3.24,
+          "high": 3.106
+        },
+        {
+          "period": "Jan 2010",
+          "k": -2,
+          "estimate": 0.017,
+          "low": -2.235,
+          "high": 2.262
+        },
+        {
+          "period": "Apr 2010",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "Nov 2010",
+          "k": 0,
+          "estimate": 0.284,
+          "low": -3.36,
+          "high": 3.48
+        },
+        {
+          "period": "Feb 2011",
+          "k": 1,
+          "estimate": 1.866,
+          "low": -4.288,
+          "high": 4.575
+        },
+        {
+          "period": "May 2011",
+          "k": 2,
+          "estimate": 3.392,
+          "low": -4.939,
+          "high": 5.232
+        },
+        {
+          "period": "Aug 2011",
+          "k": 3,
+          "estimate": 2.687,
+          "low": -5.457,
+          "high": 5.589
+        },
+        {
+          "period": "Nov 2011",
+          "k": 4,
+          "estimate": 3.706,
+          "low": -6.173,
+          "high": 5.736
+        },
+        {
+          "period": "Feb 2012",
+          "k": 5,
+          "estimate": 3.444,
+          "low": -6.507,
+          "high": 6.577
+        },
+        {
+          "period": "May 2012",
+          "k": 6,
+          "estimate": 3.01,
+          "low": -6.931,
+          "high": 7.326
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "9pm weeknights (1 Nov 2010)"
+        }
+      ],
+      "caption": "Three-month bins, each labelled by its first month, from Jul 2008 to Jul 2012; Jul-Oct 2010 (special trading precincts) left out."
+    },
+    {
+      "outcome": "general-retail-hours",
+      "title": "Hours worked in the same stores (descriptive)",
+      "unit": "% (log points)",
+      "reference": "May 2010",
+      "band": "90% range across fake dates and comparison states",
+      "points": [
+        {
+          "period": "Jul 2004",
+          "k": -24,
+          "estimate": -7.804,
+          "low": -24.535,
+          "high": 20.034
+        },
+        {
+          "period": "Oct 2004",
+          "k": -23,
+          "estimate": -5.672,
+          "low": -25.018,
+          "high": 22.446
+        },
+        {
+          "period": "Jan 2005",
+          "k": -22,
+          "estimate": -4.966,
+          "low": -23.092,
+          "high": 23.025
+        },
+        {
+          "period": "Apr 2005",
+          "k": -21,
+          "estimate": -7.465,
+          "low": -21.257,
+          "high": 20.28
+        },
+        {
+          "period": "Jul 2005",
+          "k": -20,
+          "estimate": -1.341,
+          "low": -21.523,
+          "high": 20.906
+        },
+        {
+          "period": "Oct 2005",
+          "k": -19,
+          "estimate": -5.134,
+          "low": -21.841,
+          "high": 21.797
+        },
+        {
+          "period": "Jan 2006",
+          "k": -18,
+          "estimate": 0.845,
+          "low": -22.071,
+          "high": 22.364
+        },
+        {
+          "period": "Apr 2006",
+          "k": -17,
+          "estimate": 3.7,
+          "low": -21.974,
+          "high": 20.571
+        },
+        {
+          "period": "Jul 2006",
+          "k": -16,
+          "estimate": -21.496,
+          "low": -22.63,
+          "high": 20.475
+        },
+        {
+          "period": "Oct 2006",
+          "k": -15,
+          "estimate": -2.31,
+          "low": -23.407,
+          "high": 20.376
+        },
+        {
+          "period": "Jan 2007",
+          "k": -14,
+          "estimate": 13.44,
+          "low": -22.528,
+          "high": 22.872
+        },
+        {
+          "period": "Apr 2007",
+          "k": -13,
+          "estimate": 1.176,
+          "low": -23.648,
+          "high": 19.526
+        },
+        {
+          "period": "Jul 2007",
+          "k": -12,
+          "estimate": -3.151,
+          "low": -24.448,
+          "high": 20.869
+        },
+        {
+          "period": "Oct 2007",
+          "k": -11,
+          "estimate": -3.076,
+          "low": -21.515,
+          "high": 20.508
+        },
+        {
+          "period": "Jan 2008",
+          "k": -10,
+          "estimate": -0.252,
+          "low": -21.921,
+          "high": 22.748
+        },
+        {
+          "period": "Apr 2008",
+          "k": -9,
+          "estimate": -21.95,
+          "low": -20.107,
+          "high": 21.552
+        },
+        {
+          "period": "Jul 2008",
+          "k": -8,
+          "estimate": -21.544,
+          "low": -20.571,
+          "high": 23.428
+        },
+        {
+          "period": "Oct 2008",
+          "k": -7,
+          "estimate": 22.716,
+          "low": -20.956,
+          "high": 20.675
+        },
+        {
+          "period": "Jan 2009",
+          "k": -6,
+          "estimate": 32.319,
+          "low": -21.277,
+          "high": 22.928
+        },
+        {
+          "period": "Apr 2009",
+          "k": -5,
+          "estimate": 31.793,
+          "low": -18.341,
+          "high": 19.012
+        },
+        {
+          "period": "Jul 2009",
+          "k": -4,
+          "estimate": 12.458,
+          "low": -21.846,
+          "high": 20.549
+        },
+        {
+          "period": "Oct 2009",
+          "k": -3,
+          "estimate": 3.69,
+          "low": -21.532,
+          "high": 21.569
+        },
+        {
+          "period": "Jan 2010",
+          "k": -2,
+          "estimate": -10.648,
+          "low": -18.216,
+          "high": 18.045
+        },
+        {
+          "period": "Apr 2010",
+          "k": -1,
+          "estimate": 0.0,
+          "low": null,
+          "high": null
+        },
+        {
+          "period": "Oct 2010",
+          "k": 0,
+          "estimate": -4.472,
+          "low": -21.585,
+          "high": 22.285
+        },
+        {
+          "period": "Jan 2011",
+          "k": 1,
+          "estimate": 4.568,
+          "low": -20.549,
+          "high": 22.105
+        },
+        {
+          "period": "Apr 2011",
+          "k": 2,
+          "estimate": 5.124,
+          "low": -21.236,
+          "high": 18.632
+        },
+        {
+          "period": "Jul 2011",
+          "k": 3,
+          "estimate": 2.126,
+          "low": -22.631,
+          "high": 23.709
+        },
+        {
+          "period": "Oct 2011",
+          "k": 4,
+          "estimate": -11.294,
+          "low": -21.413,
+          "high": 21.54
+        },
+        {
+          "period": "Jan 2012",
+          "k": 5,
+          "estimate": 8.731,
+          "low": -22.849,
+          "high": 20.861
+        },
+        {
+          "period": "Apr 2012",
+          "k": 6,
+          "estimate": 8.071,
+          "low": -21.265,
+          "high": 20.471
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "9pm weeknights (1 Nov 2010)"
+        }
+      ],
+      "caption": "Mid-quarter months; WA's hours swung widely before the reform, so no finding is drawn."
+    }
+  ],
+  "caveats": [
+    "Two registered robustness checks reach p < 0.10 in opposite directions: removing each state's pre-reform trend gives +7.9 (p = 0.06); netting out cafes, restaurants and takeaway gives −19.3 (p = 0.09). The turnover result depends on the comparison.",
+    "With one treated state, effects smaller than about 10% cannot be told apart from what happens without a reform.",
+    "Business counts are a proxy for competition: they show neither prices nor market shares, and only reach June 2012.",
+    "The turnover estimate does not net out WA-specific demand (the mining boom); the variant that does is the food-services comparison above.",
+    "Choices made at the design stage on hidden outcomes are listed in the plan (section 7), including outcomes dropped for lack of data (business exits inferred from names) or failed checks (hours)."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_wa_weeknight_2010.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_wa_weeknight_2010.md"
+    },
+    {
+      "label": "Design review (blinded)",
+      "path": "alcia/analyses/wa_weeknight_2010/design.json"
+    },
+    {
+      "label": "Estimation code",
+      "path": "alcia/analyses/wa_weeknight_2010/estimate.py"
+    },
+    {
+      "label": "Earlier evaluation",
+      "path": "docs/results_wa_trading_hours.md"
+    }
+  ],
+  "built_by": "alcia/analyses/wa_weeknight_2010/evaluation.py"
+}

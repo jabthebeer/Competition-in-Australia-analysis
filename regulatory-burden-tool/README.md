@@ -6,7 +6,7 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 
 ## Status
 
-**Paused on 14 October 2026** (project owner's decision) while the econometric foundation in [`econ/`](../econ/) is built. The two projects will be folded together later.
+**Paused on 14 October 2026** (project owner's decision) while the econometric foundation in [`alcia/`](../alcia/) is built. The two projects will be folded together later.
 
 | Phase | Scope | Status |
 |---|---|---|
