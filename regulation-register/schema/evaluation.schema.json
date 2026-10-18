@@ -21,6 +21,108 @@
       "title": "Document",
       "type": "object"
     },
+    "Equation": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "default": "",
+          "title": "Label",
+          "type": "string"
+        },
+        "text": {
+          "description": "Plain text; _{...} marks a subscript, ^{...} a superscript and hat{...} an estimate (rendered by the menu explorer)",
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "Equation",
+      "type": "object"
+    },
+    "EstimatorRow": {
+      "additionalProperties": false,
+      "description": "One estimator layer's estimate of one outcome, for the side-by-side comparison.",
+      "properties": {
+        "outcome": {
+          "title": "Outcome",
+          "type": "string"
+        },
+        "layer": {
+          "minLength": 1,
+          "title": "Layer",
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "estimate": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Estimate"
+        },
+        "interval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Interval"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "p_value": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "P Value"
+        },
+        "mde_80": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mde 80"
+        },
+        "registered": {
+          "default": false,
+          "title": "Registered",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "outcome",
+        "layer",
+        "label"
+      ],
+      "title": "EstimatorRow",
+      "type": "object"
+    },
     "EventPoint": {
       "additionalProperties": false,
       "properties": {
@@ -175,6 +277,71 @@
         "label"
       ],
       "title": "Marker",
+      "type": "object"
+    },
+    "Method": {
+      "additionalProperties": false,
+      "description": "The econometrics in depth: what was estimated, how, and what it assumes.",
+      "properties": {
+        "summary": {
+          "description": "The estimator in one or two sentences",
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        },
+        "equations": {
+          "items": {
+            "$ref": "#/$defs/Equation"
+          },
+          "minItems": 1,
+          "title": "Equations",
+          "type": "array"
+        },
+        "terms": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Term"
+          },
+          "title": "Terms",
+          "type": "array"
+        },
+        "estimand": {
+          "description": "What the main coefficient measures, in words",
+          "minLength": 1,
+          "title": "Estimand",
+          "type": "string"
+        },
+        "identification": {
+          "description": "The assumption that makes it causal",
+          "minLength": 1,
+          "title": "Identification",
+          "type": "string"
+        },
+        "inference": {
+          "description": "How uncertainty is measured",
+          "minLength": 1,
+          "title": "Inference",
+          "type": "string"
+        },
+        "steps": {
+          "description": "What was done, in order",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Steps",
+          "type": "array"
+        }
+      },
+      "required": [
+        "summary",
+        "equations",
+        "estimand",
+        "identification",
+        "inference",
+        "steps"
+      ],
+      "title": "Method",
       "type": "object"
     },
     "NoEffectRange": {
@@ -366,6 +533,28 @@
       ],
       "title": "OutcomeResult",
       "type": "object"
+    },
+    "Term": {
+      "additionalProperties": false,
+      "properties": {
+        "symbol": {
+          "description": "Plain text; _{...} marks a subscript, ^{...} a superscript and hat{...} an estimate (rendered by the menu explorer)",
+          "minLength": 1,
+          "title": "Symbol",
+          "type": "string"
+        },
+        "meaning": {
+          "minLength": 1,
+          "title": "Meaning",
+          "type": "string"
+        }
+      },
+      "required": [
+        "symbol",
+        "meaning"
+      ],
+      "title": "Term",
+      "type": "object"
     }
   },
   "additionalProperties": false,
@@ -398,6 +587,19 @@
       ],
       "default": null,
       "title": "Family"
+    },
+    "follows": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "An earlier evaluation of some of the same records that this one revisits; both stay on file",
+      "title": "Follows"
     },
     "evaluated_on": {
       "format": "date",
@@ -433,7 +635,12 @@
       "enum": [
         "supports-enhancing",
         "supports-weakening",
-        "inconclusive"
+        "contradicts-enhancing",
+        "contradicts-weakening",
+        "detects-increase",
+        "detects-decrease",
+        "inconclusive",
+        "not-identified"
       ],
       "title": "Verdict",
       "type": "string"
@@ -478,6 +685,26 @@
       "title": "Category Summaries",
       "type": "object"
     },
+    "key_insights": {
+      "default": [],
+      "description": "Plain-language summary for non-specialists: question, comparison, finding, precision, meaning",
+      "items": {
+        "type": "string"
+      },
+      "title": "Key Insights",
+      "type": "array"
+    },
+    "method": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Method"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
     "preregistered": {
       "title": "Preregistered",
       "type": "boolean"
@@ -519,6 +746,38 @@
       "minLength": 1,
       "title": "Built By",
       "type": "string"
+    },
+    "supersedes": {
+      "default": [],
+      "description": "Earlier evaluations this one replaces; the menu shows them as archived, below it",
+      "items": {
+        "type": "string"
+      },
+      "title": "Supersedes",
+      "type": "array"
+    },
+    "evaluated_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "When the registered run was made (orders a day's work)",
+      "title": "Evaluated At"
+    },
+    "estimators": {
+      "default": [],
+      "description": "Every estimator layer side by side for each outcome; the registered one marked",
+      "items": {
+        "$ref": "#/$defs/EstimatorRow"
+      },
+      "title": "Estimators",
+      "type": "array"
     }
   },
   "required": [

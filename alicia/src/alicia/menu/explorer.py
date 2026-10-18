@@ -13,7 +13,7 @@ from importlib import resources
 from pathlib import Path
 
 from .. import anzsic
-from ..register.evaluation import CATEGORY_LABELS, Evaluation, current_evaluation
+from ..register.evaluation import CATEGORY_LABELS, Evaluation, archived, current_evaluation
 from ..register.schema import CHANNEL_LABELS, ChangeRecord
 from ..timing import fy_bounds, timing
 from .screen import COVID_FYS, DEFAULT_COVERAGE, screen_all
@@ -208,6 +208,7 @@ def build_payload(
         },
         "covidFys": [min(COVID_FYS), max(COVID_FYS)],
         "evaluations": {ev.id: ev.model_dump(mode="json") for ev in evaluations},
+        "archived": archived(evaluations),
         "categoryLabels": CATEGORY_LABELS,
         "repoBase": repo_base or REPO_BASE,
         "evaluationNote": EVALUATION_NOTE,
@@ -245,7 +246,9 @@ def single_payload(payload: dict, evaluation_id: str) -> dict:
     followed by (for the links between them)."""
     evs = payload["evaluations"]
     ev = evs[evaluation_id]
-    linked = {evaluation_id, ev.get("follows")} | {k for k, v in evs.items() if v.get("follows") == evaluation_id}
+    linked = {evaluation_id, ev.get("follows"), *ev.get("supersedes", ())} | {
+        k for k, v in evs.items() if v.get("follows") == evaluation_id or evaluation_id in v.get("supersedes", ())
+    }
     keep = set(ev["records"])
     return payload | {
         "records": [r for r in payload["records"] if r["id"] in keep],

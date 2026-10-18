@@ -242,7 +242,7 @@ def eligible(r: PriceReform) -> list[str]:
     return [c["code"] for c in CPI_CLASSES if c["subgroup"] not in r.exclude_subgroups and c["code"] not in r.codes]
 
 
-def price_panel(r: PriceReform, case: _Case) -> pd.DataFrame:
+def price_panel(r: PriceReform, case: _Case, blind: bool = True) -> pd.DataFrame:
     """Every eligible class plus the reform's class, the reform's cities, from start to the last window quarter.
     Columns follow the business-count panel so the same estimators run: ``fy`` holds the quarter index."""
     last = max(c.last_post for c in case.cohorts)
@@ -252,7 +252,7 @@ def price_panel(r: PriceReform, case: _Case) -> pd.DataFrame:
     d = d.merge(quarter_covariates(), on=["state", "t"], how="left")
     d = d.rename(columns={"t": "fy"}).assign(w=1.0, base=float(power.MIN_CELL))
     d["cell"] = d["cls"] + ":" + d["state"]
-    return power.hide(d.reset_index(drop=True), case).reset_index(drop=True)
+    return (power.hide if blind else power.trim)(d.reset_index(drop=True), case).reset_index(drop=True)
 
 
 def placebo_classes(r: PriceReform, max_placebos: int) -> list[str]:

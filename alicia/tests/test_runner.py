@@ -37,13 +37,17 @@ def test_every_specification_is_valid_and_points_at_real_things():
     records = {r.id for r in load_records().records}
     for s in specs:
         assert set(s.records) <= records, s.id
-        for e in s.evaluations:
-            assert (default_evaluations_dir() / f"{e}.json").exists(), e
+        # A specification registered but not yet unblinded has design outputs only.
+        unblinded = all((ALICIA / w).exists() for st in s.stages if st.kind == "estimate" for w in st.writes)
+        if unblinded:
+            for e in s.evaluations:
+                assert (default_evaluations_dir() / f"{e}.json").exists(), e
         folder = analyses_dir() / s.analysis
         for st in s.stages:
             assert (folder / st.script).exists(), (s.id, st.script)
-            for w in st.writes:
-                assert (ALICIA / w).exists(), (s.id, w)
+            if st.kind == "design" or unblinded:
+                for w in st.writes:
+                    assert (ALICIA / w).exists(), (s.id, w)
         assert (ALICIA.parent / s.plan).exists(), s.plan
         # every evaluation file is written by an evaluation stage
         written = {Path(w).stem for st in s.stages if st.kind == "evaluation" for w in st.writes}
@@ -53,9 +57,13 @@ def test_every_specification_is_valid_and_points_at_real_things():
 def test_evaluations_name_the_records_their_specification_lists():
     for s in load_all()[0]:
         for e in s.evaluations:
-            ev = json.loads((default_evaluations_dir() / f"{e}.json").read_text("utf-8"))
+            path = default_evaluations_dir() / f"{e}.json"
+            if not path.exists():  # not yet unblinded
+                continue
+            ev = json.loads(path.read_text("utf-8"))
             assert set(ev["records"]) <= set(s.records), e
-            assert ev.get("follows") in (None, s.follows) or s.id == "high-evaluability-batch", e
+            allowed = {None, s.follows} | {c.get("follows") for c in s.cases if c.get("id") == e}
+            assert ev.get("follows") in allowed, e
 
 
 def test_stage_check_reports_identical_changed_and_created(tmp_path, monkeypatch):

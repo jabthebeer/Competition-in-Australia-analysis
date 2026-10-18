@@ -236,3 +236,34 @@ def test_methods_document_is_up_to_date():
     assert doc.read_text("utf-8") == methods_markdown(load_evaluations(records).evaluations), (
         "regenerate with: uv run alicia methods -o ../docs/evaluation_methods.md"
     )
+
+
+def test_archived_evaluations_are_never_current_and_optional_fields_are_left_out(tmp_path):
+    """ILLUSTRATIVE evaluations: a re-evaluation that supersedes the original, and a follow-up that does not."""
+    from alicia.register.evaluation import archived, current_evaluation
+
+    old = Evaluation.model_validate(minimal(id="old-eval"))
+    side = Evaluation.model_validate(minimal(id="side-eval", follows="old-eval", evaluated_on="2026-10-16"))
+    new = Evaluation.model_validate(
+        minimal(
+            id="new-eval",
+            follows="old-eval",
+            evaluated_on="2026-10-16",
+            supersedes=["old-eval"],
+            evaluated_at="2026-10-16T23:00:00+00:00",
+        )
+    )
+    assert archived([old, side, new]) == {"old-eval": "new-eval"}
+    # Same day: the one with a recorded run time is the later one, and archived evaluations are never current.
+    assert current_evaluation([old, side, new])["wa-trading-hours-weeknight-2010"] == "new-eval"
+    assert current_evaluation([new, old])["wa-trading-hours-weeknight-2010"] == "new-eval"
+    write_evaluation(old, tmp_path)
+    write_evaluation(new, tmp_path)
+    assert not {"supersedes", "evaluated_at", "estimators"} & set(json.loads((tmp_path / "old-eval.json").read_text()))
+    data = json.loads((tmp_path / "new-eval.json").read_text())
+    assert data["supersedes"] == ["old-eval"] and "estimators" not in data
+
+
+def test_an_evaluation_cannot_supersede_itself():
+    with pytest.raises(ValidationError):
+        Evaluation.model_validate(minimal(supersedes=["illustrative-eval"]))

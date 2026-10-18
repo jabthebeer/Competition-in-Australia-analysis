@@ -1,0 +1,555 @@
+{
+  "id": "phase5-new-families",
+  "title": "Phase 5 new families: fuel price reporting and e-conveyancing",
+  "analysis": "phase5",
+  "plan": "docs/pap_phase5.md",
+  "registered_on": "2026-10-18",
+  "follows": null,
+  "records": [
+    "nsw-e-conveyancing-mandate-2018",
+    "nsw-fuel-price-reporting-2016",
+    "nt-fuel-price-reporting-2017",
+    "qld-e-conveyancing-mandate-2023",
+    "qld-fuel-price-reporting-2018",
+    "sa-e-conveyancing-mandate-2020",
+    "sa-fuel-price-reporting-2021",
+    "tas-fuel-price-reporting-2020",
+    "vic-e-conveyancing-mandate-2019",
+    "wa-e-conveyancing-mandate-2018"
+  ],
+  "evaluations": [
+    "fuel-price-reporting-2016-2021",
+    "e-conveyancing-2018-2023"
+  ],
+  "hypothesis": "mixed",
+  "outcomes": [
+    {
+      "key": "business",
+      "label": "Business entry and exit rates per 100 businesses at the start of the year",
+      "role": "primary",
+      "source": "data/processed/abs_cabee/cabee_class_state_fy.csv.gz (all 15 releases, latest vintage)",
+      "measure": "entries, exits",
+      "frequency": "financial-year",
+      "unit": "ANZSIC class x state",
+      "estimator": "per case: the layer chosen in the blinded power study (saturated fixed effects, synthetic DiD or two-way)",
+      "placebo_pools": [
+        {
+          "kind": "industries",
+          "rule": "size-matched placebo class groups outside the treated divisions (up to 40), as the high-evaluability batch"
+        },
+        {
+          "kind": "units",
+          "rule": "the reform's own classes in states that never adopted it (robustness)"
+        },
+        {
+          "kind": "dates",
+          "rule": "the reform's own classes and states at earlier, fake dates (robustness)"
+        }
+      ],
+      "notes": [
+        "Cohorts, classes, windows and the registered layer are per case (cases)."
+      ]
+    },
+    {
+      "key": "prices",
+      "label": "100 x log(CPI class / All groups), capital city x quarter",
+      "role": "primary",
+      "source": "ABS CPI 17th series, 2001-Q1 to 2025-Q3",
+      "measure": "relative price",
+      "frequency": "quarterly",
+      "unit": "CPI class x capital city",
+      "estimator": "class x quarter and city x quarter fixed effects (saturated), or synthetic DiD where registered",
+      "placebo_pools": [
+        {
+          "kind": "cpi-classes",
+          "rule": "up to 40 CPI classes outside the case's related subgroups"
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "name": "design",
+      "kind": "design",
+      "script": "run.py",
+      "args": [
+        "--spec",
+        "phase5-new-families",
+        "--stage",
+        "design"
+      ],
+      "writes": [
+        "analyses/phase5/new_families/design.json"
+      ],
+      "blind": true
+    },
+    {
+      "name": "dry-run",
+      "kind": "dry-run",
+      "script": "run.py",
+      "args": [
+        "--spec",
+        "phase5-new-families",
+        "--stage",
+        "dry-run"
+      ],
+      "writes": [
+        "analyses/phase5/new_families/estimate_blind.json"
+      ],
+      "blind": true
+    },
+    {
+      "name": "estimate",
+      "kind": "estimate",
+      "script": "run.py",
+      "args": [
+        "--spec",
+        "phase5-new-families",
+        "--stage",
+        "estimate"
+      ],
+      "writes": [
+        "analyses/phase5/new_families/estimate.json"
+      ]
+    },
+    {
+      "name": "evaluation",
+      "kind": "evaluation",
+      "script": "evaluations.py",
+      "args": [
+        "--spec",
+        "phase5-new-families"
+      ],
+      "writes": [
+        "../regulation-register/evaluations/fuel-price-reporting-2016-2021.json",
+        "../regulation-register/evaluations/e-conveyancing-2018-2023.json"
+      ]
+    }
+  ],
+  "parameters": {
+    "max_placebos": 40,
+    "alpha": 0.05,
+    "q": 0.1,
+    "effect_of_interest": {
+      "business": 5.0,
+      "price": 5.0
+    }
+  },
+  "cases": [
+    {
+      "id": "fuel-price-reporting-2016-2021",
+      "title": "Mandatory fuel price reporting (NSW 2016, NT 2017, QLD 2018, TAS 2020, SA 2021)",
+      "records": [
+        "nsw-fuel-price-reporting-2016",
+        "nt-fuel-price-reporting-2017",
+        "qld-fuel-price-reporting-2018",
+        "tas-fuel-price-reporting-2020",
+        "sa-fuel-price-reporting-2021"
+      ],
+      "family": "fuel-price-transparency",
+      "hypothesis": "mixed",
+      "follows": null,
+      "supersedes": [],
+      "grade_cap": null,
+      "design": "Staggered: each state's capital-city fuel price relative to the CPI against capitals not yet reporting (Melbourne and Canberra throughout; Hobart and Adelaide until they adopted), with class x quarter and city x quarter effects; fuel retailers' entry and exit the same way. WA, always reporting, is left out.",
+      "outcomes": [
+        {
+          "key": "price-automotive-fuel",
+          "kind": "price",
+          "code": "40081",
+          "cohorts": [
+            {
+              "treated": [
+                "NSW"
+              ],
+              "first_post": "2016-Q3",
+              "last_post": "2020-Q2",
+              "controls": [
+                "VIC",
+                "ACT",
+                "TAS",
+                "SA"
+              ]
+            },
+            {
+              "treated": [
+                "NT"
+              ],
+              "first_post": "2017-Q4",
+              "last_post": "2020-Q2",
+              "controls": [
+                "VIC",
+                "ACT",
+                "TAS",
+                "SA"
+              ]
+            },
+            {
+              "treated": [
+                "QLD"
+              ],
+              "first_post": "2018-Q4",
+              "last_post": "2020-Q2",
+              "controls": [
+                "VIC",
+                "ACT",
+                "TAS",
+                "SA"
+              ]
+            },
+            {
+              "treated": [
+                "TAS"
+              ],
+              "first_post": "2020-Q3",
+              "last_post": "2025-Q2",
+              "controls": [
+                "VIC",
+                "ACT"
+              ]
+            },
+            {
+              "treated": [
+                "SA"
+              ],
+              "first_post": "2021-Q1",
+              "last_post": "2025-Q2",
+              "controls": [
+                "VIC",
+                "ACT"
+              ]
+            }
+          ],
+          "start": "2005-Q1",
+          "exclude_subgroups": [
+            "Private motoring"
+          ],
+          "layer": "saturated",
+          "checks": [
+            "imputation",
+            "sdid"
+          ],
+          "role": "primary"
+        },
+        {
+          "key": "entries",
+          "kind": "business",
+          "measure": "entries",
+          "classes": [
+            "4000"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "NSW"
+              ],
+              "first_post": 2017,
+              "last_post": 2020,
+              "controls": [
+                "VIC",
+                "ACT",
+                "TAS",
+                "SA"
+              ]
+            },
+            {
+              "treated": [
+                "NT"
+              ],
+              "first_post": 2018,
+              "last_post": 2020,
+              "controls": [
+                "VIC",
+                "ACT",
+                "TAS",
+                "SA"
+              ]
+            },
+            {
+              "treated": [
+                "QLD"
+              ],
+              "first_post": 2019,
+              "last_post": 2020,
+              "controls": [
+                "VIC",
+                "ACT",
+                "TAS",
+                "SA"
+              ]
+            },
+            {
+              "treated": [
+                "TAS",
+                "SA"
+              ],
+              "first_post": 2021,
+              "last_post": 2025,
+              "controls": [
+                "VIC",
+                "ACT"
+              ]
+            }
+          ],
+          "start": 2010,
+          "layer": "saturated",
+          "checks": [
+            "sdid"
+          ],
+          "role": "secondary"
+        },
+        {
+          "key": "exits",
+          "kind": "business",
+          "measure": "exits",
+          "classes": [
+            "4000"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "NSW"
+              ],
+              "first_post": 2017,
+              "last_post": 2020,
+              "controls": [
+                "VIC",
+                "ACT",
+                "TAS",
+                "SA"
+              ]
+            },
+            {
+              "treated": [
+                "NT"
+              ],
+              "first_post": 2018,
+              "last_post": 2020,
+              "controls": [
+                "VIC",
+                "ACT",
+                "TAS",
+                "SA"
+              ]
+            },
+            {
+              "treated": [
+                "QLD"
+              ],
+              "first_post": 2019,
+              "last_post": 2020,
+              "controls": [
+                "VIC",
+                "ACT",
+                "TAS",
+                "SA"
+              ]
+            },
+            {
+              "treated": [
+                "TAS",
+                "SA"
+              ],
+              "first_post": 2021,
+              "last_post": 2025,
+              "controls": [
+                "VIC",
+                "ACT"
+              ]
+            }
+          ],
+          "start": 2010,
+          "layer": "saturated",
+          "checks": [
+            "sdid"
+          ],
+          "role": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "e-conveyancing-2018-2023",
+      "title": "Mandatory electronic conveyancing (NSW 2018, WA 2018, VIC 2019, SA 2020, QLD 2023)",
+      "records": [
+        "nsw-e-conveyancing-mandate-2018",
+        "wa-e-conveyancing-mandate-2018",
+        "vic-e-conveyancing-mandate-2019",
+        "sa-e-conveyancing-mandate-2020",
+        "qld-e-conveyancing-mandate-2023"
+      ],
+      "family": "e-conveyancing-mandate",
+      "hypothesis": "mixed",
+      "follows": null,
+      "supersedes": [],
+      "grade_cap": null,
+      "design": "Staggered: legal services entry and exit in each mandating state against the ACT, Tasmania and the NT (never mandated) and Queensland until 2022-23, with class x year and state x year effects.",
+      "outcomes": [
+        {
+          "key": "entries",
+          "kind": "business",
+          "measure": "entries",
+          "classes": [
+            "6931"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "NSW"
+              ],
+              "first_post": 2018,
+              "last_post": 2022,
+              "controls": [
+                "ACT",
+                "TAS",
+                "NT",
+                "QLD"
+              ]
+            },
+            {
+              "treated": [
+                "WA"
+              ],
+              "first_post": 2019,
+              "last_post": 2022,
+              "controls": [
+                "ACT",
+                "TAS",
+                "NT",
+                "QLD"
+              ]
+            },
+            {
+              "treated": [
+                "VIC"
+              ],
+              "first_post": 2020,
+              "last_post": 2022,
+              "controls": [
+                "ACT",
+                "TAS",
+                "NT",
+                "QLD"
+              ]
+            },
+            {
+              "treated": [
+                "SA"
+              ],
+              "first_post": 2021,
+              "last_post": 2022,
+              "controls": [
+                "ACT",
+                "TAS",
+                "NT",
+                "QLD"
+              ]
+            },
+            {
+              "treated": [
+                "QLD"
+              ],
+              "first_post": 2023,
+              "last_post": 2025,
+              "controls": [
+                "ACT",
+                "TAS",
+                "NT"
+              ]
+            }
+          ],
+          "start": 2010,
+          "layer": "saturated",
+          "checks": [
+            "imputation",
+            "sdid"
+          ],
+          "role": "primary"
+        },
+        {
+          "key": "exits",
+          "kind": "business",
+          "measure": "exits",
+          "classes": [
+            "6931"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "NSW"
+              ],
+              "first_post": 2018,
+              "last_post": 2022,
+              "controls": [
+                "ACT",
+                "TAS",
+                "NT",
+                "QLD"
+              ]
+            },
+            {
+              "treated": [
+                "WA"
+              ],
+              "first_post": 2019,
+              "last_post": 2022,
+              "controls": [
+                "ACT",
+                "TAS",
+                "NT",
+                "QLD"
+              ]
+            },
+            {
+              "treated": [
+                "VIC"
+              ],
+              "first_post": 2020,
+              "last_post": 2022,
+              "controls": [
+                "ACT",
+                "TAS",
+                "NT",
+                "QLD"
+              ]
+            },
+            {
+              "treated": [
+                "SA"
+              ],
+              "first_post": 2021,
+              "last_post": 2022,
+              "controls": [
+                "ACT",
+                "TAS",
+                "NT",
+                "QLD"
+              ]
+            },
+            {
+              "treated": [
+                "QLD"
+              ],
+              "first_post": 2023,
+              "last_post": 2025,
+              "controls": [
+                "ACT",
+                "TAS",
+                "NT"
+              ]
+            }
+          ],
+          "start": 2010,
+          "layer": "saturated",
+          "checks": [
+            "imputation"
+          ],
+          "role": "secondary"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "First evaluations of the two most evaluable new families (docs/evaluability_new_families.md).",
+    "Financial years are named by the year they end; price periods are quarters written YYYY-Qn. First exposed period: the one containing the effective date."
+  ]
+}

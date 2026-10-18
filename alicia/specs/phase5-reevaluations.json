@@ -1,0 +1,1011 @@
+{
+  "id": "phase5-reevaluations",
+  "title": "Phase 5 re-evaluations: the earlier studies with the power study's layers and the latest data",
+  "analysis": "phase5",
+  "plan": "docs/pap_phase5.md",
+  "registered_on": "2026-10-18",
+  "follows": null,
+  "records": [
+    "act-heavy-vehicle-national-law-2014",
+    "act-rideshare-2015",
+    "cth-nqf-childcare-2012",
+    "nsw-energy-price-deregulation-2014",
+    "nsw-heavy-vehicle-national-law-2014",
+    "nsw-legal-profession-uniform-law-2015",
+    "nsw-rideshare-2015",
+    "nt-cds-2012",
+    "nt-rideshare-2017",
+    "qld-heavy-vehicle-national-law-2014",
+    "qld-rideshare-2016",
+    "qld-seq-energy-price-deregulation-2016",
+    "sa-energy-price-deregulation-2013",
+    "sa-heavy-vehicle-national-law-2014",
+    "sa-rideshare-2016",
+    "tas-heavy-vehicle-national-law-2014",
+    "tas-rideshare-2016",
+    "vic-heavy-vehicle-national-law-2014",
+    "vic-legal-profession-uniform-law-2015",
+    "vic-rideshare-2017",
+    "vic-taxi-licensing-2014",
+    "wa-nqf-childcare-2012",
+    "wa-trading-hours-sunday-2012",
+    "wa-trading-hours-weeknight-2010"
+  ],
+  "evaluations": [
+    "wa-trading-hours-2010-2012-phase5",
+    "childcare-nqf-2012-phase5",
+    "heavy-vehicle-national-law-2014-phase5",
+    "vic-taxi-licensing-2014-phase5",
+    "legal-profession-uniform-law-2015-phase5",
+    "rideshare-legalisation-2015-2018-phase5",
+    "nt-container-deposits-2012-phase5",
+    "retail-energy-deregulation-2013-2016-phase5"
+  ],
+  "hypothesis": "mixed",
+  "outcomes": [
+    {
+      "key": "business",
+      "label": "Business entry and exit rates per 100 businesses at the start of the year",
+      "role": "primary",
+      "source": "data/processed/abs_cabee/cabee_class_state_fy.csv.gz (all 15 releases, latest vintage)",
+      "measure": "entries, exits",
+      "frequency": "financial-year",
+      "unit": "ANZSIC class x state",
+      "estimator": "per case: the layer chosen in the blinded power study (saturated fixed effects, synthetic DiD or two-way)",
+      "placebo_pools": [
+        {
+          "kind": "industries",
+          "rule": "size-matched placebo class groups outside the treated divisions (up to 40), as the high-evaluability batch"
+        },
+        {
+          "kind": "units",
+          "rule": "the reform's own classes in states that never adopted it (robustness)"
+        },
+        {
+          "kind": "dates",
+          "rule": "the reform's own classes and states at earlier, fake dates (robustness)"
+        }
+      ],
+      "notes": [
+        "Cohorts, classes, windows and the registered layer are per case (cases)."
+      ]
+    },
+    {
+      "key": "prices",
+      "label": "100 x log(CPI class / All groups), capital city x quarter",
+      "role": "primary",
+      "source": "ABS CPI 17th series, 2001-Q1 to 2025-Q3",
+      "measure": "relative price",
+      "frequency": "quarterly",
+      "unit": "CPI class x capital city",
+      "estimator": "class x quarter and city x quarter fixed effects (saturated), or synthetic DiD where registered",
+      "placebo_pools": [
+        {
+          "kind": "cpi-classes",
+          "rule": "up to 40 CPI classes outside the case's related subgroups"
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "name": "design",
+      "kind": "design",
+      "script": "run.py",
+      "args": [
+        "--spec",
+        "phase5-reevaluations",
+        "--stage",
+        "design"
+      ],
+      "writes": [
+        "analyses/phase5/reevaluations/design.json"
+      ],
+      "blind": true
+    },
+    {
+      "name": "dry-run",
+      "kind": "dry-run",
+      "script": "run.py",
+      "args": [
+        "--spec",
+        "phase5-reevaluations",
+        "--stage",
+        "dry-run"
+      ],
+      "writes": [
+        "analyses/phase5/reevaluations/estimate_blind.json"
+      ],
+      "blind": true
+    },
+    {
+      "name": "estimate",
+      "kind": "estimate",
+      "script": "run.py",
+      "args": [
+        "--spec",
+        "phase5-reevaluations",
+        "--stage",
+        "estimate"
+      ],
+      "writes": [
+        "analyses/phase5/reevaluations/estimate.json"
+      ]
+    },
+    {
+      "name": "evaluation",
+      "kind": "evaluation",
+      "script": "evaluations.py",
+      "args": [
+        "--spec",
+        "phase5-reevaluations"
+      ],
+      "writes": [
+        "../regulation-register/evaluations/wa-trading-hours-2010-2012-phase5.json",
+        "../regulation-register/evaluations/childcare-nqf-2012-phase5.json",
+        "../regulation-register/evaluations/heavy-vehicle-national-law-2014-phase5.json",
+        "../regulation-register/evaluations/vic-taxi-licensing-2014-phase5.json",
+        "../regulation-register/evaluations/legal-profession-uniform-law-2015-phase5.json",
+        "../regulation-register/evaluations/rideshare-legalisation-2015-2018-phase5.json",
+        "../regulation-register/evaluations/nt-container-deposits-2012-phase5.json",
+        "../regulation-register/evaluations/retail-energy-deregulation-2013-2016-phase5.json"
+      ]
+    }
+  ],
+  "parameters": {
+    "max_placebos": 40,
+    "alpha": 0.05,
+    "q": 0.1,
+    "effect_of_interest": {
+      "business": 5.0,
+      "price": 5.0
+    }
+  },
+  "cases": [
+    {
+      "id": "wa-trading-hours-2010-2012-phase5",
+      "title": "Perth retail trading hours (2010 weeknights, 2012 Sundays): re-evaluation with saturated effects",
+      "records": [
+        "wa-trading-hours-weeknight-2010",
+        "wa-trading-hours-sunday-2012"
+      ],
+      "family": "retail-trading-hours",
+      "hypothesis": "enhancing",
+      "follows": "wa-trading-hours-2010-2012",
+      "supersedes": [
+        "wa-trading-hours-2010-2012"
+      ],
+      "grade_cap": null,
+      "design": "WA general retail classes against the same classes in NSW, Victoria, Queensland, Tasmania, the ACT and the NT (SA excluded), 2010-11 to 2017-18, with class x year and state x year effects.",
+      "outcomes": [
+        {
+          "key": "entries",
+          "kind": "business",
+          "measure": "entries",
+          "classes": [
+            "4110",
+            "4251",
+            "4260"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "WA"
+              ],
+              "first_post": 2011,
+              "last_post": 2018,
+              "controls": [
+                "NSW",
+                "VIC",
+                "QLD",
+                "TAS",
+                "ACT",
+                "NT"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "saturated",
+          "checks": [
+            "imputation",
+            "sdid"
+          ],
+          "role": "primary"
+        },
+        {
+          "key": "exits",
+          "kind": "business",
+          "measure": "exits",
+          "classes": [
+            "4110",
+            "4251",
+            "4260"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "WA"
+              ],
+              "first_post": 2011,
+              "last_post": 2018,
+              "controls": [
+                "NSW",
+                "VIC",
+                "QLD",
+                "TAS",
+                "ACT",
+                "NT"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "sdid",
+          "checks": [
+            "saturated"
+          ],
+          "role": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "childcare-nqf-2012-phase5",
+      "title": "National Quality Framework for childcare (2012): re-evaluation with synthetic DiD",
+      "records": [
+        "cth-nqf-childcare-2012",
+        "wa-nqf-childcare-2012"
+      ],
+      "family": "childcare-nqf",
+      "hypothesis": "weakening",
+      "follows": "childcare-nqf-2012",
+      "supersedes": [
+        "childcare-nqf-2012"
+      ],
+      "grade_cap": null,
+      "design": "The framework started in January 2012 everywhere except WA (August 2012): 2011-12 childcare entry and exit in the seven early jurisdictions against WA, with synthetic DiD weights.",
+      "outcomes": [
+        {
+          "key": "entries",
+          "kind": "business",
+          "measure": "entries",
+          "classes": [
+            "8710"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "NSW",
+                "VIC",
+                "QLD",
+                "SA",
+                "TAS",
+                "ACT",
+                "NT"
+              ],
+              "first_post": 2012,
+              "last_post": 2012,
+              "controls": [
+                "WA"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "sdid",
+          "checks": [
+            "twoway"
+          ],
+          "role": "primary"
+        },
+        {
+          "key": "exits",
+          "kind": "business",
+          "measure": "exits",
+          "classes": [
+            "8710"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "NSW",
+                "VIC",
+                "QLD",
+                "SA",
+                "TAS",
+                "ACT",
+                "NT"
+              ],
+              "first_post": 2012,
+              "last_post": 2012,
+              "controls": [
+                "WA"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "twoway",
+          "checks": [
+            "sdid"
+          ],
+          "role": "secondary"
+        },
+        {
+          "key": "price-child-care",
+          "kind": "price",
+          "code": "115498",
+          "cohorts": [
+            {
+              "treated": [
+                "NSW",
+                "VIC",
+                "QLD",
+                "SA",
+                "TAS",
+                "ACT",
+                "NT"
+              ],
+              "first_post": "2012-Q1",
+              "last_post": "2012-Q2",
+              "controls": [
+                "WA"
+              ]
+            }
+          ],
+          "start": "2005-Q1",
+          "exclude_subgroups": [
+            "Domestic and household services"
+          ],
+          "layer": "sdid",
+          "checks": [
+            "saturated"
+          ],
+          "role": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "heavy-vehicle-national-law-2014-phase5",
+      "title": "Heavy Vehicle National Law (2014): re-evaluation with saturated effects",
+      "records": [
+        "act-heavy-vehicle-national-law-2014",
+        "nsw-heavy-vehicle-national-law-2014",
+        "qld-heavy-vehicle-national-law-2014",
+        "sa-heavy-vehicle-national-law-2014",
+        "tas-heavy-vehicle-national-law-2014",
+        "vic-heavy-vehicle-national-law-2014"
+      ],
+      "family": "heavy-vehicle-national-law",
+      "hypothesis": "enhancing",
+      "follows": "heavy-vehicle-national-law-2014",
+      "supersedes": [
+        "heavy-vehicle-national-law-2014"
+      ],
+      "grade_cap": null,
+      "design": "Road freight in the six adopting jurisdictions against WA and the NT, 2013-14 to 2017-18, with class x year and state x year effects.",
+      "outcomes": [
+        {
+          "key": "entries",
+          "kind": "business",
+          "measure": "entries",
+          "classes": [
+            "4610"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "NSW",
+                "VIC",
+                "QLD",
+                "SA",
+                "TAS",
+                "ACT"
+              ],
+              "first_post": 2014,
+              "last_post": 2018,
+              "controls": [
+                "WA",
+                "NT"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "saturated",
+          "checks": [
+            "imputation",
+            "sdid"
+          ],
+          "role": "primary"
+        },
+        {
+          "key": "exits",
+          "kind": "business",
+          "measure": "exits",
+          "classes": [
+            "4610"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "NSW",
+                "VIC",
+                "QLD",
+                "SA",
+                "TAS",
+                "ACT"
+              ],
+              "first_post": 2014,
+              "last_post": 2018,
+              "controls": [
+                "WA",
+                "NT"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "saturated",
+          "checks": [
+            "sdid"
+          ],
+          "role": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "vic-taxi-licensing-2014-phase5",
+      "title": "As-of-right taxi licences in Victoria (2014): re-evaluation with saturated effects",
+      "records": [
+        "vic-taxi-licensing-2014"
+      ],
+      "family": null,
+      "hypothesis": "enhancing",
+      "follows": "vic-taxi-licensing-2014",
+      "supersedes": [
+        "vic-taxi-licensing-2014"
+      ],
+      "grade_cap": [
+        "Weak",
+        "Unlicensed UberX began in Melbourne in 2014, the same year, and only one post-reform year is usable."
+      ],
+      "design": "Victorian taxis against taxis in the other states, 2014-15 only (before ride-share legalisation), with class x year and state x year effects.",
+      "outcomes": [
+        {
+          "key": "entries",
+          "kind": "business",
+          "measure": "entries",
+          "classes": [
+            "4623"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "VIC"
+              ],
+              "first_post": 2015,
+              "last_post": 2015,
+              "controls": [
+                "NSW",
+                "QLD",
+                "SA",
+                "WA",
+                "TAS",
+                "ACT",
+                "NT"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "saturated",
+          "checks": [
+            "sdid"
+          ],
+          "role": "primary"
+        },
+        {
+          "key": "exits",
+          "kind": "business",
+          "measure": "exits",
+          "classes": [
+            "4623"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "VIC"
+              ],
+              "first_post": 2015,
+              "last_post": 2015,
+              "controls": [
+                "NSW",
+                "QLD",
+                "SA",
+                "WA",
+                "TAS",
+                "ACT",
+                "NT"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "saturated",
+          "checks": [
+            "sdid"
+          ],
+          "role": "secondary"
+        },
+        {
+          "key": "price-urban-transport-fares",
+          "kind": "price",
+          "code": "40086",
+          "cohorts": [
+            {
+              "treated": [
+                "VIC"
+              ],
+              "first_post": "2014-Q3",
+              "last_post": "2015-Q2",
+              "controls": [
+                "NSW",
+                "QLD",
+                "SA",
+                "WA",
+                "TAS",
+                "ACT",
+                "NT"
+              ]
+            }
+          ],
+          "start": "2005-Q1",
+          "exclude_subgroups": [
+            "Urban transport fares"
+          ],
+          "layer": "saturated",
+          "checks": [
+            "sdid"
+          ],
+          "role": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "legal-profession-uniform-law-2015-phase5",
+      "title": "Legal Profession Uniform Law (2015): re-evaluation with saturated effects",
+      "records": [
+        "nsw-legal-profession-uniform-law-2015",
+        "vic-legal-profession-uniform-law-2015"
+      ],
+      "family": "legal-profession-uniform-law",
+      "hypothesis": "enhancing",
+      "follows": "legal-profession-uniform-law-2015",
+      "supersedes": [
+        "legal-profession-uniform-law-2015"
+      ],
+      "grade_cap": null,
+      "design": "Legal services in NSW and Victoria against the other jurisdictions, 2015-16 to 2017-18, with class x year and state x year effects.",
+      "outcomes": [
+        {
+          "key": "entries",
+          "kind": "business",
+          "measure": "entries",
+          "classes": [
+            "6931"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "NSW",
+                "VIC"
+              ],
+              "first_post": 2016,
+              "last_post": 2018,
+              "controls": [
+                "QLD",
+                "SA",
+                "WA",
+                "TAS",
+                "ACT",
+                "NT"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "saturated",
+          "checks": [
+            "imputation",
+            "sdid"
+          ],
+          "role": "primary"
+        },
+        {
+          "key": "exits",
+          "kind": "business",
+          "measure": "exits",
+          "classes": [
+            "6931"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "NSW",
+                "VIC"
+              ],
+              "first_post": 2016,
+              "last_post": 2018,
+              "controls": [
+                "QLD",
+                "SA",
+                "WA",
+                "TAS",
+                "ACT",
+                "NT"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "saturated",
+          "checks": [
+            "sdid"
+          ],
+          "role": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "rideshare-legalisation-2015-2018-phase5",
+      "title": "Ride-share legalisation (2015 to 2018): re-evaluation with saturated effects",
+      "records": [
+        "act-rideshare-2015",
+        "nsw-rideshare-2015",
+        "sa-rideshare-2016",
+        "qld-rideshare-2016",
+        "tas-rideshare-2016",
+        "vic-rideshare-2017",
+        "nt-rideshare-2017"
+      ],
+      "family": "rideshare-legalisation",
+      "hypothesis": "enhancing",
+      "follows": "rideshare-legalisation-2015-2018",
+      "supersedes": [
+        "rideshare-legalisation-2015-2018"
+      ],
+      "grade_cap": [
+        "Weak",
+        "Ride-sharing ran before it was legal in most cities, and drivers had to register for GST from August 2015 wherever it ran, so legal dates are not the economic dates."
+      ],
+      "design": "Staggered: each group of states that legalised in the same year against states that had not yet, with class x year and state x year effects.",
+      "outcomes": [
+        {
+          "key": "entries",
+          "kind": "business",
+          "measure": "entries",
+          "classes": [
+            "4623"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "ACT",
+                "NSW"
+              ],
+              "first_post": 2016,
+              "last_post": 2017,
+              "controls": [
+                "VIC",
+                "NT",
+                "WA"
+              ]
+            },
+            {
+              "treated": [
+                "SA",
+                "QLD",
+                "TAS"
+              ],
+              "first_post": 2017,
+              "last_post": 2017,
+              "controls": [
+                "VIC",
+                "NT",
+                "WA"
+              ]
+            },
+            {
+              "treated": [
+                "VIC",
+                "NT"
+              ],
+              "first_post": 2018,
+              "last_post": 2018,
+              "controls": [
+                "WA"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "saturated",
+          "checks": [
+            "imputation",
+            "sdid"
+          ],
+          "role": "primary"
+        },
+        {
+          "key": "exits",
+          "kind": "business",
+          "measure": "exits",
+          "classes": [
+            "4623"
+          ],
+          "cohorts": [
+            {
+              "treated": [
+                "ACT",
+                "NSW"
+              ],
+              "first_post": 2016,
+              "last_post": 2017,
+              "controls": [
+                "VIC",
+                "NT",
+                "WA"
+              ]
+            },
+            {
+              "treated": [
+                "SA",
+                "QLD",
+                "TAS"
+              ],
+              "first_post": 2017,
+              "last_post": 2017,
+              "controls": [
+                "VIC",
+                "NT",
+                "WA"
+              ]
+            },
+            {
+              "treated": [
+                "VIC",
+                "NT"
+              ],
+              "first_post": 2018,
+              "last_post": 2018,
+              "controls": [
+                "WA"
+              ]
+            }
+          ],
+          "start": 2008,
+          "layer": "saturated",
+          "checks": [
+            "imputation"
+          ],
+          "role": "secondary"
+        },
+        {
+          "key": "price-urban-transport-fares",
+          "kind": "price",
+          "code": "40086",
+          "cohorts": [
+            {
+              "treated": [
+                "ACT",
+                "NSW"
+              ],
+              "first_post": "2015-Q4",
+              "last_post": "2017-Q2",
+              "controls": [
+                "VIC",
+                "NT",
+                "WA"
+              ]
+            },
+            {
+              "treated": [
+                "SA",
+                "QLD",
+                "TAS"
+              ],
+              "first_post": "2016-Q3",
+              "last_post": "2017-Q2",
+              "controls": [
+                "VIC",
+                "NT",
+                "WA"
+              ]
+            },
+            {
+              "treated": [
+                "VIC"
+              ],
+              "first_post": "2017-Q3",
+              "last_post": "2018-Q4",
+              "controls": [
+                "WA"
+              ]
+            },
+            {
+              "treated": [
+                "NT"
+              ],
+              "first_post": "2018-Q1",
+              "last_post": "2018-Q4",
+              "controls": [
+                "WA"
+              ]
+            }
+          ],
+          "start": "2005-Q1",
+          "exclude_subgroups": [
+            "Urban transport fares"
+          ],
+          "layer": "sdid",
+          "checks": [
+            "saturated"
+          ],
+          "role": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "nt-container-deposits-2012-phase5",
+      "title": "Northern Territory container deposit scheme (2012): re-evaluation with drink prices",
+      "records": [
+        "nt-cds-2012"
+      ],
+      "family": "container-deposit-scheme",
+      "hypothesis": "mixed",
+      "follows": "nt-container-deposits-2012",
+      "supersedes": [
+        "nt-container-deposits-2012"
+      ],
+      "grade_cap": null,
+      "design": "Darwin drink prices relative to the CPI against the capitals of states without a scheme (Adelaide excluded), 2012-Q1 to 2017-Q3, with class x quarter and city x quarter effects. Business counts are too few to use.",
+      "outcomes": [
+        {
+          "key": "price-soft-drinks",
+          "kind": "price",
+          "code": "115520",
+          "cohorts": [
+            {
+              "treated": [
+                "NT"
+              ],
+              "first_post": "2012-Q1",
+              "last_post": "2017-Q3",
+              "controls": [
+                "NSW",
+                "VIC",
+                "QLD",
+                "WA",
+                "TAS",
+                "ACT"
+              ]
+            }
+          ],
+          "start": "2005-Q1",
+          "exclude_subgroups": [
+            "Non-alcoholic beverages",
+            "Alcoholic beverages"
+          ],
+          "layer": "saturated",
+          "checks": [
+            "sdid"
+          ],
+          "role": "primary"
+        },
+        {
+          "key": "price-beer",
+          "kind": "price",
+          "code": "40087",
+          "cohorts": [
+            {
+              "treated": [
+                "NT"
+              ],
+              "first_post": "2012-Q1",
+              "last_post": "2017-Q3",
+              "controls": [
+                "NSW",
+                "VIC",
+                "QLD",
+                "WA",
+                "TAS",
+                "ACT"
+              ]
+            }
+          ],
+          "start": "2005-Q1",
+          "exclude_subgroups": [
+            "Non-alcoholic beverages",
+            "Alcoholic beverages"
+          ],
+          "layer": "saturated",
+          "checks": [
+            "sdid"
+          ],
+          "role": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "retail-energy-deregulation-2013-2016-phase5",
+      "title": "Retail energy price deregulation (SA 2013, NSW 2014, SEQ 2016): re-evaluation with electricity prices",
+      "records": [
+        "sa-energy-price-deregulation-2013",
+        "nsw-energy-price-deregulation-2014",
+        "qld-seq-energy-price-deregulation-2016"
+      ],
+      "family": "retail-energy-price-deregulation",
+      "hypothesis": "enhancing",
+      "follows": "retail-energy-deregulation-2013-2016",
+      "supersedes": [
+        "retail-energy-deregulation-2013-2016"
+      ],
+      "grade_cap": [
+        "Weak",
+        "State network charges moved electricity prices differently over the same years."
+      ],
+      "design": "Electricity prices relative to the CPI in each deregulating capital against capitals whose prices stayed regulated (Hobart, Canberra, Perth, Darwin), with class x quarter and city x quarter effects. Retailer counts are too few to use.",
+      "outcomes": [
+        {
+          "key": "price-electricity",
+          "kind": "price",
+          "code": "40055",
+          "cohorts": [
+            {
+              "treated": [
+                "SA"
+              ],
+              "first_post": "2013-Q1",
+              "last_post": "2019-Q2",
+              "controls": [
+                "TAS",
+                "ACT",
+                "WA",
+                "NT"
+              ]
+            },
+            {
+              "treated": [
+                "NSW"
+              ],
+              "first_post": "2014-Q3",
+              "last_post": "2019-Q2",
+              "controls": [
+                "TAS",
+                "ACT",
+                "WA",
+                "NT"
+              ]
+            },
+            {
+              "treated": [
+                "QLD"
+              ],
+              "first_post": "2016-Q3",
+              "last_post": "2019-Q2",
+              "controls": [
+                "TAS",
+                "ACT",
+                "WA",
+                "NT"
+              ]
+            }
+          ],
+          "start": "2005-Q1",
+          "exclude_subgroups": [
+            "Utilities"
+          ],
+          "layer": "saturated",
+          "checks": [
+            "sdid"
+          ],
+          "role": "primary"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Each case follows and supersedes an earlier evaluation; the earlier results were known when these specifications were written, but the layers were fixed by the blinded power study.",
+    "Financial years are named by the year they end; price periods are quarters written YYYY-Qn. First exposed period: the one containing the effective date."
+  ]
+}
