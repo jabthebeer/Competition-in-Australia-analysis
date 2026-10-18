@@ -107,7 +107,59 @@ Definitions are in `power_study.md` §2.
 
 ## 6. Design stage (blinded)
 
-To be filled in from `design.json` before unblinding (section 6 of the committed plan).
+**Run:** 18 October 2026, with treated cells hidden from first exposure. **Outputs:**
+- `alicia/analyses/phase5/reevaluations/design.json`;
+- `alicia/analyses/phase5/new_families/design.json`.
+
+"MDE" is the smallest detectable effect (80% power, 5% two-sided) of the registered layer: 2.8 × the standard deviation of its placebo estimates, in points per 100 businesses or log points. The pre-trend check uses the treated group's own pre-reform rows, which stay visible when post-reform cells are hidden.
+
+### 6.1 Re-evaluations
+
+| Evaluation | Outcome | Registered layer | Placebos | MDE (registered) | Smallest MDE (layer) | Own-class draws | Pre-trend check |
+|---|---|---|---|---|---|---|---|
+| Perth retail trading hours (2010 weeknights, 2012 Sundays): re-evaluation with saturated effects | Business entry rate (primary) | Saturated fixed effects | 40 | 4.6 | 4.6 (Imputation (Borusyak, Jaravel and Spiess)) | states 6, dates 1, states and dates 5 | pass |
+|  | Business exit rate (secondary) | Synthetic DiD | 40 | 3.0 | 3.0 (Synthetic DiD) | states 6, dates 1, states and dates 5 | pass |
+| National Quality Framework for childcare (2012): re-evaluation with synthetic DiD | Business entry rate (primary) | Synthetic DiD | 40 | 6.0 | 6.0 (Synthetic DiD) | — | pass |
+|  | Business exit rate (secondary) | Two-way fixed effects | 40 | 2.2 | 2.2 (Two-way fixed effects) | — | pass |
+|  | Child care: prices relative to the CPI (secondary) | Synthetic DiD | 40 | 5.0 | 5.0 (Synthetic DiD) | dates 5 | pass |
+| Heavy Vehicle National Law (2014): re-evaluation with saturated effects | Business entry rate (primary) | Saturated fixed effects | 40 | 4.4 | 4.4 (Saturated fixed effects) | dates 4 | pass |
+|  | Business exit rate (secondary) | Saturated fixed effects | 40 | 3.0 | 2.8 (Synthetic DiD) | dates 4 | pass |
+| As-of-right taxi licences in Victoria (2014): re-evaluation with saturated effects | Business entry rate (primary) | Saturated fixed effects | 40 | 3.5 | 3.5 (Saturated fixed effects) | states 7, dates 5, states and dates 20 | pass |
+|  | Business exit rate (secondary) | Saturated fixed effects | 40 | 2.4 | 2.4 (Saturated fixed effects) | states 7, dates 5, states and dates 20 | fail |
+|  | Urban transport fares: prices relative to the CPI (secondary) | Saturated fixed effects | 40 | 8.3 | 8.3 (Synthetic DiD) | states 7, dates 7, states and dates 20 | pass |
+| Legal Profession Uniform Law (2015): re-evaluation with saturated effects | Business entry rate (primary) | Saturated fixed effects | 39 | 4.5 | 4.5 (Saturated fixed effects) | states 15, dates 6, states and dates 20 | pass |
+|  | Business exit rate (secondary) | Saturated fixed effects | 39 | 1.6 | 1.6 (Saturated fixed effects) | states 15, dates 6, states and dates 20 | pass |
+| Ride-share legalisation (2015 to 2018): re-evaluation with saturated effects | Business entry rate (primary) | Saturated fixed effects | 40 | 4.3 | 4.1 (Synthetic DiD) | dates 6 | fail |
+|  | Business exit rate (secondary) | Saturated fixed effects | 40 | 2.2 | 2.2 (Saturated fixed effects) | dates 6 | pass |
+|  | Urban transport fares: prices relative to the CPI (secondary) | Synthetic DiD | 40 | 5.0 | 5.0 (Synthetic DiD) | dates 8 | pass |
+| Northern Territory container deposit scheme (2012): re-evaluation with drink prices | Waters, soft drinks and juices: prices relative to the CPI (primary) | Saturated fixed effects | 40 | 22.0 | 21.3 (Synthetic DiD) | states 6, dates 5, states and dates 20 | fail |
+|  | Beer: prices relative to the CPI (secondary) | Saturated fixed effects | 40 | 22.0 | 21.3 (Synthetic DiD) | states 6, dates 5, states and dates 20 | pass |
+| Retail energy price deregulation (SA 2013, NSW 2014, SEQ 2016): re-evaluation with electricity prices | Electricity: prices relative to the CPI (primary) | Saturated fixed effects | 40 | 9.1 | 9.1 (Saturated fixed effects) | states 20, dates 6, states and dates 20 | fail |
+
+### 6.2 New families
+
+| Evaluation | Outcome | Registered layer | Placebos | MDE (registered) | Smallest MDE (layer) | Own-class draws | Pre-trend check |
+|---|---|---|---|---|---|---|---|
+| Mandatory fuel price reporting (NSW 2016, NT 2017, QLD 2018, TAS 2020, SA 2021) | Automotive fuel: prices relative to the CPI (primary) | Saturated fixed effects | 40 | 6.7 | 6.7 (Saturated fixed effects) | dates 9 | pass |
+|  | Business entry rate (secondary) | Saturated fixed effects | 40 | 2.2 | 2.2 (Saturated fixed effects) | dates 5 | fail |
+|  | Business exit rate (secondary) | Saturated fixed effects | 40 | 2.2 | 2.2 (Saturated fixed effects) | dates 5 | pass |
+| Mandatory electronic conveyancing (NSW 2018, WA 2018, VIC 2019, SA 2020, QLD 2023) | Business entry rate (primary) | Saturated fixed effects | 40 | 2.9 | 2.9 (Saturated fixed effects) | dates 6 | pass |
+|  | Business exit rate (secondary) | Saturated fixed effects | 40 | 1.8 | 1.8 (Saturated fixed effects) | dates 6 | pass |
+
+### 6.3 What the design stage settles before unblinding
+
+1. **Three re-evaluations are not identified.** Their primary outcome already fails the registered pre-trend check:
+   - ride-share entry;
+   - NT soft-drink prices;
+   - electricity prices after deregulation.
+
+   The earlier batch also found all three not identified: ride-share on the same pre-trend ground, and NT container deposits and energy deregulation because business counts were too few. Their estimates will be reported as descriptive only.
+2. **Two secondary outcomes fail the same check:** Victorian taxi exits and fuel retailers' entry. They will be marked not identified.
+3. **Every other design passes.** Their MDEs match the power study:
+   - 2.2–6.0 per 100 for business counts;
+   - 5.0–8.3 log points for prices, and 22 for NT drinks.
+
+   The design stage cannot show whether these designs detect anything. That is for the registered run.
 
 ## 7. Changes after registration
 
