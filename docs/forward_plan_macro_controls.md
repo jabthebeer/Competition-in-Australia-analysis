@@ -199,8 +199,10 @@ The single-state cases come after.
 | 1. Controls data | Done (E-56): State Accounts, state final demand, Labour Force, ERP, WPI, building approvals, national GVA by division, Business Indicators, RBA commodity prices; sources in `data/SOURCES.md` |
 | 2. Estimator library | Done in Python (E-58, E-59): saturated fixed effects, wild cluster bootstrap, imputation, randomization inference, shift-share and measured controls, synthetic DiD and synthetic control, generalised synthetic control, matrix completion, conformal inference, Callaway–Sant'Anna, sensitivity bounds; simulation tests ([methods note](methods_panel_estimators.md)). The R run of the cross-check is deferred by the owner |
 | 3. Power study | Done (E-60, E-65; [results](power_study.md)): business entry and exit and CPI prices; placebo industries, placebo states, fake dates and both; the new families from the gap scan |
-| 4. Specification runner | Started (E-67; [note](specification_runner.md)): the four existing analyses are JSON specifications read by their code, and reproduce byte for byte through `alicia spec run`. Still to do: a generic estimation stage and the side-by-side estimator comparison (§5.3) |
-| 5–7 | Not started |
+| 4. Specification runner | Done (E-67, E-69; [note](specification_runner.md)): the four earlier analyses are JSON specifications read by their code, and reproduce byte for byte through `alicia spec run`. Phase 5 adds a generic engine that builds designs from a specification's cases alone, and reports every estimator layer side by side (§5.3) |
+| 5. Re-evaluations | Done for the batch and first case (E-69, E-70; [plan](pap_phase5.md), [results](results_phase5.md)): eight registered re-evaluations, each superseding and archiving its earlier evaluation; no verdict changed, precision up 18–53%. The weeknight new-data and NQF-in-WA designs were not repeated |
+| 6. All evaluable records | Started (E-69, E-70): fuel price reporting and e-conveyancing evaluated (both inconclusive, Weak). Next: automatic mutual recognition, the 2022 building code after the December 2026 CABEE release, VET entitlements, NDIS Commission |
+| 7. Reporting | Partly: each evaluation page shows the estimator comparison and the archived earlier result (E-68) |
 
 The website also shows the controls and state and industry growth (E-57).
 

@@ -143,6 +143,24 @@ class Method(_Strict):
     steps: tuple[str, ...] = Field(min_length=1, description="What was done, in order")
 
 
+class EstimatorRow(_Strict):
+    """One estimator layer's estimate of one outcome, for the side-by-side comparison."""
+
+    outcome: RecordId
+    layer: str = Field(min_length=1)
+    label: str = Field(min_length=1)
+    estimate: float | None = None
+    interval: Interval | None = None
+    p_value: float | None = Field(None, ge=0, le=1)
+    mde_80: float | None = None
+    registered: bool = False
+
+
+# Fields added after the first evaluations were written; omitted from a file when empty, so that earlier files
+# reproduce byte for byte.
+OPTIONAL_FIELDS = ("supersedes", "evaluated_at", "estimators")
+
+
 class Evaluation(_Strict):
     id: RecordId
     title: str = Field(min_length=1)
@@ -172,6 +190,13 @@ class Evaluation(_Strict):
     caveats: tuple[str, ...] = ()
     documents: tuple[Document, ...] = ()
     built_by: str = Field(min_length=1, description="Script that wrote this file from the analysis outputs")
+    supersedes: tuple[RecordId, ...] = Field(
+        (), description="Earlier evaluations this one replaces; the menu shows them as archived, below it"
+    )
+    evaluated_at: dt.datetime | None = Field(None, description="When the registered run was made (orders a day's work)")
+    estimators: tuple[EstimatorRow, ...] = Field(
+        (), description="Every estimator layer side by side for each outcome; the registered one marked"
+    )
 
     @model_validator(mode="after")
     def _consistent(self) -> Evaluation:
@@ -183,6 +208,8 @@ class Evaluation(_Strict):
         missing = [e.outcome for e in self.event_studies if e.outcome not in ids]
         if missing:
             raise ValueError(f"event studies refer to unknown outcomes: {missing}")
+        if self.id in self.supersedes:
+            raise ValueError("an evaluation cannot supersede itself")
         return self
 
 
@@ -228,6 +255,9 @@ def load_evaluations(records: list[ChangeRecord] | None = None, evaluations_dir:
     for ev in out.evaluations:
         if ev.follows and ev.follows not in ids:
             out.problems.append(f"evaluations/{ev.id}.json: follows unknown evaluation '{ev.follows}'")
+        for old in ev.supersedes:
+            if old not in ids:
+                out.problems.append(f"evaluations/{ev.id}.json: supersedes unknown evaluation '{old}'")
     for rid, evs in covered.items():
         # A record may be in several evaluations only when each later one follows an earlier one.
         chained = {e for e in evs if ids[e].follows in evs}
@@ -236,10 +266,23 @@ def load_evaluations(records: list[ChangeRecord] | None = None, evaluations_dir:
     return out
 
 
+def archived(evaluations: list[Evaluation]) -> dict[str, str]:
+    """Evaluation id -> the later evaluation that supersedes it (archived evaluations stay on file)."""
+    return {old: ev.id for ev in evaluations for old in ev.supersedes}
+
+
+def recency(ev: Evaluation) -> tuple:
+    """Sort key, oldest first: date, then the registered run's time where recorded, follow-ups after originals."""
+    return (ev.evaluated_on, ev.evaluated_at.isoformat() if ev.evaluated_at else "", ev.follows is not None)
+
+
 def current_evaluation(evaluations: list[Evaluation]) -> dict[str, str]:
-    """Record id -> the evaluation to show for it: the latest in its chain of follow-ups."""
+    """Record id -> the evaluation to show for it: the latest one that has not been archived."""
+    gone = archived(evaluations)
     out: dict[str, str] = {}
-    for ev in sorted(evaluations, key=lambda e: (e.evaluated_on, e.follows is not None)):
+    for ev in sorted(evaluations, key=recency):
+        if ev.id in gone:
+            continue
         for rid in ev.records:
             out[rid] = ev.id
     return out
@@ -249,7 +292,11 @@ def write_evaluation(ev: Evaluation, evaluations_dir: Path | None = None) -> Pat
     folder = evaluations_dir or default_evaluations_dir()
     folder.mkdir(parents=True, exist_ok=True)
     path = folder / f"{ev.id}.json"
-    path.write_text(json.dumps(ev.model_dump(mode="json"), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    data = ev.model_dump(mode="json")
+    for key in OPTIONAL_FIELDS:
+        if not data.get(key):
+            data.pop(key, None)
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return path
 
 

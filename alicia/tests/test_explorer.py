@@ -85,9 +85,12 @@ def test_payload_marks_evaluated_records_and_embeds_their_results():
     data = build_payload(records, evaluations=evals, repo_base="https://example.org/repo/")
     by_id = {r["id"]: r for r in data["records"]}
     ev = data["evaluations"]["wa-trading-hours-2010-2012"]
-    # The weeknight record shows its follow-up evaluation; the earlier one still covers the Sunday step.
-    assert by_id["wa-trading-hours-weeknight-2010"]["evaluation"] == "wa-trading-hours-weeknight-2010-new-data"
-    assert by_id["wa-trading-hours-sunday-2012"]["evaluation"] == ev["id"]
+    # Both WA records show the Phase 5 re-evaluation; the evaluation it supersedes is still embedded, marked archived.
+    assert by_id["wa-trading-hours-weeknight-2010"]["evaluation"] == "wa-trading-hours-2010-2012-phase5"
+    assert by_id["wa-trading-hours-sunday-2012"]["evaluation"] == "wa-trading-hours-2010-2012-phase5"
+    assert data["archived"][ev["id"]] == "wa-trading-hours-2010-2012-phase5"
+    assert "wa-trading-hours-weeknight-2010-new-data" in data["evaluations"]
+    assert "wa-trading-hours-weeknight-2010-new-data" not in data["archived"]
     covered = len({rid for e in data["evaluations"].values() for rid in e["records"]})
     assert sum(r["evaluation"] is not None for r in data["records"]) == covered
     assert {o["category"] for o in ev["outcomes"]} == {"competition", "prices", "productivity"}

@@ -180,8 +180,49 @@ def test_current_evaluation_prefers_the_follow_up():
 
     evs = load_evaluations().evaluations
     current = current_evaluation(evs)
-    assert current["wa-trading-hours-weeknight-2010"] == "wa-trading-hours-weeknight-2010-new-data"
-    assert current["wa-trading-hours-sunday-2012"] == "wa-trading-hours-2010-2012"
+    # The Phase 5 re-evaluation (same day, with a recorded run time) is now the current one for both WA records;
+    # the evaluation it supersedes is archived and never current.
+    assert current["wa-trading-hours-weeknight-2010"] == "wa-trading-hours-2010-2012-phase5"
+    assert current["wa-trading-hours-sunday-2012"] == "wa-trading-hours-2010-2012-phase5"
+    assert current["cth-nqf-childcare-2012"] == "childcare-nqf-2012-phase5"
+    assert "wa-trading-hours-2010-2012" not in current.values()
+
+
+def test_phase5_evaluations_match_the_registered_run():
+    """Each Phase 5 evaluation file must equal its specification's estimate.json and archive what it supersedes."""
+    from alicia.register.evaluation import archived
+    from alicia.runner.spec import load
+
+    evs = {e.id: e for e in load_evaluations().evaluations}
+    arch = archived(evs.values())
+    for spec_id, folder in (("phase5-reevaluations", "reevaluations"), ("phase5-new-families", "new_families")):
+        spec = load(spec_id)
+        est = json.loads((ANALYSIS.parent / "phase5" / folder / "estimate.json").read_text(encoding="utf-8"))
+        assert est["mode"].startswith("UNBLINDED")
+        for case in spec.cases:
+            res = next(c for c in est["cases"] if c["id"] == case["id"])
+            ev = evs[case["id"]]
+            assert (ev.verdict, ev.grade) == (res["verdict"], res["grade"]), ev.id
+            assert ev.supersedes == tuple(case["supersedes"]) and ev.follows == case["follows"]
+            assert all(arch[old] == ev.id for old in ev.supersedes)
+            assert ev.evaluated_at is not None and ev.id not in arch
+            out = {o.id: o for o in ev.outcomes}
+            rows = [(r.outcome, r.layer) for r in ev.estimators]
+            assert len(rows) == len(set(rows)), ev.id
+            for o in case["outcomes"]:
+                r = res["outcomes"][o["key"]]
+                reg = r["registered"]
+                oid = o["key"] if o["kind"] == "price" else {"entries": "entry-rate", "exits": "exit-rate"}[o["key"]]
+                got = out[oid]
+                assert (got.estimate, got.p_value, got.mde_80) == (reg["estimate"], reg["p"], reg["mde_80"])
+                assert [got.interval.low, got.interval.high] == reg["interval_90"]
+                assert got.role == o["role"] and got.preregistered
+                layers = {x.layer: x for x in ev.estimators if x.outcome == oid}
+                assert set(layers) == set(r["layers"]), (ev.id, oid)
+                assert [k for k, x in layers.items() if x.registered] == [o["layer"]]
+                assert all(layers[k].estimate == v["estimate"] for k, v in r["layers"].items())
+                if r["pre_inside_95"] is False:
+                    assert got.finding == "not-identified"
 
 
 def test_nqf_wa_evaluation_matches_the_registered_run():
@@ -236,3 +277,34 @@ def test_methods_document_is_up_to_date():
     assert doc.read_text("utf-8") == methods_markdown(load_evaluations(records).evaluations), (
         "regenerate with: uv run alicia methods -o ../docs/evaluation_methods.md"
     )
+
+
+def test_archived_evaluations_are_never_current_and_optional_fields_are_left_out(tmp_path):
+    """ILLUSTRATIVE evaluations: a re-evaluation that supersedes the original, and a follow-up that does not."""
+    from alicia.register.evaluation import archived, current_evaluation
+
+    old = Evaluation.model_validate(minimal(id="old-eval"))
+    side = Evaluation.model_validate(minimal(id="side-eval", follows="old-eval", evaluated_on="2026-10-16"))
+    new = Evaluation.model_validate(
+        minimal(
+            id="new-eval",
+            follows="old-eval",
+            evaluated_on="2026-10-16",
+            supersedes=["old-eval"],
+            evaluated_at="2026-10-16T23:00:00+00:00",
+        )
+    )
+    assert archived([old, side, new]) == {"old-eval": "new-eval"}
+    # Same day: the one with a recorded run time is the later one, and archived evaluations are never current.
+    assert current_evaluation([old, side, new])["wa-trading-hours-weeknight-2010"] == "new-eval"
+    assert current_evaluation([new, old])["wa-trading-hours-weeknight-2010"] == "new-eval"
+    write_evaluation(old, tmp_path)
+    write_evaluation(new, tmp_path)
+    assert not {"supersedes", "evaluated_at", "estimators"} & set(json.loads((tmp_path / "old-eval.json").read_text()))
+    data = json.loads((tmp_path / "new-eval.json").read_text())
+    assert data["supersedes"] == ["old-eval"] and "estimators" not in data
+
+
+def test_an_evaluation_cannot_supersede_itself():
+    with pytest.raises(ValidationError):
+        Evaluation.model_validate(minimal(supersedes=["illustrative-eval"]))

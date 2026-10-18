@@ -1,0 +1,641 @@
+{
+  "id": "vic-taxi-licensing-2014-phase5",
+  "title": "As-of-right taxi licences in Victoria (2014): re-evaluation with saturated effects",
+  "records": [
+    "vic-taxi-licensing-2014"
+  ],
+  "family": null,
+  "follows": "vic-taxi-licensing-2014",
+  "evaluated_on": "2026-10-18",
+  "hypothesis": "enhancing",
+  "design": "Victorian taxis against taxis in the other states, 2014-15 only (before ride-share legalisation), with class x year and state x year effects.",
+  "comparison": "VIC from 2015 against NSW/QLD/SA/WA/TAS/ACT/NT",
+  "window": "2014-15 to 2014-15",
+  "verdict": "inconclusive",
+  "finding_label": "No detectable effect",
+  "grade": "Weak",
+  "grade_reason": "capped before unblinding: Unlicensed UberX began in Melbourne in 2014, the same year, and only one post-reform year is usable.",
+  "headline": "No detectable effect: business entry rate −0.4 per 100 businesses a year (p = 0.68), saturated fixed effects, grade Weak.",
+  "category_summaries": {
+    "competition": "Business entry rate: −0.4 per 100 businesses a year (p = 0.68; detectable from 3.5). Business exit rate: −1.9 per 100 businesses a year (p = 0.049; detectable from 2.4).",
+    "prices": "Urban transport fares: prices relative to the CPI: −10.6% (log points) (p = 0.024; detectable from 8.3).",
+    "productivity": "Not measured in this evaluation."
+  },
+  "key_insights": [
+    "The question: did Victoria's as-of-right taxi licences (2014) bring new taxi businesses in, or lower fares?",
+    "The comparison: Victorian taxis against taxis in the other states, 2014-15 only (before ride-share legalisation), with class x year and state x year effects.",
+    "What we found: no detectable change. Business entry rate: −0.4 per 100 businesses a year (90% interval −2.6 to +1.8; p = 0.68).",
+    "Other outcomes: business exit rate −1.9 (p = 0.049; not identified: a pre-reform year lies outside its placebo band); urban transport fares: prices relative to the CPI −10.6 (p = 0.024). Secondary outcomes are outside the registered decision rule and not adjusted for testing several outcomes, so a p-value below 0.05 among them is a lead, not a finding.",
+    "How precise: only changes larger than about 3.5 per 100 businesses a year could have been detected.",
+    "After unblinding (not pre-registered): the fall in Melbourne's urban transport fares came all at once in 2015-Q1 (−19.1 points in one quarter, about 12 times the usual quarterly move), not when the taxi reform started (2014-Q3: +0.1). January 2015 is when public transport fare changes were reported to start (zone 1+2 travel capped at the zone 1 fare; free CBD trams). The CPI class covers public transport fares as well as taxi fares, and a one-quarter step of this size looks like a fare-schedule change, not taxi competition building up; the fares result should not be read as an effect of the taxi reform.",
+    "Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate −1.4 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 3.5, down from 4.2. This evaluation uses the estimator chosen in the blinded power study and the latest data.",
+    "What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out."
+  ],
+  "method": {
+    "summary": "Saturated fixed effects on ANZSIC classes by state and financial year, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.",
+    "equations": [
+      {
+        "label": "Saturated fixed effects",
+        "text": "y_{cst} = α_{cs} + δ_{ct} + γ_{st} + β·D_{cst} + ε_{cst}"
+      },
+      {
+        "label": "Year by year",
+        "text": "y_{cst} = α_{cs} + δ_{ct} + γ_{st} + Σ_{k≠−1} β_{k}·1[t − T_{s} = k]·T_{cs} + ε_{cst}"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{cst}",
+        "meaning": "Entries (or exits) per 100 businesses operating at the start of year t, class c, state s"
+      },
+      {
+        "symbol": "D_{cst}",
+        "meaning": "1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window"
+      },
+      {
+        "symbol": "α_{cs}",
+        "meaning": "a level for each class in each state"
+      },
+      {
+        "symbol": "δ_{ct}",
+        "meaning": "each class's national movement in each period (industry cycles, product-wide price swings)"
+      },
+      {
+        "symbol": "γ_{st}",
+        "meaning": "each state's movement in each period (state booms and slumps)"
+      }
+    ],
+    "estimand": "The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.",
+    "identification": "Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).",
+    "inference": "The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.",
+    "steps": [
+      "Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.",
+      "Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.",
+      "Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.",
+      "Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side."
+    ]
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "entry-rate",
+      "label": "Business entry rate",
+      "category": "competition",
+      "role": "primary",
+      "unit": "per 100 businesses a year",
+      "baseline": 13.034,
+      "baseline_label": "Average rate in the panel",
+      "estimate": -0.365,
+      "interval": {
+        "low": -2.57,
+        "high": 1.755,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -2.12,
+        "high": 2.205,
+        "basis": "90% range across 40 placebo industry groups"
+      },
+      "p_value": 0.6829,
+      "inference": "Rank among 40 placebo industry groups (two-sided)",
+      "mde_80": 3.482,
+      "finding": "no-detectable-effect",
+      "grade": "Weak",
+      "preregistered": true,
+      "note": "Registered layer: Saturated fixed effects. Net of a placebo mean of −0.4; plain estimate −0.8. 4623 Taxi and Other Road Transport. Checks: Synthetic DiD +0.7. Own-class placebos: states and dates p = 0.95 (20 draws)."
+    },
+    {
+      "id": "exit-rate",
+      "label": "Business exit rate",
+      "category": "competition",
+      "role": "secondary",
+      "unit": "per 100 businesses a year",
+      "baseline": 13.242,
+      "baseline_label": "Average rate in the panel",
+      "estimate": -1.907,
+      "interval": {
+        "low": -3.241,
+        "high": -0.781,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -1.126,
+        "high": 1.334,
+        "basis": "90% range across 40 placebo industry groups"
+      },
+      "p_value": 0.0488,
+      "inference": "Rank among 40 placebo industry groups (two-sided)",
+      "mde_80": 2.368,
+      "finding": "not-identified",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered layer: Saturated fixed effects. Net of a placebo mean of −0.1; plain estimate −2.0. 4623 Taxi and Other Road Transport. Checks: Synthetic DiD −1.2. Own-class placebos: states and dates p = 0.33 (20 draws). Not identified: a pre-reform year lies outside its 95% placebo band."
+    },
+    {
+      "id": "price-urban-transport-fares",
+      "label": "Urban transport fares: prices relative to the CPI",
+      "category": "prices",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -10.563,
+      "interval": {
+        "low": -14.78,
+        "high": -7.566,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -2.997,
+        "high": 4.217,
+        "basis": "90% range across 40 placebo CPI classes in the same cities"
+      },
+      "p_value": 0.0244,
+      "inference": "Rank among 40 placebo CPI classes in the same cities (two-sided)",
+      "mde_80": 8.257,
+      "finding": "decrease",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered layer: Saturated fixed effects. Net of a placebo mean of −0.3; plain estimate −10.8. Capital cities. Checks: Synthetic DiD −9.2. Own-class placebos: states and dates p = 0.095 (20 draws)."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "entry-rate",
+      "title": "Business entry rate, year by year (saturated effects, net of placebos)",
+      "unit": "per 100 businesses a year",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "2009-10",
+          "k": -5,
+          "estimate": 1.1275,
+          "low": -1.3493,
+          "high": 3.1349
+        },
+        {
+          "period": "2010-11",
+          "k": -4,
+          "estimate": -1.7176,
+          "low": -5.3385,
+          "high": 1.0757
+        },
+        {
+          "period": "2011-12",
+          "k": -3,
+          "estimate": -0.5883,
+          "low": -4.3807,
+          "high": 2.239
+        },
+        {
+          "period": "2012-13",
+          "k": -2,
+          "estimate": -0.7315,
+          "low": -2.3005,
+          "high": 1.5833
+        },
+        {
+          "period": "2014-15",
+          "k": 0,
+          "estimate": -0.2588,
+          "low": -2.1776,
+          "high": 2.1838
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    },
+    {
+      "outcome": "exit-rate",
+      "title": "Business exit rate, year by year (saturated effects, net of placebos)",
+      "unit": "per 100 businesses a year",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "2009-10",
+          "k": -5,
+          "estimate": 1.8273,
+          "low": 0.7998,
+          "high": 3.5977
+        },
+        {
+          "period": "2010-11",
+          "k": -4,
+          "estimate": 1.5888,
+          "low": 0.1191,
+          "high": 3.1874
+        },
+        {
+          "period": "2011-12",
+          "k": -3,
+          "estimate": -0.5809,
+          "low": -2.1238,
+          "high": 0.9121
+        },
+        {
+          "period": "2012-13",
+          "k": -2,
+          "estimate": 0.141,
+          "low": -1.2656,
+          "high": 1.7706
+        },
+        {
+          "period": "2014-15",
+          "k": 0,
+          "estimate": -0.8815,
+          "low": -2.5234,
+          "high": 1.1046
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    },
+    {
+      "outcome": "price-urban-transport-fares",
+      "title": "Urban transport fares: prices relative to the CPI, year by year (saturated effects, net of placebos)",
+      "unit": "% (log points)",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "year -5",
+          "k": -5,
+          "estimate": 3.4183,
+          "low": -1.502,
+          "high": 8.1804
+        },
+        {
+          "period": "year -4",
+          "k": -4,
+          "estimate": -0.882,
+          "low": -3.6193,
+          "high": 3.2051
+        },
+        {
+          "period": "year -3",
+          "k": -3,
+          "estimate": -0.0848,
+          "low": -2.4218,
+          "high": 2.4734
+        },
+        {
+          "period": "year -2",
+          "k": -2,
+          "estimate": 0.9543,
+          "low": -1.3727,
+          "high": 3.8848
+        },
+        {
+          "period": "year 0",
+          "k": 0,
+          "estimate": -8.5842,
+          "low": -10.9545,
+          "high": -6.5697
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    }
+  ],
+  "caveats": [
+    "capped before unblinding: Unlicensed UberX began in Melbourne in 2014, the same year, and only one post-reform year is usable.",
+    "Urban transport fares (secondary): the fall is confounded. It came in 2015-Q1, the quarter public transport fare changes were reported to start, not in 2014-Q3 (post-unblinding check, analyses/phase5/posthoc.py; the fare changes are taken from commentary written before them, not checked against PTV's fare tables).",
+    "Re-evaluation: the earlier results were known when this specification was written; the estimator layers were fixed beforehand by the blinded power study."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_phase5.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_phase5.md"
+    },
+    {
+      "label": "Specification",
+      "path": "alicia/specs/phase5-reevaluations.json"
+    },
+    {
+      "label": "Estimation code",
+      "path": "alicia/analyses/phase5/run.py"
+    }
+  ],
+  "built_by": "alicia/analyses/phase5/evaluations.py",
+  "supersedes": [
+    "vic-taxi-licensing-2014"
+  ],
+  "evaluated_at": "2026-10-18T21:04:50Z",
+  "estimators": [
+    {
+      "outcome": "entry-rate",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": 0.224,
+      "interval": {
+        "low": -3.078,
+        "high": 3.135,
+        "level": 0.9
+      },
+      "p_value": 0.9512,
+      "mde_80": 9.147,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": 0.219,
+      "interval": {
+        "low": -3.091,
+        "high": 3.146,
+        "level": 0.9
+      },
+      "p_value": 0.9512,
+      "mde_80": 9.197,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": -0.365,
+      "interval": {
+        "low": -2.57,
+        "high": 1.755,
+        "level": 0.9
+      },
+      "p_value": 0.6829,
+      "mde_80": 3.482,
+      "registered": true
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": 0.213,
+      "interval": {
+        "low": -3.086,
+        "high": 3.125,
+        "level": 0.9
+      },
+      "p_value": 0.9512,
+      "mde_80": 9.153,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": -0.365,
+      "interval": {
+        "low": -2.57,
+        "high": 1.755,
+        "level": 0.9
+      },
+      "p_value": 0.6829,
+      "mde_80": 3.482,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": 0.674,
+      "interval": {
+        "low": -2.357,
+        "high": 3.404,
+        "level": 0.9
+      },
+      "p_value": 0.6585,
+      "mde_80": 9.154,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": 1.988,
+      "interval": {
+        "low": -1.211,
+        "high": 4.537,
+        "level": 0.9
+      },
+      "p_value": 0.2927,
+      "mde_80": 9.165,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": -1.806,
+      "interval": {
+        "low": -3.59,
+        "high": -0.434,
+        "level": 0.9
+      },
+      "p_value": 0.122,
+      "mde_80": 2.63,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": -1.801,
+      "interval": {
+        "low": -3.603,
+        "high": -0.422,
+        "level": 0.9
+      },
+      "p_value": 0.122,
+      "mde_80": 2.644,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": -1.907,
+      "interval": {
+        "low": -3.241,
+        "high": -0.781,
+        "level": 0.9
+      },
+      "p_value": 0.0488,
+      "mde_80": 2.368,
+      "registered": true
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": -1.804,
+      "interval": {
+        "low": -3.591,
+        "high": -0.431,
+        "level": 0.9
+      },
+      "p_value": 0.122,
+      "mde_80": 2.632,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": -1.907,
+      "interval": {
+        "low": -3.241,
+        "high": -0.781,
+        "level": 0.9
+      },
+      "p_value": 0.0488,
+      "mde_80": 2.368,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": -1.207,
+      "interval": {
+        "low": -2.846,
+        "high": 0.152,
+        "level": 0.9
+      },
+      "p_value": 0.1707,
+      "mde_80": 2.474,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": -1.723,
+      "interval": {
+        "low": -3.5,
+        "high": -0.369,
+        "level": 0.9
+      },
+      "p_value": 0.1463,
+      "mde_80": 2.646,
+      "registered": false
+    },
+    {
+      "outcome": "price-urban-transport-fares",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": -1.566,
+      "interval": {
+        "low": -23.883,
+        "high": 15.891,
+        "level": 0.9
+      },
+      "p_value": 0.9024,
+      "mde_80": 35.758,
+      "registered": false
+    },
+    {
+      "outcome": "price-urban-transport-fares",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": -1.573,
+      "interval": {
+        "low": -24.12,
+        "high": 16.065,
+        "level": 0.9
+      },
+      "p_value": 0.9024,
+      "mde_80": 36.127,
+      "registered": false
+    },
+    {
+      "outcome": "price-urban-transport-fares",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": -10.563,
+      "interval": {
+        "low": -14.78,
+        "high": -7.566,
+        "level": 0.9
+      },
+      "p_value": 0.0244,
+      "mde_80": 8.257,
+      "registered": true
+    },
+    {
+      "outcome": "price-urban-transport-fares",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": -1.567,
+      "interval": {
+        "low": -23.9,
+        "high": 15.903,
+        "level": 0.9
+      },
+      "p_value": 0.9024,
+      "mde_80": 35.783,
+      "registered": false
+    },
+    {
+      "outcome": "price-urban-transport-fares",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": -10.563,
+      "interval": {
+        "low": -14.78,
+        "high": -7.566,
+        "level": 0.9
+      },
+      "p_value": 0.0244,
+      "mde_80": 8.257,
+      "registered": false
+    },
+    {
+      "outcome": "price-urban-transport-fares",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": -9.18,
+      "interval": {
+        "low": -12.964,
+        "high": -4.104,
+        "level": 0.9
+      },
+      "p_value": 0.025,
+      "mde_80": 8.251,
+      "registered": false
+    },
+    {
+      "outcome": "price-urban-transport-fares",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": -8.597,
+      "interval": {
+        "low": -15.394,
+        "high": -1.554,
+        "level": 0.9
+      },
+      "p_value": 0.075,
+      "mde_80": 12.09,
+      "registered": false
+    }
+  ]
+}

@@ -399,6 +399,14 @@ def hide(df: pd.DataFrame, case) -> pd.DataFrame:
     return df[~drop]
 
 
+def trim(df: pd.DataFrame, case) -> pd.DataFrame:
+    """The registered run's panel: treated states after their window removed, treated cells kept."""
+    drop = pd.Series(False, index=df.index)
+    for c in case.cohorts:
+        drop |= df["state"].isin(c.treated) & (df["fy"] > c.last_post)
+    return df[~drop]
+
+
 def assert_blind(df: pd.DataFrame, case) -> None:
     for c in case.cohorts:
         bad = df["state"].isin(c.treated) & df["cls"].isin(case.classes) & (df["fy"] >= c.first_post)
@@ -406,7 +414,7 @@ def assert_blind(df: pd.DataFrame, case) -> None:
             raise AssertionError(f"{case.id}: treated outcomes visible after first exposure")
 
 
-def cell_panel(w: pd.DataFrame, case, measure: str) -> pd.DataFrame:
+def cell_panel(w: pd.DataFrame, case, measure: str, blind: bool = True) -> pd.DataFrame:
     base_fy = min(c.first_post for c in case.cohorts) - 1
     last = max(c.last_post for c in case.cohorts)
     d = w[(w["fy"] >= case.start) & (w["fy"] <= last) & w["state"].isin(states_of(case.cohorts))]
@@ -428,7 +436,7 @@ def cell_panel(w: pd.DataFrame, case, measure: str) -> pd.DataFrame:
     out["base"] = out["cell"].map(base).fillna(0.0)
     cov = fy_covariates(base_fy - 1)
     out = out.merge(cov, on=["state", "fy"], how="left")
-    return hide(out, case).reset_index(drop=True)
+    return (hide if blind else trim)(out, case).reset_index(drop=True)
 
 
 # ---- estimators on one placebo assignment ----------------------------------------------------------------

@@ -1,6 +1,6 @@
 # Methods note: specification files and the runner (forward plan Phase 4)
 
-**Date:** 18 October 2026. **Status:** started. The four existing analyses are written as specifications, their code reads its design constants from them, and their outputs reproduce byte for byte (section 5). New evaluations (Phase 5) will be written as specifications first.
+**Date:** 18 October 2026. **Status:** done. The four earlier analyses are written as specifications, their code reads its design constants from them, and their outputs reproduce byte for byte (section 5). The Phase 5 evaluations were written as specifications first and run by one generic engine (section 3).
 
 **Code:** `alicia/src/alicia/runner/` (`spec.py`, the format; `run.py`, the runner). **Specifications:** `alicia/specs/<id>.json`. **Tests:** `alicia/tests/test_runner.py`.
 
@@ -40,6 +40,12 @@ alicia spec run <id> [--stage NAME]    # run stages in order; report each output
 | `high-evaluability-batch` | `high_evaluability` | design (blinded), estimate, evaluation | 7 |
 | `wa-trading-hours-weeknight-2010-new-data` | `wa_weeknight_2010` | design, dry run, estimate, evaluation | 1 |
 | `childcare-nqf-wa-delay-2012` | `childcare_nqf_wa` | design, dry run, estimate, paths, evaluation | 1 |
+| `phase5-reevaluations` | `phase5` | design (blinded), dry run, estimate, post-hoc (not pre-registered), evaluation | 8 |
+| `phase5-new-families` | `phase5` | design (blinded), dry run, estimate, evaluation | 2 |
+
+**The Phase 5 specifications are generic.** Their `cases` hold everything a design needs: records, cohorts, classes or CPI class, windows, the registered layer, check layers, placebo pools and grade caps. `analyses/phase5/run.py` builds every design from those cases alone, with no per-reform code. A new evaluation needs only a case in a specification and a plan.
+
+Each re-evaluation case names the earlier evaluation it `follows` and `supersedes`. The evaluation stage writes those fields, so the earlier file is archived without being changed.
 
 ## 4. Reproduction check (18 October 2026)
 
@@ -60,6 +66,6 @@ Every evaluation file in `regulation-register/evaluations/` is reproduced byte f
 
 ## 6. Limits and next steps
 
-- **Bespoke scripts remain.** The estimators and outputs are still each analysis's own scripts; the runner drives them but does not yet build designs from the specification alone. Phase 5 specifications should use the shared estimators (`evaluate/panel.py`, `synth.py`, `cs.py`) through a generic stage, so that a new evaluation needs only a JSON file and a plan.
-- **Estimator comparison not yet produced.** The forward plan (§5.3) asks every evaluation to show the estimate without controls, with fixed effects, with measured controls and with factor models side by side. That is a stage to add for Phase 5.
+- **Bespoke scripts remain for the four earlier analyses.** Phase 5 uses the generic engine; the earlier analyses keep their own scripts so that their outputs still reproduce byte for byte.
+- **Estimator comparison.** Phase 5 evaluation files carry every layer side by side (`estimators`): two-way, cell and state × year, saturated, measured controls, imputation, synthetic DiD and generalised synthetic control, with the registered layer marked (forward plan §5.3). Matrix completion and sensitivity bounds are not yet in the comparison.
 - **Not every constant has moved.** Labels, chart markers and output wording stay in the builder scripts.

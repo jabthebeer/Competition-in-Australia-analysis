@@ -1,0 +1,323 @@
+{
+  "id": "retail-energy-deregulation-2013-2016-phase5",
+  "title": "Retail energy price deregulation (SA 2013, NSW 2014, SEQ 2016): re-evaluation with electricity prices",
+  "records": [
+    "sa-energy-price-deregulation-2013",
+    "nsw-energy-price-deregulation-2014",
+    "qld-seq-energy-price-deregulation-2016"
+  ],
+  "family": "retail-energy-price-deregulation",
+  "follows": "retail-energy-deregulation-2013-2016",
+  "evaluated_on": "2026-10-18",
+  "hypothesis": "enhancing",
+  "design": "Electricity prices relative to the CPI in each deregulating capital against capitals whose prices stayed regulated (Hobart, Canberra, Perth, Darwin), with class x quarter and city x quarter effects. Retailer counts are too few to use.",
+  "comparison": "SA from 2013-Q1 against TAS/ACT/WA/NT; NSW from 2014-Q3 against TAS/ACT/WA/NT; QLD from 2016-Q3 against TAS/ACT/WA/NT",
+  "window": "2013-Q1 to 2019-Q2 (quarters)",
+  "verdict": "not-identified",
+  "finding_label": "Not identified",
+  "grade": "Not identified",
+  "grade_reason": "a pre-reform year of the primary outcome lies outside its 95% placebo band",
+  "headline": "Not identified: electricity: prices relative to the CPI +9.4% (log points) (p = 0.024), saturated fixed effects.",
+  "category_summaries": {
+    "competition": "Not measured in this evaluation.",
+    "prices": "Electricity: prices relative to the CPI: +9.4% (log points) (p = 0.024; detectable from 9.1).",
+    "productivity": "Not measured in this evaluation."
+  },
+  "key_insights": [
+    "The question: did removing retail electricity price caps (SA 2013, NSW 2014, south-east Queensland 2016) lower electricity prices?",
+    "The comparison: Electricity prices relative to the CPI in each deregulating capital against capitals whose prices stayed regulated (Hobart, Canberra, Perth, Darwin), with class x quarter and city x quarter effects. Retailer counts are too few to use.",
+    "What we found: the effect cannot be identified: a pre-reform year of the primary outcome lies outside its 95% placebo band, so the treated group was already moving apart before the reform. The registered layer's estimate (+9.4% relative to other prices) is not an effect.",
+    "How precise: only changes larger than about 9.1% relative to other prices could have been detected.",
+    "Compared with the earlier evaluation (2026-10-15, now archived): it found that the effect could not be identified (electricity: prices relative to the CPI +17.0% (log points)). The conclusion is unchanged; the smallest detectable effect is now 9.1, down from 9.5. This evaluation uses the estimator chosen in the blinded power study and the latest data.",
+    "What it means: these data cannot separate the reform from what was already happening."
+  ],
+  "method": {
+    "summary": "Saturated fixed effects on CPI classes by capital city and quarter, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.",
+    "equations": [
+      {
+        "label": "Saturated fixed effects",
+        "text": "y_{cjq} = α_{cj} + δ_{cq} + γ_{jq} + β·D_{cjq} + ε_{cjq}"
+      },
+      {
+        "label": "Year by year",
+        "text": "y_{cjq} = α_{cj} + δ_{cq} + γ_{jq} + Σ_{k≠−1} β_{k}·1[q − T_{j} = k]·T_{cj} + ε_{cjq}"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{cjq}",
+        "meaning": "100 × log of the CPI class relative to All groups in city j, quarter q"
+      },
+      {
+        "symbol": "D_{cjq}",
+        "meaning": "1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window"
+      },
+      {
+        "symbol": "α_{cj}",
+        "meaning": "a level for each class in each state"
+      },
+      {
+        "symbol": "δ_{cq}",
+        "meaning": "each class's national movement in each period (industry cycles, product-wide price swings)"
+      },
+      {
+        "symbol": "γ_{jq}",
+        "meaning": "each state's movement in each period (state booms and slumps)"
+      }
+    ],
+    "estimand": "The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.",
+    "identification": "Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).",
+    "inference": "The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.",
+    "steps": [
+      "Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.",
+      "Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.",
+      "Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.",
+      "Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side."
+    ]
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "price-electricity",
+      "label": "Electricity: prices relative to the CPI",
+      "category": "prices",
+      "role": "primary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 9.432,
+      "interval": {
+        "low": 4.959,
+        "high": 15.136,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -5.704,
+        "high": 4.473,
+        "basis": "90% range across 40 placebo CPI classes in the same cities"
+      },
+      "p_value": 0.0244,
+      "inference": "Rank among 40 placebo CPI classes in the same cities (two-sided)",
+      "mde_80": 9.083,
+      "finding": "not-identified",
+      "grade": "Not identified",
+      "preregistered": true,
+      "note": "Registered layer: Saturated fixed effects. Net of a placebo mean of +0.1; plain estimate +9.5. Capital cities. Checks: Synthetic DiD −10.0 (outside the 90% interval). Own-class placebos: states p = 0.048 (20 draws); states and dates p = 0.048 (20 draws). Not identified: a pre-reform year lies outside its 95% placebo band."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "price-electricity",
+      "title": "Electricity: prices relative to the CPI, year by year (saturated effects, net of placebos)",
+      "unit": "% (log points)",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "year -5",
+          "k": -5,
+          "estimate": -19.6734,
+          "low": -24.8196,
+          "high": -15.2838
+        },
+        {
+          "period": "year -4",
+          "k": -4,
+          "estimate": -16.3952,
+          "low": -19.8658,
+          "high": -13.271
+        },
+        {
+          "period": "year -3",
+          "k": -3,
+          "estimate": -11.3476,
+          "low": -13.9356,
+          "high": -8.4267
+        },
+        {
+          "period": "year -2",
+          "k": -2,
+          "estimate": -3.6358,
+          "low": -5.4488,
+          "high": -2.0679
+        },
+        {
+          "period": "year 0",
+          "k": 0,
+          "estimate": -3.4941,
+          "low": -5.2398,
+          "high": -1.518
+        },
+        {
+          "period": "year +1",
+          "k": 1,
+          "estimate": -5.5453,
+          "low": -8.0202,
+          "high": -3.4379
+        },
+        {
+          "period": "year +2",
+          "k": 2,
+          "estimate": -7.0759,
+          "low": -10.5092,
+          "high": -3.3023
+        },
+        {
+          "period": "year +3",
+          "k": 3,
+          "estimate": -2.1768,
+          "low": -5.9468,
+          "high": 3.1128
+        },
+        {
+          "period": "year +4",
+          "k": 4,
+          "estimate": 2.5099,
+          "low": -2.1354,
+          "high": 10.5865
+        },
+        {
+          "period": "year +5",
+          "k": 5,
+          "estimate": 7.5665,
+          "low": 0.8063,
+          "high": 16.8958
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    }
+  ],
+  "caveats": [
+    "a pre-reform year of the primary outcome lies outside its 95% placebo band",
+    "Re-evaluation: the earlier results were known when this specification was written; the estimator layers were fixed beforehand by the blinded power study."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_phase5.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_phase5.md"
+    },
+    {
+      "label": "Specification",
+      "path": "alicia/specs/phase5-reevaluations.json"
+    },
+    {
+      "label": "Estimation code",
+      "path": "alicia/analyses/phase5/run.py"
+    }
+  ],
+  "built_by": "alicia/analyses/phase5/evaluations.py",
+  "supersedes": [
+    "retail-energy-deregulation-2013-2016"
+  ],
+  "evaluated_at": "2026-10-18T21:04:50Z",
+  "estimators": [
+    {
+      "outcome": "price-electricity",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": 35.645,
+      "interval": {
+        "low": 14.457,
+        "high": 60.476,
+        "level": 0.9
+      },
+      "p_value": 0.0488,
+      "mde_80": 48.545,
+      "registered": false
+    },
+    {
+      "outcome": "price-electricity",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": 35.62,
+      "interval": {
+        "low": 14.263,
+        "high": 60.65,
+        "level": 0.9
+      },
+      "p_value": 0.0488,
+      "mde_80": 48.935,
+      "registered": false
+    },
+    {
+      "outcome": "price-electricity",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": 9.432,
+      "interval": {
+        "low": 4.959,
+        "high": 15.136,
+        "level": 0.9
+      },
+      "p_value": 0.0244,
+      "mde_80": 9.083,
+      "registered": true
+    },
+    {
+      "outcome": "price-electricity",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": 35.643,
+      "interval": {
+        "low": 14.448,
+        "high": 60.484,
+        "level": 0.9
+      },
+      "p_value": 0.0488,
+      "mde_80": 48.565,
+      "registered": false
+    },
+    {
+      "outcome": "price-electricity",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": 10.348,
+      "interval": {
+        "low": 5.851,
+        "high": 15.736,
+        "level": 0.9
+      },
+      "p_value": 0.0244,
+      "mde_80": 9.579,
+      "registered": false
+    },
+    {
+      "outcome": "price-electricity",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": -9.973,
+      "interval": {
+        "low": -15.913,
+        "high": -3.114,
+        "level": 0.9
+      },
+      "p_value": 0.125,
+      "mde_80": 12.714,
+      "registered": false
+    },
+    {
+      "outcome": "price-electricity",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": -12.502,
+      "interval": {
+        "low": -26.282,
+        "high": -1.94,
+        "level": 0.9
+      },
+      "p_value": 0.1,
+      "mde_80": 26.288,
+      "registered": false
+    }
+  ]
+}
