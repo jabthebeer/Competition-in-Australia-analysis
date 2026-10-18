@@ -56,3 +56,29 @@ def test_blinding_hides_each_cohort_from_its_own_date():
     assert b.query("unit == 'B' and time < 2014")["y"].notna().all()
     assert b.query("unit == 'B' and time >= 2014")["y"].isna().all()
     assert np.isnan(stacked(b, cohorts, 2008))
+
+
+def test_on_off_stagger_recovers_planted_effects():
+    """ILLUSTRATIVE simulated panel: early units adopt at t=10, the late unit at t=14."""
+    import numpy as np
+
+    from alcia.evaluate import stagger
+
+    rng = np.random.default_rng(1)
+    rows = []
+    for u in ["L", "E1", "E2", "E3"]:
+        for t in range(24):
+            seasonal = 2.0 * (t % 4 == 0) if u == "L" else 0.0  # the late unit has its own season
+            adopt = 14 if u == "L" else 10
+            effect = 5.0 if t >= adopt else 0.0
+            rows.append({"unit": u, "time": t, "y": 0.3 * t + seasonal + effect + rng.normal(0, 0.01)})
+    df = pd.DataFrame(rows)
+    w = stagger.Windows(pre_start=2, t1=10, t2=14, end=21)
+    est = stagger.estimates(df, "L", ["E1", "E2", "E3"], w, season=lambda t: t % 4)
+    assert abs(est["early"] - 5.0) < 0.1 and abs(est["late"] - 5.0) < 0.1 and abs(est["pooled"] - 5.0) < 0.1
+    assert abs(est["off_vs_pre"]) < 0.1  # the gap closes once the late unit catches up
+    path = stagger.event_path(df, "L", ["E1", "E2", "E3"], w, season=lambda t: t % 4)
+    assert abs(path.loc[11] + 5.0) < 0.1 and abs(path.loc[15]) < 0.1
+    null = stagger.Null(pd.Series(rng.normal(0, 1, 999)))
+    assert null.p_value(10.0) == 1 / 1000 and null.interval(0.0)[0] < 0 < null.interval(0.0)[1]
+    assert 2.5 < null.mde < 3.1
