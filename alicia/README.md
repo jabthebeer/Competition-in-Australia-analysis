@@ -18,7 +18,8 @@ A public-data toolkit for evaluating how Australian legislation and regulation a
 | Data pipeline | Connectors that write one common panel format, sorted by ANZSIC code and place: Retail Trade (monthly, class or subgroup × state), Labour Force EQ06 (employment and hours, group × state, quarterly), Data by Region (division × SA2 and LGA), ABN Bulk Extract and ASIC registers (monthly, postcode, industry inferred from names), City of Melbourne CLUE (class × small area), postcode-to-ASGS concordance; a coverage catalogue that matches every record to the finest data available ([feasibility note](../docs/data_pipeline_feasibility.md)) | Built; Internet Vacancy Index is a parser for hand-downloaded files (site not reachable here) |
 | Estimators | Two-way fixed effects, event study, blinding, comparison-state and industry placebos, planted-effect simulations (`evaluate/did.py`); stacked difference-in-differences for several or staggered treated states (`evaluate/stacked.py`); the on-off design for one late jurisdiction (`evaluate/stagger.py`) | Done |
 | Macroeconomic controls (forward plan Phase 1) | State Accounts GVA by division × state (FY1990–2025); state final demand and household consumption; Labour Force; population; Wage Price Index; building approvals; national GVA by division; Business Indicators; RBA commodity prices. Written to `data/processed/controls/` and kept out of the outcome catalogue (`pipeline/controls.py`, `pipeline/abs_state_accounts.py`) | Done |
-| Panel estimators (forward plan Phase 2) | Saturated state × industry, industry × period and state × period fixed effects by alternating projections; clustered errors; restricted wild cluster bootstrap; the imputation estimator for staggered and dynamic effects; placebo randomization inference; shift-share controls; measured state covariates (`evaluate/panel.py`, `evaluate/covariates.py`; [methods note](../docs/methods_panel_estimators.md)) | Built and tested on simulations; R cross-check written, not yet run (no R here) |
+| Panel estimators (forward plan Phase 2) | Saturated state × industry, industry × period and state × period fixed effects; clustered errors; restricted wild cluster bootstrap; imputation (Borusyak, Jaravel and Spiess); Callaway–Sant'Anna (doubly robust); synthetic DiD and synthetic control; generalised synthetic control; matrix completion; conformal and placebo randomization inference; Rambachan–Roth sensitivity bounds; shift-share and measured controls (`evaluate/panel.py`, `synth.py`, `cs.py`, `honest.py`, `covariates.py`; [methods note](../docs/methods_panel_estimators.md)) | Built and tested on simulations; R cross-check written, not yet run (deferred) |
+| Power study (forward plan Phase 3) | Blinded: for each evaluable reform, the no-effect spread and smallest detectable effect of each estimator layer on business entry and exit rates, from the same placebo industries (`analyses/power_study/`; [results](../docs/power_study.md)) | First run done |
 | Website | `alicia site` builds the legislation menu plus **State and industry growth** (GSP; GVA, employment and business entry and exit by division × state) and **Economic conditions** (the control series) | Done; published by the Pages workflow on merge to main |
 | First case | Perth trading-hours deregulation (2010, 2012): blinded robustness review, pre-analysis plan and results ([review](../docs/robustness_review_wa_trading_hours.md), [plan](../docs/pap_wa_trading_hours.md), [results](../docs/results_wa_trading_hours.md)) | Done: no detectable effect on entry or exit; grade Moderate |
 | High-evaluability batch | The other 16 high-rated records as seven reforms, one plan, stacked difference-in-differences ([plan](../docs/pap_high_evaluability.md), [results](../docs/results_high_evaluability.md)) | Done: no detectable effects; three not identified |
@@ -68,6 +69,7 @@ uv run alicia pipeline build              # build every outcome panel (downloads
 uv run alicia pipeline build abs_lfs asic  # or named sources; see BUILDERS in cli.py
 uv run alicia pipeline build abs_state_accounts controls   # State Accounts and the macroeconomic controls
 uv run python analyses/panel_crosscheck/write_reference.py # reference panel for analysis/crosscheck_panel_estimators.R
+uv run python analyses/power_study/run.py                   # Phase 3 power study (blinded; about 20 minutes)
 uv run alicia pipeline catalogue          # re-summarise the panels in data/processed/catalogue.json
 uv run alicia data nsw-lockout-2014       # which panels can measure a change, at what industry level and place
 ```
@@ -122,7 +124,7 @@ alicia/
     anzsic.py, cpi.py, data/   bundled ABS classifications (CC BY 4.0)
     cli.py
   analyses/        one folder per case: design review code and results (wa_trading_hours/); panel_crosscheck/ writes
-                   the reference panel for the R cross-check
+                   the reference panel for the R cross-check; power_study/ (Phase 3, blinded)
   (panels are written to ../data/processed/<source>/, raw downloads to ../data/raw/<source>/, manifests to ../data/manifests/)
   scripts/         regenerate bundled data; record test fixtures; import desk-research drafts; export the schema
   tests/           offline tests; fixtures are real register responses

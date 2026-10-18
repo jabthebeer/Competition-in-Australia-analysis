@@ -289,20 +289,24 @@ def imputation(
     event_time: str | None = None,
     tol: float = 1e-12,
     maxiter: int = 100_000,
+    first_stage_weights: bool = False,
 ) -> Imputation:
     """Fit fixed effects (and controls) on untreated observations, impute Y(0) for treated ones,
-    and average the differences (``weights`` weight the average, not the first stage)."""
+    and average the differences. ``weights`` weight the average; with ``first_stage_weights`` they
+    also weight the first-stage least squares (e.g. business counts, so small noisy cells count less)."""
     d = df[treat].to_numpy().astype(bool)
     controls = list(controls)
     un = df.loc[~d]
     beta = pd.Series(dtype=float)
     r = un[y].to_numpy(float)
+    fs_w = un[weights].to_numpy(float) if (weights and first_stage_weights) else np.ones(len(un))
     if controls:
-        beta = feols(un, y, controls, fe).coef
+        beta = feols(un, y, controls, fe, weights=weights if first_stage_weights else None).coef
         r = r - un[controls].to_numpy(float) @ beta.to_numpy()
     full = [codes(df, f) for f in fe]
     sub = [c[~d] for c in full]
     counts = [np.bincount(c, minlength=f.max() + 1) for c, f in zip(sub, full, strict=True)]
+    wsum = [np.bincount(c, weights=fs_w, minlength=len(n)) for c, n in zip(sub, counts, strict=True)]
     alpha = [np.zeros(len(n)) for n in counts]
     fitted = np.zeros(len(r))
     scale = 1.0 + np.abs(r).max()
@@ -310,9 +314,9 @@ def imputation(
     # individual fixed effects are only identified up to normalisations.
     for _ in range(maxiter):
         delta = 0.0
-        for j, (c, n) in enumerate(zip(sub, counts, strict=True)):
+        for j, (c, n) in enumerate(zip(sub, wsum, strict=True)):
             partial = r - fitted + alpha[j][c]
-            new = np.bincount(c, weights=partial, minlength=len(n)) / np.where(n > 0, n, 1)
+            new = np.bincount(c, weights=fs_w * partial, minlength=len(n)) / np.where(n > 0, n, 1)
             delta = max(delta, float(np.abs(new - alpha[j]).max()))
             fitted += new[c] - alpha[j][c]
             alpha[j] = new

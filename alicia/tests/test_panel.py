@@ -150,3 +150,26 @@ def test_shift_share_builds_exposure_weighted_shocks():
     shocks = pd.DataFrame({"mining": [0.0, 1.0], "other": [0.0, 0.1]}, index=["2020", "2021"])
     out = panel.shift_share(weights, shocks)
     assert out.loc["2021", "WA"] == pytest.approx(0.46) and out.loc["2021", "NSW"] == pytest.approx(0.118)
+
+
+def test_imputation_first_stage_weights_match_weighted_least_squares():
+    df = panel.simulate_panel(seed=11, n_states=5, n_industries=4, n_periods=12, adoption={(0, 0): 8})
+    df["w"] = np.random.default_rng(0).integers(5, 500, len(df)).astype(float)
+    imp = panel.imputation(df, "y", "D", fe=SATURATED, weights="w", first_stage_weights=True)
+    # Reference: weighted dummy regression on untreated rows, predictions for treated rows.
+    un, tr = df[df["D"] == 0], df[df["D"] == 1]
+    keys = [un.assign(k=un[list(f)].astype(str).agg("|".join, axis=1))["k"] for f in SATURATED]
+    cats = [pd.Categorical(k) for k in keys]
+    x = np.column_stack([np.ones(len(un))] + [pd.get_dummies(c, drop_first=True, dtype=float).to_numpy() for c in cats])
+    sw = np.sqrt(un["w"].to_numpy())
+    b, *_ = np.linalg.lstsq(x * sw[:, None], un["y"].to_numpy() * sw, rcond=None)
+    tk = [tr.assign(k=tr[list(f)].astype(str).agg("|".join, axis=1))["k"] for f in SATURATED]
+    xt = np.column_stack(
+        [np.ones(len(tr))]
+        + [
+            pd.get_dummies(pd.Categorical(k, categories=c.categories), drop_first=True, dtype=float).to_numpy()
+            for k, c in zip(tk, cats, strict=True)
+        ]
+    )
+    tau = tr["y"].to_numpy() - xt @ b
+    assert imp.att == pytest.approx(np.average(tau, weights=tr["w"]), abs=1e-6)
