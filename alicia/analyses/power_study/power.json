@@ -1,0 +1,8051 @@
+{
+ "plan": "docs/forward_plan_macro_controls.md (Phase 3)",
+ "mode": "BLIND: treated cells hidden from first exposure; placebo industries only",
+ "units": "percentage points of the entry or exit rate (per 100 businesses at the start of the year)",
+ "mde": "2.8 x standard deviation of placebo estimates (80% power, 5% two-sided)",
+ "layers": [
+  "twoway",
+  "state_year",
+  "saturated",
+  "controls",
+  "imputation",
+  "sdid",
+  "gsynth"
+ ],
+ "reforms": [
+  {
+   "id": "nt-container-deposits-2012",
+   "title": "Northern Territory container deposit scheme (2012)",
+   "classes": [
+    "1211",
+    "1212",
+    "2922"
+   ],
+   "cohorts": [
+    {
+     "treated": [
+      "NT"
+     ],
+     "first_post": 2012,
+     "last_post": 2017,
+     "controls": [
+      "NSW",
+      "VIC",
+      "QLD",
+      "WA",
+      "TAS",
+      "ACT"
+     ]
+    }
+   ],
+   "start": 2008,
+   "registered_vintage": true,
+   "notes": [],
+   "placebo_groups": 0,
+   "treated_size": 12.0,
+   "feasible": {
+    "ok": false,
+    "reasons": [
+     "treated group has 12 businesses in the base year (rule: 100)",
+     "only 0 placebo groups (rule: 19)"
+    ]
+   },
+   "registered_design": {
+    "entries": null,
+    "exits": null
+   },
+   "outcomes": {}
+  },
+  {
+   "id": "childcare-nqf-2012",
+   "title": "National Quality Framework for childcare (2012): the WA stagger",
+   "classes": [
+    "8710"
+   ],
+   "cohorts": [
+    {
+     "treated": [
+      "NSW",
+      "VIC",
+      "QLD",
+      "SA",
+      "TAS",
+      "ACT",
+      "NT"
+     ],
+     "first_post": 2012,
+     "last_post": 2012,
+     "controls": [
+      "WA"
+     ]
+    }
+   ],
+   "start": 2008,
+   "registered_vintage": true,
+   "notes": [],
+   "placebo_groups": 40,
+   "treated_size": 7223.0,
+   "feasible": {
+    "ok": true,
+    "reasons": []
+   },
+   "registered_design": {
+    "entries": {
+     "sd": 3.514,
+     "mde": 9.846,
+     "n": 74
+    },
+    "exits": {
+     "sd": 2.893,
+     "mde": 8.104,
+     "n": 74
+    }
+   },
+   "outcomes": {
+    "entries": {
+     "cells": 3389,
+     "rows": 15565,
+     "mean_rate": 13.78,
+     "layers": {
+      "twoway": {
+       "n": 40,
+       "sd": 3.604,
+       "mde": 10.097,
+       "mean": 0.225,
+       "rms": 3.566,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 40,
+       "sd": 3.607,
+       "mde": 10.106,
+       "mean": 0.145,
+       "rms": 3.565,
+       "ratio_to_twoway": 1.001
+      },
+      "saturated": {
+       "n": 40,
+       "sd": 3.897,
+       "mde": 10.917,
+       "mean": 0.277,
+       "rms": 3.858,
+       "ratio_to_twoway": 1.081
+      },
+      "controls": {
+       "n": 40,
+       "sd": 3.605,
+       "mde": 10.099,
+       "mean": 0.218,
+       "rms": 3.566,
+       "ratio_to_twoway": 1.0
+      },
+      "imputation": {
+       "n": 40,
+       "sd": 3.896,
+       "mde": 10.914,
+       "mean": 0.276,
+       "rms": 3.857,
+       "ratio_to_twoway": 1.081
+      },
+      "sdid": {
+       "n": 40,
+       "sd": 2.132,
+       "mde": 5.973,
+       "mean": 0.598,
+       "rms": 2.188,
+       "ratio_to_twoway": 0.592
+      },
+      "gsynth": {
+       "n": 40,
+       "sd": 3.795,
+       "mde": 10.633,
+       "mean": 0.2,
+       "rms": 3.753,
+       "ratio_to_twoway": 1.053
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": 2.7884,
+       "state_year": 2.7516,
+       "saturated": 3.1095,
+       "controls": 2.8879,
+       "imputation": 3.1405,
+       "sdid": 2.388,
+       "gsynth": 2.5979,
+       "classes": [
+        "0123"
+       ]
+      },
+      {
+       "twoway": 1.0767,
+       "state_year": 0.8847,
+       "saturated": -0.8519,
+       "controls": 0.9253,
+       "imputation": -0.8303,
+       "sdid": 1.4654,
+       "gsynth": 1.0271,
+       "classes": [
+        "0131"
+       ]
+      },
+      {
+       "twoway": -0.7962,
+       "state_year": -0.7413,
+       "saturated": 4.4154,
+       "controls": -0.676,
+       "imputation": 4.3931,
+       "sdid": 0.1635,
+       "gsynth": 0.4404,
+       "classes": [
+        "0139"
+       ]
+      },
+      {
+       "twoway": 3.1594,
+       "state_year": 2.9251,
+       "saturated": 1.1783,
+       "controls": 3.0425,
+       "imputation": 1.1819,
+       "sdid": 2.9314,
+       "gsynth": 3.0961,
+       "classes": [
+        "0141"
+       ]
+      },
+      {
+       "twoway": 2.6151,
+       "state_year": 2.4155,
+       "saturated": -1.9431,
+       "controls": 2.5444,
+       "imputation": -1.9452,
+       "sdid": 2.4388,
+       "gsynth": 2.5959,
+       "classes": [
+        "0144"
+       ]
+      },
+      {
+       "twoway": 2.1893,
+       "state_year": 2.0678,
+       "saturated": -1.7081,
+       "controls": 2.0958,
+       "imputation": -1.7194,
+       "sdid": 2.4128,
+       "gsynth": 2.1896,
+       "classes": [
+        "0149"
+       ]
+      },
+      {
+       "twoway": 2.501,
+       "state_year": 3.0526,
+       "saturated": -16.6156,
+       "controls": 2.9772,
+       "imputation": -16.615,
+       "sdid": 2.1979,
+       "gsynth": 2.4486,
+       "classes": [
+        "0151"
+       ]
+      },
+      {
+       "twoway": 2.3031,
+       "state_year": 2.1372,
+       "saturated": 1.549,
+       "controls": 2.2018,
+       "imputation": 1.5517,
+       "sdid": 2.4751,
+       "gsynth": 2.6136,
+       "classes": [
+        "0160"
+       ]
+      },
+      {
+       "twoway": -16.8189,
+       "state_year": -16.8726,
+       "saturated": -4.9104,
+       "controls": -16.7812,
+       "imputation": -4.9142,
+       "sdid": -6.6655,
+       "gsynth": -17.3966,
+       "classes": [
+        "0301"
+       ]
+      },
+      {
+       "twoway": 0.2553,
+       "state_year": 0.2194,
+       "saturated": 1.289,
+       "controls": 0.299,
+       "imputation": 1.2757,
+       "sdid": 0.539,
+       "gsynth": 0.2555,
+       "classes": [
+        "0529"
+       ]
+      },
+      {
+       "twoway": 2.3226,
+       "state_year": 2.2202,
+       "saturated": 5.948,
+       "controls": 2.3034,
+       "imputation": 5.9441,
+       "sdid": 2.1194,
+       "gsynth": 2.2619,
+       "classes": [
+        "1174"
+       ]
+      },
+      {
+       "twoway": -0.7267,
+       "state_year": -0.8734,
+       "saturated": 2.4569,
+       "controls": -0.8116,
+       "imputation": 2.4195,
+       "sdid": -0.3017,
+       "gsynth": -0.1817,
+       "classes": [
+        "1351"
+       ]
+      },
+      {
+       "twoway": 1.9711,
+       "state_year": 1.8608,
+       "saturated": -3.5135,
+       "controls": 1.9405,
+       "imputation": -3.5123,
+       "sdid": 1.8826,
+       "gsynth": 1.8745,
+       "classes": [
+        "1492"
+       ]
+      },
+      {
+       "twoway": 1.6845,
+       "state_year": 1.5703,
+       "saturated": 0.4362,
+       "controls": 1.637,
+       "imputation": 0.442,
+       "sdid": 1.5309,
+       "gsynth": 1.606,
+       "classes": [
+        "1611"
+       ]
+      },
+      {
+       "twoway": 1.2892,
+       "state_year": 1.1939,
+       "saturated": 3.7968,
+       "controls": 1.2733,
+       "imputation": 3.7977,
+       "sdid": 1.1058,
+       "gsynth": 1.1997,
+       "classes": [
+        "3019"
+       ]
+      },
+      {
+       "twoway": -1.4837,
+       "state_year": -1.5636,
+       "saturated": 1.1839,
+       "controls": -1.4851,
+       "imputation": 1.1882,
+       "sdid": -0.8362,
+       "gsynth": -1.5209,
+       "classes": [
+        "3020"
+       ]
+      },
+      {
+       "twoway": 1.9144,
+       "state_year": 1.8752,
+       "saturated": -0.4622,
+       "controls": 1.9467,
+       "imputation": -0.4573,
+       "sdid": 1.753,
+       "gsynth": 1.8444,
+       "classes": [
+        "3109"
+       ]
+      },
+      {
+       "twoway": 1.0162,
+       "state_year": 0.9748,
+       "saturated": 3.2494,
+       "controls": 1.0392,
+       "imputation": 3.2651,
+       "sdid": 0.9061,
+       "gsynth": 0.9173,
+       "classes": [
+        "3211"
+       ]
+      },
+      {
+       "twoway": 1.8131,
+       "state_year": 1.7809,
+       "saturated": 2.1431,
+       "controls": 1.8332,
+       "imputation": 2.1634,
+       "sdid": 1.9767,
+       "gsynth": 2.1271,
+       "classes": [
+        "3221"
+       ]
+      },
+      {
+       "twoway": 1.4991,
+       "state_year": 1.361,
+       "saturated": 1.5754,
+       "controls": 1.4408,
+       "imputation": 1.5637,
+       "sdid": 1.3395,
+       "gsynth": 1.4894,
+       "classes": [
+        "3222"
+       ]
+      },
+      {
+       "twoway": 2.6776,
+       "state_year": 2.615,
+       "saturated": 2.4991,
+       "controls": 2.6937,
+       "imputation": 2.5101,
+       "sdid": 2.5583,
+       "gsynth": 2.4676,
+       "classes": [
+        "3223"
+       ]
+      },
+      {
+       "twoway": -0.0039,
+       "state_year": -0.0556,
+       "saturated": -0.3274,
+       "controls": 0.0375,
+       "imputation": -0.3089,
+       "sdid": 0.6403,
+       "gsynth": -0.0835,
+       "classes": [
+        "3224"
+       ]
+      },
+      {
+       "twoway": 1.1332,
+       "state_year": 1.0741,
+       "saturated": 3.1961,
+       "controls": 1.145,
+       "imputation": 3.17,
+       "sdid": 0.9993,
+       "gsynth": 1.2275,
+       "classes": [
+        "3233"
+       ]
+      },
+      {
+       "twoway": -10.9583,
+       "state_year": -11.0559,
+       "saturated": -2.2252,
+       "controls": -10.9857,
+       "imputation": -2.223,
+       "sdid": -7.0651,
+       "gsynth": -12.5162,
+       "classes": [
+        "3239"
+       ]
+      },
+      {
+       "twoway": 0.2987,
+       "state_year": 0.2265,
+       "saturated": 0.6788,
+       "controls": 0.2946,
+       "imputation": 0.6863,
+       "sdid": 0.463,
+       "gsynth": 0.3268,
+       "classes": [
+        "3241"
+       ]
+      },
+      {
+       "twoway": 1.5403,
+       "state_year": 1.4714,
+       "saturated": 0.3735,
+       "controls": 1.5431,
+       "imputation": 0.314,
+       "sdid": 1.6062,
+       "gsynth": 1.7117,
+       "classes": [
+        "3243"
+       ]
+      },
+      {
+       "twoway": 0.2118,
+       "state_year": 0.1259,
+       "saturated": 0.79,
+       "controls": 0.1963,
+       "imputation": 0.7996,
+       "sdid": 0.0575,
+       "gsynth": 0.1396,
+       "classes": [
+        "3291"
+       ]
+      },
+      {
+       "twoway": 0.5563,
+       "state_year": 0.4909,
+       "saturated": -2.6472,
+       "controls": 0.5673,
+       "imputation": -2.6392,
+       "sdid": 0.4904,
+       "gsynth": 0.4929,
+       "classes": [
+        "3319"
+       ]
+      },
+      {
+       "twoway": -1.5012,
+       "state_year": -1.5981,
+       "saturated": 2.5283,
+       "controls": -1.5227,
+       "imputation": 2.532,
+       "sdid": -1.331,
+       "gsynth": -1.5277,
+       "classes": [
+        "3339"
+       ]
+      },
+      {
+       "twoway": 0.1227,
+       "state_year": -0.0085,
+       "saturated": 0.0488,
+       "controls": 0.0597,
+       "imputation": 0.0546,
+       "sdid": -0.1652,
+       "gsynth": 0.1415,
+       "classes": [
+        "3494"
+       ]
+      },
+      {
+       "twoway": 1.1318,
+       "state_year": 1.012,
+       "saturated": -5.3907,
+       "controls": 1.0904,
+       "imputation": -5.4067,
+       "sdid": 1.2038,
+       "gsynth": 1.1131,
+       "classes": [
+        "3609"
+       ]
+      },
+      {
+       "twoway": -0.5597,
+       "state_year": -0.7138,
+       "saturated": -1.2873,
+       "controls": -0.654,
+       "imputation": -1.2939,
+       "sdid": -0.4653,
+       "gsynth": -0.6682,
+       "classes": [
+        "3712"
+       ]
+      },
+      {
+       "twoway": -0.0972,
+       "state_year": -0.2085,
+       "saturated": -0.4121,
+       "controls": -0.1528,
+       "imputation": -0.4041,
+       "sdid": -0.0136,
+       "gsynth": -0.1024,
+       "classes": [
+        "3739"
+       ]
+      },
+      {
+       "twoway": -1.6059,
+       "state_year": -1.7111,
+       "saturated": -3.252,
+       "controls": -1.6314,
+       "imputation": -3.2394,
+       "sdid": -1.7484,
+       "gsynth": -1.5961,
+       "classes": [
+        "3800"
+       ]
+      },
+      {
+       "twoway": 3.4196,
+       "state_year": 3.3512,
+       "saturated": 2.1241,
+       "controls": 3.4251,
+       "imputation": 2.1111,
+       "sdid": 3.4076,
+       "gsynth": 3.4253,
+       "classes": [
+        "3911"
+       ]
+      },
+      {
+       "twoway": 0.5848,
+       "state_year": 0.4817,
+       "saturated": -0.5621,
+       "controls": 0.5754,
+       "imputation": -0.567,
+       "sdid": 0.4692,
+       "gsynth": 0.6241,
+       "classes": [
+        "4110"
+       ]
+      },
+      {
+       "twoway": 0.4685,
+       "state_year": 0.3791,
+       "saturated": 5.9821,
+       "controls": 0.4591,
+       "imputation": 5.9717,
+       "sdid": 0.4451,
+       "gsynth": 0.5225,
+       "classes": [
+        "4121"
+       ]
+      },
+      {
+       "twoway": 0.8961,
+       "state_year": 0.7634,
+       "saturated": -1.0322,
+       "controls": 0.8512,
+       "imputation": -1.0345,
+       "sdid": 0.8775,
+       "gsynth": 0.8093,
+       "classes": [
+        "4129"
+       ]
+      },
+      {
+       "twoway": 1.6985,
+       "state_year": 1.5758,
+       "saturated": 6.7303,
+       "controls": 1.6612,
+       "imputation": 6.7254,
+       "sdid": 1.4742,
+       "gsynth": 1.6697,
+       "classes": [
+        "4211"
+       ]
+      },
+      {
+       "twoway": -1.5718,
+       "state_year": -1.6596,
+       "saturated": 0.925,
+       "controls": -1.5831,
+       "imputation": 0.9318,
+       "sdid": -1.8067,
+       "gsynth": -1.6539,
+       "classes": [
+        "4221"
+       ]
+      }
+     ]
+    },
+    "exits": {
+     "cells": 3389,
+     "rows": 15565,
+     "mean_rate": 13.63,
+     "layers": {
+      "twoway": {
+       "n": 40,
+       "sd": 0.8,
+       "mde": 2.24,
+       "mean": 0.337,
+       "rms": 0.858,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 40,
+       "sd": 0.804,
+       "mde": 2.253,
+       "mean": 0.417,
+       "rms": 0.897,
+       "ratio_to_twoway": 1.005
+      },
+      "saturated": {
+       "n": 40,
+       "sd": 1.729,
+       "mde": 4.844,
+       "mean": 0.83,
+       "rms": 1.898,
+       "ratio_to_twoway": 2.161
+      },
+      "controls": {
+       "n": 40,
+       "sd": 0.802,
+       "mde": 2.246,
+       "mean": 0.362,
+       "rms": 0.871,
+       "ratio_to_twoway": 1.002
+      },
+      "imputation": {
+       "n": 40,
+       "sd": 1.733,
+       "mde": 4.856,
+       "mean": 0.83,
+       "rms": 1.902,
+       "ratio_to_twoway": 2.166
+      },
+      "sdid": {
+       "n": 40,
+       "sd": 0.901,
+       "mde": 2.525,
+       "mean": 0.608,
+       "rms": 1.077,
+       "ratio_to_twoway": 1.126
+      },
+      "gsynth": {
+       "n": 40,
+       "sd": 0.874,
+       "mde": 2.45,
+       "mean": 0.525,
+       "rms": 1.011,
+       "ratio_to_twoway": 1.093
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": 0.0799,
+       "state_year": 0.1341,
+       "saturated": 3.0963,
+       "controls": 0.0934,
+       "imputation": 3.0808,
+       "sdid": 0.2251,
+       "gsynth": 0.2588,
+       "classes": [
+        "0123"
+       ]
+      },
+      {
+       "twoway": 0.4581,
+       "state_year": 0.5785,
+       "saturated": 0.404,
+       "controls": 0.5278,
+       "imputation": 0.3901,
+       "sdid": 0.6792,
+       "gsynth": 0.6724,
+       "classes": [
+        "0131"
+       ]
+      },
+      {
+       "twoway": 1.3143,
+       "state_year": 1.3692,
+       "saturated": 0.0164,
+       "controls": 1.299,
+       "imputation": 0.0064,
+       "sdid": 1.4664,
+       "gsynth": 1.5308,
+       "classes": [
+        "0139"
+       ]
+      },
+      {
+       "twoway": -0.0361,
+       "state_year": 0.0903,
+       "saturated": 1.4177,
+       "controls": 0.0359,
+       "imputation": 1.4155,
+       "sdid": 0.1479,
+       "gsynth": 0.1324,
+       "classes": [
+        "0141"
+       ]
+      },
+      {
+       "twoway": 0.7612,
+       "state_year": 0.8843,
+       "saturated": 2.5077,
+       "controls": 0.8267,
+       "imputation": 2.5067,
+       "sdid": 0.9312,
+       "gsynth": 0.9214,
+       "classes": [
+        "0144"
+       ]
+      },
+      {
+       "twoway": 0.8604,
+       "state_year": 0.9663,
+       "saturated": 0.0492,
+       "controls": 0.9121,
+       "imputation": 0.0426,
+       "sdid": 0.9951,
+       "gsynth": 1.0021,
+       "classes": [
+        "0149"
+       ]
+      },
+      {
+       "twoway": -0.1009,
+       "state_year": -0.2402,
+       "saturated": 6.4526,
+       "controls": -0.2361,
+       "imputation": 6.452,
+       "sdid": 0.0437,
+       "gsynth": 0.0634,
+       "classes": [
+        "0151"
+       ]
+      },
+      {
+       "twoway": 0.3662,
+       "state_year": 0.4452,
+       "saturated": -0.1093,
+       "controls": 0.4145,
+       "imputation": -0.1118,
+       "sdid": 0.4465,
+       "gsynth": 0.5236,
+       "classes": [
+        "0160"
+       ]
+      },
+      {
+       "twoway": 0.0415,
+       "state_year": 0.0994,
+       "saturated": 0.0561,
+       "controls": 0.0512,
+       "imputation": 0.0448,
+       "sdid": 1.4992,
+       "gsynth": 0.1308,
+       "classes": [
+        "0301"
+       ]
+      },
+      {
+       "twoway": 0.0961,
+       "state_year": 0.16,
+       "saturated": 0.9863,
+       "controls": 0.1116,
+       "imputation": 1.0027,
+       "sdid": 0.1295,
+       "gsynth": 0.1857,
+       "classes": [
+        "0529"
+       ]
+      },
+      {
+       "twoway": 0.3901,
+       "state_year": 0.4694,
+       "saturated": -0.4126,
+       "controls": 0.4177,
+       "imputation": -0.4116,
+       "sdid": 0.4631,
+       "gsynth": 0.5198,
+       "classes": [
+        "1174"
+       ]
+      },
+      {
+       "twoway": 0.0118,
+       "state_year": 0.1143,
+       "saturated": 1.0198,
+       "controls": 0.0555,
+       "imputation": 1.0459,
+       "sdid": 0.2991,
+       "gsynth": 0.2416,
+       "classes": [
+        "1351"
+       ]
+      },
+      {
+       "twoway": 0.374,
+       "state_year": 0.4621,
+       "saturated": 1.6623,
+       "controls": 0.4062,
+       "imputation": 1.6632,
+       "sdid": 0.7404,
+       "gsynth": 0.7263,
+       "classes": [
+        "1492"
+       ]
+      },
+      {
+       "twoway": 0.0353,
+       "state_year": 0.1271,
+       "saturated": 2.2549,
+       "controls": 0.0704,
+       "imputation": 2.2499,
+       "sdid": 0.2426,
+       "gsynth": 0.2235,
+       "classes": [
+        "1611"
+       ]
+      },
+      {
+       "twoway": 0.8637,
+       "state_year": 0.945,
+       "saturated": 0.7443,
+       "controls": 0.8861,
+       "imputation": 0.7319,
+       "sdid": 0.9902,
+       "gsynth": 1.0978,
+       "classes": [
+        "3019"
+       ]
+      },
+      {
+       "twoway": 0.5401,
+       "state_year": 0.6196,
+       "saturated": 0.478,
+       "controls": 0.5596,
+       "imputation": 0.4985,
+       "sdid": 0.5954,
+       "gsynth": 0.6308,
+       "classes": [
+        "3020"
+       ]
+      },
+      {
+       "twoway": -1.3653,
+       "state_year": -1.3015,
+       "saturated": -2.3577,
+       "controls": -1.3558,
+       "imputation": -2.3705,
+       "sdid": -0.3788,
+       "gsynth": -1.065,
+       "classes": [
+        "3109"
+       ]
+      },
+      {
+       "twoway": 0.5437,
+       "state_year": 0.6055,
+       "saturated": 0.0412,
+       "controls": 0.5572,
+       "imputation": 0.0423,
+       "sdid": 0.6463,
+       "gsynth": 0.6884,
+       "classes": [
+        "3211"
+       ]
+      },
+      {
+       "twoway": -0.7119,
+       "state_year": -0.6466,
+       "saturated": 0.2166,
+       "controls": -0.7024,
+       "imputation": 0.203,
+       "sdid": -0.3415,
+       "gsynth": -0.4525,
+       "classes": [
+        "3221"
+       ]
+      },
+      {
+       "twoway": 1.0114,
+       "state_year": 1.1049,
+       "saturated": -1.5079,
+       "controls": 1.0456,
+       "imputation": -1.5064,
+       "sdid": 1.3765,
+       "gsynth": 1.2334,
+       "classes": [
+        "3222"
+       ]
+      },
+      {
+       "twoway": -0.0262,
+       "state_year": 0.0454,
+       "saturated": -0.9185,
+       "controls": -0.0127,
+       "imputation": -0.922,
+       "sdid": 0.368,
+       "gsynth": 0.1149,
+       "classes": [
+        "3223"
+       ]
+      },
+      {
+       "twoway": -0.4182,
+       "state_year": -0.3391,
+       "saturated": 0.3917,
+       "controls": -0.4012,
+       "imputation": 0.4025,
+       "sdid": -0.3661,
+       "gsynth": -0.372,
+       "classes": [
+        "3224"
+       ]
+      },
+      {
+       "twoway": 0.6917,
+       "state_year": 0.7711,
+       "saturated": 1.3856,
+       "controls": 0.7062,
+       "imputation": 1.4046,
+       "sdid": 0.6805,
+       "gsynth": 0.7946,
+       "classes": [
+        "3233"
+       ]
+      },
+      {
+       "twoway": 2.7302,
+       "state_year": 2.8243,
+       "saturated": 2.3031,
+       "controls": 2.7593,
+       "imputation": 2.3207,
+       "sdid": 4.3621,
+       "gsynth": 3.8574,
+       "classes": [
+        "3239"
+       ]
+      },
+      {
+       "twoway": 1.438,
+       "state_year": 1.5189,
+       "saturated": 0.9667,
+       "controls": 1.4605,
+       "imputation": 0.9698,
+       "sdid": 1.7164,
+       "gsynth": 1.5739,
+       "classes": [
+        "3241"
+       ]
+      },
+      {
+       "twoway": 0.6983,
+       "state_year": 0.7764,
+       "saturated": 0.0173,
+       "controls": 0.7168,
+       "imputation": 0.0004,
+       "sdid": 0.9773,
+       "gsynth": 0.9309,
+       "classes": [
+        "3243"
+       ]
+      },
+      {
+       "twoway": -0.4262,
+       "state_year": -0.3493,
+       "saturated": 0.7773,
+       "controls": -0.4059,
+       "imputation": 0.7833,
+       "sdid": -0.0942,
+       "gsynth": -0.2637,
+       "classes": [
+        "3291"
+       ]
+      },
+      {
+       "twoway": 0.3062,
+       "state_year": 0.3803,
+       "saturated": 1.3287,
+       "controls": 0.3275,
+       "imputation": 1.3144,
+       "sdid": 0.8216,
+       "gsynth": 0.5546,
+       "classes": [
+        "3319"
+       ]
+      },
+      {
+       "twoway": 0.348,
+       "state_year": 0.4332,
+       "saturated": 2.1749,
+       "controls": 0.3778,
+       "imputation": 2.1852,
+       "sdid": 0.4176,
+       "gsynth": 0.4861,
+       "classes": [
+        "3339"
+       ]
+      },
+      {
+       "twoway": -1.1195,
+       "state_year": -1.0196,
+       "saturated": -1.0098,
+       "controls": -1.0794,
+       "imputation": -1.0097,
+       "sdid": -0.9289,
+       "gsynth": -0.9616,
+       "classes": [
+        "3494"
+       ]
+      },
+      {
+       "twoway": -0.3171,
+       "state_year": -0.2166,
+       "saturated": 3.2477,
+       "controls": -0.2772,
+       "imputation": 3.2373,
+       "sdid": 0.0128,
+       "gsynth": -0.1232,
+       "classes": [
+        "3609"
+       ]
+      },
+      {
+       "twoway": -1.3892,
+       "state_year": -1.2817,
+       "saturated": -0.03,
+       "controls": -1.3398,
+       "imputation": -0.0311,
+       "sdid": -1.0418,
+       "gsynth": -1.187,
+       "classes": [
+        "3712"
+       ]
+      },
+      {
+       "twoway": 1.004,
+       "state_year": 1.0995,
+       "saturated": 4.5673,
+       "controls": 1.0417,
+       "imputation": 4.5877,
+       "sdid": 1.1505,
+       "gsynth": 0.9203,
+       "classes": [
+        "3739"
+       ]
+      },
+      {
+       "twoway": 1.3509,
+       "state_year": 1.4437,
+       "saturated": -1.7185,
+       "controls": 1.3871,
+       "imputation": -1.7309,
+       "sdid": 1.4687,
+       "gsynth": 1.5281,
+       "classes": [
+        "3800"
+       ]
+      },
+      {
+       "twoway": 0.3672,
+       "state_year": 0.4441,
+       "saturated": -1.0259,
+       "controls": 0.3876,
+       "imputation": -1.0413,
+       "sdid": 0.5214,
+       "gsynth": 0.6176,
+       "classes": [
+        "3911"
+       ]
+      },
+      {
+       "twoway": 0.3081,
+       "state_year": 0.395,
+       "saturated": -0.2645,
+       "controls": 0.3358,
+       "imputation": -0.2651,
+       "sdid": 0.3825,
+       "gsynth": 0.5274,
+       "classes": [
+        "4110"
+       ]
+      },
+      {
+       "twoway": 0.9168,
+       "state_year": 0.9989,
+       "saturated": -0.3485,
+       "controls": 0.9461,
+       "imputation": -0.3509,
+       "sdid": 1.1171,
+       "gsynth": 0.911,
+       "classes": [
+        "4121"
+       ]
+      },
+      {
+       "twoway": -0.2983,
+       "state_year": -0.2028,
+       "saturated": -0.0193,
+       "controls": -0.2604,
+       "imputation": -0.0145,
+       "sdid": -0.2391,
+       "gsynth": -0.1793,
+       "classes": [
+        "4129"
+       ]
+      },
+      {
+       "twoway": 0.1563,
+       "state_year": 0.2473,
+       "saturated": 3.4779,
+       "controls": 0.1881,
+       "imputation": 3.5082,
+       "sdid": 0.0699,
+       "gsynth": 0.2175,
+       "classes": [
+        "4211"
+       ]
+      },
+      {
+       "twoway": 1.6364,
+       "state_year": 1.7238,
+       "saturated": 0.8889,
+       "controls": 1.6641,
+       "imputation": 0.8838,
+       "sdid": 1.7133,
+       "gsynth": 1.7956,
+       "classes": [
+        "4221"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "retail-energy-deregulation-2013-2016",
+   "title": "Retail energy price deregulation (SA 2013, NSW 2014, south-east Queensland 2016)",
+   "classes": [
+    "2640"
+   ],
+   "cohorts": [
+    {
+     "treated": [
+      "SA"
+     ],
+     "first_post": 2013,
+     "last_post": 2018,
+     "controls": [
+      "TAS",
+      "ACT",
+      "WA",
+      "NT"
+     ]
+    },
+    {
+     "treated": [
+      "NSW"
+     ],
+     "first_post": 2015,
+     "last_post": 2018,
+     "controls": [
+      "TAS",
+      "ACT",
+      "WA",
+      "NT"
+     ]
+    },
+    {
+     "treated": [
+      "QLD"
+     ],
+     "first_post": 2017,
+     "last_post": 2018,
+     "controls": [
+      "TAS",
+      "ACT",
+      "WA",
+      "NT"
+     ]
+    }
+   ],
+   "start": 2008,
+   "registered_vintage": true,
+   "notes": [],
+   "placebo_groups": 40,
+   "treated_size": 59.0,
+   "feasible": {
+    "ok": false,
+    "reasons": [
+     "treated group has 59 businesses in the base year (rule: 100)"
+    ]
+   },
+   "registered_design": {
+    "entries": null,
+    "exits": null
+   },
+   "outcomes": {}
+  },
+  {
+   "id": "heavy-vehicle-national-law-2014",
+   "title": "Heavy Vehicle National Law (2014)",
+   "classes": [
+    "4610"
+   ],
+   "cohorts": [
+    {
+     "treated": [
+      "NSW",
+      "VIC",
+      "QLD",
+      "SA",
+      "TAS",
+      "ACT"
+     ],
+     "first_post": 2014,
+     "last_post": 2018,
+     "controls": [
+      "WA",
+      "NT"
+     ]
+    }
+   ],
+   "start": 2008,
+   "registered_vintage": true,
+   "notes": [],
+   "placebo_groups": 40,
+   "treated_size": 44908.0,
+   "feasible": {
+    "ok": true,
+    "reasons": []
+   },
+   "registered_design": {
+    "entries": {
+     "sd": 3.372,
+     "mde": 9.447,
+     "n": 41
+    },
+    "exits": {
+     "sd": 3.534,
+     "mde": 9.9,
+     "n": 41
+    }
+   },
+   "outcomes": {
+    "entries": {
+     "cells": 3406,
+     "rows": 34955,
+     "mean_rate": 13.61,
+     "layers": {
+      "twoway": {
+       "n": 40,
+       "sd": 2.978,
+       "mde": 8.343,
+       "mean": 0.238,
+       "rms": 2.95,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 40,
+       "sd": 2.975,
+       "mde": 8.335,
+       "mean": 0.085,
+       "rms": 2.939,
+       "ratio_to_twoway": 0.999
+      },
+      "saturated": {
+       "n": 40,
+       "sd": 1.571,
+       "mde": 4.402,
+       "mean": 0.109,
+       "rms": 1.556,
+       "ratio_to_twoway": 0.528
+      },
+      "controls": {
+       "n": 40,
+       "sd": 2.977,
+       "mde": 8.34,
+       "mean": 0.112,
+       "rms": 2.941,
+       "ratio_to_twoway": 1.0
+      },
+      "imputation": {
+       "n": 40,
+       "sd": 1.577,
+       "mde": 4.418,
+       "mean": 0.109,
+       "rms": 1.561,
+       "ratio_to_twoway": 0.53
+      },
+      "sdid": {
+       "n": 40,
+       "sd": 3.096,
+       "mde": 8.673,
+       "mean": 0.865,
+       "rms": 3.177,
+       "ratio_to_twoway": 1.04
+      },
+      "gsynth": {
+       "n": 40,
+       "sd": 3.556,
+       "mde": 9.962,
+       "mean": 0.284,
+       "rms": 3.523,
+       "ratio_to_twoway": 1.194
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": -2.4639,
+       "state_year": -2.667,
+       "saturated": -1.001,
+       "controls": -2.6646,
+       "imputation": -1.011,
+       "sdid": -2.695,
+       "gsynth": -2.0062,
+       "classes": [
+        "0141"
+       ]
+      },
+      {
+       "twoway": -1.5915,
+       "state_year": -1.636,
+       "saturated": -2.1879,
+       "controls": -1.6212,
+       "imputation": -2.1681,
+       "sdid": -1.5819,
+       "gsynth": -8.6143,
+       "classes": [
+        "0142"
+       ]
+      },
+      {
+       "twoway": 2.8385,
+       "state_year": 2.6068,
+       "saturated": -3.6339,
+       "controls": 2.6135,
+       "imputation": -3.6135,
+       "sdid": 2.7107,
+       "gsynth": 3.4106,
+       "classes": [
+        "0144"
+       ]
+      },
+      {
+       "twoway": 2.2217,
+       "state_year": 2.1295,
+       "saturated": 0.7779,
+       "controls": 2.1168,
+       "imputation": 0.7811,
+       "sdid": 2.2,
+       "gsynth": 2.7668,
+       "classes": [
+        "0145"
+       ]
+      },
+      {
+       "twoway": -1.2582,
+       "state_year": -1.3192,
+       "saturated": -1.9399,
+       "controls": -1.3342,
+       "imputation": -1.9435,
+       "sdid": -1.3629,
+       "gsynth": -0.8,
+       "classes": [
+        "0160"
+       ]
+      },
+      {
+       "twoway": 1.0477,
+       "state_year": 0.9469,
+       "saturated": 1.8323,
+       "controls": 0.9658,
+       "imputation": 1.84,
+       "sdid": 2.0422,
+       "gsynth": 2.7017,
+       "classes": [
+        "3011"
+       ]
+      },
+      {
+       "twoway": 12.7515,
+       "state_year": 12.5663,
+       "saturated": 2.0292,
+       "controls": 12.6145,
+       "imputation": 2.022,
+       "sdid": 15.413,
+       "gsynth": 13.8127,
+       "classes": [
+        "3019"
+       ]
+      },
+      {
+       "twoway": 1.1116,
+       "state_year": 0.9642,
+       "saturated": 1.3448,
+       "controls": 0.9962,
+       "imputation": 1.3493,
+       "sdid": 2.6433,
+       "gsynth": 3.9693,
+       "classes": [
+        "3020"
+       ]
+      },
+      {
+       "twoway": -1.5488,
+       "state_year": -1.625,
+       "saturated": 0.25,
+       "controls": -1.6135,
+       "imputation": 0.2664,
+       "sdid": -1.0506,
+       "gsynth": -1.0773,
+       "classes": [
+        "3212"
+       ]
+      },
+      {
+       "twoway": -0.175,
+       "state_year": -0.3118,
+       "saturated": 1.1738,
+       "controls": -0.2823,
+       "imputation": 1.1837,
+       "sdid": 0.025,
+       "gsynth": 0.4213,
+       "classes": [
+        "3231"
+       ]
+      },
+      {
+       "twoway": 0.9516,
+       "state_year": 0.8252,
+       "saturated": 0.9575,
+       "controls": 0.8427,
+       "imputation": 0.9398,
+       "sdid": 1.5103,
+       "gsynth": 1.5686,
+       "classes": [
+        "3232"
+       ]
+      },
+      {
+       "twoway": 1.9542,
+       "state_year": 1.8078,
+       "saturated": -0.0868,
+       "controls": 1.8389,
+       "imputation": -0.0547,
+       "sdid": 2.2173,
+       "gsynth": 2.5098,
+       "classes": [
+        "3241"
+       ]
+      },
+      {
+       "twoway": 1.2609,
+       "state_year": 1.1219,
+       "saturated": 1.6779,
+       "controls": 1.1526,
+       "imputation": 1.7292,
+       "sdid": 1.3726,
+       "gsynth": 1.7932,
+       "classes": [
+        "3242"
+       ]
+      },
+      {
+       "twoway": 3.9558,
+       "state_year": 3.8252,
+       "saturated": 1.1563,
+       "controls": 3.8532,
+       "imputation": 1.1562,
+       "sdid": 3.9683,
+       "gsynth": 4.4818,
+       "classes": [
+        "3243"
+       ]
+      },
+      {
+       "twoway": 2.0925,
+       "state_year": 1.9463,
+       "saturated": 1.0187,
+       "controls": 1.9781,
+       "imputation": 1.0404,
+       "sdid": 2.1064,
+       "gsynth": 2.6023,
+       "classes": [
+        "3244"
+       ]
+      },
+      {
+       "twoway": 0.0131,
+       "state_year": -0.0937,
+       "saturated": 1.1573,
+       "controls": -0.0712,
+       "imputation": 1.1698,
+       "sdid": 0.5174,
+       "gsynth": 0.5847,
+       "classes": [
+        "3291"
+       ]
+      },
+      {
+       "twoway": -0.2174,
+       "state_year": -0.349,
+       "saturated": 2.1808,
+       "controls": -0.3208,
+       "imputation": 2.2233,
+       "sdid": 1.7734,
+       "gsynth": 0.2702,
+       "classes": [
+        "3299"
+       ]
+      },
+      {
+       "twoway": -1.0069,
+       "state_year": -1.1353,
+       "saturated": 1.2937,
+       "controls": -1.1129,
+       "imputation": 1.243,
+       "sdid": -0.3923,
+       "gsynth": -0.4053,
+       "classes": [
+        "4279"
+       ]
+      },
+      {
+       "twoway": -0.7486,
+       "state_year": -0.8142,
+       "saturated": 0.085,
+       "controls": -0.8252,
+       "imputation": 0.0777,
+       "sdid": -0.6154,
+       "gsynth": -6.7481,
+       "classes": [
+        "4400"
+       ]
+      },
+      {
+       "twoway": 0.5173,
+       "state_year": 0.3275,
+       "saturated": -2.0112,
+       "controls": 0.3639,
+       "imputation": -2.0232,
+       "sdid": 1.0818,
+       "gsynth": -0.2683,
+       "classes": [
+        "4511"
+       ]
+      },
+      {
+       "twoway": 0.0637,
+       "state_year": -0.0765,
+       "saturated": -1.7133,
+       "controls": -0.0521,
+       "imputation": -1.7252,
+       "sdid": 0.7693,
+       "gsynth": 0.7031,
+       "classes": [
+        "4512"
+       ]
+      },
+      {
+       "twoway": 0.7034,
+       "state_year": 0.485,
+       "saturated": 0.9398,
+       "controls": 0.5312,
+       "imputation": 0.94,
+       "sdid": 2.0152,
+       "gsynth": 1.2378,
+       "classes": [
+        "6240"
+       ]
+      },
+      {
+       "twoway": -8.7327,
+       "state_year": -8.8616,
+       "saturated": -2.3581,
+       "controls": -8.8355,
+       "imputation": -2.4761,
+       "sdid": -6.4419,
+       "gsynth": -2.2284,
+       "classes": [
+        "6330"
+       ]
+      },
+      {
+       "twoway": -0.2215,
+       "state_year": -0.4246,
+       "saturated": -0.0774,
+       "controls": -0.3824,
+       "imputation": -0.0839,
+       "sdid": 0.7042,
+       "gsynth": 0.383,
+       "classes": [
+        "6419"
+       ]
+      },
+      {
+       "twoway": -2.9829,
+       "state_year": -3.1534,
+       "saturated": 1.0325,
+       "controls": -3.1208,
+       "imputation": 1.0298,
+       "sdid": -1.723,
+       "gsynth": 0.5181,
+       "classes": [
+        "6711"
+       ]
+      },
+      {
+       "twoway": 0.8561,
+       "state_year": 0.7059,
+       "saturated": 2.0496,
+       "controls": 0.73,
+       "imputation": 2.0408,
+       "sdid": 1.6096,
+       "gsynth": 0.8413,
+       "classes": [
+        "6712"
+       ]
+      },
+      {
+       "twoway": 1.309,
+       "state_year": 1.1657,
+       "saturated": 2.5865,
+       "controls": 1.2002,
+       "imputation": 2.6174,
+       "sdid": 1.9243,
+       "gsynth": 0.4354,
+       "classes": [
+        "6720"
+       ]
+      },
+      {
+       "twoway": -0.9667,
+       "state_year": -1.1419,
+       "saturated": 0.5195,
+       "controls": -1.1053,
+       "imputation": 0.5056,
+       "sdid": -0.8534,
+       "gsynth": -5.2776,
+       "classes": [
+        "6921"
+       ]
+      },
+      {
+       "twoway": 4.2729,
+       "state_year": 4.1391,
+       "saturated": 1.0433,
+       "controls": 4.1649,
+       "imputation": 1.0315,
+       "sdid": 4.509,
+       "gsynth": 1.5695,
+       "classes": [
+        "6923"
+       ]
+      },
+      {
+       "twoway": -0.8837,
+       "state_year": -1.1059,
+       "saturated": 0.7786,
+       "controls": -1.0583,
+       "imputation": 0.7712,
+       "sdid": 0.0096,
+       "gsynth": -0.316,
+       "classes": [
+        "6924"
+       ]
+      },
+      {
+       "twoway": -0.3033,
+       "state_year": -0.5371,
+       "saturated": -0.8154,
+       "controls": -0.4852,
+       "imputation": -0.8098,
+       "sdid": -0.2835,
+       "gsynth": 0.3405,
+       "classes": [
+        "6931"
+       ]
+      },
+      {
+       "twoway": -2.644,
+       "state_year": -2.8339,
+       "saturated": -0.1857,
+       "controls": -2.7925,
+       "imputation": -0.1859,
+       "sdid": -2.2055,
+       "gsynth": -3.1107,
+       "classes": [
+        "6932"
+       ]
+      },
+      {
+       "twoway": 2.4216,
+       "state_year": 2.2188,
+       "saturated": 0.6658,
+       "controls": 2.2643,
+       "imputation": 0.6523,
+       "sdid": 3.4194,
+       "gsynth": 2.8766,
+       "classes": [
+        "6962"
+       ]
+      },
+      {
+       "twoway": -1.0842,
+       "state_year": -1.3389,
+       "saturated": -0.0533,
+       "controls": -1.2755,
+       "imputation": -0.0551,
+       "sdid": -0.1367,
+       "gsynth": -0.4844,
+       "classes": [
+        "7000"
+       ]
+      },
+      {
+       "twoway": -1.0978,
+       "state_year": -1.2801,
+       "saturated": 1.028,
+       "controls": -1.24,
+       "imputation": 1.0485,
+       "sdid": 0.0748,
+       "gsynth": -0.593,
+       "classes": [
+        "7311"
+       ]
+      },
+      {
+       "twoway": -0.1493,
+       "state_year": -0.3007,
+       "saturated": -3.983,
+       "controls": -0.2787,
+       "imputation": -3.9577,
+       "sdid": 0.0444,
+       "gsynth": 0.5664,
+       "classes": [
+        "8511"
+       ]
+      },
+      {
+       "twoway": 0.3951,
+       "state_year": 0.2448,
+       "saturated": -1.0234,
+       "controls": 0.2646,
+       "imputation": -1.0321,
+       "sdid": 0.5859,
+       "gsynth": 1.1325,
+       "classes": [
+        "8512"
+       ]
+      },
+      {
+       "twoway": -1.9073,
+       "state_year": -2.0635,
+       "saturated": -1.2501,
+       "controls": -2.0376,
+       "imputation": -1.2561,
+       "sdid": -1.1864,
+       "gsynth": -1.3035,
+       "classes": [
+        "8539"
+       ]
+      },
+      {
+       "twoway": -1.4366,
+       "state_year": -1.6748,
+       "saturated": -0.0066,
+       "controls": -1.6262,
+       "imputation": -0.027,
+       "sdid": -0.4509,
+       "gsynth": -0.8373,
+       "classes": [
+        "9002"
+       ]
+      },
+      {
+       "twoway": 0.2126,
+       "state_year": 0.1183,
+       "saturated": -0.8818,
+       "controls": 0.131,
+       "imputation": -0.8785,
+       "sdid": 0.3465,
+       "gsynth": -6.0498,
+       "classes": [
+        "9419"
+       ]
+      }
+     ]
+    },
+    "exits": {
+     "cells": 3406,
+     "rows": 34955,
+     "mean_rate": 12.93,
+     "layers": {
+      "twoway": {
+       "n": 40,
+       "sd": 1.108,
+       "mde": 3.105,
+       "mean": 0.025,
+       "rms": 1.095,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 40,
+       "sd": 1.109,
+       "mde": 3.108,
+       "mean": 0.021,
+       "rms": 1.096,
+       "ratio_to_twoway": 1.001
+      },
+      "saturated": {
+       "n": 40,
+       "sd": 1.055,
+       "mde": 2.955,
+       "mean": -0.015,
+       "rms": 1.042,
+       "ratio_to_twoway": 0.952
+      },
+      "controls": {
+       "n": 40,
+       "sd": 1.109,
+       "mde": 3.108,
+       "mean": 0.013,
+       "rms": 1.096,
+       "ratio_to_twoway": 1.001
+      },
+      "imputation": {
+       "n": 40,
+       "sd": 1.055,
+       "mde": 2.955,
+       "mean": -0.012,
+       "rms": 1.042,
+       "ratio_to_twoway": 0.952
+      },
+      "sdid": {
+       "n": 40,
+       "sd": 0.997,
+       "mde": 2.793,
+       "mean": 0.021,
+       "rms": 0.985,
+       "ratio_to_twoway": 0.9
+      },
+      "gsynth": {
+       "n": 40,
+       "sd": 1.109,
+       "mde": 3.107,
+       "mean": -0.011,
+       "rms": 1.095,
+       "ratio_to_twoway": 1.001
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": 1.2855,
+       "state_year": 1.2373,
+       "saturated": 0.1128,
+       "controls": 1.2681,
+       "imputation": 0.1168,
+       "sdid": 1.2133,
+       "gsynth": 1.2168,
+       "classes": [
+        "0141"
+       ]
+      },
+      {
+       "twoway": 1.3812,
+       "state_year": 1.4375,
+       "saturated": 0.4345,
+       "controls": 1.3769,
+       "imputation": 0.4315,
+       "sdid": 1.3696,
+       "gsynth": 1.3296,
+       "classes": [
+        "0142"
+       ]
+      },
+      {
+       "twoway": 1.8044,
+       "state_year": 1.781,
+       "saturated": -0.7045,
+       "controls": 1.795,
+       "imputation": -0.7089,
+       "sdid": 1.7975,
+       "gsynth": 1.7994,
+       "classes": [
+        "0144"
+       ]
+      },
+      {
+       "twoway": 1.5319,
+       "state_year": 1.5302,
+       "saturated": 0.0125,
+       "controls": 1.5169,
+       "imputation": 0.0096,
+       "sdid": 1.5403,
+       "gsynth": 1.5083,
+       "classes": [
+        "0145"
+       ]
+      },
+      {
+       "twoway": 0.9889,
+       "state_year": 0.9083,
+       "saturated": -1.9976,
+       "controls": 0.9602,
+       "imputation": -1.9745,
+       "sdid": 0.8489,
+       "gsynth": 0.9373,
+       "classes": [
+        "0160"
+       ]
+      },
+      {
+       "twoway": 0.3859,
+       "state_year": 0.3877,
+       "saturated": 0.9409,
+       "controls": 0.3734,
+       "imputation": 0.9454,
+       "sdid": 0.1228,
+       "gsynth": 0.38,
+       "classes": [
+        "3011"
+       ]
+      },
+      {
+       "twoway": 1.3627,
+       "state_year": 1.3598,
+       "saturated": 1.5061,
+       "controls": 1.3532,
+       "imputation": 1.5209,
+       "sdid": 0.8523,
+       "gsynth": 1.192,
+       "classes": [
+        "3019"
+       ]
+      },
+      {
+       "twoway": 0.0603,
+       "state_year": 0.0597,
+       "saturated": -0.8854,
+       "controls": 0.0492,
+       "imputation": -0.8751,
+       "sdid": -0.1556,
+       "gsynth": 0.0431,
+       "classes": [
+        "3020"
+       ]
+      },
+      {
+       "twoway": -0.0854,
+       "state_year": -0.0665,
+       "saturated": -0.9463,
+       "controls": -0.0948,
+       "imputation": -0.9647,
+       "sdid": -0.3103,
+       "gsynth": -0.0973,
+       "classes": [
+        "3212"
+       ]
+      },
+      {
+       "twoway": 0.2073,
+       "state_year": 0.1992,
+       "saturated": -0.1827,
+       "controls": 0.1941,
+       "imputation": -0.185,
+       "sdid": -0.0615,
+       "gsynth": 0.198,
+       "classes": [
+        "3231"
+       ]
+      },
+      {
+       "twoway": 0.7128,
+       "state_year": 0.7168,
+       "saturated": 0.1232,
+       "controls": 0.7022,
+       "imputation": 0.1332,
+       "sdid": 0.425,
+       "gsynth": 0.7322,
+       "classes": [
+        "3232"
+       ]
+      },
+      {
+       "twoway": -0.3218,
+       "state_year": -0.3247,
+       "saturated": -1.2551,
+       "controls": -0.333,
+       "imputation": -1.2509,
+       "sdid": -0.7118,
+       "gsynth": -0.3673,
+       "classes": [
+        "3241"
+       ]
+      },
+      {
+       "twoway": -0.0784,
+       "state_year": -0.0732,
+       "saturated": -0.6498,
+       "controls": -0.0886,
+       "imputation": -0.6494,
+       "sdid": -0.3736,
+       "gsynth": -0.1041,
+       "classes": [
+        "3242"
+       ]
+      },
+      {
+       "twoway": -0.077,
+       "state_year": -0.0675,
+       "saturated": -1.2691,
+       "controls": -0.0873,
+       "imputation": -1.2571,
+       "sdid": -0.3607,
+       "gsynth": -0.0886,
+       "classes": [
+        "3243"
+       ]
+      },
+      {
+       "twoway": -0.8933,
+       "state_year": -0.8915,
+       "saturated": -1.5388,
+       "controls": -0.9044,
+       "imputation": -1.5528,
+       "sdid": -0.9678,
+       "gsynth": -0.9055,
+       "classes": [
+        "3244"
+       ]
+      },
+      {
+       "twoway": -1.3114,
+       "state_year": -1.3157,
+       "saturated": 0.4453,
+       "controls": -1.3263,
+       "imputation": 0.4498,
+       "sdid": -1.2379,
+       "gsynth": -1.3166,
+       "classes": [
+        "3291"
+       ]
+      },
+      {
+       "twoway": -2.5546,
+       "state_year": -2.5508,
+       "saturated": 1.5415,
+       "controls": -2.5661,
+       "imputation": 1.5681,
+       "sdid": -2.3875,
+       "gsynth": -2.564,
+       "classes": [
+        "3299"
+       ]
+      },
+      {
+       "twoway": -0.7408,
+       "state_year": -0.7452,
+       "saturated": -0.6084,
+       "controls": -0.7537,
+       "imputation": -0.5841,
+       "sdid": -0.7364,
+       "gsynth": -0.7607,
+       "classes": [
+        "4279"
+       ]
+      },
+      {
+       "twoway": 0.6306,
+       "state_year": 0.6408,
+       "saturated": 1.4931,
+       "controls": 0.6196,
+       "imputation": 1.4959,
+       "sdid": 0.9738,
+       "gsynth": 0.6136,
+       "classes": [
+        "4400"
+       ]
+      },
+      {
+       "twoway": 0.369,
+       "state_year": 0.3623,
+       "saturated": 0.2379,
+       "controls": 0.3581,
+       "imputation": 0.2406,
+       "sdid": 0.2082,
+       "gsynth": 0.3088,
+       "classes": [
+        "4511"
+       ]
+      },
+      {
+       "twoway": -0.301,
+       "state_year": -0.308,
+       "saturated": 0.6999,
+       "controls": -0.3145,
+       "imputation": 0.6897,
+       "sdid": -0.3417,
+       "gsynth": -0.3285,
+       "classes": [
+        "4512"
+       ]
+      },
+      {
+       "twoway": -0.4518,
+       "state_year": -0.4671,
+       "saturated": 0.8561,
+       "controls": -0.4633,
+       "imputation": 0.8645,
+       "sdid": -0.0588,
+       "gsynth": -0.4767,
+       "classes": [
+        "6240"
+       ]
+      },
+      {
+       "twoway": -2.4934,
+       "state_year": -2.5139,
+       "saturated": 2.5169,
+       "controls": -2.5177,
+       "imputation": 2.5186,
+       "sdid": -1.4453,
+       "gsynth": -2.7677,
+       "classes": [
+        "6330"
+       ]
+      },
+      {
+       "twoway": -1.1516,
+       "state_year": -1.1599,
+       "saturated": -0.9856,
+       "controls": -1.1635,
+       "imputation": -0.9782,
+       "sdid": -1.0201,
+       "gsynth": -1.1514,
+       "classes": [
+        "6419"
+       ]
+      },
+      {
+       "twoway": -0.3414,
+       "state_year": -0.3499,
+       "saturated": 1.4818,
+       "controls": -0.3546,
+       "imputation": 1.4788,
+       "sdid": -0.02,
+       "gsynth": -0.3502,
+       "classes": [
+        "6711"
+       ]
+      },
+      {
+       "twoway": 0.6074,
+       "state_year": 0.6086,
+       "saturated": 0.9632,
+       "controls": 0.5975,
+       "imputation": 0.9586,
+       "sdid": 0.856,
+       "gsynth": 0.515,
+       "classes": [
+        "6712"
+       ]
+      },
+      {
+       "twoway": -0.1235,
+       "state_year": -0.0965,
+       "saturated": -0.1535,
+       "controls": -0.1293,
+       "imputation": -0.1484,
+       "sdid": -0.2505,
+       "gsynth": -0.1694,
+       "classes": [
+        "6720"
+       ]
+      },
+      {
+       "twoway": 0.0897,
+       "state_year": 0.0784,
+       "saturated": -1.8481,
+       "controls": 0.0774,
+       "imputation": -1.8421,
+       "sdid": 0.1361,
+       "gsynth": 0.0734,
+       "classes": [
+        "6921"
+       ]
+      },
+      {
+       "twoway": 2.1451,
+       "state_year": 2.1583,
+       "saturated": -1.456,
+       "controls": 2.1373,
+       "imputation": -1.459,
+       "sdid": 1.887,
+       "gsynth": 2.0939,
+       "classes": [
+        "6923"
+       ]
+      },
+      {
+       "twoway": -0.7004,
+       "state_year": -0.7158,
+       "saturated": 0.0625,
+       "controls": -0.7118,
+       "imputation": 0.0573,
+       "sdid": -0.4688,
+       "gsynth": -0.7002,
+       "classes": [
+        "6924"
+       ]
+      },
+      {
+       "twoway": 0.7698,
+       "state_year": 0.7634,
+       "saturated": 1.1185,
+       "controls": 0.7613,
+       "imputation": 1.1216,
+       "sdid": 0.6211,
+       "gsynth": 0.7454,
+       "classes": [
+        "6931"
+       ]
+      },
+      {
+       "twoway": -0.8573,
+       "state_year": -0.862,
+       "saturated": -0.0569,
+       "controls": -0.8687,
+       "imputation": -0.0548,
+       "sdid": -0.8249,
+       "gsynth": -0.8532,
+       "classes": [
+        "6932"
+       ]
+      },
+      {
+       "twoway": 0.9176,
+       "state_year": 0.918,
+       "saturated": -0.9381,
+       "controls": 0.91,
+       "imputation": -0.9402,
+       "sdid": 0.8742,
+       "gsynth": 0.8613,
+       "classes": [
+        "6962"
+       ]
+      },
+      {
+       "twoway": 0.4843,
+       "state_year": 0.4758,
+       "saturated": 0.544,
+       "controls": 0.4755,
+       "imputation": 0.5395,
+       "sdid": 0.5507,
+       "gsynth": 0.4611,
+       "classes": [
+        "7000"
+       ]
+      },
+      {
+       "twoway": -1.7798,
+       "state_year": -1.7829,
+       "saturated": -0.4978,
+       "controls": -1.7921,
+       "imputation": -0.4923,
+       "sdid": -1.9457,
+       "gsynth": -1.7517,
+       "classes": [
+        "7311"
+       ]
+      },
+      {
+       "twoway": 1.1225,
+       "state_year": 1.1265,
+       "saturated": -0.0074,
+       "controls": 1.1126,
+       "imputation": -0.0184,
+       "sdid": 1.1006,
+       "gsynth": 1.0633,
+       "classes": [
+        "8511"
+       ]
+      },
+      {
+       "twoway": 0.8423,
+       "state_year": 0.8433,
+       "saturated": -0.4164,
+       "controls": 0.8311,
+       "imputation": -0.4103,
+       "sdid": 0.8318,
+       "gsynth": 0.7957,
+       "classes": [
+        "8512"
+       ]
+      },
+      {
+       "twoway": -1.0395,
+       "state_year": -1.0441,
+       "saturated": -0.7936,
+       "controls": -1.0522,
+       "imputation": -0.7895,
+       "sdid": -0.6771,
+       "gsynth": -1.1277,
+       "classes": [
+        "8539"
+       ]
+      },
+      {
+       "twoway": -1.6843,
+       "state_year": -1.7012,
+       "saturated": 1.3812,
+       "controls": -1.6953,
+       "imputation": 1.3785,
+       "sdid": -1.1993,
+       "gsynth": -1.6823,
+       "classes": [
+        "9002"
+       ]
+      },
+      {
+       "twoway": 0.2929,
+       "state_year": 0.2988,
+       "saturated": 0.1353,
+       "controls": 0.2808,
+       "imputation": 0.1369,
+       "sdid": 0.1701,
+       "gsynth": 0.2655,
+       "classes": [
+        "9419"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "vic-taxi-licensing-2014",
+   "title": "As-of-right taxi licences in Victoria (2014)",
+   "classes": [
+    "4623"
+   ],
+   "cohorts": [
+    {
+     "treated": [
+      "VIC"
+     ],
+     "first_post": 2015,
+     "last_post": 2015,
+     "controls": [
+      "NSW",
+      "QLD",
+      "SA",
+      "WA",
+      "TAS",
+      "ACT",
+      "NT"
+     ]
+    }
+   ],
+   "start": 2008,
+   "registered_vintage": true,
+   "notes": [],
+   "placebo_groups": 40,
+   "treated_size": 3931.0,
+   "feasible": {
+    "ok": true,
+    "reasons": []
+   },
+   "registered_design": {
+    "entries": {
+     "sd": 1.513,
+     "mde": 4.238,
+     "n": 43
+    },
+    "exits": {
+     "sd": 1.326,
+     "mde": 3.714,
+     "n": 43
+    }
+   },
+   "outcomes": {
+    "entries": {
+     "cells": 3370,
+     "rows": 25081,
+     "mean_rate": 13.03,
+     "layers": {
+      "twoway": {
+       "n": 40,
+       "sd": 3.265,
+       "mde": 9.147,
+       "mean": 0.288,
+       "rms": 3.237,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 40,
+       "sd": 3.283,
+       "mde": 9.197,
+       "mean": 0.069,
+       "rms": 3.242,
+       "ratio_to_twoway": 1.006
+      },
+      "saturated": {
+       "n": 40,
+       "sd": 1.243,
+       "mde": 3.482,
+       "mean": -0.417,
+       "rms": 1.296,
+       "ratio_to_twoway": 0.381
+      },
+      "controls": {
+       "n": 40,
+       "sd": 3.267,
+       "mde": 9.153,
+       "mean": 0.198,
+       "rms": 3.232,
+       "ratio_to_twoway": 1.001
+      },
+      "imputation": {
+       "n": 40,
+       "sd": 1.243,
+       "mde": 3.482,
+       "mean": -0.417,
+       "rms": 1.296,
+       "ratio_to_twoway": 0.381
+      },
+      "sdid": {
+       "n": 40,
+       "sd": 3.267,
+       "mde": 9.154,
+       "mean": 0.694,
+       "rms": 3.3,
+       "ratio_to_twoway": 1.001
+      },
+      "gsynth": {
+       "n": 40,
+       "sd": 3.271,
+       "mde": 9.165,
+       "mean": 0.187,
+       "rms": 3.236,
+       "ratio_to_twoway": 1.002
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": 0.0375,
+       "state_year": -0.1873,
+       "saturated": 1.7857,
+       "controls": -0.0619,
+       "imputation": 1.7857,
+       "sdid": -0.2235,
+       "gsynth": -0.3638,
+       "classes": [
+        "0131"
+       ]
+      },
+      {
+       "twoway": -1.8992,
+       "state_year": -2.1363,
+       "saturated": 0.7851,
+       "controls": -1.9955,
+       "imputation": 0.7851,
+       "sdid": -2.0357,
+       "gsynth": -1.6815,
+       "classes": [
+        "0141"
+       ]
+      },
+      {
+       "twoway": 2.3629,
+       "state_year": 2.1482,
+       "saturated": 0.1164,
+       "controls": 2.2706,
+       "imputation": 0.1164,
+       "sdid": 1.8858,
+       "gsynth": 2.5818,
+       "classes": [
+        "0144"
+       ]
+      },
+      {
+       "twoway": 3.1321,
+       "state_year": 2.9268,
+       "saturated": 1.8259,
+       "controls": 3.0418,
+       "imputation": 1.8259,
+       "sdid": 2.5289,
+       "gsynth": 3.3596,
+       "classes": [
+        "0145"
+       ]
+      },
+      {
+       "twoway": -1.8375,
+       "state_year": -2.0663,
+       "saturated": -0.1299,
+       "controls": -1.9302,
+       "imputation": -0.1299,
+       "sdid": -2.0446,
+       "gsynth": -1.5762,
+       "classes": [
+        "0149"
+       ]
+      },
+      {
+       "twoway": -0.5789,
+       "state_year": -0.8132,
+       "saturated": -0.4542,
+       "controls": -0.6765,
+       "imputation": -0.4542,
+       "sdid": -0.7608,
+       "gsynth": -0.3758,
+       "classes": [
+        "0160"
+       ]
+      },
+      {
+       "twoway": 1.8502,
+       "state_year": 1.6389,
+       "saturated": 2.0924,
+       "controls": 1.7624,
+       "imputation": 2.0924,
+       "sdid": 2.612,
+       "gsynth": 2.0725,
+       "classes": [
+        "0529"
+       ]
+      },
+      {
+       "twoway": 15.3124,
+       "state_year": 15.1861,
+       "saturated": -3.1342,
+       "controls": 15.2443,
+       "imputation": -3.1342,
+       "sdid": 17.5045,
+       "gsynth": 15.6361,
+       "classes": [
+        "3019"
+       ]
+      },
+      {
+       "twoway": 0.5646,
+       "state_year": 0.3512,
+       "saturated": -1.1113,
+       "controls": 0.4789,
+       "imputation": -1.1113,
+       "sdid": 1.017,
+       "gsynth": 0.8064,
+       "classes": [
+        "3020"
+       ]
+      },
+      {
+       "twoway": 3.5266,
+       "state_year": 3.3136,
+       "saturated": -2.9557,
+       "controls": 3.4343,
+       "imputation": -2.9557,
+       "sdid": 3.6757,
+       "gsynth": 2.5972,
+       "classes": [
+        "3211"
+       ]
+      },
+      {
+       "twoway": -2.6198,
+       "state_year": -2.8549,
+       "saturated": -2.0659,
+       "controls": -2.7095,
+       "imputation": -2.0659,
+       "sdid": -1.0943,
+       "gsynth": -2.3589,
+       "classes": [
+        "3212"
+       ]
+      },
+      {
+       "twoway": 0.0898,
+       "state_year": -0.1313,
+       "saturated": -0.929,
+       "controls": -0.0002,
+       "imputation": -0.929,
+       "sdid": 0.7307,
+       "gsynth": 0.3694,
+       "classes": [
+        "3221"
+       ]
+      },
+      {
+       "twoway": 2.1465,
+       "state_year": 1.9333,
+       "saturated": -2.4388,
+       "controls": 2.0534,
+       "imputation": -2.4388,
+       "sdid": 2.6951,
+       "gsynth": 1.613,
+       "classes": [
+        "3222"
+       ]
+      },
+      {
+       "twoway": 0.6498,
+       "state_year": 0.4343,
+       "saturated": 0.6178,
+       "controls": 0.561,
+       "imputation": 0.6178,
+       "sdid": 0.9246,
+       "gsynth": 0.3099,
+       "classes": [
+        "3231"
+       ]
+      },
+      {
+       "twoway": -0.1083,
+       "state_year": -0.3303,
+       "saturated": -2.5154,
+       "controls": -0.198,
+       "imputation": -2.5154,
+       "sdid": 0.2352,
+       "gsynth": -1.4937,
+       "classes": [
+        "3241"
+       ]
+      },
+      {
+       "twoway": 3.2962,
+       "state_year": 3.088,
+       "saturated": -0.1735,
+       "controls": 3.2061,
+       "imputation": -0.1735,
+       "sdid": 3.1251,
+       "gsynth": 1.2222,
+       "classes": [
+        "3243"
+       ]
+      },
+      {
+       "twoway": 0.927,
+       "state_year": 0.7084,
+       "saturated": -0.4091,
+       "controls": 0.8344,
+       "imputation": -0.4091,
+       "sdid": 1.2632,
+       "gsynth": 0.1418,
+       "classes": [
+        "3244"
+       ]
+      },
+      {
+       "twoway": -0.0167,
+       "state_year": -0.2378,
+       "saturated": -0.2966,
+       "controls": -0.1074,
+       "imputation": -0.2966,
+       "sdid": 0.1616,
+       "gsynth": -0.3308,
+       "classes": [
+        "3291"
+       ]
+      },
+      {
+       "twoway": -1.7632,
+       "state_year": -1.9899,
+       "saturated": -1.2609,
+       "controls": -1.8519,
+       "imputation": -1.2609,
+       "sdid": -0.0168,
+       "gsynth": -1.5558,
+       "classes": [
+        "3299"
+       ]
+      },
+      {
+       "twoway": -1.6304,
+       "state_year": -1.8557,
+       "saturated": -0.5155,
+       "controls": -1.7191,
+       "imputation": -0.5155,
+       "sdid": -1.5081,
+       "gsynth": -2.115,
+       "classes": [
+        "4110"
+       ]
+      },
+      {
+       "twoway": -0.639,
+       "state_year": -0.8603,
+       "saturated": -0.3518,
+       "controls": -0.7291,
+       "imputation": -0.3518,
+       "sdid": -0.0558,
+       "gsynth": -0.3752,
+       "classes": [
+        "4251"
+       ]
+      },
+      {
+       "twoway": -0.8259,
+       "state_year": -1.0526,
+       "saturated": -0.9498,
+       "controls": -0.9188,
+       "imputation": -0.9498,
+       "sdid": -0.4083,
+       "gsynth": -0.5551,
+       "classes": [
+        "4279"
+       ]
+      },
+      {
+       "twoway": -8.103,
+       "state_year": -8.3485,
+       "saturated": -1.2363,
+       "controls": -8.1791,
+       "imputation": -1.2363,
+       "sdid": -4.8533,
+       "gsynth": -9.0066,
+       "classes": [
+        "4310"
+       ]
+      },
+      {
+       "twoway": -1.0234,
+       "state_year": -1.2522,
+       "saturated": -0.399,
+       "controls": -1.1171,
+       "imputation": -0.399,
+       "sdid": -1.1156,
+       "gsynth": -0.7618,
+       "classes": [
+        "4400"
+       ]
+      },
+      {
+       "twoway": 0.0304,
+       "state_year": -0.1905,
+       "saturated": -1.4936,
+       "controls": -0.0583,
+       "imputation": -1.4936,
+       "sdid": 0.214,
+       "gsynth": 0.3171,
+       "classes": [
+        "4512"
+       ]
+      },
+      {
+       "twoway": -1.3816,
+       "state_year": -1.6095,
+       "saturated": 0.0493,
+       "controls": -1.4746,
+       "imputation": 0.0493,
+       "sdid": -0.6118,
+       "gsynth": -1.1165,
+       "classes": [
+        "6639"
+       ]
+      },
+      {
+       "twoway": 0.7736,
+       "state_year": 0.5605,
+       "saturated": -0.9309,
+       "controls": 0.6857,
+       "imputation": -0.9309,
+       "sdid": 0.8004,
+       "gsynth": 0.5067,
+       "classes": [
+        "6720"
+       ]
+      },
+      {
+       "twoway": -0.7076,
+       "state_year": -0.9325,
+       "saturated": -0.1102,
+       "controls": -0.7982,
+       "imputation": -0.1102,
+       "sdid": -0.5599,
+       "gsynth": -0.4187,
+       "classes": [
+        "6921"
+       ]
+      },
+      {
+       "twoway": 4.7846,
+       "state_year": 4.613,
+       "saturated": 1.0237,
+       "controls": 4.7018,
+       "imputation": 1.0237,
+       "sdid": 4.6586,
+       "gsynth": 3.8802,
+       "classes": [
+        "6923"
+       ]
+      },
+      {
+       "twoway": -1.7482,
+       "state_year": -1.98,
+       "saturated": -1.0452,
+       "controls": -1.8404,
+       "imputation": -1.0452,
+       "sdid": -1.4648,
+       "gsynth": -1.939,
+       "classes": [
+        "6924"
+       ]
+      },
+      {
+       "twoway": 0.197,
+       "state_year": -0.0225,
+       "saturated": -0.2016,
+       "controls": 0.1088,
+       "imputation": -0.2016,
+       "sdid": 0.1973,
+       "gsynth": -0.3613,
+       "classes": [
+        "6931"
+       ]
+      },
+      {
+       "twoway": -0.0177,
+       "state_year": -0.2371,
+       "saturated": -1.6163,
+       "controls": -0.1091,
+       "imputation": -1.6163,
+       "sdid": 0.3235,
+       "gsynth": 0.2423,
+       "classes": [
+        "6940"
+       ]
+      },
+      {
+       "twoway": 1.4283,
+       "state_year": 1.207,
+       "saturated": 1.5322,
+       "controls": 1.3343,
+       "imputation": 1.5322,
+       "sdid": 1.8759,
+       "gsynth": 1.6943,
+       "classes": [
+        "7291"
+       ]
+      },
+      {
+       "twoway": -2.29,
+       "state_year": -2.5298,
+       "saturated": 0.9761,
+       "controls": -2.381,
+       "imputation": 0.9761,
+       "sdid": -1.8123,
+       "gsynth": -2.0232,
+       "classes": [
+        "7311"
+       ]
+      },
+      {
+       "twoway": -0.6352,
+       "state_year": -0.8635,
+       "saturated": 0.5594,
+       "controls": -0.7292,
+       "imputation": 0.5594,
+       "sdid": 0.2404,
+       "gsynth": -0.382,
+       "classes": [
+        "7313"
+       ]
+      },
+      {
+       "twoway": 0.6272,
+       "state_year": 0.4122,
+       "saturated": -0.2669,
+       "controls": 0.5376,
+       "imputation": -0.2669,
+       "sdid": 0.9682,
+       "gsynth": 0.8705,
+       "classes": [
+        "8101"
+       ]
+      },
+      {
+       "twoway": 0.8065,
+       "state_year": 0.5889,
+       "saturated": 0.5112,
+       "controls": 0.722,
+       "imputation": 0.5112,
+       "sdid": 0.755,
+       "gsynth": 1.1419,
+       "classes": [
+        "8512"
+       ]
+      },
+      {
+       "twoway": 1.0463,
+       "state_year": 0.8345,
+       "saturated": -0.6393,
+       "controls": 0.9653,
+       "imputation": -0.6393,
+       "sdid": 1.1508,
+       "gsynth": 0.5928,
+       "classes": [
+        "8531"
+       ]
+      },
+      {
+       "twoway": -1.5559,
+       "state_year": -1.7844,
+       "saturated": -0.0636,
+       "controls": -1.64,
+       "imputation": -0.0636,
+       "sdid": -1.2847,
+       "gsynth": -1.2447,
+       "classes": [
+        "8539"
+       ]
+      },
+      {
+       "twoway": -2.6846,
+       "state_year": -2.9182,
+       "saturated": -0.8768,
+       "controls": -2.7776,
+       "imputation": -0.8768,
+       "sdid": -1.9279,
+       "gsynth": -2.4331,
+       "classes": [
+        "9002"
+       ]
+      }
+     ]
+    },
+    "exits": {
+     "cells": 3370,
+     "rows": 25081,
+     "mean_rate": 13.24,
+     "layers": {
+      "twoway": {
+       "n": 40,
+       "sd": 0.939,
+       "mde": 2.63,
+       "mean": 0.148,
+       "rms": 0.939,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 40,
+       "sd": 0.944,
+       "mde": 2.644,
+       "mean": -0.05,
+       "rms": 0.933,
+       "ratio_to_twoway": 1.005
+      },
+      "saturated": {
+       "n": 40,
+       "sd": 0.845,
+       "mde": 2.368,
+       "mean": -0.072,
+       "rms": 0.838,
+       "ratio_to_twoway": 0.9
+      },
+      "controls": {
+       "n": 40,
+       "sd": 0.94,
+       "mde": 2.632,
+       "mean": 0.074,
+       "rms": 0.931,
+       "ratio_to_twoway": 1.001
+      },
+      "imputation": {
+       "n": 40,
+       "sd": 0.845,
+       "mde": 2.368,
+       "mean": -0.072,
+       "rms": 0.838,
+       "ratio_to_twoway": 0.9
+      },
+      "sdid": {
+       "n": 40,
+       "sd": 0.883,
+       "mde": 2.474,
+       "mean": 0.165,
+       "rms": 0.888,
+       "ratio_to_twoway": 0.94
+      },
+      "gsynth": {
+       "n": 40,
+       "sd": 0.944,
+       "mde": 2.646,
+       "mean": 0.151,
+       "rms": 0.945,
+       "ratio_to_twoway": 1.005
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": -1.8432,
+       "state_year": -2.0446,
+       "saturated": -2.2399,
+       "controls": -1.9173,
+       "imputation": -2.2399,
+       "sdid": -2.1524,
+       "gsynth": -1.9029,
+       "classes": [
+        "0131"
+       ]
+      },
+      {
+       "twoway": 0.7023,
+       "state_year": 0.508,
+       "saturated": 0.5988,
+       "controls": 0.629,
+       "imputation": 0.5988,
+       "sdid": 0.4779,
+       "gsynth": 0.6774,
+       "classes": [
+        "0141"
+       ]
+      },
+      {
+       "twoway": 0.0813,
+       "state_year": -0.1166,
+       "saturated": -1.0289,
+       "controls": 0.0074,
+       "imputation": -1.0289,
+       "sdid": -0.1509,
+       "gsynth": 0.0639,
+       "classes": [
+        "0144"
+       ]
+      },
+      {
+       "twoway": 0.456,
+       "state_year": 0.2602,
+       "saturated": 0.2453,
+       "controls": 0.3824,
+       "imputation": 0.2453,
+       "sdid": 0.254,
+       "gsynth": 0.4354,
+       "classes": [
+        "0145"
+       ]
+      },
+      {
+       "twoway": 0.2364,
+       "state_year": 0.0394,
+       "saturated": -1.1652,
+       "controls": 0.1622,
+       "imputation": -1.1652,
+       "sdid": -0.0211,
+       "gsynth": 0.2219,
+       "classes": [
+        "0149"
+       ]
+      },
+      {
+       "twoway": 0.3168,
+       "state_year": 0.1213,
+       "saturated": -0.2914,
+       "controls": 0.2436,
+       "imputation": -0.2914,
+       "sdid": 0.1225,
+       "gsynth": 0.2825,
+       "classes": [
+        "0160"
+       ]
+      },
+      {
+       "twoway": -0.2171,
+       "state_year": -0.417,
+       "saturated": -1.0407,
+       "controls": -0.292,
+       "imputation": -1.0407,
+       "sdid": -0.2996,
+       "gsynth": -0.1943,
+       "classes": [
+        "0529"
+       ]
+      },
+      {
+       "twoway": 0.7683,
+       "state_year": 0.5704,
+       "saturated": 0.4942,
+       "controls": 0.6928,
+       "imputation": 0.4942,
+       "sdid": 0.7945,
+       "gsynth": 0.8184,
+       "classes": [
+        "3019"
+       ]
+      },
+      {
+       "twoway": -0.351,
+       "state_year": -0.5533,
+       "saturated": -0.4394,
+       "controls": -0.4267,
+       "imputation": -0.4394,
+       "sdid": -0.4799,
+       "gsynth": -0.3256,
+       "classes": [
+        "3020"
+       ]
+      },
+      {
+       "twoway": 0.7912,
+       "state_year": 0.5954,
+       "saturated": -0.4824,
+       "controls": 0.7175,
+       "imputation": -0.4824,
+       "sdid": 0.8886,
+       "gsynth": 0.7849,
+       "classes": [
+        "3211"
+       ]
+      },
+      {
+       "twoway": 0.5467,
+       "state_year": 0.3498,
+       "saturated": -0.2039,
+       "controls": 0.4724,
+       "imputation": -0.2039,
+       "sdid": 0.4497,
+       "gsynth": 0.5592,
+       "classes": [
+        "3212"
+       ]
+      },
+      {
+       "twoway": -0.5532,
+       "state_year": -0.7546,
+       "saturated": -0.0243,
+       "controls": -0.6282,
+       "imputation": -0.0243,
+       "sdid": -0.3989,
+       "gsynth": -0.4741,
+       "classes": [
+        "3221"
+       ]
+      },
+      {
+       "twoway": -0.8449,
+       "state_year": -1.0472,
+       "saturated": -0.2502,
+       "controls": -0.9201,
+       "imputation": -0.2502,
+       "sdid": -1.1711,
+       "gsynth": -0.8608,
+       "classes": [
+        "3222"
+       ]
+      },
+      {
+       "twoway": 0.5872,
+       "state_year": 0.3925,
+       "saturated": -0.2873,
+       "controls": 0.5132,
+       "imputation": -0.2873,
+       "sdid": 0.3885,
+       "gsynth": 0.5901,
+       "classes": [
+        "3231"
+       ]
+      },
+      {
+       "twoway": 1.4747,
+       "state_year": 1.282,
+       "saturated": 1.8151,
+       "controls": 1.4009,
+       "imputation": 1.8151,
+       "sdid": 1.3337,
+       "gsynth": 1.5281,
+       "classes": [
+        "3241"
+       ]
+      },
+      {
+       "twoway": 0.1987,
+       "state_year": -0.0001,
+       "saturated": 0.2655,
+       "controls": 0.1244,
+       "imputation": 0.2655,
+       "sdid": -0.0974,
+       "gsynth": 0.2008,
+       "classes": [
+        "3243"
+       ]
+      },
+      {
+       "twoway": -0.2667,
+       "state_year": -0.4679,
+       "saturated": -0.0168,
+       "controls": -0.3415,
+       "imputation": -0.0168,
+       "sdid": -0.3695,
+       "gsynth": -0.2669,
+       "classes": [
+        "3244"
+       ]
+      },
+      {
+       "twoway": -0.0268,
+       "state_year": -0.2264,
+       "saturated": 0.8422,
+       "controls": -0.1016,
+       "imputation": 0.8422,
+       "sdid": 0.065,
+       "gsynth": -0.0246,
+       "classes": [
+        "3291"
+       ]
+      },
+      {
+       "twoway": -1.0639,
+       "state_year": -1.2704,
+       "saturated": 1.6143,
+       "controls": -1.1402,
+       "imputation": 1.6143,
+       "sdid": -0.669,
+       "gsynth": -1.0747,
+       "classes": [
+        "3299"
+       ]
+      },
+      {
+       "twoway": 1.3057,
+       "state_year": 1.1117,
+       "saturated": 0.9566,
+       "controls": 1.2316,
+       "imputation": 0.9566,
+       "sdid": 1.0675,
+       "gsynth": 1.3475,
+       "classes": [
+        "4110"
+       ]
+      },
+      {
+       "twoway": 2.4505,
+       "state_year": 2.2632,
+       "saturated": 1.2429,
+       "controls": 2.3772,
+       "imputation": 1.2429,
+       "sdid": 2.1934,
+       "gsynth": 2.4503,
+       "classes": [
+        "4251"
+       ]
+      },
+      {
+       "twoway": -0.0984,
+       "state_year": -0.2974,
+       "saturated": 0.5808,
+       "controls": -0.1731,
+       "imputation": 0.5808,
+       "sdid": -0.2041,
+       "gsynth": -0.1071,
+       "classes": [
+        "4279"
+       ]
+      },
+      {
+       "twoway": 0.0747,
+       "state_year": -0.1313,
+       "saturated": 1.1948,
+       "controls": -0.0032,
+       "imputation": 1.1948,
+       "sdid": 0.4984,
+       "gsynth": -0.057,
+       "classes": [
+        "4310"
+       ]
+      },
+      {
+       "twoway": 0.3367,
+       "state_year": 0.14,
+       "saturated": -0.8554,
+       "controls": 0.2628,
+       "imputation": -0.8554,
+       "sdid": 0.7131,
+       "gsynth": 0.3485,
+       "classes": [
+        "4400"
+       ]
+      },
+      {
+       "twoway": -0.5864,
+       "state_year": -0.7926,
+       "saturated": -0.6404,
+       "controls": -0.6623,
+       "imputation": -0.6404,
+       "sdid": -0.4769,
+       "gsynth": -0.5891,
+       "classes": [
+        "4512"
+       ]
+      },
+      {
+       "twoway": -0.0922,
+       "state_year": -0.2904,
+       "saturated": -0.6948,
+       "controls": -0.1664,
+       "imputation": -0.6948,
+       "sdid": 0.1718,
+       "gsynth": -0.0878,
+       "classes": [
+        "6639"
+       ]
+      },
+      {
+       "twoway": 0.1292,
+       "state_year": -0.071,
+       "saturated": -0.0831,
+       "controls": 0.0542,
+       "imputation": -0.0831,
+       "sdid": 0.3657,
+       "gsynth": 0.1231,
+       "classes": [
+        "6720"
+       ]
+      },
+      {
+       "twoway": 1.13,
+       "state_year": 0.937,
+       "saturated": 0.2651,
+       "controls": 1.0563,
+       "imputation": 0.2651,
+       "sdid": 1.2814,
+       "gsynth": 1.121,
+       "classes": [
+        "6921"
+       ]
+      },
+      {
+       "twoway": 1.9181,
+       "state_year": 1.7381,
+       "saturated": -0.4993,
+       "controls": 1.8464,
+       "imputation": -0.4993,
+       "sdid": 1.7951,
+       "gsynth": 1.9093,
+       "classes": [
+        "6923"
+       ]
+      },
+      {
+       "twoway": 0.0923,
+       "state_year": -0.1079,
+       "saturated": 0.0889,
+       "controls": 0.0172,
+       "imputation": 0.0889,
+       "sdid": 0.2908,
+       "gsynth": 0.0924,
+       "classes": [
+        "6924"
+       ]
+      },
+      {
+       "twoway": 0.3758,
+       "state_year": 0.1789,
+       "saturated": -0.4671,
+       "controls": 0.3015,
+       "imputation": -0.4671,
+       "sdid": 0.4129,
+       "gsynth": 0.3731,
+       "classes": [
+        "6931"
+       ]
+      },
+      {
+       "twoway": -0.6274,
+       "state_year": -0.8296,
+       "saturated": -0.4689,
+       "controls": -0.7025,
+       "imputation": -0.4689,
+       "sdid": 0.1879,
+       "gsynth": -0.6142,
+       "classes": [
+        "6940"
+       ]
+      },
+      {
+       "twoway": -1.0894,
+       "state_year": -1.2921,
+       "saturated": -1.8257,
+       "controls": -1.164,
+       "imputation": -1.8257,
+       "sdid": -0.678,
+       "gsynth": -1.0831,
+       "classes": [
+        "7291"
+       ]
+      },
+      {
+       "twoway": -0.2089,
+       "state_year": -0.4122,
+       "saturated": 0.5449,
+       "controls": -0.2847,
+       "imputation": 0.5449,
+       "sdid": -0.3109,
+       "gsynth": -0.1814,
+       "classes": [
+        "7311"
+       ]
+      },
+      {
+       "twoway": -1.7204,
+       "state_year": -1.9281,
+       "saturated": 0.1711,
+       "controls": -1.7958,
+       "imputation": 0.1711,
+       "sdid": -1.6182,
+       "gsynth": -1.6283,
+       "classes": [
+        "7313"
+       ]
+      },
+      {
+       "twoway": 0.3187,
+       "state_year": 0.121,
+       "saturated": -0.78,
+       "controls": 0.2443,
+       "imputation": -0.78,
+       "sdid": 0.3949,
+       "gsynth": 0.3393,
+       "classes": [
+        "8101"
+       ]
+      },
+      {
+       "twoway": 0.3943,
+       "state_year": 0.1963,
+       "saturated": -0.6227,
+       "controls": 0.3196,
+       "imputation": -0.6227,
+       "sdid": 0.4382,
+       "gsynth": 0.3574,
+       "classes": [
+        "8512"
+       ]
+      },
+      {
+       "twoway": 2.2169,
+       "state_year": 2.0259,
+       "saturated": -0.0125,
+       "controls": 2.1429,
+       "imputation": -0.0125,
+       "sdid": 1.9818,
+       "gsynth": 2.3107,
+       "classes": [
+        "8531"
+       ]
+      },
+      {
+       "twoway": -0.1786,
+       "state_year": -0.3817,
+       "saturated": 0.443,
+       "controls": -0.2545,
+       "imputation": 0.443,
+       "sdid": 0.038,
+       "gsynth": -0.224,
+       "classes": [
+        "8539"
+       ]
+      },
+      {
+       "twoway": -1.1967,
+       "state_year": -1.4025,
+       "saturated": 0.1669,
+       "controls": -1.2727,
+       "imputation": 0.1669,
+       "sdid": -0.8968,
+       "gsynth": -1.1792,
+       "classes": [
+        "9002"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "legal-profession-uniform-law-2015",
+   "title": "Legal Profession Uniform Law (NSW and Victoria, 2015)",
+   "classes": [
+    "6931"
+   ],
+   "cohorts": [
+    {
+     "treated": [
+      "NSW",
+      "VIC"
+     ],
+     "first_post": 2016,
+     "last_post": 2018,
+     "controls": [
+      "QLD",
+      "SA",
+      "WA",
+      "TAS",
+      "ACT",
+      "NT"
+     ]
+    }
+   ],
+   "start": 2008,
+   "registered_vintage": true,
+   "notes": [],
+   "placebo_groups": 39,
+   "treated_size": 13060.0,
+   "feasible": {
+    "ok": true,
+    "reasons": []
+   },
+   "registered_design": {
+    "entries": {
+     "sd": 2.508,
+     "mde": 7.025,
+     "n": 39
+    },
+    "exits": {
+     "sd": 0.94,
+     "mde": 2.633,
+     "n": 39
+    }
+   },
+   "outcomes": {
+    "entries": {
+     "cells": 3382,
+     "rows": 34778,
+     "mean_rate": 13.63,
+     "layers": {
+      "twoway": {
+       "n": 39,
+       "sd": 7.058,
+       "mde": 19.774,
+       "mean": 1.795,
+       "rms": 7.195,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 39,
+       "sd": 7.078,
+       "mde": 19.829,
+       "mean": 1.227,
+       "rms": 7.093,
+       "ratio_to_twoway": 1.003
+      },
+      "saturated": {
+       "n": 39,
+       "sd": 1.604,
+       "mde": 4.493,
+       "mean": 0.176,
+       "rms": 1.593,
+       "ratio_to_twoway": 0.227
+      },
+      "controls": {
+       "n": 39,
+       "sd": 7.064,
+       "mde": 19.789,
+       "mean": 1.386,
+       "rms": 7.109,
+       "ratio_to_twoway": 1.001
+      },
+      "imputation": {
+       "n": 39,
+       "sd": 1.607,
+       "mde": 4.502,
+       "mean": 0.177,
+       "rms": 1.596,
+       "ratio_to_twoway": 0.228
+      },
+      "sdid": {
+       "n": 39,
+       "sd": 6.45,
+       "mde": 18.069,
+       "mean": 2.26,
+       "rms": 6.756,
+       "ratio_to_twoway": 0.914
+      },
+      "gsynth": {
+       "n": 39,
+       "sd": 6.889,
+       "mde": 19.3,
+       "mean": 1.841,
+       "rms": 7.045,
+       "ratio_to_twoway": 0.976
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": -3.7478,
+       "state_year": -4.3182,
+       "saturated": -0.7511,
+       "controls": -4.1562,
+       "imputation": -0.7515,
+       "sdid": -2.435,
+       "gsynth": -3.0575,
+       "classes": [
+        "0141"
+       ]
+      },
+      {
+       "twoway": -2.174,
+       "state_year": -2.8061,
+       "saturated": -0.8867,
+       "controls": -2.6387,
+       "imputation": -0.8858,
+       "sdid": -0.972,
+       "gsynth": -1.4436,
+       "classes": [
+        "0142"
+       ]
+      },
+      {
+       "twoway": 1.5082,
+       "state_year": 0.8994,
+       "saturated": -2.0196,
+       "controls": 1.054,
+       "imputation": -2.0238,
+       "sdid": 1.2082,
+       "gsynth": 2.1943,
+       "classes": [
+        "0144"
+       ]
+      },
+      {
+       "twoway": 0.692,
+       "state_year": 0.0787,
+       "saturated": -0.6943,
+       "controls": 0.2359,
+       "imputation": -0.6944,
+       "sdid": 0.4422,
+       "gsynth": 1.346,
+       "classes": [
+        "0145"
+       ]
+      },
+      {
+       "twoway": -2.5253,
+       "state_year": -2.954,
+       "saturated": -0.9092,
+       "controls": -2.7675,
+       "imputation": -0.9091,
+       "sdid": -1.8415,
+       "gsynth": -1.8774,
+       "classes": [
+        "0160"
+       ]
+      },
+      {
+       "twoway": 2.4003,
+       "state_year": 1.8611,
+       "saturated": 2.4194,
+       "controls": 2.0183,
+       "imputation": 2.4142,
+       "sdid": 2.4945,
+       "gsynth": 3.0695,
+       "classes": [
+        "3011"
+       ]
+      },
+      {
+       "twoway": 6.8619,
+       "state_year": 6.3208,
+       "saturated": 1.9758,
+       "controls": 6.4829,
+       "imputation": 1.9464,
+       "sdid": 3.8119,
+       "gsynth": 8.4302,
+       "classes": [
+        "3019"
+       ]
+      },
+      {
+       "twoway": 1.1543,
+       "state_year": 0.5947,
+       "saturated": 0.9798,
+       "controls": 0.7573,
+       "imputation": 0.9817,
+       "sdid": 1.6932,
+       "gsynth": 0.9744,
+       "classes": [
+        "3020"
+       ]
+      },
+      {
+       "twoway": 1.0507,
+       "state_year": 0.4737,
+       "saturated": 3.501,
+       "controls": 0.6338,
+       "imputation": 3.5225,
+       "sdid": 1.6762,
+       "gsynth": 0.9058,
+       "classes": [
+        "3212"
+       ]
+      },
+      {
+       "twoway": 2.2232,
+       "state_year": 1.6562,
+       "saturated": 1.1595,
+       "controls": 1.8173,
+       "imputation": 1.1582,
+       "sdid": 2.4016,
+       "gsynth": 0.6381,
+       "classes": [
+        "3221"
+       ]
+      },
+      {
+       "twoway": 0.1242,
+       "state_year": -0.4275,
+       "saturated": 0.9228,
+       "controls": -0.2623,
+       "imputation": 0.927,
+       "sdid": 0.5548,
+       "gsynth": -0.3228,
+       "classes": [
+        "3231"
+       ]
+      },
+      {
+       "twoway": 1.1179,
+       "state_year": 0.5498,
+       "saturated": -0.3133,
+       "controls": 0.7106,
+       "imputation": -0.3249,
+       "sdid": 1.5609,
+       "gsynth": 0.5847,
+       "classes": [
+        "3232"
+       ]
+      },
+      {
+       "twoway": 2.8161,
+       "state_year": 2.2388,
+       "saturated": 2.0875,
+       "controls": 2.3996,
+       "imputation": 2.0904,
+       "sdid": 2.5592,
+       "gsynth": 1.7373,
+       "classes": [
+        "3241"
+       ]
+      },
+      {
+       "twoway": 2.1697,
+       "state_year": 1.5944,
+       "saturated": 1.79,
+       "controls": 1.7504,
+       "imputation": 1.7991,
+       "sdid": 2.2758,
+       "gsynth": 0.4643,
+       "classes": [
+        "3242"
+       ]
+      },
+      {
+       "twoway": 3.9539,
+       "state_year": 3.3651,
+       "saturated": 1.3539,
+       "controls": 3.5244,
+       "imputation": 1.3622,
+       "sdid": 3.0689,
+       "gsynth": 4.6128,
+       "classes": [
+        "3243"
+       ]
+      },
+      {
+       "twoway": 2.8225,
+       "state_year": 2.2409,
+       "saturated": 0.9576,
+       "controls": 2.3987,
+       "imputation": 0.96,
+       "sdid": 2.8228,
+       "gsynth": 0.9793,
+       "classes": [
+        "3244"
+       ]
+      },
+      {
+       "twoway": 0.2748,
+       "state_year": -0.2822,
+       "saturated": 0.7148,
+       "controls": -0.1184,
+       "imputation": 0.7178,
+       "sdid": 0.7011,
+       "gsynth": 0.3633,
+       "classes": [
+        "3291"
+       ]
+      },
+      {
+       "twoway": 1.2195,
+       "state_year": 0.6398,
+       "saturated": 1.1548,
+       "controls": 0.8015,
+       "imputation": 1.1602,
+       "sdid": 2.4326,
+       "gsynth": 1.8395,
+       "classes": [
+        "3299"
+       ]
+      },
+      {
+       "twoway": -1.0168,
+       "state_year": -1.5821,
+       "saturated": -1.7564,
+       "controls": -1.4232,
+       "imputation": -1.7614,
+       "sdid": 0.0708,
+       "gsynth": -0.3019,
+       "classes": [
+        "4251"
+       ]
+      },
+      {
+       "twoway": -1.6012,
+       "state_year": -2.1791,
+       "saturated": -1.5276,
+       "controls": -2.0144,
+       "imputation": -1.5325,
+       "sdid": -1.0281,
+       "gsynth": -1.3175,
+       "classes": [
+        "4279"
+       ]
+      },
+      {
+       "twoway": -5.7797,
+       "state_year": -6.3393,
+       "saturated": -2.9469,
+       "controls": -6.1708,
+       "imputation": -2.9567,
+       "sdid": -0.4094,
+       "gsynth": -6.2468,
+       "classes": [
+        "4310"
+       ]
+      },
+      {
+       "twoway": -0.4628,
+       "state_year": -1.0477,
+       "saturated": 0.1248,
+       "controls": -0.8881,
+       "imputation": 0.1251,
+       "sdid": 0.2051,
+       "gsynth": 0.2441,
+       "classes": [
+        "4400"
+       ]
+      },
+      {
+       "twoway": -0.698,
+       "state_year": -1.2698,
+       "saturated": -1.5395,
+       "controls": -1.0985,
+       "imputation": -1.5446,
+       "sdid": -0.0628,
+       "gsynth": -1.1419,
+       "classes": [
+        "4511"
+       ]
+      },
+      {
+       "twoway": -1.3795,
+       "state_year": -1.9464,
+       "saturated": -1.0065,
+       "controls": -1.7774,
+       "imputation": -1.0059,
+       "sdid": -0.8447,
+       "gsynth": -0.649,
+       "classes": [
+        "4512"
+       ]
+      },
+      {
+       "twoway": 37.7853,
+       "state_year": 37.305,
+       "saturated": 1.635,
+       "controls": 37.4004,
+       "imputation": 1.6479,
+       "sdid": 35.3912,
+       "gsynth": 35.8285,
+       "classes": [
+        "4623"
+       ]
+      },
+      {
+       "twoway": 3.7922,
+       "state_year": 3.2274,
+       "saturated": 3.1722,
+       "controls": 3.3859,
+       "imputation": 3.1893,
+       "sdid": 5.0448,
+       "gsynth": 4.8821,
+       "classes": [
+        "5102"
+       ]
+      },
+      {
+       "twoway": 19.9081,
+       "state_year": 19.4491,
+       "saturated": 3.2441,
+       "controls": 19.5481,
+       "imputation": 3.2387,
+       "sdid": 20.0601,
+       "gsynth": 20.7618,
+       "classes": [
+        "5299"
+       ]
+      },
+      {
+       "twoway": 1.5682,
+       "state_year": 0.9954,
+       "saturated": 0.0381,
+       "controls": 1.1541,
+       "imputation": 0.0366,
+       "sdid": 2.1023,
+       "gsynth": 2.2447,
+       "classes": [
+        "6240"
+       ]
+      },
+      {
+       "twoway": -0.0486,
+       "state_year": -0.6453,
+       "saturated": 0.3153,
+       "controls": -0.4793,
+       "imputation": 0.3138,
+       "sdid": 0.3944,
+       "gsynth": 0.6811,
+       "classes": [
+        "6419"
+       ]
+      },
+      {
+       "twoway": 1.4407,
+       "state_year": 0.8313,
+       "saturated": 1.5257,
+       "controls": 0.9846,
+       "imputation": 1.5251,
+       "sdid": 1.351,
+       "gsynth": -0.7164,
+       "classes": [
+        "6720"
+       ]
+      },
+      {
+       "twoway": -0.7794,
+       "state_year": -1.3772,
+       "saturated": -0.7021,
+       "controls": -1.2169,
+       "imputation": -0.7062,
+       "sdid": -0.0311,
+       "gsynth": -0.0656,
+       "classes": [
+        "7291"
+       ]
+      },
+      {
+       "twoway": 0.2413,
+       "state_year": -0.3426,
+       "saturated": -0.0263,
+       "controls": -0.1766,
+       "imputation": 0.0045,
+       "sdid": 2.0281,
+       "gsynth": 0.8809,
+       "classes": [
+        "7311"
+       ]
+      },
+      {
+       "twoway": -0.9121,
+       "state_year": -1.4966,
+       "saturated": -1.329,
+       "controls": -1.3268,
+       "imputation": -1.3308,
+       "sdid": -0.6783,
+       "gsynth": -0.0996,
+       "classes": [
+        "8511"
+       ]
+      },
+      {
+       "twoway": -0.6469,
+       "state_year": -1.22,
+       "saturated": -1.3337,
+       "controls": -1.0581,
+       "imputation": -1.3368,
+       "sdid": -0.2572,
+       "gsynth": -1.2189,
+       "classes": [
+        "8512"
+       ]
+      },
+      {
+       "twoway": -1.268,
+       "state_year": -1.8401,
+       "saturated": -1.8709,
+       "controls": -1.678,
+       "imputation": -1.869,
+       "sdid": -1.1229,
+       "gsynth": -2.9868,
+       "classes": [
+        "8531"
+       ]
+      },
+      {
+       "twoway": -2.1386,
+       "state_year": -2.702,
+       "saturated": -1.4375,
+       "controls": -2.5337,
+       "imputation": -1.4362,
+       "sdid": -0.9469,
+       "gsynth": -1.4853,
+       "classes": [
+        "8539"
+       ]
+      },
+      {
+       "twoway": -0.7398,
+       "state_year": -1.3306,
+       "saturated": -1.0377,
+       "controls": -1.169,
+       "imputation": -1.0464,
+       "sdid": 0.8613,
+       "gsynth": -0.0232,
+       "classes": [
+        "9002"
+       ]
+      },
+      {
+       "twoway": 0.3625,
+       "state_year": -0.2049,
+       "saturated": -0.7345,
+       "controls": -0.0414,
+       "imputation": -0.7349,
+       "sdid": 0.8008,
+       "gsynth": 1.0709,
+       "classes": [
+        "9419"
+       ]
+      },
+      {
+       "twoway": 0.4267,
+       "state_year": -0.1618,
+       "saturated": 0.6153,
+       "controls": 0.0026,
+       "imputation": 0.6159,
+       "sdid": 0.7566,
+       "gsynth": 0.0059,
+       "classes": [
+        "9511"
+       ]
+      }
+     ]
+    },
+    "exits": {
+     "cells": 3382,
+     "rows": 34778,
+     "mean_rate": 12.95,
+     "layers": {
+      "twoway": {
+       "n": 39,
+       "sd": 1.275,
+       "mde": 3.573,
+       "mean": 0.003,
+       "rms": 1.259,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 39,
+       "sd": 1.28,
+       "mde": 3.586,
+       "mean": -0.078,
+       "rms": 1.266,
+       "ratio_to_twoway": 1.004
+      },
+      "saturated": {
+       "n": 39,
+       "sd": 0.557,
+       "mde": 1.561,
+       "mean": 0.048,
+       "rms": 0.552,
+       "ratio_to_twoway": 0.437
+      },
+      "controls": {
+       "n": 39,
+       "sd": 1.277,
+       "mde": 3.579,
+       "mean": 0.01,
+       "rms": 1.261,
+       "ratio_to_twoway": 1.002
+      },
+      "imputation": {
+       "n": 39,
+       "sd": 0.559,
+       "mde": 1.565,
+       "mean": 0.049,
+       "rms": 0.554,
+       "ratio_to_twoway": 0.438
+      },
+      "sdid": {
+       "n": 39,
+       "sd": 1.097,
+       "mde": 3.074,
+       "mean": 0.027,
+       "rms": 1.084,
+       "ratio_to_twoway": 0.86
+      },
+      "gsynth": {
+       "n": 39,
+       "sd": 1.215,
+       "mde": 3.403,
+       "mean": 0.032,
+       "rms": 1.199,
+       "ratio_to_twoway": 0.953
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": 0.3325,
+       "state_year": 0.2495,
+       "saturated": 0.2641,
+       "controls": 0.3369,
+       "imputation": 0.2641,
+       "sdid": 0.1325,
+       "gsynth": 0.3359,
+       "classes": [
+        "0141"
+       ]
+      },
+      {
+       "twoway": 0.8514,
+       "state_year": 0.7891,
+       "saturated": 0.503,
+       "controls": 0.8657,
+       "imputation": 0.5047,
+       "sdid": 0.6185,
+       "gsynth": 0.8694,
+       "classes": [
+        "0142"
+       ]
+      },
+      {
+       "twoway": 0.866,
+       "state_year": 0.8001,
+       "saturated": -0.0616,
+       "controls": 0.8795,
+       "imputation": -0.0629,
+       "sdid": 0.6527,
+       "gsynth": 0.8863,
+       "classes": [
+        "0144"
+       ]
+      },
+      {
+       "twoway": 0.1422,
+       "state_year": 0.0738,
+       "saturated": 0.0922,
+       "controls": 0.1543,
+       "imputation": 0.0927,
+       "sdid": -0.114,
+       "gsynth": 0.1505,
+       "classes": [
+        "0145"
+       ]
+      },
+      {
+       "twoway": 0.6135,
+       "state_year": 0.4809,
+       "saturated": 0.2482,
+       "controls": 0.5959,
+       "imputation": 0.2487,
+       "sdid": 0.4182,
+       "gsynth": 0.6111,
+       "classes": [
+        "0160"
+       ]
+      },
+      {
+       "twoway": 0.4284,
+       "state_year": 0.3417,
+       "saturated": -0.1305,
+       "controls": 0.4329,
+       "imputation": -0.1283,
+       "sdid": 0.3171,
+       "gsynth": 0.4854,
+       "classes": [
+        "3011"
+       ]
+      },
+      {
+       "twoway": 2.2194,
+       "state_year": 2.1404,
+       "saturated": 0.6642,
+       "controls": 2.228,
+       "imputation": 0.6555,
+       "sdid": 2.1654,
+       "gsynth": 2.3619,
+       "classes": [
+        "3019"
+       ]
+      },
+      {
+       "twoway": 0.4926,
+       "state_year": 0.4091,
+       "saturated": 0.3674,
+       "controls": 0.4983,
+       "imputation": 0.373,
+       "sdid": 0.5381,
+       "gsynth": 0.5434,
+       "classes": [
+        "3020"
+       ]
+      },
+      {
+       "twoway": -0.7666,
+       "state_year": -0.8484,
+       "saturated": -1.0342,
+       "controls": -0.7595,
+       "imputation": -1.0335,
+       "sdid": -1.0107,
+       "gsynth": -0.7446,
+       "classes": [
+        "3212"
+       ]
+      },
+      {
+       "twoway": -1.3449,
+       "state_year": -1.4321,
+       "saturated": -0.2183,
+       "controls": -1.3403,
+       "imputation": -0.2188,
+       "sdid": -1.0263,
+       "gsynth": -1.0499,
+       "classes": [
+        "3221"
+       ]
+      },
+      {
+       "twoway": -0.1212,
+       "state_year": -0.212,
+       "saturated": 0.1578,
+       "controls": -0.1182,
+       "imputation": 0.1606,
+       "sdid": -0.2919,
+       "gsynth": -0.0769,
+       "classes": [
+        "3231"
+       ]
+      },
+      {
+       "twoway": 0.1507,
+       "state_year": 0.0688,
+       "saturated": -0.5317,
+       "controls": 0.158,
+       "imputation": -0.5271,
+       "sdid": -0.0239,
+       "gsynth": 0.2285,
+       "classes": [
+        "3232"
+       ]
+      },
+      {
+       "twoway": -0.3393,
+       "state_year": -0.4222,
+       "saturated": 0.8726,
+       "controls": -0.3325,
+       "imputation": 0.8785,
+       "sdid": -0.5508,
+       "gsynth": -0.3055,
+       "classes": [
+        "3241"
+       ]
+      },
+      {
+       "twoway": -0.3708,
+       "state_year": -0.4545,
+       "saturated": 0.0266,
+       "controls": -0.3642,
+       "imputation": 0.0268,
+       "sdid": -0.3653,
+       "gsynth": -0.3225,
+       "classes": [
+        "3242"
+       ]
+      },
+      {
+       "twoway": -0.3184,
+       "state_year": -0.3959,
+       "saturated": -0.4133,
+       "controls": -0.3092,
+       "imputation": -0.4071,
+       "sdid": -0.3364,
+       "gsynth": -0.2861,
+       "classes": [
+        "3243"
+       ]
+      },
+      {
+       "twoway": -0.7128,
+       "state_year": -0.7949,
+       "saturated": -0.2372,
+       "controls": -0.7059,
+       "imputation": -0.2405,
+       "sdid": -0.6229,
+       "gsynth": -0.6695,
+       "classes": [
+        "3244"
+       ]
+      },
+      {
+       "twoway": -1.1716,
+       "state_year": -1.2622,
+       "saturated": 0.3558,
+       "controls": -1.1688,
+       "imputation": 0.3577,
+       "sdid": -0.8184,
+       "gsynth": -1.1055,
+       "classes": [
+        "3291"
+       ]
+      },
+      {
+       "twoway": -1.6145,
+       "state_year": -1.6998,
+       "saturated": 1.3687,
+       "controls": -1.6087,
+       "imputation": 1.3774,
+       "sdid": -1.0196,
+       "gsynth": -1.572,
+       "classes": [
+        "3299"
+       ]
+      },
+      {
+       "twoway": 0.3317,
+       "state_year": 0.2489,
+       "saturated": -1.1003,
+       "controls": 0.3368,
+       "imputation": -1.1034,
+       "sdid": 0.0188,
+       "gsynth": 0.3818,
+       "classes": [
+        "4251"
+       ]
+      },
+      {
+       "twoway": -0.7108,
+       "state_year": -0.7953,
+       "saturated": -0.1875,
+       "controls": -0.7063,
+       "imputation": -0.1847,
+       "sdid": -0.4648,
+       "gsynth": -0.6538,
+       "classes": [
+        "4279"
+       ]
+      },
+      {
+       "twoway": -3.13,
+       "state_year": -3.2172,
+       "saturated": -0.8961,
+       "controls": -3.126,
+       "imputation": -0.8989,
+       "sdid": -2.7335,
+       "gsynth": -3.1358,
+       "classes": [
+        "4310"
+       ]
+      },
+      {
+       "twoway": 0.8854,
+       "state_year": 0.8107,
+       "saturated": 0.7071,
+       "controls": 0.8939,
+       "imputation": 0.7074,
+       "sdid": 0.9864,
+       "gsynth": 0.9241,
+       "classes": [
+        "4400"
+       ]
+      },
+      {
+       "twoway": 0.7893,
+       "state_year": 0.7121,
+       "saturated": -0.5471,
+       "controls": 0.7977,
+       "imputation": -0.5508,
+       "sdid": 0.7228,
+       "gsynth": 0.8262,
+       "classes": [
+        "4511"
+       ]
+      },
+      {
+       "twoway": -0.1641,
+       "state_year": -0.2509,
+       "saturated": -0.1578,
+       "controls": -0.16,
+       "imputation": -0.1584,
+       "sdid": -0.1054,
+       "gsynth": -0.1304,
+       "classes": [
+        "4512"
+       ]
+      },
+      {
+       "twoway": 4.3813,
+       "state_year": 4.3222,
+       "saturated": 0.3138,
+       "controls": 4.4009,
+       "imputation": 0.3235,
+       "sdid": 3.8003,
+       "gsynth": 3.7731,
+       "classes": [
+        "4623"
+       ]
+      },
+      {
+       "twoway": -0.6984,
+       "state_year": -0.7823,
+       "saturated": 0.8748,
+       "controls": -0.6925,
+       "imputation": 0.8745,
+       "sdid": -0.7648,
+       "gsynth": -0.6301,
+       "classes": [
+        "5102"
+       ]
+      },
+      {
+       "twoway": 1.7182,
+       "state_year": 1.645,
+       "saturated": 0.7355,
+       "controls": 1.7297,
+       "imputation": 0.7458,
+       "sdid": 1.5051,
+       "gsynth": 1.6638,
+       "classes": [
+        "5299"
+       ]
+      },
+      {
+       "twoway": 0.0232,
+       "state_year": -0.0591,
+       "saturated": 0.78,
+       "controls": 0.03,
+       "imputation": 0.7835,
+       "sdid": 0.5048,
+       "gsynth": 0.0554,
+       "classes": [
+        "6240"
+       ]
+      },
+      {
+       "twoway": -0.9705,
+       "state_year": -1.058,
+       "saturated": -0.5068,
+       "controls": -0.9653,
+       "imputation": -0.5036,
+       "sdid": -0.6149,
+       "gsynth": -0.9218,
+       "classes": [
+        "6419"
+       ]
+      },
+      {
+       "twoway": 0.6166,
+       "state_year": 0.5537,
+       "saturated": 0.499,
+       "controls": 0.632,
+       "imputation": 0.4988,
+       "sdid": 0.6117,
+       "gsynth": 0.5758,
+       "classes": [
+        "6720"
+       ]
+      },
+      {
+       "twoway": -0.7159,
+       "state_year": -0.7918,
+       "saturated": -0.2204,
+       "controls": -0.7071,
+       "imputation": -0.2213,
+       "sdid": -0.5965,
+       "gsynth": -0.6746,
+       "classes": [
+        "7291"
+       ]
+      },
+      {
+       "twoway": -1.8305,
+       "state_year": -1.92,
+       "saturated": 0.0466,
+       "controls": -1.827,
+       "imputation": 0.0528,
+       "sdid": -1.6843,
+       "gsynth": -1.7647,
+       "classes": [
+        "7311"
+       ]
+      },
+      {
+       "twoway": 1.1744,
+       "state_year": 1.104,
+       "saturated": -0.1512,
+       "controls": 1.1854,
+       "imputation": -0.156,
+       "sdid": 1.1963,
+       "gsynth": 1.1982,
+       "classes": [
+        "8511"
+       ]
+      },
+      {
+       "twoway": 0.5274,
+       "state_year": 0.4519,
+       "saturated": -0.8044,
+       "controls": 0.5369,
+       "imputation": -0.8058,
+       "sdid": 0.5872,
+       "gsynth": 0.5563,
+       "classes": [
+        "8512"
+       ]
+      },
+      {
+       "twoway": 1.3855,
+       "state_year": 1.3122,
+       "saturated": -0.3736,
+       "controls": 1.3952,
+       "imputation": -0.3704,
+       "sdid": 0.9874,
+       "gsynth": 1.5325,
+       "classes": [
+        "8531"
+       ]
+      },
+      {
+       "twoway": -0.4121,
+       "state_year": -0.496,
+       "saturated": 0.3758,
+       "controls": -0.4063,
+       "imputation": 0.3761,
+       "sdid": -0.0245,
+       "gsynth": -0.4515,
+       "classes": [
+        "8539"
+       ]
+      },
+      {
+       "twoway": -1.6077,
+       "state_year": -1.6898,
+       "saturated": 0.2856,
+       "controls": -1.6018,
+       "imputation": 0.2912,
+       "sdid": -1.0064,
+       "gsynth": -1.521,
+       "classes": [
+        "9002"
+       ]
+      },
+      {
+       "twoway": 0.2625,
+       "state_year": 0.1795,
+       "saturated": -0.0656,
+       "controls": 0.2682,
+       "imputation": -0.0674,
+       "sdid": 0.1284,
+       "gsynth": 0.2924,
+       "classes": [
+        "9419"
+       ]
+      },
+      {
+       "twoway": -1.0571,
+       "state_year": -1.139,
+       "saturated": -0.0251,
+       "controls": -1.0502,
+       "imputation": -0.0242,
+       "sdid": -0.6464,
+       "gsynth": -1.001,
+       "classes": [
+        "9511"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "rideshare-legalisation-2015-2018",
+   "title": "Ride-share legalisation (2015 to 2018)",
+   "classes": [
+    "4623"
+   ],
+   "cohorts": [
+    {
+     "treated": [
+      "ACT",
+      "NSW"
+     ],
+     "first_post": 2016,
+     "last_post": 2017,
+     "controls": [
+      "VIC",
+      "NT",
+      "WA"
+     ]
+    },
+    {
+     "treated": [
+      "SA",
+      "QLD",
+      "TAS"
+     ],
+     "first_post": 2017,
+     "last_post": 2017,
+     "controls": [
+      "VIC",
+      "NT",
+      "WA"
+     ]
+    },
+    {
+     "treated": [
+      "VIC",
+      "NT"
+     ],
+     "first_post": 2018,
+     "last_post": 2018,
+     "controls": [
+      "WA"
+     ]
+    }
+   ],
+   "start": 2008,
+   "registered_vintage": true,
+   "notes": [],
+   "placebo_groups": 40,
+   "treated_size": 14500.0,
+   "feasible": {
+    "ok": true,
+    "reasons": []
+   },
+   "registered_design": {
+    "entries": {
+     "sd": 2.153,
+     "mde": 6.032,
+     "n": 43
+    },
+    "exits": {
+     "sd": 2.049,
+     "mde": 5.742,
+     "n": 43
+    }
+   },
+   "outcomes": {
+    "entries": {
+     "cells": 3382,
+     "rows": 32740,
+     "mean_rate": 13.45,
+     "layers": {
+      "twoway": {
+       "n": 40,
+       "sd": 2.393,
+       "mde": 6.704,
+       "mean": 0.339,
+       "rms": 2.387,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 40,
+       "sd": 2.404,
+       "mde": 6.734,
+       "mean": -0.026,
+       "rms": 2.374,
+       "ratio_to_twoway": 1.005
+      },
+      "saturated": {
+       "n": 40,
+       "sd": 1.542,
+       "mde": 4.319,
+       "mean": 0.304,
+       "rms": 1.552,
+       "ratio_to_twoway": 0.644
+      },
+      "controls": {
+       "n": 40,
+       "sd": 2.399,
+       "mde": 6.721,
+       "mean": 0.035,
+       "rms": 2.369,
+       "ratio_to_twoway": 1.003
+      },
+      "imputation": {
+       "n": 40,
+       "sd": 1.684,
+       "mde": 4.717,
+       "mean": 0.306,
+       "rms": 1.69,
+       "ratio_to_twoway": 0.704
+      },
+      "sdid": {
+       "n": 40,
+       "sd": 1.472,
+       "mde": 4.123,
+       "mean": 0.676,
+       "rms": 1.603,
+       "ratio_to_twoway": 0.615
+      },
+      "gsynth": {
+       "n": 40,
+       "sd": 1.53,
+       "mde": 4.286,
+       "mean": -0.008,
+       "rms": 1.51,
+       "ratio_to_twoway": 0.639
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": -3.1246,
+       "state_year": -3.5792,
+       "saturated": -0.6913,
+       "controls": -3.5242,
+       "imputation": -0.9026,
+       "sdid": -1.6664,
+       "gsynth": -2.6839,
+       "classes": [
+        "0141"
+       ]
+      },
+      {
+       "twoway": 2.1139,
+       "state_year": 1.6909,
+       "saturated": -0.8612,
+       "controls": 1.7183,
+       "imputation": -1.0389,
+       "sdid": 1.3404,
+       "gsynth": 0.0475,
+       "classes": [
+        "0144"
+       ]
+      },
+      {
+       "twoway": 1.0979,
+       "state_year": 0.8009,
+       "saturated": -0.2114,
+       "controls": 0.8117,
+       "imputation": -0.1004,
+       "sdid": 0.547,
+       "gsynth": -0.3214,
+       "classes": [
+        "0145"
+       ]
+      },
+      {
+       "twoway": -2.4154,
+       "state_year": -2.6807,
+       "saturated": -0.7243,
+       "controls": -2.6499,
+       "imputation": -0.6731,
+       "sdid": -1.3694,
+       "gsynth": -1.9623,
+       "classes": [
+        "0149"
+       ]
+      },
+      {
+       "twoway": -2.6923,
+       "state_year": -3.1701,
+       "saturated": -1.0786,
+       "controls": -3.0505,
+       "imputation": -3.03,
+       "sdid": -1.6267,
+       "gsynth": -2.1435,
+       "classes": [
+        "0160"
+       ]
+      },
+      {
+       "twoway": 1.876,
+       "state_year": 1.6263,
+       "saturated": 0.6065,
+       "controls": 1.633,
+       "imputation": 0.5518,
+       "sdid": 2.5647,
+       "gsynth": 2.4091,
+       "classes": [
+        "0529"
+       ]
+      },
+      {
+       "twoway": 6.0799,
+       "state_year": 5.6873,
+       "saturated": 2.3862,
+       "controls": 5.7719,
+       "imputation": 1.9292,
+       "sdid": 2.3206,
+       "gsynth": -1.8579,
+       "classes": [
+        "3019"
+       ]
+      },
+      {
+       "twoway": 1.3485,
+       "state_year": 0.9806,
+       "saturated": 0.8402,
+       "controls": 1.0513,
+       "imputation": 0.8887,
+       "sdid": 1.3147,
+       "gsynth": 1.5179,
+       "classes": [
+        "3020"
+       ]
+      },
+      {
+       "twoway": 5.8175,
+       "state_year": 5.4929,
+       "saturated": 2.3086,
+       "controls": 5.5439,
+       "imputation": 2.5108,
+       "sdid": 3.5007,
+       "gsynth": 2.6643,
+       "classes": [
+        "3211"
+       ]
+      },
+      {
+       "twoway": 0.7815,
+       "state_year": 0.4933,
+       "saturated": 2.6507,
+       "controls": 0.5299,
+       "imputation": 2.3674,
+       "sdid": 1.5016,
+       "gsynth": 0.7531,
+       "classes": [
+        "3212"
+       ]
+      },
+      {
+       "twoway": 2.8939,
+       "state_year": 2.5705,
+       "saturated": 3.0177,
+       "controls": 2.6305,
+       "imputation": 3.3962,
+       "sdid": 2.9342,
+       "gsynth": 1.9813,
+       "classes": [
+        "3221"
+       ]
+      },
+      {
+       "twoway": 3.744,
+       "state_year": 3.3212,
+       "saturated": 4.6936,
+       "controls": 3.406,
+       "imputation": 4.9236,
+       "sdid": 3.2144,
+       "gsynth": 2.6301,
+       "classes": [
+        "3222"
+       ]
+      },
+      {
+       "twoway": 0.3119,
+       "state_year": -0.0606,
+       "saturated": 1.2115,
+       "controls": 0.0144,
+       "imputation": 1.1798,
+       "sdid": 0.7296,
+       "gsynth": 0.1999,
+       "classes": [
+        "3231"
+       ]
+      },
+      {
+       "twoway": 3.1659,
+       "state_year": 2.7973,
+       "saturated": 2.624,
+       "controls": 2.8604,
+       "imputation": 3.0553,
+       "sdid": 2.6519,
+       "gsynth": 2.0136,
+       "classes": [
+        "3241"
+       ]
+      },
+      {
+       "twoway": 3.878,
+       "state_year": 3.5471,
+       "saturated": 1.8968,
+       "controls": 3.5992,
+       "imputation": 2.4702,
+       "sdid": 2.6509,
+       "gsynth": 0.95,
+       "classes": [
+        "3243"
+       ]
+      },
+      {
+       "twoway": 2.548,
+       "state_year": 2.1878,
+       "saturated": 0.9878,
+       "controls": 2.2484,
+       "imputation": 1.2979,
+       "sdid": 1.9903,
+       "gsynth": 1.202,
+       "classes": [
+        "3244"
+       ]
+      },
+      {
+       "twoway": 0.7455,
+       "state_year": 0.4012,
+       "saturated": 1.8795,
+       "controls": 0.4687,
+       "imputation": 2.1997,
+       "sdid": 1.1728,
+       "gsynth": 0.8239,
+       "classes": [
+        "3291"
+       ]
+      },
+      {
+       "twoway": 1.0822,
+       "state_year": 0.7399,
+       "saturated": 1.0121,
+       "controls": 0.7966,
+       "imputation": 1.1014,
+       "sdid": 2.0389,
+       "gsynth": 1.5209,
+       "classes": [
+        "3299"
+       ]
+      },
+      {
+       "twoway": -2.1042,
+       "state_year": -2.4714,
+       "saturated": 0.7763,
+       "controls": -2.4092,
+       "imputation": 0.479,
+       "sdid": -0.7093,
+       "gsynth": -0.929,
+       "classes": [
+        "4110"
+       ]
+      },
+      {
+       "twoway": -0.455,
+       "state_year": -0.856,
+       "saturated": -0.8901,
+       "controls": -0.7848,
+       "imputation": -1.3673,
+       "sdid": 0.3171,
+       "gsynth": -0.0631,
+       "classes": [
+        "4251"
+       ]
+      },
+      {
+       "twoway": -0.6996,
+       "state_year": -1.0597,
+       "saturated": 0.3854,
+       "controls": -0.9986,
+       "imputation": 0.2553,
+       "sdid": -0.2264,
+       "gsynth": -0.3033,
+       "classes": [
+        "4279"
+       ]
+      },
+      {
+       "twoway": -5.0241,
+       "state_year": -5.3974,
+       "saturated": -1.057,
+       "controls": -5.3233,
+       "imputation": -1.4027,
+       "sdid": 0.6409,
+       "gsynth": -0.0777,
+       "classes": [
+        "4310"
+       ]
+      },
+      {
+       "twoway": -0.2186,
+       "state_year": -0.4979,
+       "saturated": -0.3293,
+       "controls": -0.4869,
+       "imputation": -0.295,
+       "sdid": 0.3953,
+       "gsynth": 0.218,
+       "classes": [
+        "4400"
+       ]
+      },
+      {
+       "twoway": -0.6237,
+       "state_year": -0.9882,
+       "saturated": 0.0606,
+       "controls": -0.9199,
+       "imputation": 0.1313,
+       "sdid": -0.5255,
+       "gsynth": -0.9329,
+       "classes": [
+        "4512"
+       ]
+      },
+      {
+       "twoway": -2.1562,
+       "state_year": -2.4361,
+       "saturated": -0.799,
+       "controls": -2.39,
+       "imputation": -0.5557,
+       "sdid": -0.8714,
+       "gsynth": -1.5304,
+       "classes": [
+        "6639"
+       ]
+      },
+      {
+       "twoway": -0.7374,
+       "state_year": -1.1521,
+       "saturated": -0.3971,
+       "controls": -1.0661,
+       "imputation": -0.4621,
+       "sdid": -0.1754,
+       "gsynth": -0.2945,
+       "classes": [
+        "6921"
+       ]
+      },
+      {
+       "twoway": 4.327,
+       "state_year": 4.0007,
+       "saturated": 0.5585,
+       "controls": 4.0441,
+       "imputation": 0.5852,
+       "sdid": 2.7519,
+       "gsynth": 1.1344,
+       "classes": [
+        "6923"
+       ]
+      },
+      {
+       "twoway": -0.3919,
+       "state_year": -0.8313,
+       "saturated": 0.0132,
+       "controls": -0.7444,
+       "imputation": 0.1186,
+       "sdid": 0.2754,
+       "gsynth": 0.1969,
+       "classes": [
+        "6924"
+       ]
+      },
+      {
+       "twoway": -0.8391,
+       "state_year": -1.2659,
+       "saturated": -1.0418,
+       "controls": -1.1834,
+       "imputation": -1.2926,
+       "sdid": -0.606,
+       "gsynth": -1.5635,
+       "classes": [
+        "6931"
+       ]
+      },
+      {
+       "twoway": -2.2133,
+       "state_year": -2.6253,
+       "saturated": -0.293,
+       "controls": -2.537,
+       "imputation": -0.1755,
+       "sdid": -0.8805,
+       "gsynth": -1.7552,
+       "classes": [
+        "6932"
+       ]
+      },
+      {
+       "twoway": -0.4725,
+       "state_year": -0.9043,
+       "saturated": -3.041,
+       "controls": -0.8214,
+       "imputation": -3.0826,
+       "sdid": -0.8177,
+       "gsynth": -0.3199,
+       "classes": [
+        "6940"
+       ]
+      },
+      {
+       "twoway": -0.8857,
+       "state_year": -1.2916,
+       "saturated": -0.7688,
+       "controls": -1.2122,
+       "imputation": -0.5825,
+       "sdid": 0.0977,
+       "gsynth": 0.5113,
+       "classes": [
+        "7291"
+       ]
+      },
+      {
+       "twoway": 0.6867,
+       "state_year": 0.3132,
+       "saturated": -0.0494,
+       "controls": 0.3823,
+       "imputation": 0.4433,
+       "sdid": 1.9552,
+       "gsynth": 0.8452,
+       "classes": [
+        "7311"
+       ]
+      },
+      {
+       "twoway": -0.3216,
+       "state_year": -0.6485,
+       "saturated": 0.5925,
+       "controls": -0.5924,
+       "imputation": 0.8183,
+       "sdid": 0.6821,
+       "gsynth": 0.6682,
+       "classes": [
+        "7313"
+       ]
+      },
+      {
+       "twoway": -0.3631,
+       "state_year": -0.7254,
+       "saturated": 0.3375,
+       "controls": -0.6505,
+       "imputation": 0.1994,
+       "sdid": 0.2337,
+       "gsynth": 0.1422,
+       "classes": [
+        "8101"
+       ]
+      },
+      {
+       "twoway": -0.4481,
+       "state_year": -0.8003,
+       "saturated": -1.3952,
+       "controls": -0.7435,
+       "imputation": -1.3205,
+       "sdid": -0.4148,
+       "gsynth": -1.4774,
+       "classes": [
+        "8512"
+       ]
+      },
+      {
+       "twoway": -1.1435,
+       "state_year": -1.5058,
+       "saturated": -2.2539,
+       "controls": -1.4368,
+       "imputation": -1.9799,
+       "sdid": -1.4075,
+       "gsynth": -2.9828,
+       "classes": [
+        "8531"
+       ]
+      },
+      {
+       "twoway": -1.7107,
+       "state_year": -2.0814,
+       "saturated": -1.1836,
+       "controls": -2.0092,
+       "imputation": -0.9851,
+       "sdid": -0.7712,
+       "gsynth": -0.5393,
+       "classes": [
+        "8539"
+       ]
+      },
+      {
+       "twoway": -0.2773,
+       "state_year": -0.6111,
+       "saturated": -0.7608,
+       "controls": -0.5773,
+       "imputation": -0.5308,
+       "sdid": -0.4591,
+       "gsynth": -2.8972,
+       "classes": [
+        "8710"
+       ]
+      },
+      {
+       "twoway": 0.3853,
+       "state_year": -0.0703,
+       "saturated": 1.1567,
+       "controls": 0.0158,
+       "imputation": 1.0962,
+       "sdid": 1.7448,
+       "gsynth": 1.8805,
+       "classes": [
+        "9002"
+       ]
+      }
+     ]
+    },
+    "exits": {
+     "cells": 3382,
+     "rows": 32740,
+     "mean_rate": 12.97,
+     "layers": {
+      "twoway": {
+       "n": 40,
+       "sd": 1.141,
+       "mde": 3.197,
+       "mean": -0.298,
+       "rms": 1.165,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 40,
+       "sd": 1.145,
+       "mde": 3.208,
+       "mean": -0.226,
+       "rms": 1.153,
+       "ratio_to_twoway": 1.004
+      },
+      "saturated": {
+       "n": 40,
+       "sd": 0.775,
+       "mde": 2.17,
+       "mean": -0.252,
+       "rms": 0.805,
+       "ratio_to_twoway": 0.679
+      },
+      "controls": {
+       "n": 40,
+       "sd": 1.142,
+       "mde": 3.199,
+       "mean": -0.286,
+       "rms": 1.163,
+       "ratio_to_twoway": 1.001
+      },
+      "imputation": {
+       "n": 40,
+       "sd": 0.841,
+       "mde": 2.355,
+       "mean": -0.206,
+       "rms": 0.855,
+       "ratio_to_twoway": 0.737
+      },
+      "sdid": {
+       "n": 40,
+       "sd": 0.96,
+       "mde": 2.689,
+       "mean": -0.367,
+       "rms": 1.016,
+       "ratio_to_twoway": 0.841
+      },
+      "gsynth": {
+       "n": 40,
+       "sd": 1.172,
+       "mde": 3.285,
+       "mean": -0.387,
+       "rms": 1.221,
+       "ratio_to_twoway": 1.027
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": -0.103,
+       "state_year": -0.0681,
+       "saturated": -0.1605,
+       "controls": -0.0858,
+       "imputation": -0.0996,
+       "sdid": -0.4294,
+       "gsynth": -0.233,
+       "classes": [
+        "0141"
+       ]
+      },
+      {
+       "twoway": 0.6356,
+       "state_year": 0.6849,
+       "saturated": -0.293,
+       "controls": 0.6557,
+       "imputation": -0.2741,
+       "sdid": 0.2175,
+       "gsynth": 0.5295,
+       "classes": [
+        "0144"
+       ]
+      },
+      {
+       "twoway": 0.1752,
+       "state_year": 0.2356,
+       "saturated": 0.2157,
+       "controls": 0.1832,
+       "imputation": 0.0835,
+       "sdid": -0.168,
+       "gsynth": 0.051,
+       "classes": [
+        "0145"
+       ]
+      },
+      {
+       "twoway": 0.1289,
+       "state_year": 0.1844,
+       "saturated": 0.5205,
+       "controls": 0.1306,
+       "imputation": 0.5115,
+       "sdid": -0.3116,
+       "gsynth": 0.0038,
+       "classes": [
+        "0149"
+       ]
+      },
+      {
+       "twoway": 0.3765,
+       "state_year": 0.4332,
+       "saturated": 0.1043,
+       "controls": 0.3892,
+       "imputation": 0.8845,
+       "sdid": 0.1456,
+       "gsynth": 0.2056,
+       "classes": [
+        "0160"
+       ]
+      },
+      {
+       "twoway": -0.3578,
+       "state_year": -0.2626,
+       "saturated": -1.1059,
+       "controls": -0.351,
+       "imputation": -0.8403,
+       "sdid": -0.6127,
+       "gsynth": -0.409,
+       "classes": [
+        "0529"
+       ]
+      },
+      {
+       "twoway": 1.6855,
+       "state_year": 1.7671,
+       "saturated": 0.0333,
+       "controls": 1.7035,
+       "imputation": 0.038,
+       "sdid": 1.4769,
+       "gsynth": 1.7492,
+       "classes": [
+        "3019"
+       ]
+      },
+      {
+       "twoway": -0.0788,
+       "state_year": -0.0027,
+       "saturated": -0.7476,
+       "controls": -0.0663,
+       "imputation": -0.6248,
+       "sdid": -0.2237,
+       "gsynth": -0.2536,
+       "classes": [
+        "3020"
+       ]
+      },
+      {
+       "twoway": 1.0128,
+       "state_year": 1.1026,
+       "saturated": 0.5444,
+       "controls": 1.0231,
+       "imputation": 0.6044,
+       "sdid": 0.8087,
+       "gsynth": 0.9144,
+       "classes": [
+        "3211"
+       ]
+      },
+      {
+       "twoway": -0.4783,
+       "state_year": -0.3789,
+       "saturated": 0.003,
+       "controls": -0.4703,
+       "imputation": -0.1338,
+       "sdid": -0.6835,
+       "gsynth": -0.5635,
+       "classes": [
+        "3212"
+       ]
+      },
+      {
+       "twoway": -1.5903,
+       "state_year": -1.5076,
+       "saturated": -1.1261,
+       "controls": -1.5809,
+       "imputation": -1.1465,
+       "sdid": -1.5123,
+       "gsynth": -1.7135,
+       "classes": [
+        "3221"
+       ]
+      },
+      {
+       "twoway": -1.2855,
+       "state_year": -1.2276,
+       "saturated": -2.4883,
+       "controls": -1.2718,
+       "imputation": -2.7464,
+       "sdid": -1.4939,
+       "gsynth": -1.51,
+       "classes": [
+        "3222"
+       ]
+      },
+      {
+       "twoway": -0.3546,
+       "state_year": -0.281,
+       "saturated": -0.3306,
+       "controls": -0.3431,
+       "imputation": -0.2885,
+       "sdid": -0.6262,
+       "gsynth": -0.4482,
+       "classes": [
+        "3231"
+       ]
+      },
+      {
+       "twoway": -0.8279,
+       "state_year": -0.7585,
+       "saturated": -1.152,
+       "controls": -0.8153,
+       "imputation": -1.3713,
+       "sdid": -1.2042,
+       "gsynth": -0.9988,
+       "classes": [
+        "3241"
+       ]
+      },
+      {
+       "twoway": -1.0718,
+       "state_year": -0.9965,
+       "saturated": -1.9126,
+       "controls": -1.062,
+       "imputation": -2.0336,
+       "sdid": -1.3174,
+       "gsynth": -1.2292,
+       "classes": [
+        "3243"
+       ]
+      },
+      {
+       "twoway": -1.1078,
+       "state_year": -1.0353,
+       "saturated": -1.2374,
+       "controls": -1.0967,
+       "imputation": -1.5043,
+       "sdid": -1.1023,
+       "gsynth": -1.2142,
+       "classes": [
+        "3244"
+       ]
+      },
+      {
+       "twoway": -1.3752,
+       "state_year": -1.3032,
+       "saturated": -0.186,
+       "controls": -1.3668,
+       "imputation": 0.0171,
+       "sdid": -1.0959,
+       "gsynth": -1.4547,
+       "classes": [
+        "3291"
+       ]
+      },
+      {
+       "twoway": -2.0074,
+       "state_year": -1.9352,
+       "saturated": 0.197,
+       "controls": -1.9974,
+       "imputation": 0.4483,
+       "sdid": -1.4228,
+       "gsynth": -2.0836,
+       "classes": [
+        "3299"
+       ]
+      },
+      {
+       "twoway": 1.2462,
+       "state_year": 1.3235,
+       "saturated": 0.9868,
+       "controls": 1.2592,
+       "imputation": 1.1938,
+       "sdid": 0.7851,
+       "gsynth": 1.2276,
+       "classes": [
+        "4110"
+       ]
+      },
+      {
+       "twoway": -0.0166,
+       "state_year": 0.0501,
+       "saturated": -1.358,
+       "controls": -0.0024,
+       "imputation": -1.2337,
+       "sdid": -0.4642,
+       "gsynth": -0.1297,
+       "classes": [
+        "4251"
+       ]
+      },
+      {
+       "twoway": -0.4896,
+       "state_year": -0.4134,
+       "saturated": 0.2892,
+       "controls": -0.4781,
+       "imputation": 0.3804,
+       "sdid": -0.2702,
+       "gsynth": -0.4977,
+       "classes": [
+        "4279"
+       ]
+      },
+      {
+       "twoway": -3.0504,
+       "state_year": -2.9837,
+       "saturated": -0.3944,
+       "controls": -3.0399,
+       "imputation": -0.3387,
+       "sdid": -2.6349,
+       "gsynth": -3.2124,
+       "classes": [
+        "4310"
+       ]
+      },
+      {
+       "twoway": 0.3981,
+       "state_year": 0.497,
+       "saturated": 0.4694,
+       "controls": 0.4074,
+       "imputation": 0.586,
+       "sdid": 0.3966,
+       "gsynth": 0.4144,
+       "classes": [
+        "4400"
+       ]
+      },
+      {
+       "twoway": 0.0979,
+       "state_year": 0.1743,
+       "saturated": 0.6556,
+       "controls": 0.1095,
+       "imputation": 0.6744,
+       "sdid": 0.0218,
+       "gsynth": -0.0603,
+       "classes": [
+        "4512"
+       ]
+      },
+      {
+       "twoway": -0.8587,
+       "state_year": -0.7614,
+       "saturated": -0.6789,
+       "controls": -0.8538,
+       "imputation": -0.5099,
+       "sdid": -0.4771,
+       "gsynth": -0.8513,
+       "classes": [
+        "6639"
+       ]
+      },
+      {
+       "twoway": -0.2423,
+       "state_year": -0.1743,
+       "saturated": -0.5274,
+       "controls": -0.2285,
+       "imputation": -0.4677,
+       "sdid": -0.316,
+       "gsynth": -0.3141,
+       "classes": [
+        "6921"
+       ]
+      },
+      {
+       "twoway": 1.6758,
+       "state_year": 1.7725,
+       "saturated": -0.8955,
+       "controls": 1.6888,
+       "imputation": -0.8465,
+       "sdid": 1.157,
+       "gsynth": 1.6078,
+       "classes": [
+        "6923"
+       ]
+      },
+      {
+       "twoway": -1.1344,
+       "state_year": -1.0794,
+       "saturated": -0.5071,
+       "controls": -1.1188,
+       "imputation": -0.3351,
+       "sdid": -0.9845,
+       "gsynth": -1.2226,
+       "classes": [
+        "6924"
+       ]
+      },
+      {
+       "twoway": 0.2176,
+       "state_year": 0.2795,
+       "saturated": -0.3353,
+       "controls": 0.2343,
+       "imputation": -0.2875,
+       "sdid": -0.0497,
+       "gsynth": 0.0996,
+       "classes": [
+        "6931"
+       ]
+      },
+      {
+       "twoway": -1.0728,
+       "state_year": -1.0107,
+       "saturated": -0.0798,
+       "controls": -1.0609,
+       "imputation": -0.1618,
+       "sdid": -0.9814,
+       "gsynth": -1.1762,
+       "classes": [
+        "6932"
+       ]
+      },
+      {
+       "twoway": 0.055,
+       "state_year": 0.1184,
+       "saturated": 0.8686,
+       "controls": 0.0715,
+       "imputation": 0.5044,
+       "sdid": -0.0606,
+       "gsynth": 0.0933,
+       "classes": [
+        "6940"
+       ]
+      },
+      {
+       "twoway": -0.6739,
+       "state_year": -0.6095,
+       "saturated": 0.5379,
+       "controls": -0.6605,
+       "imputation": 0.5928,
+       "sdid": -0.5912,
+       "gsynth": -0.7571,
+       "classes": [
+        "7291"
+       ]
+      },
+      {
+       "twoway": -1.7883,
+       "state_year": -1.7275,
+       "saturated": -0.2923,
+       "controls": -1.7783,
+       "imputation": -0.2717,
+       "sdid": -1.7086,
+       "gsynth": -1.8863,
+       "classes": [
+        "7311"
+       ]
+      },
+      {
+       "twoway": -2.3043,
+       "state_year": -2.2257,
+       "saturated": -0.2982,
+       "controls": -2.2958,
+       "imputation": -0.2535,
+       "sdid": -1.6294,
+       "gsynth": -2.3797,
+       "classes": [
+        "7313"
+       ]
+      },
+      {
+       "twoway": 1.2167,
+       "state_year": 1.3011,
+       "saturated": 0.0214,
+       "controls": 1.2275,
+       "imputation": -0.0583,
+       "sdid": 0.9854,
+       "gsynth": 1.1008,
+       "classes": [
+        "8101"
+       ]
+      },
+      {
+       "twoway": 0.5254,
+       "state_year": 0.5983,
+       "saturated": -0.2504,
+       "controls": 0.5369,
+       "imputation": -0.2047,
+       "sdid": 0.3207,
+       "gsynth": 0.3885,
+       "classes": [
+        "8512"
+       ]
+      },
+      {
+       "twoway": 1.3791,
+       "state_year": 1.4569,
+       "saturated": 0.1372,
+       "controls": 1.3912,
+       "imputation": 0.0951,
+       "sdid": 0.8682,
+       "gsynth": 1.3695,
+       "classes": [
+        "8531"
+       ]
+      },
+      {
+       "twoway": -0.6209,
+       "state_year": -0.5513,
+       "saturated": -0.2259,
+       "controls": -0.6097,
+       "imputation": -0.0788,
+       "sdid": -0.3052,
+       "gsynth": -0.8368,
+       "classes": [
+        "8539"
+       ]
+      },
+      {
+       "twoway": 1.781,
+       "state_year": 1.8689,
+       "saturated": 1.4248,
+       "controls": 1.7968,
+       "imputation": 1.6786,
+       "sdid": 1.9676,
+       "gsynth": 1.9158,
+       "classes": [
+        "8710"
+       ]
+      },
+      {
+       "twoway": -1.6321,
+       "state_year": -1.5807,
+       "saturated": -0.5077,
+       "controls": -1.6154,
+       "imputation": -0.4282,
+       "sdid": -1.1661,
+       "gsynth": -1.7149,
+       "classes": [
+        "9002"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "wa-trading-hours-weeknight-2010",
+   "title": "Perth weeknight trading (November 2010)",
+   "classes": [
+    "4110",
+    "4251",
+    "4260"
+   ],
+   "cohorts": [
+    {
+     "treated": [
+      "WA"
+     ],
+     "first_post": 2011,
+     "last_post": 2012,
+     "controls": [
+      "NSW",
+      "VIC",
+      "QLD",
+      "ACT"
+     ]
+    }
+   ],
+   "start": 2008,
+   "registered_vintage": false,
+   "notes": [
+    "Business counts by state are a different outcome from the registered re-evaluation (Perth vs regional WA)."
+   ],
+   "placebo_groups": 40,
+   "treated_size": 1760.0,
+   "feasible": {
+    "ok": true,
+    "reasons": []
+   },
+   "registered_design": null,
+   "outcomes": {
+    "entries": {
+     "cells": 2098,
+     "rows": 10209,
+     "mean_rate": 13.97,
+     "layers": {
+      "twoway": {
+       "n": 40,
+       "sd": 2.608,
+       "mde": 7.306,
+       "mean": -0.205,
+       "rms": 2.583,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 40,
+       "sd": 2.637,
+       "mde": 7.387,
+       "mean": 0.515,
+       "rms": 2.654,
+       "ratio_to_twoway": 1.011
+      },
+      "saturated": {
+       "n": 40,
+       "sd": 1.873,
+       "mde": 5.247,
+       "mean": 0.144,
+       "rms": 1.855,
+       "ratio_to_twoway": 0.718
+      },
+      "controls": {
+       "n": 40,
+       "sd": 2.617,
+       "mde": 7.332,
+       "mean": 0.281,
+       "rms": 2.599,
+       "ratio_to_twoway": 1.003
+      },
+      "imputation": {
+       "n": 40,
+       "sd": 1.962,
+       "mde": 5.496,
+       "mean": 0.11,
+       "rms": 1.94,
+       "ratio_to_twoway": 0.752
+      },
+      "sdid": {
+       "n": 40,
+       "sd": 2.333,
+       "mde": 6.537,
+       "mean": -0.005,
+       "rms": 2.304,
+       "ratio_to_twoway": 0.895
+      },
+      "gsynth": {
+       "n": 40,
+       "sd": 2.687,
+       "mde": 7.529,
+       "mean": -0.556,
+       "rms": 2.711,
+       "ratio_to_twoway": 1.03
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": 0.2739,
+       "state_year": 1.0263,
+       "saturated": -0.991,
+       "controls": 0.7818,
+       "imputation": -0.9589,
+       "sdid": 0.2456,
+       "gsynth": 0.1325,
+       "classes": [
+        "2312",
+        "3222",
+        "6991"
+       ]
+      },
+      {
+       "twoway": -0.8217,
+       "state_year": -0.1118,
+       "saturated": -0.5193,
+       "controls": -0.3417,
+       "imputation": -0.5272,
+       "sdid": -0.7455,
+       "gsynth": -0.973,
+       "classes": [
+        "3234",
+        "8710",
+        "9531"
+       ]
+      },
+      {
+       "twoway": 0.6495,
+       "state_year": 1.3694,
+       "saturated": 1.8405,
+       "controls": 1.1303,
+       "imputation": 1.8272,
+       "sdid": 0.4565,
+       "gsynth": 0.3502,
+       "classes": [
+        "2700",
+        "3292",
+        "8539"
+       ]
+      },
+      {
+       "twoway": 2.5104,
+       "state_year": 3.2648,
+       "saturated": 1.6465,
+       "controls": 3.0054,
+       "imputation": 1.6508,
+       "sdid": 2.4414,
+       "gsynth": 2.3157,
+       "classes": [
+        "3501",
+        "5412",
+        "8511"
+       ]
+      },
+      {
+       "twoway": 0.0804,
+       "state_year": 0.7913,
+       "saturated": 1.2947,
+       "controls": 0.5558,
+       "imputation": 1.2965,
+       "sdid": -0.1426,
+       "gsynth": -0.074,
+       "classes": [
+        "0412",
+        "8101",
+        "8211"
+       ]
+      },
+      {
+       "twoway": -0.0257,
+       "state_year": 0.6789,
+       "saturated": 3.7011,
+       "controls": 0.4471,
+       "imputation": 3.7593,
+       "sdid": -0.1675,
+       "gsynth": -0.2205,
+       "classes": [
+        "5299",
+        "5700",
+        "8531"
+       ]
+      },
+      {
+       "twoway": -1.2809,
+       "state_year": -0.571,
+       "saturated": -2.4368,
+       "controls": -0.8002,
+       "imputation": -2.4383,
+       "sdid": -0.2352,
+       "gsynth": -1.4539,
+       "classes": [
+        "3211",
+        "3321",
+        "9531"
+       ]
+      },
+      {
+       "twoway": -0.3718,
+       "state_year": 0.3388,
+       "saturated": -0.0293,
+       "controls": 0.1117,
+       "imputation": 0.0104,
+       "sdid": -0.5057,
+       "gsynth": -0.6688,
+       "classes": [
+        "3732",
+        "8534",
+        "8710"
+       ]
+      },
+      {
+       "twoway": 1.0618,
+       "state_year": 1.8065,
+       "saturated": 1.3437,
+       "controls": 1.5623,
+       "imputation": 1.3295,
+       "sdid": 1.1625,
+       "gsynth": 0.8732,
+       "classes": [
+        "0191",
+        "0413",
+        "3241"
+       ]
+      },
+      {
+       "twoway": -0.9081,
+       "state_year": -0.1967,
+       "saturated": -0.3351,
+       "controls": -0.4348,
+       "imputation": -0.2919,
+       "sdid": -1.2682,
+       "gsynth": -1.1343,
+       "classes": [
+        "0413",
+        "6619",
+        "6991"
+       ]
+      },
+      {
+       "twoway": 0.8562,
+       "state_year": 1.5954,
+       "saturated": -0.3811,
+       "controls": 1.3529,
+       "imputation": -0.3981,
+       "sdid": 0.9729,
+       "gsynth": 0.5977,
+       "classes": [
+        "0199",
+        "3231",
+        "3609"
+       ]
+      },
+      {
+       "twoway": -0.9137,
+       "state_year": -0.184,
+       "saturated": -1.117,
+       "controls": -0.4195,
+       "imputation": -1.1521,
+       "sdid": -1.2989,
+       "gsynth": -1.2538,
+       "classes": [
+        "0123",
+        "3731",
+        "6940"
+       ]
+      },
+      {
+       "twoway": 1.4998,
+       "state_year": 2.2568,
+       "saturated": 0.8712,
+       "controls": 2.0002,
+       "imputation": 0.8728,
+       "sdid": 1.2536,
+       "gsynth": 0.6504,
+       "classes": [
+        "0123",
+        "1214",
+        "9511"
+       ]
+      },
+      {
+       "twoway": -2.4032,
+       "state_year": -1.71,
+       "saturated": 0.6253,
+       "controls": -1.9347,
+       "imputation": 0.5641,
+       "sdid": -2.5177,
+       "gsynth": -2.6193,
+       "classes": [
+        "2922",
+        "6924",
+        "7299"
+       ]
+      },
+      {
+       "twoway": -0.5495,
+       "state_year": 0.1731,
+       "saturated": -0.349,
+       "controls": -0.0588,
+       "imputation": -0.3265,
+       "sdid": -0.4516,
+       "gsynth": -0.729,
+       "classes": [
+        "0522",
+        "6639",
+        "7291"
+       ]
+      },
+      {
+       "twoway": -1.4514,
+       "state_year": -0.7413,
+       "saturated": -0.6903,
+       "controls": -0.9685,
+       "imputation": -0.6534,
+       "sdid": -1.7135,
+       "gsynth": -1.9213,
+       "classes": [
+        "5413",
+        "7291",
+        "9111"
+       ]
+      },
+      {
+       "twoway": -2.8789,
+       "state_year": -2.1913,
+       "saturated": -0.9003,
+       "controls": -2.4087,
+       "imputation": -0.9352,
+       "sdid": -2.2704,
+       "gsynth": -3.0778,
+       "classes": [
+        "3224",
+        "3233",
+        "7299"
+       ]
+      },
+      {
+       "twoway": 1.0088,
+       "state_year": 1.7508,
+       "saturated": 0.3418,
+       "controls": 1.4977,
+       "imputation": 0.3418,
+       "sdid": 0.9944,
+       "gsynth": 0.7829,
+       "classes": [
+        "0529",
+        "3603",
+        "4511"
+       ]
+      },
+      {
+       "twoway": -0.7243,
+       "state_year": 0.0068,
+       "saturated": -0.5118,
+       "controls": -0.2178,
+       "imputation": -0.5261,
+       "sdid": 0.3504,
+       "gsynth": -1.1826,
+       "classes": [
+        "1333",
+        "3504",
+        "5101"
+       ]
+      },
+      {
+       "twoway": -13.6747,
+       "state_year": -13.1171,
+       "saturated": 4.9407,
+       "controls": -13.2413,
+       "imputation": 4.9642,
+       "sdid": -11.7801,
+       "gsynth": -14.1471,
+       "classes": [
+        "0191",
+        "0301",
+        "5010"
+       ]
+      },
+      {
+       "twoway": 0.2686,
+       "state_year": 1.0215,
+       "saturated": -0.3421,
+       "controls": 0.782,
+       "imputation": -0.1087,
+       "sdid": 0.1165,
+       "gsynth": 0.1237,
+       "classes": [
+        "0411",
+        "5700",
+        "5910"
+       ]
+      },
+      {
+       "twoway": -0.9402,
+       "state_year": -0.2391,
+       "saturated": -3.0817,
+       "controls": -0.4699,
+       "imputation": -3.9598,
+       "sdid": -0.926,
+       "gsynth": -2.6928,
+       "classes": [
+        "1011",
+        "3019",
+        "3505"
+       ]
+      },
+      {
+       "twoway": 0.3884,
+       "state_year": 1.1112,
+       "saturated": 0.9253,
+       "controls": 0.8686,
+       "imputation": 0.9215,
+       "sdid": 0.8494,
+       "gsynth": 0.1314,
+       "classes": [
+        "5102",
+        "6230",
+        "8512"
+       ]
+      },
+      {
+       "twoway": 0.9387,
+       "state_year": 1.6454,
+       "saturated": 0.3727,
+       "controls": 1.4152,
+       "imputation": 0.2991,
+       "sdid": 1.3512,
+       "gsynth": 0.6654,
+       "classes": [
+        "0144",
+        "3411",
+        "7211"
+       ]
+      },
+      {
+       "twoway": -1.4275,
+       "state_year": -0.6819,
+       "saturated": 0.7031,
+       "controls": -0.9122,
+       "imputation": 0.719,
+       "sdid": -1.3611,
+       "gsynth": -1.8398,
+       "classes": [
+        "0801",
+        "6411",
+        "6940"
+       ]
+      },
+      {
+       "twoway": 1.5126,
+       "state_year": 2.2517,
+       "saturated": 1.5378,
+       "controls": 2.0114,
+       "imputation": 1.6077,
+       "sdid": 1.8971,
+       "gsynth": 1.366,
+       "classes": [
+        "0171",
+        "0203",
+        "4400"
+       ]
+      },
+      {
+       "twoway": 1.8642,
+       "state_year": 2.579,
+       "saturated": -5.1506,
+       "controls": 2.3123,
+       "imputation": -5.5149,
+       "sdid": 2.3949,
+       "gsynth": -0.8319,
+       "classes": [
+        "0801",
+        "1012",
+        "7292"
+       ]
+      },
+      {
+       "twoway": 0.0724,
+       "state_year": 0.7925,
+       "saturated": 1.3288,
+       "controls": 0.5591,
+       "imputation": 1.4273,
+       "sdid": 0.8923,
+       "gsynth": -0.1844,
+       "classes": [
+        "2391",
+        "2462",
+        "5102"
+       ]
+      },
+      {
+       "twoway": 1.9223,
+       "state_year": 2.648,
+       "saturated": 1.0908,
+       "controls": 2.3992,
+       "imputation": 1.0669,
+       "sdid": 1.9588,
+       "gsynth": 1.7691,
+       "classes": [
+        "1172",
+        "4622",
+        "8512"
+       ]
+      },
+      {
+       "twoway": 0.1221,
+       "state_year": 0.8347,
+       "saturated": 0.2709,
+       "controls": 0.6013,
+       "imputation": 0.2395,
+       "sdid": 0.2281,
+       "gsynth": -0.1527,
+       "classes": [
+        "2299",
+        "3734",
+        "9411"
+       ]
+      },
+      {
+       "twoway": 2.6587,
+       "state_year": 3.4167,
+       "saturated": 1.6124,
+       "controls": 3.1566,
+       "imputation": 1.6021,
+       "sdid": 2.3474,
+       "gsynth": 2.4768,
+       "classes": [
+        "2811",
+        "3494",
+        "4512"
+       ]
+      },
+      {
+       "twoway": 1.4007,
+       "state_year": 2.1138,
+       "saturated": 1.3636,
+       "controls": 1.8792,
+       "imputation": 1.4336,
+       "sdid": 1.2897,
+       "gsynth": 1.1478,
+       "classes": [
+        "5010",
+        "6619",
+        "8212"
+       ]
+      },
+      {
+       "twoway": 2.661,
+       "state_year": 3.3936,
+       "saturated": 1.3774,
+       "controls": 3.1593,
+       "imputation": 1.3205,
+       "sdid": 2.6326,
+       "gsynth": 2.4982,
+       "classes": [
+        "0144",
+        "2110",
+        "8599"
+       ]
+      },
+      {
+       "twoway": 0.9731,
+       "state_year": 1.6944,
+       "saturated": 0.2452,
+       "controls": 1.4499,
+       "imputation": 0.2499,
+       "sdid": 0.7476,
+       "gsynth": 0.0853,
+       "classes": [
+        "3606",
+        "8401",
+        "8512"
+       ]
+      },
+      {
+       "twoway": 1.0394,
+       "state_year": 1.7616,
+       "saturated": -0.3609,
+       "controls": 1.5291,
+       "imputation": -0.6131,
+       "sdid": 1.4469,
+       "gsynth": 0.8036,
+       "classes": [
+        "0144",
+        "0192",
+        "3233"
+       ]
+      },
+      {
+       "twoway": -0.0578,
+       "state_year": 0.6664,
+       "saturated": -0.9747,
+       "controls": 0.4299,
+       "imputation": -0.99,
+       "sdid": 0.751,
+       "gsynth": -0.2105,
+       "classes": [
+        "2412",
+        "2591",
+        "3211"
+       ]
+      },
+      {
+       "twoway": 0.1508,
+       "state_year": 0.8991,
+       "saturated": 1.8245,
+       "controls": 0.6642,
+       "imputation": 1.8243,
+       "sdid": 0.1434,
+       "gsynth": -0.0058,
+       "classes": [
+        "0131",
+        "0159",
+        "4513"
+       ]
+      },
+      {
+       "twoway": -3.898,
+       "state_year": -3.2204,
+       "saturated": -4.9002,
+       "controls": -3.4333,
+       "imputation": -5.0705,
+       "sdid": -2.507,
+       "gsynth": -4.5015,
+       "classes": [
+        "1090",
+        "3323",
+        "3602"
+       ]
+      },
+      {
+       "twoway": 0.0247,
+       "state_year": 0.7588,
+       "saturated": 0.2212,
+       "controls": 0.533,
+       "imputation": 0.1907,
+       "sdid": 0.7651,
+       "gsynth": 2.162,
+       "classes": [
+        "3603",
+        "3609",
+        "5101"
+       ]
+      },
+      {
+       "twoway": 0.1862,
+       "state_year": 0.9136,
+       "saturated": -0.6421,
+       "controls": 0.6802,
+       "imputation": -0.6685,
+       "sdid": -0.0179,
+       "gsynth": -1.302,
+       "classes": [
+        "0142",
+        "0413",
+        "3712"
+       ]
+      }
+     ]
+    },
+    "exits": {
+     "cells": 2098,
+     "rows": 10209,
+     "mean_rate": 13.77,
+     "layers": {
+      "twoway": {
+       "n": 40,
+       "sd": 1.207,
+       "mde": 3.381,
+       "mean": -0.279,
+       "rms": 1.224,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 40,
+       "sd": 1.218,
+       "mde": 3.412,
+       "mean": -0.561,
+       "rms": 1.327,
+       "ratio_to_twoway": 1.009
+      },
+      "saturated": {
+       "n": 40,
+       "sd": 1.601,
+       "mde": 4.486,
+       "mean": -0.816,
+       "rms": 1.779,
+       "ratio_to_twoway": 1.326
+      },
+      "controls": {
+       "n": 40,
+       "sd": 1.212,
+       "mde": 3.395,
+       "mean": -0.491,
+       "rms": 1.293,
+       "ratio_to_twoway": 1.004
+      },
+      "imputation": {
+       "n": 40,
+       "sd": 1.526,
+       "mde": 4.274,
+       "mean": -0.771,
+       "rms": 1.693,
+       "ratio_to_twoway": 1.264
+      },
+      "sdid": {
+       "n": 40,
+       "sd": 1.079,
+       "mde": 3.024,
+       "mean": 0.069,
+       "rms": 1.068,
+       "ratio_to_twoway": 0.894
+      },
+      "gsynth": {
+       "n": 40,
+       "sd": 1.232,
+       "mde": 3.452,
+       "mean": -0.103,
+       "rms": 1.221,
+       "ratio_to_twoway": 1.021
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": 1.4583,
+       "state_year": 1.1991,
+       "saturated": 0.7065,
+       "controls": 1.258,
+       "imputation": 0.7862,
+       "sdid": 1.5728,
+       "gsynth": 1.5254,
+       "classes": [
+        "2312",
+        "3222",
+        "6991"
+       ]
+      },
+      {
+       "twoway": -1.9448,
+       "state_year": -2.2342,
+       "saturated": -0.8969,
+       "controls": -2.1601,
+       "imputation": -0.8901,
+       "sdid": -0.6916,
+       "gsynth": -1.7391,
+       "classes": [
+        "3234",
+        "8710",
+        "9531"
+       ]
+      },
+      {
+       "twoway": 0.2085,
+       "state_year": -0.0763,
+       "saturated": 0.792,
+       "controls": -0.0042,
+       "imputation": 0.8304,
+       "sdid": 0.5433,
+       "gsynth": 0.6372,
+       "classes": [
+        "2700",
+        "3292",
+        "8539"
+       ]
+      },
+      {
+       "twoway": 0.0573,
+       "state_year": -0.2314,
+       "saturated": -0.2101,
+       "controls": -0.1563,
+       "imputation": -0.2393,
+       "sdid": 0.2762,
+       "gsynth": 0.2814,
+       "classes": [
+        "3501",
+        "5412",
+        "8511"
+       ]
+      },
+      {
+       "twoway": -1.9716,
+       "state_year": -2.2659,
+       "saturated": -2.0914,
+       "controls": -2.1888,
+       "imputation": -2.0986,
+       "sdid": -1.5257,
+       "gsynth": -1.6767,
+       "classes": [
+        "0412",
+        "8101",
+        "8211"
+       ]
+      },
+      {
+       "twoway": 2.5262,
+       "state_year": 2.2778,
+       "saturated": 0.2506,
+       "controls": 2.3299,
+       "imputation": 0.2877,
+       "sdid": 2.749,
+       "gsynth": 2.8491,
+       "classes": [
+        "5299",
+        "5700",
+        "8531"
+       ]
+      },
+      {
+       "twoway": 0.4128,
+       "state_year": 0.1377,
+       "saturated": -0.2019,
+       "controls": 0.2044,
+       "imputation": -0.2,
+       "sdid": 0.9759,
+       "gsynth": 0.6021,
+       "classes": [
+        "3211",
+        "3321",
+        "9531"
+       ]
+      },
+      {
+       "twoway": -0.5895,
+       "state_year": -0.8729,
+       "saturated": 0.5859,
+       "controls": -0.8034,
+       "imputation": 0.7193,
+       "sdid": -0.1459,
+       "gsynth": -1.017,
+       "classes": [
+        "3732",
+        "8534",
+        "8710"
+       ]
+      },
+      {
+       "twoway": 1.2838,
+       "state_year": 1.019,
+       "saturated": 0.7906,
+       "controls": 1.0803,
+       "imputation": 0.7891,
+       "sdid": 1.6585,
+       "gsynth": 1.4907,
+       "classes": [
+        "0191",
+        "0413",
+        "3241"
+       ]
+      },
+      {
+       "twoway": -0.1078,
+       "state_year": -0.3955,
+       "saturated": -0.8595,
+       "controls": -0.3208,
+       "imputation": -0.8682,
+       "sdid": -0.0231,
+       "gsynth": 0.0079,
+       "classes": [
+        "0413",
+        "6619",
+        "6991"
+       ]
+      },
+      {
+       "twoway": 1.6504,
+       "state_year": 1.3904,
+       "saturated": 0.6128,
+       "controls": 1.4489,
+       "imputation": 0.6459,
+       "sdid": 1.6958,
+       "gsynth": 1.812,
+       "classes": [
+        "0199",
+        "3231",
+        "3609"
+       ]
+      },
+      {
+       "twoway": -0.8876,
+       "state_year": -1.1736,
+       "saturated": -1.421,
+       "controls": -1.1008,
+       "imputation": -1.4925,
+       "sdid": -0.7277,
+       "gsynth": -0.9273,
+       "classes": [
+        "0123",
+        "3731",
+        "6940"
+       ]
+      },
+      {
+       "twoway": -2.2786,
+       "state_year": -2.5924,
+       "saturated": -2.9605,
+       "controls": -2.5036,
+       "imputation": -2.9844,
+       "sdid": -0.7769,
+       "gsynth": -1.9769,
+       "classes": [
+        "0123",
+        "1214",
+        "9511"
+       ]
+      },
+      {
+       "twoway": -0.8173,
+       "state_year": -1.107,
+       "saturated": -0.6607,
+       "controls": -1.0327,
+       "imputation": -0.6527,
+       "sdid": -0.4732,
+       "gsynth": -0.5562,
+       "classes": [
+        "2922",
+        "6924",
+        "7299"
+       ]
+      },
+      {
+       "twoway": -0.1934,
+       "state_year": -0.4742,
+       "saturated": -0.1099,
+       "controls": -0.405,
+       "imputation": -0.0953,
+       "sdid": 0.3109,
+       "gsynth": 0.0299,
+       "classes": [
+        "0522",
+        "6639",
+        "7291"
+       ]
+      },
+      {
+       "twoway": -0.3847,
+       "state_year": -0.665,
+       "saturated": -1.0827,
+       "controls": -0.5962,
+       "imputation": -1.0234,
+       "sdid": -0.3389,
+       "gsynth": -0.2435,
+       "classes": [
+        "5413",
+        "7291",
+        "9111"
+       ]
+      },
+      {
+       "twoway": -0.4836,
+       "state_year": -0.7694,
+       "saturated": -0.8326,
+       "controls": -0.6981,
+       "imputation": -0.8308,
+       "sdid": -0.4844,
+       "gsynth": -0.6522,
+       "classes": [
+        "3224",
+        "3233",
+        "7299"
+       ]
+      },
+      {
+       "twoway": -1.7105,
+       "state_year": -2.0253,
+       "saturated": -2.1943,
+       "controls": -1.9363,
+       "imputation": -2.1928,
+       "sdid": -0.9548,
+       "gsynth": -1.4905,
+       "classes": [
+        "0529",
+        "3603",
+        "4511"
+       ]
+      },
+      {
+       "twoway": -1.3033,
+       "state_year": -1.5824,
+       "saturated": -0.6911,
+       "controls": -1.5162,
+       "imputation": -0.7081,
+       "sdid": -0.7239,
+       "gsynth": -1.2122,
+       "classes": [
+        "1333",
+        "3504",
+        "5101"
+       ]
+      },
+      {
+       "twoway": 0.0411,
+       "state_year": -0.2112,
+       "saturated": 2.4193,
+       "controls": -0.165,
+       "imputation": 2.4275,
+       "sdid": 0.7329,
+       "gsynth": 0.2614,
+       "classes": [
+        "0191",
+        "0301",
+        "5010"
+       ]
+      },
+      {
+       "twoway": -2.8776,
+       "state_year": -3.1644,
+       "saturated": -4.9455,
+       "controls": -3.0912,
+       "imputation": -4.2219,
+       "sdid": -1.6501,
+       "gsynth": -2.5727,
+       "classes": [
+        "0411",
+        "5700",
+        "5910"
+       ]
+      },
+      {
+       "twoway": -1.9084,
+       "state_year": -2.2052,
+       "saturated": -2.9392,
+       "controls": -2.1271,
+       "imputation": -2.7978,
+       "sdid": -1.4365,
+       "gsynth": -1.3154,
+       "classes": [
+        "1011",
+        "3019",
+        "3505"
+       ]
+      },
+      {
+       "twoway": 0.1145,
+       "state_year": -0.1695,
+       "saturated": -0.8757,
+       "controls": -0.0973,
+       "imputation": -0.8876,
+       "sdid": 0.1894,
+       "gsynth": 0.1018,
+       "classes": [
+        "5102",
+        "6230",
+        "8512"
+       ]
+      },
+      {
+       "twoway": 0.6654,
+       "state_year": 0.3933,
+       "saturated": -0.2161,
+       "controls": 0.4574,
+       "imputation": -0.1544,
+       "sdid": 0.4634,
+       "gsynth": 0.8528,
+       "classes": [
+        "0144",
+        "3411",
+        "7211"
+       ]
+      },
+      {
+       "twoway": -0.5566,
+       "state_year": -0.8373,
+       "saturated": 0.0774,
+       "controls": -0.7692,
+       "imputation": 0.0738,
+       "sdid": -0.3907,
+       "gsynth": -0.8043,
+       "classes": [
+        "0801",
+        "6411",
+        "6940"
+       ]
+      },
+      {
+       "twoway": -1.4328,
+       "state_year": -1.721,
+       "saturated": -1.3358,
+       "controls": -1.6476,
+       "imputation": -1.3084,
+       "sdid": -0.8504,
+       "gsynth": -1.2285,
+       "classes": [
+        "0171",
+        "0203",
+        "4400"
+       ]
+      },
+      {
+       "twoway": -1.2698,
+       "state_year": -1.5863,
+       "saturated": -6.3559,
+       "controls": -1.4915,
+       "imputation": -6.0504,
+       "sdid": -1.2637,
+       "gsynth": -0.9122,
+       "classes": [
+        "0801",
+        "1012",
+        "7292"
+       ]
+      },
+      {
+       "twoway": -0.2602,
+       "state_year": -0.5429,
+       "saturated": -1.8763,
+       "controls": -0.4728,
+       "imputation": -1.8794,
+       "sdid": 0.089,
+       "gsynth": -0.2539,
+       "classes": [
+        "2391",
+        "2462",
+        "5102"
+       ]
+      },
+      {
+       "twoway": 0.9228,
+       "state_year": 0.6427,
+       "saturated": 0.2938,
+       "controls": 0.7141,
+       "imputation": 0.2948,
+       "sdid": 1.1235,
+       "gsynth": 1.0621,
+       "classes": [
+        "1172",
+        "4622",
+        "8512"
+       ]
+      },
+      {
+       "twoway": 0.2881,
+       "state_year": 0.0121,
+       "saturated": -0.1276,
+       "controls": 0.0795,
+       "imputation": -0.0886,
+       "sdid": 0.7,
+       "gsynth": 0.4361,
+       "classes": [
+        "2299",
+        "3734",
+        "9411"
+       ]
+      },
+      {
+       "twoway": 0.6957,
+       "state_year": 0.4169,
+       "saturated": 0.4066,
+       "controls": 0.4871,
+       "imputation": 0.4105,
+       "sdid": 0.8041,
+       "gsynth": 0.6864,
+       "classes": [
+        "2811",
+        "3494",
+        "4512"
+       ]
+      },
+      {
+       "twoway": 0.5365,
+       "state_year": 0.2568,
+       "saturated": 0.7368,
+       "controls": 0.3258,
+       "imputation": 0.6932,
+       "sdid": 1.0679,
+       "gsynth": 1.2978,
+       "classes": [
+        "5010",
+        "6619",
+        "8212"
+       ]
+      },
+      {
+       "twoway": -0.1457,
+       "state_year": -0.4165,
+       "saturated": -1.6362,
+       "controls": -0.3529,
+       "imputation": -1.6276,
+       "sdid": -0.0047,
+       "gsynth": 0.1532,
+       "classes": [
+        "0144",
+        "2110",
+        "8599"
+       ]
+      },
+      {
+       "twoway": -0.2503,
+       "state_year": -0.5385,
+       "saturated": -0.3557,
+       "controls": -0.4631,
+       "imputation": -0.362,
+       "sdid": -0.1357,
+       "gsynth": -0.0725,
+       "classes": [
+        "3606",
+        "8401",
+        "8512"
+       ]
+      },
+      {
+       "twoway": 0.1862,
+       "state_year": -0.0899,
+       "saturated": -1.3031,
+       "controls": -0.0239,
+       "imputation": -1.2712,
+       "sdid": 0.3314,
+       "gsynth": 0.3741,
+       "classes": [
+        "0144",
+        "0192",
+        "3233"
+       ]
+      },
+      {
+       "twoway": 0.9921,
+       "state_year": 0.7201,
+       "saturated": 0.0633,
+       "controls": 0.7855,
+       "imputation": 0.0623,
+       "sdid": 0.9981,
+       "gsynth": 1.1973,
+       "classes": [
+        "2412",
+        "2591",
+        "3211"
+       ]
+      },
+      {
+       "twoway": 0.5333,
+       "state_year": 0.2649,
+       "saturated": -0.5763,
+       "controls": 0.3274,
+       "imputation": -0.5975,
+       "sdid": 1.066,
+       "gsynth": 0.996,
+       "classes": [
+        "0131",
+        "0159",
+        "4513"
+       ]
+      },
+      {
+       "twoway": -2.1658,
+       "state_year": -2.4512,
+       "saturated": -2.5606,
+       "controls": -2.3812,
+       "imputation": -2.298,
+       "sdid": -2.0716,
+       "gsynth": -2.2471,
+       "classes": [
+        "1090",
+        "3323",
+        "3602"
+       ]
+      },
+      {
+       "twoway": -1.3047,
+       "state_year": -1.5848,
+       "saturated": -1.388,
+       "controls": -1.5183,
+       "imputation": -1.3729,
+       "sdid": -1.4359,
+       "gsynth": -1.2392,
+       "classes": [
+        "3603",
+        "3609",
+        "5101"
+       ]
+      },
+      {
+       "twoway": 1.0949,
+       "state_year": 0.8316,
+       "saturated": 0.3174,
+       "controls": 0.8913,
+       "imputation": 0.3161,
+       "sdid": 1.5366,
+       "gsynth": 1.364,
+       "classes": [
+        "0142",
+        "0413",
+        "3712"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "amr-2021-2022",
+   "title": "Automatic mutual recognition of occupational registrations (2021-22)",
+   "classes": [
+    "3231",
+    "3232",
+    "3233",
+    "6720",
+    "3011"
+   ],
+   "cohorts": [
+    {
+     "treated": [
+      "ACT",
+      "NSW",
+      "NT",
+      "VIC",
+      "TAS",
+      "SA"
+     ],
+     "first_post": 2022,
+     "last_post": 2025,
+     "controls": [
+      "QLD"
+     ]
+    },
+    {
+     "treated": [
+      "WA"
+     ],
+     "first_post": 2023,
+     "last_post": 2025,
+     "controls": [
+      "QLD"
+     ]
+    }
+   ],
+   "start": 2017,
+   "registered_vintage": false,
+   "notes": [
+    "Uses CABEE releases after the registered vintage (to June 2025); 2019-20 to 2021-22 are COVID years.",
+    "One never-treated state (Queensland), so comparisons within the treated classes rest on it."
+   ],
+   "placebo_groups": 24,
+   "treated_size": 132772.0,
+   "feasible": {
+    "ok": true,
+    "reasons": []
+   },
+   "registered_design": null,
+   "outcomes": {
+    "entries": {
+     "cells": 3346,
+     "rows": 28811,
+     "mean_rate": 16.3,
+     "layers": {
+      "twoway": {
+       "n": 24,
+       "sd": 1.681,
+       "mde": 4.709,
+       "mean": -0.257,
+       "rms": 1.665,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 24,
+       "sd": 1.704,
+       "mde": 4.774,
+       "mean": -0.304,
+       "rms": 1.696,
+       "ratio_to_twoway": 1.014
+      },
+      "saturated": {
+       "n": 24,
+       "sd": 1.532,
+       "mde": 4.292,
+       "mean": 0.299,
+       "rms": 1.529,
+       "ratio_to_twoway": 0.911
+      },
+      "controls": {
+       "n": 24,
+       "sd": 1.689,
+       "mde": 4.733,
+       "mean": -0.177,
+       "rms": 1.663,
+       "ratio_to_twoway": 1.005
+      },
+      "imputation": {
+       "n": 24,
+       "sd": 0.897,
+       "mde": 2.513,
+       "mean": 0.426,
+       "rms": 0.976,
+       "ratio_to_twoway": 0.534
+      },
+      "sdid": {
+       "n": 24,
+       "sd": 1.606,
+       "mde": 4.498,
+       "mean": 0.267,
+       "rms": 1.594,
+       "ratio_to_twoway": 0.955
+      },
+      "gsynth": {
+       "n": 24,
+       "sd": 1.758,
+       "mde": 4.926,
+       "mean": 0.001,
+       "rms": 1.721,
+       "ratio_to_twoway": 1.046
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": -0.1269,
+       "state_year": -0.1807,
+       "saturated": -0.5942,
+       "controls": -0.0656,
+       "imputation": -0.2124,
+       "sdid": 0.1616,
+       "gsynth": -0.142,
+       "classes": [
+        "0199",
+        "6924",
+        "8511",
+        "8512",
+        "9139"
+       ]
+      },
+      {
+       "twoway": -1.0305,
+       "state_year": -1.0724,
+       "saturated": -0.3362,
+       "controls": -0.9446,
+       "imputation": 0.0467,
+       "sdid": -0.8424,
+       "gsynth": -1.0155,
+       "classes": [
+        "1499",
+        "2391",
+        "2812",
+        "4245",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -2.8109,
+       "state_year": -2.9252,
+       "saturated": 4.1459,
+       "controls": -2.7577,
+       "imputation": 2.9275,
+       "sdid": 2.1147,
+       "gsynth": -4.1078,
+       "classes": [
+        "3493",
+        "4512",
+        "4900",
+        "5299",
+        "6970"
+       ]
+      },
+      {
+       "twoway": -1.0651,
+       "state_year": -1.1042,
+       "saturated": -0.2738,
+       "controls": -0.9771,
+       "imputation": 0.0579,
+       "sdid": -0.8444,
+       "gsynth": 0.7548,
+       "classes": [
+        "0113",
+        "1412",
+        "1620",
+        "4129",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -1.7754,
+       "state_year": -1.8368,
+       "saturated": 5.9364,
+       "controls": -1.6979,
+       "imputation": 3.5101,
+       "sdid": 3.1908,
+       "gsynth": -2.7495,
+       "classes": [
+        "0111",
+        "1332",
+        "4212",
+        "5299",
+        "7311"
+       ]
+      },
+      {
+       "twoway": -1.0503,
+       "state_year": -1.0902,
+       "saturated": -0.3166,
+       "controls": -0.963,
+       "imputation": 0.0565,
+       "sdid": -0.8417,
+       "gsynth": -1.0351,
+       "classes": [
+        "0803",
+        "1173",
+        "1411",
+        "2461",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -1.1097,
+       "state_year": -1.1508,
+       "saturated": -0.3162,
+       "controls": -1.0219,
+       "imputation": 0.037,
+       "sdid": -0.9136,
+       "gsynth": 0.8302,
+       "classes": [
+        "0412",
+        "2599",
+        "5521",
+        "5921",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -0.9369,
+       "state_year": -1.0026,
+       "saturated": -0.3986,
+       "controls": -0.8579,
+       "imputation": -0.0059,
+       "sdid": -0.7522,
+       "gsynth": -0.9017,
+       "classes": [
+        "1012",
+        "1351",
+        "2432",
+        "5029",
+        "6962"
+       ]
+      },
+      {
+       "twoway": 0.16,
+       "state_year": 0.1479,
+       "saturated": 0.5616,
+       "controls": 0.2511,
+       "imputation": 0.6993,
+       "sdid": 0.1811,
+       "gsynth": 0.1853,
+       "classes": [
+        "0809",
+        "3491",
+        "7000",
+        "9419",
+        "9532"
+       ]
+      },
+      {
+       "twoway": 2.3782,
+       "state_year": 2.3198,
+       "saturated": 0.0272,
+       "controls": 2.4363,
+       "imputation": 0.2959,
+       "sdid": 2.5549,
+       "gsynth": 3.8849,
+       "classes": [
+        "2293",
+        "2419",
+        "4610",
+        "8022",
+        "8511"
+       ]
+      },
+      {
+       "twoway": -0.9656,
+       "state_year": -0.9857,
+       "saturated": -0.044,
+       "controls": -0.8657,
+       "imputation": 0.2753,
+       "sdid": -0.7786,
+       "gsynth": 0.316,
+       "classes": [
+        "0805",
+        "3609",
+        "6962",
+        "7000",
+        "8921"
+       ]
+      },
+      {
+       "twoway": -0.9618,
+       "state_year": -0.995,
+       "saturated": -0.2356,
+       "controls": -0.8712,
+       "imputation": 0.103,
+       "sdid": -0.6937,
+       "gsynth": -0.8978,
+       "classes": [
+        "1701",
+        "1813",
+        "5514",
+        "6962",
+        "6991"
+       ]
+      },
+      {
+       "twoway": 0.1037,
+       "state_year": 0.003,
+       "saturated": -0.2073,
+       "controls": 0.1676,
+       "imputation": 0.2788,
+       "sdid": 0.2113,
+       "gsynth": 0.8378,
+       "classes": [
+        "2139",
+        "4121",
+        "5522",
+        "6240",
+        "6923"
+       ]
+      },
+      {
+       "twoway": -0.4869,
+       "state_year": -0.6472,
+       "saturated": -0.6766,
+       "controls": -0.4639,
+       "imputation": -0.2619,
+       "sdid": -0.2969,
+       "gsynth": 1.1496,
+       "classes": [
+        "0145",
+        "1312",
+        "3323",
+        "6923",
+        "8512"
+       ]
+      },
+      {
+       "twoway": 0.2688,
+       "state_year": 0.2557,
+       "saturated": 0.0944,
+       "controls": 0.3554,
+       "imputation": 0.5537,
+       "sdid": 0.2857,
+       "gsynth": -0.0163,
+       "classes": [
+        "0142",
+        "1851",
+        "6240",
+        "6910",
+        "9113"
+       ]
+      },
+      {
+       "twoway": 5.8908,
+       "state_year": 5.9545,
+       "saturated": 1.1683,
+       "controls": 6.0269,
+       "imputation": 0.5117,
+       "sdid": 5.4429,
+       "gsynth": 4.1152,
+       "classes": [
+        "4245",
+        "5102",
+        "5211",
+        "5220",
+        "7000"
+       ]
+      },
+      {
+       "twoway": -1.0699,
+       "state_year": -1.1322,
+       "saturated": -0.3676,
+       "controls": -0.9973,
+       "imputation": 0.006,
+       "sdid": -0.8828,
+       "gsynth": -1.0527,
+       "classes": [
+        "0131",
+        "0133",
+        "0171",
+        "0801",
+        "6962"
+       ]
+      },
+      {
+       "twoway": 0.7372,
+       "state_year": 0.7185,
+       "saturated": 0.1588,
+       "controls": 0.829,
+       "imputation": 0.5216,
+       "sdid": 0.6564,
+       "gsynth": 0.1602,
+       "classes": [
+        "2032",
+        "4000",
+        "4512",
+        "6419",
+        "7000"
+       ]
+      },
+      {
+       "twoway": 1.4814,
+       "state_year": 1.4309,
+       "saturated": 0.1355,
+       "controls": 1.5573,
+       "imputation": 0.4569,
+       "sdid": 1.3371,
+       "gsynth": -0.1625,
+       "classes": [
+        "1214",
+        "3911",
+        "4242",
+        "6240",
+        "8539"
+       ]
+      },
+      {
+       "twoway": -1.0113,
+       "state_year": -1.0607,
+       "saturated": -0.2634,
+       "controls": -0.9304,
+       "imputation": 0.0289,
+       "sdid": -0.7998,
+       "gsynth": -0.9879,
+       "classes": [
+        "1214",
+        "2291",
+        "2293",
+        "3711",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -0.8089,
+       "state_year": -0.8506,
+       "saturated": -0.3345,
+       "controls": -0.7223,
+       "imputation": 0.0321,
+       "sdid": -0.6281,
+       "gsynth": -0.7961,
+       "classes": [
+        "0700",
+        "2512",
+        "3911",
+        "6322",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -1.0499,
+       "state_year": -1.1186,
+       "saturated": -0.3765,
+       "controls": -0.9733,
+       "imputation": 0.0001,
+       "sdid": -0.8534,
+       "gsynth": -1.0304,
+       "classes": [
+        "1012",
+        "1340",
+        "2394",
+        "6962",
+        "8601"
+       ]
+      },
+      {
+       "twoway": -0.9235,
+       "state_year": -0.9565,
+       "saturated": -0.153,
+       "controls": -0.8339,
+       "imputation": 0.0813,
+       "sdid": -0.7312,
+       "gsynth": 1.1946,
+       "classes": [
+        "1131",
+        "1172",
+        "1499",
+        "6962",
+        "8710"
+       ]
+      },
+      {
+       "twoway": -0.0001,
+       "state_year": -0.0284,
+       "saturated": -0.1528,
+       "controls": 0.0805,
+       "imputation": 0.2189,
+       "sdid": 0.1291,
+       "gsynth": 1.4878,
+       "classes": [
+        "0160",
+        "6419",
+        "6420",
+        "7000",
+        "8511"
+       ]
+      }
+     ]
+    },
+    "exits": {
+     "cells": 3346,
+     "rows": 28811,
+     "mean_rate": 13.06,
+     "layers": {
+      "twoway": {
+       "n": 24,
+       "sd": 0.653,
+       "mde": 1.83,
+       "mean": 0.045,
+       "rms": 0.641,
+       "ratio_to_twoway": 1.0
+      },
+      "state_year": {
+       "n": 24,
+       "sd": 0.656,
+       "mde": 1.838,
+       "mean": -0.031,
+       "rms": 0.643,
+       "ratio_to_twoway": 1.005
+      },
+      "saturated": {
+       "n": 24,
+       "sd": 0.473,
+       "mde": 1.326,
+       "mean": 0.225,
+       "rms": 0.515,
+       "ratio_to_twoway": 0.724
+      },
+      "controls": {
+       "n": 24,
+       "sd": 0.656,
+       "mde": 1.839,
+       "mean": -0.003,
+       "rms": 0.642,
+       "ratio_to_twoway": 1.005
+      },
+      "imputation": {
+       "n": 24,
+       "sd": 0.602,
+       "mde": 1.688,
+       "mean": 0.184,
+       "rms": 0.618,
+       "ratio_to_twoway": 0.922
+      },
+      "sdid": {
+       "n": 24,
+       "sd": 0.718,
+       "mde": 2.011,
+       "mean": 0.161,
+       "rms": 0.721,
+       "ratio_to_twoway": 1.1
+      },
+      "gsynth": {
+       "n": 24,
+       "sd": 0.311,
+       "mde": 0.871,
+       "mean": -0.087,
+       "rms": 0.316,
+       "ratio_to_twoway": 0.476
+      }
+     },
+     "placebo_estimates": [
+      {
+       "twoway": 0.15,
+       "state_year": 0.0751,
+       "saturated": -0.0934,
+       "controls": 0.105,
+       "imputation": -0.1806,
+       "sdid": 0.2136,
+       "gsynth": -0.014,
+       "classes": [
+        "0199",
+        "6924",
+        "8511",
+        "8512",
+        "9139"
+       ]
+      },
+      {
+       "twoway": -0.0053,
+       "state_year": -0.0784,
+       "saturated": 0.2487,
+       "controls": -0.0566,
+       "imputation": 0.2068,
+       "sdid": 0.0892,
+       "gsynth": 0.0883,
+       "classes": [
+        "1499",
+        "2391",
+        "2812",
+        "4245",
+        "6962"
+       ]
+      },
+      {
+       "twoway": 1.4267,
+       "state_year": 1.3617,
+       "saturated": 1.534,
+       "controls": 1.3968,
+       "imputation": 1.8513,
+       "sdid": 1.9831,
+       "gsynth": -0.0086,
+       "classes": [
+        "3493",
+        "4512",
+        "4900",
+        "5299",
+        "6970"
+       ]
+      },
+      {
+       "twoway": -0.0939,
+       "state_year": -0.1697,
+       "saturated": 0.1393,
+       "controls": -0.1464,
+       "imputation": 0.1203,
+       "sdid": 0.0109,
+       "gsynth": -0.0004,
+       "classes": [
+        "0113",
+        "1412",
+        "1620",
+        "4129",
+        "6962"
+       ]
+      },
+      {
+       "twoway": 2.0229,
+       "state_year": 1.9538,
+       "saturated": 1.4783,
+       "controls": 1.9888,
+       "imputation": 1.8696,
+       "sdid": 2.3918,
+       "gsynth": 0.1817,
+       "classes": [
+        "0111",
+        "1332",
+        "4212",
+        "5299",
+        "7311"
+       ]
+      },
+      {
+       "twoway": -0.0507,
+       "state_year": -0.1256,
+       "saturated": 0.2285,
+       "controls": -0.1032,
+       "imputation": 0.1985,
+       "sdid": 0.0189,
+       "gsynth": 0.0287,
+       "classes": [
+        "0803",
+        "1173",
+        "1411",
+        "2461",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -0.0366,
+       "state_year": -0.1105,
+       "saturated": 0.2093,
+       "controls": -0.089,
+       "imputation": 0.1877,
+       "sdid": 0.0378,
+       "gsynth": 0.0451,
+       "classes": [
+        "0412",
+        "2599",
+        "5521",
+        "5921",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -0.0305,
+       "state_year": -0.0936,
+       "saturated": 0.2145,
+       "controls": -0.0736,
+       "imputation": 0.1923,
+       "sdid": 0.0768,
+       "gsynth": 0.0721,
+       "classes": [
+        "1012",
+        "1351",
+        "2432",
+        "5029",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -0.4008,
+       "state_year": -0.496,
+       "saturated": 0.2276,
+       "controls": -0.46,
+       "imputation": 0.1056,
+       "sdid": -0.2724,
+       "gsynth": -0.3175,
+       "classes": [
+        "0809",
+        "3491",
+        "7000",
+        "9419",
+        "9532"
+       ]
+      },
+      {
+       "twoway": 0.5192,
+       "state_year": 0.4486,
+       "saturated": -0.1209,
+       "controls": 0.4852,
+       "imputation": -0.1672,
+       "sdid": 0.5235,
+       "gsynth": -0.2761,
+       "classes": [
+        "2293",
+        "2419",
+        "4610",
+        "8022",
+        "8511"
+       ]
+      },
+      {
+       "twoway": -0.4276,
+       "state_year": -0.5272,
+       "saturated": 0.1391,
+       "controls": -0.4947,
+       "imputation": 0.0569,
+       "sdid": -0.3093,
+       "gsynth": -0.3306,
+       "classes": [
+        "0805",
+        "3609",
+        "6962",
+        "7000",
+        "8921"
+       ]
+      },
+      {
+       "twoway": -0.0785,
+       "state_year": -0.1569,
+       "saturated": 0.1583,
+       "controls": -0.1328,
+       "imputation": 0.1584,
+       "sdid": 0.013,
+       "gsynth": 0.0044,
+       "classes": [
+        "1701",
+        "1813",
+        "5514",
+        "6962",
+        "6991"
+       ]
+      },
+      {
+       "twoway": -0.5634,
+       "state_year": -0.6215,
+       "saturated": 0.4677,
+       "controls": -0.5925,
+       "imputation": 0.3465,
+       "sdid": -0.4149,
+       "gsynth": -0.4287,
+       "classes": [
+        "2139",
+        "4121",
+        "5522",
+        "6240",
+        "6923"
+       ]
+      },
+      {
+       "twoway": -0.4894,
+       "state_year": -0.5147,
+       "saturated": 0.3378,
+       "controls": -0.4971,
+       "imputation": 0.1957,
+       "sdid": -0.4064,
+       "gsynth": -0.6018,
+       "classes": [
+        "0145",
+        "1312",
+        "3323",
+        "6923",
+        "8512"
+       ]
+      },
+      {
+       "twoway": -0.5782,
+       "state_year": -0.6697,
+       "saturated": -0.2336,
+       "controls": -0.6342,
+       "imputation": -0.3073,
+       "sdid": -0.4792,
+       "gsynth": -0.478,
+       "classes": [
+        "0142",
+        "1851",
+        "6240",
+        "6910",
+        "9113"
+       ]
+      },
+      {
+       "twoway": 1.2882,
+       "state_year": 1.2076,
+       "saturated": -0.727,
+       "controls": 1.2314,
+       "imputation": -1.1032,
+       "sdid": 1.2116,
+       "gsynth": 0.9437,
+       "classes": [
+        "4245",
+        "5102",
+        "5211",
+        "5220",
+        "7000"
+       ]
+      },
+      {
+       "twoway": -0.1098,
+       "state_year": -0.1847,
+       "saturated": 0.2366,
+       "controls": -0.1591,
+       "imputation": 0.1825,
+       "sdid": -0.042,
+       "gsynth": -0.033,
+       "classes": [
+        "0131",
+        "0133",
+        "0171",
+        "0801",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -0.3398,
+       "state_year": -0.4352,
+       "saturated": 0.409,
+       "controls": -0.3986,
+       "imputation": 0.3,
+       "sdid": -0.1864,
+       "gsynth": -0.2273,
+       "classes": [
+        "2032",
+        "4000",
+        "4512",
+        "6419",
+        "7000"
+       ]
+      },
+      {
+       "twoway": -0.367,
+       "state_year": -0.4491,
+       "saturated": -0.3439,
+       "controls": -0.4103,
+       "imputation": -0.4466,
+       "sdid": -0.2739,
+       "gsynth": -0.2944,
+       "classes": [
+        "1214",
+        "3911",
+        "4242",
+        "6240",
+        "8539"
+       ]
+      },
+      {
+       "twoway": -0.0741,
+       "state_year": -0.1487,
+       "saturated": 0.1499,
+       "controls": -0.1248,
+       "imputation": 0.0519,
+       "sdid": 0.0104,
+       "gsynth": 0.0079,
+       "classes": [
+        "1214",
+        "2291",
+        "2293",
+        "3711",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -0.0275,
+       "state_year": -0.1021,
+       "saturated": 0.3049,
+       "controls": -0.0787,
+       "imputation": 0.2669,
+       "sdid": 0.0665,
+       "gsynth": 0.0542,
+       "classes": [
+        "0700",
+        "2512",
+        "3911",
+        "6322",
+        "6962"
+       ]
+      },
+      {
+       "twoway": -0.1498,
+       "state_year": -0.2132,
+       "saturated": 0.3267,
+       "controls": -0.1925,
+       "imputation": 0.3042,
+       "sdid": -0.0553,
+       "gsynth": -0.046,
+       "classes": [
+        "1012",
+        "1340",
+        "2394",
+        "6962",
+        "8601"
+       ]
+      },
+      {
+       "twoway": -0.0297,
+       "state_year": -0.1038,
+       "saturated": 0.0627,
+       "controls": -0.0826,
+       "imputation": 0.0727,
+       "sdid": 0.0444,
+       "gsynth": 0.0556,
+       "classes": [
+        "1131",
+        "1172",
+        "1499",
+        "6962",
+        "8710"
+       ]
+      },
+      {
+       "twoway": -0.4811,
+       "state_year": -0.5923,
+       "saturated": 0.0484,
+       "controls": -0.5428,
+       "imputation": -0.0483,
+       "sdid": -0.3963,
+       "gsynth": -0.5054,
+       "classes": [
+        "0160",
+        "6419",
+        "6420",
+        "7000",
+        "8511"
+       ]
+      }
+     ]
+    }
+   }
+  }
+ ]
+}
