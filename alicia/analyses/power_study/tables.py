@@ -41,29 +41,42 @@ def mde_table(reforms: list[dict], measure: str, registered: bool) -> list[str]:
     return out
 
 
-def family_table(reforms: list[dict], measure: str, key: str = "outcomes") -> list[str]:
-    """For each reform: two-way and saturated MDE, and the best layer, under each placebo family."""
-    cols = ["Reform", "Family", "Draws", "Two-way", "Saturated", "Synthetic DiD", "Best layer"]
+def _err(layer: dict) -> str:
+    """Mean (systematic error) / root mean square (total error) of the placebo estimates."""
+    if layer["mean"] is None:
+        return "—"
+    return f"{layer['mean']:+.1f} / {layer['rms']:.1f}"
+
+
+ERR_LAYERS = ("twoway", "saturated", "imputation", "sdid")
+
+
+def _family_rows(fams: dict, lead: list[str], labels) -> list[str]:
+    rows, first = [], True
+    for fam, label in labels:
+        f = fams.get(fam)
+        if not f or f["draws"] < MIN_DRAWS:
+            continue
+        lay = f["layers"]
+        ok = {k: v["rms"] for k, v in lay.items() if v["rms"] is not None}
+        best = min(ok, key=ok.get) if ok else None
+        cells = [*(lead if first else [""] * len(lead)), label, str(f["draws"])]
+        cells += [_err(lay[k]) for k in ERR_LAYERS] + [HEAD[LAYERS.index(best)] if best else "—"]
+        rows.append("| " + " | ".join(cells) + " |")
+        first = False
+    return rows
+
+
+def family_table(reforms: list[dict], measure: str) -> list[str]:
+    """Each placebo family: mean / RMS of placebo estimates for four layers, and the layer with the smallest RMS."""
+    cols = ["Reform", "Family", "Draws", "Two-way", "Saturated", "Imputation", "Synthetic DiD", "Smallest RMS"]
     out = ["| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
     for r in reforms:
-        o = r[key].get(measure)
+        o = r["outcomes"].get(measure)
         if not o:
             continue
         fams = {"industries": {"draws": len(o["placebo_estimates"]), "layers": o["layers"]}, **o.get("families", {})}
-        first = True
-        for fam, label in FAMILIES:
-            f = fams.get(fam)
-            if not f or f["draws"] < MIN_DRAWS:
-                continue
-            lay = f["layers"]
-            ok = {k: v["mde"] for k, v in lay.items() if v["mde"] is not None}
-            best = min(ok, key=ok.get) if ok else None
-            name = r.get("title", r.get("name")) if first else ""
-            out.append(
-                f"| {name} | {label} | {f['draws']} | {_fmt(lay['twoway']['mde'])} | {_fmt(lay['saturated']['mde'])} | "
-                f"{_fmt(lay['sdid']['mde'])} | {HEAD[LAYERS.index(best)] if best else '—'} |"
-            )
-            first = False
+        out += _family_rows(fams, [r["title"]], FAMILIES)
     return out
 
 
@@ -78,36 +91,13 @@ def price_table(reforms: list[dict]) -> list[str]:
 
 
 def price_family_table(reforms: list[dict]) -> list[str]:
-    cols = ["Reform", "CPI class", "Family", "Draws", "Two-way", "Saturated", "Synthetic DiD", "Best layer"]
+    cols = ["Reform", "CPI class", "Family", "Draws", *(HEAD[LAYERS.index(k)] for k in ERR_LAYERS), "Smallest RMS"]
     out = ["| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
+    labels = (("industries", "Placebo classes"), *FAMILIES[1:])
     for r in reforms:
         for o in r["outcomes"].values():
             fams = {"industries": {"draws": len(o["placebo_estimates"]), "layers": o["layers"]}, **o["families"]}
-            first = True
-            for fam, label in (("industries", "Placebo classes"), *FAMILIES[1:]):
-                f = fams.get(fam)
-                if not f or f["draws"] < MIN_DRAWS:
-                    continue
-                lay = f["layers"]
-                ok = {k: v["mde"] for k, v in lay.items() if v["mde"] is not None}
-                best = min(ok, key=ok.get) if ok else None
-                lead = [r["title"], o["name"]] if first else ["", ""]
-                out.append(
-                    "| "
-                    + " | ".join(
-                        [
-                            *lead,
-                            label,
-                            str(f["draws"]),
-                            _fmt(lay["twoway"]["mde"]),
-                            _fmt(lay["saturated"]["mde"]),
-                            _fmt(lay["sdid"]["mde"]),
-                            HEAD[LAYERS.index(best)] if best else "—",
-                        ]
-                    )
-                    + " |"
-                )
-                first = False
+            out += _family_rows(fams, [r["title"], o["name"]], labels)
     return out
 
 
