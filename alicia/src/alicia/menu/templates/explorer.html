@@ -71,6 +71,10 @@ header.top { display: grid; gap: 8px; }
 .meta-line { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--ink-3); font-size: var(--step--1); }
 .notice { background: var(--warn-soft); color: var(--ink); border-left: 3px solid var(--warn-ink); padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: var(--step--1); max-width: 100ch; }
 .notice strong { color: var(--warn-ink); }
+.site-nav { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+.site-nav a { padding: 8px 12px; color: var(--ink-2); text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.site-nav a:hover { color: var(--ink); }
+.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
 
 /* Filters */
 .filters { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
@@ -232,6 +236,7 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
 
 <div class="wrap">
   <header class="top">
+    <!--__NAV__-->
     <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
     <h1>Legislation Menu</h1>
     <p class="lede">Commonwealth, state and territory changes that could be evaluated for their effects on competition (business entry and exit, prices and productivity) with public data. Each change carries a hypothesised direction, its effective date and an evaluability screen. Evaluated changes show what the data found.</p>

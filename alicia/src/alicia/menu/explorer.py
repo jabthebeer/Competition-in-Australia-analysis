@@ -186,11 +186,12 @@ def build_payload(
     }
 
 
-def render(payload: dict, standalone: bool = False) -> str:
+def render(payload: dict, standalone: bool = False, nav: str = "") -> str:
+    """``nav`` is the site navigation (``growth.nav``), set when the page is built with the other pages."""
     template = resources.files("alicia.menu").joinpath("templates/explorer.html").read_text("utf-8")
     # Embed the data safely inside <script type="application/json">.
     blob = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    page = template.replace("__MENU_DATA__", blob)
+    page = template.replace("<!--__NAV__-->", nav).replace("__MENU_DATA__", blob)
     if standalone:
         page = (
             '<!doctype html>\n<html lang="en-AU">\n<head>\n<meta charset="utf-8">\n'
@@ -207,8 +208,9 @@ def build_explorer(
     standalone: bool = False,
     evaluations: list[Evaluation] | None = None,
     repo_base: str | None = None,
+    nav: str = "",
 ) -> Path:
     report = json.loads(dates_report.read_text("utf-8")) if dates_report and dates_report.exists() else None
     payload = build_payload(records, report, evaluations=evaluations, repo_base=repo_base)
-    out.write_text(render(payload, standalone), encoding="utf-8")
+    out.write_text(render(payload, standalone, nav), encoding="utf-8")
     return out

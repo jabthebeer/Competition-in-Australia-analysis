@@ -6,6 +6,7 @@ alicia show <id>                     one record in full
 alicia families                      reforms adopted by several jurisdictions, in date order
 alicia dates <id>... | --all         gather effective dates and check them against registers
 alicia explorer [-o file.html]       build the interactive menu explorer (one HTML file)
+alicia site [-o dir]                 build the website: the menu plus the growth and conditions pages
 alicia pipeline build <source>...    build outcome panels in data/processed (see alicia.pipeline.sources)
 alicia pipeline catalogue            summarise every processed panel for coverage matching
 alicia data <id>                     which data panels can measure a change, at what industry and area level
@@ -193,6 +194,26 @@ def cmd_explorer(args) -> int:
     return 0
 
 
+def cmd_site(args) -> int:
+    from .menu.growth import build_site
+
+    records = _load(args)
+    evals = load_evaluations(records, Path(args.evaluations) if args.evaluations else None)
+    if evals.problems:
+        print(f"{len(evals.problems)} problem(s) in the evaluations; run 'alicia validate'.", file=sys.stderr)
+    paths = build_site(
+        Path(args.output),
+        records,
+        evals.evaluations,
+        dates_report=Path(args.dates) if args.dates else None,
+        standalone=not args.fragment,
+        repo_base=args.repo_base,
+    )
+    for p in paths:
+        print(f"Wrote {p}")
+    return 0
+
+
 BUILDERS = {
     "abs_cabee": "alicia.pipeline.abs_cabee",
     "abs_cabee_local": "alicia.pipeline.abs_cabee_local",
@@ -292,6 +313,15 @@ def main(argv: list[str] | None = None) -> int:
     e.add_argument("--standalone", action="store_true", help="wrap in a full HTML document for local viewing")
     e.add_argument("--repo-base", default=None, help="URL that evaluation document paths are linked under")
     e.set_defaults(func=cmd_explorer)
+
+    si = sub.add_parser("site", help="build the website: legislation menu, growth and conditions pages")
+    si.add_argument(
+        "-o", "--output", default="site", help="directory to write index.html, growth.html, conditions.html"
+    )
+    si.add_argument("--dates", help="a report from 'alicia dates --all --json', to show register checks")
+    si.add_argument("--fragment", action="store_true", help="write page fragments instead of full HTML documents")
+    si.add_argument("--repo-base", default=None, help="URL that repository paths are linked under")
+    si.set_defaults(func=cmd_site)
 
     pl = sub.add_parser("pipeline", help="build outcome panels and the coverage catalogue")
     pl.add_argument("action", choices=["build", "catalogue"])
