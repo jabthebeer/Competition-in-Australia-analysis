@@ -198,6 +198,28 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
 .cat strong { font-size: var(--step-0); font-weight: 600; }
 .cat p { margin: 0; color: var(--ink-2); }
 .ev-sec { display: grid; gap: 8px; min-width: 0; }
+.ev-insights { background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; display: grid; gap: 6px; max-width: 80ch; }
+.ev-insights h3 { color: var(--accent); }
+.ev-insights ul { margin: 0; padding-left: 1.1em; display: grid; gap: 5px; font-size: var(--step--1); line-height: 1.5; }
+.ev-insights li::marker { color: var(--accent); }
+.ev-deep { display: grid; gap: 18px; min-width: 0; border-top: 1px solid var(--line); padding-top: 14px; }
+details.ev-deep > summary { cursor: pointer; font-weight: 600; font-size: var(--step--1); color: var(--accent); width: max-content; max-width: 100%; }
+details.ev-deep[open] > summary { margin-bottom: 4px; }
+.ev-deep-h { font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; text-transform: none; letter-spacing: 0; color: var(--ink); }
+.steps { margin: 0; padding-left: 1.4em; display: grid; gap: 5px; font-size: var(--step--1); max-width: 85ch; }
+.method-sum { margin: 0; font-size: var(--step--1); max-width: 85ch; }
+.eqs { display: grid; gap: 8px; }
+.eq { margin: 0; display: grid; gap: 2px; min-width: 0; }
+.eq figcaption { font-size: 0.75rem; color: var(--ink-3); }
+.eq-math { font-family: var(--font-display); font-size: var(--step-0); line-height: 1.7; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; overflow-x: auto; white-space: nowrap; }
+.eq-math sub, .eq-math sup, .terms sub, .terms sup, .kv sub, .kv sup { font-size: 0.72em; line-height: 0; }
+.ss { display: inline-flex; flex-direction: column; vertical-align: middle; font-size: 0.72em; line-height: 1.05; margin: 0 0.05em; text-align: left; }
+.hat { position: relative; display: inline-block; }
+.hat::after { content: "^"; position: absolute; left: 50%; top: -0.38em; transform: translateX(-45%); font-size: 0.8em; line-height: 1; }
+.terms { display: grid; grid-template-columns: minmax(0, max-content) minmax(0, 1fr); gap: 4px 14px; margin: 0; font-size: var(--step--1); max-width: 90ch; }
+.terms dt { font-family: var(--font-display); white-space: nowrap; }
+.terms dd { margin: 0; color: var(--ink-2); }
+@container (max-width: 520px) { .terms { grid-template-columns: minmax(0, 1fr); } .terms dd { margin-bottom: 4px; } }
 .fx { display: grid; gap: 16px; max-width: 760px; }
 .fx-group { display: grid; gap: 2px; }
 .fx-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 10px; align-items: baseline; border-bottom: 1px solid var(--line); padding: 0 4px 4px; margin-bottom: 4px; }
@@ -420,8 +442,41 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
     <div class="key"><span>${keyDot(false)}Estimate by year</span>${anyBand ? `<span>${keyBand("var(--est-band)")}90% range across placebo groups</span>` : ""}<span>${keyDash}Reform starts</span></div>`;
   }
 
+  // Equations and symbols: plain text with _{...} subscripts, ^{...} superscripts and hat{...} estimates.
+  function mathHtml(text) {
+    let h = esc(text).replace(/hat\{([^{}]*)\}/g, '<span class="hat">$1</span>');
+    h = h.replace(/\^\{([^{}]*)\}_\{([^{}]*)\}|_\{([^{}]*)\}\^\{([^{}]*)\}/g, (m, a, b, c, d) =>
+      `<span class="ss"><span>${a ?? d}</span><span>${b ?? c}</span></span>`);
+    for (let i = 0; i < 4; i++) h = h.replace(/_\{([^{}]*)\}/g, "<sub>$1</sub>").replace(/\^\{([^{}]*)\}/g, "<sup>$1</sup>");
+    return h;
+  }
+  const mathPlain = (text) => String(text).replace(/hat\{([^{}]*)\}/g, "$1-hat").replace(/[_^]\{([^{}]*)\}/g, " $1 ");
+  function insightsHtml(ev) {
+    if (!ev.key_insights || !ev.key_insights.length) return "";
+    const item = (t) => {
+      const i = t.indexOf(": ");
+      return i > 0 && i < 30 ? `<li><strong>${esc(t.slice(0, i + 1))}</strong> ${esc(t.slice(i + 2))}</li>` : `<li>${esc(t)}</li>`;
+    };
+    return `<section class="ev-insights" aria-label="Key insights"><h3>Key insights</h3><ul>${ev.key_insights.map(item).join("")}</ul></section>`;
+  }
+  function methodHtml(ev) {
+    const m = ev.method;
+    if (!m) return "";
+    return `<section class="ev-sec"><h3>What we did</h3><ol class="steps">${m.steps.map((s) => `<li>${mathHtml(s)}</li>`).join("")}</ol></section>
+      <section class="ev-sec"><h3>Econometric model</h3>
+        <p class="method-sum">${mathHtml(m.summary)}</p>
+        <div class="eqs">${m.equations.map((e) => `<figure class="eq">${e.label ? `<figcaption>${esc(e.label)}</figcaption>` : ""}<div class="eq-math" role="math" aria-label="${esc(mathPlain(e.text))}">${mathHtml(e.text)}</div></figure>`).join("")}</div>
+        ${m.terms.length ? `<p class="small muted" style="margin:0">where</p><dl class="terms">${m.terms.map((t) => `<dt>${mathHtml(t.symbol)}</dt><dd>${mathHtml(t.meaning)}</dd>`).join("")}</dl>` : ""}
+        <dl class="kv"><dt>Estimand</dt><dd>${mathHtml(m.estimand)}</dd><dt>Identifying assumption</dt><dd>${mathHtml(m.identification)}</dd><dt>Inference</dt><dd>${mathHtml(m.inference)}</dd></dl>
+      </section>`;
+  }
+
   function evalBody(ev, currentId) {
     const others = ev.records.filter((id) => id !== currentId).map((id) => R.find((r) => r.id === id)).filter(Boolean);
+    const deepOpen = currentId
+      ? `<details class="ev-deep"><summary>In depth: what we did, the econometric model and the full results</summary>`
+      : `<div class="ev-deep"><h3 class="ev-deep-h">In depth</h3>`;
+    const deepClose = currentId ? "</details>" : "</div>";
     return `<div class="ev-body">
       <div class="ev-badges">
         <span class="pill ${VERDICT[ev.verdict].cls}">${esc(VERDICT[ev.verdict].label)}</span>
@@ -430,20 +485,24 @@ footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; displ
         <span class="dir">${shapeIcon(ev.hypothesis)}Hypothesis tested: ${esc(DIR[ev.hypothesis].label.toLowerCase())}</span>
       </div>
       <p class="ev-headline">${esc(ev.headline)}</p>
+      ${insightsHtml(ev)}
       ${currentId && others.length ? `<p class="small muted">This evaluation also covers ${others.map((r) => `<button type="button" class="linkbtn recbtn-inline" data-id="${esc(r.id)}">${esc(r.title)}</button>`).join(", ")}.</p>` : ""}
       ${evalLinks(ev)}
+      ${deepOpen}
+      ${methodHtml(ev)}
       <div class="cats">${Object.entries(ev.category_summaries).map(([c, txt]) => {
         const [first, rest] = splitFirst(txt);
         return `<div class="cat"><span class="cat-label">${esc(CAT[c] || c)}</span><strong>${esc(first)}</strong>${rest ? `<p>${esc(rest)}</p>` : ""}</div>`;
       }).join("")}</div>
       <section class="ev-sec"><h3>Estimated effects</h3>${effectsHtml(ev)}</section>
       <section class="ev-sec"><h3>Year by year</h3>${eventsHtml(ev)}</section>
-      <section class="ev-sec"><h3>How it was estimated</h3><dl class="kv">
+      <section class="ev-sec"><h3>Design summary</h3><dl class="kv">
         <dt>Design</dt><dd>${esc(ev.design)}</dd><dt>Comparison</dt><dd>${esc(ev.comparison)}</dd>
         <dt>Window</dt><dd>${esc(ev.window)}</dd><dt>Grade</dt><dd>${esc(ev.grade)}. ${esc(ev.grade_reason)}</dd>
         <dt>Evaluated</dt><dd>${esc(fmtDate(ev.evaluated_on))}</dd></dl></section>
       ${ev.caveats.length ? `<section class="ev-sec"><h3>Caveats</h3><ul class="d-list">${ev.caveats.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></section>` : ""}
       ${ev.documents.length ? `<div class="ev-docs">${ev.documents.map((d) => link(docUrl(d.path), d.label)).join("")}</div>` : ""}
+      ${deepClose}
     </div>`;
   }
 

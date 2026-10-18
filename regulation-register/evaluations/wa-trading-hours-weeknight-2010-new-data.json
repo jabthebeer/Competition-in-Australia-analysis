@@ -21,6 +21,70 @@
     "productivity": "No detectable change in sales, and the result is fragile. Turnover of the stores covered: +2.0% (p = 0.50). Hours worked are descriptive only: +1.6%.",
     "prices": "Not re-estimated. The first evaluation's food-price estimate reflected a trend that began before the reform."
   },
+  "key_insights": [
+    "The question: did letting Perth's general retail shops open until 9pm on weeknights (from 1 November 2010) change the number of retail businesses or how much the shops sold?",
+    "The comparisons: retail business numbers in metropolitan Perth against regional WA, net of other industries and set against the same city-versus-country gap in other states; and monthly sales of the shops covered (supermarkets, clothing and department stores) in WA against NSW, Victoria, Queensland and the ACT.",
+    "What we found: no detectable change. Perth's retail business count moved −1.8% relative to regional WA (90% interval −5.8 to +4.2); the shops' sales moved +2.0% (−4.4 to +7.2).",
+    "How precise: changes of about 10% or more in either could have been detected; smaller ones could not.",
+    "What it means: the business-count result is robust. The sales result is not: removing each state's earlier trend pushes it up, and netting out cafes and restaurants pushes it down, so the sign depends on the comparison. Hours worked were too noisy to use."
+  ],
+  "method": {
+    "summary": "Difference-in-differences with one treated unit and two-way fixed effects, for each of three data sources. Inference from no-effect distributions (fake dates, comparison states and placebo industries), not from standard errors.",
+    "equations": [
+      {
+        "label": "C. Retail businesses by place (primary): the outcome for division x in state s",
+        "text": "g_{x,s,t} = [100 ln B^{cap}_{x,s,t} − 100 ln B^{rest}_{x,s,t}] − [100 ln B^{cap}_{o,s,t} − 100 ln B^{rest}_{o,s,t}]"
+      },
+      {
+        "label": "C. Estimator (units u = division × state; treated unit: retail in WA)",
+        "text": "g_{u,t} = α_{u} + λ_{t} + δ_{C} · D_{u,t} + ε_{u,t}"
+      },
+      {
+        "label": "A. Turnover of the shops covered (primary), monthly",
+        "text": "100 ln R_{s,m} = α_{s} + λ_{m} + δ_{A} · D_{s,m} + ε_{s,m}"
+      },
+      {
+        "label": "B. Hours worked (descriptive), mid-quarter months",
+        "text": "100 ln H_{s,q} = α_{s} + λ_{q} + δ_{B} · D_{s,q} + ε_{s,q}"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "B^{cap}_{x,s,t}, B^{rest}_{x,s,t}",
+        "meaning": "Businesses in division x at 30 June of year t in the capital (for WA, metropolitan Perth, SA4s 503–507) and in the rest of the state (CABEE by SA2, two releases chained at June 2011)"
+      },
+      {
+        "symbol": "o",
+        "meaning": "All other divisions together, excluding retail (G), accommodation and food (H) and x"
+      },
+      {
+        "symbol": "D",
+        "meaning": "1 for the treated unit after the reform: June 2011 and 2012 for C; November 2010 to July 2012 for A (July to October 2010 left out); November 2010 to May 2012 for B"
+      },
+      {
+        "symbol": "R_{s,m}",
+        "meaning": "Seasonally adjusted turnover of supermarkets and grocery stores, clothing and department stores in state s, month m (ABS Retail Trade)"
+      },
+      {
+        "symbol": "H_{s,q}",
+        "meaning": "Hours actually worked in ANZSIC groups 411, 425 and 426 (Labour Force EQ06)"
+      },
+      {
+        "symbol": "α, λ",
+        "meaning": "Unit and period fixed effects"
+      }
+    ],
+    "estimand": "C: the change in metropolitan Perth's retail business count relative to regional WA, beyond the same change for other industries and for capitals in other states (log points, about %). A: the change in WA turnover of the shops covered relative to comparison states (log points).",
+    "identification": "C: without the reform, Perth's retail count relative to regional WA would have moved like other industries' and like retail's city-versus-country gap in other states (a triple difference). A: WA turnover of these shops would have moved like the comparison states'. Both passed the design-stage fake-date checks; B failed its check and is descriptive only.",
+    "inference": "No conventional standard errors (one treated state). A and B: estimates at every fake date from January 1995 whose window ends before the reform, plus each comparison state at the real date (834 estimates for A). C: every other division in every state as if treated, plus retail in each comparison state, cells of at least 1,000 businesses (59 estimates). p-value: two-sided rank; 90% interval: estimate minus the 95th and 5th percentiles (Conley and Taber 2011); smallest detectable effect: 2.8 × standard deviation; Benjamini–Hochberg q-values across the two primaries.",
+    "steps": [
+      "Added three data sources the first evaluation did not use: CABEE business counts by SA2 (two archived releases), ABS Retail Trade monthly turnover and Labour Force hours by industry group.",
+      "Design-stage review with WA's post-reform outcomes hidden in code: chose the comparison states, windows and placebo pools, and measured power (docs/pap_wa_weeknight_2010.md).",
+      "Wrote the plan; a blinded dry run reproduced the design-stage no-effect distributions; plan and code were registered by SHA-256 before one unblinded run.",
+      "Estimated each design and its year-by-year path, then every registered robustness check (small businesses only, Mandurah in Perth, WA outback left out, no size floor, each state's trend removed, triple differences against food services and the rest of retail, each store type alone).",
+      "Applied the plan's findings, verdict and grading rules."
+    ]
+  },
   "preregistered": true,
   "outcomes": [
     {

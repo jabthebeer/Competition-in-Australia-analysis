@@ -204,3 +204,35 @@ def test_nqf_wa_evaluation_matches_the_registered_run():
     es = {e.outcome: e for e in ev.event_studies}
     assert [p.estimate for p in es["childcare-exits"].points] == [p["gap"] for p in paths["exits"]]
     assert ev.verdict == ("inconclusive" if est["exits"]["main"]["pooled"]["p"] >= 0.10 else ev.verdict)
+
+
+def test_every_evaluation_has_key_insights_and_an_in_depth_method():
+    import re
+
+    from alicia.register.catalogue import load_records
+
+    records = load_records().records
+    evals = load_evaluations(records).evaluations
+    assert evals
+    for ev in evals:
+        assert len(ev.key_insights) >= 4, ev.id
+        assert ev.key_insights[0].startswith("The question:"), ev.id
+        m = ev.method
+        assert m is not None and m.equations and m.steps, ev.id
+        texts = [e.text for e in m.equations] + [t.symbol for t in m.terms] + [m.inference, m.summary]
+        for t in texts:
+            # Markup is balanced and never nested: _{...}, ^{...} and hat{...} only.
+            assert t.count("{") == t.count("}"), (ev.id, t)
+            assert not re.search(r"\{[^}]*\{", t), (ev.id, t)
+            assert "̂" not in t, (ev.id, t)  # combining hats render badly; use hat{...}
+
+
+def test_methods_document_is_up_to_date():
+    from alicia.register.catalogue import load_records
+    from alicia.register.evaluation import methods_markdown
+
+    records = load_records().records
+    doc = Path(__file__).resolve().parents[2] / "docs" / "evaluation_methods.md"
+    assert doc.read_text("utf-8") == methods_markdown(load_evaluations(records).evaluations), (
+        "regenerate with: uv run alicia methods -o ../docs/evaluation_methods.md"
+    )

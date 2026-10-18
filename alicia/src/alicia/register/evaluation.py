@@ -115,6 +115,34 @@ class Document(_Strict):
     path: str = Field(pattern=r"^[A-Za-z0-9_./-]+$", description="Path relative to the repository root")
 
 
+MATH_FORMAT = (
+    "Plain text; _{...} marks a subscript, ^{...} a superscript and hat{...} an estimate (rendered by the menu "
+    "explorer)"
+)
+
+
+class Equation(_Strict):
+    label: str = ""
+    text: str = Field(min_length=1, description=MATH_FORMAT)
+
+
+class Term(_Strict):
+    symbol: str = Field(min_length=1, description=MATH_FORMAT)
+    meaning: str = Field(min_length=1)
+
+
+class Method(_Strict):
+    """The econometrics in depth: what was estimated, how, and what it assumes."""
+
+    summary: str = Field(min_length=1, description="The estimator in one or two sentences")
+    equations: tuple[Equation, ...] = Field(min_length=1)
+    terms: tuple[Term, ...] = ()
+    estimand: str = Field(min_length=1, description="What the main coefficient measures, in words")
+    identification: str = Field(min_length=1, description="The assumption that makes it causal")
+    inference: str = Field(min_length=1, description="How uncertainty is measured")
+    steps: tuple[str, ...] = Field(min_length=1, description="What was done, in order")
+
+
 class Evaluation(_Strict):
     id: RecordId
     title: str = Field(min_length=1)
@@ -134,6 +162,10 @@ class Evaluation(_Strict):
     grade_reason: str = Field(min_length=1)
     headline: str = Field(min_length=1)
     category_summaries: dict[Category, str]
+    key_insights: tuple[str, ...] = Field(
+        (), description="Plain-language summary for non-specialists: question, comparison, finding, precision, meaning"
+    )
+    method: Method | None = None
     preregistered: bool
     outcomes: tuple[OutcomeResult, ...] = Field(min_length=1)
     event_studies: tuple[EventStudy, ...] = ()
@@ -226,3 +258,44 @@ def json_schema() -> dict:
     schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
     schema["title"] = "Evaluation result"
     return schema
+
+
+def _md_math(text: str) -> str:
+    """Equation markup to GitHub Markdown: subscripts and superscripts as HTML, hats as combining marks."""
+    import re
+
+    out = re.sub(r"hat\{([^{}]*)\}", lambda m: m.group(1) + "̂", text)
+    out = re.sub(r"_\{([^{}]*)\}", r"<sub>\1</sub>", out)
+    return re.sub(r"\^\{([^{}]*)\}", r"<sup>\1</sup>", out)
+
+
+def methods_markdown(evaluations: list[Evaluation]) -> str:
+    """Key insights and the econometrics in depth for every evaluation, as one Markdown document."""
+    lines = [
+        "# Evaluations: key insights and methods",
+        "",
+        "Generated from `regulation-register/evaluations/` by `alicia methods`. Do not edit by hand: change the "
+        "analysis's builder script and regenerate.",
+        "",
+    ]
+    for ev in sorted(evaluations, key=lambda e: (e.evaluated_on, e.id)):
+        lines += [f"## {ev.title}", "", f"`{ev.id}` · evaluated {ev.evaluated_on:%d %B %Y} · grade {ev.grade}", ""]
+        lines += [ev.headline, ""]
+        if ev.key_insights:
+            lines += ["**Key insights**", ""] + [f"- {k}" for k in ev.key_insights] + [""]
+        m = ev.method
+        if m:
+            lines += ["**What we did**", ""] + [f"{i}. {_md_math(s)}" for i, s in enumerate(m.steps, 1)] + [""]
+            lines += ["**Econometric model**", "", _md_math(m.summary), ""]
+            for e in m.equations:
+                lines += ([f"*{e.label}*", ""] if e.label else []) + [f"> {_md_math(e.text)}", ""]
+            if m.terms:
+                lines += ["| Symbol | Meaning |", "|---|---|"]
+                lines += [f"| {_md_math(t.symbol)} | {_md_math(t.meaning)} |" for t in m.terms] + [""]
+            lines += [
+                f"- **Estimand:** {_md_math(m.estimand)}",
+                f"- **Identifying assumption:** {_md_math(m.identification)}",
+                f"- **Inference:** {_md_math(m.inference)}",
+                "",
+            ]
+    return "\n".join(lines).rstrip() + "\n"

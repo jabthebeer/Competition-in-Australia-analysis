@@ -50,7 +50,8 @@ EVALUATION_NOTE = (
     "Evaluated changes have a pre-registered analysis in this repository: a plan committed before the "
     "results were estimated, a graded result and its caveats. A record's direction stays a hypothesis; the "
     "evaluation says what the data showed. Grades follow the evaluation design: Strong, Moderate, Weak or "
-    "Not identified."
+    "Not identified. Each evaluation opens with key insights in plain language, then the econometrics in depth: "
+    "what was done, the model's equations and assumptions, and the full results."
 )
 CHECK_NOTE = (
     "Effective dates are checked against the official legislation registers by 'alicia dates'. "

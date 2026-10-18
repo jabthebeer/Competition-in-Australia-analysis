@@ -7,6 +7,7 @@ alicia families                      reforms adopted by several jurisdictions, i
 alicia dates <id>... | --all         gather effective dates and check them against registers
 alicia explorer [-o file.html]       build the interactive menu explorer (one HTML file)
 alicia site [-o dir]                 build the website: the menu plus the growth and conditions pages
+alicia methods [-o file.md]          key insights and econometric methods of every evaluation, as Markdown
 alicia pipeline build <source>...    build outcome panels in data/processed (see alicia.pipeline.sources)
 alicia pipeline catalogue            summarise every processed panel for coverage matching
 alicia data <id>                     which data panels can measure a change, at what industry and area level
@@ -194,6 +195,20 @@ def cmd_explorer(args) -> int:
     return 0
 
 
+def cmd_methods(args) -> int:
+    from .register.evaluation import methods_markdown
+
+    records = _load(args)
+    evals = load_evaluations(records, Path(args.evaluations) if args.evaluations else None)
+    text = methods_markdown(evals.evaluations)
+    if args.output:
+        Path(args.output).write_text(text, encoding="utf-8")
+        print(f"Wrote {args.output}")
+    else:
+        print(text)
+    return 0
+
+
 def cmd_site(args) -> int:
     from .menu.growth import build_site
 
@@ -322,6 +337,10 @@ def main(argv: list[str] | None = None) -> int:
     si.add_argument("--fragment", action="store_true", help="write page fragments instead of full HTML documents")
     si.add_argument("--repo-base", default=None, help="URL that repository paths are linked under")
     si.set_defaults(func=cmd_site)
+
+    me = sub.add_parser("methods", help="key insights and methods of every evaluation, as Markdown")
+    me.add_argument("-o", "--output", help="file to write (default: print)")
+    me.set_defaults(func=cmd_methods)
 
     pl = sub.add_parser("pipeline", help="build outcome panels and the coverage catalogue")
     pl.add_argument("action", choices=["build", "catalogue"])

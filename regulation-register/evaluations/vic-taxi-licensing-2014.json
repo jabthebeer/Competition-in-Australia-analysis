@@ -21,6 +21,81 @@
     "prices": "Descriptive only. Melbourne urban transport fares fell −10.7% relative to other capitals, most likely because of public transport fare changes from January 2015, not taxis.",
     "productivity": "Not measurable at division level. Shown for description only."
   },
+  "key_insights": [
+    "The question: did as-of-right taxi licences in Victoria (2014) change how many taxi and road transport businesses started or closed?",
+    "The comparison: Victoria against all other states in 2014-15, the one year before ride-sharing and driver GST rules changed the market. Changes shared by every industry in the same states (a state's boom or slump) were removed by subtracting the same comparison for industries the reform did not touch.",
+    "What we found: no detectable change. Openings moved −1.4 per 100 businesses (90% interval −3.4 to +0.9) and closures −1.4 (−3.6 to +0.8).",
+    "How precise: a rise in openings of more than about 0.9 per 100 is ruled out.",
+    "What it means: graded Weak. Unlicensed UberX arrived in Melbourne in the same year, and only one year can be used."
+  ],
+  "method": {
+    "summary": "Stacked difference-in-differences with clean comparison states, net of the same estimate for unaffected industries in the same states (a triple difference), with inference from placebo industries.",
+    "equations": [
+      {
+        "label": "For each cohort c (states adopting together), over its window",
+        "text": "y_{s,t} = α_{s} + λ_{t} + β_{c} · D_{s,t} + ε_{s,t},   s ∈ treated_{c} ∪ comparison_{c}"
+      },
+      {
+        "label": "Stacked across cohorts",
+        "text": "hat{β} = Σ_{c} n_{c} hat{β}_{c} / Σ_{c} n_{c}"
+      },
+      {
+        "label": "Reported estimate: net of unaffected industries",
+        "text": "hat{β}^{net} = hat{β} − (1/P) Σ_{p=1}^{P} hat{β}_{p}"
+      },
+      {
+        "label": "Prices (capital cities, quarterly; same estimator, net of other CPI classes)",
+        "text": "y_{k,q} = 100 × ln(P^{class}_{k,q} / P^{all groups}_{k,q})"
+      },
+      {
+        "label": "Output and pay per worker (descriptive; net of other divisions)",
+        "text": "y_{s,t} = 100 × ln(GVA per worker_{s,t}) for the treated industry's division"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{s,t}",
+        "meaning": "Entries (or exits) per 100 businesses operating at the start of financial year t in state s, for the treated ANZSIC classes pooled (4623 Taxi and Other Road Transport)"
+      },
+      {
+        "symbol": "α_{s}, λ_{t}",
+        "meaning": "State and year fixed effects"
+      },
+      {
+        "symbol": "D_{s,t}",
+        "meaning": "1 for an adopting state from its first exposed financial year on, else 0"
+      },
+      {
+        "symbol": "n_{c}",
+        "meaning": "Number of treated states in cohort c"
+      },
+      {
+        "symbol": "hat{β}_{p}",
+        "meaning": "The same stacked estimate for placebo group p: classes outside the treated division, matched on size, in the same states and years"
+      },
+      {
+        "symbol": "P",
+        "meaning": "Number of placebo groups: 43 qualified on size, 43 with every year of the window"
+      },
+      {
+        "symbol": "P^{class}_{k,q}",
+        "meaning": "CPI for the expenditure class in capital city k, quarter q"
+      }
+    ],
+    "estimand": "The average change in the treated industries' entry (or exit) rate in the adopting states over the exposed years, relative to the comparison states, beyond the change for unaffected industries in the same states (VIC).",
+    "identification": "Without the reform, the treated industries' rate in the adopting states would have moved as in the comparison states once state-wide changes shared with unaffected industries are removed (triple-difference parallel trends). Checked with the pre-reform event-study coefficients.",
+    "inference": "No conventional standard errors (few treated states). p-value: two-sided rank of hat{β}^{net} among the P centred placebo estimates. 90% interval: hat{β}^{net} minus the 95th and 5th percentiles of the centred placebos (Conley and Taber 2011). Smallest detectable effect: 2.8 × their standard deviation.",
+    "steps": [
+      "Took the treated industries (4623 Taxi and Other Road Transport) and the adopting states and dates from the register records; cohorts: VIC in 2014-15 against NSW, QLD, SA, WA, TAS, ACT, NT. Comparison states are those not yet treated in each cohort's window.",
+      "Built yearly entry and exit rates from ABS Counts of Australian Businesses (registered release vintage), 2007-08 on, pooling the treated classes in each state.",
+      "Drew placebo groups of the same number of classes from outside the treated division, matched on size (3931 businesses in the treated states in 2013-14); 43 qualified.",
+      "Design stage with every treated outcome hidden: checked the feasibility rules (at least 100 treated businesses and 19 placebo groups) and the power, then committed the plan (docs/pap_high_evaluability.md).",
+      "Estimated the stacked difference-in-differences for the treated group and every placebo group, and subtracted the placebo mean.",
+      "Checked each pre-reform year against its 95% placebo band, and ran the registered robustness variants (the other ABS vintage, employing businesses only, leaving each state out).",
+      "Applied the plan's decision and grading rules, with Benjamini–Hochberg q-values across the batch.",
+      "Prices: the same estimator on each city's CPI class relative to its all-groups index, against placebo CPI classes, with a registered variant that removes each city's pre-reform linear trend."
+    ]
+  },
   "preregistered": true,
   "outcomes": [
     {

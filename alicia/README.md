@@ -12,7 +12,7 @@ A public-data toolkit for evaluating how Australian legislation and regulation a
 | Effective-date gatherer | Reads assent, commencement and version dates from the legislation registers and checks each record's effective date against them | Commonwealth, Qld, Tas, ACT, WA and NT automated; Victoria version dates only; NSW and SA blocked (sourced dates only) |
 | Timing | Maps a commencement onto financial years and quarters, with the partly exposed first period | Done |
 | Evaluability screen | Rates each change high, medium or low for public-data evaluation, with reasons | Done (rules stated in `menu/screen.py`) |
-| Menu explorer | One interactive HTML page: search and filters (including **Evaluated**), list, adoption timeline, record details, and a **Results** view with each evaluation's verdict, grade, estimated effects and year-by-year charts | Done |
+| Menu explorer | One interactive HTML page: search and filters (including **Evaluated**), list, adoption timeline, record details, and a **Results** view. Each evaluation opens with plain-language **key insights**, then **in depth**: what was done, the econometric model (equations, terms, estimand, identifying assumption, inference), estimated effects and year-by-year charts | Done |
 | Evaluation results | One validated file per evaluation in [`regulation-register/evaluations/`](../regulation-register/evaluations/), written from the analysis outputs by each analysis's builder script and checked against them by the tests | 10 evaluations covering 24 records (the Perth weeknight change and the childcare NQF re-evaluated with new data) |
 | Outcome panels | CABEE entry and exit by ANZSIC class, state and size (2007-08 to 2024-25, 15 releases stitched); CPI by capital city (ABS Data API); state retail output and pay per worker | Done |
 | Data pipeline | Connectors that write one common panel format, sorted by ANZSIC code and place: Retail Trade (monthly, class or subgroup × state), Labour Force EQ06 (employment and hours, group × state, quarterly), Data by Region (division × SA2 and LGA), ABN Bulk Extract and ASIC registers (monthly, postcode, industry inferred from names), City of Melbourne CLUE (class × small area), postcode-to-ASGS concordance; a coverage catalogue that matches every record to the finest data available ([feasibility note](../docs/data_pipeline_feasibility.md)) | Built; Internet Vacancy Index is a parser for hand-downloaded files (site not reachable here) |
@@ -65,6 +65,7 @@ uv run alicia dates --all --offline       # sourced dates and timing only, no ne
 uv run alicia explorer -o menu.html --dates ../regulation-register/reports/effective_dates_2026-10-15.json
 uv run alicia explorer -o menu.html --standalone   # full HTML document for opening locally
 uv run alicia site -o ../site --dates ../regulation-register/reports/effective_dates_2026-10-15.json   # menu + growth + conditions pages
+uv run alicia methods -o ../docs/evaluation_methods.md   # key insights and methods of every evaluation, as Markdown
 uv run alicia pipeline build              # build every outcome panel (downloads ~1.5 GB on first run, mostly the ABN extract)
 uv run alicia pipeline build abs_lfs asic  # or named sources; see BUILDERS in cli.py
 uv run alicia pipeline build abs_state_accounts controls   # State Accounts and the macroeconomic controls

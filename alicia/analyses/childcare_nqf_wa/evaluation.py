@@ -188,6 +188,85 @@ def main() -> None:
             f"child care prices {s1(prp['estimate'])}% ({s1(prp['interval_90'][0])} to "
             f"{s1(prp['interval_90'][1])}) relative to other prices. Only large effects could have been detected."
         ),
+        "key_insights": [
+            "The question: did the National Quality Framework for childcare (staff ratios, qualifications, quality "
+            "ratings) push childcare businesses out or raise prices soon after it started?",
+            "The natural experiment: every other jurisdiction started in January 2012, but WA only in August 2012. "
+            "If the framework mattered straight away, the gap between WA and the rest should open in January and "
+            "close again in August.",
+            f"What we found: no detectable early effect. Childcare's share of business closures moved "
+            f"{s2(exp['estimate'])} percentage points (90% interval {s2(exp['interval_90'][0])} to "
+            f"{s2(exp['interval_90'][1])}) on a base of {base_exit:.1f}%, and child care prices "
+            f"{s1(prp['estimate'])}% ({s1(prp['interval_90'][0])} to {s1(prp['interval_90'][1])}).",
+            f"How precise: only very large effects could have been seen: about {exp['null']['mde_80']:.1f} points "
+            f"on closures (roughly a doubling of childcare's share) or about {prp['null']['mde_80']:.0f}% on prices.",
+            "What it means: no sign of an immediate shake-out or price jump. The later staff ratio and qualification "
+            "phases (2014, 2016) are not covered, and Department of Education data on services and fees would allow "
+            "a sharper test.",
+        ],
+        "method": {
+            "summary": "On-off difference-in-differences for a rule that starts late in one jurisdiction: the gap "
+            "between the late adopter and the rest is compared across three windows (before, others only, all). "
+            "Inference from placebo industries and fake dates.",
+            "equations": [
+                {
+                    "label": "The gap, each month (or quarter)",
+                    "text": "G_{t} = y^{WA}_{t} − ȳ^{others}_{t} − s̄_{season(t)}",
+                },
+                {
+                    "label": "Pooled effect (primary)",
+                    "text": "hat{δ} = mean_{t ∈ pre ∪ off}(G_{t}) − mean_{t ∈ on}(G_{t})",
+                },
+                {
+                    "label": "Early effect and late effect (secondary)",
+                    "text": "hat{δ}_{early} = mean_{pre}(G_{t}) − mean_{on}(G_{t});   "
+                    "hat{δ}_{late} = mean_{off}(G_{t}) − mean_{on}(G_{t})",
+                },
+            ],
+            "terms": [
+                {
+                    "symbol": "y_{t}",
+                    "meaning": "Exits: childcare-named businesses' share of named-business ABN cancellations (%), "
+                    "monthly. Prices: 100 × ln(child care CPI / all-groups CPI), quarterly, Perth against the mean "
+                    "of the other capitals",
+                },
+                {"symbol": "ȳ^{others}_{t}", "meaning": "The other seven jurisdictions pooled"},
+                {
+                    "symbol": "s̄_{season(t)}",
+                    "meaning": "The gap's pre-period mean for the same month or quarter of the year",
+                },
+                {
+                    "symbol": "pre",
+                    "meaning": "January 2009 to December 2011; quarterly outcomes 2009-Q1 to 2011-Q4 (no one treated)",
+                },
+                {"symbol": "on", "meaning": "January to July 2012; quarterly 2012-Q1 and Q2 (all but WA treated)"},
+                {"symbol": "off", "meaning": "August 2012 to July 2013; quarterly 2012-Q3 to 2013-Q2 (all treated)"},
+            ],
+            "estimand": "The framework's immediate effect on the outcome, measured by how the WA-minus-others gap "
+            "moves when the others adopt (on) relative to when nobody (pre) or everybody (off) has it. The early part "
+            "needs only parallel trends; the pooled estimate also assumes the effect is immediate and lasting.",
+            "identification": "Without the framework, the WA-minus-others gap would have kept its usual seasonal "
+            "pattern through 2012-13. The on-off pattern guards against a WA-specific shock, which would not switch "
+            "off in August 2012.",
+            "inference": f"No conventional standard errors (one late jurisdiction). No-effect distribution: the same "
+            f"estimator for {d['exits']['placebo_industries']} named industries over the same windows plus childcare "
+            f"at {d['exits']['fake_dates']} fake dates two or more years earlier (exits). p-value: two-sided rank; "
+            "90% interval: estimate minus the 95th and 5th percentiles (Conley and Taber 2011); smallest detectable "
+            "effect: 2.8 × standard deviation; Benjamini–Hochberg q-values across the two primaries.",
+            "steps": [
+                "Built monthly counts of ABN cancellations and registrations by industry inferred from business names "
+                "(childcare rule checked on City of Melbourne names), quarterly CPI by capital and Labour Force "
+                "employment and hours.",
+                "Design-stage review with WA's childcare outcomes from January 2012 hidden in code; chose the windows, "
+                "placebo pools and outcome roles, and committed the plan (docs/pap_childcare_nqf_wa.md).",
+                "Ran a blinded dry run that reproduced the design-stage no-effect distributions, then one unblinded "
+                "run.",
+                "Estimated the pooled, early and late effects, the after-against-before check and detrended variants "
+                "for each outcome.",
+                "Applied the plan's findings, verdict and grading rules. A check dropping one outlying month "
+                "(December 2010) was added after unblinding and is labelled as such.",
+            ],
+        },
         "category_summaries": {
             "competition": (
                 f"No detectable change in childcare exits or entries. Exits: {s2(exp['estimate'])} points (p = "

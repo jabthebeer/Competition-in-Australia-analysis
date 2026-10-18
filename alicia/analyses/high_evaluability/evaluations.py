@@ -16,6 +16,7 @@ from pathlib import Path
 
 from cases import CASES, Case
 
+from alicia import anzsic
 from alicia.register.evaluation import Evaluation, write_evaluation
 
 HERE = Path(__file__).resolve().parent
@@ -387,6 +388,214 @@ def text(case: Case, r: dict) -> dict:
     raise KeyError(case.id)
 
 
+def insights(case: Case, r: dict) -> list[str]:
+    """Key insights for non-specialists: question, comparison, finding, precision, meaning."""
+    e, x = r["entries"], r["exits"]
+    em, xm = (e["main"] if e else None), (x["main"] if x else None)
+    pr = r["prices"]["classes"] if r["prices"] else {}
+
+    def rng(m):
+        return f"{s1(m['interval_90'][0])} to {s1(m['interval_90'][1])}"
+
+    states_note = (
+        "Changes shared by every industry in the same states (a state's boom or slump) were removed by "
+        "subtracting the same comparison for industries the reform did not touch."
+    )
+    if case.id == "nt-container-deposits-2012":
+        sd, beer = pr["115520"], pr["40087"]
+        return [
+            "The question: did the Northern Territory's container deposit scheme (January 2012) change the number "
+            "of drink makers and recyclers, or drink prices?",
+            "Business numbers could not be measured: only 12 NT businesses were in the affected industries, too few "
+            "for any change to show.",
+            f"Darwin soft-drink prices rose {s1(sd['estimate'])}% relative to other capitals and beer "
+            f"{s1(beer['estimate'])}%, but soft-drink prices were already rising before the scheme; taking out each "
+            f"city's earlier trend leaves {s1(sd['detrended']['estimate'])}%.",
+            f"These price data can only detect changes of about {sd['mde_80']:.0f}% or more, while a 10-cent deposit "
+            "is a few per cent of a drink's price.",
+            "Bottom line: the scheme's effect cannot be measured with these public data.",
+        ]
+    if case.id == "childcare-nqf-2012":
+        return [
+            "The question: did the National Quality Framework for childcare change how many childcare businesses "
+            "opened or closed in its first year (2011-12)?",
+            "The comparison: the seven jurisdictions that started in January 2012 against WA, which started seven "
+            "months later. " + states_note,
+            f"What we found: no detectable change. Openings moved {s1(em['estimate'])} per 100 businesses "
+            f"(90% interval {rng(em)}) and closures {s1(xm['estimate'])} ({rng(xm)}).",
+            f"How precise: only changes larger than about {em['mde_80']:.0f} openings per 100 businesses a year "
+            "could have been detected, so a modest effect cannot be ruled out.",
+            "What it means: a first-year check against one comparison state, not the long-run effect of the later "
+            "staff ratio and qualification phases. The follow-up evaluation with monthly data agrees.",
+        ]
+    if case.id == "retail-energy-deregulation-2013-2016":
+        el = pr["40055"]
+        return [
+            "The question: did removing retail electricity price caps (SA 2013, NSW 2014, south-east Queensland 2016) "
+            "bring in new retailers or lower prices?",
+            "Business numbers could not be measured: the three states had 59 electricity retailers, each counted in "
+            "its head-office state rather than where it sells.",
+            f"Electricity prices in the deregulating states rose {s1(el['estimate'])}% relative to states that kept "
+            "price caps, but they had been rising faster for more than a decade before (mostly network charges); "
+            f"taking out each city's earlier trend leaves {s1(el['detrended']['estimate'])}%, close to zero.",
+            "Bottom line: no effect of deregulation can be identified in these data. Retailer margins or offer-level "
+            "prices would be needed.",
+        ]
+    if case.id == "heavy-vehicle-national-law-2014":
+        return [
+            "The question: did one national law for heavy vehicles (February 2014) change how many road freight "
+            "businesses started or closed?",
+            "The comparison: the six jurisdictions that adopted it against WA and the Northern Territory, which did "
+            "not, from 2007-08 to 2017-18. " + states_note,
+            f"What we found: no detectable change. Openings moved {s1(em['estimate'])} per 100 businesses a year "
+            f"(90% interval {rng(em)}) and closures {s1(xm['estimate'])} ({rng(xm)}).",
+            f"How precise: a rise in openings of more than about {em['interval_90'][1]:.1f} per 100 a year is ruled "
+            "out; a fall cannot be ruled out.",
+            "What it means: no sign that the law drew in new freight firms. The comparison rests on WA and the NT, "
+            "which rode the resources boom.",
+        ]
+    if case.id == "vic-taxi-licensing-2014":
+        return [
+            "The question: did as-of-right taxi licences in Victoria (2014) change how many taxi and road transport "
+            "businesses started or closed?",
+            "The comparison: Victoria against all other states in 2014-15, the one year before ride-sharing and "
+            "driver GST rules changed the market. " + states_note,
+            f"What we found: no detectable change. Openings moved {s1(em['estimate'])} per 100 businesses "
+            f"(90% interval {rng(em)}) and closures {s1(xm['estimate'])} ({rng(xm)}).",
+            f"How precise: a rise in openings of more than about {em['interval_90'][1]:.1f} per 100 is ruled out.",
+            "What it means: graded Weak. Unlicensed UberX arrived in Melbourne in the same year, and only one "
+            "year can be used.",
+        ]
+    if case.id == "legal-profession-uniform-law-2015":
+        return [
+            "The question: did the Legal Profession Uniform Law (NSW and Victoria, July 2015) change how many legal "
+            "practices started or closed?",
+            "The comparison: NSW and Victoria against the six jurisdictions that had not adopted it, over the three "
+            "years after. " + states_note,
+            f"What we found: no detectable change. Openings moved {s1(em['estimate'])} per 100 businesses a year "
+            f"(90% interval {rng(em)}) and closures {s1(xm['estimate'])} ({rng(xm)}).",
+            "How precise: changes in closures beyond about "
+            f"{max(abs(xm['interval_90'][0]), abs(xm['interval_90'][1])):.0f} per 100 are ruled out, as is a rise "
+            f"in openings of more than about {em['interval_90'][1]:.1f}.",
+            "What it means: the law mainly cuts costs for firms working in both states, which counts of businesses "
+            "by main state cannot see directly.",
+        ]
+    if case.id == "rideshare-legalisation-2015-2018":
+        return [
+            "The question: did legalising ride-sharing (2015 to 2018) change how many taxi and road passenger "
+            "businesses started or closed?",
+            "The comparison: each group of states that legalised together against states that had not yet.",
+            "What we found: no answer is possible. Openings in the legalising states were already far above the "
+            "comparison states before legalisation, so the comparison fails its pre-reform check.",
+            "Why: ride-sharing ran before it was legal in most cities, and every driver had to register for GST "
+            "from August 2015, so the legal dates are not when the market changed.",
+            "What it means: a different design is needed, such as the dates ride-sharing actually arrived in "
+            "each city.",
+        ]
+    raise KeyError(case.id)
+
+
+def method(case: Case, r: dict) -> dict:
+    """The econometrics in depth, shared by the batch and specialised to the case."""
+    tr = sorted({s for c in case.cohorts for s in c.treated})
+    classes = ", ".join(f"{c} {anzsic.name(c)}" for c in case.classes)
+    pd_ = r["placebo_design"]
+    cohort_txt = "; ".join(
+        f"{', '.join(c.treated)} "
+        + (f"in {fy(c.first_post)}" if c.first_post == c.last_post else f"from {fy(c.first_post)} to {fy(c.last_post)}")
+        + f" against {', '.join(c.controls)}"
+        for c in case.cohorts
+    )
+    used = r["entries"]["main"]["placebos"] if r["entries"] else 0
+    equations = [
+        {
+            "label": "For each cohort c (states adopting together), over its window",
+            "text": "y_{s,t} = α_{s} + λ_{t} + β_{c} · D_{s,t} + ε_{s,t},   s ∈ treated_{c} ∪ comparison_{c}",
+        },
+        {"label": "Stacked across cohorts", "text": "hat{β} = Σ_{c} n_{c} hat{β}_{c} / Σ_{c} n_{c}"},
+        {
+            "label": "Reported estimate: net of unaffected industries",
+            "text": "hat{β}^{net} = hat{β} − (1/P) Σ_{p=1}^{P} hat{β}_{p}",
+        },
+    ]
+    terms = [
+        {
+            "symbol": "y_{s,t}",
+            "meaning": "Entries (or exits) per 100 businesses operating at the start of financial year t in state s, "
+            f"for the treated ANZSIC classes pooled ({classes})",
+        },
+        {"symbol": "α_{s}, λ_{t}", "meaning": "State and year fixed effects"},
+        {"symbol": "D_{s,t}", "meaning": "1 for an adopting state from its first exposed financial year on, else 0"},
+        {"symbol": "n_{c}", "meaning": "Number of treated states in cohort c"},
+        {
+            "symbol": "hat{β}_{p}",
+            "meaning": "The same stacked estimate for placebo group p: classes outside the treated division, matched "
+            "on size, in the same states and years",
+        },
+        {
+            "symbol": "P",
+            "meaning": f"Number of placebo groups: {pd_['groups']} qualified on size"
+            + (f", {used} with every year of the window" if used else ""),
+        },
+    ]
+    if case.price:
+        equations.append(
+            {
+                "label": "Prices (capital cities, quarterly; same estimator, net of other CPI classes)",
+                "text": "y_{k,q} = 100 × ln(P^{class}_{k,q} / P^{all groups}_{k,q})",
+            }
+        )
+        terms.append(
+            {"symbol": "P^{class}_{k,q}", "meaning": "CPI for the expenditure class in capital city k, quarter q"}
+        )
+    equations.append(
+        {
+            "label": "Output and pay per worker (descriptive; net of other divisions)",
+            "text": "y_{s,t} = 100 × ln(GVA per worker_{s,t}) for the treated industry's division",
+        }
+    )
+    steps = [
+        f"Took the treated industries ({classes}) and the adopting states and dates from the register records; "
+        f"cohorts: {cohort_txt}. Comparison states are those not yet treated in each cohort's window.",
+        f"Built yearly entry and exit rates from ABS Counts of Australian Businesses (registered release vintage), "
+        f"{fy(case.start)} on, pooling the treated classes in each state.",
+        f"Drew placebo groups of the same number of classes from outside the treated division, matched on size "
+        f"({pd_['treated_size']:.0f} businesses in the treated states in {fy(pd_['base_fy'])}); "
+        f"{pd_['groups']} qualified.",
+        "Design stage with every treated outcome hidden: checked the feasibility rules (at least 100 treated "
+        "businesses and 19 placebo groups) and the power, then committed the plan (docs/pap_high_evaluability.md).",
+        "Estimated the stacked difference-in-differences for the treated group and every placebo group, and "
+        "subtracted the placebo mean.",
+        "Checked each pre-reform year against its 95% placebo band, and ran the registered robustness variants "
+        "(the other ABS vintage, employing businesses only, leaving each state out"
+        + (", adding 2018-19" if case.extend_to_2019 else "")
+        + ").",
+        "Applied the plan's decision and grading rules, with Benjamini–Hochberg q-values across the batch.",
+    ]
+    if case.price:
+        steps.append(
+            "Prices: the same estimator on each city's CPI class relative to its all-groups index, against placebo "
+            "CPI classes, with a registered variant that removes each city's pre-reform linear trend."
+        )
+    return {
+        "summary": "Stacked difference-in-differences with clean comparison states, net of the same estimate for "
+        "unaffected industries in the same states (a triple difference), with inference from placebo industries.",
+        "equations": equations,
+        "terms": terms,
+        "estimand": "The average change in the treated industries' entry (or exit) rate in the adopting states over "
+        "the exposed years, relative to the comparison states, beyond the change for unaffected industries in the "
+        f"same states ({', '.join(tr)}).",
+        "identification": "Without the reform, the treated industries' rate in the adopting states would have moved "
+        "as in the comparison states once state-wide changes shared with unaffected industries are removed "
+        "(triple-difference parallel trends). Checked with the pre-reform event-study coefficients.",
+        "inference": "No conventional standard errors (few treated states). p-value: two-sided rank of "
+        "hat{β}^{net} among the P centred placebo estimates. 90% interval: hat{β}^{net} minus the 95th and 5th "
+        "percentiles of the centred placebos (Conley and Taber 2011). Smallest detectable effect: 2.8 × their "
+        "standard deviation.",
+        "steps": steps,
+    }
+
+
 def build(case: Case, r: dict) -> dict:
     t = text(case, r)
     grade = r["grade"]
@@ -428,6 +637,8 @@ def build(case: Case, r: dict) -> dict:
         "grade_reason": grade_reason,
         "headline": t["headline"],
         "category_summaries": t["category_summaries"],
+        "key_insights": insights(case, r),
+        "method": method(case, r),
         "preregistered": True,
         "outcomes": outcomes,
         "event_studies": event_studies(r, case),
