@@ -2,7 +2,8 @@
 
 The panel is synthetic (ILLUSTRATIVE, from ``panel.simulate_panel``): 8 states x 10 industries x 30
 periods, four states adopting in two industries at staggered dates, effects that grow with time since
-adoption, a state boom after adoption, industry cycles and a covariate. Run from ``alicia/``:
+adoption, a state boom after adoption, industry cycles and a covariate. The synthetic-control family
+and gsynth use the first cohort (period 12) against never-treated cells. Run from ``alicia/``:
 
     uv run python analyses/panel_crosscheck/write_reference.py
 """
@@ -12,7 +13,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from alicia.evaluate import panel
+import numpy as np
+
+from alicia.evaluate import cs, panel, synth
 
 OUT = Path(__file__).resolve().parents[3] / "analysis" / "crosscheck"
 SATURATED = [("state", "industry"), ("industry", "period"), ("state", "period")]
@@ -44,6 +47,18 @@ def main() -> None:
     wb = panel.wild_cluster_bootstrap(
         df, "y", ["D", "x"], "D", "state", fe=SATURATED, reps=9999, seed=1, small="cluster"
     )
+
+    # One adoption date for the synthetic-control family: cohort 12 against never-treated cells.
+    single = df[df["first_treated"].isin([12, -1])]
+    wide = single.pivot(index="cell", columns="period", values="y")
+    treated_cells = sorted(single.loc[single["first_treated"] == 12, "cell"].unique())
+    order = [c for c in wide.index if c not in treated_cells] + treated_cells  # controls first, as synthdid
+    y = wide.loc[order].to_numpy()
+    tr = np.zeros_like(y, bool)
+    tr[-len(treated_cells) :, 12:] = True
+    sd = {m: synth.sdid(y, tr, method=m).estimate for m in ("sdid", "sc", "did")}
+    gs = synth.gsynth(y, tr, r=2)
+    gt = cs.att_gt(df.assign(g=df["gname"]), "y", "cell", "period1", "g")
     result = {
         "note": "Python estimates on panel_reference.csv (synthetic, ILLUSTRATIVE). Compare with the R script.",
         "feols_saturated": sat.summary(),
@@ -51,6 +66,9 @@ def main() -> None:
         "imputation_saturated": {"att": imp.att, "by_event": {str(int(k)): v for k, v in imp.by_event.items()}},
         "imputation_twoway": {"att": imp2.att, "by_event": {str(int(k)): v for k, v in imp2.by_event.items()}},
         "wild_cluster_bootstrap_saturated": wb,
+        "synth_single_cohort": {"treated_cells": [int(c) for c in treated_cells], "T0": 12, **sd},
+        "gsynth_single_cohort_r2": {"att": gs.att},
+        "cs_never_treated": {"simple": gt.simple, "dynamic": {str(int(k)): v for k, v in gt.dynamic.items()}},
         "true_att": float(df.loc[df["D"] == 1, "true_tau"].mean()),
     }
     (OUT / "panel_reference_python.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
