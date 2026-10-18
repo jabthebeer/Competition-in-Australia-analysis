@@ -1,0 +1,80 @@
+{
+  "id": "nsw-fuel-price-reporting-2016",
+  "family": "fuel-price-transparency",
+  "title": "Mandatory fuel price reporting, FuelCheck (New South Wales)",
+  "jurisdiction": "NSW",
+  "summary": "An Act of April 2016 created a fuel price publication scheme; the FuelCheck Order commenced on 6 May 2016 and existing service stations had to register by 14 July 2016 and report their prices for publication.",
+  "instruments": [
+    {
+      "title": "Fair Trading Amendment (Fuel Price Transparency) Act 2016",
+      "register_url": "https://legislation.nsw.gov.au/view/html/repealed/current/act-2016-010/lh",
+      "register_id": "2016 No 10",
+      "role": "amending",
+      "provisions": "Fair Trading Act 1987 s 58"
+    },
+    {
+      "title": "Fair Trading (FuelCheck) Order 2016",
+      "register_url": "https://legislation.nsw.gov.au/view/pdf/asmade/sl-2016-217",
+      "register_id": "2016 No 217",
+      "role": "regulation",
+      "provisions": null
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": "2016-04-06",
+      "source": "https://legislation.nsw.gov.au/view/html/repealed/current/act-2016-010/lh"
+    },
+    "commenced": [
+      {
+        "date": "2016-05-06",
+        "what": "FuelCheck Order commenced",
+        "source": "https://legislation.nsw.gov.au/view/pdf/asmade/sl-2016-217",
+        "primary": false
+      },
+      {
+        "date": "2016-07-14",
+        "what": "Deadline for existing service stations to register and report",
+        "source": "https://legislation.nsw.gov.au/view/pdf/asmade/sl-2016-217",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "mixed",
+  "direction_rationale": "Real-time public price data lower motorists' search costs, which should narrow retail margins, but they also let rival retailers see each other's prices at once, which can make tacit coordination and price cycles easier to sustain.",
+  "direction_sources": [],
+  "channels": [
+    "consumer-choice",
+    "prices-market-share",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "4000",
+      "name": "Fuel Retailing",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": "Staggered adoption 2016-2025. WA (FuelWatch, reporting since 2001) is always treated; the ACT has no mandatory scheme (a voluntary FuelCheck pilot from November 2022, not checked); states not yet reporting at each date.",
+  "confounders": [
+    "crude oil and terminal gate price movements",
+    "temporary halving of fuel excise (30 Mar to 28 Sep 2022)",
+    "COVID-19 demand collapse 2020"
+  ],
+  "price_series": "Automotive fuel",
+  "notes": "Compulsory reporting is reported to have started on 19 July 2016 and the public FuelCheck service in late August 2016 (trade press; not confirmed). A 2026 FuelCheck Order may have replaced the 2016 Order (not checked).",
+  "verified": {
+    "dates": false,
+    "notes": "NSW register blocks automated requests: Act and Order dates are from search extracts of the register. The day reporting began is not confirmed on an official source."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. Primary commencement: the registration deadline (14 July 2016), the earliest official date by which all stations were in the scheme."
+  }
+}

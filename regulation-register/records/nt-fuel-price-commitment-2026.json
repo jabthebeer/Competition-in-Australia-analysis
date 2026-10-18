@@ -1,0 +1,65 @@
+{
+  "id": "nt-fuel-price-commitment-2026",
+  "family": "fuel-price-commitment",
+  "title": "Next-day fuel price commitment, MyFuel NT (Northern Territory)",
+  "jurisdiction": "NT",
+  "summary": "From 20 April 2026 NT fuel retailers must report, between 8.30 am and 2 pm, the price that will apply for the next 24 hours from 6 am, and may only cut it within that period.",
+  "instruments": [
+    {
+      "title": "Consumer Affairs and Fair Trading (Fuel Retailers) Amendment Regulations 2026",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/SubordinateLegislation/PDF?id=6175",
+      "register_id": "Subordinate Legislation No. 7 of 2026",
+      "role": "amending",
+      "provisions": "reg 5 replaced: reporting for MyFuel NT"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": "2026-04-17",
+      "source": "https://legislation.nt.gov.au/api/sitecore/SubordinateLegislation/PDF?id=6175"
+    },
+    "commenced": [
+      {
+        "date": "2026-04-20",
+        "what": "Next-day price reporting replaced real-time reporting",
+        "source": "https://legislation.nt.gov.au/api/sitecore/SubordinateLegislation/PDF?id=6175",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "mixed",
+  "direction_rationale": "Requiring retailers to set tomorrow's price the day before, with cuts but no rises allowed within the day (as in WA), removes the sudden jumps that start retail price cycles; the effect on average margins is ambiguous, because a posted price is also a commitment rivals can match.",
+  "direction_sources": [],
+  "channels": [
+    "prices-market-share",
+    "consumer-choice",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "4000",
+      "name": "Fuel Retailing",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": "Reporting-only states (NSW, QLD, SA, TAS); WA (next-day rule since 2001) as an always-treated benchmark",
+  "confounders": [
+    "crude oil and terminal gate price movements"
+  ],
+  "price_series": "Automotive fuel",
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Read on the NT register (as-made PDF): made 17 April 2026, commence 20 April 2026."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  }
+}

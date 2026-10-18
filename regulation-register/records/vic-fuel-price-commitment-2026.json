@@ -1,0 +1,65 @@
+{
+  "id": "vic-fuel-price-commitment-2026",
+  "family": "fuel-price-commitment",
+  "title": "Daily fuel price cap: next-day maximum price (Victoria)",
+  "jurisdiction": "VIC",
+  "summary": "From 10 March 2026 Victorian fuel retailers must set and report the next day's maximum price; prices can only fall during the day.",
+  "instruments": [
+    {
+      "title": "Amending regulations S.R. No. 152/2025 (the 2025 regulations renamed Code of Practice for Fuel Retailers)",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/australian-consumer-law-and-fair-trading-code-practice-fuel-price-reporting-regulations-2025/002",
+      "register_id": "S.R. No. 152/2025",
+      "role": "amending",
+      "provisions": "regs 5-8 from 10 March 2026"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2026-03-10",
+        "what": "Next-day maximum price obligations commenced",
+        "source": "https://www.legislation.vic.gov.au/in-force/statutory-rules/australian-consumer-law-and-fair-trading-code-practice-fuel-price-reporting-regulations-2025/002",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "mixed",
+  "direction_rationale": "Requiring retailers to set tomorrow's price the day before, with cuts but no rises allowed within the day (as in WA), removes the sudden jumps that start retail price cycles; the effect on average margins is ambiguous, because a posted price is also a commitment rivals can match.",
+  "direction_sources": [],
+  "channels": [
+    "prices-market-share",
+    "consumer-choice",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "4000",
+      "name": "Fuel Retailing",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": "Reporting-only states (NSW, QLD, SA, TAS); WA (next-day rule since 2001) as an always-treated benchmark",
+  "confounders": [
+    "crude oil and terminal gate price movements"
+  ],
+  "price_series": "Automotive fuel",
+  "notes": "The price-cap obligation itself may sit in the Consumer Legislation Amendment Act 2025 (not checked on the register).",
+  "verified": {
+    "dates": true,
+    "notes": "Read on the Victorian register (version 002) and the Consumer Affairs Victoria announcement."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "id": "nsw-e-conveyancing-mandate-2018",
+  "family": "e-conveyancing-mandate",
+  "title": "Mandatory electronic conveyancing (New South Wales)",
+  "jurisdiction": "NSW",
+  "summary": "NSW required standalone transfers and mortgages to be lodged electronically from 1 May 2018, and all mainstream land dealings from 1 July 2019.",
+  "instruments": [
+    {
+      "title": "Registrar General's requirements under the Electronic Conveyancing National Law (NSW)",
+      "register_url": null,
+      "register_id": null,
+      "role": "other",
+      "provisions": "electronic lodgment mandates (instrument versions not checked)"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2018-05-01",
+        "what": "Electronic lodgment required for standalone transfers and mortgages",
+        "source": "https://www.registrargeneral.nsw.gov.au/news/its-the-final-countdown",
+        "primary": true
+      },
+      {
+        "date": "2019-07-01",
+        "what": "Electronic lodgment required for all mainstream dealings",
+        "source": "https://www.registrargeneral.nsw.gov.au/news/its-the-final-countdown",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "mixed",
+  "direction_rationale": "Mandatory electronic lodgment cuts settlement costs and time for conveyancers and lenders, but in practice it entrenched one electronic lodgment network (PEXA), because interoperability between networks never went live.",
+  "direction_sources": [
+    "https://www.registrargeneral.nsw.gov.au/regulator/interoperability"
+  ],
+  "channels": [
+    "ability-incentive",
+    "prices-market-share",
+    "barriers"
+  ],
+  "industries": [
+    {
+      "anzsic": "6931",
+      "name": "Legal Services",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6720",
+      "name": "Real Estate Services",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Staggered mandates 2018-2023; the ACT, Tasmania and the NT have no mandate (never treated)",
+  "confounders": [
+    "housing market swings and interest rate changes",
+    "COVID-19 property market 2020-21"
+  ],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Dates from the NSW Registrar General's announcement."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  }
+}

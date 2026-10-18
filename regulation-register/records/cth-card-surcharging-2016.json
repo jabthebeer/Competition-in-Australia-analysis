@@ -1,0 +1,82 @@
+{
+  "id": "cth-card-surcharging-2016",
+  "family": "card-payments",
+  "title": "Card surcharges limited to the cost of acceptance",
+  "jurisdiction": "CTH",
+  "summary": "Card surcharges above the merchant's cost of acceptance were banned for large merchants from 1 September 2016 and for all other merchants from 1 September 2017.",
+  "instruments": [
+    {
+      "title": "Competition and Consumer Amendment (Payment Surcharges) Act 2016",
+      "register_url": "https://www.legislation.gov.au/C2016A00009/asmade/2016-02-25/text/original/epub/OEBPS/document_1/document_1.html",
+      "register_id": "C2016A00009",
+      "role": "amending",
+      "provisions": null
+    },
+    {
+      "title": "RBA Standard No. 3 of 2016 (Scheme Rules relating to Merchant Pricing)",
+      "register_url": "https://www.rba.gov.au/payments-and-infrastructure/review-of-card-payments-regulation/conclusions-paper-may2016/final-standards-and-implementation.html",
+      "register_id": null,
+      "role": "regulation",
+      "provisions": null
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": "2016-02-25",
+      "source": "https://www.legislation.gov.au/C2016A00009/asmade/2016-02-25/text/original/epub/OEBPS/document_1/document_1.html"
+    },
+    "commenced": [
+      {
+        "date": "2016-09-01",
+        "what": "Applies to large merchants",
+        "source": "https://www.rba.gov.au/payments-and-infrastructure/review-of-card-payments-regulation/conclusions-paper-may2016/final-standards-and-implementation.html",
+        "primary": true
+      },
+      {
+        "date": "2017-09-01",
+        "what": "Applies to all other merchants",
+        "source": "https://www.rba.gov.au/payments-and-infrastructure/review-of-card-payments-regulation/conclusions-paper-may2016/final-standards-and-implementation.html",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "enhancing",
+  "direction_rationale": "Limiting surcharges to cost stops merchants using card fees as a hidden margin, sharpening price comparison.",
+  "direction_sources": [
+    "https://www.rba.gov.au/payments-and-infrastructure/review-of-card-payments-regulation/conclusions-paper-may2016/final-standards-and-implementation.html"
+  ],
+  "channels": [
+    "prices-market-share",
+    "consumer-choice"
+  ],
+  "industries": [
+    {
+      "anzsic": "G",
+      "name": "Retail Trade",
+      "exposure": "indirect"
+    },
+    {
+      "anzsic": "H",
+      "name": "Accommodation and Food Services",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Large merchants (two of: revenue of $25m or more, assets of $12.5m or more, 50 or more staff) versus others during the year between the two dates",
+  "confounders": [],
+  "price_series": null,
+  "notes": "Needs firm-level data for the merchant-size design.",
+  "verified": {
+    "dates": true,
+    "notes": "Dates from the RBA's final standards page; assent from the as-made Act on the Federal Register."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. 'alicia dates' reports 'differs': the Act commenced on assent (25 February 2016); the RBA standard made under it applied to large merchants from 1 September 2016, which is the effective date used."
+  }
+}

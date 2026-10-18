@@ -1,0 +1,90 @@
+{
+  "id": "cth-gas-market-code-2023",
+  "family": "east-coast-gas-intervention",
+  "title": "East-coast gas price cap and Gas Market Code",
+  "jurisdiction": "CTH",
+  "summary": "An emergency price cap of $12/GJ on east-coast wholesale gas applied from 23 December 2022, and the mandatory Gas Market Code, with a reasonable-price provision, from 11 July 2023.",
+  "instruments": [
+    {
+      "title": "Competition and Consumer (Gas Market Emergency Price) Order 2022",
+      "register_url": null,
+      "register_id": null,
+      "role": "regulation",
+      "provisions": null
+    },
+    {
+      "title": "Competition and Consumer (Gas Market Code) Regulations 2023",
+      "register_url": null,
+      "register_id": null,
+      "role": "code",
+      "provisions": null
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2022-12-23",
+        "what": "Emergency price cap ($12/GJ)",
+        "source": "https://www.accc.gov.au/business/industry-codes/gas-market-code",
+        "primary": false
+      },
+      {
+        "date": "2023-07-11",
+        "what": "Gas Market Code commenced",
+        "source": "https://www.accc.gov.au/business/industry-codes/gas-market-code",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "mixed",
+  "direction_rationale": "Price caps lower input costs for gas users but may deter supply investment and reduce the number of producers competing to supply.",
+  "direction_sources": [
+    "https://www.dcceew.gov.au/energy/markets/gas-markets/gas-market-code"
+  ],
+  "channels": [
+    "prices-market-share",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "0700",
+      "name": "Oil and Gas Extraction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "2700",
+      "name": "Gas Supply",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "C",
+      "name": "Manufacturing",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "WA and the NT are outside the east-coast market; gas-intensive versus other manufacturing",
+  "confounders": [
+    "Russia-Ukraine energy price shock 2022",
+    "Australian Domestic Gas Security Mechanism (from 1 Jul 2017)"
+  ],
+  "price_series": "Gas and other household fuels",
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Dates from the ACCC's Gas Market Code page."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  }
+}

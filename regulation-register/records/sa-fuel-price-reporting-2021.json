@@ -1,0 +1,73 @@
+{
+  "id": "sa-fuel-price-reporting-2021",
+  "family": "fuel-price-transparency",
+  "title": "Mandatory fuel price reporting (South Australia)",
+  "jurisdiction": "SA",
+  "summary": "South Australia's fuel pricing information scheme required retailers to register from 17 February 2021 and to report prices through the aggregation system for publication from 19 March 2021.",
+  "instruments": [
+    {
+      "title": "Fair Trading (Fuel Pricing Information) Regulations 2021",
+      "register_url": "https://www.legislation.sa.gov.au/_legislation-documents/lz/c/r/fair-trading-fuel-pricing-information-regulations-2021/current/2021.11.auth.pdf",
+      "register_id": null,
+      "role": "regulation",
+      "provisions": "reg 7 (reporting through the aggregation system) from 19 March 2021; the rest from 17 February 2021"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2021-02-17",
+        "what": "Regulations commenced, except regulation 7",
+        "source": "https://www.legislation.sa.gov.au/_legislation-documents/lz/c/r/fair-trading-fuel-pricing-information-regulations-2021/current/2021.11.auth.pdf",
+        "primary": false
+      },
+      {
+        "date": "2021-03-19",
+        "what": "Regulation 7 commenced: retailers report prices to the aggregation system",
+        "source": "https://www.legislation.sa.gov.au/_legislation-documents/lz/c/r/fair-trading-fuel-pricing-information-regulations-2021/current/2021.11.auth.pdf",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "mixed",
+  "direction_rationale": "Real-time public price data lower motorists' search costs, which should narrow retail margins, but they also let rival retailers see each other's prices at once, which can make tacit coordination and price cycles easier to sustain.",
+  "direction_sources": [],
+  "channels": [
+    "consumer-choice",
+    "prices-market-share",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "4000",
+      "name": "Fuel Retailing",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": "Staggered adoption 2016-2025. WA (FuelWatch, reporting since 2001) is always treated; the ACT has no mandatory scheme (a voluntary FuelCheck pilot from November 2022, not checked); states not yet reporting at each date.",
+  "confounders": [
+    "crude oil and terminal gate price movements",
+    "temporary halving of fuel excise (30 Mar to 28 Sep 2022)",
+    "COVID-19 demand collapse 2020"
+  ],
+  "price_series": "Automotive fuel",
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "The SA register blocks automated requests (403). Dates are from a search extract of the regulations' text and the consolidated version dated 19.3.2021; gazetted 4 February 2021."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. Primary commencement: 19 March 2021, when price reporting (and so publication) began."
+  }
+}

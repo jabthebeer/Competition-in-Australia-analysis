@@ -1,0 +1,106 @@
+{
+  "id": "cth-company-tax-turnover-2016",
+  "family": "small-business-tax",
+  "title": "Lower company tax rate for base rate entities, with a rising turnover threshold",
+  "jurisdiction": "CTH",
+  "summary": "From 2016-17 companies with turnover under $10 million paid 27.5% instead of 30%; the threshold rose to $25 million in 2017-18 and $50 million from 2018-19, and the lower rate fell to 26% in 2020-21 and 25% from 2021-22. The small business entity threshold for other concessions rose from $2 million to $10 million.",
+  "instruments": [
+    {
+      "title": "Treasury Laws Amendment (Enterprise Tax Plan) Act 2017",
+      "register_url": "https://www.legislation.gov.au/C2017A00041/asmade/2017-05-19/text/original/pdf",
+      "register_id": "C2017A00041",
+      "role": "amending",
+      "provisions": null
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": "2017-05-19",
+      "source": "https://www.legislation.gov.au/C2017A00041/asmade/2017-05-19/text/original/pdf"
+    },
+    "commenced": [
+      {
+        "date": "2016-07-01",
+        "what": "27.5% rate for companies under $10m turnover (2016-17 income year)",
+        "source": "https://www.ato.gov.au/tax-rates-and-codes/company-tax-rate-changes",
+        "primary": true
+      },
+      {
+        "date": "2017-07-01",
+        "what": "Threshold $25m (2017-18)",
+        "source": "https://www.ato.gov.au/tax-rates-and-codes/company-tax-rate-changes",
+        "primary": false
+      },
+      {
+        "date": "2018-07-01",
+        "what": "Threshold $50m (2018-19)",
+        "source": "https://www.ato.gov.au/tax-rates-and-codes/company-tax-rate-changes",
+        "primary": false
+      },
+      {
+        "date": "2020-07-01",
+        "what": "Rate 26% (2020-21)",
+        "source": "https://www.ato.gov.au/tax-rates-and-codes/company-tax-rate-changes",
+        "primary": false
+      },
+      {
+        "date": "2021-07-01",
+        "what": "Rate 25% (from 2021-22)",
+        "source": "https://www.ato.gov.au/tax-rates-and-codes/company-tax-rate-changes",
+        "primary": false
+      }
+    ]
+  },
+  "direction": "mixed",
+  "direction_rationale": "A lower tax rate for smaller companies raises after-tax returns to entry and investment, but a turnover threshold can deter growth past it (bunching) and favours incumbents just under it.",
+  "direction_sources": [
+    "https://www.ato.gov.au/tax-rates-and-codes/company-tax-rate-changes"
+  ],
+  "channels": [
+    "ability-incentive",
+    "barriers"
+  ],
+  "industries": [
+    {
+      "anzsic": "C",
+      "name": "Manufacturing",
+      "exposure": "indirect"
+    },
+    {
+      "anzsic": "E",
+      "name": "Construction",
+      "exposure": "indirect"
+    },
+    {
+      "anzsic": "G",
+      "name": "Retail Trade",
+      "exposure": "indirect"
+    },
+    {
+      "anzsic": "M",
+      "name": "Professional, Scientific and Technical Services",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Companies just above versus below each year's turnover threshold (needs firm-level data); no state variation",
+  "confounders": [
+    "instant asset write-off changes in the same years",
+    "COVID-19 support 2020-21"
+  ],
+  "price_series": null,
+  "notes": "Sharp designs need ATO or BLADE microdata; public ATO statistics are banded.",
+  "verified": {
+    "dates": true,
+    "notes": "Rates and thresholds from the ATO's company tax rate page; assent from the as-made Act on the Federal Register."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. 'alicia dates' notes assent after the effective date: the 2017 Act applied the lower rate retrospectively to the 2016-17 income year."
+  }
+}
