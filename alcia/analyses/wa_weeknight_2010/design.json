@@ -1,0 +1,804 @@
+{
+ "blinding": "WA outcomes hidden from the first excluded period on; WA retail counts from June 2011 on",
+ "A_turnover": {
+  "label": "100 x log turnover: supermarkets, clothing, department stores",
+  "units": [
+   "WA",
+   "NSW",
+   "VIC",
+   "QLD",
+   "ACT"
+  ],
+  "null": {
+   "n": 834,
+   "sd": 3.463,
+   "mde_80": 9.703,
+   "q05": -5.181,
+   "median": -0.236,
+   "q95": 6.446
+  },
+  "comparison_states_at_true_date": {
+   "NSW": -1.382,
+   "VIC": -1.995,
+   "QLD": 0.075,
+   "ACT": 3.302
+  },
+  "window": {
+   "pre": [
+    "2008-07-01",
+    "2010-06-01"
+   ],
+   "post": [
+    "2010-11-01",
+    "2012-07-01"
+   ],
+   "periods": {
+    "pre": 24,
+    "excluded": 4,
+    "post": 21
+   }
+  },
+  "fake_events": [
+   "1995-01-01",
+   "2008-10-01"
+  ],
+  "null_all_dates": {
+   "n": 1459,
+   "sd": 4.334,
+   "mde_80": 12.142,
+   "q05": -7.033,
+   "median": -0.466,
+   "q95": 7.994
+  },
+  "null_detrended": {
+   "n": 834,
+   "sd": 4.206,
+   "mde_80": 11.782,
+   "q05": -6.941,
+   "median": -0.151,
+   "q95": 6.346
+  },
+  "wa_fake_date_test": {
+   "event": "2008-10-01",
+   "estimate": -3.482,
+   "p": 0.289,
+   "mean_of_last_12": -0.465
+  },
+  "wa_pre_event_study": {
+   "coefficients": {
+    "-8": 6.734,
+    "-7": 2.395,
+    "-6": 0.486,
+    "-5": -1.552,
+    "-4": -1.832,
+    "-3": -1.564,
+    "-2": 0.017
+   },
+   "band": {
+    "-8": [
+     -6.833,
+     5.971
+    ],
+    "-7": [
+     -6.136,
+     5.561
+    ],
+    "-6": [
+     -5.659,
+     5.085
+    ],
+    "-5": [
+     -5.262,
+     4.545
+    ],
+    "-4": [
+     -4.17,
+     3.821
+    ],
+    "-3": [
+     -3.24,
+     3.106
+    ],
+    "-2": [
+     -2.235,
+     2.262
+    ],
+    "0": [
+     -3.36,
+     3.48
+    ],
+    "1": [
+     -4.288,
+     4.575
+    ],
+    "2": [
+     -4.939,
+     5.232
+    ],
+    "3": [
+     -5.457,
+     5.589
+    ],
+    "4": [
+     -6.173,
+     5.736
+    ],
+    "5": [
+     -6.507,
+     6.577
+    ],
+    "6": [
+     -6.931,
+     7.326
+    ]
+   },
+   "share_outside_90_band": 0.143
+  }
+ },
+ "A_variants": {
+  "triple_diff_food": {
+   "label": "minus cafes, restaurants and takeaway",
+   "units": [
+    "WA",
+    "NSW",
+    "VIC",
+    "QLD",
+    "ACT"
+   ],
+   "null": {
+    "n": 834,
+    "sd": 11.218,
+    "mde_80": 31.427,
+    "q05": -17.086,
+    "median": -0.567,
+    "q95": 17.509
+   },
+   "comparison_states_at_true_date": {
+    "NSW": -8.075,
+    "VIC": 0.161,
+    "QLD": -1.382,
+    "ACT": 9.296
+   }
+  },
+  "minus_rest_of_retail_and_food": {
+   "label": "minus other retail and food services",
+   "units": [
+    "WA",
+    "NSW",
+    "VIC",
+    "QLD",
+    "ACT"
+   ],
+   "null": {
+    "n": 760,
+    "sd": 5.453,
+    "mde_80": 15.278,
+    "q05": -9.259,
+    "median": 0.293,
+    "q95": 9.436
+   },
+   "comparison_states_at_true_date": {
+    "NSW": -2.72,
+    "VIC": -8.212,
+    "QLD": NaN,
+    "ACT": 10.932
+   }
+  },
+  "supermarket_share": {
+   "label": "supermarkets minus specialised food",
+   "units": [
+    "WA",
+    "NSW",
+    "VIC",
+    "QLD",
+    "ACT"
+   ],
+   "null": {
+    "n": 760,
+    "sd": 19.485,
+    "mde_80": 54.589,
+    "q05": -33.475,
+    "median": 1.363,
+    "q95": 31.606
+   },
+   "comparison_states_at_true_date": {
+    "NSW": 23.909,
+    "VIC": 1.657,
+    "QLD": NaN,
+    "ACT": -25.566
+   }
+  },
+  "only_RT01": {
+   "label": "turnover of RT01 only",
+   "units": [
+    "WA",
+    "NSW",
+    "VIC",
+    "QLD",
+    "ACT"
+   ],
+   "null": {
+    "n": 834,
+    "sd": 4.274,
+    "mde_80": 11.975,
+    "q05": -8.072,
+    "median": -0.153,
+    "q95": 9.116
+   },
+   "comparison_states_at_true_date": {
+    "NSW": -0.422,
+    "VIC": -3.704,
+    "QLD": -2.598,
+    "ACT": 6.723
+   }
+  },
+  "only_4251": {
+   "label": "turnover of 4251 only",
+   "units": [
+    "WA",
+    "NSW",
+    "VIC",
+    "QLD",
+    "ACT"
+   ],
+   "null": {
+    "n": 834,
+    "sd": 14.8,
+    "mde_80": 41.464,
+    "q05": -25.271,
+    "median": -0.322,
+    "q95": 23.269
+   },
+   "comparison_states_at_true_date": {
+    "NSW": -3.859,
+    "VIC": 5.251,
+    "QLD": 14.19,
+    "ACT": -15.582
+   }
+  },
+  "only_4260": {
+   "label": "turnover of 4260 only",
+   "units": [
+    "WA",
+    "NSW",
+    "VIC",
+    "QLD",
+    "ACT"
+   ],
+   "null": {
+    "n": 834,
+    "sd": 4.33,
+    "mde_80": 12.131,
+    "q05": -6.28,
+    "median": -0.571,
+    "q95": 7.974
+   },
+   "comparison_states_at_true_date": {
+    "NSW": -2.754,
+    "VIC": -0.512,
+    "QLD": 1.436,
+    "ACT": 1.83
+   }
+  }
+ },
+ "B_hours": {
+  "label": "100 x log hours worked: groups 411, 425, 426",
+  "units": [
+   "WA",
+   "NSW",
+   "VIC",
+   "QLD"
+  ],
+  "null": {
+   "n": 227,
+   "sd": 6.895,
+   "mde_80": 19.317,
+   "q05": -10.351,
+   "median": -0.877,
+   "q95": 12.559
+  },
+  "comparison_states_at_true_date": {
+   "NSW": -0.136,
+   "VIC": 6.684,
+   "QLD": -6.549
+  },
+  "window": {
+   "pre": [
+    "2004-07-01",
+    "2010-04-01"
+   ],
+   "post": [
+    "2010-10-01",
+    "2012-04-01"
+   ],
+   "periods": {
+    "pre": 24,
+    "excluded": 1,
+    "post": 7
+   }
+  },
+  "fake_events": [
+   "1995-01-01",
+   "2008-10-01"
+  ],
+  "null_all_dates": {
+   "n": 291,
+   "sd": 6.905,
+   "mde_80": 19.345,
+   "q05": -10.024,
+   "median": -1.044,
+   "q95": 11.936
+  },
+  "null_detrended": {
+   "n": 227,
+   "sd": 7.445,
+   "mde_80": 20.857,
+   "q05": -10.39,
+   "median": -0.876,
+   "q95": 13.037
+  },
+  "wa_fake_date_test": {
+   "event": "2008-10-01",
+   "estimate": 15.58,
+   "p": 0.018,
+   "mean_of_last_12": 3.11
+  },
+  "wa_pre_event_study": {
+   "coefficients": {
+    "-24": -7.804,
+    "-23": -5.672,
+    "-22": -4.966,
+    "-21": -7.465,
+    "-20": -1.341,
+    "-19": -5.134,
+    "-18": 0.845,
+    "-17": 3.7,
+    "-16": -21.496,
+    "-15": -2.31,
+    "-14": 13.44,
+    "-13": 1.176,
+    "-12": -3.151,
+    "-11": -3.076,
+    "-10": -0.252,
+    "-9": -21.95,
+    "-8": -21.544,
+    "-7": 22.716,
+    "-6": 32.319,
+    "-5": 31.793,
+    "-4": 12.458,
+    "-3": 3.69,
+    "-2": -10.648
+   },
+   "band": {
+    "-24": [
+     -24.535,
+     20.034
+    ],
+    "-23": [
+     -25.018,
+     22.446
+    ],
+    "-22": [
+     -23.092,
+     23.025
+    ],
+    "-21": [
+     -21.257,
+     20.28
+    ],
+    "-20": [
+     -21.523,
+     20.906
+    ],
+    "-19": [
+     -21.841,
+     21.797
+    ],
+    "-18": [
+     -22.071,
+     22.364
+    ],
+    "-17": [
+     -21.974,
+     20.571
+    ],
+    "-16": [
+     -22.63,
+     20.475
+    ],
+    "-15": [
+     -23.407,
+     20.376
+    ],
+    "-14": [
+     -22.528,
+     22.872
+    ],
+    "-13": [
+     -23.648,
+     19.526
+    ],
+    "-12": [
+     -24.448,
+     20.869
+    ],
+    "-11": [
+     -21.515,
+     20.508
+    ],
+    "-10": [
+     -21.921,
+     22.748
+    ],
+    "-9": [
+     -20.107,
+     21.552
+    ],
+    "-8": [
+     -20.571,
+     23.428
+    ],
+    "-7": [
+     -20.956,
+     20.675
+    ],
+    "-6": [
+     -21.277,
+     22.928
+    ],
+    "-5": [
+     -18.341,
+     19.012
+    ],
+    "-4": [
+     -21.846,
+     20.549
+    ],
+    "-3": [
+     -21.532,
+     21.569
+    ],
+    "-2": [
+     -18.216,
+     18.045
+    ],
+    "0": [
+     -21.585,
+     22.285
+    ],
+    "1": [
+     -20.549,
+     22.105
+    ],
+    "2": [
+     -21.236,
+     18.632
+    ],
+    "3": [
+     -22.631,
+     23.709
+    ],
+    "4": [
+     -21.413,
+     21.54
+    ],
+    "5": [
+     -22.849,
+     20.861
+    ],
+    "6": [
+     -21.265,
+     20.471
+    ]
+   },
+   "share_outside_90_band": 0.217
+  }
+ },
+ "B_variants": {
+  "employment": {
+   "label": "100 x log employed persons",
+   "units": [
+    "WA",
+    "NSW",
+    "VIC",
+    "QLD"
+   ],
+   "null": {
+    "n": 227,
+    "sd": 5.733,
+    "mde_80": 16.062,
+    "q05": -7.548,
+    "median": -0.553,
+    "q95": 9.905
+   },
+   "comparison_states_at_true_date": {
+    "NSW": 1.284,
+    "VIC": 1.932,
+    "QLD": -3.216
+   }
+  },
+  "triple_diff_food": {
+   "label": "hours minus cafes, restaurants and takeaway",
+   "units": [
+    "WA",
+    "NSW",
+    "VIC",
+    "QLD"
+   ],
+   "null": {
+    "n": 227,
+    "sd": 9.605,
+    "mde_80": 26.91,
+    "q05": -15.245,
+    "median": 0.416,
+    "q95": 14.664
+   },
+   "comparison_states_at_true_date": {
+    "NSW": 0.142,
+    "VIC": -6.884,
+    "QLD": 6.742
+   }
+  }
+ },
+ "C_places": {
+  "label": "retail businesses, Perth minus rest of WA, relative to other industries",
+  "units": [
+   "NSW",
+   "NT",
+   "QLD",
+   "TAS",
+   "VIC",
+   "WA"
+  ],
+  "null": {
+   "n": 59,
+   "sd": 3.614,
+   "mde_80": 10.124,
+   "q05": -5.977,
+   "median": -0.084,
+   "q95": 4.087
+  },
+  "null_detrended": "not computed: two pre-periods",
+  "comparison_states_retail": {
+   "NSW": 2.656,
+   "QLD": -1.887,
+   "TAS": 2.835,
+   "VIC": 0.25
+  },
+  "wa_pre_event_study": {
+   "coefficients": {
+    "-2": 0.012
+   },
+   "band": {
+    "-2": [
+     -14.24,
+     6.464
+    ],
+    "0": [
+     -8.771,
+     4.459
+    ],
+    "1": [
+     -10.163,
+     7.911
+    ]
+   }
+  }
+ },
+ "C_variants": {
+  "small_businesses": {
+   "label": "businesses with fewer than 20 employees",
+   "units": [
+    "NSW",
+    "NT",
+    "QLD",
+    "TAS",
+    "VIC",
+    "WA"
+   ],
+   "null": {
+    "n": 59,
+    "sd": 3.774,
+    "mde_80": 10.574,
+    "q05": -7.102,
+    "median": -0.489,
+    "q95": 4.145
+   },
+   "null_detrended": "not computed: two pre-periods",
+   "comparison_states_retail": {
+    "NSW": 2.311,
+    "QLD": -1.617,
+    "TAS": 3.368,
+    "VIC": 0.889
+   },
+   "wa_pre_event_study": {
+    "coefficients": {
+     "-2": 1.457
+    },
+    "band": {
+     "-2": [
+      -12.317,
+      7.186
+     ],
+     "0": [
+      -8.967,
+      4.503
+     ],
+     "1": [
+      -12.143,
+      6.754
+     ]
+    }
+   }
+  },
+  "no_size_floor": {
+   "label": "all placebo cells, however small",
+   "units": [
+    "NSW",
+    "NT",
+    "QLD",
+    "TAS",
+    "VIC",
+    "WA"
+   ],
+   "null": {
+    "n": 107,
+    "sd": 15.861,
+    "mde_80": 44.437,
+    "q05": -15.032,
+    "median": 0.132,
+    "q95": 20.074
+   },
+   "null_detrended": "not computed: two pre-periods",
+   "comparison_states_retail": {
+    "NSW": 2.656,
+    "NT": -3.854,
+    "QLD": -1.887,
+    "TAS": 2.835,
+    "VIC": 0.25
+   },
+   "wa_pre_event_study": {
+    "coefficients": {
+     "-2": 0.012
+    },
+    "band": {
+     "-2": [
+      -20.913,
+      37.032
+     ],
+     "0": [
+      -17.462,
+      27.618
+     ],
+     "1": [
+      -28.691,
+      34.486
+     ]
+    }
+   }
+  },
+  "with_mandurah": {
+   "label": "Mandurah counted in Perth",
+   "units": [
+    "NSW",
+    "NT",
+    "QLD",
+    "TAS",
+    "VIC",
+    "WA"
+   ],
+   "null": {
+    "n": 59,
+    "sd": 3.602,
+    "mde_80": 10.093,
+    "q05": -5.947,
+    "median": -0.047,
+    "q95": 4.096
+   },
+   "null_detrended": "not computed: two pre-periods",
+   "comparison_states_retail": {
+    "NSW": 2.656,
+    "QLD": -1.887,
+    "TAS": 2.835,
+    "VIC": 0.25
+   },
+   "wa_pre_event_study": {
+    "coefficients": {
+     "-2": 0.144
+    },
+    "band": {
+     "-2": [
+      -14.21,
+      6.515
+     ],
+     "0": [
+      -8.76,
+      4.482
+     ],
+     "1": [
+      -10.176,
+      7.897
+     ]
+    }
+   }
+  },
+  "without_outback": {
+   "label": "WA outback left out",
+   "units": [
+    "NSW",
+    "NT",
+    "QLD",
+    "TAS",
+    "VIC",
+    "WA"
+   ],
+   "null": {
+    "n": 57,
+    "sd": 3.748,
+    "mde_80": 10.502,
+    "q05": -5.744,
+    "median": 0.25,
+    "q95": 4.878
+   },
+   "null_detrended": "not computed: two pre-periods",
+   "comparison_states_retail": {
+    "NSW": 2.656,
+    "QLD": -1.887,
+    "TAS": 2.835,
+    "VIC": 0.25
+   },
+   "wa_pre_event_study": {
+    "coefficients": {
+     "-2": 0.597
+    },
+    "band": {
+     "-2": [
+      -13.811,
+      6.407
+     ],
+     "0": [
+      -8.107,
+      5.106
+     ],
+     "1": [
+      -9.765,
+      8.752
+     ]
+    }
+   }
+  }
+ },
+ "baselines": {
+  "turnover_aud_m_per_month_2009_10": {
+   "RT01": 711.3,
+   "4251": 88.1,
+   "4260": 174.5,
+   "RT14": 166.5,
+   "4512": 123.1
+  },
+  "lfs_2009_10_average": {
+   "employed": {
+    "411": 30.7,
+    "425": 12.65,
+    "426": 8.19,
+    "451": 48.77
+   },
+   "hours_actual": {
+    "411": 704.53,
+    "425": 328.11,
+    "426": 172.23,
+    "451": 1188.78
+   }
+  },
+  "retail_businesses_june_2010": {
+   "cap": 10284,
+   "rest": 3271
+  },
+  "abn_named_exits_per_year_2005_2009": {
+   "WA|cap|other": 805.4,
+   "WA|cap|retail": 62.1,
+   "WA|rest|other": 239.8,
+   "WA|rest|retail": 17.9
+  }
+ }
+}
