@@ -7,6 +7,7 @@ hosted page; ``standalone=True`` wraps it in a full HTML document for opening lo
 from __future__ import annotations
 
 import datetime as dt
+import html
 import json
 from importlib import resources
 from pathlib import Path
@@ -187,12 +188,15 @@ def build_payload(
     }
 
 
-def render(payload: dict, standalone: bool = False, nav: str = "") -> str:
-    """``nav`` is the site navigation (``growth.nav``), set when the page is built with the other pages."""
+def render(payload: dict, standalone: bool = False, nav: str = "", title: str | None = None) -> str:
+    """``nav`` is the site navigation (``growth.nav``), set when the page is built with the other pages;
+    ``title`` replaces the page title (used for single-evaluation pages)."""
     template = resources.files("alicia.menu").joinpath("templates/explorer.html").read_text("utf-8")
     # Embed the data safely inside <script type="application/json">.
     blob = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     page = template.replace("<!--__NAV__-->", nav).replace("__MENU_DATA__", blob)
+    if title:
+        page = page.replace("<title>ALICIA Legislation Menu</title>", f"<title>{html.escape(title)}</title>", 1)
     if standalone:
         page = (
             '<!doctype html>\n<html lang="en-AU">\n<head>\n<meta charset="utf-8">\n'
@@ -200,6 +204,25 @@ def render(payload: dict, standalone: bool = False, nav: str = "") -> str:
             "</head>\n<body>\n" + page + "\n</body>\n</html>\n"
         )
     return page
+
+
+def evaluation_page_name(evaluation_id: str) -> str:
+    return f"evaluation-{evaluation_id}.html"
+
+
+def single_payload(payload: dict, evaluation_id: str) -> dict:
+    """The menu payload cut down to one evaluation: its records, and the evaluations it follows or is
+    followed by (for the links between them)."""
+    evs = payload["evaluations"]
+    ev = evs[evaluation_id]
+    linked = {evaluation_id, ev.get("follows")} | {k for k, v in evs.items() if v.get("follows") == evaluation_id}
+    keep = set(ev["records"])
+    return payload | {
+        "records": [r for r in payload["records"] if r["id"] in keep],
+        "evaluations": {k: v for k, v in evs.items() if k in linked},
+        "single": evaluation_id,
+        "evalPages": True,
+    }
 
 
 def build_explorer(
@@ -210,8 +233,16 @@ def build_explorer(
     evaluations: list[Evaluation] | None = None,
     repo_base: str | None = None,
     nav: str = "",
+    evaluation_pages: bool = False,
 ) -> Path:
+    """Write the menu to ``out``. With ``evaluation_pages``, also write one page per evaluation next to it
+    (``evaluation-<id>.html``), which the menu opens on a double-click or from an "Open as a page" link."""
     report = json.loads(dates_report.read_text("utf-8")) if dates_report and dates_report.exists() else None
     payload = build_payload(records, report, evaluations=evaluations, repo_base=repo_base)
+    if evaluation_pages:
+        payload["evalPages"] = True
+        for ev in evaluations or []:
+            page = render(single_payload(payload, ev.id), standalone, nav, title=f"{ev.title} · ALICIA")
+            (out.parent / evaluation_page_name(ev.id)).write_text(page, encoding="utf-8")
     out.write_text(render(payload, standalone, nav), encoding="utf-8")
     return out
