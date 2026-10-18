@@ -1,6 +1,6 @@
 # Methods note: specification files and the runner (forward plan Phase 4)
 
-**Date:** 18 October 2026. **Status:** started. The four existing analyses are written as specifications, their code reads its design constants from them, and the runner reproduces their outputs byte for byte (section 4). New evaluations (Phase 5) will be written as specifications first.
+**Date:** 18 October 2026. **Status:** started. The four existing analyses are written as specifications, their code reads its design constants from them, and their outputs reproduce byte for byte (section 5). New evaluations (Phase 5) will be written as specifications first.
 
 **Code:** `alicia/src/alicia/runner/` (`spec.py`, the format; `run.py`, the runner). **Specifications:** `alicia/specs/<id>.json`. **Tests:** `alicia/tests/test_runner.py`.
 
@@ -41,13 +41,22 @@ alicia spec run <id> [--stage NAME]    # run stages in order; report each output
 | `wa-trading-hours-weeknight-2010-new-data` | `wa_weeknight_2010` | design, dry run, estimate, evaluation | 1 |
 | `childcare-nqf-wa-delay-2012` | `childcare_nqf_wa` | design, dry run, estimate, paths, evaluation | 1 |
 
-## 4. Reproduction check
+## 4. Reproduction check (18 October 2026)
 
-Each analysis was run end to end twice: before the change (baseline) and with constants read from the specification. Every stage's outputs were compared with the committed files. Results are in section 5.
+1. **Baseline.** Before any constant moved, every stage of the four analyses was re-run in order (17 stages) and the outputs compared with the committed files with `git status`: all byte-identical. The batch's case table and constants had already moved to its specification when its stages ran, so for the batch this run is also the check of the change.
+2. **Equal objects.** For each analysis, every constant read from the specification was compared with the value it replaced, including its type (e.g. a tuple stays a tuple, a set stays a set): all equal.
+3. **Runner.** Each specification was then run end to end with `alicia spec run <id>`, with the code reading its constants from the file.
 
 ## 5. Results
 
-To be filled in from the runs (section 4).
+| Specification | Stages run | Outputs | Result |
+|---|---|---|---|
+| `wa-trading-hours-2010-2012` | design, dry run, estimate, post-hoc, evaluation | 5 | **Identical** |
+| `wa-trading-hours-weeknight-2010-new-data` | design, dry run, estimate, evaluation | 4 | **Identical** |
+| `childcare-nqf-wa-delay-2012` | design, dry run, estimate, paths, evaluation | 5 | **Identical** |
+| `high-evaluability-batch` | design, estimate, evaluation | 9 (7 evaluation files) | **Identical** (baseline run with the specification-driven code); runner run: see below |
+
+Every evaluation file in `regulation-register/evaluations/` is reproduced byte for byte from its specification.
 
 ## 6. Limits and next steps
 
