@@ -2,8 +2,8 @@
 
 **Run:** 18 October 2026, once, after the plan [`pap_wa_weeknight_2010.md`](pap_wa_weeknight_2010.md) was fixed.
 
-- **Before the run:** a dry run with WA's post-reform outcomes hidden reproduced the design-stage no-effect distributions. The plan and code hashes were recorded in `alcia/analyses/wa_weeknight_2010/registration.json`.
-- **Numbers:** `alcia/analyses/wa_weeknight_2010/estimate.json`.
+- **Before the run:** a dry run with WA's post-reform outcomes hidden reproduced the design-stage no-effect distributions. The plan and code hashes were recorded in `alicia/analyses/wa_weeknight_2010/registration.json`.
+- **Numbers:** `alicia/analyses/wa_weeknight_2010/estimate.json`.
 - **Evaluation file:** `regulation-register/evaluations/wa-trading-hours-weeknight-2010-new-data.json`. It *follows* the first evaluation (`wa-trading-hours-2010-2012`).
 
 ## 1. Headline

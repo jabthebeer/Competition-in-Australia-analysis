@@ -10,6 +10,7 @@
     "vic-heavy-vehicle-national-law-2014"
   ],
   "family": "heavy-vehicle-national-law",
+  "follows": null,
   "evaluated_on": "2026-10-15",
   "hypothesis": "enhancing",
   "design": "Six jurisdictions adopted on 10 February 2014; WA and NT never did. Method: stacked difference-in-differences, net of the same comparison for unaffected industries in the same states.",
@@ -330,12 +331,12 @@
     },
     {
       "label": "Case definitions",
-      "path": "alcia/analyses/high_evaluability/cases.py"
+      "path": "alicia/analyses/high_evaluability/cases.py"
     },
     {
       "label": "Estimation code",
-      "path": "alcia/analyses/high_evaluability/run.py"
+      "path": "alicia/analyses/high_evaluability/run.py"
     }
   ],
-  "built_by": "alcia/analyses/high_evaluability/evaluations.py"
+  "built_by": "alicia/analyses/high_evaluability/evaluations.py"
 }

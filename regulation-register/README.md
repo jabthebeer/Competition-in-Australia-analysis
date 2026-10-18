@@ -1,8 +1,8 @@
 # Register of regulatory changes
 
-Candidate Commonwealth, state and territory changes whose effects on competition could be evaluated with public data. One JSON file per change per jurisdiction in `records/`, validated against `schema/change-record.schema.json` (generated from `alcia/src/alcia/register/schema.py`).
+Candidate Commonwealth, state and territory changes whose effects on competition could be evaluated with public data. One JSON file per change per jurisdiction in `records/`, validated against `schema/change-record.schema.json` (generated from `alicia/src/alicia/register/schema.py`).
 
-Browse it with the menu explorer (`uv run alcia explorer` in `alcia/`) or the command line (`uv run alcia menu`).
+Browse it with the menu explorer (`uv run alicia explorer` in `alicia/`) or the command line (`uv run alicia menu`).
 
 > **Status (15 October 2026):** 69 records, all `draft`. They were compiled by AI-assisted desk research from the sources each record cites and have not yet been checked by a person. The `direction` of each change is a hypothesis to be tested.
 
@@ -26,12 +26,12 @@ Browse it with the menu explorer (`uv run alcia explorer` in `alcia/`) or the co
 3. **Primary commencement.** When provisions commence on several dates, mark the one that changes competition conditions as `primary`, and say why in `review.notes`.
 4. **Industries.** List only industries the change directly regulates as `direct`. Use the most specific ANZSIC level that fits (class, then group).
 5. **Direction.** State the mechanism in one or two sentences and cite the basis (Productivity Commission, ACCC, OECD, research).
-6. **Check dates.** Run `uv run alcia dates <id>`. Resolve or explain any "differs" status or assent mismatch.
-7. **Review.** A person who has checked the record sets `review` to `{"status": "reviewed", "by": "<name>", "on": "<date>"}`. `uv run alcia validate` must pass.
+6. **Check dates.** Run `uv run alicia dates <id>`. Resolve or explain any "differs" status or assent mismatch.
+7. **Review.** A person who has checked the record sets `review` to `{"status": "reviewed", "by": "<name>", "on": "<date>"}`. `uv run alicia validate` must pass.
 
 ## Evaluations
 
-A record's `direction` is a hypothesis. What an evaluation found is kept separately, in `evaluations/<id>.json`, validated against `schema/evaluation.schema.json` (generated from `alcia/src/alcia/register/evaluation.py`). One evaluation can cover several records, for example two steps of one reform.
+A record's `direction` is a hypothesis. What an evaluation found is kept separately, in `evaluations/<id>.json`, validated against `schema/evaluation.schema.json` (generated from `alicia/src/alicia/register/evaluation.py`). One evaluation can cover several records, for example two steps of one reform.
 
 | Field | Meaning |
 |---|---|
@@ -42,11 +42,11 @@ A record's `direction` is a hypothesis. What an evaluation found is kept separat
 | `event_studies` | Year-by-year estimates with their placebo bands, for the charts |
 | `caveats`, `documents` | Limits to read alongside the result; the plan, results and code in this repository |
 
-**Evaluation files are generated, never typed by hand.** Each case's `alcia/analyses/<case>/evaluation.py` writes the file from the analysis outputs, and `alcia/tests/test_evaluation.py` checks the numbers against them. The menu explorer reads these files to show the **Evaluated** filter and the **Results** view.
+**Evaluation files are generated, never typed by hand.** Each case's `alicia/analyses/<case>/evaluation.py` writes the file from the analysis outputs, and `alicia/tests/test_evaluation.py` checks the numbers against them. The menu explorer reads these files to show the **Evaluated** filter and the **Results** view.
 
 ## Reports
 
-`reports/effective_dates_<date>.json` is the output of `alcia dates --all --json` on that date: each record's effective date, timing, register status and issues, with what each register returned. Federal Register content in these reports is CC BY 4.0: "Sourced from the Federal Register of Legislation" at each entry's `retrieved_at` date.
+`reports/effective_dates_<date>.json` is the output of `alicia dates --all --json` on that date: each record's effective date, timing, register status and issues, with what each register returned. Federal Register content in these reports is CC BY 4.0: "Sourced from the Federal Register of Legislation" at each entry's `retrieved_at` date.
 
 Latest run (15 October 2026):
 

@@ -1,6 +1,6 @@
 # Scoping: an econometric foundation for regulation, competition and innovation
 
-**Status:** Scoping note, 14 October 2026. **Decisions taken the same day** (`alcia/DECISIONS.md`, E-01 to E-07):
+**Status:** Scoping note, 14 October 2026. **Decisions taken the same day** (`alicia/DECISIONS.md`, E-01 to E-07):
 - evaluate past regulation first;
 - public data only, no BLADE;
 - Commonwealth and state changes;
@@ -9,7 +9,7 @@
 - calculator paused;
 - all public.
 
-Work under way: `alcia/` (register, date gatherer, menu explorer) and `docs/impact_evaluation_design.md`.
+Work under way: `alicia/` (register, date gatherer, menu explorer) and `docs/impact_evaluation_design.md`.
 
 **Request (project owner, 14 Oct 2026):**
 - Defer Phase 2b, the AI drafting assistant.
@@ -294,7 +294,7 @@ Three pilots, chosen to exercise each part of the foundation. All dates and thre
 |---|---|---|
 | `regulatory-burden-tool/` | Unchanged. Later: a "register record" export, and the B5 extension | TypeScript |
 | `regulation-register/` (new) | B1 records (one file per change), a JSON Schema shared by TypeScript and Python, a coding protocol, a validation script | JSON/CSV + schema |
-| `alcia/` (new) | Python package:<br>• data pipelines (download scripts with SHA-256 checksums, ABS Data API, CABEE parsers);<br>• exposure and outcome panels;<br>• measures;<br>• recipes R1–R8;<br>• simulated-data generators;<br>• tests;<br>• `datalab/` scripts that run inside DataLab | Python, with R cross-checks |
+| `alicia/` (new) | Python package:<br>• data pipelines (download scripts with SHA-256 checksums, ABS Data API, CABEE parsers);<br>• exposure and outcome panels;<br>• measures;<br>• recipes R1–R8;<br>• simulated-data generators;<br>• tests;<br>• `datalab/` scripts that run inside DataLab | Python, with R cross-checks |
 | `analyses/` (new) | One folder per pilot: pre-analysis plan, code, cleared outputs, short report | Python/R, Markdown |
 
 **Ground rules carried over from the calculator:**

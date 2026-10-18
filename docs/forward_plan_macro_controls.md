@@ -1,4 +1,4 @@
-# Forward plan: macroeconomic controls and a full regression framework for ALCIA
+# Forward plan: macroeconomic controls and a full regression framework for ALICIA
 
 Methods note, 18 October 2026, for the owner and Cowork. It builds on [`impact_evaluation_design.md`](impact_evaluation_design.md) (designs D1–D4, inference, pooling) and the three evaluations run so far.
 
@@ -128,11 +128,11 @@ All are public. Access and licences are to be confirmed in Phase 1, and the ABS 
 
 - State × period controls go in `data/processed/controls/state_quarter.parquet`.
 - National industry series go in `industry_quarter.parquet`.
-- Builders `alcia.pipeline.controls_*` record each source in `data/SOURCES.md`.
+- Builders `alicia.pipeline.controls_*` record each source in `data/SOURCES.md`.
 
 ## 5. Library and workflow changes
 
-**1. `alcia.evaluate.panel`: one estimation interface.**
+**1. `alicia.evaluate.panel`: one estimation interface.**
 
 - Builds the state × industry × period panel from any outcome panel, plus controls.
 - Estimators:

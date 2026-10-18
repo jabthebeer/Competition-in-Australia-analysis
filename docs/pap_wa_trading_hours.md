@@ -86,7 +86,7 @@ Changes to this plan after unblinding must be listed in §10, with reasons. Resu
 No analysis has been changed.
 
 **Clarifications made before unblinding (15 October 2026).** These settle points the plan left open.
-- They are fixed in `alcia/analyses/wa_trading_hours/estimate.py`.
+- They are fixed in `alicia/analyses/wa_trading_hours/estimate.py`.
 - That script was checked in a dry run with the treated outcomes hidden (`estimate_blind.json`).
 - The dry run reproduced the design review's placebo draws exactly: 472 groups for entries and 451 for exits, with the same mean and SD.
 - They were committed before the unblinded run.
@@ -112,3 +112,5 @@ No analysis has been changed.
   - a grade for food prices.
 
 **Paths (18 October 2026).** File paths and the tool name were updated for the ALCIA rename (`econ/` became `alcia/`; `regimpact` became `alcia`). The content is unchanged.
+
+**Paths (18 October 2026, second rename).** File paths and the tool name were updated when ALCIA became ALICIA (`alcia/` became `alicia/`; the package and command `alcia` became `alicia`). The content is unchanged.

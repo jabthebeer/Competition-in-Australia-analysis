@@ -9,7 +9,7 @@
   "follows": "childcare-nqf-2012",
   "evaluated_on": "2026-10-18",
   "hypothesis": "weakening",
-  "design": "On-off difference-in-differences (alcia.evaluate.stagger): the gap between WA and the other jurisdictions should open when they adopted the framework (January 2012) and close when WA did (August 2012). Monthly business exits and entries from the ABN register, quarterly child care prices and employment.",
+  "design": "On-off difference-in-differences (alicia.evaluate.stagger): the gap between WA and the other jurisdictions should open when they adopted the framework (January 2012) and close when WA did (August 2012). Monthly business exits and entries from the ABN register, quarterly child care prices and employment.",
   "comparison": "WA against the other seven jurisdictions pooled; inference from placebo industries over the same windows and childcare at earlier fake dates.",
   "window": "2009 to mid-2013: before 2012; January to July 2012 (only WA without the framework); August 2012 to July 2013 (all with it)",
   "verdict": "inconclusive",
@@ -730,20 +730,20 @@
     },
     {
       "label": "Design review (blinded)",
-      "path": "alcia/analyses/childcare_nqf_wa/design.json"
+      "path": "alicia/analyses/childcare_nqf_wa/design.json"
     },
     {
       "label": "Estimation code",
-      "path": "alcia/analyses/childcare_nqf_wa/estimate.py"
+      "path": "alicia/analyses/childcare_nqf_wa/estimate.py"
     },
     {
       "label": "Method (on-off design)",
-      "path": "alcia/src/alcia/evaluate/stagger.py"
+      "path": "alicia/src/alicia/evaluate/stagger.py"
     },
     {
       "label": "Earlier evaluation",
       "path": "docs/results_high_evaluability.md"
     }
   ],
-  "built_by": "alcia/analyses/childcare_nqf_wa/evaluation.py"
+  "built_by": "alicia/analyses/childcare_nqf_wa/evaluation.py"
 }

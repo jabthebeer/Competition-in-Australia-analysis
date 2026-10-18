@@ -1,6 +1,6 @@
 # Data sources register
 
-Every dataset used, with where it came from and what it may be used for. Raw downloads live in `data/raw/<source>/` (not committed). Each file's URL, retrieval time, size and SHA-256 are in `data/manifests/<source>.json`. Built panels are in `data/processed/<source>/`, in the common format described in `alcia/src/alcia/pipeline/schema.py`. Feasibility and limits: [`docs/data_pipeline_feasibility.md`](../docs/data_pipeline_feasibility.md).
+Every dataset used, with where it came from and what it may be used for. Raw downloads live in `data/raw/<source>/` (not committed). Each file's URL, retrieval time, size and SHA-256 are in `data/manifests/<source>.json`. Built panels are in `data/processed/<source>/`, in the common format described in `alicia/src/alicia/pipeline/schema.py`. Feasibility and limits: [`docs/data_pipeline_feasibility.md`](../docs/data_pipeline_feasibility.md).
 
 ## Built
 
@@ -21,11 +21,11 @@ Every dataset used, with where it came from and what it may be used for. Raw dow
 
 | Source (connector) | Publisher | URL | Accessed | Access / licence | Coverage | Key variables | Status |
 |---|---|---|---|---|---|---|---|
-| Internet Vacancy Index (`jsa_ivi`) | Jobs and Skills Australia | <https://www.jobsandskills.gov.au/data/internet-vacancy-index> | Not reached: connection refused from the build environment, 18 Oct 2026 | CC BY 4.0 (per publisher) | ANZSCO occupation × state from 2006; regions from 2010 | Online job advertisements | Parser written and tested on a synthetic workbook only; save workbooks to `data/raw/jsa_ivi/` and run `alcia pipeline build jsa_ivi` |
+| Internet Vacancy Index (`jsa_ivi`) | Jobs and Skills Australia | <https://www.jobsandskills.gov.au/data/internet-vacancy-index> | Not reached: connection refused from the build environment, 18 Oct 2026 | CC BY 4.0 (per publisher) | ANZSCO occupation × state from 2006; regions from 2010 | Online job advertisements | Parser written and tested on a synthetic workbook only; save workbooks to `data/raw/jsa_ivi/` and run `alicia pipeline build jsa_ivi` |
 
 ## Used by earlier analyses
 
-Listed in `alcia/SOURCES.md`: CPI (ABS Data API), State Accounts, Labour Force table 05, and the legislation registers.
+Listed in `alicia/SOURCES.md`: CPI (ABS Data API), State Accounts, Labour Force table 05, and the legislation registers.
 
 ## To do
 

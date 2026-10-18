@@ -5,6 +5,7 @@
     "nt-cds-2012"
   ],
   "family": "container-deposit-scheme",
+  "follows": null,
   "evaluated_on": "2026-10-15",
   "hypothesis": "mixed",
   "design": "One treated territory (NT, from January 2012) against states without a scheme; window ends 2016-17, before NSW's scheme. SA (scheme since 1977) is excluded. Method: stacked difference-in-differences, net of the same comparison for unaffected industries in the same states.",
@@ -322,12 +323,12 @@
     },
     {
       "label": "Case definitions",
-      "path": "alcia/analyses/high_evaluability/cases.py"
+      "path": "alicia/analyses/high_evaluability/cases.py"
     },
     {
       "label": "Estimation code",
-      "path": "alcia/analyses/high_evaluability/run.py"
+      "path": "alicia/analyses/high_evaluability/run.py"
     }
   ],
-  "built_by": "alcia/analyses/high_evaluability/evaluations.py"
+  "built_by": "alicia/analyses/high_evaluability/evaluations.py"
 }

@@ -6,6 +6,7 @@
     "wa-trading-hours-sunday-2012"
   ],
   "family": "retail-trading-hours",
+  "follows": null,
   "evaluated_on": "2026-10-15",
   "hypothesis": "enhancing",
   "design": "Difference-in-differences with one treated state: WA general retail (supermarkets, clothing and department stores) against comparison states, net of the same comparison for 472 groups of unaffected WA industries.",
@@ -541,8 +542,8 @@
     },
     {
       "label": "Estimation code",
-      "path": "alcia/analyses/wa_trading_hours/estimate.py"
+      "path": "alicia/analyses/wa_trading_hours/estimate.py"
     }
   ],
-  "built_by": "alcia/analyses/wa_trading_hours/evaluation.py"
+  "built_by": "alicia/analyses/wa_trading_hours/evaluation.py"
 }

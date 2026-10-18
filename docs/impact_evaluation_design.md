@@ -1,6 +1,6 @@
 # Impact evaluation design: regulatory changes, competition and the real economy
 
-**Status:** Draft for discussion, 15 October 2026. This is Track 2 of the work agreed on 14 October 2026; Track 1 is the register and date gatherer in `alcia/`.
+**Status:** Draft for discussion, 15 October 2026. This is Track 2 of the work agreed on 14 October 2026; Track 1 is the register and date gatherer in `alicia/`.
 
 **Next step:** a methodological robustness review. Section 9 is its checklist.
 
@@ -75,8 +75,8 @@ flowchart LR
 The basic cell is **jurisdiction × industry × financial year**, matching how the ABS publishes business entries and exits.
 
 - **Treated cell:** a jurisdiction where the change commenced, in an industry the register records as **directly** affected.
-- **Effective date:** the record's primary commencement. It is checked against the legislation register by `alcia dates`.
-- **Event time:** counted from the **first fully exposed financial year**. The first, partly exposed year is kept as a separate bin with its exposure share, from `alcia/src/alcia/timing.py`.
+- **Effective date:** the record's primary commencement. It is checked against the legislation register by `alicia dates`.
+- **Event time:** counted from the **first fully exposed financial year**. The first, partly exposed year is kept as a separate bin with its exposure share, from `alicia/src/alicia/timing.py`.
 - **Announcement date:** kept to test for anticipation.
 
 ---
@@ -119,7 +119,7 @@ The same rule applies to wages at subdivision level and to prices: a CPI class m
 
 ## 5. Identification: four designs, by type of change
 
-The register's evaluability screen (`alcia menu`) already sorts changes into these types.
+The register's evaluability screen (`alicia menu`) already sorts changes into these types.
 
 ### D1. Staggered adoption across jurisdictions (preferred)
 
@@ -194,7 +194,7 @@ You asked for the product to **find** competition-weakening changes, not only te
 
 ## 7. Three worked designs (to be finalised as pre-analysis plans)
 
-Industry codes below come from the bundled ABS ANZSIC 2006 list. Dates come from the register, and are confirmed by `alcia dates` where the register can be read automatically.
+Industry codes below come from the bundled ABS ANZSIC 2006 list. Dates come from the register, and are confirmed by `alicia dates` where the register can be read automatically.
 
 ### W1. Automatic mutual recognition of occupational registrations (hypothesis: enhancing; design D1 + D2)
 
@@ -277,7 +277,7 @@ The next step will test each item on the worked designs.
 Completed and committed **before** looking at post-period outcomes, one per evaluation:
 
 1. **Register record(s):** ids, direction hypothesis, channel.
-2. **Effective date** (from `alcia dates`), alternatives to test, first full financial year.
+2. **Effective date** (from `alicia dates`), alternatives to test, first full financial year.
 3. **Treated cells:** jurisdictions × ANZSIC codes, with the coding rule.
 4. **Comparison cells** and the rule used to choose them.
 5. **Primary outcome** (one). **Secondary outcomes** (listed).
@@ -299,7 +299,7 @@ Completed and committed **before** looking at post-period outcomes, one per eval
 - ABS Labour Account, modelled state and territory estimates by industry: <https://www.abs.gov.au/articles/labour-account-modelled-state-and-territory-estimates-industry-2026>
 - ABS *Jobs in Australia*: <https://www.abs.gov.au/statistics/labour/jobs/jobs-australia/latest-release>
 - ABS *Australian Industry*: <https://www.abs.gov.au/statistics/industry/industry-overview/australian-industry/latest-release>
-- ABS CPI: <https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/latest-release>. Expenditure classes come from the ABS Data API codelist `CL_CPI_INDEX_17` (bundled in `alcia/src/alcia/data/cpi17_classes.json`).
+- ABS CPI: <https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/latest-release>. Expenditure classes come from the ABS Data API codelist `CL_CPI_INDEX_17` (bundled in `alicia/src/alicia/data/cpi17_classes.json`).
 - ABS Labour Force changes (LFS Detailed ceased March 2026): <https://www.abs.gov.au/statistics/detailed-methodology-information/information-papers/upcoming-changes-labour-force-survey-outputs>
 - ABS ANZSIC 1993–2006 correspondence: <https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1292.0.55.0052008?OpenDocument>
 - Fuel price open data: WA FuelWatch <https://data.gov.au/data/dataset/fuelwatch-historic-fuel-prices>; NSW FuelCheck <https://data.gov.au/data/dataset/nsw-fuel-check>

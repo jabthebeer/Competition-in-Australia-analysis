@@ -4,7 +4,7 @@
 
 **Files:**
 - Plan: [`pap_high_evaluability.md`](pap_high_evaluability.md)
-- Code: `alcia/analyses/high_evaluability/run.py`
+- Code: `alicia/analyses/high_evaluability/run.py`
 - Results: `estimate.json`
 - Register evaluation files: `regulation-register/evaluations/`
 - Also browsable in the menu explorer (Evaluated filter, Results tab)
@@ -130,7 +130,7 @@ Each reformed industry is a small part of its division, and divisions swing by t
 
 ## 6. Verification, deviations and disclosures
 
-- **Verification.** Independent code (pandas plus normal equations, no `alcia` estimators) reproduces two cases exactly:
+- **Verification.** Independent code (pandas plus normal equations, no `alicia` estimators) reproduces two cases exactly:
   - the legal profession and heavy vehicle plain estimates;
   - their placebo counts, net estimates and p-values.
 - **No registered analysis was changed.**

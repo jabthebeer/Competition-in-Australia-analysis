@@ -7,6 +7,7 @@
     "qld-seq-energy-price-deregulation-2016"
   ],
   "family": "retail-energy-price-deregulation",
+  "follows": null,
   "evaluated_on": "2026-10-15",
   "hypothesis": "enhancing",
   "design": "Staggered: each deregulating state against the states whose prices stayed regulated (Tasmania, ACT, WA, NT). Victoria (deregulated 2009) is excluded. Method: stacked difference-in-differences, net of the same comparison for unaffected industries in the same states.",
@@ -306,12 +307,12 @@
     },
     {
       "label": "Case definitions",
-      "path": "alcia/analyses/high_evaluability/cases.py"
+      "path": "alicia/analyses/high_evaluability/cases.py"
     },
     {
       "label": "Estimation code",
-      "path": "alcia/analyses/high_evaluability/run.py"
+      "path": "alicia/analyses/high_evaluability/run.py"
     }
   ],
-  "built_by": "alcia/analyses/high_evaluability/evaluations.py"
+  "built_by": "alicia/analyses/high_evaluability/evaluations.py"
 }

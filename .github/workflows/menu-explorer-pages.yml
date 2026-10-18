@@ -1,7 +1,7 @@
-# Builds the ALCIA legislation menu (explorer) from the register and publishes it with GitHub Pages.
+# Builds the ALICIA legislation menu (explorer) from the register and publishes it with GitHub Pages.
 # One-time setup: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
 # The page is then at https://<owner>.github.io/<repository>/ and is rebuilt on every push to main.
-name: Publish the ALCIA legislation menu
+name: Publish the ALICIA legislation menu
 
 on:
   push:
@@ -24,14 +24,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
       - name: Check the register and build the page
-        working-directory: alcia
+        working-directory: alicia
         run: |
           uv sync --frozen
           uv run pytest -q
-          uv run alcia validate
+          uv run alicia validate
           mkdir -p ../site
           dates="$(ls ../regulation-register/reports/effective_dates_*.json | sort | tail -n 1)"
-          uv run alcia explorer --standalone -o ../site/index.html --dates "$dates" \
+          uv run alicia explorer --standalone -o ../site/index.html --dates "$dates" \
             --repo-base "https://github.com/${{ github.repository }}/blob/${{ github.sha }}/"
       - uses: actions/upload-pages-artifact@v3
         with:
