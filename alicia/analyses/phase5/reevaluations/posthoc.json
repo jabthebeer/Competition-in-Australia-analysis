@@ -1,0 +1,133 @@
+{
+ "spec": "phase5-reevaluations",
+ "preregistered": false,
+ "note": "Written after the registered results were seen; descriptive only; does not change any verdict.",
+ "vic_fares": {
+  "case": "vic-taxi-licensing-2014-phase5",
+  "outcome": "price-urban-transport-fares",
+  "cpi_class": "40086",
+  "treated": [
+   "VIC"
+  ],
+  "controls": [
+   "NSW",
+   "QLD",
+   "SA",
+   "WA",
+   "TAS",
+   "ACT",
+   "NT"
+  ],
+  "registered_window": [
+   "2014-Q3",
+   "2015-Q2"
+  ],
+  "baseline_quarters": [
+   "2013-Q3",
+   "2014-Q2"
+  ],
+  "gap": [
+   {
+    "quarter": "2012-Q1",
+    "gap": 0.942
+   },
+   {
+    "quarter": "2012-Q2",
+    "gap": 0.967
+   },
+   {
+    "quarter": "2012-Q3",
+    "gap": -0.319
+   },
+   {
+    "quarter": "2012-Q4",
+    "gap": -0.655
+   },
+   {
+    "quarter": "2013-Q1",
+    "gap": 1.015
+   },
+   {
+    "quarter": "2013-Q2",
+    "gap": 1.2
+   },
+   {
+    "quarter": "2013-Q3",
+    "gap": 0.071
+   },
+   {
+    "quarter": "2013-Q4",
+    "gap": 0.112
+   },
+   {
+    "quarter": "2014-Q1",
+    "gap": -0.044
+   },
+   {
+    "quarter": "2014-Q2",
+    "gap": -0.139
+   },
+   {
+    "quarter": "2014-Q3",
+    "gap": -0.065
+   },
+   {
+    "quarter": "2014-Q4",
+    "gap": 0.66
+   },
+   {
+    "quarter": "2015-Q1",
+    "gap": -18.435
+   },
+   {
+    "quarter": "2015-Q2",
+    "gap": -18.65
+   },
+   {
+    "quarter": "2015-Q3",
+    "gap": -19.153
+   },
+   {
+    "quarter": "2015-Q4",
+    "gap": -19.426
+   },
+   {
+    "quarter": "2016-Q1",
+    "gap": -18.848
+   },
+   {
+    "quarter": "2016-Q2",
+    "gap": -18.899
+   },
+   {
+    "quarter": "2016-Q3",
+    "gap": -19.102
+   },
+   {
+    "quarter": "2016-Q4",
+    "gap": -20.018
+   }
+  ],
+  "window_mean": -9.123,
+  "reference_steps": {
+   "from": "2005-Q2",
+   "to": "2014-Q2",
+   "n": 37,
+   "sd": 1.605
+  },
+  "candidate_quarters": {
+   "taxi licensing (2014-Q3)": {
+    "quarter": "2014-Q3",
+    "step": 0.075,
+    "step_in_sd": 0.05,
+    "share_of_reference_steps_as_large": 0.946
+   },
+   "reported fare cap and free tram zone (2015-Q1)": {
+    "quarter": "2015-Q1",
+    "step": -19.095,
+    "step_in_sd": -11.9,
+    "share_of_reference_steps_as_large": 0.0
+   }
+  }
+ }
+}

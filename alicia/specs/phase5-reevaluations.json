@@ -133,6 +133,18 @@
       ]
     },
     {
+      "name": "post-hoc",
+      "kind": "post-hoc",
+      "script": "posthoc.py",
+      "args": [
+        "--spec",
+        "phase5-reevaluations"
+      ],
+      "writes": [
+        "analyses/phase5/reevaluations/posthoc.json"
+      ]
+    },
+    {
       "name": "evaluation",
       "kind": "evaluation",
       "script": "evaluations.py",

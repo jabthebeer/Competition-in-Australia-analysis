@@ -1,0 +1,533 @@
+{
+  "id": "nt-container-deposits-2012-phase5",
+  "title": "Northern Territory container deposit scheme (2012): re-evaluation with drink prices",
+  "records": [
+    "nt-cds-2012"
+  ],
+  "family": "container-deposit-scheme",
+  "follows": "nt-container-deposits-2012",
+  "evaluated_on": "2026-10-18",
+  "hypothesis": "mixed",
+  "design": "Darwin drink prices relative to the CPI against the capitals of states without a scheme (Adelaide excluded), 2012-Q1 to 2017-Q3, with class x quarter and city x quarter effects. Business counts are too few to use.",
+  "comparison": "NT from 2012-Q1 against NSW/VIC/QLD/WA/TAS/ACT",
+  "window": "2012-Q1 to 2017-Q3 (quarters)",
+  "verdict": "not-identified",
+  "finding_label": "Not identified",
+  "grade": "Not identified",
+  "grade_reason": "a pre-reform year of the primary outcome lies outside its 95% placebo band",
+  "headline": "Not identified: waters, soft drinks and juices: prices relative to the CPI +7.6% (log points) (p = 0.20), saturated fixed effects.",
+  "category_summaries": {
+    "competition": "Not measured in this evaluation.",
+    "prices": "Waters, soft drinks and juices: prices relative to the CPI: +7.6% (log points) (p = 0.20; detectable from 22.0). Beer: prices relative to the CPI: +4.8% (log points) (p = 0.44; detectable from 22.0).",
+    "productivity": "Not measured in this evaluation."
+  },
+  "key_insights": [
+    "The question: did the Northern Territory's container deposit scheme (January 2012) change drink prices in Darwin?",
+    "The comparison: Darwin drink prices relative to the CPI against the capitals of states without a scheme (Adelaide excluded), 2012-Q1 to 2017-Q3, with class x quarter and city x quarter effects. Business counts are too few to use.",
+    "What we found: the effect cannot be identified: a pre-reform year of the primary outcome lies outside its 95% placebo band, so the treated group was already moving apart before the reform. The registered layer's estimate (+7.6% relative to other prices) is not an effect.",
+    "Other outcomes: beer: prices relative to the CPI +4.8 (p = 0.44).",
+    "How precise: only changes larger than about 22.0% relative to other prices could have been detected.",
+    "Compared with the earlier evaluation (2026-10-15, now archived): it found that the effect could not be identified (waters, soft drinks and juices: prices relative to the CPI +8.7% (log points)). The conclusion is unchanged. This evaluation uses the estimator chosen in the blinded power study and the latest data.",
+    "What it means: these data cannot separate the reform from what was already happening."
+  ],
+  "method": {
+    "summary": "Saturated fixed effects on CPI classes by capital city and quarter, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.",
+    "equations": [
+      {
+        "label": "Saturated fixed effects",
+        "text": "y_{cjq} = α_{cj} + δ_{cq} + γ_{jq} + β·D_{cjq} + ε_{cjq}"
+      },
+      {
+        "label": "Year by year",
+        "text": "y_{cjq} = α_{cj} + δ_{cq} + γ_{jq} + Σ_{k≠−1} β_{k}·1[q − T_{j} = k]·T_{cj} + ε_{cjq}"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{cjq}",
+        "meaning": "100 × log of the CPI class relative to All groups in city j, quarter q"
+      },
+      {
+        "symbol": "D_{cjq}",
+        "meaning": "1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window"
+      },
+      {
+        "symbol": "α_{cj}",
+        "meaning": "a level for each class in each state"
+      },
+      {
+        "symbol": "δ_{cq}",
+        "meaning": "each class's national movement in each period (industry cycles, product-wide price swings)"
+      },
+      {
+        "symbol": "γ_{jq}",
+        "meaning": "each state's movement in each period (state booms and slumps)"
+      }
+    ],
+    "estimand": "The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.",
+    "identification": "Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).",
+    "inference": "The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.",
+    "steps": [
+      "Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.",
+      "Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.",
+      "Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.",
+      "Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side."
+    ]
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "price-soft-drinks",
+      "label": "Waters, soft drinks and juices: prices relative to the CPI",
+      "category": "prices",
+      "role": "primary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 7.623,
+      "interval": {
+        "low": -0.19,
+        "high": 19.062,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -11.439,
+        "high": 7.813,
+        "basis": "90% range across 40 placebo CPI classes in the same cities"
+      },
+      "p_value": 0.1951,
+      "inference": "Rank among 40 placebo CPI classes in the same cities (two-sided)",
+      "mde_80": 21.983,
+      "finding": "not-identified",
+      "grade": "Not identified",
+      "preregistered": true,
+      "note": "Registered layer: Saturated fixed effects. Net of a placebo mean of −0.4; plain estimate +7.3. Capital cities. Checks: Synthetic DiD −3.1 (outside the 90% interval). Own-class placebos: states and dates p = 0.048 (20 draws). Not identified: a pre-reform year lies outside its 95% placebo band."
+    },
+    {
+      "id": "price-beer",
+      "label": "Beer: prices relative to the CPI",
+      "category": "prices",
+      "role": "secondary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": 4.819,
+      "interval": {
+        "low": -2.994,
+        "high": 16.257,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -11.438,
+        "high": 7.813,
+        "basis": "90% range across 40 placebo CPI classes in the same cities"
+      },
+      "p_value": 0.439,
+      "inference": "Rank among 40 placebo CPI classes in the same cities (two-sided)",
+      "mde_80": 21.983,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered layer: Saturated fixed effects. Net of a placebo mean of −0.4; plain estimate +4.5. Capital cities. Checks: Synthetic DiD −1.8. Own-class placebos: states and dates p = 0.048 (20 draws)."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "price-soft-drinks",
+      "title": "Waters, soft drinks and juices: prices relative to the CPI, year by year (saturated effects, net of placebos)",
+      "unit": "% (log points)",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "year -5",
+          "k": -5,
+          "estimate": -8.8067,
+          "low": -21.5538,
+          "high": -0.9562
+        },
+        {
+          "period": "year -4",
+          "k": -4,
+          "estimate": -6.1428,
+          "low": -17.5426,
+          "high": 1.9309
+        },
+        {
+          "period": "year -3",
+          "k": -3,
+          "estimate": -1.8923,
+          "low": -8.7905,
+          "high": 4.1369
+        },
+        {
+          "period": "year -2",
+          "k": -2,
+          "estimate": -2.9152,
+          "low": -8.4969,
+          "high": 2.1351
+        },
+        {
+          "period": "year 0",
+          "k": 0,
+          "estimate": 1.4583,
+          "low": -1.9516,
+          "high": 6.7845
+        },
+        {
+          "period": "year +1",
+          "k": 1,
+          "estimate": 1.0489,
+          "low": -7.0891,
+          "high": 6.4
+        },
+        {
+          "period": "year +2",
+          "k": 2,
+          "estimate": 0.8994,
+          "low": -8.4213,
+          "high": 6.3654
+        },
+        {
+          "period": "year +3",
+          "k": 3,
+          "estimate": 2.1503,
+          "low": -10.3275,
+          "high": 8.498
+        },
+        {
+          "period": "year +4",
+          "k": 4,
+          "estimate": 3.8486,
+          "low": -6.2042,
+          "high": 11.5773
+        },
+        {
+          "period": "year +5",
+          "k": 5,
+          "estimate": 5.1142,
+          "low": -7.2725,
+          "high": 13.7925
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    },
+    {
+      "outcome": "price-beer",
+      "title": "Beer: prices relative to the CPI, year by year (saturated effects, net of placebos)",
+      "unit": "% (log points)",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "year -5",
+          "k": -5,
+          "estimate": -6.0616,
+          "low": -18.8086,
+          "high": 1.7889
+        },
+        {
+          "period": "year -4",
+          "k": -4,
+          "estimate": -7.6947,
+          "low": -19.0946,
+          "high": 0.3789
+        },
+        {
+          "period": "year -3",
+          "k": -3,
+          "estimate": -5.78,
+          "low": -12.6781,
+          "high": 0.2493
+        },
+        {
+          "period": "year -2",
+          "k": -2,
+          "estimate": -4.5071,
+          "low": -10.0888,
+          "high": 0.5431
+        },
+        {
+          "period": "year 0",
+          "k": 0,
+          "estimate": 4.5394,
+          "low": 1.1295,
+          "high": 9.8655
+        },
+        {
+          "period": "year +1",
+          "k": 1,
+          "estimate": 1.7551,
+          "low": -6.3829,
+          "high": 7.1062
+        },
+        {
+          "period": "year +2",
+          "k": 2,
+          "estimate": -1.4397,
+          "low": -10.7605,
+          "high": 4.0263
+        },
+        {
+          "period": "year +3",
+          "k": 3,
+          "estimate": -2.5669,
+          "low": -15.0447,
+          "high": 3.7809
+        },
+        {
+          "period": "year +4",
+          "k": 4,
+          "estimate": -2.2235,
+          "low": -12.2763,
+          "high": 5.5052
+        },
+        {
+          "period": "year +5",
+          "k": 5,
+          "estimate": -2.6116,
+          "low": -14.9983,
+          "high": 6.0667
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    }
+  ],
+  "caveats": [
+    "a pre-reform year of the primary outcome lies outside its 95% placebo band",
+    "Re-evaluation: the earlier results were known when this specification was written; the estimator layers were fixed beforehand by the blinded power study."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_phase5.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_phase5.md"
+    },
+    {
+      "label": "Specification",
+      "path": "alicia/specs/phase5-reevaluations.json"
+    },
+    {
+      "label": "Estimation code",
+      "path": "alicia/analyses/phase5/run.py"
+    }
+  ],
+  "built_by": "alicia/analyses/phase5/evaluations.py",
+  "supersedes": [
+    "nt-container-deposits-2012"
+  ],
+  "evaluated_at": "2026-10-18T21:04:50Z",
+  "estimators": [
+    {
+      "outcome": "price-soft-drinks",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": 10.724,
+      "interval": {
+        "low": -16.161,
+        "high": 28.701,
+        "level": 0.9
+      },
+      "p_value": 0.5122,
+      "mde_80": 46.178,
+      "registered": false
+    },
+    {
+      "outcome": "price-soft-drinks",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": 10.739,
+      "interval": {
+        "low": -16.456,
+        "high": 28.886,
+        "level": 0.9
+      },
+      "p_value": 0.5366,
+      "mde_80": 46.684,
+      "registered": false
+    },
+    {
+      "outcome": "price-soft-drinks",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": 7.623,
+      "interval": {
+        "low": -0.19,
+        "high": 19.062,
+        "level": 0.9
+      },
+      "p_value": 0.1951,
+      "mde_80": 21.983,
+      "registered": true
+    },
+    {
+      "outcome": "price-soft-drinks",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": 10.741,
+      "interval": {
+        "low": -16.225,
+        "high": 28.745,
+        "level": 0.9
+      },
+      "p_value": 0.5122,
+      "mde_80": 46.297,
+      "registered": false
+    },
+    {
+      "outcome": "price-soft-drinks",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": 7.623,
+      "interval": {
+        "low": -0.19,
+        "high": 19.062,
+        "level": 0.9
+      },
+      "p_value": 0.1951,
+      "mde_80": 21.983,
+      "registered": false
+    },
+    {
+      "outcome": "price-soft-drinks",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": -3.128,
+      "interval": {
+        "low": -12.868,
+        "high": 5.307,
+        "level": 0.9
+      },
+      "p_value": 0.65,
+      "mde_80": 21.264,
+      "registered": false
+    },
+    {
+      "outcome": "price-soft-drinks",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": -0.789,
+      "interval": {
+        "low": -18.698,
+        "high": 10.257,
+        "level": 0.9
+      },
+      "p_value": 0.975,
+      "mde_80": 28.848,
+      "registered": false
+    },
+    {
+      "outcome": "price-beer",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": 14.456,
+      "interval": {
+        "low": -12.429,
+        "high": 32.433,
+        "level": 0.9
+      },
+      "p_value": 0.3902,
+      "mde_80": 46.178,
+      "registered": false
+    },
+    {
+      "outcome": "price-beer",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": 14.471,
+      "interval": {
+        "low": -12.725,
+        "high": 32.618,
+        "level": 0.9
+      },
+      "p_value": 0.3902,
+      "mde_80": 46.684,
+      "registered": false
+    },
+    {
+      "outcome": "price-beer",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": 4.819,
+      "interval": {
+        "low": -2.994,
+        "high": 16.257,
+        "level": 0.9
+      },
+      "p_value": 0.439,
+      "mde_80": 21.983,
+      "registered": true
+    },
+    {
+      "outcome": "price-beer",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": 14.471,
+      "interval": {
+        "low": -12.496,
+        "high": 32.474,
+        "level": 0.9
+      },
+      "p_value": 0.3902,
+      "mde_80": 46.297,
+      "registered": false
+    },
+    {
+      "outcome": "price-beer",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": 4.819,
+      "interval": {
+        "low": -2.994,
+        "high": 16.257,
+        "level": 0.9
+      },
+      "p_value": 0.439,
+      "mde_80": 21.983,
+      "registered": false
+    },
+    {
+      "outcome": "price-beer",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": -1.764,
+      "interval": {
+        "low": -11.531,
+        "high": 6.648,
+        "level": 0.9
+      },
+      "p_value": 0.8,
+      "mde_80": 21.28,
+      "registered": false
+    },
+    {
+      "outcome": "price-beer",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": -7.814,
+      "interval": {
+        "low": -25.404,
+        "high": 3.523,
+        "level": 0.9
+      },
+      "p_value": 0.35,
+      "mde_80": 28.689,
+      "registered": false
+    }
+  ]
+}

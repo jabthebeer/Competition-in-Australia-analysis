@@ -163,4 +163,13 @@ Definitions are in `power_study.md` §2.
 
 ## 7. Changes after registration
 
-None yet. Any change after unblinding will be listed here and labelled "not pre-registered".
+The registered estimate ran once for each specification on 18 October 2026 (21:04 UTC), after the design and dry-run outputs were committed. Nothing registered changed. One check was added afterwards:
+
+1. **Not pre-registered: timing of the Victorian fares fall.**
+   - **Why:** the Victorian taxi re-evaluation found Melbourne's urban transport fares about 10% lower in 2014-Q3 to 2015-Q2. Public transport fare changes were reported for 1 January 2015, inside that window.
+   - **What:** a post-hoc stage was added to `phase5-reevaluations` (`alicia/analyses/phase5/posthoc.py`, writing `posthoc.json`). It shows Melbourne's quarterly fares gap against the other capitals.
+   - **Result:** the whole fall comes in 2015-Q1 (−19.1 points in one quarter, about 12 times the usual quarterly move from 2005 to 2014). The gap does not move in 2014-Q3 (+0.1), when the taxi reform started.
+   - **Effect on the evaluation:** none on the verdict, which rests on the primary outcome (taxi entry). The fares result is reported as confounded, and the check is labelled not pre-registered.
+   - **Sources:** the fare changes (zone 1+2 travel capped at the zone 1 fare; free CBD trams) come from commentary written before them (danielbowen.com, 11 August 2014). They were not checked against PTV's fare tables.
+
+Results: [`results_phase5.md`](results_phase5.md).

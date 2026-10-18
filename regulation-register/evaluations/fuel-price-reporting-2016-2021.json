@@ -1,0 +1,724 @@
+{
+  "id": "fuel-price-reporting-2016-2021",
+  "title": "Mandatory fuel price reporting (NSW 2016, NT 2017, QLD 2018, TAS 2020, SA 2021)",
+  "records": [
+    "nsw-fuel-price-reporting-2016",
+    "nt-fuel-price-reporting-2017",
+    "qld-fuel-price-reporting-2018",
+    "tas-fuel-price-reporting-2020",
+    "sa-fuel-price-reporting-2021"
+  ],
+  "family": "fuel-price-transparency",
+  "follows": null,
+  "evaluated_on": "2026-10-18",
+  "hypothesis": "mixed",
+  "design": "Staggered: each state's capital-city fuel price relative to the CPI against capitals not yet reporting (Melbourne and Canberra throughout; Hobart and Adelaide until they adopted), with class x quarter and city x quarter effects; fuel retailers' entry and exit the same way. WA, always reporting, is left out.",
+  "comparison": "NSW from 2016-Q3 against VIC/ACT/TAS/SA; NT from 2017-Q4 against VIC/ACT/TAS/SA; QLD from 2018-Q4 against VIC/ACT/TAS/SA; TAS from 2020-Q3 against VIC/ACT; SA from 2021-Q1 against VIC/ACT",
+  "window": "2016-Q3 to 2025-Q2 (quarters)",
+  "verdict": "inconclusive",
+  "finding_label": "No detectable effect",
+  "grade": "Weak",
+  "grade_reason": "Synthetic DiD (a check layer) lies outside the registered layer's 90% interval",
+  "headline": "No detectable effect: automotive fuel: prices relative to the CPI −2.8% (log points) (p = 0.20), saturated fixed effects, grade Weak.",
+  "category_summaries": {
+    "competition": "Business entry rate: −0.2 per 100 businesses a year (p = 0.85; detectable from 2.2). Business exit rate: −1.0 per 100 businesses a year (p = 0.15; detectable from 2.2).",
+    "prices": "Automotive fuel: prices relative to the CPI: −2.8% (log points) (p = 0.20; detectable from 6.7).",
+    "productivity": "Not measured in this evaluation."
+  },
+  "key_insights": [
+    "The question: did making fuel retailers report their prices in real time for publication (NSW 2016, NT 2017, Queensland 2018, Tasmania 2020, SA 2021) change fuel prices, or the number of fuel retailers?",
+    "The comparison: Staggered: each state's capital-city fuel price relative to the CPI against capitals not yet reporting (Melbourne and Canberra throughout; Hobart and Adelaide until they adopted), with class x quarter and city x quarter effects; fuel retailers' entry and exit the same way. WA, always reporting, is left out.",
+    "What we found: no detectable change. Automotive fuel: prices relative to the CPI: −2.8% relative to other prices (90% interval −7.3 to +0.4; p = 0.20).",
+    "The estimators disagree: synthetic DiD gives +4.8, outside the registered layer's 90% interval, so the grade is Weak.",
+    "Other outcomes: business entry rate −0.2 (p = 0.85; not identified: a pre-reform year lies outside its placebo band); business exit rate −1.0 (p = 0.15).",
+    "How precise: only changes larger than about 6.7% relative to other prices could have been detected.",
+    "What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out."
+  ],
+  "method": {
+    "summary": "Saturated fixed effects on CPI classes by capital city and quarter, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.",
+    "equations": [
+      {
+        "label": "Saturated fixed effects",
+        "text": "y_{cjq} = α_{cj} + δ_{cq} + γ_{jq} + β·D_{cjq} + ε_{cjq}"
+      },
+      {
+        "label": "Year by year",
+        "text": "y_{cjq} = α_{cj} + δ_{cq} + γ_{jq} + Σ_{k≠−1} β_{k}·1[q − T_{j} = k]·T_{cj} + ε_{cjq}"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{cjq}",
+        "meaning": "100 × log of the CPI class relative to All groups in city j, quarter q"
+      },
+      {
+        "symbol": "D_{cjq}",
+        "meaning": "1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window"
+      },
+      {
+        "symbol": "α_{cj}",
+        "meaning": "a level for each class in each state"
+      },
+      {
+        "symbol": "δ_{cq}",
+        "meaning": "each class's national movement in each period (industry cycles, product-wide price swings)"
+      },
+      {
+        "symbol": "γ_{jq}",
+        "meaning": "each state's movement in each period (state booms and slumps)"
+      }
+    ],
+    "estimand": "The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.",
+    "identification": "Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).",
+    "inference": "The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.",
+    "steps": [
+      "Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.",
+      "Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.",
+      "Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.",
+      "Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side."
+    ]
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "price-automotive-fuel",
+      "label": "Automotive fuel: prices relative to the CPI",
+      "category": "prices",
+      "role": "primary",
+      "unit": "% (log points)",
+      "baseline": null,
+      "baseline_label": null,
+      "estimate": -2.845,
+      "interval": {
+        "low": -7.267,
+        "high": 0.355,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -3.2,
+        "high": 4.422,
+        "basis": "90% range across 40 placebo CPI classes in the same cities"
+      },
+      "p_value": 0.1951,
+      "inference": "Rank among 40 placebo CPI classes in the same cities (two-sided)",
+      "mde_80": 6.703,
+      "finding": "no-detectable-effect",
+      "grade": "Weak",
+      "preregistered": true,
+      "note": "Registered layer: Saturated fixed effects. Net of a placebo mean of +0.6; plain estimate −2.3. Capital cities. Checks: Imputation (Borusyak, Jaravel and Spiess) −3.0; Synthetic DiD +4.8 (outside the 90% interval)."
+    },
+    {
+      "id": "entry-rate",
+      "label": "Business entry rate",
+      "category": "competition",
+      "role": "secondary",
+      "unit": "per 100 businesses a year",
+      "baseline": 14.487,
+      "baseline_label": "Average rate in the panel",
+      "estimate": -0.24,
+      "interval": {
+        "low": -1.359,
+        "high": 0.823,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -1.063,
+        "high": 1.119,
+        "basis": "90% range across 40 placebo industry groups"
+      },
+      "p_value": 0.8537,
+      "inference": "Rank among 40 placebo industry groups (two-sided)",
+      "mde_80": 2.192,
+      "finding": "not-identified",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered layer: Saturated fixed effects. Net of a placebo mean of −0.1; plain estimate −0.4. 4000 Fuel Retailing. Checks: Synthetic DiD −0.2. Not identified: a pre-reform year lies outside its 95% placebo band."
+    },
+    {
+      "id": "exit-rate",
+      "label": "Business exit rate",
+      "category": "competition",
+      "role": "secondary",
+      "unit": "per 100 businesses a year",
+      "baseline": 12.672,
+      "baseline_label": "Average rate in the panel",
+      "estimate": -1.037,
+      "interval": {
+        "low": -2.063,
+        "high": 0.135,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -1.172,
+        "high": 1.026,
+        "basis": "90% range across 40 placebo industry groups"
+      },
+      "p_value": 0.1463,
+      "inference": "Rank among 40 placebo industry groups (two-sided)",
+      "mde_80": 2.23,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered layer: Saturated fixed effects. Net of a placebo mean of +0.1; plain estimate −1.0. 4000 Fuel Retailing. Checks: Synthetic DiD +1.7 (outside the 90% interval)."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "price-automotive-fuel",
+      "title": "Automotive fuel: prices relative to the CPI, year by year (saturated effects, net of placebos)",
+      "unit": "% (log points)",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "year -5",
+          "k": -5,
+          "estimate": 1.4909,
+          "low": -2.2097,
+          "high": 6.1512
+        },
+        {
+          "period": "year -4",
+          "k": -4,
+          "estimate": 2.3105,
+          "low": 0.1336,
+          "high": 5.2662
+        },
+        {
+          "period": "year -3",
+          "k": -3,
+          "estimate": 0.2948,
+          "low": -1.2147,
+          "high": 2.4313
+        },
+        {
+          "period": "year -2",
+          "k": -2,
+          "estimate": 0.2162,
+          "low": -0.5256,
+          "high": 1.6764
+        },
+        {
+          "period": "year 0",
+          "k": 0,
+          "estimate": -1.3323,
+          "low": -3.2115,
+          "high": 0.0528
+        },
+        {
+          "period": "year +1",
+          "k": 1,
+          "estimate": -1.9988,
+          "low": -3.9092,
+          "high": 0.0579
+        },
+        {
+          "period": "year +2",
+          "k": 2,
+          "estimate": -2.1209,
+          "low": -4.8505,
+          "high": 1.7569
+        },
+        {
+          "period": "year +3",
+          "k": 3,
+          "estimate": -1.53,
+          "low": -5.7665,
+          "high": 4.3299
+        },
+        {
+          "period": "year +4",
+          "k": 4,
+          "estimate": -4.9139,
+          "low": -13.7488,
+          "high": 0.523
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    },
+    {
+      "outcome": "entry-rate",
+      "title": "Business entry rate, year by year (saturated effects, net of placebos)",
+      "unit": "per 100 businesses a year",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "year -5",
+          "k": -5,
+          "estimate": -1.643,
+          "low": -4.1824,
+          "high": 0.0902
+        },
+        {
+          "period": "year -4",
+          "k": -4,
+          "estimate": -0.6926,
+          "low": -3.0344,
+          "high": 1.9375
+        },
+        {
+          "period": "year -3",
+          "k": -3,
+          "estimate": -1.5423,
+          "low": -3.1034,
+          "high": 0.2588
+        },
+        {
+          "period": "year -2",
+          "k": -2,
+          "estimate": -2.7745,
+          "low": -4.7563,
+          "high": -0.7788
+        },
+        {
+          "period": "year 0",
+          "k": 0,
+          "estimate": -0.5381,
+          "low": -2.9289,
+          "high": 2.167
+        },
+        {
+          "period": "year +1",
+          "k": 1,
+          "estimate": -1.1792,
+          "low": -3.6341,
+          "high": 0.4422
+        },
+        {
+          "period": "year +2",
+          "k": 2,
+          "estimate": -3.6722,
+          "low": -6.0096,
+          "high": -1.2995
+        },
+        {
+          "period": "year +3",
+          "k": 3,
+          "estimate": -1.9726,
+          "low": -5.5823,
+          "high": 0.5312
+        },
+        {
+          "period": "year +4",
+          "k": 4,
+          "estimate": -3.195,
+          "low": -9.6556,
+          "high": 0.2402
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    },
+    {
+      "outcome": "exit-rate",
+      "title": "Business exit rate, year by year (saturated effects, net of placebos)",
+      "unit": "per 100 businesses a year",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "year -5",
+          "k": -5,
+          "estimate": 0.3472,
+          "low": -1.1966,
+          "high": 2.4126
+        },
+        {
+          "period": "year -4",
+          "k": -4,
+          "estimate": 0.8451,
+          "low": -1.0264,
+          "high": 2.9487
+        },
+        {
+          "period": "year -3",
+          "k": -3,
+          "estimate": 0.4872,
+          "low": -0.8554,
+          "high": 2.1393
+        },
+        {
+          "period": "year -2",
+          "k": -2,
+          "estimate": 0.7225,
+          "low": -0.6501,
+          "high": 2.8566
+        },
+        {
+          "period": "year 0",
+          "k": 0,
+          "estimate": -0.9308,
+          "low": -2.5194,
+          "high": 0.7404
+        },
+        {
+          "period": "year +1",
+          "k": 1,
+          "estimate": -0.1389,
+          "low": -1.6198,
+          "high": 1.6146
+        },
+        {
+          "period": "year +2",
+          "k": 2,
+          "estimate": 0.3152,
+          "low": -1.5859,
+          "high": 2.3771
+        },
+        {
+          "period": "year +3",
+          "k": 3,
+          "estimate": -0.2286,
+          "low": -2.2364,
+          "high": 1.8958
+        },
+        {
+          "period": "year +4",
+          "k": 4,
+          "estimate": -3.0784,
+          "low": -8.4237,
+          "high": -0.1377
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    }
+  ],
+  "caveats": [
+    "Synthetic DiD (a check layer) lies outside the registered layer's 90% interval",
+    "First evaluation of a draft register family: dates and industries are not yet checked by a person."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_phase5.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_phase5.md"
+    },
+    {
+      "label": "Specification",
+      "path": "alicia/specs/phase5-new-families.json"
+    },
+    {
+      "label": "Estimation code",
+      "path": "alicia/analyses/phase5/run.py"
+    }
+  ],
+  "built_by": "alicia/analyses/phase5/evaluations.py",
+  "evaluated_at": "2026-10-18T21:04:29Z",
+  "estimators": [
+    {
+      "outcome": "price-automotive-fuel",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": 1.649,
+      "interval": {
+        "low": -15.446,
+        "high": 24.811,
+        "level": 0.9
+      },
+      "p_value": 0.9024,
+      "mde_80": 38.647,
+      "registered": false
+    },
+    {
+      "outcome": "price-automotive-fuel",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": 1.666,
+      "interval": {
+        "low": -15.556,
+        "high": 24.992,
+        "level": 0.9
+      },
+      "p_value": 0.9024,
+      "mde_80": 38.934,
+      "registered": false
+    },
+    {
+      "outcome": "price-automotive-fuel",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": -2.845,
+      "interval": {
+        "low": -7.267,
+        "high": 0.355,
+        "level": 0.9
+      },
+      "p_value": 0.1951,
+      "mde_80": 6.703,
+      "registered": true
+    },
+    {
+      "outcome": "price-automotive-fuel",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": 1.649,
+      "interval": {
+        "low": -15.462,
+        "high": 24.831,
+        "level": 0.9
+      },
+      "p_value": 0.9024,
+      "mde_80": 38.683,
+      "registered": false
+    },
+    {
+      "outcome": "price-automotive-fuel",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": -2.985,
+      "interval": {
+        "low": -7.396,
+        "high": 0.302,
+        "level": 0.9
+      },
+      "p_value": 0.2927,
+      "mde_80": 7.157,
+      "registered": false
+    },
+    {
+      "outcome": "price-automotive-fuel",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": 4.802,
+      "interval": {
+        "low": 1.21,
+        "high": 8.94,
+        "level": 0.9
+      },
+      "p_value": 0.125,
+      "mde_80": 8.641,
+      "registered": false
+    },
+    {
+      "outcome": "price-automotive-fuel",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": 21.976,
+      "interval": {
+        "low": 14.909,
+        "high": 28.81,
+        "level": 0.9
+      },
+      "p_value": 0.025,
+      "mde_80": 12.053,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": 0.524,
+      "interval": {
+        "low": -2.303,
+        "high": 3.918,
+        "level": 0.9
+      },
+      "p_value": 0.6341,
+      "mde_80": 4.866,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": 0.509,
+      "interval": {
+        "low": -2.302,
+        "high": 4.004,
+        "level": 0.9
+      },
+      "p_value": 0.6341,
+      "mde_80": 4.885,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": -0.24,
+      "interval": {
+        "low": -1.359,
+        "high": 0.823,
+        "level": 0.9
+      },
+      "p_value": 0.8537,
+      "mde_80": 2.192,
+      "registered": true
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": 0.509,
+      "interval": {
+        "low": -2.302,
+        "high": 3.971,
+        "level": 0.9
+      },
+      "p_value": 0.6341,
+      "mde_80": 4.884,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": -0.018,
+      "interval": {
+        "low": -1.806,
+        "high": 0.662,
+        "level": 0.9
+      },
+      "p_value": 1.0,
+      "mde_80": 10.981,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": -0.205,
+      "interval": {
+        "low": -2.231,
+        "high": 1.226,
+        "level": 0.9
+      },
+      "p_value": 0.8293,
+      "mde_80": 3.194,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": -0.687,
+      "interval": {
+        "low": -3.287,
+        "high": 2.042,
+        "level": 0.9
+      },
+      "p_value": 0.5366,
+      "mde_80": 5.486,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": 2.046,
+      "interval": {
+        "low": 0.612,
+        "high": 3.823,
+        "level": 0.9
+      },
+      "p_value": 0.122,
+      "mde_80": 4.594,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": 2.028,
+      "interval": {
+        "low": 0.607,
+        "high": 3.791,
+        "level": 0.9
+      },
+      "p_value": 0.122,
+      "mde_80": 4.593,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": -1.037,
+      "interval": {
+        "low": -2.063,
+        "high": 0.135,
+        "level": 0.9
+      },
+      "p_value": 0.1463,
+      "mde_80": 2.23,
+      "registered": true
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": 2.045,
+      "interval": {
+        "low": 0.613,
+        "high": 3.778,
+        "level": 0.9
+      },
+      "p_value": 0.122,
+      "mde_80": 4.596,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": -0.974,
+      "interval": {
+        "low": -2.098,
+        "high": 0.153,
+        "level": 0.9
+      },
+      "p_value": 0.2195,
+      "mde_80": 2.323,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": 1.74,
+      "interval": {
+        "low": 0.379,
+        "high": 3.458,
+        "level": 0.9
+      },
+      "p_value": 0.122,
+      "mde_80": 4.29,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": 1.811,
+      "interval": {
+        "low": 0.057,
+        "high": 3.225,
+        "level": 0.9
+      },
+      "p_value": 0.0976,
+      "mde_80": 4.238,
+      "registered": false
+    }
+  ]
+}

@@ -1,0 +1,506 @@
+{
+  "id": "wa-trading-hours-2010-2012-phase5",
+  "title": "Perth retail trading hours (2010 weeknights, 2012 Sundays): re-evaluation with saturated effects",
+  "records": [
+    "wa-trading-hours-weeknight-2010",
+    "wa-trading-hours-sunday-2012"
+  ],
+  "family": "retail-trading-hours",
+  "follows": "wa-trading-hours-2010-2012",
+  "evaluated_on": "2026-10-18",
+  "hypothesis": "enhancing",
+  "design": "WA general retail classes against the same classes in NSW, Victoria, Queensland, Tasmania, the ACT and the NT (SA excluded), 2010-11 to 2017-18, with class x year and state x year effects.",
+  "comparison": "WA from 2011 against NSW/VIC/QLD/TAS/ACT/NT",
+  "window": "2010-11 to 2017-18",
+  "verdict": "inconclusive",
+  "finding_label": "No detectable effect",
+  "grade": "Moderate",
+  "grade_reason": "design checks passed; registered layer and checks agree",
+  "headline": "No detectable effect: business entry rate +1.0 per 100 businesses a year (p = 0.49), saturated fixed effects, grade Moderate.",
+  "category_summaries": {
+    "competition": "Business entry rate: +1.0 per 100 businesses a year (p = 0.49; detectable from 4.6). Business exit rate: +1.3 per 100 businesses a year (p = 0.22; detectable from 3.0).",
+    "prices": "Not measured in this evaluation.",
+    "productivity": "Not measured in this evaluation."
+  },
+  "key_insights": [
+    "The question: did longer shop trading hours in Perth (weeknights from November 2010, Sundays from August 2012) change how many general retail businesses opened or closed?",
+    "The comparison: WA general retail classes against the same classes in NSW, Victoria, Queensland, Tasmania, the ACT and the NT (SA excluded), 2010-11 to 2017-18, with class x year and state x year effects.",
+    "What we found: no detectable change. Business entry rate: +1.0 per 100 businesses a year (90% interval −1.9 to +3.5; p = 0.49).",
+    "Other outcomes: business exit rate +1.3 (p = 0.22).",
+    "How precise: only changes larger than about 4.6 per 100 businesses a year could have been detected.",
+    "Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate +0.8 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 4.6, down from 5.6. This evaluation uses the estimator chosen in the blinded power study and the latest data.",
+    "What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out."
+  ],
+  "method": {
+    "summary": "Saturated fixed effects on ANZSIC classes by state and financial year, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.",
+    "equations": [
+      {
+        "label": "Saturated fixed effects",
+        "text": "y_{cst} = α_{cs} + δ_{ct} + γ_{st} + β·D_{cst} + ε_{cst}"
+      },
+      {
+        "label": "Year by year",
+        "text": "y_{cst} = α_{cs} + δ_{ct} + γ_{st} + Σ_{k≠−1} β_{k}·1[t − T_{s} = k]·T_{cs} + ε_{cst}"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{cst}",
+        "meaning": "Entries (or exits) per 100 businesses operating at the start of year t, class c, state s"
+      },
+      {
+        "symbol": "D_{cst}",
+        "meaning": "1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window"
+      },
+      {
+        "symbol": "α_{cs}",
+        "meaning": "a level for each class in each state"
+      },
+      {
+        "symbol": "δ_{ct}",
+        "meaning": "each class's national movement in each period (industry cycles, product-wide price swings)"
+      },
+      {
+        "symbol": "γ_{st}",
+        "meaning": "each state's movement in each period (state booms and slumps)"
+      }
+    ],
+    "estimand": "The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.",
+    "identification": "Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).",
+    "inference": "The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.",
+    "steps": [
+      "Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.",
+      "Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.",
+      "Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.",
+      "Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side."
+    ]
+  },
+  "preregistered": true,
+  "outcomes": [
+    {
+      "id": "entry-rate",
+      "label": "Business entry rate",
+      "category": "competition",
+      "role": "primary",
+      "unit": "per 100 businesses a year",
+      "baseline": 13.778,
+      "baseline_label": "Average rate in the panel",
+      "estimate": 0.981,
+      "interval": {
+        "low": -1.873,
+        "high": 3.454,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -2.473,
+        "high": 2.854,
+        "basis": "90% range across 40 placebo industry groups"
+      },
+      "p_value": 0.4878,
+      "inference": "Rank among 40 placebo industry groups (two-sided)",
+      "mde_80": 4.622,
+      "finding": "no-detectable-effect",
+      "grade": "Moderate",
+      "preregistered": true,
+      "note": "Registered layer: Saturated fixed effects. Net of a placebo mean of +0.4; plain estimate +1.4. 4110 Supermarket and Grocery Stores, 4251 Clothing Retailing, 4260 Department Stores. Checks: Imputation (Borusyak, Jaravel and Spiess) +1.0; Synthetic DiD −0.7."
+    },
+    {
+      "id": "exit-rate",
+      "label": "Business exit rate",
+      "category": "competition",
+      "role": "secondary",
+      "unit": "per 100 businesses a year",
+      "baseline": 13.033,
+      "baseline_label": "Average rate in the panel",
+      "estimate": 1.301,
+      "interval": {
+        "low": -0.202,
+        "high": 2.617,
+        "level": 0.9
+      },
+      "no_effect_range": {
+        "low": -1.316,
+        "high": 1.503,
+        "basis": "90% range across 40 placebo industry groups"
+      },
+      "p_value": 0.2195,
+      "inference": "Rank among 40 placebo industry groups (two-sided)",
+      "mde_80": 3.0,
+      "finding": "no-detectable-effect",
+      "grade": null,
+      "preregistered": true,
+      "note": "Registered layer: Synthetic DiD. Net of a placebo mean of −0.0; plain estimate +1.3. 4110 Supermarket and Grocery Stores, 4251 Clothing Retailing, 4260 Department Stores. Checks: Saturated fixed effects +0.0."
+    }
+  ],
+  "event_studies": [
+    {
+      "outcome": "entry-rate",
+      "title": "Business entry rate, year by year (saturated effects, net of placebos)",
+      "unit": "per 100 businesses a year",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -3,
+          "estimate": -0.7091,
+          "low": -4.6956,
+          "high": 3.9698
+        },
+        {
+          "period": "2008-09",
+          "k": -2,
+          "estimate": -0.6163,
+          "low": -5.4758,
+          "high": 3.2593
+        },
+        {
+          "period": "2010-11",
+          "k": 0,
+          "estimate": 0.5625,
+          "low": -1.4119,
+          "high": 4.0217
+        },
+        {
+          "period": "2011-12",
+          "k": 1,
+          "estimate": 0.7363,
+          "low": -2.5397,
+          "high": 5.1684
+        },
+        {
+          "period": "2012-13",
+          "k": 2,
+          "estimate": -0.0024,
+          "low": -2.6091,
+          "high": 3.779
+        },
+        {
+          "period": "2013-14",
+          "k": 3,
+          "estimate": 0.6984,
+          "low": -1.9456,
+          "high": 4.0144
+        },
+        {
+          "period": "2014-15",
+          "k": 4,
+          "estimate": -0.0983,
+          "low": -3.7702,
+          "high": 3.357
+        },
+        {
+          "period": "2015-16",
+          "k": 5,
+          "estimate": 0.8839,
+          "low": -1.6688,
+          "high": 3.4875
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    },
+    {
+      "outcome": "exit-rate",
+      "title": "Business exit rate, year by year (saturated effects, net of placebos)",
+      "unit": "per 100 businesses a year",
+      "reference": "The year before the first exposed year (k = −1) is the reference",
+      "band": "90% range of placebo estimates around each coefficient",
+      "points": [
+        {
+          "period": "2007-08",
+          "k": -3,
+          "estimate": -0.1602,
+          "low": -4.6798,
+          "high": 3.1031
+        },
+        {
+          "period": "2008-09",
+          "k": -2,
+          "estimate": -0.297,
+          "low": -5.4697,
+          "high": 3.2111
+        },
+        {
+          "period": "2010-11",
+          "k": 0,
+          "estimate": -0.7931,
+          "low": -3.0718,
+          "high": 1.0605
+        },
+        {
+          "period": "2011-12",
+          "k": 1,
+          "estimate": 0.55,
+          "low": -1.4064,
+          "high": 2.5626
+        },
+        {
+          "period": "2012-13",
+          "k": 2,
+          "estimate": 0.8179,
+          "low": -1.2655,
+          "high": 2.9002
+        },
+        {
+          "period": "2013-14",
+          "k": 3,
+          "estimate": -0.1196,
+          "low": -2.3137,
+          "high": 1.7094
+        },
+        {
+          "period": "2014-15",
+          "k": 4,
+          "estimate": 0.5037,
+          "low": -1.5427,
+          "high": 2.6168
+        },
+        {
+          "period": "2015-16",
+          "k": 5,
+          "estimate": -0.6891,
+          "low": -2.8965,
+          "high": 1.2799
+        }
+      ],
+      "markers": [
+        {
+          "k": -0.5,
+          "label": "Reform"
+        }
+      ],
+      "caption": "Coefficients from the event-study version of the saturated model, net of the mean placebo coefficient; years before −5 and after +5 are pooled at the ends."
+    }
+  ],
+  "caveats": [
+    "Moderate rather than Strong: the rule needs at least two cohorts, three treated states and a smallest detectable effect within 5; this design has 1 cohort, 1 treated state and a smallest detectable effect of 4.6.",
+    "Re-evaluation: the earlier results were known when this specification was written; the estimator layers were fixed beforehand by the blinded power study."
+  ],
+  "documents": [
+    {
+      "label": "Results",
+      "path": "docs/results_phase5.md"
+    },
+    {
+      "label": "Pre-analysis plan",
+      "path": "docs/pap_phase5.md"
+    },
+    {
+      "label": "Specification",
+      "path": "alicia/specs/phase5-reevaluations.json"
+    },
+    {
+      "label": "Estimation code",
+      "path": "alicia/analyses/phase5/run.py"
+    }
+  ],
+  "built_by": "alicia/analyses/phase5/evaluations.py",
+  "supersedes": [
+    "wa-trading-hours-2010-2012"
+  ],
+  "evaluated_at": "2026-10-18T21:04:50Z",
+  "estimators": [
+    {
+      "outcome": "entry-rate",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": -0.196,
+      "interval": {
+        "low": -4.406,
+        "high": 4.255,
+        "level": 0.9
+      },
+      "p_value": 0.878,
+      "mde_80": 8.996,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": -0.23,
+      "interval": {
+        "low": -4.559,
+        "high": 4.298,
+        "level": 0.9
+      },
+      "p_value": 0.8537,
+      "mde_80": 9.183,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": 0.981,
+      "interval": {
+        "low": -1.873,
+        "high": 3.454,
+        "level": 0.9
+      },
+      "p_value": 0.4878,
+      "mde_80": 4.622,
+      "registered": true
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": -0.227,
+      "interval": {
+        "low": -4.51,
+        "high": 4.263,
+        "level": 0.9
+      },
+      "p_value": 0.8537,
+      "mde_80": 9.104,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": 0.984,
+      "interval": {
+        "low": -1.912,
+        "high": 3.605,
+        "level": 0.9
+      },
+      "p_value": 0.4634,
+      "mde_80": 4.598,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": -0.675,
+      "interval": {
+        "low": -4.518,
+        "high": 3.631,
+        "level": 0.9
+      },
+      "p_value": 0.7561,
+      "mde_80": 8.402,
+      "registered": false
+    },
+    {
+      "outcome": "entry-rate",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": -1.93,
+      "interval": {
+        "low": -12.409,
+        "high": 3.729,
+        "level": 0.9
+      },
+      "p_value": 0.5122,
+      "mde_80": 14.387,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "twoway",
+      "label": "Two-way fixed effects",
+      "estimate": 1.498,
+      "interval": {
+        "low": -0.281,
+        "high": 3.576,
+        "level": 0.9
+      },
+      "p_value": 0.2439,
+      "mde_80": 3.673,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "state_year",
+      "label": "Cell and state × year effects",
+      "estimate": 1.5,
+      "interval": {
+        "low": -0.301,
+        "high": 3.593,
+        "level": 0.9
+      },
+      "p_value": 0.2439,
+      "mde_80": 3.705,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "saturated",
+      "label": "Saturated fixed effects",
+      "estimate": 0.006,
+      "interval": {
+        "low": -1.792,
+        "high": 2.171,
+        "level": 0.9
+      },
+      "p_value": 1.0,
+      "mde_80": 4.247,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "controls",
+      "label": "Two-way with measured state controls",
+      "estimate": 1.497,
+      "interval": {
+        "low": -0.286,
+        "high": 3.576,
+        "level": 0.9
+      },
+      "p_value": 0.2439,
+      "mde_80": 3.681,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "imputation",
+      "label": "Imputation (Borusyak, Jaravel and Spiess)",
+      "estimate": -0.03,
+      "interval": {
+        "low": -1.769,
+        "high": 2.084,
+        "level": 0.9
+      },
+      "p_value": 0.9512,
+      "mde_80": 4.206,
+      "registered": false
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "sdid",
+      "label": "Synthetic DiD",
+      "estimate": 1.301,
+      "interval": {
+        "low": -0.202,
+        "high": 2.617,
+        "level": 0.9
+      },
+      "p_value": 0.2195,
+      "mde_80": 3.0,
+      "registered": true
+    },
+    {
+      "outcome": "exit-rate",
+      "layer": "gsynth",
+      "label": "Generalised synthetic control",
+      "estimate": 1.557,
+      "interval": {
+        "low": -0.216,
+        "high": 3.539,
+        "level": 0.9
+      },
+      "p_value": 0.2439,
+      "mde_80": 3.684,
+      "registered": false
+    }
+  ]
+}

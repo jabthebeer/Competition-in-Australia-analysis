@@ -1,7 +1,8 @@
 """Write the register's evaluation files for a Phase 5 specification from its estimate.json.
 
-Every number comes from estimate.json (the registered run) and, for re-evaluations, from the evaluation each
-case supersedes; only the wording is written here. tests/test_evaluation.py checks the files against the
+Every number comes from estimate.json (the registered run), from posthoc.json (checks made after unblinding,
+labelled as such) and, for re-evaluations, from the evaluation each case supersedes; only the wording is written
+here. tests/test_evaluation.py checks the files against the
 outputs. New results lead the key insights; the comparison with the earlier (archived) evaluation follows.
 
     uv run python analyses/phase5/evaluations.py --spec phase5-reevaluations
@@ -25,8 +26,8 @@ HERE = Path(__file__).resolve().parent
 FOLDERS = {"phase5-reevaluations": "reevaluations", "phase5-new-families": "new_families"}
 # When the registered runs were made (set after each run; orders evaluations made on the same day).
 RUN_AT = {
-    "phase5-reevaluations": dt.datetime(2026, 10, 18, 23, 0, tzinfo=dt.UTC),
-    "phase5-new-families": dt.datetime(2026, 10, 18, 23, 0, tzinfo=dt.UTC),
+    "phase5-reevaluations": dt.datetime(2026, 10, 18, 21, 4, 50, tzinfo=dt.UTC),
+    "phase5-new-families": dt.datetime(2026, 10, 18, 21, 4, 29, tzinfo=dt.UTC),
 }
 PER_100 = "per 100 businesses a year"
 LOG_POINTS = "% (log points)"
@@ -83,11 +84,68 @@ def a1(v) -> str:
 
 
 def fp(p) -> str:
-    return "n/a" if p is None else ("< 0.01" if p < 0.01 else f"{p:.2f}")
+    if p is None:
+        return "n/a"
+    return "< 0.01" if p < 0.01 else f"{p:.3f}" if p < 0.1 else f"{p:.2f}"
+
+
+def low1(text: str) -> str:
+    """Lower-case the first letter only (keeps "CPI")."""
+    return text[:1].lower() + text[1:]
+
+
+def wu(v, unit: str) -> str:
+    """A value with its unit: "−2.8% (log points)", "+1.0 per 100 businesses a year"."""
+    return f"{s1(v)}{unit}" if unit.startswith("%") else f"{s1(v)} {unit}"
 
 
 def fy(year: int) -> str:
     return f"{year - 1}-{str(year)[2:]}"
+
+
+def reason_text(reason: str) -> str:
+    """The run's grade reasons, with layer keys written out."""
+    head = "check layers outside the registered 90% interval: "
+    if reason.startswith(head):
+        names = [LAYER_LABELS[k] for k in reason[len(head) :].split(", ")]
+        return f"{' and '.join(names)} (a check layer) lies outside the registered layer's 90% interval"
+    return reason
+
+
+def why_not_strong(case: dict, prim: dict, reg: dict, params: dict) -> str:
+    """Moderate rather than Strong: what the registered grade rule (run.py: judge) needed and this design has."""
+    eoi = params["effect_of_interest"][prim["kind"]]
+    states = {s for c in prim["cohorts"] for s in c["treated"]}
+    n = len(prim["cohorts"])
+    return (
+        f"Moderate rather than Strong: the rule needs at least two cohorts, three treated states and a smallest "
+        f"detectable effect within {eoi:g}; this design has {n} cohort{'s' if n > 1 else ''}, {len(states)} treated "
+        f"state{'s' if len(states) > 1 else ''} and a smallest detectable effect of {a1(reg.get('mde_80'))}."
+    )
+
+
+def posthoc_reading(case_id: str, ph: dict | None) -> tuple[list[str], list[str]]:
+    """Insight lines and caveats from posthoc.json (not pre-registered)."""
+    if not ph or case_id != ph["vic_fares"]["case"]:
+        return [], []
+    v = ph["vic_fares"]
+    taxi, cap = v["candidate_quarters"].values()
+    insight = (
+        "After unblinding (not pre-registered): the fall in Melbourne's urban transport fares came all at once in "
+        f"{cap['quarter']} ({s1(cap['step'])} points in one quarter, about {abs(cap['step_in_sd']):.0f} times the "
+        f"usual quarterly move), not when the taxi reform started ({taxi['quarter']}: {s1(taxi['step'])}). January "
+        "2015 is "
+        "when public transport fare changes were reported to start (zone 1+2 travel capped at the zone 1 fare; free "
+        "CBD trams). The CPI class covers public transport fares as well as taxi fares, and a one-quarter step "
+        "of this size looks like a fare-schedule change, not taxi competition building up; the fares result should "
+        "not be read as an effect of the taxi reform."
+    )
+    caveat = (
+        "Urban transport fares (secondary): the fall is confounded. It came in 2015-Q1, the quarter public transport "
+        "fare changes were reported to start, not in 2014-Q3 (post-unblinding check, analyses/phase5/posthoc.py; "
+        "the fare changes are taken from commentary written before them, not checked against PTV's fare tables)."
+    )
+    return [insight], [caveat]
 
 
 def unit_of(o: dict) -> str:
@@ -309,46 +367,86 @@ def method(case: dict, prim: dict) -> dict:
     }
 
 
-def insights(case: dict, res: dict, old: dict | None) -> list[str]:
+OLD_FOUND = {
+    "inconclusive": "no detectable effect",
+    "not-identified": "that the effect could not be identified",
+    "detects-increase": "an increase",
+    "detects-decrease": "a decrease",
+}
+
+
+def compare(prim: dict, reg: dict, verdict: str, old: dict) -> str:
+    """The new result against the archived evaluation it supersedes (same outcome where the earlier one had it)."""
+    same = [x for x in old["outcomes"] if x["id"] == outcome_id(prim)]
+    oo = (same or [x for x in old["outcomes"] if x["role"] == "primary"] or old["outcomes"])[0]
+    found = OLD_FOUND.get(old["verdict"], low1(VERDICT_LABELS[old["verdict"]]))
+    text = (
+        f"Compared with the earlier evaluation ({old['evaluated_on']}, now archived): it found {found} "
+        f"({low1(oo['label'])} {wu(oo['estimate'], oo['unit'])}). "
+    )
+    text += "The conclusion is unchanged" if verdict == old["verdict"] else "The conclusion has changed"
+    if same and oo.get("mde_80") and reg.get("mde_80"):
+        better = reg["mde_80"] < oo["mde_80"]
+        text += (
+            f"; the smallest detectable effect is now {a1(reg['mde_80'])}, "
+            f"{'down' if better else 'up'} from {a1(oo['mde_80'])}"
+        )
+    return text + ". This evaluation uses the estimator chosen in the blinded power study and the latest data."
+
+
+def insights(case: dict, res: dict, old: dict | None, ph: dict | None = None) -> list[str]:
     outs = res["outcomes"]
     prim = next(o for o in case["outcomes"] if o["role"] == "primary")
     pr = outs[prim["key"]]
     reg = pr.get("registered") or {}
-    unit = "per 100 businesses a year" if prim["kind"] == "business" else "% relative to other prices"
+    unit = " per 100 businesses a year" if prim["kind"] == "business" else "% relative to other prices"
     lines = [f"The question: {QUESTIONS[case['id']]}", f"The comparison: {case['design']}"]
     if res["verdict"] == "not-identified":
-        why = res["grade_reasons"][0] if res["grade_reasons"] else "the design checks failed"
-        lines.append(f"What we found: the effect cannot be identified: {why}.")
+        why = reason_text(res["grade_reasons"][0]) if res["grade_reasons"] else "the design checks failed"
+        drift = ", so the treated group was already moving apart before the reform" if pr["feasible"]["ok"] else ""
+        est_ = f" The registered layer's estimate ({s1(reg['estimate'])}{unit}) is not an effect." if reg else ""
+        lines.append(f"What we found: the effect cannot be identified: {why}{drift}.{est_}")
     else:
         found = "a change too large to be chance" if finding(pr) in ("increase", "decrease") else "no detectable change"
         lines.append(
-            f"What we found: {found}. {outcome_label(prim)}: {s1(reg['estimate'])} {unit} (90% interval "
+            f"What we found: {found}. {outcome_label(prim)}: {s1(reg['estimate'])}{unit} (90% interval "
             f"{s1(reg['interval_90'][0])} to {s1(reg['interval_90'][1])}; p = {fp(reg['p'])})."
         )
-    sec = []
+    off = [(k, v) for k, v in pr["checks"].items() if v["inside_registered_90"] is False]
+    if off and res["verdict"] != "not-identified":
+        lines.append(
+            "The estimators disagree: "
+            + "; ".join(f"{low1(LAYER_LABELS[k])} gives {s1(v['estimate'])}" for k, v in off)
+            + f", outside the registered layer's 90% interval, so the grade is {res['grade']}."
+        )
+    sec, flagged = [], False
     for o in case["outcomes"]:
         r = outs[o["key"]]
         g = r.get("registered") or {}
         if o is prim or g.get("estimate") is None:
             continue
-        sec.append(f"{outcome_label(o).lower()} {s1(g['estimate'])} (p = {fp(g['p'])})")
+        tail = ""
+        if finding(r) == "not-identified":
+            tail = "; not identified: a pre-reform year lies outside its placebo band"
+        flagged |= finding(r) in ("increase", "decrease")
+        sec.append(f"{low1(outcome_label(o))} {s1(g['estimate'])} (p = {fp(g['p'])}{tail})")
     if sec:
-        lines.append("Other outcomes: " + "; ".join(sec) + ".")
+        lines.append(
+            "Other outcomes: "
+            + "; ".join(sec)
+            + "."
+            + (
+                " Secondary outcomes are outside the registered decision rule and not adjusted for testing several "
+                "outcomes, so a p-value below 0.05 among them is a lead, not a finding."
+                if flagged
+                else ""
+            )
+        )
     if reg.get("mde_80") is not None:
-        lines.append(
-            f"How precise: only changes larger than about {a1(reg['mde_80'])} {unit} could have been detected."
-        )
+        lines.append(f"How precise: only changes larger than about {a1(reg['mde_80'])}{unit} could have been detected.")
+    lines += posthoc_reading(case["id"], ph)[0]
     if old:
-        oo = next((x for x in old["outcomes"] if x["role"] == "primary"), old["outcomes"][0])
-        before = (
-            f"{VERDICT_LABELS[old['verdict']].lower()} ({oo['label'].lower()} {s1(oo['estimate'])} {oo['unit']}"
-            + (f"; detectable from about {a1(oo['mde_80'])}" if oo.get("mde_80") else "")
-            + ")"
-        )
-        lines.append(
-            f"Compared with the earlier evaluation ({old['evaluated_on']}, now archived): it found {before}. "
-            "This one uses the estimator chosen in the blinded power study and the latest data."
-        )
+        lines.append(compare(prim, reg, res["verdict"], old))
     meaning = {
         "inconclusive": "What it means: no effect is detectable with public state-level data; an effect smaller than "
         "the detectable size cannot be ruled out.",
@@ -365,6 +463,8 @@ def insights(case: dict, res: dict, old: dict | None) -> list[str]:
 def build(spec_id: str) -> list[Evaluation]:
     spec = load(spec_id)
     est = json.loads((HERE / FOLDERS[spec_id] / "estimate.json").read_text("utf-8"))
+    ph_path = HERE / FOLDERS[spec_id] / "posthoc.json"
+    ph = json.loads(ph_path.read_text("utf-8")) if ph_path.exists() else None
     by_id = {c["id"]: c for c in est["cases"]}
     out = []
     for case in spec.cases:
@@ -390,7 +490,7 @@ def build(spec_id: str) -> list[Evaluation]:
             if not items:
                 return "Not measured in this evaluation."
             return " ".join(
-                f"{x['label']}: {s1(x['estimate'])} {x['unit']} (p = {fp(x['p_value'])}; detectable from "
+                f"{x['label']}: {wu(x['estimate'], x['unit'])} (p = {fp(x['p_value'])}; detectable from "
                 f"{a1(x['mde_80'])})."
                 for x in items
             )
@@ -404,11 +504,16 @@ def build(spec_id: str) -> list[Evaluation]:
         )
         verdict = res["verdict"]
         headline = (
-            f"{VERDICT_LABELS[verdict]}: {outcome_label(prim).lower()} {s1(reg.get('estimate'))} "
-            f"{unit_of(prim)} (p = {fp(reg.get('p'))}), {LAYER_LABELS[prim['layer']].lower()}, grade {res['grade']}."
+            f"{VERDICT_LABELS[verdict]}: {low1(outcome_label(prim))} {wu(reg.get('estimate'), unit_of(prim))} "
+            f"(p = {fp(reg.get('p'))}), {low1(LAYER_LABELS[prim['layer']])}"
+            + ("." if verdict == "not-identified" else f", grade {res['grade']}.")
         )
+        reasons = [reason_text(x) for x in res["grade_reasons"] if not x.startswith("design checks passed")]
+        if res["grade"] == "Moderate":
+            reasons.append(why_not_strong(case, prim, reg, spec.parameters))
         caveats = [
-            *res["grade_reasons"],
+            *reasons,
+            *posthoc_reading(case["id"], ph)[1],
             "Re-evaluation: the earlier results were known when this specification was written; the estimator layers "
             "were fixed beforehand by the blinded power study."
             if case["supersedes"]
@@ -431,14 +536,14 @@ def build(spec_id: str) -> list[Evaluation]:
             "verdict": verdict,
             "finding_label": VERDICT_LABELS[verdict],
             "grade": res["grade"],
-            "grade_reason": "; ".join(res["grade_reasons"]),
+            "grade_reason": "; ".join(reason_text(x) for x in res["grade_reasons"]),
             "headline": headline,
             "category_summaries": {
                 "competition": summary(comp),
                 "prices": summary(prices_),
                 "productivity": "Not measured in this evaluation.",
             },
-            "key_insights": insights(case, res, old),
+            "key_insights": insights(case, res, old, ph),
             "method": method(case, prim),
             "preregistered": True,
             "outcomes": outcomes,

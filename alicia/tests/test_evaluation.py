@@ -180,8 +180,49 @@ def test_current_evaluation_prefers_the_follow_up():
 
     evs = load_evaluations().evaluations
     current = current_evaluation(evs)
-    assert current["wa-trading-hours-weeknight-2010"] == "wa-trading-hours-weeknight-2010-new-data"
-    assert current["wa-trading-hours-sunday-2012"] == "wa-trading-hours-2010-2012"
+    # The Phase 5 re-evaluation (same day, with a recorded run time) is now the current one for both WA records;
+    # the evaluation it supersedes is archived and never current.
+    assert current["wa-trading-hours-weeknight-2010"] == "wa-trading-hours-2010-2012-phase5"
+    assert current["wa-trading-hours-sunday-2012"] == "wa-trading-hours-2010-2012-phase5"
+    assert current["cth-nqf-childcare-2012"] == "childcare-nqf-2012-phase5"
+    assert "wa-trading-hours-2010-2012" not in current.values()
+
+
+def test_phase5_evaluations_match_the_registered_run():
+    """Each Phase 5 evaluation file must equal its specification's estimate.json and archive what it supersedes."""
+    from alicia.register.evaluation import archived
+    from alicia.runner.spec import load
+
+    evs = {e.id: e for e in load_evaluations().evaluations}
+    arch = archived(evs.values())
+    for spec_id, folder in (("phase5-reevaluations", "reevaluations"), ("phase5-new-families", "new_families")):
+        spec = load(spec_id)
+        est = json.loads((ANALYSIS.parent / "phase5" / folder / "estimate.json").read_text(encoding="utf-8"))
+        assert est["mode"].startswith("UNBLINDED")
+        for case in spec.cases:
+            res = next(c for c in est["cases"] if c["id"] == case["id"])
+            ev = evs[case["id"]]
+            assert (ev.verdict, ev.grade) == (res["verdict"], res["grade"]), ev.id
+            assert ev.supersedes == tuple(case["supersedes"]) and ev.follows == case["follows"]
+            assert all(arch[old] == ev.id for old in ev.supersedes)
+            assert ev.evaluated_at is not None and ev.id not in arch
+            out = {o.id: o for o in ev.outcomes}
+            rows = [(r.outcome, r.layer) for r in ev.estimators]
+            assert len(rows) == len(set(rows)), ev.id
+            for o in case["outcomes"]:
+                r = res["outcomes"][o["key"]]
+                reg = r["registered"]
+                oid = o["key"] if o["kind"] == "price" else {"entries": "entry-rate", "exits": "exit-rate"}[o["key"]]
+                got = out[oid]
+                assert (got.estimate, got.p_value, got.mde_80) == (reg["estimate"], reg["p"], reg["mde_80"])
+                assert [got.interval.low, got.interval.high] == reg["interval_90"]
+                assert got.role == o["role"] and got.preregistered
+                layers = {x.layer: x for x in ev.estimators if x.outcome == oid}
+                assert set(layers) == set(r["layers"]), (ev.id, oid)
+                assert [k for k, x in layers.items() if x.registered] == [o["layer"]]
+                assert all(layers[k].estimate == v["estimate"] for k, v in r["layers"].items())
+                if r["pre_inside_95"] is False:
+                    assert got.finding == "not-identified"
 
 
 def test_nqf_wa_evaluation_matches_the_registered_run():

@@ -488,6 +488,52 @@ Difference-in-differences with one treated state and state and year fixed effect
 - **Identifying assumption:** Without the reforms, WA general retail would have moved like general retail in the comparison states once WA-wide changes shared with other industries are removed. Three pre-reform years allow only a weak check; sensitivity bounds (relative magnitudes) show how large a departure would overturn the sign.
 - **Inference:** No conventional standard errors (one treated state). p-value: two-sided rank among the centred placebo-group estimates; 90% interval from their quantiles (Conley and Taber 2011); smallest detectable effect 2.8 × their standard deviation. A comparison-state placebo rank is also reported (smallest possible p 0.14).
 
+## National Quality Framework for childcare (2012): re-evaluation with synthetic DiD
+
+`childcare-nqf-2012-phase5` · evaluated 18 October 2026 · grade Moderate
+
+No detectable effect: business entry rate −0.3 per 100 businesses a year (p = 0.85), synthetic DiD, grade Moderate.
+
+**Key insights**
+
+- The question: did the National Quality Framework for childcare change how many childcare businesses opened or closed in its first year (2011-12)?
+- The comparison: The framework started in January 2012 everywhere except WA (August 2012): 2011-12 childcare entry and exit in the seven early jurisdictions against WA, with synthetic DiD weights.
+- What we found: no detectable change. Business entry rate: −0.3 per 100 businesses a year (90% interval −2.3 to +2.4; p = 0.85).
+- Other outcomes: business exit rate −1.9 (p = 0.049); child care: prices relative to the CPI +4.4 (p = 0.075). Secondary outcomes are outside the registered decision rule and not adjusted for testing several outcomes, so a p-value below 0.05 among them is a lead, not a finding.
+- How precise: only changes larger than about 6.0 per 100 businesses a year could have been detected.
+- Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate −0.3 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 6.0, down from 9.8. This evaluation uses the estimator chosen in the blinded power study and the latest data.
+- What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
+
+**What we did**
+
+1. Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.
+2. Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.
+3. Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.
+4. Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side.
+
+**Econometric model**
+
+Synthetic DiD on ANZSIC classes by state and financial year, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.
+
+*Synthetic DiD*
+
+> τ̂ = arg min over (μ, α, β, τ) of Σ<sub>i,t</sub> (y<sub>it</sub> − μ − α<sub>i</sub> − β<sub>t</sub> − D<sub>it</sub>·τ)<sup>2</sup> · ω̂<sub>i</sub> · λ̂<sub>t</sub>
+
+*Year by year*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + Σ<sub>k≠−1</sub> β<sub>k</sub>·1[t − T<sub>s</sub> = k]·T<sub>cs</sub> + ε<sub>cst</sub>
+
+| Symbol | Meaning |
+|---|---|
+| y<sub>cst</sub> | Entries (or exits) per 100 businesses operating at the start of year t, class c, state s |
+| D<sub>cst</sub> | 1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window |
+| ω̂<sub>i</sub> | weights on comparison cells, chosen so their pre-reform path matches the treated group's |
+| λ̂<sub>t</sub> | weights on pre-reform periods, chosen to resemble the post-reform periods |
+
+- **Estimand:** The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.
+- **Identifying assumption:** Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).
+- **Inference:** The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.
+
 ## National Quality Framework for childcare (2012): WA's seven-month delay, monthly data
 
 `childcare-nqf-wa-delay-2012` · evaluated 18 October 2026 · grade Moderate
@@ -538,6 +584,429 @@ On-off difference-in-differences for a rule that starts late in one jurisdiction
 - **Estimand:** The framework's immediate effect on the outcome, measured by how the WA-minus-others gap moves when the others adopt (on) relative to when nobody (pre) or everybody (off) has it. The early part needs only parallel trends; the pooled estimate also assumes the effect is immediate and lasting.
 - **Identifying assumption:** Without the framework, the WA-minus-others gap would have kept its usual seasonal pattern through 2012-13. The on-off pattern guards against a WA-specific shock, which would not switch off in August 2012.
 - **Inference:** No conventional standard errors (one late jurisdiction). No-effect distribution: the same estimator for 32 named industries over the same windows plus childcare at 8 fake dates two or more years earlier (exits). p-value: two-sided rank; 90% interval: estimate minus the 95th and 5th percentiles (Conley and Taber 2011); smallest detectable effect: 2.8 × standard deviation; Benjamini–Hochberg q-values across the two primaries.
+
+## Mandatory electronic conveyancing (NSW 2018, WA 2018, VIC 2019, SA 2020, QLD 2023)
+
+`e-conveyancing-2018-2023` · evaluated 18 October 2026 · grade Weak
+
+No detectable effect: business entry rate −0.6 per 100 businesses a year (p = 0.54), saturated fixed effects, grade Weak.
+
+**Key insights**
+
+- The question: did requiring property settlements to be lodged electronically (NSW 2018 to Queensland 2023) change how many legal and conveyancing practices opened or closed?
+- The comparison: Staggered: legal services entry and exit in each mandating state against the ACT, Tasmania and the NT (never mandated) and Queensland until 2022-23, with class x year and state x year effects.
+- What we found: no detectable change. Business entry rate: −0.6 per 100 businesses a year (90% interval −2.3 to +0.6; p = 0.54).
+- The estimators disagree: synthetic DiD gives −3.0, outside the registered layer's 90% interval, so the grade is Weak.
+- Other outcomes: business exit rate +0.0 (p = 0.88).
+- How precise: only changes larger than about 2.9 per 100 businesses a year could have been detected.
+- What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
+
+**What we did**
+
+1. Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.
+2. Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.
+3. Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.
+4. Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side.
+
+**Econometric model**
+
+Saturated fixed effects on ANZSIC classes by state and financial year, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.
+
+*Saturated fixed effects*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + β·D<sub>cst</sub> + ε<sub>cst</sub>
+
+*Year by year*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + Σ<sub>k≠−1</sub> β<sub>k</sub>·1[t − T<sub>s</sub> = k]·T<sub>cs</sub> + ε<sub>cst</sub>
+
+| Symbol | Meaning |
+|---|---|
+| y<sub>cst</sub> | Entries (or exits) per 100 businesses operating at the start of year t, class c, state s |
+| D<sub>cst</sub> | 1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window |
+| α<sub>cs</sub> | a level for each class in each state |
+| δ<sub>ct</sub> | each class's national movement in each period (industry cycles, product-wide price swings) |
+| γ<sub>st</sub> | each state's movement in each period (state booms and slumps) |
+
+- **Estimand:** The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.
+- **Identifying assumption:** Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).
+- **Inference:** The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.
+
+## Mandatory fuel price reporting (NSW 2016, NT 2017, QLD 2018, TAS 2020, SA 2021)
+
+`fuel-price-reporting-2016-2021` · evaluated 18 October 2026 · grade Weak
+
+No detectable effect: automotive fuel: prices relative to the CPI −2.8% (log points) (p = 0.20), saturated fixed effects, grade Weak.
+
+**Key insights**
+
+- The question: did making fuel retailers report their prices in real time for publication (NSW 2016, NT 2017, Queensland 2018, Tasmania 2020, SA 2021) change fuel prices, or the number of fuel retailers?
+- The comparison: Staggered: each state's capital-city fuel price relative to the CPI against capitals not yet reporting (Melbourne and Canberra throughout; Hobart and Adelaide until they adopted), with class x quarter and city x quarter effects; fuel retailers' entry and exit the same way. WA, always reporting, is left out.
+- What we found: no detectable change. Automotive fuel: prices relative to the CPI: −2.8% relative to other prices (90% interval −7.3 to +0.4; p = 0.20).
+- The estimators disagree: synthetic DiD gives +4.8, outside the registered layer's 90% interval, so the grade is Weak.
+- Other outcomes: business entry rate −0.2 (p = 0.85; not identified: a pre-reform year lies outside its placebo band); business exit rate −1.0 (p = 0.15).
+- How precise: only changes larger than about 6.7% relative to other prices could have been detected.
+- What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
+
+**What we did**
+
+1. Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.
+2. Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.
+3. Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.
+4. Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side.
+
+**Econometric model**
+
+Saturated fixed effects on CPI classes by capital city and quarter, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.
+
+*Saturated fixed effects*
+
+> y<sub>cjq</sub> = α<sub>cj</sub> + δ<sub>cq</sub> + γ<sub>jq</sub> + β·D<sub>cjq</sub> + ε<sub>cjq</sub>
+
+*Year by year*
+
+> y<sub>cjq</sub> = α<sub>cj</sub> + δ<sub>cq</sub> + γ<sub>jq</sub> + Σ<sub>k≠−1</sub> β<sub>k</sub>·1[q − T<sub>j</sub> = k]·T<sub>cj</sub> + ε<sub>cjq</sub>
+
+| Symbol | Meaning |
+|---|---|
+| y<sub>cjq</sub> | 100 × log of the CPI class relative to All groups in city j, quarter q |
+| D<sub>cjq</sub> | 1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window |
+| α<sub>cj</sub> | a level for each class in each state |
+| δ<sub>cq</sub> | each class's national movement in each period (industry cycles, product-wide price swings) |
+| γ<sub>jq</sub> | each state's movement in each period (state booms and slumps) |
+
+- **Estimand:** The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.
+- **Identifying assumption:** Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).
+- **Inference:** The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.
+
+## Heavy Vehicle National Law (2014): re-evaluation with saturated effects
+
+`heavy-vehicle-national-law-2014-phase5` · evaluated 18 October 2026 · grade Moderate
+
+No detectable effect: business entry rate +0.3 per 100 businesses a year (p = 0.85), saturated fixed effects, grade Moderate.
+
+**Key insights**
+
+- The question: did one national law for heavy vehicles (February 2014) change how many road freight businesses started or closed?
+- The comparison: Road freight in the six adopting jurisdictions against WA and the NT, 2013-14 to 2017-18, with class x year and state x year effects.
+- What we found: no detectable change. Business entry rate: +0.3 per 100 businesses a year (90% interval −1.7 to +2.8; p = 0.85).
+- Other outcomes: business exit rate −0.7 (p = 0.59).
+- How precise: only changes larger than about 4.4 per 100 businesses a year could have been detected.
+- Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate −2.2 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 4.4, down from 9.4. This evaluation uses the estimator chosen in the blinded power study and the latest data.
+- What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
+
+**What we did**
+
+1. Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.
+2. Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.
+3. Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.
+4. Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side.
+
+**Econometric model**
+
+Saturated fixed effects on ANZSIC classes by state and financial year, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.
+
+*Saturated fixed effects*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + β·D<sub>cst</sub> + ε<sub>cst</sub>
+
+*Year by year*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + Σ<sub>k≠−1</sub> β<sub>k</sub>·1[t − T<sub>s</sub> = k]·T<sub>cs</sub> + ε<sub>cst</sub>
+
+| Symbol | Meaning |
+|---|---|
+| y<sub>cst</sub> | Entries (or exits) per 100 businesses operating at the start of year t, class c, state s |
+| D<sub>cst</sub> | 1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window |
+| α<sub>cs</sub> | a level for each class in each state |
+| δ<sub>ct</sub> | each class's national movement in each period (industry cycles, product-wide price swings) |
+| γ<sub>st</sub> | each state's movement in each period (state booms and slumps) |
+
+- **Estimand:** The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.
+- **Identifying assumption:** Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).
+- **Inference:** The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.
+
+## Legal Profession Uniform Law (2015): re-evaluation with saturated effects
+
+`legal-profession-uniform-law-2015-phase5` · evaluated 18 October 2026 · grade Moderate
+
+No detectable effect: business entry rate −1.3 per 100 businesses a year (p = 0.47), saturated fixed effects, grade Moderate.
+
+**Key insights**
+
+- The question: did the Legal Profession Uniform Law (NSW and Victoria, July 2015) change how many legal practices opened or closed?
+- The comparison: Legal services in NSW and Victoria against the other jurisdictions, 2015-16 to 2017-18, with class x year and state x year effects.
+- What we found: no detectable change. Business entry rate: −1.3 per 100 businesses a year (90% interval −4.3 to +0.8; p = 0.47).
+- Other outcomes: business exit rate −0.4 (p = 0.45).
+- How precise: only changes larger than about 4.5 per 100 businesses a year could have been detected.
+- Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate −1.6 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 4.5, down from 7.0. This evaluation uses the estimator chosen in the blinded power study and the latest data.
+- What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
+
+**What we did**
+
+1. Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.
+2. Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.
+3. Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.
+4. Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side.
+
+**Econometric model**
+
+Saturated fixed effects on ANZSIC classes by state and financial year, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.
+
+*Saturated fixed effects*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + β·D<sub>cst</sub> + ε<sub>cst</sub>
+
+*Year by year*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + Σ<sub>k≠−1</sub> β<sub>k</sub>·1[t − T<sub>s</sub> = k]·T<sub>cs</sub> + ε<sub>cst</sub>
+
+| Symbol | Meaning |
+|---|---|
+| y<sub>cst</sub> | Entries (or exits) per 100 businesses operating at the start of year t, class c, state s |
+| D<sub>cst</sub> | 1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window |
+| α<sub>cs</sub> | a level for each class in each state |
+| δ<sub>ct</sub> | each class's national movement in each period (industry cycles, product-wide price swings) |
+| γ<sub>st</sub> | each state's movement in each period (state booms and slumps) |
+
+- **Estimand:** The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.
+- **Identifying assumption:** Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).
+- **Inference:** The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.
+
+## Northern Territory container deposit scheme (2012): re-evaluation with drink prices
+
+`nt-container-deposits-2012-phase5` · evaluated 18 October 2026 · grade Not identified
+
+Not identified: waters, soft drinks and juices: prices relative to the CPI +7.6% (log points) (p = 0.20), saturated fixed effects.
+
+**Key insights**
+
+- The question: did the Northern Territory's container deposit scheme (January 2012) change drink prices in Darwin?
+- The comparison: Darwin drink prices relative to the CPI against the capitals of states without a scheme (Adelaide excluded), 2012-Q1 to 2017-Q3, with class x quarter and city x quarter effects. Business counts are too few to use.
+- What we found: the effect cannot be identified: a pre-reform year of the primary outcome lies outside its 95% placebo band, so the treated group was already moving apart before the reform. The registered layer's estimate (+7.6% relative to other prices) is not an effect.
+- Other outcomes: beer: prices relative to the CPI +4.8 (p = 0.44).
+- How precise: only changes larger than about 22.0% relative to other prices could have been detected.
+- Compared with the earlier evaluation (2026-10-15, now archived): it found that the effect could not be identified (waters, soft drinks and juices: prices relative to the CPI +8.7% (log points)). The conclusion is unchanged. This evaluation uses the estimator chosen in the blinded power study and the latest data.
+- What it means: these data cannot separate the reform from what was already happening.
+
+**What we did**
+
+1. Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.
+2. Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.
+3. Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.
+4. Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side.
+
+**Econometric model**
+
+Saturated fixed effects on CPI classes by capital city and quarter, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.
+
+*Saturated fixed effects*
+
+> y<sub>cjq</sub> = α<sub>cj</sub> + δ<sub>cq</sub> + γ<sub>jq</sub> + β·D<sub>cjq</sub> + ε<sub>cjq</sub>
+
+*Year by year*
+
+> y<sub>cjq</sub> = α<sub>cj</sub> + δ<sub>cq</sub> + γ<sub>jq</sub> + Σ<sub>k≠−1</sub> β<sub>k</sub>·1[q − T<sub>j</sub> = k]·T<sub>cj</sub> + ε<sub>cjq</sub>
+
+| Symbol | Meaning |
+|---|---|
+| y<sub>cjq</sub> | 100 × log of the CPI class relative to All groups in city j, quarter q |
+| D<sub>cjq</sub> | 1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window |
+| α<sub>cj</sub> | a level for each class in each state |
+| δ<sub>cq</sub> | each class's national movement in each period (industry cycles, product-wide price swings) |
+| γ<sub>jq</sub> | each state's movement in each period (state booms and slumps) |
+
+- **Estimand:** The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.
+- **Identifying assumption:** Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).
+- **Inference:** The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.
+
+## Retail energy price deregulation (SA 2013, NSW 2014, SEQ 2016): re-evaluation with electricity prices
+
+`retail-energy-deregulation-2013-2016-phase5` · evaluated 18 October 2026 · grade Not identified
+
+Not identified: electricity: prices relative to the CPI +9.4% (log points) (p = 0.024), saturated fixed effects.
+
+**Key insights**
+
+- The question: did removing retail electricity price caps (SA 2013, NSW 2014, south-east Queensland 2016) lower electricity prices?
+- The comparison: Electricity prices relative to the CPI in each deregulating capital against capitals whose prices stayed regulated (Hobart, Canberra, Perth, Darwin), with class x quarter and city x quarter effects. Retailer counts are too few to use.
+- What we found: the effect cannot be identified: a pre-reform year of the primary outcome lies outside its 95% placebo band, so the treated group was already moving apart before the reform. The registered layer's estimate (+9.4% relative to other prices) is not an effect.
+- How precise: only changes larger than about 9.1% relative to other prices could have been detected.
+- Compared with the earlier evaluation (2026-10-15, now archived): it found that the effect could not be identified (electricity: prices relative to the CPI +17.0% (log points)). The conclusion is unchanged; the smallest detectable effect is now 9.1, down from 9.5. This evaluation uses the estimator chosen in the blinded power study and the latest data.
+- What it means: these data cannot separate the reform from what was already happening.
+
+**What we did**
+
+1. Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.
+2. Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.
+3. Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.
+4. Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side.
+
+**Econometric model**
+
+Saturated fixed effects on CPI classes by capital city and quarter, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.
+
+*Saturated fixed effects*
+
+> y<sub>cjq</sub> = α<sub>cj</sub> + δ<sub>cq</sub> + γ<sub>jq</sub> + β·D<sub>cjq</sub> + ε<sub>cjq</sub>
+
+*Year by year*
+
+> y<sub>cjq</sub> = α<sub>cj</sub> + δ<sub>cq</sub> + γ<sub>jq</sub> + Σ<sub>k≠−1</sub> β<sub>k</sub>·1[q − T<sub>j</sub> = k]·T<sub>cj</sub> + ε<sub>cjq</sub>
+
+| Symbol | Meaning |
+|---|---|
+| y<sub>cjq</sub> | 100 × log of the CPI class relative to All groups in city j, quarter q |
+| D<sub>cjq</sub> | 1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window |
+| α<sub>cj</sub> | a level for each class in each state |
+| δ<sub>cq</sub> | each class's national movement in each period (industry cycles, product-wide price swings) |
+| γ<sub>jq</sub> | each state's movement in each period (state booms and slumps) |
+
+- **Estimand:** The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.
+- **Identifying assumption:** Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).
+- **Inference:** The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.
+
+## Ride-share legalisation (2015 to 2018): re-evaluation with saturated effects
+
+`rideshare-legalisation-2015-2018-phase5` · evaluated 18 October 2026 · grade Not identified
+
+Not identified: business entry rate −2.2 per 100 businesses a year (p = 0.17), saturated fixed effects.
+
+**Key insights**
+
+- The question: did legalising ride-sharing (2015 to 2018) change how many taxi and ride businesses started or closed, or fares?
+- The comparison: Staggered: each group of states that legalised in the same year against states that had not yet, with class x year and state x year effects.
+- What we found: the effect cannot be identified: a pre-reform year of the primary outcome lies outside its 95% placebo band, so the treated group was already moving apart before the reform. The registered layer's estimate (−2.2 per 100 businesses a year) is not an effect.
+- Other outcomes: business exit rate −0.3 (p = 0.59); urban transport fares: prices relative to the CPI −0.3 (p = 0.85).
+- How precise: only changes larger than about 4.3 per 100 businesses a year could have been detected.
+- Compared with the earlier evaluation (2026-10-15, now archived): it found that the effect could not be identified (business entry rate +0.2 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 4.3, down from 6.0. This evaluation uses the estimator chosen in the blinded power study and the latest data.
+- What it means: these data cannot separate the reform from what was already happening.
+
+**What we did**
+
+1. Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.
+2. Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.
+3. Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.
+4. Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side.
+
+**Econometric model**
+
+Saturated fixed effects on ANZSIC classes by state and financial year, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.
+
+*Saturated fixed effects*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + β·D<sub>cst</sub> + ε<sub>cst</sub>
+
+*Year by year*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + Σ<sub>k≠−1</sub> β<sub>k</sub>·1[t − T<sub>s</sub> = k]·T<sub>cs</sub> + ε<sub>cst</sub>
+
+| Symbol | Meaning |
+|---|---|
+| y<sub>cst</sub> | Entries (or exits) per 100 businesses operating at the start of year t, class c, state s |
+| D<sub>cst</sub> | 1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window |
+| α<sub>cs</sub> | a level for each class in each state |
+| δ<sub>ct</sub> | each class's national movement in each period (industry cycles, product-wide price swings) |
+| γ<sub>st</sub> | each state's movement in each period (state booms and slumps) |
+
+- **Estimand:** The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.
+- **Identifying assumption:** Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).
+- **Inference:** The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.
+
+## As-of-right taxi licences in Victoria (2014): re-evaluation with saturated effects
+
+`vic-taxi-licensing-2014-phase5` · evaluated 18 October 2026 · grade Weak
+
+No detectable effect: business entry rate −0.4 per 100 businesses a year (p = 0.68), saturated fixed effects, grade Weak.
+
+**Key insights**
+
+- The question: did Victoria's as-of-right taxi licences (2014) bring new taxi businesses in, or lower fares?
+- The comparison: Victorian taxis against taxis in the other states, 2014-15 only (before ride-share legalisation), with class x year and state x year effects.
+- What we found: no detectable change. Business entry rate: −0.4 per 100 businesses a year (90% interval −2.6 to +1.8; p = 0.68).
+- Other outcomes: business exit rate −1.9 (p = 0.049; not identified: a pre-reform year lies outside its placebo band); urban transport fares: prices relative to the CPI −10.6 (p = 0.024). Secondary outcomes are outside the registered decision rule and not adjusted for testing several outcomes, so a p-value below 0.05 among them is a lead, not a finding.
+- How precise: only changes larger than about 3.5 per 100 businesses a year could have been detected.
+- After unblinding (not pre-registered): the fall in Melbourne's urban transport fares came all at once in 2015-Q1 (−19.1 points in one quarter, about 12 times the usual quarterly move), not when the taxi reform started (2014-Q3: +0.1). January 2015 is when public transport fare changes were reported to start (zone 1+2 travel capped at the zone 1 fare; free CBD trams). The CPI class covers public transport fares as well as taxi fares, and a one-quarter step of this size looks like a fare-schedule change, not taxi competition building up; the fares result should not be read as an effect of the taxi reform.
+- Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate −1.4 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 3.5, down from 4.2. This evaluation uses the estimator chosen in the blinded power study and the latest data.
+- What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
+
+**What we did**
+
+1. Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.
+2. Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.
+3. Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.
+4. Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side.
+
+**Econometric model**
+
+Saturated fixed effects on ANZSIC classes by state and financial year, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.
+
+*Saturated fixed effects*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + β·D<sub>cst</sub> + ε<sub>cst</sub>
+
+*Year by year*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + Σ<sub>k≠−1</sub> β<sub>k</sub>·1[t − T<sub>s</sub> = k]·T<sub>cs</sub> + ε<sub>cst</sub>
+
+| Symbol | Meaning |
+|---|---|
+| y<sub>cst</sub> | Entries (or exits) per 100 businesses operating at the start of year t, class c, state s |
+| D<sub>cst</sub> | 1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window |
+| α<sub>cs</sub> | a level for each class in each state |
+| δ<sub>ct</sub> | each class's national movement in each period (industry cycles, product-wide price swings) |
+| γ<sub>st</sub> | each state's movement in each period (state booms and slumps) |
+
+- **Estimand:** The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.
+- **Identifying assumption:** Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).
+- **Inference:** The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.
+
+## Perth retail trading hours (2010 weeknights, 2012 Sundays): re-evaluation with saturated effects
+
+`wa-trading-hours-2010-2012-phase5` · evaluated 18 October 2026 · grade Moderate
+
+No detectable effect: business entry rate +1.0 per 100 businesses a year (p = 0.49), saturated fixed effects, grade Moderate.
+
+**Key insights**
+
+- The question: did longer shop trading hours in Perth (weeknights from November 2010, Sundays from August 2012) change how many general retail businesses opened or closed?
+- The comparison: WA general retail classes against the same classes in NSW, Victoria, Queensland, Tasmania, the ACT and the NT (SA excluded), 2010-11 to 2017-18, with class x year and state x year effects.
+- What we found: no detectable change. Business entry rate: +1.0 per 100 businesses a year (90% interval −1.9 to +3.5; p = 0.49).
+- Other outcomes: business exit rate +1.3 (p = 0.22).
+- How precise: only changes larger than about 4.6 per 100 businesses a year could have been detected.
+- Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate +0.8 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 4.6, down from 5.6. This evaluation uses the estimator chosen in the blinded power study and the latest data.
+- What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
+
+**What we did**
+
+1. Registered the layer, outcomes, windows and placebo pools in the specification before any treated post-reform outcome was computed.
+2. Design stage: hid treated cells from first exposure, computed every layer's placebo distribution, the own-class placebos and the pre-reform event-study check.
+3. Committed the design and plan, ran a blinded dry run, then one registered run with treated cells restored.
+4. Judged the registered layer's estimate against its placebo distribution; reported every other layer side by side.
+
+**Econometric model**
+
+Saturated fixed effects on ANZSIC classes by state and financial year, the layer chosen for this reform in the blinded power study, with every other layer reported side by side.
+
+*Saturated fixed effects*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + β·D<sub>cst</sub> + ε<sub>cst</sub>
+
+*Year by year*
+
+> y<sub>cst</sub> = α<sub>cs</sub> + δ<sub>ct</sub> + γ<sub>st</sub> + Σ<sub>k≠−1</sub> β<sub>k</sub>·1[t − T<sub>s</sub> = k]·T<sub>cs</sub> + ε<sub>cst</sub>
+
+| Symbol | Meaning |
+|---|---|
+| y<sub>cst</sub> | Entries (or exits) per 100 businesses operating at the start of year t, class c, state s |
+| D<sub>cst</sub> | 1 for the reform's class in a treated state (or city) from its first exposed period to the end of its window |
+| α<sub>cs</sub> | a level for each class in each state |
+| δ<sub>ct</sub> | each class's national movement in each period (industry cycles, product-wide price swings) |
+| γ<sub>st</sub> | each state's movement in each period (state booms and slumps) |
+
+- **Estimand:** The average change in the outcome for the reform's classes in treated states over the window, beyond the same classes elsewhere and the treated states' other classes, net of the mean placebo estimate.
+- **Identifying assumption:** Without the reform, the treated classes in treated states would have moved like the same classes elsewhere plus their states' other classes (parallel trends in the saturated model; for synthetic DiD, like the weighted comparison cells).
+- **Inference:** The same estimator applied to up to 40 placebo industry groups (or CPI classes) at the reform's states and dates gives the no-effect distribution: the p-value is the share of centred placebo estimates at least as large; the 90% interval subtracts their 5th and 95th percentiles. Benjamini-Hochberg q-values across the specification's primary outcomes. Placebo states and fake dates check the reform's own classes.
 
 ## Perth 9pm weeknight trading (2010), re-evaluated with new data
 
