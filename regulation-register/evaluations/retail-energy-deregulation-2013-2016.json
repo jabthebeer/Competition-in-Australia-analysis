@@ -7,6 +7,7 @@
     "qld-seq-energy-price-deregulation-2016"
   ],
   "family": "retail-energy-price-deregulation",
+  "follows": null,
   "evaluated_on": "2026-10-15",
   "hypothesis": "enhancing",
   "design": "Staggered: each deregulating state against the states whose prices stayed regulated (Tasmania, ACT, WA, NT). Victoria (deregulated 2009) is excluded. Method: stacked difference-in-differences, net of the same comparison for unaffected industries in the same states.",
@@ -21,6 +22,80 @@
     "competition": "Not measurable with business counts: too few retailers, each placed at its head office.",
     "prices": "No effect identified. The registered estimate continues a long pre-existing rise (network charges); with trends removed it is close to zero.",
     "productivity": "Not measurable at division level. Shown for description only."
+  },
+  "key_insights": [
+    "The question: did removing retail electricity price caps (SA 2013, NSW 2014, south-east Queensland 2016) bring in new retailers or lower prices?",
+    "Business numbers could not be measured: the three states had 59 electricity retailers, each counted in its head-office state rather than where it sells.",
+    "Electricity prices in the deregulating states rose +17.0% relative to states that kept price caps, but they had been rising faster for more than a decade before (mostly network charges); taking out each city's earlier trend leaves −0.6%, close to zero.",
+    "Bottom line: no effect of deregulation can be identified in these data. Retailer margins or offer-level prices would be needed."
+  ],
+  "method": {
+    "summary": "Stacked difference-in-differences with clean comparison states, net of the same estimate for unaffected industries in the same states (a triple difference), with inference from placebo industries.",
+    "equations": [
+      {
+        "label": "For each cohort c (states adopting together), over its window",
+        "text": "y_{s,t} = α_{s} + λ_{t} + β_{c} · D_{s,t} + ε_{s,t},   s ∈ treated_{c} ∪ comparison_{c}"
+      },
+      {
+        "label": "Stacked across cohorts",
+        "text": "hat{β} = Σ_{c} n_{c} hat{β}_{c} / Σ_{c} n_{c}"
+      },
+      {
+        "label": "Reported estimate: net of unaffected industries",
+        "text": "hat{β}^{net} = hat{β} − (1/P) Σ_{p=1}^{P} hat{β}_{p}"
+      },
+      {
+        "label": "Prices (capital cities, quarterly; same estimator, net of other CPI classes)",
+        "text": "y_{k,q} = 100 × ln(P^{class}_{k,q} / P^{all groups}_{k,q})"
+      },
+      {
+        "label": "Output and pay per worker (descriptive; net of other divisions)",
+        "text": "y_{s,t} = 100 × ln(GVA per worker_{s,t}) for the treated industry's division"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{s,t}",
+        "meaning": "Entries (or exits) per 100 businesses operating at the start of financial year t in state s, for the treated ANZSIC classes pooled (2640 On Selling Electricity and Electricity Market Operation)"
+      },
+      {
+        "symbol": "α_{s}, λ_{t}",
+        "meaning": "State and year fixed effects"
+      },
+      {
+        "symbol": "D_{s,t}",
+        "meaning": "1 for an adopting state from its first exposed financial year on, else 0"
+      },
+      {
+        "symbol": "n_{c}",
+        "meaning": "Number of treated states in cohort c"
+      },
+      {
+        "symbol": "hat{β}_{p}",
+        "meaning": "The same stacked estimate for placebo group p: classes outside the treated division, matched on size, in the same states and years"
+      },
+      {
+        "symbol": "P",
+        "meaning": "Number of placebo groups: 54 qualified on size"
+      },
+      {
+        "symbol": "P^{class}_{k,q}",
+        "meaning": "CPI for the expenditure class in capital city k, quarter q"
+      }
+    ],
+    "estimand": "The average change in the treated industries' entry (or exit) rate in the adopting states over the exposed years, relative to the comparison states, beyond the change for unaffected industries in the same states (NSW, QLD, SA).",
+    "identification": "Without the reform, the treated industries' rate in the adopting states would have moved as in the comparison states once state-wide changes shared with unaffected industries are removed (triple-difference parallel trends). Checked with the pre-reform event-study coefficients.",
+    "inference": "No conventional standard errors (few treated states). p-value: two-sided rank of hat{β}^{net} among the P centred placebo estimates. 90% interval: hat{β}^{net} minus the 95th and 5th percentiles of the centred placebos (Conley and Taber 2011). Smallest detectable effect: 2.8 × their standard deviation.",
+    "steps": [
+      "Took the treated industries (2640 On Selling Electricity and Electricity Market Operation) and the adopting states and dates from the register records; cohorts: SA from 2012-13 to 2017-18 against TAS, ACT, WA, NT; NSW from 2014-15 to 2017-18 against TAS, ACT, WA, NT; QLD from 2016-17 to 2017-18 against TAS, ACT, WA, NT. Comparison states are those not yet treated in each cohort's window.",
+      "Built yearly entry and exit rates from ABS Counts of Australian Businesses (registered release vintage), 2007-08 on, pooling the treated classes in each state.",
+      "Drew placebo groups of the same number of classes from outside the treated division, matched on size (59 businesses in the treated states in 2011-12); 54 qualified.",
+      "Design stage with every treated outcome hidden: checked the feasibility rules (at least 100 treated businesses and 19 placebo groups) and the power, then committed the plan (docs/pap_high_evaluability.md).",
+      "Estimated the stacked difference-in-differences for the treated group and every placebo group, and subtracted the placebo mean.",
+      "Checked each pre-reform year against its 95% placebo band, and ran the registered robustness variants (the other ABS vintage, employing businesses only, leaving each state out, adding 2018-19).",
+      "Applied the plan's decision and grading rules, with Benjamini–Hochberg q-values across the batch.",
+      "Prices: the same estimator on each city's CPI class relative to its all-groups index, against placebo CPI classes, with a registered variant that removes each city's pre-reform linear trend."
+    ]
   },
   "preregistered": true,
   "outcomes": [
@@ -306,12 +381,12 @@
     },
     {
       "label": "Case definitions",
-      "path": "alcia/analyses/high_evaluability/cases.py"
+      "path": "alicia/analyses/high_evaluability/cases.py"
     },
     {
       "label": "Estimation code",
-      "path": "alcia/analyses/high_evaluability/run.py"
+      "path": "alicia/analyses/high_evaluability/run.py"
     }
   ],
-  "built_by": "alcia/analyses/high_evaluability/evaluations.py"
+  "built_by": "alicia/analyses/high_evaluability/evaluations.py"
 }

@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.cache/
+# Generated pages (menu explorer output); the template and test fixtures are kept.
+*.html
+!src/alicia/menu/templates/*.html
+!tests/fixtures/**/*.html

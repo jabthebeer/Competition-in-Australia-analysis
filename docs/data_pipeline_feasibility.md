@@ -1,6 +1,6 @@
-# ALCIA data pipeline: feasibility of sources and what was built
+# ALICIA data pipeline: feasibility of sources and what was built
 
-Methods note, 18 October 2026. This note covers the sources the owner proposed for moving from "no detectable effect" towards causal estimates at any scale, plus sources added. It records what each can and cannot identify, what was built, and the checks run. Everything here was read from the files themselves on the access dates in [`data/SOURCES.md`](../data/SOURCES.md). The code is in `alcia/src/alcia/pipeline/`.
+Methods note, 18 October 2026. This note covers the sources the owner proposed for moving from "no detectable effect" towards causal estimates at any scale, plus sources added. It records what each can and cannot identify, what was built, and the checks run. Everything here was read from the files themselves on the access dates in [`data/SOURCES.md`](../data/SOURCES.md). The code is in `alicia/src/alicia/pipeline/`.
 
 ## 1. Feasibility by source
 
@@ -22,20 +22,20 @@ Methods note, 18 October 2026. This note covers the sources the owner proposed f
 
 ## 2. How panels map to legislation
 
-Every connector writes the same long format (`alcia/src/alcia/pipeline/schema.py`), one row per source × measure × industry × place × period:
+Every connector writes the same long format (`alicia/src/alicia/pipeline/schema.py`), one row per source × measure × industry × place × period:
 
 - **Industry:** scheme (`ANZSIC06`, `ANZSIC06-inferred`, `ANZSCO`, `none`), level (class, group, subdivision, division, retail-group, total, occupation) and code.
 - **Place:** level (AUS, STE, SA2, LGA, POA, CLUE_AREA, IVI_REGION …) and code.
 - **Also:** breakdown (size band, entity type, company type), period type and start, value, vintage.
 
-`alcia pipeline build [source …]` builds the panels in `data/processed/<source>/`. `alcia pipeline catalogue` summarises them in `data/processed/catalogue.json`. The catalogue matches each register record's ANZSIC codes and jurisdiction to the finest level each panel holds:
+`alicia pipeline build [source …]` builds the panels in `data/processed/<source>/`. `alicia pipeline catalogue` summarises them in `data/processed/catalogue.json`. The catalogue matches each register record's ANZSIC codes and jurisdiction to the finest level each panel holds:
 
 - the record's own code, then its ancestors (class → group → subdivision → division);
 - retail groupings that contain it;
 - finer codes that sum to it;
 - an all-industry series.
 
-The match also reports whether the record's state is covered and which finer areas exist in it. Run `alcia data <record-id>` for the full list. The menu explorer shows it per record under "Data that can measure it", with an "Outcome data: fine / local" filter.
+The match also reports whether the record's state is covered and which finer areas exist in it. Run `alicia data <record-id>` for the full list. The menu explorer shows it per record under "Data that can measure it", with an "Outcome data: fine / local" filter.
 
 Example: `nsw-lockout-2014` (classes 4520, 4530, 4511, 4512, 4123) now has 106 matches. These include:
 

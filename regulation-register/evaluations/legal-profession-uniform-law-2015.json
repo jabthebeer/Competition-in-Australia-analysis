@@ -6,6 +6,7 @@
     "vic-legal-profession-uniform-law-2015"
   ],
   "family": "legal-profession-uniform-law",
+  "follows": null,
   "evaluated_on": "2026-10-15",
   "hypothesis": "enhancing",
   "design": "NSW and Victoria adopted on 1 July 2015; the other jurisdictions had not by 2017-18. Method: stacked difference-in-differences, net of the same comparison for unaffected industries in the same states.",
@@ -19,6 +20,72 @@
   "category_summaries": {
     "competition": "No detectable effect. Exit changes beyond about 2 per 100 are ruled out; for entry, a rise of more than about 1.2 per 100 is ruled out, a fall is not.",
     "productivity": "Not measurable. Legal services are a small part of professional services. Shown for description only."
+  },
+  "key_insights": [
+    "The question: did the Legal Profession Uniform Law (NSW and Victoria, July 2015) change how many legal practices started or closed?",
+    "The comparison: NSW and Victoria against the six jurisdictions that had not adopted it, over the three years after. Changes shared by every industry in the same states (a state's boom or slump) were removed by subtracting the same comparison for industries the reform did not touch.",
+    "What we found: no detectable change. Openings moved −1.6 per 100 businesses a year (90% interval −5.8 to +1.2) and closures −0.2 (−1.8 to +1.0).",
+    "How precise: changes in closures beyond about 2 per 100 are ruled out, as is a rise in openings of more than about 1.2.",
+    "What it means: the law mainly cuts costs for firms working in both states, which counts of businesses by main state cannot see directly."
+  ],
+  "method": {
+    "summary": "Stacked difference-in-differences with clean comparison states, net of the same estimate for unaffected industries in the same states (a triple difference), with inference from placebo industries.",
+    "equations": [
+      {
+        "label": "For each cohort c (states adopting together), over its window",
+        "text": "y_{s,t} = α_{s} + λ_{t} + β_{c} · D_{s,t} + ε_{s,t},   s ∈ treated_{c} ∪ comparison_{c}"
+      },
+      {
+        "label": "Stacked across cohorts",
+        "text": "hat{β} = Σ_{c} n_{c} hat{β}_{c} / Σ_{c} n_{c}"
+      },
+      {
+        "label": "Reported estimate: net of unaffected industries",
+        "text": "hat{β}^{net} = hat{β} − (1/P) Σ_{p=1}^{P} hat{β}_{p}"
+      },
+      {
+        "label": "Output and pay per worker (descriptive; net of other divisions)",
+        "text": "y_{s,t} = 100 × ln(GVA per worker_{s,t}) for the treated industry's division"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{s,t}",
+        "meaning": "Entries (or exits) per 100 businesses operating at the start of financial year t in state s, for the treated ANZSIC classes pooled (6931 Legal Services)"
+      },
+      {
+        "symbol": "α_{s}, λ_{t}",
+        "meaning": "State and year fixed effects"
+      },
+      {
+        "symbol": "D_{s,t}",
+        "meaning": "1 for an adopting state from its first exposed financial year on, else 0"
+      },
+      {
+        "symbol": "n_{c}",
+        "meaning": "Number of treated states in cohort c"
+      },
+      {
+        "symbol": "hat{β}_{p}",
+        "meaning": "The same stacked estimate for placebo group p: classes outside the treated division, matched on size, in the same states and years"
+      },
+      {
+        "symbol": "P",
+        "meaning": "Number of placebo groups: 39 qualified on size, 39 with every year of the window"
+      }
+    ],
+    "estimand": "The average change in the treated industries' entry (or exit) rate in the adopting states over the exposed years, relative to the comparison states, beyond the change for unaffected industries in the same states (NSW, VIC).",
+    "identification": "Without the reform, the treated industries' rate in the adopting states would have moved as in the comparison states once state-wide changes shared with unaffected industries are removed (triple-difference parallel trends). Checked with the pre-reform event-study coefficients.",
+    "inference": "No conventional standard errors (few treated states). p-value: two-sided rank of hat{β}^{net} among the P centred placebo estimates. 90% interval: hat{β}^{net} minus the 95th and 5th percentiles of the centred placebos (Conley and Taber 2011). Smallest detectable effect: 2.8 × their standard deviation.",
+    "steps": [
+      "Took the treated industries (6931 Legal Services) and the adopting states and dates from the register records; cohorts: NSW, VIC from 2015-16 to 2017-18 against QLD, SA, WA, TAS, ACT, NT. Comparison states are those not yet treated in each cohort's window.",
+      "Built yearly entry and exit rates from ABS Counts of Australian Businesses (registered release vintage), 2007-08 on, pooling the treated classes in each state.",
+      "Drew placebo groups of the same number of classes from outside the treated division, matched on size (13060 businesses in the treated states in 2014-15); 39 qualified.",
+      "Design stage with every treated outcome hidden: checked the feasibility rules (at least 100 treated businesses and 19 placebo groups) and the power, then committed the plan (docs/pap_high_evaluability.md).",
+      "Estimated the stacked difference-in-differences for the treated group and every placebo group, and subtracted the placebo mean.",
+      "Checked each pre-reform year against its 95% placebo band, and ran the registered robustness variants (the other ABS vintage, employing businesses only, leaving each state out, adding 2018-19).",
+      "Applied the plan's decision and grading rules, with Benjamini–Hochberg q-values across the batch."
+    ]
   },
   "preregistered": true,
   "outcomes": [
@@ -326,12 +393,12 @@
     },
     {
       "label": "Case definitions",
-      "path": "alcia/analyses/high_evaluability/cases.py"
+      "path": "alicia/analyses/high_evaluability/cases.py"
     },
     {
       "label": "Estimation code",
-      "path": "alcia/analyses/high_evaluability/run.py"
+      "path": "alicia/analyses/high_evaluability/run.py"
     }
   ],
-  "built_by": "alcia/analyses/high_evaluability/evaluations.py"
+  "built_by": "alicia/analyses/high_evaluability/evaluations.py"
 }

@@ -2,7 +2,7 @@
 
 **Registered:** 18 October 2026, before any post-reform outcome for WA was estimated from the data used here.
 
-**Design-stage evidence:** `alcia/analyses/wa_weeknight_2010/design.json`, written by `design_review.py`. That script hides WA's outcomes from the first excluded period on, in code, before anything is computed.
+**Design-stage evidence:** `alicia/analyses/wa_weeknight_2010/design.json`, written by `design_review.py`. That script hides WA's outcomes from the first excluded period on, in code, before anything is computed.
 
 **Earlier evaluation:** [`pap_wa_trading_hours.md`](pap_wa_trading_hours.md) and [`results_wa_trading_hours.md`](results_wa_trading_hours.md) (15 October 2026).
 
@@ -163,7 +163,7 @@ Every alternative tried is recorded here with its smallest detectable effect (MD
 ## 10. Data, code and order of work
 
 - **Panels:** `data/processed/abs_retail`, `abs_lfs` and `abs_cabee_local`. Sources are in `data/SOURCES.md`.
-- **Code:** `alcia/analyses/wa_weeknight_2010/`:
+- **Code:** `alicia/analyses/wa_weeknight_2010/`:
   - `spec.py` (designs);
   - `design_review.py` (blinded);
   - `estimate.py` (registered run; `--blind` dry run first, which must reproduce the design-stage no-effect distributions);
@@ -173,3 +173,5 @@ Every alternative tried is recorded here with its smallest detectable effect (MD
 ## 11. Changes after registration
 
 None yet.
+
+**Paths (18 October 2026, second rename).** File paths and the tool name were updated when ALCIA became ALICIA (`alcia/` became `alicia/`; the package and command `alcia` became `alicia`). The content is unchanged.

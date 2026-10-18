@@ -6,6 +6,7 @@
     "wa-trading-hours-sunday-2012"
   ],
   "family": "retail-trading-hours",
+  "follows": null,
   "evaluated_on": "2026-10-15",
   "hypothesis": "enhancing",
   "design": "Difference-in-differences with one treated state: WA general retail (supermarkets, clothing and department stores) against comparison states, net of the same comparison for 472 groups of unaffected WA industries.",
@@ -20,6 +21,76 @@
     "competition": "No detectable effect on business entry or exit. Large effects are ruled out if WA retail would otherwise have tracked other states.",
     "prices": "No effect identified. Perth's food prices fell relative to other capitals, but they were already falling before the reform.",
     "productivity": "Not measurable with public data. The spread across comparison states dwarfs any plausible effect, so these are shown for description only."
+  },
+  "key_insights": [
+    "The question: did letting Perth's general retail shops trade until 9pm on weeknights (November 2010) and on Sundays (August 2012) change how many supermarkets, clothing and department stores started or closed?",
+    "The comparison: WA against six other states and territories, 2007-08 to 2017-18. Anything that moved all WA industries together, such as the mining boom, was removed by subtracting the same comparison for 472 groups of industries the reform did not touch.",
+    "What we found: no detectable change. Business openings moved +0.8 per 100 businesses a year (90% interval −2.4 to +3.7) and closures −0.1 (−2.4 to +2.5).",
+    "How precise: only changes larger than about 5.6 openings per 100 businesses a year could have been detected. Food prices in Perth fell relative to other capitals, but they were already falling before the reform.",
+    "What it means: no sign that longer hours brought in or pushed out shops in large numbers. Counts cannot show whether sales shifted from small shops to large chains; the follow-up evaluation of the weeknight step with new data agrees."
+  ],
+  "method": {
+    "summary": "Difference-in-differences with one treated state and state and year fixed effects, net of the same estimate for placebo industry groups in the same states (a triple difference). Inference from the placebo distribution.",
+    "equations": [
+      {
+        "label": "Treated industries, WA against comparison states",
+        "text": "y_{s,t} = α_{s} + λ_{t} + δ_{T} · D_{s,t} + ε_{s,t}"
+      },
+      {
+        "label": "Reported estimate: net of unaffected WA industries",
+        "text": "hat{δ} = hat{δ}_{T} − (1/P) Σ_{p=1}^{P} hat{δ}_{p}"
+      },
+      {
+        "label": "Year by year (event study)",
+        "text": "y_{s,t} = α_{s} + λ_{t} + Σ_{k≠−1} θ_{k} · 1[s = WA, t − 2010-11 = k] + ε_{s,t}"
+      },
+      {
+        "label": "Food prices (capital cities, quarterly)",
+        "text": "100 × ln(P^{food}_{k,q} / P^{all}_{k,q}) = α_{k} + λ_{q} + δ · D_{k,q} + ε_{k,q}"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{s,t}",
+        "meaning": "Entries (or exits) per 100 businesses at the start of financial year t in state s, classes 4110 Supermarket and Grocery Stores, 4251 Clothing Retailing and 4260 Department Stores pooled"
+      },
+      {
+        "symbol": "α_{s}, λ_{t}",
+        "meaning": "State and year fixed effects"
+      },
+      {
+        "symbol": "D_{s,t}",
+        "meaning": "1 for WA from 2010-11 (the first year with weeknight trading) on"
+      },
+      {
+        "symbol": "hat{δ}_{p}",
+        "meaning": "The same estimate for placebo group p: three ANZSIC classes outside retail with a WA size between half and twice the treated group's"
+      },
+      {
+        "symbol": "P",
+        "meaning": "Number of placebo groups (472)"
+      },
+      {
+        "symbol": "θ_{k}",
+        "meaning": "Effect k years from 2010-11, relative to 2009-10"
+      },
+      {
+        "symbol": "P^{food}_{k,q}",
+        "meaning": "CPI for food and non-alcoholic beverages in city k, quarter q"
+      }
+    ],
+    "estimand": "The average change in the entry (or exit) rate of WA general retail after the reforms, relative to the same industries in comparison states, beyond the change for unaffected WA industries.",
+    "identification": "Without the reforms, WA general retail would have moved like general retail in the comparison states once WA-wide changes shared with other industries are removed. Three pre-reform years allow only a weak check; sensitivity bounds (relative magnitudes) show how large a departure would overturn the sign.",
+    "inference": "No conventional standard errors (one treated state). p-value: two-sided rank among the centred placebo-group estimates; 90% interval from their quantiles (Conley and Taber 2011); smallest detectable effect 2.8 × their standard deviation. A comparison-state placebo rank is also reported (smallest possible p 0.14).",
+    "steps": [
+      "Took the reform dates from the WA register and the treated classes from the register records.",
+      "Built yearly entry and exit rates from ABS Counts of Australian Businesses, stitched from successive releases, 2007-08 to 2017-18 (before COVID); SA left out because Adelaide changed its hours in 2012.",
+      "Ran a design-stage review with WA's post-reform outcomes hidden, chose the estimator and placebo pool, measured power, and committed the plan (docs/pap_wa_trading_hours.md).",
+      "Estimated the WA-versus-comparison difference-in-differences for general retail and for 472 placebo groups, and subtracted the placebo mean.",
+      "Estimated the year-by-year path and its sensitivity to departures from parallel trends.",
+      "Ran the registered robustness checks: the other ABS vintage, adding 2018-19, leaving out comparison states, a broader treated set, a consumer-facing placebo pool, and a triple difference against cafes, takeaway food and fuel retailing.",
+      "Prices: Perth's food CPI relative to its all-groups CPI against other capitals; a check that removes each city's pre-reform trend was added after unblinding and is labelled as such."
+    ]
   },
   "preregistered": true,
   "outcomes": [
@@ -541,8 +612,8 @@
     },
     {
       "label": "Estimation code",
-      "path": "alcia/analyses/wa_trading_hours/estimate.py"
+      "path": "alicia/analyses/wa_trading_hours/estimate.py"
     }
   ],
-  "built_by": "alcia/analyses/wa_trading_hours/evaluation.py"
+  "built_by": "alicia/analyses/wa_trading_hours/evaluation.py"
 }

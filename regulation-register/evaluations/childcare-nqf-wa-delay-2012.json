@@ -9,7 +9,7 @@
   "follows": "childcare-nqf-2012",
   "evaluated_on": "2026-10-18",
   "hypothesis": "weakening",
-  "design": "On-off difference-in-differences (alcia.evaluate.stagger): the gap between WA and the other jurisdictions should open when they adopted the framework (January 2012) and close when WA did (August 2012). Monthly business exits and entries from the ABN register, quarterly child care prices and employment.",
+  "design": "On-off difference-in-differences (alicia.evaluate.stagger): the gap between WA and the other jurisdictions should open when they adopted the framework (January 2012) and close when WA did (August 2012). Monthly business exits and entries from the ABN register, quarterly child care prices and employment.",
   "comparison": "WA against the other seven jurisdictions pooled; inference from placebo industries over the same windows and childcare at earlier fake dates.",
   "window": "2009 to mid-2013: before 2012; January to July 2012 (only WA without the framework); August 2012 to July 2013 (all with it)",
   "verdict": "inconclusive",
@@ -21,6 +21,66 @@
     "competition": "No detectable change in childcare exits or entries. Exits: +0.35 points (p = 0.68); the gap opened in January and closed in August 2012 as the framework predicts, but by far less than the noise.",
     "prices": "No detectable early price effect: +0.3% (90% interval −2.9 to +5.6; p = 0.84); detrended −0.4%.",
     "productivity": "Not measurable. WA's quarterly child care employment estimates are too noisy for a seven-month window (smallest detectable effect about 55%)."
+  },
+  "key_insights": [
+    "The question: did the National Quality Framework for childcare (staff ratios, qualifications, quality ratings) push childcare businesses out or raise prices soon after it started?",
+    "The natural experiment: every other jurisdiction started in January 2012, but WA only in August 2012. If the framework mattered straight away, the gap between WA and the rest should open in January and close again in August.",
+    "What we found: no detectable early effect. Childcare's share of business closures moved +0.35 percentage points (90% interval −0.87 to +1.12) on a base of 1.5%, and child care prices +0.3% (−2.9 to +5.6).",
+    "How precise: only very large effects could have been seen: about 1.9 points on closures (roughly a doubling of childcare's share) or about 8% on prices.",
+    "What it means: no sign of an immediate shake-out or price jump. The later staff ratio and qualification phases (2014, 2016) are not covered, and Department of Education data on services and fees would allow a sharper test."
+  ],
+  "method": {
+    "summary": "On-off difference-in-differences for a rule that starts late in one jurisdiction: the gap between the late adopter and the rest is compared across three windows (before, others only, all). Inference from placebo industries and fake dates.",
+    "equations": [
+      {
+        "label": "The gap, each month (or quarter)",
+        "text": "G_{t} = y^{WA}_{t} − ȳ^{others}_{t} − s̄_{season(t)}"
+      },
+      {
+        "label": "Pooled effect (primary)",
+        "text": "hat{δ} = mean_{t ∈ pre ∪ off}(G_{t}) − mean_{t ∈ on}(G_{t})"
+      },
+      {
+        "label": "Early effect and late effect (secondary)",
+        "text": "hat{δ}_{early} = mean_{pre}(G_{t}) − mean_{on}(G_{t});   hat{δ}_{late} = mean_{off}(G_{t}) − mean_{on}(G_{t})"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{t}",
+        "meaning": "Exits: childcare-named businesses' share of named-business ABN cancellations (%), monthly. Prices: 100 × ln(child care CPI / all-groups CPI), quarterly, Perth against the mean of the other capitals"
+      },
+      {
+        "symbol": "ȳ^{others}_{t}",
+        "meaning": "The other seven jurisdictions pooled"
+      },
+      {
+        "symbol": "s̄_{season(t)}",
+        "meaning": "The gap's pre-period mean for the same month or quarter of the year"
+      },
+      {
+        "symbol": "pre",
+        "meaning": "January 2009 to December 2011; quarterly outcomes 2009-Q1 to 2011-Q4 (no one treated)"
+      },
+      {
+        "symbol": "on",
+        "meaning": "January to July 2012; quarterly 2012-Q1 and Q2 (all but WA treated)"
+      },
+      {
+        "symbol": "off",
+        "meaning": "August 2012 to July 2013; quarterly 2012-Q3 to 2013-Q2 (all treated)"
+      }
+    ],
+    "estimand": "The framework's immediate effect on the outcome, measured by how the WA-minus-others gap moves when the others adopt (on) relative to when nobody (pre) or everybody (off) has it. The early part needs only parallel trends; the pooled estimate also assumes the effect is immediate and lasting.",
+    "identification": "Without the framework, the WA-minus-others gap would have kept its usual seasonal pattern through 2012-13. The on-off pattern guards against a WA-specific shock, which would not switch off in August 2012.",
+    "inference": "No conventional standard errors (one late jurisdiction). No-effect distribution: the same estimator for 32 named industries over the same windows plus childcare at 8 fake dates two or more years earlier (exits). p-value: two-sided rank; 90% interval: estimate minus the 95th and 5th percentiles (Conley and Taber 2011); smallest detectable effect: 2.8 × standard deviation; Benjamini–Hochberg q-values across the two primaries.",
+    "steps": [
+      "Built monthly counts of ABN cancellations and registrations by industry inferred from business names (childcare rule checked on City of Melbourne names), quarterly CPI by capital and Labour Force employment and hours.",
+      "Design-stage review with WA's childcare outcomes from January 2012 hidden in code; chose the windows, placebo pools and outcome roles, and committed the plan (docs/pap_childcare_nqf_wa.md).",
+      "Ran a blinded dry run that reproduced the design-stage no-effect distributions, then one unblinded run.",
+      "Estimated the pooled, early and late effects, the after-against-before check and detrended variants for each outcome.",
+      "Applied the plan's findings, verdict and grading rules. A check dropping one outlying month (December 2010) was added after unblinding and is labelled as such."
+    ]
   },
   "preregistered": true,
   "outcomes": [
@@ -730,20 +790,20 @@
     },
     {
       "label": "Design review (blinded)",
-      "path": "alcia/analyses/childcare_nqf_wa/design.json"
+      "path": "alicia/analyses/childcare_nqf_wa/design.json"
     },
     {
       "label": "Estimation code",
-      "path": "alcia/analyses/childcare_nqf_wa/estimate.py"
+      "path": "alicia/analyses/childcare_nqf_wa/estimate.py"
     },
     {
       "label": "Method (on-off design)",
-      "path": "alcia/src/alcia/evaluate/stagger.py"
+      "path": "alicia/src/alicia/evaluate/stagger.py"
     },
     {
       "label": "Earlier evaluation",
       "path": "docs/results_high_evaluability.md"
     }
   ],
-  "built_by": "alcia/analyses/childcare_nqf_wa/evaluation.py"
+  "built_by": "alicia/analyses/childcare_nqf_wa/evaluation.py"
 }

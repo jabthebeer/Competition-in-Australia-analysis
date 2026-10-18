@@ -2,7 +2,7 @@
 
 **Registered:** 18 October 2026, before the WA outcomes used here were estimated, with one disclosed exception (§7).
 
-**Design-stage evidence:** `alcia/analyses/childcare_nqf_wa/design.json`, written by `design_review.py`. That script hides WA's childcare outcomes from January 2012 on, in code, before anything is computed.
+**Design-stage evidence:** `alicia/analyses/childcare_nqf_wa/design.json`, written by `design_review.py`. That script hides WA's childcare outcomes from January 2012 on, in code, before anything is computed.
 
 **Earlier evaluation:** `childcare-nqf-2012` ([`results_high_evaluability.md`](results_high_evaluability.md)).
 
@@ -32,7 +32,7 @@ Every jurisdiction adopted the same law, so a long-run comparison is impossible.
 
 The evaluation therefore measures the framework's **early effect**, over its first year and a half. Later phase-ins are not measured: qualifications in 2014, and further ratios in 2016.
 
-## 3. Method: the on-off difference-in-differences (`alcia.evaluate.stagger`)
+## 3. Method: the on-off difference-in-differences (`alicia.evaluate.stagger`)
 
 **The gap.** For each outcome, D_t = WA minus the other seven jurisdictions pooled.
 
@@ -118,7 +118,7 @@ The earlier batch evaluation (15 Oct 2026) reported a descriptive estimate of Pe
 ## 9. Data and code
 
 - **Panels:** `data/processed/abr_abn`, `abs_lfs`; CPI from the ABS Data API (cached).
-- **Code:** `alcia/analyses/childcare_nqf_wa/`:
+- **Code:** `alicia/analyses/childcare_nqf_wa/`:
   - `spec.py`;
   - `design_review.py`;
   - `estimate.py` (`--blind` dry run first, which must reproduce the design-stage distributions);
@@ -128,3 +128,5 @@ The earlier batch evaluation (15 Oct 2026) reported a descriptive estimate of Pe
 ## 10. Changes after registration
 
 None yet.
+
+**Paths (18 October 2026, second rename).** File paths and the tool name were updated when ALCIA became ALICIA (`alcia/` became `alicia/`; the package and command `alcia` became `alicia`). The content is unchanged.

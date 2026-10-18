@@ -1,0 +1,211 @@
+<title>ALICIA Economic Conditions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
+<style>
+/*__SITE_CSS__*/
+/* Layout: a conditions board. Latest readings by state; small multiples sharing one state legend; commodity prices; national industry output. */
+.check { display: inline-flex; align-items: center; gap: 6px; font-size: var(--step--1); color: var(--ink-2); }
+.sticky-key { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 8px; border-bottom: 1px solid var(--line); }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <!--__NAV__-->
+    <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
+    <h1>Economic Conditions</h1>
+    <p class="lede">Demand, labour-market, population, wage, building and commodity-price conditions by state. These are the control series the regression framework nets out, so that a reform is not credited with a state's boom or blamed for its slump.</p>
+  </header>
+
+  <section class="block" aria-labelledby="h-latest">
+    <div class="block-head">
+      <h2 id="h-latest">Latest readings</h2>
+      <p>The most recent value of each series, with the change over the previous year.</p>
+    </div>
+    <div class="panel"><div class="tscroll"><table class="data sticky" id="latest"></table></div></div>
+  </section>
+
+  <section class="block" aria-labelledby="h-state">
+    <div class="block-head">
+      <h2 id="h-state">By state over time</h2>
+      <p>Hover or tap a chart to read the values for every state shown.</p>
+    </div>
+    <div class="sticky-key toolbar">
+      <label for="range">Period</label>
+      <select id="range"></select>
+      <label class="check"><input type="checkbox" id="marks"> Mark evaluated reforms</label>
+      <div class="chips" id="stateChips"></div>
+    </div>
+    <div class="charts-grid" id="stateCharts"></div>
+  </section>
+
+  <section class="block" aria-labelledby="h-com">
+    <div class="block-head">
+      <h2 id="h-com">Commodity prices</h2>
+      <p>A national shock that hits states unevenly: it matters most where mining is a large share of output (see the mining column on the growth page).</p>
+    </div>
+    <div class="panel chart-card">
+      <p class="unit" id="comUnit"></p>
+      <div class="chips" id="comChips"></div>
+      <div class="chart" id="comChart"></div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-nat">
+    <div class="block-head">
+      <h2 id="h-nat">National output by industry</h2>
+      <p>Industry cycles common to every state, which the framework removes with industry-by-period effects.</p>
+    </div>
+    <div class="panel"><div class="tscroll"><table class="data" id="natTable"></table></div></div>
+  </section>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<script type="application/json" id="page-data">__PAGE_DATA__</script>
+<script>
+/*__CHARTS_JS__*/
+</script>
+<script>
+(() => {
+  const D = JSON.parse(document.getElementById("page-data").textContent);
+  const STATES = D.states, NAMES = D.stateNames;
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(`alicia-cond-${k}`); return v === null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { localStorage.setItem(`alicia-cond-${k}`, JSON.stringify(v)); } catch { /* storage unavailable */ } },
+  };
+  const RANGES = [
+    { id: "1990", label: "Since 1990", from: Date.UTC(1990, 0, 1) },
+    { id: "2000", label: "Since 2000", from: Date.UTC(2000, 0, 1) },
+    { id: "2008", label: "2008 to 2016", from: Date.UTC(2008, 0, 1), to: Date.UTC(2016, 11, 1) },
+    { id: "2010", label: "Since 2010", from: Date.UTC(2010, 0, 1) },
+    { id: "5y", label: "Last 5 years", from: null },
+  ];
+  let range = RANGES.find((r) => r.id === store.get("range", "2000")) || RANGES[1];
+  let marks = store.get("marks", false);
+  const active = new Set(store.get("states", ["NSW", "VIC", "QLD", "WA", "AUS"]).filter((s) => STATES.includes(s)));
+  if (!active.size) STATES.forEach((s) => active.add(s));
+
+  const yoy = (vals, lag) => vals.map((v, i) => (i >= lag && isNum(v) && isNum(vals[i - lag]) && vals[i - lag] > 0 ? (v / vals[i - lag] - 1) * 100 : null));
+  const CHARTS = [
+    { id: "sfd", title: "State final demand", unit: "Real, change over the year, %", src: D.quarterly.sfd, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.sfd },
+    { id: "hhc", title: "Household consumption", unit: "Real, change over the year, %", src: D.quarterly.hhc, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.sfd },
+    { id: "unemp", title: "Unemployment rate", unit: "% of the labour force", src: D.monthly.unemp, kind: "month", tf: (v) => v, ref: null, note: D.notes.unemp },
+    { id: "pop", title: "Population growth", unit: "Change over the year, %", src: D.quarterly.pop, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.pop },
+    { id: "wpi", title: "Wage growth", unit: "Wage Price Index, change over the year, %", src: D.quarterly.wpi, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.wpi },
+    { id: "dwell", title: "Dwelling approvals", unit: "Units approved in the past 12 months per 1,000 residents", src: D.monthly.dwell, kind: "month", tf: (v) => v, ref: null, note: D.notes.dwell },
+  ];
+  for (const c of CHARTS) {
+    c.x = c.src.periods.map(parseYm);
+    c.series = Object.fromEntries(STATES.map((s) => [s, c.tf(c.src.values[s] || [])]));
+  }
+  const lastX = Math.max(...CHARTS.map((c) => c.x[c.x.length - 1]));
+  const bounds = () => {
+    const from = range.from ?? Date.UTC(new Date(lastX).getUTCFullYear() - 5, new Date(lastX).getUTCMonth(), 1);
+    return [from, range.to ?? Infinity];
+  };
+  const slice = (x, vals) => {
+    const [a, b] = bounds();
+    const idx = x.map((t, i) => (t >= a && t <= b ? i : -1)).filter((i) => i >= 0);
+    return { x: idx.map((i) => x[i]), vals: idx.map((i) => vals[i]) };
+  };
+  const markers = () => (marks ? D.reforms.map((r) => ({ x: Date.parse(r.date), short: `${r.jurisdiction} ${r.date.slice(0, 4)}`, label: `${r.title} (${r.date})` })) : []);
+
+  // ---- latest readings ----------------------------------------------------------------
+  function renderLatest() {
+    const lastOf = (c, s) => {
+      const v = c.series[s];
+      for (let i = v.length - 1; i >= 0; i--) if (isNum(v[i])) {
+        const back = c.kind === "quarter" ? 4 : 12;
+        return { v: v[i], d: i >= back && isNum(v[i - back]) ? v[i] - v[i - back] : null, t: c.x[i] };
+      }
+      return null;
+    };
+    const cols = CHARTS.map((c) => ({ c, label: { sfd: "State final demand, real, % y/y", hhc: "Household consumption, real, % y/y", unemp: "Unemployment rate, %", pop: "Population, % y/y", wpi: "Wages (WPI), % y/y", dwell: "Dwelling approvals per 1,000" }[c.id] }));
+    const when = cols.map(({ c }) => {
+      const t = Math.max(...STATES.map((s) => lastOf(c, s)?.t || 0));
+      return c.kind === "quarter" ? quarterLabel(t) : monthLabel(t);
+    });
+    const head = `<thead><tr><th>State</th>${cols.map((col, i) => `<th>${esc(col.label)}<br><span class="muted">${esc(when[i])}</span></th>`).join("")}</tr></thead>`;
+    const body = STATES.map((s) => `<tr class="${s === "AUS" ? "total" : ""}"><td>${esc(NAMES[s])}</td>${cols.map(({ c }) => {
+      const r = lastOf(c, s);
+      if (!r) return `<td class="num muted">–</td>`;
+      const chg = isNum(r.d) ? ` <span class="muted">(${fmtSigned(r.d, 1)})</span>` : "";
+      return `<td class="num">${fmt(r.v, 1)}${chg}</td>`;
+    }).join("")}</tr>`).join("");
+    document.getElementById("latest").innerHTML = `${head}<tbody>${body}</tbody>`;
+  }
+
+  // ---- state charts ---------------------------------------------------------------------
+  const grid = document.getElementById("stateCharts");
+  grid.innerHTML = CHARTS.map((c) => `<div class="panel chart-card"><h3>${esc(c.title)}</h3><p class="unit">${esc(c.unit)}</p><div class="chart" id="ch-${c.id}"></div><p class="note">${esc(c.note)}</p></div>`).join("");
+  function drawStates() {
+    for (const c of CHARTS) {
+      let x = null;
+      const series = STATES.filter((s) => active.has(s)).map((s) => {
+        const sl = slice(c.x, c.series[s]);
+        x = sl.x;
+        const label = c.id === "unemp" && D.monthly.unemp.original.includes(s) ? `${NAMES[s]} (12-month average)` : NAMES[s];
+        return { key: s, label, values: sl.vals, color: stateColor(s), dash: s === "AUS", width: s === "AUS" ? 2.2 : 1.6 };
+      });
+      lineChart(document.getElementById(`ch-${c.id}`), {
+        x: x || [], xKind: c.kind, series, ref: c.ref, markers: markers(),
+        yFmt: (v) => fmt(v, Math.abs(v) < 10 && !Number.isInteger(v) ? 1 : 0), tipFmt: (v) => fmt(v, 1), label: c.title,
+      });
+    }
+  }
+
+  // ---- commodity prices -------------------------------------------------------------------
+  const COM = Object.keys(D.commodity.values);
+  const comColors = { "All items": "var(--c-1)", "Rural": "var(--c-2)", "Non-rural": "var(--c-3)", "Base metals": "var(--c-4)", "Bulk commodities": "var(--c-5)" };
+  const comActive = new Set(["All items", "Rural", "Non-rural"].filter((k) => COM.includes(k)));
+  const comX = D.commodity.periods.map(parseYm);
+  function drawCommodity() {
+    const series = COM.filter((k) => comActive.has(k)).map((k) => {
+      const sl = slice(comX, D.commodity.values[k]);
+      return { key: k, label: k, values: sl.vals, color: comColors[k] || "var(--ink-2)", width: k === "All items" ? 2.2 : 1.6, _x: sl.x };
+    });
+    const x = series.length ? series[0]._x : slice(comX, comX).x;
+    lineChart(document.getElementById("comChart"), { x, xKind: "month", series, ref: 100, markers: markers(), yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label: "RBA index of commodity prices" });
+  }
+
+  // ---- national output by industry ----------------------------------------------------------
+  function renderNational() {
+    const x = D.natgva.periods;
+    const n = x.length - 1;
+    const growth = (vals, lagQ) => (n >= lagQ && isNum(vals[n]) && isNum(vals[n - lagQ]) && vals[n - lagQ] > 0 ? (Math.pow(vals[n] / vals[n - lagQ], 4 / lagQ) - 1) * 100 : null);
+    const rows = D.divisions.map((d) => ({ d, v: D.natgva.values[d.code] })).filter((r) => r.v);
+    const stats = rows.map((r) => ({ ...r, g1: growth(r.v, 4), g5: growth(r.v, 20), g10: growth(r.v, 40) }));
+    const scale = Math.max(1, ...stats.flatMap((s) => [s.g1, s.g5, s.g10]).filter(isNum).map(Math.abs).sort((a, b) => a - b).slice(0, -2));
+    const cell = (v) => `<td class="num" style="background:${heatColor(v, scale)}">${fmtSigned(v, 1)}</td>`;
+    const last = quarterLabel(parseYm(x[n]));
+    document.getElementById("natTable").innerHTML = `<thead><tr><th>Industry (ANZSIC division)</th><th>Year to ${esc(last)}, %</th><th>Last 5 years,<br>% a year</th><th>Last 10 years,<br>% a year</th></tr></thead>
+      <tbody>${stats.map((s) => `<tr class="${s.d.code === "TOT" ? "total" : ""}"><td>${s.d.code === "TOT" ? "" : `<span class="mono muted">${s.d.code}</span> `}${esc(s.d.name)}</td>${cell(s.g1)}${cell(s.g5)}${cell(s.g10)}</tr>`).join("")}</tbody>`;
+  }
+
+  // ---- controls and footer --------------------------------------------------------------------
+  const rangeSel = document.getElementById("range");
+  rangeSel.innerHTML = RANGES.map((r) => `<option value="${r.id}">${esc(r.label)}</option>`).join("");
+  rangeSel.value = range.id;
+  rangeSel.addEventListener("change", () => { range = RANGES.find((r) => r.id === rangeSel.value); store.set("range", range.id); drawStates(); drawCommodity(); });
+  const marksBox = document.getElementById("marks");
+  marksBox.checked = marks;
+  marksBox.addEventListener("change", () => { marks = marksBox.checked; store.set("marks", marks); drawStates(); drawCommodity(); });
+  toggleChips(document.getElementById("stateChips"), STATES.map((s) => ({ key: s, label: s === "AUS" ? "Australia" : s, color: stateColor(s), dash: s === "AUS" })), active, () => { store.set("states", [...active]); drawStates(); });
+  toggleChips(document.getElementById("comChips"), COM.map((k) => ({ key: k, label: k, color: comColors[k] || "var(--ink-2)" })), comActive, drawCommodity);
+  document.getElementById("comUnit").textContent = D.notes.commodity;
+
+  const v = D.vintages;
+  document.getElementById("foot").innerHTML = `
+    <p><strong>Sources.</strong> ABS Data API: State Final Demand (${esc(v.abs_sfd)}), population (${esc(v.abs_erp)}), Wage Price Index (${esc(v.abs_wpi)}), Labour Force (${esc(v.abs_lf)}), Building Approvals (${esc(v.abs_ba)}), national accounts by industry (${esc(v.abs_gva)}); Reserve Bank of Australia, statistical table I2 (${esc(v.rba_commodity)}). All CC BY 4.0.</p>
+    <p>${esc(D.notes.natgva)} Growth over 5 and 10 years is the compound average from the same quarter.</p>
+    <p>Evaluated reform markers show the effective date of each change with a current evaluation in the legislation menu.</p>
+    <p>Built ${esc(D.generated)} from <span class="mono">data/processed/controls</span> (<a href="${esc(D.repo)}data/SOURCES.md">data sources and licences</a>). Descriptive only.</p>`;
+
+  renderLatest();
+  drawStates();
+  drawCommodity();
+  renderNational();
+})();
+</script>

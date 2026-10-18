@@ -8,7 +8,7 @@ Research project on weak competition and constrained business dynamism in Austra
 - **Claude Code's role here:** (1) support data collection, and (2) help develop interesting, novel econometric analysis. Don't draft long-form prose deliverables here; produce tables, figures, and short methods notes in `docs/` for Cowork to use.
 
 ## Conventions
-- Use **R** as the default language (tidyverse, fixest, plm, did, modelsummary, ggplot2, readabs, OECD/WDI API packages). Use `renv` for package management. Python only if a method or data tool clearly needs it, and flag it first. Exception (owner decision, 18 Oct 2026): the ALCIA toolkit in `alcia/` and its data connectors are Python.
+- Use **R** as the default language (tidyverse, fixest, plm, did, modelsummary, ggplot2, readabs, OECD/WDI API packages). Use `renv` for package management. Python only if a method or data tool clearly needs it, and flag it first. Exception (owner decision, 18 Oct 2026): the ALICIA toolkit in `alicia/` and its data connectors are Python.
 - Prefer Quarto (`.qmd`) or plain `.R` scripts in `analysis/`; keep scripts runnable top to bottom.
 - Never edit files in `data/raw/`. Cleaning goes in scripts that write to `data/processed/`. Every analysis must be reproducible from raw data via scripts.
 - Record every dataset in `data/SOURCES.md`: publisher, URL, date accessed, licence/access limits, coverage, variables of interest.

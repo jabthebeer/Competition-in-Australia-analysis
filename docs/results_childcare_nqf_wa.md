@@ -3,7 +3,7 @@
 **Run:** 18 October 2026, once, after the plan [`pap_childcare_nqf_wa.md`](pap_childcare_nqf_wa.md) was committed (commit "Register the NQF-in-WA evaluation").
 
 - **Before the run:** a blinded dry run reproduced the design-stage no-effect distributions.
-- **Numbers:** `alcia/analyses/childcare_nqf_wa/estimate.json`.
+- **Numbers:** `alicia/analyses/childcare_nqf_wa/estimate.json`.
 - **Display paths:** `paths.json`.
 - **Evaluation file:** `regulation-register/evaluations/childcare-nqf-wa-delay-2012.json`. It *follows* `childcare-nqf-2012`.
 

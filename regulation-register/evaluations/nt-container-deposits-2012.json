@@ -5,6 +5,7 @@
     "nt-cds-2012"
   ],
   "family": "container-deposit-scheme",
+  "follows": null,
   "evaluated_on": "2026-10-15",
   "hypothesis": "mixed",
   "design": "One treated territory (NT, from January 2012) against states without a scheme; window ends 2016-17, before NSW's scheme. SA (scheme since 1977) is excluded. Method: stacked difference-in-differences, net of the same comparison for unaffected industries in the same states.",
@@ -19,6 +20,81 @@
     "competition": "Not measurable. The NT has too few beverage manufacturers and recyclers for business counts to show an effect.",
     "prices": "No detectable effect. Soft drinks +8.7%, beer +4.3%; neither stands out from other prices, and the soft-drink rise began before the scheme.",
     "productivity": "Not measurable. Manufacturing output per worker varies too much across industries. Shown for description only."
+  },
+  "key_insights": [
+    "The question: did the Northern Territory's container deposit scheme (January 2012) change the number of drink makers and recyclers, or drink prices?",
+    "Business numbers could not be measured: only 12 NT businesses were in the affected industries, too few for any change to show.",
+    "Darwin soft-drink prices rose +8.7% relative to other capitals and beer +4.3%, but soft-drink prices were already rising before the scheme; taking out each city's earlier trend leaves +1.4%.",
+    "These price data can only detect changes of about 19% or more, while a 10-cent deposit is a few per cent of a drink's price.",
+    "Bottom line: the scheme's effect cannot be measured with these public data."
+  ],
+  "method": {
+    "summary": "Stacked difference-in-differences with clean comparison states, net of the same estimate for unaffected industries in the same states (a triple difference), with inference from placebo industries.",
+    "equations": [
+      {
+        "label": "For each cohort c (states adopting together), over its window",
+        "text": "y_{s,t} = α_{s} + λ_{t} + β_{c} · D_{s,t} + ε_{s,t},   s ∈ treated_{c} ∪ comparison_{c}"
+      },
+      {
+        "label": "Stacked across cohorts",
+        "text": "hat{β} = Σ_{c} n_{c} hat{β}_{c} / Σ_{c} n_{c}"
+      },
+      {
+        "label": "Reported estimate: net of unaffected industries",
+        "text": "hat{β}^{net} = hat{β} − (1/P) Σ_{p=1}^{P} hat{β}_{p}"
+      },
+      {
+        "label": "Prices (capital cities, quarterly; same estimator, net of other CPI classes)",
+        "text": "y_{k,q} = 100 × ln(P^{class}_{k,q} / P^{all groups}_{k,q})"
+      },
+      {
+        "label": "Output and pay per worker (descriptive; net of other divisions)",
+        "text": "y_{s,t} = 100 × ln(GVA per worker_{s,t}) for the treated industry's division"
+      }
+    ],
+    "terms": [
+      {
+        "symbol": "y_{s,t}",
+        "meaning": "Entries (or exits) per 100 businesses operating at the start of financial year t in state s, for the treated ANZSIC classes pooled (1211 Soft Drink, Cordial and Syrup Manufacturing, 1212 Beer Manufacturing, 2922 Waste Remediation and Materials Recovery Services)"
+      },
+      {
+        "symbol": "α_{s}, λ_{t}",
+        "meaning": "State and year fixed effects"
+      },
+      {
+        "symbol": "D_{s,t}",
+        "meaning": "1 for an adopting state from its first exposed financial year on, else 0"
+      },
+      {
+        "symbol": "n_{c}",
+        "meaning": "Number of treated states in cohort c"
+      },
+      {
+        "symbol": "hat{β}_{p}",
+        "meaning": "The same stacked estimate for placebo group p: classes outside the treated division, matched on size, in the same states and years"
+      },
+      {
+        "symbol": "P",
+        "meaning": "Number of placebo groups: 0 qualified on size"
+      },
+      {
+        "symbol": "P^{class}_{k,q}",
+        "meaning": "CPI for the expenditure class in capital city k, quarter q"
+      }
+    ],
+    "estimand": "The average change in the treated industries' entry (or exit) rate in the adopting states over the exposed years, relative to the comparison states, beyond the change for unaffected industries in the same states (NT).",
+    "identification": "Without the reform, the treated industries' rate in the adopting states would have moved as in the comparison states once state-wide changes shared with unaffected industries are removed (triple-difference parallel trends). Checked with the pre-reform event-study coefficients.",
+    "inference": "No conventional standard errors (few treated states). p-value: two-sided rank of hat{β}^{net} among the P centred placebo estimates. 90% interval: hat{β}^{net} minus the 95th and 5th percentiles of the centred placebos (Conley and Taber 2011). Smallest detectable effect: 2.8 × their standard deviation.",
+    "steps": [
+      "Took the treated industries (1211 Soft Drink, Cordial and Syrup Manufacturing, 1212 Beer Manufacturing, 2922 Waste Remediation and Materials Recovery Services) and the adopting states and dates from the register records; cohorts: NT from 2011-12 to 2016-17 against NSW, VIC, QLD, WA, TAS, ACT. Comparison states are those not yet treated in each cohort's window.",
+      "Built yearly entry and exit rates from ABS Counts of Australian Businesses (registered release vintage), 2007-08 on, pooling the treated classes in each state.",
+      "Drew placebo groups of the same number of classes from outside the treated division, matched on size (12 businesses in the treated states in 2010-11); 0 qualified.",
+      "Design stage with every treated outcome hidden: checked the feasibility rules (at least 100 treated businesses and 19 placebo groups) and the power, then committed the plan (docs/pap_high_evaluability.md).",
+      "Estimated the stacked difference-in-differences for the treated group and every placebo group, and subtracted the placebo mean.",
+      "Checked each pre-reform year against its 95% placebo band, and ran the registered robustness variants (the other ABS vintage, employing businesses only, leaving each state out).",
+      "Applied the plan's decision and grading rules, with Benjamini–Hochberg q-values across the batch.",
+      "Prices: the same estimator on each city's CPI class relative to its all-groups index, against placebo CPI classes, with a registered variant that removes each city's pre-reform linear trend."
+    ]
   },
   "preregistered": true,
   "outcomes": [
@@ -322,12 +398,12 @@
     },
     {
       "label": "Case definitions",
-      "path": "alcia/analyses/high_evaluability/cases.py"
+      "path": "alicia/analyses/high_evaluability/cases.py"
     },
     {
       "label": "Estimation code",
-      "path": "alcia/analyses/high_evaluability/run.py"
+      "path": "alicia/analyses/high_evaluability/run.py"
     }
   ],
-  "built_by": "alcia/analyses/high_evaluability/evaluations.py"
+  "built_by": "alicia/analyses/high_evaluability/evaluations.py"
 }
