@@ -11,6 +11,8 @@ alicia methods [-o file.md]          key insights and econometric methods of eve
 alicia pipeline build <source>...    build outcome panels in data/processed (see alicia.pipeline.sources)
 alicia pipeline catalogue            summarise every processed panel for coverage matching
 alicia data <id>                     which data panels can measure a change, at what industry and area level
+alicia spec list | show <id>         evaluation specifications (alicia/specs)
+alicia spec run <id> [--stage ...]   run a specification's stages and check outputs reproduce byte for byte
 """
 
 from __future__ import annotations
@@ -288,6 +290,48 @@ def cmd_data(args) -> int:
     return 0
 
 
+def cmd_spec(args) -> int:
+    from .register.evaluation import default_evaluations_dir
+    from .runner import run as runner
+    from .runner.spec import load, load_all
+
+    if args.action == "list":
+        specs, problems = load_all()
+        for s in specs:
+            stages = ", ".join(st.name for st in s.stages)
+            print(f"{s.id:45} {s.analysis:20} {len(s.evaluations)} evaluation(s); stages: {stages}")
+        for msg in problems:
+            print(f"PROBLEM {msg}", file=sys.stderr)
+        return 1 if problems else 0
+    if not args.id:
+        print("give a specification id", file=sys.stderr)
+        return 2
+    spec = load(args.id)
+    if args.action == "show":
+        print(json.dumps(spec.model_dump(mode="json"), indent=2, ensure_ascii=False))
+        return 0
+    if args.action == "check":
+        records = {r.id for r in _load(args)}
+        missing = [r for r in spec.records if r not in records]
+        evals = default_evaluations_dir()
+        absent = [e for e in spec.evaluations if not (evals / f"{e}.json").exists()]
+        for msg in [f"record {r} not in the register" for r in missing] + [f"evaluation {e} not found" for e in absent]:
+            print(msg)
+        return 1 if missing or absent else 0
+    try:
+        results = runner.run(spec, args.stage or None, allow_uncommitted_design=args.allow_uncommitted_design)
+    except (PermissionError, ValueError) as exc:
+        print(exc, file=sys.stderr)
+        return 2
+    ok = all(r.reproduced for r in results)
+    changed = [o.path for r in results for o in r.outputs if o.status != "identical"]
+    if ok:
+        print("REPRODUCED: every output byte-identical")
+    else:
+        print(f"NOT REPRODUCED: {', '.join(changed) or 'a stage failed'}")
+    return 0 if ok else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(
         prog="alicia", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -350,6 +394,17 @@ def main(argv: list[str] | None = None) -> int:
     dt_ = sub.add_parser("data", help="which data panels can measure a change")
     dt_.add_argument("id")
     dt_.set_defaults(func=cmd_data)
+
+    sp = sub.add_parser("spec", help="evaluation specifications and the runner")
+    sp.add_argument("action", choices=["list", "show", "check", "run"])
+    sp.add_argument("id", nargs="?")
+    sp.add_argument("--stage", action="append", help="run only this stage (repeatable)")
+    sp.add_argument(
+        "--allow-uncommitted-design",
+        action="store_true",
+        help="run the registered estimate even if design outputs are not committed (for checks only)",
+    )
+    sp.set_defaults(func=cmd_spec)
 
     args = p.parse_args(argv)
     return args.func(args)

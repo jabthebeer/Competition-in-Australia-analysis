@@ -27,18 +27,21 @@ from alicia.outcomes import productivity
 from alicia.outcomes.abs_series import CITY_STATE, fetch_cpi
 from alicia.outcomes.cabee import as_registered
 from alicia.pipeline.store import PROCESSED
+from alicia.runner.spec import load
 
 HERE = Path(__file__).resolve().parent
 PANEL = PROCESSED / "abs_cabee"
 
-TREATED = "WA"
-CONTROLS = ["NSW", "VIC", "QLD", "TAS", "ACT", "NT"]  # SA excluded: Adelaide CBD trading change in April 2012
-FIRST_POST_FY = 2011
-WINDOW = range(2008, 2019)  # 2007-08 to 2017-18; 2018-19 is a vintage break (identity fails) -> sensitivity only
-T_CLASSES = ["4110", "4251", "4260"]  # supermarkets and grocery, clothing, department stores (general retail shops)
-C_CLASSES = ["4511", "4512", "4000"]  # cafes and restaurants, takeaway food, fuel retailing (not general retail)
-EXCLUDE_FROM_PLACEBO_DIVS = {"G"}  # retail is (partly) treated
-RNG = np.random.default_rng(20261015)
+# Design constants, from the specification file (alicia/specs/wa-trading-hours-2010-2012.json).
+SPEC = load("wa-trading-hours-2010-2012")
+TREATED = SPEC.param("treated")
+CONTROLS = SPEC.param("controls")  # SA excluded: Adelaide CBD trading change in April 2012
+FIRST_POST_FY = SPEC.param("first_post_fy")
+WINDOW = range(*SPEC.param("window"))  # 2007-08 to 2017-18; 2018-19 is a vintage break -> sensitivity only
+T_CLASSES = SPEC.param("t_classes")  # supermarkets and grocery, clothing, department stores (general retail shops)
+C_CLASSES = SPEC.param("c_classes")  # cafes and restaurants, takeaway food, fuel retailing (not general retail)
+EXCLUDE_FROM_PLACEBO_DIVS = set(SPEC.param("exclude_from_placebo_divs"))  # retail is (partly) treated
+RNG = np.random.default_rng(SPEC.param("seed"))
 
 
 def cabee() -> pd.DataFrame:

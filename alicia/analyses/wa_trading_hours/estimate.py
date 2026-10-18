@@ -28,6 +28,7 @@ from design_review import (
     EXCLUDE_FROM_PLACEBO_DIVS,
     FIRST_POST_FY,
     PANEL,
+    SPEC,
     T_CLASSES,
     TREATED,
     WINDOW,
@@ -43,12 +44,12 @@ from alicia.outcomes.abs_series import CITY_STATE, fetch_cpi
 from alicia.outcomes.cabee import as_registered
 
 HERE = Path(__file__).resolve().parent
-SEED = 20261015
-DRAWS = 1000
+SEED = SPEC.param("seed")
+DRAWS = SPEC.param("draws")
 UNITS = [TREATED, *CONTROLS]
-WINDOW_2019 = range(2008, 2020)  # §8.2: adds 2018-19, the year with the identity break
-FIRST_POST_Q = 2010 * 4 + 3  # 2010-Q4, as quarters counted year * 4 + (quarter - 1)
-EFFECT_OF_INTEREST = 5.0  # per 100 businesses: the §7 interpretation rule
+WINDOW_2019 = range(*SPEC.param("window_2019"))  # §8.2: adds 2018-19, the year with the identity break
+FIRST_POST_Q = SPEC.param("first_post_q")  # 2010-Q4, as quarters counted year * 4 + (quarter - 1)
+EFFECT_OF_INTEREST = SPEC.param("effect_of_interest")  # per 100 businesses: the §7 interpretation rule
 BLIND = False
 
 
