@@ -191,6 +191,17 @@ All are shown side by side in the results file and the web viewer, with the pre-
 
 The single-state cases come after.
 
+### Progress (18 October 2026)
+
+| Phase | State |
+|---|---|
+| 0. Decisions | Done (E-55) |
+| 1. Controls data | Done (E-56): State Accounts, state final demand, Labour Force, ERP, WPI, building approvals, national GVA by division, Business Indicators, RBA commodity prices; sources in `data/SOURCES.md` |
+| 2. Estimator library | Part done (E-58): saturated fixed effects, wild cluster bootstrap, imputation, randomization inference, shift-share and measured controls, simulation tests ([methods note](methods_panel_estimators.md)). Still to do: factor models and synthetic DiD, Callaway–Sant'Anna, sensitivity bounds, and the R run of the cross-check |
+| 3–7 | Not started |
+
+The website also shows the controls and state and industry growth (E-57).
+
 ## 7. Guardrails
 
 - **Pre-registration stays.** Control sets and estimators are fixed at the blinded design stage. Choosing among them by looking at results would turn the comparison of estimates into a search for significance.

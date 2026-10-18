@@ -72,3 +72,18 @@ def test_build_site_writes_three_linked_pages(tmp_path):
     assert '<a href="index.html" aria-current="page">' in index and 'href="conditions.html"' in index
     data = re.search(r'id="page-data">(.*?)</script>', (tmp_path / "growth.html").read_text("utf-8"), re.S)
     assert json.loads(data.group(1))["repo"].startswith("https://github.com/")
+
+
+@needs_panels
+def test_state_covariates_cover_every_state_and_are_plausible():
+    from alicia.evaluate import covariates
+
+    d = covariates.state_covariates(base_fy=2009)
+    assert set(d["state"]) >= {"NSW", "VIC", "QLD", "SA", "WA", "TAS", "NT", "ACT"}
+    wa = d[(d["state"] == "WA") & (d["period"] == "2010-10-01")].iloc[0]
+    assert 2 < wa["unemployment_rate"] < 8 and 0 < wa["population_growth"] < 5
+    share = covariates.mining_share(2009)
+    assert share.idxmax() == "WA" and share["ACT"] < 0.01
+    # The exposure control moves one for one with the mining share.
+    q = d[d["period"] == "2010-10-01"].set_index("state")["commodity_exposure"]
+    assert q["WA"] / q["NSW"] == pytest.approx(share["WA"] / share["NSW"])

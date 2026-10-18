@@ -17,6 +17,9 @@ A public-data toolkit for evaluating how Australian legislation and regulation a
 | Outcome panels | CABEE entry and exit by ANZSIC class, state and size (2007-08 to 2024-25, 15 releases stitched); CPI by capital city (ABS Data API); state retail output and pay per worker | Done |
 | Data pipeline | Connectors that write one common panel format, sorted by ANZSIC code and place: Retail Trade (monthly, class or subgroup × state), Labour Force EQ06 (employment and hours, group × state, quarterly), Data by Region (division × SA2 and LGA), ABN Bulk Extract and ASIC registers (monthly, postcode, industry inferred from names), City of Melbourne CLUE (class × small area), postcode-to-ASGS concordance; a coverage catalogue that matches every record to the finest data available ([feasibility note](../docs/data_pipeline_feasibility.md)) | Built; Internet Vacancy Index is a parser for hand-downloaded files (site not reachable here) |
 | Estimators | Two-way fixed effects, event study, blinding, comparison-state and industry placebos, planted-effect simulations (`evaluate/did.py`); stacked difference-in-differences for several or staggered treated states (`evaluate/stacked.py`); the on-off design for one late jurisdiction (`evaluate/stagger.py`) | Done |
+| Macroeconomic controls (forward plan Phase 1) | State Accounts GVA by division × state (FY1990–2025); state final demand and household consumption; Labour Force; population; Wage Price Index; building approvals; national GVA by division; Business Indicators; RBA commodity prices. Written to `data/processed/controls/` and kept out of the outcome catalogue (`pipeline/controls.py`, `pipeline/abs_state_accounts.py`) | Done |
+| Panel estimators (forward plan Phase 2) | Saturated state × industry, industry × period and state × period fixed effects by alternating projections; clustered errors; restricted wild cluster bootstrap; the imputation estimator for staggered and dynamic effects; placebo randomization inference; shift-share controls; measured state covariates (`evaluate/panel.py`, `evaluate/covariates.py`; [methods note](../docs/methods_panel_estimators.md)) | Built and tested on simulations; R cross-check written, not yet run (no R here) |
+| Website | `alicia site` builds the legislation menu plus **State and industry growth** (GSP; GVA, employment and business entry and exit by division × state) and **Economic conditions** (the control series) | Done; published by the Pages workflow on merge to main |
 | First case | Perth trading-hours deregulation (2010, 2012): blinded robustness review, pre-analysis plan and results ([review](../docs/robustness_review_wa_trading_hours.md), [plan](../docs/pap_wa_trading_hours.md), [results](../docs/results_wa_trading_hours.md)) | Done: no detectable effect on entry or exit; grade Moderate |
 | High-evaluability batch | The other 16 high-rated records as seven reforms, one plan, stacked difference-in-differences ([plan](../docs/pap_high_evaluability.md), [results](../docs/results_high_evaluability.md)) | Done: no detectable effects; three not identified |
 | Perth weeknight re-evaluation | The 2010 weeknight step alone, with business counts by place (Perth vs regional WA), monthly turnover and hours ([plan](../docs/pap_wa_weeknight_2010.md), [results](../docs/results_wa_weeknight_2010.md)) | Done: no detectable effect; grade Moderate |
@@ -60,8 +63,11 @@ uv run alicia dates --all --json > ../regulation-register/reports/effective_date
 uv run alicia dates --all --offline       # sourced dates and timing only, no network
 uv run alicia explorer -o menu.html --dates ../regulation-register/reports/effective_dates_2026-10-15.json
 uv run alicia explorer -o menu.html --standalone   # full HTML document for opening locally
+uv run alicia site -o ../site --dates ../regulation-register/reports/effective_dates_2026-10-15.json   # menu + growth + conditions pages
 uv run alicia pipeline build              # build every outcome panel (downloads ~1.5 GB on first run, mostly the ABN extract)
 uv run alicia pipeline build abs_lfs asic  # or named sources; see BUILDERS in cli.py
+uv run alicia pipeline build abs_state_accounts controls   # State Accounts and the macroeconomic controls
+uv run python analyses/panel_crosscheck/write_reference.py # reference panel for analysis/crosscheck_panel_estimators.R
 uv run alicia pipeline catalogue          # re-summarise the panels in data/processed/catalogue.json
 uv run alicia data nsw-lockout-2014       # which panels can measure a change, at what industry level and place
 ```
@@ -101,18 +107,22 @@ alicia/
     register/      schema.py (record model), catalogue.py (load, filter, families), evaluation.py (results model)
     legislation/   frl.py (Commonwealth), states.py (states and territories), gather.py (reconcile),
                    adapters.py (routing), http.py (polite fetching), cache.py, text.py (dates, Word tables)
-    menu/          screen.py (evaluability), explorer.py + templates/explorer.html (the page)
+    menu/          screen.py (evaluability), explorer.py + templates/explorer.html (the menu page),
+                   growth.py + templates/growth.html, conditions.html, site.css, charts.js (summary pages, `alicia site`)
     outcomes/      cabee.py (entries and exits), abs_series.py (ABS workbooks, CPI Data API), productivity.py
     pipeline/      schema.py (common panel format), store.py (raw, processed, manifests), coverage.py (catalogue and
                    matching to records), sources.py (registry), one module per connector (abs_cabee, abs_retail,
-                   abs_lfs, abs_regional, geo, abr_abn, asic, clue, jsa_ivi), names.py (industry from names),
-                   concord.py (Retail Trade groupings), abs_api.py (ABS Data API client)
+                   abs_lfs, abs_regional, geo, abr_abn, asic, clue, jsa_ivi, abs_state_accounts), controls.py
+                   (macroeconomic controls), names.py (industry from names), concord.py (Retail Trade groupings),
+                   abs_api.py (ABS Data API client), abs_tsw.py (ABS time series workbooks)
     evaluate/      did.py (single-treated-unit DiD, placebos, simulations), stacked.py (several or staggered treated units),
-                   stagger.py (one late jurisdiction: the on-off design)
+                   stagger.py (one late jurisdiction: the on-off design), panel.py (saturated fixed effects, wild
+                   cluster bootstrap, imputation, randomization inference), covariates.py (measured state controls)
     timing.py      financial years and quarters
     anzsic.py, cpi.py, data/   bundled ABS classifications (CC BY 4.0)
     cli.py
-  analyses/        one folder per case: design review code and results (wa_trading_hours/)
+  analyses/        one folder per case: design review code and results (wa_trading_hours/); panel_crosscheck/ writes
+                   the reference panel for the R cross-check
   (panels are written to ../data/processed/<source>/, raw downloads to ../data/raw/<source>/, manifests to ../data/manifests/)
   scripts/         regenerate bundled data; record test fixtures; import desk-research drafts; export the schema
   tests/           offline tests; fixtures are real register responses
