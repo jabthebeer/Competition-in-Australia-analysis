@@ -18,6 +18,8 @@ import datetime as dt
 import json
 from pathlib import Path
 
+import numpy as np
+
 from alicia import anzsic, cpi
 from alicia.register.evaluation import Evaluation, default_evaluations_dir, write_evaluation
 from alicia.runner.spec import load
@@ -435,6 +437,146 @@ def regression_table(spec_id: str, case: dict, res: dict, stats: dict, q_values:
     }
 
 
+ROBUSTNESS_PANELS = ("As registered", "Leave one state out", "Window and pre-period", "Weights and data")
+
+
+def short_label(o: dict) -> str:
+    if o["kind"] == "price":
+        return next(c["name"] for c in cpi.classes() if c["code"] == o["code"]) + " (CPI)"
+    return "Entry rate" if o["key"] == "entries" else "Exit rate"
+
+
+def robustness_summary(r: dict) -> dict:
+    """Sign stability and significance across the non-registered variants of one outcome."""
+    reg = r["variants"][0]["estimate"]
+    others = [v for v in r["variants"][1:] if v["estimate"] is not None]
+    same = sum(1 for v in others if reg is not None and np.sign(v["estimate"]) == np.sign(reg))
+    sig = sum(1 for v in others if v["p"] is not None and v["p"] < 0.05)
+    lo = min((v["estimate"] for v in others), default=None)
+    hi = max((v["estimate"] for v in others), default=None)
+    return {"n": len(others), "same_sign": same, "significant": sig, "range": (lo, hi)}
+
+
+def robustness_table(spec_id: str, case: dict, res: dict, rob: dict) -> dict | None:
+    """Variants of the registered estimator (rows) by outcome (columns), with diagnostics. Not pre-registered."""
+    c = next((x for x in rob["cases"] if x["id"] == case["id"]), None)
+    if c is None:
+        return None
+    outs = [o for o in case["outcomes"] if o["key"] in c["outcomes"]]
+    rows_by_panel: dict[str, dict[str, list]] = {p: {} for p in ROBUSTNESS_PANELS}
+    for j, o in enumerate(outs):
+        for v in c["outcomes"][o["key"]]["variants"]:
+            row = rows_by_panel[v["group"]].setdefault(v["label"], [None] * len(outs))
+            if v["estimate"] is not None:
+                row[j] = {
+                    "estimate": v["estimate"],
+                    "spread": v["placebo_sd"],
+                    "p_value": v["p"],
+                    "registered": v["group"] == "As registered",
+                }
+    panels = []
+    for name in ROBUSTNESS_PANELS:
+        rows = rows_by_panel[name]
+        if rows:
+            letter = "ABCDEFG"[len(panels)]
+            panels.append(
+                {
+                    "title": f"Panel {letter}. {name}",
+                    "rows": [{"label": lab, "coefficients": coefs} for lab, coefs in rows.items()],
+                }
+            )
+
+    def cell(o, fn):
+        return fn(c["outcomes"][o["key"]])
+
+    def summary_cell(r):
+        sm = robustness_summary(r)
+        return f"{sm['same_sign']} of {sm['n']}" if sm["n"] else None
+
+    def sig_cell(r):
+        sm = robustness_summary(r)
+        return f"{sm['significant']} of {sm['n']}" if sm["n"] else None
+
+    def range_cell(r):
+        lo, hi = robustness_summary(r)["range"]
+        return None if lo is None else f"{s1(lo)} to {s1(hi)}"
+
+    def bd(r):
+        sens = r.get("sensitivity")
+        return None if not sens else f"{sens['breakdown_rm']:.2f}"
+
+    def set1(r):
+        sens = r.get("sensitivity")
+        return None if not sens else f"[{s1(sens['set_rm1'][0])}, {s1(sens['set_rm1'][1])}]"
+
+    def own(r):
+        oc = r.get("own_class") or {}
+        x = oc.get("states_dates") or oc.get("states") or oc.get("dates")
+        return None if not x else f"{fp(x['p'])} ({x['draws']})"
+
+    def sd_fit(r):
+        d = r.get("sdid") or []
+        return None if not d else f"{np.mean([x['fit_ratio'] for x in d if x['fit_ratio'] is not None]):.2f}"
+
+    def sd_eff(r):
+        d = r.get("sdid") or []
+        return (
+            None
+            if not d
+            else f"{np.mean([x['effective_controls'] for x in d]):.0f} of {np.mean([x['controls'] for x in d]):.0f}"
+        )
+
+    diag = [
+        ("Variants with the registered sign", summary_cell),
+        ("Variants with p < 0.05", sig_cell),
+        ("Range across variants", range_cell),
+        ("Pre-trend breakdown M̄", bd),
+        ("Identified set at M̄ = 1", set1),
+        ("Own-industry placebo p (draws)", own),
+        ("Synthetic DiD pre-fit ratio", sd_fit),
+        ("Synthetic DiD effective controls", sd_eff),
+    ]
+    diag_rows = []
+    for lab, fn in diag:
+        vals = [cell(o, fn) for o in outs]
+        if any(v is not None for v in vals):
+            diag_rows.append({"label": lab, "values": vals})
+    panels.append({"title": f"Panel {'ABCDEFG'[len(panels)]}. Diagnostics", "rows": diag_rows})
+    folder = FOLDERS[spec_id]
+    return {
+        "id": f"{case['id']}-robustness",
+        "title": f"{case['title']}: robustness (not pre-registered)",
+        "columns": [{"label": short_label(o), "group": o["role"].capitalize()} for o in outs],
+        "panels": panels,
+        "footer": [
+            {"label": "Estimator (registered layer)", "values": [LAYER_LABELS[o["layer"]] for o in outs]},
+            {"label": "Placebos re-estimated per variant", "values": ["Yes"] * len(outs)},
+        ],
+        "spread_label": "Placebo standard deviation",
+        "notes": [
+            "Not pre-registered: written after the registered results were seen. It can show that a result is "
+            "fragile; it cannot turn a variant into a finding.",
+            "Each row re-runs the registered estimator on a variant of the registered panel and judges it against "
+            "its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant "
+            "with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison "
+            "state. Window: the first exposed year (four quarters for "
+            "prices) or the last year dropped. Pre-period: from four years (business counts) or five years "
+            "(prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each "
+            "year taken from the mean of the releases in which it is not final.",
+            "Pre-trend breakdown M̄: how large a post-reform departure from parallel trends, relative to the largest "
+            "pre-reform change in the saturated event study, would be needed for the average post-reform effect to "
+            "include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no "
+            "larger than one already seen before the reform could explain the estimate. The identified set at "
+            "M̄ = 1 is the range of effects consistent with such a departure.",
+            "Own-industry placebo p: the registered estimate ranked among the reform's own industries in states "
+            "that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-"
+            "weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform "
+            "periods a close fit is easy, so it shows little. Effective controls: 1 / Σ ω².",
+            f"Source: alicia/analyses/phase5/{folder}/robustness.json (alicia/analyses/phase5/robustness.py).",
+        ],
+    }
+
+
 def method(case: dict, prim: dict) -> dict:
     price = prim["kind"] == "price"
     i, s, t = ("c", "j", "q") if price else ("c", "s", "t")
@@ -550,7 +692,7 @@ def compare(prim: dict, reg: dict, verdict: str, old: dict) -> str:
     return text + ". This evaluation uses the estimator chosen in the blinded power study and the latest data."
 
 
-def insights(case: dict, res: dict, old: dict | None, ph: dict | None = None) -> list[str]:
+def insights(case: dict, res: dict, old: dict | None, ph: dict | None = None, rob: dict | None = None) -> list[str]:
     outs = res["outcomes"]
     prim = next(o for o in case["outcomes"] if o["role"] == "primary")
     pr = outs[prim["key"]]
@@ -601,6 +743,17 @@ def insights(case: dict, res: dict, old: dict | None, ph: dict | None = None) ->
     if reg.get("mde_80") is not None:
         lines.append(f"How precise: only changes larger than about {a1(reg['mde_80'])}{unit} could have been detected.")
     lines += posthoc_reading(case["id"], ph)[0]
+    rc = next((x for x in (rob or {}).get("cases", []) if x["id"] == case["id"]), None)
+    if rc and prim["key"] in rc["outcomes"]:
+        sm = robustness_summary(rc["outcomes"][prim["key"]])
+        lo, hi = sm["range"]
+        if sm["n"]:
+            lines.append(
+                f"Robustness (not pre-registered): across {sm['n']} variants (each state left out, other windows and "
+                f"pre-periods{'' if prim['kind'] == 'price' else ', weights and data vintages'}) the "
+                f"{low1(outcome_label(prim))} estimate keeps its sign in "
+                f"{sm['same_sign']}, reaches p < 0.05 in {sm['significant']}, and ranges from {s1(lo)} to {s1(hi)}."
+            )
     if old:
         lines.append(compare(prim, reg, res["verdict"], old))
     meaning = {
@@ -624,6 +777,8 @@ def build(spec_id: str) -> list[Evaluation]:
     ts = json.loads((HERE / FOLDERS[spec_id] / "table_stats.json").read_text("utf-8"))
     cf_path = HERE / FOLDERS[spec_id] / "confounders.json"
     scan = json.loads(cf_path.read_text("utf-8")) if cf_path.exists() else None
+    rb_path = HERE / FOLDERS[spec_id] / "robustness.json"
+    rob = json.loads(rb_path.read_text("utf-8")) if rb_path.exists() else None
     stats = {c["id"]: c["outcomes"] for c in ts["cases"]}
     by_id = {c["id"]: c for c in est["cases"]}
     out = []
@@ -704,7 +859,7 @@ def build(spec_id: str) -> list[Evaluation]:
                 "prices": summary(prices_),
                 "productivity": "Not measured in this evaluation.",
             },
-            "key_insights": insights(case, res, old, ph),
+            "key_insights": insights(case, res, old, ph, rob),
             "method": method(case, prim),
             "preregistered": True,
             "outcomes": outcomes,
@@ -720,7 +875,10 @@ def build(spec_id: str) -> list[Evaluation]:
             "supersedes": case["supersedes"],
             "evaluated_at": RUN_AT[spec_id].isoformat(),
             "estimators": rows,
-            "tables": [regression_table(spec_id, case, res, stats[case["id"]], est["q_values"])],
+            "tables": [
+                regression_table(spec_id, case, res, stats[case["id"]], est["q_values"]),
+                *([t] if rob and (t := robustness_table(spec_id, case, res, rob)) else []),
+            ],
         }
         out.append(Evaluation.model_validate(ev))
     return out

@@ -361,7 +361,7 @@ def test_phase5_tables_match_the_registered_run_and_samples():
         est = {c["id"]: c for c in json.loads((base / "estimate.json").read_text(encoding="utf-8"))["cases"]}
         stats = {c["id"]: c for c in json.loads((base / "table_stats.json").read_text(encoding="utf-8"))["cases"]}
         for case in load(spec_id).cases:
-            (table,) = evs[case["id"]].tables
+            table = evs[case["id"]].tables[0]
             layers = ["twoway", "state_year", "saturated", "controls", "imputation", "sdid", "gsynth"]
             feasible = [o for o in case["outcomes"] if est[case["id"]]["outcomes"][o["key"]]["feasible"]["ok"]]
             assert len(table.panels) == len(feasible)
@@ -389,3 +389,27 @@ def test_tables_documents_are_up_to_date():
     )
     assert (docs / "econometric_tables.md").read_text("utf-8") == tables_markdown(evals), hint
     assert (docs / "econometric_tables.tex").read_text("utf-8") == tables_latex(evals), hint
+
+
+def test_phase5_robustness_reproduces_the_registered_run():
+    """The as-registered variant must equal estimate.json; the robustness table must show it, not pre-registered."""
+    from alicia.runner.spec import load
+
+    evs = {e.id: e for e in load_evaluations().evaluations}
+    for spec_id, folder in (("phase5-reevaluations", "reevaluations"), ("phase5-new-families", "new_families")):
+        base = ANALYSIS.parent / "phase5" / folder
+        est = {c["id"]: c for c in json.loads((base / "estimate.json").read_text(encoding="utf-8"))["cases"]}
+        rob = {c["id"]: c for c in json.loads((base / "robustness.json").read_text(encoding="utf-8"))["cases"]}
+        for case in load(spec_id).cases:
+            table = next(t for t in evs[case["id"]].tables if t.id.endswith("-robustness"))
+            assert "not pre-registered" in table.title
+            registered_row = table.panels[0].rows[0].coefficients
+            outs = [o for o in case["outcomes"] if o["key"] in rob[case["id"]]["outcomes"]]
+            for o, c in zip(outs, registered_row, strict=True):
+                reg = est[case["id"]]["outcomes"][o["key"]]["registered"]
+                v = rob[case["id"]]["outcomes"][o["key"]]["variants"][0]
+                assert v["label"] == "As registered"
+                # Placebos are re-estimated; the fixed-effects solver converges to a tolerance, so allow rounding.
+                assert (v["estimate"], v["p"]) == (reg["estimate"], reg["p"])
+                assert abs(v["placebo_sd"] - reg["placebo_sd"]) <= 0.002
+                assert c.estimate == reg["estimate"] and c.registered

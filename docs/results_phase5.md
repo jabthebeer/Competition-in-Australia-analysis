@@ -149,6 +149,12 @@ These are secondary outcomes, or checks that are not part of the decision rule. 
 - **Childcare prices: +4.4% (synthetic DiD, p = 0.075).** The saturated check (−0.7) lies outside its interval.
 - **Legal Profession Uniform Law entry: −1.3 per 100.** It is unusual against the reform's own class in placebo states at fake dates (p = 0.048, 20 draws), but not against placebo industries (p = 0.47).
 
+**After unblinding:** robustness checks, not pre-registered, show both exit leads are fragile ([`robustness_phase5.md`](robustness_phase5.md)):
+- childcare exits are significant in 4 of 9 variants;
+- Victorian taxi exits lose significance without NSW or WA.
+
+No Phase 5 outcome survives a programme-wide false-discovery adjustment: the smallest q-value is 0.28.
+
 ## 7. Limits
 
 - **Identification:**
@@ -182,3 +188,15 @@ Each re-evaluation supersedes one earlier evaluation. The archived evaluations s
 | `retail-energy-deregulation-2013-2016` | `retail-energy-deregulation-2013-2016-phase5` |
 
 **Not archived:** `wa-trading-hours-weeknight-2010-new-data` (Perth vs regional WA business counts, and turnover) and `childcare-nqf-wa-delay-2012` (the WA delay design). They use other data and comparisons that Phase 5 did not repeat, so they stay current alongside the new evaluations, listed after them.
+
+## 9. Checks after the registered run (not pre-registered)
+
+- **Confounder scan** ([`confounder_scan.md`](confounder_scan.md)): other register changes near each reform, and when each treated series moved. Main findings:
+  - it confirms the Melbourne fares jump is in 2015-Q1;
+  - NSW e-conveyancing falls in the uniform law's last window year;
+  - the energy customer framework moved with energy deregulation.
+- **Robustness and diagnostics** ([`robustness_phase5.md`](robustness_phase5.md)):
+  - No identified primary result becomes significant in any of its variants.
+  - Nothing survives programme-wide multiple testing.
+  - The two Weak grades come from synthetic DiD using a different comparison: the national legal-services trend (e-conveyancing), and the SA 2021 cohort (fuel).
+  - The heavy vehicle law's point estimate depends on WA as a comparison.

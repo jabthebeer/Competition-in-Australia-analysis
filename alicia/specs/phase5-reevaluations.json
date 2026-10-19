@@ -157,6 +157,20 @@
       ]
     },
     {
+      "name": "robustness",
+      "kind": "post-hoc",
+      "script": "robustness.py",
+      "args": [
+        "--spec",
+        "phase5-reevaluations",
+        "--workers",
+        "4"
+      ],
+      "writes": [
+        "analyses/phase5/reevaluations/robustness.json"
+      ]
+    },
+    {
       "name": "table-stats",
       "kind": "derived",
       "script": "table_stats.py",

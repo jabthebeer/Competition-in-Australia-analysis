@@ -1,0 +1,3891 @@
+{
+ "spec": "phase5-reevaluations",
+ "preregistered": false,
+ "note": "Written after the registered results were seen; robustness only, never a finding.",
+ "cases": [
+  {
+   "id": "wa-trading-hours-2010-2012-phase5",
+   "outcomes": {
+    "entries": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": 0.981,
+       "plain": 1.428,
+       "placebo_sd": 1.65,
+       "p": 0.4878,
+       "interval_90": [
+        -1.873,
+        3.454
+       ],
+       "mde_80": 4.622,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": 0.978,
+       "plain": 1.437,
+       "placebo_sd": 1.64,
+       "p": 0.4878,
+       "interval_90": [
+        -1.865,
+        3.336
+       ],
+       "mde_80": 4.595,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": 0.958,
+       "plain": 1.104,
+       "placebo_sd": 1.766,
+       "p": 0.5122,
+       "interval_90": [
+        -2.186,
+        3.478
+       ],
+       "mde_80": 4.946,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": 1.009,
+       "plain": 1.455,
+       "placebo_sd": 1.648,
+       "p": 0.4878,
+       "interval_90": [
+        -1.822,
+        3.367
+       ],
+       "mde_80": 4.617,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": 1.299,
+       "plain": 1.824,
+       "placebo_sd": 1.712,
+       "p": 0.439,
+       "interval_90": [
+        -1.488,
+        4.057
+       ],
+       "mde_80": 4.797,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": 0.957,
+       "plain": 1.442,
+       "placebo_sd": 1.671,
+       "p": 0.4878,
+       "interval_90": [
+        -1.818,
+        3.401
+       ],
+       "mde_80": 4.681,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": 0.59,
+       "plain": 1.183,
+       "placebo_sd": 1.696,
+       "p": 0.6829,
+       "interval_90": [
+        -2.544,
+        3.418
+       ],
+       "mde_80": 4.75,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": 0.994,
+       "plain": 1.37,
+       "placebo_sd": 1.634,
+       "p": 0.4146,
+       "interval_90": [
+        -1.58,
+        3.323
+       ],
+       "mde_80": 4.579,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Last year dropped",
+       "estimate": 0.818,
+       "plain": 1.226,
+       "placebo_sd": 1.704,
+       "p": 0.5366,
+       "interval_90": [
+        -2.286,
+        3.378
+       ],
+       "mde_80": 4.774,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": -0.373,
+       "plain": 0.319,
+       "placebo_sd": 3.033,
+       "p": 0.878,
+       "interval_90": [
+        -4.402,
+        3.205
+       ],
+       "mde_80": 8.497,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": 0.912,
+       "plain": 1.371,
+       "placebo_sd": 1.643,
+       "p": 0.5366,
+       "interval_90": [
+        -1.804,
+        3.485
+       ],
+       "mde_80": 4.603,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "WA"
+       ],
+       "first": "2010-11",
+       "controls": 2064,
+       "effective_controls": 1933.4,
+       "fit_ratio": 0.007,
+       "top_weights": [
+        [
+         "4320:ACT",
+         0.001
+        ],
+        [
+         "2640:QLD",
+         0.001
+        ],
+        [
+         "6322:ACT",
+         0.001
+        ]
+       ],
+       "estimate": -0.723
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 3,
+      "post_periods": 6,
+      "average_post": 0.463,
+      "breakdown_rm": 0.215,
+      "set_rm1": [
+       -1.694,
+       2.62
+      ]
+     },
+     "own_class": {}
+    },
+    "exits": {
+     "layer": "sdid",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": 1.301,
+       "plain": 1.265,
+       "placebo_sd": 1.071,
+       "p": 0.2195,
+       "interval_90": [
+        -0.202,
+        2.617
+       ],
+       "mde_80": 3.0,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": 1.272,
+       "plain": 1.219,
+       "placebo_sd": 1.054,
+       "p": 0.2195,
+       "interval_90": [
+        -0.231,
+        2.592
+       ],
+       "mde_80": 2.953,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": 1.307,
+       "plain": 1.213,
+       "placebo_sd": 1.08,
+       "p": 0.2195,
+       "interval_90": [
+        -0.207,
+        2.628
+       ],
+       "mde_80": 3.026,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": 1.293,
+       "plain": 1.249,
+       "placebo_sd": 1.068,
+       "p": 0.2195,
+       "interval_90": [
+        -0.214,
+        2.612
+       ],
+       "mde_80": 2.993,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": 1.304,
+       "plain": 1.138,
+       "placebo_sd": 1.068,
+       "p": 0.1951,
+       "interval_90": [
+        -0.207,
+        2.608
+       ],
+       "mde_80": 2.992,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": 1.325,
+       "plain": 1.315,
+       "placebo_sd": 1.088,
+       "p": 0.1951,
+       "interval_90": [
+        -0.187,
+        2.6
+       ],
+       "mde_80": 3.049,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": 1.298,
+       "plain": 1.284,
+       "placebo_sd": 1.073,
+       "p": 0.2195,
+       "interval_90": [
+        -0.207,
+        2.631
+       ],
+       "mde_80": 3.005,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": 0.209,
+       "plain": 0.378,
+       "placebo_sd": 1.057,
+       "p": 0.8049,
+       "interval_90": [
+        -1.367,
+        2.086
+       ],
+       "mde_80": 2.962,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Last year dropped",
+       "estimate": 1.341,
+       "plain": 1.275,
+       "placebo_sd": 0.993,
+       "p": 0.1463,
+       "interval_90": [
+        -0.208,
+        2.575
+       ],
+       "mde_80": 2.782,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": 1.301,
+       "plain": 1.265,
+       "placebo_sd": 1.071,
+       "p": 0.2195,
+       "interval_90": [
+        -0.202,
+        2.617
+       ],
+       "mde_80": 3.0,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": 1.41,
+       "plain": 1.389,
+       "placebo_sd": 1.074,
+       "p": 0.1951,
+       "interval_90": [
+        -0.188,
+        2.721
+       ],
+       "mde_80": 3.008,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "WA"
+       ],
+       "first": "2010-11",
+       "controls": 2064,
+       "effective_controls": 2011.8,
+       "fit_ratio": 0.009,
+       "top_weights": [
+        [
+         "2313:WA",
+         0.001
+        ],
+        [
+         "2611:NSW",
+         0.001
+        ],
+        [
+         "8520:TAS",
+         0.001
+        ]
+       ],
+       "estimate": 1.265
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 3,
+      "post_periods": 6,
+      "average_post": 0.045,
+      "breakdown_rm": 0.043,
+      "set_rm1": [
+       -0.995,
+       1.084
+      ]
+     },
+     "own_class": {}
+    }
+   }
+  },
+  {
+   "id": "childcare-nqf-2012-phase5",
+   "outcomes": {
+    "entries": {
+     "layer": "sdid",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -0.277,
+       "plain": 0.321,
+       "placebo_sd": 2.132,
+       "p": 0.8537,
+       "interval_90": [
+        -2.256,
+        2.371
+       ],
+       "mde_80": 5.973,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -0.229,
+       "plain": 0.475,
+       "placebo_sd": 1.97,
+       "p": 0.9024,
+       "interval_90": [
+        -2.371,
+        2.535
+       ],
+       "mde_80": 5.518,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": -0.501,
+       "plain": 0.189,
+       "placebo_sd": 2.0,
+       "p": 0.7073,
+       "interval_90": [
+        -2.631,
+        1.668
+       ],
+       "mde_80": 5.603,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -0.277,
+       "plain": 0.321,
+       "placebo_sd": 2.132,
+       "p": 0.8537,
+       "interval_90": [
+        -2.256,
+        2.371
+       ],
+       "mde_80": 5.973,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": 0.274,
+       "plain": 0.82,
+       "placebo_sd": 2.31,
+       "p": 0.8537,
+       "interval_90": [
+        -1.873,
+        3.013
+       ],
+       "mde_80": 6.472,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -0.057,
+       "plain": 0.279,
+       "placebo_sd": 2.792,
+       "p": 0.9756,
+       "interval_90": [
+        -2.465,
+        2.602
+       ],
+       "mde_80": 7.821,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -0.284,
+       "plain": 0.365,
+       "placebo_sd": 2.18,
+       "p": 0.8537,
+       "interval_90": [
+        -2.284,
+        2.353
+       ],
+       "mde_80": 6.106,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": -0.472,
+       "plain": 0.079,
+       "placebo_sd": 2.244,
+       "p": 0.8049,
+       "interval_90": [
+        -2.601,
+        2.338
+       ],
+       "mde_80": 6.288,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": -0.277,
+       "plain": 0.321,
+       "placebo_sd": 2.132,
+       "p": 0.8537,
+       "interval_90": [
+        -2.256,
+        2.371
+       ],
+       "mde_80": 5.973,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": -0.848,
+       "plain": -0.388,
+       "placebo_sd": 1.97,
+       "p": 0.561,
+       "interval_90": [
+        -2.48,
+        2.117
+       ],
+       "mde_80": 5.52,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "SA",
+        "TAS",
+        "ACT",
+        "NT"
+       ],
+       "first": "2011-12",
+       "controls": 2414,
+       "effective_controls": 2268.6,
+       "fit_ratio": 0.002,
+       "top_weights": [
+        [
+         "8212:ACT",
+         0.003
+        ],
+        [
+         "5291:SA",
+         0.003
+        ],
+        [
+         "0804:SA",
+         0.002
+        ]
+       ],
+       "estimate": 0.321
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 4,
+      "post_periods": 1,
+      "average_post": 0.859,
+      "breakdown_rm": 0.26,
+      "set_rm1": [
+       -2.449,
+       4.166
+      ]
+     },
+     "own_class": {}
+    },
+    "exits": {
+     "layer": "twoway",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -1.948,
+       "plain": -1.611,
+       "placebo_sd": 0.8,
+       "p": 0.0488,
+       "interval_90": [
+        -3.058,
+        -0.479
+       ],
+       "mde_80": 2.24,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -1.918,
+       "plain": -1.59,
+       "placebo_sd": 0.805,
+       "p": 0.0488,
+       "interval_90": [
+        -2.997,
+        -0.513
+       ],
+       "mde_80": 2.256,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": -1.997,
+       "plain": -1.624,
+       "placebo_sd": 0.907,
+       "p": 0.0732,
+       "interval_90": [
+        -3.583,
+        -0.846
+       ],
+       "mde_80": 2.541,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -1.997,
+       "plain": -1.652,
+       "placebo_sd": 0.803,
+       "p": 0.0488,
+       "interval_90": [
+        -3.088,
+        -0.517
+       ],
+       "mde_80": 2.251,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": -2.388,
+       "plain": -2.029,
+       "placebo_sd": 0.903,
+       "p": 0.0488,
+       "interval_90": [
+        -3.534,
+        -1.0
+       ],
+       "mde_80": 2.53,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -1.969,
+       "plain": -1.618,
+       "placebo_sd": 0.835,
+       "p": 0.0488,
+       "interval_90": [
+        -3.194,
+        -0.544
+       ],
+       "mde_80": 2.339,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -1.93,
+       "plain": -1.586,
+       "placebo_sd": 0.816,
+       "p": 0.0732,
+       "interval_90": [
+        -3.071,
+        -0.403
+       ],
+       "mde_80": 2.286,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": -1.483,
+       "plain": -1.314,
+       "placebo_sd": 0.838,
+       "p": 0.0976,
+       "interval_90": [
+        -2.819,
+        -0.109
+       ],
+       "mde_80": 2.346,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": -1.726,
+       "plain": -1.351,
+       "placebo_sd": 2.83,
+       "p": 0.3902,
+       "interval_90": [
+        -5.635,
+        2.663
+       ],
+       "mde_80": 7.929,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": -1.948,
+       "plain": -1.597,
+       "placebo_sd": 0.787,
+       "p": 0.0732,
+       "interval_90": [
+        -3.065,
+        -0.417
+       ],
+       "mde_80": 2.205,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "SA",
+        "TAS",
+        "ACT",
+        "NT"
+       ],
+       "first": "2011-12",
+       "controls": 2414,
+       "effective_controls": 949.8,
+       "fit_ratio": 0.004,
+       "top_weights": [
+        [
+         "4122:ACT",
+         0.006
+        ],
+        [
+         "1172:SA",
+         0.005
+        ],
+        [
+         "4820:SA",
+         0.005
+        ]
+       ],
+       "estimate": -0.093
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 4,
+      "post_periods": 1,
+      "average_post": 5.71,
+      "breakdown_rm": 1.327,
+      "set_rm1": [
+       1.408,
+       10.013
+      ]
+     },
+     "own_class": {}
+    },
+    "price-child-care": {
+     "layer": "sdid",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": 4.381,
+       "plain": 4.544,
+       "placebo_sd": 1.783,
+       "p": 0.075,
+       "interval_90": [
+        2.505,
+        6.712
+       ],
+       "mde_80": 4.995,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": 3.63,
+       "plain": 3.81,
+       "placebo_sd": 1.774,
+       "p": 0.075,
+       "interval_90": [
+        2.107,
+        5.859
+       ],
+       "mde_80": 4.97,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": 4.729,
+       "plain": 4.896,
+       "placebo_sd": 1.798,
+       "p": 0.075,
+       "interval_90": [
+        3.117,
+        6.942
+       ],
+       "mde_80": 5.036,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": 4.409,
+       "plain": 4.518,
+       "placebo_sd": 1.98,
+       "p": 0.075,
+       "interval_90": [
+        2.577,
+        6.756
+       ],
+       "mde_80": 5.547,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": 4.474,
+       "plain": 4.604,
+       "placebo_sd": 1.854,
+       "p": 0.075,
+       "interval_90": [
+        2.182,
+        6.869
+       ],
+       "mde_80": 5.194,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": 3.71,
+       "plain": 3.919,
+       "placebo_sd": 1.689,
+       "p": 0.075,
+       "interval_90": [
+        2.162,
+        5.876
+       ],
+       "mde_80": 4.731,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": 5.01,
+       "plain": 5.204,
+       "placebo_sd": 1.802,
+       "p": 0.05,
+       "interval_90": [
+        2.454,
+        7.266
+       ],
+       "mde_80": 5.048,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": 4.492,
+       "plain": 4.585,
+       "placebo_sd": 1.713,
+       "p": 0.075,
+       "interval_90": [
+        2.845,
+        7.0
+       ],
+       "mde_80": 4.798,
+       "placebos": 39
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2007-Q1",
+       "estimate": 3.143,
+       "plain": 3.661,
+       "placebo_sd": 2.763,
+       "p": 0.0976,
+       "interval_90": [
+        0.141,
+        5.313
+       ],
+       "mde_80": 7.741,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "SA",
+        "TAS",
+        "ACT",
+        "NT"
+       ],
+       "first": "2012-Q1",
+       "controls": 657,
+       "effective_controls": 1.2,
+       "fit_ratio": 0.142,
+       "top_weights": [
+        [
+         "115498:WA",
+         0.913
+        ],
+        [
+         "40098:WA",
+         0.073
+        ],
+        [
+         "114121:NSW",
+         0.013
+        ]
+       ],
+       "estimate": 4.544
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 1,
+      "average_post": 1.909,
+      "breakdown_rm": 0.427,
+      "set_rm1": [
+       -2.564,
+       6.381
+      ]
+     },
+     "own_class": {}
+    }
+   }
+  },
+  {
+   "id": "heavy-vehicle-national-law-2014-phase5",
+   "outcomes": {
+    "entries": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": 0.267,
+       "plain": 0.376,
+       "placebo_sd": 1.571,
+       "p": 0.8537,
+       "interval_90": [
+        -1.68,
+        2.798
+       ],
+       "mde_80": 4.402,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": 0.283,
+       "plain": 0.395,
+       "placebo_sd": 1.581,
+       "p": 0.8293,
+       "interval_90": [
+        -1.66,
+        2.824
+       ],
+       "mde_80": 4.429,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": 0.369,
+       "plain": 0.371,
+       "placebo_sd": 1.393,
+       "p": 0.8537,
+       "interval_90": [
+        -1.447,
+        2.381
+       ],
+       "mde_80": 3.902,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": 0.372,
+       "plain": 0.513,
+       "placebo_sd": 1.584,
+       "p": 0.8293,
+       "interval_90": [
+        -1.523,
+        3.1
+       ],
+       "mde_80": 4.439,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": 0.515,
+       "plain": 0.611,
+       "placebo_sd": 1.707,
+       "p": 0.7805,
+       "interval_90": [
+        -1.674,
+        3.377
+       ],
+       "mde_80": 4.783,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": 0.301,
+       "plain": 0.429,
+       "placebo_sd": 1.649,
+       "p": 0.8537,
+       "interval_90": [
+        -1.762,
+        3.643
+       ],
+       "mde_80": 4.62,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": 0.303,
+       "plain": 0.405,
+       "placebo_sd": 1.591,
+       "p": 0.8537,
+       "interval_90": [
+        -1.684,
+        2.834
+       ],
+       "mde_80": 4.457,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": -0.231,
+       "plain": -0.025,
+       "placebo_sd": 1.574,
+       "p": 0.9024,
+       "interval_90": [
+        -2.398,
+        2.155
+       ],
+       "mde_80": 4.411,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without WA",
+       "estimate": -3.673,
+       "plain": -3.068,
+       "placebo_sd": 7.093,
+       "p": 0.3902,
+       "interval_90": [
+        -10.808,
+        2.875
+       ],
+       "mde_80": 19.871,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": 0.565,
+       "plain": 0.258,
+       "placebo_sd": 1.389,
+       "p": 0.6585,
+       "interval_90": [
+        -1.3,
+        3.111
+       ],
+       "mde_80": 3.89,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Last year dropped",
+       "estimate": 0.145,
+       "plain": 0.25,
+       "placebo_sd": 1.444,
+       "p": 0.9512,
+       "interval_90": [
+        -1.671,
+        2.293
+       ],
+       "mde_80": 4.045,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2009-10",
+       "estimate": 0.175,
+       "plain": 0.307,
+       "placebo_sd": 1.422,
+       "p": 0.878,
+       "interval_90": [
+        -1.937,
+        2.61
+       ],
+       "mde_80": 3.983,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": -2.195,
+       "plain": -2.18,
+       "placebo_sd": 3.413,
+       "p": 0.3415,
+       "interval_90": [
+        -5.948,
+        0.96
+       ],
+       "mde_80": 9.562,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": 0.288,
+       "plain": 0.417,
+       "placebo_sd": 1.631,
+       "p": 0.8537,
+       "interval_90": [
+        -1.705,
+        2.895
+       ],
+       "mde_80": 4.57,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "SA",
+        "TAS",
+        "ACT"
+       ],
+       "first": "2013-14",
+       "controls": 2395,
+       "effective_controls": 1856.7,
+       "fit_ratio": 0.017,
+       "top_weights": [
+        [
+         "5420:ACT",
+         0.002
+        ],
+        [
+         "0600:VIC",
+         0.001
+        ],
+        [
+         "6230:TAS",
+         0.001
+        ]
+       ],
+       "estimate": 2.324
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 5,
+      "average_post": 1.676,
+      "breakdown_rm": 0.367,
+      "set_rm1": [
+       -2.89,
+       6.241
+      ]
+     },
+     "own_class": {}
+    },
+    "exits": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -0.671,
+       "plain": -0.686,
+       "placebo_sd": 1.055,
+       "p": 0.5854,
+       "interval_90": [
+        -2.194,
+        0.868
+       ],
+       "mde_80": 2.955,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -0.675,
+       "plain": -0.69,
+       "placebo_sd": 1.054,
+       "p": 0.5854,
+       "interval_90": [
+        -2.228,
+        0.866
+       ],
+       "mde_80": 2.952,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": -0.703,
+       "plain": -0.665,
+       "placebo_sd": 1.006,
+       "p": 0.4634,
+       "interval_90": [
+        -2.258,
+        0.749
+       ],
+       "mde_80": 2.82,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -0.612,
+       "plain": -0.615,
+       "placebo_sd": 1.073,
+       "p": 0.6585,
+       "interval_90": [
+        -2.172,
+        0.931
+       ],
+       "mde_80": 3.005,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": -0.867,
+       "plain": -0.909,
+       "placebo_sd": 1.068,
+       "p": 0.4878,
+       "interval_90": [
+        -2.561,
+        0.893
+       ],
+       "mde_80": 2.993,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -0.654,
+       "plain": -0.671,
+       "placebo_sd": 1.075,
+       "p": 0.6098,
+       "interval_90": [
+        -2.236,
+        1.046
+       ],
+       "mde_80": 3.012,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -0.679,
+       "plain": -0.684,
+       "placebo_sd": 1.053,
+       "p": 0.5854,
+       "interval_90": [
+        -2.219,
+        0.827
+       ],
+       "mde_80": 2.951,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": -0.44,
+       "plain": -0.48,
+       "placebo_sd": 1.108,
+       "p": 0.7073,
+       "interval_90": [
+        -2.093,
+        1.273
+       ],
+       "mde_80": 3.103,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without WA",
+       "estimate": -2.916,
+       "plain": -2.438,
+       "placebo_sd": 6.243,
+       "p": 0.2439,
+       "interval_90": [
+        -5.868,
+        2.278
+       ],
+       "mde_80": 17.49,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": -0.243,
+       "plain": -0.345,
+       "placebo_sd": 1.202,
+       "p": 0.7805,
+       "interval_90": [
+        -1.964,
+        1.418
+       ],
+       "mde_80": 3.367,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Last year dropped",
+       "estimate": -0.629,
+       "plain": -0.648,
+       "placebo_sd": 1.076,
+       "p": 0.6098,
+       "interval_90": [
+        -2.412,
+        0.676
+       ],
+       "mde_80": 3.013,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2009-10",
+       "estimate": -0.488,
+       "plain": -0.551,
+       "placebo_sd": 1.118,
+       "p": 0.6585,
+       "interval_90": [
+        -1.923,
+        0.781
+       ],
+       "mde_80": 3.132,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": -1.539,
+       "plain": -0.068,
+       "placebo_sd": 3.588,
+       "p": 0.3171,
+       "interval_90": [
+        -4.044,
+        0.87
+       ],
+       "mde_80": 10.053,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": -0.645,
+       "plain": -0.679,
+       "placebo_sd": 1.059,
+       "p": 0.561,
+       "interval_90": [
+        -2.172,
+        0.823
+       ],
+       "mde_80": 2.967,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "SA",
+        "TAS",
+        "ACT"
+       ],
+       "first": "2013-14",
+       "controls": 2395,
+       "effective_controls": 2324.2,
+       "fit_ratio": 0.006,
+       "top_weights": [
+        [
+         "1821:WA",
+         0.001
+        ],
+        [
+         "2812:QLD",
+         0.001
+        ],
+        [
+         "2619:VIC",
+         0.001
+        ]
+       ],
+       "estimate": 0.44
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 5,
+      "average_post": -0.977,
+      "breakdown_rm": 0.439,
+      "set_rm1": [
+       -3.204,
+       1.25
+      ]
+     },
+     "own_class": {}
+    }
+   }
+  },
+  {
+   "id": "vic-taxi-licensing-2014-phase5",
+   "outcomes": {
+    "entries": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -0.365,
+       "plain": -0.783,
+       "placebo_sd": 1.243,
+       "p": 0.6829,
+       "interval_90": [
+        -2.57,
+        1.755
+       ],
+       "mde_80": 3.482,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -0.352,
+       "plain": -0.78,
+       "placebo_sd": 1.246,
+       "p": 0.7317,
+       "interval_90": [
+        -2.579,
+        1.821
+       ],
+       "mde_80": 3.49,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": -0.249,
+       "plain": -0.743,
+       "placebo_sd": 1.267,
+       "p": 0.7073,
+       "interval_90": [
+        -2.34,
+        1.988
+       ],
+       "mde_80": 3.548,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -0.35,
+       "plain": -0.787,
+       "placebo_sd": 1.251,
+       "p": 0.7073,
+       "interval_90": [
+        -2.57,
+        1.77
+       ],
+       "mde_80": 3.505,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": -0.469,
+       "plain": -0.838,
+       "placebo_sd": 1.542,
+       "p": 0.7317,
+       "interval_90": [
+        -2.886,
+        2.421
+       ],
+       "mde_80": 4.32,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -0.49,
+       "plain": -0.947,
+       "placebo_sd": 1.304,
+       "p": 0.6341,
+       "interval_90": [
+        -2.618,
+        1.704
+       ],
+       "mde_80": 3.654,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -0.27,
+       "plain": -0.673,
+       "placebo_sd": 1.263,
+       "p": 0.8049,
+       "interval_90": [
+        -2.511,
+        1.86
+       ],
+       "mde_80": 3.539,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without WA",
+       "estimate": -0.353,
+       "plain": -0.698,
+       "placebo_sd": 1.169,
+       "p": 0.7073,
+       "interval_90": [
+        -2.152,
+        1.537
+       ],
+       "mde_80": 3.274,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2010-11",
+       "estimate": 0.524,
+       "plain": -0.041,
+       "placebo_sd": 1.353,
+       "p": 0.6585,
+       "interval_90": [
+        -1.233,
+        3.148
+       ],
+       "mde_80": 3.791,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": -1.454,
+       "plain": -1.814,
+       "placebo_sd": 1.526,
+       "p": 0.3171,
+       "interval_90": [
+        -3.459,
+        0.823
+       ],
+       "mde_80": 4.276,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": 0.029,
+       "plain": -0.4,
+       "placebo_sd": 1.226,
+       "p": 0.9756,
+       "interval_90": [
+        -2.041,
+        1.934
+       ],
+       "mde_80": 3.436,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "VIC"
+       ],
+       "first": "2014-15",
+       "controls": 2371,
+       "effective_controls": 827.6,
+       "fit_ratio": 0.01,
+       "top_weights": [
+        [
+         "2611:WA",
+         0.006
+        ],
+        [
+         "1212:SA",
+         0.005
+        ],
+        [
+         "3921:ACT",
+         0.005
+        ]
+       ],
+       "estimate": 1.368
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 1,
+      "average_post": -0.259,
+      "breakdown_rm": 0.091,
+      "set_rm1": [
+       -3.104,
+       2.586
+      ]
+     },
+     "own_class": {
+      "states_dates": {
+       "draws": 20,
+       "p": 0.9524
+      }
+     }
+    },
+    "exits": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -1.907,
+       "plain": -1.979,
+       "placebo_sd": 0.845,
+       "p": 0.0488,
+       "interval_90": [
+        -3.241,
+        -0.781
+       ],
+       "mde_80": 2.368,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -1.972,
+       "plain": -2.028,
+       "placebo_sd": 0.844,
+       "p": 0.0488,
+       "interval_90": [
+        -3.26,
+        -0.818
+       ],
+       "mde_80": 2.365,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": -1.279,
+       "plain": -1.464,
+       "placebo_sd": 0.909,
+       "p": 0.1707,
+       "interval_90": [
+        -2.645,
+        0.124
+       ],
+       "mde_80": 2.548,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -1.913,
+       "plain": -1.988,
+       "placebo_sd": 0.851,
+       "p": 0.0488,
+       "interval_90": [
+        -3.262,
+        -0.817
+       ],
+       "mde_80": 2.384,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": -2.423,
+       "plain": -2.452,
+       "placebo_sd": 0.91,
+       "p": 0.0488,
+       "interval_90": [
+        -4.0,
+        -1.064
+       ],
+       "mde_80": 2.548,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -2.092,
+       "plain": -2.136,
+       "placebo_sd": 0.799,
+       "p": 0.0244,
+       "interval_90": [
+        -3.375,
+        -0.954
+       ],
+       "mde_80": 2.238,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -1.899,
+       "plain": -1.973,
+       "placebo_sd": 0.833,
+       "p": 0.0488,
+       "interval_90": [
+        -3.169,
+        -0.747
+       ],
+       "mde_80": 2.334,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without WA",
+       "estimate": -1.567,
+       "plain": -1.634,
+       "placebo_sd": 0.892,
+       "p": 0.0976,
+       "interval_90": [
+        -3.087,
+        -0.164
+       ],
+       "mde_80": 2.5,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2010-11",
+       "estimate": -1.198,
+       "plain": -1.361,
+       "placebo_sd": 0.859,
+       "p": 0.1951,
+       "interval_90": [
+        -2.726,
+        0.015
+       ],
+       "mde_80": 2.406,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": -1.426,
+       "plain": -2.17,
+       "placebo_sd": 1.375,
+       "p": 0.3659,
+       "interval_90": [
+        -3.601,
+        0.795
+       ],
+       "mde_80": 3.852,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": -1.997,
+       "plain": -2.015,
+       "placebo_sd": 0.823,
+       "p": 0.0244,
+       "interval_90": [
+        -3.446,
+        -0.786
+       ],
+       "mde_80": 2.305,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "VIC"
+       ],
+       "first": "2014-15",
+       "controls": 2371,
+       "effective_controls": 1490.1,
+       "fit_ratio": 0.008,
+       "top_weights": [
+        [
+         "7720:SA",
+         0.003
+        ],
+        [
+         "3921:ACT",
+         0.003
+        ],
+        [
+         "2412:ACT",
+         0.002
+        ]
+       ],
+       "estimate": -1.042
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 1,
+      "average_post": -0.881,
+      "breakdown_rm": 0.406,
+      "set_rm1": [
+       -3.051,
+       1.288
+      ]
+     },
+     "own_class": {
+      "states_dates": {
+       "draws": 20,
+       "p": 0.3333
+      }
+     }
+    },
+    "price-urban-transport-fares": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -10.563,
+       "plain": -10.82,
+       "placebo_sd": 2.947,
+       "p": 0.0244,
+       "interval_90": [
+        -14.78,
+        -7.566
+       ],
+       "mde_80": 8.257,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -10.847,
+       "plain": -11.147,
+       "placebo_sd": 2.998,
+       "p": 0.0488,
+       "interval_90": [
+        -14.643,
+        -7.156
+       ],
+       "mde_80": 8.398,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": -11.693,
+       "plain": -11.945,
+       "placebo_sd": 2.814,
+       "p": 0.0244,
+       "interval_90": [
+        -15.867,
+        -8.58
+       ],
+       "mde_80": 7.883,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -10.336,
+       "plain": -10.529,
+       "placebo_sd": 3.121,
+       "p": 0.0244,
+       "interval_90": [
+        -14.883,
+        -6.816
+       ],
+       "mde_80": 8.744,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": -8.321,
+       "plain": -8.649,
+       "placebo_sd": 3.033,
+       "p": 0.0488,
+       "interval_90": [
+        -13.138,
+        -5.001
+       ],
+       "mde_80": 8.498,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -11.22,
+       "plain": -11.49,
+       "placebo_sd": 3.141,
+       "p": 0.0488,
+       "interval_90": [
+        -15.92,
+        -7.58
+       ],
+       "mde_80": 8.799,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -10.805,
+       "plain": -10.942,
+       "placebo_sd": 2.904,
+       "p": 0.0244,
+       "interval_90": [
+        -14.694,
+        -6.781
+       ],
+       "mde_80": 8.135,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without WA",
+       "estimate": -10.719,
+       "plain": -11.04,
+       "placebo_sd": 3.013,
+       "p": 0.0244,
+       "interval_90": [
+        -14.629,
+        -7.627
+       ],
+       "mde_80": 8.441,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2009-Q3",
+       "estimate": -9.118,
+       "plain": -9.115,
+       "placebo_sd": 2.361,
+       "p": 0.0244,
+       "interval_90": [
+        -12.759,
+        -5.989
+       ],
+       "mde_80": 6.614,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "VIC"
+       ],
+       "first": "2014-Q3",
+       "controls": 679,
+       "effective_controls": 68.9,
+       "fit_ratio": 0.271,
+       "top_weights": [
+        [
+         "40083:NT",
+         0.048
+        ],
+        [
+         "97557:SA",
+         0.033
+        ],
+        [
+         "115497:TAS",
+         0.027
+        ]
+       ],
+       "estimate": -9.328
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 1,
+      "average_post": -8.584,
+      "breakdown_rm": 1.996,
+      "set_rm1": [
+       -12.884,
+       -4.284
+      ]
+     },
+     "own_class": {
+      "states_dates": {
+       "draws": 20,
+       "p": 0.0952
+      }
+     }
+    }
+   }
+  },
+  {
+   "id": "legal-profession-uniform-law-2015-phase5",
+   "outcomes": {
+    "entries": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -1.259,
+       "plain": -1.083,
+       "placebo_sd": 1.604,
+       "p": 0.475,
+       "interval_90": [
+        -4.262,
+        0.803
+       ],
+       "mde_80": 4.493,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -1.232,
+       "plain": -1.051,
+       "placebo_sd": 1.647,
+       "p": 0.5,
+       "interval_90": [
+        -4.396,
+        0.908
+       ],
+       "mde_80": 4.615,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": -1.354,
+       "plain": -1.108,
+       "placebo_sd": 2.151,
+       "p": 0.375,
+       "interval_90": [
+        -4.363,
+        0.878
+       ],
+       "mde_80": 6.026,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -1.23,
+       "plain": -1.063,
+       "placebo_sd": 1.558,
+       "p": 0.45,
+       "interval_90": [
+        -4.032,
+        0.832
+       ],
+       "mde_80": 4.365,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": -1.394,
+       "plain": -1.079,
+       "placebo_sd": 1.947,
+       "p": 0.625,
+       "interval_90": [
+        -4.021,
+        1.238
+       ],
+       "mde_80": 5.454,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -1.357,
+       "plain": -1.265,
+       "placebo_sd": 1.653,
+       "p": 0.5,
+       "interval_90": [
+        -3.897,
+        0.668
+       ],
+       "mde_80": 4.63,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -1.261,
+       "plain": -1.084,
+       "placebo_sd": 1.597,
+       "p": 0.475,
+       "interval_90": [
+        -3.922,
+        0.876
+       ],
+       "mde_80": 4.475,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": -1.224,
+       "plain": -1.065,
+       "placebo_sd": 1.889,
+       "p": 0.575,
+       "interval_90": [
+        -4.195,
+        1.168
+       ],
+       "mde_80": 5.294,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without WA",
+       "estimate": -1.075,
+       "plain": -0.955,
+       "placebo_sd": 1.628,
+       "p": 0.525,
+       "interval_90": [
+        -4.485,
+        0.863
+       ],
+       "mde_80": 4.562,
+       "placebos": 39
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": -1.257,
+       "plain": -1.23,
+       "placebo_sd": 1.244,
+       "p": 0.325,
+       "interval_90": [
+        -3.685,
+        0.314
+       ],
+       "mde_80": 3.486,
+       "placebos": 39
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Last year dropped",
+       "estimate": -1.039,
+       "plain": -0.994,
+       "placebo_sd": 1.395,
+       "p": 0.475,
+       "interval_90": [
+        -3.396,
+        1.039
+       ],
+       "mde_80": 3.909,
+       "placebos": 39
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2011-12",
+       "estimate": -1.155,
+       "plain": -1.026,
+       "placebo_sd": 1.235,
+       "p": 0.35,
+       "interval_90": [
+        -3.53,
+        0.151
+       ],
+       "mde_80": 3.461,
+       "placebos": 39
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": -1.631,
+       "plain": -0.816,
+       "placebo_sd": 2.514,
+       "p": 0.525,
+       "interval_90": [
+        -5.766,
+        1.204
+       ],
+       "mde_80": 7.042,
+       "placebos": 39
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": -1.29,
+       "plain": -1.11,
+       "placebo_sd": 1.626,
+       "p": 0.475,
+       "interval_90": [
+        -4.262,
+        0.721
+       ],
+       "mde_80": 4.555,
+       "placebos": 39
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "NSW",
+        "VIC"
+       ],
+       "first": "2015-16",
+       "controls": 2362,
+       "effective_controls": 1519.7,
+       "fit_ratio": 0.031,
+       "top_weights": [
+        [
+         "5420:QLD",
+         0.003
+        ],
+        [
+         "9111:ACT",
+         0.002
+        ],
+        [
+         "2393:VIC",
+         0.002
+        ]
+       ],
+       "estimate": -0.679
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 3,
+      "average_post": -1.459,
+      "breakdown_rm": 0.636,
+      "set_rm1": [
+       -3.754,
+       0.836
+      ]
+     },
+     "own_class": {
+      "states": {
+       "draws": 15,
+       "p": 0.0625
+      },
+      "states_dates": {
+       "draws": 20,
+       "p": 0.0476
+      }
+     }
+    },
+    "exits": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -0.434,
+       "plain": -0.386,
+       "placebo_sd": 0.557,
+       "p": 0.45,
+       "interval_90": [
+        -1.259,
+        0.524
+       ],
+       "mde_80": 1.561,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -0.52,
+       "plain": -0.484,
+       "placebo_sd": 0.567,
+       "p": 0.375,
+       "interval_90": [
+        -1.339,
+        0.455
+       ],
+       "mde_80": 1.588,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": -0.424,
+       "plain": -0.299,
+       "placebo_sd": 0.699,
+       "p": 0.475,
+       "interval_90": [
+        -1.429,
+        0.691
+       ],
+       "mde_80": 1.958,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -0.422,
+       "plain": -0.372,
+       "placebo_sd": 0.558,
+       "p": 0.425,
+       "interval_90": [
+        -1.269,
+        0.507
+       ],
+       "mde_80": 1.563,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": -0.197,
+       "plain": -0.175,
+       "placebo_sd": 0.751,
+       "p": 0.8,
+       "interval_90": [
+        -1.717,
+        0.876
+       ],
+       "mde_80": 2.104,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -0.064,
+       "plain": -0.047,
+       "placebo_sd": 0.581,
+       "p": 0.925,
+       "interval_90": [
+        -0.897,
+        0.976
+       ],
+       "mde_80": 1.629,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -0.464,
+       "plain": -0.432,
+       "placebo_sd": 0.558,
+       "p": 0.425,
+       "interval_90": [
+        -1.309,
+        0.488
+       ],
+       "mde_80": 1.563,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": -0.419,
+       "plain": -0.447,
+       "placebo_sd": 0.773,
+       "p": 0.575,
+       "interval_90": [
+        -1.758,
+        0.524
+       ],
+       "mde_80": 2.165,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without WA",
+       "estimate": -0.863,
+       "plain": -0.726,
+       "placebo_sd": 0.754,
+       "p": 0.225,
+       "interval_90": [
+        -2.54,
+        0.093
+       ],
+       "mde_80": 2.111,
+       "placebos": 39
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": -0.616,
+       "plain": -0.589,
+       "placebo_sd": 0.64,
+       "p": 0.275,
+       "interval_90": [
+        -1.305,
+        0.398
+       ],
+       "mde_80": 1.793,
+       "placebos": 39
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Last year dropped",
+       "estimate": -0.17,
+       "plain": -0.115,
+       "placebo_sd": 0.552,
+       "p": 0.825,
+       "interval_90": [
+        -0.902,
+        0.649
+       ],
+       "mde_80": 1.545,
+       "placebos": 39
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2011-12",
+       "estimate": -0.242,
+       "plain": -0.212,
+       "placebo_sd": 0.563,
+       "p": 0.65,
+       "interval_90": [
+        -1.154,
+        0.76
+       ],
+       "mde_80": 1.577,
+       "placebos": 39
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": -0.155,
+       "plain": 0.597,
+       "placebo_sd": 0.942,
+       "p": 0.85,
+       "interval_90": [
+        -1.778,
+        0.999
+       ],
+       "mde_80": 2.64,
+       "placebos": 39
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": -0.436,
+       "plain": -0.413,
+       "placebo_sd": 0.558,
+       "p": 0.425,
+       "interval_90": [
+        -1.25,
+        0.48
+       ],
+       "mde_80": 1.565,
+       "placebos": 39
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "NSW",
+        "VIC"
+       ],
+       "first": "2015-16",
+       "controls": 2362,
+       "effective_controls": 2135.8,
+       "fit_ratio": 0.014,
+       "top_weights": [
+        [
+         "1212:SA",
+         0.001
+        ],
+        [
+         "1920:QLD",
+         0.001
+        ],
+        [
+         "2210:WA",
+         0.001
+        ]
+       ],
+       "estimate": 0.319
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 3,
+      "average_post": 0.227,
+      "breakdown_rm": 0.093,
+      "set_rm1": [
+       -2.202,
+       2.656
+      ]
+     },
+     "own_class": {
+      "states": {
+       "draws": 15,
+       "p": 1.0
+      },
+      "states_dates": {
+       "draws": 20,
+       "p": 0.8571
+      }
+     }
+    }
+   }
+  },
+  {
+   "id": "rideshare-legalisation-2015-2018-phase5",
+   "outcomes": {
+    "entries": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -2.242,
+       "plain": -1.938,
+       "placebo_sd": 1.542,
+       "p": 0.1707,
+       "interval_90": [
+        -4.607,
+        -0.5
+       ],
+       "mde_80": 4.319,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -2.361,
+       "plain": -2.049,
+       "placebo_sd": 1.569,
+       "p": 0.1707,
+       "interval_90": [
+        -4.795,
+        -0.575
+       ],
+       "mde_80": 4.395,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": 2.247,
+       "plain": 2.815,
+       "placebo_sd": 1.48,
+       "p": 0.0732,
+       "interval_90": [
+        0.062,
+        3.923
+       ],
+       "mde_80": 4.147,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -2.443,
+       "plain": -2.139,
+       "placebo_sd": 1.533,
+       "p": 0.122,
+       "interval_90": [
+        -4.826,
+        -0.692
+       ],
+       "mde_80": 4.296,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": -2.592,
+       "plain": -2.27,
+       "placebo_sd": 1.743,
+       "p": 0.1707,
+       "interval_90": [
+        -5.662,
+        -0.171
+       ],
+       "mde_80": 4.883,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -2.873,
+       "plain": -2.577,
+       "placebo_sd": 1.568,
+       "p": 0.0976,
+       "interval_90": [
+        -5.317,
+        -1.182
+       ],
+       "mde_80": 4.393,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -2.191,
+       "plain": -1.894,
+       "placebo_sd": 1.544,
+       "p": 0.1707,
+       "interval_90": [
+        -4.585,
+        -0.36
+       ],
+       "mde_80": 4.326,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": -4.481,
+       "plain": -4.233,
+       "placebo_sd": 1.974,
+       "p": 0.0488,
+       "interval_90": [
+        -7.893,
+        -1.895
+       ],
+       "mde_80": 5.529,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": -1.157,
+       "plain": -0.877,
+       "placebo_sd": 1.472,
+       "p": 0.439,
+       "interval_90": [
+        -3.517,
+        0.474
+       ],
+       "mde_80": 4.123,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2011-12",
+       "estimate": -1.977,
+       "plain": -1.601,
+       "placebo_sd": 1.408,
+       "p": 0.1463,
+       "interval_90": [
+        -4.05,
+        -0.265
+       ],
+       "mde_80": 3.945,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": 2.817,
+       "plain": 3.135,
+       "placebo_sd": 1.944,
+       "p": 0.1707,
+       "interval_90": [
+        -0.09,
+        6.422
+       ],
+       "mde_80": 5.446,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": -2.321,
+       "plain": -1.975,
+       "placebo_sd": 1.542,
+       "p": 0.1707,
+       "interval_90": [
+        -4.758,
+        -0.569
+       ],
+       "mde_80": 4.321,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "ACT",
+        "NSW"
+       ],
+       "first": "2015-16",
+       "controls": 1379,
+       "effective_controls": 789.1,
+       "fit_ratio": 0.044,
+       "top_weights": [
+        [
+         "2393:VIC",
+         0.004
+        ],
+        [
+         "9111:ACT",
+         0.004
+        ],
+        [
+         "9411:ACT",
+         0.004
+        ]
+       ],
+       "estimate": 25.05
+      },
+      {
+       "treated": [
+        "SA",
+        "QLD",
+        "TAS"
+       ],
+       "first": "2016-17",
+       "controls": 1782,
+       "effective_controls": 99.0,
+       "fit_ratio": 0.04,
+       "top_weights": [
+        [
+         "9003:SA",
+         0.03
+        ],
+        [
+         "7540:QLD",
+         0.025
+        ],
+        [
+         "6411:TAS",
+         0.023
+        ]
+       ],
+       "estimate": 30.602
+      },
+      {
+       "treated": [
+        "VIC",
+        "NT"
+       ],
+       "first": "2017-18",
+       "controls": 803,
+       "effective_controls": 3.7,
+       "fit_ratio": 0.214,
+       "top_weights": [
+        [
+         "4623:WA",
+         0.475
+        ],
+        [
+         "5299:WA",
+         0.129
+        ],
+        [
+         "2449:WA",
+         0.114
+        ]
+       ],
+       "estimate": 25.226
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 2,
+      "average_post": -2.802,
+      "breakdown_rm": 0.674,
+      "set_rm1": [
+       -6.962,
+       1.357
+      ]
+     },
+     "own_class": {}
+    },
+    "exits": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -0.328,
+       "plain": -0.58,
+       "placebo_sd": 0.775,
+       "p": 0.5854,
+       "interval_90": [
+        -1.455,
+        0.806
+       ],
+       "mde_80": 2.17,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -0.308,
+       "plain": -0.546,
+       "placebo_sd": 0.776,
+       "p": 0.6341,
+       "interval_90": [
+        -1.337,
+        0.88
+       ],
+       "mde_80": 2.173,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": -1.697,
+       "plain": -1.868,
+       "placebo_sd": 0.898,
+       "p": 0.0976,
+       "interval_90": [
+        -3.012,
+        0.411
+       ],
+       "mde_80": 2.514,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -0.37,
+       "plain": -0.61,
+       "placebo_sd": 0.77,
+       "p": 0.5122,
+       "interval_90": [
+        -1.546,
+        0.792
+       ],
+       "mde_80": 2.158,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": -0.504,
+       "plain": -0.809,
+       "placebo_sd": 0.81,
+       "p": 0.4878,
+       "interval_90": [
+        -1.67,
+        0.836
+       ],
+       "mde_80": 2.268,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -0.077,
+       "plain": -0.327,
+       "placebo_sd": 0.786,
+       "p": 0.9268,
+       "interval_90": [
+        -1.185,
+        1.016
+       ],
+       "mde_80": 2.202,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -0.296,
+       "plain": -0.546,
+       "placebo_sd": 0.801,
+       "p": 0.6098,
+       "interval_90": [
+        -1.45,
+        0.894
+       ],
+       "mde_80": 2.244,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": -1.621,
+       "plain": -1.892,
+       "placebo_sd": 1.075,
+       "p": 0.0976,
+       "interval_90": [
+        -2.9,
+        -0.203
+       ],
+       "mde_80": 3.012,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": -0.783,
+       "plain": -0.992,
+       "placebo_sd": 0.728,
+       "p": 0.2683,
+       "interval_90": [
+        -1.935,
+        0.35
+       ],
+       "mde_80": 2.039,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2011-12",
+       "estimate": -0.846,
+       "plain": -1.08,
+       "placebo_sd": 0.619,
+       "p": 0.1707,
+       "interval_90": [
+        -1.614,
+        0.263
+       ],
+       "mde_80": 1.735,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Unweighted cells",
+       "estimate": -1.27,
+       "plain": -1.76,
+       "placebo_sd": 1.589,
+       "p": 0.3659,
+       "interval_90": [
+        -3.945,
+        1.236
+       ],
+       "mde_80": 4.451,
+       "placebos": 40
+      },
+      {
+       "group": "Weights and data",
+       "label": "Other CABEE vintages",
+       "estimate": -0.3,
+       "plain": -0.539,
+       "placebo_sd": 0.776,
+       "p": 0.6341,
+       "interval_90": [
+        -1.502,
+        0.826
+       ],
+       "mde_80": 2.173,
+       "placebos": 40
+      }
+     ],
+     "sdid": null,
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 2,
+      "average_post": 0.356,
+      "breakdown_rm": 0.641,
+      "set_rm1": [
+       -0.2,
+       0.912
+      ]
+     },
+     "own_class": {}
+    },
+    "price-urban-transport-fares": {
+     "layer": "sdid",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": -0.282,
+       "plain": -0.772,
+       "placebo_sd": 1.772,
+       "p": 0.85,
+       "interval_90": [
+        -3.05,
+        2.467
+       ],
+       "mde_80": 4.966,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": -0.644,
+       "plain": -1.215,
+       "placebo_sd": 1.62,
+       "p": 0.65,
+       "interval_90": [
+        -3.371,
+        1.924
+       ],
+       "mde_80": 4.539,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": -0.508,
+       "plain": -0.997,
+       "placebo_sd": 1.512,
+       "p": 0.725,
+       "interval_90": [
+        -2.793,
+        1.775
+       ],
+       "mde_80": 4.237,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": -0.57,
+       "plain": -1.028,
+       "placebo_sd": 2.016,
+       "p": 0.675,
+       "interval_90": [
+        -3.869,
+        2.535
+       ],
+       "mde_80": 5.648,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": 0.897,
+       "plain": 0.424,
+       "placebo_sd": 1.765,
+       "p": 0.575,
+       "interval_90": [
+        -2.003,
+        3.61
+       ],
+       "mde_80": 4.944,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": -0.32,
+       "plain": -0.823,
+       "placebo_sd": 1.746,
+       "p": 0.85,
+       "interval_90": [
+        -3.263,
+        2.459
+       ],
+       "mde_80": 4.893,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": -0.287,
+       "plain": -0.799,
+       "placebo_sd": 1.811,
+       "p": 0.825,
+       "interval_90": [
+        -3.281,
+        2.568
+       ],
+       "mde_80": 5.074,
+       "placebos": 39
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": -0.782,
+       "plain": -1.241,
+       "placebo_sd": 2.073,
+       "p": 0.675,
+       "interval_90": [
+        -3.244,
+        2.44
+       ],
+       "mde_80": 5.808,
+       "placebos": 39
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": -1.02,
+       "plain": -1.444,
+       "placebo_sd": 1.403,
+       "p": 0.35,
+       "interval_90": [
+        -3.135,
+        1.265
+       ],
+       "mde_80": 3.932,
+       "placebos": 39
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Last year dropped",
+       "estimate": -1.39,
+       "plain": -1.746,
+       "placebo_sd": 1.345,
+       "p": 0.275,
+       "interval_90": [
+        -3.197,
+        0.789
+       ],
+       "mde_80": 3.769,
+       "placebos": 39
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2010-Q4",
+       "estimate": -0.395,
+       "plain": -0.967,
+       "placebo_sd": 1.93,
+       "p": 0.8049,
+       "interval_90": [
+        -2.685,
+        2.805
+       ],
+       "mde_80": 5.406,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "ACT",
+        "NSW"
+       ],
+       "first": "2015-Q4",
+       "controls": 421,
+       "effective_controls": 151.2,
+       "fit_ratio": 0.275,
+       "top_weights": [
+        [
+         "97558:NT",
+         0.023
+        ],
+        [
+         "40055:NT",
+         0.022
+        ],
+        [
+         "40083:NT",
+         0.017
+        ]
+       ],
+       "estimate": 0.595
+      },
+      {
+       "treated": [
+        "SA",
+        "QLD",
+        "TAS"
+       ],
+       "first": "2016-Q3",
+       "controls": 505,
+       "effective_controls": 84.1,
+       "fit_ratio": 0.09,
+       "top_weights": [
+        [
+         "115524:WA",
+         0.035
+        ],
+        [
+         "40055:VIC",
+         0.03
+        ],
+        [
+         "40101:TAS",
+         0.026
+        ]
+       ],
+       "estimate": -3.893
+      },
+      {
+       "treated": [
+        "VIC"
+       ],
+       "first": "2017-Q3",
+       "controls": 169,
+       "effective_controls": 12.3,
+       "fit_ratio": 0.461,
+       "top_weights": [
+        [
+         "40046:VIC",
+         0.151
+        ],
+        [
+         "40005:VIC",
+         0.113
+        ],
+        [
+         "40055:VIC",
+         0.102
+        ]
+       ],
+       "estimate": 1.197
+      },
+      {
+       "treated": [
+        "NT"
+       ],
+       "first": "2018-Q1",
+       "controls": 169,
+       "effective_controls": 16.3,
+       "fit_ratio": 0.229,
+       "top_weights": [
+        [
+         "40083:NT",
+         0.198
+        ],
+        [
+         "97558:NT",
+         0.074
+        ],
+        [
+         "115497:NT",
+         0.061
+        ]
+       ],
+       "estimate": 0.853
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 2,
+      "average_post": -1.697,
+      "breakdown_rm": 0.484,
+      "set_rm1": [
+       -5.199,
+       1.806
+      ]
+     },
+     "own_class": {}
+    }
+   }
+  },
+  {
+   "id": "nt-container-deposits-2012-phase5",
+   "outcomes": {
+    "price-soft-drinks": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": 7.623,
+       "plain": 7.255,
+       "placebo_sd": 7.847,
+       "p": 0.1951,
+       "interval_90": [
+        -0.189,
+        19.061
+       ],
+       "mde_80": 21.983,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": 7.744,
+       "plain": 7.328,
+       "placebo_sd": 7.726,
+       "p": 0.1707,
+       "interval_90": [
+        -0.009,
+        18.726
+       ],
+       "mde_80": 21.644,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": 7.669,
+       "plain": 7.356,
+       "placebo_sd": 7.591,
+       "p": 0.1951,
+       "interval_90": [
+        -0.159,
+        18.649
+       ],
+       "mde_80": 21.266,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": 7.728,
+       "plain": 7.365,
+       "placebo_sd": 8.109,
+       "p": 0.2195,
+       "interval_90": [
+        -0.214,
+        19.061
+       ],
+       "mde_80": 22.718,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": 7.908,
+       "plain": 7.492,
+       "placebo_sd": 8.194,
+       "p": 0.2195,
+       "interval_90": [
+        -0.724,
+        19.073
+       ],
+       "mde_80": 22.956,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": 7.33,
+       "plain": 7.002,
+       "placebo_sd": 8.018,
+       "p": 0.2439,
+       "interval_90": [
+        -0.541,
+        18.48
+       ],
+       "mde_80": 22.462,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without WA",
+       "estimate": 7.359,
+       "plain": 6.99,
+       "placebo_sd": 7.688,
+       "p": 0.2683,
+       "interval_90": [
+        -0.609,
+        18.289
+       ],
+       "mde_80": 21.538,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": 6.778,
+       "plain": 6.425,
+       "placebo_sd": 6.059,
+       "p": 0.2439,
+       "interval_90": [
+        -1.146,
+        18.946
+       ],
+       "mde_80": 16.976,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Last year dropped",
+       "estimate": 7.094,
+       "plain": 6.706,
+       "placebo_sd": 7.481,
+       "p": 0.2195,
+       "interval_90": [
+        -0.686,
+        17.847
+       ],
+       "mde_80": 20.959,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2007-Q1",
+       "estimate": 6.059,
+       "plain": 5.83,
+       "placebo_sd": 7.783,
+       "p": 0.2683,
+       "interval_90": [
+        -2.285,
+        16.851
+       ],
+       "mde_80": 21.806,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "NT"
+       ],
+       "first": "2012-Q1",
+       "controls": 566,
+       "effective_controls": 96.3,
+       "fit_ratio": 0.181,
+       "top_weights": [
+        [
+         "97558:ACT",
+         0.027
+        ],
+        [
+         "115495:WA",
+         0.025
+        ],
+        [
+         "30014:WA",
+         0.019
+        ]
+       ],
+       "estimate": -2.376
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 6,
+      "average_post": 2.42,
+      "breakdown_rm": 0.163,
+      "set_rm1": [
+       -12.457,
+       17.297
+      ]
+     },
+     "own_class": {
+      "states_dates": {
+       "draws": 20,
+       "p": 0.0476
+      }
+     }
+    },
+    "price-beer": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": 4.819,
+       "plain": 4.451,
+       "placebo_sd": 7.847,
+       "p": 0.439,
+       "interval_90": [
+        -2.994,
+        16.257
+       ],
+       "mde_80": 21.983,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": 5.829,
+       "plain": 5.413,
+       "placebo_sd": 7.726,
+       "p": 0.3415,
+       "interval_90": [
+        -1.923,
+        16.812
+       ],
+       "mde_80": 21.644,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": 4.96,
+       "plain": 4.647,
+       "placebo_sd": 7.591,
+       "p": 0.439,
+       "interval_90": [
+        -2.868,
+        15.94
+       ],
+       "mde_80": 21.266,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": 4.845,
+       "plain": 4.482,
+       "placebo_sd": 8.109,
+       "p": 0.4634,
+       "interval_90": [
+        -3.097,
+        16.178
+       ],
+       "mde_80": 22.718,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": 4.755,
+       "plain": 4.338,
+       "placebo_sd": 8.194,
+       "p": 0.3902,
+       "interval_90": [
+        -3.878,
+        15.919
+       ],
+       "mde_80": 22.956,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without VIC",
+       "estimate": 4.38,
+       "plain": 4.052,
+       "placebo_sd": 8.018,
+       "p": 0.5122,
+       "interval_90": [
+        -3.491,
+        15.531
+       ],
+       "mde_80": 22.462,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without WA",
+       "estimate": 4.143,
+       "plain": 3.775,
+       "placebo_sd": 7.688,
+       "p": 0.5366,
+       "interval_90": [
+        -3.825,
+        15.074
+       ],
+       "mde_80": 21.538,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": 9.688,
+       "plain": 9.334,
+       "placebo_sd": 6.059,
+       "p": 0.1463,
+       "interval_90": [
+        1.763,
+        21.855
+       ],
+       "mde_80": 16.976,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Last year dropped",
+       "estimate": 5.265,
+       "plain": 4.877,
+       "placebo_sd": 7.481,
+       "p": 0.3415,
+       "interval_90": [
+        -2.515,
+        16.018
+       ],
+       "mde_80": 20.959,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2007-Q1",
+       "estimate": 4.656,
+       "plain": 4.427,
+       "placebo_sd": 7.783,
+       "p": 0.3659,
+       "interval_90": [
+        -3.688,
+        15.447
+       ],
+       "mde_80": 21.806,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "NT"
+       ],
+       "first": "2012-Q1",
+       "controls": 566,
+       "effective_controls": 154.8,
+       "fit_ratio": 0.125,
+       "top_weights": [
+        [
+         "115524:WA",
+         0.021
+        ],
+        [
+         "40055:WA",
+         0.02
+        ],
+        [
+         "40055:VIC",
+         0.018
+        ]
+       ],
+       "estimate": -1.036
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 6,
+      "average_post": -0.425,
+      "breakdown_rm": 0.027,
+      "set_rm1": [
+       -16.199,
+       15.35
+      ]
+     },
+     "own_class": {
+      "states_dates": {
+       "draws": 20,
+       "p": 0.0476
+      }
+     }
+    }
+   }
+  },
+  {
+   "id": "retail-energy-deregulation-2013-2016-phase5",
+   "outcomes": {
+    "price-electricity": {
+     "layer": "saturated",
+     "variants": [
+      {
+       "group": "As registered",
+       "label": "As registered",
+       "estimate": 9.432,
+       "plain": 9.507,
+       "placebo_sd": 3.242,
+       "p": 0.0244,
+       "interval_90": [
+        4.959,
+        15.136
+       ],
+       "mde_80": 9.083,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without ACT",
+       "estimate": 7.472,
+       "plain": 7.474,
+       "placebo_sd": 3.408,
+       "p": 0.0732,
+       "interval_90": [
+        3.031,
+        13.375
+       ],
+       "mde_80": 9.547,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NSW",
+       "estimate": 10.089,
+       "plain": 10.035,
+       "placebo_sd": 2.627,
+       "p": 0.0244,
+       "interval_90": [
+        6.346,
+        14.453
+       ],
+       "mde_80": 7.36,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without NT",
+       "estimate": 9.389,
+       "plain": 9.485,
+       "placebo_sd": 3.296,
+       "p": 0.0244,
+       "interval_90": [
+        4.64,
+        15.278
+       ],
+       "mde_80": 9.234,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without QLD",
+       "estimate": 11.434,
+       "plain": 11.622,
+       "placebo_sd": 3.984,
+       "p": 0.0244,
+       "interval_90": [
+        6.552,
+        17.163
+       ],
+       "mde_80": 11.162,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without SA",
+       "estimate": 11.591,
+       "plain": 11.618,
+       "placebo_sd": 4.158,
+       "p": 0.0244,
+       "interval_90": [
+        4.34,
+        16.824
+       ],
+       "mde_80": 11.649,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without TAS",
+       "estimate": 6.383,
+       "plain": 6.347,
+       "placebo_sd": 3.48,
+       "p": 0.122,
+       "interval_90": [
+        1.422,
+        12.829
+       ],
+       "mde_80": 9.749,
+       "placebos": 40
+      },
+      {
+       "group": "Leave one state out",
+       "label": "Without WA",
+       "estimate": 10.666,
+       "plain": 10.946,
+       "placebo_sd": 3.172,
+       "p": 0.0244,
+       "interval_90": [
+        5.669,
+        16.047
+       ],
+       "mde_80": 8.886,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "First exposed year only",
+       "estimate": 9.13,
+       "plain": 9.079,
+       "placebo_sd": 2.433,
+       "p": 0.0244,
+       "interval_90": [
+        5.826,
+        12.772
+       ],
+       "mde_80": 6.817,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Last year dropped",
+       "estimate": 9.213,
+       "plain": 9.329,
+       "placebo_sd": 3.078,
+       "p": 0.0244,
+       "interval_90": [
+        5.077,
+        13.731
+       ],
+       "mde_80": 8.623,
+       "placebos": 40
+      },
+      {
+       "group": "Window and pre-period",
+       "label": "Pre-period from 2008-Q1",
+       "estimate": 7.287,
+       "plain": 7.373,
+       "placebo_sd": 3.033,
+       "p": 0.0488,
+       "interval_90": [
+        2.899,
+        11.644
+       ],
+       "mde_80": 8.497,
+       "placebos": 40
+      }
+     ],
+     "sdid": [
+      {
+       "treated": [
+        "SA"
+       ],
+       "first": "2013-Q1",
+       "controls": 414,
+       "effective_controls": 6.9,
+       "fit_ratio": 0.394,
+       "top_weights": [
+        [
+         "40055:TAS",
+         0.314
+        ],
+        [
+         "40055:WA",
+         0.122
+        ],
+        [
+         "40072:ACT",
+         0.075
+        ]
+       ],
+       "estimate": -6.67
+      },
+      {
+       "treated": [
+        "NSW"
+       ],
+       "first": "2014-Q3",
+       "controls": 414,
+       "effective_controls": 4.6,
+       "fit_ratio": 0.361,
+       "top_weights": [
+        [
+         "40055:TAS",
+         0.339
+        ],
+        [
+         "40055:WA",
+         0.238
+        ],
+        [
+         "40090:TAS",
+         0.152
+        ]
+       ],
+       "estimate": -11.832
+      },
+      {
+       "treated": [
+        "QLD"
+       ],
+       "first": "2016-Q3",
+       "controls": 414,
+       "effective_controls": 6.0,
+       "fit_ratio": 0.25,
+       "top_weights": [
+        [
+         "40090:TAS",
+         0.238
+        ],
+        [
+         "40090:WA",
+         0.235
+        ],
+        [
+         "40055:NT",
+         0.156
+        ]
+       ],
+       "estimate": -15.047
+      }
+     ],
+     "sensitivity": {
+      "pre_periods": 5,
+      "post_periods": 6,
+      "average_post": -1.369,
+      "breakdown_rm": 0.051,
+      "set_rm1": [
+       -28.361,
+       25.622
+      ]
+     },
+     "own_class": {
+      "states": {
+       "draws": 20,
+       "p": 0.0476
+      },
+      "states_dates": {
+       "draws": 20,
+       "p": 0.0476
+      }
+     }
+    }
+   }
+  }
+ ]
+}

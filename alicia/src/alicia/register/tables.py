@@ -37,12 +37,16 @@ def coef_lines(c: TableCoef | None) -> tuple[str, str, str]:
     )
 
 
-def legend(t: ResultsTable) -> str:
+def legend(t: ResultsTable, compact: bool = False) -> str:
     """The standard last note: what the parentheses, brackets, stars and dagger mean."""
+    where = "stars from two-sided p-values" if compact else "two-sided p-values in brackets"
     return (
-        f"{t.spread_label} in parentheses; two-sided p-values in brackets. * p < 0.10, ** p < 0.05, "
+        f"{t.spread_label} in parentheses; {where}. * p < 0.10, ** p < 0.05, "
         f"*** p < 0.01. {DAGGER} The registered (pre-specified) estimator for that outcome."
     )
+
+
+COMPACT_ROWS = 6  # LaTeX: tables with more coefficient rows put the estimate and spread on one line
 
 
 # ---- Markdown -------------------------------------------------------------------------------------------------
@@ -108,11 +112,16 @@ _TEX = {
     "‡": r"$^{\ddagger}$",
     "β": r"$\beta$",
     "’": "'",
+    "Σ": r"$\Sigma$",
+    "ω": r"$\omega$",
+    "²": r"$^{2}$",
+    "\ue000": r"$\bar{M}$",
     "‘": "`",
 }
 
 
 def tex(text: str) -> str:
+    text = text.replace("M\u0304", "\ue000")  # M-bar (combining macron) as one symbol
     return "".join(_TEX.get(ch, ch) for ch in text)
 
 
@@ -151,6 +160,7 @@ def _tex_num(text: str) -> str:
 
 def table_latex(t: ResultsTable) -> str:
     n = len(t.columns)
+    compact = sum(1 for p in t.panels for r in p.rows if r.coefficients) > COMPACT_ROWS
     wide = n > 7  # set sideways (rotating package)
     out = [
         r"\begin{sidewaystable}\centering" if wide else r"\begin{table}[htbp]\centering",
@@ -174,11 +184,15 @@ def table_latex(t: ResultsTable) -> str:
     out.append(r"\midrule")
     for i, p in enumerate(t.panels):
         if i:
-            out.append(r"\addlinespace[2pt]")
+            out.append(r"\addlinespace[1pt]" if compact else r"\addlinespace[2pt]")
         out.append(rf"\multicolumn{{{n + 1}}}{{l}}{{\textit{{{_tex_panel(p.title)}}}}} \\")
         for r in p.rows:
             if r.coefficients:
                 parts = [coef_lines(c) for c in r.coefficients]
+                if compact:
+                    cells = [f"{_tex_num(x[0])} {tex(x[1])}".strip() for x in parts]
+                    out.append(tex(r.label) + " & " + " & ".join(cells) + r" \\")
+                    continue
                 out.append(tex(r.label) + " & " + " & ".join(_tex_num(x[0]) for x in parts) + r" \\")
                 out.append(" & " + " & ".join(tex(x[1]) for x in parts) + r" \\")
                 out.append(" & " + " & ".join(tex(x[2]) for x in parts) + r" \\")
@@ -189,7 +203,7 @@ def table_latex(t: ResultsTable) -> str:
         for r in t.footer:
             out.append(tex(r.label) + " & " + " & ".join(tex(v or "") for v in r.values) + r" \\")
     out += [r"\bottomrule", r"\end{tabular}", r"\begin{tablenotes}\scriptsize"]
-    out.append(r"\item \textit{Notes:} " + tex(" ".join([*t.notes, legend(t)])))
+    out.append(r"\item \textit{Notes:} " + tex(" ".join([*t.notes, legend(t, compact)])))
     out += [r"\end{tablenotes}", r"\end{threeparttable}", r"\end{sidewaystable}" if wide else r"\end{table}", ""]
     return "\n".join(out)
 

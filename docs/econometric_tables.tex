@@ -63,6 +63,57 @@ Interactive FE (factors) & No & No & No & No & No & No & Yes \\
 
 \begin{table}[htbp]\centering
 \footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{As-of-right taxi licences in Victoria (2014): re-evaluation with saturated effects: robustness (not pre-registered)}\label{tab:vic-taxi-licensing-2014-phase5-robustness}
+\begin{threeparttable}
+\begin{tabular}{l*{3}{c}}
+\toprule
+ & \multicolumn{1}{c}{Primary} & \multicolumn{2}{c}{Secondary} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-4}
+ & (1) & (2) & (3) \\
+ & Entry rate & Exit rate & \shortstack{Urban\\transport\\fares\\(CPI)} \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A. As registered}} \\
+As registered & $-0.36^{\dagger}$ (1.24) & $-1.91^{**\dagger}$ (0.84) & $-10.56^{**\dagger}$ (2.95) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel B. Leave one state out}} \\
+Without ACT & $-0.35$ (1.25) & $-1.97^{**}$ (0.84) & $-10.85^{**}$ (3.00) \\
+Without NSW & $-0.25$ (1.27) & $-1.28$ (0.91) & $-11.69^{**}$ (2.81) \\
+Without NT & $-0.35$ (1.25) & $-1.91^{**}$ (0.85) & $-10.34^{**}$ (3.12) \\
+Without QLD & $-0.47$ (1.54) & $-2.42^{**}$ (0.91) & $-8.32^{**}$ (3.03) \\
+Without SA & $-0.49$ (1.30) & $-2.09^{**}$ (0.80) & $-11.22^{**}$ (3.14) \\
+Without TAS & $-0.27$ (1.26) & $-1.90^{**}$ (0.83) & $-10.80^{**}$ (2.90) \\
+Without WA & $-0.35$ (1.17) & $-1.57^{*}$ (0.89) & $-10.72^{**}$ (3.01) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel C. Window and pre-period}} \\
+Pre-period from 2010-11 & $0.52$ (1.35) & $-1.20$ (0.86) &  \\
+Pre-period from 2009-Q3 &  &  & $-9.12^{**}$ (2.36) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel D. Weights and data}} \\
+Unweighted cells & $-1.45$ (1.53) & $-1.43$ (1.38) &  \\
+Other CABEE vintages & $0.03$ (1.23) & $-2.00^{**}$ (0.82) &  \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel E. Diagnostics}} \\
+Variants with the registered sign & 8 of 10 & 10 of 10 & 8 of 8 \\
+Variants with p $<$ 0.05 & 0 of 10 & 6 of 10 & 8 of 8 \\
+Range across variants & $-$1.5 to +0.5 & $-$2.4 to $-$1.2 & $-$11.7 to $-$8.3 \\
+Pre-trend breakdown $\bar{M}$ & 0.09 & 0.41 & 2.00 \\
+Identified set at $\bar{M}$ = 1 & [$-$3.1, +2.6] & [$-$3.1, +1.3] & [$-$12.9, $-$4.3] \\
+Own-industry placebo p (draws) & 0.95 (20) & 0.33 (20) & 0.095 (20) \\
+Synthetic DiD pre-fit ratio & 0.01 & 0.01 & 0.27 \\
+Synthetic DiD effective controls & 828 of 2371 & 1490 of 2371 & 69 of 679 \\
+\midrule
+Estimator (registered layer) & Saturated fixed effects & Saturated fixed effects & Saturated fixed effects \\
+Placebos re-estimated per variant & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\scriptsize
+\item \textit{Notes:} Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding. Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final. Pre-trend breakdown $\bar{M}$: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at $\bar{M}$ = 1 is the range of effects consistent with such a departure. Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / $\Sigma$ $\omega$$^{2}$. Source: alicia/analyses/phase5/reevaluations/robustness.json (alicia/analyses/phase5/robustness.py). Placebo standard deviation in parentheses; stars from two-sided p-values. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]\centering
+\footnotesize\setlength{\tabcolsep}{2.5pt}
 \caption{Heavy Vehicle National Law (2014): re-evaluation with saturated effects}\label{tab:heavy-vehicle-national-law-2014-phase5-estimators}
 \begin{threeparttable}
 \begin{tabular}{l*{7}{c}}
@@ -112,6 +163,58 @@ Interactive FE (factors) & No & No & No & No & No & No & Yes \\
 
 \begin{table}[htbp]\centering
 \footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{Heavy Vehicle National Law (2014): re-evaluation with saturated effects: robustness (not pre-registered)}\label{tab:heavy-vehicle-national-law-2014-phase5-robustness}
+\begin{threeparttable}
+\begin{tabular}{l*{2}{c}}
+\toprule
+ & \multicolumn{1}{c}{Primary} & \multicolumn{1}{c}{Secondary} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+ & (1) & (2) \\
+ & Entry rate & Exit rate \\
+\midrule
+\multicolumn{3}{l}{\textit{Panel A. As registered}} \\
+As registered & $0.27^{\dagger}$ (1.57) & $-0.67^{\dagger}$ (1.05) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel B. Leave one state out}} \\
+Without ACT & $0.28$ (1.58) & $-0.68$ (1.05) \\
+Without NSW & $0.37$ (1.39) & $-0.70$ (1.01) \\
+Without NT & $0.37$ (1.58) & $-0.61$ (1.07) \\
+Without QLD & $0.52$ (1.71) & $-0.87$ (1.07) \\
+Without SA & $0.30$ (1.65) & $-0.65$ (1.07) \\
+Without TAS & $0.30$ (1.59) & $-0.68$ (1.05) \\
+Without VIC & $-0.23$ (1.57) & $-0.44$ (1.11) \\
+Without WA & $-3.67$ (7.09) & $-2.92$ (6.24) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel C. Window and pre-period}} \\
+First exposed year only & $0.56$ (1.39) & $-0.24$ (1.20) \\
+Last year dropped & $0.14$ (1.44) & $-0.63$ (1.08) \\
+Pre-period from 2009-10 & $0.17$ (1.42) & $-0.49$ (1.12) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel D. Weights and data}} \\
+Unweighted cells & $-2.19$ (3.41) & $-1.54$ (3.59) \\
+Other CABEE vintages & $0.29$ (1.63) & $-0.65$ (1.06) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel E. Diagnostics}} \\
+Variants with the registered sign & 10 of 13 & 13 of 13 \\
+Variants with p $<$ 0.05 & 0 of 13 & 0 of 13 \\
+Range across variants & $-$3.7 to +0.6 & $-$2.9 to $-$0.2 \\
+Pre-trend breakdown $\bar{M}$ & 0.37 & 0.44 \\
+Identified set at $\bar{M}$ = 1 & [$-$2.9, +6.2] & [$-$3.2, +1.2] \\
+Synthetic DiD pre-fit ratio & 0.02 & 0.01 \\
+Synthetic DiD effective controls & 1857 of 2395 & 2324 of 2395 \\
+\midrule
+Estimator (registered layer) & Saturated fixed effects & Saturated fixed effects \\
+Placebos re-estimated per variant & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\scriptsize
+\item \textit{Notes:} Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding. Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final. Pre-trend breakdown $\bar{M}$: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at $\bar{M}$ = 1 is the range of effects consistent with such a departure. Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / $\Sigma$ $\omega$$^{2}$. Source: alicia/analyses/phase5/reevaluations/robustness.json (alicia/analyses/phase5/robustness.py). Placebo standard deviation in parentheses; stars from two-sided p-values. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]\centering
+\footnotesize\setlength{\tabcolsep}{2.5pt}
 \caption{Legal Profession Uniform Law (2015): re-evaluation with saturated effects}\label{tab:legal-profession-uniform-law-2015-phase5-estimators}
 \begin{threeparttable}
 \begin{tabular}{l*{7}{c}}
@@ -155,6 +258,59 @@ Interactive FE (factors) & No & No & No & No & No & No & Yes \\
 \end{tabular}
 \begin{tablenotes}\scriptsize
 \item \textit{Notes:} Panels A and B: entries and exits per 100 businesses operating at the start of the financial year, ANZSIC class $\times$ state, weighted by those businesses; 2007-08 to 2017-18 (11 periods), 431 classes, 8 states. Each column applies one estimator to the same panel. $\beta$ is the average effect on the reform's classes in treated states (cities) over the window, net of the mean of the same estimator across the placebo groups. Columns (6) and (7) compare the treated group's average with reweighted untreated cells over each cohort's window; their observations and units are summed over cohorts. The placebo standard deviation is the spread of the same estimator across up to 40 placebo industry groups (or CPI classes) given the reform's states and dates: the randomization-inference analogue of a standard error. p-values rank the estimate among the centred placebo estimates; with 40 placebos the smallest attainable is about 0.024, so *** cannot occur. Clustered standard errors are not reported: with seven or eight states they are unreliable, and the registered inference uses placebos. MDE: the smallest effect detectable with 80\% power at the 5\% level (2.8 $\times$ the placebo standard deviation). Placebo groups: placebo industry groups (business outcomes) or CPI classes (prices). Pre-trend test: every event-study coefficient with k $\leq$ $-$2 (saturated model, net of the placebo mean) lies inside its 95\% placebo band; a failure means the outcome is not identified. BH q-value: Benjamini--Hochberg across the specification's primary outcomes. Source: alicia/analyses/phase5/reevaluations/estimate.json (registered run, 18 October 2026) and table\_stats.json (samples, re-fitted to check every estimate reproduces). Placebo standard deviation in parentheses; two-sided p-values in brackets. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]\centering
+\footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{Legal Profession Uniform Law (2015): re-evaluation with saturated effects: robustness (not pre-registered)}\label{tab:legal-profession-uniform-law-2015-phase5-robustness}
+\begin{threeparttable}
+\begin{tabular}{l*{2}{c}}
+\toprule
+ & \multicolumn{1}{c}{Primary} & \multicolumn{1}{c}{Secondary} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+ & (1) & (2) \\
+ & Entry rate & Exit rate \\
+\midrule
+\multicolumn{3}{l}{\textit{Panel A. As registered}} \\
+As registered & $-1.26^{\dagger}$ (1.60) & $-0.43^{\dagger}$ (0.56) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel B. Leave one state out}} \\
+Without ACT & $-1.23$ (1.65) & $-0.52$ (0.57) \\
+Without NSW & $-1.35$ (2.15) & $-0.42$ (0.70) \\
+Without NT & $-1.23$ (1.56) & $-0.42$ (0.56) \\
+Without QLD & $-1.39$ (1.95) & $-0.20$ (0.75) \\
+Without SA & $-1.36$ (1.65) & $-0.06$ (0.58) \\
+Without TAS & $-1.26$ (1.60) & $-0.46$ (0.56) \\
+Without VIC & $-1.22$ (1.89) & $-0.42$ (0.77) \\
+Without WA & $-1.07$ (1.63) & $-0.86$ (0.75) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel C. Window and pre-period}} \\
+First exposed year only & $-1.26$ (1.24) & $-0.62$ (0.64) \\
+Last year dropped & $-1.04$ (1.40) & $-0.17$ (0.55) \\
+Pre-period from 2011-12 & $-1.16$ (1.24) & $-0.24$ (0.56) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel D. Weights and data}} \\
+Unweighted cells & $-1.63$ (2.51) & $-0.15$ (0.94) \\
+Other CABEE vintages & $-1.29$ (1.63) & $-0.44$ (0.56) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel E. Diagnostics}} \\
+Variants with the registered sign & 13 of 13 & 13 of 13 \\
+Variants with p $<$ 0.05 & 0 of 13 & 0 of 13 \\
+Range across variants & $-$1.6 to $-$1.0 & $-$0.9 to $-$0.1 \\
+Pre-trend breakdown $\bar{M}$ & 0.64 & 0.09 \\
+Identified set at $\bar{M}$ = 1 & [$-$3.8, +0.8] & [$-$2.2, +2.7] \\
+Own-industry placebo p (draws) & 0.048 (20) & 0.86 (20) \\
+Synthetic DiD pre-fit ratio & 0.03 & 0.01 \\
+Synthetic DiD effective controls & 1520 of 2362 & 2136 of 2362 \\
+\midrule
+Estimator (registered layer) & Saturated fixed effects & Saturated fixed effects \\
+Placebos re-estimated per variant & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\scriptsize
+\item \textit{Notes:} Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding. Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final. Pre-trend breakdown $\bar{M}$: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at $\bar{M}$ = 1 is the range of effects consistent with such a departure. Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / $\Sigma$ $\omega$$^{2}$. Source: alicia/analyses/phase5/reevaluations/robustness.json (alicia/analyses/phase5/robustness.py). Placebo standard deviation in parentheses; stars from two-sided p-values. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -220,6 +376,55 @@ Interactive FE (factors) & No & No & No & No & No & No & Yes \\
 
 \begin{table}[htbp]\centering
 \footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{National Quality Framework for childcare (2012): re-evaluation with synthetic DiD: robustness (not pre-registered)}\label{tab:childcare-nqf-2012-phase5-robustness}
+\begin{threeparttable}
+\begin{tabular}{l*{3}{c}}
+\toprule
+ & \multicolumn{1}{c}{Primary} & \multicolumn{2}{c}{Secondary} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-4}
+ & (1) & (2) & (3) \\
+ & Entry rate & Exit rate & \shortstack{Child care\\(CPI)} \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A. As registered}} \\
+As registered & $-0.28^{\dagger}$ (2.13) & $-1.95^{**\dagger}$ (0.80) & $4.38^{*\dagger}$ (1.78) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel B. Leave one state out}} \\
+Without ACT & $-0.23$ (1.97) & $-1.92^{**}$ (0.81) & $3.63^{*}$ (1.77) \\
+Without NSW & $-0.50$ (2.00) & $-2.00^{*}$ (0.91) & $4.73^{*}$ (1.80) \\
+Without NT & $-0.28$ (2.13) & $-2.00^{**}$ (0.80) & $4.41^{*}$ (1.98) \\
+Without QLD & $0.27$ (2.31) & $-2.39^{**}$ (0.90) & $4.47^{*}$ (1.85) \\
+Without SA & $-0.06$ (2.79) & $-1.97^{**}$ (0.83) & $3.71^{*}$ (1.69) \\
+Without TAS & $-0.28$ (2.18) & $-1.93^{*}$ (0.82) & $5.01^{*}$ (1.80) \\
+Without VIC & $-0.47$ (2.24) & $-1.48^{*}$ (0.84) & $4.49^{*}$ (1.71) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel C. Window and pre-period}} \\
+Pre-period from 2007-Q1 &  &  & $3.14^{*}$ (2.76) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel D. Weights and data}} \\
+Unweighted cells & $-0.28$ (2.13) & $-1.73$ (2.83) &  \\
+Other CABEE vintages & $-0.85$ (1.97) & $-1.95^{*}$ (0.79) &  \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel E. Diagnostics}} \\
+Variants with the registered sign & 8 of 9 & 9 of 9 & 8 of 8 \\
+Variants with p $<$ 0.05 & 0 of 9 & 4 of 9 & 0 of 8 \\
+Range across variants & $-$0.8 to +0.3 & $-$2.4 to $-$1.5 & +3.1 to +5.0 \\
+Pre-trend breakdown $\bar{M}$ & 0.26 & 1.33 & 0.43 \\
+Identified set at $\bar{M}$ = 1 & [$-$2.4, +4.2] & [+1.4, +10.0] & [$-$2.6, +6.4] \\
+Synthetic DiD pre-fit ratio & 0.00 & 0.00 & 0.14 \\
+Synthetic DiD effective controls & 2269 of 2414 & 950 of 2414 & 1 of 657 \\
+\midrule
+Estimator (registered layer) & Synthetic DiD & Two-way fixed effects & Synthetic DiD \\
+Placebos re-estimated per variant & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\scriptsize
+\item \textit{Notes:} Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding. Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final. Pre-trend breakdown $\bar{M}$: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at $\bar{M}$ = 1 is the range of effects consistent with such a departure. Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / $\Sigma$ $\omega$$^{2}$. Source: alicia/analyses/phase5/reevaluations/robustness.json (alicia/analyses/phase5/robustness.py). Placebo standard deviation in parentheses; stars from two-sided p-values. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]\centering
+\footnotesize\setlength{\tabcolsep}{2.5pt}
 \caption{Northern Territory container deposit scheme (2012): re-evaluation with drink prices}\label{tab:nt-container-deposits-2012-phase5-estimators}
 \begin{threeparttable}
 \begin{tabular}{l*{7}{c}}
@@ -261,6 +466,53 @@ Interactive FE (factors) & No & No & No & No & No & No & Yes \\
 \end{tabular}
 \begin{tablenotes}\scriptsize
 \item \textit{Notes:} Panels A and B: 100 $\times$ log of the CPI class relative to All groups, CPI class $\times$ capital city $\times$ quarter, unweighted; 2005-Q1 to 2017-Q3 (51 periods), 83 classes, 7 cities. Each column applies one estimator to the same panel. $\beta$ is the average effect on the reform's classes in treated states (cities) over the window, net of the mean of the same estimator across the placebo groups. Columns (6) and (7) compare the treated group's average with reweighted untreated cells over each cohort's window; their observations and units are summed over cohorts. The placebo standard deviation is the spread of the same estimator across up to 40 placebo industry groups (or CPI classes) given the reform's states and dates: the randomization-inference analogue of a standard error. p-values rank the estimate among the centred placebo estimates; with 40 placebos the smallest attainable is about 0.024, so *** cannot occur. Clustered standard errors are not reported: with seven or eight states they are unreliable, and the registered inference uses placebos. MDE: the smallest effect detectable with 80\% power at the 5\% level (2.8 $\times$ the placebo standard deviation). Placebo groups: placebo industry groups (business outcomes) or CPI classes (prices). Pre-trend test: every event-study coefficient with k $\leq$ $-$2 (saturated model, net of the placebo mean) lies inside its 95\% placebo band; a failure means the outcome is not identified. BH q-value: Benjamini--Hochberg across the specification's primary outcomes. Source: alicia/analyses/phase5/reevaluations/estimate.json (registered run, 18 October 2026) and table\_stats.json (samples, re-fitted to check every estimate reproduces). Placebo standard deviation in parentheses; two-sided p-values in brackets. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]\centering
+\footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{Northern Territory container deposit scheme (2012): re-evaluation with drink prices: robustness (not pre-registered)}\label{tab:nt-container-deposits-2012-phase5-robustness}
+\begin{threeparttable}
+\begin{tabular}{l*{2}{c}}
+\toprule
+ & \multicolumn{1}{c}{Primary} & \multicolumn{1}{c}{Secondary} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+ & (1) & (2) \\
+ & \shortstack{Waters,\\soft\\drinks and\\juices\\(CPI)} & Beer (CPI) \\
+\midrule
+\multicolumn{3}{l}{\textit{Panel A. As registered}} \\
+As registered & $7.62^{\dagger}$ (7.85) & $4.82^{\dagger}$ (7.85) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel B. Leave one state out}} \\
+Without ACT & $7.74$ (7.73) & $5.83$ (7.73) \\
+Without NSW & $7.67$ (7.59) & $4.96$ (7.59) \\
+Without QLD & $7.73$ (8.11) & $4.84$ (8.11) \\
+Without TAS & $7.91$ (8.19) & $4.75$ (8.19) \\
+Without VIC & $7.33$ (8.02) & $4.38$ (8.02) \\
+Without WA & $7.36$ (7.69) & $4.14$ (7.69) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel C. Window and pre-period}} \\
+First exposed year only & $6.78$ (6.06) & $9.69$ (6.06) \\
+Last year dropped & $7.09$ (7.48) & $5.26$ (7.48) \\
+Pre-period from 2007-Q1 & $6.06$ (7.78) & $4.66$ (7.78) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel D. Diagnostics}} \\
+Variants with the registered sign & 9 of 9 & 9 of 9 \\
+Variants with p $<$ 0.05 & 0 of 9 & 0 of 9 \\
+Range across variants & +6.1 to +7.9 & +4.1 to +9.7 \\
+Pre-trend breakdown $\bar{M}$ & 0.16 & 0.03 \\
+Identified set at $\bar{M}$ = 1 & [$-$12.5, +17.3] & [$-$16.2, +15.3] \\
+Own-industry placebo p (draws) & 0.048 (20) & 0.048 (20) \\
+Synthetic DiD pre-fit ratio & 0.18 & 0.12 \\
+Synthetic DiD effective controls & 96 of 566 & 155 of 566 \\
+\midrule
+Estimator (registered layer) & Saturated fixed effects & Saturated fixed effects \\
+Placebos re-estimated per variant & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\scriptsize
+\item \textit{Notes:} Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding. Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final. Pre-trend breakdown $\bar{M}$: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at $\bar{M}$ = 1 is the range of effects consistent with such a departure. Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / $\Sigma$ $\omega$$^{2}$. Source: alicia/analyses/phase5/reevaluations/robustness.json (alicia/analyses/phase5/robustness.py). Placebo standard deviation in parentheses; stars from two-sided p-values. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -316,6 +568,55 @@ Interactive FE (factors) & No & No & No & No & No & No & Yes \\
 
 \begin{table}[htbp]\centering
 \footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{Perth retail trading hours (2010 weeknights, 2012 Sundays): re-evaluation with saturated effects: robustness (not pre-registered)}\label{tab:wa-trading-hours-2010-2012-phase5-robustness}
+\begin{threeparttable}
+\begin{tabular}{l*{2}{c}}
+\toprule
+ & \multicolumn{1}{c}{Primary} & \multicolumn{1}{c}{Secondary} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+ & (1) & (2) \\
+ & Entry rate & Exit rate \\
+\midrule
+\multicolumn{3}{l}{\textit{Panel A. As registered}} \\
+As registered & $0.98^{\dagger}$ (1.65) & $1.30^{\dagger}$ (1.07) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel B. Leave one state out}} \\
+Without ACT & $0.98$ (1.64) & $1.27$ (1.05) \\
+Without NSW & $0.96$ (1.77) & $1.31$ (1.08) \\
+Without NT & $1.01$ (1.65) & $1.29$ (1.07) \\
+Without QLD & $1.30$ (1.71) & $1.30$ (1.07) \\
+Without TAS & $0.96$ (1.67) & $1.32$ (1.09) \\
+Without VIC & $0.59$ (1.70) & $1.30$ (1.07) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel C. Window and pre-period}} \\
+First exposed year only & $0.99$ (1.63) & $0.21$ (1.06) \\
+Last year dropped & $0.82$ (1.70) & $1.34$ (0.99) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel D. Weights and data}} \\
+Unweighted cells & $-0.37$ (3.03) & $1.30$ (1.07) \\
+Other CABEE vintages & $0.91$ (1.64) & $1.41$ (1.07) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel E. Diagnostics}} \\
+Variants with the registered sign & 9 of 10 & 10 of 10 \\
+Variants with p $<$ 0.05 & 0 of 10 & 0 of 10 \\
+Range across variants & $-$0.4 to +1.3 & +0.2 to +1.4 \\
+Pre-trend breakdown $\bar{M}$ & 0.21 & 0.04 \\
+Identified set at $\bar{M}$ = 1 & [$-$1.7, +2.6] & [$-$1.0, +1.1] \\
+Synthetic DiD pre-fit ratio & 0.01 & 0.01 \\
+Synthetic DiD effective controls & 1933 of 2064 & 2012 of 2064 \\
+\midrule
+Estimator (registered layer) & Saturated fixed effects & Synthetic DiD \\
+Placebos re-estimated per variant & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\scriptsize
+\item \textit{Notes:} Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding. Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final. Pre-trend breakdown $\bar{M}$: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at $\bar{M}$ = 1 is the range of effects consistent with such a departure. Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / $\Sigma$ $\omega$$^{2}$. Source: alicia/analyses/phase5/reevaluations/robustness.json (alicia/analyses/phase5/robustness.py). Placebo standard deviation in parentheses; stars from two-sided p-values. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]\centering
+\footnotesize\setlength{\tabcolsep}{2.5pt}
 \caption{Retail energy price deregulation (SA 2013, NSW 2014, SEQ 2016): re-evaluation with electricity prices}\label{tab:retail-energy-deregulation-2013-2016-phase5-estimators}
 \begin{threeparttable}
 \begin{tabular}{l*{7}{c}}
@@ -347,6 +648,54 @@ Interactive FE (factors) & No & No & No & No & No & No & Yes \\
 \end{tabular}
 \begin{tablenotes}\scriptsize
 \item \textit{Notes:} Panel A: 100 $\times$ log of the CPI class relative to All groups, CPI class $\times$ capital city $\times$ quarter, unweighted; 2005-Q1 to 2019-Q2 (58 periods), 85 classes, 7 cities. Each column applies one estimator to the same panel. $\beta$ is the average effect on the reform's classes in treated states (cities) over the window, net of the mean of the same estimator across the placebo groups. Columns (6) and (7) compare the treated group's average with reweighted untreated cells over each cohort's window; their observations and units are summed over cohorts. The placebo standard deviation is the spread of the same estimator across up to 40 placebo industry groups (or CPI classes) given the reform's states and dates: the randomization-inference analogue of a standard error. p-values rank the estimate among the centred placebo estimates; with 40 placebos the smallest attainable is about 0.024, so *** cannot occur. Clustered standard errors are not reported: with seven or eight states they are unreliable, and the registered inference uses placebos. MDE: the smallest effect detectable with 80\% power at the 5\% level (2.8 $\times$ the placebo standard deviation). Placebo groups: placebo industry groups (business outcomes) or CPI classes (prices). Pre-trend test: every event-study coefficient with k $\leq$ $-$2 (saturated model, net of the placebo mean) lies inside its 95\% placebo band; a failure means the outcome is not identified. BH q-value: Benjamini--Hochberg across the specification's primary outcomes. Source: alicia/analyses/phase5/reevaluations/estimate.json (registered run, 18 October 2026) and table\_stats.json (samples, re-fitted to check every estimate reproduces). Placebo standard deviation in parentheses; two-sided p-values in brackets. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]\centering
+\footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{Retail energy price deregulation (SA 2013, NSW 2014, SEQ 2016): re-evaluation with electricity prices: robustness (not pre-registered)}\label{tab:retail-energy-deregulation-2013-2016-phase5-robustness}
+\begin{threeparttable}
+\begin{tabular}{l*{1}{c}}
+\toprule
+ & \multicolumn{1}{c}{Primary} \\
+\cmidrule(lr){2-2}
+ & (1) \\
+ & \shortstack{Electricity\\(CPI)} \\
+\midrule
+\multicolumn{2}{l}{\textit{Panel A. As registered}} \\
+As registered & $9.43^{**\dagger}$ (3.24) \\
+\addlinespace[1pt]
+\multicolumn{2}{l}{\textit{Panel B. Leave one state out}} \\
+Without ACT & $7.47^{*}$ (3.41) \\
+Without NSW & $10.09^{**}$ (2.63) \\
+Without NT & $9.39^{**}$ (3.30) \\
+Without QLD & $11.43^{**}$ (3.98) \\
+Without SA & $11.59^{**}$ (4.16) \\
+Without TAS & $6.38$ (3.48) \\
+Without WA & $10.67^{**}$ (3.17) \\
+\addlinespace[1pt]
+\multicolumn{2}{l}{\textit{Panel C. Window and pre-period}} \\
+First exposed year only & $9.13^{**}$ (2.43) \\
+Last year dropped & $9.21^{**}$ (3.08) \\
+Pre-period from 2008-Q1 & $7.29^{**}$ (3.03) \\
+\addlinespace[1pt]
+\multicolumn{2}{l}{\textit{Panel D. Diagnostics}} \\
+Variants with the registered sign & 10 of 10 \\
+Variants with p $<$ 0.05 & 8 of 10 \\
+Range across variants & +6.4 to +11.6 \\
+Pre-trend breakdown $\bar{M}$ & 0.05 \\
+Identified set at $\bar{M}$ = 1 & [$-$28.4, +25.6] \\
+Own-industry placebo p (draws) & 0.048 (20) \\
+Synthetic DiD pre-fit ratio & 0.33 \\
+Synthetic DiD effective controls & 6 of 414 \\
+\midrule
+Estimator (registered layer) & Saturated fixed effects \\
+Placebos re-estimated per variant & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\scriptsize
+\item \textit{Notes:} Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding. Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final. Pre-trend breakdown $\bar{M}$: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at $\bar{M}$ = 1 is the range of effects consistent with such a departure. Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / $\Sigma$ $\omega$$^{2}$. Source: alicia/analyses/phase5/reevaluations/robustness.json (alicia/analyses/phase5/robustness.py). Placebo standard deviation in parentheses; stars from two-sided p-values. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -412,6 +761,58 @@ Interactive FE (factors) & No & No & No & No & No & No & Yes \\
 
 \begin{table}[htbp]\centering
 \footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{Ride-share legalisation (2015 to 2018): re-evaluation with saturated effects: robustness (not pre-registered)}\label{tab:rideshare-legalisation-2015-2018-phase5-robustness}
+\begin{threeparttable}
+\begin{tabular}{l*{3}{c}}
+\toprule
+ & \multicolumn{1}{c}{Primary} & \multicolumn{2}{c}{Secondary} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-4}
+ & (1) & (2) & (3) \\
+ & Entry rate & Exit rate & \shortstack{Urban\\transport\\fares\\(CPI)} \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A. As registered}} \\
+As registered & $-2.24^{\dagger}$ (1.54) & $-0.33^{\dagger}$ (0.78) & $-0.28^{\dagger}$ (1.77) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel B. Leave one state out}} \\
+Without ACT & $-2.36$ (1.57) & $-0.31$ (0.78) & $-0.64$ (1.62) \\
+Without NSW & $2.25^{*}$ (1.48) & $-1.70^{*}$ (0.90) & $-0.51$ (1.51) \\
+Without NT & $-2.44$ (1.53) & $-0.37$ (0.77) & $-0.57$ (2.02) \\
+Without QLD & $-2.59$ (1.74) & $-0.50$ (0.81) & $0.90$ (1.76) \\
+Without SA & $-2.87^{*}$ (1.57) & $-0.08$ (0.79) & $-0.32$ (1.75) \\
+Without TAS & $-2.19$ (1.54) & $-0.30$ (0.80) & $-0.29$ (1.81) \\
+Without VIC & $-4.48^{**}$ (1.97) & $-1.62^{*}$ (1.07) & $-0.78$ (2.07) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel C. Window and pre-period}} \\
+First exposed year only & $-1.16$ (1.47) & $-0.78$ (0.73) & $-1.02$ (1.40) \\
+Pre-period from 2011-12 & $-1.98$ (1.41) & $-0.85$ (0.62) &  \\
+Last year dropped &  &  & $-1.39$ (1.34) \\
+Pre-period from 2010-Q4 &  &  & $-0.40$ (1.93) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel D. Weights and data}} \\
+Unweighted cells & $2.82$ (1.94) & $-1.27$ (1.59) &  \\
+Other CABEE vintages & $-2.32$ (1.54) & $-0.30$ (0.78) &  \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel E. Diagnostics}} \\
+Variants with the registered sign & 9 of 11 & 11 of 11 & 9 of 10 \\
+Variants with p $<$ 0.05 & 1 of 11 & 0 of 11 & 0 of 10 \\
+Range across variants & $-$4.5 to +2.8 & $-$1.7 to $-$0.1 & $-$1.4 to +0.9 \\
+Pre-trend breakdown $\bar{M}$ & 0.67 & 0.64 & 0.48 \\
+Identified set at $\bar{M}$ = 1 & [$-$7.0, +1.4] & [$-$0.2, +0.9] & [$-$5.2, +1.8] \\
+Synthetic DiD pre-fit ratio & 0.10 &  & 0.26 \\
+Synthetic DiD effective controls & 297 of 1321 &  & 66 of 316 \\
+\midrule
+Estimator (registered layer) & Saturated fixed effects & Saturated fixed effects & Synthetic DiD \\
+Placebos re-estimated per variant & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\scriptsize
+\item \textit{Notes:} Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding. Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final. Pre-trend breakdown $\bar{M}$: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at $\bar{M}$ = 1 is the range of effects consistent with such a departure. Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / $\Sigma$ $\omega$$^{2}$. Source: alicia/analyses/phase5/reevaluations/robustness.json (alicia/analyses/phase5/robustness.py). Placebo standard deviation in parentheses; stars from two-sided p-values. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]\centering
+\footnotesize\setlength{\tabcolsep}{2.5pt}
 \caption{Mandatory electronic conveyancing (NSW 2018, WA 2018, VIC 2019, SA 2020, QLD 2023)}\label{tab:e-conveyancing-2018-2023-estimators}
 \begin{threeparttable}
 \begin{tabular}{l*{7}{c}}
@@ -455,6 +856,58 @@ Interactive FE (factors) & No & No & No & No & No & No & Yes \\
 \end{tabular}
 \begin{tablenotes}\scriptsize
 \item \textit{Notes:} Panels A and B: entries and exits per 100 businesses operating at the start of the financial year, ANZSIC class $\times$ state, weighted by those businesses; 2009-10 to 2024-25 (16 periods), 431 classes, 8 states. Each column applies one estimator to the same panel. $\beta$ is the average effect on the reform's classes in treated states (cities) over the window, net of the mean of the same estimator across the placebo groups. Columns (6) and (7) compare the treated group's average with reweighted untreated cells over each cohort's window; their observations and units are summed over cohorts. The placebo standard deviation is the spread of the same estimator across up to 40 placebo industry groups (or CPI classes) given the reform's states and dates: the randomization-inference analogue of a standard error. p-values rank the estimate among the centred placebo estimates; with 40 placebos the smallest attainable is about 0.024, so *** cannot occur. Clustered standard errors are not reported: with seven or eight states they are unreliable, and the registered inference uses placebos. MDE: the smallest effect detectable with 80\% power at the 5\% level (2.8 $\times$ the placebo standard deviation). Placebo groups: placebo industry groups (business outcomes) or CPI classes (prices). Pre-trend test: every event-study coefficient with k $\leq$ $-$2 (saturated model, net of the placebo mean) lies inside its 95\% placebo band; a failure means the outcome is not identified. BH q-value: Benjamini--Hochberg across the specification's primary outcomes. Source: alicia/analyses/phase5/new\_families/estimate.json (registered run, 18 October 2026) and table\_stats.json (samples, re-fitted to check every estimate reproduces). Placebo standard deviation in parentheses; two-sided p-values in brackets. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]\centering
+\footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{Mandatory electronic conveyancing (NSW 2018, WA 2018, VIC 2019, SA 2020, QLD 2023): robustness (not pre-registered)}\label{tab:e-conveyancing-2018-2023-robustness}
+\begin{threeparttable}
+\begin{tabular}{l*{2}{c}}
+\toprule
+ & \multicolumn{1}{c}{Primary} & \multicolumn{1}{c}{Secondary} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+ & (1) & (2) \\
+ & Entry rate & Exit rate \\
+\midrule
+\multicolumn{3}{l}{\textit{Panel A. As registered}} \\
+As registered & $-0.58^{\dagger}$ (1.03) & $0.05^{\dagger}$ (0.63) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel B. Leave one state out}} \\
+Without ACT & $-0.59$ (1.06) & $0.15$ (0.65) \\
+Without NSW & $-1.28$ (1.65) & $0.23$ (0.61) \\
+Without NT & $-0.55$ (1.05) & $0.09$ (0.61) \\
+Without QLD & $-0.46$ (0.92) & $-0.10$ (0.63) \\
+Without SA & $-0.65$ (1.11) & $0.17$ (0.68) \\
+Without TAS & $-0.62$ (1.12) & $0.07$ (0.65) \\
+Without VIC & $-0.27$ (0.79) & $-0.25$ (0.81) \\
+Without WA & $-0.46$ (1.18) & $0.05$ (0.70) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel C. Window and pre-period}} \\
+First exposed year only & $0.03$ (0.73) & $-0.03$ (0.62) \\
+Last year dropped & $-0.12$ (0.65) & $-0.04$ (0.69) \\
+Pre-period from 2013-14 & $-0.74$ (1.12) & $0.09$ (0.55) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel D. Weights and data}} \\
+Unweighted cells & $-0.42$ (1.38) & $-0.66$ (1.22) \\
+Other CABEE vintages & $-0.42$ (0.91) & $0.12$ (0.66) \\
+\addlinespace[1pt]
+\multicolumn{3}{l}{\textit{Panel E. Diagnostics}} \\
+Variants with the registered sign & 12 of 13 & 8 of 13 \\
+Variants with p $<$ 0.05 & 0 of 13 & 0 of 13 \\
+Range across variants & $-$1.3 to +0.0 & $-$0.7 to +0.2 \\
+Pre-trend breakdown $\bar{M}$ & 0.24 & 0.07 \\
+Identified set at $\bar{M}$ = 1 & [$-$4.3, +2.6] & [$-$1.9, +1.7] \\
+Synthetic DiD pre-fit ratio & 0.05 &  \\
+Synthetic DiD effective controls & 873 of 1222 &  \\
+\midrule
+Estimator (registered layer) & Saturated fixed effects & Saturated fixed effects \\
+Placebos re-estimated per variant & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\scriptsize
+\item \textit{Notes:} Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding. Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final. Pre-trend breakdown $\bar{M}$: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at $\bar{M}$ = 1 is the range of effects consistent with such a departure. Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / $\Sigma$ $\omega$$^{2}$. Source: alicia/analyses/phase5/new\_families/robustness.json (alicia/analyses/phase5/robustness.py). Placebo standard deviation in parentheses; stars from two-sided p-values. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -514,6 +967,58 @@ Interactive FE (factors) & No & No & No & No & No & No & Yes \\
 \end{tabular}
 \begin{tablenotes}\scriptsize
 \item \textit{Notes:} Panel A: 100 $\times$ log of the CPI class relative to All groups, CPI class $\times$ capital city $\times$ quarter, unweighted; 2005-Q1 to 2025-Q2 (82 periods), 83 classes, 7 cities. Panels B and C: entries and exits per 100 businesses operating at the start of the financial year, ANZSIC class $\times$ state, weighted by those businesses; 2009-10 to 2024-25 (16 periods), 421 classes, 7 states. Each column applies one estimator to the same panel. $\beta$ is the average effect on the reform's classes in treated states (cities) over the window, net of the mean of the same estimator across the placebo groups. Columns (6) and (7) compare the treated group's average with reweighted untreated cells over each cohort's window; their observations and units are summed over cohorts. The placebo standard deviation is the spread of the same estimator across up to 40 placebo industry groups (or CPI classes) given the reform's states and dates: the randomization-inference analogue of a standard error. p-values rank the estimate among the centred placebo estimates; with 40 placebos the smallest attainable is about 0.024, so *** cannot occur. Clustered standard errors are not reported: with seven or eight states they are unreliable, and the registered inference uses placebos. MDE: the smallest effect detectable with 80\% power at the 5\% level (2.8 $\times$ the placebo standard deviation). Placebo groups: placebo industry groups (business outcomes) or CPI classes (prices). Pre-trend test: every event-study coefficient with k $\leq$ $-$2 (saturated model, net of the placebo mean) lies inside its 95\% placebo band; a failure means the outcome is not identified. BH q-value: Benjamini--Hochberg across the specification's primary outcomes. Source: alicia/analyses/phase5/new\_families/estimate.json (registered run, 18 October 2026) and table\_stats.json (samples, re-fitted to check every estimate reproduces). Placebo standard deviation in parentheses; two-sided p-values in brackets. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]\centering
+\footnotesize\setlength{\tabcolsep}{2.5pt}
+\caption{Mandatory fuel price reporting (NSW 2016, NT 2017, QLD 2018, TAS 2020, SA 2021): robustness (not pre-registered)}\label{tab:fuel-price-reporting-2016-2021-robustness}
+\begin{threeparttable}
+\begin{tabular}{l*{3}{c}}
+\toprule
+ & \multicolumn{1}{c}{Primary} & \multicolumn{2}{c}{Secondary} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-4}
+ & (1) & (2) & (3) \\
+ & \shortstack{Automotive\\fuel (CPI)} & Entry rate & Exit rate \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A. As registered}} \\
+As registered & $-2.85^{\dagger}$ (2.39) & $-0.24^{\dagger}$ (0.78) & $-1.04^{\dagger}$ (0.80) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel B. Leave one state out}} \\
+Without ACT & $-2.87$ (2.10) & $-0.14$ (0.79) & $-1.10$ (0.79) \\
+Without NSW & $-3.57$ (2.87) & $0.06$ (2.16) & $-1.64$ (1.14) \\
+Without NT & $-2.52$ (2.80) & $-0.30$ (0.79) & $-1.08$ (0.80) \\
+Without QLD & $-3.05$ (2.66) & $-0.05$ (1.27) & $-1.11$ (0.88) \\
+Without SA & $-3.32$ (2.75) & $-0.01$ (0.77) & $-0.73$ (0.88) \\
+Without TAS & $-2.06$ (2.58) & $-0.08$ (0.78) & $-0.97$ (0.83) \\
+Without VIC & $-2.44$ (2.67) & $-1.89$ (1.50) & $-0.27$ (1.32) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel C. Window and pre-period}} \\
+First exposed year only & $-2.26$ (1.93) & $1.30$ (1.27) & $-1.54^{*}$ (0.91) \\
+Last year dropped & $-2.59$ (2.46) & $0.44$ (1.02) & $-0.90$ (0.79) \\
+Pre-period from 2011-Q3 & $-2.91^{*}$ (1.73) &  &  \\
+Pre-period from 2012-13 &  & $-0.15$ (0.91) & $-1.17$ (0.86) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel D. Weights and data}} \\
+Unweighted cells &  & $-1.54$ (2.68) & $-0.69$ (3.38) \\
+Other CABEE vintages &  & $-0.60$ (0.76) & $-1.28$ (0.80) \\
+\addlinespace[1pt]
+\multicolumn{4}{l}{\textit{Panel E. Diagnostics}} \\
+Variants with the registered sign & 10 of 10 & 9 of 12 & 12 of 12 \\
+Variants with p $<$ 0.05 & 0 of 10 & 0 of 12 & 0 of 12 \\
+Range across variants & $-$3.6 to $-$2.1 & $-$1.9 to +1.3 & $-$1.6 to $-$0.3 \\
+Pre-trend breakdown $\bar{M}$ & 0.39 & 0.25 & 0.38 \\
+Identified set at $\bar{M}$ = 1 & [$-$8.4, +3.7] & [$-$10.4, +6.2] & [$-$3.0, +1.4] \\
+Synthetic DiD pre-fit ratio & 0.33 & 0.09 & 0.05 \\
+Synthetic DiD effective controls & 6 of 338 & 421 of 1359 & 583 of 1359 \\
+\midrule
+Estimator (registered layer) & Saturated fixed effects & Saturated fixed effects & Saturated fixed effects \\
+Placebos re-estimated per variant & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\scriptsize
+\item \textit{Notes:} Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding. Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final. Pre-trend breakdown $\bar{M}$: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at $\bar{M}$ = 1 is the range of effects consistent with such a departure. Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / $\Sigma$ $\omega$$^{2}$. Source: alicia/analyses/phase5/new\_families/robustness.json (alicia/analyses/phase5/robustness.py). Placebo standard deviation in parentheses; stars from two-sided p-values. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. $^{\dagger}$ The registered (pre-specified) estimator for that outcome.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
