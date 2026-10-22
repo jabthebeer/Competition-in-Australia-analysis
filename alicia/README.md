@@ -4,7 +4,11 @@ A public-data toolkit for evaluating how Australian legislation and regulation a
 
 > Unofficial research tooling. Not an Australian Government product.
 
-## Status (18 October 2026)
+## Status (22 October 2026)
+
+**Change of direction (22 October 2026, E-75).** Retrospective evaluation is paused. The register and its hypotheses stay and become part of the product. The next build is a **Policy costing** tab on the website: a regulatory burden costing under the OIA framework, and a productivity and competition costing that turns a policy brief into productivity and GDP effects by channel, with ranges and sources ([plan](../docs/forward_plan_policy_costing.md)). Parked: a literature review for each register record ([P-1](../docs/parked_items.md)).
+
+The table below is the state of the retrospective work when it was paused.
 
 | Part | What it does | Status |
 |---|---|---|

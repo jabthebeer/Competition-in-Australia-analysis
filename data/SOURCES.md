@@ -43,6 +43,14 @@ Series that evaluations net out rather than outcomes (`alicia/src/alicia/pipelin
 
 Listed in `alicia/SOURCES.md`: CPI (ABS Data API), State Accounts, Labour Force table 05, and the legislation registers.
 
+## Consulted, not yet ingested
+
+Read for planning only; no connector or processed panel yet. Each gets a connector, a manifest and a full entry under **Built** when it is used in an analysis (policy-costing plan, phase P2).
+
+| Source | Publisher | URL | Accessed | Access / licence | Coverage | Key variables | Status |
+|---|---|---|---|---|---|---|---|
+| PC National CGE model results workbook (`ncp-pc-national-modelling.xlsx`), supporting *National Competition Policy: modelling proposed reforms* | Productivity Commission | <https://assets.pc.gov.au/2025-10/ncp-pc-national-modelling.xlsx> (report page <https://www.pc.gov.au/inquiries-and-research/competition-analysis/report>) | 22 Oct 2026 (SHA-256 `0a0e3058d1f39a1b29acecad358230ae88d2667d99d85ab9ec2b0b0a3f8d94e6`) | Report CC BY 4.0; the workbook's own licence not confirmed | 27 simulations plus lower-bound and linearity tests; 114 industries; states; 2018-19 database | Real GDP and macro aggregates, government revenue by jurisdiction, CPI components, real GSP and industry contributions; initial GSP by industry × state | Consulted for the Layer B scratch check in `docs/forward_plan_policy_costing.md` §6.3; not committed. To be added to `data/raw/` with a calibration script in P4 once the licence is confirmed |
+
 ## To do
 
 | Source | Publisher | URL | Accessed | Access / licence | Coverage | Key variables | Status |

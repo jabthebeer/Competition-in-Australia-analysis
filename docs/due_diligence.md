@@ -1,5 +1,7 @@
 # Due diligence on the evaluation results
 
+> **Paused, 22 October 2026** (owner decision, `alicia/DECISIONS.md` E-75). The retrospective evaluation programme is on hold while ALICIA builds a forward-looking policy-costing tab ([`forward_plan_policy_costing.md`](forward_plan_policy_costing.md)). The open items below are frozen, not closed. The results stay provisional. A literature review for each law is parked as P-1 in [`parked_items.md`](parked_items.md).
+
 **Date:** 18 October 2026. **Covers:** the 12 current evaluations (34 laws); the 8 archived ones are superseded. **For:** Cowork and the owner. It lists what has been checked, what has not, and what must happen before the results are relied on.
 
 **Verdict: provisional.** The method is sound and reproducible. The inputs (the laws' dates and industries) have not been checked by a person, and several robustness checks are still outstanding. Treat every result as provisional until items 1–3 below are done.
