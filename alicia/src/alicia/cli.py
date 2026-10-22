@@ -243,6 +243,7 @@ def cmd_site(args) -> int:
         dates_report=Path(args.dates) if args.dates else None,
         standalone=not args.fragment,
         repo_base=args.repo_base,
+        costing_dist=Path(args.costing) if args.costing else None,
     )
     for p in paths:
         print(f"Wrote {p}")
@@ -398,6 +399,11 @@ def main(argv: list[str] | None = None) -> int:
     si.add_argument("--dates", help="a report from 'alicia dates --all --json', to show register checks")
     si.add_argument("--fragment", action="store_true", help="write page fragments instead of full HTML documents")
     si.add_argument("--repo-base", default=None, help="URL that repository paths are linked under")
+    si.add_argument(
+        "--costing",
+        default=None,
+        help="the Policy costing build to add (regulatory-burden-tool/dist-site, from 'npm run build:site')",
+    )
     si.set_defaults(func=cmd_site)
 
     me = sub.add_parser("methods", help="key insights and methods of every evaluation, as Markdown")

@@ -110,7 +110,8 @@ export function App() {
       </a>
       <header className="site-header">
         <div className="brand">
-          <span className="site-title">Regulatory Burden Calculator</span>
+          <span className="site-title">Policy costing</span>
+          <span className="site-subtitle">Regulatory burden (OIA framework) · productivity and competition (in development)</span>
           <span className="tag">Unofficial aid</span>
         </div>
         <nav aria-label="Main">

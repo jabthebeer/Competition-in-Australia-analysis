@@ -13,10 +13,19 @@ export default defineConfig({
     trace: "off",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
-  webServer: {
-    command: "npm run build && npx vite preview --port 4173 --strictPort",
-    url: "http://localhost:4173",
-    reuseExistingServer: false,
-    timeout: 120_000,
-  },
+  webServer: [
+    {
+      command: "npm run build && npx vite preview --port 4173 --strictPort",
+      url: "http://localhost:4173",
+      reuseExistingServer: false,
+      timeout: 120_000,
+    },
+    {
+      // The ALICIA website build of the same app (e2e/site.spec.ts).
+      command: "npm run build:site && npx vite preview --outDir dist-site --port 4174 --strictPort",
+      url: "http://localhost:4174/costing.html",
+      reuseExistingServer: false,
+      timeout: 120_000,
+    },
+  ],
 });
