@@ -1,4 +1,5 @@
-// Checks that docs/framework_traceability.md stays true to the code:
+// Checks that docs/framework_traceability.md (RBM rules) and docs/productivity_traceability.md
+// (productivity and competition costing) stay true to the code:
 //  - every test ID it cites (e.g. T-REF-07, ranges like T-DEL-01..05) exists as a test title;
 //  - every warning code it cites (W-xx) has a test;
 //  - every code reference (e.g. `reform.ts#doAnywayShares`) points at a real file and symbol.
@@ -7,8 +8,8 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 const root = join(import.meta.dirname, "..");
-const doc = readFileSync(join(root, "docs/framework_traceability.md"), "utf8");
-const tests = ["tests/engine", "tests/ui", "e2e"]
+const doc = ["docs/framework_traceability.md", "docs/productivity_traceability.md"].map((f) => readFileSync(join(root, f), "utf8")).join("\n");
+const tests = ["tests/engine", "tests/ui", "tests/productivity", "e2e"]
   .flatMap((dir) =>
     readdirSync(join(root, dir))
       .filter((f) => f.endsWith(".test.ts") || f.endsWith(".spec.ts"))
@@ -37,8 +38,9 @@ for (const m of new Set([...doc.matchAll(/W-(\d{2})/g)].map((x) => x[0]))) {
   if (!testTitles.has(m)) problems.push(`Warning ${m} is cited but has no test`);
 }
 
-// Code references like `reform.ts#doAnywayShares` (engine) or `src/ui/model.ts#rebaseReformed`.
-for (const m of doc.matchAll(/`((?:src\/(?:engine|ui)\/)[\w/]+\.tsx?|[a-z]+\.ts)(?:#(\w+))?/g)) {
+// Code references like `reform.ts#doAnywayShares` (engine), `src/ui/model.ts#rebaseReformed` or
+// `src/productivity/brief.ts#parseBrief`.
+for (const m of doc.matchAll(/`((?:src\/(?:engine|ui|productivity)\/)[\w/]+\.tsx?|[a-z]+\.ts)(?:#(\w+))?/g)) {
   const [, file, symbol] = m;
   const path = file!.startsWith("src/") ? join(root, file!) : join(root, "src/engine", file!);
   let src: string;

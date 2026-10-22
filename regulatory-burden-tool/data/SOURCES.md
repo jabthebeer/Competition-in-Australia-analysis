@@ -27,6 +27,14 @@ These documents are **not** committed to this public repository (see `docs/phase
 | Counts of Australian Businesses, including Entries and Exits, July 2022 – June 2026 | ABS | 18 Aug 2026 (next release 18 Dec 2026) | <https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/latest-release> | 6 Oct 2026 | Employment-size bands (non-employing, 1–4, 5–19, 20–199, 200+) in `parameters.ts`, so tidy exports merge with ABS data. No figures are bundled. |
 | ANZSIC 2006 (Australian and New Zealand Standard Industrial Classification) | ABS | 2006 (rev. 2.0) | <https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic> | not downloaded | Format of the optional `industry` code (division letter or 2–4 digit code) |
 
+## Used by the productivity and competition costing (policy brief, P0)
+
+| Document or dataset | Publisher | Release | URL | Accessed | Used for |
+|---|---|---|---|---|---|
+| OSCA – Occupation Standard Classification for Australia, 2024, Version 1.0: Category descriptions (xlsx; Table 1 lists 1,156 occupations, each with a six-digit identifier and a "Registration or Licensing" column) | ABS | 2024 v1.0 | <https://www.abs.gov.au/statistics/classifications/osca-occupation-standard-classification-australia/2024-version-1-0/data-downloads/OSCA%20Category%20Descriptions.xlsx> | 22 Oct 2026 (SHA-256 `4412b0a20a54ab7bab01063b83bec4ee0a29768204f84a36851d82b661238fe8`) | The six-digit code rule for licensed occupations in the brief schema, and the code of the illustrative example (381231, Electrician (General)). Not bundled |
+| ANZSIC 2006 codelist `CL_ANZSIC_2006` 1.1.0 | ABS (Data API) | 1.1.0 | <https://data.api.abs.gov.au/rest/codelist/ABS/CL_ANZSIC_2006/1.1.0> (copy in `alicia/src/alicia/data/anzsic2006.json`, CC BY 4.0) | 14 Oct 2026 | Subdivision ranges of each division in `src/productivity/anzsic.ts`, checked against the bundled copy by test T-BRF-14 |
+| Copyright statement | Productivity Commission | — | <https://www.pc.gov.au/copyright/> | 22 Oct 2026 | Licence of the PC National results workbook (CC BY 4.0), to be used for calibration in P4 |
+
 ## Data behind the default parameters (as cited by the RBM, not downloaded)
 
 | Parameter | Value | Source as cited in RBM Appendix 2 | Next update |

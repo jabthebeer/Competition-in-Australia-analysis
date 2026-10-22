@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "kind": "policy-brief",
+  "id": "illustrative-licensing",
+  "meta": {
+    "title": "ILLUSTRATIVE (synthetic data): lighter licensing for general electricians",
+    "summary": "Synthetic example to test the policy brief schema. Licence renewals move from every year to every three years, the licensing standard is made less stringent, and new entrants pay less to get licensed. The numbers are invented and are not a costing of any real policy.",
+    "jurisdictions": ["CTH"],
+    "proposalType": "reform",
+    "startYear": 2027,
+    "phaseInYears": 2,
+    "durationYears": 10,
+    "priceBase": "2025-26"
+  },
+  "scope": {
+    "industries": [
+      { "anzsic": "3232", "exposure": 1, "role": "direct", "note": "Electrical Services (ANZSIC 2006 class 3232)" }
+    ],
+    "sizeBands": ["nonEmploying", "1-4", "5-19", "20-199", "200+"]
+  },
+  "burden": {
+    "id": "illustrative-licensing-burden",
+    "title": "ILLUSTRATIVE (synthetic data): electrician licence renewals every three years",
+    "proposalType": "reform",
+    "durationYears": 10,
+    "populations": [
+      { "id": "electricians", "label": "Electrical contracting businesses (synthetic count)", "group": "business", "industry": "3232", "count": 10000 }
+    ],
+    "options": [
+      {
+        "id": "three-yearly",
+        "name": "Renew every three years",
+        "obligations": [
+          {
+            "id": "renewal",
+            "name": "Licence renewal",
+            "category": "administrative",
+            "levers": ["longerLicence"],
+            "current": {
+              "costType": "labour",
+              "timing": { "type": "ongoing" },
+              "lines": [{ "populationId": "electricians", "labour": { "hours": 2, "timesPerYear": 1 } }]
+            },
+            "reformed": {
+              "costType": "labour",
+              "timing": { "type": "everyKYears", "k": 3 },
+              "lines": [{ "populationId": "electricians", "labour": { "hours": 2, "timesPerYear": 1 } }]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "levers": {
+    "entry": {
+      "industries": ["3232"],
+      "costPerEntrantChangeDollars": { "low": -600, "high": -200 }
+    },
+    "labour": {
+      "licensing": {
+        "occupations": ["381231"],
+        "industries": ["3232"],
+        "stringencyChange": -0.5,
+        "mutualRecognition": true
+      }
+    }
+  }
+}

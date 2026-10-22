@@ -1,6 +1,6 @@
 # Forward plan: prospective policy costing in ALICIA
 
-Project plan and methods note, 22 October 2026, for the owner, Cowork and Claude Code. **Status: proposed.** The owner decisions in §12 must be settled before Phase 1 starts.
+Project plan and methods note, 22 October 2026, for the owner, Cowork and Claude Code. **Status: approved** (22 October 2026: every decision in §12 as recommended, `alicia/DECISIONS.md` E-77). **P0 is done** (§9).
 
 **Goal:** a new, interactive **Policy costing** tab on the ALICIA website. A user describes a prospective Australian policy and gets two costings:
 
@@ -387,6 +387,13 @@ ABS has **no Data API dataflow** for industry MFP, the annual ASNA industry tabl
 | **P7. Drafting assistant, guide, release** | Copy-and-paste brief-to-inputs prompt; a user guide; Cowork guide for writing up a costing; exports (CSV, JSON, methods appendix); a release note | The owner signs off a release | P5, P6 |
 | **After P7** | **Remind the owner of parked item P-1** (literature review for each register record; [`parked_items.md`](parked_items.md)) | Owner decides whether to start it | P7 |
 
+**Progress (22 October 2026):**
+
+| Phase | State |
+|---|---|
+| P0 | **Done.** Decisions approved (E-77; burden tool #83). Policy brief schema v1 in `regulatory-burden-tool/src/productivity/brief.ts` (with channels, overlap rules and ANZSIC helpers), 16 tests (T-BRF-01 to 16) and an illustrative example brief. [`productivity_traceability.md`](../regulatory-burden-tool/docs/productivity_traceability.md) specifies every formula with its source, and `npm run trace` checks it |
+| P1–P7 | Not started. Next: P1, P2 and P3 in parallel |
+
 **Order of work:** P0 first. P1, P2 and P3 can then run in parallel, and P4 starts once P2 and P3 have their first outputs. The worked examples are written early in P4 as test cases, so the engine is built against real briefs.
 
 ---
@@ -403,7 +410,7 @@ ABS has **no Data API dataflow** for industry MFP, the annual ASNA industry tabl
 | **Data vintages:** ASNA 2025-26 arrives 23 Oct 2026; CABEE cube 2 on 18 Dec 2026; OIA rates next updated February 2028 (unconfirmed) | Parameters versioned; the tab shows each vintage; one-file updates (`parameters.ts`, `parameters.json`) |
 | **Confidential proposals** | No network; local storage only; proposal patterns gitignored |
 | **Scope creep** (CPI, GNI, regional effects, distribution) | v1 limited to §6; later items listed in §11 |
-| **Licence of the PC National workbook** not confirmed | Use for calibration only; confirm before committing the raw file (§12, D-6) |
+| **Licence of the PC National workbook** | Confirmed CC BY 4.0 (22 Oct 2026); attribute "Source: Productivity Commission" |
 
 ---
 
@@ -421,6 +428,8 @@ ABS has **no Data API dataflow** for industry MFP, the annual ASNA industry tabl
 
 ## 12. Decisions for the owner
 
+Approved by the owner on 22 October 2026, all as recommended (E-77).
+
 | # | Decision | Recommendation |
 |---|---|---|
 | D-1 | Approve the pivot: pause retrospective evaluation; resume and fold the burden calculator into ALICIA | Approve |
@@ -428,7 +437,7 @@ ABS has **no Data API dataflow** for industry MFP, the annual ASNA industry tabl
 | D-3 | Where the code lives: extend `regulatory-burden-tool/` (renamed in the UI to "Policy costing"), not a new folder | Extend: it keeps the RBM's tests and traceability in one place |
 | D-4 | Default horizon and discounting: RBM rules (10 years, undiscounted) for the burden; 7% real (3%, 10%) for the productivity NPV | Approve (OIA rules) |
 | D-5 | The evidence gate (§6.6): hide GDP figures for grade-D evidence unless the user opts in | Approve: follows the OIA competition guidance |
-| D-6 | Use the PC National results workbook for calibration (confirm its licence before committing the raw file) | Approve, subject to the licence |
+| D-6 | Use the PC National results workbook for calibration | Approve. Licence confirmed: CC BY 4.0 under the PC's copyright statement. The raw file stays in `data/raw/` with a manifest, like every download |
 | D-7 | Worked examples (§8): the five proposed | Approve, or swap in the owner's priority policies |
 | D-8 | The `hf2025-replication` Phase 1 plan: approve it now so C6 can use its outputs later, or leave C6 on the published H&F ranges | Leave on published ranges for v1; revisit after P4 |
 

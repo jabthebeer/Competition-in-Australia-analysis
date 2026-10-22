@@ -17,6 +17,7 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 | 3 | Framework completeness: screener UI, warnings UI, assumptions register UI, option comparison | Not started (the engine already supports these) |
 | 4 | Reporting (docx, xlsx, CSV, print) and sensitivity | Not started |
 | 5 | Validation against published Impact Analyses; accessibility audit; user guide | Not started |
+| Policy costing P0 | Productivity and competition costing ([plan](../docs/forward_plan_policy_costing.md)): decisions, the policy brief schema (`src/productivity/`), traceability | **Done** (22 Oct 2026). P1 (fold into the ALICIA site) next |
 
 ## Running it
 
@@ -74,6 +75,13 @@ The engine is pure TypeScript, with no UI, I/O, clock or randomness. The same in
 | `format.ts` | The framework's RBE table layout and number formats (brackets for negatives, `$0` for zero) |
 | `tidy.ts`, `extensions.ts` | Analysis-ready export with ABS-aligned identifiers, and the read-only interface for future modules |
 
+**The productivity and competition engine (`src/productivity/`).** It sits beside the engine and never changes the RBE (DECISIONS #81). So far it holds the input contract:
+- `brief.ts`: the policy brief schema v1 (the RBM proposal plus levers), its cross-checks and warnings PB-01 to PB-04;
+- `channels.ts`: channels C1–C12, shock types and the overlap rules;
+- `anzsic.ts`: ANZSIC division structure.
+
+An illustrative brief is in `examples/illustrative-licensing.brief.json`. The formulas arrive in P4 ([plan](../docs/forward_plan_policy_costing.md) §6).
+
 **Arithmetic.** All money arithmetic uses `decimal.js`, and results are exact decimal strings, so totals carry no floating-point residue. Rounding happens only when values are displayed.
 
 ### Building on it (competition costings and econometrics)
@@ -91,6 +99,7 @@ The tool does no econometrics itself (DECISIONS #44). Two hooks make that work e
 ## Documents
 
 - `docs/framework_traceability.md`: every framework rule, with its page reference, code location and test; ambiguities and the approved interpretations.
+- `docs/productivity_traceability.md`: every rule and formula of the productivity and competition costing, with its source, code and test (formulas due in P4 are specified before any code).
 - `docs/phase0_proposal.md`: data model, Phase 1 test list, feasibility issues.
 - `docs/oia_calculator_review.md`: review of OIA's official calculator workbook.
 - `docs/scope_expansion.md`: planning note on the CCA stocktake, cost–benefit and business dynamism modules.
