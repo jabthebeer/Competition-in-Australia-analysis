@@ -40,8 +40,10 @@ alicia spec run <id> [--stage NAME]    # run stages in order; report each output
 | `high-evaluability-batch` | `high_evaluability` | design (blinded), estimate, evaluation | 7 |
 | `wa-trading-hours-weeknight-2010-new-data` | `wa_weeknight_2010` | design, dry run, estimate, evaluation | 1 |
 | `childcare-nqf-wa-delay-2012` | `childcare_nqf_wa` | design, dry run, estimate, paths, evaluation | 1 |
-| `phase5-reevaluations` | `phase5` | design (blinded), dry run, estimate, post-hoc (not pre-registered), evaluation | 8 |
-| `phase5-new-families` | `phase5` | design (blinded), dry run, estimate, evaluation | 2 |
+| `phase5-reevaluations` | `phase5` | design (blinded), dry run, estimate, post-hoc, confounder scan and robustness (not pre-registered), table-stats, evaluation | 8 |
+| `phase5-new-families` | `phase5` | design (blinded), dry run, estimate, confounder scan and robustness (not pre-registered), table-stats, evaluation | 2 |
+
+**New specifications** should add the confounder scan as a blind design-stage output (`confounders.py --spec <id> --blind`, writing `confounders_blind.json`), so that concurrent changes are listed in the plan before the registered run ([`confounder_scan.md`](confounder_scan.md) §3).
 
 **The Phase 5 specifications are generic.** Their `cases` hold everything a design needs: records, cohorts, classes or CPI class, windows, the registered layer, check layers, placebo pools and grade caps. `analyses/phase5/run.py` builds every design from those cases alone, with no per-reform code. A new evaluation needs only a case in a specification and a plan.
 

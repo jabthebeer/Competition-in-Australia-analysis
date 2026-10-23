@@ -501,6 +501,7 @@ No detectable effect: business entry rate −0.3 per 100 businesses a year (p = 
 - What we found: no detectable change. Business entry rate: −0.3 per 100 businesses a year (90% interval −2.3 to +2.4; p = 0.85).
 - Other outcomes: business exit rate −1.9 (p = 0.049); child care: prices relative to the CPI +4.4 (p = 0.075). Secondary outcomes are outside the registered decision rule and not adjusted for testing several outcomes, so a p-value below 0.05 among them is a lead, not a finding.
 - How precise: only changes larger than about 6.0 per 100 businesses a year could have been detected.
+- Robustness (not pre-registered): across 9 variants (each state left out, other windows and pre-periods, weights and data vintages) the business entry rate estimate keeps its sign in 8, reaches p < 0.05 in 0, and ranges from −0.8 to +0.3.
 - Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate −0.3 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 6.0, down from 9.8. This evaluation uses the estimator chosen in the blinded power study and the latest data.
 - What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
 
@@ -599,6 +600,7 @@ No detectable effect: business entry rate −0.6 per 100 businesses a year (p = 
 - The estimators disagree: synthetic DiD gives −3.0, outside the registered layer's 90% interval, so the grade is Weak.
 - Other outcomes: business exit rate +0.0 (p = 0.88).
 - How precise: only changes larger than about 2.9 per 100 businesses a year could have been detected.
+- Robustness (not pre-registered): across 13 variants (each state left out, other windows and pre-periods, weights and data vintages) the business entry rate estimate keeps its sign in 12, reaches p < 0.05 in 0, and ranges from −1.3 to +0.0.
 - What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
 
 **What we did**
@@ -646,6 +648,7 @@ No detectable effect: automotive fuel: prices relative to the CPI −2.8% (log p
 - The estimators disagree: synthetic DiD gives +4.8, outside the registered layer's 90% interval, so the grade is Weak.
 - Other outcomes: business entry rate −0.2 (p = 0.85; not identified: a pre-reform year lies outside its placebo band); business exit rate −1.0 (p = 0.15).
 - How precise: only changes larger than about 6.7% relative to other prices could have been detected.
+- Robustness (not pre-registered): across 10 variants (each state left out, other windows and pre-periods) the automotive fuel: prices relative to the CPI estimate keeps its sign in 10, reaches p < 0.05 in 0, and ranges from −3.6 to −2.1.
 - What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
 
 **What we did**
@@ -692,6 +695,7 @@ No detectable effect: business entry rate +0.3 per 100 businesses a year (p = 0.
 - What we found: no detectable change. Business entry rate: +0.3 per 100 businesses a year (90% interval −1.7 to +2.8; p = 0.85).
 - Other outcomes: business exit rate −0.7 (p = 0.59).
 - How precise: only changes larger than about 4.4 per 100 businesses a year could have been detected.
+- Robustness (not pre-registered): across 13 variants (each state left out, other windows and pre-periods, weights and data vintages) the business entry rate estimate keeps its sign in 10, reaches p < 0.05 in 0, and ranges from −3.7 to +0.6.
 - Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate −2.2 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 4.4, down from 9.4. This evaluation uses the estimator chosen in the blinded power study and the latest data.
 - What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
 
@@ -739,6 +743,7 @@ No detectable effect: business entry rate −1.3 per 100 businesses a year (p = 
 - What we found: no detectable change. Business entry rate: −1.3 per 100 businesses a year (90% interval −4.3 to +0.8; p = 0.47).
 - Other outcomes: business exit rate −0.4 (p = 0.45).
 - How precise: only changes larger than about 4.5 per 100 businesses a year could have been detected.
+- Robustness (not pre-registered): across 13 variants (each state left out, other windows and pre-periods, weights and data vintages) the business entry rate estimate keeps its sign in 13, reaches p < 0.05 in 0, and ranges from −1.6 to −1.0.
 - Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate −1.6 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 4.5, down from 7.0. This evaluation uses the estimator chosen in the blinded power study and the latest data.
 - What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
 
@@ -786,6 +791,7 @@ Not identified: waters, soft drinks and juices: prices relative to the CPI +7.6%
 - What we found: the effect cannot be identified: a pre-reform year of the primary outcome lies outside its 95% placebo band, so the treated group was already moving apart before the reform. The registered layer's estimate (+7.6% relative to other prices) is not an effect.
 - Other outcomes: beer: prices relative to the CPI +4.8 (p = 0.44).
 - How precise: only changes larger than about 22.0% relative to other prices could have been detected.
+- Robustness (not pre-registered): across 9 variants (each state left out, other windows and pre-periods) the waters, soft drinks and juices: prices relative to the CPI estimate keeps its sign in 9, reaches p < 0.05 in 0, and ranges from +6.1 to +7.9.
 - Compared with the earlier evaluation (2026-10-15, now archived): it found that the effect could not be identified (waters, soft drinks and juices: prices relative to the CPI +8.7% (log points)). The conclusion is unchanged. This evaluation uses the estimator chosen in the blinded power study and the latest data.
 - What it means: these data cannot separate the reform from what was already happening.
 
@@ -832,6 +838,7 @@ Not identified: electricity: prices relative to the CPI +9.4% (log points) (p = 
 - The comparison: Electricity prices relative to the CPI in each deregulating capital against capitals whose prices stayed regulated (Hobart, Canberra, Perth, Darwin), with class x quarter and city x quarter effects. Retailer counts are too few to use.
 - What we found: the effect cannot be identified: a pre-reform year of the primary outcome lies outside its 95% placebo band, so the treated group was already moving apart before the reform. The registered layer's estimate (+9.4% relative to other prices) is not an effect.
 - How precise: only changes larger than about 9.1% relative to other prices could have been detected.
+- Robustness (not pre-registered): across 10 variants (each state left out, other windows and pre-periods) the electricity: prices relative to the CPI estimate keeps its sign in 10, reaches p < 0.05 in 8, and ranges from +6.4 to +11.6.
 - Compared with the earlier evaluation (2026-10-15, now archived): it found that the effect could not be identified (electricity: prices relative to the CPI +17.0% (log points)). The conclusion is unchanged; the smallest detectable effect is now 9.1, down from 9.5. This evaluation uses the estimator chosen in the blinded power study and the latest data.
 - What it means: these data cannot separate the reform from what was already happening.
 
@@ -879,6 +886,7 @@ Not identified: business entry rate −2.2 per 100 businesses a year (p = 0.17),
 - What we found: the effect cannot be identified: a pre-reform year of the primary outcome lies outside its 95% placebo band, so the treated group was already moving apart before the reform. The registered layer's estimate (−2.2 per 100 businesses a year) is not an effect.
 - Other outcomes: business exit rate −0.3 (p = 0.59); urban transport fares: prices relative to the CPI −0.3 (p = 0.85).
 - How precise: only changes larger than about 4.3 per 100 businesses a year could have been detected.
+- Robustness (not pre-registered): across 11 variants (each state left out, other windows and pre-periods, weights and data vintages) the business entry rate estimate keeps its sign in 9, reaches p < 0.05 in 1, and ranges from −4.5 to +2.8.
 - Compared with the earlier evaluation (2026-10-15, now archived): it found that the effect could not be identified (business entry rate +0.2 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 4.3, down from 6.0. This evaluation uses the estimator chosen in the blinded power study and the latest data.
 - What it means: these data cannot separate the reform from what was already happening.
 
@@ -927,6 +935,7 @@ No detectable effect: business entry rate −0.4 per 100 businesses a year (p = 
 - Other outcomes: business exit rate −1.9 (p = 0.049; not identified: a pre-reform year lies outside its placebo band); urban transport fares: prices relative to the CPI −10.6 (p = 0.024). Secondary outcomes are outside the registered decision rule and not adjusted for testing several outcomes, so a p-value below 0.05 among them is a lead, not a finding.
 - How precise: only changes larger than about 3.5 per 100 businesses a year could have been detected.
 - After unblinding (not pre-registered): the fall in Melbourne's urban transport fares came all at once in 2015-Q1 (−19.1 points in one quarter, about 12 times the usual quarterly move), not when the taxi reform started (2014-Q3: +0.1). January 2015 is when public transport fare changes were reported to start (zone 1+2 travel capped at the zone 1 fare; free CBD trams). The CPI class covers public transport fares as well as taxi fares, and a one-quarter step of this size looks like a fare-schedule change, not taxi competition building up; the fares result should not be read as an effect of the taxi reform.
+- Robustness (not pre-registered): across 10 variants (each state left out, other windows and pre-periods, weights and data vintages) the business entry rate estimate keeps its sign in 8, reaches p < 0.05 in 0, and ranges from −1.5 to +0.5.
 - Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate −1.4 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 3.5, down from 4.2. This evaluation uses the estimator chosen in the blinded power study and the latest data.
 - What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
 
@@ -974,6 +983,7 @@ No detectable effect: business entry rate +1.0 per 100 businesses a year (p = 0.
 - What we found: no detectable change. Business entry rate: +1.0 per 100 businesses a year (90% interval −1.9 to +3.5; p = 0.49).
 - Other outcomes: business exit rate +1.3 (p = 0.22).
 - How precise: only changes larger than about 4.6 per 100 businesses a year could have been detected.
+- Robustness (not pre-registered): across 10 variants (each state left out, other windows and pre-periods, weights and data vintages) the business entry rate estimate keeps its sign in 9, reaches p < 0.05 in 0, and ranges from −0.4 to +1.3.
 - Compared with the earlier evaluation (2026-10-15, now archived): it found no detectable effect (business entry rate +0.8 per 100 businesses a year). The conclusion is unchanged; the smallest detectable effect is now 4.6, down from 5.6. This evaluation uses the estimator chosen in the blinded power study and the latest data.
 - What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out.
 

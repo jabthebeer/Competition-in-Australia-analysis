@@ -6,7 +6,7 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 
 ## Status
 
-**Paused on 14 October 2026** (project owner's decision) while the econometric foundation in [`alicia/`](../alicia/) is built. The two projects will be folded together later.
+**Resumed on 22 October 2026** (owner decision; DECISIONS #80). After its pause on 14 October 2026, the calculator will be folded into the ALICIA website as the **Policy costing** tab, with a new productivity and competition engine beside the RBM engine (#81). The RBE itself is unchanged. Plan: [`docs/forward_plan_policy_costing.md`](../docs/forward_plan_policy_costing.md) (phases P0–P7).
 
 | Phase | Scope | Status |
 |---|---|---|
@@ -17,6 +17,10 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 | 3 | Framework completeness: screener UI, warnings UI, assumptions register UI, option comparison | Not started (the engine already supports these) |
 | 4 | Reporting (docx, xlsx, CSV, print) and sensitivity | Not started |
 | 5 | Validation against published Impact Analyses; accessibility audit; user guide | Not started |
+| Policy costing P0 | Productivity and competition costing ([plan](../docs/forward_plan_policy_costing.md)): decisions, the policy brief schema (`src/productivity/`), traceability | **Done** (22 Oct 2026) |
+| Policy costing P1 | Folded into the ALICIA website as the Policy costing tab (`npm run build:site`), with the site nav and theme; bundled costing parameters; daily data refresh in the Pages workflow | **Done** (22 Oct 2026) |
+| Policy costing P3 | Evidence library (`src/productivity/evidence/`): sourced defaults and ranges for every formula, a Sources and parameters page, and a review sheet for Cowork (`npm run evidence:sheet`) | **Done** (23 Oct 2026) |
+| Policy costing P2 | Parameter pipeline (`alicia costing-params`, in `alicia/`): 16 sources, bundled into the tab | **Done** (23 Oct 2026) |
 
 ## Running it
 
@@ -28,6 +32,7 @@ npm run dev              # the web app at http://localhost:5173 (development)
 npm run build            # static site in dist/ (adds the Content-Security-Policy)
 npm run preview          # serve the built site at http://localhost:4173
 npm run build:artifact   # one-file hosted test copy in dist-artifact/ (see below)
+npm run build:site       # the ALICIA website's Policy costing tab in dist-site/ (see below)
 
 npm test                 # unit tests (Vitest): engine and UI helpers
 npm run e2e              # end-to-end tests (Playwright) against the built site
@@ -44,9 +49,11 @@ npm run rbe -- examples/illustrative-reform.json --tidy out/tidy.csv   # analysi
 
 The built site in `dist/` is static: copy it to any web server or internal host. It makes no network requests (its security policy blocks them), stores proposals only in the browser (auto-save can be turned off) and in files the user downloads.
 
+`npm run build:site` builds the same app as the ALICIA website's **Policy costing** tab: `dist-site/costing.html` and `dist-site/costing-assets/`, with the same security policy and the ALICIA theme. `alicia site --costing ../regulatory-burden-tool/dist-site` (from `alicia/`) adds it to the website with the site navigation. The costing parameters in `data/processed/costing/parameters.json` (written by `alicia costing-params`) are bundled into every build. On the published website the Pages workflow refreshes them from the publishers' latest releases every day before building, so a new release reaches the tab without a code change.
+
 `npm run build:artifact` makes a single-file test copy for a hosted viewer: it opens on the illustrative example, shows a "test copy: illustrative or public information only" notice, and replaces the download button with "Copy this proposal as text" (the viewer blocks downloads). It omits the app's own security policy because the host applies its own. Don't use it for real proposals.
 
-Proposal files may be Cabinet-in-confidence. `.gitignore` keeps `*.rbm.json` and `*.proposal.json` out of the repository; only the synthetic files in `examples/` are tracked.
+Proposal files may be Cabinet-in-confidence. `.gitignore` keeps `*.rbm.json`, `*.proposal.json` and `*.brief.json` out of the repository; only the synthetic files in `examples/` are tracked.
 
 ## The web app (`src/ui/`)
 
@@ -74,6 +81,13 @@ The engine is pure TypeScript, with no UI, I/O, clock or randomness. The same in
 | `format.ts` | The framework's RBE table layout and number formats (brackets for negatives, `$0` for zero) |
 | `tidy.ts`, `extensions.ts` | Analysis-ready export with ABS-aligned identifiers, and the read-only interface for future modules |
 
+**The productivity and competition engine (`src/productivity/`).** It sits beside the engine and never changes the RBE (DECISIONS #81). So far it holds the input contract:
+- `brief.ts`: the policy brief schema v1 (the RBM proposal plus levers), its cross-checks and warnings PB-01 to PB-04;
+- `channels.ts`: channels C1–C12, shock types and the overlap rules;
+- `anzsic.ts`: ANZSIC division structure.
+
+An illustrative brief is in `examples/illustrative-licensing.brief.json`. The formulas arrive in P4 ([plan](../docs/forward_plan_policy_costing.md) §6).
+
 **Arithmetic.** All money arithmetic uses `decimal.js`, and results are exact decimal strings, so totals carry no floating-point residue. Rounding happens only when values are displayed.
 
 ### Building on it (competition costings and econometrics)
@@ -91,6 +105,7 @@ The tool does no econometrics itself (DECISIONS #44). Two hooks make that work e
 ## Documents
 
 - `docs/framework_traceability.md`: every framework rule, with its page reference, code location and test; ambiguities and the approved interpretations.
+- `docs/productivity_traceability.md`: every rule and formula of the productivity and competition costing, with its source, code and test (formulas due in P4 are specified before any code).
 - `docs/phase0_proposal.md`: data model, Phase 1 test list, feasibility issues.
 - `docs/oia_calculator_review.md`: review of OIA's official calculator workbook.
 - `docs/scope_expansion.md`: planning note on the CCA stocktake, cost–benefit and business dynamism modules.

@@ -113,6 +113,44 @@
       ]
     },
     {
+      "name": "confounders",
+      "kind": "post-hoc",
+      "script": "confounders.py",
+      "args": [
+        "--spec",
+        "phase5-new-families"
+      ],
+      "writes": [
+        "analyses/phase5/new_families/confounders.json"
+      ]
+    },
+    {
+      "name": "robustness",
+      "kind": "post-hoc",
+      "script": "robustness.py",
+      "args": [
+        "--spec",
+        "phase5-new-families",
+        "--workers",
+        "4"
+      ],
+      "writes": [
+        "analyses/phase5/new_families/robustness.json"
+      ]
+    },
+    {
+      "name": "table-stats",
+      "kind": "derived",
+      "script": "table_stats.py",
+      "args": [
+        "--spec",
+        "phase5-new-families"
+      ],
+      "writes": [
+        "analyses/phase5/new_families/table_stats.json"
+      ]
+    },
+    {
       "name": "evaluation",
       "kind": "evaluation",
       "script": "evaluations.py",

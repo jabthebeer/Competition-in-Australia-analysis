@@ -308,3 +308,108 @@ def test_archived_evaluations_are_never_current_and_optional_fields_are_left_out
 def test_an_evaluation_cannot_supersede_itself():
     with pytest.raises(ValidationError):
         Evaluation.model_validate(minimal(supersedes=["illustrative-eval"]))
+
+
+def test_results_tables_validate_widths_and_stars():
+    from alicia.register.evaluation import ResultsTable, stars
+
+    table = {
+        "id": "illustrative-table",
+        "title": "Illustrative",
+        "columns": [{"label": "A"}, {"label": "B"}],
+        "panels": [
+            {
+                "title": "Panel A",
+                "rows": [
+                    {"label": "β", "coefficients": [{"estimate": 1.0, "spread": 0.5, "p_value": 0.04}, None]},
+                    {"label": "N", "values": ["10", "12"]},
+                ],
+            }
+        ],
+        "spread_label": "Placebo standard deviation",
+    }
+    assert ResultsTable.model_validate(table).panels[0].rows[0].width == 2
+    bad = json.loads(json.dumps(table))
+    bad["panels"][0]["rows"][1]["values"] = ["10"]
+    with pytest.raises(ValidationError):
+        ResultsTable.model_validate(bad)
+    both = json.loads(json.dumps(table))
+    both["panels"][0]["rows"][1]["coefficients"] = [None, None]
+    with pytest.raises(ValidationError):
+        ResultsTable.model_validate(both)
+    assert [stars(p) for p in (0.005, 0.049, 0.05, 0.099, 0.1, None)] == ["***", "**", "*", "*", "", ""]
+
+
+def test_every_current_evaluation_has_a_regression_table():
+    from alicia.register.evaluation import archived
+
+    evs = load_evaluations().evaluations
+    gone = archived(evs)
+    for ev in evs:
+        if ev.id not in gone:
+            assert ev.tables, ev.id
+            registered = [c for t in ev.tables for p in t.panels for r in p.rows for c in r.coefficients if c]
+            assert registered, ev.id
+
+
+def test_phase5_tables_match_the_registered_run_and_samples():
+    from alicia.runner.spec import load
+
+    evs = {e.id: e for e in load_evaluations().evaluations}
+    for spec_id, folder in (("phase5-reevaluations", "reevaluations"), ("phase5-new-families", "new_families")):
+        base = ANALYSIS.parent / "phase5" / folder
+        est = {c["id"]: c for c in json.loads((base / "estimate.json").read_text(encoding="utf-8"))["cases"]}
+        stats = {c["id"]: c for c in json.loads((base / "table_stats.json").read_text(encoding="utf-8"))["cases"]}
+        for case in load(spec_id).cases:
+            table = evs[case["id"]].tables[0]
+            layers = ["twoway", "state_year", "saturated", "controls", "imputation", "sdid", "gsynth"]
+            feasible = [o for o in case["outcomes"] if est[case["id"]]["outcomes"][o["key"]]["feasible"]["ok"]]
+            assert len(table.panels) == len(feasible)
+            for o, panel in zip(feasible, table.panels, strict=True):
+                r = est[case["id"]]["outcomes"][o["key"]]
+                s = stats[case["id"]]["outcomes"][o["key"]]
+                assert s["reproduces"]
+                rows = {row.label: row for row in panel.rows}
+                coefs = rows["Reform × post (β)"].coefficients
+                for k, c in zip(layers, coefs, strict=True):
+                    lay = r["layers"][k]
+                    assert (c.estimate, c.spread, c.p_value) == (lay["estimate"], lay["placebo_sd"], lay["p"])
+                    assert c.registered == (k == o["layer"])
+                assert rows["Observations"].values == tuple(f"{s['layers'][k]['nobs']:,}" for k in layers)
+
+
+def test_tables_documents_are_up_to_date():
+    from alicia.register.catalogue import load_records
+    from alicia.register.tables import tables_latex, tables_markdown
+
+    evals = load_evaluations(load_records().records).evaluations
+    docs = Path(__file__).resolve().parents[2] / "docs"
+    hint = (
+        "regenerate with: uv run alicia tables -o ../docs/econometric_tables.md --latex ../docs/econometric_tables.tex"
+    )
+    assert (docs / "econometric_tables.md").read_text("utf-8") == tables_markdown(evals), hint
+    assert (docs / "econometric_tables.tex").read_text("utf-8") == tables_latex(evals), hint
+
+
+def test_phase5_robustness_reproduces_the_registered_run():
+    """The as-registered variant must equal estimate.json; the robustness table must show it, not pre-registered."""
+    from alicia.runner.spec import load
+
+    evs = {e.id: e for e in load_evaluations().evaluations}
+    for spec_id, folder in (("phase5-reevaluations", "reevaluations"), ("phase5-new-families", "new_families")):
+        base = ANALYSIS.parent / "phase5" / folder
+        est = {c["id"]: c for c in json.loads((base / "estimate.json").read_text(encoding="utf-8"))["cases"]}
+        rob = {c["id"]: c for c in json.loads((base / "robustness.json").read_text(encoding="utf-8"))["cases"]}
+        for case in load(spec_id).cases:
+            table = next(t for t in evs[case["id"]].tables if t.id.endswith("-robustness"))
+            assert "not pre-registered" in table.title
+            registered_row = table.panels[0].rows[0].coefficients
+            outs = [o for o in case["outcomes"] if o["key"] in rob[case["id"]]["outcomes"]]
+            for o, c in zip(outs, registered_row, strict=True):
+                reg = est[case["id"]]["outcomes"][o["key"]]["registered"]
+                v = rob[case["id"]]["outcomes"][o["key"]]["variants"][0]
+                assert v["label"] == "As registered"
+                # Placebos are re-estimated; the fixed-effects solver converges to a tolerance, so allow rounding.
+                assert (v["estimate"], v["p"]) == (reg["estimate"], reg["p"])
+                assert abs(v["placebo_sd"] - reg["placebo_sd"]) <= 0.002
+                assert c.estimate == reg["estimate"] and c.registered

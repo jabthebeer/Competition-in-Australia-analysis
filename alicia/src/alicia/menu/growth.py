@@ -42,6 +42,10 @@ PAGES = (
     ("growth.html", "State and industry growth"),
     ("conditions.html", "Economic conditions"),
 )
+# The Policy costing tab is built separately (Vite, `npm run build:site` in regulatory-burden-tool/) and added
+# to the site only when that build is given, so the nav never links to a missing page.
+COSTING_PAGE = ("costing.html", "Policy costing")
+COSTING_ASSETS = "costing-assets"
 GROWTH_NOTES = {
     "gva": (
         "Gross value added in chain volume terms from the State Accounts, 2024-25 release. "
@@ -293,22 +297,22 @@ def _asset(name: str) -> str:
     return resources.files("alicia.menu").joinpath(f"templates/{name}").read_text("utf-8")
 
 
-def nav(current: str) -> str:
+def nav(current: str, pages: tuple = PAGES) -> str:
     links = []
-    for href, label in PAGES:
+    for href, label in pages:
         attr = ' aria-current="page"' if href == current else ""
         links.append(f'<a href="{href}"{attr}>{label}</a>')
     return '<nav class="site-nav" aria-label="ALICIA pages">' + "".join(links) + "</nav>"
 
 
-def render(template: str, payload: dict, page: str, standalone: bool = False) -> str:
+def render(template: str, payload: dict, page: str, standalone: bool = False, pages: tuple = PAGES) -> str:
     """Fill a page template: shared styles and chart code, navigation, then the embedded data."""
     blob = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     html = (
         _asset(template)
         .replace("/*__SITE_CSS__*/", _asset("site.css"))
         .replace("/*__CHARTS_JS__*/", _asset("charts.js"))
-        .replace("<!--__NAV__-->", nav(page))
+        .replace("<!--__NAV__-->", nav(page, pages))
         .replace("__PAGE_DATA__", blob)
     )
     if standalone:
@@ -320,6 +324,30 @@ def render(template: str, payload: dict, page: str, standalone: bool = False) ->
     return html
 
 
+def build_costing(out_dir, dist, pages: tuple) -> list:
+    """Copy the Policy costing build (``dist``: costing.html and costing-assets/) into the site and fill in its nav.
+
+    The page keeps its own Content-Security-Policy (no network requests, DECISIONS #37 of the burden tool);
+    a build without it is refused, as is one without the navigation placeholder."""
+    import shutil
+    from pathlib import Path
+
+    out, dist = Path(out_dir), Path(dist)
+    html = (dist / COSTING_PAGE[0]).read_text("utf-8")
+    if html.count("<!--__NAV__-->") != 1:
+        raise ValueError(f"{dist / COSTING_PAGE[0]} needs exactly one <!--__NAV__--> placeholder")
+    if "connect-src 'none'" not in html:
+        raise ValueError(f"{dist / COSTING_PAGE[0]} has lost its Content-Security-Policy (connect-src 'none')")
+    top = f'<div class="alicia-site-top">{nav(COSTING_PAGE[0], pages)}</div>'
+    page = out / COSTING_PAGE[0]
+    page.write_text(html.replace("<!--__NAV__-->", top), encoding="utf-8")
+    assets = out / COSTING_ASSETS
+    if assets.exists():
+        shutil.rmtree(assets)
+    shutil.copytree(dist / COSTING_ASSETS, assets)
+    return [page, *sorted(p for p in assets.rglob("*") if p.is_file())]
+
+
 def build_site(
     out_dir,
     records: list[ChangeRecord],
@@ -327,14 +355,17 @@ def build_site(
     dates_report=None,
     standalone: bool = True,
     repo_base: str | None = None,
+    costing_dist=None,
 ) -> list:
-    """Write the legislation menu (index.html) and the two summary pages into ``out_dir``."""
+    """Write the legislation menu (index.html), the two summary pages and, given its build, the Policy costing
+    tab into ``out_dir``."""
     from pathlib import Path
 
     from .explorer import build_explorer
 
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
+    pages = PAGES + ((COSTING_PAGE,) if costing_dist else ())
     explorer_base = repo_base or None
     data_base = repo_base or REPO_MAIN
     written = [
@@ -345,17 +376,19 @@ def build_site(
             standalone=standalone,
             evaluations=evaluations,
             repo_base=explorer_base,
-            nav=nav("index.html"),
+            nav=nav("index.html", pages),
             evaluation_pages=True,
         )
     ]
     written += sorted(out.glob("evaluation-*.html"))
-    pages = (
+    summaries = (
         ("growth.html", growth_payload(data_base)),
         ("conditions.html", conditions_payload(records, evaluations, data_base)),
     )
-    for name, payload in pages:
+    for name, payload in summaries:
         path = out / name
-        path.write_text(render(name, payload, name, standalone), encoding="utf-8")
+        path.write_text(render(name, payload, name, standalone, pages), encoding="utf-8")
         written.append(path)
+    if costing_dist:
+        written += build_costing(out, costing_dist, pages)
     return written

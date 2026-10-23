@@ -10,7 +10,7 @@ const html = readFileSync(join(dir, "index.html"), "utf8");
 const css = [...html.matchAll(/<link rel="stylesheet"[^>]*href="\.\/([^"]+)"[^>]*>/g)].map((m) => readFileSync(join(dir, m[1]), "utf8"));
 const js = [...html.matchAll(/<script type="module"[^>]*src="\.\/([^"]+)"[^>]*><\/script>/g)].map((m) => readFileSync(join(dir, m[1]), "utf8"));
 if (js.length !== 1) throw new Error(`Expected one script, found ${js.length}`);
-const title = /<title>([^<]*)<\/title>/.exec(html)?.[1] ?? "Regulatory Burden Calculator";
+const title = /<title>([^<]*)<\/title>/.exec(html)?.[1] ?? "ALICIA Policy Costing";
 const page = [
   `<title>${title}</title>`,
   `<style>\n${css.join("\n")}\n</style>`,

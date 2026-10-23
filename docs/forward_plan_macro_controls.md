@@ -193,6 +193,8 @@ The single-state cases come after.
 
 ### Progress (18 October 2026)
 
+> **Paused, 22 October 2026** (owner decision, `alicia/DECISIONS.md` E-75). The retrospective evaluation programme is on hold while ALICIA builds a forward-looking policy-costing tab ([`forward_plan_policy_costing.md`](forward_plan_policy_costing.md)). Phases 6 and 7 below stop where they are.
+
 | Phase | State |
 |---|---|
 | 0. Decisions | Done (E-55) |

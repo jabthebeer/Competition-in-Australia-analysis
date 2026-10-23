@@ -1,6 +1,61 @@
+import { useEffect, useState } from "react";
 import { ENGINE_VERSION, PARAMETERS } from "../../engine/index";
 import { PageHeading } from "../App";
+import { loadCostingParameters, type CostingLoad } from "../costingData";
 import { HOSTED } from "../env";
+
+/** The publishers' releases bundled into this build for the productivity and competition costing. */
+function DataInThisBuild() {
+  const [load, setLoad] = useState<CostingLoad | null>(null);
+  useEffect(() => {
+    let live = true;
+    loadCostingParameters()
+      .then((l) => live && setLoad(l))
+      .catch((e: unknown) => live && setLoad({ ok: false, problem: String(e) }));
+    return () => {
+      live = false;
+    };
+  }, []);
+  if (!load) return <p>Loading the data list…</p>;
+  if (!load.ok) return <p>The bundled data file could not be read ({load.problem}).</p>;
+  const { sources, vintage } = load.parameters;
+  if (sources.length === 0) return <p>No published data is bundled in this build yet.</p>;
+  return (
+    <div className="table-wrap">
+      <table data-testid="data-vintages">
+        <caption>
+          Published data in this build{vintage ? ` (latest release ${vintage})` : ""}. On the ALICIA website these are checked against the publishers every day and refreshed when a new release appears.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Source</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">Release</th>
+            <th scope="col">Released</th>
+            <th scope="col">Next release</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sources.map((s) => (
+            <tr key={s.id}>
+              <th scope="row">
+                <a href={s.url} rel="noreferrer">
+                  {s.title}
+                </a>
+              </th>
+              <td>{s.publisher}</td>
+              <td>{s.release}</td>
+              <td className="date-cell">{s.release_date ?? "–"}</td>
+              <td className="date-cell">{s.next_release ?? "–"}</td>
+              <td>{s.status === "fallback" ? "Previous release kept (the latest check failed)" : "Current"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export function AboutPage() {
   const r = PARAMETERS.rates;
@@ -38,6 +93,13 @@ export function AboutPage() {
         <p>
           Forgone benefits of a lighter regulation (such as safety or consumer protection) are outside the framework. Discuss them in the Impact Analysis.
         </p>
+      </section>
+      <section aria-labelledby="costing-heading">
+        <h2 id="costing-heading">Productivity and competition costing</h2>
+        <p>
+          A second part, in development, turns a policy brief into estimated effects on productivity and competition, by channel and industry, with ranges, sources and an evidence grade. It sits outside the framework: the RBM excludes "changes to market structure and competition impacts" (p. 4), so it never changes the regulatory burden estimate.
+        </p>
+        <DataInThisBuild />
       </section>
       <section aria-labelledby="privacy-heading">
         <h2 id="privacy-heading">Your data</h2>

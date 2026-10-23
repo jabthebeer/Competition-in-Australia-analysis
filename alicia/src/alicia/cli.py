@@ -8,11 +8,14 @@ alicia dates <id>... | --all         gather effective dates and check them again
 alicia explorer [-o file.html]       build the interactive menu explorer (one HTML file)
 alicia site [-o dir]                 build the website: the menu plus the growth and conditions pages
 alicia methods [-o file.md]          key insights and econometric methods of every evaluation, as Markdown
+alicia tables [-o file.md] [--latex file.tex]   every evaluation's regression tables, as Markdown and LaTeX
 alicia pipeline build <source>...    build outcome panels in data/processed (see alicia.pipeline.sources)
 alicia pipeline catalogue            summarise every processed panel for coverage matching
 alicia data <id>                     which data panels can measure a change, at what industry and area level
 alicia spec list | show <id>         evaluation specifications (alicia/specs)
 alicia spec run <id> [--stage ...]   run a specification's stages and check outputs reproduce byte for byte
+alicia costing-params [--refresh] [--rebuild] [--strict] [--report file.md]   policy-costing parameters.json
+alicia costing-register [-o file.json]   the register as the Policy costing tab's reference class
 """
 
 from __future__ import annotations
@@ -211,6 +214,23 @@ def cmd_methods(args) -> int:
     return 0
 
 
+def cmd_tables(args) -> int:
+    from .register.tables import tables_latex, tables_markdown
+
+    records = _load(args)
+    evals = load_evaluations(records, Path(args.evaluations) if args.evaluations else None).evaluations
+    text = tables_markdown(evals)
+    if args.output:
+        Path(args.output).write_text(text, encoding="utf-8")
+        print(f"Wrote {args.output}")
+    else:
+        print(text)
+    if args.latex:
+        Path(args.latex).write_text(tables_latex(evals), encoding="utf-8")
+        print(f"Wrote {args.latex}")
+    return 0
+
+
 def cmd_site(args) -> int:
     from .menu.growth import build_site
 
@@ -225,6 +245,7 @@ def cmd_site(args) -> int:
         dates_report=Path(args.dates) if args.dates else None,
         standalone=not args.fragment,
         repo_base=args.repo_base,
+        costing_dist=Path(args.costing) if args.costing else None,
     )
     for p in paths:
         print(f"Wrote {p}")
@@ -332,6 +353,26 @@ def cmd_spec(args) -> int:
     return 0 if ok else 1
 
 
+def cmd_costing_params(args) -> int:
+    from .costing import params
+
+    return params.run(
+        refresh=args.refresh, rebuild=args.rebuild, strict=args.strict, report=args.report, only=args.source or None
+    )
+
+
+def cmd_costing_register(args) -> int:
+    from .costing import register
+
+    records = _load(args)
+    evals = load_evaluations(records, Path(args.evaluations) if args.evaluations else None)
+    if evals.problems:
+        print(f"{len(evals.problems)} problem(s) in the evaluations; run 'alicia validate'.", file=sys.stderr)
+    path = register.write(records, evals.evaluations, Path(args.output) if args.output else None)
+    print(f"Wrote {path}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(
         prog="alicia", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -380,11 +421,21 @@ def main(argv: list[str] | None = None) -> int:
     si.add_argument("--dates", help="a report from 'alicia dates --all --json', to show register checks")
     si.add_argument("--fragment", action="store_true", help="write page fragments instead of full HTML documents")
     si.add_argument("--repo-base", default=None, help="URL that repository paths are linked under")
+    si.add_argument(
+        "--costing",
+        default=None,
+        help="the Policy costing build to add (regulatory-burden-tool/dist-site, from 'npm run build:site')",
+    )
     si.set_defaults(func=cmd_site)
 
     me = sub.add_parser("methods", help="key insights and methods of every evaluation, as Markdown")
     me.add_argument("-o", "--output", help="file to write (default: print)")
     me.set_defaults(func=cmd_methods)
+
+    ta = sub.add_parser("tables", help="every evaluation's regression tables, as Markdown (and LaTeX)")
+    ta.add_argument("-o", "--output", help="Markdown file to write (default: print)")
+    ta.add_argument("--latex", help="also write the tables as LaTeX to this file")
+    ta.set_defaults(func=cmd_tables)
 
     pl = sub.add_parser("pipeline", help="build outcome panels and the coverage catalogue")
     pl.add_argument("action", choices=["build", "catalogue"])
@@ -405,6 +456,18 @@ def main(argv: list[str] | None = None) -> int:
         help="run the registered estimate even if design outputs are not committed (for checks only)",
     )
     sp.set_defaults(func=cmd_spec)
+
+    cp = sub.add_parser("costing-params", help="merge (and refresh) the policy-costing parameters.json")
+    cp.add_argument("--refresh", action="store_true", help="download and rebuild sources with a newer release")
+    cp.add_argument("--rebuild", action="store_true", help="rebuild sources whose raw files are present locally")
+    cp.add_argument("--strict", action="store_true", help="exit non-zero if any source fails or is missing")
+    cp.add_argument("--report", help="write a Markdown summary of the run to this file")
+    cp.add_argument("--source", action="append", help="limit the refresh or rebuild to this source (repeatable)")
+    cp.set_defaults(func=cmd_costing_params)
+
+    cr = sub.add_parser("costing-register", help="export the register for the Policy costing tab")
+    cr.add_argument("-o", "--output", help="file to write (default: data/processed/costing/register.json)")
+    cr.set_defaults(func=cmd_costing_register)
 
     args = p.parse_args(argv)
     return args.func(args)

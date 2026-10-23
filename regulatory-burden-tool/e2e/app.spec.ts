@@ -226,7 +226,7 @@ test("T-E2E-07 privacy: no requests leave the app, and the security policy block
 
 test("T-E2E-08 accessibility: axe finds no WCAG 2.2 A/AA violations on any page", async ({ page }) => {
   await loadExample(page);
-  for (const route of ["proposal", "current", "options", "results", "data", "about"]) {
+  for (const route of ["proposal", "current", "options", "results", "data", "sources", "about"]) {
     await page.goto(`/#${route}`);
     await page.locator("main h1").waitFor();
     const r = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();

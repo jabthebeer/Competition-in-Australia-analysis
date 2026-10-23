@@ -15,6 +15,7 @@ from pathlib import Path
 from .. import anzsic
 from ..register.evaluation import CATEGORY_LABELS, Evaluation, archived, current_evaluation
 from ..register.schema import CHANNEL_LABELS, ChangeRecord
+from ..register.tables import table_latex
 from ..timing import fy_bounds, timing
 from .screen import COVID_FYS, DEFAULT_COVERAGE, screen_all
 
@@ -209,6 +210,7 @@ def build_payload(
         "covidFys": [min(COVID_FYS), max(COVID_FYS)],
         "evaluations": {ev.id: ev.model_dump(mode="json") for ev in evaluations},
         "archived": archived(evaluations),
+        "tablesTex": {t.id: table_latex(t) for ev in evaluations for t in ev.tables},
         "categoryLabels": CATEGORY_LABELS,
         "repoBase": repo_base or REPO_BASE,
         "evaluationNote": EVALUATION_NOTE,
@@ -250,9 +252,11 @@ def single_payload(payload: dict, evaluation_id: str) -> dict:
         k for k, v in evs.items() if v.get("follows") == evaluation_id or evaluation_id in v.get("supersedes", ())
     }
     keep = set(ev["records"])
+    tables = {t["id"] for k in linked if k in evs for t in evs[k].get("tables", ())}
     return payload | {
         "records": [r for r in payload["records"] if r["id"] in keep],
         "evaluations": {k: v for k, v in evs.items() if k in linked},
+        "tablesTex": {k: v for k, v in payload.get("tablesTex", {}).items() if k in tables},
         "single": evaluation_id,
         "evalPages": True,
     }

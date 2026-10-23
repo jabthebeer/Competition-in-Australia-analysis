@@ -1,0 +1,48 @@
+/* ALICIA website theme. Applies only on the site's Policy costing tab (<html data-site="alicia">, set by
+   scripts/build-site.mjs). It maps the app's tokens to the ALICIA palette (alicia/src/alicia/menu/templates/site.css)
+   and styles the site navigation that `alicia site` inserts above the app. The app stays light-themed (DECISIONS #67).
+   System fonts only: the page's CSP blocks web fonts from other hosts. */
+:root[data-site="alicia"] {
+  --ink: #1b1c1a;
+  --ink-2: #52514e;
+  --page: #f4f4f0;
+  --surface: #fcfcfb;
+  --accent: #1d5c57;
+  --accent-soft: #e2edeb;
+  --site-line: #e1e0d9;
+  font-family: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+:root[data-site="alicia"] body {
+  background: var(--page);
+}
+
+.alicia-site-top {
+  background: var(--surface);
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--site-line, #e1e0d9);
+}
+
+.alicia-site-top .site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.alicia-site-top .site-nav a {
+  padding: 8px 12px;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.alicia-site-top .site-nav a:hover {
+  color: var(--ink);
+}
+
+.alicia-site-top .site-nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}

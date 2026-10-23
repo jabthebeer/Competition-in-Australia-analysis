@@ -1,12 +1,21 @@
 # Builds the ALICIA website from the register and the processed panels, and publishes it with GitHub Pages:
-# index.html (legislation menu), growth.html (state and industry growth), conditions.html (economic conditions).
+# index.html (legislation menu), growth.html (state and industry growth), conditions.html (economic conditions)
+# and costing.html (the Policy costing tab, built from regulatory-burden-tool/).
 # One-time setup: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
-# The page is then at https://<owner>.github.io/<repository>/ and is rebuilt on every push to main.
+# The page is then at https://<owner>.github.io/<repository>/. It is rebuilt on every push to main and once a
+# day, when the costing data is checked against the publishers' latest releases: a new release (for example
+# the ABS national accounts) reaches the Policy costing tab on the next daily run, with no code change.
+# The costing page makes no network requests itself (its security policy blocks them), so the refreshed data
+# is bundled into it at build time. The refreshed files are kept with each run as the "costing-data" artifact;
+# the committed snapshot in data/processed/costing/ is updated by running `alicia costing-params --refresh`.
 name: Publish the ALICIA website
 
 on:
   push:
     branches: [main]
+  schedule:
+    # Daily at 02:17 UTC: after the ABS's 11:30 am Canberra-time releases, in both AEST and AEDT.
+    - cron: "17 2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -24,15 +33,46 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
-      - name: Check the register and build the pages
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: regulatory-burden-tool/package-lock.json
+      - name: Check the register and the Python toolkit
         working-directory: alicia
         run: |
           uv sync --frozen
           uv run pytest -q
           uv run alicia validate
+      - name: Refresh the costing data from the publishers' latest releases
+        working-directory: alicia
+        run: |
+          # A source that can't be reached keeps its committed release and is marked "fallback";
+          # the summary of what changed goes to this run's summary page.
+          uv run alicia costing-params --refresh --report "$RUNNER_TEMP/costing-refresh.md"
+          cat "$RUNNER_TEMP/costing-refresh.md" >> "$GITHUB_STEP_SUMMARY"
+          uv run alicia costing-register
+      - name: Check and build the Policy costing tab
+        working-directory: regulatory-burden-tool
+        run: |
+          npm ci
+          npm run check
+          npm run build:site
+      - name: Build the pages
+        working-directory: alicia
+        run: |
           dates="$(ls ../regulation-register/reports/effective_dates_*.json | sort | tail -n 1)"
           uv run alicia site -o ../site --dates "$dates" \
-            --repo-base "https://github.com/${{ github.repository }}/blob/${{ github.sha }}/"
+            --repo-base "https://github.com/${{ github.repository }}/blob/${{ github.sha }}/" \
+            --costing ../regulatory-burden-tool/dist-site
+      - name: Keep the costing data used for this build
+        uses: actions/upload-artifact@v4
+        with:
+          name: costing-data
+          path: |
+            data/processed/costing/
+            data/manifests/
+          if-no-files-found: ignore
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

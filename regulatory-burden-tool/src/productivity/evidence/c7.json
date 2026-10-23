@@ -1,0 +1,65 @@
+{
+  "channel": "C7",
+  "entries": [
+    {
+      "id": "c7.beta.eg2016",
+      "formula": "F-C7-01",
+      "parameter": "beta",
+      "channel": "C7",
+      "label": "Long-run effect of the ETCR indicator on (Harrod-neutral) multifactor productivity",
+      "value": -0.047,
+      "low": -0.047,
+      "high": -0.037,
+      "units": "change in ln MFP per index point of ETCR (0–6 scale)",
+      "rangeBasis": "source",
+      "country": "OECD (32–34 countries, 1985–2013)",
+      "method": "correlational",
+      "grade": "C",
+      "tag": "P",
+      "citation": {
+        "authors": "Balázs Égert and Peter Gal",
+        "year": 2016,
+        "title": "The quantification of structural reforms in OECD countries: A new framework",
+        "publisher": "OECD Economics Department Working Papers No. 1354, ECO/WKP(2016)78",
+        "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2017/02/the-quantification-of-structural-reforms-in-oecd-countries_b5d58c7d/2d887027-en.pdf",
+        "locator": "Table 1, row 'ETCR aggregate', columns (1) and (3), p. 10 (PDF p. 11); simulation column, note to Figure 1, p. 15; caveat, para. 10, p. 8",
+        "version": "DOI 10.1787/2d887027-en"
+      },
+      "quote": "ETCR aggregate -0.037** -0.047** -0.035** -0.025** … The estimates for the long- and short run effects of the policies and the convergence parameters are taken from column 3 of Table 1 and Table A4.1 for MFP … overall ETCR and barriers to entry have large standard errors for the full sample.",
+      "derivation": "Value = column (3), the column the paper uses in its simulations (−0.047). Low and high = columns (3) and (1), the two MFP specifications with ETCR aggregate (−0.047 and −0.037).",
+      "isDefault": true,
+      "notes": "Both columns have country fixed effects only. With year fixed effects (column 2) the aggregate ETCR is not significant and only public ownership is (−0.027); the paper notes the large standard errors. ETCR covers energy, transport and communications only (A-P07). The paper's MFP is Harrod-neutral (labour-augmenting), so a shock built from this coefficient enters Layer B as labour-augmenting, or times (1 − α) if entered as Hicks-neutral (A-P18). Time path: entries layer-b.five-year-share.eg2016 and layer-b.ecm-mfp.eg2016.",
+      "review": { "status": "draft" }
+    },
+    {
+      "id": "c7.beta-ky.eg2016",
+      "formula": "F-C7-02",
+      "parameter": "betaKY",
+      "channel": "C7",
+      "label": "Long-run effect of the ETCR indicator on the capital–output ratio",
+      "value": -0.03,
+      "low": -0.035,
+      "high": -0.025,
+      "units": "change in ln(K/Y) per index point of ETCR (0–6 scale)",
+      "rangeBasis": "source",
+      "country": "OECD (31–32 countries, 1985–2013)",
+      "method": "correlational",
+      "grade": "C",
+      "tag": "P",
+      "citation": {
+        "authors": "Balázs Égert and Peter Gal",
+        "year": 2016,
+        "title": "The quantification of structural reforms in OECD countries: A new framework",
+        "publisher": "OECD Economics Department Working Papers No. 1354, ECO/WKP(2016)78",
+        "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2017/02/the-quantification-of-structural-reforms-in-oecd-countries_b5d58c7d/2d887027-en.pdf",
+        "locator": "Table 1, row 'ETCR aggregate', columns (4) and (5), p. 10 (PDF p. 11); para. 13, p. 9 (PDF p. 10)",
+        "version": "DOI 10.1787/2d887027-en"
+      },
+      "quote": "ETCR aggregate -0.037** -0.047** -0.035** -0.025** … Product market regulation, measured by the ETCR indicator, shows a fairly robust negative relationship with the capital stock series.",
+      "derivation": "Low and high = the two capital-deepening specifications, columns (4) and (5) (−0.035 and −0.025); value = their midpoint (−0.030), because the paper does not say which column its simulations use.",
+      "isDefault": true,
+      "notes": "Both columns have country and year fixed effects; column (5) adds labour market policies. K/Y enters GDP per head through α/(1 − α) in the paper's aggregation (α = 0.33).",
+      "review": { "status": "draft" }
+    }
+  ]
+}

@@ -32,6 +32,7 @@
     "The estimators disagree: synthetic DiD gives −3.0, outside the registered layer's 90% interval, so the grade is Weak.",
     "Other outcomes: business exit rate +0.0 (p = 0.88).",
     "How precise: only changes larger than about 2.9 per 100 businesses a year could have been detected.",
+    "Robustness (not pre-registered): across 13 variants (each state left out, other windows and pre-periods, weights and data vintages) the business entry rate estimate keeps its sign in 12, reaches p < 0.05 in 0, and ranges from −1.3 to +0.0.",
     "What it means: no effect is detectable with public state-level data; an effect smaller than the detectable size cannot be ruled out."
   ],
   "method": {
@@ -297,6 +298,7 @@
   ],
   "caveats": [
     "Synthetic DiD (a check layer) lies outside the registered layer's 90% interval",
+    "Confounder scan (not pre-registered; docs/confounder_scan.md): other register changes in the same states and industries: Design and Building Practitioners Act registration scheme (NSW) (2021-07-01, treated state, medium); Professional engineers registration scheme (Victoria) (2021-07-01, treated state, medium). Timing: no treated series moved most away from the reform period.",
     "First evaluation of a draft register family: dates and industries are not yet checked by a person."
   ],
   "documents": [
@@ -515,6 +517,795 @@
       "p_value": 0.6585,
       "mde_80": 6.763,
       "registered": false
+    }
+  ],
+  "tables": [
+    {
+      "id": "e-conveyancing-2018-2023-estimators",
+      "title": "Mandatory electronic conveyancing (NSW 2018, WA 2018, VIC 2019, SA 2020, QLD 2023)",
+      "columns": [
+        {
+          "label": "Two-way FE",
+          "group": "Fixed effects"
+        },
+        {
+          "label": "State × period FE",
+          "group": "Fixed effects"
+        },
+        {
+          "label": "Saturated FE",
+          "group": "Fixed effects"
+        },
+        {
+          "label": "Two-way + controls",
+          "group": "Fixed effects"
+        },
+        {
+          "label": "Imputation",
+          "group": "Fixed effects"
+        },
+        {
+          "label": "Synthetic DiD",
+          "group": "Synthetic comparison"
+        },
+        {
+          "label": "Generalised SC",
+          "group": "Synthetic comparison"
+        }
+      ],
+      "panels": [
+        {
+          "title": "Panel A. Business entry rate, per 100 businesses a year (primary outcome; 5 treated cells)",
+          "rows": [
+            {
+              "label": "Reform × post (β)",
+              "coefficients": [
+                {
+                  "estimate": -3.002,
+                  "spread": 4.08,
+                  "p_value": 0.3659,
+                  "registered": false
+                },
+                {
+                  "estimate": -3.028,
+                  "spread": 4.092,
+                  "p_value": 0.3415,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.584,
+                  "spread": 1.032,
+                  "p_value": 0.5366,
+                  "registered": true
+                },
+                {
+                  "estimate": -3.047,
+                  "spread": 4.082,
+                  "p_value": 0.3415,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.624,
+                  "spread": 1.187,
+                  "p_value": 0.5366,
+                  "registered": false
+                },
+                {
+                  "estimate": -2.95,
+                  "spread": 3.67,
+                  "p_value": 0.3171,
+                  "registered": false
+                },
+                {
+                  "estimate": -1.722,
+                  "spread": 9.512,
+                  "p_value": 0.6098,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Observations",
+              "coefficients": [],
+              "values": [
+                "46,506",
+                "46,506",
+                "46,506",
+                "46,506",
+                "46,506",
+                "82,209",
+                "82,209"
+              ]
+            },
+            {
+              "label": "Units (cells)",
+              "coefficients": [],
+              "values": [
+                "3,404",
+                "3,404",
+                "3,404",
+                "3,404",
+                "3,404",
+                "6,114",
+                "6,114"
+              ]
+            },
+            {
+              "label": "Placebo groups",
+              "coefficients": [],
+              "values": [
+                "40",
+                "40",
+                "40",
+                "40",
+                "40",
+                "40",
+                "40"
+              ]
+            },
+            {
+              "label": "MDE (80% power)",
+              "coefficients": [],
+              "values": [
+                "11.43",
+                "11.46",
+                "2.89",
+                "11.44",
+                "3.33",
+                "10.28",
+                "26.65"
+              ]
+            },
+            {
+              "label": "Pre-reform mean, treated",
+              "coefficients": [],
+              "values": [
+                "9.62",
+                "9.62",
+                "9.62",
+                "9.62",
+                "9.62",
+                "9.62",
+                "9.62"
+              ]
+            },
+            {
+              "label": "Pre-trend test (k ≤ −2)",
+              "coefficients": [],
+              "values": [
+                null,
+                null,
+                "Pass",
+                null,
+                null,
+                null,
+                null
+              ]
+            },
+            {
+              "label": "BH q-value",
+              "coefficients": [],
+              "values": [
+                null,
+                null,
+                "0.537",
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Panel B. Business exit rate, per 100 businesses a year (secondary outcome; 5 treated cells)",
+          "rows": [
+            {
+              "label": "Reform × post (β)",
+              "coefficients": [
+                {
+                  "estimate": 0.022,
+                  "spread": 2.087,
+                  "p_value": 1.0,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.006,
+                  "spread": 2.096,
+                  "p_value": 1.0,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.048,
+                  "spread": 0.628,
+                  "p_value": 0.878,
+                  "registered": true
+                },
+                {
+                  "estimate": 0.012,
+                  "spread": 2.088,
+                  "p_value": 1.0,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.004,
+                  "spread": 0.851,
+                  "p_value": 1.0,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.017,
+                  "spread": 2.233,
+                  "p_value": 0.9756,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.678,
+                  "spread": 2.414,
+                  "p_value": 0.6585,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Observations",
+              "coefficients": [],
+              "values": [
+                "46,506",
+                "46,506",
+                "46,506",
+                "46,506",
+                "46,506",
+                "82,209",
+                "82,209"
+              ]
+            },
+            {
+              "label": "Units (cells)",
+              "coefficients": [],
+              "values": [
+                "3,404",
+                "3,404",
+                "3,404",
+                "3,404",
+                "3,404",
+                "6,114",
+                "6,114"
+              ]
+            },
+            {
+              "label": "Placebo groups",
+              "coefficients": [],
+              "values": [
+                "40",
+                "40",
+                "40",
+                "40",
+                "40",
+                "40",
+                "40"
+              ]
+            },
+            {
+              "label": "MDE (80% power)",
+              "coefficients": [],
+              "values": [
+                "5.85",
+                "5.87",
+                "1.76",
+                "5.85",
+                "2.38",
+                "6.25",
+                "6.76"
+              ]
+            },
+            {
+              "label": "Pre-reform mean, treated",
+              "coefficients": [],
+              "values": [
+                "7.82",
+                "7.82",
+                "7.82",
+                "7.82",
+                "7.82",
+                "7.82",
+                "7.82"
+              ]
+            },
+            {
+              "label": "Pre-trend test (k ≤ −2)",
+              "coefficients": [],
+              "values": [
+                null,
+                null,
+                "Pass",
+                null,
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        }
+      ],
+      "footer": [
+        {
+          "label": "Cell FE",
+          "coefficients": [],
+          "values": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+          ]
+        },
+        {
+          "label": "Period FE",
+          "coefficients": [],
+          "values": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+          ]
+        },
+        {
+          "label": "Class × period FE",
+          "coefficients": [],
+          "values": [
+            "No",
+            "No",
+            "Yes",
+            "No",
+            "Yes",
+            "No",
+            "No"
+          ]
+        },
+        {
+          "label": "State × period FE",
+          "coefficients": [],
+          "values": [
+            "No",
+            "Yes",
+            "Yes",
+            "No",
+            "Yes",
+            "No",
+            "No"
+          ]
+        },
+        {
+          "label": "Measured state controls",
+          "coefficients": [],
+          "values": [
+            "No",
+            "No",
+            "No",
+            "Yes",
+            "No",
+            "No",
+            "No"
+          ]
+        },
+        {
+          "label": "Synthetic weights",
+          "coefficients": [],
+          "values": [
+            "No",
+            "No",
+            "No",
+            "No",
+            "No",
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "label": "Interactive FE (factors)",
+          "coefficients": [],
+          "values": [
+            "No",
+            "No",
+            "No",
+            "No",
+            "No",
+            "No",
+            "Yes"
+          ]
+        }
+      ],
+      "spread_label": "Placebo standard deviation",
+      "notes": [
+        "Panels A and B: entries and exits per 100 businesses operating at the start of the financial year, ANZSIC class × state, weighted by those businesses; 2009-10 to 2024-25 (16 periods), 431 classes, 8 states.",
+        "Each column applies one estimator to the same panel. β is the average effect on the reform's classes in treated states (cities) over the window, net of the mean of the same estimator across the placebo groups. Columns (6) and (7) compare the treated group's average with reweighted untreated cells over each cohort's window; their observations and units are summed over cohorts.",
+        "The placebo standard deviation is the spread of the same estimator across up to 40 placebo industry groups (or CPI classes) given the reform's states and dates: the randomization-inference analogue of a standard error. p-values rank the estimate among the centred placebo estimates; with 40 placebos the smallest attainable is about 0.024, so *** cannot occur. Clustered standard errors are not reported: with seven or eight states they are unreliable, and the registered inference uses placebos.",
+        "MDE: the smallest effect detectable with 80% power at the 5% level (2.8 × the placebo standard deviation). Placebo groups: placebo industry groups (business outcomes) or CPI classes (prices). Pre-trend test: every event-study coefficient with k ≤ −2 (saturated model, net of the placebo mean) lies inside its 95% placebo band; a failure means the outcome is not identified. BH q-value: Benjamini–Hochberg across the specification's primary outcomes.",
+        "Source: alicia/analyses/phase5/new_families/estimate.json (registered run, 18 October 2026) and table_stats.json (samples, re-fitted to check every estimate reproduces)."
+      ]
+    },
+    {
+      "id": "e-conveyancing-2018-2023-robustness",
+      "title": "Mandatory electronic conveyancing (NSW 2018, WA 2018, VIC 2019, SA 2020, QLD 2023): robustness (not pre-registered)",
+      "columns": [
+        {
+          "label": "Entry rate",
+          "group": "Primary"
+        },
+        {
+          "label": "Exit rate",
+          "group": "Secondary"
+        }
+      ],
+      "panels": [
+        {
+          "title": "Panel A. As registered",
+          "rows": [
+            {
+              "label": "As registered",
+              "coefficients": [
+                {
+                  "estimate": -0.584,
+                  "spread": 1.032,
+                  "p_value": 0.5366,
+                  "registered": true
+                },
+                {
+                  "estimate": 0.048,
+                  "spread": 0.628,
+                  "p_value": 0.878,
+                  "registered": true
+                }
+              ],
+              "values": []
+            }
+          ]
+        },
+        {
+          "title": "Panel B. Leave one state out",
+          "rows": [
+            {
+              "label": "Without ACT",
+              "coefficients": [
+                {
+                  "estimate": -0.59,
+                  "spread": 1.059,
+                  "p_value": 0.5122,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.155,
+                  "spread": 0.648,
+                  "p_value": 0.7561,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Without NSW",
+              "coefficients": [
+                {
+                  "estimate": -1.282,
+                  "spread": 1.652,
+                  "p_value": 0.3171,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.235,
+                  "spread": 0.611,
+                  "p_value": 0.7317,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Without NT",
+              "coefficients": [
+                {
+                  "estimate": -0.546,
+                  "spread": 1.052,
+                  "p_value": 0.6341,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.091,
+                  "spread": 0.607,
+                  "p_value": 0.7805,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Without QLD",
+              "coefficients": [
+                {
+                  "estimate": -0.462,
+                  "spread": 0.918,
+                  "p_value": 0.5122,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.102,
+                  "spread": 0.627,
+                  "p_value": 0.9512,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Without SA",
+              "coefficients": [
+                {
+                  "estimate": -0.648,
+                  "spread": 1.111,
+                  "p_value": 0.5366,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.173,
+                  "spread": 0.68,
+                  "p_value": 0.7317,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Without TAS",
+              "coefficients": [
+                {
+                  "estimate": -0.624,
+                  "spread": 1.118,
+                  "p_value": 0.561,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.068,
+                  "spread": 0.645,
+                  "p_value": 0.8293,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Without VIC",
+              "coefficients": [
+                {
+                  "estimate": -0.269,
+                  "spread": 0.789,
+                  "p_value": 0.6341,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.252,
+                  "spread": 0.814,
+                  "p_value": 0.6829,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Without WA",
+              "coefficients": [
+                {
+                  "estimate": -0.455,
+                  "spread": 1.182,
+                  "p_value": 0.7561,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.054,
+                  "spread": 0.696,
+                  "p_value": 0.9756,
+                  "registered": false
+                }
+              ],
+              "values": []
+            }
+          ]
+        },
+        {
+          "title": "Panel C. Window and pre-period",
+          "rows": [
+            {
+              "label": "First exposed year only",
+              "coefficients": [
+                {
+                  "estimate": 0.026,
+                  "spread": 0.728,
+                  "p_value": 1.0,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.034,
+                  "spread": 0.619,
+                  "p_value": 0.9512,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Last year dropped",
+              "coefficients": [
+                {
+                  "estimate": -0.116,
+                  "spread": 0.654,
+                  "p_value": 0.7805,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.042,
+                  "spread": 0.69,
+                  "p_value": 0.9268,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Pre-period from 2013-14",
+              "coefficients": [
+                {
+                  "estimate": -0.741,
+                  "spread": 1.123,
+                  "p_value": 0.3902,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.088,
+                  "spread": 0.548,
+                  "p_value": 0.878,
+                  "registered": false
+                }
+              ],
+              "values": []
+            }
+          ]
+        },
+        {
+          "title": "Panel D. Weights and data",
+          "rows": [
+            {
+              "label": "Unweighted cells",
+              "coefficients": [
+                {
+                  "estimate": -0.422,
+                  "spread": 1.378,
+                  "p_value": 0.7317,
+                  "registered": false
+                },
+                {
+                  "estimate": -0.656,
+                  "spread": 1.22,
+                  "p_value": 0.3659,
+                  "registered": false
+                }
+              ],
+              "values": []
+            },
+            {
+              "label": "Other CABEE vintages",
+              "coefficients": [
+                {
+                  "estimate": -0.42,
+                  "spread": 0.91,
+                  "p_value": 0.5366,
+                  "registered": false
+                },
+                {
+                  "estimate": 0.122,
+                  "spread": 0.664,
+                  "p_value": 0.7805,
+                  "registered": false
+                }
+              ],
+              "values": []
+            }
+          ]
+        },
+        {
+          "title": "Panel E. Diagnostics",
+          "rows": [
+            {
+              "label": "Variants with the registered sign",
+              "coefficients": [],
+              "values": [
+                "12 of 13",
+                "8 of 13"
+              ]
+            },
+            {
+              "label": "Variants with p < 0.05",
+              "coefficients": [],
+              "values": [
+                "0 of 13",
+                "0 of 13"
+              ]
+            },
+            {
+              "label": "Range across variants",
+              "coefficients": [],
+              "values": [
+                "−1.3 to +0.0",
+                "−0.7 to +0.2"
+              ]
+            },
+            {
+              "label": "Pre-trend breakdown M̄",
+              "coefficients": [],
+              "values": [
+                "0.24",
+                "0.07"
+              ]
+            },
+            {
+              "label": "Identified set at M̄ = 1",
+              "coefficients": [],
+              "values": [
+                "[−4.3, +2.6]",
+                "[−1.9, +1.7]"
+              ]
+            },
+            {
+              "label": "Synthetic DiD pre-fit ratio",
+              "coefficients": [],
+              "values": [
+                "0.05",
+                null
+              ]
+            },
+            {
+              "label": "Synthetic DiD effective controls",
+              "coefficients": [],
+              "values": [
+                "873 of 1222",
+                null
+              ]
+            }
+          ]
+        }
+      ],
+      "footer": [
+        {
+          "label": "Estimator (registered layer)",
+          "coefficients": [],
+          "values": [
+            "Saturated fixed effects",
+            "Saturated fixed effects"
+          ]
+        },
+        {
+          "label": "Placebos re-estimated per variant",
+          "coefficients": [],
+          "values": [
+            "Yes",
+            "Yes"
+          ]
+        }
+      ],
+      "spread_label": "Placebo standard deviation",
+      "notes": [
+        "Not pre-registered: written after the registered results were seen. It can show that a result is fragile; it cannot turn a variant into a finding.",
+        "Each row re-runs the registered estimator on a variant of the registered panel and judges it against its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison state. Window: the first exposed year (four quarters for prices) or the last year dropped. Pre-period: from four years (business counts) or five years (prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each year taken from the mean of the releases in which it is not final.",
+        "Pre-trend breakdown M̄: how large a post-reform departure from parallel trends, relative to the largest pre-reform change in the saturated event study, would be needed for the average post-reform effect to include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no larger than one already seen before the reform could explain the estimate. The identified set at M̄ = 1 is the range of effects consistent with such a departure.",
+        "Own-industry placebo p: the registered estimate ranked among the reform's own industries in states that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform periods a close fit is easy, so it shows little. Effective controls: 1 / Σ ω².",
+        "Source: alicia/analyses/phase5/new_families/robustness.json (alicia/analyses/phase5/robustness.py)."
+      ]
     }
   ]
 }

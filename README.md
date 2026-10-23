@@ -10,6 +10,10 @@ The menu explorer is one HTML page built from the register. Use it to search the
   - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 - **Locally:** `cd alicia && uv run alicia explorer --standalone -o menu.html`, then open `menu.html` in a browser.
 
+## Current priority (22 October 2026)
+
+Forward-looking costing of prospective policies: a new interactive **Policy costing** tab on the ALICIA website, with a regulatory burden costing (OIA *Regulatory Burden Measurement Framework*) and a productivity and competition costing. Plan: [`docs/forward_plan_policy_costing.md`](docs/forward_plan_policy_costing.md). The retrospective evaluations are paused (`alicia/DECISIONS.md` E-75); parked items are in [`docs/parked_items.md`](docs/parked_items.md).
+
 ## Projects
 
 - [`regulatory-burden-tool/`](regulatory-burden-tool/): an unofficial calculator for regulatory burden under the OIA Regulatory Burden Measurement framework, with reform (remove-and-replace) comparisons and analysis-ready exports for competition and business-dynamism research.

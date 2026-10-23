@@ -1,8 +1,8 @@
 """Write the register's evaluation files for a Phase 5 specification from its estimate.json.
 
-Every number comes from estimate.json (the registered run), from posthoc.json (checks made after unblinding,
-labelled as such) and, for re-evaluations, from the evaluation each case supersedes; only the wording is written
-here. tests/test_evaluation.py checks the files against the
+Every number comes from estimate.json (the registered run), table_stats.json (sample sizes for the regression
+tables), posthoc.json (checks made after unblinding, labelled as such) and, for re-evaluations, from the
+evaluation each case supersedes; only the wording is written here. tests/test_evaluation.py checks the files against the
 outputs. New results lead the key insights; the comparison with the earlier (archived) evaluation follows.
 
     uv run python analyses/phase5/evaluations.py --spec phase5-reevaluations
@@ -17,6 +17,8 @@ import argparse
 import datetime as dt
 import json
 from pathlib import Path
+
+import numpy as np
 
 from alicia import anzsic, cpi
 from alicia.register.evaluation import Evaluation, default_evaluations_dir, write_evaluation
@@ -83,6 +85,10 @@ def a1(v) -> str:
     return "n/a" if v is None else f"{abs(v):.1f}"
 
 
+def a2(v) -> str:
+    return "" if v is None else f"{abs(v):.2f}"
+
+
 def fp(p) -> str:
     if p is None:
         return "n/a"
@@ -146,6 +152,37 @@ def posthoc_reading(case_id: str, ph: dict | None) -> tuple[list[str], list[str]
         "the fare changes are taken from commentary written before them, not checked against PTV's fare tables)."
     )
     return [insight], [caveat]
+
+
+def confounder_caveat(case: dict, scan: dict | None) -> list[str]:
+    """One caveat from confounders.json (not pre-registered): overlapping register changes and series that moved
+    most away from the reform period."""
+    if not scan:
+        return []
+    c = next((x for x in scan["cases"] if x["id"] == case["id"]), None)
+    if c is None:
+        return []
+    hits = [h for h in c["register"] if h["relevance"] != "low"]
+    labels = {o["key"]: low1(outcome_label(o)) for o in case["outcomes"]}
+    moved = [
+        f"{labels[k]}, {r['state']}, {r['largest']['period']} ({s1(r['largest']['in_sd'])} × the usual step)"
+        for k, rows in c["timing"].items()
+        for r in rows
+        if r.get("verdict") in ("largest move before the reform", "largest move after the reform period")
+    ]
+    reg = (
+        "other register changes in the same states and industries: "
+        + "; ".join(f"{h['title']} ({h['date']}, {h['where']}, {h['relevance']})" for h in hits[:4])
+        + (f"; and {len(hits) - 4} more" if len(hits) > 4 else "")
+        if hits
+        else "no other register change of high or medium relevance"
+    )
+    when = (
+        "the treated series moved most away from the reform period in: " + "; ".join(moved[:4])
+        if moved
+        else "no treated series moved most away from the reform period"
+    )
+    return [f"Confounder scan (not pre-registered; docs/confounder_scan.md): {reg}. Timing: {when}."]
 
 
 def unit_of(o: dict) -> str:
@@ -279,6 +316,267 @@ def estimator_rows(o: dict, r: dict) -> list[dict]:
     return rows
 
 
+# Regression table: one column per estimator layer, in the power study's order.
+TABLE_COLUMNS = (
+    ("twoway", "Two-way FE", "Fixed effects"),
+    ("state_year", "State × period FE", "Fixed effects"),
+    ("saturated", "Saturated FE", "Fixed effects"),
+    ("controls", "Two-way + controls", "Fixed effects"),
+    ("imputation", "Imputation", "Fixed effects"),
+    ("sdid", "Synthetic DiD", "Synthetic comparison"),
+    ("gsynth", "Generalised SC", "Synthetic comparison"),
+)
+TABLE_FOOTER = (
+    ("Cell FE", "twoway state_year saturated controls imputation sdid gsynth"),
+    ("Period FE", "twoway state_year saturated controls imputation sdid gsynth"),
+    ("Class × period FE", "saturated imputation"),
+    ("State × period FE", "state_year saturated imputation"),
+    ("Measured state controls", "controls"),
+    ("Synthetic weights", "sdid"),
+    ("Interactive FE (factors)", "gsynth"),
+)
+
+
+def regression_table(spec_id: str, case: dict, res: dict, stats: dict, q_values: dict) -> dict:
+    """The case's estimates in the usual academic layout: estimators across, one panel per outcome."""
+    layers = [k for k, _, _ in TABLE_COLUMNS]
+    only = lambda key, value: [value if k == key else None for k in layers]  # noqa: E731
+    panels, samples = [], []
+    for o in case["outcomes"]:
+        r, st = res["outcomes"][o["key"]], stats.get(o["key"])
+        if not r["feasible"]["ok"] or st is None:
+            continue
+        letter = "ABCDEFGH"[len(panels)]
+        price = o["kind"] == "price"
+        unit = "100 × log points" if price else PER_100
+        coefs = [
+            None
+            if r["layers"][k]["estimate"] is None
+            else {
+                "estimate": r["layers"][k]["estimate"],
+                "spread": r["layers"][k]["placebo_sd"],
+                "p_value": r["layers"][k]["p"],
+                "registered": k == o["layer"],
+            }
+            for k in layers
+        ]
+        rows = [
+            {"label": "Reform × post (β)", "coefficients": coefs},
+            {"label": "Observations", "values": [f"{st['layers'][k]['nobs']:,}" for k in layers]},
+            {"label": "Units (cells)", "values": [f"{st['layers'][k]['units']:,}" for k in layers]},
+            {
+                "label": "Placebo groups",
+                "values": [str(r["layers"][k]["placebos"]) for k in layers],
+            },
+            {"label": "MDE (80% power)", "values": [a2(r["layers"][k]["mde_80"]) for k in layers]},
+        ]
+        if not price:
+            rows.append(
+                {"label": "Pre-reform mean, treated", "values": [f"{st['pre_mean_treated']:.2f}"] * len(layers)}
+            )
+        pre = {True: "Pass", False: "Fail"}.get(r["pre_inside_95"])
+        if pre:
+            rows.append({"label": "Pre-trend test (k ≤ −2)", "values": only("saturated", pre)})
+        q = q_values.get(f"{case['id']}:{o['key']}")
+        if o["role"] == "primary" and q is not None:
+            rows.append({"label": "BH q-value", "values": only(o["layer"], f"{q:.3f}")})
+        cells = f"{st['treated_cells']} treated cell{'s' if st['treated_cells'] > 1 else ''}"
+        panels.append(
+            {"title": f"Panel {letter}. {outcome_label(o)}, {unit} ({o['role']} outcome; {cells})", "rows": rows}
+        )
+        what = (
+            "100 × log of the CPI class relative to All groups, CPI class × capital city × quarter, unweighted"
+            if price
+            else "per 100 businesses operating at the start of the financial year, ANZSIC class × state, weighted "
+            "by those businesses"
+        )
+        sample = (
+            f"{what}; {st['periods'][0]} to {st['periods'][1]} ({st['n_periods']} periods), {st['classes']} "
+            f"classes, {len(st['states'])} {'cities' if price else 'states'}."
+        )
+        samples.append((letter, "" if price else o["key"], sample))
+    folder = FOLDERS[spec_id]
+    merged: dict[str, list[tuple[str, str]]] = {}
+    for letter, measure, sample in samples:
+        merged.setdefault(sample, []).append((letter, measure))
+    described = []
+    for sample, items in merged.items():
+        letters = [x[0] for x in items]
+        head = f"Panel {letters[0]}" if len(letters) == 1 else f"Panels {', '.join(letters[:-1])} and {letters[-1]}"
+        measures = " and ".join(x[1] for x in items if x[1])
+        described.append(f"{head}: {measures + ' ' if measures else ''}{sample}")
+    notes = [
+        *described,
+        "Each column applies one estimator to the same panel. β is the average effect on the reform's classes in "
+        "treated states (cities) over the window, net of the mean of the same estimator across the placebo groups. "
+        "Columns (6) and (7) compare the treated group's average with reweighted untreated cells over each "
+        "cohort's window; their observations and units are summed over cohorts.",
+        "The placebo standard deviation is the spread of the same estimator across up to 40 placebo industry "
+        "groups (or CPI classes) given the reform's states and dates: the randomization-inference analogue of a "
+        "standard error. p-values rank the estimate among the centred placebo estimates; with 40 placebos the "
+        "smallest attainable is about 0.024, so *** cannot occur. Clustered standard errors are not reported: with "
+        "seven or eight states they are unreliable, and the registered inference uses placebos.",
+        "MDE: the smallest effect detectable with 80% power at the 5% level (2.8 × the placebo standard "
+        "deviation). Placebo groups: placebo industry groups (business outcomes) or CPI classes (prices). "
+        "Pre-trend test: every event-study coefficient with k ≤ −2 (saturated model, net of the placebo mean) lies "
+        "inside its 95% placebo band; a failure means the outcome is not identified. BH q-value: Benjamini–Hochberg "
+        "across the specification's primary outcomes.",
+        f"Source: alicia/analyses/phase5/{folder}/estimate.json (registered run, {RUN_AT[spec_id]:%d %B %Y}) and "
+        "table_stats.json (samples, re-fitted to check every estimate reproduces).",
+    ]
+    return {
+        "id": f"{case['id']}-estimators",
+        "title": case["title"],
+        "columns": [{"label": lab, "group": grp} for _, lab, grp in TABLE_COLUMNS],
+        "panels": panels,
+        "footer": [
+            {"label": lab, "values": ["Yes" if k in on.split() else "No" for k in layers]} for lab, on in TABLE_FOOTER
+        ],
+        "spread_label": "Placebo standard deviation",
+        "notes": notes,
+    }
+
+
+ROBUSTNESS_PANELS = ("As registered", "Leave one state out", "Window and pre-period", "Weights and data")
+
+
+def short_label(o: dict) -> str:
+    if o["kind"] == "price":
+        return next(c["name"] for c in cpi.classes() if c["code"] == o["code"]) + " (CPI)"
+    return "Entry rate" if o["key"] == "entries" else "Exit rate"
+
+
+def robustness_summary(r: dict) -> dict:
+    """Sign stability and significance across the non-registered variants of one outcome."""
+    reg = r["variants"][0]["estimate"]
+    others = [v for v in r["variants"][1:] if v["estimate"] is not None]
+    same = sum(1 for v in others if reg is not None and np.sign(v["estimate"]) == np.sign(reg))
+    sig = sum(1 for v in others if v["p"] is not None and v["p"] < 0.05)
+    lo = min((v["estimate"] for v in others), default=None)
+    hi = max((v["estimate"] for v in others), default=None)
+    return {"n": len(others), "same_sign": same, "significant": sig, "range": (lo, hi)}
+
+
+def robustness_table(spec_id: str, case: dict, res: dict, rob: dict) -> dict | None:
+    """Variants of the registered estimator (rows) by outcome (columns), with diagnostics. Not pre-registered."""
+    c = next((x for x in rob["cases"] if x["id"] == case["id"]), None)
+    if c is None:
+        return None
+    outs = [o for o in case["outcomes"] if o["key"] in c["outcomes"]]
+    rows_by_panel: dict[str, dict[str, list]] = {p: {} for p in ROBUSTNESS_PANELS}
+    for j, o in enumerate(outs):
+        for v in c["outcomes"][o["key"]]["variants"]:
+            row = rows_by_panel[v["group"]].setdefault(v["label"], [None] * len(outs))
+            if v["estimate"] is not None:
+                row[j] = {
+                    "estimate": v["estimate"],
+                    "spread": v["placebo_sd"],
+                    "p_value": v["p"],
+                    "registered": v["group"] == "As registered",
+                }
+    panels = []
+    for name in ROBUSTNESS_PANELS:
+        rows = rows_by_panel[name]
+        if rows:
+            letter = "ABCDEFG"[len(panels)]
+            panels.append(
+                {
+                    "title": f"Panel {letter}. {name}",
+                    "rows": [{"label": lab, "coefficients": coefs} for lab, coefs in rows.items()],
+                }
+            )
+
+    def cell(o, fn):
+        return fn(c["outcomes"][o["key"]])
+
+    def summary_cell(r):
+        sm = robustness_summary(r)
+        return f"{sm['same_sign']} of {sm['n']}" if sm["n"] else None
+
+    def sig_cell(r):
+        sm = robustness_summary(r)
+        return f"{sm['significant']} of {sm['n']}" if sm["n"] else None
+
+    def range_cell(r):
+        lo, hi = robustness_summary(r)["range"]
+        return None if lo is None else f"{s1(lo)} to {s1(hi)}"
+
+    def bd(r):
+        sens = r.get("sensitivity")
+        return None if not sens else f"{sens['breakdown_rm']:.2f}"
+
+    def set1(r):
+        sens = r.get("sensitivity")
+        return None if not sens else f"[{s1(sens['set_rm1'][0])}, {s1(sens['set_rm1'][1])}]"
+
+    def own(r):
+        oc = r.get("own_class") or {}
+        x = oc.get("states_dates") or oc.get("states") or oc.get("dates")
+        return None if not x else f"{fp(x['p'])} ({x['draws']})"
+
+    def sd_fit(r):
+        d = r.get("sdid") or []
+        return None if not d else f"{np.mean([x['fit_ratio'] for x in d if x['fit_ratio'] is not None]):.2f}"
+
+    def sd_eff(r):
+        d = r.get("sdid") or []
+        return (
+            None
+            if not d
+            else f"{np.mean([x['effective_controls'] for x in d]):.0f} of {np.mean([x['controls'] for x in d]):.0f}"
+        )
+
+    diag = [
+        ("Variants with the registered sign", summary_cell),
+        ("Variants with p < 0.05", sig_cell),
+        ("Range across variants", range_cell),
+        ("Pre-trend breakdown M̄", bd),
+        ("Identified set at M̄ = 1", set1),
+        ("Own-industry placebo p (draws)", own),
+        ("Synthetic DiD pre-fit ratio", sd_fit),
+        ("Synthetic DiD effective controls", sd_eff),
+    ]
+    diag_rows = []
+    for lab, fn in diag:
+        vals = [cell(o, fn) for o in outs]
+        if any(v is not None for v in vals):
+            diag_rows.append({"label": lab, "values": vals})
+    panels.append({"title": f"Panel {'ABCDEFG'[len(panels)]}. Diagnostics", "rows": diag_rows})
+    folder = FOLDERS[spec_id]
+    return {
+        "id": f"{case['id']}-robustness",
+        "title": f"{case['title']}: robustness (not pre-registered)",
+        "columns": [{"label": short_label(o), "group": o["role"].capitalize()} for o in outs],
+        "panels": panels,
+        "footer": [
+            {"label": "Estimator (registered layer)", "values": [LAYER_LABELS[o["layer"]] for o in outs]},
+            {"label": "Placebos re-estimated per variant", "values": ["Yes"] * len(outs)},
+        ],
+        "spread_label": "Placebo standard deviation",
+        "notes": [
+            "Not pre-registered: written after the registered results were seen. It can show that a result is "
+            "fragile; it cannot turn a variant into a finding.",
+            "Each row re-runs the registered estimator on a variant of the registered panel and judges it against "
+            "its own no-effect distribution: the same placebo groups (or CPI classes), re-estimated on the variant "
+            "with treated cells hidden, as at the design stage. Leave one state out drops a treated or comparison "
+            "state. Window: the first exposed year (four quarters for "
+            "prices) or the last year dropped. Pre-period: from four years (business counts) or five years "
+            "(prices) before the first exposure. Unweighted: every cell counts equally. Other CABEE vintages: each "
+            "year taken from the mean of the releases in which it is not final.",
+            "Pre-trend breakdown M̄: how large a post-reform departure from parallel trends, relative to the largest "
+            "pre-reform change in the saturated event study, would be needed for the average post-reform effect to "
+            "include zero (Rambachan and Roth relative magnitudes; approximate inference). Below 1, a departure no "
+            "larger than one already seen before the reform could explain the estimate. The identified set at "
+            "M̄ = 1 is the range of effects consistent with such a departure.",
+            "Own-industry placebo p: the registered estimate ranked among the reform's own industries in states "
+            "that never adopted it at fake dates. Synthetic DiD pre-fit ratio: the spread of the treated-minus-"
+            "weighted-controls gap before the reform, over the spread of the treated series; with few pre-reform "
+            "periods a close fit is easy, so it shows little. Effective controls: 1 / Σ ω².",
+            f"Source: alicia/analyses/phase5/{folder}/robustness.json (alicia/analyses/phase5/robustness.py).",
+        ],
+    }
+
+
 def method(case: dict, prim: dict) -> dict:
     price = prim["kind"] == "price"
     i, s, t = ("c", "j", "q") if price else ("c", "s", "t")
@@ -394,7 +692,7 @@ def compare(prim: dict, reg: dict, verdict: str, old: dict) -> str:
     return text + ". This evaluation uses the estimator chosen in the blinded power study and the latest data."
 
 
-def insights(case: dict, res: dict, old: dict | None, ph: dict | None = None) -> list[str]:
+def insights(case: dict, res: dict, old: dict | None, ph: dict | None = None, rob: dict | None = None) -> list[str]:
     outs = res["outcomes"]
     prim = next(o for o in case["outcomes"] if o["role"] == "primary")
     pr = outs[prim["key"]]
@@ -445,6 +743,17 @@ def insights(case: dict, res: dict, old: dict | None, ph: dict | None = None) ->
     if reg.get("mde_80") is not None:
         lines.append(f"How precise: only changes larger than about {a1(reg['mde_80'])}{unit} could have been detected.")
     lines += posthoc_reading(case["id"], ph)[0]
+    rc = next((x for x in (rob or {}).get("cases", []) if x["id"] == case["id"]), None)
+    if rc and prim["key"] in rc["outcomes"]:
+        sm = robustness_summary(rc["outcomes"][prim["key"]])
+        lo, hi = sm["range"]
+        if sm["n"]:
+            lines.append(
+                f"Robustness (not pre-registered): across {sm['n']} variants (each state left out, other windows and "
+                f"pre-periods{'' if prim['kind'] == 'price' else ', weights and data vintages'}) the "
+                f"{low1(outcome_label(prim))} estimate keeps its sign in "
+                f"{sm['same_sign']}, reaches p < 0.05 in {sm['significant']}, and ranges from {s1(lo)} to {s1(hi)}."
+            )
     if old:
         lines.append(compare(prim, reg, res["verdict"], old))
     meaning = {
@@ -465,6 +774,12 @@ def build(spec_id: str) -> list[Evaluation]:
     est = json.loads((HERE / FOLDERS[spec_id] / "estimate.json").read_text("utf-8"))
     ph_path = HERE / FOLDERS[spec_id] / "posthoc.json"
     ph = json.loads(ph_path.read_text("utf-8")) if ph_path.exists() else None
+    ts = json.loads((HERE / FOLDERS[spec_id] / "table_stats.json").read_text("utf-8"))
+    cf_path = HERE / FOLDERS[spec_id] / "confounders.json"
+    scan = json.loads(cf_path.read_text("utf-8")) if cf_path.exists() else None
+    rb_path = HERE / FOLDERS[spec_id] / "robustness.json"
+    rob = json.loads(rb_path.read_text("utf-8")) if rb_path.exists() else None
+    stats = {c["id"]: c["outcomes"] for c in ts["cases"]}
     by_id = {c["id"]: c for c in est["cases"]}
     out = []
     for case in spec.cases:
@@ -514,6 +829,7 @@ def build(spec_id: str) -> list[Evaluation]:
         caveats = [
             *reasons,
             *posthoc_reading(case["id"], ph)[1],
+            *confounder_caveat(case, scan),
             "Re-evaluation: the earlier results were known when this specification was written; the estimator layers "
             "were fixed beforehand by the blinded power study."
             if case["supersedes"]
@@ -543,7 +859,7 @@ def build(spec_id: str) -> list[Evaluation]:
                 "prices": summary(prices_),
                 "productivity": "Not measured in this evaluation.",
             },
-            "key_insights": insights(case, res, old, ph),
+            "key_insights": insights(case, res, old, ph, rob),
             "method": method(case, prim),
             "preregistered": True,
             "outcomes": outcomes,
@@ -559,6 +875,10 @@ def build(spec_id: str) -> list[Evaluation]:
             "supersedes": case["supersedes"],
             "evaluated_at": RUN_AT[spec_id].isoformat(),
             "estimators": rows,
+            "tables": [
+                regression_table(spec_id, case, res, stats[case["id"]], est["q_values"]),
+                *([t] if rob and (t := robustness_table(spec_id, case, res, rob)) else []),
+            ],
         }
         out.append(Evaluation.model_validate(ev))
     return out

@@ -82,6 +82,53 @@ def test_build_site_writes_three_linked_pages(tmp_path):
     assert json.loads(data.group(1))["repo"].startswith("https://github.com/")
 
 
+def _costing_dist(tmp_path, html=None):
+    """A stand-in for regulatory-burden-tool/dist-site (the real one comes from `npm run build:site`)."""
+    dist = tmp_path / "dist-site"
+    (dist / growth.COSTING_ASSETS).mkdir(parents=True)
+    (dist / growth.COSTING_ASSETS / "index-abc.js").write_text("console.log(1)", "utf-8")
+    csp = "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; connect-src 'none'\" />"
+    body = '<body><!--__NAV__--><div id="root"></div></body>'
+    default = f'<html lang="en-AU" data-site="alicia"><head>{csp}</head>{body}</html>'
+    (dist / "costing.html").write_text(html if html is not None else default, "utf-8")
+    return dist
+
+
+def test_costing_tab_is_copied_with_the_site_nav(tmp_path):
+    out = tmp_path / "site"
+    out.mkdir()
+    (out / growth.COSTING_ASSETS).mkdir()
+    (out / growth.COSTING_ASSETS / "stale.js").write_text("old", "utf-8")
+    pages = (*growth.PAGES, growth.COSTING_PAGE)
+    written = growth.build_costing(out, _costing_dist(tmp_path), pages)
+    html = (out / "costing.html").read_text("utf-8")
+    assert '<div class="alicia-site-top"><nav class="site-nav"' in html and "<!--__NAV__-->" not in html
+    assert '<a href="costing.html" aria-current="page">Policy costing</a>' in html and 'href="index.html"' in html
+    assert sorted(p.name for p in written) == ["costing.html", "index-abc.js"]  # stale assets are removed
+    assert "connect-src 'none'" in html
+
+
+def test_costing_tab_refuses_a_build_without_its_privacy_policy_or_nav(tmp_path):
+    with pytest.raises(ValueError, match="Content-Security-Policy"):
+        growth.build_costing(tmp_path, _costing_dist(tmp_path / "a", "<body><!--__NAV__--></body>"), growth.PAGES)
+    with pytest.raises(ValueError, match="placeholder"):
+        no_nav = "<meta content=\"connect-src 'none'\">"
+        growth.build_costing(tmp_path, _costing_dist(tmp_path / "b", no_nav), growth.PAGES)
+
+
+@needs_panels
+def test_build_site_links_the_costing_tab_from_every_page_only_when_built(tmp_path):
+    records = load_records().records
+    evals = load_evaluations(records).evaluations
+    names = {p.name for p in growth.build_site(tmp_path / "with", records, evals, costing_dist=_costing_dist(tmp_path))}
+    assert {"costing.html", "index-abc.js"} <= names
+    for page in ("index.html", "growth.html", "conditions.html"):
+        assert 'href="costing.html"' in (tmp_path / "with" / page).read_text("utf-8"), page
+    growth.build_site(tmp_path / "without", records, evals)
+    assert not (tmp_path / "without" / "costing.html").exists()
+    assert 'href="costing.html"' not in (tmp_path / "without" / "growth.html").read_text("utf-8")
+
+
 @needs_panels
 def test_state_covariates_cover_every_state_and_are_plausible():
     from alicia.evaluate import covariates

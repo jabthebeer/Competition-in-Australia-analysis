@@ -451,9 +451,10 @@ def assign(df: pd.DataFrame, cohorts, classes) -> pd.DataFrame:
 
 
 def _matrix(
-    df: pd.DataFrame, cohorts, start: int, cohort: Cohort, classes
+    df: pd.DataFrame, cohorts, start: int, cohort: Cohort, classes, labels: list | None = None
 ) -> tuple[np.ndarray, np.ndarray, int, np.ndarray] | None:
-    """Cells complete over the cohort's window: controls (untreated) then the treated group's average row."""
+    """Cells complete over the cohort's window: controls (untreated) then the treated group's average row.
+    ``labels``, if given, receives the control cells' names in row order (for diagnostics)."""
     years = list(range(start, cohort.last_post + 1))
     sub = df[df["state"].isin(cohort.units) & df["fy"].between(years[0], years[-1])]
     other_treated = {s for c in cohorts if c is not cohort for s in c.treated}
@@ -470,6 +471,8 @@ def _matrix(
     wts = wts if wts.sum() > 0 else np.ones(len(wts))
     row = np.average(tr.to_numpy(), axis=0, weights=wts)
     y = np.vstack([ctrl.to_numpy(), row])
+    if labels is not None:
+        labels.extend(ctrl.index)
     t0 = years.index(cohort.first_post)
     mask = np.zeros_like(y, bool)
     mask[-1, t0:] = True

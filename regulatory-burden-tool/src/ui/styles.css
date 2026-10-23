@@ -88,6 +88,10 @@ h1:focus {
   font-weight: 700;
 }
 
+.site-subtitle {
+  font-size: 0.875rem;
+}
+
 .tag {
   font-size: 0.8rem;
   border: 1px solid currentColor;
@@ -547,6 +551,10 @@ thead th {
   overflow-x: auto;
 }
 
+.date-cell {
+  white-space: nowrap;
+}
+
 /* The RBE table follows the framework's layout (RBM p. 5). Neutral styling: no government branding. */
 .rbe-table caption {
   background: #e9edf2;
@@ -719,4 +727,109 @@ thead th {
 
 .confirm-question {
   font-weight: 600;
+}
+
+/* Sources page (P3) */
+.evidence-banner {
+  width: auto;
+  margin: 0.75rem 0;
+}
+
+.evidence-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.evidence-card h3 {
+  font-size: 1.05rem;
+}
+
+.evidence-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+.evidence-badges .badge {
+  margin-left: 0;
+  border: 1px solid var(--line);
+  background: var(--page);
+  color: var(--ink);
+}
+
+.evidence-badges .evidence-default {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.evidence-badges .evidence-alternative {
+  background: var(--accent-soft);
+}
+
+.evidence-badges .evidence-draft {
+  background: var(--warn-soft);
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.evidence-badges .evidence-checked {
+  background: var(--good-soft);
+  border-color: var(--good);
+  color: var(--good);
+}
+
+.evidence-facts,
+.evidence-key {
+  margin: 0.75rem 0;
+}
+
+.evidence-facts > div,
+.evidence-key > div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0 1rem;
+  padding: 0.2rem 0;
+}
+
+.evidence-facts dt,
+.evidence-key dt {
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.evidence-facts dd,
+.evidence-key dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.evidence-quote {
+  margin: 0.75rem 0;
+}
+
+.evidence-quote blockquote {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+}
+
+.evidence-quote blockquote p {
+  margin: 0;
+}
+
+.evidence-quote figcaption {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+}
+
+@media (max-width: 40rem) {
+  .evidence-facts > div,
+  .evidence-key > div {
+    grid-template-columns: 1fr;
+  }
 }

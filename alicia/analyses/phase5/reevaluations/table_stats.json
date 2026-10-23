@@ -1,0 +1,1013 @@
+{
+ "spec": "phase5-reevaluations",
+ "source": "estimate stage panels (treated cells restored)",
+ "cases": [
+  {
+   "id": "wa-trading-hours-2010-2012-phase5",
+   "outcomes": {
+    "entries": {
+     "reproduces": true,
+     "max_abs_difference": 0.000387,
+     "layers": {
+      "twoway": {
+       "nobs": 30096,
+       "units": 2954
+      },
+      "state_year": {
+       "nobs": 30096,
+       "units": 2954
+      },
+      "saturated": {
+       "nobs": 30096,
+       "units": 2954
+      },
+      "controls": {
+       "nobs": 30096,
+       "units": 2954
+      },
+      "imputation": {
+       "nobs": 30096,
+       "units": 2954
+      },
+      "sdid": {
+       "nobs": 22715,
+       "units": 2065
+      },
+      "gsynth": {
+       "nobs": 22715,
+       "units": 2065
+      }
+     },
+     "cells": 2954,
+     "treated_cells": 3,
+     "treated_observations": 24,
+     "periods": [
+      "2007-08",
+      "2017-18"
+     ],
+     "n_periods": 11,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 431,
+     "pre_mean_treated": 16.071
+    },
+    "exits": {
+     "reproduces": true,
+     "max_abs_difference": 0.000454,
+     "layers": {
+      "twoway": {
+       "nobs": 30096,
+       "units": 2954
+      },
+      "state_year": {
+       "nobs": 30096,
+       "units": 2954
+      },
+      "saturated": {
+       "nobs": 30096,
+       "units": 2954
+      },
+      "controls": {
+       "nobs": 30096,
+       "units": 2954
+      },
+      "imputation": {
+       "nobs": 30096,
+       "units": 2954
+      },
+      "sdid": {
+       "nobs": 22715,
+       "units": 2065
+      },
+      "gsynth": {
+       "nobs": 22715,
+       "units": 2065
+      }
+     },
+     "cells": 2954,
+     "treated_cells": 3,
+     "treated_observations": 24,
+     "periods": [
+      "2007-08",
+      "2017-18"
+     ],
+     "n_periods": 11,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 431,
+     "pre_mean_treated": 15.08
+    }
+   }
+  },
+  {
+   "id": "childcare-nqf-2012-phase5",
+   "outcomes": {
+    "entries": {
+     "reproduces": true,
+     "max_abs_difference": 0.000466,
+     "layers": {
+      "twoway": {
+       "nobs": 15572,
+       "units": 3389
+      },
+      "state_year": {
+       "nobs": 15572,
+       "units": 3389
+      },
+      "saturated": {
+       "nobs": 15572,
+       "units": 3389
+      },
+      "controls": {
+       "nobs": 15572,
+       "units": 3389
+      },
+      "imputation": {
+       "nobs": 15572,
+       "units": 3389
+      },
+      "sdid": {
+       "nobs": 12075,
+       "units": 2415
+      },
+      "gsynth": {
+       "nobs": 12075,
+       "units": 2415
+      }
+     },
+     "cells": 3389,
+     "treated_cells": 7,
+     "treated_observations": 7,
+     "periods": [
+      "2007-08",
+      "2011-12"
+     ],
+     "n_periods": 5,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 437,
+     "pre_mean_treated": 15.592
+    },
+    "exits": {
+     "reproduces": true,
+     "max_abs_difference": 0.000456,
+     "layers": {
+      "twoway": {
+       "nobs": 15572,
+       "units": 3389
+      },
+      "state_year": {
+       "nobs": 15572,
+       "units": 3389
+      },
+      "saturated": {
+       "nobs": 15572,
+       "units": 3389
+      },
+      "controls": {
+       "nobs": 15572,
+       "units": 3389
+      },
+      "imputation": {
+       "nobs": 15572,
+       "units": 3389
+      },
+      "sdid": {
+       "nobs": 12075,
+       "units": 2415
+      },
+      "gsynth": {
+       "nobs": 12075,
+       "units": 2415
+      }
+     },
+     "cells": 3389,
+     "treated_cells": 7,
+     "treated_observations": 7,
+     "periods": [
+      "2007-08",
+      "2011-12"
+     ],
+     "n_periods": 5,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 437,
+     "pre_mean_treated": 14.894
+    },
+    "price-child-care": {
+     "reproduces": true,
+     "max_abs_difference": 0.000486,
+     "layers": {
+      "twoway": {
+       "nobs": 20192,
+       "units": 680
+      },
+      "state_year": {
+       "nobs": 20192,
+       "units": 680
+      },
+      "saturated": {
+       "nobs": 20192,
+       "units": 680
+      },
+      "controls": {
+       "nobs": 20192,
+       "units": 680
+      },
+      "imputation": {
+       "nobs": 20192,
+       "units": 680
+      },
+      "sdid": {
+       "nobs": 19740,
+       "units": 658
+      },
+      "gsynth": {
+       "nobs": 19740,
+       "units": 658
+      }
+     },
+     "cells": 680,
+     "treated_cells": 7,
+     "treated_observations": 14,
+     "periods": [
+      "2005-Q1",
+      "2012-Q2"
+     ],
+     "n_periods": 30,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 85,
+     "pre_mean_treated": 9.222
+    }
+   }
+  },
+  {
+   "id": "heavy-vehicle-national-law-2014-phase5",
+   "outcomes": {
+    "entries": {
+     "reproduces": true,
+     "max_abs_difference": 0.000379,
+     "layers": {
+      "twoway": {
+       "nobs": 34985,
+       "units": 3406
+      },
+      "state_year": {
+       "nobs": 34985,
+       "units": 3406
+      },
+      "saturated": {
+       "nobs": 34985,
+       "units": 3406
+      },
+      "controls": {
+       "nobs": 34985,
+       "units": 3406
+      },
+      "imputation": {
+       "nobs": 34985,
+       "units": 3406
+      },
+      "sdid": {
+       "nobs": 26356,
+       "units": 2396
+      },
+      "gsynth": {
+       "nobs": 26356,
+       "units": 2396
+      }
+     },
+     "cells": 3406,
+     "treated_cells": 6,
+     "treated_observations": 30,
+     "periods": [
+      "2007-08",
+      "2017-18"
+     ],
+     "n_periods": 11,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 434,
+     "pre_mean_treated": 11.945
+    },
+    "exits": {
+     "reproduces": true,
+     "max_abs_difference": 0.000437,
+     "layers": {
+      "twoway": {
+       "nobs": 34985,
+       "units": 3406
+      },
+      "state_year": {
+       "nobs": 34985,
+       "units": 3406
+      },
+      "saturated": {
+       "nobs": 34985,
+       "units": 3406
+      },
+      "controls": {
+       "nobs": 34985,
+       "units": 3406
+      },
+      "imputation": {
+       "nobs": 34985,
+       "units": 3406
+      },
+      "sdid": {
+       "nobs": 26356,
+       "units": 2396
+      },
+      "gsynth": {
+       "nobs": 26356,
+       "units": 2396
+      }
+     },
+     "cells": 3406,
+     "treated_cells": 6,
+     "treated_observations": 30,
+     "periods": [
+      "2007-08",
+      "2017-18"
+     ],
+     "n_periods": 11,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 434,
+     "pre_mean_treated": 14.451
+    }
+   }
+  },
+  {
+   "id": "vic-taxi-licensing-2014-phase5",
+   "outcomes": {
+    "entries": {
+     "reproduces": true,
+     "max_abs_difference": 0.000495,
+     "layers": {
+      "twoway": {
+       "nobs": 25082,
+       "units": 3370
+      },
+      "state_year": {
+       "nobs": 25082,
+       "units": 3370
+      },
+      "saturated": {
+       "nobs": 25082,
+       "units": 3370
+      },
+      "controls": {
+       "nobs": 25082,
+       "units": 3370
+      },
+      "imputation": {
+       "nobs": 25082,
+       "units": 3370
+      },
+      "sdid": {
+       "nobs": 18976,
+       "units": 2372
+      },
+      "gsynth": {
+       "nobs": 18976,
+       "units": 2372
+      }
+     },
+     "cells": 3370,
+     "treated_cells": 1,
+     "treated_observations": 1,
+     "periods": [
+      "2007-08",
+      "2014-15"
+     ],
+     "n_periods": 8,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 431,
+     "pre_mean_treated": 11.201
+    },
+    "exits": {
+     "reproduces": true,
+     "max_abs_difference": 0.000322,
+     "layers": {
+      "twoway": {
+       "nobs": 25082,
+       "units": 3370
+      },
+      "state_year": {
+       "nobs": 25082,
+       "units": 3370
+      },
+      "saturated": {
+       "nobs": 25082,
+       "units": 3370
+      },
+      "controls": {
+       "nobs": 25082,
+       "units": 3370
+      },
+      "imputation": {
+       "nobs": 25082,
+       "units": 3370
+      },
+      "sdid": {
+       "nobs": 18976,
+       "units": 2372
+      },
+      "gsynth": {
+       "nobs": 18976,
+       "units": 2372
+      }
+     },
+     "cells": 3370,
+     "treated_cells": 1,
+     "treated_observations": 1,
+     "periods": [
+      "2007-08",
+      "2014-15"
+     ],
+     "n_periods": 8,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 431,
+     "pre_mean_treated": 15.514
+    },
+    "price-urban-transport-fares": {
+     "reproduces": true,
+     "max_abs_difference": 0.000434,
+     "layers": {
+      "twoway": {
+       "nobs": 29024,
+       "units": 696
+      },
+      "state_year": {
+       "nobs": 29024,
+       "units": 696
+      },
+      "saturated": {
+       "nobs": 29024,
+       "units": 696
+      },
+      "controls": {
+       "nobs": 29024,
+       "units": 696
+      },
+      "imputation": {
+       "nobs": 29024,
+       "units": 696
+      },
+      "sdid": {
+       "nobs": 28560,
+       "units": 680
+      },
+      "gsynth": {
+       "nobs": 28560,
+       "units": 680
+      }
+     },
+     "cells": 696,
+     "treated_cells": 1,
+     "treated_observations": 4,
+     "periods": [
+      "2005-Q1",
+      "2015-Q2"
+     ],
+     "n_periods": 42,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 87,
+     "pre_mean_treated": -0.21
+    }
+   }
+  },
+  {
+   "id": "legal-profession-uniform-law-2015-phase5",
+   "outcomes": {
+    "entries": {
+     "reproduces": true,
+     "max_abs_difference": 0.000473,
+     "layers": {
+      "twoway": {
+       "nobs": 34784,
+       "units": 3382
+      },
+      "state_year": {
+       "nobs": 34784,
+       "units": 3382
+      },
+      "saturated": {
+       "nobs": 34784,
+       "units": 3382
+      },
+      "controls": {
+       "nobs": 34784,
+       "units": 3382
+      },
+      "imputation": {
+       "nobs": 34784,
+       "units": 3382
+      },
+      "sdid": {
+       "nobs": 25993,
+       "units": 2363
+      },
+      "gsynth": {
+       "nobs": 25993,
+       "units": 2363
+      }
+     },
+     "cells": 3382,
+     "treated_cells": 2,
+     "treated_observations": 6,
+     "periods": [
+      "2007-08",
+      "2017-18"
+     ],
+     "n_periods": 11,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 431,
+     "pre_mean_treated": 8.868
+    },
+    "exits": {
+     "reproduces": true,
+     "max_abs_difference": 0.000426,
+     "layers": {
+      "twoway": {
+       "nobs": 34784,
+       "units": 3382
+      },
+      "state_year": {
+       "nobs": 34784,
+       "units": 3382
+      },
+      "saturated": {
+       "nobs": 34784,
+       "units": 3382
+      },
+      "controls": {
+       "nobs": 34784,
+       "units": 3382
+      },
+      "imputation": {
+       "nobs": 34784,
+       "units": 3382
+      },
+      "sdid": {
+       "nobs": 25993,
+       "units": 2363
+      },
+      "gsynth": {
+       "nobs": 25993,
+       "units": 2363
+      }
+     },
+     "cells": 3382,
+     "treated_cells": 2,
+     "treated_observations": 6,
+     "periods": [
+      "2007-08",
+      "2017-18"
+     ],
+     "n_periods": 11,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 431,
+     "pre_mean_treated": 7.911
+    }
+   }
+  },
+  {
+   "id": "rideshare-legalisation-2015-2018-phase5",
+   "outcomes": {
+    "entries": {
+     "reproduces": true,
+     "max_abs_difference": 0.000437,
+     "layers": {
+      "twoway": {
+       "nobs": 32749,
+       "units": 3382
+      },
+      "state_year": {
+       "nobs": 32749,
+       "units": 3382
+      },
+      "saturated": {
+       "nobs": 32749,
+       "units": 3382
+      },
+      "controls": {
+       "nobs": 32749,
+       "units": 3382
+      },
+      "imputation": {
+       "nobs": 32749,
+       "units": 3382
+      },
+      "sdid": {
+       "nobs": 40474,
+       "units": 3967
+      },
+      "gsynth": {
+       "nobs": 40474,
+       "units": 3967
+      }
+     },
+     "cells": 3382,
+     "treated_cells": 7,
+     "treated_observations": 9,
+     "periods": [
+      "2007-08",
+      "2017-18"
+     ],
+     "n_periods": 11,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 431,
+     "pre_mean_treated": 12.442
+    },
+    "exits": {
+     "reproduces": true,
+     "max_abs_difference": 0.00042,
+     "layers": {
+      "twoway": {
+       "nobs": 32749,
+       "units": 3382
+      },
+      "state_year": {
+       "nobs": 32749,
+       "units": 3382
+      },
+      "saturated": {
+       "nobs": 32749,
+       "units": 3382
+      },
+      "controls": {
+       "nobs": 32749,
+       "units": 3382
+      },
+      "imputation": {
+       "nobs": 32749,
+       "units": 3382
+      },
+      "sdid": {
+       "nobs": 40474,
+       "units": 3967
+      },
+      "gsynth": {
+       "nobs": 40474,
+       "units": 3967
+      }
+     },
+     "cells": 3382,
+     "treated_cells": 7,
+     "treated_observations": 9,
+     "periods": [
+      "2007-08",
+      "2017-18"
+     ],
+     "n_periods": 11,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 431,
+     "pre_mean_treated": 13.741
+    },
+    "price-urban-transport-fares": {
+     "reproduces": true,
+     "max_abs_difference": 0.000401,
+     "layers": {
+      "twoway": {
+       "nobs": 36158,
+       "units": 696
+      },
+      "state_year": {
+       "nobs": 36158,
+       "units": 696
+      },
+      "saturated": {
+       "nobs": 36158,
+       "units": 696
+      },
+      "controls": {
+       "nobs": 36158,
+       "units": 696
+      },
+      "imputation": {
+       "nobs": 36158,
+       "units": 696
+      },
+      "sdid": {
+       "nobs": 65440,
+       "units": 1268
+      },
+      "gsynth": {
+       "nobs": 65440,
+       "units": 1268
+      }
+     },
+     "cells": 696,
+     "treated_cells": 7,
+     "treated_observations": 36,
+     "periods": [
+      "2005-Q1",
+      "2018-Q4"
+     ],
+     "n_periods": 56,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 87,
+     "pre_mean_treated": -1.596
+    }
+   }
+  },
+  {
+   "id": "nt-container-deposits-2012-phase5",
+   "outcomes": {
+    "price-soft-drinks": {
+     "reproduces": true,
+     "max_abs_difference": 0.000457,
+     "layers": {
+      "twoway": {
+       "nobs": 29449,
+       "units": 581
+      },
+      "state_year": {
+       "nobs": 29449,
+       "units": 581
+      },
+      "saturated": {
+       "nobs": 29449,
+       "units": 581
+      },
+      "controls": {
+       "nobs": 29449,
+       "units": 581
+      },
+      "imputation": {
+       "nobs": 29449,
+       "units": 581
+      },
+      "sdid": {
+       "nobs": 28917,
+       "units": 567
+      },
+      "gsynth": {
+       "nobs": 28917,
+       "units": 567
+      }
+     },
+     "cells": 581,
+     "treated_cells": 1,
+     "treated_observations": 23,
+     "periods": [
+      "2005-Q1",
+      "2017-Q3"
+     ],
+     "n_periods": 51,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 83,
+     "pre_mean_treated": -7.02
+    },
+    "price-beer": {
+     "reproduces": true,
+     "max_abs_difference": 0.000376,
+     "layers": {
+      "twoway": {
+       "nobs": 29449,
+       "units": 581
+      },
+      "state_year": {
+       "nobs": 29449,
+       "units": 581
+      },
+      "saturated": {
+       "nobs": 29449,
+       "units": 581
+      },
+      "controls": {
+       "nobs": 29449,
+       "units": 581
+      },
+      "imputation": {
+       "nobs": 29449,
+       "units": 581
+      },
+      "sdid": {
+       "nobs": 28917,
+       "units": 567
+      },
+      "gsynth": {
+       "nobs": 28917,
+       "units": 567
+      }
+     },
+     "cells": 581,
+     "treated_cells": 1,
+     "treated_observations": 23,
+     "periods": [
+      "2005-Q1",
+      "2017-Q3"
+     ],
+     "n_periods": 51,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "TAS",
+      "VIC",
+      "WA"
+     ],
+     "classes": 83,
+     "pre_mean_treated": -9.613
+    }
+   }
+  },
+  {
+   "id": "retail-energy-deregulation-2013-2016-phase5",
+   "outcomes": {
+    "price-electricity": {
+     "reproduces": true,
+     "max_abs_difference": 0.000409,
+     "layers": {
+      "twoway": {
+       "nobs": 34328,
+       "units": 595
+      },
+      "state_year": {
+       "nobs": 34328,
+       "units": 595
+      },
+      "saturated": {
+       "nobs": 34328,
+       "units": 595
+      },
+      "controls": {
+       "nobs": 34328,
+       "units": 595
+      },
+      "imputation": {
+       "nobs": 34328,
+       "units": 595
+      },
+      "sdid": {
+       "nobs": 72210,
+       "units": 1245
+      },
+      "gsynth": {
+       "nobs": 72210,
+       "units": 1245
+      }
+     },
+     "cells": 595,
+     "treated_cells": 3,
+     "treated_observations": 58,
+     "periods": [
+      "2005-Q1",
+      "2019-Q2"
+     ],
+     "n_periods": 58,
+     "states": [
+      "ACT",
+      "NSW",
+      "NT",
+      "QLD",
+      "SA",
+      "TAS",
+      "WA"
+     ],
+     "classes": 85,
+     "pre_mean_treated": -15.113
+    }
+   }
+  }
+ ]
+}
