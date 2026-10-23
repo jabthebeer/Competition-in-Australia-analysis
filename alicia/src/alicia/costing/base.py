@@ -153,7 +153,8 @@ def _sort_key(v):
 
 
 def num(v):
-    """Floats rounded to SIGNIFICANT digits (integral values become ints); NaN becomes None."""
+    """Integral values exactly (as ints); other floats to SIGNIFICANT significant digits, but never fewer than
+    their integer digits (a float of 8 or more digits is rounded to a whole number). NaN becomes None."""
     if isinstance(v, bool) or v is None or isinstance(v, (str, int)):
         return v
     try:
@@ -162,10 +163,12 @@ def num(v):
         return v
     if math.isnan(x) or math.isinf(x):
         return None
-    if x == 0:
-        return 0
+    if x.is_integer() and abs(x) < 1e15:
+        return int(x)
+    if math.floor(math.log10(abs(x))) + 1 >= SIGNIFICANT:
+        return int(round(x))
     r = float(f"{x:.{SIGNIFICANT}g}")
-    return int(r) if r.is_integer() and abs(r) < 1e15 else r
+    return int(r) if r.is_integer() else r
 
 
 def value(cell) -> float | None:

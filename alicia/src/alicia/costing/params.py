@@ -31,6 +31,8 @@ CONNECTORS = (
     "abs_io",
     "abs_eeh",
     "abs_bcs",
+    "abs_berd",
+    "abs_osca",
 )
 
 
