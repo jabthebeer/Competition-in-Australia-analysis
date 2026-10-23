@@ -38,6 +38,7 @@ CONNECTORS = (
     "oecd_fdi_rri",
     "abs_capex",
     "pc_national",
+    "rba_hf2025",
 )
 
 
