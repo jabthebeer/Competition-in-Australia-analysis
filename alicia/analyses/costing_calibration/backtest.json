@@ -1,0 +1,1262 @@
+{
+ "about": "Layer B back-test against PC National (alicia/analyses/costing_calibration/backtest.py).",
+ "weights": {
+  "value_added": "PC National initial GSP by industry, 2018-19 (pc_national.initial_gsp)",
+  "labour_share": "ABS input-output tables 2023-24, coe / (coe + gos_mi) by IOIG (abs_io.industries)",
+  "alpha": 0.475907,
+  "industries": [
+   {
+    "pcn_no": 1,
+    "name": "Sheep, grains, beef and dairy cattle",
+    "ioig": [
+     "0101"
+    ],
+    "va": 15760.97,
+    "labour_share": 0.184849
+   },
+   {
+    "pcn_no": 2,
+    "name": "Poultry and other livestock",
+    "ioig": [
+     "0102"
+    ],
+    "va": 4725.98,
+    "labour_share": 0.164386
+   },
+   {
+    "pcn_no": 3,
+    "name": "Other agriculture",
+    "ioig": [
+     "0103"
+    ],
+    "va": 12739.1,
+    "labour_share": 0.201736
+   },
+   {
+    "pcn_no": 4,
+    "name": "Aquaculture",
+    "ioig": [
+     "0201"
+    ],
+    "va": 774.406,
+    "labour_share": 0.460222
+   },
+   {
+    "pcn_no": 5,
+    "name": "Forestry and logging",
+    "ioig": [
+     "0301"
+    ],
+    "va": 1885.543,
+    "labour_share": 0.424664
+   },
+   {
+    "pcn_no": 6,
+    "name": "Fishing, hunting and trapping",
+    "ioig": [
+     "0401"
+    ],
+    "va": 1294.497,
+    "labour_share": 0.303346
+   },
+   {
+    "pcn_no": 7,
+    "name": "Agriculture, forestry and fishing support services",
+    "ioig": [
+     "0501"
+    ],
+    "va": 3030.349,
+    "labour_share": 0.494685
+   },
+   {
+    "pcn_no": 8,
+    "name": "Coal mining",
+    "ioig": [
+     "0601"
+    ],
+    "va": 43670.84,
+    "labour_share": 0.160808
+   },
+   {
+    "pcn_no": 9,
+    "name": "Oil and gas extraction",
+    "ioig": [
+     "0701"
+    ],
+    "va": 53532.73,
+    "labour_share": 0.065891
+   },
+   {
+    "pcn_no": 10,
+    "name": "Iron ore mining",
+    "ioig": [
+     "0801"
+    ],
+    "va": 58520.57,
+    "labour_share": 0.087563
+   },
+   {
+    "pcn_no": 11,
+    "name": "Non-ferrous metal ore mining",
+    "ioig": [
+     "0802"
+    ],
+    "va": 13164.24,
+    "labour_share": 0.510977
+   },
+   {
+    "pcn_no": 12,
+    "name": "Non-metallic mineral mining",
+    "ioig": [
+     "0901"
+    ],
+    "va": 2673.629,
+    "labour_share": 0.184102
+   },
+   {
+    "pcn_no": 13,
+    "name": "Exploration and mining support services",
+    "ioig": [
+     "1001"
+    ],
+    "va": 10193.88,
+    "labour_share": 0.605307
+   },
+   {
+    "pcn_no": 14,
+    "name": "Meat and meat product manufacturing",
+    "ioig": [
+     "1101"
+    ],
+    "va": 7787.425,
+    "labour_share": 0.548447
+   },
+   {
+    "pcn_no": 15,
+    "name": "Processed seafood manufacturing",
+    "ioig": [
+     "1102"
+    ],
+    "va": 359.031,
+    "labour_share": 0.282306
+   },
+   {
+    "pcn_no": 16,
+    "name": "Dairy product manufacturing",
+    "ioig": [
+     "1103"
+    ],
+    "va": 3097.245,
+    "labour_share": 0.636364
+   },
+   {
+    "pcn_no": 17,
+    "name": "Fruit and vegetable product manufacturing",
+    "ioig": [
+     "1104"
+    ],
+    "va": 1270.003,
+    "labour_share": 0.74124
+   },
+   {
+    "pcn_no": 18,
+    "name": "Oils and fats manufacturing",
+    "ioig": [
+     "1105"
+    ],
+    "va": 307.126,
+    "labour_share": 0.386121
+   },
+   {
+    "pcn_no": 19,
+    "name": "Grain mill and cereal product manufacturing",
+    "ioig": [
+     "1106"
+    ],
+    "va": 1252.262,
+    "labour_share": 0.717033
+   },
+   {
+    "pcn_no": 20,
+    "name": "Bakery product manufacturing",
+    "ioig": [
+     "1107"
+    ],
+    "va": 3141.679,
+    "labour_share": 0.880501
+   },
+   {
+    "pcn_no": 21,
+    "name": "Sugar and confectionery manufacturing",
+    "ioig": [
+     "1108"
+    ],
+    "va": 2037.234,
+    "labour_share": 0.552579
+   },
+   {
+    "pcn_no": 22,
+    "name": "Other food product manufacturing",
+    "ioig": [
+     "1109"
+    ],
+    "va": 3644.92,
+    "labour_share": 0.467366
+   },
+   {
+    "pcn_no": 23,
+    "name": "Soft drinks, cordials and syrup manufacturing",
+    "ioig": [
+     "1201"
+    ],
+    "va": 1295.573,
+    "labour_share": 0.596465
+   },
+   {
+    "pcn_no": 24,
+    "name": "Beer manufacturing",
+    "ioig": [
+     "1202"
+    ],
+    "va": 1779.921,
+    "labour_share": 0.396181
+   },
+   {
+    "pcn_no": 25,
+    "name": "Wine, spirits and tobacco",
+    "ioig": [
+     "1205"
+    ],
+    "va": 1970.067,
+    "labour_share": 0.661188
+   },
+   {
+    "pcn_no": 26,
+    "name": "Textile manufacturing",
+    "ioig": [
+     "1301"
+    ],
+    "va": 187.291,
+    "labour_share": 0.625
+   },
+   {
+    "pcn_no": 27,
+    "name": "Tanned leather, dressed fur and leather product manufacturing",
+    "ioig": [
+     "1302"
+    ],
+    "va": 347.416,
+    "labour_share": 0.359833
+   },
+   {
+    "pcn_no": 28,
+    "name": "Textile product manufacturing",
+    "ioig": [
+     "1303"
+    ],
+    "va": 1242.485,
+    "labour_share": 0.595409
+   },
+   {
+    "pcn_no": 29,
+    "name": "Knitted product manufacturing",
+    "ioig": [
+     "1304"
+    ],
+    "va": 77.227,
+    "labour_share": 0.727273
+   },
+   {
+    "pcn_no": 30,
+    "name": "Clothing manufacturing",
+    "ioig": [
+     "1305"
+    ],
+    "va": 457.043,
+    "labour_share": 0.741935
+   },
+   {
+    "pcn_no": 31,
+    "name": "Footwear manufacturing",
+    "ioig": [
+     "1306"
+    ],
+    "va": 169.432,
+    "labour_share": 0.563559
+   },
+   {
+    "pcn_no": 32,
+    "name": "Sawmill product manufacturing",
+    "ioig": [
+     "1401"
+    ],
+    "va": 1768.496,
+    "labour_share": 0.539838
+   },
+   {
+    "pcn_no": 33,
+    "name": "Other wood product manufacturing",
+    "ioig": [
+     "1402"
+    ],
+    "va": 4049.344,
+    "labour_share": 0.541126
+   },
+   {
+    "pcn_no": 34,
+    "name": "Pulp, paper and paperboard manufacturing",
+    "ioig": [
+     "1501"
+    ],
+    "va": 722.213,
+    "labour_share": 0.577554
+   },
+   {
+    "pcn_no": 35,
+    "name": "Paper stationery and other converted paper product manufacturing",
+    "ioig": [
+     "1502"
+    ],
+    "va": 1778.057,
+    "labour_share": 0.65488
+   },
+   {
+    "pcn_no": 36,
+    "name": "Printing (including the reproduction of recorded media)",
+    "ioig": [
+     "1601"
+    ],
+    "va": 1329.99,
+    "labour_share": 0.808376
+   },
+   {
+    "pcn_no": 37,
+    "name": "Petroleum and coal product manufacturing",
+    "ioig": [
+     "1701"
+    ],
+    "va": 6466.045,
+    "labour_share": 0.252927
+   },
+   {
+    "pcn_no": 38,
+    "name": "Human pharmaceutical and medicinal product manufacturing",
+    "ioig": [
+     "1801"
+    ],
+    "va": 4093.803,
+    "labour_share": 0.615612
+   },
+   {
+    "pcn_no": 39,
+    "name": "Veterinary pharmaceutical and medicinal product manufacturing",
+    "ioig": [
+     "1802"
+    ],
+    "va": 291.209,
+    "labour_share": 0.44473
+   },
+   {
+    "pcn_no": 40,
+    "name": "Basic chemical manufacturing",
+    "ioig": [
+     "1803"
+    ],
+    "va": 5450.317,
+    "labour_share": 0.569592
+   },
+   {
+    "pcn_no": 41,
+    "name": "Cleaning compounds and toiletry preparation manufacturing",
+    "ioig": [
+     "1804"
+    ],
+    "va": 1268.159,
+    "labour_share": 0.474033
+   },
+   {
+    "pcn_no": 42,
+    "name": "Polymer product manufacturing",
+    "ioig": [
+     "1901"
+    ],
+    "va": 4123.991,
+    "labour_share": 0.575962
+   },
+   {
+    "pcn_no": 43,
+    "name": "Natural rubber product manufacturing",
+    "ioig": [
+     "1902"
+    ],
+    "va": 335.209,
+    "labour_share": 0.510129
+   },
+   {
+    "pcn_no": 44,
+    "name": "Glass and glass product manufacturing",
+    "ioig": [
+     "2001"
+    ],
+    "va": 797.271,
+    "labour_share": 0.562804
+   },
+   {
+    "pcn_no": 45,
+    "name": "Ceramic product manufacturing",
+    "ioig": [
+     "2002"
+    ],
+    "va": 758.33,
+    "labour_share": 0.41309
+   },
+   {
+    "pcn_no": 46,
+    "name": "Cement, lime and ready-mixed concrete manufacturing",
+    "ioig": [
+     "2003"
+    ],
+    "va": 2527.431,
+    "labour_share": 0.459428
+   },
+   {
+    "pcn_no": 47,
+    "name": "Plaster and concrete product manufacturing",
+    "ioig": [
+     "2004"
+    ],
+    "va": 1577.311,
+    "labour_share": 0.51435
+   },
+   {
+    "pcn_no": 48,
+    "name": "Other non-metallic mineral product manufacturing",
+    "ioig": [
+     "2005"
+    ],
+    "va": 902.455,
+    "labour_share": 0.523404
+   },
+   {
+    "pcn_no": 49,
+    "name": "Iron and steel manufacturing",
+    "ioig": [
+     "2101"
+    ],
+    "va": 3073.692,
+    "labour_share": 0.831572
+   },
+   {
+    "pcn_no": 50,
+    "name": "Basic non-ferrous metal manufacturing",
+    "ioig": [
+     "2102"
+    ],
+    "va": 5027.751,
+    "labour_share": 0.650134
+   },
+   {
+    "pcn_no": 51,
+    "name": "Forged iron and steel product manufacturing",
+    "ioig": [
+     "2201"
+    ],
+    "va": 266.919,
+    "labour_share": 0.379576
+   },
+   {
+    "pcn_no": 52,
+    "name": "Structural metal product manufacturing",
+    "ioig": [
+     "2202"
+    ],
+    "va": 5243.283,
+    "labour_share": 0.573566
+   },
+   {
+    "pcn_no": 53,
+    "name": "Metal containers and other sheet metal product manufacturing",
+    "ioig": [
+     "2203"
+    ],
+    "va": 1898.533,
+    "labour_share": 0.565664
+   },
+   {
+    "pcn_no": 54,
+    "name": "Other fabricated metal product manufacturing",
+    "ioig": [
+     "2204"
+    ],
+    "va": 2199.386,
+    "labour_share": 0.701417
+   },
+   {
+    "pcn_no": 55,
+    "name": "Motor vehicles and parts; other transport equipment manufacturing",
+    "ioig": [
+     "2301"
+    ],
+    "va": 3407.983,
+    "labour_share": 0.661469
+   },
+   {
+    "pcn_no": 56,
+    "name": "Ships and boat manufacturing",
+    "ioig": [
+     "2302"
+    ],
+    "va": 1798.966,
+    "labour_share": 0.662544
+   },
+   {
+    "pcn_no": 57,
+    "name": "Railway rolling stock manufacturing",
+    "ioig": [
+     "2303"
+    ],
+    "va": 822.272,
+    "labour_share": 0.693325
+   },
+   {
+    "pcn_no": 58,
+    "name": "Aircraft manufacturing",
+    "ioig": [
+     "2304"
+    ],
+    "va": 1616.363,
+    "labour_share": 0.761332
+   },
+   {
+    "pcn_no": 59,
+    "name": "Professional, scientific, computer and electronic equipment manufacturing",
+    "ioig": [
+     "2401"
+    ],
+    "va": 5037.691,
+    "labour_share": 0.454881
+   },
+   {
+    "pcn_no": 60,
+    "name": "Electrical equipment manufacturing",
+    "ioig": [
+     "2403"
+    ],
+    "va": 1522.236,
+    "labour_share": 0.603042
+   },
+   {
+    "pcn_no": 61,
+    "name": "Domestic appliance manufacturing",
+    "ioig": [
+     "2404"
+    ],
+    "va": 500.243,
+    "labour_share": 0.542959
+   },
+   {
+    "pcn_no": 62,
+    "name": "Specialised and other machinery and equipment manufacturing",
+    "ioig": [
+     "2405"
+    ],
+    "va": 4680.182,
+    "labour_share": 0.698935
+   },
+   {
+    "pcn_no": 63,
+    "name": "Furniture manufacturing",
+    "ioig": [
+     "2501"
+    ],
+    "va": 1469.052,
+    "labour_share": 0.617176
+   },
+   {
+    "pcn_no": 64,
+    "name": "Other manufactured products",
+    "ioig": [
+     "2502"
+    ],
+    "va": 1615.266,
+    "labour_share": 0.561161
+   },
+   {
+    "pcn_no": 65,
+    "name": "Electricity generation",
+    "ioig": [
+     "2601"
+    ],
+    "va": 6681.814,
+    "labour_share": 0.301658
+   },
+   {
+    "pcn_no": 66,
+    "name": "Electricity transmission, distribution, on selling and electricity market operation",
+    "ioig": [
+     "2605"
+    ],
+    "va": 19284.1,
+    "labour_share": 0.319961
+   },
+   {
+    "pcn_no": 67,
+    "name": "Gas supply",
+    "ioig": [
+     "2701"
+    ],
+    "va": 2035.15,
+    "labour_share": 0.179245
+   },
+   {
+    "pcn_no": 68,
+    "name": "Water supply, sewerage and drainage services",
+    "ioig": [
+     "2801"
+    ],
+    "va": 13335.96,
+    "labour_share": 0.324536
+   },
+   {
+    "pcn_no": 69,
+    "name": "Waste collection, treatment and disposal services",
+    "ioig": [
+     "2901"
+    ],
+    "va": 5072.084,
+    "labour_share": 0.692155
+   },
+   {
+    "pcn_no": 70,
+    "name": "Residential building construction",
+    "ioig": [
+     "3001"
+    ],
+    "va": 23622.62,
+    "labour_share": 0.503772
+   },
+   {
+    "pcn_no": 71,
+    "name": "Non-residential building construction",
+    "ioig": [
+     "3002"
+    ],
+    "va": 18176.56,
+    "labour_share": 0.604702
+   },
+   {
+    "pcn_no": 72,
+    "name": "Heavy and civil engineering construction",
+    "ioig": [
+     "3101"
+    ],
+    "va": 41994.45,
+    "labour_share": 0.504366
+   },
+   {
+    "pcn_no": 73,
+    "name": "Construction services",
+    "ioig": [
+     "3201"
+    ],
+    "va": 60325.17,
+    "labour_share": 0.609961
+   },
+   {
+    "pcn_no": 74,
+    "name": "Wholesale trade",
+    "ioig": [
+     "3301"
+    ],
+    "va": 64937.93,
+    "labour_share": 0.582517
+   },
+   {
+    "pcn_no": 75,
+    "name": "Retail trade",
+    "ioig": [
+     "3901"
+    ],
+    "va": 62430.28,
+    "labour_share": 0.654034
+   },
+   {
+    "pcn_no": 76,
+    "name": "Accommodation",
+    "ioig": [
+     "4401"
+    ],
+    "va": 6212.793,
+    "labour_share": 0.621899
+   },
+   {
+    "pcn_no": 77,
+    "name": "Food and beverage services",
+    "ioig": [
+     "4501"
+    ],
+    "va": 37377.63,
+    "labour_share": 0.704074
+   },
+   {
+    "pcn_no": 78,
+    "name": "Road transport",
+    "ioig": [
+     "4601"
+    ],
+    "va": 27624.89,
+    "labour_share": 0.657056
+   },
+   {
+    "pcn_no": 79,
+    "name": "Rail transport",
+    "ioig": [
+     "4701"
+    ],
+    "va": 8849.183,
+    "labour_share": 0.678766
+   },
+   {
+    "pcn_no": 80,
+    "name": "Water, pipeline and other transport",
+    "ioig": [
+     "4801"
+    ],
+    "va": 4829.554,
+    "labour_share": 0.470809
+   },
+   {
+    "pcn_no": 81,
+    "name": "Air and space transport",
+    "ioig": [
+     "4901"
+    ],
+    "va": 9634.985,
+    "labour_share": 0.514471
+   },
+   {
+    "pcn_no": 82,
+    "name": "Postal and courier pick-up and delivery service",
+    "ioig": [
+     "5101"
+    ],
+    "va": 4628.914,
+    "labour_share": 0.606526
+   },
+   {
+    "pcn_no": 83,
+    "name": "Transport support services and storage",
+    "ioig": [
+     "5201"
+    ],
+    "va": 28947.67,
+    "labour_share": 0.312055
+   },
+   {
+    "pcn_no": 84,
+    "name": "Publishing (except internet and music publishing)",
+    "ioig": [
+     "5401"
+    ],
+    "va": 6069.518,
+    "labour_share": 0.751564
+   },
+   {
+    "pcn_no": 85,
+    "name": "Motion picture and sound recording",
+    "ioig": [
+     "5501"
+    ],
+    "va": 2902.955,
+    "labour_share": 0.763647
+   },
+   {
+    "pcn_no": 86,
+    "name": "Broadcasting (except internet)",
+    "ioig": [
+     "5601"
+    ],
+    "va": 4271.888,
+    "labour_share": 0.571502
+   },
+   {
+    "pcn_no": 87,
+    "name": "Internet service providers, internet publishing and broadcasting, websearch portals and data processing",
+    "ioig": [
+     "5701"
+    ],
+    "va": 13943.47,
+    "labour_share": 0.404379
+   },
+   {
+    "pcn_no": 88,
+    "name": "Telecommunication services",
+    "ioig": [
+     "5801"
+    ],
+    "va": 16392.63,
+    "labour_share": 0.348609
+   },
+   {
+    "pcn_no": 89,
+    "name": "Library and other information services",
+    "ioig": [
+     "6001"
+    ],
+    "va": 1456.091,
+    "labour_share": 0.42371
+   },
+   {
+    "pcn_no": 90,
+    "name": "Finance",
+    "ioig": [
+     "6201"
+    ],
+    "va": 114189.6,
+    "labour_share": 0.240832
+   },
+   {
+    "pcn_no": 91,
+    "name": "Insurance and superannuation funds",
+    "ioig": [
+     "6301"
+    ],
+    "va": 12953.07,
+    "labour_share": 0.449485
+   },
+   {
+    "pcn_no": 92,
+    "name": "Auxiliary finance and insurance services",
+    "ioig": [
+     "6401"
+    ],
+    "va": 34535.63,
+    "labour_share": 0.653446
+   },
+   {
+    "pcn_no": 93,
+    "name": "Rental and hiring services (except real estate)",
+    "ioig": [
+     "6601"
+    ],
+    "va": 14318.4,
+    "labour_share": 0.657931
+   },
+   {
+    "pcn_no": 94,
+    "name": "Ownership of dwellings",
+    "ioig": [
+     "6700",
+     "6701"
+    ],
+    "va": 159154,
+    "labour_share": 0.0
+   },
+   {
+    "pcn_no": 95,
+    "name": "Non-residential property operators and real estate services",
+    "ioig": [
+     "6702"
+    ],
+    "va": 57693.45,
+    "labour_share": 0.365106
+   },
+   {
+    "pcn_no": 96,
+    "name": "Professional, scientific and technical services",
+    "ioig": [
+     "6901"
+    ],
+    "va": 116038.1,
+    "labour_share": 0.740041
+   },
+   {
+    "pcn_no": 97,
+    "name": "Computer systems design and related services",
+    "ioig": [
+     "7001"
+    ],
+    "va": 35130.52,
+    "labour_share": 0.727953
+   },
+   {
+    "pcn_no": 98,
+    "name": "Employment, travel agency and other administrative services",
+    "ioig": [
+     "7210"
+    ],
+    "va": 58302.92,
+    "labour_share": 0.897616
+   },
+   {
+    "pcn_no": 99,
+    "name": "Building cleaning, pest control and other support services",
+    "ioig": [
+     "7310"
+    ],
+    "va": 12136.21,
+    "labour_share": 0.735338
+   },
+   {
+    "pcn_no": 100,
+    "name": "Public administration and regulatory services",
+    "ioig": [
+     "7501"
+    ],
+    "va": 59621.02,
+    "labour_share": 0.847002
+   },
+   {
+    "pcn_no": 101,
+    "name": "Defence",
+    "ioig": [
+     "7601"
+    ],
+    "va": 19417.23,
+    "labour_share": 0.660396
+   },
+   {
+    "pcn_no": 102,
+    "name": "Public order and safety",
+    "ioig": [
+     "7701"
+    ],
+    "va": 20783.39,
+    "labour_share": 0.866995
+   },
+   {
+    "pcn_no": 103,
+    "name": "Primary and secondary education services (including pre-schools and special schools)",
+    "ioig": [
+     "8010"
+    ],
+    "va": 52163.15,
+    "labour_share": 0.920368
+   },
+   {
+    "pcn_no": 104,
+    "name": "Technical, vocational and tertiary education services (including undergraduate and postgraduate)",
+    "ioig": [
+     "8110"
+    ],
+    "va": 33023.71,
+    "labour_share": 0.902272
+   },
+   {
+    "pcn_no": 105,
+    "name": "Arts, sports, adult and other education services (including community education)",
+    "ioig": [
+     "8210"
+    ],
+    "va": 5887.415,
+    "labour_share": 0.577187
+   },
+   {
+    "pcn_no": 106,
+    "name": "Health care services",
+    "ioig": [
+     "8401"
+    ],
+    "va": 75025.19,
+    "labour_share": 0.824589
+   },
+   {
+    "pcn_no": 107,
+    "name": "Residential care and social assistance services",
+    "ioig": [
+     "8601"
+    ],
+    "va": 62476.52,
+    "labour_share": 0.893756
+   },
+   {
+    "pcn_no": 108,
+    "name": "Heritage, creative and performing arts",
+    "ioig": [
+     "8901"
+    ],
+    "va": 4200.048,
+    "labour_share": 0.487219
+   },
+   {
+    "pcn_no": 109,
+    "name": "Sports and recreation",
+    "ioig": [
+     "9101"
+    ],
+    "va": 6678.69,
+    "labour_share": 0.78963
+   },
+   {
+    "pcn_no": 110,
+    "name": "Gambling",
+    "ioig": [
+     "9201"
+    ],
+    "va": 3820.888,
+    "labour_share": 0.630117
+   },
+   {
+    "pcn_no": 111,
+    "name": "Automotive repair and maintenance",
+    "ioig": [
+     "9401"
+    ],
+    "va": 14110.26,
+    "labour_share": 0.724321
+   },
+   {
+    "pcn_no": 112,
+    "name": "Other repair and maintenance",
+    "ioig": [
+     "9402"
+    ],
+    "va": 13305.92,
+    "labour_share": 0.701853
+   },
+   {
+    "pcn_no": 113,
+    "name": "Personal services",
+    "ioig": [
+     "9501"
+    ],
+    "va": 6849.011,
+    "labour_share": 0.78752
+   },
+   {
+    "pcn_no": 114,
+    "name": "Other services",
+    "ioig": [
+     "9502"
+    ],
+    "va": 12023.36,
+    "labour_share": 0.904433
+   }
+  ]
+ },
+ "tolerance": 0.15,
+ "model_error_band": {
+  "lp": {
+   "low": 0.697,
+   "high": 1.05,
+   "cases": 5
+  },
+  "mfp": {
+   "low": 0.58,
+   "high": 1.147,
+   "cases": 4
+  }
+ },
+ "summary": {
+  "targets": 10,
+  "within_tolerance": 6,
+  "mean_abs_error_layer_b": 0.3266,
+  "mean_abs_error_naive": 0.4627
+ },
+ "cases": [
+  {
+   "code": "H1",
+   "type": "lp",
+   "size": 0.1,
+   "industries": "all",
+   "n_industries": 114,
+   "target": true,
+   "bound": null,
+   "note": "Labour productivity is 0.1% higher for all sectors",
+   "pc_real_gdp": 0.099071,
+   "layer_b": 0.1,
+   "naive": 0.1,
+   "layer_b_error": 0.0094,
+   "naive_error": 0.0094,
+   "va_share": 1.0,
+   "wage_share": 1.0
+  },
+  {
+   "code": "H1",
+   "type": "lp",
+   "size": -0.1,
+   "industries": "all",
+   "n_industries": 114,
+   "target": true,
+   "bound": null,
+   "note": "Labour productivity is 0.1% lower for all sectors",
+   "pc_real_gdp": -0.098875,
+   "layer_b": -0.1,
+   "naive": -0.1,
+   "layer_b_error": 0.0114,
+   "naive_error": 0.0114,
+   "va_share": 1.0,
+   "wage_share": 1.0
+  },
+  {
+   "code": "H5",
+   "type": "lp",
+   "size": 0.03,
+   "industries": "all",
+   "n_industries": 114,
+   "target": true,
+   "bound": null,
+   "note": "Labour productivity is 0.03% higher",
+   "pc_real_gdp": 0.029692,
+   "layer_b": 0.03,
+   "naive": 0.03,
+   "layer_b_error": 0.0104,
+   "naive_error": 0.0104,
+   "va_share": 1.0,
+   "wage_share": 1.0
+  },
+  {
+   "code": "L2",
+   "type": "lp",
+   "size": 0.8,
+   "industries": "l2_licensed",
+   "n_industries": 15,
+   "target": true,
+   "bound": null,
+   "note": "15 industries; labour productivity +0.8%",
+   "pc_real_gdp": 0.386854,
+   "layer_b": 0.368299,
+   "naive": 0.27504,
+   "layer_b_error": -0.048,
+   "naive_error": -0.289,
+   "va_share": 0.343799,
+   "wage_share": 0.460374
+  },
+  {
+   "code": "L2_lower",
+   "type": "lp",
+   "size": 0.8,
+   "industries": "health_and_residential_care",
+   "n_industries": 2,
+   "target": true,
+   "bound": null,
+   "note": "Healthcare and residential care; labour productivity +0.8%",
+   "pc_real_gdp": 0.068637,
+   "layer_b": 0.098411,
+   "naive": 0.060252,
+   "layer_b_error": 0.4338,
+   "naive_error": -0.1222,
+   "va_share": 0.075315,
+   "wage_share": 0.123014
+  },
+  {
+   "code": "L1",
+   "type": "lp",
+   "size": 0.14,
+   "industries": "non_agricultural",
+   "n_industries": 107,
+   "target": false,
+   "bound": "lower",
+   "note": "Lower bound: 0.14% in all 107 non-agricultural industries (the PC's 24 service industries at 0.24% are not listed in the workbook)",
+   "pc_real_gdp": 0.192353,
+   "layer_b": 0.138638,
+   "naive": 0.136916,
+   "layer_b_error": -0.2793,
+   "naive_error": -0.2882,
+   "va_share": 0.977975,
+   "wage_share": 0.990271
+  },
+  {
+   "code": "L1",
+   "type": "lp",
+   "size": 0.24,
+   "industries": "non_agricultural",
+   "n_industries": 107,
+   "target": false,
+   "bound": "upper",
+   "note": "Upper bound: 0.24% in all 107 non-agricultural industries",
+   "pc_real_gdp": 0.192353,
+   "layer_b": 0.237665,
+   "naive": 0.234714,
+   "layer_b_error": 0.2356,
+   "naive_error": 0.2202,
+   "va_share": 0.977975,
+   "wage_share": 0.990271
+  },
+  {
+   "code": "D3",
+   "type": "mfp",
+   "size": 0.1,
+   "industries": "agriculture_and_mining",
+   "n_industries": 13,
+   "target": true,
+   "bound": null,
+   "note": "Capital and labour productivity +0.1% in all agriculture and mining industries",
+   "pc_real_gdp": 0.026605,
+   "layer_b": 0.023198,
+   "naive": 0.012158,
+   "layer_b_error": -0.1281,
+   "naive_error": -0.543,
+   "va_share": 0.12158,
+   "wage_share": 0.040104
+  },
+  {
+   "code": "B8",
+   "type": "mfp",
+   "size": 1.0,
+   "industries": "road_transport",
+   "n_industries": 1,
+   "target": true,
+   "bound": null,
+   "note": "Primary factor productivity +1% in road transport",
+   "pc_real_gdp": 0.0258,
+   "layer_b": 0.028871,
+   "naive": 0.015131,
+   "layer_b_error": 0.119,
+   "naive_error": -0.4135,
+   "va_share": 0.015131,
+   "wage_share": 0.01897
+  },
+  {
+   "code": "D2",
+   "type": "mfp",
+   "size": 1.0,
+   "industries": "health_care",
+   "n_industries": 1,
+   "target": true,
+   "bound": null,
+   "note": "Capital and labour productivity +1% in health care, with real government consumption held fixed (a different closure)",
+   "pc_real_gdp": 0.061491,
+   "layer_b": 0.07841,
+   "naive": 0.041094,
+   "layer_b_error": 0.2751,
+   "naive_error": -0.3317,
+   "va_share": 0.041094,
+   "wage_share": 0.064656
+  },
+  {
+   "code": "H3hlt",
+   "type": "mfp",
+   "size": 0.29,
+   "industries": "health_care",
+   "n_industries": 1,
+   "target": true,
+   "bound": null,
+   "note": "Labour and capital productivity +0.29% in health care",
+   "pc_real_gdp": 0.013198,
+   "layer_b": 0.022739,
+   "naive": 0.011917,
+   "layer_b_error": 0.7229,
+   "naive_error": -0.097,
+   "va_share": 0.041094,
+   "wage_share": 0.064656
+  },
+  {
+   "code": "B2",
+   "type": "kp",
+   "size": 0.1,
+   "industries": "retail",
+   "n_industries": 1,
+   "target": true,
+   "bound": null,
+   "note": "Capital productivity +0.1% in retail",
+   "pc_real_gdp": 0.0009,
+   "layer_b": 0.002257,
+   "naive": 0.00342,
+   "layer_b_error": 1.5081,
+   "naive_error": 2.7995,
+   "va_share": 0.034196,
+   "wage_share": 0.042674
+  }
+ ]
+}

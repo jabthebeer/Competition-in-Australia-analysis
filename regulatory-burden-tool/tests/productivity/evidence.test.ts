@@ -146,6 +146,8 @@ const REQUIRED: { formula: string; parameter: string; source: Source; field?: st
   { formula: "F-B-04", parameter: "tenYearShare", source: "library" },
   { formula: "F-B-04", parameter: "phaseIn", source: "brief", field: "phaseInYears" },
   { formula: "F-B-05", parameter: "tolerance", source: "library" },
+  { formula: "F-B-05", parameter: "modelErrorLp", source: "library" },
+  { formula: "F-B-05", parameter: "modelErrorMfp", source: "library" },
   // §2.5 Uncertainty, overlaps and the gate
   { formula: "F-U-01", parameter: "draws", source: "brief", field: "draws" },
   { formula: "F-U-01", parameter: "seed", source: "brief", field: "seed" },

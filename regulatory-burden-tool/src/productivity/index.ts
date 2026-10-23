@@ -6,3 +6,5 @@ export { CHANNELS, CHANNEL_IDS, OVERLAP_RULES, SHOCK_TYPES, channelsFor, type Ch
 export { SUBDIVISION_RANGES, covers, divisionOf, overlaps, type Division } from "./anzsic";
 // P3: the evidence library (plan §6.7) — sourced defaults and ranges for every formula parameter.
 export * from "./evidence";
+// P4: Layer B, from industry shocks to GDP (plan §6.3).
+export * from "./layerB";
