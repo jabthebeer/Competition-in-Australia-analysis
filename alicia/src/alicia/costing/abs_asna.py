@@ -123,9 +123,10 @@ def _window(df: pd.DataFrame) -> tuple[int, int]:
 
 def _wide(df: pd.DataFrame, items: dict[str, str], first: int) -> dict[tuple[str, int], dict]:
     out: dict[tuple[str, int], dict] = {}
-    d = df[df["item"].isin(items) & (df["fy"] >= first)]
-    if d["code"].isna().any():
-        raise ValueError(f"series with an unrecognised industry: {sorted(set(d[d['code'].isna()]['item']))}")
+    unknown = df[df["code"].isna() & df["item"].map(lambda s: any(p.strip() in items for p in s.split(" ; ")))]
+    if not unknown.empty:
+        raise ValueError(f"series with an unrecognised industry: {sorted(set(unknown['item']))}")
+    d = df[df["code"].notna() & df["item"].isin(items) & (df["fy"] >= first)]
     for r in d.itertuples():
         out.setdefault((r.code, int(r.fy)), {})[items[r.item]] = r.value
     return out

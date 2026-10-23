@@ -79,7 +79,7 @@ def _slug(s: str) -> str:
 
 
 def _find(rows: list[list], text: str, start: int = 0) -> int | None:
-    return next((i for i in range(start, len(rows)) if clean_text(rows[i][0]) == text), None)
+    return next((i for i in range(start, len(rows)) if rows[i] and clean_text(rows[i][0]) == text), None)
 
 
 def simulation(tab: str, rows: list[list]) -> tuple[dict, dict[str, str]]:
@@ -110,7 +110,7 @@ def simulation(tab: str, rows: list[list]) -> tuple[dict, dict[str, str]]:
     }
     labels = {}
     for r in rows[macro_i + 1 :]:
-        label = clean_text(r[0])
+        label = clean_text(r[0]) if r else ""
         if not label:
             if labels:
                 break
@@ -159,12 +159,12 @@ def linearity(tab: str, rows: list[list]) -> list[dict]:
 
 
 def initial_gsp(rows: list[list]) -> list[dict]:
-    i = next(i for i, r in enumerate(rows) if clean_text(r[0]).startswith("Gross State Product"))
+    i = next(i for i, r in enumerate(rows) if r and clean_text(r[0]).startswith("Gross State Product"))
     head = [clean_text(v) for v in rows[i + 1]]
     cols = {c: v for c, v in enumerate(head) if v in (*STATES, "Total")}
     out = []
     for r in rows[i + 2 :]:
-        name = clean_text(r[0])
+        name = clean_text(r[0]) if r else ""
         if not name:
             break
         m = re.fullmatch(r"(\d+) (\S+)", clean_text(r[1]))
