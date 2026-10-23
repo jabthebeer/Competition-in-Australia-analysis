@@ -58,7 +58,7 @@ export const RANGE_BASES = ["source", "plusMinus50", "sensitivity", "fixed"] as 
 export const EVIDENCE_GRADE_LABELS = {
   A: "Australian causal or structural estimate (or an Australian official statistic or rule)",
   B: "International causal estimate",
-  C: "Cross-country correlation, or a model result used as a rule of thumb",
+  C: "A correlation (across countries or within one), or a model result used as a rule of thumb",
   D: "The tool's assumption, or a user entry",
 } as const;
 export const VERIFICATION_TAG_LABELS = {
