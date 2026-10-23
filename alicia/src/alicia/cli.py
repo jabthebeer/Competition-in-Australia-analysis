@@ -14,6 +14,8 @@ alicia pipeline catalogue            summarise every processed panel for coverag
 alicia data <id>                     which data panels can measure a change, at what industry and area level
 alicia spec list | show <id>         evaluation specifications (alicia/specs)
 alicia spec run <id> [--stage ...]   run a specification's stages and check outputs reproduce byte for byte
+alicia costing-params [--refresh] [--rebuild] [--strict] [--report file.md]   policy-costing parameters.json
+alicia costing-register [-o file.json]   the register as the Policy costing tab's reference class
 """
 
 from __future__ import annotations
@@ -351,6 +353,26 @@ def cmd_spec(args) -> int:
     return 0 if ok else 1
 
 
+def cmd_costing_params(args) -> int:
+    from .costing import params
+
+    return params.run(
+        refresh=args.refresh, rebuild=args.rebuild, strict=args.strict, report=args.report, only=args.source or None
+    )
+
+
+def cmd_costing_register(args) -> int:
+    from .costing import register
+
+    records = _load(args)
+    evals = load_evaluations(records, Path(args.evaluations) if args.evaluations else None)
+    if evals.problems:
+        print(f"{len(evals.problems)} problem(s) in the evaluations; run 'alicia validate'.", file=sys.stderr)
+    path = register.write(records, evals.evaluations, Path(args.output) if args.output else None)
+    print(f"Wrote {path}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(
         prog="alicia", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -434,6 +456,18 @@ def main(argv: list[str] | None = None) -> int:
         help="run the registered estimate even if design outputs are not committed (for checks only)",
     )
     sp.set_defaults(func=cmd_spec)
+
+    cp = sub.add_parser("costing-params", help="merge (and refresh) the policy-costing parameters.json")
+    cp.add_argument("--refresh", action="store_true", help="download and rebuild sources with a newer release")
+    cp.add_argument("--rebuild", action="store_true", help="rebuild sources whose raw files are present locally")
+    cp.add_argument("--strict", action="store_true", help="exit non-zero if any source fails or is missing")
+    cp.add_argument("--report", help="write a Markdown summary of the run to this file")
+    cp.add_argument("--source", action="append", help="limit the refresh or rebuild to this source (repeatable)")
+    cp.set_defaults(func=cmd_costing_params)
+
+    cr = sub.add_parser("costing-register", help="export the register for the Policy costing tab")
+    cr.add_argument("-o", "--output", help="file to write (default: data/processed/costing/register.json)")
+    cr.set_defaults(func=cmd_costing_register)
 
     args = p.parse_args(argv)
     return args.func(args)
