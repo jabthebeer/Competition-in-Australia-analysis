@@ -6,6 +6,10 @@ What P0 covers:
 - The input contract (the policy brief) is implemented and tested.
 - The formulas are specified with their sources; they will be implemented in P4. Rows marked **P4** or **P5** have no code yet.
 
+What P3 adds (23 October 2026):
+- The evidence library (`src/productivity/evidence/*.json`): one entry per formula parameter, with its value, range, source, locator and exact quote. Each parameter cell in §2.3–2.5 names its entries (e.g. `c3.sigma.cfm2011`); the rules are in §2.6.
+- Verifying the entries changed three specifications: F-C4-01 now uses the log of entry cost (A-P11), F-C4-03's frontier gap has no default (A-P12), and shocks built from Égert and Gal enter Layer B as labour-augmenting (A-P18).
+
 Column key:
 - **Code** points to `src/productivity/` (or `src/engine/` for the RBM rules this module relies on).
 - **Test** gives test IDs, which appear in the test titles under `tests/productivity/`, `tests/engine/` and `e2e/`.
@@ -35,7 +39,8 @@ Companion documents: [`framework_traceability.md`](framework_traceability.md) (t
 | **CFM2011** | Chirinko, Fazzari & Meyer, JBES 29(4) | 2011 |
 | **KPB2016** | Kouparitsas, Prihardini & Beames, Treasury WP 2016-02 | 2016 |
 | **BGVR2002** | Bloom, Griffith & Van Reenen, J Public Econ | 2002 |
-| **JLL** | Johnson, Lavetti & Lipsitz, NBER w31929 | 2023 working paper |
+| **JLL** | Johnson, Lavetti & Lipsitz, NBER w31929 | December 2023, revised December 2024 (revision read) |
+| **BNvR2020** | Bambalaite, Nicoletti & von Rueden, *Occupational entry regulations and their effects on productivity in services: Firm-level evidence*, OECD Economics Department WP 1605 | 2020; the "OECD elasticity" the PC uses for licensing |
 | **MR2019** | Mistura & Roulet, OECD Working Papers on International Investment 2019/01 | 2019 |
 | **CAO2015** | Cao et al., Treasury WP 2015-01 | 2015 |
 | **ABS-MFP** | ABS, *Estimates of Industry Multifactor Productivity* (5260.0.55.002) | 2024-25, released 6 Feb 2026 |
@@ -65,7 +70,7 @@ Companion documents: [`framework_traceability.md`](framework_traceability.md) (t
 | PR-03 | IA threshold 2: "indicative impacts of $200 million or more a year on economic and social outcomes", undiscounted in the preliminary test. Results compare the central and low annual GDP effect with $200m | IAF-PG p. 8 | P4 | P4 |
 | PR-04 | IA threshold 3: a cohort, including small businesses, disproportionately and significantly affected. Reported as cost-to-revenue by size cohort and the small-to-large cost ratio | IAF-PG p. 9 | P5 | P5 |
 | PR-05 | Economy-wide effects are presented "only if they are material and supported by robust evidence" (the evidence gate, plan §6.6) | OIA-COMP | P4 | P4 |
-| PR-06 | Productivity NPVs at a 7% real discount rate, with 3% and 10% sensitivity. The RBE stays undiscounted (RBM p. 6) | OIA-CBA | `src/productivity/brief.ts#AnalysisSchema` (defaults); NPV in P4 | T-BRF-01; P4 |
+| PR-06 | Productivity NPVs at a 7% real discount rate, with 3% and 10% sensitivity. The RBE stays undiscounted (RBM p. 6) | OIA-CBA p. 10; evidence `general.discount-rate.oia-cba` | `src/productivity/brief.ts#AnalysisSchema` (defaults); NPV in P4 | T-BRF-01, T-EVD-09; P4 |
 | PR-07 | The competition screen follows the three competition tests: (1) does it impact competition, (2) less restrictive alternatives, (3) net benefit | OIA-COMP (the three steps) | P5 | P5 |
 | PR-08 | Step 1 uses the five OIA categories, which are the register's channels (`barriers`, `number-or-type`, `ability-incentive`, `prices-market-share`, `consumer-choice`) | OIA-COMP, Step 1; `alicia/src/alicia/register/schema.py` | P5 | P5 |
 | PR-09 | A 10-year default duration; a longer one needs a recorded justification | RBM p. 6 | `src/productivity/brief.ts#BriefMetaSchema` | T-BRF-11 |
@@ -97,42 +102,42 @@ The formulas below are specified now and implemented in P4. "Derived" marks a ma
 
 | ID | Formula | Parameters (grade, tag) | Source | Phase |
 |---|---|---|---|---|
-| F-C1-01 | Δln MFP_i = −ΔC_i / GVA_i, where ΔC_i is the RBE's average annual change in compliance cost for populations in industry i (fees and taxes are already outside the RBE). **Derived** (A-P01) | GVA by industry (ABS ASNA, Australian Industry) | RBM (input); plan §6.2 | P4 |
-| F-C1-02 | ΔC_i × (1 − s), s = share of substantive compliance producing unmeasured benefits | s: user-set, default 0 (D) | Plan §6.2 | P4 |
+| F-C1-01 | Δln MFP_i = −ΔC_i / GVA_i, where ΔC_i is the RBE's average annual change in compliance cost for populations in industry i (fees and taxes are already outside the RBE). **Derived** (A-P01) | GVA by industry (ABS ASNA, Australian Industry; parameter pipeline) | RBM (input); plan §6.2 | P4 |
+| F-C1-02 | ΔC_i × (1 − s), s = share of substantive compliance producing unmeasured benefits | s: user-set, default 0 (D): `c1.s.assumption` | Plan §6.2 | P4 |
 | F-C1-03 | When C4 is active, entrants' compliance cost is taken out of C1 before adding (O-1) | — | Plan §6.5 | P4 |
-| F-C2-01 | Δln c ≈ r·d for a delay of d years, then applied through C3. **Derived** (A-P02) | r: 7% real (OIA-CBA, D as a delay cost of capital); holding cost about 5% a year as sensitivity (PC2025-NZ, C, [P]) | Plan §6.2 | P4 |
+| F-C2-01 | Δln c ≈ r·d for a delay of d years, then applied through C3. **Derived** (A-P02) | r: 7% real, range 3–10% (OIA-CBA p. 10, D as a delay cost of capital): `c2.r.oia-cba`; holding cost about 5% a year as sensitivity (PC2025-NZ p. 40, C, [P]): `c2.r.pc2025-net-zero` | Plan §6.2 | P4 |
 | F-C2-02 | Delay costs already in the RBE are left out of the user-cost shock (O-2) | — | Plan §6.5 | P4 |
-| F-C3-01 | User cost c = q(r + δ)(1 − τz)/(1 − τ) | τ, z from the brief; δ by asset type (ABS ASNA) | Hall–Jorgenson (textbook); KPB2016 | P4 |
-| F-C3-02 | Δln K = −σ·Δln c | σ = 0.40 (CFM2011, B, [A]); range 0.4–1.4 (KPB2016, C, [P]) | CFM2011; KPB2016 | P4 |
-| F-C3-03 | Δln LP = α_i·Δln(K/L), α_i = industry capital share | α_i (ABS-MFP Table 14) | ABS-MFP | P4 |
-| F-C4-01 | Δentry_i = ε·Δ(entry cost_i / GDP per capita), with ε = 0.5 pp per 12 pp (cutting entry cost from 20% to 8% of GNP per capita), applied only to naturally high-entry industries. **Derived** (A-P03) | ε (KLR, B, [P]); Australian entry cost 2.25% of GDP per capita for scale (DJ2002, [P]) | KLR | P4 |
-| F-C4-02 | A number cap: Δentry_i = −(excluded share) × baseline entry rate_i. **Derived** | Baseline entry rates (ABS CABEE) | Plan §6.2 | P4 |
-| F-C4-03 | Δg_i = β₂·Δentry_i·gap_i, β₂ = 0.009 per pp of entry rate | β₂ (AHHW2022, A, [P]); gap_i: paper's sample mean until a public measure exists (A-P04) | AHHW2022 | P4 |
+| F-C3-01 | User cost c = q(r + δ)(1 − τz)/(1 − τ) | τ, z and the risk premium from the brief; δ by asset type (ABS ASNA, pipeline); r shares the F-C2-01 default `c2.r.oia-cba` (A-P13) | Hall–Jorgenson (textbook); KPB2016 | P4 |
+| F-C3-02 | Δln K = −σ·Δln c | σ = 0.40, range 0.20–0.60 by the ±50% rule (CFM2011 abstract, B, [A]): `c3.sigma.cfm2011`; Treasury model 0.9, range 0.4–1.4 (KPB2016 App. A, C, [P]): `c3.sigma.kpb2016` | CFM2011; KPB2016 | P4 |
+| F-C3-03 | Δln LP = α_i·Δln(K/L), α_i = industry capital share | α_i: ABS-MFP Table 14 capital income shares by division (pipeline); market-sector fallback 0.439, range 0.404–0.481 over ten years (A, [P]): `c3.alpha.abs-mfp` | ABS-MFP | P4 |
+| F-C4-01 | Δentry_i = ε·Δln(entry cost_i / GDP per capita), with ε = −0.546 pp per log point. KLR's regressor is the log of entry cost: cutting it from 20% to 8% of GNP per capita (Δln = −0.92) raises the entry rate of a naturally high-entry industry, relative to a low-entry one, by 0.5 pp. Applied only to naturally high-entry industries. **Derived** (A-P03, A-P11) | ε = −0.546, range −0.833 to −0.258 from the Table 7 standard error (KLR pp. 14–15, B, [P]): `c4.epsilon.klr2004`; baseline entry cost 2.25% of GDP per capita (DJ2002 Table III, A, [P]): `c4.entry-cost-au.dj2002` | KLR | P4 |
+| F-C4-02 | A number cap: Δentry_i = −(excluded share) × baseline entry rate_i. **Derived** | Excluded share from the brief; baseline entry rates (ABS CABEE, pipeline) | Plan §6.2 | P4 |
+| F-C4-03 | Δg_i = β₂·Δentry_i·gap_i, β₂ = 0.009 per pp of entry rate | β₂ = 0.009, range 0.0031–0.0149 (AHHW2022 Table 2, A, [P]): `c4.beta2.ahhw2022`; gap_i: user-set with no default, because the paper publishes no sample mean (A-P12, replacing A-P04) | AHHW2022 | P4 |
 | F-C4-04 | Exit costs: no verified elasticity; reported, not quantified, in v1 | — | Plan §6.2 | P4 |
-| F-C5-01 | Screen: businesses and employment within ±10% of the threshold (CABEE size bands; ATO turnover bands) | — | Plan §6.2 | P4 |
-| F-C5-02 | Bounded growth-tax cost, scaled by the share of employment near the threshold: between Gourio & Roys (under 0.3% of output per worker) and Garicano, Lelarge & Van Reenen (a 2.3% labour-tax equivalent costs 1.3–3.4% of GDP). **Derived** (A-P05) | GR2014 (B, [A]); GLVR2016 (B, [A]); Australian check E61-2024 (A, [P]) | GLVR2016; GR2014 | P4 |
-| F-C6-01 | Misallocation loss interpolated within Hambur & Freestone: an aggregate mark-up rise from 1.18 to 1.25 (harmonic) raised the value-added misallocation cost by 1.16–2.52 pp. Linear inside that interval; no extrapolation. **Derived** (A-P06) | HF2025 (A, [P]) | HF2025 | P4 |
-| F-C7-01 | Δln MFP_LR = β·ΔETCR, β ∈ [−0.047, −0.037] per index point; the 5-year effect is about one-third of the long run | EG2016 Table 1 (C, [P]); the paper notes large standard errors with year effects | EG2016 | P4 |
-| F-C7-02 | Δln(K/Y) = −0.035 or −0.025 × ΔETCR | EG2016 (C, [P]) | EG2016 | P4 |
-| F-C7-03 | Other PMR indicators are costed only where the evidence library holds an elasticity; otherwise the lever is reported, not quantified (A-P07) | — | Plan §6.7 | P3–P4 |
-| F-C8-01 | Licensing: Δ LP_i = 1.6% per unit cut in stringency, weighted by the employment share of the licensed occupations in industry i. **Derived** weighting (A-P08) | OECD elasticity as used in PC2024 (C, [P]); employment by occupation (ABS-OSCA with LFS EQ08) | PC2024 | P4 |
-| F-C8-02 | Non-competes: Δ LP = 10% pass-through of JLL wage effects (2.4% in heavy-use service industries, 1.4% elsewhere), scaled by the change in coverage. **Derived** scaling (A-P09) | PC2024 L1 (C, [P]); JLL ([P]) | PC2024 | P4 |
-| F-C9-01 | Δln R&D = ε·Δln(R&D user cost); ε ≈ −0.1 short run, ≈ −1 long run | BGVR2002 (B, [A]) | BGVR2002 | P4 |
-| F-C9-02 | GDP per capita in the long run: +0.46% per +0.10 pp of business R&D in GDP | EG2016 (C, [P]) | EG2016 | P4 |
-| F-C10-01 | Δln MFP = (0.006 to 0.008) × Δopenness (pp of GDP) | EG2016 (C, [P]) | EG2016 | P4 |
-| F-C10-02 | Tariff removal checked against PC2024: GDP +0.13 to +0.25% | PC2024 (A, [P]) | PC2024 | P6 |
-| F-C10-03 | FDI restrictiveness: a 10% cut → +2.1% bilateral FDI stocks; reported as investment, with no MFP effect (no verified elasticity) | MR2019 (C, [P]) | MR2019 | P4 |
-| F-C11-01 | Excess burden = revenue × MEB of the funding tax: company 0.50 (0.20–1.35), labour income 0.21, GST (current base) 0.19, personal income 0.16, conveyancing duty 0.72, land −0.10 | CAO2015 (A, [P]); KPMG 2010/2011 as sensitivity (C, [P]) | CAO2015 | P4 |
+| F-C5-01 | Screen: businesses and employment within ±10% of the threshold (CABEE size bands; ATO turnover bands) | Band ±10% (plan, D): `c5.band.assumption`; counts from the pipeline | Plan §6.2 | P4 |
+| F-C5-02 | Bounded growth-tax cost, scaled by the share of employment near the threshold: between Gourio & Roys (under 0.3% of output per worker) and Garicano, Lelarge & Van Reenen (a 2.3% labour-tax equivalent costs 1.3–3.4% of GDP). **Derived** (A-P05) | Lower bound 0.3%, 0.03% with elastic entry (GR2014 abstract, B, [A]): `c5.lower-bound.gr2014`; upper bound 3.4%, 1.3% with flexible wages (GLVR2016 abstract, B, [A]): `c5.upper-bound.glvr2016`, `c5.labour-tax-equivalent.glvr2016`; Australian check +21% and −18% firms, −3.3% payroll (E61-2024 p. 1, A, [P]): `c5.bunching-below.e61-2024`, `c5.bunching-above.e61-2024`, `c5.payroll-response.e61-2024` | GLVR2016; GR2014 | P4 |
+| F-C6-01 | Misallocation loss interpolated within Hambur & Freestone: an aggregate mark-up rise from 1.18 to 1.25 (harmonic) raised the value-added misallocation cost by 1.16–2.52 pp. Linear inside that interval; no extrapolation. **Derived** (A-P06) | Mark-ups (HF2025 Table 1): `c6.markup-from.hf2025`, `c6.markup-to.hf2025`; cost rise 1.16–2.52 pp, central 1.84 (HF2025 Table 4, A, [P]): `c6.misallocation.hf2025`; cost-weighted alternatives: `c6.markup-from.hf2025-cost-weighted`, `c6.markup-to.hf2025-cost-weighted`, `c6.misallocation.hf2025-cost-weighted` | HF2025 | P4 |
+| F-C7-01 | Δln MFP_LR = β·ΔETCR, β ∈ [−0.047, −0.037] per index point; default −0.047, the paper's simulation column; the 5-year effect is about one-third of the long run (F-B-04). Harrod-neutral MFP (A-P18) | EG2016 Table 1 (C, [P]): `c7.beta.eg2016`; the paper notes large standard errors with year effects | EG2016 | P4 |
+| F-C7-02 | Δln(K/Y) = β_KY·ΔETCR, β_KY ∈ [−0.035, −0.025], central −0.030 | EG2016 Table 1 (C, [P]): `c7.beta-ky.eg2016` | EG2016 | P4 |
+| F-C7-03 | Other PMR indicators are costed only where the evidence library holds an elasticity; otherwise the lever is reported, not quantified (A-P07) | — (the library holds none besides the ETCR) | Plan §6.7 | P3–P4 |
+| F-C8-01 | Licensing: Δ LP_i = 1.6% per unit cut in stringency, weighted by the employment share of the licensed occupations in industry i, as a level effect. **Derived** weighting (A-P08, A-P14) | 1.6, range 0.05–3.27 (BNvR2020 para. 44 and Table 3, as used in PC2024, C, [P]): `c8.licensing.bnvr2020`; the PC's 0.5-unit cut, for rebuilding L2: `c8.pc-stringency-cut.pc2024`; employment by occupation (ABS-OSCA with LFS EQ08, pipeline) | PC2024; BNvR2020 | P4 |
+| F-C8-02 | Non-competes: Δ LP = 10% pass-through of JLL wage effects (2.4% in heavy-use service industries, 1.4% elsewhere), scaled by the change in coverage. **Derived** scaling (A-P09) | Pass-through 10%, 5% in the PC's lower case (PC2024 pp. 122, 127, C, [P]): `c8.pass-through.pc2024`; wage effects (JLL via PC2024 p. 122, B, [P]): `c8.wage-high-use.pc2024`, `c8.wage-low-use.pc2024` | PC2024 | P4 |
+| F-C9-01 | Δln R&D = ε·Δln(R&D user cost); ε ≈ −0.1 short run, ≈ −1 long run | ε_SR −0.1 and ε_LR −1.0, ranges by the ±50% rule (BGVR2002 abstract, B, [A]): `c9.epsilon-short-run.bgvr2002`, `c9.epsilon-long-run.bgvr2002` | BGVR2002 | P4 |
+| F-C9-02 | GDP per capita in the long run: +0.46% per +0.10 pp of business R&D in GDP. Harrod-neutral MFP (A-P18) | MFP coefficient 0.047 per pp of GDP, range 0.047–0.071 (EG2016 Tables 1 and 4, C, [P]): `c9.beta.eg2016` | EG2016 | P4 |
+| F-C10-01 | Δln MFP = (0.006 to 0.008) × Δopenness (pp of GDP); default 0.006, the paper's simulation column. Harrod-neutral MFP (A-P18) | EG2016 Tables 1 and 4 (C, [P]): `c10.beta.eg2016` | EG2016 | P4 |
+| F-C10-02 | Tariff removal checked against PC2024: GDP +0.13 to +0.25%. The PC's simulation (B7tar) also raises MFP by 0.06% in all industries for the tariff system's compliance costs | PC2024 Table 6 and Table C.5 (A, [P]): `c10.tariff-check.pc2024` | PC2024 | P6 |
+| F-C10-03 | FDI restrictiveness: a 10% cut → +2.1% bilateral FDI stocks; reported as investment, with no MFP effect (no verified elasticity) | Elasticity −0.208, range −0.353 to −0.063 (MR2019 p. 8 and Table 3, C, [P]): `c10.fdi.mr2019` | MR2019 | P4 |
+| F-C11-01 | Excess burden = revenue × MEB of the funding tax: company 0.50 (0.20–1.35), labour income 0.21 (0–0.48), GST current base 0.19 (0.03–0.37), GST broad base 0.17 (0.01–0.34), personal income 0.16 (0–0.35), conveyancing duty 0.72 (0.10–1.17), land −0.10 (−0.20–0). Ranges are the lowest and highest of the paper's sensitivity cases | CAO2015 Tables 2–6 (A, [P]): `c11.meb-company-income.cao2015`, `c11.meb-labour-income.cao2015`, `c11.meb-gst-current-base.cao2015`, `c11.meb-gst-broad-base.cao2015`, `c11.meb-personal-income.cao2015`, `c11.meb-conveyancing-duty.cao2015`, `c11.meb-land-tax.cao2015`; KPMG 2010/2011 as reported by Treasury, as sensitivity (C, [P]): `c11.meb-company-income.kpmg` and the other `c11.*.kpmg` entries; a funding tax of "other" is user-set | CAO2015 | P4 |
 
 ### 2.4 Layer B: economy-wide effects (P4)
 
 | ID | Formula | Source | Phase |
 |---|---|---|---|
-| F-B-01 | Labour-augmenting shocks: Δln Y ≈ Σ_i (W_i/W)·x_i, with W_i the industry wage bill. Check: an economy-wide 0.1% labour productivity rise gives +0.10% GDP. **Derived** (A-P10) | ABS-IO Table 17 or ASNA Table 46 (weights); PC2024 (check, [P]) | P4 |
-| F-B-02 | Hicks-neutral value-added MFP shocks: Δln Y ≈ Σ_i (GVA_i/GDP)·z_i/(1 − α). **Derived** | EG2016 (production-function aggregation) | P4 |
+| F-B-01 | Labour-augmenting shocks: Δln Y ≈ Σ_i (W_i/W)·x_i, with W_i the industry wage bill. Check: an economy-wide 0.1% labour productivity rise gives +0.10% GDP. **Derived** (A-P10) | ABS-IO Table 17 or ASNA Table 46 (weights, pipeline); PC2024 Table 9 and Table C.8 (check, [P]): `layer-b.lp-check.pc2024` | P4 |
+| F-B-02 | Hicks-neutral value-added MFP shocks: Δln Y ≈ Σ_i (GVA_i/GDP)·z_i/(1 − α). **Derived** | EG2016 (production-function aggregation); α = 0.45, range 0.41–0.48 (ABS-MFP Table 2, A, [P]): `layer-b.alpha.abs-mfp`; Égert and Gal's 0.33: `layer-b.alpha.eg2016` | P4 |
 | F-B-03 | Long-run closure: fixed aggregate employment and a fixed rate of return (capital adjusts) | PC2024 Appendix C ([P]) | P4 |
-| F-B-04 | Time path: shocks phase in over `phaseInYears`; MFP and K/Y adjust at error-correction speeds of about −0.03 to −0.05 a year; results at years 1, 5 and 10 and the long run | EG2016 ([P]) | P4 |
-| F-B-05 | Back-test against every PC National simulation (27 plus lower bounds and linearity tests). Target within ±15% of real GDP for pure productivity shocks; rent and tariff simulations reported, not targeted | PC2024 workbook | P4 |
+| F-B-04 | Time path: shocks phase in over `phaseInYears`; MFP and K/Y adjust at error-correction speeds of about −0.03 to −0.05 a year (Table 1: MFP −0.033 to −0.052, K/Y −0.022 to −0.026); results at years 1, 5 and 10 and the long run | EG2016 ([P]): `layer-b.ecm-mfp.eg2016`, `layer-b.ecm-ky.eg2016`; 5- and 10-year shares of the long run (Table 4): `layer-b.five-year-share.eg2016`, `layer-b.ten-year-share.eg2016` | P4 |
+| F-B-05 | Back-test against every PC National simulation (27 plus lower bounds and linearity tests). Target within ±15% of real GDP for pure productivity shocks; rent and tariff simulations reported, not targeted | PC2024 workbook; pass mark (plan §8, D): `layer-b.backtest-tolerance.assumption` | P4 |
 | F-B-06 | GNI, terms of trade, CPI and state GSP are not modelled in v1; every result says so | Plan §6.3 | P4 |
 
 ### 2.5 Uncertainty, overlaps and the gate (P4)
@@ -140,10 +145,30 @@ The formulas below are specified now and implemented in P4. "Derived" marks a ma
 | ID | Rule | Source | Code | Test |
 |---|---|---|---|---|
 | F-U-01 | Monte Carlo: seeded and deterministic; 2,000 draws by default; triangular distributions on low, central and high; reports the 10th, 50th and 90th percentiles and a tornado chart of the top ten parameters | Plan §6.4 | `src/productivity/brief.ts#AnalysisSchema` (settings); sampler in P4 | T-BRF-01; P4 |
-| F-U-02 | A parameter with no published range gets ±50%, graded D | Plan §6.4 | P4 | P4 |
-| F-U-03 | A realisation factor (default 1, 0–2) scales every productivity effect | Plan §6.4 | `src/productivity/brief.ts#AnalysisSchema` | T-BRF-01 |
+| F-U-02 | A parameter with no published range gets ±50%, graded D. The D applies to the range; the central value keeps its grade (A-P15) | Plan §6.4: `general.default-range.assumption` | `src/productivity/evidence.ts#EvidenceEntrySchema` (rangeBasis "plusMinus50"); sampler in P4 | T-EVD-06; P4 |
+| F-U-03 | A realisation factor (default 1, 0–2) scales every productivity effect | Plan §6.4: `general.realisation.assumption`; NCP history, ex post 2.5% against ex ante 5.5% (PC2024 p. 13): `general.realisation.ncp-history.pc2024` | `src/productivity/brief.ts#AnalysisSchema` | T-BRF-01, T-EVD-09 |
 | F-O-01 | Overlap rules O-3, O-5 and O-6 are enforced when the brief is read; O-1, O-2 and O-4 when the engine runs | Plan §6.5 | `src/productivity/channels.ts#OVERLAP_RULES` | T-BRF-06, T-BRF-09, T-BRF-10; P4 |
-| F-G-01 | The evidence gate (plan §6.6):<br>• central effect ≥ $200m a year and largest channel graded A or B → shown in full;<br>• below $200m, or graded C → "indicative";<br>• graded D, or with unconfirmed estimates → GDP hidden unless `showUngatedEconomyWide` | OIA-COMP; IAF-PG p. 8 | `src/productivity/brief.ts#AnalysisSchema` (the opt-in); gate in P4 | T-BRF-01; P4 |
+| F-G-01 | The evidence gate (plan §6.6):<br>• central effect ≥ $200m a year and largest channel graded A or B → shown in full;<br>• below $200m, or graded C → "indicative";<br>• graded D, or with unconfirmed estimates → GDP hidden unless `showUngatedEconomyWide` | OIA-COMP; IAF-PG p. 8: `general.threshold2.iaf-pg` | `src/productivity/brief.ts#AnalysisSchema` (the opt-in); gate in P4 | T-BRF-01; P4 |
+
+### 2.6 The evidence library (P3)
+
+The library is curated JSON, one file per channel (`src/productivity/evidence/c1.json` … `c11.json`, `layer-b.json`, `general.json`). It is validated when the module loads, so a broken entry stops the build and the tests.
+
+| ID | Rule | Source | Code | Test |
+|---|---|---|---|---|
+| EV-01 | One entry per parameter: id, formula and parameter, channel, value, low and high, units, range basis, country, method, grade, tag, citation with locator, exact quote, derivation, default flag, notes and review status. Strict objects | Plan §6.7 | `src/productivity/evidence.ts#EvidenceEntrySchema`, `src/productivity/evidence.ts#EvidenceFileSchema` | T-EVD-01 |
+| EV-02 | Ids are unique and start with their channel (c1 … c12, layer-b, general); each file holds one channel | This phase | `src/productivity/evidence.ts#libraryIssues`, `src/productivity/evidence.ts#evidenceIdPrefix` | T-EVD-02 |
+| EV-03 | Exactly one default per formula and parameter, counting the formulas an entry is also used by (`alsoUsedBy`) | Plan §6.7 | `src/productivity/evidence.ts#libraryIssues`, `src/productivity/evidence.ts#defaultEvidence`, `src/productivity/evidence.ts#evidenceFor` | T-EVD-03, T-EVD-08 |
+| EV-04 | A default is never [S]; a grade-D default is the tool's assumption and says why in its notes | Plan §6.2, §6.7 | `src/productivity/evidence.ts#EvidenceEntrySchema` | T-EVD-04 |
+| EV-05 | [P] and [A] entries have an exact quote and a locator; every URL is https. Several excerpts are joined with " … " | Plan §3.2 (principle 3) | `src/productivity/evidence.ts#EvidenceEntrySchema` | T-EVD-05 |
+| EV-06 | low ≤ value ≤ high, and the range has a stated basis: the source, the ±50% rule, sensitivity cases reported side by side, or fixed | Plan §6.4; F-U-02 | `src/productivity/evidence.ts#EvidenceEntrySchema` | T-EVD-06 |
+| EV-07 | Every parameter of §2.3–2.5 has a library default, a brief field, pipeline data, or is marked user-set; no entry is orphaned | This document | `src/productivity/evidence.ts#EVIDENCE` | T-EVD-07 |
+| EV-08 | Defaults match the values the plan and the brief's analysis defaults rely on, and rebuild the PC's L1 and L2 shocks (0.24%, 0.14%, 0.8%) | Plan §6.2; PC2024 | `src/productivity/evidence.ts#defaultEvidence` | T-EVD-09 |
+| EV-09 | The Cowork review sheet (`docs/review/evidence_library_review.csv`): one row per entry, UTF-8 with a byte-order mark; rebuilding keeps filled check columns; the committed sheet matches the library | Plan §6.7, §9 (P3) | `src/productivity/evidence.ts#evidenceReviewCsv`, `scripts/evidence-sheet.ts` | T-EVD-10 |
+| EV-10 | Entries start as `draft`; a `checked` entry records who checked it and when; an [S] entry cannot be checked | Plan §6.7 | `src/productivity/evidence.ts#ReviewSchema` | T-EVD-11 |
+| EV-11 | The "Sources and parameters" page lists every entry by channel with value, range, grade, tag, citation link, locator and quote | Plan §6.7 | `src/ui/pages/SourcesPage.tsx#SourcesPage` | T-EVD-12 |
+
+When the library was compiled (22–23 October 2026), every quote excerpt was matched word for word against a local copy of its source; the copies are not committed. Cowork's check against the sheet is the independent one, and no default is final until its row agrees (plan §9, P3).
 
 ## 3. Interpretations and assumptions
 
@@ -154,10 +179,18 @@ Each was made by this tool, not taken from a source. Each one is proposed in P0 
 | A-P01 | Compliance work produces no measured output, so a change in compliance cost is a change in measured MFP of the same share of GVA | National accounts count the inputs but not the "output" of compliance. It is an upper bound if some compliance produces unmeasured benefits (F-C1-02) | P4 |
 | A-P02 | A delay of d years raises the user cost of capital by about r·d | First-order approximation of (1 + r)^d − 1 for small r·d | P4 |
 | A-P03 | KLR's cross-industry estimate (entry cost relative to GNP per capita) can be applied to a change in one industry's entry cost relative to GDP per capita, in naturally high-entry industries only | KLR identify the effect from industries with naturally high entry; applying it elsewhere would extrapolate | P3–P4 |
-| A-P04 | Until a public measure of each industry's distance to the productivity frontier exists (it needs BLADE), AHHW2022's sample means are used, labelled | The interaction needs a gap; using the paper's own means keeps the estimate within its sample | P3–P4 |
+| A-P04 | Until a public measure of each industry's distance to the productivity frontier exists (it needs BLADE), AHHW2022's sample means are used, labelled | The interaction needs a gap; using the paper's own means keeps the estimate within its sample | **Superseded by A-P12** (P3: the paper publishes no sample mean) |
 | A-P05 | Size-threshold costs are bounded between two published structural estimates, scaled by the share of employment near the threshold | No Australian structural estimate exists; the e61 bunching evidence is used as a check | P4 |
 | A-P06 | Hambur & Freestone's change in misallocation cost can be interpolated linearly inside their mark-up interval, never beyond it | Their model is non-linear; interpolation inside a computed interval is the least extrapolation | P4 |
 | A-P07 | Only the ETCR has a verified MFP elasticity (EG2016); other PMR indicators need an evidence-library entry before they are costed | Avoids applying a network-sector elasticity to other sectors | P3 |
 | A-P08 | Licensing effects are weighted by the employment share of the affected licensed occupations in each industry | The PC applied a uniform shock to whole industries; occupation weights make it specific to the policy | P4 |
 | A-P09 | The non-compete effect scales with the change in the share of workers covered | The PC modelled a ban (coverage to zero); partial changes scale linearly, following the PC's linearity finding | P4 |
 | A-P10 | Labour-augmenting shocks aggregate with wage-bill weights. A scratch check of PC2024 L2 (+0.8% labour productivity in 15 industries with 34.4% of GSP gives +0.387% real GDP) implies 1.41 with GVA weights, so GVA weights would be wrong | To be confirmed by the F-B-05 back-test | P4 |
+| A-P11 | F-C4-01 uses the log of entry cost: Δentry = ε·Δln(entry cost / income per head), ε = 0.5 ÷ ln(8/20) = −0.546 pp per log point. This needs a baseline entry cost; the default is Djankov et al.'s 2.25% of GDP per head for Australia (1999), unless the user enters an industry's own | KLR's regressor EntCost is the log of entry cost (KLR p. 14), so the earlier linear reading (0.5 pp per 12 pp) misstates small changes: halving a 2.25% cost gives +0.38 pp in the log form (−0.546 × ln 0.5), against +0.05 pp in the linear one (1.125 × 0.5/12) | P4 |
+| A-P12 | F-C4-03's distance to the frontier (gap_i) has no default. Without a user entry, C4 step 2 reports the change in convergence speed (β₂·Δentry) and does not quantify a growth effect | AHHW2022 demean their variables and publish no sample mean of the gap (Figure 1 is not tabulated), so A-P04 cannot be applied. A user entry is graded D | P4 |
+| A-P13 | The required real return r in the user cost (F-C3-01) uses the same default as the delay cost of capital (F-C2-01): 7% real, 3–10%, graded D | No Australian estimate of firms' real required return was verified; the OIA rate is a social discount rate used as a proxy, as the plan already does for C2 | P4 |
+| A-P14 | The licensing elasticity is applied as a one-off rise in the level of labour productivity, as the PC did | BNvR2020 estimate it in a regression of firm labour productivity growth (para. 44); the PC (and Advancing Prosperity) used it as a level shock. A growth reading would give much larger effects | P4 |
+| A-P15 | Ranges: where a source gives no range, the ±50% rule (F-U-02) sets low and high, and the central value keeps its source's grade. One uncertainty per PC chain: the JLL wage effects are fixed because the PC's own range (its 50% case) is carried by the pass-through | Reading "graded D" as applying to the whole parameter would downgrade B-graded estimates (e.g. BGVR2002) to D and change the gate; sampling both the wage effect and the pass-through would count the PC's range twice | P4 |
+| A-P16 | Measured statistics (method `data`, e.g. the ABS capital share) and official rules (method `rule`, e.g. the OIA discount rate and the $200m threshold) are graded A when the source is an Australian official document read in full. Grades B–D keep their meaning for estimated effects | The plan's grades describe estimates of effects; a measured share or a required rate is not one, and grading it D would wrongly trigger the gate | P4 |
+| A-P17 | AHHW2022's β₂ keeps grade A, as in the plan, although it is a within-Australia panel correlation (industry-year fixed effects) rather than a causal estimate | The grade definitions do not cover Australian correlational estimates. **For the owner to confirm** (grade A or C) before release | P3 review |
+| A-P18 | Égert and Gal's MFP is Harrod-neutral (labour-augmenting): with K/Y fixed, Δln(Y/N) = Δln MFP. Shocks built from their coefficients (F-C7-01, F-C9-02, F-C10-01) enter Layer B as labour-augmenting (F-B-01), or are multiplied by (1 − α) if entered as Hicks-neutral MFP (F-B-02) | Their equation (5) and MFP definition (EG2016 Box 1, p. 13). Entering them as Hicks-neutral and dividing by (1 − α) would count them 1/(1 − α) times, about 1.8 with α = 0.45 | P4 |

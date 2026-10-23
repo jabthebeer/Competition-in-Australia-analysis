@@ -4,3 +4,5 @@
 export * from "./brief";
 export { CHANNELS, CHANNEL_IDS, OVERLAP_RULES, SHOCK_TYPES, channelsFor, type Channel, type ChannelId, type InputBlock, type ShockType } from "./channels";
 export { SUBDIVISION_RANGES, covers, divisionOf, overlaps, type Division } from "./anzsic";
+// P3: the evidence library (plan §6.7) — sourced defaults and ranges for every formula parameter.
+export * from "./evidence";

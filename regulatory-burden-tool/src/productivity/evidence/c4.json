@@ -1,0 +1,93 @@
+{
+  "channel": "C4",
+  "entries": [
+    {
+      "id": "c4.epsilon.klr2004",
+      "formula": "F-C4-01",
+      "parameter": "epsilon",
+      "channel": "C4",
+      "label": "Effect of entry cost on the entry rate of naturally high-entry industries",
+      "value": -0.546,
+      "low": -0.833,
+      "high": -0.258,
+      "units": "percentage points of entry rate (high- minus low-natural-entry industry) per unit change in ln(entry cost ÷ income per head)",
+      "rangeBasis": "source",
+      "country": "21 European countries (Amadeus firms, 1998-99)",
+      "method": "causal",
+      "grade": "B",
+      "tag": "P",
+      "citation": {
+        "authors": "Leora Klapper, Luc Laeven and Raghuram Rajan",
+        "year": 2004,
+        "title": "Entry regulation as a barrier to entrepreneurship",
+        "publisher": "National Bureau of Economic Research, Working Paper 10380 (March 2004)",
+        "url": "https://www.nber.org/system/files/working_papers/w10380/w10380.pdf",
+        "locator": "§4.1, p. 15 (PDF p. 16); log definition of EntCost, p. 14 (PDF p. 15); Table 7, column (i), p. 42 (PDF p. 43)"
+      },
+      "quote": "Following their work, we term the log of this variable EntCost. … The coefficient estimate suggests that the difference in entry rates between retail and pulp in the Czech Republic (which is at the 25th percentile in terms of EntCost with entry costs equal to 8% of per capita GNP) is 0.5 percentage points higher than the difference in entry rates between the same industries in Italy (which is at the 75th percentile in terms of EntCost with entry costs equal to 20% of per capita GNP).",
+      "derivation": "The paper's regressor is the log of entry cost. Moving from 20% to 8% of GNP per head is Δln = ln(8/20) = −0.916 and raises the retail-minus-pulp entry gap by 0.5 pp, so ε = 0.5 ÷ (−0.916) = −0.546 pp per log point (derived). Range: the Table 7 column (i) coefficient is −0.175 with standard error 0.047; its 95% interval (−0.267 to −0.083) scales ε to −0.833 and −0.258.",
+      "isDefault": true,
+      "notes": "Retail is at the 75th and pulp and paper at the 25th percentile of US entry rates (the paper's proxy for natural entry), so ε is a difference between a high- and a low-natural-entry industry; the tool applies it only to naturally high-entry industries (A-P03). The traceability's earlier linear reading (0.5 pp per 12 pp of entry cost) is replaced by this log form (A-P11), which needs a baseline entry cost (entry c4.entry-cost-au.dj2002). The 2004 working paper was read; the 2006 Journal of Financial Economics version was not checked. Tobit estimates.",
+      "review": { "status": "draft" }
+    },
+    {
+      "id": "c4.entry-cost-au.dj2002",
+      "formula": "F-C4-01",
+      "parameter": "entryCostShareAU",
+      "channel": "C4",
+      "label": "Baseline cost of starting a simple firm in Australia",
+      "value": 2.25,
+      "low": 2.25,
+      "high": 2.25,
+      "units": "% of GDP per head (1999)",
+      "rangeBasis": "fixed",
+      "country": "Australia",
+      "method": "data",
+      "grade": "A",
+      "tag": "P",
+      "citation": {
+        "authors": "Simeon Djankov, Rafael La Porta, Florencio Lopez-de-Silanes and Andrei Shleifer",
+        "year": 2002,
+        "title": "The regulation of entry",
+        "publisher": "Quarterly Journal of Economics 117(1)",
+        "url": "https://web.stanford.edu/~klenow/Regulation%20of%20Entry.pdf",
+        "locator": "Table III, Panel A, row 'Australia', column 'Cost', p. 18",
+        "version": "Copy of the journal article hosted at stanford.edu"
+      },
+      "quote": "The table also reports the time, direct cost (as a fraction of GDP per capita in 1999) associated with meeting government requirements … Australia 2 0 0 1 0 1 2 0.0225 0.0305 20,050",
+      "derivation": "Value = the Table III 'Cost' column for Australia (0.0225 of GDP per head) × 100. Fixed: a measured statistic.",
+      "isDefault": true,
+      "notes": "Two procedures and two business days; 0.0305 when the entrepreneur's time is valued. Klapper, Laeven and Rajan use the same Djankov et al. measure, labelled as a share of per capita GNP. With the log form of F-C4-01 (A-P11) this is the baseline entry cost for every industry, which is a strong simplification: it is a 1999 measure for one simple start-up, not an industry's own entry cost. A user who knows an industry's entry cost should enter it.",
+      "review": { "status": "draft" }
+    },
+    {
+      "id": "c4.beta2.ahhw2022",
+      "formula": "F-C4-03",
+      "parameter": "beta2",
+      "channel": "C4",
+      "label": "Extra speed of convergence to the global frontier per percentage point of industry entry rate",
+      "value": 0.009,
+      "low": 0.00312,
+      "high": 0.01488,
+      "units": "change in convergence speed per percentage point of entry rate",
+      "rangeBasis": "source",
+      "country": "Australia (BLADE firms, 2002–2016)",
+      "method": "correlational",
+      "grade": "A",
+      "tag": "P",
+      "citation": {
+        "authors": "Dan Andrews, Jonathan Hambur, David Hansell and Angus Wheeler",
+        "year": 2022,
+        "title": "Reaching for the stars: Australian firms and the global productivity frontier",
+        "publisher": "The Treasury, Treasury Working Paper 2022-01",
+        "url": "https://treasury.gov.au/sites/default/files/2022-02/p2022-243535.pdf",
+        "locator": "Table 2, column (2) 'Entry', and its notes, p. 10 (PDF p. 13)"
+      },
+      "quote": "Entry rate x distance from frontier 0.009** (0.003) … The coefficients on the interaction terms estimate the additional convergence speed associated with a 1 percentage point increase in turnover, entry and exit rates.",
+      "derivation": "Value = the Table 2 column (2) coefficient (0.009). Range = its 95% interval from the reported standard error: 0.009 ± 1.96 × 0.003.",
+      "isDefault": true,
+      "notes": "Grade A as in the plan, but the estimate is a within-Australia panel correlation (industry-year fixed effects), not a causal policy elasticity; the grade definitions do not cover this case (A-P17, flagged for the owner). The paper publishes no sample mean of the distance to the frontier (variables are demeaned), so the gap in F-C4-03 has no default (A-P12). The text's illustration (8% to 16% entry raises convergence speed by 4.8 points) equals 0.006 × 8, the turnover coefficient, not 0.009 × 8 = 7.2; the library uses the Table 2 entry coefficient. Baseline convergence speed at the average entry rate: 0.415.",
+      "review": { "status": "draft" }
+    }
+  ]
+}
