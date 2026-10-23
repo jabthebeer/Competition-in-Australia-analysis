@@ -46,8 +46,8 @@ function DataInThisBuild() {
               </th>
               <td>{s.publisher}</td>
               <td>{s.release}</td>
-              <td>{s.release_date ?? "–"}</td>
-              <td>{s.next_release ?? "–"}</td>
+              <td className="date-cell">{s.release_date ?? "–"}</td>
+              <td className="date-cell">{s.next_release ?? "–"}</td>
               <td>{s.status === "fallback" ? "Previous release kept (the latest check failed)" : "Current"}</td>
             </tr>
           ))}

@@ -6,7 +6,7 @@ A public-data toolkit for evaluating how Australian legislation and regulation a
 
 ## Status (22 October 2026)
 
-**Change of direction (22 October 2026, E-75).** Retrospective evaluation is paused. The register and its hypotheses stay and become part of the product. The next build is a **Policy costing** tab on the website: a regulatory burden costing under the OIA framework, and a productivity and competition costing that turns a policy brief into productivity and GDP effects by channel, with ranges and sources ([plan](../docs/forward_plan_policy_costing.md)). Parked: a literature review for each register record ([P-1](../docs/parked_items.md)). Plan approved 22 October 2026 (E-77); **P0 done** (the policy brief schema and traceability, in `regulatory-burden-tool/`).
+**Change of direction (22 October 2026, E-75).** Retrospective evaluation is paused. The register and its hypotheses stay and become part of the product. The next build is a **Policy costing** tab on the website: a regulatory burden costing under the OIA framework, and a productivity and competition costing that turns a policy brief into productivity and GDP effects by channel, with ranges and sources ([plan](../docs/forward_plan_policy_costing.md)). Parked: a literature review for each register record ([P-1](../docs/parked_items.md)). Plan approved 22 October 2026 (E-77). **P0–P3 done**:<br>• the policy brief schema;<br>• the Policy costing tab on the website;<br>• the costing parameters (`alicia costing-params`, 16 sources, refreshed daily; [data dictionary](../docs/costing_parameters.md));<br>• the evidence library.
 
 The table below is the state of the retrospective work when it was paused.
 

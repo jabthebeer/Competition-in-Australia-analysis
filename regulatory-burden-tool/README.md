@@ -20,7 +20,7 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 | Policy costing P0 | Productivity and competition costing ([plan](../docs/forward_plan_policy_costing.md)): decisions, the policy brief schema (`src/productivity/`), traceability | **Done** (22 Oct 2026) |
 | Policy costing P1 | Folded into the ALICIA website as the Policy costing tab (`npm run build:site`), with the site nav and theme; bundled costing parameters; daily data refresh in the Pages workflow | **Done** (22 Oct 2026) |
 | Policy costing P3 | Evidence library (`src/productivity/evidence/`): sourced defaults and ranges for every formula, a Sources and parameters page, and a review sheet for Cowork (`npm run evidence:sheet`) | **Done** (23 Oct 2026) |
-| Policy costing P2 | Parameter pipeline (`alicia costing-params`) | In progress |
+| Policy costing P2 | Parameter pipeline (`alicia costing-params`, in `alicia/`): 16 sources, bundled into the tab | **Done** (23 Oct 2026) |
 
 ## Running it
 
