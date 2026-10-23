@@ -36,6 +36,7 @@ CONNECTORS = (
     "oecd_pmr",
     "oecd_stri",
     "oecd_fdi_rri",
+    "abs_capex",
 )
 
 
