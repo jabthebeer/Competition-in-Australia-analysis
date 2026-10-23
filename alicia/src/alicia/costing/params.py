@@ -28,6 +28,9 @@ CONNECTORS = (
     "abs_mfp",
     "abs_australian_industry",
     "abs_cabee_latest",
+    "abs_io",
+    "abs_eeh",
+    "abs_bcs",
 )
 
 
