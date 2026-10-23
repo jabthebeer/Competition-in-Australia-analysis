@@ -33,6 +33,9 @@ CONNECTORS = (
     "abs_bcs",
     "abs_berd",
     "abs_osca",
+    "oecd_pmr",
+    "oecd_stri",
+    "oecd_fdi_rri",
 )
 
 
