@@ -1,0 +1,64 @@
+{
+  "channel": "C2",
+  "entries": [
+    {
+      "id": "c2.r.oia-cba",
+      "formula": "F-C2-01",
+      "alsoUsedBy": ["F-C3-01"],
+      "parameter": "r",
+      "channel": "C2",
+      "label": "Real cost of capital tied up during a delay (also the required return in the user cost of capital)",
+      "value": 0.07,
+      "low": 0.03,
+      "high": 0.1,
+      "units": "real rate a year (0.07 = 7%)",
+      "rangeBasis": "source",
+      "country": "Australia",
+      "method": "assumption",
+      "grade": "D",
+      "tag": "P",
+      "citation": {
+        "authors": "Office of Impact Analysis",
+        "year": 2023,
+        "title": "Cost Benefit Analysis (guidance note)",
+        "publisher": "Department of the Prime Minister and Cabinet, July 2023 (marked as under review)",
+        "url": "https://oia.pmc.gov.au/sites/default/files/2023-08/cost-benefit-analysis.pdf",
+        "locator": "p. 10, 'The discount rate for interventions'"
+      },
+      "quote": "OIA requires the calculation of net present values at an annual real discount rate of 7 per cent. … in addition to the 7 per cent ‘central’ discount rate, the net present values should also be calculated with real discount rates of 3 per cent and 10 per cent.",
+      "derivation": "Value = the OIA's central real discount rate (7%); low and high = its two sensitivity rates (3% and 10%).",
+      "isDefault": true,
+      "notes": "The OIA rate is a social discount rate for net present values, not a measured cost of capital. Using it as the cost of capital tied up during a delay (F-C2-01) and as the required return r in the user cost (F-C3-01) is the tool's assumption, so the entry is graded D (traceability F-C2-01; interpretation A-P13). No Australian estimate of firms' real required return was verified for the library. The OIA note also accepts a central rate of 8% (p. 10, footnote 5).",
+      "review": { "status": "draft" }
+    },
+    {
+      "id": "c2.r.pc2025-net-zero",
+      "formula": "F-C2-01",
+      "parameter": "r",
+      "channel": "C2",
+      "label": "Holding cost of capital raised for a delayed clean-energy project (sensitivity)",
+      "value": 0.05,
+      "low": 0.025,
+      "high": 0.075,
+      "units": "share of capital raised, a year (0.05 = 5%)",
+      "rangeBasis": "plusMinus50",
+      "country": "Australia",
+      "method": "data",
+      "grade": "C",
+      "tag": "P",
+      "citation": {
+        "authors": "Productivity Commission",
+        "year": 2025,
+        "title": "Investing in cheaper, cleaner energy and the net zero transformation",
+        "publisher": "Productivity Commission, Inquiry report No. 113, 10 December 2025",
+        "url": "https://assets.pc.gov.au/2025-12/net-zero.pdf",
+        "locator": "p. 40 (PDF p. 48), 'The economic benefits of faster approvals'"
+      },
+      "quote": "We also heard that if a developer has raised $400 million, a one-year delay can cost upwards of $20 million in holding and opportunity costs (QREC, qr. 40, p. 4).",
+      "derivation": "Value = $20 million ÷ $400 million = 5% a year (derived). The source gives one figure (\"upwards of\"), so the range is the tool's ±50% rule (F-U-02).",
+      "isDefault": false,
+      "notes": "A single stakeholder report (QREC) quoted by the PC, so an anecdote for one project type rather than an estimate; graded C. \"Upwards of\" means 5% is a floor for that project. Kept as a sensitivity on the OIA rate, as in the plan (§6.2 C2).",
+      "review": { "status": "draft" }
+    }
+  ]
+}

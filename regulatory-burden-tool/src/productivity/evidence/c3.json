@@ -1,0 +1,98 @@
+{
+  "channel": "C3",
+  "entries": [
+    {
+      "id": "c3.sigma.cfm2011",
+      "formula": "F-C3-02",
+      "parameter": "sigma",
+      "channel": "C3",
+      "label": "Elasticity of substitution between capital and labour (long run)",
+      "value": 0.4,
+      "low": 0.2,
+      "high": 0.6,
+      "units": "elasticity (Δln K per −Δln user cost, output held constant)",
+      "rangeBasis": "plusMinus50",
+      "country": "United States (panel of 1,860 firms)",
+      "method": "structural",
+      "grade": "B",
+      "tag": "A",
+      "citation": {
+        "authors": "Robert S. Chirinko, Steven M. Fazzari and Andrew P. Meyer",
+        "year": 2011,
+        "title": "A New Approach to Estimating Production Function Parameters: The Elusive Capital–Labor Substitution Elasticity",
+        "publisher": "Journal of Business & Economic Statistics 29(4), 587–594",
+        "url": "https://ideas.repec.org/a/taf/jnlbes/v29y2011i4p587-594.html",
+        "locator": "Abstract"
+      },
+      "quote": "Our results are based on an extensive panel comprising 1860 firms. Our approach generates a precisely estimated elasticity of 0.40.",
+      "derivation": "Value = the abstract's estimate (0.40). The abstract gives no standard error, so the range is the tool's ±50% rule (F-U-02): 0.20 to 0.60.",
+      "isDefault": true,
+      "notes": "Read in the abstract only ([A]); the full text is behind a paywall and the 2004 CESifo working-paper version could not be downloaded. The estimate uses long-run variation in a US firm panel. Treasury's CGE model uses 0.9 (range 0.4 to 1.4) for a different, nested elasticity (entry c3.sigma.kpb2016).",
+      "review": { "status": "draft" }
+    },
+    {
+      "id": "c3.sigma.kpb2016",
+      "formula": "F-C3-02",
+      "parameter": "sigma",
+      "channel": "C3",
+      "label": "Substitution elasticity between labour and non-structures capital in Treasury's CGE model (sensitivity)",
+      "value": 0.9,
+      "low": 0.4,
+      "high": 1.4,
+      "units": "elasticity",
+      "rangeBasis": "source",
+      "country": "Australia (model calibration)",
+      "method": "model",
+      "grade": "C",
+      "tag": "P",
+      "citation": {
+        "authors": "Michael Kouparitsas, Dinar Prihardini and Alexander Beames",
+        "year": 2016,
+        "title": "Analysis of the long term effects of a company tax cut",
+        "publisher": "The Treasury, Treasury Working Paper 2016-02",
+        "url": "https://treasury.gov.au/sites/default/files/2019-03/Treasury-Working-Paper-2016-02.pdf",
+        "locator": "Appendix A, 'Substitutability of capital and labour', p. 36 (PDF p. 39); Table 8, p. 39 (PDF p. 42)"
+      },
+      "quote": "With an elasticity of 0.9, labour and non-structures capital are modelled as gross complements. … In order to test the sensitivity of the results to this elasticity a reasonable empirical range is assumed with a lower bound of 0.4 and an upper bound of 1.4.",
+      "derivation": "Value = the model's base case (0.9); low and high = the paper's sensitivity bounds (0.4 and 1.4), reported in Table 8.",
+      "isDefault": false,
+      "notes": "A calibrated CGE parameter, not an estimate: the paper says the base value \"falls within the range of estimates reviewed by Gunning et al. (2007)\". It is the elasticity between labour and non-structures capital in a nested production function, which is not the same object as an aggregate capital–labour σ. Kept as a sensitivity, as in the plan (§6.2 C3).",
+      "review": { "status": "draft" }
+    },
+    {
+      "id": "c3.alpha.abs-mfp",
+      "formula": "F-C3-03",
+      "parameter": "alpha",
+      "channel": "C3",
+      "label": "Capital share of value added (α), by industry",
+      "value": 0.439,
+      "low": 0.404,
+      "high": 0.481,
+      "units": "share of factor income (0 to 1)",
+      "rangeBasis": "source",
+      "country": "Australia (16 market-sector industries, divisions A to N, R and S)",
+      "method": "data",
+      "grade": "A",
+      "tag": "P",
+      "citation": {
+        "authors": "Australian Bureau of Statistics",
+        "year": 2026,
+        "title": "Estimates of Industry Multifactor Productivity, Australia, 2024-25 (5260.0.55.002)",
+        "publisher": "ABS, released 6 February 2026 (file 52600550021_2025.xlsx)",
+        "url": "https://www.abs.gov.au/statistics/industry/industry-overview/estimates-industry-multifactor-productivity/2024-25/52600550021_2025.xlsx",
+        "locator": "Table 14, 'Capital income shares', row '16 Market sector industries (b)', columns 2015-16 to 2024-25",
+        "version": "Workbook read 22 October 2026; SHA-256 91e77070cda8be34c7dccb1910dd7b187cc8b07082c6a6d02219daee0cbcea24"
+      },
+      "quote": "Table 14: Income Shares for Value Added based Estimates of Multifactor Productivity … Capital income shares … 16 Market sector industries (b)",
+      "derivation": "Value = the market-sector capital income share in 2024-25 (0.4387, rounded to 0.439). Low and high = its lowest and highest values in the ten years to 2024-25 (0.4036 in 2015-16; 0.4809 in 2022-23).",
+      "isDefault": true,
+      "dataSupplied": {
+        "source": "ABS 5260.0.55.002, 2024-25 release (parameter pipeline, P2)",
+        "table": "Table 14, Capital income shares, one row per market-sector division",
+        "note": "The engine uses each division's own share from the parameter file; this entry's value is the fallback for an industry with no published share (outside the market sector)."
+      },
+      "notes": "A measured statistic (method \"data\", interpretation A-P16). Under growth accounting, the income share stands in for the output elasticity of capital, which assumes competitive factor markets and constant returns. Shares vary widely by division (2024-25: Administrative and support services 0.056, Mining 0.817), so the per-industry values matter; the per-industry range is left to the pipeline.",
+      "review": { "status": "draft" }
+    }
+  ]
+}
