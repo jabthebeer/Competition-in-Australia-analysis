@@ -392,7 +392,9 @@ ABS has **no Data API dataflow** for industry MFP, the annual ASNA industry tabl
 | Phase | State |
 |---|---|
 | P0 | **Done.** Decisions approved (E-77; burden tool #83). Policy brief schema v1 in `regulatory-burden-tool/src/productivity/brief.ts` (with channels, overlap rules and ANZSIC helpers), 16 tests (T-BRF-01 to 16) and an illustrative example brief. [`productivity_traceability.md`](../regulatory-burden-tool/docs/productivity_traceability.md) specifies every formula with its source, and `npm run trace` checks it |
-| P1–P7 | Not started. Next: P1, P2 and P3 in parallel |
+| P1 | **Done** (22 Oct 2026; E-78, burden tool #86). Policy costing tab on the website (`npm run build:site`, `alicia site --costing`), site nav and theme, bundled parameters, data list on the About page; the Pages workflow refreshes the costing data daily from the publishers' latest releases and republishes |
+| P2, P3 | In progress (in parallel) |
+| P4–P7 | Not started |
 
 **Order of work:** P0 first. P1, P2 and P3 can then run in parallel, and P4 starts once P2 and P3 have their first outputs. The worked examples are written early in P4 as test cases, so the engine is built against real briefs.
 

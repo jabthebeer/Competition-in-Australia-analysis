@@ -17,7 +17,9 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 | 3 | Framework completeness: screener UI, warnings UI, assumptions register UI, option comparison | Not started (the engine already supports these) |
 | 4 | Reporting (docx, xlsx, CSV, print) and sensitivity | Not started |
 | 5 | Validation against published Impact Analyses; accessibility audit; user guide | Not started |
-| Policy costing P0 | Productivity and competition costing ([plan](../docs/forward_plan_policy_costing.md)): decisions, the policy brief schema (`src/productivity/`), traceability | **Done** (22 Oct 2026). P1 (fold into the ALICIA site) next |
+| Policy costing P0 | Productivity and competition costing ([plan](../docs/forward_plan_policy_costing.md)): decisions, the policy brief schema (`src/productivity/`), traceability | **Done** (22 Oct 2026) |
+| Policy costing P1 | Folded into the ALICIA website as the Policy costing tab (`npm run build:site`), with the site nav and theme; bundled costing parameters; daily data refresh in the Pages workflow | **Done** (22 Oct 2026) |
+| Policy costing P2, P3 | Parameter pipeline (`alicia costing-params`); evidence library | In progress |
 
 ## Running it
 
@@ -29,6 +31,7 @@ npm run dev              # the web app at http://localhost:5173 (development)
 npm run build            # static site in dist/ (adds the Content-Security-Policy)
 npm run preview          # serve the built site at http://localhost:4173
 npm run build:artifact   # one-file hosted test copy in dist-artifact/ (see below)
+npm run build:site       # the ALICIA website's Policy costing tab in dist-site/ (see below)
 
 npm test                 # unit tests (Vitest): engine and UI helpers
 npm run e2e              # end-to-end tests (Playwright) against the built site
@@ -45,9 +48,11 @@ npm run rbe -- examples/illustrative-reform.json --tidy out/tidy.csv   # analysi
 
 The built site in `dist/` is static: copy it to any web server or internal host. It makes no network requests (its security policy blocks them), stores proposals only in the browser (auto-save can be turned off) and in files the user downloads.
 
+`npm run build:site` builds the same app as the ALICIA website's **Policy costing** tab: `dist-site/costing.html` and `dist-site/costing-assets/`, with the same security policy and the ALICIA theme. `alicia site --costing ../regulatory-burden-tool/dist-site` (from `alicia/`) adds it to the website with the site navigation. The costing parameters in `data/processed/costing/parameters.json` (written by `alicia costing-params`) are bundled into every build. On the published website the Pages workflow refreshes them from the publishers' latest releases every day before building, so a new release reaches the tab without a code change.
+
 `npm run build:artifact` makes a single-file test copy for a hosted viewer: it opens on the illustrative example, shows a "test copy: illustrative or public information only" notice, and replaces the download button with "Copy this proposal as text" (the viewer blocks downloads). It omits the app's own security policy because the host applies its own. Don't use it for real proposals.
 
-Proposal files may be Cabinet-in-confidence. `.gitignore` keeps `*.rbm.json` and `*.proposal.json` out of the repository; only the synthetic files in `examples/` are tracked.
+Proposal files may be Cabinet-in-confidence. `.gitignore` keeps `*.rbm.json`, `*.proposal.json` and `*.brief.json` out of the repository; only the synthetic files in `examples/` are tracked.
 
 ## The web app (`src/ui/`)
 
