@@ -8,6 +8,7 @@ import { CurrentRegimePage } from "./pages/CurrentRegimePage";
 import { DataPage } from "./pages/DataPage";
 import { OptionsPage } from "./pages/OptionsPage";
 import { ProposalPage } from "./pages/ProposalPage";
+import { SourcesPage } from "./pages/SourcesPage";
 import { loadSavedProposal, loadSettings, saveProposal, saveSettings, type Settings } from "./persistence";
 
 // The results page carries the charting library, so it loads only when first opened.
@@ -31,6 +32,7 @@ const STEPS = [
 ] as const;
 const OTHER = [
   { path: "data", label: "Save and load" },
+  { path: "sources", label: "Sources and parameters" },
   { path: "about", label: "About" },
 ] as const;
 export type Route = (typeof STEPS)[number]["path"] | (typeof OTHER)[number]["path"];
@@ -171,6 +173,7 @@ export function App() {
           </Suspense>
         )}
         {route === "data" && <DataPage {...pageProps} settings={settings} setSettings={setSettings} replace={setProposal} />}
+        {route === "sources" && <SourcesPage />}
         {route === "about" && <AboutPage />}
       </main>
       <footer className="site-footer">

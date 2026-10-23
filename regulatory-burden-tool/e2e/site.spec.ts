@@ -18,7 +18,7 @@ test("T-E2E-10 website build: the ALICIA theme, the same privacy policy, the dat
   expect(await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute("content")).toContain("connect-src 'none'");
   await expect(page.getByRole("heading", { name: "Productivity and competition costing" })).toBeVisible();
   await expect(page.getByText(/Loading the data list/)).toHaveCount(0);
-  for (const route of ["proposal", "current", "options", "results", "data", "about"]) {
+  for (const route of ["proposal", "current", "options", "results", "data", "sources", "about"]) {
     await page.goto(`${SITE}/costing.html#${route}`);
     await page.locator("main h1").waitFor();
     const r = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
