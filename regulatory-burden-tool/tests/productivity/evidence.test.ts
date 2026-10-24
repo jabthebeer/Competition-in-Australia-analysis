@@ -163,7 +163,7 @@ const REQUIRED: { formula: string; parameter: string; source: Source; field?: st
   { formula: "PR-06", parameter: "discountRate", source: "library" },
 ];
 /** Rules in §2.3–2.5 with no numeric parameter of their own. */
-const NO_PARAMETER = ["F-C1-03", "F-C2-02", "F-C4-04", "F-C7-03", "F-B-03", "F-B-06", "F-O-01"];
+const NO_PARAMETER = ["F-C1-03", "F-C2-02", "F-C4-04", "F-C7-03", "F-E-02", "F-B-03", "F-B-06", "F-O-01"];
 
 /** Formula ids in the tables of traceability §2.3–2.5. */
 function tracedFormulas(): string[] {
@@ -265,7 +265,7 @@ describe("evidence library", () => {
     // Every formula id in §2.3–2.5 is covered by the list.
     const covered = new Set([...REQUIRED.map((r) => r.formula), ...NO_PARAMETER]);
     const traced = tracedFormulas();
-    expect(traced.length).toBeGreaterThanOrEqual(39); // 26 Layer A, custom shocks and the costing, 6 Layer B, 5 uncertainty and gate rules (24 Oct 2026)
+    expect(traced.length).toBeGreaterThanOrEqual(40); // 26 Layer A, custom shocks, the costing and its report, 6 Layer B, 5 uncertainty and gate rules (24 Oct 2026)
     expect(traced.filter((f) => !covered.has(f))).toEqual([]);
     for (const r of REQUIRED) {
       const label = `${r.formula} ${r.parameter}`;

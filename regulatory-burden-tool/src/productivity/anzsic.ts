@@ -28,14 +28,20 @@ export const SUBDIVISION_RANGES = {
 
 export type Division = keyof typeof SUBDIVISION_RANGES;
 
+const RANGES = Object.entries(SUBDIVISION_RANGES) as [Division, readonly [number, number]][];
+const divisionCache = new Map<string, Division | undefined>();
+
 /** The division letter above any ANZSIC code (a division returns itself); undefined if outside every range. */
 export function divisionOf(code: string): Division | undefined {
-  if (/^[A-S]$/.test(code)) return code as Division;
-  const sub = Number(code.slice(0, 2));
-  for (const [div, [lo, hi]] of Object.entries(SUBDIVISION_RANGES)) {
-    if (sub >= lo && sub <= hi) return div as Division;
+  if (divisionCache.has(code)) return divisionCache.get(code);
+  let div: Division | undefined;
+  if (/^[A-S]$/.test(code)) div = code as Division;
+  else {
+    const sub = Number(code.slice(0, 2));
+    div = RANGES.find(([, [lo, hi]]) => sub >= lo && sub <= hi)?.[0];
   }
-  return undefined;
+  divisionCache.set(code, div);
+  return div;
 }
 
 /** True if `outer` is `inner` or one of its ancestors (e.g. "E" covers "3231", "32" covers "323"). */

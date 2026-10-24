@@ -45,6 +45,12 @@ npm run rbe -- examples/illustrative-reform.json
 npm run rbe -- examples/illustrative-reform.json --precision dollars   # or 2, 3
 npm run rbe -- examples/illustrative-reform.json --json                # full results
 npm run rbe -- examples/illustrative-reform.json --tidy out/tidy.csv   # analysis-ready data + dictionary
+
+# Command line: the productivity and competition costing of a policy brief (GDP effect, time path, NPV, ranges, gate)
+npm run pce -- examples/illustrative-licensing.brief.json
+npm run pce -- examples/illustrative-licensing.brief.json --draws 5000 --seed 2   # Monte Carlo settings
+npm run pce -- examples/illustrative-licensing.brief.json --show-ungated          # show GDP the evidence gate hides
+npm run pce -- examples/illustrative-licensing.brief.json --json                  # full results
 ```
 
 The built site in `dist/` is static: copy it to any web server or internal host. It makes no network requests (its security policy blocks them), stores proposals only in the browser (auto-save can be turned off) and in files the user downloads.

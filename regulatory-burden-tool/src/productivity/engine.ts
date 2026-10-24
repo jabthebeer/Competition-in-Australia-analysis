@@ -1,18 +1,36 @@
-// The productivity and competition costing of a policy brief (plan §6): Layer A channels, custom shocks, then
-// Layer B. Central values here; the Monte Carlo, the time path and the evidence gate build on this (P4).
-// The RBE is never changed: the burden proposal is only read (DECISIONS #81).
-import { central, type PolicyBrief } from "./brief";
+// The productivity and competition costing of a policy brief (plan §6): Layer A channels, custom shocks, Layer B,
+// the time path and present values, for one set of parameter values (central by default). The Monte Carlo and the
+// evidence gate run this many times (uncertainty.ts, costing.ts). The RBE is never changed: the burden proposal is
+// only read (DECISIONS #81).
+import { type PolicyBrief } from "./brief";
 import { CHANNELS, type ChannelId } from "./channels";
 import { knownIndustries, type CostingContext } from "./context";
-import { CENTRAL, c1Compliance, c2c3Capital, c4c5Pending, c6c7Conduct, c8Labour, c9Innovation, c10Trade, c11Fiscal, type ChannelOutcome, type Grade, type ParamSource } from "./layerA";
+import {
+  CENTRAL,
+  c1Compliance,
+  c2c3Capital,
+  c4c5Pending,
+  c6c7Conduct,
+  c8Labour,
+  c9Innovation,
+  c10Trade,
+  c11Fiscal,
+  exposureOf,
+  type ChannelOutcome,
+  type Grade,
+  type ParamSource,
+} from "./layerA";
 import { aggregate, ioigReach, shocksForCode, type LayerBResult } from "./layerB";
 import { covers } from "./anzsic";
+import { pathParams, pathShare, presentValue, type Response } from "./timePath";
 
 export interface ChannelResult extends ChannelOutcome {
-  /** Long-run change in real GDP from this channel, per cent (after the realisation factor). */
+  /** Long-run change in real GDP from this channel, per cent (after the realisation factor and the model error). */
   gdpPct: number;
   /** The same in dollars a year, $ million in `gdpYear` prices. */
   gdpDollars: number;
+  /** Change in real GDP, per cent, in years 1, 2, … of the policy (index 0 is year 1). */
+  path: number[];
 }
 
 export interface CostingResult {
@@ -25,6 +43,10 @@ export interface CostingResult {
   /** Long-run change in real GDP, per cent, and in $ million a year. */
   gdpPct: number;
   gdpDollars: number;
+  /** Change in real GDP by year of the policy, years 1 to max(10, duration); dollars in $ million a year. */
+  path: { year: number; gdpPct: number; gdpDollars: number }[];
+  /** Present value of the GDP change over the brief's duration, $ million, at each discount rate (PR-06). */
+  npv: { rate: number; dollars: number }[];
   /** Welfare cost of funding (C11), $ a year (negative is a cost). Reported beside GDP, not in it. */
   welfareDollars: number;
   layerB: LayerBResult;
@@ -34,14 +56,15 @@ export interface CostingResult {
 
 export const NOT_MODELLED = [
   "Gross national income, the terms of trade, consumer prices and state GSP are not modelled (F-B-06). GNI can rise much less than GDP when foreign owners earn part of the capital income.",
-  "Results are long-run effects on the level of GDP; the time path, ranges and the evidence gate are added in the next part of P4.",
+  "Dollar effects apply the percentage change to the latest year's GDP, held constant in real terms: growth in the economy is not projected, so later years' dollar effects are understated.",
+  "GDP per person is not yet reported: the parameter file holds no population.",
 ];
 
 const GRADES = ["A", "B", "C", "D"] as const;
 const weaker = (a: Grade | null, b: Grade): Grade => (a === null ? b : GRADES[Math.max(GRADES.indexOf(a), GRADES.indexOf(b))]!);
 
 /** Custom shocks (plan §5.1): added to their channel, or replacing its modelled shocks for the industry (overlap rule O-6). */
-function applyCustom(brief: PolicyBrief, ctx: CostingContext, outcomes: Map<ChannelId, ChannelOutcome>): void {
+function applyCustom(brief: PolicyBrief, ctx: CostingContext, outcomes: Map<ChannelId, ChannelOutcome>, params: ParamSource): void {
   for (const s of brief.levers.custom) {
     const o =
       outcomes.get(s.channel) ??
@@ -68,8 +91,8 @@ function applyCustom(brief: PolicyBrief, ctx: CostingContext, outcomes: Map<Chan
       o.shocks = o.shocks.filter((x) => !hit.has(x.industry));
       o.effects = o.effects.filter((e) => !covers(s.industry, e.anzsic) && !covers(e.anzsic, s.industry));
     }
-    const exposure = central(brief.scope.industries.find((i) => covers(i.anzsic, s.industry))?.exposure ?? 1);
-    const size = central(s.size);
+    const exposure = exposureOf(s.industry, brief, params);
+    const size = params.input(`levers.custom.${s.id}.size`, s.size);
     o.shocks.push(...shocksForCode(s.industry, s.type, size, ctx.mapping, ctx.weights, exposure));
     o.effects.push({
       anzsic: s.industry,
@@ -99,19 +122,40 @@ export function costBrief(brief: PolicyBrief, ctx: CostingContext, params: Param
   add(c9Innovation(brief, ctx, params));
   add(c10Trade(brief, ctx, params));
   add(c11Fiscal(brief, ctx, params));
-  applyCustom(brief, ctx, outcomes);
+  applyCustom(brief, ctx, outcomes, params);
 
   const realisation = brief.analysis.realisationFactor;
-  const ordered = [...outcomes.values()].sort((a, b) => Number(a.channel.slice(1)) - Number(b.channel.slice(1)));
-  const channels: ChannelResult[] = ordered.map((o) => {
-    const gdpPct = aggregate(o.shocks, ctx.weights).gdpPct * realisation;
-    return { ...o, gdpPct, gdpDollars: (gdpPct / 100) * ctx.gdp };
-  });
+  // Layer B's model error (A-P19): central 1; the Monte Carlo draws it from the back-test band. Capital deepening
+  // takes the band of the capital-and-labour-productivity cases.
+  const errorLp = params.get("F-B-05", "modelErrorLp");
+  const errorMfp = params.get("F-B-05", "modelErrorMfp");
   const layerB = aggregate(
-    ordered.flatMap((o) => o.shocks),
+    [...outcomes.values()].flatMap((o) => o.shocks),
     ctx.weights,
   );
-  const gdpPct = layerB.gdpPct * realisation;
+  const timing = pathParams(params, layerB.alpha);
+  const { phaseInYears, durationYears } = brief.meta;
+  const years = Array.from({ length: Math.max(10, durationYears) }, (_, i) => i + 1);
+  const curve = (kind: Response) => years.map((t) => pathShare(kind, t, phaseInYears, timing));
+  const curves = { productivity: curve("productivity"), capital: curve("capital"), directThenCapital: curve("directThenCapital") };
+
+  const ordered = [...outcomes.values()].sort((a, b) => Number(a.channel.slice(1)) - Number(b.channel.slice(1)));
+  const channels: ChannelResult[] = ordered.map((o) => {
+    const by = aggregate(o.shocks, ctx.weights).byType;
+    const lp = by.labourProductivity * errorLp * realisation;
+    const mfp = by.mfp * errorMfp * realisation;
+    const va = by.valueAdded * errorMfp * realisation;
+    const mfpCurve = o.channel === "C1" ? curves.directThenCapital : curves.productivity; // A-P26
+    const path = years.map((_, i) => lp * curves.productivity[i]! + mfp * mfpCurve[i]! + va * curves.capital[i]!);
+    const gdpPct = lp + mfp + va;
+    return { ...o, gdpPct, gdpDollars: (gdpPct / 100) * ctx.gdp, path };
+  });
+  const gdpPct = channels.reduce((s, c) => s + c.gdpPct, 0);
+  const path = years.map((year, i) => {
+    const pct = channels.reduce((s, c) => s + c.path[i]!, 0);
+    return { year, gdpPct: pct, gdpDollars: (pct / 100) * ctx.gdp };
+  });
+  const flows = path.slice(0, durationYears).map((p) => p.gdpDollars);
   const welfareDollars = channels.flatMap((c) => c.other).filter((x) => x.unit === "$ a year").reduce((s, x) => s + x.value, 0);
   return {
     briefId: brief.id,
@@ -121,6 +165,8 @@ export function costBrief(brief: PolicyBrief, ctx: CostingContext, params: Param
     channels,
     gdpPct,
     gdpDollars: (gdpPct / 100) * ctx.gdp,
+    path,
+    npv: [brief.analysis.discountRate, ...brief.analysis.sensitivityRates].map((rate) => ({ rate, dollars: presentValue(flows, rate) })),
     welfareDollars,
     layerB,
     notModelled: NOT_MODELLED,

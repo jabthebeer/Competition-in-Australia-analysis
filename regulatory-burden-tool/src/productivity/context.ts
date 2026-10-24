@@ -101,9 +101,13 @@ export function buildContext(params: ParameterFile): CostingContext {
   };
 }
 
+const knownCache = new WeakMap<CostingContext, ReadonlySet<string>>();
+
 /** Known input-output industries. */
-export function knownIndustries(ctx: CostingContext): Set<string> {
-  return new Set(ctx.weights.map((w) => w.id));
+export function knownIndustries(ctx: CostingContext): ReadonlySet<string> {
+  let known = knownCache.get(ctx);
+  if (!known) knownCache.set(ctx, (known = new Set(ctx.weights.map((w) => w.id))));
+  return known;
 }
 
 /**
@@ -118,9 +122,16 @@ export function valueAddedOf(code: string, ctx: CostingContext): number {
 
 /** The ANZSIC division of an input-output industry: the division of its first class. */
 export function divisionOfIndustry(ioig: string, ctx: CostingContext): string | undefined {
-  const cls = ctx.mapping.find((m) => m.ioig === ioig)?.anzsic;
+  let first = firstClassCache.get(ctx);
+  if (!first) {
+    first = new Map();
+    for (const m of ctx.mapping) if (!first.has(m.ioig)) first.set(m.ioig, m.anzsic);
+    firstClassCache.set(ctx, first);
+  }
+  const cls = first.get(ioig);
   return cls ? divisionOf(cls) : undefined;
 }
+const firstClassCache = new WeakMap<CostingContext, Map<string, string>>();
 
 /**
  * Business R&D of an ANZSIC code, $ million (BERD is published by subdivision): a division sums its subdivisions; a

@@ -106,18 +106,33 @@ export function ioWeights(rows: readonly IoRow[]): IndustryWeight[] {
  * (interpretation A-P20). `known` limits the result to industries with weights: the concordance also lists IOIGs
  * 1203 and 1204, which the published tables combine as 1205.
  */
-export function ioigReach(code: string, mapping: readonly IoigAnzsicRow[], known?: ReadonlySet<string>): { ioig: string; share: number }[] {
+export function ioigReach(code: string, mapping: readonly IoigAnzsicRow[], known?: ReadonlySet<string>): readonly { ioig: string; share: number }[] {
+  // Costings call this for the same codes many times (every Monte Carlo draw), so results are kept per mapping and set.
+  const byKnown = reachCache.get(mapping) ?? new WeakMap();
+  reachCache.set(mapping, byKnown);
+  const cache = byKnown.get(known ?? ALL) ?? { classes: groupClasses(mapping, known), byCode: new Map() };
+  byKnown.set(known ?? ALL, cache);
+  const hitCached = cache.byCode.get(code);
+  if (hitCached) return hitCached;
+  const out: { ioig: string; share: number }[] = [];
+  for (const [ioig, list] of cache.classes) {
+    const hit = list.filter((c) => covers(code, c)).length;
+    if (hit > 0) out.push({ ioig, share: hit / list.length });
+  }
+  cache.byCode.set(code, out);
+  return out;
+}
+
+const ALL: ReadonlySet<string> = new Set();
+const reachCache = new WeakMap<readonly IoigAnzsicRow[], WeakMap<ReadonlySet<string>, { classes: [string, string[]][]; byCode: Map<string, readonly { ioig: string; share: number }[]> }>>();
+
+function groupClasses(mapping: readonly IoigAnzsicRow[], known: ReadonlySet<string> | undefined): [string, string[]][] {
   const classes = new Map<string, string[]>();
   for (const m of mapping) {
     if (known && !known.has(m.ioig)) continue;
     classes.set(m.ioig, [...(classes.get(m.ioig) ?? []), m.anzsic]);
   }
-  const out: { ioig: string; share: number }[] = [];
-  for (const [ioig, list] of [...classes].sort(([a], [b]) => a.localeCompare(b))) {
-    const hit = list.filter((c) => covers(code, c)).length;
-    if (hit > 0) out.push({ ioig, share: hit / list.length });
-  }
-  return out;
+  return [...classes].sort(([a], [b]) => a.localeCompare(b));
 }
 
 /** A uniform shock to an ANZSIC code (division to class), spread over the input-output industries it reaches. */
@@ -129,6 +144,8 @@ export function shocksForCode(
   weights: readonly IndustryWeight[],
   exposure = 1,
 ): IndustryShock[] {
-  const known = new Set(weights.map((w) => w.id));
+  let known = knownByWeights.get(weights);
+  if (!known) knownByWeights.set(weights, (known = new Set(weights.map((w) => w.id))));
   return ioigReach(code, mapping, known).map((r) => ({ industry: r.ioig, type, sizePct, share: r.share * exposure }));
 }
+const knownByWeights = new WeakMap<readonly IndustryWeight[], ReadonlySet<string>>();

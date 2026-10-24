@@ -3,8 +3,8 @@
 // a central costing, or draws from their ranges for the Monte Carlo (P4). Channels C4 and C5 need data not yet in
 // the parameter file and report themselves as not quantified.
 import { computeProposal, toTidyRows } from "../engine/index";
-import { covers, divisionOf } from "./anzsic";
-import { central, type PolicyBrief } from "./brief";
+import { covers, divisionOf, overlaps } from "./anzsic";
+import { central, type PolicyBrief, type SignedQuantity } from "./brief";
 import { CHANNELS, type ChannelId } from "./channels";
 import { berdOf, berdTotal, divisionOfIndustry, valueAddedOf, knownIndustries, type CostingContext } from "./context";
 import { EVIDENCE, EVIDENCE_GRADES, defaultEvidence } from "./evidence";
@@ -12,18 +12,23 @@ import { capitalShare, ioigReach, shocksForCode, type IndustryShock } from "./la
 
 export type Grade = (typeof EVIDENCE_GRADES)[number];
 
-/** The value of a formula parameter: the library's default, or a draw from its range. */
+/**
+ * Where values come from: a formula parameter (the library's default, or a draw from its range) and a brief input
+ * (its central value, or a draw from the range the user entered). `key` names the input, e.g. "levers.capital.companyTaxRate.to".
+ */
 export interface ParamSource {
   get(formula: string, parameter: string): number;
+  input(key: string, q: SignedQuantity): number;
 }
 
-/** The evidence library's default (central) values. */
+/** The evidence library's default (central) values, and each input's central value. */
 export const CENTRAL: ParamSource = {
   get(formula, parameter) {
     const e = defaultEvidence(formula, parameter);
     if (!e) throw new Error(`The evidence library has no default for ${formula} ${parameter}`);
     return e.value;
   },
+  input: (_key, q) => central(q),
 };
 
 export interface Factor {
@@ -110,15 +115,15 @@ function outcome(channel: ChannelId, part: Partial<ChannelOutcome> & { used?: Se
 }
 
 /** Exposure (0–1) of an ANZSIC code: that of the scope industry covering it. */
-function exposureOf(code: string, brief: PolicyBrief): number {
+export function exposureOf(code: string, brief: PolicyBrief, params: ParamSource): number {
   const s = brief.scope.industries.find((i) => covers(i.anzsic, code));
-  return s ? central(s.exposure) : 1;
+  return s ? params.input(`scope.${s.anzsic}.exposure`, s.exposure) : 1;
 }
 
 /** The codes a lever reaches, with their exposure: the lever's own list, or the brief's scope. */
-function reach(brief: PolicyBrief, industries: string[] | undefined): { code: string; exposure: number }[] {
+function reach(brief: PolicyBrief, industries: string[] | undefined, params: ParamSource): { code: string; exposure: number }[] {
   const codes = industries ?? brief.scope.industries.map((i) => i.anzsic);
-  return codes.map((code) => ({ code, exposure: exposureOf(code, brief) }));
+  return codes.map((code) => ({ code, exposure: exposureOf(code, brief, params) }));
 }
 
 /** A uniform shock on every input-output industry (an economy-wide effect). */
@@ -130,27 +135,51 @@ const pct = (x: number) => x * 100;
 
 // ---- C1: resource cost of compliance (F-C1-01..03) ------------------------------------------------------------
 
+interface BurdenCost {
+  optionName: string;
+  durationYears: number;
+  /** In-scope RBE rows of the option costed, businesses and community organisations only. */
+  rows: ReturnType<typeof toTidyRows>;
+}
+const burdenCache = new WeakMap<object, BurdenCost | null>();
+
+/** The burden proposal's RBE rows for its first option other than the status quo, computed once per proposal. */
+function burdenCost(brief: PolicyBrief): BurdenCost | null {
+  if (!brief.burden) return null;
+  const cached = burdenCache.get(brief.burden);
+  if (cached !== undefined) return cached;
+  const result = computeProposal(brief.burden);
+  const option = result.options.find((o) => !o.isStatusQuo) ?? result.options[0];
+  const cost = option
+    ? {
+        optionName: option.optionName,
+        durationYears: result.durationYears,
+        rows: toTidyRows(result).filter((r) => r.option_id === option.optionId && !r.excluded_reason && r.stakeholder_group !== "individual"),
+      }
+    : null;
+  burdenCache.set(brief.burden, cost);
+  return cost;
+}
+
 export function c1Compliance(brief: PolicyBrief, ctx: CostingContext, params: ParamSource = CENTRAL): ChannelOutcome | null {
   if (!brief.burden) return null;
   const t = tracker(params);
-  const result = computeProposal(brief.burden);
-  const option = result.options.find((o) => !o.isStatusQuo) ?? result.options[0];
-  if (!option) return outcome("C1", { reasons: ["The burden proposal has no option to cost"] });
+  const burden = burdenCost(brief);
+  if (!burden) return outcome("C1", { reasons: ["The burden proposal has no option to cost"] });
   const byCode = new Map<string, number>();
   let unallocated = 0;
-  for (const row of toTidyRows(result)) {
-    if (row.option_id !== option.optionId || row.excluded_reason || row.stakeholder_group === "individual") continue;
-    const perYear = Number(row.delta_contribution) / result.durationYears;
+  for (const row of burden.rows) {
+    const perYear = Number(row.delta_contribution) / burden.durationYears;
     const code = String(row.industry_anzsic ?? "");
     if (code) byCode.set(code, (byCode.get(code) ?? 0) + perYear);
     else unallocated += perYear;
   }
   const notes = [
-    `Costs option "${option.optionName}" of the burden proposal: the average annual change in compliance and delay costs (the RBE), by the industry of each population. Individuals' costs are not in GDP and are left out.`,
+    `Costs option "${burden.optionName}" of the burden proposal: the average annual change in compliance and delay costs (the RBE), by the industry of each population. Individuals' costs are not in GDP and are left out.`,
   ];
   if (unallocated !== 0) {
     // Costs of populations without an industry are spread over the scope in proportion to value added × exposure.
-    const scope = brief.scope.industries.map((i) => ({ code: i.anzsic, w: valueAddedOf(i.anzsic, ctx) * central(i.exposure) }));
+    const scope = brief.scope.industries.map((i) => ({ code: i.anzsic, w: valueAddedOf(i.anzsic, ctx) * params.input(`scope.${i.anzsic}.exposure`, i.exposure) }));
     const total = scope.reduce((s, x) => s + x.w, 0);
     for (const x of scope) if (total > 0) byCode.set(x.code, (byCode.get(x.code) ?? 0) + (unallocated * x.w) / total);
     notes.push("Some populations have no industry code; their costs are spread over the scope industries in proportion to value added and exposure.");
@@ -220,7 +249,7 @@ export function c2c3Capital(brief: PolicyBrief, ctx: CostingContext, params: Par
   const lever = brief.levers.capital;
   if (!lever) return [];
   const out: ChannelOutcome[] = [];
-  const codes = reach(brief, lever.industries);
+  const codes = reach(brief, lever.industries, params);
 
   // C3: tax, depreciation and risk premium.
   if (lever.companyTaxRate || lever.depreciationPvChange !== undefined || lever.riskPremiumChangePp !== undefined) {
@@ -231,9 +260,11 @@ export function c2c3Capital(brief: PolicyBrief, ctx: CostingContext, params: Par
     const reasons: string[] = [];
     const effects: IndustryEffect[] = [];
     const shocks: IndustryShock[] = [];
-    const tax = lever.companyTaxRate ? { from: central(lever.companyTaxRate.from), to: central(lever.companyTaxRate.to) } : undefined;
-    const dz = lever.depreciationPvChange !== undefined ? central(lever.depreciationPvChange) : 0;
-    const drp = lever.riskPremiumChangePp !== undefined ? central(lever.riskPremiumChangePp) / 100 : 0;
+    const tax = lever.companyTaxRate
+      ? { from: params.input("levers.capital.companyTaxRate.from", lever.companyTaxRate.from), to: params.input("levers.capital.companyTaxRate.to", lever.companyTaxRate.to) }
+      : undefined;
+    const dz = lever.depreciationPvChange !== undefined ? params.input("levers.capital.depreciationPvChange", lever.depreciationPvChange) : 0;
+    const drp = lever.riskPremiumChangePp !== undefined ? params.input("levers.capital.riskPremiumChangePp", lever.riskPremiumChangePp) / 100 : 0;
     if (dz !== 0 && !tax) reasons.push("A change in depreciation deductions needs the company tax rate (companyTaxRate) to be costed; it is left out");
     for (const { code, exposure } of codes) {
       const div = divisionOf(code);
@@ -292,12 +323,20 @@ export function c2c3Capital(brief: PolicyBrief, ctx: CostingContext, params: Par
     const r = t.get("F-C2-01", "r");
     const sigma = t.get("F-C3-02", "sigma");
     const alpha = alphaOf(t, ctx);
-    const years = central(lever.investmentApprovalDelayChangeMonths) / 12;
+    const years = params.input("levers.capital.investmentApprovalDelayChangeMonths", lever.investmentApprovalDelayChangeMonths) / 12;
     const dlnc = r.value * years; // F-C2-01: Δln c ≈ r·d
     const dlnK = -sigma.value * dlnc;
     const effects: IndustryEffect[] = [];
     const shocks: IndustryShock[] = [];
+    const reasons: string[] = [];
+    // O-2: industries whose delay costs are already in the RBE (and so in C1) are left out of the user-cost shock.
+    const delayed = [...new Set((burdenCost(brief)?.rows ?? []).filter((r) => r.category === "delay" && Number(r.delta_contribution) !== 0 && r.industry_anzsic).map((r) => String(r.industry_anzsic)))];
     for (const { code, exposure } of codes) {
+      const hit = delayed.filter((d) => overlaps(d, code));
+      if (hit.length) {
+        reasons.push(`Industry ${code} is left out: the burden proposal already costs approval delays in ${hit.join(", ")} (overlap rule O-2)`);
+        continue;
+      }
       effects.push({
         anzsic: code,
         measure: "Capital stock",
@@ -319,7 +358,7 @@ export function c2c3Capital(brief: PolicyBrief, ctx: CostingContext, params: Par
     ];
     notes.push(...alpha.notes());
     if (brief.burden) notes.push("Delay costs already in the burden proposal are costed in C1, not again here (overlap rule O-2): enter here only approval delays the proposal does not cost.");
-    out.push(outcome("C2", { used: t.used, effects, shocks, notes }));
+    out.push(outcome("C2", { used: t.used, effects, shocks, reasons, notes }));
   }
   return out;
 }
@@ -331,7 +370,7 @@ const ETCR_SECTORS = new Set(["energy", "transport", "communications"]);
 export function c6c7Conduct(brief: PolicyBrief, ctx: CostingContext, params: ParamSource = CENTRAL): ChannelOutcome | null {
   const lever = brief.levers.conduct;
   if (!lever) return null;
-  const codes = reach(brief, lever.industries);
+  const codes = reach(brief, lever.industries, params);
   const t = tracker(params);
   if (lever.route === "pmr") {
     if (!ETCR_SECTORS.has(lever.indicator)) {
@@ -377,12 +416,12 @@ export function c6c7Conduct(brief: PolicyBrief, ctx: CostingContext, params: Par
       notes: [
         `The regulation sits in ${codes.map((c) => c.code).join(", ")}; its effect is economy-wide, as Égert & Gal estimate it (A-P25).`,
         "Égert & Gal's MFP is Harrod-neutral, so the shock enters Layer B as labour-augmenting (A-P18); their capital-output effect is added as a direct change in value added.",
-        "Long-run effect; about a third arrives within five years (time path, P4).",
+        "Long-run effect; about a third arrives within five years (time path, F-B-04).",
       ],
     });
   }
   // C6: mark-ups.
-  const m = central(lever.markupChangePct);
+  const m = params.input("levers.conduct.markupChangePct", lever.markupChangePct);
   const from = t.get("F-C6-01", "markupFrom");
   const to = t.get("F-C6-01", "markupTo");
   const loss = t.get("F-C6-01", "misallocationCostChange");
@@ -429,15 +468,16 @@ export function c8Labour(brief: PolicyBrief, ctx: CostingContext, params: ParamS
   const notes: string[] = [];
   if (lever.licensing) {
     const e = t.get("F-C8-01", "elasticity");
-    const lp = e.value * -central(lever.licensing.stringencyChange);
-    for (const { code, exposure } of reach(brief, lever.licensing.industries)) {
+    const cut = -params.input("levers.labour.licensing.stringencyChange", lever.licensing.stringencyChange);
+    const lp = e.value * cut;
+    for (const { code, exposure } of reach(brief, lever.licensing.industries, params)) {
       effects.push({
         anzsic: code,
         measure: "Labour productivity",
         value: lp * exposure,
         unit: "% change",
         chain: [
-          { label: "Cut in occupational entry regulation stringency", value: -central(lever.licensing.stringencyChange), unit: "index points" },
+          { label: "Cut in occupational entry regulation stringency", value: cut, unit: "index points" },
           { label: "Labour productivity per index point", value: e.value, unit: "% per point", evidence: e.id },
           { label: "Exposure (share of the industry the licences cover)", value: exposure, unit: "share" },
         ],
@@ -454,9 +494,10 @@ export function c8Labour(brief: PolicyBrief, ctx: CostingContext, params: ParamS
     const low = t.get("F-C8-02", "wageEffectLowUse");
     const base = t.get("F-C8-02", "baselineCoverage");
     const wage = (high.value + low.value) / 2; // A-P21: the PC's 24 high-use industries are not listed
-    const scale = -central(lever.nonCompetes.coveredShareChange) / base.value;
+    const covered = params.input("levers.labour.nonCompetes.coveredShareChange", lever.nonCompetes.coveredShareChange);
+    const scale = -covered / base.value;
     const lp = pass.value * wage * scale;
-    for (const { code, exposure } of reach(brief, lever.nonCompetes.industries)) {
+    for (const { code, exposure } of reach(brief, lever.nonCompetes.industries, params)) {
       if (code === "A" || divisionOf(code) === "A") {
         notes.push(`Non-competes: agriculture (${code}) is left out, as in the PC's L1.`);
         continue;
@@ -467,7 +508,7 @@ export function c8Labour(brief: PolicyBrief, ctx: CostingContext, params: ParamS
         value: lp * exposure,
         unit: "% change",
         chain: [
-          { label: "Change in the share of workers bound", value: central(lever.nonCompetes.coveredShareChange), unit: "share" },
+          { label: "Change in the share of workers bound", value: covered, unit: "share" },
           { label: "Share bound now (a ban removes it all)", value: base.value, unit: "share", evidence: base.id },
           { label: "Wage effect of a ban: midpoint of the PC's high-use (2.4%) and low-use (1.4%) industries", value: wage, unit: "%", evidence: high.id },
           { label: "Pass-through to labour productivity", value: pass.value, unit: "share", evidence: pass.id },
@@ -492,9 +533,9 @@ export function c9Innovation(brief: PolicyBrief, ctx: CostingContext, params: Pa
   const t = tracker(params);
   const eps = t.get("F-C9-01", "epsilonLongRun");
   const beta = t.get("F-C9-02", "beta");
-  const dlnUc = Math.log(1 + central(lever.rdUserCostChangePct) / 100);
+  const dlnUc = Math.log(1 + params.input("levers.innovation.rdUserCostChangePct", lever.rdUserCostChangePct) / 100);
   const dlnRd = eps.value * dlnUc;
-  const codes = reach(brief, lever.industries);
+  const codes = reach(brief, lever.industries, params);
   const rd = codes.reduce((s, { code, exposure }) => s + berdOf(code, ctx) * exposure, 0);
   const gdpRd = ctx.gdpByYear[ctx.berdYear];
   if (!gdpRd) return outcome("C9", { reasons: [...reasons, `No GDP for the BERD year (${ctx.berdYear})`] });
@@ -520,7 +561,7 @@ export function c9Innovation(brief: PolicyBrief, ctx: CostingContext, params: Pa
     ],
     shocks: economyWide("labourProductivity", mfp, ctx),
     notes: [
-      `R&D in the industries reached is ${((100 * rd) / berdTotal(ctx)).toFixed(1)}% of all business R&D. Its productivity effect is economy-wide (spillovers, Égert & Gal), and enters as labour-augmenting (A-P18). The short-run elasticity is a tenth of the long run (time path, P4).`,
+      `R&D in the industries reached is ${((100 * rd) / berdTotal(ctx)).toFixed(1)}% of all business R&D. Its productivity effect is economy-wide (spillovers, Égert & Gal), and enters as labour-augmenting (A-P18). The short-run elasticity is a tenth of the long run; the time path (F-B-04) phases the effect in.`,
     ],
   });
 }
@@ -537,14 +578,15 @@ export function c10Trade(brief: PolicyBrief, ctx: CostingContext, params: ParamS
   let shocks: IndustryShock[] = [];
   if (lever.opennessChangePp !== undefined) {
     const beta = t.get("F-C10-01", "beta");
-    const mfp = pct(beta.value * central(lever.opennessChangePp));
+    const openness = params.input("levers.trade.opennessChangePp", lever.opennessChangePp);
+    const mfp = pct(beta.value * openness);
     effects.push({
       anzsic: "TOT",
       measure: "Multifactor productivity (labour-augmenting), economy-wide, long run",
       value: mfp,
       unit: "% change",
       chain: [
-        { label: "Change in trade openness", value: central(lever.opennessChangePp), unit: "pp of GDP" },
+        { label: "Change in trade openness", value: openness, unit: "pp of GDP" },
         { label: "MFP per pp of openness", value: beta.value, unit: "log points per pp", evidence: beta.id },
       ],
     });
@@ -556,12 +598,13 @@ export function c10Trade(brief: PolicyBrief, ctx: CostingContext, params: ParamS
   }
   if (lever.fdiRestrictivenessChangePct !== undefined) {
     const e = t.get("F-C10-03", "elasticity");
+    const fdi = params.input("levers.trade.fdiRestrictivenessChangePct", lever.fdiRestrictivenessChangePct);
     other.push({
       label: "Change in the stock of foreign direct investment (not added to GDP: no verified productivity elasticity)",
-      value: e.value * central(lever.fdiRestrictivenessChangePct),
+      value: e.value * fdi,
       unit: "% change",
       chain: [
-        { label: "Change in the FDI restrictiveness index", value: central(lever.fdiRestrictivenessChangePct), unit: "%" },
+        { label: "Change in the FDI restrictiveness index", value: fdi, unit: "%" },
         { label: "Elasticity of bilateral FDI stocks to the index", value: e.value, unit: "elasticity", evidence: e.id },
       ],
     });
@@ -577,7 +620,7 @@ export function c11Fiscal(brief: PolicyBrief, _ctx: CostingContext, params: Para
   if (lever.fundingTax === "other") return outcome("C11", { reasons: ["The funding tax is \"other\": enter its marginal excess burden as a custom value to cost it"] });
   const t = tracker(params);
   const meb = t.get("F-C11-01", `meb.${lever.fundingTax}`);
-  const revenue = central(lever.revenueChangeDollarsPerYear);
+  const revenue = params.input("levers.fiscal.revenueChangeDollarsPerYear", lever.revenueChangeDollarsPerYear);
   return outcome("C11", {
     used: t.used,
     other: [
