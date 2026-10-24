@@ -207,6 +207,25 @@ def test_asna_tables_from_series_descriptions():
         abs_asna._wide(
             abs_asna.tidy(tsw({"Mystery ;  Total factor income ;": {2026: 1.0}})), {"Total factor income": "tfi"}, 2000
         )
+    t1 = abs_asna.tidy(
+        tsw(
+            {
+                "GDP per capita: Current prices ;": {2025: 100000.0, 2026: 105000.0},
+                "GDP per capita: Chain volume measures ;": {2025: 101000.0, 2026: 102000.0},
+                "Gross national income: Current prices ;": {2025: 2.5e6, 2026: 2.6e6},
+                "GDP per capita: Chain volume measures - Percentage changes ;": {2026: 1.0},  # not kept
+            }
+        )
+    )
+    agg = abs_asna.aggregates_table(t1, "2024-25").finish()
+    assert agg.rows[-1] == {
+        "fy": "2025-26",
+        "gdp_per_capita_current": 105000,
+        "gdp_per_capita_cvm": 102000,
+        "gni_current": 2.6e6,
+    }
+    with pytest.raises(ValueError, match="no series"):
+        abs_asna.aggregates_table(abs_asna.tidy(tsw({"Terms of trade: Index ;": {2026: 100.0}})), "2024-25")
 
 
 def cube(title: str, years: list[str], blocks: list[tuple[str | None, list[tuple[str, list]]]]) -> list[list]:

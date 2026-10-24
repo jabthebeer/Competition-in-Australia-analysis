@@ -3,10 +3,11 @@
 //  - productivity shocks follow Égert & Gal's 5- and 10-year shares of the long run (A-P26);
 //  - capital deepening (C2, C3) follows their capital-output error-correction speed;
 //  - a compliance cost change (C1) lowers measured MFP at once, while the capital that responds to it builds up at the
-//    capital-output speed (A-P26).
+//    capital-output speed (A-P26);
+//  - faster catch-up to the frontier (C4) arrives at the convergence speed λ: 1 − (1 − λ)^τ (A-P30).
 import type { ParamSource } from "./layerA";
 
-export type Response = "productivity" | "capital" | "directThenCapital";
+export type Response = "productivity" | "capital" | "directThenCapital" | "convergence";
 
 export interface PathParams {
   /** Share of the long-run effect reached after 5 and 10 years (productivity shocks). */
@@ -16,6 +17,8 @@ export interface PathParams {
   ecmSpeedKY: number;
   /** Capital share: the part of an MFP shock's long-run effect that comes through capital. */
   alpha: number;
+  /** Speed of convergence to the frontier, a year (C4). */
+  convergenceSpeed: number;
 }
 
 export function pathParams(params: ParamSource, alpha: number): PathParams {
@@ -24,6 +27,7 @@ export function pathParams(params: ParamSource, alpha: number): PathParams {
     tenYearShare: params.get("F-B-04", "tenYearShare"),
     ecmSpeedKY: params.get("F-B-04", "ecmSpeedKY"),
     alpha,
+    convergenceSpeed: params.get("F-C4-03", "lambda0"),
   };
 }
 
@@ -46,6 +50,7 @@ export function responseShare(kind: Response, tau: number, p: PathParams): numbe
   const capital = 1 - (1 + p.ecmSpeedKY) ** tau;
   if (kind === "capital") return capital;
   if (kind === "directThenCapital") return 1 - p.alpha + p.alpha * capital;
+  if (kind === "convergence") return 1 - (1 - p.convergenceSpeed) ** tau;
   const { b, c } = productivityCurve(p.fiveYearShare, p.tenYearShare);
   return Math.min(1, Math.max(0, 1 - c * Math.exp(-b * tau)));
 }

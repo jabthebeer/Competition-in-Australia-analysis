@@ -1,6 +1,6 @@
 // The data a costing needs, built once from the bundled parameters (data/processed/costing/parameters.json):
-// input-output weights rescaled to the latest year's nominal GDP, GDP itself, depreciation rates and capital shares by
-// division, and business R&D. Every number here comes from a parameter table; nothing is assumed.
+// input-output weights rescaled to the latest year's nominal GDP, GDP and GDP per head, depreciation rates and capital
+// shares by division, business R&D, entry rates, and businesses, employment and wages by size band. Every number here comes from a parameter table; nothing is assumed.
 import { divisionOf } from "./anzsic";
 import { ioWeights, ioigReach, type IndustryWeight } from "./layerB";
 
@@ -34,6 +34,18 @@ export interface CostingContext {
   /** Business expenditure on R&D by ANZSIC subdivision or division, $ million (BERD), and its year. */
   berd: Record<string, number>;
   berdYear: string;
+  /** GDP per head in `gdpYear`, $ (ASNA Table 1), and the population it implies (GDP ÷ GDP per head). */
+  gdpPerCapita: number;
+  population: number;
+  /** Business entry rate by ANZSIC division and in total ("TOT"), per cent of businesses at the start of the year (CABEE), and its year. */
+  entryRate: Record<string, number>;
+  entryRateYear: string;
+  /** Businesses by ANZSIC code (class, subdivision or division) and employment size band, end of `sizeYear` (CABEE). */
+  businessesByBand: Record<string, Record<string, number>>;
+  sizeYear: string;
+  /** Employment (thousand persons) and wages ($ million) by division and size band (Australian Industry; excludes division K), and their year. */
+  industryByBand: Record<string, Record<string, { employment: number; wages: number }>>;
+  industryByBandYear: string;
   parameterVintage: string | null;
 }
 
@@ -84,6 +96,32 @@ export function buildContext(params: ParameterFile): CostingContext {
   }
   const berdYear = fyOf(params.sources.find((s) => s.id === "abs_berd")?.release ?? "") ?? "";
 
+  const perCapita = rows(params, "abs_asna.key_aggregates").find((r) => r.fy === gdpYear);
+  const gdpPerCapita = num(perCapita?.gdp_per_capita_current);
+  if (!(gdpPerCapita > 0)) throw new Error(`The parameter file has no GDP per head for ${gdpYear}`);
+
+  const cabee = rows(params, "abs_cabee_latest.division_fy");
+  const entryRateYear = cabee.map((r) => String(r.fy)).sort().at(-1) ?? "";
+  const entryRate: Record<string, number> = {};
+  for (const r of cabee) if (r.fy === entryRateYear && typeof r.anzsic === "string" && Number.isFinite(num(r.entry_rate_pct))) entryRate[r.anzsic] = num(r.entry_rate_pct);
+
+  const businessesByBand: Record<string, Record<string, number>> = {};
+  for (const r of rows(params, "abs_cabee_latest.class_size")) {
+    if (typeof r.anzsic !== "string" || !Number.isFinite(num(r.end))) continue;
+    (businessesByBand[r.anzsic] ??= {})[String(r.size_band)] = num(r.end);
+  }
+  // The size table is CABEE cube 2, whose release reads e.g. "jul2021-jun2025 (cube 2)": its last financial year.
+  const cube2 = /jun(\d{4}) \(cube 2\)/.exec(params.sources.find((s) => s.id === "abs_cabee_latest")?.release ?? "");
+  const sizeYear = cube2?.[1] ? `${Number(cube2[1]) - 1}-${cube2[1].slice(2)}` : "";
+
+  const ai = rows(params, "abs_australian_industry.size_division");
+  const industryByBandYear = ai.map((r) => String(r.fy)).sort().at(-1) ?? "";
+  const industryByBand: Record<string, Record<string, { employment: number; wages: number }>> = {};
+  for (const r of ai) {
+    if (r.fy !== industryByBandYear || typeof r.anzsic !== "string") continue;
+    (industryByBand[r.anzsic] ??= {})[String(r.size_band)] = { employment: num(r.employment), wages: num(r.wages) };
+  }
+
   return {
     weights,
     mapping: rows(params, "abs_io.ioig_anzsic") as never,
@@ -97,6 +135,14 @@ export function buildContext(params: ParameterFile): CostingContext {
     capitalShareYear: mfpYear,
     berd,
     berdYear,
+    gdpPerCapita,
+    population: (num(latest.gdp_current) * 1e6) / gdpPerCapita,
+    entryRate,
+    entryRateYear,
+    businessesByBand,
+    sizeYear,
+    industryByBand,
+    industryByBandYear,
     parameterVintage: params.vintage,
   };
 }

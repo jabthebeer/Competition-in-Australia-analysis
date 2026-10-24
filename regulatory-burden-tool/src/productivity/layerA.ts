@@ -168,8 +168,15 @@ export function c1Compliance(brief: PolicyBrief, ctx: CostingContext, params: Pa
   if (!burden) return outcome("C1", { reasons: ["The burden proposal has no option to cost"] });
   const byCode = new Map<string, number>();
   let unallocated = 0;
+  // Overlap rule O-1: when C4 costs the entry lever, entrants' compliance costs are left to C4.
+  const entrants = new Set(entryCosted(brief) ? (brief.levers.entry?.entrantPopulationIds ?? []) : []);
+  let entrantCost = 0;
   for (const row of burden.rows) {
     const perYear = Number(row.delta_contribution) / burden.durationYears;
+    if (entrants.has(String(row.population_id))) {
+      entrantCost += perYear;
+      continue;
+    }
     const code = String(row.industry_anzsic ?? "");
     if (code) byCode.set(code, (byCode.get(code) ?? 0) + perYear);
     else unallocated += perYear;
@@ -208,7 +215,11 @@ export function c1Compliance(brief: PolicyBrief, ctx: CostingContext, params: Pa
     });
     shocks.push(...shocksForCode(code, "mfp", mfp, ctx.mapping, ctx.weights));
   }
-  if (brief.levers.entry) notes.push("When entry effects are costed (C4), entrants' compliance cost will be taken out of C1 first (overlap rule O-1).");
+  if (entrants.size) {
+    notes.push(`Entrants' compliance costs (${[...entrants].join(", ")}: $${Math.round(entrantCost).toLocaleString("en-AU")} a year) are left out of C1 because C4 costs entry (overlap rule O-1).`);
+  } else if (entryCosted(brief)) {
+    notes.push("If the burden proposal costs new entrants, list their populations in levers.entry.entrantPopulationIds so C1 leaves them to C4 (overlap rule O-1).");
+  }
   return outcome("C1", { used: t.used, effects, shocks, reasons, notes });
 }
 
@@ -638,15 +649,233 @@ export function c11Fiscal(brief: PolicyBrief, _ctx: CostingContext, params: Para
   });
 }
 
-// ---- C4 and C5: not yet quantified ----------------------------------------------------------------------------------
+// ---- C4: entry and exit (F-C4-01..04) -------------------------------------------------------------------------------
 
-export function c4c5Pending(brief: PolicyBrief): ChannelOutcome[] {
-  const out: ChannelOutcome[] = [];
-  if (brief.levers.entry) {
-    out.push(outcome("C4", { reasons: ["Entry and exit effects (F-C4-01..04) need GDP per head and entry rates in the parameter file; they are costed in the next part of P4"] }));
+const GRADE_ORDER = ["A", "B", "C", "D"] as const;
+/** The weaker of two grades (D is weakest). */
+export const weaker = (a: Grade | null, b: Grade): Grade => (a === null ? b : GRADE_ORDER[Math.max(GRADE_ORDER.indexOf(a), GRADE_ORDER.indexOf(b))]!);
+
+/** True when the entry lever is costed in C4, so its entrants' compliance costs leave C1 (overlap rule O-1). */
+export function entryCosted(brief: PolicyBrief): boolean {
+  const e = brief.levers.entry;
+  return !!e && (e.costPerEntrantChangeDollars !== undefined || e.numberCap !== undefined);
+}
+
+export function c4Entry(brief: PolicyBrief, ctx: CostingContext, params: ParamSource = CENTRAL): ChannelOutcome | null {
+  const lever = brief.levers.entry;
+  if (!lever) return null;
+  const t = tracker(params);
+  const reasons: string[] = [];
+  const notes: string[] = [];
+  const effects: IndustryEffect[] = [];
+  const shocks: IndustryShock[] = [];
+  const other: OtherEffect[] = [];
+  const codes = reach(brief, lever.industries, params);
+  const all = ctx.entryRate.TOT;
+
+  // Step 1: the change in each industry's entry rate, percentage points (F-C4-01, F-C4-02).
+  const step1 = new Map<string, { pp: number; chain: Factor[] }>();
+  const add = (code: string, pp: number, chain: Factor[]) => {
+    const prev = step1.get(code);
+    step1.set(code, { pp: (prev?.pp ?? 0) + pp, chain: [...(prev?.chain ?? []), ...chain] });
+  };
+  if (lever.costPerEntrantChangeDollars !== undefined) {
+    const eps = t.get("F-C4-01", "epsilon");
+    const share = t.get("F-C4-01", "entryCostShareAU");
+    const own = lever.baselineCostPerEntrantDollars !== undefined;
+    const base = own ? params.input("levers.entry.baselineCostPerEntrantDollars", lever.baselineCostPerEntrantDollars!) : (share.value / 100) * ctx.gdpPerCapita;
+    const change = params.input("levers.entry.costPerEntrantChangeDollars", lever.costPerEntrantChangeDollars);
+    if (!(base + change > 0)) {
+      reasons.push(`The cut in entry cost ($${-change}) is as large as the baseline cost per new business ($${Math.round(base)}); the log form of F-C4-01 needs a cost above zero (A-P11)`);
+    } else {
+      const dln = Math.log((base + change) / base);
+      for (const { code } of codes) {
+        const div = divisionOf(code);
+        const rate = div ? ctx.entryRate[div] : undefined;
+        if (rate === undefined || all === undefined) {
+          reasons.push(`No entry rate for industry ${code}`);
+          continue;
+        }
+        if (rate < all) {
+          notes.push(`Industry ${code}: its division's entry rate (${rate}%, ${ctx.entryRateYear}) is below the all-industry rate (${all}%), so it is not a naturally high-entry industry and the entry-cost effect is not applied (A-P03, A-P29).`);
+          continue;
+        }
+        add(code, eps.value * dln, [
+          {
+            label: own ? "Cost per new business before the change (entered)" : `Cost per new business before the change: ${share.value}% of GDP per head (${ctx.gdpYear})`,
+            value: base,
+            unit: "$",
+            ...(own ? {} : { evidence: share.id }),
+          },
+          { label: "Change in the cost per new business", value: change, unit: "$" },
+          { label: "Change in ln(entry cost ÷ GDP per head)", value: dln, unit: "log points" },
+          { label: "Entry rate per log point of entry cost (naturally high-entry industries)", value: eps.value, unit: "pp per log point", evidence: eps.id },
+          { label: `Division entry rate (${ctx.entryRateYear}), all industries ${all}%`, value: rate, unit: "%" },
+        ]);
+      }
+      if (!own) notes.push("The baseline entry cost is Djankov et al.'s measure for Australia (2.25% of GDP per head in 1999, one simple start-up), applied to every industry; enter an industry's own cost (baselineCostPerEntrantDollars) where it is known.");
+    }
   }
-  if (brief.levers.thresholds.length) {
-    out.push(outcome("C5", { reasons: ["Size-threshold effects (F-C5-01, F-C5-02) need the business size distribution around each threshold; they are costed in the next part of P4"] }));
+  if (lever.numberCap) {
+    const cap = lever.numberCap;
+    const s = params.input("levers.entry.numberCap.excludedEntrantShare", cap.excludedEntrantShare);
+    const sign = cap.change === "introduce" || cap.change === "tighten" ? -1 : 1;
+    for (const { code } of codes) {
+      const div = divisionOf(code);
+      const rate = div ? ctx.entryRate[div] : undefined;
+      if (rate === undefined) {
+        reasons.push(`No entry rate for industry ${code}`);
+        continue;
+      }
+      add(code, sign * s * rate, [
+        { label: `Share of would-be entrants the cap ${sign < 0 ? "keeps out" : "lets in"}`, value: s, unit: "share" },
+        { label: `Division entry rate (${ctx.entryRateYear})`, value: rate, unit: "%" },
+      ]);
+    }
   }
-  return out;
+  if (lever.approvalTimeChangeDays !== undefined) {
+    reasons.push("A change in approval time for new businesses has no verified entry elasticity; it is reported, not quantified. Enter its cost to an entrant (for example, income forgone while waiting) in costPerEntrantChangeDollars to cost it");
+  }
+  if (lever.exitCostChangeDollars !== undefined) reasons.push("Exit costs have no verified elasticity; they are reported, not quantified (F-C4-04)");
+
+  // Overlap rule O-4: licensing is costed in C8; entry costs here must not include it.
+  const licensed = brief.levers.labour?.licensing ? reach(brief, brief.levers.labour.licensing.industries, params).map((c) => c.code) : [];
+  const both = [...step1.keys()].filter((code) => licensed.some((l) => overlaps(l, code)));
+  if (both.length) {
+    notes.push(`${both.length > 1 ? "Industries" : "Industry"} ${both.join(", ")} also ${both.length > 1 ? "have" : "has"} a licensing change, costed in C8: the entry cost here must leave out the cost of the licence (overlap rule O-4).`);
+  }
+
+  // Step 2: faster convergence to the frontier (F-C4-03). The long-run gain closes part of the gap (A-P30).
+  let gapUsed = false;
+  if (step1.size) {
+    const beta2 = t.get("F-C4-03", "beta2");
+    const lambda0 = t.get("F-C4-03", "lambda0");
+    const gap = lever.frontierGapLogPoints !== undefined ? params.input("levers.entry.frontierGapLogPoints", lever.frontierGapLogPoints) : undefined;
+    for (const [code, { pp, chain }] of step1) {
+      const exposure = exposureOf(code, brief, params);
+      const dLambda = beta2.value * pp;
+      const steps: Factor[] = [
+        ...chain,
+        { label: "Change in the entry rate", value: pp, unit: "pp" },
+        { label: "Extra convergence speed per pp of entry rate (β₂)", value: beta2.value, unit: "per pp", evidence: beta2.id },
+        { label: "Convergence speed at the average entry rate (λ)", value: lambda0.value, unit: "a year", evidence: lambda0.id },
+        { label: "Change in the convergence speed", value: dLambda, unit: "a year" },
+      ];
+      if (gap === undefined) {
+        effects.push({ anzsic: code, measure: "Entry rate", value: pp, unit: "pp", chain: steps });
+        other.push({ label: `Change in the speed of convergence to the frontier, industry ${code} (no productivity effect without the gap)`, value: dLambda, unit: "a year", chain: steps });
+        continue;
+      }
+      gapUsed = true;
+      const lp = pct((gap * dLambda) / (lambda0.value + dLambda));
+      effects.push({
+        anzsic: code,
+        measure: "Labour productivity, long run (faster catch-up to the frontier)",
+        value: lp * exposure,
+        unit: "% change",
+        chain: [
+          ...steps,
+          { label: "Distance from the frontier (entered), ln(frontier ÷ industry)", value: gap, unit: "log points" },
+          { label: "Long-run gain gap × Δλ/(λ + Δλ)", value: lp, unit: "%" },
+          { label: "Exposure", value: exposure, unit: "share" },
+        ],
+      });
+      shocks.push(...shocksForCode(code, "labourProductivity", lp, ctx.mapping, ctx.weights, exposure));
+    }
+    notes.push(
+      gap === undefined
+        ? "Step 2 (F-C4-03): the productivity effect needs the industries' distance from the global frontier (frontierGapLogPoints), which no public source gives (it needs BLADE), so only the change in convergence speed is reported (A-P12)."
+        : "Step 2 (F-C4-03): faster convergence closes part of the distance from the frontier; at speed λ the long-run labour productivity gain is gap × Δλ/(λ + Δλ), most of it within five years (A-P30). The gap is the user's, graded D.",
+    );
+  }
+  const o = outcome("C4", { used: t.used, effects, shocks, other, reasons, notes });
+  if (gapUsed) o.grade = weaker(o.grade, "D"); // A-P12: a user-entered gap
+  return o;
+}
+
+// ---- C5: size thresholds (F-C5-01, F-C5-02) -------------------------------------------------------------------------
+
+/** Employment size bands of CABEE and Australian Industry (persons employed), with the CABEE bands each covers. */
+const SIZE_BANDS = [
+  { band: "0-4", lo: 0, hi: 4, cabee: ["nonemp", "1-4"] },
+  { band: "5-19", lo: 5, hi: 19, cabee: ["5-19"] },
+  { band: "20-199", lo: 20, hi: 199, cabee: ["20-199"] },
+  { band: "200+", lo: 200, hi: Infinity, cabee: ["200+"] },
+] as const;
+
+export function c5Thresholds(brief: PolicyBrief, ctx: CostingContext, params: ParamSource = CENTRAL): ChannelOutcome | null {
+  if (!brief.levers.thresholds.length) return null;
+  const t = tracker(params);
+  const band = t.get("F-C5-01", "band");
+  const taxEquivalent = t.get("F-C5-02", "labourTaxEquivalent");
+  const other: OtherEffect[] = [];
+  const reasons: string[] = [];
+  for (const th of brief.levers.thresholds) {
+    if (th.metric !== "employees") {
+      reasons.push(`Threshold "${th.id}": the parameter file has size bands by employment only, not by ${th.metric}, so the screen is not run`);
+      continue;
+    }
+    const codes = reach(brief, th.industries, params);
+    const cost = params.input(`levers.thresholds.${th.id}.costAbovePerYearDollars`, th.costAbovePerYearDollars);
+    for (const value of [th.value, ...(th.previousValue !== undefined ? [th.previousValue] : [])]) {
+      const lo = value * (1 - band.value);
+      const hi = value * (1 + band.value);
+      const near = SIZE_BANDS.filter((b) => b.lo <= hi && b.hi >= lo);
+      const above = SIZE_BANDS.find((b) => b.lo <= value && value <= b.hi) ?? near.at(-1)!;
+      let businesses = 0;
+      let employment = 0;
+      let wagesAbove = 0;
+      let businessesAbove = 0;
+      for (const { code, exposure } of codes) {
+        const counts = ctx.businessesByBand[code];
+        const div = divisionOf(code);
+        if (!counts || !div) {
+          reasons.push(`Threshold "${th.id}": no business counts by size for industry ${code}`);
+          continue;
+        }
+        const n = (b: (typeof SIZE_BANDS)[number]) => b.cabee.reduce((s, c) => s + (counts[c] ?? 0), 0) * exposure;
+        businesses += near.reduce((s, b) => s + n(b), 0);
+        const ai = ctx.industryByBand[div];
+        // Australian Industry is by division: a finer code takes its division's figures in proportion to its businesses.
+        const divCounts = ctx.businessesByBand[div];
+        const shareOf = (b: (typeof SIZE_BANDS)[number]) => {
+          const d = divCounts ? b.cabee.reduce((s, c) => s + (divCounts[c] ?? 0), 0) : 0;
+          return d > 0 ? n(b) / d : 0;
+        };
+        if (ai) {
+          employment += near.reduce((s, b) => s + (ai[b.band]?.employment ?? 0) * shareOf(b), 0);
+          wagesAbove += (ai[above.band]?.wages ?? 0) * shareOf(above);
+          businessesAbove += n(above);
+        }
+      }
+      const window = `${Math.ceil(lo)}–${Math.floor(hi)} employees`;
+      const bands = near.map((b) => b.band).join(", ");
+      other.push({
+        label: `Threshold "${th.id}" at ${value} employees: businesses in the size bands that overlap ${window} (${bands}; CABEE ${ctx.sizeYear})`,
+        value: businesses,
+        unit: "businesses",
+        chain: [{ label: "Screening band either side of the threshold", value: band.value, unit: "share", evidence: band.id }],
+      });
+      if (employment > 0) {
+        other.push({ label: `Threshold "${th.id}" at ${value} employees: employment in those bands (Australian Industry ${ctx.industryByBandYear})`, value: employment, unit: "thousand persons", chain: [] });
+      }
+      if (wagesAbove > 0 && businessesAbove > 0) {
+        const perBusiness = (wagesAbove * 1e6) / businessesAbove;
+        other.push({
+          label: `Threshold "${th.id}": cost a year above the threshold as a share of an average wage bill in the ${above.band} band, against the French rules' 2.3% labour-tax equivalent`,
+          value: pct(cost / perBusiness),
+          unit: "% of wages",
+          chain: [
+            { label: "Cost a year for a business above the threshold", value: cost, unit: "$" },
+            { label: `Average wage bill of a business in the ${above.band} band`, value: perBusiness, unit: "$" },
+            { label: "Labour-tax equivalent of the French 50-employee rules (GLVR2016)", value: taxEquivalent.value, unit: "%", evidence: taxEquivalent.id },
+          ],
+        });
+      }
+    }
+  }
+  reasons.push(
+    "The GDP cost of a size threshold is not quantified: the published structural estimates (Gourio & Roys, under 0.3% of output per worker; Garicano, Lelarge & Van Reenen, 1.3–3.4% of GDP) are for French rules and cannot be scaled to this threshold without the share of employment within ±10% of it, which the ABS size bands do not resolve (A-P05)",
+  );
+  return outcome("C5", { used: t.used, other, reasons, notes: ["A screen (F-C5-01): how many businesses and workers sit near the threshold, and how large its cost is against wages."] });
 }

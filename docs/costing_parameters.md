@@ -82,6 +82,8 @@ Australian Bureau of Statistics. Release: 2025-26 (2026-10-23). Licence: CC BY 4
   Columns: `fy` (financial year (YYYY-YY)); `gdp_current` (AUD million, current prices); `gdp_cvm` (AUD million, chain volume measures (reference year 2024-25)).
 - **`abs_asna.gva`** (315 rows). Gross value added at basic prices by ANZSIC division, FY2011-12 to FY2025-26 (ASNA Table 5). OWN = ownership of dwellings; TOT = all industries (GVA at basic prices). Shares are as published (the workbook labels the unit 'proportion' but the values are per cent). Chain volume series are not additive.
   Columns: `anzsic` (code: ANZSIC 2006 division, OWN or TOT); `fy` (financial year (YYYY-YY)); `gva_current` (AUD million, current prices); `gva_cvm` (AUD million, chain volume measures (reference year 2024-25)); `gva_share_pct` (per cent of total GVA at basic prices, current prices); `name` (text).
+- **`abs_asna.key_aggregates`** (15 rows). Key national aggregates, FY2011-12 to FY2025-26 (ASNA Table 1): GDP per capita and gross national income. GDP ÷ GDP per capita (current prices) gives the population the ABS used.
+  Columns: `fy` (financial year (YYYY-YY)); `gdp_per_capita_current` (AUD, current prices); `gdp_per_capita_cvm` (AUD, chain volume measures (reference year 2024-25)); `gni_current` (AUD million, current prices).
 
 ### `abs_mfp`: Estimates of Industry Multifactor Productivity (5260.0.55.002)
 

@@ -41,6 +41,14 @@ describe("costing context", () => {
     }
     // ABS productivity capital shares cover the 16 market-sector divisions only.
     expect(Object.keys(ctx.capitalShare).sort()).toEqual("ABCDEFGHIJKLMNRS".split(""));
+    // GDP per head and population (ASNA Table 1), entry rates (CABEE), businesses and employment by size.
+    expect(ctx.population).toBeGreaterThan(2e7);
+    expect(ctx.population).toBeLessThan(4e7);
+    expect(ctx.entryRate.TOT).toBeGreaterThan(5);
+    expect(ctx.entryRateYear).toMatch(/^\d{4}-\d{2}$/);
+    expect(ctx.sizeYear).toMatch(/^\d{4}-\d{2}$/);
+    expect(Object.keys(ctx.businessesByBand.C!).sort()).toEqual(["1-4", "20-199", "200+", "5-19", "nonemp", "total"]);
+    expect(Object.keys(ctx.industryByBand.C!).sort()).toEqual(["0-4", "20-199", "200+", "5-19", "total"]);
     // Value added of a code is the share-weighted sum the Layer B split uses, so the divisions add up to the total.
     const all = ctx.weights.reduce((s, w) => s + w.va, 0);
     expect("ABCDEFGHIJKLMNOPQRS".split("").reduce((s, d) => s + valueAddedOf(d, ctx), 0)).toBeCloseTo(all, 3);
@@ -175,21 +183,74 @@ describe("costing engine", () => {
     expect(rent.gdpPct).toBe(0);
   });
 
-  it("T-PCE-12 the realisation factor scales GDP; channels add up; levers not yet costed (C4, C5) say why", () => {
+  it("T-PCE-12 the realisation factor scales GDP; channels add up; GDP per person uses ASNA's population", () => {
     const levers = { labour: { nonCompetes: { coveredShareChange: -0.2 } }, trade: { opennessChangePp: 0.5 } };
     const r = costBrief(brief(levers), ctx);
     expect(r.gdpPct).toBeCloseTo(r.channels.reduce((s, c) => s + c.gdpPct, 0), 12);
     expect(r.gdpDollars).toBeCloseTo((r.gdpPct / 100) * ctx.gdp, 6);
+    expect(r.gdpPerPersonDollars).toBeCloseTo((r.gdpDollars * 1e6) / ctx.population, 6);
     const half = costBrief(brief(levers, NON_AGRICULTURE, { analysis: { realisationFactor: 0.5 } }), ctx);
     expect(half.gdpPct).toBeCloseTo(r.gdpPct / 2, 12);
-    const pending = costBrief(
-      brief({ entry: { costPerEntrantChangeDollars: -500 }, thresholds: [{ id: "t", metric: "employees", change: "introduce", value: 20, costAbovePerYearDollars: 1000 }] }),
-      ctx,
-    );
-    expect(pending.channels.map((c) => [c.channel, c.status])).toEqual([
-      ["C4", "notQuantified"],
-      ["C5", "notQuantified"],
-    ]);
-    expect(pending.channels.every((c) => c.reasons.length === 1)).toBe(true);
+  });
+
+  it("T-PCE-14 C4 step 1: an entry-cost cut raises entry in naturally high-entry industries only, in the log form (A-P11, A-P29)", () => {
+    const r = costBrief(brief({ entry: { costPerEntrantChangeDollars: -500 } }), ctx);
+    const c4 = channel(r, "C4");
+    const base = 0.0225 * ctx.gdpPerCapita;
+    const expected = -0.546 * Math.log((base - 500) / base);
+    const high = NON_AGRICULTURE.filter((d) => ctx.entryRate[d]! >= ctx.entryRate.TOT!);
+    expect(c4.effects.map((e) => e.anzsic)).toEqual(high);
+    c4.effects.forEach((e) => expect(e.value).toBeCloseTo(expected, 12));
+    expect(c4.notes.join()).toMatch(/Industry C: .* not a naturally high-entry industry/);
+    expect(r.gdpPct).toBe(0); // no frontier gap: no productivity effect (A-P12)
+    expect(c4.other[0]!.value).toBeCloseTo(0.009 * expected, 12);
+    expect(c4.evidence.sort()).toEqual(["c4.beta2.ahhw2022", "c4.entry-cost-au.dj2002", "c4.epsilon.klr2004", "c4.lambda0.ahhw2022"]);
+    // An industry's own baseline cost replaces Djankov et al.'s; a cut as large as the cost is not costed.
+    const own = channel(costBrief(brief({ entry: { costPerEntrantChangeDollars: -500, baselineCostPerEntrantDollars: 1000 } }, ["I"]), ctx), "C4");
+    expect(own.effects[0]!.value).toBeCloseTo(-0.546 * Math.log(0.5), 12);
+    const all = channel(costBrief(brief({ entry: { costPerEntrantChangeDollars: -1000, baselineCostPerEntrantDollars: 1000 } }, ["I"]), ctx), "C4");
+    expect(all.reasons.join()).toMatch(/as large as the baseline/);
+  });
+
+  it("T-PCE-15 C4: a cap moves entry by the share kept out; with a frontier gap, faster convergence raises labour productivity, graded D", () => {
+    const cap = channel(costBrief(brief({ entry: { numberCap: { change: "introduce", excludedEntrantShare: 0.25 } } }, ["C"]), ctx), "C4");
+    expect(cap.effects[0]!.value).toBeCloseTo(-0.25 * ctx.entryRate.C!, 12); // caps bind in every industry
+    const gap = 0.6;
+    const b = brief({ entry: { numberCap: { change: "remove", excludedEntrantShare: 0.25 }, frontierGapLogPoints: gap } }, ["I"]);
+    const r = costBrief(b, ctx);
+    const c4 = channel(r, "C4");
+    const dLambda = 0.009 * 0.25 * ctx.entryRate.I!;
+    expect(c4.effects[0]!.value).toBeCloseTo(((gap * dLambda) / (0.415 + dLambda)) * 100, 12);
+    expect(c4.grade).toBe("D");
+    expect(r.gdpPct).toBeGreaterThan(0);
+    // The gain arrives at the convergence speed: 1 − (1 − λ)^t of the long run in year t.
+    expect(c4.path[0]! / c4.gdpPct).toBeCloseTo(0.415, 12);
+    expect(c4.path[4]! / c4.gdpPct).toBeCloseTo(1 - 0.585 ** 5, 12);
+    const time = channel(costBrief(brief({ entry: { approvalTimeChangeDays: -30, exitCostChangeDollars: -100 } }), ctx), "C4");
+    expect(time.status).toBe("notQuantified");
+    expect(time.reasons).toHaveLength(2);
+  });
+
+  it("T-PCE-16 C5 screens an employee threshold: businesses and employment in the bands near it, and its cost against wages; no GDP effect", () => {
+    const r = costBrief(brief({ thresholds: [{ id: "t20", metric: "employees", change: "introduce", value: 20, costAbovePerYearDollars: 10000 }] }, ["C"]), ctx);
+    const c5 = channel(r, "C5");
+    const n = (band: string) => ctx.businessesByBand.C![band]!;
+    expect(c5.other[0]!.value).toBe(n("5-19") + n("20-199")); // 18–22 employees overlaps both bands
+    expect(c5.other[1]!.value).toBeCloseTo(ctx.industryByBand.C!["5-19"]!.employment + ctx.industryByBand.C!["20-199"]!.employment, 9);
+    const perBusiness = (ctx.industryByBand.C!["20-199"]!.wages * 1e6) / n("20-199");
+    expect(c5.other[2]!.value).toBeCloseTo((10000 / perBusiness) * 100, 9);
+    expect(r.gdpPct).toBe(0);
+    expect(c5.reasons.join()).toMatch(/not quantified/);
+    const turnover = channel(costBrief(brief({ thresholds: [{ id: "t", metric: "turnover", change: "introduce", value: 1e7, costAbovePerYearDollars: 1 }] }), ctx), "C5");
+    expect(turnover.reasons[0]).toMatch(/by employment only/);
+  });
+
+  it("T-PCE-17 O-1: entrants' compliance costs leave C1 when C4 costs entry; entrant populations must be the burden's", () => {
+    const ex = JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "examples", "illustrative-licensing.brief.json"), "utf8"));
+    const withEntrants = parseBrief({ ...ex, levers: { ...ex.levers, entry: { ...ex.levers.entry, entrantPopulationIds: ["electricians"] } } });
+    const c1 = channel(costBrief(withEntrants, ctx), "C1");
+    expect(c1.effects).toEqual([]);
+    expect(c1.notes.join()).toMatch(/left out of C1 .* O-1/);
+    expect(() => parseBrief({ ...ex, levers: { ...ex.levers, entry: { ...ex.levers.entry, entrantPopulationIds: ["nobody"] } } })).toThrow(/not a population of the burden proposal/);
   });
 });

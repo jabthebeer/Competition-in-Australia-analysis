@@ -9,13 +9,15 @@ import {
   CENTRAL,
   c1Compliance,
   c2c3Capital,
-  c4c5Pending,
+  c4Entry,
+  c5Thresholds,
   c6c7Conduct,
   c8Labour,
   c9Innovation,
   c10Trade,
   c11Fiscal,
   exposureOf,
+  weaker,
   type ChannelOutcome,
   type Grade,
   type ParamSource,
@@ -43,6 +45,8 @@ export interface CostingResult {
   /** Long-run change in real GDP, per cent, and in $ million a year. */
   gdpPct: number;
   gdpDollars: number;
+  /** The same per person, $ a year (population from ASNA: GDP ÷ GDP per head), with population fixed. */
+  gdpPerPersonDollars: number;
   /** Change in real GDP by year of the policy, years 1 to max(10, duration); dollars in $ million a year. */
   path: { year: number; gdpPct: number; gdpDollars: number }[];
   /** Present value of the GDP change over the brief's duration, $ million, at each discount rate (PR-06). */
@@ -57,11 +61,8 @@ export interface CostingResult {
 export const NOT_MODELLED = [
   "Gross national income, the terms of trade, consumer prices and state GSP are not modelled (F-B-06). GNI can rise much less than GDP when foreign owners earn part of the capital income.",
   "Dollar effects apply the percentage change to the latest year's GDP, held constant in real terms: growth in the economy is not projected, so later years' dollar effects are understated.",
-  "GDP per person is not yet reported: the parameter file holds no population.",
+  "GDP per person holds population fixed at the latest year's: the policy is assumed not to change it.",
 ];
-
-const GRADES = ["A", "B", "C", "D"] as const;
-const weaker = (a: Grade | null, b: Grade): Grade => (a === null ? b : GRADES[Math.max(GRADES.indexOf(a), GRADES.indexOf(b))]!);
 
 /** Custom shocks (plan §5.1): added to their channel, or replacing its modelled shocks for the industry (overlap rule O-6). */
 function applyCustom(brief: PolicyBrief, ctx: CostingContext, outcomes: Map<ChannelId, ChannelOutcome>, params: ParamSource): void {
@@ -116,7 +117,8 @@ export function costBrief(brief: PolicyBrief, ctx: CostingContext, params: Param
   const add = (o: ChannelOutcome | null) => o && outcomes.set(o.channel, o);
   add(c1Compliance(brief, ctx, params));
   c2c3Capital(brief, ctx, params).forEach(add);
-  c4c5Pending(brief).forEach(add);
+  add(c4Entry(brief, ctx, params));
+  add(c5Thresholds(brief, ctx, params));
   add(c6c7Conduct(brief, ctx, params));
   add(c8Labour(brief, ctx, params));
   add(c9Innovation(brief, ctx, params));
@@ -137,7 +139,7 @@ export function costBrief(brief: PolicyBrief, ctx: CostingContext, params: Param
   const { phaseInYears, durationYears } = brief.meta;
   const years = Array.from({ length: Math.max(10, durationYears) }, (_, i) => i + 1);
   const curve = (kind: Response) => years.map((t) => pathShare(kind, t, phaseInYears, timing));
-  const curves = { productivity: curve("productivity"), capital: curve("capital"), directThenCapital: curve("directThenCapital") };
+  const curves = { productivity: curve("productivity"), capital: curve("capital"), directThenCapital: curve("directThenCapital"), convergence: curve("convergence") };
 
   const ordered = [...outcomes.values()].sort((a, b) => Number(a.channel.slice(1)) - Number(b.channel.slice(1)));
   const channels: ChannelResult[] = ordered.map((o) => {
@@ -146,7 +148,8 @@ export function costBrief(brief: PolicyBrief, ctx: CostingContext, params: Param
     const mfp = by.mfp * errorMfp * realisation;
     const va = by.valueAdded * errorMfp * realisation;
     const mfpCurve = o.channel === "C1" ? curves.directThenCapital : curves.productivity; // A-P26
-    const path = years.map((_, i) => lp * curves.productivity[i]! + mfp * mfpCurve[i]! + va * curves.capital[i]!);
+    const lpCurve = o.channel === "C4" ? curves.convergence : curves.productivity; // A-P30
+    const path = years.map((_, i) => lp * lpCurve[i]! + mfp * mfpCurve[i]! + va * curves.capital[i]!);
     const gdpPct = lp + mfp + va;
     return { ...o, gdpPct, gdpDollars: (gdpPct / 100) * ctx.gdp, path };
   });
@@ -165,6 +168,7 @@ export function costBrief(brief: PolicyBrief, ctx: CostingContext, params: Param
     channels,
     gdpPct,
     gdpDollars: (gdpPct / 100) * ctx.gdp,
+    gdpPerPersonDollars: ((gdpPct / 100) * ctx.gdp * 1e6) / ctx.population,
     path,
     npv: [brief.analysis.discountRate, ...brief.analysis.sensitivityRates].map((rate) => ({ rate, dollars: presentValue(flows, rate) })),
     welfareDollars,

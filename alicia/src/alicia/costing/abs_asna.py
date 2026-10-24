@@ -1,9 +1,10 @@
 """ABS Australian System of National Accounts (5204.0): GVA, factor income and capital stock by industry.
 
 Tables 5 (gross value added by industry), 46 (factor income by industry), 48 (compensation of employees by
-industry) and 58 (capital stock by industry), annual, ANZSIC division level, for the last ``YEARS`` financial
-years of the release. Ownership of dwellings (not an ANZSIC division) is kept as code ``OWN``; the all-industries
-total as ``TOT``. Chain volume series do not add across industries; use current prices for shares and sums.
+industry) and 58 (capital stock by industry), annual, ANZSIC division level, and Table 1 (key national
+aggregates: GDP per capita and gross national income), for the last ``YEARS`` financial years of the release.
+Ownership of dwellings (not an ANZSIC division) is kept as code ``OWN``; the all-industries total as ``TOT``.
+Chain volume series do not add across industries; use current prices for shares and sums.
 
 Data: ABS time series workbooks, CC BY 4.0. The release, its date, the next release date and the chain volume
 reference year are read from the ABS latest-release page.
@@ -43,6 +44,7 @@ TABLES = {
     "46": r"/5204046_Factor_Income_By_Industry\.xlsx$",
     "48": r"/5204048_Comp_Employees_By_Industry\.xlsx$",
     "58": r"/5204058_Capital_Stock_By_Industry\.xlsx$",
+    "1": r"/5204001_Key_National_Aggregates\.xlsx$",
 }
 YEARS = 15  # financial years kept, ending with the release's latest year
 AUDM = "AUD million, current prices"
@@ -299,6 +301,37 @@ def capital_table(t58: pd.DataFrame, cvm_ref: str) -> Table:
     )
 
 
+def aggregates_table(t1: pd.DataFrame, cvm_ref: str) -> Table:
+    """GDP per capita and GNI by year (Table 1). Population is GDP over GDP per capita, both current prices."""
+    first, last = _window(t1)
+    items = {
+        "GDP per capita: Current prices": "gdp_per_capita_current",
+        "GDP per capita: Chain volume measures": "gdp_per_capita_cvm",
+        "Gross national income: Current prices": "gni_current",
+    }
+    d = t1[t1["code"].isna() & t1["item"].isin(items) & (t1["fy"] >= first)]
+    wide: dict[int, dict] = {}
+    for r in d.itertuples():
+        wide.setdefault(int(r.fy), {})[items[r.item]] = r.value
+    missing = sorted(set(items.values()) - {k for v in wide.values() for k in v})
+    if missing:
+        raise ValueError(f"ASNA Table 1 has no series for {missing}")
+    return Table(
+        description=(
+            f"Key national aggregates, FY{fy_label(first)} to FY{fy_label(last)} (ASNA Table 1): GDP per capita "
+            "and gross national income. GDP ÷ GDP per capita (current prices) gives the population the ABS used."
+        ),
+        columns={
+            "fy": "financial year (YYYY-YY)",
+            "gdp_per_capita_current": "AUD, current prices",
+            "gdp_per_capita_cvm": f"AUD, chain volume measures (reference year {cvm_ref})",
+            "gni_current": AUDM,
+        },
+        keys=("fy",),
+        rows=[{"fy": fy_label(fy), **{c: v.get(c) for c in items.values()}} for fy, v in sorted(wide.items())],
+    )
+
+
 def build(release: Release) -> dict[str, Table]:
     paths = {t: local_path(SOURCE.id, f) for t, f in zip(TABLES, release.files, strict=True)}
     raw = {t: tidy(abs_tsw.read(p)) for t, p in paths.items()}
@@ -310,4 +343,5 @@ def build(release: Release) -> dict[str, Table]:
         gva_tables(raw["5"], cvm_ref)
         | {"factor_income": factor_table(raw["46"], raw["48"])}
         | {"capital": capital_table(raw["58"], cvm_ref)}
+        | {"key_aggregates": aggregates_table(raw["1"], cvm_ref)}
     )
