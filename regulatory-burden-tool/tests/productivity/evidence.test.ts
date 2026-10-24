@@ -119,6 +119,7 @@ const REQUIRED: { formula: string; parameter: string; source: Source; field?: st
   { formula: "F-C8-02", parameter: "wageEffectHighUse", source: "library" },
   { formula: "F-C8-02", parameter: "wageEffectLowUse", source: "library" },
   { formula: "F-C8-02", parameter: "coverageChange", source: "brief", field: "coveredShareChange" },
+  { formula: "F-C8-02", parameter: "baselineCoverage", source: "library" },
   { formula: "F-C9-01", parameter: "epsilonShortRun", source: "library" },
   { formula: "F-C9-01", parameter: "epsilonLongRun", source: "library" },
   { formula: "F-C9-01", parameter: "rdUserCostChange", source: "brief", field: "rdUserCostChangePct" },
@@ -134,6 +135,8 @@ const REQUIRED: { formula: string; parameter: string; source: Source; field?: st
     source: "library" as const,
   })),
   { formula: "F-C11-01", parameter: "meb.other", source: "user" },
+  { formula: "F-CU-01", parameter: "size", source: "brief", field: "custom" },
+  { formula: "F-E-01", parameter: "context", source: "data" },
   { formula: "F-C11-01", parameter: "revenue", source: "brief", field: "revenueChangeDollarsPerYear" },
   // §2.4 Layer B
   { formula: "F-B-01", parameter: "gdpPerLp", source: "library" },
@@ -262,7 +265,7 @@ describe("evidence library", () => {
     // Every formula id in §2.3–2.5 is covered by the list.
     const covered = new Set([...REQUIRED.map((r) => r.formula), ...NO_PARAMETER]);
     const traced = tracedFormulas();
-    expect(traced.length).toBeGreaterThanOrEqual(37); // 26 Layer A, 6 Layer B, 5 uncertainty and gate rules (22 Oct 2026)
+    expect(traced.length).toBeGreaterThanOrEqual(39); // 26 Layer A, custom shocks and the costing, 6 Layer B, 5 uncertainty and gate rules (24 Oct 2026)
     expect(traced.filter((f) => !covered.has(f))).toEqual([]);
     for (const r of REQUIRED) {
       const label = `${r.formula} ${r.parameter}`;

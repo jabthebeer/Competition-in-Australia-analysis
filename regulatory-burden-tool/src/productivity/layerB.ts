@@ -4,13 +4,18 @@
 // alpha = 1 - sum W / sum VA:
 //   labour-augmenting shock x_i:     dlnY = sum_i (W_i / sum W) x_i                    (F-B-01)
 //   Hicks-neutral value-added z_i:   dlnY = sum_i (VA_i / sum VA) z_i / (1 - alpha)    (F-B-02)
+//   direct value-added change v_i:   dlnY = sum_i (VA_i / sum VA) v_i                  (no further capital response;
+//                                    used for capital deepening from a change in the user cost of capital, A-P23)
 // Back-tested against PC National in alicia/analyses/costing_calibration (docs/costing_calibration.md, F-B-05);
 // the model-error band from that back-test is the range of this step (A-P19).
 // Égert & Gal's MFP is Harrod-neutral, so shocks built from their coefficients enter as labour-augmenting (A-P18).
 import { covers } from "./anzsic";
 
-/** Shock types Layer B aggregates (the names follow SHOCK_TYPES in channels.ts). */
-export type AggregateShockType = "labourProductivity" | "mfp";
+/**
+ * Shock types Layer B aggregates. `labourProductivity` and `mfp` follow SHOCK_TYPES in channels.ts; `valueAdded` is a
+ * direct % change in an industry's real value added that already includes its capital response (A-P23).
+ */
+export type AggregateShockType = "labourProductivity" | "mfp" | "valueAdded";
 
 export interface IndustryWeight {
   /** Input-output industry group (IOIG), or any stable id. */
@@ -57,17 +62,22 @@ export function aggregate(shocks: readonly IndustryShock[], weights: readonly In
   const va = weights.reduce((s, w) => s + w.va, 0);
   const wages = weights.reduce((s, w) => s + w.wages, 0);
   const alpha = capitalShare(weights);
-  const byType: Record<AggregateShockType, number> = { labourProductivity: 0, mfp: 0 };
+  const byType: Record<AggregateShockType, number> = { labourProductivity: 0, mfp: 0, valueAdded: 0 };
   const contributions = shocks.map((s): Contribution => {
     const w = byId.get(s.industry);
     if (!w) throw new Error(`Layer B has no weights for industry "${s.industry}"`);
     const share = s.share ?? 1;
     if (!(share >= 0 && share <= 1)) throw new Error(`The share of industry "${s.industry}" reached must be between 0 and 1`);
-    const gdpPct = s.type === "labourProductivity" ? share * s.sizePct * (w.wages / wages) : (share * s.sizePct * (w.va / va)) / (1 - alpha);
+    const gdpPct =
+      s.type === "labourProductivity"
+        ? share * s.sizePct * (w.wages / wages)
+        : s.type === "mfp"
+          ? (share * s.sizePct * (w.va / va)) / (1 - alpha)
+          : share * s.sizePct * (w.va / va);
     byType[s.type] += gdpPct;
     return { industry: s.industry, type: s.type, sizePct: s.sizePct, share, gdpPct };
   });
-  return { gdpPct: byType.labourProductivity + byType.mfp, alpha, contributions, byType };
+  return { gdpPct: byType.labourProductivity + byType.mfp + byType.valueAdded, alpha, contributions, byType };
 }
 
 // ---- weights from the bundled parameters (ABS input-output tables) ---------------------------------------------

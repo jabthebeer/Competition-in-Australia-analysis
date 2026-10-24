@@ -146,6 +146,35 @@
       "isDefault": true,
       "notes": "The PC cites the 2023 version of the paper (p. 26). The revised December 2024 version (p. 22) says only that the effect for low-use industries \"is roughly 60% as large\" as 2.4% (about 1.44%); the 1.4% figure itself was not found in the version read. The PC applied 0.14% to all other industries except agriculture (Table C.7, p. 224).",
       "review": { "status": "draft" }
+    },
+    {
+      "id": "c8.coverage.pc2024",
+      "formula": "F-C8-02",
+      "parameter": "baselineCoverage",
+      "channel": "C8",
+      "label": "Share of Australian workers bound by a non-compete clause (the baseline a coverage change is scaled against)",
+      "value": 0.2,
+      "low": 0.2,
+      "high": 0.2,
+      "units": "share of workers (0 to 1)",
+      "rangeBasis": "fixed",
+      "country": "Australia",
+      "method": "data",
+      "grade": "A",
+      "tag": "P",
+      "citation": {
+        "authors": "Productivity Commission, citing ABS (2024g)",
+        "year": 2024,
+        "title": "National Competition Policy: modelling proposed reforms (study report with appendices)",
+        "publisher": "Productivity Commission, 1 November 2024 (released 29 November 2024)",
+        "url": "https://assets.pc.gov.au/2025-10/competition-analysis-study-report-plus.pdf",
+        "locator": "Reform L1, p. 24 (PDF p. 30)"
+      },
+      "quote": "One in five Australian workers are subject to non-compete clauses and one in two are subject to some form of post-employment restraint (ABS 2024g).",
+      "derivation": "Value = one in five = 0.2. Fixed: a measured share; the uncertainty of the non-compete effect is carried by the pass-through and wage-effect entries.",
+      "isDefault": true,
+      "notes": "Used to scale a brief's change in coverage against a full ban (interpretation A-P09): a ban is a change of −0.2, which gives the PC's L1 shock. The PC modelled L1 as a ban on unreasonable restraints, so a partial change is a linear share of it (the PC found its results roughly linear in the shock).",
+      "review": { "status": "draft" }
     }
   ]
 }
