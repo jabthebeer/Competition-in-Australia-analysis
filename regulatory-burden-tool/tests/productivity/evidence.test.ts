@@ -89,10 +89,13 @@ const REQUIRED: { formula: string; parameter: string; source: Source; field?: st
   { formula: "F-C4-01", parameter: "entryCostShareAU", source: "library" },
   { formula: "F-C4-01", parameter: "entryCostChange", source: "brief", field: "costPerEntrantChangeDollars" },
   { formula: "F-C4-01", parameter: "gdpPerHead", source: "data" },
+  { formula: "F-C4-01", parameter: "baselineEntryCost", source: "brief", field: "baselineCostPerEntrantDollars" },
   { formula: "F-C4-02", parameter: "excludedShare", source: "brief", field: "excludedEntrantShare" },
   { formula: "F-C4-02", parameter: "baselineEntryRate", source: "data" },
   { formula: "F-C4-03", parameter: "beta2", source: "library" },
+  { formula: "F-C4-03", parameter: "lambda0", source: "library" },
   { formula: "F-C4-03", parameter: "gap", source: "user" },
+  { formula: "F-C4-03", parameter: "gap", source: "brief", field: "frontierGapLogPoints" },
   { formula: "F-C5-01", parameter: "band", source: "library" },
   { formula: "F-C5-01", parameter: "threshold", source: "brief", field: "ThresholdLeverSchema" },
   { formula: "F-C5-01", parameter: "firmsNearThreshold", source: "data" },
@@ -119,6 +122,7 @@ const REQUIRED: { formula: string; parameter: string; source: Source; field?: st
   { formula: "F-C8-02", parameter: "wageEffectHighUse", source: "library" },
   { formula: "F-C8-02", parameter: "wageEffectLowUse", source: "library" },
   { formula: "F-C8-02", parameter: "coverageChange", source: "brief", field: "coveredShareChange" },
+  { formula: "F-C8-02", parameter: "baselineCoverage", source: "library" },
   { formula: "F-C9-01", parameter: "epsilonShortRun", source: "library" },
   { formula: "F-C9-01", parameter: "epsilonLongRun", source: "library" },
   { formula: "F-C9-01", parameter: "rdUserCostChange", source: "brief", field: "rdUserCostChangePct" },
@@ -134,6 +138,8 @@ const REQUIRED: { formula: string; parameter: string; source: Source; field?: st
     source: "library" as const,
   })),
   { formula: "F-C11-01", parameter: "meb.other", source: "user" },
+  { formula: "F-CU-01", parameter: "size", source: "brief", field: "custom" },
+  { formula: "F-E-01", parameter: "context", source: "data" },
   { formula: "F-C11-01", parameter: "revenue", source: "brief", field: "revenueChangeDollarsPerYear" },
   // §2.4 Layer B
   { formula: "F-B-01", parameter: "gdpPerLp", source: "library" },
@@ -146,6 +152,8 @@ const REQUIRED: { formula: string; parameter: string; source: Source; field?: st
   { formula: "F-B-04", parameter: "tenYearShare", source: "library" },
   { formula: "F-B-04", parameter: "phaseIn", source: "brief", field: "phaseInYears" },
   { formula: "F-B-05", parameter: "tolerance", source: "library" },
+  { formula: "F-B-05", parameter: "modelErrorLp", source: "library" },
+  { formula: "F-B-05", parameter: "modelErrorMfp", source: "library" },
   // §2.5 Uncertainty, overlaps and the gate
   { formula: "F-U-01", parameter: "draws", source: "brief", field: "draws" },
   { formula: "F-U-01", parameter: "seed", source: "brief", field: "seed" },
@@ -158,7 +166,7 @@ const REQUIRED: { formula: string; parameter: string; source: Source; field?: st
   { formula: "PR-06", parameter: "discountRate", source: "library" },
 ];
 /** Rules in §2.3–2.5 with no numeric parameter of their own. */
-const NO_PARAMETER = ["F-C1-03", "F-C2-02", "F-C4-04", "F-C7-03", "F-B-03", "F-B-06", "F-O-01"];
+const NO_PARAMETER = ["F-C1-03", "F-C2-02", "F-C4-04", "F-C7-03", "F-E-02", "F-B-03", "F-B-06", "F-O-01"];
 
 /** Formula ids in the tables of traceability §2.3–2.5. */
 function tracedFormulas(): string[] {
@@ -260,7 +268,7 @@ describe("evidence library", () => {
     // Every formula id in §2.3–2.5 is covered by the list.
     const covered = new Set([...REQUIRED.map((r) => r.formula), ...NO_PARAMETER]);
     const traced = tracedFormulas();
-    expect(traced.length).toBeGreaterThanOrEqual(37); // 26 Layer A, 6 Layer B, 5 uncertainty and gate rules (22 Oct 2026)
+    expect(traced.length).toBeGreaterThanOrEqual(40); // 26 Layer A, custom shocks, the costing and its report, 6 Layer B, 5 uncertainty and gate rules (24 Oct 2026)
     expect(traced.filter((f) => !covered.has(f))).toEqual([]);
     for (const r of REQUIRED) {
       const label = `${r.formula} ${r.parameter}`;

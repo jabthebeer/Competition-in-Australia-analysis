@@ -1,0 +1,27 @@
+{
+  "about": "Back-test cases for Layer B (docs/forward_plan_policy_costing.md §6.3, F-B-05): the PC National simulations whose shock is a productivity change in named industries. Industries are PC National industry numbers (pc_national.initial_gsp.pcn_no). Shock sizes and industries are taken from each simulation's scenario text in the PC workbook (pc_national.simulations.scenario and .sectors). Type: lp = labour productivity (labour-augmenting); mfp = capital and labour productivity, or primary factor productivity (Hicks-neutral, value added); kp = capital productivity (capital-augmenting).",
+  "industry_sets": {
+    "all": "1-114",
+    "non_agricultural": "8-114",
+    "agriculture_and_mining": "1-13",
+    "health_care": "106",
+    "health_and_residential_care": "106-107",
+    "retail": "75",
+    "road_transport": "78",
+    "l2_licensed": "70,71,72,73,74,78,79,80,81,83,96,103,104,106,107"
+  },
+  "cases": [
+    { "code": "H1", "sign": 1, "type": "lp", "size": 0.1, "industries": "all", "target": true, "note": "Labour productivity is 0.1% higher for all sectors" },
+    { "code": "H1", "sign": -1, "type": "lp", "size": -0.1, "industries": "all", "target": true, "note": "Labour productivity is 0.1% lower for all sectors" },
+    { "code": "H5", "sign": 1, "type": "lp", "size": 0.03, "industries": "all", "target": true, "note": "Labour productivity is 0.03% higher" },
+    { "code": "L2", "sign": 1, "type": "lp", "size": 0.8, "industries": "l2_licensed", "target": true, "note": "15 industries; labour productivity +0.8%" },
+    { "code": "L2_lower", "sign": 1, "type": "lp", "size": 0.8, "industries": "health_and_residential_care", "target": true, "note": "Healthcare and residential care; labour productivity +0.8%" },
+    { "code": "L1", "sign": 1, "type": "lp", "size": 0.14, "industries": "non_agricultural", "target": false, "bound": "lower", "note": "Lower bound: 0.14% in all 107 non-agricultural industries (the PC's 24 service industries at 0.24% are not listed in the workbook)" },
+    { "code": "L1", "sign": 1, "type": "lp", "size": 0.24, "industries": "non_agricultural", "target": false, "bound": "upper", "note": "Upper bound: 0.24% in all 107 non-agricultural industries" },
+    { "code": "D3", "sign": 1, "type": "mfp", "size": 0.1, "industries": "agriculture_and_mining", "target": true, "note": "Capital and labour productivity +0.1% in all agriculture and mining industries" },
+    { "code": "B8", "sign": 1, "type": "mfp", "size": 1.0, "industries": "road_transport", "target": true, "note": "Primary factor productivity +1% in road transport" },
+    { "code": "D2", "sign": 1, "type": "mfp", "size": 1.0, "industries": "health_care", "target": true, "note": "Capital and labour productivity +1% in health care, with real government consumption held fixed (a different closure)" },
+    { "code": "H3hlt", "sign": 1, "type": "mfp", "size": 0.29, "industries": "health_care", "target": true, "note": "Labour and capital productivity +0.29% in health care" },
+    { "code": "B2", "sign": 1, "type": "kp", "size": 0.1, "industries": "retail", "target": true, "note": "Capital productivity +0.1% in retail" }
+  ]
+}

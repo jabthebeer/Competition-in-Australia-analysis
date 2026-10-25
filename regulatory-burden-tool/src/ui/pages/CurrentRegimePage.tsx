@@ -4,6 +4,7 @@ import type { Obligation, OptionResult } from "../../engine/index";
 import { NextStep, PageHeading, type PageProps } from "../App";
 import { ConfirmButton } from "../components/ConfirmButton";
 import { ObligationEditor } from "../components/ObligationEditor";
+import { Screener } from "../components/Screener";
 import { CATEGORY_LABELS, formatMoney, moneyText } from "../format";
 import { addCurrentObligation, currentObligations, newObligation, removeCurrentObligation, updateCurrentObligation, type Category } from "../model";
 
@@ -36,7 +37,8 @@ export function CurrentRegimePage({ proposal, update, computed, go }: PageProps)
 
   return (
     <>
-      <PageHeading>Step 2: The current regime</PageHeading>
+      <PageHeading>Step 3: The current regime</PageHeading>
+      <Screener />
       {proposal.proposalType === "new" ? (
         <p className="summary-box">
           A new regulation has no current regime. You can skip this step and describe the new obligations under <button type="button" className="link" onClick={() => go("options")}>reform options</button>.

@@ -38,9 +38,9 @@ for (const m of new Set([...doc.matchAll(/W-(\d{2})/g)].map((x) => x[0]))) {
   if (!testTitles.has(m)) problems.push(`Warning ${m} is cited but has no test`);
 }
 
-// Code references like `reform.ts#doAnywayShares` (engine), `src/ui/model.ts#rebaseReformed` or
-// `src/productivity/brief.ts#parseBrief`.
-for (const m of doc.matchAll(/`((?:src\/(?:engine|ui|productivity)\/)[\w/]+\.tsx?|[a-z]+\.ts)(?:#(\w+))?/g)) {
+// Code references like `reform.ts#doAnywayShares` (engine), `src/ui/model.ts#rebaseReformed`,
+// `src/productivity/brief.ts#parseBrief` or `src/cli/pce.ts#renderReport`.
+for (const m of doc.matchAll(/`((?:src\/(?:engine|ui|productivity|cli)\/)[\w/]+\.tsx?|[a-z]+\.ts)(?:#(\w+))?/g)) {
   const [, file, symbol] = m;
   const path = file!.startsWith("src/") ? join(root, file!) : join(root, "src/engine", file!);
   let src: string;

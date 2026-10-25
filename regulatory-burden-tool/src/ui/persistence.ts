@@ -5,6 +5,8 @@ import { importDraft, toProposalFile, type Proposal } from "../engine/index";
 
 const PROPOSAL_KEY = "regulatory-burden-tool:v1:proposal";
 const SETTINGS_KEY = "regulatory-burden-tool:v1:settings";
+/** The productivity draft (src/ui/briefModel.ts). */
+export const BRIEF_KEY = "regulatory-burden-tool:v1:brief-draft";
 
 export interface Settings {
   autosave: boolean;
@@ -55,6 +57,7 @@ export function clearAllData(): void {
   try {
     window.localStorage.removeItem(PROPOSAL_KEY);
     window.localStorage.removeItem(SETTINGS_KEY);
+    window.localStorage.removeItem(BRIEF_KEY);
   } catch {
     /* nothing stored */
   }
@@ -63,6 +66,18 @@ export function clearAllData(): void {
 export function fileNameFor(p: Proposal): string {
   const slug = p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "proposal";
   return `${slug}.rbm.json`;
+}
+
+/** Downloads text as a file, entirely in the browser. */
+export function downloadText(name: string, text: string, type: string): void {
+  const url = URL.createObjectURL(new Blob([text], { type }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
 }
 
 /** Downloads the proposal as a versioned JSON file, entirely in the browser. */

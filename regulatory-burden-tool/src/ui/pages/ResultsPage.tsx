@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { rbeTable, verdictText, type OptionResult, type Precision, type Proposal, type ProposalResult, type Warning } from "../../engine/index";
 import { PageHeading, type PageProps } from "../App";
+import { ProductivityResults } from "../components/ProductivityResults";
+import { isUntouched } from "../example";
 import { BreakdownChart, WaterfallChart } from "../components/Charts";
 import { RadioGroup } from "../components/fields";
 import { CATEGORY_LABELS, COHORT_LABELS, GROUP_LABELS, TIMING_LABELS, fmtNum, fmtPct, formatMoney, moneyText } from "../format";
@@ -12,21 +14,30 @@ const PRECISIONS: { value: string; label: string }[] = [
   { value: "dollars", label: "Exact dollars" },
 ];
 
-export function ResultsPage({ proposal, computed }: PageProps) {
+export function ResultsPage(props: PageProps) {
+  return (
+    <>
+      <PageHeading>Step 7: Results</PageHeading>
+      <BurdenResults {...props} />
+      <ProductivityResults {...props} />
+    </>
+  );
+}
+
+function BurdenResults({ proposal, computed }: PageProps) {
   const [precisionKey, setPrecisionKey] = useState("1");
   const precision: Precision = precisionKey === "dollars" ? "dollars" : (Number(precisionKey) as 1 | 2 | 3);
-  if (!computed.ok) {
+  if (!computed.ok) return <p>Burden results will appear once the inputs listed at the top of the page are fixed.</p>;
+  if (isUntouched(proposal)) {
     return (
-      <>
-        <PageHeading>Results</PageHeading>
-        <p>Results will appear once the inputs listed at the top of the page are fixed.</p>
-      </>
+      <p data-testid="no-burden">
+        No regulatory burden costing: the proposal has no obligations yet. Add them on the <a href="#current">Current regime</a> and <a href="#options">Reform options</a> pages for an RBE table.
+      </p>
     );
   }
   const r = computed.result;
   return (
     <>
-      <PageHeading>Results</PageHeading>
       <p>
         Average annual change in regulatory costs from business as usual, over {r.durationYears} years, in real terms and without discounting. Measured against{" "}
         {r.baseline === "statusQuo" ? "current settings" : "no instrument (a sunsetting instrument being remade)"}.

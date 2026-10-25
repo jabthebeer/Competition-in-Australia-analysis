@@ -88,6 +88,35 @@
       "isDefault": true,
       "notes": "Grade C (owner decision, 23 Oct 2026; A-P17): a within-Australia panel correlation (industry-year fixed effects), not a causal policy elasticity, so economy-wide results resting on it are shown as indicative (plan §6.6). The paper publishes no sample mean of the distance to the frontier (variables are demeaned), so the gap in F-C4-03 has no default (A-P12). The text's illustration (8% to 16% entry raises convergence speed by 4.8 points) equals 0.006 × 8, the turnover coefficient, not 0.009 × 8 = 7.2; the library uses the Table 2 entry coefficient. Baseline convergence speed at the average entry rate: 0.415.",
       "review": { "status": "draft" }
+    },
+    {
+      "id": "c4.lambda0.ahhw2022",
+      "formula": "F-C4-03",
+      "parameter": "lambda0",
+      "channel": "C4",
+      "label": "Speed of convergence to the global frontier at the average entry rate (share of the log gap closed a year)",
+      "value": 0.415,
+      "low": 0.391,
+      "high": 0.439,
+      "units": "share of the log distance from the frontier closed a year",
+      "rangeBasis": "source",
+      "country": "Australia (BLADE firms, 2002–2016)",
+      "method": "correlational",
+      "grade": "C",
+      "tag": "P",
+      "citation": {
+        "authors": "Dan Andrews, Jonathan Hambur, David Hansell and Angus Wheeler",
+        "year": 2022,
+        "title": "Reaching for the stars: Australian firms and the global productivity frontier",
+        "publisher": "The Treasury, Treasury Working Paper 2022-01",
+        "url": "https://treasury.gov.au/sites/default/files/2022-02/p2022-243535.pdf",
+        "locator": "Table 2, column (2) 'Distance from frontier', and its notes, p. 10 (PDF p. 13)"
+      },
+      "quote": "Distance from frontier 0.418*** 0.415*** 0.423*** (0.011) (0.012) (0.012) … For example, Column 2 implies that an industry with the average firm entry rate has an estimated convergence speed of 0.415.",
+      "derivation": "Value = the Table 2 column (2) coefficient on the distance from the frontier (0.415), which the notes read as the convergence speed at the average entry rate because the variables are demeaned. Range = its 95% interval from the reported standard error: 0.415 ± 1.96 × 0.012.",
+      "isDefault": true,
+      "notes": "Grade C, as β₂ (A-P17): the same within-Australia panel regression. The dependent variable is firm labour productivity growth (value added per worker; the paper's section 3), so C4's productivity effect enters Layer B as labour productivity. A speed of 0.415 a year is fast and may include mean reversion in firm productivity; it sets how quickly C4's effect arrives (F-B-04) and the size of the long-run effect, gap × Δλ/(λ + Δλ) (A-P30).",
+      "review": { "status": "draft" }
     }
   ]
 }

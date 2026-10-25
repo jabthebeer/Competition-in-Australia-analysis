@@ -238,6 +238,64 @@
       "isDefault": true,
       "notes": "The tool's own pass mark for the P4 calibration script, graded D: no source sets it. It does not enter any costing.",
       "review": { "status": "draft" }
+    },
+    {
+      "id": "layer-b.model-error-lp.backtest",
+      "formula": "F-B-05",
+      "parameter": "modelErrorLp",
+      "channel": "layerB",
+      "label": "Model error of Layer B against PC National: labour productivity shocks",
+      "value": 1,
+      "low": 0.697,
+      "high": 1.05,
+      "units": "ratio of PC National's real GDP effect to Layer B's (multiplies Layer B's result)",
+      "rangeBasis": "source",
+      "country": "Australia",
+      "method": "model",
+      "grade": "C",
+      "tag": "P",
+      "citation": {
+        "authors": "Productivity Commission (PC National results); back-test by the ALICIA project",
+        "year": 2024,
+        "title": "PC National modelling results workbook (ncp-pc-national-modelling.xlsx), National Competition Policy: modelling proposed reforms",
+        "publisher": "Productivity Commission (released 29 November 2024); back-test in alicia/analyses/costing_calibration/backtest.py, results in docs/costing_calibration.md",
+        "url": "https://assets.pc.gov.au/2025-10/ncp-pc-national-modelling.xlsx",
+        "locator": "Tabs H1, H5, L2 and L2_lower, 'Macroeconomic results (%)', row 'Real GDP'; industries from each tab's 'PC National sectors' text"
+      },
+      "quote": "L2_lower: \"Increase labour productivity by 0.8%\" … Real GDP 0.068637. L2: \"Increase labour productivity by 0.8%\" … Real GDP 0.386854.",
+      "derivation": "Value 1: Layer B's own result is the central value. Range: the lowest and highest ratio of PC National's real GDP effect to Layer B's prediction across the 5 target simulations of this shock type (L2_lower 0.697; L2 1.050), from alicia/analyses/costing_calibration/backtest.json (model_error_band). A test keeps the two equal.",
+      "isDefault": true,
+      "notes": "Interpretation A-P19. Economy-wide shocks (H1, H5) are reproduced within 1%; the broad licensing shock (L2, 15 industries) within 5%. Layer B overstates a shock confined to health care and residential care (L2_lower) by 43%: those services are mostly bought by government, which the reduced form does not capture. The range is a model-error band for the step from industry shocks to GDP, not a confidence interval.",
+      "review": { "status": "draft" }
+    },
+    {
+      "id": "layer-b.model-error-mfp.backtest",
+      "formula": "F-B-05",
+      "parameter": "modelErrorMfp",
+      "channel": "layerB",
+      "label": "Model error of Layer B against PC National: capital and labour productivity shocks",
+      "value": 1,
+      "low": 0.58,
+      "high": 1.147,
+      "units": "ratio of PC National's real GDP effect to Layer B's (multiplies Layer B's result)",
+      "rangeBasis": "source",
+      "country": "Australia",
+      "method": "model",
+      "grade": "C",
+      "tag": "P",
+      "citation": {
+        "authors": "Productivity Commission (PC National results); back-test by the ALICIA project",
+        "year": 2024,
+        "title": "PC National modelling results workbook (ncp-pc-national-modelling.xlsx), National Competition Policy: modelling proposed reforms",
+        "publisher": "Productivity Commission (released 29 November 2024); back-test in alicia/analyses/costing_calibration/backtest.py, results in docs/costing_calibration.md",
+        "url": "https://assets.pc.gov.au/2025-10/ncp-pc-national-modelling.xlsx",
+        "locator": "Tabs D3, B8, D2 and H3hlt, 'Macroeconomic results (%)', row 'Real GDP'; industries from each tab's 'PC National sectors' text"
+      },
+      "quote": "H3hlt: \"Labour and capital productivity in health care are 0.29% higher\" … Real GDP 0.013198. D3: \"Capital and labour productivity are 0.1% higher in all agriculture and mining industries\" … Real GDP 0.026605.",
+      "derivation": "Value 1: Layer B's own result is the central value. Range: the lowest and highest ratio of PC National's real GDP effect to Layer B's prediction across the 4 target simulations of this shock type (H3hlt 0.580; D3 1.147), from alicia/analyses/costing_calibration/backtest.json (model_error_band). A test keeps the two equal.",
+      "isDefault": true,
+      "notes": "Interpretation A-P19. Road transport (B8) and agriculture and mining (D3) are within 15%. Shocks confined to health care are overstated (D2 by 28%, with real government consumption held fixed; H3hlt by 72%). Capital productivity alone (B2) is not a shock type the engine produces and is left out of the band.",
+      "review": { "status": "draft" }
     }
   ]
 }

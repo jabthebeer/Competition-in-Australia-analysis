@@ -106,16 +106,26 @@ export const EntryLeverSchema = z
     industries: Industries.optional(),
     /** One-off cost per new business. */
     costPerEntrantChangeDollars: SignedQuantitySchema.optional(),
+    /** The industries' own one-off cost per new business before the change; default: Djankov et al.'s 2.25% of GDP per head. */
+    baselineCostPerEntrantDollars: QuantitySchema.optional(),
     approvalTimeChangeDays: SignedQuantitySchema.optional(),
     numberCap: z
       .strictObject({
         change: z.enum(["introduce", "remove", "tighten", "loosen"]),
-        /** Share of would-be entrants the cap keeps out (after the change). */
+        /** Share of would-be entrants the change keeps out (introduce, tighten) or lets in (remove, loosen). */
         excludedEntrantShare: ShareSchema,
       })
       .optional(),
     /** One-off cost per exiting business. */
     exitCostChangeDollars: SignedQuantitySchema.optional(),
+    /**
+     * Distance of the industries reached from the global labour productivity frontier, ln(frontier ÷ industry). No
+     * public source gives it (it needs BLADE), so it is the user's and graded D (A-P12); without it C4 reports the
+     * change in convergence speed but no productivity effect.
+     */
+    frontierGapLogPoints: QuantitySchema.optional(),
+    /** Burden populations that are new entrants: their compliance costs are left out of C1 when C4 is costed (overlap rule O-1). */
+    entrantPopulationIds: z.array(Id).min(1).optional(),
     provenance: ProvenanceMapSchema.optional(),
   })
   .superRefine(atLeastOne(["costPerEntrantChangeDollars", "approvalTimeChangeDays", "numberCap", "exitCostChangeDollars"], "An entry lever"));
@@ -308,6 +318,18 @@ export const AnalysisSchema = z.strictObject({
   seed: int.min(0).default(1),
 });
 
+/** The OIA competition assessment's Step 1 categories, which are the register's channels (PR-08). */
+export const OIA_CATEGORIES = ["barriers", "number-or-type", "ability-incentive", "prices-market-share", "consumer-choice"] as const;
+export type OiaCategory = (typeof OIA_CATEGORIES)[number];
+
+/** The competition screen (plan §6.8): the user's Step 1 answers, and notes on alternatives (Step 2) and benefits (Step 3). */
+export const CompetitionScreenSchema = z.strictObject({
+  /** True or false where the user has answered; a category left out takes the tool's suggestion. */
+  categories: z.strictObject(Object.fromEntries(OIA_CATEGORIES.map((c) => [c, z.boolean().optional()])) as Record<OiaCategory, z.ZodOptional<z.ZodBoolean>>).optional(),
+  alternatives: z.string().optional(),
+  benefits: z.string().optional(),
+});
+
 // ---- the brief ------------------------------------------------------------------------------------------------
 
 type LeverPart = { block: InputBlock; path: (string | number)[]; industries?: string[] };
@@ -362,6 +384,7 @@ export const PolicyBriefSchema = z
     }),
     /** Vintage of the bundled parameter file the brief was costed with (P2). */
     parameterVintage: z.string().optional(),
+    competition: CompetitionScreenSchema.optional(),
   })
   .superRefine((b, ctx) => {
     const issue = (path: (string | number)[], message: string) => ctx.addIssue({ code: "custom", path, message });
@@ -425,6 +448,15 @@ export const PolicyBriefSchema = z
         issue(["levers", "custom", i, "relation"], `A lever already feeds ${s.channel} for industry ${s.industry}: say whether this shock replaces it or adds to it (overlap rule O-6)`);
       }
     });
+
+    // Overlap rule O-1: entrant populations must be the burden proposal's.
+    const entrants = b.levers.entry?.entrantPopulationIds;
+    if (entrants) {
+      const pops = new Set(b.burden?.populations.map((p: Proposal["populations"][number]) => p.id) ?? []);
+      entrants.forEach((id, i) => {
+        if (!pops.has(id)) issue(["levers", "entry", "entrantPopulationIds", i], b.burden ? `"${id}" is not a population of the burden proposal` : "Entrant populations need a burden proposal");
+      });
+    }
 
     if (b.burden && b.burden.durationYears !== m.durationYears) {
       issue(["burden", "durationYears"], `The burden proposal runs ${b.burden.durationYears} years but the brief ${m.durationYears}; use the same duration`);
