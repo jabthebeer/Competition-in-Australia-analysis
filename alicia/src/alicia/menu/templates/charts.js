@@ -76,8 +76,11 @@ function mount(container, draw) {
 
 /**
  * Line chart.
- * opts: x (numbers: years, or UTC ms), xKind ("fy" | "month" | "quarter"), series [{key, label, values, color, dash, width}],
- * yFmt (value -> text), ref (y value for a dashed reference line), markers [{x, label}], height, yLabel, tipDigits.
+ * opts: x (numbers: years, or UTC ms), xKind ("fy" | "year" | "month" | "quarter"),
+ * series [{key, label, values, color, dash (true or a dash pattern), width}], yFmt (value -> text),
+ * ref (y value for a dashed reference line), zero (true: the y axis includes 0), markers [{x, label}],
+ * band ({from, to, label}: a shaded span of x),
+ * height, yLabel, tipDigits.
  */
 function lineChart(container, opts) {
   const draw = () => {
@@ -96,6 +99,7 @@ function lineChart(container, opts) {
     let lo = Infinity, hi = -Infinity;
     for (const s of series) for (const v of s.values) if (isNum(v)) { lo = Math.min(lo, v); hi = Math.max(hi, v); }
     if (isNum(opts.ref)) { lo = Math.min(lo, opts.ref); hi = Math.max(hi, opts.ref); }
+    if (opts.zero) { lo = Math.min(lo, 0); hi = Math.max(hi, 0); }
     const ticks = niceTicks(lo, hi, H > 240 ? 5 : 4);
     const y0 = ticks[0], y1 = ticks[ticks.length - 1];
     const x0 = xs[0], x1 = xs[xs.length - 1];
@@ -103,6 +107,15 @@ function lineChart(container, opts) {
     const sy = (v) => H - m.b - ((v - y0) / Math.max(1e-9, y1 - y0)) * (H - m.t - m.b);
     const yFmt = opts.yFmt || ((v) => fmt(v, 0));
 
+    if (opts.band && isNum(opts.band.from) && isNum(opts.band.to)) {
+      const a = Math.max(x0, opts.band.from), b = Math.min(x1, opts.band.to);
+      if (b >= a) {
+        const half = xs.length > 1 ? (sx(xs[1]) - sx(xs[0])) / 2 : 6;
+        const g = el("g", { class: "band" }, svg);
+        el("rect", { x: Math.max(m.l, sx(a) - half), y: m.t, width: Math.min(W - m.r, sx(b) + half) - Math.max(m.l, sx(a) - half), height: H - m.t - m.b }, g);
+        if (opts.band.label) el("text", { x: Math.max(m.l, sx(a) - half) + 4, y: m.t + 11 }, g).textContent = opts.band.label;
+      }
+    }
     const grid = el("g", {}, svg);
     for (const t of ticks) {
       el("line", { class: "gridline", x1: m.l, x2: W - m.r, y1: sy(t), y2: sy(t) }, grid);
@@ -115,12 +128,12 @@ function lineChart(container, opts) {
     const axis = el("g", { class: "axis" }, svg);
     el("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b }, axis);
     const maxTicks = Math.max(2, Math.floor((W - m.l - m.r) / (opts.xKind === "fy" ? 72 : 56)));
-    if (opts.xKind === "fy") {
+    if (opts.xKind === "fy" || opts.xKind === "year") {
       const span = x1 - x0;
       const step = [1, 2, 5, 10].find((s) => span / s <= maxTicks) || 10;
       for (let y = Math.ceil(x0 / step) * step; y <= x1; y += step) {
         el("line", { x1: sx(y), x2: sx(y), y1: H - m.b, y2: H - m.b + 4 }, axis);
-        el("text", { x: sx(y), y: H - 8, "text-anchor": "middle" }, axis).textContent = fyLabel(y);
+        el("text", { x: sx(y), y: H - 8, "text-anchor": "middle" }, axis).textContent = opts.xKind === "fy" ? fyLabel(y) : String(y);
       }
     } else {
       const ya = new Date(x0).getUTCFullYear(), yb = new Date(x1).getUTCFullYear();
@@ -153,14 +166,14 @@ function lineChart(container, opts) {
       });
       el("path", {
         d, fill: "none", style: `stroke:${s.color}`, "stroke-width": s.width || 1.8,
-        "stroke-dasharray": s.dash ? "5 4" : null, "stroke-linejoin": "round", "stroke-linecap": "round",
+        "stroke-dasharray": s.dash ? (typeof s.dash === "string" ? s.dash : "5 4") : null, "stroke-linejoin": "round", "stroke-linecap": "round",
       }, svg);
     }
 
     // Hover readout.
     const cross = el("line", { class: "cross", y1: m.t, y2: H - m.b, visibility: "hidden" }, svg);
     const hit = el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }, svg);
-    const xLabel = opts.xKind === "fy" ? fyLabel : opts.xKind === "quarter" ? quarterLabel : monthLabel;
+    const xLabel = opts.xKind === "fy" ? fyLabel : opts.xKind === "year" ? String : opts.xKind === "quarter" ? quarterLabel : monthLabel;
     const move = (ev) => {
       const r = svg.getBoundingClientRect();
       const px = ((ev.clientX - r.left) / r.width) * W;
@@ -189,7 +202,7 @@ function rankedBars(container, rows, opts = {}) {
   container.innerHTML = rows.map((r) => {
     const ok = isNum(r.value);
     const a = ok ? pos(Math.min(0, r.value)) : 0, b = ok ? pos(Math.max(0, r.value)) : 0;
-    const color = ok && r.value < 0 ? "var(--neg)" : "var(--pos)";
+    const color = r.color || (ok && r.value < 0 ? "var(--neg)" : "var(--pos)");
     return `<div class="row" title="${esc(r.title || r.label)}"><span class="lab">${esc(r.label)}</span>
       <span class="track"><span class="axis0" style="left:${pos(0)}%"></span>${ok ? `<span class="fill" style="left:${a}%;width:${Math.max(0.5, b - a)}%;background:${color}"></span>` : ""}</span>
       <span class="val">${ok ? esc((opts.fmt || fmtSigned)(r.value)) : "–"}</span></div>`;
@@ -217,3 +230,349 @@ function toggleChips(container, keys, active, onChange) {
 }
 
 const stateColor = (s) => `var(--s-${s})`;
+
+/* Range slider: two thumbs on one track, for choosing a span of years.
+ * opts: min, max, from, to, step (1), minGap (1; 0 lets both ends meet), fmt (value -> text), label,
+ * summary ((from, to) -> text), presets [{label, from, to}], onChange(from, to). Returns {set, get}. */
+function rangeSlider(container, opts) {
+  const { min, max } = opts;
+  const step = opts.step || 1, gap = opts.minGap ?? 1, fmtV = opts.fmt || String;
+  const clamp = (v) => Math.min(max, Math.max(min, Math.round(v / step) * step));
+  let lo = clamp(opts.from ?? min), hi = clamp(opts.to ?? max);
+  if (hi - lo < gap) lo = Math.max(min, hi - gap);
+  container.classList.add("range");
+  container.innerHTML = `<div class="range-head"><span class="range-label">${esc(opts.label || "Period")}</span><output class="range-out"></output></div>
+    <div class="range-track"><span class="range-rail"></span><span class="range-fill"></span>
+      <input type="range" class="lo" min="${min}" max="${max}" step="${step}" aria-label="${esc(opts.fromLabel || "First year")}">
+      <input type="range" class="hi" min="${min}" max="${max}" step="${step}" aria-label="${esc(opts.toLabel || "Last year")}">
+    </div>
+    <div class="range-ends" aria-hidden="true"><span>${esc(fmtV(min))}</span><span>${esc(fmtV(max))}</span></div>
+    ${(opts.presets || []).length ? `<div class="chips range-presets">${opts.presets.map((p, i) => `<button type="button" class="chip" data-i="${i}" aria-pressed="false">${esc(p.label)}</button>`).join("")}</div>` : ""}`;
+  const loIn = container.querySelector("input.lo"), hiIn = container.querySelector("input.hi");
+  const fill = container.querySelector(".range-fill"), out = container.querySelector(".range-out");
+  const pct = (v) => (max > min ? ((v - min) / (max - min)) * 100 : 0);
+  function paint() {
+    loIn.value = lo; hiIn.value = hi;
+    fill.style.left = `${pct(lo)}%`; fill.style.width = `${pct(hi) - pct(lo)}%`;
+    loIn.setAttribute("aria-valuetext", fmtV(lo)); hiIn.setAttribute("aria-valuetext", fmtV(hi));
+    // Where the thumbs meet near the top end, the low thumb goes on top so it can still be moved.
+    loIn.style.zIndex = lo >= max - step && hi - lo <= step ? 4 : 3;
+    out.textContent = opts.summary ? opts.summary(lo, hi) : `${fmtV(lo)} to ${fmtV(hi)}`;
+    container.querySelectorAll(".range-presets .chip").forEach((b) => {
+      const p = opts.presets[+b.dataset.i];
+      b.setAttribute("aria-pressed", String(clamp(p.from) === lo && clamp(p.to) === hi));
+    });
+  }
+  let raf = 0;
+  const emit = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => opts.onChange(lo, hi)); };
+  loIn.addEventListener("input", () => { lo = Math.min(+loIn.value, hi - gap); paint(); emit(); });
+  hiIn.addEventListener("input", () => { hi = Math.max(+hiIn.value, lo + gap); paint(); emit(); });
+  // A press on the track moves the nearer thumb there.
+  container.querySelector(".range-track").addEventListener("pointerdown", (ev) => {
+    if (ev.target === loIn || ev.target === hiIn) return;
+    const r = ev.currentTarget.getBoundingClientRect();
+    const v = clamp(min + ((ev.clientX - r.left) / r.width) * (max - min));
+    if (Math.abs(v - lo) <= Math.abs(v - hi)) lo = Math.min(v, hi - gap); else hi = Math.max(v, lo + gap);
+    paint(); emit();
+  });
+  container.querySelectorAll(".range-presets .chip").forEach((b) => b.addEventListener("click", () => {
+    const p = opts.presets[+b.dataset.i];
+    api.set(p.from, p.to); emit();
+  }));
+  const api = {
+    set(a, b) { hi = clamp(b); lo = Math.min(clamp(a), hi - gap); if (lo < min) { lo = min; hi = Math.max(hi, min + gap); } paint(); },
+    get: () => [lo, hi],
+  };
+  paint();
+  return api;
+}
+
+/* A bar with a 4px rounded data end and a square end at the baseline (y0). */
+function barPath(x, w, y0, y1, r = 4) {
+  const up = y1 < y0, h = Math.abs(y1 - y0);
+  const rr = Math.max(0, Math.min(r, w / 2, h));
+  if (up) return `M${x},${y0}V${y1 + rr}Q${x},${y1} ${x + rr},${y1}H${x + w - rr}Q${x + w},${y1} ${x + w},${y1 + rr}V${y0}Z`;
+  return `M${x},${y0}V${y1 - rr}Q${x},${y1} ${x + rr},${y1}H${x + w - rr}Q${x + w},${y1} ${x + w},${y1 - rr}V${y0}Z`;
+}
+
+function yAxis(svg, ticks, sy, m, W, yFmt) {
+  const grid = el("g", {}, svg);
+  for (const t of ticks) {
+    el("line", { class: "gridline", x1: m.l, x2: W - m.r, y1: sy(t), y2: sy(t) }, grid);
+    el("text", { x: m.l - 6, y: sy(t) + 3.5, "text-anchor": "end" }, grid).textContent = yFmt(t);
+  }
+}
+
+/* Columns around zero, one series over years. opts: x (years), xKind ("fy" | "year"), values, yFmt, tipFmt,
+ * label, tipLabel. Positive columns use --pos, negative --neg. */
+function columnChart(container, opts) {
+  const draw = () => {
+    const W = Math.max(280, Math.floor(container.clientWidth || 600));
+    const H = opts.height || Math.round(Math.min(260, Math.max(190, W * 0.4)));
+    const m = { t: 12, r: 14, b: 26, l: 46 };
+    container.innerHTML = "";
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img", "aria-label": opts.label || "" });
+    container.appendChild(svg);
+    const xs = opts.x, vals = opts.values;
+    if (!xs.length || !vals.some(isNum)) { el("text", { x: W / 2, y: H / 2, "text-anchor": "middle" }, svg).textContent = "No data for this selection"; return; }
+    const lo = Math.min(0, ...vals.filter(isNum)), hi = Math.max(0, ...vals.filter(isNum));
+    const ticks = niceTicks(lo, hi, 4), y0 = ticks[0], y1 = ticks[ticks.length - 1];
+    const sy = (v) => H - m.b - ((v - y0) / Math.max(1e-9, y1 - y0)) * (H - m.t - m.b);
+    const band = (W - m.l - m.r) / xs.length, bw = Math.max(2, Math.min(24, band - 4));
+    const yFmt = opts.yFmt || ((v) => fmt(v, 0));
+    yAxis(svg, ticks, sy, m, W, yFmt);
+    const axis = el("g", { class: "axis" }, svg);
+    el("line", { x1: m.l, x2: W - m.r, y1: sy(0), y2: sy(0) }, axis);
+    const xl = opts.xKind === "year" ? String : fyLabel;
+    const every = [1, 2, 5, 10].find((s) => xs.length / s <= Math.max(2, Math.floor((W - m.l - m.r) / 72))) || 10;
+    xs.forEach((x, i) => { if ((x % every) === 0 || every === 1) el("text", { x: m.l + band * (i + 0.5), y: H - 8, "text-anchor": "middle" }, axis).textContent = xl(x); });
+    xs.forEach((x, i) => {
+      const v = vals[i];
+      const g = el("g", { class: "col" }, svg);
+      if (isNum(v) && v !== 0) el("path", { d: barPath(m.l + band * (i + 0.5) - bw / 2, bw, sy(0), sy(v)), style: `fill:${v < 0 ? "var(--neg)" : opts.color || "var(--pos)"}` }, g);
+      const hit = el("rect", { x: m.l + band * i, y: m.t, width: band, height: H - m.t - m.b, fill: "transparent" }, g);
+      const tip = (ev) => showTip(`<strong>${esc(xl(x))}</strong><table><tr><td>${esc(opts.tipLabel || "")}</td><td class="v">${esc((opts.tipFmt || yFmt)(v))}</td></tr></table>`, ev);
+      hit.addEventListener("pointermove", tip); hit.addEventListener("pointerdown", tip);
+      hit.addEventListener("pointerleave", hideTip);
+    });
+  };
+  mount(container, draw);
+}
+
+/* Vertical bars for a few categories. opts: bars [{key, label, value, color, tip}], refs [{value, dash}],
+ * yFmt, label, height. Values sit on the bar caps; reference lines are dashed (name them in a legend). */
+function barChart(container, opts) {
+  const draw = () => {
+    const W = Math.max(280, Math.floor(container.clientWidth || 600));
+    const H = opts.height || Math.round(Math.min(280, Math.max(220, W * 0.45)));
+    const m = { t: 18, r: 14, b: 40, l: 40 };
+    container.innerHTML = "";
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img", "aria-label": opts.label || "" });
+    container.appendChild(svg);
+    const vals = [...opts.bars.map((b) => b.value), ...(opts.refs || []).map((r) => r.value)].filter(isNum);
+    if (!vals.length) { el("text", { x: W / 2, y: H / 2, "text-anchor": "middle" }, svg).textContent = "No data for this selection"; return; }
+    const ticks = niceTicks(Math.min(0, ...vals), Math.max(0, ...vals), 4), y0 = ticks[0], y1 = ticks[ticks.length - 1];
+    const sy = (v) => H - m.b - ((v - y0) / Math.max(1e-9, y1 - y0)) * (H - m.t - m.b);
+    const yFmt = opts.yFmt || ((v) => fmt(v, 0));
+    yAxis(svg, ticks, sy, m, W, yFmt);
+    const band = (W - m.l - m.r) / opts.bars.length, bw = Math.min(24, band * 0.5);
+    const axis = el("g", { class: "axis" }, svg);
+    el("line", { x1: m.l, x2: W - m.r, y1: sy(0), y2: sy(0) }, axis);
+    opts.bars.forEach((b, i) => {
+      const cx = m.l + band * (i + 0.5);
+      const g = el("g", { class: "col" }, svg);
+      if (isNum(b.value)) {
+        el("path", { d: barPath(cx - bw / 2, bw, sy(0), sy(b.value)), style: `fill:${b.color}` }, g);
+        el("text", { x: cx, y: b.value >= 0 ? sy(b.value) - 5 : sy(b.value) + 13, "text-anchor": "middle", class: "val" }, g).textContent = yFmt(b.value);
+      }
+      const words = b.label.split(" "), half = Math.ceil(words.length / 2);
+      const lines = band < b.label.length * 6.2 && words.length > 1 ? [words.slice(0, half).join(" "), words.slice(half).join(" ")] : [b.label];
+      lines.forEach((ln, k) => { el("text", { x: cx, y: H - m.b + 15 + k * 12, "text-anchor": "middle", class: "cat" }, axis).textContent = ln; });
+      const hit = el("rect", { x: m.l + band * i, y: m.t, width: band, height: H - m.t - m.b, fill: "transparent" }, g);
+      const tip = (ev) => showTip(b.tip || `<strong>${esc(b.label)}</strong> ${esc(yFmt(b.value))}`, ev);
+      hit.addEventListener("pointermove", tip); hit.addEventListener("pointerdown", tip);
+      hit.addEventListener("pointerleave", hideTip);
+    });
+    (opts.refs || []).filter((r) => isNum(r.value)).forEach((r) => {
+      el("line", { class: "refline", x1: m.l, x2: W - m.r, y1: sy(r.value), y2: sy(r.value), style: r.dash ? `stroke-dasharray:${r.dash}` : null }, svg);
+    });
+  };
+  mount(container, draw);
+}
+
+/* Scatter of sized points. opts: points [{x, y, size, color, label, tip, muted}], xDomain, yDomain ([lo, hi];
+ * points outside are drawn hollow at the edge), xFmt, yFmt, xTitle, yTitle, fit ({slope, intercept, label}),
+ * label, height. The nearest point to the pointer gets the tooltip. */
+function scatterChart(container, opts) {
+  const draw = () => {
+    const W = Math.max(280, Math.floor(container.clientWidth || 600));
+    const H = opts.height || Math.round(Math.min(380, Math.max(260, W * 0.55)));
+    const m = { t: opts.yTitle ? 24 : 14, r: 16, b: 40, l: 48 };
+    container.innerHTML = "";
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img", "aria-label": opts.label || "" });
+    container.appendChild(svg);
+    const pts = opts.points.filter((p) => isNum(p.x) && isNum(p.y));
+    if (!pts.length) { el("text", { x: W / 2, y: H / 2, "text-anchor": "middle" }, svg).textContent = "No data for this selection"; return; }
+    const [xa, xb] = opts.xDomain, [ya, yb] = opts.yDomain;
+    const xt = niceTicks(xa, xb, W > 480 ? 6 : 4), yt = niceTicks(ya, yb, 5);
+    const X0 = xt[0], X1 = xt[xt.length - 1], Y0 = yt[0], Y1 = yt[yt.length - 1];
+    const sx = (v) => m.l + ((Math.min(X1, Math.max(X0, v)) - X0) / (X1 - X0)) * (W - m.l - m.r);
+    const sy = (v) => H - m.b - ((Math.min(Y1, Math.max(Y0, v)) - Y0) / (Y1 - Y0)) * (H - m.t - m.b);
+    yAxis(svg, yt, sy, m, W, opts.yFmt || ((v) => fmt(v, 0)));
+    const axis = el("g", { class: "axis" }, svg);
+    el("line", { x1: m.l, x2: W - m.r, y1: sy(Math.max(Y0, Math.min(Y1, 0))), y2: sy(Math.max(Y0, Math.min(Y1, 0))) }, axis);
+    xt.forEach((t) => {
+      el("line", { x1: sx(t), x2: sx(t), y1: H - m.b, y2: H - m.b + 4 }, axis);
+      el("text", { x: sx(t), y: H - m.b + 15, "text-anchor": "middle" }, axis).textContent = (opts.xFmt || ((v) => fmt(v, 0)))(t);
+    });
+    if (opts.xTitle) el("text", { x: (m.l + W - m.r) / 2, y: H - 4, "text-anchor": "middle", class: "title" }, axis).textContent = opts.xTitle;
+    if (opts.yTitle) el("text", { x: m.l - 40, y: m.t - 12, "text-anchor": "start", class: "title" }, axis).textContent = opts.yTitle;
+    if (opts.fit && isNum(opts.fit.slope)) {
+      const f = (x) => opts.fit.intercept + opts.fit.slope * x;
+      el("line", { class: "fitline", x1: sx(X0), x2: sx(X1), y1: sy(f(X0)), y2: sy(f(X1)) }, svg);
+    }
+    const layer = el("g", {}, svg);
+    const placed = pts.map((p) => {
+      const out = p.x < X0 || p.x > X1 || p.y < Y0 || p.y > Y1;
+      return { p, cx: sx(p.x), cy: sy(p.y), r: Math.max(3.5, p.size || 4), out };
+    }).sort((a, b) => b.r - a.r);
+    for (const q of placed) {
+      el("circle", {
+        cx: q.cx, cy: q.cy, r: q.r, class: `dot${q.p.muted ? " muted" : ""}${q.out ? " out" : ""}`,
+        style: q.out ? `stroke:${q.p.color}` : `fill:${q.p.color}`,
+      }, layer);
+    }
+    const ring = el("circle", { r: 0, class: "dot-hover", visibility: "hidden" }, svg);
+    const hit = el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }, svg);
+    const move = (ev) => {
+      const r = svg.getBoundingClientRect();
+      const px = ((ev.clientX - r.left) / r.width) * W, py = ((ev.clientY - r.top) / r.height) * H;
+      let best = null, bd = Infinity;
+      for (const q of placed) { const d = Math.hypot(q.cx - px, q.cy - py) - q.r; if (d < bd) { bd = d; best = q; } }
+      if (!best || bd > 24) { ring.setAttribute("visibility", "hidden"); hideTip(); return; }
+      ring.setAttribute("cx", best.cx); ring.setAttribute("cy", best.cy); ring.setAttribute("r", best.r + 3);
+      ring.setAttribute("visibility", "visible");
+      showTip(best.p.tip || esc(best.p.label), ev);
+    };
+    hit.addEventListener("pointermove", move); hit.addEventListener("pointerdown", move);
+    hit.addEventListener("pointerleave", () => { ring.setAttribute("visibility", "hidden"); hideTip(); });
+  };
+  mount(container, draw);
+}
+
+/* Bars whose width is a weight (equity) and whose height a rate (return), split at a threshold (the cost of
+ * equity), after Grattan's profit charts. opts: bars [{label, width, value, tip}] in drawing order, threshold,
+ * yDomain [lo, hi] (bars beyond it are cut at the edge), xFmt, yFmt, xTitle, label, height.
+ * Fills: --p-normal up to the threshold, --p-super above it, --p-short for a shortfall below it, --p-loss below 0. */
+function mekkoChart(container, opts) {
+  const draw = () => {
+    const W = Math.max(280, Math.floor(container.clientWidth || 600));
+    const H = opts.height || Math.round(Math.min(340, Math.max(240, W * 0.42)));
+    const m = { t: 16, r: 14, b: 40, l: 40 };
+    container.innerHTML = "";
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img", "aria-label": opts.label || "" });
+    container.appendChild(svg);
+    const bars = opts.bars.filter((b) => isNum(b.value) && isNum(b.width) && b.width > 0);
+    if (!bars.length) { el("text", { x: W / 2, y: H / 2, "text-anchor": "middle" }, svg).textContent = "No data for this selection"; return; }
+    const t = opts.threshold;
+    const [lo, hi] = opts.yDomain;
+    const yt = niceTicks(lo, hi, 5), Y0 = yt[0], Y1 = yt[yt.length - 1];
+    const sy = (v) => H - m.b - ((Math.min(Y1, Math.max(Y0, v)) - Y0) / (Y1 - Y0)) * (H - m.t - m.b);
+    const yFmt = opts.yFmt || ((v) => fmt(v, 0));
+    yAxis(svg, yt, sy, m, W, yFmt);
+    const total = bars.reduce((a, b) => a + b.width, 0);
+    const scale = (W - m.l - m.r) / total;
+    const axis = el("g", { class: "axis" }, svg);
+    el("line", { x1: m.l, x2: W - m.r, y1: sy(0), y2: sy(0) }, axis);
+    const xt = niceTicks(0, total, W > 520 ? 6 : 3).filter((v) => v <= total * 1.001);
+    xt.forEach((v) => {
+      el("line", { x1: m.l + v * scale, x2: m.l + v * scale, y1: H - m.b, y2: H - m.b + 4 }, axis);
+      el("text", { x: m.l + v * scale, y: H - m.b + 15, "text-anchor": "middle" }, axis).textContent = (opts.xFmt || ((x) => fmt(x, 0)))(v);
+    });
+    if (opts.xTitle) el("text", { x: (m.l + W - m.r) / 2, y: H - 4, "text-anchor": "middle", class: "title" }, axis).textContent = opts.xTitle;
+    const layer = el("g", { class: "mekko" }, svg);
+    let cum = 0;
+    for (const b of bars) {
+      const x = m.l + cum * scale, full = b.width * scale;
+      cum += b.width;
+      const gap = full > 6 ? 2 : full > 2.5 ? 1 : 0;
+      const w = Math.max(0.6, full - gap);
+      const g = el("g", { class: "mk" }, layer);
+      const seg = (a, z, cls) => { if (z !== a) el("rect", { x, width: w, y: Math.min(sy(a), sy(z)), height: Math.abs(sy(a) - sy(z)), class: cls }, g); };
+      const v = b.value;
+      if (v >= t) { seg(0, t, "normal"); seg(t, v, "super"); }
+      else if (v >= 0) { seg(0, v, "normal"); seg(v, t, "short"); }
+      else { seg(v, 0, "loss"); seg(0, t, "short"); }
+      if (v > Y1 || v < Y0) el("text", { x: x + w / 2, y: v > Y1 ? m.t - 3 : H - m.b - 3, "text-anchor": "middle", class: "cut" }, g).textContent = v > Y1 ? "▲" : "▼";
+      if (b.label && w >= b.label.length * 5.6 + 8) {
+        const top = sy(Math.min(Y1, Math.max(v, t)));
+        el("text", { x: x + w / 2, y: Math.max(m.t + 9, top - 5), "text-anchor": "middle", class: "lab" }, g).textContent = b.label;
+      }
+      const hit = el("rect", { x: x - gap / 2, y: m.t, width: Math.max(w + gap, 3), height: H - m.t - m.b, fill: "transparent" }, g);
+      const tip = (ev) => { g.classList.add("on"); showTip(b.tip || esc(b.label), ev); };
+      hit.addEventListener("pointermove", tip); hit.addEventListener("pointerdown", tip);
+      hit.addEventListener("pointerleave", () => { g.classList.remove("on"); hideTip(); });
+    }
+    if (isNum(t)) el("line", { class: "refline", x1: m.l, x2: W - m.r, y1: sy(t), y2: sy(t) }, svg);
+  };
+  mount(container, draw);
+}
+
+/* 100 per cent stacked horizontal bars. rows [{label, parts: {key: value}, total}], keys [{key, label}] in
+ * stacking order; fills come from --fill-<key>, text inside from --ink-<key>. tipFmt(row, key) -> html. */
+function shareBars(container, rows, keys, opts = {}) {
+  container.innerHTML = rows.map((r, i) => {
+    const sum = keys.reduce((a, k) => a + Math.max(0, r.parts[k.key] || 0), 0);
+    const segs = keys.map((k) => {
+      const v = Math.max(0, r.parts[k.key] || 0), p = sum > 0 ? (v / sum) * 100 : 0;
+      if (p <= 0) return "";
+      return `<span class="seg" data-r="${i}" data-k="${esc(k.key)}" style="flex-basis:${p}%;background:var(--fill-${k.key});color:var(--ink-${k.key})">${p >= 9 ? `${fmt(p, 0)}%` : ""}</span>`;
+    }).join("");
+    return `<div class="share-row"><span class="lab">${esc(r.label)}</span><span class="share-bar">${segs}</span></div>`;
+  }).join("");
+  container.querySelectorAll(".seg").forEach((s) => {
+    const tip = (ev) => showTip((opts.tipFmt || ((r, k) => esc(k)))(rows[+s.dataset.r], s.dataset.k), ev);
+    s.addEventListener("pointermove", tip); s.addEventListener("pointerdown", tip);
+    s.addEventListener("pointerleave", hideTip);
+  });
+}
+
+/* A table view for a chart: head [text], rows [[text]]; numeric cells (class num) are right-aligned. */
+function tableView(container, head, rows) {
+  container.innerHTML = `<table class="data"><thead><tr>${head.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c, i) => `<td class="${i ? "num" : ""}">${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+}
+
+/* Weighted least squares of y on x: {slope, intercept, r2}. */
+function wls(xs, ys, ws) {
+  let sw = 0, sx = 0, sy = 0;
+  xs.forEach((x, i) => { sw += ws[i]; sx += ws[i] * x; sy += ws[i] * ys[i]; });
+  if (!(sw > 0)) return null;
+  const mx = sx / sw, my = sy / sw;
+  let sxx = 0, sxy = 0, syy = 0;
+  xs.forEach((x, i) => { sxx += ws[i] * (x - mx) ** 2; sxy += ws[i] * (x - mx) * (ys[i] - my); syy += ws[i] * (ys[i] - my) ** 2; });
+  if (!(sxx > 0) || !(syy > 0)) return null;
+  const slope = sxy / sxx;
+  return { slope, intercept: my - slope * mx, r2: (sxy * sxy) / (sxx * syy) };
+}
+
+/* Share of the weighted variance of y explained by group means (the R-squared of y on group dummies). */
+function groupR2(ys, ws, groups) {
+  const sw = ws.reduce((a, w) => a + w, 0);
+  if (!(sw > 0)) return null;
+  const my = ys.reduce((a, y, i) => a + ws[i] * y, 0) / sw;
+  const by = {};
+  ys.forEach((y, i) => { const g = (by[groups[i]] ||= { w: 0, s: 0 }); g.w += ws[i]; g.s += ws[i] * y; });
+  let tot = 0, within = 0;
+  ys.forEach((y, i) => { const g = by[groups[i]]; tot += ws[i] * (y - my) ** 2; within += ws[i] * (y - g.s / g.w) ** 2; });
+  return tot > 0 ? 1 - within / tot : null;
+}
+
+/* ---- Company returns by sector (both pages) -------------------------------------------------------------
+ * A sector holds yearly sums from the ATO's company tax statistics: income, pbt (profit before tax), npat
+ * (after tax), equity (assets less liabilities). Over the chosen years, a year counts when equity is positive
+ * and the items are published; the sector's figures are averages over those years (so a year missing for one
+ * sector does not shrink it), and the reasons for any left-out years are kept. k: cost of equity (per cent). */
+function sectorStats(s, years, from, to, k, taxRate = 30) {
+  const idx = years.map((y, i) => i).filter((i) => years[i] >= from && years[i] <= to);
+  const ok = [], left = [];
+  for (const i of idx) {
+    if (![s.income[i], s.npat[i], s.equity[i]].every(isNum)) left.push({ year: years[i], why: "not published" });
+    else if (s.equity[i] <= 0) left.push({ year: years[i], why: "liabilities exceed assets" });
+    else ok.push(i);
+  }
+  if (!ok.length) return { left, n: 0 };
+  const mean = (a) => ok.reduce((t, i) => t + a[i], 0) / ok.length;
+  const E = mean(s.equity), N = mean(s.npat), I = mean(s.income), B = mean(s.pbt);
+  const req = (k / 100) * E;
+  const snp = N - req;
+  return {
+    n: ok.length, left, E, N, I, B, roe: (N / E) * 100, snp,
+    normal: Math.max(0, Math.min(N, req)), superP: Math.max(0, snp),
+    markup: I > 0 ? (Math.max(0, snp) / (1 - taxRate / 100) / I) * 100 : null,
+  };
+}
+function groupStats(rows, taxRate = 30) {
+  const t = rows.reduce((a, r) => ({ E: a.E + r.E, N: a.N + r.N, I: a.I + r.I, normal: a.normal + r.normal, superP: a.superP + r.superP, n: a.n + 1 }), { E: 0, N: 0, I: 0, normal: 0, superP: 0, n: 0 });
+  return { ...t, roe: t.E > 0 ? (t.N / t.E) * 100 : null, superShare: t.normal + t.superP > 0 ? (t.superP / (t.normal + t.superP)) * 100 : null, markup: t.I > 0 ? (t.superP / (1 - taxRate / 100) / t.I) * 100 : null };
+}
+const fmtB = (v, d = 1) => (isNum(v) ? `$${fmt(v / 1000, d)}b` : "–");
