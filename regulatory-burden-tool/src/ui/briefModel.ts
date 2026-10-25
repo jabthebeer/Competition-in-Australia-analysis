@@ -26,8 +26,9 @@ export type SizeBand = "nonEmploying" | "1-4" | "5-19" | "20-199" | "200+";
 export interface BriefDraft {
   /** The brief's id when it was loaded from a file; otherwise the proposal's id is used. */
   id?: string;
-  meta: { summary?: string; jurisdictions: Jurisdiction[]; startYear: number; phaseInYears: number };
-  scope: { industries: ScopeIndustryDraft[]; sizeBands?: SizeBand[]; states?: Exclude<Jurisdiction, "CTH">[] };
+  /** Fields the pages edit, plus those a loaded brief carries through unchanged (price base, source, provenance). */
+  meta: { summary?: string; jurisdictions: Jurisdiction[]; startYear: number; phaseInYears: number } & Partial<Pick<PolicyBrief["meta"], "priceBase" | "source" | "provenance">>;
+  scope: { industries: ScopeIndustryDraft[]; sizeBands?: SizeBand[]; states?: Exclude<Jurisdiction, "CTH">[] } & Partial<Pick<PolicyBrief["scope"], "entityTypes" | "provenance">>;
   levers: LeversDraft;
   analysis: z.input<typeof AnalysisSchema>;
   /** The competition screen (plan §6.8): the user's Step 1 answers (undefined = take the suggestion) and Step 3 notes. */
@@ -100,8 +101,22 @@ export function splitBrief(brief: PolicyBrief): { draft: BriefDraft; burden: Pro
   return {
     draft: {
       id: brief.id,
-      meta: { ...(meta.summary ? { summary: meta.summary } : {}), jurisdictions: meta.jurisdictions, startYear: meta.startYear, phaseInYears: meta.phaseInYears },
-      scope: { industries: scope.industries, sizeBands: scope.sizeBands, ...(scope.states ? { states: scope.states } : {}) },
+      meta: {
+        ...(meta.summary ? { summary: meta.summary } : {}),
+        jurisdictions: meta.jurisdictions,
+        startYear: meta.startYear,
+        phaseInYears: meta.phaseInYears,
+        priceBase: meta.priceBase,
+        ...(meta.source ? { source: meta.source } : {}),
+        ...(meta.provenance ? { provenance: meta.provenance } : {}),
+      },
+      scope: {
+        industries: scope.industries,
+        sizeBands: scope.sizeBands,
+        entityTypes: scope.entityTypes,
+        ...(scope.states ? { states: scope.states } : {}),
+        ...(scope.provenance ? { provenance: scope.provenance } : {}),
+      },
       levers,
       analysis,
       ...(competition ? { competition } : {}),

@@ -1,5 +1,6 @@
-// End-to-end tests of the productivity and competition costing against the production build. All briefs are
-// ILLUSTRATIVE (synthetic): the bundled costing example (lighter licensing for electricians) and briefs built here.
+// End-to-end tests of the productivity and competition costing against the production build. The bundled costing
+// example is a real policy, the ban on non-compete clauses (2025-26 Budget; Treasury Impact Analysis, 2026); the
+// briefs built here are ILLUSTRATIVE.
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
@@ -21,47 +22,56 @@ async function goTo(page: Page, name: RegExp) {
   await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name }).click();
 }
 
-test("T-E2E-11 the costing example: scope data, the levers' chains, results with ranges and the gate, the competition screen, CSV", async ({ page }) => {
+test("T-E2E-11 the costing example (the non-compete ban): scope, the lever's chain, both burden options, results with ranges and the gate, the competition screen, CSV", async ({ page }) => {
   const errors = watchErrors(page);
   await loadCostingExample(page);
 
   await goTo(page, /Scope/);
-  await expect(page.getByTestId("scope-industry-0")).toContainText("3232 Electrical Services");
-  await expect(page.getByTestId("scope-facts")).toContainText("48,274");
+  await expect(page.getByTestId("scope-industry-0")).toContainText("A Agriculture, Forestry and Fishing");
+  await expect(page.getByTestId("scope-industry-18")).toContainText("S Other Services");
+  await expect(page.getByTestId("scope-facts")).toContainText("Professional, Scientific and Technical Services");
 
   await goTo(page, /Productivity levers/);
   const c8 = page.getByTestId("lever-labour").getByTestId("channel-C8");
   await expect(c8).toContainText("Evidence grade C");
-  await expect(c8).toContainText("+0.8 %");
+  await expect(c8).toContainText("+0.1805 %"); // 10% × 1.9% × (0.19 ÷ 0.2)
+  await expect(c8).toContainText("agriculture (A) is left out");
   await expect(page.getByTestId("lever-burden").getByTestId("channel-C1")).toContainText("Evidence grade A");
-  await expect(page.getByTestId("similar-changes")).toContainText("Automatic mutual recognition");
+  await expect(page.getByTestId("similar-changes")).toBeVisible();
 
   await goTo(page, /Results/);
-  await expect(page.getByTestId("rbe-three-yearly")).toBeVisible(); // the burden results stay first
+  // The burden results stay first: the Impact Analysis's Options 2 and 3.
+  await expect(page.getByTestId("rbe-option-2-partial-ban")).toBeVisible();
+  await expect(page.getByTestId("rbe-option-3-full-ban")).toBeVisible();
   const gate = page.getByTestId("gate");
   await expect(gate).toHaveAttribute("data-status", "indicative", { timeout: 30_000 });
-  await expect(gate).toContainText("below the $200m threshold");
+  await expect(gate).toContainText("is graded C");
+  await expect(page.getByTestId("productivity-headline")).toContainText("billion a year");
   await expect(page.getByTestId("productivity-headline")).toContainText("10–90% range");
-  await expect(page.getByTestId("threshold2")).toContainText("does not meet it");
+  await expect(page.getByTestId("threshold2")).toContainText("meets it");
+  // The PC's 10% pass-through is the top of its range (the Government's $5 billion is that upper case), and the note says so.
+  await expect(page.getByTestId("central-outside")).toContainText("median");
   await expect(page.getByTestId("productivity-years").locator("tbody tr")).toHaveCount(4);
   await expect(page.getByTestId("productivity-channels")).toContainText("C8 Labour mobility");
   await expect(page.getByTestId("productivity-path")).toBeVisible();
-  await expect(page.getByTestId("productivity-tornado")).toContainText("occupational entry regulation");
+  await expect(page.getByTestId("productivity-tornado")).toContainText("non-compete wage effect");
   await expect(page.getByTestId("not-quantified")).toContainText("terms of trade");
   const download = page.waitForEvent("download");
   await page.getByTestId("download-csv").click();
   const csv = await download;
-  expect(csv.suggestedFilename()).toBe("illustrative-licensing-productivity.csv");
+  expect(csv.suggestedFilename()).toBe("noncompete-ban-productivity.csv");
 
   await goTo(page, /Competition screen/);
+  // The brief's answers, from the Impact Analysis, replace the tool's suggestions.
   await expect(page.getByTestId("category-barriers")).toBeChecked();
-  await expect(page.getByTestId("category-number-or-type")).toBeChecked();
-  await expect(page.getByTestId("share-affected")).toContainText("20.7%");
+  await expect(page.getByTestId("category-ability-incentive")).toBeChecked();
+  await expect(page.getByTestId("category-consumer-choice")).not.toBeChecked();
+  await expect(page.getByTestId("competition-verdict")).toContainText("4 of the five");
+  await expect(page.getByTestId("share-affected")).toContainText("999,161 businesses");
   await expect(page.getByTestId("bcs-barrier")).toContainText("20.2%");
   await expect(page.getByTestId("competition-gdp")).toContainText("indicative", { timeout: 30_000 });
-  // Unticking a suggestion is kept.
-  await page.getByTestId("category-number-or-type").uncheck();
-  await expect(page.getByTestId("competition-verdict")).toContainText("1 of the five");
+  await page.getByTestId("category-prices-market-share").uncheck();
+  await expect(page.getByTestId("competition-verdict")).toContainText("3 of the five");
   expect(errors).toEqual([]);
 });
 
@@ -131,7 +141,10 @@ test("T-E2E-14 the whole costing saves to a file and loads back", async ({ page 
   await page.getByTestId("open-file").setInputFiles(path);
   await expect(page.locator(".success")).toContainText("with its productivity levers");
   await goTo(page, /Productivity levers/);
-  await expect(page.getByTestId("lever-labour").getByTestId("channel-C8")).toContainText("+0.8 %");
+  await expect(page.getByTestId("lever-labour").getByTestId("channel-C8")).toContainText("+0.1805 %");
+  // The burden proposal comes back with both of its options, and the brief with its sources.
+  await goTo(page, /Results/);
+  await expect(page.getByTestId("rbe-option-3-full-ban")).toBeVisible();
 });
 
 test("T-E2E-15 the scope screener answers whether a cost is in the RBE, with the framework's page", async ({ page }) => {

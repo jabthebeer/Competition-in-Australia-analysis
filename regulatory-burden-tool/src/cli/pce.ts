@@ -1,5 +1,5 @@
 // Command-line report: the productivity and competition costing of a policy brief (plan §6).
-//   npm run pce -- examples/illustrative-licensing.brief.json [--draws 2000] [--seed 1] [--show-ungated] [--json] [--params file]
+//   npm run pce -- examples/noncompete-ban.brief.json [--draws 2000] [--seed 1] [--show-ungated] [--json] [--params file]
 // The parameters are the bundled data/processed/costing/parameters.json unless --params names another file.
 import { readFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";

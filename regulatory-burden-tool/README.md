@@ -49,10 +49,10 @@ npm run rbe -- examples/illustrative-reform.json --json                # full re
 npm run rbe -- examples/illustrative-reform.json --tidy out/tidy.csv   # analysis-ready data + dictionary
 
 # Command line: the productivity and competition costing of a policy brief (GDP effect, time path, NPV, ranges, gate)
-npm run pce -- examples/illustrative-licensing.brief.json
-npm run pce -- examples/illustrative-licensing.brief.json --draws 5000 --seed 2   # Monte Carlo settings
-npm run pce -- examples/illustrative-licensing.brief.json --show-ungated          # show GDP the evidence gate hides
-npm run pce -- examples/illustrative-licensing.brief.json --json                  # full results
+npm run pce -- examples/noncompete-ban.brief.json
+npm run pce -- examples/noncompete-ban.brief.json --draws 5000 --seed 2   # Monte Carlo settings
+npm run pce -- examples/noncompete-ban.brief.json --show-ungated          # show GDP the evidence gate hides
+npm run pce -- examples/noncompete-ban.brief.json --json                  # full results
 ```
 
 The built site in `dist/` is static: copy it to any web server or internal host. It makes no network requests (its security policy blocks them), stores proposals only in the browser (auto-save can be turned off) and in files the user downloads.
@@ -99,7 +99,7 @@ The engine is pure TypeScript, with no UI, I/O, clock or randomness. The same in
 - `channels.ts`: channels C1–C12, shock types and the overlap rules;
 - `anzsic.ts`: ANZSIC division structure.
 
-An illustrative brief is in `examples/illustrative-licensing.brief.json`. The formulas arrive in P4 ([plan](../docs/forward_plan_policy_costing.md) §6).
+The bundled costing example, `examples/noncompete-ban.brief.json`, is a real policy: the ban on non-compete clauses for low- and middle-income workers (2025-26 Budget). Its burden proposal rebuilds the familiarisation costs of Options 2 and 3 in Treasury's Impact Analysis (OIA, 21 September 2026) from the Analysis's own inputs, and its labour lever follows the Productivity Commission's 2024 simulation, which Treasury cites; every sourced value records its page. A synthetic brief for the engine's tests is in `tests/fixtures/synthetic-licensing.json`. The formulas are specified in the [plan](../docs/forward_plan_policy_costing.md) §6.
 
 **Arithmetic.** All money arithmetic uses `decimal.js`, and results are exact decimal strings, so totals carry no floating-point residue. Rounding happens only when values are displayed.
 

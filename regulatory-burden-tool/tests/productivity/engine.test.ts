@@ -85,7 +85,7 @@ describe("costing engine", () => {
   });
 
   it("T-PCE-04 C1: the burden's resource cost lowers MFP by its share of value added, and reaches GDP as the cost itself (Hulten)", () => {
-    const ex = parseBrief(JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "examples", "illustrative-licensing.brief.json"), "utf8")));
+    const ex = parseBrief(JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "tests", "fixtures", "synthetic-licensing.json"), "utf8")));
     const r = costBrief(ex, ctx);
     const c1 = channel(r, "C1");
     const rbe = computeProposal(ex.burden!).options[0]!.rbe.total;
@@ -246,7 +246,7 @@ describe("costing engine", () => {
   });
 
   it("T-PCE-17 O-1: entrants' compliance costs leave C1 when C4 costs entry; entrant populations must be the burden's", () => {
-    const ex = JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "examples", "illustrative-licensing.brief.json"), "utf8"));
+    const ex = JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "tests", "fixtures", "synthetic-licensing.json"), "utf8"));
     const withEntrants = parseBrief({ ...ex, levers: { ...ex.levers, entry: { ...ex.levers.entry, entrantPopulationIds: ["electricians"] } } });
     const c1 = channel(costBrief(withEntrants, ctx), "C1");
     expect(c1.effects).toEqual([]);

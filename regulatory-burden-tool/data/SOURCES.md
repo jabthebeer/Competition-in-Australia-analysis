@@ -31,9 +31,19 @@ These documents are **not** committed to this public repository (see `docs/phase
 
 | Document or dataset | Publisher | Release | URL | Accessed | Used for |
 |---|---|---|---|---|---|
-| OSCA – Occupation Standard Classification for Australia, 2024, Version 1.0: Category descriptions (xlsx; Table 1 lists 1,156 occupations, each with a six-digit identifier and a "Registration or Licensing" column) | ABS | 2024 v1.0 | <https://www.abs.gov.au/statistics/classifications/osca-occupation-standard-classification-australia/2024-version-1-0/data-downloads/OSCA%20Category%20Descriptions.xlsx> | 22 Oct 2026 (SHA-256 `4412b0a20a54ab7bab01063b83bec4ee0a29768204f84a36851d82b661238fe8`) | The six-digit code rule for licensed occupations in the brief schema, and the code of the illustrative example (381231, Electrician (General)). Not bundled |
+| OSCA – Occupation Standard Classification for Australia, 2024, Version 1.0: Category descriptions (xlsx; Table 1 lists 1,156 occupations, each with a six-digit identifier and a "Registration or Licensing" column) | ABS | 2024 v1.0 | <https://www.abs.gov.au/statistics/classifications/osca-occupation-standard-classification-australia/2024-version-1-0/data-downloads/OSCA%20Category%20Descriptions.xlsx> | 22 Oct 2026 (SHA-256 `4412b0a20a54ab7bab01063b83bec4ee0a29768204f84a36851d82b661238fe8`) | The six-digit code rule for licensed occupations in the brief schema, and the code in the synthetic test brief (381231, Electrician (General)). Not bundled |
 | ANZSIC 2006 codelist `CL_ANZSIC_2006` 1.1.0 | ABS (Data API) | 1.1.0 | <https://data.api.abs.gov.au/rest/codelist/ABS/CL_ANZSIC_2006/1.1.0> (copy in `alicia/src/alicia/data/anzsic2006.json`, CC BY 4.0) | 14 Oct 2026 | Subdivision ranges of each division in `src/productivity/anzsic.ts`, checked against the bundled copy by test T-BRF-14 |
 | Copyright statement | Productivity Commission | — | <https://www.pc.gov.au/copyright/> | 22 Oct 2026 | Licence of the PC National results workbook (CC BY 4.0), to be used for calibration in P4 |
+
+## Real policies in the bundled examples (P6)
+
+The figures in `examples/noncompete-ban.brief.json` come from these documents; each value's page is recorded in the brief's provenance. The documents are not committed: check them by hash.
+
+| Document | Publisher | Release | URL | Accessed | SHA-256 | Used for |
+|---|---|---|---|---|---|---|
+| Impact Analysis: Non-compete clauses and other worker restraints (PDF, 96 pp.) | Treasury, published by the OIA | 21 Sep 2026 (announced 7 Sep 2026) | <https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf> (landing page: <https://oia.pmc.gov.au/published-impact-analyses-and-reports/non-compete-clauses-and-other-worker-restraints>) | 25 Oct 2026 | `ad3f04f5fd2d547d948e6fa2ead7673a56f5971b6944a46d840ee5a4161bcab3` | The costing example: Options 2 and 3, the RBE inputs (Tables 4–6, pp. 51–53), timing (pp. 28, 50), Option 2's share of a full ban's mobility gain (p. 41), the competition screen notes (pp. 27, 41, 48–49, 62) |
+| IA Summary for the same (PDF, 1 p.) | Treasury, published by the OIA | 21 Sep 2026 | <https://oia.pmc.gov.au/sites/default/files/posts/2026/09/IA%20Summary.pdf> | 25 Oct 2026 | `e451baea2aafefe41c1905d10ffbf985275364adca93e06da700dedaddc048fd` | The example's summary: prospective from 2027, $46.4 million familiarisation cost, the PC's $5.1 billion |
+| National Competition Policy: modelling proposed reforms (study report with appendices) | Productivity Commission | 1 Nov 2024 (released 29 Nov 2024) | <https://assets.pc.gov.au/2025-10/competition-analysis-study-report-plus.pdf> | 25 Oct 2026 | `de1c726ffa1fcf59fb23cebd442648a6a87e5e465b219ba30e7b36f35900f918` | Already the source of the C8 evidence entries; p. 128 (PDF p. 134): automatic mutual recognition is outside the PC's licensing simulation |
 
 ## Data behind the default parameters (as cited by the RBM, not downloaded)
 
