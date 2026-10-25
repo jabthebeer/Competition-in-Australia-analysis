@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 1,
+  "kind": "policy-brief",
+  "id": "worked-vic-payroll-threshold",
+  "meta": {
+    "title": "Victoria's payroll tax-free threshold: $700,000 to $1 million (2023-24 Budget)",
+    "summary": "Worked example (P6): a payroll-tax threshold change. The tax-free threshold rose from $700,000 to $900,000 on 1 July 2024 and to $1 million on 1 July 2025; the threshold is phased out for wages above $3 million (by $1 for every $2) and is nil above $5 million. The rate is 4.85% (metropolitan). Around 6,000 businesses stop paying and more than 26,000 benefit. The Budget's revenue effect, net of the phase-out: +$20.3 million in 2024-25, −$43.6 million in 2025-26 and −$38.7 million in 2026-27.",
+    "jurisdictions": [
+      "VIC"
+    ],
+    "proposalType": "reform",
+    "startYear": 2024,
+    "phaseInYears": 1,
+    "durationYears": 10,
+    "priceBase": "2025-26",
+    "source": {
+      "description": "Victorian Budget 2023-24, Budget Paper No. 3: Service Delivery, Table 1.27 and p. 114",
+      "url": "https://s3.ap-southeast-2.amazonaws.com/budgetfiles202324.budget.vic.gov.au/2023-24+State+Budget+-+Service+Delivery.pdf",
+      "vintage": "May 2023",
+      "accessed": "2026-10-25"
+    },
+    "provenance": {
+      "phaseInYears": {
+        "origin": "sourced",
+        "note": "Two steps: $900,000 from 1 July 2024, $1 million from 1 July 2025",
+        "source": {
+          "description": "Victorian Budget 2023-24, Budget Paper No. 3: Service Delivery, Table 1.27 and p. 114",
+          "url": "https://s3.ap-southeast-2.amazonaws.com/budgetfiles202324.budget.vic.gov.au/2023-24+State+Budget+-+Service+Delivery.pdf",
+          "vintage": "May 2023",
+          "accessed": "2026-10-25"
+        }
+      }
+    }
+  },
+  "scope": {
+    "industries": [
+      {
+        "anzsic": "A",
+        "exposure": 0.2202,
+        "role": "direct",
+        "note": "Agriculture, Forestry and Fishing"
+      },
+      {
+        "anzsic": "B",
+        "exposure": 0.1043,
+        "role": "direct",
+        "note": "Mining"
+      },
+      {
+        "anzsic": "C",
+        "exposure": 0.2551,
+        "role": "direct",
+        "note": "Manufacturing"
+      },
+      {
+        "anzsic": "D",
+        "exposure": 0.2718,
+        "role": "direct",
+        "note": "Electricity, Gas, Water and Waste Services"
+      },
+      {
+        "anzsic": "E",
+        "exposure": 0.2386,
+        "role": "direct",
+        "note": "Construction"
+      },
+      {
+        "anzsic": "F",
+        "exposure": 0.2687,
+        "role": "direct",
+        "note": "Wholesale Trade"
+      },
+      {
+        "anzsic": "G",
+        "exposure": 0.2953,
+        "role": "direct",
+        "note": "Retail Trade"
+      },
+      {
+        "anzsic": "H",
+        "exposure": 0.2771,
+        "role": "direct",
+        "note": "Accommodation and Food Services"
+      },
+      {
+        "anzsic": "I",
+        "exposure": 0.2488,
+        "role": "direct",
+        "note": "Transport, Postal and Warehousing"
+      },
+      {
+        "anzsic": "J",
+        "exposure": 0.2635,
+        "role": "direct",
+        "note": "Information Media and Telecommunications"
+      },
+      {
+        "anzsic": "K",
+        "exposure": 0.2406,
+        "role": "direct",
+        "note": "Financial and Insurance Services"
+      },
+      {
+        "anzsic": "L",
+        "exposure": 0.22,
+        "role": "direct",
+        "note": "Rental, Hiring and Real Estate Services"
+      },
+      {
+        "anzsic": "M",
+        "exposure": 0.2456,
+        "role": "direct",
+        "note": "Professional, Scientific and Technical Services"
+      },
+      {
+        "anzsic": "N",
+        "exposure": 0.2519,
+        "role": "direct",
+        "note": "Administrative and Support Services"
+      },
+      {
+        "anzsic": "O",
+        "exposure": 0.2453,
+        "role": "direct",
+        "note": "Public Administration and Safety"
+      },
+      {
+        "anzsic": "P",
+        "exposure": 0.2655,
+        "role": "direct",
+        "note": "Education and Training"
+      },
+      {
+        "anzsic": "Q",
+        "exposure": 0.2498,
+        "role": "direct",
+        "note": "Health Care and Social Assistance"
+      },
+      {
+        "anzsic": "R",
+        "exposure": 0.282,
+        "role": "direct",
+        "note": "Arts and Recreation Services"
+      },
+      {
+        "anzsic": "S",
+        "exposure": 0.2507,
+        "role": "direct",
+        "note": "Other Services"
+      }
+    ],
+    "sizeBands": [
+      "1-4",
+      "5-19",
+      "20-199",
+      "200+"
+    ],
+    "entityTypes": [
+      "private"
+    ],
+    "states": [
+      "VIC"
+    ],
+    "provenance": {
+      "industries.0.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 9,550 of 43,362 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.1.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 379 of 3,635 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.2.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 12,170 of 47,705 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.3.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 1,054 of 3,878 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.4.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 43,957 of 184,253 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.5.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 10,492 of 39,045 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.6.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 23,221 of 78,625 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.7.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 21,533 of 77,714 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.8.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 10,370 of 41,688 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.9.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 2,449 of 9,294 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.10.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 9,239 of 38,402 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.11.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 8,758 of 39,809 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.12.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 37,047 of 150,844 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.13.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 12,292 of 48,804 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.14.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 867 of 3,535 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.15.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 5,234 of 19,713 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.16.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 20,766 of 83,139 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.17.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 3,986 of 14,133 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.18.exposure": {
+        "origin": "sourced",
+        "note": "Victoria's share of the division's employing businesses at June 2025: 16,637 of 66,353 (ABS CABEE by state, Jul 2021 to Jun 2025)",
+        "source": {
+          "description": "ABS, Counts of Australian Businesses, including Entries and Exits, data cube 2 by state (data/processed/abs_cabee)",
+          "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits",
+          "accessed": "2026-10-25"
+        }
+      }
+    }
+  },
+  "levers": {
+    "thresholds": [
+      {
+        "id": "tax-free-threshold",
+        "metric": "payroll",
+        "change": "move",
+        "previousValue": 700000,
+        "value": 1000000,
+        "costAbovePerYearDollars": {
+          "low": 0,
+          "high": 14550
+        },
+        "design": "taper",
+        "provenance": {
+          "costAbovePerYearDollars": {
+            "origin": "sourced",
+            "note": "Payroll tax at 4.85% on the first $300,000 of wages above the threshold: $0 just above it, up to $14,550 (the saving the Budget gives for businesses that benefit)",
+            "source": {
+              "description": "Victorian Budget 2023-24, Budget Paper No. 5: Statement of Finances, chapter 4 (payroll tax)",
+              "url": "https://s3.ap-southeast-2.amazonaws.com/budgetfiles202324.budget.vic.gov.au/2023-24+State+Budget+-+Statement+of+Finances.pdf",
+              "vintage": "May 2023",
+              "accessed": "2026-10-25"
+            }
+          }
+        }
+      },
+      {
+        "id": "threshold-phase-out",
+        "metric": "payroll",
+        "change": "introduce",
+        "value": 3000000,
+        "costAbovePerYearDollars": {
+          "low": 0,
+          "high": 48500
+        },
+        "design": "taper",
+        "provenance": {
+          "costAbovePerYearDollars": {
+            "origin": "sourced",
+            "note": "The $1 million deduction is withdrawn by $1 for every $2 of wages above $3 million: from $0 at $3 million to $48,500 of extra tax at $5 million (4.85% × $1 million)",
+            "source": {
+              "description": "Victorian Budget 2023-24, Budget Paper No. 3: Service Delivery, Table 1.27 and p. 114",
+              "url": "https://s3.ap-southeast-2.amazonaws.com/budgetfiles202324.budget.vic.gov.au/2023-24+State+Budget+-+Service+Delivery.pdf",
+              "vintage": "May 2023",
+              "accessed": "2026-10-25"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

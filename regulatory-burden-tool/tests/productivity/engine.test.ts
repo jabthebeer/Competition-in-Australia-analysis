@@ -241,8 +241,31 @@ describe("costing engine", () => {
     expect(c5.other[2]!.value).toBeCloseTo((10000 / perBusiness) * 100, 9);
     expect(r.gdpPct).toBe(0);
     expect(c5.reasons.join()).toMatch(/not quantified/);
-    const turnover = channel(costBrief(brief({ thresholds: [{ id: "t", metric: "turnover", change: "introduce", value: 1e7, costAbovePerYearDollars: 1 }] }), ctx), "C5");
-    expect(turnover.reasons[0]).toMatch(/by employment only/);
+    const assets = channel(costBrief(brief({ thresholds: [{ id: "t", metric: "assets", change: "introduce", value: 1e7, costAbovePerYearDollars: 1 }] }), ctx), "C5");
+    expect(assets.reasons[0]).toMatch(/no size bands by assets/);
+  });
+
+  it("T-PCE-18 C5 screens a payroll or turnover threshold through its employee equivalent: the value over wages (or sales) per person employed", () => {
+    const total = ctx.industryByBand.C!.total!;
+    const perPerson = (total.wages * 1e6) / (total.employment * 1e3);
+    // A payroll threshold worth 20 employees screens exactly as the 20-employee threshold of T-PCE-16.
+    const payroll = channel(costBrief(brief({ thresholds: [{ id: "p", metric: "payroll", change: "introduce", value: 20 * perPerson, costAbovePerYearDollars: 10000 }] }, ["C"]), ctx), "C5");
+    const employees = channel(costBrief(brief({ thresholds: [{ id: "p", metric: "employees", change: "introduce", value: 20, costAbovePerYearDollars: 10000 }] }, ["C"]), ctx), "C5");
+    expect(payroll.other.map((o) => o.value)).toEqual(employees.other.map((o) => o.value));
+    expect(payroll.other[0]!.chain[1]!.value).toBeCloseTo(20, 9);
+    expect(payroll.notes.join()).toMatch(/A-P34/);
+    const sales = (ctx.industryByBand.C!.total!.sales * 1e6) / (total.employment * 1e3);
+    const turnover = channel(costBrief(brief({ thresholds: [{ id: "s", metric: "turnover", change: "introduce", value: 20 * sales, costAbovePerYearDollars: 10000 }] }, ["C"]), ctx), "C5");
+    expect(turnover.other[0]!.value).toBe(employees.other[0]!.value);
+  });
+
+  it("T-PCE-19 C8: mutual recognition is recorded with a note, not costed", () => {
+    const lic = { occupations: ["381231"], stringencyChange: -0.5 };
+    const plain = channel(costBrief(brief({ labour: { licensing: lic } }, ["E"]), ctx), "C8");
+    const mr = channel(costBrief(brief({ labour: { licensing: { ...lic, mutualRecognition: true } } }, ["E"]), ctx), "C8");
+    expect(mr.effects).toEqual(plain.effects);
+    expect(mr.notes.join()).toMatch(/Mutual recognition is recorded but not costed.*A-P35/);
+    expect(plain.notes.join()).not.toMatch(/Mutual recognition/);
   });
 
   it("T-PCE-17 O-1: entrants' compliance costs leave C1 when C4 costs entry; entrant populations must be the burden's", () => {

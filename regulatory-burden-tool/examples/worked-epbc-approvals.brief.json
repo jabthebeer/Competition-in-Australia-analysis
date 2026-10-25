@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "kind": "policy-brief",
+  "id": "worked-epbc-approvals",
+  "meta": {
+    "title": "EPBC Act reform: the Streamlined Assessment Pathway (2025)",
+    "summary": "Worked example (P6): an approval-time cut for investment. The Environment Protection Reform Bill 2025 adds a Streamlined Assessment Pathway that shortens the statutory assessment and approval period for controlled actions by at least 20 days (DCCEEW's low scenario; 141 and 288 days in its medium and high scenarios, if other reforms cut requests for more information). The tool costs it through C2: the delay raises the user cost of the investment that needs approval. DCCEEW's own estimate is a reduction in delay costs of $445 million a year (low), $3,045 million (medium) and $6,914 million (high).",
+    "jurisdictions": [
+      "CTH"
+    ],
+    "proposalType": "reform",
+    "startYear": 2026,
+    "phaseInYears": 0,
+    "durationYears": 10,
+    "priceBase": "2025-26",
+    "source": {
+      "description": "DCCEEW, Environmental Law Reform: Certification of Final Report of the EPBC Act Review, Addendum to the Final Report (24 September 2025), Table 1 and Methodology, pp. 1–2",
+      "url": "https://oia.pmc.gov.au/sites/default/files/posts/2025/10/Addendum.pdf",
+      "vintage": "September 2025",
+      "accessed": "2026-10-25"
+    },
+    "provenance": {
+      "startYear": {
+        "origin": "entered",
+        "note": "Assumed: the addendum gives no commencement date"
+      }
+    }
+  },
+  "scope": {
+    "industries": [
+      {
+        "anzsic": "A",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Agriculture, Forestry and Fishing"
+      },
+      {
+        "anzsic": "B",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Mining"
+      },
+      {
+        "anzsic": "C",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Manufacturing"
+      },
+      {
+        "anzsic": "D",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Electricity, Gas, Water and Waste Services"
+      },
+      {
+        "anzsic": "E",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Construction"
+      },
+      {
+        "anzsic": "F",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Wholesale Trade"
+      },
+      {
+        "anzsic": "G",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Retail Trade"
+      },
+      {
+        "anzsic": "H",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Accommodation and Food Services"
+      },
+      {
+        "anzsic": "I",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Transport, Postal and Warehousing"
+      },
+      {
+        "anzsic": "J",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Information Media and Telecommunications"
+      },
+      {
+        "anzsic": "K",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Financial and Insurance Services"
+      },
+      {
+        "anzsic": "L",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Rental, Hiring and Real Estate Services"
+      },
+      {
+        "anzsic": "M",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Professional, Scientific and Technical Services"
+      },
+      {
+        "anzsic": "N",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Administrative and Support Services"
+      },
+      {
+        "anzsic": "R",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Arts and Recreation Services"
+      },
+      {
+        "anzsic": "S",
+        "exposure": 0.2716,
+        "role": "direct",
+        "note": "Other Services"
+      }
+    ],
+    "sizeBands": [
+      "nonEmploying",
+      "1-4",
+      "5-19",
+      "20-199",
+      "200+"
+    ],
+    "entityTypes": [
+      "private"
+    ],
+    "provenance": {
+      "industries.0.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.1.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.2.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.3.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.4.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.5.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.6.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.7.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.8.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.9.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.10.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.11.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.12.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.13.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.14.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      },
+      "industries.15.exposure": {
+        "origin": "sourced",
+        "note": "Share of investment that passes through the EPBC assessment pathways: DCCEEW's implied value of projects assessed a year, $114,975 million ($441m ÷ (7% × 20/365)), over market-sector gross fixed capital formation in 2025-26, $423,375 million (ASNA, divisions other than O, P and Q). The same share in every division: DCCEEW does not publish its sectors' values",
+        "source": {
+          "description": "ABS, Australian System of National Accounts, 2025-26: capital by industry (bundled parameters, abs_asna.capital)",
+          "url": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-system-national-accounts/latest-release",
+          "accessed": "2026-10-25"
+        }
+      }
+    }
+  },
+  "levers": {
+    "capital": {
+      "investmentApprovalDelayChangeMonths": -0.6575,
+      "provenance": {
+        "investmentApprovalDelayChangeMonths": {
+          "origin": "sourced",
+          "note": "At least 20 days off the 70-day statutory timeframe of the existing pathways (DCCEEW's low scenario), in months (× 12/365)",
+          "source": {
+            "description": "DCCEEW, Environmental Law Reform: Certification of Final Report of the EPBC Act Review, Addendum to the Final Report (24 September 2025), Table 1 and Methodology, pp. 1–2",
+            "url": "https://oia.pmc.gov.au/sites/default/files/posts/2025/10/Addendum.pdf",
+            "vintage": "September 2025",
+            "accessed": "2026-10-25"
+          }
+        }
+      }
+    }
+  }
+}

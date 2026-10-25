@@ -1,0 +1,317 @@
+{
+  "fingerprint": "97e8dcdd61a44d9f",
+  "vintage": "2026-10-23",
+  "outputs": [
+    {
+      "id": "noncompete-ban",
+      "variant": null,
+      "title": "Banning non-compete clauses for low- and middle-income workers (2025-26 Budget)",
+      "gate": "indicative",
+      "gateReasons": [
+        "The largest channel (C8, Labour mobility (licensing, non-competes)) is graded C."
+      ],
+      "gdpPct": 0.178395,
+      "p10": 0.104393,
+      "p50": 0.137353,
+      "p90": 0.165678,
+      "gdpDollars": 5242.14,
+      "npv7": 6569.01,
+      "welfareDollars": 0,
+      "channels": [
+        {
+          "channel": "C1",
+          "status": "costed",
+          "grade": "A",
+          "gdpPct": -0.000351885
+        },
+        {
+          "channel": "C8",
+          "status": "costed",
+          "grade": "C",
+          "gdpPct": 0.178747
+        }
+      ],
+      "rbe": [
+        {
+          "option": "option-2-partial-ban",
+          "dollars": 4893060
+        },
+        {
+          "option": "option-3-full-ban",
+          "dollars": 1631020
+        }
+      ],
+      "screen": []
+    },
+    {
+      "id": "worked-amr",
+      "variant": null,
+      "title": "Automatic mutual recognition of occupational registrations (2021)",
+      "gate": "indicative",
+      "gateReasons": [
+        "No channel changes GDP."
+      ],
+      "gdpPct": 0,
+      "p10": 0,
+      "p50": 0,
+      "p90": 0,
+      "gdpDollars": 0,
+      "npv7": 0,
+      "welfareDollars": 0,
+      "channels": [
+        {
+          "channel": "C1",
+          "status": "notQuantified",
+          "grade": null,
+          "gdpPct": 0
+        },
+        {
+          "channel": "C8",
+          "status": "costed",
+          "grade": "C",
+          "gdpPct": 0
+        }
+      ],
+      "rbe": [
+        {
+          "option": "amr",
+          "dollars": 0
+        }
+      ],
+      "screen": []
+    },
+    {
+      "id": "worked-climate-disclosure",
+      "variant": null,
+      "title": "Mandatory climate-related financial disclosure (2024)",
+      "gate": "full",
+      "gateReasons": [],
+      "gdpPct": -0.0827181,
+      "p10": -0.0875432,
+      "p50": -0.0768514,
+      "p90": -0.0605246,
+      "gdpDollars": -2430.67,
+      "npv7": -7902.57,
+      "welfareDollars": 0,
+      "channels": [
+        {
+          "channel": "C1",
+          "status": "costed",
+          "grade": "A",
+          "gdpPct": -0.0827181
+        },
+        {
+          "channel": "C5",
+          "status": "costed",
+          "grade": "B",
+          "gdpPct": 0
+        }
+      ],
+      "rbe": [
+        {
+          "option": "option-1b",
+          "dollars": 1150220000
+        },
+        {
+          "option": "option-1",
+          "dollars": 1386710000
+        },
+        {
+          "option": "option-1a",
+          "dollars": 1207340000
+        }
+      ],
+      "screen": [
+        {
+          "label": "Threshold \"group-1\" at 500 employees: businesses in the size bands that overlap 450–550 employees (200+; CABEE 2024-25)",
+          "value": 5324,
+          "unit": "businesses"
+        },
+        {
+          "label": "Threshold \"group-1\" at 500 employees: employment in those bands (Australian Industry 2024-25)",
+          "value": 4781.1,
+          "unit": "thousand persons"
+        },
+        {
+          "label": "Threshold \"group-1\": cost a year above the threshold as a share of an average wage bill in the 200+ band, against the French rules' 2.3% labour-tax equivalent",
+          "value": 0.840878,
+          "unit": "% of wages"
+        },
+        {
+          "label": "Threshold \"group-2\" at 250 employees: businesses in the size bands that overlap 225–275 employees (200+; CABEE 2024-25)",
+          "value": 5324,
+          "unit": "businesses"
+        },
+        {
+          "label": "Threshold \"group-2\" at 250 employees: employment in those bands (Australian Industry 2024-25)",
+          "value": 4781.1,
+          "unit": "thousand persons"
+        },
+        {
+          "label": "Threshold \"group-2\": cost a year above the threshold as a share of an average wage bill in the 200+ band, against the French rules' 2.3% labour-tax equivalent",
+          "value": 0.840878,
+          "unit": "% of wages"
+        },
+        {
+          "label": "Threshold \"group-3\" at 100 employees: businesses in the size bands that overlap 90–110 employees (20-199; CABEE 2024-25)",
+          "value": 67876,
+          "unit": "businesses"
+        },
+        {
+          "label": "Threshold \"group-3\" at 100 employees: employment in those bands (Australian Industry 2024-25)",
+          "value": 3424.5,
+          "unit": "thousand persons"
+        },
+        {
+          "label": "Threshold \"group-3\": cost a year above the threshold as a share of an average wage bill in the 20-199 band, against the French rules' 2.3% labour-tax equivalent",
+          "value": 0.931497,
+          "unit": "% of wages"
+        }
+      ]
+    },
+    {
+      "id": "worked-epbc-approvals",
+      "variant": null,
+      "title": "EPBC Act reform: the Streamlined Assessment Pathway (2025)",
+      "gate": "full",
+      "gateReasons": [],
+      "gdpPct": 0.0155147,
+      "p10": 0.00842586,
+      "p50": 0.0129996,
+      "p90": 0.0194852,
+      "gdpDollars": 455.9,
+      "npv7": 355.799,
+      "welfareDollars": 0,
+      "channels": [
+        {
+          "channel": "C2",
+          "status": "costed",
+          "grade": "B",
+          "gdpPct": 0.0155147
+        }
+      ],
+      "rbe": [],
+      "screen": []
+    },
+    {
+      "id": "worked-epbc-approvals",
+      "variant": "medium",
+      "title": "EPBC Act reform: the Streamlined Assessment Pathway (2025): 141 days (DCCEEW's medium scenario)",
+      "gate": "full",
+      "gateReasons": [],
+      "gdpPct": 0.109384,
+      "p10": 0.0594052,
+      "p50": 0.0916513,
+      "p90": 0.137377,
+      "gdpDollars": 3214.25,
+      "npv7": 2508.5,
+      "welfareDollars": 0,
+      "channels": [
+        {
+          "channel": "C2",
+          "status": "costed",
+          "grade": "B",
+          "gdpPct": 0.109384
+        }
+      ],
+      "rbe": [],
+      "screen": []
+    },
+    {
+      "id": "worked-epbc-approvals",
+      "variant": "high",
+      "title": "EPBC Act reform: the Streamlined Assessment Pathway (2025): 288 days (DCCEEW's high scenario)",
+      "gate": "full",
+      "gateReasons": [],
+      "gdpPct": 0.223424,
+      "p10": 0.121339,
+      "p50": 0.187203,
+      "p90": 0.280602,
+      "gdpDollars": 6565.31,
+      "npv7": 5123.78,
+      "welfareDollars": 0,
+      "channels": [
+        {
+          "channel": "C2",
+          "status": "costed",
+          "grade": "B",
+          "gdpPct": 0.223424
+        }
+      ],
+      "rbe": [],
+      "screen": []
+    },
+    {
+      "id": "worked-vic-payroll-threshold",
+      "variant": null,
+      "title": "Victoria's payroll tax-free threshold: $700,000 to $1 million (2023-24 Budget)",
+      "gate": "indicative",
+      "gateReasons": [
+        "No channel changes GDP."
+      ],
+      "gdpPct": 0,
+      "p10": 0,
+      "p50": 0,
+      "p90": 0,
+      "gdpDollars": 0,
+      "npv7": 0,
+      "welfareDollars": 0,
+      "channels": [
+        {
+          "channel": "C5",
+          "status": "costed",
+          "grade": "B",
+          "gdpPct": 0
+        }
+      ],
+      "rbe": [],
+      "screen": [
+        {
+          "label": "Threshold \"tax-free-threshold\" at $1,000,000 of payroll: businesses in the size bands that overlap ±10% of its employee equivalent (5-19, 20-199; CABEE 2024-25)",
+          "value": 44207.6,
+          "unit": "businesses"
+        },
+        {
+          "label": "Threshold \"tax-free-threshold\" at $1,000,000 of payroll: employment in those bands (Australian Industry 2024-25)",
+          "value": 584.677,
+          "unit": "thousand persons"
+        },
+        {
+          "label": "Threshold \"tax-free-threshold\": cost a year above the threshold as a share of an average wage bill in the 5-19 or 20-199 band, against the French rules' 2.3% labour-tax equivalent",
+          "value": 0.86631,
+          "unit": "% of wages"
+        },
+        {
+          "label": "Threshold \"tax-free-threshold\" at $700,000 of payroll: businesses in the size bands that overlap ±10% of its employee equivalent (0-4, 5-19, 20-199; CABEE 2024-25)",
+          "value": 59718.4,
+          "unit": "businesses"
+        },
+        {
+          "label": "Threshold \"tax-free-threshold\" at $700,000 of payroll: employment in those bands (Australian Industry 2024-25)",
+          "value": 651.227,
+          "unit": "thousand persons"
+        },
+        {
+          "label": "Threshold \"tax-free-threshold\": cost a year above the threshold as a share of an average wage bill in the 0-4 or 5-19 or 20-199 band, against the French rules' 2.3% labour-tax equivalent",
+          "value": 1.04176,
+          "unit": "% of wages"
+        },
+        {
+          "label": "Threshold \"threshold-phase-out\" at $3,000,000 of payroll: businesses in the size bands that overlap ±10% of its employee equivalent (5-19, 20-199; CABEE 2024-25)",
+          "value": 17100.5,
+          "unit": "businesses"
+        },
+        {
+          "label": "Threshold \"threshold-phase-out\" at $3,000,000 of payroll: employment in those bands (Australian Industry 2024-25)",
+          "value": 873.782,
+          "unit": "thousand persons"
+        },
+        {
+          "label": "Threshold \"threshold-phase-out\": cost a year above the threshold as a share of an average wage bill in the 5-19 or 20-199 band, against the French rules' 2.3% labour-tax equivalent",
+          "value": 0.628895,
+          "unit": "% of wages"
+        }
+      ]
+    }
+  ]
+}
