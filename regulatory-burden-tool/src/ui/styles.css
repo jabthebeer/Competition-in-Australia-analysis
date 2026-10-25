@@ -1148,3 +1148,31 @@ progress {
     grid-column: 1 / -1;
   }
 }
+
+.screener summary,
+details.card > summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.screener-outcomes li {
+  margin: 0.35rem 0;
+  padding-left: 0.5rem;
+  border-left: 4px solid var(--line);
+}
+
+.screener-outcomes .scope-in {
+  border-color: var(--good);
+}
+
+.screener-outcomes .scope-out {
+  border-color: var(--bad);
+}
+
+.screener-outcomes .scope-partly {
+  border-color: var(--warn);
+}
+
+.category .help {
+  margin-top: 0;
+}

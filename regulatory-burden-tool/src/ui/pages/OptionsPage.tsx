@@ -2,6 +2,7 @@ import { useState } from "react";
 import { reformDiff, verdictText, type Obligation, type OptionResult, type Proposal } from "../../engine/index";
 import { NextStep, PageHeading, type PageProps } from "../App";
 import { ObligationEditor, describeTiming } from "../components/ObligationEditor";
+import { Screener } from "../components/Screener";
 import { Checkbox, Help, IntegerField, RadioGroup, formatQuantity } from "../components/fields";
 import { CATEGORY_LABELS, formatMoney, moneyText } from "../format";
 import { LEVERS } from "../levers";
@@ -34,7 +35,8 @@ export function OptionsPage({ proposal, update, computed, go }: PageProps) {
 
   return (
     <>
-      <PageHeading>Step 3: Reform options</PageHeading>
+      <PageHeading>Step 4: Reform options</PageHeading>
+      <Screener />
       <p>For each option, say what happens to each existing obligation, then add any new replacement obligations and the one-off costs of switching over.</p>
       <nav className="option-tabs" aria-label="Options">
         {proposal.options.map((o) => (

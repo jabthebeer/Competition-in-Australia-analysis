@@ -17,7 +17,7 @@ const PRECISIONS: { value: string; label: string }[] = [
 export function ResultsPage(props: PageProps) {
   return (
     <>
-      <PageHeading>Results</PageHeading>
+      <PageHeading>Step 7: Results</PageHeading>
       <BurdenResults {...props} />
       <ProductivityResults {...props} />
     </>

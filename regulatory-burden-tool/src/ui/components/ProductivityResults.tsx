@@ -24,7 +24,7 @@ const GATE_TITLES = {
 } as const;
 
 /** Runs the Monte Carlo and the tornado for a brief, restarting (and cancelling the last run) when it changes. */
-function useRanges(brief: PolicyBrief | null, ctx: CostingContext | null) {
+export function useRanges(brief: PolicyBrief | null, ctx: CostingContext | null) {
   const [state, setState] = useState<{ brief: PolicyBrief | null; ranges: Ranges | null; tornado: TornadoBar[]; done: number; draws: number }>({ brief: null, ranges: null, tornado: [], done: 0, draws: 0 });
   useEffect(() => {
     if (!brief || !ctx) return;

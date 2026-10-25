@@ -43,8 +43,8 @@ export interface CostingContext {
   /** Businesses by ANZSIC code (class, subdivision or division) and employment size band, end of `sizeYear` (CABEE). */
   businessesByBand: Record<string, Record<string, number>>;
   sizeYear: string;
-  /** Employment (thousand persons) and wages ($ million) by division and size band (Australian Industry; excludes division K), and their year. */
-  industryByBand: Record<string, Record<string, { employment: number; wages: number }>>;
+  /** Employment (thousand persons), wages and sales ($ million) by division and size band (Australian Industry; excludes division K), and their year. */
+  industryByBand: Record<string, Record<string, { employment: number; wages: number; sales: number }>>;
   industryByBandYear: string;
   parameterVintage: string | null;
 }
@@ -116,10 +116,10 @@ export function buildContext(params: ParameterFile): CostingContext {
 
   const ai = rows(params, "abs_australian_industry.size_division");
   const industryByBandYear = ai.map((r) => String(r.fy)).sort().at(-1) ?? "";
-  const industryByBand: Record<string, Record<string, { employment: number; wages: number }>> = {};
+  const industryByBand: Record<string, Record<string, { employment: number; wages: number; sales: number }>> = {};
   for (const r of ai) {
     if (r.fy !== industryByBandYear || typeof r.anzsic !== "string") continue;
-    (industryByBand[r.anzsic] ??= {})[String(r.size_band)] = { employment: num(r.employment), wages: num(r.wages) };
+    (industryByBand[r.anzsic] ??= {})[String(r.size_band)] = { employment: num(r.employment), wages: num(r.wages), sales: num(r.sales) };
   }
 
   return {
