@@ -162,7 +162,7 @@ function ExistingObligation({ proposal, optionId, obligation: o, update, result 
       />
       {status === "remove" && (
         <Help>
-          Only future costs are saved. If businesses would keep doing some of this anyway, set the do-anyway share for this obligation in step 2 (now {formatQuantity(o.doAnywayShare, 100, "%")}).
+          Only future costs are saved. If businesses would keep doing some of this anyway, set the do-anyway share for this obligation in step 3 (now {formatQuantity(o.doAnywayShare, 100, "%")}).
         </Help>
       )}
       {status === "modify" && (

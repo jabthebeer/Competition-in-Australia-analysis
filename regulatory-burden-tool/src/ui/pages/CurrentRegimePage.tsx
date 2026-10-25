@@ -45,7 +45,7 @@ export function CurrentRegimePage({ proposal, update, computed, go }: PageProps)
         </p>
       ) : (
         <p>
-          List the obligations as they are today: what entities must do, how long it takes or what it costs, and how often. Each option in step 3 starts from this list, and you change only what the reform changes.
+          List the obligations as they are today: what entities must do, how long it takes or what it costs, and how often. Each option in step 4 starts from this list, and you change only what the reform changes. A reform that only adds new costs, such as the one-off familiarisation in the worked example, can leave this list empty.
         </p>
       )}
       {result && obligations.length > 0 && (

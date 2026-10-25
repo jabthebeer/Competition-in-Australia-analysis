@@ -240,10 +240,22 @@ test("T-E2E-08 accessibility: axe finds no WCAG 2.2 A/AA violations on any page"
   }
 });
 
-test("T-E2E-09 first visit offers the illustrative example; a proposal copied as text loads back", async ({ page, context }) => {
+test("T-E2E-09 first visit offers the worked example and the illustrative one; a proposal copied as text loads back", async ({ page, context }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  // The worked example (the non-compete ban) fills every step: both burden options and the productivity lever.
   await page.goto("/");
-  await page.getByTestId("first-run").getByRole("button", { name: "Load the illustrative example" }).click();
+  await page.getByTestId("first-run-example").click();
+  await expect(page.getByTestId("first-run")).toHaveCount(0);
+  await expect(page.getByTestId("title")).toHaveValue(/Banning non-compete clauses/);
+  await goTo(page, /Results/);
+  await expect(page.getByTestId("rbe-option-2-partial-ban")).toBeVisible();
+  await expect(page.getByTestId("gate")).toHaveAttribute("data-status", "indicative", { timeout: 30_000 });
+  await page.goto("/#data");
+  await page.getByTestId("start-new").click();
+  await page.getByTestId("start-new-confirm").click();
+  // The simpler, burden-only illustrative example (in-app navigation: a reload could beat the auto-save).
+  await goTo(page, /Proposal/);
+  await page.getByTestId("first-run").getByRole("button", { name: "load the illustrative example" }).click();
   await expect(page.getByTestId("first-run")).toHaveCount(0);
   await goTo(page, /Results/);
   expect(await rbeCells(page, "annual")).toEqual(["($12.7)", "$0", "$0", "($12.7)"]);
