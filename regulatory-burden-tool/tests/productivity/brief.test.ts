@@ -2,7 +2,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { computeProposal, rbeTable } from "../../src/engine/index";
+import { computeProposal, rbeTable, unconfirmedEstimates } from "../../src/engine/index";
 import {
   BRIEF_WARNINGS,
   BriefValidationError,
@@ -225,6 +225,7 @@ describe("policy brief schema", () => {
   it("T-BRF-17 the bundled example, the non-compete ban, parses without warnings and rebuilds the Impact Analysis's familiarisation costs", () => {
     const b = parseBrief(JSON.parse(readFileSync(join(root, "examples", "noncompete-ban.brief.json"), "utf8")));
     expect(briefWarnings(b)).toEqual([]);
+    expect(unconfirmedEstimates(b.burden!)).toEqual([]); // derived inputs are sourced, not language-model estimates (W-22)
     expect(b.scope.industries.map((i) => i.anzsic).join("")).toBe("ABCDEFGHIJKLMNOPQRS");
     const result = computeProposal(b.burden!);
     const tenYear = (id: string) => Number(result.options.find((o) => o.optionId === id)!.rbe.total.toString()) * 10;

@@ -266,8 +266,13 @@
         },
         "provenance": {
           "count": {
-            "origin": "modelEstimate",
-            "note": "The IA's 73,403 medium and large businesses, split by CABEE's June 2024 counts (68,235 with 20–199 employees, 5,189 with 200+)"
+            "origin": "sourced",
+            "note": "The IA's 73,403 medium and large businesses, split by CABEE's June 2024 counts (68,235 with 20–199 employees, 5,189 with 200+)",
+            "source": {
+              "description": "ABS, Counts of Australian Businesses, including Entries and Exits (bundled parameters, abs_cabee_latest)",
+              "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/latest-release",
+              "accessed": "2026-10-25"
+            }
           }
         }
       },
@@ -285,8 +290,13 @@
         },
         "provenance": {
           "count": {
-            "origin": "modelEstimate",
-            "note": "As for medium businesses"
+            "origin": "sourced",
+            "note": "As for medium businesses",
+            "source": {
+              "description": "ABS, Counts of Australian Businesses, including Entries and Exits (bundled parameters, abs_cabee_latest)",
+              "url": "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/latest-release",
+              "accessed": "2026-10-25"
+            }
           }
         }
       }
