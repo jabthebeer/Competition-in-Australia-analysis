@@ -37,7 +37,7 @@ These documents are **not** committed to this public repository (see `docs/phase
 
 ## Real policies in the bundled examples (P6)
 
-The figures in `examples/noncompete-ban.brief.json` and the worked examples (`examples/worked-*.brief.json`, written by `npm run make:examples`) come from these documents; each value's page is recorded in the briefs' provenance. The documents are not committed: check them by hash.
+The figures in `examples/noncompete-ban.brief.json`, the worked examples (`examples/worked-*.brief.json`) and the re-costed Impact Analyses (`examples/ia-*.json`), all written by `npm run make:examples`, come from these documents; each value's page is recorded in the briefs' provenance. The documents are not committed: check them by hash.
 
 | Document | Publisher | Release | URL | Accessed | SHA-256 | Used for |
 |---|---|---|---|---|---|---|
@@ -51,6 +51,8 @@ The figures in `examples/noncompete-ban.brief.json` and the worked examples (`ex
 | Threshold and phase-out rate (web page) | State Revenue Office Victoria | current at access | <https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/thresholds-and-grouping/threshold-and-phase-out-rate> | 25 Oct 2026 | not stored | Worked example 5: phase-out rate 50% from 2025-26, nil above $5 million |
 | Mutual Recognition Schemes, Research Report (PDF) | Productivity Commission | September 2015 | <https://assets.pc.gov.au/inquiries/completed/mutual-recognition-schemes/report/mutual-recognition-schemes.pdf> | 25 Oct 2026 | `8003b8d12e4b575f8d411f075da6a795523088337a8cf1473d11a182c9d62897` | Worked example 2: the annual cost of holding multiple licences (p. 171, citing NOLA 2014) |
 | Competition and Regulation in Professions and Occupations (PDF, 38 pp.) | OECD | May 2024 | <https://www.oecd.org/content/dam/oecd/en/publications/reports/2024/05/competition-and-regulation-in-professions-and-occupations_a35fd2e6/218869f5-en.pdf> | 25 Oct 2026 | `2d52cb91597f7a3a9eddda626e5b7189089a41c9d750c6c8d2c718a463bd7a2c` | Worked example 2: reports the Government's $2.4 billion estimate for automatic mutual recognition (p. 34); its method was not retrieved |
+| Impact Analysis: Minimum tax on discretionary trusts ("Detailed IA", PDF, 36 pp.) | Treasury, published by the OIA | 21 Oct 2026 (announced 14 Oct 2026) | <https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf> (landing page: <https://oia.pmc.gov.au/published-impact-analyses-and-reports/minimum-tax-discretionary-trusts>) | 25 Oct 2026 | `ff24c8b51e6b510832a557d23981d4616a29012e9d321555b7b68f51d44df097` | P6c re-costing (`examples/ia-discretionary-trusts.json`): Appendix A populations, hours and rates (pp. 24–33), Tables 2 and 4 |
+| Dashboard Impact Analysis and Statement of sufficiency: Financial reporting relief for wholly-owned companies (PDF, 5 pp.) | ASIC, published by the OIA | 14 Oct 2026 (announced 29 Sep 2026) | <https://oia.pmc.gov.au/sites/default/files/posts/2026/10/IA%20Dashboard%20%26%20Statement%20of%20sufficiency.pdf> (landing page: <https://oia.pmc.gov.au/published-impact-analyses-and-reports/financial-reporting-relief-wholly-owned-companies>) | 25 Oct 2026 | `cb0411b318e69827a6b1ebc9baf4d39bea8e06075b0ff6d8a49c4ecec9c24f88` | P6c re-costing (`examples/ia-wholly-owned-relief.json`): 12,330 companies, $3,487 fee and about $1,500 of advice each (pp. 2–3) |
 
 ## Data behind the default parameters (as cited by the RBM, not downloaded)
 

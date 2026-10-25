@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { gunzipSync } from "node:zlib";
+import { loadProposalFile } from "../src/engine/index";
 import { parseBrief } from "../src/productivity/index";
 
 const tool = join(import.meta.dirname, "..");
@@ -498,8 +499,114 @@ function vicPayroll() {
   });
 }
 
+// ---- Impact Analyses re-costed with the RBM engine (P6c, plan §8): proposal files --------------------------------
+
+function writeProposal(name: string, proposal: object) {
+  const file = { schemaVersion: 1, proposal };
+  loadProposalFile(file); // fails loudly if the proposal is not valid
+  writeFileSync(join(tool, "examples", name), `${JSON.stringify(file, null, 2)}\n`, "utf8");
+  console.log(`Wrote examples/${name}`);
+}
+
+const TRUSTS_URL = "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf";
+const trustsIa = (loc: string) => src(`Treasury, Impact Analysis: Minimum tax on discretionary trusts (OIA, published 21 October 2026), Appendix A, ${loc}`, TRUSTS_URL, "October 2026");
+
+function discretionaryTrusts() {
+  const pop = (id: string, label: string, group: "business" | "individual", count: number, loc: string) => ({ id, label, group, count, source: trustsIa(loc) });
+  const labour = (populationId: string, hours: number, entities?: number | { low: number; high: number }, rateId = "work") => ({ populationId, ...(entities !== undefined ? { entities } : {}), labour: { hours, timesPerYear: 1, rateId } });
+  const once = (id: string, name: string, lines: object[], description?: string) => ({ id, name, category: "administrative", ...(description ? { description } : {}), reformed: { costType: "labour", timing: { type: "oneOff", year: 1 }, lines } });
+  const yearly = (id: string, name: string, lines: object[]) => ({ id, name, category: "administrative", reformed: { costType: "labour", timing: { type: "ongoing" }, lines } });
+  writeProposal("ia-discretionary-trusts.json", {
+    id: "ia-discretionary-trusts",
+    title: "Minimum tax on discretionary trusts: Treasury's regulatory burden estimate (Impact Analysis, 2026), re-costed",
+    description:
+      "Appendix A of the Impact Analysis: populations (Tables 1 and 3), hours per task and the OIA's rates ($91.54 for work, including non-business trusts' advisers; $41 for individual beneficiaries). Restructure and election shares are ranges (10–30% and 70–90% of business trusts with high advice needs; 5–25% and 75–95% of non-business ones), whose midpoints are the central estimate. One-off costs fall in year 1 here; in the IA, restructures spread over the 3-year roll-over period and elections fall in 2028-29, which leaves the ten-year average unchanged.",
+    proposalType: "new",
+    durationYears: 10,
+    jurisdiction: "commonwealthOnly",
+    baseline: "statusQuo",
+    populations: [
+      pop("business-low", "Business discretionary trusts with low advice requirements", "business", 220000, "Table 1 (p. 26)"),
+      pop("business-high", "Business discretionary trusts with high advice requirements", "business", 130000, "Table 1 (p. 26)"),
+      pop("nonbusiness-low", "Non-business discretionary trusts with low advice requirements", "individual", 300000, "Table 1 (p. 26)"),
+      pop("nonbusiness-high", "Non-business discretionary trusts with high advice requirements", "individual", 190000, "Table 1 (p. 26)"),
+      pop("business-all", "All business discretionary trusts (Option 3)", "business", 350000, "Table 3 (p. 31)"),
+      pop("nonbusiness-all", "All non-business discretionary trusts (Option 3)", "individual", 490000, "Table 3 (p. 31)"),
+      pop("beneficiaries", "Individual beneficiaries of discretionary trusts", "individual", 810000, "Table 1 (p. 26)"),
+      pop("tax-agents", "Registered tax agents", "business", 47000, "Table 1 (p. 26), citing the Tax Practitioners Board"),
+      pop("corporate-beneficiaries", "Corporate beneficiaries of minimum tax trusts (Option 3)", "business", 220000, "Table 3 (p. 31)"),
+    ],
+    options: [
+      {
+        id: "option-2",
+        name: "Option 2: 30% minimum tax, offsets for non-corporate beneficiaries, roll-over relief and an election (preferred)",
+        obligations: [yearly("annual-calculation", "Annual minimum tax calculation (1 hour a year)", [labour("business-low", 1), labour("nonbusiness-low", 1)])],
+        transitions: [
+          once("advice-low", "Upfront advice, trusts with low advice requirements (6 hours, business; 4 hours, non-business)", [labour("business-low", 6), labour("nonbusiness-low", 4)]),
+          once("restructure", "Restructure under the roll-over relief (120 hours, business; 25 hours, non-business)", [labour("business-high", 120, { low: 13000, high: 39000 }), labour("nonbusiness-high", 25, { low: 9500, high: 47500 })]),
+          once("election", "Opt into the electable regime (14 hours, business; 6 hours, non-business)", [labour("business-high", 14, { low: 91000, high: 117000 }), labour("nonbusiness-high", 6, { low: 142500, high: 180500 })]),
+          once("beneficiaries", "Beneficiaries learn the changes and verify their offset (2 hours)", [labour("beneficiaries", 2, undefined, "leisure")]),
+          once("tax-agents", "Tax agents learn the rules and update processes (16 hours)", [labour("tax-agents", 16)]),
+        ],
+      },
+      {
+        id: "option-3",
+        name: "Option 3: 30% minimum tax with offsets for all beneficiaries",
+        obligations: [
+          yearly("annual-calculation", "Annual minimum tax calculation (1 hour a year)", [labour("business-all", 1), labour("nonbusiness-all", 1)]),
+          yearly("corporate-tracking", "Corporate beneficiaries track the offsets (1 hour a year)", [labour("corporate-beneficiaries", 1)]),
+        ],
+        transitions: [
+          once("advice", "Upfront advice (6 hours, business; 4 hours, non-business)", [labour("business-all", 6), labour("nonbusiness-all", 4)]),
+          once("corporate-setup", "Corporate beneficiaries set up separate tracking (3 hours)", [labour("corporate-beneficiaries", 3)]),
+          once("beneficiaries", "Beneficiaries learn the changes and verify their offset (2 hours)", [labour("beneficiaries", 2, undefined, "leisure")]),
+          once("tax-agents", "Tax agents learn the rules, including separate tracking (24 hours)", [labour("tax-agents", 24)]),
+        ],
+      },
+    ],
+  });
+}
+
+const ASIC_URL = "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/IA%20Dashboard%20%26%20Statement%20of%20sufficiency.pdf";
+
+function whollyOwnedRelief() {
+  const s = src("ASIC, Dashboard Impact Analysis: Financial reporting relief for wholly-owned companies (OIA, published 14 October 2026), p. 3", ASIC_URL, "October 2026");
+  const application = (id: string, name: string, unitCost: number, tags: string[], note: string) => ({
+    id,
+    name,
+    category: "administrative",
+    tags,
+    levers: ["removeObligation"],
+    current: { costType: "purchase", timing: { type: "oneOff", year: 1 }, status: "future", lines: [{ populationId: "wholly-owned", purchase: { unitCost, timesPerYear: 1 }, note }] },
+    reformed: null,
+  });
+  writeProposal("ia-wholly-owned-relief.json", {
+    id: "ia-wholly-owned-relief",
+    title: "Financial reporting relief for wholly-owned companies: ASIC's regulatory burden estimate (Dashboard IA, 2026), re-costed",
+    description:
+      "ASIC remakes its sunsetting class relief (Instrument 2016/785) and measures the change against no instrument, under which each company would apply for individual relief: $3,487 in ASIC fees plus about $1,500 of adviser fees ($5,500 a group of 4–5 companies), for 12,330 companies, once. ASIC counts the whole $5,000; the RBM leaves fees paid to government out (RBM pp. 2, 4). The applications are entered as the current regime because they are what companies would face without the instrument: the Corporations Act's reporting duty stays, so the engine's no-instrument baseline, which drops the current regime's obligations, does not describe ASIC's counterfactual.",
+    proposalType: "reform",
+    durationYears: 10,
+    jurisdiction: "commonwealthOnly",
+    baseline: "statusQuo",
+    populations: [{ id: "wholly-owned", label: "Companies in wholly-owned groups relying on the relief (as at April 2026)", group: "business", cohort: "all", count: 12330, source: s }],
+    options: [
+      {
+        id: "class-relief",
+        name: "Relief by legislative instrument instead of individual relief",
+        obligations: [
+          application("asic-fee", "Application for individual relief: ASIC fee", 3487, ["governmentFee"], "Fee under the Corporations (Fees) Act 2001 (ASIC p. 3)"),
+          application("adviser-fees", "Application for individual relief: adviser fees", 1513, ["outsourcedService"], "ASIC's approximately $1,500 a company, here $5,000 − $3,487 so the two parts add to ASIC's $5,000"),
+        ],
+      },
+    ],
+  });
+}
+
 noncompete();
 amr();
 climate();
 epbc();
 vicPayroll();
+discretionaryTrusts();
+whollyOwnedRelief();

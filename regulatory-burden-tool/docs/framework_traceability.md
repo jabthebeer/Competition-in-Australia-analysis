@@ -153,6 +153,7 @@ These come from the prompt. They are listed so that each traces back to the fram
 | X-17 | The web app shows the RBE table in the framework's layout for every option, with the net verdict, gross figures, context, waterfall and breakdowns. | R-18 to R-21, R-34; brief §5-6 | `src/ui/pages/ResultsPage.tsx#RbeTable`, `src/ui/components/Charts.tsx#WaterfallChart` | T-E2E-01..05 |
 | X-18 | Privacy by design: no network requests (enforced by a Content-Security-Policy), data kept in the browser or exported files. | Brief ground rules; DECISIONS #37 | `src/ui/persistence.ts#saveProposal` | T-E2E-06, T-E2E-07 |
 | X-19 | Accessibility: WCAG 2.2 A/AA checked with axe on every page. | Brief technical stack | `src/ui/components/fields.tsx#QuantityField` | T-E2E-08 |
+| X-20 | Validation against published IAs (Phase 5): IAs re-costed from their stated inputs, each option matching its published RBE or its difference explained (`docs/rbm_recostings.md`, repository root). | Project plan, Phase 5; policy costing plan §8 | `src/engine/recostings.ts#runRecostings` | T-RCT-01 |
 
 ## 3. Ambiguities and proposed interpretations
 

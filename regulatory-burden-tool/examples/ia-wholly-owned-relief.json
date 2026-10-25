@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "proposal": {
+    "id": "ia-wholly-owned-relief",
+    "title": "Financial reporting relief for wholly-owned companies: ASIC's regulatory burden estimate (Dashboard IA, 2026), re-costed",
+    "description": "ASIC remakes its sunsetting class relief (Instrument 2016/785) and measures the change against no instrument, under which each company would apply for individual relief: $3,487 in ASIC fees plus about $1,500 of adviser fees ($5,500 a group of 4–5 companies), for 12,330 companies, once. ASIC counts the whole $5,000; the RBM leaves fees paid to government out (RBM pp. 2, 4). The applications are entered as the current regime because they are what companies would face without the instrument: the Corporations Act's reporting duty stays, so the engine's no-instrument baseline, which drops the current regime's obligations, does not describe ASIC's counterfactual.",
+    "proposalType": "reform",
+    "durationYears": 10,
+    "jurisdiction": "commonwealthOnly",
+    "baseline": "statusQuo",
+    "populations": [
+      {
+        "id": "wholly-owned",
+        "label": "Companies in wholly-owned groups relying on the relief (as at April 2026)",
+        "group": "business",
+        "cohort": "all",
+        "count": 12330,
+        "source": {
+          "description": "ASIC, Dashboard Impact Analysis: Financial reporting relief for wholly-owned companies (OIA, published 14 October 2026), p. 3",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/IA%20Dashboard%20%26%20Statement%20of%20sufficiency.pdf",
+          "vintage": "October 2026",
+          "accessed": "2026-10-25"
+        }
+      }
+    ],
+    "options": [
+      {
+        "id": "class-relief",
+        "name": "Relief by legislative instrument instead of individual relief",
+        "obligations": [
+          {
+            "id": "asic-fee",
+            "name": "Application for individual relief: ASIC fee",
+            "category": "administrative",
+            "tags": [
+              "governmentFee"
+            ],
+            "levers": [
+              "removeObligation"
+            ],
+            "current": {
+              "costType": "purchase",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "status": "future",
+              "lines": [
+                {
+                  "populationId": "wholly-owned",
+                  "purchase": {
+                    "unitCost": 3487,
+                    "timesPerYear": 1
+                  },
+                  "note": "Fee under the Corporations (Fees) Act 2001 (ASIC p. 3)"
+                }
+              ]
+            },
+            "reformed": null
+          },
+          {
+            "id": "adviser-fees",
+            "name": "Application for individual relief: adviser fees",
+            "category": "administrative",
+            "tags": [
+              "outsourcedService"
+            ],
+            "levers": [
+              "removeObligation"
+            ],
+            "current": {
+              "costType": "purchase",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "status": "future",
+              "lines": [
+                {
+                  "populationId": "wholly-owned",
+                  "purchase": {
+                    "unitCost": 1513,
+                    "timesPerYear": 1
+                  },
+                  "note": "ASIC's approximately $1,500 a company, here $5,000 − $3,487 so the two parts add to ASIC's $5,000"
+                }
+              ]
+            },
+            "reformed": null
+          }
+        ]
+      }
+    ]
+  }
+}
