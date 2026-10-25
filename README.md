@@ -12,7 +12,7 @@ The menu explorer is one HTML page built from the register. Use it to search the
 
 ## Current priority (22 October 2026)
 
-Forward-looking costing of prospective policies: a new interactive **Policy costing** tab on the ALICIA website, with a regulatory burden costing (OIA *Regulatory Burden Measurement Framework*) and a productivity and competition costing. Plan: [`docs/forward_plan_policy_costing.md`](docs/forward_plan_policy_costing.md). The retrospective evaluations are paused (`alicia/DECISIONS.md` E-75); parked items are in [`docs/parked_items.md`](docs/parked_items.md).
+Forward-looking costing of prospective policies: a new interactive **Policy costing** tab on the ALICIA website, with a regulatory burden costing (OIA *Regulatory Burden Measurement Framework*) and a productivity and competition costing. Plan: [`docs/forward_plan_policy_costing.md`](docs/forward_plan_policy_costing.md). Validation (P6): [PC shock chains and external anchors](docs/costing_validation.md), [re-costings of published Impact Analyses](docs/rbm_recostings.md) and [five worked examples of real policies](docs/worked_examples.md). The retrospective evaluations are paused (`alicia/DECISIONS.md` E-75); parked items are in [`docs/parked_items.md`](docs/parked_items.md).
 
 ## Projects
 

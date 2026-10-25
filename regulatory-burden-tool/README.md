@@ -53,6 +53,12 @@ npm run pce -- examples/noncompete-ban.brief.json
 npm run pce -- examples/noncompete-ban.brief.json --draws 5000 --seed 2   # Monte Carlo settings
 npm run pce -- examples/noncompete-ban.brief.json --show-ungated          # show GDP the evidence gate hides
 npm run pce -- examples/noncompete-ban.brief.json --json                  # full results
+
+# Validation (plan P6): each writes its note in ../docs/ and its test checks the note is current
+npm run validate:costing   # PC shock chains and external anchors -> docs/costing_validation.md
+npm run recost:ias         # RBM re-costings of published Impact Analyses -> docs/rbm_recostings.md
+npm run worked:examples    # five worked examples of real policies -> docs/worked_examples.md
+npm run make:examples      # rewrite the example briefs and proposals from their sources
 ```
 
 The built site in `dist/` is static: copy it to any web server or internal host. It makes no network requests (its security policy blocks them), stores proposals only in the browser (auto-save can be turned off) and in files the user downloads.
