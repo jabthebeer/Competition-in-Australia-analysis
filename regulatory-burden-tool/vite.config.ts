@@ -36,6 +36,7 @@ const site = process.env.SITE_BUILD === "1";
 
 export default defineConfig({
   base: "./",
+  define: site ? { "import.meta.env.VITE_SITE": JSON.stringify("1") } : {},
   plugins: artifact ? [react(), costingParameters()] : [react(), costingParameters(), contentSecurityPolicy()],
   build: artifact
     ? { outDir: "dist-artifact", sourcemap: false, cssCodeSplit: false, rolldownOptions: { output: { inlineDynamicImports: true } } }

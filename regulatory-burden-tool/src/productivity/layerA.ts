@@ -226,7 +226,7 @@ export function c1Compliance(brief: PolicyBrief, ctx: CostingContext, params: Pa
   if (entrants.size) {
     notes.push(`Entrants' compliance costs (${[...entrants].join(", ")}: $${Math.round(entrantCost).toLocaleString("en-AU")} a year) are left out of C1 because C4 costs entry (overlap rule O-1).`);
   } else if (entryCosted(brief)) {
-    notes.push("If the burden proposal costs new entrants, list their populations in levers.entry.entrantPopulationIds so C1 leaves them to C4 (overlap rule O-1).");
+    notes.push("If the burden proposal costs new entrants, mark their groups as new entrants on the entry lever, so C1 leaves their costs to C4 (overlap rule O-1).");
   }
   // The RBE is the OIA's own measure (an official method, graded A as A-P16 grades rules), and the step to MFP an
   // accounting identity (A-P01), so C1 rests on grade A evidence; s = 0 is an assumption that sets its range (A-P31).
@@ -286,7 +286,7 @@ export function c2c3Capital(brief: PolicyBrief, ctx: CostingContext, params: Par
       : undefined;
     const dz = lever.depreciationPvChange !== undefined ? params.input("levers.capital.depreciationPvChange", lever.depreciationPvChange) : 0;
     const drp = lever.riskPremiumChangePp !== undefined ? params.input("levers.capital.riskPremiumChangePp", lever.riskPremiumChangePp) / 100 : 0;
-    if (dz !== 0 && !tax) reasons.push("A change in depreciation deductions needs the company tax rate (companyTaxRate) to be costed; it is left out");
+    if (dz !== 0 && !tax) reasons.push("A change in depreciation deductions needs the company tax rate to be costed; it is left out");
     for (const { code, exposure } of codes) {
       const div = divisionOf(code);
       const delta = div ? ctx.depreciation[div] : undefined;
@@ -723,7 +723,7 @@ export function c4Entry(brief: PolicyBrief, ctx: CostingContext, params: ParamSo
           { label: `Division entry rate (${ctx.entryRateYear}), all industries ${all}%`, value: rate, unit: "%" },
         ]);
       }
-      if (!own) notes.push("The baseline entry cost is Djankov et al.'s measure for Australia (2.25% of GDP per head in 1999, one simple start-up), applied to every industry; enter an industry's own cost (baselineCostPerEntrantDollars) where it is known.");
+      if (!own) notes.push("The baseline entry cost is Djankov et al.'s measure for Australia (2.25% of GDP per head in 1999, one simple start-up), applied to every industry; enter the industries' own cost per new business where it is known.");
     }
   }
   if (lever.numberCap) {
@@ -744,7 +744,7 @@ export function c4Entry(brief: PolicyBrief, ctx: CostingContext, params: ParamSo
     }
   }
   if (lever.approvalTimeChangeDays !== undefined) {
-    reasons.push("A change in approval time for new businesses has no verified entry elasticity; it is reported, not quantified. Enter its cost to an entrant (for example, income forgone while waiting) in costPerEntrantChangeDollars to cost it");
+    reasons.push("A change in approval time for new businesses has no verified entry elasticity; it is reported, not quantified. Enter its cost to an entrant (for example, income forgone while waiting) as a change in the cost per new business to cost it");
   }
   if (lever.exitCostChangeDollars !== undefined) reasons.push("Exit costs have no verified elasticity; they are reported, not quantified (F-C4-04)");
 
@@ -794,7 +794,7 @@ export function c4Entry(brief: PolicyBrief, ctx: CostingContext, params: ParamSo
     }
     notes.push(
       gap === undefined
-        ? "Step 2 (F-C4-03): the productivity effect needs the industries' distance from the global frontier (frontierGapLogPoints), which no public source gives (it needs BLADE), so only the change in convergence speed is reported (A-P12)."
+        ? "Step 2 (F-C4-03): the productivity effect needs the industries' distance from the global frontier, which no public source gives (it needs BLADE), so only the change in convergence speed is reported (A-P12)."
         : "Step 2 (F-C4-03): faster convergence closes part of the distance from the frontier; at speed λ the long-run labour productivity gain is gap × Δλ/(λ + Δλ), most of it within five years (A-P30). The gap is the user's, graded D.",
     );
   }

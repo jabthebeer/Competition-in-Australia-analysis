@@ -6,10 +6,13 @@ import { Checkbox, Help, SelectField } from "../components/fields";
 import { HOSTED } from "../env";
 import { exampleProposal } from "../example";
 import { newProposal, type ProposalType } from "../model";
+import { briefFileName, downloadBrief, newBriefDraft, splitBrief, type BriefDraft } from "../briefModel";
+import { exampleBrief } from "../exampleBrief";
+import { BriefValidationError, parseBrief } from "../../productivity/index";
 import { clearAllData, downloadProposal, fileNameFor, type Settings } from "../persistence";
 
-export function DataPage(props: PageProps & { settings: Settings; setSettings: (s: Settings) => void; replace: (p: Proposal) => void }) {
-  const { proposal, settings, setSettings, replace, go } = props;
+export function DataPage(props: PageProps & { settings: Settings; setSettings: (s: Settings) => void; replace: (p: Proposal) => void; replaceDraft: (d: BriefDraft) => void }) {
+  const { proposal, settings, setSettings, replace, replaceDraft, brief, go } = props;
   const [issues, setIssues] = useState<string[]>([]);
   const [message, setMessage] = useState("");
   const [paste, setPaste] = useState("");
@@ -20,7 +23,31 @@ export function DataPage(props: PageProps & { settings: Settings; setSettings: (
   const fileId = useId();
   const copyId = useId();
 
+  const loadBrief = (data: unknown, what: string) => {
+    try {
+      const b = parseBrief(data);
+      const { draft, burden } = splitBrief(b);
+      replace(burden ?? { ...newProposal(b.meta.proposalType), id: b.id, title: b.meta.title, durationYears: b.meta.durationYears });
+      replaceDraft(draft);
+      setIssues([]);
+      setMessage(`Loaded ${what}: "${b.meta.title}", with its productivity levers.`);
+    } catch (e) {
+      setIssues(e instanceof BriefValidationError ? e.issues : [String(e)]);
+      setMessage("");
+    }
+  };
+
   const load = (text: string, what: string) => {
+    let data: unknown;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = undefined;
+    }
+    if (data && typeof data === "object" && (data as { kind?: unknown }).kind === "policy-brief") {
+      loadBrief(data, what);
+      return;
+    }
     const r = importDraft(text);
     if (r.ok) {
       replace(r.file.proposal);
@@ -82,6 +109,7 @@ export function DataPage(props: PageProps & { settings: Settings; setSettings: (
             clearAllData();
             setSettings({ autosave: settings.autosave });
             replace(newProposal("reform"));
+            replaceDraft(newBriefDraft());
             setMessage("Everything stored in this browser has been deleted.");
           }}
         />
@@ -99,6 +127,39 @@ export function DataPage(props: PageProps & { settings: Settings; setSettings: (
             Copy this proposal as text
           </button>
         </p>
+        <h3>The whole costing</h3>
+        <p>The burden proposal with its scope, productivity levers and competition screen, in one policy brief file.</p>
+        {brief.ok ? (
+          <p className="button-row">
+            {!HOSTED && (
+              <button type="button" onClick={() => downloadBrief(brief.brief, proposal)} data-testid="download-brief">
+                Download the whole costing ({briefFileName(proposal)})
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={async () => {
+                const text = JSON.stringify(brief.brief, null, 2);
+                try {
+                  await navigator.clipboard.writeText(text);
+                  setCopyText(null);
+                  setMessage("Copied the whole costing. Paste it back here to load it again.");
+                } catch {
+                  setCopyText(text);
+                  setMessage("");
+                  setTimeout(() => copyRef.current?.select(), 0);
+                }
+              }}
+              data-testid="copy-brief"
+            >
+              Copy the whole costing as text
+            </button>
+          </p>
+        ) : (
+          <p className="help" data-testid="brief-not-ready">
+            The whole costing can be saved once its productivity inputs are complete ({brief.issues.length} to fix, listed on the Productivity levers page). Until then it is kept in this browser{settings.autosave ? "" : " if auto-save is on"}.
+          </p>
+        )}
         <Help>
           {HOSTED
             ? "This hosted copy can't download files. Copy the proposal as text and keep it in a document; paste it back below to load it again."
@@ -111,7 +172,7 @@ export function DataPage(props: PageProps & { settings: Settings; setSettings: (
           </div>
         )}
         <div className="field">
-          <label htmlFor={fileId}>Open a saved proposal file</label>
+          <label htmlFor={fileId}>Open a saved proposal or costing file</label>
           <input
             id={fileId}
             type="file"
@@ -160,6 +221,7 @@ export function DataPage(props: PageProps & { settings: Settings; setSettings: (
             testId="start-new"
             onConfirm={() => {
               replace(newProposal(newType));
+              replaceDraft(newBriefDraft());
               go("proposal");
             }}
           />
@@ -173,6 +235,13 @@ export function DataPage(props: PageProps & { settings: Settings; setSettings: (
               setIssues([]);
               setMessage("Loaded the illustrative example.");
             }}
+          />
+          <ConfirmButton
+            label="Load the illustrative costing example (synthetic data)"
+            question="Replace the current proposal and productivity levers with the illustrative costing example (lighter licensing for electricians)? Keep a copy of this one first if you want it."
+            confirmLabel="Yes, load the costing example"
+            testId="load-brief-example"
+            onConfirm={() => loadBrief(exampleBrief(), "the illustrative costing example")}
           />
         </div>
       </section>

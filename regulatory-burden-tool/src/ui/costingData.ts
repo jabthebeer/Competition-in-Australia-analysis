@@ -40,3 +40,54 @@ export async function loadCostingParameters(): Promise<CostingLoad> {
   const mod = await import("virtual:costing-parameters");
   return checkCostingParameters(mod.default);
 }
+
+// ---- the register export (alicia costing-register) ------------------------------------------------------------
+
+export const RegisterEvaluationSchema = z.looseObject({
+  id: z.string(),
+  verdict: z.string().nullable().optional(),
+  finding: z.string().nullable().optional(),
+  grade: z.string().nullable().optional(),
+  evaluated_on: z.string().nullable().optional(),
+  archived: z.boolean().optional(),
+  page: z.string().nullable().optional(),
+});
+
+export const RegisterRecordSchema = z.looseObject({
+  id: z.string().min(1),
+  title: z.string(),
+  jurisdiction: z.string(),
+  family: z.string().nullable().optional(),
+  direction: z.string(),
+  direction_rationale: z.string().nullable().optional(),
+  direction_sources: z.array(z.string()).default([]),
+  channels: z.array(z.string()).default([]),
+  industries: z.array(z.looseObject({ anzsic: z.string(), exposure: z.string().optional(), name: z.string().optional() })).default([]),
+  commencement: z.string().nullable().optional(),
+  review_status: z.string().optional(),
+  evaluation: RegisterEvaluationSchema.nullable().optional(),
+});
+
+export const CostingRegisterSchema = z.looseObject({
+  schema: z.literal("alicia-costing-register"),
+  version: z.literal(1),
+  channels: z.record(z.string(), z.string()),
+  notes: z.string().optional(),
+  records: z.array(RegisterRecordSchema),
+});
+
+export type RegisterRecord = z.output<typeof RegisterRecordSchema>;
+export type CostingRegister = z.output<typeof CostingRegisterSchema>;
+
+export function checkCostingRegister(data: unknown): { ok: true; register: CostingRegister } | { ok: false; problem: string } {
+  const r = CostingRegisterSchema.safeParse(data);
+  if (r.success) return { ok: true, register: r.data };
+  const first = r.error.issues[0];
+  return { ok: false, problem: first ? `${first.path.join(".") || "(file)"}: ${first.message}` : "unreadable" };
+}
+
+/** Loads the bundled register export, in its own chunk. */
+export async function loadCostingRegister() {
+  const mod = await import("virtual:costing-register");
+  return checkCostingRegister(mod.default);
+}

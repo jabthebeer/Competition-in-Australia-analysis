@@ -318,6 +318,18 @@ export const AnalysisSchema = z.strictObject({
   seed: int.min(0).default(1),
 });
 
+/** The OIA competition assessment's Step 1 categories, which are the register's channels (PR-08). */
+export const OIA_CATEGORIES = ["barriers", "number-or-type", "ability-incentive", "prices-market-share", "consumer-choice"] as const;
+export type OiaCategory = (typeof OIA_CATEGORIES)[number];
+
+/** The competition screen (plan §6.8): the user's Step 1 answers, and notes on alternatives (Step 2) and benefits (Step 3). */
+export const CompetitionScreenSchema = z.strictObject({
+  /** True or false where the user has answered; a category left out takes the tool's suggestion. */
+  categories: z.strictObject(Object.fromEntries(OIA_CATEGORIES.map((c) => [c, z.boolean().optional()])) as Record<OiaCategory, z.ZodOptional<z.ZodBoolean>>).optional(),
+  alternatives: z.string().optional(),
+  benefits: z.string().optional(),
+});
+
 // ---- the brief ------------------------------------------------------------------------------------------------
 
 type LeverPart = { block: InputBlock; path: (string | number)[]; industries?: string[] };
@@ -372,6 +384,7 @@ export const PolicyBriefSchema = z
     }),
     /** Vintage of the bundled parameter file the brief was costed with (P2). */
     parameterVintage: z.string().optional(),
+    competition: CompetitionScreenSchema.optional(),
   })
   .superRefine((b, ctx) => {
     const issue = (path: (string | number)[], message: string) => ctx.addIssue({ code: "custom", path, message });

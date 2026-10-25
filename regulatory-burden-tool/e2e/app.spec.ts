@@ -40,6 +40,7 @@ test("T-E2E-01 build a current regime, reform it, and get the illustrative RBE t
   await page.goto("/");
   await page.getByTestId("title").fill("E2E: quarterly to annual (illustrative)");
   await fill(page, "pop-count", "10000");
+  await page.getByRole("button", { name: "Next: the industries affected" }).click();
   await page.getByRole("button", { name: "Next: the current regime" }).click();
 
   // Current regime: a quarterly 4-hour report for 10,000 businesses.
@@ -66,7 +67,7 @@ test("T-E2E-01 build a current regime, reform it, and get the illustrative RBE t
   await expect(page.getByTestId("option-summary")).toContainText("Net reduction of $12.7 million a year");
 
   // Results: the framework's RBE table.
-  await page.getByRole("button", { name: "Next: results" }).click();
+  await goTo(page, /Results/);
   const table = page.getByTestId("rbe-option-a");
   await expect(table.locator("caption")).toHaveText("Average annual regulatory costs (from business as usual)");
   await expect(table.locator("thead th")).toHaveText(["Change in costs ($ million)", "Business", "Community organisations", "Individuals", "Total change in costs"]);
@@ -86,6 +87,7 @@ test("T-E2E-02 new regulation: the framework's labour example gives $4.4", async
   await page.goto("/");
   await page.getByRole("radio", { name: /New regulation/ }).check();
   await fill(page, "pop-count", "1000");
+  await page.getByRole("button", { name: "Next: the industries affected" }).click();
   await page.getByRole("button", { name: "Next: describe the new obligations" }).click();
   await page.getByRole("button", { name: "Add a new administrative cost" }).click();
   const card = page.getByTestId(/^new-obligation-/).first();
@@ -101,6 +103,7 @@ test("T-E2E-03 outright removal: the framework's deregulatory example gives ($0.
   await page.goto("/");
   await page.getByRole("radio", { name: /Remove a regulation outright/ }).check();
   await fill(page, "pop-count", "1000");
+  await page.getByRole("button", { name: "Next: the industries affected" }).click();
   await page.getByRole("button", { name: "Next: the current regime" }).click();
   await page.getByRole("button", { name: /Add a substantive compliance cost/ }).click();
   await fill(page.getByTestId(/^current-obligation-/).first(), "unit-cost", "400");
@@ -113,6 +116,7 @@ test("T-E2E-04 inter-jurisdictional: Commonwealth −$10m and states +$2m net to
   await page.goto("/");
   await page.getByRole("radio", { name: /An inter-jurisdictional reform/ }).check();
   await fill(page, "pop-count", "1000");
+  await page.getByRole("button", { name: "Next: the industries affected" }).click();
   await page.getByRole("button", { name: "Next: the current regime" }).click();
   await page.getByRole("button", { name: /Add a substantive compliance cost/ }).click();
   const current = page.getByTestId(/^current-obligation-/).first();
@@ -132,6 +136,7 @@ test("T-E2E-04 inter-jurisdictional: Commonwealth −$10m and states +$2m net to
 test("T-E2E-05 faster approvals: a delay cost reform (100 applications, 6 → 3 months, $10,000 a month) gives ($3.0)", async ({ page }) => {
   await page.goto("/");
   await fill(page, "pop-count", "100");
+  await page.getByRole("button", { name: "Next: the industries affected" }).click();
   await page.getByRole("button", { name: "Next: the current regime" }).click();
   await page.getByRole("button", { name: /Add a delay cost/ }).click();
   const current = page.getByTestId(/^current-obligation-/).first();
@@ -226,7 +231,7 @@ test("T-E2E-07 privacy: no requests leave the app, and the security policy block
 
 test("T-E2E-08 accessibility: axe finds no WCAG 2.2 A/AA violations on any page", async ({ page }) => {
   await loadExample(page);
-  for (const route of ["proposal", "current", "options", "results", "data", "sources", "about"]) {
+  for (const route of ["proposal", "scope", "current", "options", "levers", "competition", "results", "data", "sources", "about"]) {
     await page.goto(`/#${route}`);
     await page.locator("main h1").waitFor();
     const r = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();

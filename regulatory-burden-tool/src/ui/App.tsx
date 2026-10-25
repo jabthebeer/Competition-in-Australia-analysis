@@ -1,5 +1,6 @@
 import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ProposalValidationError, computeProposal, type Proposal, type ProposalResult } from "../engine/index";
+import { checkBrief, loadBriefDraft, newBriefDraft, saveBriefDraft, type BriefCheck, type BriefDraft } from "./briefModel";
 import { DEMO, HOSTED } from "./env";
 import { exampleProposal } from "./example";
 import { describeIssue, newProposal } from "./model";
@@ -11,23 +12,35 @@ import { ProposalPage } from "./pages/ProposalPage";
 import { SourcesPage } from "./pages/SourcesPage";
 import { loadSavedProposal, loadSettings, saveProposal, saveSettings, type Settings } from "./persistence";
 
-// The results page carries the charting library, so it loads only when first opened.
+// The results page carries the charting library, and the productivity pages the costing engine and its data, so
+// each loads only when first opened.
 const ResultsPage = lazy(() => import("./pages/ResultsPage").then((m) => ({ default: m.ResultsPage })));
+const ScopePage = lazy(() => import("./pages/ScopePage").then((m) => ({ default: m.ScopePage })));
+const LeversPage = lazy(() => import("./pages/LeversPage").then((m) => ({ default: m.LeversPage })));
+const CompetitionPage = lazy(() => import("./pages/CompetitionPage").then((m) => ({ default: m.CompetitionPage })));
 
 export type Computed = { ok: true; result: ProposalResult } | { ok: false; issues: string[] };
 export type Update = (fn: (p: Proposal) => Proposal) => void;
+export type UpdateDraft = (fn: (d: BriefDraft) => BriefDraft) => void;
 
 export interface PageProps {
   proposal: Proposal;
   update: Update;
   computed: Computed;
+  /** The productivity part of the costing, and the brief it makes with the proposal. */
+  draft: BriefDraft;
+  updateDraft: UpdateDraft;
+  brief: BriefCheck;
   go: (route: Route) => void;
 }
 
 const STEPS = [
   { path: "proposal", label: "Proposal" },
+  { path: "scope", label: "Scope" },
   { path: "current", label: "Current regime" },
   { path: "options", label: "Reform options" },
+  { path: "levers", label: "Productivity levers" },
+  { path: "competition", label: "Competition screen" },
   { path: "results", label: "Results" },
 ] as const;
 const OTHER = [
@@ -48,6 +61,7 @@ export function App() {
   const [settings, setSettingsState] = useState<Settings>(loadSettings);
   // The demo build (used for hosted test copies) opens on the illustrative example.
   const [proposal, setProposal] = useState<Proposal>(() => loadSavedProposal() ?? (DEMO ? exampleProposal() : newProposal("reform")));
+  const [draft, setDraft] = useState<BriefDraft>(() => loadBriefDraft() ?? newBriefDraft());
   const [saved, setSaved] = useState<"saved" | "off" | "failed">(settings.autosave ? "saved" : "off");
   const mainRef = useRef<HTMLElement>(null);
   const firstRender = useRef(true);
@@ -68,6 +82,7 @@ export function App() {
   }, [route]);
 
   const update: Update = useCallback((fn) => setProposal((prev) => fn(prev)), []);
+  const updateDraft: UpdateDraft = useCallback((fn) => setDraft((prev) => fn(prev)), []);
   const go = useCallback((r: Route) => {
     window.location.hash = r;
   }, []);
@@ -80,21 +95,23 @@ export function App() {
     }
   }, [proposal]);
 
+  const brief = useMemo(() => checkBrief(draft, proposal, computed.ok), [draft, proposal, computed.ok]);
+
   useEffect(() => {
     if (!settings.autosave) {
       setSaved("off");
       return;
     }
-    const t = window.setTimeout(() => setSaved(saveProposal(proposal) ? "saved" : "failed"), 250);
+    const t = window.setTimeout(() => setSaved(saveProposal(proposal) && saveBriefDraft(draft) ? "saved" : "failed"), 250);
     return () => window.clearTimeout(t);
-  }, [proposal, settings.autosave]);
+  }, [proposal, draft, settings.autosave]);
 
   const setSettings = (s: Settings) => {
     setSettingsState(s);
     saveSettings(s);
   };
 
-  const pageProps: PageProps = { proposal, update, computed, go };
+  const pageProps: PageProps = { proposal, update, computed, draft, updateDraft, brief, go };
   const keepAdvice = HOSTED ? "copy it as text under Save and load" : "download a file";
   const estimates = computed.ok ? computed.result.unconfirmedEstimates.length : 0;
 
@@ -113,7 +130,7 @@ export function App() {
       <header className="site-header">
         <div className="brand">
           <span className="site-title">Policy costing</span>
-          <span className="site-subtitle">Regulatory burden (OIA framework) · productivity and competition (in development)</span>
+          <span className="site-subtitle">Regulatory burden (OIA framework) · productivity and competition</span>
           <span className="tag">Unofficial aid</span>
         </div>
         <nav aria-label="Main">
@@ -167,12 +184,13 @@ export function App() {
         {route === "proposal" && <ProposalPage {...pageProps} />}
         {route === "current" && <CurrentRegimePage {...pageProps} />}
         {route === "options" && <OptionsPage {...pageProps} />}
-        {route === "results" && (
-          <Suspense fallback={<p>Loading results…</p>}>
-            <ResultsPage {...pageProps} />
-          </Suspense>
-        )}
-        {route === "data" && <DataPage {...pageProps} settings={settings} setSettings={setSettings} replace={setProposal} />}
+        <Suspense fallback={<p>Loading…</p>}>
+          {route === "scope" && <ScopePage {...pageProps} />}
+          {route === "levers" && <LeversPage {...pageProps} />}
+          {route === "competition" && <CompetitionPage {...pageProps} />}
+          {route === "results" && <ResultsPage {...pageProps} />}
+        </Suspense>
+        {route === "data" && <DataPage {...pageProps} settings={settings} setSettings={setSettings} replace={setProposal} replaceDraft={setDraft} />}
         {route === "sources" && <SourcesPage />}
         {route === "about" && <AboutPage />}
       </main>

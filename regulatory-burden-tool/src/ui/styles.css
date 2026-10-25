@@ -833,3 +833,155 @@ thead th {
     grid-template-columns: 1fr;
   }
 }
+
+/* Productivity and competition pages (P5) */
+.checkbox-group {
+  border: 0;
+  padding: 0;
+  margin: 0.75rem 0;
+}
+
+.checkbox-group .field.checkbox {
+  margin: 0.2rem 0;
+}
+
+.checkbox-group.compact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+}
+
+.checkbox-group.compact > legend,
+.checkbox-group.compact > .help {
+  flex-basis: 100%;
+}
+
+.lever-card h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.lever-card.on {
+  border-left: 4px solid var(--accent);
+}
+
+.lever-fields,
+.lever-result {
+  margin-top: 0.75rem;
+}
+
+.lever-result {
+  border-top: 1px solid var(--line);
+  padding-top: 0.5rem;
+}
+
+.lever-result h3 {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.sub-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 0;
+  background: var(--page);
+}
+
+.optional-add {
+  margin: 0.25rem 0;
+}
+
+.optional-field {
+  border-left: 2px solid var(--line);
+  padding-left: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.field-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+}
+
+.field-pair > * {
+  min-width: 0;
+}
+
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.inline-form input {
+  min-width: 0;
+  flex: 1 1 14rem;
+}
+
+.channel-detail {
+  margin: 0.5rem 0 1rem;
+}
+
+.channel-heading .badge:first-of-type {
+  margin-left: 0.5rem;
+}
+
+.badge.costed {
+  background: var(--good-soft);
+  color: var(--good);
+  border: 1px solid var(--good);
+}
+
+.badge.not-costed {
+  background: var(--warn-soft);
+  color: var(--warn);
+  border: 1px solid var(--warn);
+}
+
+.badge.grade {
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.badge.grade-d {
+  border-color: var(--warn);
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.chain {
+  margin: 0.25rem 0 0.5rem;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.chain li {
+  overflow-wrap: anywhere;
+}
+
+.other-effects,
+.not-costed-list,
+.similar-list {
+  padding-left: 1.25rem;
+}
+
+.other-effects li,
+.not-costed-list li,
+.similar-list li {
+  margin: 0.35rem 0;
+  overflow-wrap: anywhere;
+}
+
+.evidence-used ul {
+  font-size: 0.9rem;
+  padding-left: 1.25rem;
+}
+
+.similar-why,
+.similar-sources {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}

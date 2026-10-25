@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import { PARAMETERS, type Population } from "../../engine/index";
 import { NextStep, PageHeading, type PageProps } from "../App";
+import { JURISDICTIONS, type Jurisdiction } from "../briefModel";
 import { exampleProposal, isUntouched } from "../example";
 import { Checkbox, Help, IntegerField, QuantityField, RadioGroup, SelectField, TextField } from "../components/fields";
 import { COHORT_LABELS, GROUP_LABELS } from "../format";
@@ -9,7 +10,7 @@ import { addOption, addPopulation, populationBlockers, removeOption, removePopul
 const BANDS = Object.entries(PARAMETERS.employmentBands) as [Population["employmentBand"] & string, { cohort: string }][];
 const BAND_LABELS: Record<string, string> = { nonEmploying: "Non-employing", "1-4": "1–4 employees", "5-19": "5–19 employees", "20-199": "20–199 employees", "200+": "200 or more employees" };
 
-export function ProposalPage({ proposal: p, update, go }: PageProps) {
+export function ProposalPage({ proposal: p, update, draft, updateDraft, go }: PageProps) {
   const sunset = p.remakesSunsettingInstrument === undefined ? "unsure" : p.remakesSunsettingInstrument ? "yes" : "no";
   return (
     <>
@@ -96,6 +97,56 @@ export function ProposalPage({ proposal: p, update, go }: PageProps) {
         />
       </section>
 
+      <section aria-labelledby="timing-heading">
+        <h2 id="timing-heading">Timing and jurisdictions (productivity costing)</h2>
+        <p>The productivity costing uses these to place the effects in time and to find similar past changes.</p>
+        <TextField
+          label="Policy summary (optional)"
+          multiline
+          help="A short description of what the policy changes. It is kept with the costing and shown in exports."
+          value={draft.meta.summary ?? ""}
+          onChange={(v) => updateDraft((d) => ({ ...d, meta: { ...d.meta, summary: v || undefined } }))}
+          testId="brief-summary"
+        />
+        <fieldset className="field checkbox-group" data-testid="brief-jurisdictions">
+          <legend>Jurisdictions making the change</legend>
+          {JURISDICTIONS.map((j) => (
+            <Checkbox
+              key={j.value}
+              label={j.label}
+              checked={draft.meta.jurisdictions.includes(j.value)}
+              onChange={(on) =>
+                updateDraft((d) => {
+                  const set = new Set<Jurisdiction>(d.meta.jurisdictions);
+                  if (on) set.add(j.value);
+                  else set.delete(j.value);
+                  return { ...d, meta: { ...d.meta, jurisdictions: JURISDICTIONS.map((x) => x.value).filter((x) => set.has(x)) } };
+                })
+              }
+            />
+          ))}
+        </fieldset>
+        <IntegerField
+          label="First financial year of effect"
+          help={`The year the policy starts to apply, named by the calendar year it starts in: ${draft.meta.startYear} means ${draft.meta.startYear}-${String((draft.meta.startYear + 1) % 100).padStart(2, "0")}.`}
+          value={draft.meta.startYear}
+          min={2000}
+          max={2100}
+          onChange={(n) => updateDraft((d) => ({ ...d, meta: { ...d.meta, startYear: n } }))}
+          testId="brief-start-year"
+        />
+        <IntegerField
+          label="Years until full effect (phase-in)"
+          help="0 if the policy applies in full from its first year. Otherwise it arrives in equal steps until then."
+          value={draft.meta.phaseInYears}
+          min={0}
+          max={p.durationYears}
+          unit="years"
+          onChange={(n) => updateDraft((d) => ({ ...d, meta: { ...d.meta, phaseInYears: n } }))}
+          testId="brief-phase-in"
+        />
+      </section>
+
       <section aria-labelledby="who-heading">
         <h2 id="who-heading">Who is affected</h2>
         <p>Add a group for each set of entities or people that bears different costs, for example small, medium and large businesses (RBM pp. 7–8).</p>
@@ -129,8 +180,8 @@ export function ProposalPage({ proposal: p, update, go }: PageProps) {
           </button>
         </p>
       </section>
-      <NextStep go={go} to={p.proposalType === "new" ? "options" : "current"}>
-        {p.proposalType === "new" ? "Next: describe the new obligations" : "Next: the current regime"}
+      <NextStep go={go} to="scope">
+        Next: the industries affected
       </NextStep>
     </>
   );

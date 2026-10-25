@@ -5,6 +5,8 @@ import { importDraft, toProposalFile, type Proposal } from "../engine/index";
 
 const PROPOSAL_KEY = "regulatory-burden-tool:v1:proposal";
 const SETTINGS_KEY = "regulatory-burden-tool:v1:settings";
+/** The productivity draft (src/ui/briefModel.ts). */
+export const BRIEF_KEY = "regulatory-burden-tool:v1:brief-draft";
 
 export interface Settings {
   autosave: boolean;
@@ -55,6 +57,7 @@ export function clearAllData(): void {
   try {
     window.localStorage.removeItem(PROPOSAL_KEY);
     window.localStorage.removeItem(SETTINGS_KEY);
+    window.localStorage.removeItem(BRIEF_KEY);
   } catch {
     /* nothing stored */
   }

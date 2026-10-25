@@ -48,8 +48,8 @@ export function OptionsPage({ proposal, update, computed, go }: PageProps) {
       ) : (
         <OptionEditor proposal={proposal} optionId={option.id} update={update} result={result} />
       )}
-      <NextStep go={go} to="results">
-        Next: results
+      <NextStep go={go} to="levers">
+        Next: productivity levers
       </NextStep>
     </>
   );
