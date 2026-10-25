@@ -66,7 +66,9 @@ export interface ChannelOutcome {
   other: OtherEffect[];
   /** Evidence entries used. */
   evidence: string[];
-  /** The weakest grade among the evidence used (D is weakest); null when none was used. */
+  /** Those of them that are the tool's own assumptions (method "assumption", graded D): they set ranges, not the grade (A-P31). */
+  assumptions: string[];
+  /** The weakest grade among the evidence used, assumptions aside (D is weakest); null when none was used. */
   grade: Grade | null;
   notes: string[];
 }
@@ -85,19 +87,24 @@ function tracker(params: ParamSource) {
   };
 }
 
-const GRADE_OF = new Map(EVIDENCE.map((e) => [e.id, e.grade]));
+const ENTRY_OF = new Map(EVIDENCE.map((e) => [e.id, e]));
+/** The tool's own assumptions: method "assumption" and graded D, which the library allows only for them (a source's assumption, such as the PC's pass-through, keeps its grade). */
+const isAssumption = (id: string) => ENTRY_OF.get(id)?.method === "assumption" && ENTRY_OF.get(id)?.grade === "D";
 
-/** The weakest grade among the evidence used (D is weakest). */
-function weakest(ids: Iterable<string>): Grade | null {
-  let worst = -1;
+/**
+ * The weakest grade among the evidence used (D is weakest), and `base` when given. The tool's own assumptions are
+ * left out: their ranges reach the Monte Carlo, but they do not grade the evidence on effects (A-P31, owner decision).
+ */
+function weakest(ids: Iterable<string>, base?: Grade): Grade | null {
+  let worst = base ? EVIDENCE_GRADES.indexOf(base) : -1;
   for (const id of ids) {
-    const g = GRADE_OF.get(id);
-    if (g) worst = Math.max(worst, EVIDENCE_GRADES.indexOf(g));
+    const g = ENTRY_OF.get(id)?.grade;
+    if (g && !isAssumption(id)) worst = Math.max(worst, EVIDENCE_GRADES.indexOf(g));
   }
   return worst < 0 ? null : EVIDENCE_GRADES[worst]!;
 }
 
-function outcome(channel: ChannelId, part: Partial<ChannelOutcome> & { used?: Set<string> }): ChannelOutcome {
+function outcome(channel: ChannelId, part: Partial<ChannelOutcome> & { used?: Set<string>; baseGrade?: Grade }): ChannelOutcome {
   const evidence = [...(part.used ?? [])];
   const costed = (part.effects?.length ?? 0) > 0 || (part.other?.length ?? 0) > 0;
   return {
@@ -109,7 +116,8 @@ function outcome(channel: ChannelId, part: Partial<ChannelOutcome> & { used?: Se
     shocks: part.shocks ?? [],
     other: part.other ?? [],
     evidence,
-    grade: weakest(evidence),
+    assumptions: evidence.filter(isAssumption),
+    grade: weakest(evidence, part.baseGrade),
     notes: part.notes ?? [],
   };
 }
@@ -220,7 +228,9 @@ export function c1Compliance(brief: PolicyBrief, ctx: CostingContext, params: Pa
   } else if (entryCosted(brief)) {
     notes.push("If the burden proposal costs new entrants, list their populations in levers.entry.entrantPopulationIds so C1 leaves them to C4 (overlap rule O-1).");
   }
-  return outcome("C1", { used: t.used, effects, shocks, reasons, notes });
+  // The RBE is the OIA's own measure (an official method, graded A as A-P16 grades rules), and the step to MFP an
+  // accounting identity (A-P01), so C1 rests on grade A evidence; s = 0 is an assumption that sets its range (A-P31).
+  return outcome("C1", { used: t.used, effects, shocks, reasons, notes, baseGrade: effects.length ? "A" : undefined });
 }
 
 // ---- C2 and C3: the user cost of capital (F-C2-01, F-C3-01..03) ---------------------------------------------

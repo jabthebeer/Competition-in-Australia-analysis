@@ -78,6 +78,7 @@ function applyCustom(brief: PolicyBrief, ctx: CostingContext, outcomes: Map<Chan
         shocks: [],
         other: [],
         evidence: [],
+        assumptions: [],
         grade: null,
         notes: [],
       } satisfies ChannelOutcome);

@@ -170,17 +170,29 @@ describe("evidence gate and overlap rules in the engine", () => {
 
   it("T-GATE-02 graded C is indicative; graded D or unconfirmed estimates hide GDP unless the brief opts in, with a watermark", () => {
     expect(runCosting(brief(NON_COMPETES), ctx, { draws: 200 }).gate.status).toBe("indicative");
-    const tax = { capital: { companyTaxRate: { from: 0.3, to: 0.25 } } };
-    const hidden = runCosting(brief(tax), ctx, { draws: 200 }).gate;
+    // The tool's own assumptions (here r, graded D) set ranges but not the grade (A-P31): a tax cut rests on σ (B).
+    const tax = runCosting(brief({ capital: { companyTaxRate: { from: 0.3, to: 0.25 } } }), ctx, { draws: 200 });
+    expect([tax.gate.status, tax.gate.grade]).toEqual(["full", "B"]);
+    expect(tax.result.channels[0]!.assumptions).toEqual(["c2.r.oia-cba"]);
+    // An unsourced custom shock is graded D (A-P24).
+    const custom = { custom: [{ id: "s1", channel: "C12", industry: "F", type: "labourProductivity", size: 2, justification: "Illustrative" }] };
+    const hidden = runCosting(brief(custom), ctx, { draws: 200 }).gate;
     expect([hidden.status, hidden.grade, hidden.showGdp, hidden.watermark]).toEqual(["hidden", "D", false, false]);
-    const shown = runCosting(brief(tax, NON_AGRICULTURE, { analysis: { showUngatedEconomyWide: true } }), ctx, { draws: 200 }).gate;
+    const shown = runCosting(brief(custom, NON_AGRICULTURE, { analysis: { showUngatedEconomyWide: true } }), ctx, { draws: 200 }).gate;
     expect([shown.status, shown.showGdp, shown.watermark]).toEqual(["hidden", true, true]);
     const draft = parseBrief({ ...brief(NON_COMPETES), meta: { ...brief(NON_COMPETES).meta, provenance: { title: { origin: "modelEstimate" } } } });
     const r = costBrief(draft, ctx);
     const gate = evidenceGate(draft, r, simulate(draft, ctx, 100, 1), [{ code: "PB-04", message: "", path: "meta.title" }]);
     expect([gate.status, gate.watermark]).toEqual(["hidden", true]);
     // The low end checked against threshold 2 is the end of the range nearer zero.
-    expect(Math.abs(hidden.threshold2.low)).toBeLessThanOrEqual(Math.abs(hidden.threshold2.central));
+    expect(Math.abs(tax.gate.threshold2.low)).toBeLessThanOrEqual(Math.abs(tax.gate.threshold2.central));
+  });
+
+  it("T-GATE-03 a burden costing rests on the RBE (grade A); s = 0 is an assumption that sets the range, not the grade", () => {
+    const ex = parseBrief(JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "examples", "illustrative-licensing.brief.json"), "utf8")));
+    const c1 = costBrief(ex, ctx).channels.find((c) => c.channel === "C1")!;
+    expect(c1.grade).toBe("A");
+    expect(c1.assumptions).toEqual(["c1.s.assumption"]);
   });
 
   it("T-PCE-13 O-2: an approval delay in an industry whose delay costs the burden proposal already counts is left out of C2", () => {
