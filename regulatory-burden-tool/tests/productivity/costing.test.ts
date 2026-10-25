@@ -96,7 +96,7 @@ describe("time path and present value", () => {
     expect(r.npv.map((n) => n.rate)).toEqual([0.07, 0.03, 0.1]);
     expect(r.npv[0]!.dollars).toBeCloseTo(presentValue(r.path.slice(0, 5).map((y) => y.gdpDollars), 0.07), 6);
     // A compliance saving reaches GDP at once, apart from the capital that responds to it.
-    const ex = parseBrief(JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "examples", "illustrative-licensing.brief.json"), "utf8")));
+    const ex = parseBrief(JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "tests", "fixtures", "synthetic-licensing.json"), "utf8")));
     const c1 = costBrief(ex, ctx).channels.find((c) => c.channel === "C1")!;
     const exTiming = pathParams(CENTRAL, costBrief(ex, ctx).layerB.alpha);
     expect(c1.path[9]).toBeCloseTo(c1.gdpPct * pathShare("directThenCapital", 10, ex.meta.phaseInYears, exTiming), 12);
@@ -205,7 +205,7 @@ describe("evidence gate and overlap rules in the engine", () => {
   });
 
   it("T-GATE-03 a burden costing rests on the RBE (grade A); s = 0 is an assumption that sets the range, not the grade", () => {
-    const ex = parseBrief(JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "examples", "illustrative-licensing.brief.json"), "utf8")));
+    const ex = parseBrief(JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "tests", "fixtures", "synthetic-licensing.json"), "utf8")));
     const c1 = costBrief(ex, ctx).channels.find((c) => c.channel === "C1")!;
     expect(c1.grade).toBe("A");
     expect(c1.assumptions).toEqual(["c1.s.assumption"]);
@@ -226,7 +226,7 @@ describe("evidence gate and overlap rules in the engine", () => {
 });
 
 describe("pce command line", () => {
-  const example = join(repo, "regulatory-burden-tool", "examples", "illustrative-licensing.brief.json");
+  const example = join(repo, "regulatory-burden-tool", "examples", "noncompete-ban.brief.json");
 
   it("T-PCLI-01 the CLI parses its options, reports the gate, the time path and NPVs, and hides GDP when the gate says so", () => {
     expect(parsePceArgs(["b.json", "--draws", "100", "--seed", "4", "--json"])).toMatchObject({ file: "b.json", draws: 100, seed: 4, json: true, showUngated: false });

@@ -12,7 +12,7 @@ import { newProposal } from "../../src/ui/model";
 import { directionCheck, leverDirection, similarChanges, suggestedCategories } from "../../src/ui/similar";
 
 const repo = join(import.meta.dirname, "..", "..", "..");
-const exampleBrief = () => parseBrief(JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "examples", "illustrative-licensing.brief.json"), "utf8")));
+const exampleBrief = () => parseBrief(JSON.parse(readFileSync(join(repo, "regulatory-burden-tool", "examples", "noncompete-ban.brief.json"), "utf8")));
 const draftWith = (levers: BriefDraft["levers"], industries = ["3232"]): BriefDraft => ({ ...newBriefDraft(), scope: { industries: industries.map((anzsic) => ({ anzsic })) }, levers });
 
 describe("brief draft", () => {

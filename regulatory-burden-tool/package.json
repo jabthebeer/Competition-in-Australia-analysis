@@ -22,7 +22,8 @@
     "check": "npm run typecheck && npm test && npm run trace",
     "build:artifact": "ARTIFACT_BUILD=1 VITE_DEMO=1 VITE_HOSTED=1 vite build && node scripts/build-artifact.mjs",
     "build:site": "SITE_BUILD=1 vite build && node scripts/build-site.mjs",
-    "evidence:sheet": "tsx scripts/evidence-sheet.ts"
+    "evidence:sheet": "tsx scripts/evidence-sheet.ts",
+    "validate:costing": "tsx scripts/validate-costing.ts"
   },
   "dependencies": {
     "decimal.js": "^10.6.0",

@@ -210,8 +210,8 @@ describe("policy brief schema", () => {
     }
   });
 
-  it("T-BRF-16 the illustrative example brief parses and its burden costs through the RBM engine", () => {
-    const file = JSON.parse(readFileSync(join(root, "examples", "illustrative-licensing.brief.json"), "utf8"));
+  it("T-BRF-16 the synthetic test brief parses and its burden costs through the RBM engine", () => {
+    const file = JSON.parse(readFileSync(join(root, "tests", "fixtures", "synthetic-licensing.json"), "utf8"));
     const b = parseBrief(file);
     expect(b.meta.title).toMatch(/^ILLUSTRATIVE/);
     expect(briefWarnings(b)).toEqual([]);
@@ -220,5 +220,17 @@ describe("policy brief schema", () => {
     expect(Number(result.options[0]!.rbe.total.toString())).toBeLessThan(0);
     expect(leverReach(b).map((r) => r.block)).toEqual(["entry", "labour"]);
     expect(PolicyBriefSchema.safeParse({ ...file, levers: { ...file.levers, labour: { licensing: { occupations: ["3812"], stringencyChange: -0.5 } } } }).success).toBe(false);
+  });
+
+  it("T-BRF-17 the bundled example, the non-compete ban, parses without warnings and rebuilds the Impact Analysis's familiarisation costs", () => {
+    const b = parseBrief(JSON.parse(readFileSync(join(root, "examples", "noncompete-ban.brief.json"), "utf8")));
+    expect(briefWarnings(b)).toEqual([]);
+    expect(b.scope.industries.map((i) => i.anzsic).join("")).toBe("ABCDEFGHIJKLMNOPQRS");
+    const result = computeProposal(b.burden!);
+    const tenYear = (id: string) => Number(result.options.find((o) => o.optionId === id)!.rbe.total.toString()) * 10;
+    // Option 3 reproduces Treasury's $16.3 million (IA Table 4); Option 2 is three times as long, so three times as much.
+    expect(tenYear("option-3-full-ban") / 1e6).toBeCloseTo(16.3, 1);
+    expect(tenYear("option-2-partial-ban") / tenYear("option-3-full-ban")).toBeCloseTo(3, 6);
+    expect(leverReach(b).map((r) => r.block)).toEqual(["labour"]);
   });
 });

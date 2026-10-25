@@ -237,11 +237,11 @@ export function DataPage(props: PageProps & { settings: Settings; setSettings: (
             }}
           />
           <ConfirmButton
-            label="Load the illustrative costing example (synthetic data)"
-            question="Replace the current proposal and productivity levers with the illustrative costing example (lighter licensing for electricians)? Keep a copy of this one first if you want it."
+            label="Load the costing example: banning non-compete clauses (a real policy)"
+            question="Replace the current proposal and productivity levers with the costing example, the ban on non-compete clauses for low- and middle-income workers (2025-26 Budget; Treasury Impact Analysis, 2026)? Keep a copy of this one first if you want it."
             confirmLabel="Yes, load the costing example"
             testId="load-brief-example"
-            onConfirm={() => loadBrief(exampleBrief(), "the illustrative costing example")}
+            onConfirm={() => loadBrief(exampleBrief(), "the costing example (banning non-compete clauses)")}
           />
         </div>
       </section>

@@ -1,0 +1,576 @@
+{
+  "schemaVersion": 1,
+  "kind": "policy-brief",
+  "id": "noncompete-ban",
+  "meta": {
+    "title": "Banning non-compete clauses for low- and middle-income workers (2025-26 Budget)",
+    "summary": "Real policy: the ban on non-compete clauses for employees earning below the Fair Work Act high-income threshold, announced on 25 March 2025 with the 2025-26 Budget, and Treasury's preferred option in its Impact Analysis (OIA, 21 September 2026). The reforms apply prospectively, to new and varied employment contracts, from 2027. The burden proposal holds the Impact Analysis's familiarisation costs for Options 2 and 3; the labour lever follows the Productivity Commission's 2024 non-compete simulation, which Treasury cites. Treasury's own GDP figure is the PC's $5.1 billion.",
+    "jurisdictions": [
+      "CTH"
+    ],
+    "proposalType": "reform",
+    "startYear": 2027,
+    "phaseInYears": 7,
+    "durationYears": 10,
+    "priceBase": "2025-26",
+    "source": {
+      "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (Office of Impact Analysis, published 21 September 2026)",
+      "url": "https://oia.pmc.gov.au/published-impact-analyses-and-reports/non-compete-clauses-and-other-worker-restraints",
+      "vintage": "September 2026",
+      "accessed": "2026-10-25"
+    },
+    "provenance": {
+      "startYear": {
+        "origin": "sourced",
+        "note": "The reforms apply prospectively from 2027 (IA summary; p. 28). The IA gives the year, not the date.",
+        "source": {
+          "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), IA summary and p. 28 (PDF p. 31)",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+          "vintage": "September 2026",
+          "accessed": "2026-10-25"
+        }
+      },
+      "phaseInYears": {
+        "origin": "sourced",
+        "note": "Most employees are expected to have a new or varied contract within 5–10 years (IA p. 50); 7 years is that range's midpoint, rounded down to whole years.",
+        "source": {
+          "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), p. 50 (PDF p. 53)",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+          "vintage": "September 2026",
+          "accessed": "2026-10-25"
+        }
+      }
+    }
+  },
+  "scope": {
+    "industries": [
+      {
+        "anzsic": "A",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Agriculture, Forestry and Fishing (the PC leaves agriculture out of its non-compete simulation, so C8 does too)"
+      },
+      {
+        "anzsic": "B",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Mining"
+      },
+      {
+        "anzsic": "C",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Manufacturing"
+      },
+      {
+        "anzsic": "D",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Electricity, Gas, Water and Waste Services"
+      },
+      {
+        "anzsic": "E",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Construction"
+      },
+      {
+        "anzsic": "F",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Wholesale Trade"
+      },
+      {
+        "anzsic": "G",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Retail Trade"
+      },
+      {
+        "anzsic": "H",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Accommodation and Food Services"
+      },
+      {
+        "anzsic": "I",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Transport, Postal and Warehousing"
+      },
+      {
+        "anzsic": "J",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Information Media and Telecommunications"
+      },
+      {
+        "anzsic": "K",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Financial and Insurance Services"
+      },
+      {
+        "anzsic": "L",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Rental, Hiring and Real Estate Services"
+      },
+      {
+        "anzsic": "M",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Professional, Scientific and Technical Services"
+      },
+      {
+        "anzsic": "N",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Administrative and Support Services"
+      },
+      {
+        "anzsic": "O",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Public Administration and Safety"
+      },
+      {
+        "anzsic": "P",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Education and Training"
+      },
+      {
+        "anzsic": "Q",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Health Care and Social Assistance"
+      },
+      {
+        "anzsic": "R",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Arts and Recreation Services"
+      },
+      {
+        "anzsic": "S",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Other Services"
+      }
+    ],
+    "sizeBands": [
+      "nonEmploying",
+      "1-4",
+      "5-19",
+      "20-199",
+      "200+"
+    ],
+    "entityTypes": [
+      "private"
+    ]
+  },
+  "burden": {
+    "id": "noncompete-ban-burden",
+    "title": "Non-compete clauses and other worker restraints: familiarisation costs (Treasury Impact Analysis, 2026)",
+    "description": "The Impact Analysis's regulatory burden estimate (Table 4), rebuilt from its stated inputs (Tables 5 and 6, p. 52). Option 3 reproduces Treasury's $16.3 million; Option 2 comes to about $48.9 million against Treasury's $46.4 million, because Treasury's $7.5 million and $0.7 million for medium and large businesses are less than three times its Option 3 figures although Option 2's time is three times as long (90 minutes against 30).",
+    "proposalType": "reform",
+    "durationYears": 10,
+    "jurisdiction": "commonwealthOnly",
+    "baseline": "statusQuo",
+    "rates": {
+      "work": {
+        "hourly": 91.54,
+        "base": 52.31,
+        "multiplier": 1.75
+      },
+      "leisure": {
+        "hourly": 41
+      },
+      "volunteer": {
+        "hourly": 41
+      },
+      "custom": [
+        {
+          "id": "corporate-manager",
+          "label": "Corporate manager or director (small businesses)",
+          "kind": "work",
+          "hourly": 136.29,
+          "override": {
+            "justification": "Treasury's rate for the corporate manager or director who reads the reforms in a small business: Glassdoor mean hourly pay of $77.88 (IA Table 5), times the RBM's 1.75 on-cost multiplier, which the IA's $38.2 million for small businesses implies (925,758 × 20.2% × 1.5 hours × $77.88 × 1.75)",
+            "source": {
+              "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), Table 5 and p. 52 (PDF p. 55)",
+              "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+              "vintage": "September 2026",
+              "accessed": "2026-10-25"
+            }
+          }
+        },
+        {
+          "id": "hr-manager",
+          "label": "HR manager or director (medium and large businesses)",
+          "kind": "work",
+          "hourly": 115.27,
+          "override": {
+            "justification": "Treasury's rate for the HR manager or director in a medium or large business: Glassdoor mean hourly pay of $65.87 (IA Table 5), times the RBM's 1.75 on-cost multiplier, which the IA's $38.2 million for small businesses implies (925,758 × 20.2% × 1.5 hours × $77.88 × 1.75)",
+            "source": {
+              "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), Table 5 and p. 52 (PDF p. 55)",
+              "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+              "vintage": "September 2026",
+              "accessed": "2026-10-25"
+            }
+          }
+        },
+        {
+          "id": "hr-assistant",
+          "label": "HR administrative assistant (medium and large businesses)",
+          "kind": "work",
+          "hourly": 68.2,
+          "override": {
+            "justification": "Treasury's rate for each of three HR administrative assistants in a medium or large business: Glassdoor mean hourly pay of $38.97 (IA Table 5), times the RBM's 1.75 on-cost multiplier, which the IA's $38.2 million for small businesses implies (925,758 × 20.2% × 1.5 hours × $77.88 × 1.75)",
+            "source": {
+              "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), Table 5 and p. 52 (PDF p. 55)",
+              "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+              "vintage": "September 2026",
+              "accessed": "2026-10-25"
+            }
+          }
+        }
+      ]
+    },
+    "populations": [
+      {
+        "id": "small",
+        "label": "Employing small businesses (1–19 employees)",
+        "group": "business",
+        "cohort": "small",
+        "count": 925758,
+        "source": {
+          "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), p. 52 (PDF p. 55), citing ABS Counts of Australian Businesses",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+          "vintage": "September 2026",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "medium",
+        "label": "Medium businesses (20–199 employees)",
+        "group": "business",
+        "cohort": "medium",
+        "count": 68215,
+        "source": {
+          "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), p. 52 (PDF p. 55): 73,403 medium and large businesses, split here by ABS CABEE counts at June 2024",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+          "vintage": "September 2026",
+          "accessed": "2026-10-25"
+        },
+        "provenance": {
+          "count": {
+            "origin": "modelEstimate",
+            "note": "The IA's 73,403 medium and large businesses, split by CABEE's June 2024 counts (68,235 with 20–199 employees, 5,189 with 200+)"
+          }
+        }
+      },
+      {
+        "id": "large",
+        "label": "Large businesses (200 or more employees)",
+        "group": "business",
+        "cohort": "large",
+        "count": 5188,
+        "source": {
+          "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), p. 52 (PDF p. 55): 73,403 medium and large businesses, split here by ABS CABEE counts at June 2024",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+          "vintage": "September 2026",
+          "accessed": "2026-10-25"
+        },
+        "provenance": {
+          "count": {
+            "origin": "modelEstimate",
+            "note": "As for medium businesses"
+          }
+        }
+      }
+    ],
+    "options": [
+      {
+        "id": "option-2-partial-ban",
+        "name": "Option 2: partial ban (preferred)",
+        "description": "Ban non-compete clauses for employees earning below the Fair Work Act high-income threshold ($183,100), ban co-worker non-solicitation clauses, no-poach and wage-fixing agreements, and limit the remaining restraints (a 6-month limit on non-competes above the threshold; no cascading clauses). 90 minutes of familiarisation (IA Table 5).",
+        "transitions": [
+          {
+            "id": "familiarisation-lead",
+            "name": "Familiarisation with the reforms: the person responsible",
+            "category": "administrative",
+            "description": "Reading the new requirements and guidance and considering their effect on the business's use of restraint clauses (IA p. 51). Small businesses: a corporate manager or director; medium and large: an HR manager or director.",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "small",
+                  "entities": 187003,
+                  "labour": {
+                    "hours": 1.5,
+                    "timesPerYear": 1,
+                    "staff": 1,
+                    "rateId": "corporate-manager"
+                  },
+                  "note": "20.2% of employing small businesses use non-compete clauses (IA Table 6)"
+                },
+                {
+                  "populationId": "medium",
+                  "entities": 20294,
+                  "labour": {
+                    "hours": 1.5,
+                    "timesPerYear": 1,
+                    "staff": 1,
+                    "rateId": "hr-manager"
+                  },
+                  "note": "29.75% of businesses with 20–199 employees use them (IA p. 52, averaging Table 6's 20–49 and 50–199 rows)"
+                },
+                {
+                  "populationId": "large",
+                  "entities": 2008,
+                  "labour": {
+                    "hours": 1.5,
+                    "timesPerYear": 1,
+                    "staff": 1,
+                    "rateId": "hr-manager"
+                  },
+                  "note": "38.7% of businesses with 200+ employees use them (IA p. 52)"
+                }
+              ]
+            },
+            "provenance": {
+              "reformed.lines.small.labour.hours": {
+                "origin": "sourced",
+                "note": "90 minutes, from the UK Department for Business and Trade's impact assessment, as Treasury used",
+                "source": {
+                  "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), Table 4 and pp. 51–53 (PDF pp. 54–56)",
+                  "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+                  "vintage": "September 2026",
+                  "accessed": "2026-10-25"
+                }
+              },
+              "reformed.lines.medium.labour.hours": {
+                "origin": "sourced",
+                "note": "90 minutes, from the UK Department for Business and Trade's impact assessment, as Treasury used",
+                "source": {
+                  "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), Table 4 and pp. 51–53 (PDF pp. 54–56)",
+                  "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+                  "vintage": "September 2026",
+                  "accessed": "2026-10-25"
+                }
+              },
+              "reformed.lines.large.labour.hours": {
+                "origin": "sourced",
+                "note": "90 minutes, from the UK Department for Business and Trade's impact assessment, as Treasury used",
+                "source": {
+                  "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), Table 4 and pp. 51–53 (PDF pp. 54–56)",
+                  "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+                  "vintage": "September 2026",
+                  "accessed": "2026-10-25"
+                }
+              }
+            }
+          },
+          {
+            "id": "familiarisation-hr-assistants",
+            "name": "Familiarisation with the reforms: three HR administrative assistants",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "medium",
+                  "entities": 20294,
+                  "labour": {
+                    "hours": 1.5,
+                    "timesPerYear": 1,
+                    "staff": 3,
+                    "rateId": "hr-assistant"
+                  },
+                  "note": "29.75% of businesses with 20–199 employees use them (IA p. 52, averaging Table 6's 20–49 and 50–199 rows)"
+                },
+                {
+                  "populationId": "large",
+                  "entities": 2008,
+                  "labour": {
+                    "hours": 1.5,
+                    "timesPerYear": 1,
+                    "staff": 3,
+                    "rateId": "hr-assistant"
+                  },
+                  "note": "38.7% of businesses with 200+ employees use them (IA p. 52)"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "option-3-full-ban",
+        "name": "Option 3: full ban of employment restraints of trade",
+        "description": "Ban all post-employment restraints of trade, including non-compete clauses for high-income employees and client non-solicitation clauses. 30 minutes of familiarisation (IA Table 5).",
+        "transitions": [
+          {
+            "id": "familiarisation-lead",
+            "name": "Familiarisation with the reforms: the person responsible",
+            "category": "administrative",
+            "description": "Reading the new requirements and guidance and considering their effect on the business's use of restraint clauses (IA p. 51). Small businesses: a corporate manager or director; medium and large: an HR manager or director.",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "small",
+                  "entities": 187003,
+                  "labour": {
+                    "hours": 0.5,
+                    "timesPerYear": 1,
+                    "staff": 1,
+                    "rateId": "corporate-manager"
+                  },
+                  "note": "20.2% of employing small businesses use non-compete clauses (IA Table 6)"
+                },
+                {
+                  "populationId": "medium",
+                  "entities": 20294,
+                  "labour": {
+                    "hours": 0.5,
+                    "timesPerYear": 1,
+                    "staff": 1,
+                    "rateId": "hr-manager"
+                  },
+                  "note": "29.75% of businesses with 20–199 employees use them (IA p. 52, averaging Table 6's 20–49 and 50–199 rows)"
+                },
+                {
+                  "populationId": "large",
+                  "entities": 2008,
+                  "labour": {
+                    "hours": 0.5,
+                    "timesPerYear": 1,
+                    "staff": 1,
+                    "rateId": "hr-manager"
+                  },
+                  "note": "38.7% of businesses with 200+ employees use them (IA p. 52)"
+                }
+              ]
+            },
+            "provenance": {
+              "reformed.lines.small.labour.hours": {
+                "origin": "sourced",
+                "note": "30 minutes, from the UK Department for Business and Trade's impact assessment, as Treasury used",
+                "source": {
+                  "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), Table 4 and pp. 51–53 (PDF pp. 54–56)",
+                  "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+                  "vintage": "September 2026",
+                  "accessed": "2026-10-25"
+                }
+              },
+              "reformed.lines.medium.labour.hours": {
+                "origin": "sourced",
+                "note": "30 minutes, from the UK Department for Business and Trade's impact assessment, as Treasury used",
+                "source": {
+                  "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), Table 4 and pp. 51–53 (PDF pp. 54–56)",
+                  "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+                  "vintage": "September 2026",
+                  "accessed": "2026-10-25"
+                }
+              },
+              "reformed.lines.large.labour.hours": {
+                "origin": "sourced",
+                "note": "30 minutes, from the UK Department for Business and Trade's impact assessment, as Treasury used",
+                "source": {
+                  "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), Table 4 and pp. 51–53 (PDF pp. 54–56)",
+                  "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+                  "vintage": "September 2026",
+                  "accessed": "2026-10-25"
+                }
+              }
+            }
+          },
+          {
+            "id": "familiarisation-hr-assistants",
+            "name": "Familiarisation with the reforms: three HR administrative assistants",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "medium",
+                  "entities": 20294,
+                  "labour": {
+                    "hours": 0.5,
+                    "timesPerYear": 1,
+                    "staff": 3,
+                    "rateId": "hr-assistant"
+                  },
+                  "note": "29.75% of businesses with 20–199 employees use them (IA p. 52, averaging Table 6's 20–49 and 50–199 rows)"
+                },
+                {
+                  "populationId": "large",
+                  "entities": 2008,
+                  "labour": {
+                    "hours": 0.5,
+                    "timesPerYear": 1,
+                    "staff": 3,
+                    "rateId": "hr-assistant"
+                  },
+                  "note": "38.7% of businesses with 200+ employees use them (IA p. 52)"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "levers": {
+    "labour": {
+      "nonCompetes": {
+        "coveredShareChange": {
+          "low": -0.2,
+          "high": -0.18
+        }
+      },
+      "provenance": {
+        "nonCompetes.coveredShareChange": {
+          "origin": "sourced",
+          "note": "A ban removes the coverage of the one in five workers bound by a non-compete (−0.2, the PC's simulation). Option 2 keeps non-competes, for up to 6 months, above the high-income threshold; Treasury expects it to deliver at least 90% of a full ban's increase in job mobility, so the low end of the change is 90% of −0.2.",
+          "source": {
+            "description": "Treasury, Impact Analysis: Non-compete clauses and other worker restraints (OIA, published 21 September 2026), p. 41 (PDF p. 44)",
+            "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/09/Impact%20Analysis.pdf",
+            "vintage": "September 2026",
+            "accessed": "2026-10-25"
+          }
+        }
+      }
+    }
+  },
+  "competition": {
+    "categories": {
+      "barriers": true,
+      "number-or-type": true,
+      "ability-incentive": true,
+      "prices-market-share": true,
+      "consumer-choice": false
+    },
+    "alternatives": "Option 1, the status quo: the common law restraint of trade doctrine, with the NSW Restraints of Trade Act still applying to NSW contracts. Option 3, a full ban of all employment restraints of trade, including non-competes for high-income employees and client non-solicitation clauses. Treasury preferred Option 2: it is more targeted, leaving businesses able to use reasonable non-competes for high-income employees and client non-solicitation clauses to protect legitimate interests, and so to invest in training and other assets; Option 3's mobility gains would be larger but it would give businesses no flexibility (IA pp. 27 and 62).",
+    "benefits": "Higher wages and job mobility: workers at firms that use non-competes extensively are paid about 4% less (e61), and job mobility could rise by 1–2 percentage points; Option 2 delivers at least 90% of a full ban's increase (IA summary; p. 41). More entrepreneurship and new businesses, knowledge spillovers, lower litigation costs (Option 3 saves up to $17 million a year), and consumer prices about 0.1% lower in the PC's modelling (IA summary; pp. 48–49)."
+  }
+}

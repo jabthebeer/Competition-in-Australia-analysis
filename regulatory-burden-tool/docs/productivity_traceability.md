@@ -94,7 +94,7 @@ Companion documents: [`framework_traceability.md`](framework_traceability.md) (t
 | BR-13 | Warnings PB-01 to PB-04 (nothing to cost; burden population outside the scope; unsourced custom shock; unconfirmed language-model estimate) flag problems without blocking | Plan §5.3; DECISIONS #59 | `src/productivity/brief.ts#briefWarnings` | T-BRF-13 |
 | BR-14 | Licensed occupations use six-digit OSCA 2024 codes | ABS-OSCA | `src/productivity/brief.ts#LabourLeverSchema` | T-BRF-16 |
 | BR-15 | One vocabulary of channels, shock types and overlap rules, shared by the brief and the engine | Plan §6.2, §6.5 | `src/productivity/channels.ts#CHANNELS`, `src/productivity/channels.ts#OVERLAP_RULES` | T-BRF-15 |
-| BR-16 | Briefs may be confidential: saved briefs (`*.brief.json`) are gitignored, except the illustrative examples; the built page makes no network requests | DECISIONS #37 | `.gitignore`; Vite CSP | T-E2E-07, T-BRF-16 |
+| BR-16 | Briefs may be confidential: saved briefs (`*.brief.json`) are gitignored, except the bundled examples in `examples/`; the built page makes no network requests | DECISIONS #37 | `.gitignore`; Vite CSP | T-E2E-07, T-BRF-16, T-BRF-17 |
 
 ### 2.3 Layer A: direct effects by channel (P4)
 
