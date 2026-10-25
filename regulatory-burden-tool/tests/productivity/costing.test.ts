@@ -24,6 +24,8 @@ import {
   triangular,
   uniform,
   CENTRAL,
+  COSTING_CSV_COLUMNS,
+  costingCsv,
 } from "../../src/productivity/index";
 import { parseArgs as parsePceArgs, runCli as runPce } from "../../src/cli/pce";
 import { delayLine, ob, option, pop, proposal, side } from "../engine/helpers";
@@ -239,6 +241,27 @@ describe("pce command line", () => {
     expect(json.ranges.draws).toBe(100);
     expect(json.gate.status).toBe("indicative");
     expect(runPce(["missing.brief.json"]).exitCode).toBe(1);
+  });
+});
+
+describe("costing export", () => {
+  it("T-CSV-01 the CSV has one row per figure with its range and grade; GDP rows follow the gate; formula-like text is defused", () => {
+    const b = brief(NON_COMPETES);
+    const c = runCosting(b, ctx, { draws: 200 });
+    const lines = costingCsv(b, c.result, c.ranges, c.gate, ctx).trim().split("\r\n");
+    expect(lines[0]).toBe(COSTING_CSV_COLUMNS.map((x) => x.name).join(","));
+    const long = lines.find((l) => l.includes(',gdp,,,,"Change in real GDP, long run",%,'))!;
+    expect(long).toContain(String(c.result.gdpPct));
+    expect(long).toContain(String(c.ranges.gdpPct.p10));
+    expect(lines.filter((l) => /,gdp,,,\d+,Change in real GDP,%,/.test(l))).toHaveLength(10); // one per year
+    expect(lines.some((l) => l.includes(",channel,C8,") && l.endsWith(",C"))).toBe(true);
+    // A brief the gate hides exports its direct effects but no GDP rows.
+    const custom = brief({ custom: [{ id: "s1", channel: "C12", industry: "F", type: "labourProductivity", size: 2, justification: "=HYPERLINK(1)" }] });
+    const h = runCosting(custom, ctx, { draws: 100 });
+    const hidden = costingCsv({ ...custom, id: "=cmd" }, h.result, h.ranges, h.gate, ctx);
+    expect(hidden).not.toContain(",gdp,");
+    expect(hidden).toContain(",effect,C12,F,");
+    expect(hidden.split("\r\n")[1]!.startsWith("'=cmd,")).toBe(true);
   });
 });
 

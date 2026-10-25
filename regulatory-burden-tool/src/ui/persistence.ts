@@ -68,6 +68,18 @@ export function fileNameFor(p: Proposal): string {
   return `${slug}.rbm.json`;
 }
 
+/** Downloads text as a file, entirely in the browser. */
+export function downloadText(name: string, text: string, type: string): void {
+  const url = URL.createObjectURL(new Blob([text], { type }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
 /** Downloads the proposal as a versioned JSON file, entirely in the browser. */
 export function downloadProposal(p: Proposal): void {
   const blob = new Blob([JSON.stringify(toProposalFile(p, new Date().toISOString()), null, 2)], { type: "application/json" });

@@ -14,13 +14,15 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 | 1 | Calculation engine (pure TypeScript), tests, CLI | Complete |
 | 2 | Core web app (MVP), built around reform mode | **Complete. Awaiting review.** |
 | 2b | Copy-and-paste AI drafting assistant (prompt generator; provenance review) | **Deferred** (14 Oct 2026) while the econometric foundation is scoped ([scoping note](../docs/econometric_foundation_scoping.md)). Engine groundwork done: provenance labels, draft import |
-| 3 | Framework completeness: screener UI, warnings UI, assumptions register UI, option comparison | Not started (the engine already supports these) |
+| 3 | Framework completeness: screener UI, warnings UI, assumptions register UI, option comparison | **Done** in policy costing P5 (25 Oct 2026): the screener on the regime pages; warnings, the assumptions register and option comparison on the Results page |
 | 4 | Reporting (docx, xlsx, CSV, print) and sensitivity | Not started |
 | 5 | Validation against published Impact Analyses; accessibility audit; user guide | Not started |
 | Policy costing P0 | Productivity and competition costing ([plan](../docs/forward_plan_policy_costing.md)): decisions, the policy brief schema (`src/productivity/`), traceability | **Done** (22 Oct 2026) |
 | Policy costing P1 | Folded into the ALICIA website as the Policy costing tab (`npm run build:site`), with the site nav and theme; bundled costing parameters; daily data refresh in the Pages workflow | **Done** (22 Oct 2026) |
 | Policy costing P3 | Evidence library (`src/productivity/evidence/`): sourced defaults and ranges for every formula, a Sources and parameters page, and a review sheet for Cowork (`npm run evidence:sheet`) | **Done** (23 Oct 2026) |
 | Policy costing P2 | Parameter pipeline (`alicia costing-params`, in `alicia/`): 16 sources, bundled into the tab | **Done** (23 Oct 2026) |
+| Policy costing P4 | Productivity and competition engine (`src/productivity/`): Layer A channels, Layer B back-tested against PC National, time path, Monte Carlo, evidence gate; CLI `npm run pce` | **Done** (24 Oct 2026) |
+| Policy costing P5 | The productivity pages: Scope, Productivity levers, Competition screen, and productivity results with ranges and charts; the whole costing as one file; CSV export | **Done** (25 Oct 2026) |
 
 ## Running it
 
@@ -63,12 +65,17 @@ Proposal files may be Cabinet-in-confidence. `.gitignore` keeps `*.rbm.json`, `*
 
 ## The web app (`src/ui/`)
 
-Four steps, plus save/load and about pages. Each has a plain link (`#proposal`, `#current`, `#options`, `#results`, `#data`, `#about`). On first visit the app offers to load the illustrative example. Save and load can download or open a file, copy the proposal as text, or check and load pasted text (including an AI draft). Destructive actions (remove, start again, delete stored data) ask for confirmation on the page rather than in a browser dialog.
+Seven steps, plus save/load, sources and about pages. Each has a plain link (`#proposal`, `#scope`, `#current`, `#options`, `#levers`, `#competition`, `#results`, `#data`, `#sources`, `#about`). On first visit the app offers to load the illustrative example. Save and load can download or open a file, copy the proposal or the whole costing as text, or check and load pasted text (including an AI draft). Destructive actions (remove, start again, delete stored data) ask for confirmation on the page rather than in a browser dialog.
 
-1. **Proposal:** type (reform, new, repeal), period, jurisdiction, baseline toggle, affected groups (with optional ABS size band and ANZSIC code), and the options to compare.
-2. **Current regime:** obligations as they are today, with plain-language help, defaults from `parameters.ts`, scope checks, and a live formula preview with the year-by-year profile.
-3. **Reform options:** per option, keep / modify / remove each obligation; reform levers highlight the inputs they change; changed fields show today's value; a diff lists what changes. Also new replacement obligations, transition costs, deferred start and dual running.
-4. **Results:** the RBE table in the framework's layout for every option, net verdict, gross increases and reductions, 10-year total and IA threshold 1 flag, the alternative baseline, context totals, a waterfall chart, breakdowns, per-entity results with cliff flags, excluded items, warnings and the assumptions register.
+1. **Proposal:** type (reform, new, repeal), period, jurisdiction, baseline toggle, affected groups (with optional ABS size band and ANZSIC code), the options to compare; and, for the productivity costing, a summary, the jurisdictions, the first year and the phase-in.
+2. **Scope:** the industries the policy reaches (any ANZSIC level, with exposure), business sizes and states, and what the bundled data says about them.
+3. **Current regime:** obligations as they are today, with plain-language help, defaults from `parameters.ts`, scope checks, the scope screener, and a live formula preview with the year-by-year profile.
+4. **Reform options:** per option, keep / modify / remove each obligation; reform levers highlight the inputs they change; changed fields show today's value; a diff lists what changes. Also new replacement obligations, transition costs, deferred start and dual running.
+5. **Productivity levers:** one card per lever (entry and exit, size thresholds, investment, competition, workers, innovation, trade, funding, your own estimates). Under each, the calculation by industry, the evidence it uses and its grade; then similar past changes from the ALICIA register.
+6. **Competition screen:** the OIA's three steps. Step 1's categories, suggested and then answered by the user; cost against revenue by business size and the small-to-large ratio; businesses near thresholds; the ABS survey's incidence of regulation as a barrier. Step 2 compares the options; Step 3 sets the RBE beside the productivity effect.
+7. **Results:** the RBE table in the framework's layout for every option, net verdict, gross increases and reductions, 10-year total and IA threshold 1 flag, the alternative baseline, context totals, a waterfall chart, breakdowns, per-entity results with cliff flags, excluded items, warnings and the assumptions register. Then the productivity and competition costing: the evidence gate, the long-run GDP effect with its 10–90% range, threshold 2, the time path, present values, charts by channel, year and industry, a tornado, what is not quantified, and a CSV of every figure.
+
+The whole costing (burden proposal, scope, levers and competition answers) saves as one `.brief.json` file. `src/ui/briefModel.ts` keeps the productivity draft beside the proposal and assembles the brief.
 
 `src/ui/model.ts` holds the pure editing helpers (tested in `tests/ui/`); pages and components only call them.
 

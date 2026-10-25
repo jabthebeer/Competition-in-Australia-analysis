@@ -70,6 +70,9 @@ export function renderReport(brief: PolicyBrief, c: Costing, parameterVintage: s
       out.push(`| ${ch.channel} ${ch.name} | ${costed ? "costed" : "not quantified"} | ${ch.grade ?? "–"} | ${costed ? pct(ch.gdpPct) : "–"} | ${costed ? money(ch.gdpDollars) : "–"} | ${costed && p ? range(p, pct) : ""} |`);
     }
     out.push(`| **Total** | | | **${pct(r.gdpPct)}** | **${money(r.gdpDollars)}** | ${range(ranges.gdpPct, pct)} |`);
+    if (r.gdpPct > ranges.gdpPct.p90 || r.gdpPct < ranges.gdpPct.p10) {
+      out.push("", `The central estimate uses each parameter's default; some defaults sit at the end of their range, so it lies outside the 10–90% range. The median of the simulations is ${pct(ranges.gdpPct.p50)}.`);
+    }
     if (r.realisationFactor !== 1) out.push("", `Realisation factor ${r.realisationFactor}: every productivity effect is scaled by it.`);
     const t2 = gate.threshold2;
     out.push(

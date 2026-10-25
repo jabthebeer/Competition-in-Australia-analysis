@@ -3,7 +3,9 @@
 // and what is not quantified. Central figures appear only with their ranges (plan §3.2, principle 2), so the
 // headline waits for the Monte Carlo, which runs in chunks to keep the page responsive.
 import { useEffect, useMemo, useState } from "react";
-import { costBrief, evidenceGate, simulateInChunks, tornado, type CostingContext, type CostingResult, type PolicyBrief, type Ranges, type TornadoBar } from "../../productivity/index";
+import { costBrief, costingCsv, evidenceGate, simulateInChunks, tornado, type CostingContext, type CostingResult, type PolicyBrief, type Ranges, type TornadoBar } from "../../productivity/index";
+import { HOSTED } from "../env";
+import { downloadText } from "../persistence";
 import type { PageProps } from "../App";
 import { useCostingContext } from "../costingContext";
 import { gdpPct, dollars, millions, range } from "../productivityFormat";
@@ -148,6 +150,11 @@ function Results({ brief, ctx, central: r, ranges, bars, warnings }: { brief: Po
           <p className="headline" data-testid="productivity-headline">
             Long-run change in real GDP: <strong>{gdpPct(r.gdpPct)}</strong> (10–90% range {range(ranges.gdpPct, gdpPct)}), about <strong>{millions(r.gdpDollars)} a year</strong> in {r.gdpYear} dollars, or {dollars(r.gdpPerPersonDollars)} a person.
           </p>
+          {(r.gdpPct > ranges.gdpPct.p90 || r.gdpPct < ranges.gdpPct.p10) && (
+            <p className="help" data-testid="central-outside">
+              The central estimate uses each parameter's default, and some defaults sit at the {r.gdpPct > ranges.gdpPct.p90 ? "top" : "bottom"} of their published range (for example, the Productivity Commission's own upper case), so it lies {r.gdpPct > ranges.gdpPct.p90 ? "above the 90th" : "below the 10th"} percentile of the simulations. Their median is {gdpPct(ranges.gdpPct.p50)}. Report the range, not the central figure alone.
+            </p>
+          )}
           <p data-testid="threshold2">
             Impact Analysis threshold 2 (${gate.thresholdDollars} million a year): the central estimate {t2.centralMeets ? "meets it" : "does not meet it"}, and the low end of the range ({millions(t2.low)}) {t2.lowMeets ? "meets it too" : "does not"}.
             {t2.centralMeets && !t2.lowMeets ? " Treat it as possibly material and say so in the Impact Analysis." : ""}
@@ -216,6 +223,8 @@ function Results({ brief, ctx, central: r, ranges, bars, warnings }: { brief: Po
         </p>
       )}
 
+      <Export brief={brief} ctx={ctx} central={r} ranges={ranges} gate={gate} />
+
       <h3>Direct effects by channel</h3>
       <p className="help">The calculation behind each channel, industry by industry, with its evidence and grade.</p>
       {r.channels.map((c) => (
@@ -254,6 +263,38 @@ function Results({ brief, ctx, central: r, ranges, bars, warnings }: { brief: Po
         </>
       )}
     </>
+  );
+}
+
+function Export({ brief, ctx, central, ranges, gate }: { brief: PolicyBrief; ctx: CostingContext; central: CostingResult; ranges: Ranges; gate: ReturnType<typeof evidenceGate> }) {
+  const [copied, setCopied] = useState<string | null>(null);
+  const csv = () => costingCsv(brief, central, ranges, gate, ctx);
+  const name = `${brief.id}-productivity.csv`;
+  return (
+    <div className="export" data-testid="productivity-export">
+      <p className="button-row">
+        {!HOSTED && (
+          <button type="button" onClick={() => downloadText(name, csv(), "text/csv")} data-testid="download-csv">
+            Download these results ({name})
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={async () => {
+            try {
+              await navigator.clipboard.writeText(csv());
+              setCopied("Copied the results as CSV.");
+            } catch {
+              setCopied(null);
+            }
+          }}
+        >
+          Copy the results as CSV
+        </button>
+      </p>
+      <p className="help">One row per figure, each with its central value, its 10–90% range where it has one, its channel's evidence grade and the evidence gate's status. {gate.showGdp ? "" : "GDP figures the gate hides are left out."}</p>
+      <div aria-live="polite">{copied && <p className="success">{copied}</p>}</div>
+    </div>
   );
 }
 
