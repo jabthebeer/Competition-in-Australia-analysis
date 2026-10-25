@@ -985,3 +985,166 @@ thead th {
   color: var(--ink-2);
   font-size: 0.9rem;
 }
+
+.headline {
+  font-size: 1.15rem;
+}
+
+.gate ul {
+  margin: 0.25rem 0 0;
+}
+
+.watermark {
+  font-weight: 700;
+  color: var(--warn);
+  margin: 0.25rem 0 0;
+}
+
+.settings summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+progress {
+  display: block;
+  width: 100%;
+  max-width: 24rem;
+  margin-top: 0.5rem;
+}
+
+.tornado {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.tornado li {
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr) auto;
+  gap: 0.25rem 0.75rem;
+  align-items: center;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #e1e0d9;
+}
+
+.tornado-label {
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.tornado-track {
+  position: relative;
+  height: 20px;
+}
+
+.tornado-bar {
+  position: absolute;
+  top: 0;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.tornado-centre {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 1px;
+  background: #52514e;
+}
+
+.tornado-values {
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 40rem) {
+  .tornado li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tornado-values {
+    white-space: normal;
+  }
+}
+
+.hbars {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.hbars li {
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr) auto;
+  gap: 0.25rem 0.75rem;
+  align-items: center;
+  padding: 0.35rem 0;
+}
+
+.hbar-label {
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.hbar-track {
+  position: relative;
+  height: 20px;
+}
+
+.hbar {
+  position: absolute;
+  top: 0;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.hbar-whisker {
+  position: absolute;
+  top: 9px;
+  height: 0;
+  border-top: 1.5px solid #52514e;
+}
+
+.hbar-whisker::before,
+.hbar-whisker::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  height: 9px;
+  border-left: 1.5px solid #52514e;
+}
+
+.hbar-whisker::before {
+  left: 0;
+}
+
+.hbar-whisker::after {
+  right: 0;
+}
+
+.hbar-zero {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 1px;
+  background: #c3c2b7;
+}
+
+.hbar-value {
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 40rem) {
+  .hbars li {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .hbar-label {
+    grid-column: 1 / -1;
+  }
+}

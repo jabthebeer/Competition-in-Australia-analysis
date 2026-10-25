@@ -119,25 +119,59 @@ export interface Ranges {
   npv: Percentiles;
   /** GDP change, per cent, in years 1, 5 and 10. */
   byYear: { year: number; gdpPct: Percentiles }[];
+  /** GDP change, per cent, in every year of the path. */
+  path: { year: number; gdpPct: Percentiles }[];
   byChannel: { channel: ChannelId; gdpPct: Percentiles }[];
 }
 
 const REPORTED_YEARS = [1, 5, 10];
 
-/** The Monte Carlo (F-U-01): `draws` costings, each with every ranged parameter and input drawn afresh. */
-export function simulate(brief: PolicyBrief, ctx: CostingContext, draws = brief.analysis.draws, seed = brief.analysis.seed): Ranges {
-  const runs: CostingResult[] = [];
-  for (let i = 0; i < draws; i++) runs.push(costBrief(brief, ctx, sampledSource(seed, i)));
+function summarise(runs: readonly CostingResult[], draws: number, seed: number): Ranges {
   const channels = runs[0]?.channels.map((c) => c.channel) ?? [];
+  const path = (runs[0]?.path ?? []).map((p, i) => ({ year: p.year, gdpPct: percentiles(runs.map((r) => r.path[i]!.gdpPct)) }));
   return {
     draws,
     seed,
     gdpPct: percentiles(runs.map((r) => r.gdpPct)),
     gdpDollars: percentiles(runs.map((r) => r.gdpDollars)),
     npv: percentiles(runs.map((r) => r.npv[0]!.dollars)),
-    byYear: REPORTED_YEARS.map((year) => ({ year, gdpPct: percentiles(runs.map((r) => r.path[year - 1]!.gdpPct)) })),
+    byYear: REPORTED_YEARS.map((year) => ({ year, gdpPct: path[year - 1]!.gdpPct })),
+    path,
     byChannel: channels.map((channel) => ({ channel, gdpPct: percentiles(runs.map((r) => r.channels.find((c) => c.channel === channel)!.gdpPct)) })),
   };
+}
+
+/** The Monte Carlo (F-U-01): `draws` costings, each with every ranged parameter and input drawn afresh. */
+export function simulate(brief: PolicyBrief, ctx: CostingContext, draws = brief.analysis.draws, seed = brief.analysis.seed): Ranges {
+  const runs: CostingResult[] = [];
+  for (let i = 0; i < draws; i++) runs.push(costBrief(brief, ctx, sampledSource(seed, i)));
+  return summarise(runs, draws, seed);
+}
+
+/**
+ * The same Monte Carlo in chunks, yielding between them so a page stays responsive; the result is identical to
+ * `simulate`. Rejects with an AbortError when `signal` aborts.
+ */
+export async function simulateInChunks(
+  brief: PolicyBrief,
+  ctx: CostingContext,
+  opts: { draws?: number; seed?: number; chunk?: number; onProgress?: (done: number, draws: number) => void; signal?: AbortSignal; pause?: () => Promise<void> } = {},
+): Promise<Ranges> {
+  const draws = opts.draws ?? brief.analysis.draws;
+  const seed = opts.seed ?? brief.analysis.seed;
+  const chunk = opts.chunk ?? 100;
+  const pause = opts.pause ?? (() => new Promise<void>((resolve) => setTimeout(resolve, 0)));
+  const runs: CostingResult[] = [];
+  for (let i = 0; i < draws; i++) {
+    runs.push(costBrief(brief, ctx, sampledSource(seed, i)));
+    if ((i + 1) % chunk === 0 && i + 1 < draws) {
+      opts.onProgress?.(i + 1, draws);
+      await pause();
+      if (opts.signal?.aborted) throw new DOMException("The Monte Carlo was cancelled", "AbortError");
+    }
+  }
+  opts.onProgress?.(draws, draws);
+  return summarise(runs, draws, seed);
 }
 
 export interface TornadoBar {

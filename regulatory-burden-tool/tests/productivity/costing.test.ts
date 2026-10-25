@@ -19,6 +19,7 @@ import {
   runCosting,
   sampledSource,
   simulate,
+  simulateInChunks,
   tornado,
   triangular,
   uniform,
@@ -143,6 +144,19 @@ describe("Monte Carlo and tornado", () => {
     // With the model error at its back-test band ends and all else central, GDP moves by exactly those factors (A-P19).
     const lp = ev("F-B-05", "modelErrorLp");
     expect(costBrief(b, ctx, fixedSource(new Map([[lp.id, lp.low]]))).gdpPct).toBeCloseTo(r.gdpPct * lp.low, 12);
+  });
+
+  it("T-MC-05 the chunked Monte Carlo gives the same ranges as the plain one, reports progress and can be cancelled", async () => {
+    const b = brief(NON_COMPETES);
+    const progress: number[] = [];
+    const chunked = await simulateInChunks(b, ctx, { draws: 250, seed: 3, chunk: 100, onProgress: (done) => progress.push(done), pause: async () => undefined });
+    expect(chunked).toEqual(simulate(b, ctx, 250, 3));
+    expect(progress).toEqual([100, 200, 250]);
+    expect(chunked.path).toHaveLength(10);
+    expect(chunked.path[4]!.gdpPct).toEqual(chunked.byYear[1]!.gdpPct);
+    const stop = new AbortController();
+    const run = simulateInChunks(b, ctx, { draws: 300, chunk: 100, signal: stop.signal, pause: async () => stop.abort() });
+    await expect(run).rejects.toThrow(/cancelled/);
   });
 
   it("T-MC-04 the tornado ranks parameters and ranged inputs by the swing they cause, at most ten, largest first", () => {
