@@ -3,6 +3,7 @@ import { PARAMETERS, type Population } from "../../engine/index";
 import { NextStep, PageHeading, type PageProps } from "../App";
 import { JURISDICTIONS, type Jurisdiction } from "../briefModel";
 import { exampleProposal, isUntouched } from "../example";
+import { exampleCosting } from "../exampleBrief";
 import { Checkbox, Help, IntegerField, QuantityField, RadioGroup, SelectField, TextField } from "../components/fields";
 import { COHORT_LABELS, GROUP_LABELS } from "../format";
 import { addOption, addPopulation, populationBlockers, removeOption, removePopulation, setDuration, setProposalType, updateOption, updatePopulation } from "../model";
@@ -18,7 +19,29 @@ export function ProposalPage({ proposal: p, update, draft, updateDraft, go }: Pa
       <p>Describe the proposal, who it affects, and the options you want to compare. Each option gets its own Regulatory Burden Estimate (RBE) table.</p>
       {isUntouched(p) && (
         <div className="summary-box" data-testid="first-run">
-          New here? <button type="button" className="link" onClick={() => update(() => exampleProposal())}>Load the illustrative example</button> (synthetic data) to see a worked reform, or start with your own proposal below.
+          <p>
+            New here?{" "}
+            <button
+              type="button"
+              className="link"
+              data-testid="first-run-example"
+              onClick={() => {
+                const { burden, draft } = exampleCosting();
+                update(() => burden);
+                updateDraft(() => draft);
+              }}
+            >
+              Load a worked example: banning non-compete clauses
+            </button>{" "}
+            (a real policy from the 2025-26 Budget, costed from Treasury's Impact Analysis). It fills in every step, from the industries affected to the results. Or start with your own proposal below.
+          </p>
+          <p>
+            For a simpler, regulatory-burden-only example,{" "}
+            <button type="button" className="link" onClick={() => update(() => exampleProposal())}>
+              load the illustrative example
+            </button>{" "}
+            (synthetic data).
+          </p>
         </div>
       )}
 
