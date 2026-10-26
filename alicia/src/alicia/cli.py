@@ -264,6 +264,7 @@ BUILDERS = {
     "clue_melbourne": "alicia.pipeline.clue",
     "jsa_ivi": "alicia.pipeline.jsa_ivi",  # needs workbooks saved by hand in data/raw/jsa_ivi/
     "abs_state_accounts": "alicia.pipeline.abs_state_accounts",
+    "ato_company": "alicia.pipeline.ato_company",
     "controls": "alicia.pipeline.controls",  # macroeconomic controls, written to data/processed/controls/
 }
 

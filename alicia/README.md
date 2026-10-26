@@ -25,7 +25,8 @@ The table below is the state of the retrospective work when it was paused.
 | Panel estimators (forward plan Phase 2) | Saturated state × industry, industry × period and state × period fixed effects; clustered errors; restricted wild cluster bootstrap; imputation (Borusyak, Jaravel and Spiess); Callaway–Sant'Anna (doubly robust); synthetic DiD and synthetic control; generalised synthetic control; matrix completion; conformal and placebo randomization inference; Rambachan–Roth sensitivity bounds; shift-share and measured controls (`evaluate/panel.py`, `synth.py`, `cs.py`, `honest.py`, `covariates.py`; [methods note](../docs/methods_panel_estimators.md)) | Built and tested on simulations; R cross-check written, not yet run (deferred) |
 | Power study (forward plan Phase 3) | Blinded: for each evaluable reform, including the new families, the no-effect spread and smallest detectable effect of each estimator layer on business entry and exit rates (`run.py`) and on CPI prices by capital city (`prices.py`), under four placebo families: industries (or CPI classes), states, fake dates, and both (`analyses/power_study/`; [results](../docs/power_study.md)) | Done |
 | Specification runner (forward plan Phase 4) | One JSON specification per evaluation in `specs/` (records, outcomes, cohorts or windows, estimators, placebo pools, stages, design constants), read by the analysis code; `alicia spec run` re-runs the stages and checks every output is byte-identical; the registered estimate runs only after the design is committed (`src/alicia/runner/`; [note](../docs/specification_runner.md)) | Done: the four earlier analyses and the two Phase 5 specifications |
-| Website | `alicia site` builds the legislation menu plus **State and industry growth** (GSP; GVA, employment and business entry and exit by division × state) and **Economic conditions** (the control series). With `--costing`, it adds the **Policy costing** tab built from `regulatory-burden-tool/` (`npm run build:site`) | Done; published by the Pages workflow on merge to main and daily, after refreshing the costing data from the publishers' latest releases |
+| Website | `alicia site` builds the legislation menu plus **State and industry growth** (GSP; GVA, employment and business entry and exit by division × state; barriers to entry and business dynamism) and **Economic conditions** (the control series; profitability and market power). Both pages pick any span of years with a slider. With `--costing`, it adds the **Policy costing** tab built from `regulatory-burden-tool/` (`npm run build:site`) | Done; published by the Pages workflow on merge to main and daily, after refreshing the costing data from the publishers' latest releases |
+| Barriers to entry and profitability | Grattan Institute's 2017 charts recreated from public data (`menu/competition.py`): a barriers-to-entry classification of ANZSIC classes (`barriers.py`, `data/barriers.json`); entry and exit by barriers group and state (CABEE, employing businesses by default); company return on equity, super-normal profit and mark-ups by sector and group, with a user-set cost of equity (ATO Company Table 4, `pipeline/ato_company.py`; RBA 10-year bond yield); concentration and mark-ups by division (RBA RDP 2025-05). [Methods and limitations](../docs/methods_competition_charts.md) | Done (25 Oct 2026) |
 | First case | Perth trading-hours deregulation (2010, 2012): blinded robustness review, pre-analysis plan and results ([review](../docs/robustness_review_wa_trading_hours.md), [plan](../docs/pap_wa_trading_hours.md), [results](../docs/results_wa_trading_hours.md)) | Done: no detectable effect on entry or exit; grade Moderate |
 | High-evaluability batch | The other 16 high-rated records as seven reforms, one plan, stacked difference-in-differences ([plan](../docs/pap_high_evaluability.md), [results](../docs/results_high_evaluability.md)) | Done: no detectable effects; three not identified |
 | Perth weeknight re-evaluation | The 2010 weeknight step alone, with business counts by place (Perth vs regional WA), monthly turnover and hours ([plan](../docs/pap_wa_weeknight_2010.md), [results](../docs/results_wa_weeknight_2010.md)) | Done: no detectable effect; grade Moderate |
@@ -75,6 +76,7 @@ uv run alicia methods -o ../docs/evaluation_methods.md   # key insights and meth
 uv run alicia pipeline build              # build every outcome panel (downloads ~1.5 GB on first run, mostly the ABN extract)
 uv run alicia pipeline build abs_lfs asic  # or named sources; see BUILDERS in cli.py
 uv run alicia pipeline build abs_state_accounts controls   # State Accounts and the macroeconomic controls
+uv run alicia pipeline build ato_company   # ATO company tax statistics by industry (barriers-to-entry and profitability charts)
 uv run python analyses/panel_crosscheck/write_reference.py # reference panel for analysis/crosscheck_panel_estimators.R
 uv run python analyses/power_study/run.py                   # Phase 3 power study, business counts (blinded; about an hour)
 uv run python analyses/power_study/prices.py                # Phase 3 power study, CPI prices (blinded)
@@ -120,17 +122,20 @@ alicia/
     legislation/   frl.py (Commonwealth), states.py (states and territories), gather.py (reconcile),
                    adapters.py (routing), http.py (polite fetching), cache.py, text.py (dates, Word tables)
     menu/          screen.py (evaluability), explorer.py + templates/explorer.html (the menu page),
-                   growth.py + templates/growth.html, conditions.html, site.css, charts.js (summary pages, `alicia site`)
+                   growth.py + templates/growth.html, conditions.html, site.css, charts.js (summary pages, `alicia site`),
+                   competition.py (barriers-to-entry and profitability data for those pages)
     outcomes/      cabee.py (entries and exits), abs_series.py (ABS workbooks, CPI Data API), productivity.py
     pipeline/      schema.py (common panel format), store.py (raw, processed, manifests), coverage.py (catalogue and
                    matching to records), sources.py (registry), one module per connector (abs_cabee, abs_retail,
                    abs_lfs, abs_regional, geo, abr_abn, asic, clue, jsa_ivi, abs_state_accounts), controls.py
                    (macroeconomic controls), names.py (industry from names), concord.py (Retail Trade groupings),
-                   abs_api.py (ABS Data API client), abs_tsw.py (ABS time series workbooks)
+                   abs_api.py (ABS Data API client), abs_tsw.py (ABS time series workbooks),
+                   ato_company.py (ATO company tax statistics by industry)
     evaluate/      did.py (single-treated-unit DiD, placebos, simulations), stacked.py (several or staggered treated units),
                    stagger.py (one late jurisdiction: the on-off design), panel.py (saturated fixed effects, wild
                    cluster bootstrap, imputation, randomization inference), covariates.py (measured state controls)
     runner/        spec.py (specification format), run.py (runs stages, checks outputs, pre-registration guard)
+    barriers.py    barriers-to-entry groups of ANZSIC classes, after Grattan Institute (2017), from data/barriers.json
     timing.py      financial years and quarters
     anzsic.py, cpi.py, data/   bundled ABS classifications (CC BY 4.0)
     cli.py

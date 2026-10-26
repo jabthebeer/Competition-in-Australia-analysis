@@ -19,6 +19,7 @@ Forward-looking costing of prospective policies: a new interactive **Policy cost
 - [`regulatory-burden-tool/`](regulatory-burden-tool/): an unofficial calculator for regulatory burden under the OIA Regulatory Burden Measurement framework, with reform (remove-and-replace) comparisons and analysis-ready exports for competition and business-dynamism research.
 - [`alicia/`](alicia/): **ALICIA**, Australian Legislation Impact on Competition Industry Analysis: a public-data toolkit for evaluating how legislation affects competition. It has a register of changes, an effective-date gatherer that checks the legislation registers, an evaluability screen, a menu explorer that shows evaluated changes and their results, and the analyses behind those results.
 - [`regulation-register/`](regulation-register/): the register itself, with one record per regulatory change per jurisdiction, and dated reports from the date checks.
+- **Barriers to entry and profitability** (on the ALICIA website's State and industry growth and Economic conditions pages): Grattan Institute's 2017 *Competition in Australia* charts recreated from public data (ABS business counts, ATO company tax statistics, RBA). Methods and results: [`docs/methods_competition_charts.md`](docs/methods_competition_charts.md).
 
 ## Planning
 

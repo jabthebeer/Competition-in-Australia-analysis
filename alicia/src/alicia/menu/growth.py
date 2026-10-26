@@ -5,10 +5,12 @@ can rebuild them) and use the explorer's design. Growth rates, shares and indexe
 the page from the levels embedded here, so every number shown can be traced to a panel.
 
 - ``growth.html``: gross state product; gross value added, employment and business entry and exit
-  by ANZSIC division and state (State Accounts, Labour Force EQ06, CABEE).
+  by ANZSIC division and state (State Accounts, Labour Force EQ06, CABEE); barriers to entry and
+  business dynamism (``alicia.menu.competition``). A slider picks any span of financial years.
 - ``conditions.html``: the macroeconomic control series (``alicia.pipeline.controls``): state final
   demand, household consumption, unemployment, population, wages, dwelling approvals, commodity
-  prices and national industry output.
+  prices and national industry output; company profitability and market power by barriers to entry
+  (``alicia.menu.competition``).
 """
 
 from __future__ import annotations
@@ -23,18 +25,19 @@ from .. import anzsic
 from ..pipeline import controls, schema, store
 from ..register.evaluation import Evaluation, current_evaluation
 from ..register.schema import ChangeRecord
+from . import competition
 
 STATES = (*schema.STATES, "AUS")
 STATE_NAMES = {v: k for k, v in schema.STATE_NAMES.items()} | {"AUS": "Australia"}
 DIVISIONS = tuple("ABCDEFGHIJKLMNOPQRS")
 TOTAL = "TOT"
-# Windows are financial years, named by the year in which they start (2014 = 2014-15).
+# Preset periods for the slider. Financial years, named by the year in which they start (2014 = 2014-15).
 WINDOWS = (
-    {"id": "10y", "start": 2014, "end": 2024},
-    {"id": "5y", "start": 2019, "end": 2024},
-    {"id": "0414", "start": 2004, "end": 2014},
-    {"id": "9404", "start": 1994, "end": 2004},
-    {"id": "all", "start": 1989, "end": 2024},
+    {"id": "10y", "label": "Last 10 years", "start": 2014, "end": 2024},
+    {"id": "5y", "label": "Last 5 years", "start": 2019, "end": 2024},
+    {"id": "0414", "label": "2004-05 to 2014-15", "start": 2004, "end": 2014},
+    {"id": "9404", "label": "1994-95 to 2004-05", "start": 1994, "end": 2004},
+    {"id": "all", "label": "All years", "start": 1989, "end": 2024},
 )
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
 PAGES = (
@@ -173,6 +176,7 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
             "biz": "ABS 8165.0, releases Jun 2007-Jun 2009 to Jul 2021-Jun 2025",
         },
         "notes": GROWTH_NOTES,
+        "barriers": competition.barriers_payload(),
     }
 
 
@@ -290,6 +294,7 @@ def conditions_payload(
             for src in srcs
         },
         "notes": CONDITIONS_NOTES,
+        "profit": competition.profit_payload(),
     }
 
 
