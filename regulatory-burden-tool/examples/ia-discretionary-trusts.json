@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "proposal": {
+    "id": "ia-discretionary-trusts",
+    "title": "Minimum tax on discretionary trusts: Treasury's regulatory burden estimate (Impact Analysis, 2026), re-costed",
+    "description": "Appendix A of the Impact Analysis: populations (Tables 1 and 3), hours per task and the OIA's rates ($91.54 for work, including non-business trusts' advisers; $41 for individual beneficiaries). Restructure and election shares are ranges (10–30% and 70–90% of business trusts with high advice needs; 5–25% and 75–95% of non-business ones), whose midpoints are the central estimate. One-off costs fall in year 1 here; in the IA, restructures spread over the 3-year roll-over period and elections fall in 2028-29, which leaves the ten-year average unchanged.",
+    "proposalType": "new",
+    "durationYears": 10,
+    "jurisdiction": "commonwealthOnly",
+    "baseline": "statusQuo",
+    "populations": [
+      {
+        "id": "business-low",
+        "label": "Business discretionary trusts with low advice requirements",
+        "group": "business",
+        "count": 220000,
+        "source": {
+          "description": "Treasury, Impact Analysis: Minimum tax on discretionary trusts (OIA, published 21 October 2026), Appendix A, Table 1 (p. 26)",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf",
+          "vintage": "October 2026",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "business-high",
+        "label": "Business discretionary trusts with high advice requirements",
+        "group": "business",
+        "count": 130000,
+        "source": {
+          "description": "Treasury, Impact Analysis: Minimum tax on discretionary trusts (OIA, published 21 October 2026), Appendix A, Table 1 (p. 26)",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf",
+          "vintage": "October 2026",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "nonbusiness-low",
+        "label": "Non-business discretionary trusts with low advice requirements",
+        "group": "individual",
+        "count": 300000,
+        "source": {
+          "description": "Treasury, Impact Analysis: Minimum tax on discretionary trusts (OIA, published 21 October 2026), Appendix A, Table 1 (p. 26)",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf",
+          "vintage": "October 2026",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "nonbusiness-high",
+        "label": "Non-business discretionary trusts with high advice requirements",
+        "group": "individual",
+        "count": 190000,
+        "source": {
+          "description": "Treasury, Impact Analysis: Minimum tax on discretionary trusts (OIA, published 21 October 2026), Appendix A, Table 1 (p. 26)",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf",
+          "vintage": "October 2026",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "business-all",
+        "label": "All business discretionary trusts (Option 3)",
+        "group": "business",
+        "count": 350000,
+        "source": {
+          "description": "Treasury, Impact Analysis: Minimum tax on discretionary trusts (OIA, published 21 October 2026), Appendix A, Table 3 (p. 31)",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf",
+          "vintage": "October 2026",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "nonbusiness-all",
+        "label": "All non-business discretionary trusts (Option 3)",
+        "group": "individual",
+        "count": 490000,
+        "source": {
+          "description": "Treasury, Impact Analysis: Minimum tax on discretionary trusts (OIA, published 21 October 2026), Appendix A, Table 3 (p. 31)",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf",
+          "vintage": "October 2026",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "beneficiaries",
+        "label": "Individual beneficiaries of discretionary trusts",
+        "group": "individual",
+        "count": 810000,
+        "source": {
+          "description": "Treasury, Impact Analysis: Minimum tax on discretionary trusts (OIA, published 21 October 2026), Appendix A, Table 1 (p. 26)",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf",
+          "vintage": "October 2026",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "tax-agents",
+        "label": "Registered tax agents",
+        "group": "business",
+        "count": 47000,
+        "source": {
+          "description": "Treasury, Impact Analysis: Minimum tax on discretionary trusts (OIA, published 21 October 2026), Appendix A, Table 1 (p. 26), citing the Tax Practitioners Board",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf",
+          "vintage": "October 2026",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "corporate-beneficiaries",
+        "label": "Corporate beneficiaries of minimum tax trusts (Option 3)",
+        "group": "business",
+        "count": 220000,
+        "source": {
+          "description": "Treasury, Impact Analysis: Minimum tax on discretionary trusts (OIA, published 21 October 2026), Appendix A, Table 3 (p. 31)",
+          "url": "https://oia.pmc.gov.au/sites/default/files/posts/2026/10/Detailed%20IA.pdf",
+          "vintage": "October 2026",
+          "accessed": "2026-10-25"
+        }
+      }
+    ],
+    "options": [
+      {
+        "id": "option-2",
+        "name": "Option 2: 30% minimum tax, offsets for non-corporate beneficiaries, roll-over relief and an election (preferred)",
+        "obligations": [
+          {
+            "id": "annual-calculation",
+            "name": "Annual minimum tax calculation (1 hour a year)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "ongoing"
+              },
+              "lines": [
+                {
+                  "populationId": "business-low",
+                  "labour": {
+                    "hours": 1,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                },
+                {
+                  "populationId": "nonbusiness-low",
+                  "labour": {
+                    "hours": 1,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "id": "advice-low",
+            "name": "Upfront advice, trusts with low advice requirements (6 hours, business; 4 hours, non-business)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "business-low",
+                  "labour": {
+                    "hours": 6,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                },
+                {
+                  "populationId": "nonbusiness-low",
+                  "labour": {
+                    "hours": 4,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "restructure",
+            "name": "Restructure under the roll-over relief (120 hours, business; 25 hours, non-business)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "business-high",
+                  "entities": {
+                    "low": 13000,
+                    "high": 39000
+                  },
+                  "labour": {
+                    "hours": 120,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                },
+                {
+                  "populationId": "nonbusiness-high",
+                  "entities": {
+                    "low": 9500,
+                    "high": 47500
+                  },
+                  "labour": {
+                    "hours": 25,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "election",
+            "name": "Opt into the electable regime (14 hours, business; 6 hours, non-business)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "business-high",
+                  "entities": {
+                    "low": 91000,
+                    "high": 117000
+                  },
+                  "labour": {
+                    "hours": 14,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                },
+                {
+                  "populationId": "nonbusiness-high",
+                  "entities": {
+                    "low": 142500,
+                    "high": 180500
+                  },
+                  "labour": {
+                    "hours": 6,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "beneficiaries",
+            "name": "Beneficiaries learn the changes and verify their offset (2 hours)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "beneficiaries",
+                  "labour": {
+                    "hours": 2,
+                    "timesPerYear": 1,
+                    "rateId": "leisure"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "tax-agents",
+            "name": "Tax agents learn the rules and update processes (16 hours)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "tax-agents",
+                  "labour": {
+                    "hours": 16,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "option-3",
+        "name": "Option 3: 30% minimum tax with offsets for all beneficiaries",
+        "obligations": [
+          {
+            "id": "annual-calculation",
+            "name": "Annual minimum tax calculation (1 hour a year)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "ongoing"
+              },
+              "lines": [
+                {
+                  "populationId": "business-all",
+                  "labour": {
+                    "hours": 1,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                },
+                {
+                  "populationId": "nonbusiness-all",
+                  "labour": {
+                    "hours": 1,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "corporate-tracking",
+            "name": "Corporate beneficiaries track the offsets (1 hour a year)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "ongoing"
+              },
+              "lines": [
+                {
+                  "populationId": "corporate-beneficiaries",
+                  "labour": {
+                    "hours": 1,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "id": "advice",
+            "name": "Upfront advice (6 hours, business; 4 hours, non-business)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "business-all",
+                  "labour": {
+                    "hours": 6,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                },
+                {
+                  "populationId": "nonbusiness-all",
+                  "labour": {
+                    "hours": 4,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "corporate-setup",
+            "name": "Corporate beneficiaries set up separate tracking (3 hours)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "corporate-beneficiaries",
+                  "labour": {
+                    "hours": 3,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "beneficiaries",
+            "name": "Beneficiaries learn the changes and verify their offset (2 hours)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "beneficiaries",
+                  "labour": {
+                    "hours": 2,
+                    "timesPerYear": 1,
+                    "rateId": "leisure"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "tax-agents",
+            "name": "Tax agents learn the rules, including separate tracking (24 hours)",
+            "category": "administrative",
+            "reformed": {
+              "costType": "labour",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "tax-agents",
+                  "labour": {
+                    "hours": 24,
+                    "timesPerYear": 1,
+                    "rateId": "work"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

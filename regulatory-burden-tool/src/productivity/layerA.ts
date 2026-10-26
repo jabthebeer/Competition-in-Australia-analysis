@@ -2,7 +2,8 @@
 // chain of factors with their sources. Parameters come through a ParamSource: the evidence library's defaults for
 // a central costing, or draws from their ranges for the Monte Carlo (P4). Channels C4 and C5 need data not yet in
 // the parameter file and report themselves as not quantified.
-import { computeProposal, toTidyRows } from "../engine/index";
+import { computeProposal, EXCLUSIONS, toTidyRows } from "../engine/index";
+import type { ExclusionReason } from "../engine/scope";
 import { covers, divisionOf, overlaps } from "./anzsic";
 import { central, type PolicyBrief, type SignedQuantity } from "./brief";
 import { CHANNELS, type ChannelId } from "./channels";
@@ -144,6 +145,8 @@ const pct = (x: number) => x * 100;
 // ---- C1: resource cost of compliance (F-C1-01..03) ------------------------------------------------------------
 
 interface BurdenCost {
+  /** Rows of the option left out of the RBE (fees, taxes, enforcement and the like), by reason. */
+  excluded: string[];
   optionName: string;
   durationYears: number;
   /** In-scope RBE rows of the option costed, businesses and community organisations only. */
@@ -158,11 +161,13 @@ function burdenCost(brief: PolicyBrief): BurdenCost | null {
   if (cached !== undefined) return cached;
   const result = computeProposal(brief.burden);
   const option = result.options.find((o) => !o.isStatusQuo) ?? result.options[0];
+  const all = option ? toTidyRows(result).filter((r) => r.option_id === option.optionId) : [];
   const cost = option
     ? {
         optionName: option.optionName,
         durationYears: result.durationYears,
-        rows: toTidyRows(result).filter((r) => r.option_id === option.optionId && !r.excluded_reason && r.stakeholder_group !== "individual"),
+        rows: all.filter((r) => !r.excluded_reason && r.stakeholder_group !== "individual"),
+        excluded: [...new Set(all.filter((r) => r.excluded_reason).map((r) => EXCLUSIONS[r.excluded_reason as ExclusionReason]?.label ?? String(r.excluded_reason)))],
       }
     : null;
   burdenCache.set(brief.burden, cost);
@@ -222,6 +227,9 @@ export function c1Compliance(brief: PolicyBrief, ctx: CostingContext, params: Pa
       ],
     });
     shocks.push(...shocksForCode(code, "mfp", mfp, ctx.mapping, ctx.weights));
+  }
+  if (!effects.length && !reasons.length && burden.excluded.length) {
+    reasons.push(`Every cost of option "${burden.optionName}" is outside the RBE (${burden.excluded.join("; ")}), so C1 has nothing to cost`);
   }
   if (entrants.size) {
     notes.push(`Entrants' compliance costs (${[...entrants].join(", ")}: $${Math.round(entrantCost).toLocaleString("en-AU")} a year) are left out of C1 because C4 costs entry (overlap rule O-1).`);
@@ -508,6 +516,11 @@ export function c8Labour(brief: PolicyBrief, ctx: CostingContext, params: ParamS
     notes.push(
       "Licensing: applied to the whole of each industry reached, scaled by its exposure, as the PC did (L2). Weighting by employment in the licensed occupations (A-P08) waits for employment by OSCA occupation, which the ABS does not yet publish; set each industry's exposure to that share where it is known. Its entry-cost effect is not costed again in C4 (overlap rule O-4).",
     );
+    if (lever.licensing.mutualRecognition) {
+      notes.push(
+        "Mutual recognition is recorded but not costed: the PC's licensing simulation, the source of the elasticity above, leaves recognition between states and territories out (PC 2024, p. 128), and no evidence entry gives its effect (A-P35). Enter a sourced estimate as a custom shock to include it.",
+      );
+    }
   }
   if (lever.nonCompetes) {
     const pass = t.get("F-C8-02", "passThrough");
@@ -813,6 +826,9 @@ const SIZE_BANDS = [
   { band: "200+", lo: 200, hi: Infinity, cabee: ["200+"] },
 ] as const;
 
+/** Units of the threshold metrics the screen converts to an employee equivalent, and the Australian Industry figure it divides by. */
+const PER_PERSON = { payroll: { field: "wages", label: "Wages and salaries per person employed" }, turnover: { field: "sales", label: "Sales per person employed" } } as const;
+
 export function c5Thresholds(brief: PolicyBrief, ctx: CostingContext, params: ParamSource = CENTRAL): ChannelOutcome | null {
   if (!brief.levers.thresholds.length) return null;
   const t = tracker(params);
@@ -820,22 +836,28 @@ export function c5Thresholds(brief: PolicyBrief, ctx: CostingContext, params: Pa
   const taxEquivalent = t.get("F-C5-02", "labourTaxEquivalent");
   const other: OtherEffect[] = [];
   const reasons: string[] = [];
+  const notes = ["A screen (F-C5-01): how many businesses and workers sit near the threshold, and how large its cost is against wages."];
   for (const th of brief.levers.thresholds) {
-    if (th.metric !== "employees") {
-      reasons.push(`Threshold "${th.id}": the parameter file has size bands by employment only, not by ${th.metric}, so the screen is not run`);
+    if (th.metric === "assets") {
+      reasons.push(`Threshold "${th.id}": the parameter file has no size bands by assets, so the screen is not run`);
       continue;
+    }
+    const perPerson = th.metric === "employees" ? undefined : PER_PERSON[th.metric];
+    if (perPerson) {
+      notes.push(
+        `Threshold "${th.id}" is on ${th.metric}: the screen converts it to employees by dividing by ${perPerson.label.toLowerCase()} in each division (Australian Industry ${ctx.industryByBandYear}, all sizes) (A-P34). Persons employed include working owners, and payroll-tax wages include superannuation, so the equivalent is approximate.`,
+      );
     }
     const codes = reach(brief, th.industries, params);
     const cost = params.input(`levers.thresholds.${th.id}.costAbovePerYearDollars`, th.costAbovePerYearDollars);
     for (const value of [th.value, ...(th.previousValue !== undefined ? [th.previousValue] : [])]) {
-      const lo = value * (1 - band.value);
-      const hi = value * (1 + band.value);
-      const near = SIZE_BANDS.filter((b) => b.lo <= hi && b.hi >= lo);
-      const above = SIZE_BANDS.find((b) => b.lo <= value && value <= b.hi) ?? near.at(-1)!;
       let businesses = 0;
       let employment = 0;
       let wagesAbove = 0;
       let businessesAbove = 0;
+      const bandsNear = new Set<string>();
+      const bandsAbove = new Set<string>();
+      const equivalents: { div: string; persons: number }[] = [];
       for (const { code, exposure } of codes) {
         const counts = ctx.businessesByBand[code];
         const div = divisionOf(code);
@@ -843,9 +865,25 @@ export function c5Thresholds(brief: PolicyBrief, ctx: CostingContext, params: Pa
           reasons.push(`Threshold "${th.id}": no business counts by size for industry ${code}`);
           continue;
         }
+        const ai = ctx.industryByBand[div];
+        let persons = value;
+        if (perPerson) {
+          const total = ai?.total;
+          const per = total && total.employment > 0 ? (total[perPerson.field] * 1e6) / (total.employment * 1e3) : 0;
+          if (!(per > 0)) {
+            reasons.push(`Threshold "${th.id}": no Australian Industry ${perPerson.field} for division ${div}, so industry ${code} is not screened`);
+            continue;
+          }
+          persons = value / per;
+          if (!equivalents.some((e) => e.div === div)) equivalents.push({ div, persons });
+        }
+        const lo = persons * (1 - band.value);
+        const hi = persons * (1 + band.value);
+        const near = SIZE_BANDS.filter((b) => b.lo <= hi && b.hi >= lo);
+        const above = SIZE_BANDS.find((b) => b.lo <= persons && persons <= b.hi) ?? near.at(-1)!;
+        for (const b of near) bandsNear.add(b.band);
         const n = (b: (typeof SIZE_BANDS)[number]) => b.cabee.reduce((s, c) => s + (counts[c] ?? 0), 0) * exposure;
         businesses += near.reduce((s, b) => s + n(b), 0);
-        const ai = ctx.industryByBand[div];
         // Australian Industry is by division: a finer code takes its division's figures in proportion to its businesses.
         const divCounts = ctx.businessesByBand[div];
         const shareOf = (b: (typeof SIZE_BANDS)[number]) => {
@@ -856,28 +894,39 @@ export function c5Thresholds(brief: PolicyBrief, ctx: CostingContext, params: Pa
           employment += near.reduce((s, b) => s + (ai[b.band]?.employment ?? 0) * shareOf(b), 0);
           wagesAbove += (ai[above.band]?.wages ?? 0) * shareOf(above);
           businessesAbove += n(above);
+          bandsAbove.add(above.band);
         }
       }
-      const window = `${Math.ceil(lo)}–${Math.floor(hi)} employees`;
-      const bands = near.map((b) => b.band).join(", ");
+      const ordered = (set: Set<string>) => SIZE_BANDS.map((b) => b.band).filter((b) => set.has(b));
+      const at = th.metric === "employees" ? `${value} employees` : `$${value.toLocaleString("en-AU")} of ${th.metric}`;
+      const window = th.metric === "employees" ? `${Math.ceil(value * (1 - band.value))}–${Math.floor(value * (1 + band.value))} employees` : "±10% of its employee equivalent";
+      const chain: Factor[] = [{ label: "Screening band either side of the threshold", value: band.value, unit: "share", evidence: band.id }];
+      if (perPerson && equivalents.length) {
+        const sorted = [...equivalents].sort((a, b) => a.persons - b.persons);
+        const first = sorted[0]!;
+        const last = sorted.at(-1)!;
+        chain.push({ label: `Employee equivalent, lowest (division ${first.div}): $${value.toLocaleString("en-AU")} ÷ ${perPerson.label.toLowerCase()}`, value: first.persons, unit: "persons" });
+        if (last !== first) chain.push({ label: `Employee equivalent, highest (division ${last.div})`, value: last.persons, unit: "persons" });
+      }
       other.push({
-        label: `Threshold "${th.id}" at ${value} employees: businesses in the size bands that overlap ${window} (${bands}; CABEE ${ctx.sizeYear})`,
+        label: `Threshold "${th.id}" at ${at}: businesses in the size bands that overlap ${window} (${ordered(bandsNear).join(", ")}; CABEE ${ctx.sizeYear})`,
         value: businesses,
         unit: "businesses",
-        chain: [{ label: "Screening band either side of the threshold", value: band.value, unit: "share", evidence: band.id }],
+        chain,
       });
       if (employment > 0) {
-        other.push({ label: `Threshold "${th.id}" at ${value} employees: employment in those bands (Australian Industry ${ctx.industryByBandYear})`, value: employment, unit: "thousand persons", chain: [] });
+        other.push({ label: `Threshold "${th.id}" at ${at}: employment in those bands (Australian Industry ${ctx.industryByBandYear})`, value: employment, unit: "thousand persons", chain: [] });
       }
       if (wagesAbove > 0 && businessesAbove > 0) {
         const perBusiness = (wagesAbove * 1e6) / businessesAbove;
+        const aboveLabel = ordered(bandsAbove).join(" or ");
         other.push({
-          label: `Threshold "${th.id}": cost a year above the threshold as a share of an average wage bill in the ${above.band} band, against the French rules' 2.3% labour-tax equivalent`,
+          label: `Threshold "${th.id}": cost a year above the threshold as a share of an average wage bill in the ${aboveLabel} band, against the French rules' 2.3% labour-tax equivalent`,
           value: pct(cost / perBusiness),
           unit: "% of wages",
           chain: [
             { label: "Cost a year for a business above the threshold", value: cost, unit: "$" },
-            { label: `Average wage bill of a business in the ${above.band} band`, value: perBusiness, unit: "$" },
+            { label: `Average wage bill of a business in the ${aboveLabel} band`, value: perBusiness, unit: "$" },
             { label: "Labour-tax equivalent of the French 50-employee rules (GLVR2016)", value: taxEquivalent.value, unit: "%", evidence: taxEquivalent.id },
           ],
         });
@@ -887,5 +936,5 @@ export function c5Thresholds(brief: PolicyBrief, ctx: CostingContext, params: Pa
   reasons.push(
     "The GDP cost of a size threshold is not quantified: the published structural estimates (Gourio & Roys, under 0.3% of output per worker; Garicano, Lelarge & Van Reenen, 1.3–3.4% of GDP) are for French rules and cannot be scaled to this threshold without the share of employment within ±10% of it, which the ABS size bands do not resolve (A-P05)",
   );
-  return outcome("C5", { used: t.used, other, reasons, notes: ["A screen (F-C5-01): how many businesses and workers sit near the threshold, and how large its cost is against wages."] });
+  return outcome("C5", { used: t.used, other, reasons: [...new Set(reasons)], notes });
 }

@@ -1,0 +1,603 @@
+{
+  "schemaVersion": 1,
+  "kind": "policy-brief",
+  "id": "worked-climate-disclosure",
+  "meta": {
+    "title": "Mandatory climate-related financial disclosure (2024)",
+    "summary": "Worked example (P6): a new reporting obligation with size thresholds. Large entities report climate-related risks under Australian sustainability standards, phased in by size: Group 1 from 2024-25, Group 2 from 2026-27 and Group 3 from 2027-28. The burden proposal rebuilds Treasury's regulatory burden estimate for Options 1, 1a and 1b (the recommended option, $1,150.2 million a year) from the Policy Impact Analysis's per-entity costs and entity counts; the thresholds screen the employee tests of each group.",
+    "jurisdictions": [
+      "CTH"
+    ],
+    "proposalType": "new",
+    "startYear": 2024,
+    "phaseInYears": 3,
+    "durationYears": 10,
+    "priceBase": "2025-26",
+    "source": {
+      "description": "Treasury, Policy Impact Analysis: Climate-related financial disclosures (September 2023), the regulatory burden estimate, pp. 16–29",
+      "url": "https://treasury.gov.au/sites/default/files/2024-01/c2024-466491-pia.pdf",
+      "vintage": "September 2023",
+      "accessed": "2026-10-25"
+    },
+    "provenance": {
+      "phaseInYears": {
+        "origin": "sourced",
+        "note": "Group 1 reports from 2024-25, Group 2 from 2026-27 and Group 3 from 2027-28 (PIA p. 9): full coverage in the fourth year",
+        "source": {
+          "description": "Treasury, Policy Impact Analysis: Climate-related financial disclosures (September 2023), p. 9",
+          "url": "https://treasury.gov.au/sites/default/files/2024-01/c2024-466491-pia.pdf",
+          "vintage": "September 2023",
+          "accessed": "2026-10-25"
+        }
+      }
+    }
+  },
+  "scope": {
+    "industries": [
+      {
+        "anzsic": "A",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Agriculture, Forestry and Fishing"
+      },
+      {
+        "anzsic": "B",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Mining"
+      },
+      {
+        "anzsic": "C",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Manufacturing"
+      },
+      {
+        "anzsic": "D",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Electricity, Gas, Water and Waste Services"
+      },
+      {
+        "anzsic": "E",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Construction"
+      },
+      {
+        "anzsic": "F",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Wholesale Trade"
+      },
+      {
+        "anzsic": "G",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Retail Trade"
+      },
+      {
+        "anzsic": "H",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Accommodation and Food Services"
+      },
+      {
+        "anzsic": "I",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Transport, Postal and Warehousing"
+      },
+      {
+        "anzsic": "J",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Information Media and Telecommunications"
+      },
+      {
+        "anzsic": "K",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Financial and Insurance Services"
+      },
+      {
+        "anzsic": "L",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Rental, Hiring and Real Estate Services"
+      },
+      {
+        "anzsic": "M",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Professional, Scientific and Technical Services"
+      },
+      {
+        "anzsic": "N",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Administrative and Support Services"
+      },
+      {
+        "anzsic": "O",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Public Administration and Safety"
+      },
+      {
+        "anzsic": "P",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Education and Training"
+      },
+      {
+        "anzsic": "Q",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Health Care and Social Assistance"
+      },
+      {
+        "anzsic": "R",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Arts and Recreation Services"
+      },
+      {
+        "anzsic": "S",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Other Services"
+      }
+    ],
+    "sizeBands": [
+      "20-199",
+      "200+"
+    ],
+    "entityTypes": [
+      "private"
+    ]
+  },
+  "burden": {
+    "id": "worked-climate-disclosure-burden",
+    "title": "Climate-related financial disclosure: Treasury's regulatory burden estimate (Policy Impact Analysis, 2023)",
+    "description": "Per-entity costs from PIA Tables 7, 10 and 13, entity counts from pp. 20 and 26, Treasury's discounts (Group 2's transitional cost by 20%, NGER reporters' costs by 30%) and the status quo of voluntary TCFD reporting (Table 3). Transitional costs are one-off, so the RBE spreads them over ten years, as Treasury amortised them. Group 3 under Options 1a and 1b uses Table 12's 228 entities (the text says 278).",
+    "proposalType": "new",
+    "durationYears": 10,
+    "jurisdiction": "commonwealthOnly",
+    "baseline": "statusQuo",
+    "populations": [
+      {
+        "id": "group-1",
+        "label": "Group 1 entities (two of: revenue $500m+, assets $1bn+, 500+ employees)",
+        "group": "business",
+        "cohort": "large",
+        "count": 729,
+        "source": {
+          "description": "Treasury, Policy Impact Analysis: Climate-related financial disclosures (September 2023), pp. 20 and 26",
+          "url": "https://treasury.gov.au/sites/default/files/2024-01/c2024-466491-pia.pdf",
+          "vintage": "September 2023",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "group-2",
+        "label": "Group 2 entities (two of: revenue $200m+, assets $500m+, 250+ employees)",
+        "group": "business",
+        "cohort": "large",
+        "count": 755,
+        "source": {
+          "description": "Treasury, Policy Impact Analysis: Climate-related financial disclosures (September 2023), pp. 20 and 26",
+          "url": "https://treasury.gov.au/sites/default/files/2024-01/c2024-466491-pia.pdf",
+          "vintage": "September 2023",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "nger",
+        "label": "NGER reporters below the publication threshold",
+        "group": "business",
+        "cohort": "large",
+        "count": 362,
+        "source": {
+          "description": "Treasury, Policy Impact Analysis: Climate-related financial disclosures (September 2023), pp. 20 and 26",
+          "url": "https://treasury.gov.au/sites/default/files/2024-01/c2024-466491-pia.pdf",
+          "vintage": "September 2023",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "group-3-material",
+        "label": "Group 3 entities with material climate risks",
+        "group": "business",
+        "cohort": "large",
+        "count": 228,
+        "source": {
+          "description": "Treasury, Policy Impact Analysis: Climate-related financial disclosures (September 2023), pp. 20 and 26",
+          "url": "https://treasury.gov.au/sites/default/files/2024-01/c2024-466491-pia.pdf",
+          "vintage": "September 2023",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "group-3",
+        "label": "Group 3 entities (two of: revenue $50m+, assets $25m+, 100+ employees)",
+        "group": "business",
+        "cohort": "large",
+        "count": 4555,
+        "source": {
+          "description": "Treasury, Policy Impact Analysis: Climate-related financial disclosures (September 2023), pp. 20 and 26",
+          "url": "https://treasury.gov.au/sites/default/files/2024-01/c2024-466491-pia.pdf",
+          "vintage": "September 2023",
+          "accessed": "2026-10-25"
+        }
+      },
+      {
+        "id": "status-quo",
+        "label": "Entities disclosing voluntarily under the TCFD (aggregate: 343 now, 777 more over ten years)",
+        "group": "business",
+        "cohort": "all",
+        "count": 1,
+        "source": {
+          "description": "Treasury, Policy Impact Analysis: Climate-related financial disclosures (September 2023), Table 3 (p. 19)",
+          "url": "https://treasury.gov.au/sites/default/files/2024-01/c2024-466491-pia.pdf",
+          "vintage": "September 2023",
+          "accessed": "2026-10-25"
+        }
+      }
+    ],
+    "options": [
+      {
+        "id": "option-1b",
+        "name": "Option 1b: narrower coverage, limited assurance (recommended)",
+        "description": "Groups 1 and 2, NGER reporters, and Group 3 entities only where their climate risks are material; limited assurance. Treasury: $1,400.19m a year against the status quo's $249.99m (PIA Table 14).",
+        "obligations": [
+          {
+            "id": "disclosure",
+            "name": "Climate-related financial disclosure: ongoing reporting and assurance",
+            "category": "administrative",
+            "current": {
+              "costType": "purchase",
+              "timing": {
+                "type": "ongoing"
+              },
+              "lines": [
+                {
+                  "populationId": "status-quo",
+                  "purchase": {
+                    "unitCost": 249990000,
+                    "timesPerYear": 1
+                  },
+                  "note": "Treasury's status quo: $20.34m of amortised transitional cost plus $229.65m ongoing a year (PIA Table 3, p. 19)"
+                }
+              ]
+            },
+            "reformed": {
+              "costType": "purchase",
+              "timing": {
+                "type": "ongoing"
+              },
+              "lines": [
+                {
+                  "populationId": "group-1",
+                  "purchase": {
+                    "unitCost": 681154,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-2",
+                  "purchase": {
+                    "unitCost": 681154,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "nger",
+                  "purchase": {
+                    "unitCost": 476807.8,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-3-material",
+                  "purchase": {
+                    "unitCost": 36950,
+                    "timesPerYear": 1
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "id": "transition",
+            "name": "Familiarisation, legal review, systems, scenario and scope 3 build, first report and assurance",
+            "category": "administrative",
+            "reformed": {
+              "costType": "purchase",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "group-1",
+                  "purchase": {
+                    "unitCost": 1306847,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-2",
+                  "purchase": {
+                    "unitCost": 1045477.6,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "nger",
+                  "purchase": {
+                    "unitCost": 914792.9,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-3-material",
+                  "purchase": {
+                    "unitCost": 45050,
+                    "timesPerYear": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "option-1",
+        "name": "Option 1: the consultation design",
+        "description": "All Group 1, 2 and 3 entities and NGER reporters; reasonable assurance. Treasury: $1,636.69m a year (PIA Table 14).",
+        "obligations": [
+          {
+            "id": "disclosure",
+            "name": "Climate-related financial disclosure: ongoing reporting and assurance",
+            "category": "administrative",
+            "current": {
+              "costType": "purchase",
+              "timing": {
+                "type": "ongoing"
+              },
+              "lines": [
+                {
+                  "populationId": "status-quo",
+                  "purchase": {
+                    "unitCost": 249990000,
+                    "timesPerYear": 1
+                  },
+                  "note": "Treasury's status quo: $20.34m of amortised transitional cost plus $229.65m ongoing a year (PIA Table 3, p. 19)"
+                }
+              ]
+            },
+            "reformed": {
+              "costType": "purchase",
+              "timing": {
+                "type": "ongoing"
+              },
+              "lines": [
+                {
+                  "populationId": "group-1",
+                  "purchase": {
+                    "unitCost": 714032,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-2",
+                  "purchase": {
+                    "unitCost": 714032,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "nger",
+                  "purchase": {
+                    "unitCost": 499822.4,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-3",
+                  "purchase": {
+                    "unitCost": 36950,
+                    "timesPerYear": 1
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "id": "transition",
+            "name": "Familiarisation, legal review, systems, scenario and scope 3 build, first report and assurance",
+            "category": "administrative",
+            "reformed": {
+              "costType": "purchase",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "group-1",
+                  "purchase": {
+                    "unitCost": 1306847,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-2",
+                  "purchase": {
+                    "unitCost": 1045477.6,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "nger",
+                  "purchase": {
+                    "unitCost": 914792.9,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-3",
+                  "purchase": {
+                    "unitCost": 45050,
+                    "timesPerYear": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "option-1a",
+        "name": "Option 1a: narrower coverage",
+        "description": "As Option 1, with Group 3 reporting only where climate risks are material. Treasury: $1,457.30m a year (PIA Table 14).",
+        "obligations": [
+          {
+            "id": "disclosure",
+            "name": "Climate-related financial disclosure: ongoing reporting and assurance",
+            "category": "administrative",
+            "current": {
+              "costType": "purchase",
+              "timing": {
+                "type": "ongoing"
+              },
+              "lines": [
+                {
+                  "populationId": "status-quo",
+                  "purchase": {
+                    "unitCost": 249990000,
+                    "timesPerYear": 1
+                  },
+                  "note": "Treasury's status quo: $20.34m of amortised transitional cost plus $229.65m ongoing a year (PIA Table 3, p. 19)"
+                }
+              ]
+            },
+            "reformed": {
+              "costType": "purchase",
+              "timing": {
+                "type": "ongoing"
+              },
+              "lines": [
+                {
+                  "populationId": "group-1",
+                  "purchase": {
+                    "unitCost": 714032,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-2",
+                  "purchase": {
+                    "unitCost": 714032,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "nger",
+                  "purchase": {
+                    "unitCost": 499822.4,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-3-material",
+                  "purchase": {
+                    "unitCost": 36950,
+                    "timesPerYear": 1
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "id": "transition",
+            "name": "Familiarisation, legal review, systems, scenario and scope 3 build, first report and assurance",
+            "category": "administrative",
+            "reformed": {
+              "costType": "purchase",
+              "timing": {
+                "type": "oneOff",
+                "year": 1
+              },
+              "lines": [
+                {
+                  "populationId": "group-1",
+                  "purchase": {
+                    "unitCost": 1306847,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-2",
+                  "purchase": {
+                    "unitCost": 1045477.6,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "nger",
+                  "purchase": {
+                    "unitCost": 914792.9,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "group-3-material",
+                  "purchase": {
+                    "unitCost": 45050,
+                    "timesPerYear": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "levers": {
+    "thresholds": [
+      {
+        "id": "group-1",
+        "metric": "employees",
+        "change": "introduce",
+        "value": 500,
+        "costAbovePerYearDollars": 681154,
+        "design": "cliff"
+      },
+      {
+        "id": "group-2",
+        "metric": "employees",
+        "change": "introduce",
+        "value": 250,
+        "costAbovePerYearDollars": 681154,
+        "design": "cliff"
+      },
+      {
+        "id": "group-3",
+        "metric": "employees",
+        "change": "introduce",
+        "value": 100,
+        "costAbovePerYearDollars": 36950,
+        "design": "cliff"
+      }
+    ]
+  }
+}

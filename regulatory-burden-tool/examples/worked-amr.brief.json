@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "kind": "policy-brief",
+  "id": "worked-amr",
+  "meta": {
+    "title": "Automatic mutual recognition of occupational registrations (2021)",
+    "summary": "Worked example (P6). Automatic mutual recognition lets a worker registered in one state or territory work in another without a second registration (Mutual Recognition Act 1992, Part 3A, from 1 July 2021). It shows what the tool can and cannot cost: the second registrations' fees are outside the RBE and are a transfer, not a resource cost, and the scheme's mobility effect has no estimate in the evidence library, since the PC's licensing simulation leaves mutual recognition out. The Government's estimate of $2.4 billion over ten years could not be traced to its method.",
+    "jurisdictions": [
+      "CTH"
+    ],
+    "proposalType": "reform",
+    "startYear": 2021,
+    "phaseInYears": 0,
+    "durationYears": 10,
+    "priceBase": "2025-26",
+    "source": {
+      "description": "Productivity Commission (2015), Mutual Recognition Schemes, Research Report",
+      "url": "https://assets.pc.gov.au/inquiries/completed/mutual-recognition-schemes/report/mutual-recognition-schemes.pdf",
+      "vintage": "September 2015",
+      "accessed": "2026-10-25"
+    }
+  },
+  "scope": {
+    "industries": [
+      {
+        "anzsic": "3232",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Electrical Services"
+      },
+      {
+        "anzsic": "3231",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Plumbing Services"
+      },
+      {
+        "anzsic": "6720",
+        "exposure": 1,
+        "role": "direct",
+        "note": "Real Estate Services"
+      }
+    ],
+    "sizeBands": [
+      "nonEmploying",
+      "1-4",
+      "5-19",
+      "20-199",
+      "200+"
+    ],
+    "entityTypes": [
+      "private"
+    ]
+  },
+  "burden": {
+    "id": "worked-amr-burden",
+    "title": "Automatic mutual recognition: second registrations no longer needed",
+    "description": "The PC's aggregate annual cost of holding a licence in more than one jurisdiction, for the three occupation groups with an estimate (about 5% of licence holders in the eastern mainland states). The cost is the second licences' fees, so it is tagged as a government fee and left out of the RBE (RBM pp. 2, 4); the time to apply is not estimated by the source.",
+    "proposalType": "reform",
+    "durationYears": 10,
+    "jurisdiction": "commonwealthOnly",
+    "baseline": "statusQuo",
+    "populations": [
+      {
+        "id": "electrical",
+        "label": "Electrical licence holders with a licence in a second jurisdiction (aggregate)",
+        "group": "business",
+        "industry": "3232",
+        "count": 1,
+        "source": {
+          "description": "Productivity Commission (2015), Mutual Recognition Schemes, p. 171 (PDF p. 185), citing NOLA (2014)",
+          "url": "https://assets.pc.gov.au/inquiries/completed/mutual-recognition-schemes/report/mutual-recognition-schemes.pdf",
+          "vintage": "September 2015",
+          "accessed": "2026-10-25"
+        },
+        "provenance": {
+          "count": {
+            "origin": "entered",
+            "note": "One aggregate: the source gives the group's total cost, not the number of holders"
+          }
+        }
+      },
+      {
+        "id": "plumbing",
+        "label": "Plumbing and gasfitting licence holders with a licence in a second jurisdiction (aggregate)",
+        "group": "business",
+        "industry": "3231",
+        "count": 1,
+        "source": {
+          "description": "Productivity Commission (2015), Mutual Recognition Schemes, p. 171 (PDF p. 185), citing NOLA (2014)",
+          "url": "https://assets.pc.gov.au/inquiries/completed/mutual-recognition-schemes/report/mutual-recognition-schemes.pdf",
+          "vintage": "September 2015",
+          "accessed": "2026-10-25"
+        },
+        "provenance": {
+          "count": {
+            "origin": "entered",
+            "note": "One aggregate: the source gives the group's total cost, not the number of holders"
+          }
+        }
+      },
+      {
+        "id": "property",
+        "label": "Property licence holders with a licence in a second jurisdiction (aggregate)",
+        "group": "business",
+        "industry": "6720",
+        "count": 1,
+        "source": {
+          "description": "Productivity Commission (2015), Mutual Recognition Schemes, p. 171 (PDF p. 185), citing NOLA (2014)",
+          "url": "https://assets.pc.gov.au/inquiries/completed/mutual-recognition-schemes/report/mutual-recognition-schemes.pdf",
+          "vintage": "September 2015",
+          "accessed": "2026-10-25"
+        },
+        "provenance": {
+          "count": {
+            "origin": "entered",
+            "note": "One aggregate: the source gives the group's total cost, not the number of holders"
+          }
+        }
+      }
+    ],
+    "options": [
+      {
+        "id": "amr",
+        "name": "Automatic mutual recognition",
+        "obligations": [
+          {
+            "id": "second-registration",
+            "name": "Registration in a second jurisdiction",
+            "category": "administrative",
+            "tags": [
+              "governmentFee"
+            ],
+            "levers": [
+              "removeDuplication"
+            ],
+            "current": {
+              "costType": "purchase",
+              "timing": {
+                "type": "ongoing"
+              },
+              "lines": [
+                {
+                  "populationId": "electrical",
+                  "purchase": {
+                    "unitCost": 2700000,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "plumbing",
+                  "purchase": {
+                    "unitCost": 1400000,
+                    "timesPerYear": 1
+                  }
+                },
+                {
+                  "populationId": "property",
+                  "purchase": {
+                    "unitCost": 2300000,
+                    "timesPerYear": 1
+                  }
+                }
+              ]
+            },
+            "reformed": null,
+            "provenance": {
+              "current.lines.electrical.purchase.unitCost": {
+                "origin": "sourced",
+                "note": "Aggregate annual cost of holding multiple licences, COAG 2013 estimates as reported by the PC",
+                "source": {
+                  "description": "Productivity Commission (2015), Mutual Recognition Schemes, p. 171 (PDF p. 185), citing NOLA (2014)",
+                  "url": "https://assets.pc.gov.au/inquiries/completed/mutual-recognition-schemes/report/mutual-recognition-schemes.pdf",
+                  "vintage": "September 2015",
+                  "accessed": "2026-10-25"
+                }
+              },
+              "current.lines.plumbing.purchase.unitCost": {
+                "origin": "sourced",
+                "note": "Aggregate annual cost of holding multiple licences, COAG 2013 estimates as reported by the PC",
+                "source": {
+                  "description": "Productivity Commission (2015), Mutual Recognition Schemes, p. 171 (PDF p. 185), citing NOLA (2014)",
+                  "url": "https://assets.pc.gov.au/inquiries/completed/mutual-recognition-schemes/report/mutual-recognition-schemes.pdf",
+                  "vintage": "September 2015",
+                  "accessed": "2026-10-25"
+                }
+              },
+              "current.lines.property.purchase.unitCost": {
+                "origin": "sourced",
+                "note": "Aggregate annual cost of holding multiple licences, COAG 2013 estimates as reported by the PC",
+                "source": {
+                  "description": "Productivity Commission (2015), Mutual Recognition Schemes, p. 171 (PDF p. 185), citing NOLA (2014)",
+                  "url": "https://assets.pc.gov.au/inquiries/completed/mutual-recognition-schemes/report/mutual-recognition-schemes.pdf",
+                  "vintage": "September 2015",
+                  "accessed": "2026-10-25"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "levers": {
+    "labour": {
+      "licensing": {
+        "occupations": [
+          "381231",
+          "363131",
+          "363231",
+          "622232"
+        ],
+        "stringencyChange": 0,
+        "mutualRecognition": true
+      },
+      "provenance": {
+        "licensing.stringencyChange": {
+          "origin": "sourced",
+          "note": "Mutual recognition leaves each jurisdiction's licensing standard unchanged; the PC's licensing simulation, the source of the C8 elasticity, leaves mutual recognition out of scope",
+          "source": {
+            "description": "Productivity Commission (2024), National Competition Policy: modelling proposed reforms, p. 128 (PDF p. 134)",
+            "url": "https://assets.pc.gov.au/2025-10/competition-analysis-study-report-plus.pdf",
+            "vintage": "November 2024",
+            "accessed": "2026-10-25"
+          }
+        },
+        "licensing.occupations": {
+          "origin": "sourced",
+          "note": "OSCA 2024: Electrician (General), Plumber (General), Gasfitter, Real Estate Agent",
+          "source": {
+            "description": "ABS, OSCA – Occupation Standard Classification for Australia, 2024, Version 1.0",
+            "url": "https://www.abs.gov.au/statistics/classifications/osca-occupation-standard-classification-australia/2024-version-1-0",
+            "accessed": "2026-10-25"
+          }
+        }
+      }
+    }
+  }
+}
