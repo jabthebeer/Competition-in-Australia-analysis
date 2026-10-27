@@ -76,7 +76,13 @@ def sector(code: str) -> tuple[str, str]:
         return _sector_keys()[listed["sector"]], listed["sector"]
     grp = code[:3]
     split = any(c.startswith(grp) and _listed()[c].get("sector") for c in _listed() if len(c) == 4)
-    return grp, f"{anzsic.name(grp)}{', other' if split else ''}"
+    return grp, f"{sentence_case(anzsic.name(grp))}{', other' if split else ''}"
+
+
+def sentence_case(title: str) -> str:
+    """ABS titles are in title case ('Pubs, Taverns and Bars'); the website's sector labels are in sentence case."""
+    words = title.split(" ")
+    return " ".join([words[0], *(w if len(w) > 1 and w.isupper() else w.lower() for w in words[1:])])
 
 
 @cache

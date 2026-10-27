@@ -4,7 +4,7 @@
 - **State and industry growth** has barriers to entry and business dynamism.
 - **Economic conditions** has profitability and market power.
 
-Both pages now pick their time span with a slider instead of a drop-down list.
+Both pages now pick their time span with a slider instead of a drop-down list. Words that need explaining have a plain-English definition on hover, focus or tap, every chart names its source with a link, and each page ends with a list of its data sources and a glossary.
 
 Code:
 - `alicia/src/alicia/menu/competition.py` (page data);
@@ -19,7 +19,7 @@ Tests: `alicia/tests/test_competition.py`.
 | Grattan figure | Chart | Page | Data |
 |---|---|---|---|
 | 1.1 Value added by barriers group | Where the barriers to entry are: each group's share of employing businesses, company income, equity and profit | Growth | ABS CABEE; ATO Table 4 |
-| 1.2, 3.3, 3.4 Concentration | Has concentration risen? Top-4 (10, 20, top 5%) firms' share of sales by division, 2002–2019 | Growth | RBA RDP 2025-05 (BLADE) |
+| 1.2, 3.3, 3.4 Concentration | Has concentration risen? Every industry's top-4 (10, 20, top 5%) firms' share of sales in the first and last years of the chosen period, sorted by the change, with one industry over time below; 2002–2019 | Growth | RBA RDP 2025-05 (BLADE) |
 | 3.6 Entry, exit, net firms created | Business entry and exit; Net businesses created, by state; extended to **entry and exit rates by barriers group** | Growth | ABS CABEE |
 | 4.3 Returns against concentration | Business entry and company returns by sector (entry rate in place of concentration, which is not published by sector) | Growth | CABEE; ATO Table 4 |
 | 4.1 Return on equity by group | Return on equity by barriers to entry | Conditions | ATO Table 4 |

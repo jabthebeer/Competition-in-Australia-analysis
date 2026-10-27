@@ -51,38 +51,99 @@ COSTING_PAGE = ("costing.html", "Policy costing")
 COSTING_ASSETS = "costing-assets"
 GROWTH_NOTES = {
     "gva": (
-        "Gross value added in chain volume terms from the State Accounts, 2024-25 release. "
-        "Chain volume series do not add up across industries, so shares use current prices. 'All industries' "
-        "includes ownership of dwellings, which is not an ANZSIC division."
+        "Output is gross value added, adjusted for inflation (chain volume measures). Shares of a state's output "
+        "use current prices, because inflation-adjusted figures don't add up across industries. 'All industries' "
+        "also includes the rent value of owner-occupied homes, which is not an industry."
     ),
     "emp": (
-        "Employed persons by industry of main job, averaged over the four mid-quarter Labour Force surveys of "
-        "each financial year (EQ06). Survey estimates: small industry-by-state cells, especially in Tasmania, "
-        "the Northern Territory and the ACT, have large sampling errors."
+        "Jobs are employed people by the industry of their main job, averaged over the four Labour Force surveys "
+        "in each financial year. They are survey estimates, so small industries in small states (Tasmania, the "
+        "Northern Territory and the ACT) can jump around from year to year."
     ),
     "biz": (
-        "Counts of Australian Businesses (CABEE), summed from ANZSIC classes. Rates are entries or exits in a "
-        "year as a share of businesses operating at its start, averaged over the years in the window from "
-        "2007-08 on. Cells are perturbed by the ABS, and counts shift between releases (largest between the "
-        "2016-20 and 2017-21 releases), so rates are more reliable than growth in counts."
+        "Business counts come from the ABS business register, from 2007-08 on. Rates are averages of the yearly "
+        "rates over the period. The ABS slightly alters small counts to protect confidentiality, and counts shift "
+        "between releases, so rates are more reliable than changes in counts."
     ),
 }
 CONDITIONS_NOTES = {
-    "sfd": (
-        "State final demand and household consumption: chain volume, seasonally adjusted (ABS 5206). Published for "
-        "the states and territories only, so there is no Australia line."
-    ),
+    "sfd": "Adjusted for inflation and seasonal patterns. Published for states and territories only, so there is no "
+    "Australia line.",
     "unemp": (
-        "Seasonally adjusted unemployment rate for the six states and Australia. The ABS does not publish "
-        "seasonally adjusted state series for the Northern Territory and the ACT here; their lines are "
-        "12-month averages of the original series."
+        "Seasonally adjusted for the six states and Australia. The Northern Territory and ACT lines are 12-month "
+        "averages, because the ABS doesn't publish seasonally adjusted figures for them in this series."
     ),
-    "pop": "Estimated resident population at the end of each quarter (ERP).",
-    "wpi": "Wage Price Index, total hourly rates of pay excluding bonuses, all sectors, original series.",
-    "dwell": "Dwelling units approved over the previous 12 months per 1,000 residents (building approvals, ERP).",
-    "commodity": "RBA index of commodity prices in Australian dollars, 2024-25 = 100.",
-    "natgva": "National gross value added by division, chain volume, seasonally adjusted (ABS 5206).",
+    "pop": "Estimated resident population at the end of each quarter.",
+    "wpi": "Hourly pay rates excluding bonuses, all sectors, not seasonally adjusted.",
+    "dwell": "Homes approved over the previous 12 months, per 1,000 residents.",
+    "commodity": "Index, 2024-25 = 100, in Australian dollars.",
+    "natgva": "Output adjusted for inflation and seasonal patterns. Growth over 5 and 10 years is the average yearly "
+    "rate from the same quarter.",
 }
+# Links for the datasets each page uses (checked 26 Oct 2026). The ATO's own site blocks automated checks, so the
+# ATO link is to the dataset on data.gov.au the data were downloaded from.
+SOURCES = {
+    "state_accounts": (
+        "ABS, Australian National Accounts: State Accounts",
+        "https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-state-accounts/latest-release",
+    ),
+    "lfs_detailed": (
+        "ABS, Labour Force, Australia, Detailed",
+        "https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia-detailed/latest-release",
+    ),
+    "cabee": (
+        "ABS, Counts of Australian Businesses, including Entries and Exits",
+        "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/latest-release",
+    ),
+    "ato": (
+        "ATO, Taxation Statistics, company tables (data.gov.au)",
+        "https://data.gov.au/data/dataset/taxation-statistics-2022-23",
+    ),
+    "rba_rdp": (
+        "RBA, Hambur and Freestone (2025), Research Discussion Paper 2025-05",
+        "https://www.rba.gov.au/publications/rdp/2025/2025-05.html",
+    ),
+    "rba_yields": (
+        "RBA, table F2.1: government bond yields",
+        "https://www.rba.gov.au/statistics/tables/#interest-rates",
+    ),
+    "rba_commodity": (
+        "RBA, table I2: index of commodity prices",
+        "https://www.rba.gov.au/statistics/tables/#commodity-prices",
+    ),
+    "national_accounts": (
+        "ABS, Australian National Accounts: National Income, Expenditure and Product",
+        "https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product/latest-release",
+    ),
+    "population": (
+        "ABS, National, state and territory population",
+        "https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/latest-release",
+    ),
+    "wpi": (
+        "ABS, Wage Price Index, Australia",
+        "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/wage-price-index-australia/latest-release",
+    ),
+    "labour_force": (
+        "ABS, Labour Force, Australia",
+        "https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release",
+    ),
+    "building": (
+        "ABS, Building Approvals, Australia",
+        "https://www.abs.gov.au/statistics/industry/building-and-construction/building-approvals-australia/latest-release",
+    ),
+    "grattan": (
+        "Grattan Institute, Competition in Australia: too little of a good thing? (2017)",
+        "https://grattan.edu.au/report/competition-in-the-australian-economy/",
+    ),
+    "anzsic": (
+        "ABS, Australian and New Zealand Standard Industrial Classification (ANZSIC) 2006",
+        "https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0",
+    ),
+}
+
+
+def _sources(*keys: str) -> dict:
+    return {k: {"label": SOURCES[k][0], "url": SOURCES[k][1]} for k in keys}
 
 
 def _fy_year(period: pd.Series) -> pd.Series:
@@ -130,7 +191,7 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         range(int(counts.index.get_level_values("year").min()), int(counts.index.get_level_values("year").max()) + 1)
     )
     emp = {
-        s: {c: _series(counts.loc[(s, c)], emp_years, 2) for c in (*DIVISIONS, TOTAL) if (s, c) in counts.index}
+        s: {c: _series(counts.loc[(s, c)], emp_years, 3) for c in (*DIVISIONS, TOTAL) if (s, c) in counts.index}
         for s in STATES
     }
 
@@ -177,6 +238,7 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         },
         "notes": GROWTH_NOTES,
         "barriers": competition.barriers_payload(),
+        "sources": _sources("state_accounts", "lfs_detailed", "cabee", "ato", "rba_rdp", "grattan", "anzsic"),
     }
 
 
@@ -295,6 +357,18 @@ def conditions_payload(
         },
         "notes": CONDITIONS_NOTES,
         "profit": competition.profit_payload(),
+        "sources": _sources(
+            "national_accounts",
+            "population",
+            "wpi",
+            "labour_force",
+            "building",
+            "rba_commodity",
+            "ato",
+            "rba_yields",
+            "rba_rdp",
+            "grattan",
+        ),
     }
 
 

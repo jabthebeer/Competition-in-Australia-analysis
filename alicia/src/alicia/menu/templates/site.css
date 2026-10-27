@@ -251,4 +251,45 @@ details.tview .tscroll { margin-top: 8px; max-height: 26rem; overflow: auto; }
 .sub { font-size: var(--step--1); color: var(--ink-3); margin: 0; max-width: 100ch; }
 .subhead { font-family: var(--font-display); font-size: var(--step-1); margin: 8px 0 0; }
 
+/* Words with a definition (hover, focus or tap) */
+.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; display: inline; text-align: inherit; cursor: help;
+  text-decoration: underline dotted; text-decoration-color: var(--ink-3); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.term:hover, .term:focus-visible { color: var(--accent); text-decoration-color: var(--accent); }
+.source { font-size: var(--step--1); color: var(--ink-3); margin: 0; }
+.source a { color: var(--ink-2); }
+details.more { font-size: var(--step--1); color: var(--ink-2); }
+details.more summary { cursor: pointer; color: var(--accent); width: max-content; max-width: 100%; }
+details.more[open] summary { margin-bottom: 8px; }
+details.more p { margin: 8px 0 0; max-width: 100ch; }
+details.more .tscroll { max-height: 26rem; overflow: auto; }
+.hint { font-size: var(--step--1); color: var(--ink-2); margin: 0; max-width: 100ch; }
+footer.foot h2 { font-size: var(--step-1); margin-top: 6px; }
+footer.foot ul { margin: 0; padding-left: 1.2em; display: grid; gap: 3px; }
+dl.glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 10px 24px; margin: 8px 0 0; }
+dl.glossary dt { font-weight: 600; color: var(--ink); }
+dl.glossary dd { margin: 0; }
+
+/* Dumbbell rows (concentration) */
+.dumbbell { display: grid; gap: 2px; font-size: var(--step--1); }
+.db-head, .db-row { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 4.5rem; gap: 12px; align-items: center; }
+.db-head { color: var(--ink-3); font-size: 0.75rem; padding: 0 7px 4px; }
+.db-axis { position: relative; height: 1em; }
+.db-axis span { position: absolute; transform: translateX(-50%); font-family: var(--font-mono); }
+.db-row { font: inherit; color: var(--ink); background: none; border: 1px solid transparent; border-radius: 6px; padding: 4px 6px; text-align: left; cursor: pointer; width: 100%; }
+.db-row:hover { background: var(--accent-soft); }
+.db-row[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.db-row.total { font-weight: 600; }
+.db-lab { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.db-track { position: relative; height: 18px; }
+.db-grid { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--grid); }
+.db-seg { position: absolute; top: 50%; height: 2px; margin-top: -1px; background: var(--ink-3); }
+.db-dot { position: absolute; top: 50%; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 50%; box-sizing: border-box; }
+.db-dot.a { background: var(--surface); border: 2px solid var(--ink-3); }
+.db-dot.b { background: var(--accent); border: 2px solid var(--surface); }
+.db-val { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.db-key { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: -1px; box-sizing: border-box; }
+.db-key.a { border: 2px solid var(--ink-3); background: var(--surface); }
+.db-key.b { background: var(--accent); }
+@media (max-width: 640px) { .db-head, .db-row { grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr) 3.4rem; gap: 6px; } }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }

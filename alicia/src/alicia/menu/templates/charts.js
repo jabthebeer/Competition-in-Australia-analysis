@@ -576,3 +576,127 @@ function groupStats(rows, taxRate = 30) {
   return { ...t, roe: t.E > 0 ? (t.N / t.E) * 100 : null, superShare: t.normal + t.superP > 0 ? (t.superP / (t.normal + t.superP)) * 100 : null, markup: t.I > 0 ? (t.superP / (1 - taxRate / 100) / t.I) * 100 : null };
 }
 const fmtB = (v, d = 1) => (isNum(v) ? `$${fmt(v / 1000, d)}b` : "–");
+
+/* ---- Plain-English definitions --------------------------------------------------------------------------
+ * term(key, text) marks a word that has a definition: dotted underline; the definition shows on hover,
+ * keyboard focus or tap, and screen readers get it as the button's description. Pages add their own
+ * entries (for example the barriers-to-entry groups) with initTerms(). */
+const TERMS = {
+  gsp: ["Gross state product", "The value of everything produced in a state in a year: the state version of GDP."],
+  real: ["Real", "Adjusted for inflation, so it shows changes in quantities rather than prices."],
+  output: ["Output", "The value an industry creates: its sales less what it buys from other businesses to make them (gross value added)."],
+  industry: ["Industry", "One of the 19 broad industries the ABS uses, such as Retail Trade or Mining (ANZSIC divisions)."],
+  sector: ["Sector", "A narrower part of an industry, such as supermarkets or banks (an ANZSIC class, or a group of classes)."],
+  fy: ["Financial year", "1 July to 30 June. 2014-15 runs from July 2014 to June 2015."],
+  avgGrowth: ["Average annual growth", "The steady yearly rate that would take the first year's value to the last year's."],
+  index100: ["Index", "Each line starts at 100 in the first year, so it shows growth from there: 120 means 20% higher."],
+  pp: ["Percentage points", "The difference between two percentages: going from 10% to 12% is a rise of 2 percentage points."],
+  entry: ["Entry rate", "New businesses in a year for every 100 businesses operating at the start of that year."],
+  exit: ["Exit rate", "Businesses that closed in a year for every 100 operating at the start of that year."],
+  netEntry: ["Net entry rate", "The entry rate less the exit rate. Above zero, the number of businesses grew."],
+  churn: ["Churn", "The entry rate plus the exit rate: how much businesses turn over."],
+  employing: ["Businesses with employees", "Businesses employing at least one person. Sole traders without staff, such as most rideshare drivers, are left out."],
+  barriers: ["Barriers to entry", "Things that make it hard for new firms to start up and compete: networks that would be wasteful to duplicate, large economies of scale, or rules that limit who can operate."],
+  nontraded: ["Non-traded private economy", "Private businesses that mostly compete within Australia. It leaves out farms, mines and factories, which face competition from imports and exports, and services run mostly by government."],
+  companyIncome: ["Company income", "Total income reported in company tax returns, mostly from sales."],
+  equity: ["Equity", "What shareholders own on paper: a company's assets less its debts and other liabilities (book value)."],
+  profitAfterTax: ["Profit after tax", "Accounting profit less the tax the companies paid."],
+  roe: ["Return on equity", "Profit after tax as a percentage of equity: the return shareholders earn on what they have put into the business."],
+  weighted: ["Weighted by equity", "Sectors with more equity count for more in the average, so it reflects where most of the money is."],
+  fit: ["Line of best fit", "The straight line that best follows the dots, giving more weight to sectors with more equity."],
+  explains: ["How much a measure explains", "The share of the differences in returns between sectors that lines up with the measure (R²). 0% means none; 100% would mean all of it."],
+  concentration: ["Concentration", "How much of an industry's sales its biggest firms make. Higher concentration can mean less competition, but not always."],
+  topShare: ["Share of sales made by the biggest firms", "Worked out for each detailed industry, then averaged within each broad industry, with bigger industries counting for more."],
+  blade: ["BLADE", "The ABS's confidential database of business tax and survey records. The RBA used it to calculate these figures; the firm-level data are not public."],
+  coe: ["Cost of equity", "The return shareholders need, given the risk, to keep their money in a business. Here: the 10-year government bond rate plus 6 percentage points, the same for every sector."],
+  bond: ["10-year bond rate", "The interest rate on 10-year Australian Government bonds: the return on an investment with almost no risk."],
+  normalProfit: ["Normal profit", "Profit up to the cost of equity: what is needed to keep investors."],
+  superProfit: ["Super-normal profit", "Profit above the cost of equity: more than investors need. If it lasts, it can be a sign of weak competition."],
+  shortfall: ["Shortfall", "How far a sector's return falls short of the cost of equity."],
+  markup: ["Mark-up", "How far prices are above full costs, including a normal return to shareholders, as a percentage of sales (Grattan's measure). Sectors earning less than the cost of equity count as zero."],
+  markupRba: ["Mark-up (price over marginal cost)", "Price divided by the cost of making one more unit, averaged across firms. 1.25 means prices are 25% above that cost. Prices also have to cover fixed costs, so a mark-up above 1 is normal."],
+  incomeYear: ["Income year", "The ATO's name for the financial year, 1 July to 30 June."],
+  sfd: ["State final demand", "Spending in a state by households, businesses and governments. It leaves out trade with other states and countries."],
+  hhc: ["Household spending", "What households spend on goods and services (household final consumption expenditure)."],
+  unemp: ["Unemployment rate", "People looking for work as a percentage of everyone working or looking for work."],
+  wpi: ["Wage Price Index", "Tracks pay rates for the same jobs over time, so changes in the mix of jobs don't move it."],
+  seasonal: ["Seasonally adjusted", "Regular seasonal patterns, such as Christmas hiring, are removed so the underlying movement is clearer."],
+  dwell: ["Dwelling approvals", "New homes approved for building: an early sign of construction to come."],
+  commodity: ["Commodity price index", "The RBA's index of the prices of Australia's main commodity exports, such as iron ore, coal, gas and farm products, in Australian dollars."],
+};
+function term(key, text) {
+  const t = TERMS[key];
+  if (!t) return esc(text ?? key);
+  return `<button type="button" class="term" data-term="${esc(key)}" aria-describedby="def-${esc(key)}">${esc(text ?? t[0])}</button>`;
+}
+function showTipAt(html, target) {
+  TIP.innerHTML = html;
+  TIP.hidden = false;
+  const r = target.getBoundingClientRect(), w = TIP.offsetWidth, h = TIP.offsetHeight;
+  let x = Math.min(window.innerWidth - w - 8, Math.max(8, r.left));
+  let y = r.bottom + 6;
+  if (y + h > window.innerHeight - 8) y = r.top - h - 6;
+  TIP.style.left = `${x}px`;
+  TIP.style.top = `${Math.max(8, y)}px`;
+}
+function initTerms(extra = {}) {
+  Object.assign(TERMS, extra);
+  // Static markup marks a defined word as <span data-term="key">word</span>.
+  document.querySelectorAll("span[data-term]").forEach((s) => { s.outerHTML = term(s.dataset.term, s.textContent); });
+  const box = document.createElement("div");
+  box.hidden = true;
+  box.innerHTML = Object.entries(TERMS).map(([k, [, d]]) => `<span id="def-${esc(k)}">${esc(d)}</span>`).join("");
+  document.body.appendChild(box);
+  let pinned = null;
+  const show = (b) => { const t = TERMS[b.dataset.term]; showTipAt(`<strong>${esc(t[0])}</strong><br>${esc(t[1])}`, b); };
+  const termOf = (e) => (e.target instanceof Element ? e.target.closest(".term") : null);
+  document.addEventListener("pointerover", (e) => { const b = termOf(e); if (b && e.pointerType === "mouse") show(b); });
+  document.addEventListener("pointerout", (e) => { const b = termOf(e); if (b && b !== pinned && e.pointerType === "mouse") hideTip(); });
+  document.addEventListener("focusin", (e) => { const b = termOf(e); if (b) show(b); });
+  document.addEventListener("focusout", (e) => { if (termOf(e)) { pinned = null; hideTip(); } });
+  document.addEventListener("click", (e) => {
+    const b = termOf(e);
+    if (b) { pinned = b; show(b); } else if (pinned) { pinned = null; hideTip(); }
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { pinned = null; hideTip(); } });
+}
+/* A list of every defined word on the page, for the footer. */
+function glossaryHtml() {
+  const keys = [...new Set([...document.querySelectorAll(".term")].map((b) => b.dataset.term))].filter((k) => TERMS[k]);
+  keys.sort((a, b) => TERMS[a][0].localeCompare(TERMS[b][0]));
+  return `<dl class="glossary">${keys.map((k) => `<div><dt>${esc(TERMS[k][0])}</dt><dd>${esc(TERMS[k][1])}</dd></div>`).join("")}</dl>`;
+}
+
+/* "Source: ..." links under a chart. sources: {key: {label, url}}; keys: the datasets the chart uses. */
+function sourceHtml(sources, keys) {
+  const links = keys.filter((k) => sources[k]).map((k) => `<a href="${esc(sources[k].url)}" target="_blank" rel="noopener">${esc(sources[k].label)}</a>`);
+  return links.length ? `Source${links.length > 1 ? "s" : ""}: ${links.join("; ")}.` : "";
+}
+
+/* Dumbbell rows: one row per item, a hollow dot for the first value and a filled dot for the last, joined by a
+ * line, with the change written at the end. Rows are buttons (select one with onSelect).
+ * rows [{key, label, a, b, total}], opts: {domain: [lo, hi], fmt, fmtChange, selected, onSelect, aLabel, bLabel}. */
+function dumbbellChart(container, rows, opts) {
+  const [lo, hi] = opts.domain;
+  const pos = (v) => ((Math.min(hi, Math.max(lo, v)) - lo) / Math.max(1e-9, hi - lo)) * 100;
+  const ticks = niceTicks(lo, hi, 5).filter((t) => t >= lo && t <= hi);
+  const fmtV = opts.fmt || ((v) => fmt(v, 1)), fmtC = opts.fmtChange || ((v) => fmtSigned(v, 1));
+  const grid = ticks.map((t) => `<span class="db-grid" style="left:${pos(t)}%"></span>`).join("");
+  const head = `<div class="db-head" aria-hidden="true"><span></span><span class="db-axis">${ticks.map((t) => `<span style="left:${pos(t)}%">${esc(fmtV(t).replace(/\.0$/, ""))}</span>`).join("")}</span><span class="db-val">Change</span></div>`;
+  container.innerHTML = head + rows.map((r) => {
+    const ok = isNum(r.a) && isNum(r.b);
+    const a = ok ? pos(r.a) : 0, b = ok ? pos(r.b) : 0;
+    const label = `${r.label}: ${ok ? `${fmtV(r.a)} in ${opts.aLabel}, ${fmtV(r.b)} in ${opts.bLabel}, change ${fmtC(r.b - r.a)}` : "no data"}`;
+    return `<button type="button" class="db-row${r.total ? " total" : ""}" data-key="${esc(r.key)}" aria-pressed="${r.key === opts.selected}" aria-label="${esc(label)}">
+      <span class="db-lab">${esc(r.label)}</span>
+      <span class="db-track">${grid}${ok ? `<span class="db-seg" style="left:${Math.min(a, b)}%;width:${Math.abs(b - a)}%"></span><span class="db-dot a" style="left:${a}%"></span><span class="db-dot b" style="left:${b}%"></span>` : ""}</span>
+      <span class="db-val">${ok ? `${esc(fmtC(r.b - r.a))}` : "–"}</span></button>`;
+  }).join("");
+  container.querySelectorAll(".db-row").forEach((btn) => {
+    const r = rows.find((x) => x.key === btn.dataset.key);
+    btn.addEventListener("click", () => opts.onSelect && opts.onSelect(btn.dataset.key));
+    const tip = (ev) => showTip(`<strong>${esc(r.label)}</strong><table><tr><td>${esc(opts.aLabel)}</td><td class="v">${esc(fmtV(r.a))}</td></tr><tr><td>${esc(opts.bLabel)}</td><td class="v">${esc(fmtV(r.b))}</td></tr><tr><td>Change</td><td class="v">${esc(fmtC(r.b - r.a))}</td></tr></table>`, ev);
+    btn.addEventListener("pointermove", tip);
+    btn.addEventListener("pointerleave", hideTip);
+  });
+}

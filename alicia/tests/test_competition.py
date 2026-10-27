@@ -117,8 +117,8 @@ def test_barriers_classification_is_valid_and_follows_grattans_sectors():
 def test_sectors_merge_listed_classes_and_label_split_groups():
     assert barriers.sector("6221") == barriers.sector("6229") == ("6221", "Banks and other deposit-takers")
     assert barriers.sector("4123") == ("4123", "Liquor retailing")
-    assert barriers.sector("4121") == ("412", "Specialised Food Retailing, other")
-    assert barriers.sector("0111") == ("011", "Nursery and Floriculture Production")
+    assert barriers.sector("4121") == ("412", "Specialised food retailing, other")
+    assert barriers.sector("0111") == ("011", "Nursery and floriculture production")
 
 
 def test_aggregate_group_follows_the_listing_then_the_weights_then_the_count():
