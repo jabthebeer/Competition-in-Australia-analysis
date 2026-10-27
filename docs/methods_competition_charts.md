@@ -125,6 +125,15 @@ These figures use income years 2018-19 to 2022-23, a cost of equity of 8.0% (bon
 - **One beta for every sector.** This overstates super-normal profit in low-risk regulated sectors and understates it in risky ones.
 - **Descriptive only.** None of these charts identifies a causal effect of barriers to entry. Public data are too aggregated for firm-level mark-ups or concentration by sector (BLADE is restricted).
 
+## Excel export
+
+Every chart that follows a slider or a drop-down list has a **Download Excel** button. The workbook has, for each chart, a sheet with the chart rebuilt as a native Excel chart from the numbers below it (as on the page, unrounded), and an About sheet with the settings in use, each dataset's link, release and licence, the notes and the definitions. Three charts have no exact Excel form:
+- **Profit by sector**: every bar has the same width (each sector's equity is in the table);
+- **Has concentration risen?**: the two years are paired bars rather than dots joined by a line;
+- **shaded periods**: drawn as light columns reaching the top of the axis; the table's "Shaded" column only draws them.
+
+Code: `alicia/src/alicia/menu/templates/xlsx.js` (decision E-84). Tests: `alicia/tests/test_xlsx_export.py`.
+
 ## Reproduce
 
 ```bash

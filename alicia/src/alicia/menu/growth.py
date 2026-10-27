@@ -142,8 +142,13 @@ SOURCES = {
 }
 
 
+# Each source's licence, as recorded in data/SOURCES.md (the Excel exports list it). Grattan's report is cited, not
+# used as data.
+LICENCES = {k: "CC BY 4.0" for k in SOURCES} | {"ato": "CC BY 2.5 AU", "grattan": ""}
+
+
 def _sources(*keys: str) -> dict:
-    return {k: {"label": SOURCES[k][0], "url": SOURCES[k][1]} for k in keys}
+    return {k: {"label": SOURCES[k][0], "url": SOURCES[k][1], "licence": LICENCES[k]} for k in keys}
 
 
 def _fy_year(period: pd.Series) -> pd.Series:
@@ -385,12 +390,12 @@ def nav(current: str, pages: tuple = PAGES) -> str:
 
 
 def render(template: str, payload: dict, page: str, standalone: bool = False, pages: tuple = PAGES) -> str:
-    """Fill a page template: shared styles and chart code, navigation, then the embedded data."""
+    """Fill a page template: shared styles, chart code and Excel export, navigation, then the embedded data."""
     blob = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     html = (
         _asset(template)
         .replace("/*__SITE_CSS__*/", _asset("site.css"))
-        .replace("/*__CHARTS_JS__*/", _asset("charts.js"))
+        .replace("/*__CHARTS_JS__*/", _asset("charts.js") + "\n" + _asset("xlsx.js"))
         .replace("<!--__NAV__-->", nav(page, pages))
         .replace("__PAGE_DATA__", blob)
     )

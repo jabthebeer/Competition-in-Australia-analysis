@@ -331,6 +331,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     onChange: (a, b) => { pw = { from: a, to: b }; store.set("incomeYears", pw); renderProfit(); },
   });
 
+  let sumData = [];
   function renderProfit() {
     paintCoe();
     const k = coe(), rows = stats();
@@ -347,12 +348,13 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
         key: g, label: GM[g].label, value: byGroup[g].roe, color: gColor(g),
         tip: `<strong>${esc(GM[g].label)}</strong><table><tr><td>Return on equity</td><td class="v">${fmt(byGroup[g].roe, 1)}%</td></tr><tr><td>Equity</td><td class="v">${fmtB(byGroup[g].E)}</td></tr><tr><td>Profit after tax</td><td class="v">${fmtB(byGroup[g].N)}</td></tr></table>`,
       })),
-      refs: [{ value: priv.roe, dash: "1.5 3" }, { value: k, dash: "5 4" }],
+      refs: [{ value: priv.roe, dash: "1.5 3", label: "Average, non-traded private economy" }, { value: k, dash: "5 4", label: "Cost of equity" }],
+      xlCat: "Group", xlValue: "Return on equity, %",
     });
     document.getElementById("roeKey").innerHTML = `<span><span class="key ref dots"></span><span>Average, ${term("nontraded", "non-traded private economy")}: ${esc(fmt(priv.roe, 1))}%</span></span><span><span class="key ref"></span><span>${term("coe", "Cost of equity")}: ${esc(fmt(k, 1))}%</span></span>`;
     const largest = PRIVATE.map((g) => rows.filter((r) => r.s.group === g && r.st.n).sort((a, b) => b.st.E - a.st.E)[0]).filter(Boolean);
     document.getElementById("roeNote").textContent = `The biggest sector in each group sways its average: ${largest.map((r) => `${r.s.label.toLowerCase()} (${fmt(r.st.roe, 1)}% on ${fmtB(r.st.E, 0)} of equity)`).join("; ")}.`;
-    document.getElementById("roeSrc").innerHTML = SRC(["ato"]);
+    document.getElementById("roeSrc").innerHTML = SRC(["ato", "rba_yields"]);
     document.getElementById("roeMore").textContent = `Grattan, using 2010-11 to 2015-16 data and leaving out goodwill, found returns of 12% for natural monopolies and scale economies, nearly 13% for heavy regulation and about 10% for low barriers. ${P.notes.ato} ${P.notes.excluded}`;
 
     // Grattan Figure 4.2 in numbers: profit above the cost of equity, by group.
@@ -368,6 +370,8 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
       ${row("Non-traded private economy", "_private", "total", false)}
       ${row(GM.tradeable.label, "tradeable", "sub")}${row(GM.public.label, "public", "sub")}</tbody></table>
       <p class="hint">Profit is after tax. Super-normal share: the share of profit above the cost of equity.</p>`;
+    sumData = [...BARRIER.map((g) => [GM[g].label, g]), ["All with barriers to entry", "_barriers"], [GM.low_barriers.label, "low_barriers"], ["Non-traded private economy", "_private"], [GM.tradeable.label, "tradeable"], [GM.public.label, "public"]]
+      .map(([label, g]) => [label, gs(g).E / 1000, gs(g).N / 1000, gs(g).roe, gs(g).superP / 1000, gs(g).superShare, gs(g).markup]);
     document.getElementById("sumSrc").innerHTML = SRC(["ato", "rba_yields"]);
 
     renderMekko(rows, k, span);
@@ -422,7 +426,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     const list = rows.filter((r) => BARRIER.includes(r.s.group) && r.st.n && isNum(r.st.markup) && r.st.markup > 0).sort((a, b) => b.st.markup - a.st.markup);
     document.getElementById("muUnit").innerHTML = `${term("markup", "Mark-up")}: how far prices are above full costs, % of sales, sectors with barriers to entry, yearly average ${esc(span)}. Group averages: ${BARRIER.map((g) => `${esc(GM[g].label.toLowerCase())} ${esc(fmt(byGroup[g].markup, 1))}%`).join("; ")}; low barriers ${esc(fmt(byGroup.low_barriers.markup, 1))}%.`;
     document.getElementById("muKey").innerHTML = groupKey(BARRIER);
-    rankedBars(document.getElementById("muChart"), list.map((r) => ({ label: r.s.label, value: r.st.markup, color: gColor(r.s.group), title: `${r.s.label}: ${GM[r.s.group].label}` })), { fmt: (v) => fmt(v, 1) });
+    rankedBars(document.getElementById("muChart"), list.map((r) => ({ label: r.s.label, value: r.st.markup, color: gColor(r.s.group), title: `${r.s.label}: ${GM[r.s.group].label}` })), { fmt: (v) => fmt(v, 1), xlCat: "Sector", xlValue: "Mark-up, % of sales" });
     document.getElementById("muSrc").innerHTML = SRC(["ato", "rba_yields"]);
     const zero = rows.filter((r) => BARRIER.includes(r.s.group) && r.st.n && !(r.st.markup > 0)).map((r) => r.s.label);
     document.getElementById("muNote").textContent = `This is Grattan's measure: super-normal profit before tax as a share of sales. It differs from the RBA's mark-up below, which compares prices with the cost of making one more unit. ${zero.length ? `Sectors with no mark-up (return at or below the cost of equity): ${zero.join(", ")}.` : ""}`;
@@ -438,7 +442,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     const series = GROUPS.filter((g) => tsActive.has(g)).map((g) => ({ key: g, label: GM[g].label, values: S.years.map((y, i) => roe(g, i)), color: gColor(g), width: PRIVATE.includes(g) ? 2 : 1.6, dash: g === "tradeable" ? "6 4" : g === "public" ? "1.5 3.5" : false }));
     if (tsActive.has("coe")) series.push({ key: "coe", label: "Cost of equity", values: S.years.map(coeYear), color: "var(--ink-3)", dash: true, width: 1.4 });
     document.getElementById("tsUnit").innerHTML = `${term("roe", "Return on equity")} after tax each year, by group, %. Shaded: the years averaged above.`;
-    lineChart(document.getElementById("tsChart"), { x: S.years, xKind: "fy", series, ref: 0, band: { from: pw.from, to: pw.to }, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: "Return on equity by group over time" });
+    lineChart(document.getElementById("tsChart"), { x: S.years, xKind: "fy", series, ref: 0, band: { from: pw.from, to: pw.to, xlLabel: "Shaded: the years averaged" }, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: "Return on equity by group over time" });
     document.getElementById("tsSrc").innerHTML = SRC(["ato", "rba_yields"]);
     tableView(document.getElementById("tsTable"), ["Group", ...S.years.map(fyLabel)], [
       ...GROUPS.map((g) => [GM[g].label, ...S.years.map((y, i) => fmt(roe(g, i), 1))]),
@@ -462,7 +466,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     if (!R.years || !R.years.length) { document.getElementById("rbaNote").textContent = "The RBA mark-up figures are not in this build."; return; }
     document.getElementById("rbaUnit").innerHTML = `${term("markupRba", "Price over marginal cost")} for the average firm (RBA). 1.25 means prices are 25% above the cost of making one more unit. Dashed line: all industries.`;
     lineChart(document.getElementById("rbaChart"), {
-      x: R.years, xKind: "year", ref: 1, yFmt: (v) => fmt(v, 2), tipFmt: (v) => fmt(v, 3), label: "Mark-ups by industry",
+      x: R.years, xKind: "year", ref: 1, yFmt: (v) => fmt(v, 2), tipFmt: (v) => fmt(v, 3), label: "Mark-ups by industry", xlFmt: "0.000",
       series: [
         { key: muDiv, label: DIVLABEL[muDiv], values: R.values[muDiv], color: "var(--accent)", width: 2.2 },
         { key: "TOT", label: "All industries", values: R.values.TOT || [], color: "var(--ink-3)", dash: true, width: 1.6 },
@@ -496,5 +500,60 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   renderProfit();
   renderRba();
   renderFoot();
+
+  // ---- Excel export: each chart that follows a slider, the cost of equity or a drop-down list ----------------------------
+  const v = D.vintages;
+  excelSetup({
+    sources: D.sources, built: D.generated,
+    release: {
+      national_accounts: `state final demand ${v.abs_sfd}; output by industry ${v.abs_gva}`, population: v.abs_erp, wpi: v.abs_wpi, labour_force: v.abs_lf, building: v.abs_ba,
+      rba_commodity: v.rba_commodity, rba_yields: P.yields.vintage, ato: `${P.vintages.ato}; ${P.vintages.atoGroups}`, rba_rdp: "Supplementary data to the paper",
+      grattan: "The report these charts recreate (cited, not used as data)",
+    },
+    links: [["Methods note", `${D.repo}docs/methods_competition_charts.md`], ["Data sources register (all licences)", `${D.repo}data/SOURCES.md`]],
+  });
+  const cardOf = (id) => document.getElementById(id).closest(".panel");
+  const yearsSet = () => ["Period", `${range.from} to ${range.to} (calendar years)`];
+  const shownReforms = () => {
+    const [a, b] = bounds();
+    return D.reforms.filter((r) => Date.parse(r.date) >= a && Date.parse(r.date) <= b);
+  };
+  const reformSet = () => ["Reform start dates", marks ? `shown on the page (${shownReforms().length} in this period; listed in the notes)` : "not shown"];
+  const reformNotes = () => (marks && shownReforms().length
+    ? [["Reform start dates", `Marked on the page's chart; Excel can't draw them: ${shownReforms().map((r) => `${r.title} (${r.jurisdiction}, ${r.date})`).join("; ")}.`]] : []);
+  for (const c of CHARTS) {
+    excelButton(cardOf(`ch-${c.id}`), {
+      settings: () => [yearsSet(), ["States shown", STATES.filter((s) => active.has(s)).map((s) => NAMES[s]).join(", ")], reformSet()],
+      notes: reformNotes, file: () => `${range.from} to ${range.to}`,
+    });
+  }
+  excelButton(cardOf("comChart"), {
+    title: () => "Commodity prices", settings: () => [yearsSet(), ["Series shown", COM.filter((k) => comActive.has(k)).join(", ")], reformSet()],
+    notes: reformNotes, file: () => `${range.from} to ${range.to}`,
+  });
+  const incomeSet = () => ["Income years averaged", `${yearsLabel()} (July to June)`];
+  const coeSet = () => ["Cost of equity", `${fmt(coe(), 1)}% (${coeManual === null ? `the 10-year bond rate averaged over these years + ${fmt(P.riskPremium, 0)} percentage points` : "typed in on the page"})`];
+  const profitCfg = (extra = {}) => ({ settings: () => [incomeSet(), coeSet()], sources: ["grattan"], file: () => `${yearsLabel()}, cost of equity ${fmt(coe(), 1)}%`, ...extra });
+  excelButton(cardOf("roeChart"), profitCfg());
+  excelButton(cardOf("sumTable"), profitCfg({
+    tables: () => [{
+      name: "Table", unit: document.getElementById("sumUnit").textContent.replace(/\s+/g, " ").trim(),
+      head: ["Group", "Equity, $ billion", "Profit after tax, $ billion", "Return on equity, %", "Super-normal profit, $ billion", "Super-normal share of profit, %", "Mark-up, % of sales"],
+      rows: sumData, fmts: ["text", "#,##0.0", "#,##0.0", "0.0", "#,##0.0", "0.0", "0.0"],
+    }],
+  }));
+  excelButton(cardOf("mkChart"), profitCfg({
+    settings: () => [incomeSet(), coeSet(), ["Group", GM[mkGroup].label]], file: () => `${GM[mkGroup].label}, ${yearsLabel()}, cost of equity ${fmt(coe(), 1)}%`,
+  }));
+  excelButton(cardOf("muChart"), profitCfg());
+  excelButton(cardOf("tsChart"), {
+    settings: () => [
+      ["Groups shown", [...GROUPS.filter((g) => tsActive.has(g)).map((g) => GM[g].label), ...(tsActive.has("coe") ? ["Cost of equity"] : [])].join(", ")],
+      ["Cost of equity", coeManual === null ? `each income year's 10-year bond rate + ${fmt(P.riskPremium, 0)} percentage points` : `${fmt(coeManual, 1)}% (typed in on the page)`],
+      ["Shaded years", yearsLabel()],
+    ],
+    sources: ["grattan"],
+  });
+  excelButton(cardOf("rbaChart"), { settings: () => [["Industry", DIVLABEL[muDiv]]], file: () => DIVLABEL[muDiv] });
 })();
 </script>

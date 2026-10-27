@@ -1,4 +1,5 @@
-/* Shared chart helpers for the ALICIA summary pages. Inline SVG, no libraries. */
+/* Shared chart helpers for the ALICIA summary pages. Inline SVG, no libraries. Each chart keeps what it was drawn
+ * from in container._xl, for the Excel export (xlsx.js). */
 const SVGNS = "http://www.w3.org/2000/svg";
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const fyLabel = (y) => `${y}-${String((y + 1) % 100).padStart(2, "0")}`;
@@ -83,6 +84,7 @@ function mount(container, draw) {
  * height, yLabel, tipDigits.
  */
 function lineChart(container, opts) {
+  container._xl = { kind: "line", opts };
   const draw = () => {
     const W = Math.max(280, Math.floor(container.clientWidth || 600));
     const H = opts.height || Math.round(Math.min(300, Math.max(210, W * 0.48)));
@@ -195,6 +197,7 @@ function lineChart(container, opts) {
 
 /* Horizontal bars around zero, sorted by the caller. rows: [{label, value, title}] */
 function rankedBars(container, rows, opts = {}) {
+  container._xl = { kind: "ranked", rows, opts };
   const vals = rows.map((r) => r.value).filter(isNum);
   const lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
   const span = Math.max(1e-9, hi - lo);
@@ -306,6 +309,7 @@ function yAxis(svg, ticks, sy, m, W, yFmt) {
 /* Columns around zero, one series over years. opts: x (years), xKind ("fy" | "year"), values, yFmt, tipFmt,
  * label, tipLabel. Positive columns use --pos, negative --neg. */
 function columnChart(container, opts) {
+  container._xl = { kind: "column", opts };
   const draw = () => {
     const W = Math.max(280, Math.floor(container.clientWidth || 600));
     const H = opts.height || Math.round(Math.min(260, Math.max(190, W * 0.4)));
@@ -342,6 +346,7 @@ function columnChart(container, opts) {
 /* Vertical bars for a few categories. opts: bars [{key, label, value, color, tip}], refs [{value, dash}],
  * yFmt, label, height. Values sit on the bar caps; reference lines are dashed (name them in a legend). */
 function barChart(container, opts) {
+  container._xl = { kind: "bar", opts };
   const draw = () => {
     const W = Math.max(280, Math.floor(container.clientWidth || 600));
     const H = opts.height || Math.round(Math.min(280, Math.max(220, W * 0.45)));
@@ -384,6 +389,7 @@ function barChart(container, opts) {
  * points outside are drawn hollow at the edge), xFmt, yFmt, xTitle, yTitle, fit ({slope, intercept, label}),
  * label, height. The nearest point to the pointer gets the tooltip. */
 function scatterChart(container, opts) {
+  container._xl = { kind: "scatter", opts };
   const draw = () => {
     const W = Math.max(280, Math.floor(container.clientWidth || 600));
     const H = opts.height || Math.round(Math.min(380, Math.max(260, W * 0.55)));
@@ -445,6 +451,7 @@ function scatterChart(container, opts) {
  * yDomain [lo, hi] (bars beyond it are cut at the edge), xFmt, yFmt, xTitle, label, height.
  * Fills: --p-normal up to the threshold, --p-super above it, --p-short for a shortfall below it, --p-loss below 0. */
 function mekkoChart(container, opts) {
+  container._xl = { kind: "mekko", opts };
   const draw = () => {
     const W = Math.max(280, Math.floor(container.clientWidth || 600));
     const H = opts.height || Math.round(Math.min(340, Math.max(240, W * 0.42)));
@@ -501,6 +508,7 @@ function mekkoChart(container, opts) {
 /* 100 per cent stacked horizontal bars. rows [{label, parts: {key: value}, total}], keys [{key, label}] in
  * stacking order; fills come from --fill-<key>, text inside from --ink-<key>. tipFmt(row, key) -> html. */
 function shareBars(container, rows, keys, opts = {}) {
+  container._xl = { kind: "shares", rows, keys, opts };
   container.innerHTML = rows.map((r, i) => {
     const sum = keys.reduce((a, k) => a + Math.max(0, r.parts[k.key] || 0), 0);
     const segs = keys.map((k) => {
@@ -669,7 +677,7 @@ function glossaryHtml() {
 
 /* "Source: ..." links under a chart. sources: {key: {label, url}}; keys: the datasets the chart uses. */
 function sourceHtml(sources, keys) {
-  const links = keys.filter((k) => sources[k]).map((k) => `<a href="${esc(sources[k].url)}" target="_blank" rel="noopener">${esc(sources[k].label)}</a>`);
+  const links = keys.filter((k) => sources[k]).map((k) => `<a href="${esc(sources[k].url)}" target="_blank" rel="noopener" data-src="${esc(k)}">${esc(sources[k].label)}</a>`);
   return links.length ? `Source${links.length > 1 ? "s" : ""}: ${links.join("; ")}.` : "";
 }
 
@@ -677,6 +685,7 @@ function sourceHtml(sources, keys) {
  * line, with the change written at the end. Rows are buttons (select one with onSelect).
  * rows [{key, label, a, b, total}], opts: {domain: [lo, hi], fmt, fmtChange, selected, onSelect, aLabel, bLabel}. */
 function dumbbellChart(container, rows, opts) {
+  container._xl = { kind: "dumbbell", rows, opts };
   const [lo, hi] = opts.domain;
   const pos = (v) => ((Math.min(hi, Math.max(lo, v)) - lo) / Math.max(1e-9, hi - lo)) * 100;
   const ticks = niceTicks(lo, hi, 5).filter((t) => t >= lo && t <= hi);
