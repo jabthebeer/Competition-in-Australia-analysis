@@ -173,3 +173,26 @@ def test_every_page_source_has_a_link_and_the_concentration_chart_compares_all_i
             for k in re.findall(r'"([a-z_]+)"', key):
                 assert k in data["sources"], (page, k)
     assert 'class="dumbbell" id="conRows"' in (tmp_path / "growth.html").read_text("utf-8")
+
+
+@needs_panels
+def test_every_chart_that_follows_a_control_can_be_exported_to_excel(tmp_path):
+    records = load_records().records
+    evals = load_evaluations(records).evaluations
+    growth.build_site(tmp_path, records, evals)
+    exported = {
+        "growth.html": ["gspChart", "heat", "dRank", "shares", "grpChart", "dynChart", "scChart", "conRows"],
+        "conditions.html": ["comChart", "roeChart", "sumTable", "mkChart", "muChart", "tsChart", "rbaChart"],
+    }
+    for page, ids in exported.items():
+        html = (tmp_path / page).read_text("utf-8")
+        assert "function xlsxWorkbook(" in html and "excelSetup(" in html
+        for i in ids:
+            assert f'excelButton(cardOf("{i}")' in html, (page, i)
+        data = json.loads(re.search(r'id="page-data">(.*?)</script>', html, re.S).group(1))
+        assert all("licence" in s for s in data["sources"].values())
+        assert data["sources"]["ato"]["licence"] == "CC BY 2.5 AU"
+    g = (tmp_path / "growth.html").read_text("utf-8")
+    c = (tmp_path / "conditions.html").read_text("utf-8")
+    assert '[["dGva", "Output"], ["dEmp", "Jobs"], ["dBiz", "Businesses starting and closing"]].forEach' in g
+    assert "for (const c of CHARTS) {\n    excelButton(cardOf(`ch-${c.id}`)" in c
