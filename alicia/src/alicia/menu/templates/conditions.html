@@ -6,7 +6,7 @@
 <style>
 /*__SITE_CSS__*/
 /* Layout: a conditions board. Latest readings by state; small multiples sharing one state legend; commodity prices;
-   national industry output; then company profitability by barriers to entry, with its own income-year slider. */
+   national industry output; then company profits by barriers to entry, with their own year slider. */
 table.data tr.sub td { color: var(--ink-3); }
 table.data tr.subtotal td { font-weight: 600; }
 table.data td .key { margin-right: 6px; vertical-align: middle; }
@@ -17,25 +17,25 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     <!--__NAV__-->
     <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
     <h1>Economic Conditions</h1>
-    <p class="lede">Demand, labour-market, population, wage, building and commodity-price conditions by state, and how profitable companies are where barriers to entry are high. The state series are the controls the regression framework nets out, so that a reform is not credited with a state's boom or blamed for its slump.</p>
+    <p class="lede">The economic conditions each state has faced (spending, jobs, population, wages, housing and commodity prices), and how profitable companies are where <span data-term="barriers">barriers to entry</span> are high.</p>
   </header>
 
   <section class="block" aria-labelledby="h-latest">
     <div class="block-head">
-      <h2 id="h-latest">Latest readings</h2>
-      <p>The most recent value of each series, with the change over the previous year.</p>
+      <h2 id="h-latest">Latest figures</h2>
+      <p>The latest figure for each measure, with the change from a year earlier in brackets.</p>
     </div>
-    <div class="panel"><div class="tscroll"><table class="data sticky" id="latest"></table></div></div>
+    <div class="panel stack"><div class="tscroll"><table class="data sticky" id="latest"></table></div><p class="source" id="latestSrc"></p></div>
   </section>
 
   <section class="block" aria-labelledby="h-state">
     <div class="block-head">
       <h2 id="h-state">By state over time</h2>
-      <p>Hover or tap a chart to read the values for every state shown.</p>
+      <p>Hover over or tap a chart to read the values for each state shown.</p>
     </div>
     <div class="sticky-key toolbar">
       <div id="range"></div>
-      <label class="check"><input type="checkbox" id="marks"> Mark evaluated reforms</label>
+      <label class="check"><input type="checkbox" id="marks"> Show when evaluated reforms started</label>
       <div class="chips" id="stateChips"></div>
     </div>
     <div class="charts-grid" id="stateCharts"></div>
@@ -44,61 +44,66 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   <section class="block" aria-labelledby="h-com">
     <div class="block-head">
       <h2 id="h-com">Commodity prices</h2>
-      <p>A national shock that hits states unevenly: it matters most where mining is a large share of output (see the mining column on the growth page).</p>
+      <p>Prices of Australia's main commodity exports. Booms and busts hit the mining states hardest.</p>
     </div>
     <div class="panel chart-card">
       <p class="unit" id="comUnit"></p>
       <div class="chips" id="comChips"></div>
       <div class="chart" id="comChart"></div>
+      <p class="source" id="comSrc"></p>
     </div>
   </section>
 
   <section class="block" aria-labelledby="h-nat">
     <div class="block-head">
-      <h2 id="h-nat">National output by industry</h2>
-      <p>Industry cycles common to every state, which the framework removes with industry-by-period effects.</p>
+      <h2 id="h-nat">Growth by industry, Australia</h2>
+      <p>How fast each <span data-term="industry">industry</span>'s <span data-term="output">output</span> grew across Australia.</p>
     </div>
-    <div class="panel"><div class="tscroll"><table class="data" id="natTable"></table></div></div>
+    <div class="panel stack"><div class="tscroll"><table class="data" id="natTable"></table></div><p class="hint" id="natHint"></p><p class="source" id="natSrc"></p></div>
   </section>
 
   <section class="block" aria-labelledby="h-profit">
     <div class="block-head">
-      <h2 id="h-profit">Profitability and market power</h2>
-      <p>Are profits higher behind barriers to entry, and how much of them is above what shareholders need to be paid? After Grattan Institute's <cite>Competition in Australia: too little of a good thing?</cite> (2017), chapters 3 to 5, recreated from the ATO's company tax statistics instead of Grattan's IBISWorld and Morningstar data. Pick the income years to average over and the cost of equity; every chart in this section follows them.</p>
+      <h2 id="h-profit">Company profits and market power</h2>
+      <p id="profitLede"></p>
     </div>
     <div class="sticky-key toolbar">
       <div id="pRange"></div>
       <div class="toolbar">
-        <label for="coe">Cost of equity, %</label>
-        <input type="number" id="coe" min="0" max="30" step="0.1" inputmode="decimal">
+        <span class="small" id="coeLabel"></span>
+        <input type="number" id="coe" min="0" max="30" step="0.1" inputmode="decimal" aria-label="Cost of equity, per cent">
         <button type="button" class="linkish" id="coeAuto"></button>
       </div>
     </div>
-    <p class="note" id="coeNote"></p>
+    <p class="hint" id="coeNote"></p>
 
     <div class="charts-grid">
       <div class="panel chart-card">
-        <h3>Return on equity by barriers to entry</h3>
+        <h3>Return on equity by barrier group</h3>
         <p class="unit" id="roeUnit"></p>
         <div class="legend" id="roeKey"></div>
         <div class="chart" id="roeChart"></div>
-        <p class="note" id="roeNote"></p>
+        <p class="hint" id="roeNote"></p>
+        <p class="source" id="roeSrc"></p>
+        <details class="more"><summary>About these figures</summary><p id="roeMore"></p></details>
       </div>
       <div class="panel chart-card">
-        <h3>How much profit is above the cost of equity</h3>
+        <h3>Profit above what investors need</h3>
         <p class="unit" id="sumUnit"></p>
         <div class="tscroll" id="sumTable"></div>
+        <p class="source" id="sumSrc"></p>
       </div>
     </div>
 
     <div class="panel chart-card">
       <h3>Profit by sector</h3>
+      <p class="hint" id="mkHow"></p>
+      <div class="toolbar"><span class="small muted">Group</span><div class="chips" id="mkTabs" role="group" aria-label="Barrier group"></div></div>
       <p class="unit" id="mkUnit"></p>
-      <div class="toolbar"><span class="small muted">Group</span><div class="chips" id="mkTabs" role="group" aria-label="Barriers-to-entry group"></div></div>
       <div class="legend" id="mkKey"></div>
       <div class="chart" id="mkChart"></div>
-      <p class="note" id="mkNote"></p>
-      <details class="tview"><summary>Show the numbers</summary><div class="tscroll" id="mkTable"></div></details>
+      <p class="source" id="mkSrc"></p>
+      <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="mkTable"></div><p id="mkNote"></p></details>
     </div>
 
     <div class="panel chart-card">
@@ -106,7 +111,8 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
       <p class="unit" id="muUnit"></p>
       <div class="legend" id="muKey"></div>
       <div class="bars" id="muChart"></div>
-      <p class="note" id="muNote"></p>
+      <p class="source" id="muSrc"></p>
+      <details class="more"><summary>About these figures</summary><p id="muNote"></p></details>
     </div>
 
     <div class="charts-grid">
@@ -115,16 +121,16 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
         <p class="unit" id="tsUnit"></p>
         <div class="chips" id="tsChips"></div>
         <div class="chart" id="tsChart"></div>
-        <p class="note" id="tsNote"></p>
-        <details class="tview"><summary>Show the numbers</summary><div class="tscroll" id="tsTable"></div></details>
+        <p class="source" id="tsSrc"></p>
+        <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="tsTable"></div><p id="tsNote"></p></details>
       </div>
       <div class="panel chart-card">
         <h3>Have mark-ups risen?</h3>
-        <p class="unit">Price over marginal cost, harmonic mean across firms (RBA, from BLADE); dashed line is all industries</p>
+        <p class="unit" id="rbaUnit"></p>
         <div class="toolbar"><label for="muDiv">Industry</label><select id="muDiv"></select></div>
         <div class="chart" id="rbaChart"></div>
-        <p class="note" id="rbaNote"></p>
-        <details class="tview"><summary>Every industry, first and last year</summary><div class="tscroll" id="rbaTable"></div></details>
+        <p class="source" id="rbaSrc"></p>
+        <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="rbaTable"></div><p id="rbaNote"></p></details>
       </div>
     </div>
   </section>
@@ -139,7 +145,11 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
 <script>
 (() => {
   const D = JSON.parse(document.getElementById("page-data").textContent);
+  const P = D.profit;
   const STATES = D.states, NAMES = D.stateNames;
+  const SRC = (keys) => sourceHtml(D.sources, keys);
+  const GROUPS = P.groups.map((g) => g.id), GM = Object.fromEntries(P.groups.map((g) => [g.id, g]));
+  initTerms(Object.fromEntries(P.groups.map((g) => [g.id, [g.label, g.about]])));
   const store = {
     get(k, d) { try { const v = localStorage.getItem(`alicia-cond-${k}`); return v === null ? d : JSON.parse(v); } catch { return d; } },
     set(k, v) { try { localStorage.setItem(`alicia-cond-${k}`, JSON.stringify(v)); } catch { /* storage unavailable */ } },
@@ -150,12 +160,12 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
 
   const yoy = (vals, lag) => vals.map((v, i) => (i >= lag && isNum(v) && isNum(vals[i - lag]) && vals[i - lag] > 0 ? (v / vals[i - lag] - 1) * 100 : null));
   const CHARTS = [
-    { id: "sfd", title: "State final demand", unit: "Real, change over the year, %", src: D.quarterly.sfd, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.sfd },
-    { id: "hhc", title: "Household consumption", unit: "Real, change over the year, %", src: D.quarterly.hhc, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.sfd },
-    { id: "unemp", title: "Unemployment rate", unit: "% of the labour force", src: D.monthly.unemp, kind: "month", tf: (v) => v, ref: null, note: D.notes.unemp },
-    { id: "pop", title: "Population growth", unit: "Change over the year, %", src: D.quarterly.pop, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.pop },
-    { id: "wpi", title: "Wage growth", unit: "Wage Price Index, change over the year, %", src: D.quarterly.wpi, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.wpi },
-    { id: "dwell", title: "Dwelling approvals", unit: "Units approved in the past 12 months per 1,000 residents", src: D.monthly.dwell, kind: "month", tf: (v) => v, ref: null, note: D.notes.dwell },
+    { id: "sfd", title: "Spending in each state", head: `${term("sfd", "State final demand")}, real, % change over a year`, unit: `${term("real", "Real")} ${term("sfd", "state final demand")}, % change over a year, ${term("seasonal", "seasonally adjusted")}.`, src: D.quarterly.sfd, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.sfd, srcKeys: ["national_accounts"] },
+    { id: "hhc", title: "Household spending", head: `${term("hhc", "Household spending")}, real, % change over a year`, unit: `${term("real", "Real")} ${term("hhc", "household spending")}, % change over a year, seasonally adjusted.`, src: D.quarterly.hhc, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.sfd, srcKeys: ["national_accounts"] },
+    { id: "unemp", title: "Unemployment", head: `${term("unemp", "Unemployment rate")}, %`, unit: `${term("unemp", "Unemployment rate")}, %.`, src: D.monthly.unemp, kind: "month", tf: (v) => v, ref: null, note: D.notes.unemp, srcKeys: ["labour_force"] },
+    { id: "pop", title: "Population growth", head: "Population, % change over a year", unit: "Population, % change over a year.", src: D.quarterly.pop, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.pop, srcKeys: ["population"] },
+    { id: "wpi", title: "Wage growth", head: `Wages (${term("wpi", "WPI")}), % change over a year`, unit: `${term("wpi", "Wage Price Index")}, % change over a year.`, src: D.quarterly.wpi, kind: "quarter", tf: (v) => yoy(v, 4), ref: 0, note: D.notes.wpi, srcKeys: ["wpi"] },
+    { id: "dwell", title: "Homes approved", head: `${term("dwell", "Homes approved")} per 1,000 people, past year`, unit: `${term("dwell", "Dwelling approvals")} over the past 12 months, per 1,000 residents.`, src: D.monthly.dwell, kind: "month", tf: (v) => v, ref: null, note: D.notes.dwell, srcKeys: ["building", "population"] },
   ];
   for (const c of CHARTS) {
     c.x = c.src.periods.map(parseYm);
@@ -183,7 +193,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   };
   const markers = () => (marks ? D.reforms.map((r) => ({ x: Date.parse(r.date), short: `${r.jurisdiction} ${r.date.slice(0, 4)}`, label: `${r.title} (${r.date})` })) : []);
 
-  // ---- latest readings ----------------------------------------------------------------
+  // ---- latest figures ------------------------------------------------------------------
   function renderLatest() {
     const lastOf = (c, s) => {
       const v = c.series[s];
@@ -193,24 +203,24 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
       }
       return null;
     };
-    const cols = CHARTS.map((c) => ({ c, label: { sfd: "State final demand, real, % y/y", hhc: "Household consumption, real, % y/y", unemp: "Unemployment rate, %", pop: "Population, % y/y", wpi: "Wages (WPI), % y/y", dwell: "Dwelling approvals per 1,000" }[c.id] }));
-    const when = cols.map(({ c }) => {
+    const when = CHARTS.map((c) => {
       const t = Math.max(...STATES.map((s) => lastOf(c, s)?.t || 0));
       return c.kind === "quarter" ? quarterLabel(t) : monthLabel(t);
     });
-    const head = `<thead><tr><th>State</th>${cols.map((col, i) => `<th>${esc(col.label)}<br><span class="muted">${esc(when[i])}</span></th>`).join("")}</tr></thead>`;
-    const body = STATES.map((s) => `<tr class="${s === "AUS" ? "total" : ""}"><td>${esc(NAMES[s])}</td>${cols.map(({ c }) => {
+    const head = `<thead><tr><th>State</th>${CHARTS.map((c, i) => `<th>${c.head}<br><span class="muted">${esc(when[i])}</span></th>`).join("")}</tr></thead>`;
+    const body = STATES.map((s) => `<tr class="${s === "AUS" ? "total" : ""}"><td>${esc(NAMES[s])}</td>${CHARTS.map((c) => {
       const r = lastOf(c, s);
       if (!r) return `<td class="num muted">–</td>`;
       const chg = isNum(r.d) ? ` <span class="muted">(${fmtSigned(r.d, 1)})</span>` : "";
       return `<td class="num">${fmt(r.v, 1)}${chg}</td>`;
     }).join("")}</tr>`).join("");
     document.getElementById("latest").innerHTML = `${head}<tbody>${body}</tbody>`;
+    document.getElementById("latestSrc").innerHTML = SRC(["national_accounts", "labour_force", "population", "wpi", "building"]);
   }
 
   // ---- state charts ---------------------------------------------------------------------
   const grid = document.getElementById("stateCharts");
-  grid.innerHTML = CHARTS.map((c) => `<div class="panel chart-card"><h3>${esc(c.title)}</h3><p class="unit">${esc(c.unit)}</p><div class="chart" id="ch-${c.id}"></div><p class="note">${esc(c.note)}</p></div>`).join("");
+  grid.innerHTML = CHARTS.map((c) => `<div class="panel chart-card"><h3>${esc(c.title)}</h3><p class="unit">${c.unit}</p><div class="chart" id="ch-${c.id}"></div><p class="note">${esc(c.note)}</p><p class="source">${SRC(c.srcKeys)}</p></div>`).join("");
   function drawStates() {
     for (const c of CHARTS) {
       let x = null;
@@ -241,7 +251,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     lineChart(document.getElementById("comChart"), { x, xKind: "month", series, ref: 100, markers: markers(), yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label: "RBA index of commodity prices" });
   }
 
-  // ---- national output by industry ----------------------------------------------------------
+  // ---- growth by industry -------------------------------------------------------------------
   function renderNational() {
     const x = D.natgva.periods;
     const n = x.length - 1;
@@ -251,8 +261,10 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     const scale = Math.max(1, ...stats.flatMap((s) => [s.g1, s.g5, s.g10]).filter(isNum).map(Math.abs).sort((a, b) => a - b).slice(0, -2));
     const cell = (v) => `<td class="num" style="background:${heatColor(v, scale)}">${fmtSigned(v, 1)}</td>`;
     const last = quarterLabel(parseYm(x[n]));
-    document.getElementById("natTable").innerHTML = `<thead><tr><th>Industry (ANZSIC division)</th><th>Year to ${esc(last)}, %</th><th>Last 5 years,<br>% a year</th><th>Last 10 years,<br>% a year</th></tr></thead>
+    document.getElementById("natTable").innerHTML = `<thead><tr><th>Industry</th><th>Past year, %</th><th>Past 5 years,<br>% a year</th><th>Past 10 years,<br>% a year</th></tr></thead>
       <tbody>${stats.map((s) => `<tr class="${s.d.code === "TOT" ? "total" : ""}"><td>${s.d.code === "TOT" ? "" : `<span class="mono muted">${s.d.code}</span> `}${esc(s.d.name)}</td>${cell(s.g1)}${cell(s.g5)}${cell(s.g10)}</tr>`).join("")}</tbody>`;
+    document.getElementById("natHint").textContent = `To the ${last} quarter. ${D.notes.natgva}`;
+    document.getElementById("natSrc").innerHTML = SRC(["national_accounts"]);
   }
 
   // ---- controls --------------------------------------------------------------------------------
@@ -266,20 +278,20 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   marksBox.addEventListener("change", () => { marks = marksBox.checked; store.set("marks", marks); drawStates(); drawCommodity(); });
   toggleChips(document.getElementById("stateChips"), STATES.map((s) => ({ key: s, label: s === "AUS" ? "Australia" : s, color: stateColor(s), dash: s === "AUS" })), active, () => { store.set("states", [...active]); drawStates(); });
   toggleChips(document.getElementById("comChips"), COM.map((k) => ({ key: k, label: k, color: comColors[k] || "var(--ink-2)" })), comActive, drawCommodity);
-  document.getElementById("comUnit").textContent = D.notes.commodity;
+  document.getElementById("comUnit").innerHTML = `${term("commodity", "Commodity price index")}, 2024-25 = 100, in Australian dollars.`;
+  document.getElementById("comSrc").innerHTML = SRC(["rba_commodity"]);
 
-  // ---- profitability and market power ------------------------------------------------------------
-  const P = D.profit;
-  const GROUPS = P.groups.map((g) => g.id), GM = Object.fromEntries(P.groups.map((g) => [g.id, g]));
+  // ---- company profits and market power ------------------------------------------------------------
   const BARRIER = GROUPS.filter((g) => GM[g].barrier), PRIVATE = [...BARRIER, "low_barriers"];
   const gColor = (g) => `var(--fill-${g})`;
+  const groupKey = (gs) => gs.map((g) => `<span><span class="key box" style="background:${gColor(g)}"></span>${term(g)}</span>`).join("");
   const PY = P.years;
   const savedP = store.get("incomeYears", null);
   let pw = savedP && savedP.from >= PY[0] && savedP.to <= PY[PY.length - 1] && savedP.to >= savedP.from ? savedP : { from: PY[0], to: PY[PY.length - 1] };
   let coeManual = store.get("coe", null);
   if (!isNum(coeManual)) coeManual = null;
   const yieldX = P.yields.periods;
-  // Average 10-year bond yield over income years a..b (July of a to June of b + 1).
+  // Average 10-year bond rate over income years a..b (July of a to June of b + 1).
   const rfOver = (a, b) => {
     const lo = `${a}-07`, hi = `${b + 1}-06`;
     const v = P.yields.values.filter((x, i) => isNum(x) && yieldX[i] >= lo && yieldX[i] <= hi);
@@ -292,13 +304,17 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     const k = coe();
     return P.sectors.map((s) => ({ s, st: sectorStats(s, PY, pw.from, pw.to, k, P.taxRate) }));
   };
+  document.getElementById("profitLede").innerHTML = `Are companies more profitable where barriers to entry are high? <a href="${esc(D.sources.grattan.url)}" target="_blank" rel="noopener">Grattan Institute's 2017 report</a> found they were. These charts repeat its analysis with ATO company tax statistics. Choose the ${term("incomeYear", "income years")} to average and the ${term("coe", "cost of equity")}; every chart below follows them.`;
+  document.getElementById("coeLabel").innerHTML = `${term("coe", "Cost of equity")}, %`;
   const coeInput = document.getElementById("coe"), coeBtn = document.getElementById("coeAuto");
   function paintCoe() {
     const auto = coeAuto(), rf = rfOver(pw.from, pw.to);
     coeInput.value = isNum(coe()) ? coe().toFixed(1) : "";
-    coeBtn.textContent = coeManual === null ? `bond yield ${fmt(rf?.rate, 1)}% + ${fmt(P.riskPremium, 0)}% premium` : `use bond yield + ${fmt(P.riskPremium, 0)}% (${fmt(auto, 1)}%)`;
-    coeBtn.disabled = coeManual === null;
-    document.getElementById("coeNote").textContent = `${P.notes.coe} ${coeManual === null ? "" : "Set by hand here; the button restores the default."}`;
+    coeBtn.textContent = coeManual === null ? "" : `Reset to the bond rate + ${fmt(P.riskPremium, 0)} points (${fmt(auto, 1)}%)`;
+    coeBtn.hidden = coeManual === null;
+    document.getElementById("coeNote").innerHTML = coeManual === null
+      ? `The ${term("bond", "10-year bond rate")} averaged ${esc(fmt(rf?.rate, 1))}% over these years; adding 6 percentage points gives ${esc(fmt(auto, 1))}%. Type a different rate to see how the results change.`
+      : "Using the rate you typed. The button restores the default.";
   }
   coeInput.addEventListener("change", () => {
     const v = parseFloat(coeInput.value);
@@ -308,7 +324,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   });
   coeBtn.addEventListener("click", () => { coeManual = null; store.set("coe", null); renderProfit(); });
   rangeSlider(document.getElementById("pRange"), {
-    min: PY[0], max: PY[PY.length - 1], from: pw.from, to: pw.to, minGap: 0, fmt: fyLabel, label: "Income years to average",
+    min: PY[0], max: PY[PY.length - 1], from: pw.from, to: pw.to, minGap: 0, fmt: fyLabel, label: "Income years to average (July to June)",
     fromLabel: "First income year", toLabel: "Last income year",
     presets: [{ label: "All five years", from: PY[0], to: PY[PY.length - 1] }, { label: `${fyLabel(PY[0])}, before COVID`, from: PY[0], to: PY[0] }, { label: "Latest year", from: PY[PY.length - 1], to: PY[PY.length - 1] }],
     summary: (a, b) => (a === b ? fyLabel(a) : `${fyLabel(a)} to ${fyLabel(b)} · ${b - a + 1} years`),
@@ -324,31 +340,35 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     const span = yearsLabel();
 
     // Grattan Figure 4.1: return on equity by group.
-    document.getElementById("roeUnit").textContent = `Profit after tax over book equity, per cent, equity-weighted, yearly average ${span}`;
+    document.getElementById("roeUnit").innerHTML = `${term("roe", "Return on equity")} after tax, % (${term("weighted", "weighted by equity")}), yearly average ${esc(span)}.`;
     barChart(document.getElementById("roeChart"), {
-      label: "Return on equity by barriers-to-entry group", yFmt: (v) => fmt(v, 0),
+      label: "Return on equity by barrier group", yFmt: (v) => fmt(v, 0),
       bars: PRIVATE.map((g) => ({
         key: g, label: GM[g].label, value: byGroup[g].roe, color: gColor(g),
         tip: `<strong>${esc(GM[g].label)}</strong><table><tr><td>Return on equity</td><td class="v">${fmt(byGroup[g].roe, 1)}%</td></tr><tr><td>Equity</td><td class="v">${fmtB(byGroup[g].E)}</td></tr><tr><td>Profit after tax</td><td class="v">${fmtB(byGroup[g].N)}</td></tr></table>`,
       })),
       refs: [{ value: priv.roe, dash: "1.5 3" }, { value: k, dash: "5 4" }],
     });
-    document.getElementById("roeKey").innerHTML = `<span><span class="key ref dots"></span>Non-traded private average ${fmt(priv.roe, 1)}%</span><span><span class="key ref"></span>Cost of equity ${fmt(k, 1)}%</span>`;
+    document.getElementById("roeKey").innerHTML = `<span><span class="key ref dots"></span><span>Average, ${term("nontraded", "non-traded private economy")}: ${esc(fmt(priv.roe, 1))}%</span></span><span><span class="key ref"></span><span>${term("coe", "Cost of equity")}: ${esc(fmt(k, 1))}%</span></span>`;
     const largest = PRIVATE.map((g) => rows.filter((r) => r.s.group === g && r.st.n).sort((a, b) => b.st.E - a.st.E)[0]).filter(Boolean);
-    document.getElementById("roeNote").textContent = `Each group's largest sector by equity weighs most: ${largest.map((r) => `${GM[r.s.group].label.toLowerCase()}, ${r.s.label.toLowerCase()} (${fmt(r.st.roe, 1)}%, ${fmtB(r.st.E, 0)} of equity)`).join("; ")}. Grattan, with 2010-11 to 2015-16 data excluding goodwill, found 12% for natural monopolies and scale economies, nearly 13% for heavy regulation and about 10% for low barriers.`;
+    document.getElementById("roeNote").textContent = `The biggest sector in each group sways its average: ${largest.map((r) => `${r.s.label.toLowerCase()} (${fmt(r.st.roe, 1)}% on ${fmtB(r.st.E, 0)} of equity)`).join("; ")}.`;
+    document.getElementById("roeSrc").innerHTML = SRC(["ato"]);
+    document.getElementById("roeMore").textContent = `Grattan, using 2010-11 to 2015-16 data and leaving out goodwill, found returns of 12% for natural monopolies and scale economies, nearly 13% for heavy regulation and about 10% for low barriers. ${P.notes.ato} ${P.notes.excluded}`;
 
     // Grattan Figure 4.2 in numbers: profit above the cost of equity, by group.
-    document.getElementById("sumUnit").textContent = `Yearly average, ${span}; cost of equity ${fmt(k, 1)}%. Profit: after tax. Return: on equity. Super-normal %: share of profit above the cost of equity. Sectors earning less than the cost of equity count as zero super-normal profit (as Grattan did)`;
-    const row = (label, g, cls = "") => `<tr class="${cls}"><td>${g ? `<span class="key box" style="background:${gColor(g)}"></span>` : ""}${esc(label)}</td>
+    document.getElementById("sumUnit").innerHTML = `Yearly averages, ${esc(span)}, with a cost of equity of ${esc(fmt(k, 1))}%. Sectors earning less than the cost of equity count as having no ${term("superProfit", "super-normal profit")}, as Grattan did.`;
+    const gs = (g) => (g === "_barriers" ? barr : g === "_private" ? priv : byGroup[g]);
+    const row = (label, g, cls = "", key = true) => `<tr class="${cls}"><td>${key ? `<span class="key box" style="background:${gColor(g)}"></span>` : ""}${esc(label)}</td>
       <td class="num">${fmt(gs(g).E / 1000, 0)}</td><td class="num">${fmt(gs(g).N / 1000, 1)}</td><td class="num">${fmt(gs(g).roe, 1)}</td>
       <td class="num">${fmt(gs(g).superP / 1000, 1)}</td><td class="num">${fmt(gs(g).superShare, 0)}</td><td class="num">${fmt(gs(g).markup, 1)}</td></tr>`;
-    const gs = (g) => (g === "_barriers" ? barr : g === "_private" ? priv : byGroup[g]);
-    document.getElementById("sumTable").innerHTML = `<table class="data"><thead><tr><th>Group</th><th>Equity<br>$b</th><th>Profit<br>$b</th><th>Return<br>%</th><th>Super-<br>normal $b</th><th>Super-<br>normal %</th><th>Mark-<br>up %</th></tr></thead><tbody>
+    document.getElementById("sumTable").innerHTML = `<table class="data"><thead><tr><th>Group</th><th>${term("equity", "Equity")},<br>$b</th><th>${term("profitAfterTax", "Profit")},<br>$b</th><th>${term("roe", "Return")},<br>%</th><th>${term("superProfit", "Super-normal")},<br>$b</th><th>Super-normal<br>share, %</th><th>${term("markup", "Mark-up")},<br>%</th></tr></thead><tbody>
       ${BARRIER.map((g) => row(GM[g].label, g)).join("")}
-      ${row("Barriers to entry", "_barriers", "subtotal").replace(/<span class="key[^>]*><\/span>/, "")}
+      ${row("All with barriers to entry", "_barriers", "subtotal", false)}
       ${row(GM.low_barriers.label, "low_barriers")}
-      ${row("Non-traded private", "_private", "total").replace(/<span class="key[^>]*><\/span>/, "")}
-      ${row(GM.tradeable.label, "tradeable", "sub")}${row(GM.public.label, "public", "sub")}</tbody></table>`;
+      ${row("Non-traded private economy", "_private", "total", false)}
+      ${row(GM.tradeable.label, "tradeable", "sub")}${row(GM.public.label, "public", "sub")}</tbody></table>
+      <p class="hint">Profit is after tax. Super-normal share: the share of profit above the cost of equity.</p>`;
+    document.getElementById("sumSrc").innerHTML = SRC(["ato", "rba_yields"]);
 
     renderMekko(rows, k, span);
     renderMarkups(rows, k, span, byGroup);
@@ -364,15 +384,15 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     mkTabs.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.g === mkGroup)));
     renderProfit();
   }));
-  const mkKey = (k) => [["--p-normal", "Normal profit (up to the cost of equity)"], ["--p-super", "Super-normal profit"], ["--p-short", "Shortfall below the cost of equity"], ["--p-loss", "Loss"]]
-    .map(([c, l]) => `<span><span class="key box" style="background:var(${c})"></span>${esc(l)}</span>`).join("") + `<span><span class="key ref"></span>Cost of equity ${fmt(k, 1)}%</span>`;
+  document.getElementById("mkHow").innerHTML = `How to read it: each bar is a ${term("sector", "sector")}. Its width is the sector's ${term("equity", "equity")} and its height its ${term("roe", "return on equity")}. The part above the dashed line (the cost of equity) is ${term("superProfit", "super-normal profit")}.`;
+  const mkKey = (k) => `<span><span class="key box" style="background:var(--p-normal)"></span>${term("normalProfit", "Normal profit")}</span><span><span class="key box" style="background:var(--p-super)"></span>${term("superProfit", "Super-normal profit")}</span><span><span class="key box" style="background:var(--p-short)"></span>${term("shortfall", "Shortfall")}</span><span><span class="key box" style="background:var(--p-loss)"></span>Loss</span><span><span class="key ref"></span>Cost of equity ${esc(fmt(k, 1))}%</span>`;
 
   // Grattan Figures 4.4 and A.7: each sector's return (height) and equity (width), split at the cost of equity.
   function renderMekko(rows, k, span) {
     document.getElementById("mkKey").innerHTML = mkKey(k);
     const list = rows.filter((r) => r.s.group === mkGroup && r.st.n && r.st.E > 0).sort((a, b) => a.st.roe - b.st.roe);
     const sup = list.reduce((a, r) => a + r.st.superP, 0), norm = list.reduce((a, r) => a + r.st.normal, 0);
-    document.getElementById("mkUnit").textContent = `${GM[mkGroup].label}: return on equity after tax (height) and equity (width) of each sector, yearly average ${span}. Super-normal profit ${fmtB(sup)} a year; normal profit ${fmtB(norm)}.`;
+    document.getElementById("mkUnit").textContent = `${GM[mkGroup].label}, yearly average ${span}: super-normal profit ${fmtB(sup)} a year and normal profit ${fmtB(norm)}. Sorted from lowest to highest return; ▲ or ▼ marks a bar cut off by the axis. Hover over a bar for its figures.`;
     const tip = (r) => `<strong>${esc(r.s.label)}</strong><table>
       <tr><td>Return on equity</td><td class="v">${fmt(r.st.roe, 1)}%</td></tr><tr><td>Equity</td><td class="v">${fmtB(r.st.E)}</td></tr>
       <tr><td>Profit after tax</td><td class="v">${fmtB(r.st.N, 2)}</td></tr><tr><td>Super-normal profit</td><td class="v">${fmtB(r.st.snp, 2)}</td></tr>
@@ -385,51 +405,52 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
       yDomain: [Math.max(-15, Math.min(0, ...vals)), Math.min(40, Math.max(k + 5, ...vals))],
       xFmt: (v) => fmt(v, 0), yFmt: (v) => fmt(v, 0), xTitle: "Equity, $ billion (yearly average)", label: `Profit by sector, ${GM[mkGroup].label}`,
     });
+    document.getElementById("mkSrc").innerHTML = SRC(["ato", "rba_yields"]);
     const missing = rows.filter((r) => r.s.group === mkGroup && r.st.left.length && (r.st.E || 0) >= 2000);
     const none = rows.filter((r) => r.s.group === mkGroup && !r.st.n);
+    tableView(document.getElementById("mkTable"), ["Sector", "Return on equity, %", "Equity, $b", "Profit after tax, $b", "Super-normal profit, $b", "Mark-up, %", "Years averaged"],
+      [...list].reverse().map((r) => [r.s.label, fmt(r.st.roe, 1), fmt(r.st.E / 1000, 1), fmt(r.st.N / 1000, 2), fmt(r.st.snp / 1000, 2), fmt(r.st.markup, 1), String(r.st.n)]));
     document.getElementById("mkNote").textContent = [
-      "Sorted from lowest to highest return; bars cut at the axis are marked ▲ or ▼. Hover for each sector's figures.",
       missing.length ? `Years left out for larger sectors: ${missing.map((r) => `${r.s.label} (${r.st.left.map((l) => `${fyLabel(l.year)}, ${l.why}`).join("; ")})`).join("; ")}.` : "",
-      none.length ? `No usable year in the period: ${none.map((r) => r.s.label).join(", ")}.` : "",
+      none.length ? `No usable year in this period: ${none.map((r) => r.s.label).join(", ")}.` : "",
       P.notes.excluded,
     ].filter(Boolean).join(" ");
-    tableView(document.getElementById("mkTable"), ["Sector", "Return on equity, %", "Equity, $b", "Profit after tax, $b", "Super-normal profit, $b", "Mark-up, %", "Years", "ATO table"],
-      [...list].reverse().map((r) => [r.s.label, fmt(r.st.roe, 1), fmt(r.st.E / 1000, 1), fmt(r.st.N / 1000, 2), fmt(r.st.snp / 1000, 2), fmt(r.st.markup, 1), String(r.st.n), r.s.basis === "group" ? `4A (${r.s.codes.join(", ")})` : `4B (${r.s.codes.join(", ")})`]));
   }
 
   // Grattan Figures 5.1 and 5.2: super-normal profit before tax as a share of income, sectors behind barriers.
   function renderMarkups(rows, k, span, byGroup) {
     const list = rows.filter((r) => BARRIER.includes(r.s.group) && r.st.n && isNum(r.st.markup) && r.st.markup > 0).sort((a, b) => b.st.markup - a.st.markup);
-    document.getElementById("muUnit").textContent = `Super-normal profit before tax as a share of income, per cent, sectors with barriers to entry, yearly average ${span}, cost of equity ${fmt(k, 1)}%. Group averages: ${BARRIER.map((g) => `${GM[g].label.toLowerCase()} ${fmt(byGroup[g].markup, 1)}%`).join("; ")}; low barriers ${fmt(byGroup.low_barriers.markup, 1)}%.`;
-    document.getElementById("muKey").innerHTML = BARRIER.map((g) => `<span><span class="key box" style="background:${gColor(g)}"></span>${esc(GM[g].label)}</span>`).join("");
+    document.getElementById("muUnit").innerHTML = `${term("markup", "Mark-up")}: how far prices are above full costs, % of sales, sectors with barriers to entry, yearly average ${esc(span)}. Group averages: ${BARRIER.map((g) => `${esc(GM[g].label.toLowerCase())} ${esc(fmt(byGroup[g].markup, 1))}%`).join("; ")}; low barriers ${esc(fmt(byGroup.low_barriers.markup, 1))}%.`;
+    document.getElementById("muKey").innerHTML = groupKey(BARRIER);
     rankedBars(document.getElementById("muChart"), list.map((r) => ({ label: r.s.label, value: r.st.markup, color: gColor(r.s.group), title: `${r.s.label}: ${GM[r.s.group].label}` })), { fmt: (v) => fmt(v, 1) });
+    document.getElementById("muSrc").innerHTML = SRC(["ato", "rba_yields"]);
     const zero = rows.filter((r) => BARRIER.includes(r.s.group) && r.st.n && !(r.st.markup > 0)).map((r) => r.s.label);
-    document.getElementById("muNote").textContent = `Mark-ups here are the price premium over full costs, including a normal return to shareholders (Grattan's definition), not the price over marginal cost of the RBA series below. ${zero.length ? `No mark-up (return at or below the cost of equity): ${zero.join(", ")}.` : ""}`;
+    document.getElementById("muNote").textContent = `This is Grattan's measure: super-normal profit before tax as a share of sales. It differs from the RBA's mark-up below, which compares prices with the cost of making one more unit. ${zero.length ? `Sectors with no mark-up (return at or below the cost of equity): ${zero.join(", ")}.` : ""}`;
   }
 
   // Grattan Figure 3.5 in spirit: return on equity by group, each year (ANZSIC groups, ATO Table 4A).
   const S = P.series;
   const tsActive = new Set(store.get("tsGroups", [...PRIVATE, "coe"]).filter((g) => GROUPS.includes(g) || g === "coe"));
-  toggleChips(document.getElementById("tsChips"), [...GROUPS.map((g) => ({ key: g, label: GM[g].short, color: gColor(g) })), { key: "coe", label: "Cost of equity", color: "var(--ink-3)", dash: true }], tsActive, () => { store.set("tsGroups", [...tsActive]); renderSeries(); });
+  toggleChips(document.getElementById("tsChips"), [...GROUPS.map((g) => ({ key: g, label: GM[g].label, color: gColor(g), dash: g === "tradeable" || g === "public" })), { key: "coe", label: "Cost of equity", color: "var(--ink-3)", dash: true }], tsActive, () => { store.set("tsGroups", [...tsActive]); renderSeries(); });
   function renderSeries() {
     const roe = (g, i) => { const e = S.groups[g].equity[i], n = S.groups[g].npat[i]; return isNum(e) && e > 0 && isNum(n) ? (n / e) * 100 : null; };
     const coeYear = (y) => (coeManual ?? (rfOver(y, y) ? rfOver(y, y).rate + P.riskPremium : null));
     const series = GROUPS.filter((g) => tsActive.has(g)).map((g) => ({ key: g, label: GM[g].label, values: S.years.map((y, i) => roe(g, i)), color: gColor(g), width: PRIVATE.includes(g) ? 2 : 1.6, dash: g === "tradeable" ? "6 4" : g === "public" ? "1.5 3.5" : false }));
     if (tsActive.has("coe")) series.push({ key: "coe", label: "Cost of equity", values: S.years.map(coeYear), color: "var(--ink-3)", dash: true, width: 1.4 });
-    document.getElementById("tsUnit").textContent = `Return on equity after tax by group, per cent, each income year (ATO company statistics by ANZSIC group, ${S.years.length} years). Shaded: the years averaged above`;
+    document.getElementById("tsUnit").innerHTML = `${term("roe", "Return on equity")} after tax each year, by group, %. Shaded: the years averaged above.`;
     lineChart(document.getElementById("tsChart"), { x: S.years, xKind: "fy", series, ref: 0, band: { from: pw.from, to: pw.to }, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: "Return on equity by group over time" });
-    const big = S.excluded.filter((e) => e.assets >= 50000);
-    document.getElementById("tsNote").textContent = `The ATO publishes these years by ANZSIC group, so the ${S.mixed.length} groups that mix barriers-to-entry groups go where most of their company income is (listed with the numbers). Group-years with liabilities above assets are left out${big.length ? `, notably ${big.map((e) => `${e.label.toLowerCase()} in ${fyLabel(e.year)}`).join(" and ")}, which moves its group's line` : ""}.`;
+    document.getElementById("tsSrc").innerHTML = SRC(["ato", "rba_yields"]);
     tableView(document.getElementById("tsTable"), ["Group", ...S.years.map(fyLabel)], [
       ...GROUPS.map((g) => [GM[g].label, ...S.years.map((y, i) => fmt(roe(g, i), 1))]),
       ["Cost of equity", ...S.years.map((y) => fmt(coeYear(y), 1))],
     ]);
-    document.getElementById("tsTable").insertAdjacentHTML("beforeend", `<p class="note">Mixed ANZSIC groups and where they count: ${esc(S.mixed.map((m) => `${m.label} (${m.code}): ${GM[m.group].label.toLowerCase()}`).join("; "))}.</p>`);
+    const big = S.excluded.filter((e) => e.assets >= 50000);
+    document.getElementById("tsNote").textContent = `For these years the ATO publishes figures only for broader groups of sectors, so a few groups that mix barrier types are put where most of their company income is: ${S.mixed.map((m) => `${m.label.toLowerCase()} (${GM[m.group].label.toLowerCase()})`).join("; ")}. Years when a group's liabilities exceed its assets are left out${big.length ? `, notably ${big.map((e) => `${e.label.toLowerCase()} in ${fyLabel(e.year)}`).join(" and ")}, which moves its group's line` : ""}.`;
   }
 
   // RBA mark-ups by division (price over marginal cost).
   const R = P.markups;
-  const DIVLABEL = Object.fromEntries(P.divisions.map((d) => [d.code, d.code === "TOT" ? d.name : `${d.code} ${d.name}`]));
+  const DIVLABEL = Object.fromEntries(P.divisions.map((d) => [d.code, d.name]));
   const rbaDivs = Object.keys(R.values || {}).filter((d) => d !== "TOT");
   let muDiv = store.get("muDiv", "G");
   if (!rbaDivs.includes(muDiv)) muDiv = rbaDivs[0];
@@ -438,7 +459,8 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   muSel.value = muDiv;
   muSel.addEventListener("change", () => { muDiv = muSel.value; store.set("muDiv", muDiv); renderRba(); });
   function renderRba() {
-    if (!R.years || !R.years.length) { document.getElementById("rbaNote").textContent = "RBA mark-up data not available in this build."; return; }
+    if (!R.years || !R.years.length) { document.getElementById("rbaNote").textContent = "The RBA mark-up figures are not in this build."; return; }
+    document.getElementById("rbaUnit").innerHTML = `${term("markupRba", "Price over marginal cost")} for the average firm (RBA). 1.25 means prices are 25% above the cost of making one more unit. Dashed line: all industries.`;
     lineChart(document.getElementById("rbaChart"), {
       x: R.years, xKind: "year", ref: 1, yFmt: (v) => fmt(v, 2), tipFmt: (v) => fmt(v, 3), label: "Mark-ups by industry",
       series: [
@@ -446,19 +468,26 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
         { key: "TOT", label: "All industries", values: R.values.TOT || [], color: "var(--ink-3)", dash: true, width: 1.6 },
       ],
     });
-    document.getElementById("rbaNote").textContent = `A ratio of 1 means price equals marginal cost. ${P.notes.rba}`;
+    document.getElementById("rbaSrc").innerHTML = SRC(["rba_rdp"]);
     const fl = (d) => { const v = (R.values[d] || []).map((x, i) => [R.years[i], x]).filter(([, x]) => isNum(x)); return v.length ? [v[0], v[v.length - 1]] : null; };
     tableView(document.getElementById("rbaTable"), ["Industry", "First year", "Mark-up", "Last year", "Mark-up", "Change"],
       ["TOT", ...rbaDivs].map((d) => { const r = fl(d); return r ? [DIVLABEL[d], String(r[0][0]), fmt(r[0][1], 3), String(r[1][0]), fmt(r[1][1], 3), fmtSigned(r[1][1] - r[0][1], 3)] : [DIVLABEL[d], "–", "–", "–", "–", "–"]; }));
+    document.getElementById("rbaNote").innerHTML = `${esc(P.notes.rba)} ${term("blade", "What is BLADE?")}`;
   }
 
-  const v = D.vintages;
-  document.getElementById("foot").innerHTML = `
-    <p><strong>Sources.</strong> ABS Data API: State Final Demand (${esc(v.abs_sfd)}), population (${esc(v.abs_erp)}), Wage Price Index (${esc(v.abs_wpi)}), Labour Force (${esc(v.abs_lf)}), Building Approvals (${esc(v.abs_ba)}), national accounts by industry (${esc(v.abs_gva)}); Reserve Bank of Australia, statistical tables I2 (${esc(v.rba_commodity)}) and F2.1 (${esc(P.yields.vintage)}). All CC BY 4.0. Australian Taxation Office, Taxation Statistics, Company Table 4 (${esc(P.vintages.ato)}; ${esc(P.vintages.atoGroups)}), CC BY 2.5 AU. Hambur and Freestone (2025), RBA Research Discussion Paper 2025-05, supplementary data, CC BY 4.0.</p>
-    <p>${esc(D.notes.natgva)} Growth over 5 and 10 years is the compound average from the same quarter.</p>
-    <p>Evaluated reform markers show the effective date of each change with a current evaluation in the legislation menu.</p>
-    <p>${esc(P.notes.classification)}</p><p>${esc(P.notes.ato)}</p>
-    <p>Built ${esc(D.generated)} from <span class="mono">data/processed</span> (<a href="${esc(D.repo)}data/SOURCES.md">data sources and licences</a>; <a href="${esc(D.repo)}docs/methods_competition_charts.md">methods for the profitability charts</a>). Descriptive only.</p>`;
+  function renderFoot() {
+    const v = D.vintages;
+    const items = [
+      ["national_accounts", `state final demand ${v.abs_sfd}; output by industry ${v.abs_gva}`], ["population", v.abs_erp], ["wpi", v.abs_wpi], ["labour_force", v.abs_lf], ["building", v.abs_ba],
+      ["rba_commodity", v.rba_commodity], ["rba_yields", P.yields.vintage], ["ato", `${P.vintages.ato}; ${P.vintages.atoGroups}`], ["rba_rdp", "supplementary data"], ["grattan", "the charts recreated here"],
+    ];
+    document.getElementById("foot").innerHTML = `
+      <h2>Data sources</h2>
+      <ul>${items.map(([k, note]) => `<li><a href="${esc(D.sources[k].url)}" target="_blank" rel="noopener">${esc(D.sources[k].label)}</a> <span class="muted">(${esc(note)})</span></li>`).join("")}</ul>
+      <p>ABS and RBA data are licensed CC BY 4.0; ATO data CC BY 2.5 AU. How the profit charts were made, and their limits: <a href="${esc(D.repo)}docs/methods_competition_charts.md" target="_blank" rel="noopener">methods note</a>. All licences: <a href="${esc(D.repo)}data/SOURCES.md" target="_blank" rel="noopener">data sources register</a>.</p>
+      <p>The dates of evaluated reforms come from the legislation menu. These are descriptive statistics: they show what happened, not why. Built ${esc(D.generated)}.</p>
+      <details class="more"><summary>Words used on this page</summary>${glossaryHtml()}</details>`;
+  }
 
   renderLatest();
   drawStates();
@@ -466,5 +495,6 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   renderNational();
   renderProfit();
   renderRba();
+  renderFoot();
 })();
 </script>

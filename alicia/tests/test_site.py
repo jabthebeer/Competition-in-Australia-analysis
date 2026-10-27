@@ -158,3 +158,18 @@ def test_summary_pages_use_period_sliders_and_carry_the_competition_data(tmp_pat
     assert {"groups", "sectors", "bizGroup", "concentration"} <= set(gd["barriers"])
     assert {"groups", "sectors", "series", "yields", "markups"} <= set(cd["profit"])
     assert all(w["label"] for w in gd["windows"])
+
+
+@needs_panels
+def test_every_page_source_has_a_link_and_the_concentration_chart_compares_all_industries(tmp_path):
+    records = load_records().records
+    evals = load_evaluations(records).evaluations
+    growth.build_site(tmp_path, records, evals)
+    for page in ("growth.html", "conditions.html"):
+        html = (tmp_path / page).read_text("utf-8")
+        data = json.loads(re.search(r'id="page-data">(.*?)</script>', html, re.S).group(1))
+        assert data["sources"] and all(s["url"].startswith("https://") and s["label"] for s in data["sources"].values())
+        for key in set(re.findall(r"SRC\(\[([^\]]*)\]\)", html)):
+            for k in re.findall(r'"([a-z_]+)"', key):
+                assert k in data["sources"], (page, k)
+    assert 'class="dumbbell" id="conRows"' in (tmp_path / "growth.html").read_text("utf-8")

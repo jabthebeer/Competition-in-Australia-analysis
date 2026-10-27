@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
 <style>
 /*__SITE_CSS__*/
-/* Layout: a statistical bulletin. A sticky period slider on top; GSP table and chart; the state x industry heatmap;
-   the selected cell's history; barriers to entry and business dynamism. */
+/* Layout: a statistical bulletin. A sticky period slider on top; state economies; the state x industry heatmap;
+   the selected cell's history; barriers to entry. */
 table.data td.gsp-best { color: var(--ink-2); text-align: left; }
 #detail .facts { padding: 14px; }
 </style>
@@ -16,43 +16,49 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     <!--__NAV__-->
     <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
     <h1>State and Industry Growth</h1>
-    <p class="lede">How each state's economy and its industries have grown, by ANZSIC division: output, jobs, and business entry and exit, and how entry differs where barriers to entry are high. These are the background conditions a reform evaluation has to separate from the reform's own effect.</p>
+    <p class="lede">How each state's economy and industries have grown, how many businesses start and close, and where <span data-term="barriers">barriers to entry</span> make it harder for new firms to compete.</p>
   </header>
 
   <div class="sticky-key toolbar" role="region" aria-label="Period">
     <div id="period"></div>
-    <span class="small muted" id="winNote"></span>
   </div>
 
   <section class="block" aria-labelledby="h-gsp">
     <div class="block-head">
-      <h2 id="h-gsp">Gross state product</h2>
-      <p>Size of each economy in the last year of the period, and its average annual growth in real terms over the period.</p>
+      <h2 id="h-gsp">State economies</h2>
+      <p>Each state's <span data-term="gsp">gross state product</span> in the last year of the period, and how fast it grew.</p>
     </div>
     <div class="stack">
-      <div class="panel"><div class="tscroll"><table class="data sticky" id="gspTable"></table></div></div>
+      <div class="panel stack">
+        <div class="tscroll"><table class="data sticky" id="gspTable"></table></div>
+        <p class="hint">Growth rates are <span data-term="avgGrowth">average annual growth</span> over the period, adjusted for inflation (<span data-term="real">real</span>).</p>
+        <p class="source" id="gspSrc"></p>
+      </div>
       <div class="panel chart-card">
-        <h3>Real gross state product</h3>
+        <h3>Growth in each state's economy</h3>
         <p class="unit" id="gspUnit"></p>
         <div class="chips" id="gspChips"></div>
         <div class="chart" id="gspChart"></div>
+        <p class="source" id="gspSrc2"></p>
       </div>
     </div>
   </section>
 
   <section class="block" aria-labelledby="h-ind">
     <div class="block-head">
-      <h2 id="h-ind">Industry growth by state</h2>
-      <p>Each cell is one ANZSIC division in one state. Select a cell to see its history below.</p>
+      <h2 id="h-ind">Industries in each state</h2>
+      <p>Each cell is one <span data-term="industry">industry</span> in one state. Click a cell to see its history below.</p>
     </div>
     <div class="panel stack">
       <div class="toolbar">
-        <label for="metric">Measure</label>
+        <label for="metric">Show</label>
         <select id="metric"></select>
         <div class="scale" id="heatScale"></div>
       </div>
+      <p class="hint" id="heatHint"></p>
       <div class="tscroll"><table class="heat" id="heat"></table></div>
-      <p class="note" id="heatNote"></p>
+      <p class="source" id="heatSrc"></p>
+      <details class="more"><summary>About these figures</summary><p id="heatNote"></p></details>
     </div>
   </section>
 
@@ -64,20 +70,23 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     <dl class="facts panel" id="detailFacts"></dl>
     <div class="charts-grid">
       <div class="panel chart-card">
-        <h3>Real gross value added</h3>
+        <h3>Output</h3>
         <p class="unit" id="uGva"></p>
         <div class="chart" id="dGva"></div>
+        <p class="source" id="srcGva"></p>
       </div>
       <div class="panel chart-card">
-        <h3>Employed persons</h3>
+        <h3>Jobs</h3>
         <p class="unit" id="uEmp"></p>
         <div class="chart" id="dEmp"></div>
+        <p class="source" id="srcEmp"></p>
       </div>
       <div class="panel chart-card">
-        <h3>Business entry and exit rates</h3>
-        <p class="unit">Per cent of businesses operating at the start of each year; dashed lines are Australia</p>
-        <div class="chips" id="bizKey"></div>
+        <h3>Businesses starting and closing</h3>
+        <p class="unit" id="uBiz"></p>
+        <div class="legend" id="bizKey"></div>
         <div class="chart" id="dBiz"></div>
+        <p class="source" id="srcBiz"></p>
       </div>
       <div class="panel chart-card">
         <h3 id="rankTitle"></h3>
@@ -89,27 +98,27 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
 
   <section class="block" aria-labelledby="h-bar">
     <div class="block-head">
-      <h2 id="h-bar">Barriers to entry and business dynamism</h2>
-      <p>Sectors grouped by what shapes competition in them, after Grattan Institute's <cite>Competition in Australia: too little of a good thing?</cite> (2017): natural monopolies, strong scale economies and heavy regulation are the barriers to entry; the rest of the non-traded private economy has low barriers. Recreated here from public data (ABS business counts, ATO company tax statistics, RBA firm-level summaries) instead of Grattan's IBISWorld and Morningstar data.</p>
+      <h2 id="h-bar">Barriers to entry</h2>
+      <p id="barLede"></p>
     </div>
 
     <div class="toolbar">
-      <label for="bScope">Businesses</label>
-      <select id="bScope"><option value="employing">Employing businesses</option><option value="all">All businesses</option></select>
+      <label for="bScope">Businesses counted</label>
+      <select id="bScope"><option value="employing">Businesses with employees</option><option value="all">All businesses</option></select>
       <label for="bState">State</label>
       <select id="bState"></select>
       <label for="bMeasure">Measure</label>
       <select id="bMeasure"></select>
     </div>
-    <p class="note" id="scopeNote"></p>
+    <p class="hint" id="scopeNote"></p>
 
     <div class="panel chart-card">
       <h3>Where the barriers to entry are</h3>
       <p class="unit" id="shareUnit"></p>
       <div class="legend" id="shareKey"></div>
       <div class="shares" id="shares"></div>
-      <p class="note" id="shareNote"></p>
-      <details class="tview"><summary>Show the numbers</summary><div class="tscroll" id="shareTable"></div></details>
+      <p class="source" id="shareSrc"></p>
+      <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="shareTable"></div><p id="shareNote"></p></details>
     </div>
 
     <div class="charts-grid">
@@ -118,41 +127,46 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
         <p class="unit" id="grpUnit"></p>
         <div class="chips" id="grpChips"></div>
         <div class="chart" id="grpChart"></div>
-        <details class="tview"><summary>Show the numbers</summary><div class="tscroll" id="grpTable"></div></details>
+        <p class="source" id="grpSrc"></p>
+        <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="grpTable"></div><p id="grpNote"></p></details>
       </div>
       <div class="panel chart-card">
         <h3 id="dynTitle"></h3>
         <p class="unit" id="dynUnit"></p>
         <div class="legend" id="dynKey"></div>
         <div class="chart" id="dynChart"></div>
-        <h3 id="netTitle">Net businesses created</h3>
+        <h3>Net change in the number of businesses</h3>
         <p class="unit" id="netUnit"></p>
         <div class="chart" id="netChart"></div>
+        <p class="source" id="dynSrc"></p>
+        <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="dynTable"></div></details>
       </div>
     </div>
-    <p class="note" id="bizNote"></p>
 
     <div class="panel chart-card">
-      <h3>Business entry and company returns by sector</h3>
+      <h3>Do sectors with fewer new businesses earn higher returns?</h3>
       <p class="unit" id="scUnit"></p>
       <div class="legend" id="scKey"></div>
       <div class="chart" id="scChart"></div>
-      <p class="note" id="scNote"></p>
-      <details class="tview"><summary>Show the numbers</summary><div class="tscroll" id="scTable"></div></details>
+      <p class="hint" id="scNote"></p>
+      <p class="source" id="scSrc"></p>
+      <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="scTable"></div><p id="scMethod"></p></details>
     </div>
 
     <div class="panel chart-card">
       <h3>Has concentration risen?</h3>
       <p class="unit" id="conUnit"></p>
       <div class="toolbar">
-        <label for="conDiv">Industry</label>
-        <select id="conDiv"></select>
-        <label for="conMeasure">Measure</label>
+        <label for="conMeasure">Share of sales made by the</label>
         <select id="conMeasure"></select>
+        <span class="legend" id="conKey"></span>
       </div>
+      <div class="dumbbell" id="conRows"></div>
+      <p class="hint" id="conHint"></p>
+      <h3 id="conLineTitle"></h3>
       <div class="chart" id="conChart"></div>
-      <p class="note" id="conNote"></p>
-      <details class="tview"><summary>Every industry, first and last year</summary><div class="tscroll" id="conTable"></div></details>
+      <p class="source" id="conSrc"></p>
+      <details class="more"><summary>About these figures</summary><p id="conNote"></p></details>
     </div>
   </section>
 
@@ -166,10 +180,15 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
 <script>
 (() => {
   const D = JSON.parse(document.getElementById("page-data").textContent);
+  const B = D.barriers;
   const STATES = D.states, NAMES = D.stateNames;
   const DIVS = D.divisions.map((d) => d.code).filter((c) => c !== "TOT");
   const DIVNAME = Object.fromEntries(D.divisions.map((d) => [d.code, d.name]));
   const TOT = "TOT";
+  const SRC = (keys) => sourceHtml(D.sources, keys);
+  const GROUPS = B.groups.map((g) => g.id);
+  const GM = Object.fromEntries(B.groups.map((g) => [g.id, g]));
+  initTerms(Object.fromEntries(B.groups.map((g) => [g.id, [g.label, g.about]])));
   const store = {
     get(k, d) { try { const v = localStorage.getItem(`alicia-growth-${k}`); return v === null ? d : JSON.parse(v); } catch { return d; } },
     set(k, v) { try { localStorage.setItem(`alicia-growth-${k}`, JSON.stringify(v)); } catch { /* storage unavailable */ } },
@@ -198,26 +217,29 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const v = at(D.gva.current[s]?.[c], D.years, y), t = at(D.gva.current[s]?.[TOT], D.years, y);
     return isNum(v) && isNum(t) && t > 0 ? (v / t) * 100 : null;
   };
+  // Business rates average the yearly rates for the years after the first of the period.
   const bizYearsIn = () => D.bizYears.filter((y) => y > win.start && y <= win.end);
-  // Average of yearly rates over the years in the period: kind entries, exits, net or churn.
+  const lastBizIn = () => { const ys = D.bizYears.filter((y) => y <= win.end); return ys.length ? ys[ys.length - 1] : null; };
+  const yearRate = (b, i, kind) => {
+    if (!b) return null;
+    const st = b.start[i];
+    const v = kind === "net" ? b.entries[i] - b.exits[i] : kind === "churn" ? b.entries[i] + b.exits[i] : b[kind][i];
+    return isNum(st) && st > 0 && isNum(v) ? (v / st) * 100 : null;
+  };
   const rateOf = (b, years, kind, inYears) => {
     if (!b) return null;
-    const vals = inYears.map((y) => {
-      const i = years.indexOf(y), st = b.start[i];
-      const v = kind === "net" ? b.entries[i] - b.exits[i] : kind === "churn" ? b.entries[i] + b.exits[i] : b[kind][i];
-      return isNum(st) && st > 0 && isNum(v) ? (v / st) * 100 : null;
-    }).filter(isNum);
+    const vals = inYears.map((y) => yearRate(b, years.indexOf(y), kind)).filter(isNum);
     return vals.length ? vals.reduce((a, v) => a + v, 0) / vals.length : null;
   };
   const bizRate = (s, c, kind) => rateOf(D.biz[s]?.[c], D.bizYears, kind, bizYearsIn());
   const METRICS = {
-    gva: { label: "Real gross value added, average annual growth", unit: "% a year", f: gvaGrowth, kind: "div", note: () => D.notes.gva },
-    emp: { label: "Employed persons, average annual growth", unit: "% a year", f: empGrowth, kind: "div", note: () => D.notes.emp },
-    share: { label: "Share of the state's gross value added, last year", unit: "% of state GVA (current prices)", f: (s, c) => (c === TOT ? null : share(s, c, win.end)), kind: "seq", note: () => D.notes.gva },
-    dshare: { label: "Change in share of the state's gross value added", unit: "percentage points", f: (s, c) => (c === TOT ? null : (isNum(share(s, c, win.end)) && isNum(share(s, c, win.start)) ? share(s, c, win.end) - share(s, c, win.start) : null)), kind: "div", note: () => D.notes.gva },
-    entry: { label: "Business entry rate, yearly average", unit: "% of businesses at the start of the year", f: (s, c) => bizRate(s, c, "entries"), kind: "seq", note: () => D.notes.biz },
-    exit: { label: "Business exit rate, yearly average", unit: "% of businesses at the start of the year", f: (s, c) => bizRate(s, c, "exits"), kind: "seq", note: () => D.notes.biz },
-    net: { label: "Net business entry rate (entries less exits), yearly average", unit: "% of businesses at the start of the year", f: (s, c) => bizRate(s, c, "net"), kind: "div", note: () => D.notes.biz },
+    gva: { option: "Output growth (% a year)", hint: () => `${term("real", "Real")} ${term("output", "output")} growth: ${term("avgGrowth", "average annual growth")}, ${winLabel(win)}.`, unit: "% a year", f: gvaGrowth, kind: "div", note: "gva", src: ["state_accounts"] },
+    emp: { option: "Jobs growth (% a year)", hint: () => `Growth in the number of people employed: ${term("avgGrowth", "average annual growth")}, ${winLabel(win)}.`, unit: "% a year", f: empGrowth, kind: "div", note: "emp", src: ["lfs_detailed"] },
+    share: { option: "Share of the state's output, last year (%)", hint: () => `Each industry's share of the state's ${term("output", "output")}, ${fyLabel(win.end)}.`, unit: "% of state output", f: (s, c) => (c === TOT ? null : share(s, c, win.end)), kind: "seq", note: "gva", src: ["state_accounts"] },
+    dshare: { option: "Change in share of the state's output (points)", hint: () => `Change in each industry's share of the state's ${term("output", "output")} from ${fyLabel(win.start)} to ${fyLabel(win.end)}, in ${term("pp", "percentage points")}.`, unit: "percentage points", f: (s, c) => (c === TOT ? null : (isNum(share(s, c, win.end)) && isNum(share(s, c, win.start)) ? share(s, c, win.end) - share(s, c, win.start) : null)), kind: "div", note: "gva", src: ["state_accounts"] },
+    entry: { option: "Business entry rate (% a year)", hint: () => `${term("entry", "Entry rate")}: new businesses per 100 operating at the start of the year, yearly average.`, unit: "% a year", f: (s, c) => bizRate(s, c, "entries"), kind: "seq", note: "biz", src: ["cabee"] },
+    exit: { option: "Business exit rate (% a year)", hint: () => `${term("exit", "Exit rate")}: businesses closing per 100 operating at the start of the year, yearly average.`, unit: "% a year", f: (s, c) => bizRate(s, c, "exits"), kind: "seq", note: "biz", src: ["cabee"] },
+    net: { option: "Net business entry rate (% a year)", hint: () => `${term("netEntry", "Net entry rate")}: entry rate less exit rate, yearly average. Above zero, the number of businesses grew.`, unit: "% a year", f: (s, c) => bizRate(s, c, "net"), kind: "div", note: "biz", src: ["cabee"] },
   };
   if (!METRICS[metric]) metric = "gva";
   const isBiz = (m) => ["entry", "exit", "net"].includes(m);
@@ -226,17 +248,17 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   // ---- controls ----------------------------------------------------------------------
   const presets = D.windows.map((w) => ({ label: w.label, from: w.start, to: w.end }));
   rangeSlider(document.getElementById("period"), {
-    min: Y0, max: Y1, from: win.start, to: win.end, minGap: 1, fmt: fyLabel, label: "Period (financial years)",
+    min: Y0, max: Y1, from: win.start, to: win.end, minGap: 1, fmt: fyLabel, label: "Period (financial years, July to June)",
     fromLabel: "First financial year", toLabel: "Last financial year", presets,
     summary: (a, b) => `${fyLabel(a)} to ${fyLabel(b)} · ${b - a} year${b - a === 1 ? "" : "s"}`,
     onChange: (a, b) => { win = { start: a, end: b }; store.set("range", win); renderAll(); },
   });
   const metSel = document.getElementById("metric");
-  metSel.innerHTML = Object.entries(METRICS).map(([k, m]) => `<option value="${k}">${esc(m.label)}</option>`).join("");
+  metSel.innerHTML = Object.entries(METRICS).map(([k, m]) => `<option value="${k}">${esc(m.option)}</option>`).join("");
   metSel.value = metric;
   metSel.addEventListener("change", () => { metric = metSel.value; store.set("metric", metric); renderHeat(); renderRank(); });
 
-  // ---- gross state product -----------------------------------------------------------
+  // ---- state economies ----------------------------------------------------------------
   function renderGsp() {
     const nat = at(D.gsp.current.AUS, D.years, win.end);
     const rows = STATES.map((s) => {
@@ -250,10 +272,10 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
         <td class="num">${fmt(share(s, "B", win.end), 1)}</td>
         <td class="gsp-best">${best ? `${esc(DIVNAME[best.c])} <span class="num">${fmtSigned(best.g, 1)}</span>` : "–"}</td></tr>`;
     }).join("");
-    document.getElementById("gspTable").innerHTML = `<thead><tr><th>State</th><th>GSP ${esc(fyLabel(win.end))}<br>$ billion</th>
-      <th>Share of<br>Australia, %</th><th>Real growth,<br>% a year</th><th>Real growth per<br>person, % a year</th>
-      <th>Mining, % of<br>state GVA</th><th style="text-align:left">Fastest-growing industry<br>(real GVA, % a year)</th></tr></thead><tbody>${rows}</tbody>`;
-    document.getElementById("gspUnit").textContent = `Chain volume index, ${fyLabel(win.start)} = 100; dashed line is Australia`;
+    document.getElementById("gspTable").innerHTML = `<thead><tr><th>State</th><th>Size, ${esc(fyLabel(win.end))}<br>$ billion</th>
+      <th>Share of<br>Australia, %</th><th>Growth,<br>% a year</th><th>Growth per<br>person, % a year</th>
+      <th>Mining share of<br>output, %</th><th style="text-align:left">Fastest-growing industry<br>(output growth, % a year)</th></tr></thead><tbody>${rows}</tbody>`;
+    document.getElementById("gspUnit").innerHTML = `${term("real", "Real")} ${term("gsp", "gross state product")} as an ${term("index100", "index")}, ${esc(fyLabel(win.start))} = 100. Dashed line: Australia.`;
     const keys = STATES.map((s) => ({ key: s, label: s === "AUS" ? "Australia" : s, color: stateColor(s), dash: s === "AUS" }));
     toggleChips(document.getElementById("gspChips"), keys, gspActive, drawGspChart);
     drawGspChart();
@@ -307,177 +329,184 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       ? `linear-gradient(90deg, ${heatColor(-1, 1)}, var(--surface), ${heatColor(1, 1)})`
       : `linear-gradient(90deg, var(--surface), ${heatColor(1, 1, "seq")})`;
     document.getElementById("heatScale").innerHTML = `<span>${M.kind === "div" ? fmtSigned(-scale, 1) : "0"}</span><span class="bar" style="background:${grad}"></span><span>${M.kind === "div" ? fmtSigned(scale, 1) : fmt(scale, 1)}</span><span>${esc(M.unit)}</span>`;
+    document.getElementById("heatHint").innerHTML = M.hint();
+    document.getElementById("heatSrc").innerHTML = SRC(M.src);
     const early = isBiz(metric) && win.start < D.bizYears[0];
-    document.getElementById("heatNote").textContent = `${M.note()}${early ? ` Business data start in ${fyLabel(D.bizYears[0])}, so this period uses ${fyLabel(Math.max(D.bizYears[0], win.start + 1))} on.` : ""}`;
+    document.getElementById("heatNote").textContent = `${D.notes[M.note]}${early ? ` Business counts start in ${fyLabel(D.bizYears[0])}, so this period uses the years from ${fyLabel(Math.max(D.bizYears[0], win.start + 1))}.` : ""}`;
   }
 
   // ---- selected cell -----------------------------------------------------------------
   function renderDetail() {
     const { state: s, div: c } = sel;
-    document.getElementById("detailTitle").textContent = `${DIVNAME[c]}${c === TOT ? "" : ` (division ${c})`}, ${NAMES[s]}`;
-    document.getElementById("detailSub").textContent = `${winLabel(win)}. ${s === "AUS" ? "" : "Compared with the same industry in Australia as a whole."}`;
-    const lastBiz = D.biz[s]?.[c];
-    const iBiz = D.bizYears.length - 1;
+    document.getElementById("detailTitle").textContent = `${DIVNAME[c]}, ${NAMES[s]}`;
+    document.getElementById("detailSub").textContent = `${winLabel(win)}${s === "AUS" ? "." : ", compared with the same industry across Australia (dashed lines)."}`;
+    const yb = lastBizIn(), ib = D.bizYears.indexOf(yb);
+    const bz = D.biz[s]?.[c];
     const cur = at(D.gva.current[s]?.[c], D.years, win.end);
+    const jobs = at(D.emp[s]?.[c], D.empYears, win.end);
+    const vsAus = (v) => `${fmtSigned(v(s, c), 1)}${s === "AUS" ? "" : ` (Australia ${fmtSigned(v("AUS", c), 1)})`}`;
     const facts = [
-      [`Gross value added, ${fyLabel(win.end)}`, isNum(cur) ? `$${fmt(cur / 1000, 1)}b` : "–"],
-      ["Share of state output", c === TOT ? "–" : `${fmt(share(s, c, win.end), 1)}%`],
-      ["Real growth, % a year", `${fmtSigned(gvaGrowth(s, c), 1)}${s === "AUS" ? "" : ` (Aus. ${fmtSigned(gvaGrowth("AUS", c), 1)})`}`],
-      [`Employed, ${fyLabel(win.end)}`, isNum(at(D.emp[s]?.[c], D.empYears, win.end)) ? `${fmt(at(D.emp[s][c], D.empYears, win.end), 1)}k` : "–"],
-      ["Employment growth, % a year", `${fmtSigned(empGrowth(s, c), 1)}${s === "AUS" ? "" : ` (Aus. ${fmtSigned(empGrowth("AUS", c), 1)})`}`],
-      [`Businesses, June ${D.bizYears[iBiz] + 1}`, lastBiz ? fmt(lastBiz.end[iBiz], 0) : "–"],
-      ["Entry / exit rate, % a year", `${fmt(bizRate(s, c, "entries"), 1)} / ${fmt(bizRate(s, c, "exits"), 1)}`],
+      [`Output, ${fyLabel(win.end)}`, isNum(cur) ? `$${fmt(cur / 1000, 1)} billion` : "–"],
+      ["Share of the state's output", c === TOT ? "–" : `${fmt(share(s, c, win.end), 1)}%`],
+      ["Output growth, % a year", vsAus(gvaGrowth)],
+      [`Jobs, ${fyLabel(win.end)}`, isNum(jobs) ? fmt(Math.round(jobs * 10) * 100, 0) : "–"],
+      ["Jobs growth, % a year", vsAus(empGrowth)],
+      [yb === null ? "Businesses" : `Businesses, June ${yb + 1}`, bz && ib >= 0 && isNum(bz.end[ib]) ? fmt(bz.end[ib], 0) : "–"],
+      ["Entry and exit rates, % a year", `${fmt(bizRate(s, c, "entries"), 1)} and ${fmt(bizRate(s, c, "exits"), 1)}`],
     ];
     document.getElementById("detailFacts").innerHTML = facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
 
-    const pair = (src, years, unitId, label) => {
+    const pair = (src, years, label) => {
       const ys = years.filter((y) => y >= win.start && y <= win.end);
       const series = [s, ...(s === "AUS" ? [] : ["AUS"])].map((g) => ({
         key: g, label: NAMES[g], values: indexSeries(src[g]?.[c], years, win.start, win.end).vals,
         color: stateColor(g), dash: g === "AUS" && s !== "AUS", width: 2,
       }));
-      document.getElementById(unitId).textContent = `Index, ${fyLabel(win.start)} = 100${s === "AUS" ? "" : "; dashed line is Australia"}`;
       return { x: ys, xKind: "fy", series, ref: 100, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label };
     };
-    lineChart(document.getElementById("dGva"), pair(D.gva.volume, D.years, "uGva", "Real gross value added index"));
-    lineChart(document.getElementById("dEmp"), pair(D.emp, D.empYears, "uEmp", "Employed persons index"));
+    const idxUnit = (extra) => `${term("index100", "Index")}, ${esc(fyLabel(win.start))} = 100${extra}${s === "AUS" ? "." : ". Dashed line: Australia."}`;
+    document.getElementById("uGva").innerHTML = idxUnit(`, adjusted for inflation`);
+    document.getElementById("uEmp").innerHTML = idxUnit(", people employed");
+    lineChart(document.getElementById("dGva"), pair(D.gva.volume, D.years, "Output index"));
+    lineChart(document.getElementById("dEmp"), pair(D.emp, D.empYears, "Jobs index"));
+    document.getElementById("srcGva").innerHTML = SRC(["state_accounts"]);
+    document.getElementById("srcEmp").innerHTML = SRC(["lfs_detailed"]);
 
     const rate = (g, kind) => {
       const b = D.biz[g]?.[c];
-      return D.bizYears.map((y, i) => (b && isNum(b.start[i]) && b.start[i] > 0 && isNum(b[kind][i]) ? (b[kind][i] / b.start[i]) * 100 : null));
+      return D.bizYears.map((y, i) => yearRate(b, i, kind));
     };
     const bizSeries = [
-      { key: "en", label: `Entries, ${s}`, values: rate(s, "entries"), color: "var(--c-1)", width: 2 },
-      { key: "ex", label: `Exits, ${s}`, values: rate(s, "exits"), color: "var(--c-4)", width: 2 },
+      { key: "en", label: `Entry rate, ${s === "AUS" ? "Australia" : s}`, values: rate(s, "entries"), color: "var(--c-1)", width: 2 },
+      { key: "ex", label: `Exit rate, ${s === "AUS" ? "Australia" : s}`, values: rate(s, "exits"), color: "var(--c-4)", width: 2 },
     ];
     if (s !== "AUS") bizSeries.push(
-      { key: "ena", label: "Entries, Australia", values: rate("AUS", "entries"), color: "var(--c-1)", dash: true, width: 1.4 },
-      { key: "exa", label: "Exits, Australia", values: rate("AUS", "exits"), color: "var(--c-4)", dash: true, width: 1.4 },
+      { key: "ena", label: "Entry rate, Australia", values: rate("AUS", "entries"), color: "var(--c-1)", dash: true, width: 1.4 },
+      { key: "exa", label: "Exit rate, Australia", values: rate("AUS", "exits"), color: "var(--c-4)", dash: true, width: 1.4 },
     );
-    document.getElementById("bizKey").innerHTML = `<span class="chip" aria-hidden="true"><span class="key" style="background:var(--c-1)"></span>Entry rate</span><span class="chip" aria-hidden="true"><span class="key" style="background:var(--c-4)"></span>Exit rate</span>`;
+    document.getElementById("uBiz").innerHTML = `Per 100 businesses operating at the start of each year, all years available. Shaded: the selected period.${s === "AUS" ? "" : " Dashed lines: Australia."}`;
+    document.getElementById("bizKey").innerHTML = `<span><span class="key" style="background:var(--c-1)"></span>${term("entry", "Entry rate")}</span><span><span class="key" style="background:var(--c-4)"></span>${term("exit", "Exit rate")}</span>`;
     lineChart(document.getElementById("dBiz"), { x: D.bizYears, xKind: "fy", series: bizSeries, band: { from: win.start + 1, to: win.end }, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: "Business entry and exit rates" });
+    document.getElementById("srcBiz").innerHTML = SRC(["cabee"]);
   }
 
   function renderRank() {
     const M = METRICS[metric];
     const s = sel.state;
     document.getElementById("rankTitle").textContent = `Industries in ${NAMES[s]}, ranked`;
-    document.getElementById("rankUnit").textContent = `${M.label} (${M.unit}), ${winLabel(win)}`;
+    document.getElementById("rankUnit").textContent = `${M.option}, ${winLabel(win)}`;
     const rows = DIVS.map((c) => ({ label: `${c} ${DIVNAME[c]}`, value: M.f(s, c), title: DIVNAME[c] }))
       .sort((a, b) => (isNum(b.value) ? b.value : -Infinity) - (isNum(a.value) ? a.value : -Infinity));
     rankedBars(document.getElementById("dRank"), rows, { fmt: (v) => (signedMetric(metric) ? fmtSigned(v, 1) : fmt(v, 1)) });
   }
 
-  // ---- barriers to entry and business dynamism ----------------------------------------
-  const B = D.barriers;
-  const GROUPS = B.groups.map((g) => g.id);
-  const GM = Object.fromEntries(B.groups.map((g) => [g.id, g]));
+  // ---- barriers to entry ----------------------------------------------------------------
   const PRIVATE = GROUPS.filter((g) => g !== "tradeable" && g !== "public");
   const gColor = (g) => `var(--fill-${g})`;
   const gDash = (g) => (g === "tradeable" ? "6 4" : g === "public" ? "1.5 3.5" : false);
-  const keyHtml = (gs, kind = "box") => gs.map((g) => `<span><span class="key ${kind === "line" && gDash(g) ? "dash" : kind === "box" ? "box" : ""}" style="${kind === "line" && gDash(g) ? `color:${gColor(g)}` : `background:${gColor(g)}`}"></span>${esc(GM[g].label)}</span>`).join("");
+  const groupKey = (gs) => gs.map((g) => `<span><span class="key box" style="background:${gColor(g)}"></span>${term(g)}</span>`).join("");
   const bAt = (arr, y) => at(arr, B.bizYears, y);
-  const lastBizIn = () => { const ys = B.bizYears.filter((y) => y <= win.end); return ys.length ? ys[ys.length - 1] : B.bizYears[B.bizYears.length - 1]; };
   const bizIn = () => { const ys = B.bizYears.filter((y) => y > win.start && y <= win.end); return ys.length >= 2 ? ys : B.bizYears; };
   // Company returns by sector, averaged over every published income year (2018-19 on).
   const atoStats = Object.fromEntries(B.sectors.map((s) => [s.key, sectorStats(s, B.atoYears, B.atoYears[0], B.atoYears[B.atoYears.length - 1], 0)]));
   const atoSpan = `${fyLabel(B.atoYears[0])} to ${fyLabel(B.atoYears[B.atoYears.length - 1])}`;
+  document.getElementById("barLede").innerHTML = `Some industries are hard for new firms to break into. As in <a href="${esc(D.sources.grattan.url)}" target="_blank" rel="noopener">Grattan Institute's 2017 report</a>, industries are grouped by their main ${term("barriers", "barrier to entry")}: ${term("natural_monopoly", "natural monopolies")}, ${term("scale_economies", "scale economies")} and ${term("heavy_regulation", "heavy regulation")}, against ${term("low_barriers", "low barriers")}. Grattan used commercial data; these charts use public data instead.`;
+
+  const BMEAS = {
+    entries: { option: "Entry rate (new businesses)", title: "New businesses", term: "entry" },
+    exits: { option: "Exit rate (closures)", title: "Business closures", term: "exit" },
+    net: { option: "Net entry rate (entries less exits)", title: "Net new businesses", term: "netEntry" },
+    churn: { option: "Churn (entries plus exits)", title: "Business churn", term: "churn" },
+  };
+  let bState = store.get("bState", "AUS"), bMeasure = store.get("bMeasure", "entries"), bScope = store.get("bScope", "employing");
+  if (!STATES.includes(bState)) bState = "AUS";
+  if (!BMEAS[bMeasure]) bMeasure = "entries";
+  if (!B.bizGroup[bScope]) bScope = "employing";
+  const grpActive = new Set(store.get("bGroups", PRIVATE).filter((g) => GROUPS.includes(g)));
+  const scopeSel = document.getElementById("bScope"), bStateSel = document.getElementById("bState"), bMeasSel = document.getElementById("bMeasure");
+  scopeSel.value = bScope;
+  bStateSel.innerHTML = STATES.map((s) => `<option value="${s}">${esc(NAMES[s])}</option>`).join("");
+  bStateSel.value = bState;
+  bMeasSel.innerHTML = Object.entries(BMEAS).map(([k, m]) => `<option value="${k}">${esc(m.option)}</option>`).join("");
+  bMeasSel.value = bMeasure;
+  scopeSel.addEventListener("change", () => { bScope = scopeSel.value; store.set("bScope", bScope); renderShares(); renderDynamism(); renderScatter(); });
+  bStateSel.addEventListener("change", () => { bState = bStateSel.value; store.set("bState", bState); renderDynamism(); });
+  bMeasSel.addEventListener("change", () => { bMeasure = bMeasSel.value; store.set("bMeasure", bMeasure); renderDynamism(); });
+  toggleChips(document.getElementById("grpChips"), GROUPS.map((g) => ({ key: g, label: GM[g].label, color: gColor(g), dash: !!gDash(g) })), grpActive, () => { store.set("bGroups", [...grpActive]); renderDynamism(); });
+  const scopeWord = () => (bScope === "employing" ? "businesses with employees" : "businesses");
 
   function renderShares() {
-    const y = lastBizIn();
+    const y = lastBizIn() ?? B.bizYears[B.bizYears.length - 1];
     const parts = (f) => Object.fromEntries(GROUPS.map((g) => [g, f(g)]));
     const sum = (g, field) => B.sectors.filter((s) => s.group === g).reduce((a, s) => a + (atoStats[s.key].n ? atoStats[s.key][field] : 0), 0);
     const rows = [
-      { label: `${bScope === "employing" ? "Employing businesses" : "Businesses"}, June ${y + 1}`, parts: parts((g) => bAt(B.bizGroup[bScope].AUS[g]?.end, y)), kind: "count" },
+      { label: `${bScope === "employing" ? "Businesses with employees" : "Businesses"}, June ${y + 1}`, parts: parts((g) => bAt(B.bizGroup[bScope].AUS[g]?.end, y)), kind: "count" },
       { label: "Company income", parts: parts((g) => sum(g, "I")), kind: "$" },
       { label: "Company equity", parts: parts((g) => sum(g, "E")), kind: "$" },
       { label: "Company profit after tax", parts: parts((g) => sum(g, "N")), kind: "$" },
     ];
-    document.getElementById("shareUnit").textContent = `Share of the total, per cent. Businesses: ABS count at the end of the period; companies: ATO tax statistics, yearly average ${atoSpan}`;
-    document.getElementById("shareKey").innerHTML = keyHtml(GROUPS);
+    document.getElementById("shareUnit").innerHTML = `Each group's share of the total, %. Business counts are for the end of the selected period; ${term("companyIncome", "company income")}, ${term("equity", "equity")} and ${term("profitAfterTax", "profit")} are yearly averages for ${esc(atoSpan)}.`;
+    document.getElementById("shareKey").innerHTML = groupKey(GROUPS);
     shareBars(document.getElementById("shares"), rows, GROUPS.map((g) => ({ key: g, label: GM[g].label })), {
       tipFmt: (r, g) => {
         const v = r.parts[g], tot = GROUPS.reduce((a, k) => a + Math.max(0, r.parts[k] || 0), 0);
-        return `<strong>${esc(GM[g].label)}</strong><br>${esc(r.label)}: ${r.kind === "count" ? fmt(v, 0) : fmtB(v)}${r.kind === "$" ? " a year" : ""} (${fmt(tot > 0 ? (Math.max(0, v) / tot) * 100 : null, 1)}%)<br><span class="muted">${esc(GM[g].about)}</span>`;
+        return `<strong>${esc(GM[g].label)}</strong><br>${esc(r.label)}: ${r.kind === "count" ? fmt(v, 0) : `${fmtB(v)} a year`} (${fmt(tot > 0 ? (Math.max(0, v) / tot) * 100 : null, 1)}%)`;
       },
     });
-    const neg = rows.flatMap((r) => GROUPS.filter((g) => r.parts[g] < 0).map((g) => `${GM[g].label} (${r.label.toLowerCase()}: ${fmtB(r.parts[g])})`));
-    document.getElementById("shareNote").textContent = `${neg.length ? `Negative totals count as zero: ${neg.join("; ")}. ` : ""}${B.notes.classification}`;
-    tableView(document.getElementById("shareTable"), ["Group", rows[0].label, "Company income, $b a year", "Equity, $b a year", "Profit after tax, $b a year"],
+    document.getElementById("shareSrc").innerHTML = SRC(["cabee", "ato"]);
+    tableView(document.getElementById("shareTable"), ["Group", rows[0].label, "Company income, $b a year", "Equity, $b", "Profit after tax, $b a year"],
       GROUPS.map((g) => [GM[g].label, fmt(rows[0].parts[g], 0), fmt(rows[1].parts[g] / 1000, 1), fmt(rows[2].parts[g] / 1000, 1), fmt(rows[3].parts[g] / 1000, 1)]));
+    const neg = rows.flatMap((r) => GROUPS.filter((g) => r.parts[g] < 0).map((g) => `${GM[g].label} (${r.label.toLowerCase()}: ${fmtB(r.parts[g])})`));
+    document.getElementById("shareNote").innerHTML = `${neg.length ? `${esc(`Negative totals are shown as zero: ${neg.join("; ")}.`)} ` : ""}${esc(B.notes.classification)} <a href="${esc(D.repo)}alicia/src/alicia/data/barriers.json" target="_blank" rel="noopener">See every choice</a>. ${esc(B.notes.ato)}`;
   }
 
-  const BMEAS = {
-    entries: { label: "Entry rate", unit: "Entries per 100 businesses operating at the start of the year" },
-    exits: { label: "Exit rate", unit: "Exits per 100 businesses operating at the start of the year" },
-    net: { label: "Net entry rate", unit: "Entries less exits per 100 businesses operating at the start of the year" },
-    churn: { label: "Churn (entry plus exit)", unit: "Entries plus exits per 100 businesses operating at the start of the year" },
-  };
-  let bState = store.get("bState", "AUS"), bMeasure = store.get("bMeasure", "entries"), bScope = store.get("bScope", "employing");
-  if (!B.bizGroup[bScope]) bScope = "employing";
-  const scopeSel = document.getElementById("bScope");
-  scopeSel.value = bScope;
-  scopeSel.addEventListener("change", () => { bScope = scopeSel.value; store.set("bScope", bScope); renderShares(); renderDynamism(); renderScatter(); });
-  const scopeWord = () => (bScope === "employing" ? "employing businesses" : "all businesses");
-  if (!STATES.includes(bState)) bState = "AUS";
-  if (!BMEAS[bMeasure]) bMeasure = "entries";
-  const grpActive = new Set(store.get("bGroups", PRIVATE).filter((g) => GROUPS.includes(g)));
-  const bStateSel = document.getElementById("bState"), bMeasSel = document.getElementById("bMeasure");
-  bStateSel.innerHTML = STATES.map((s) => `<option value="${s}">${esc(NAMES[s])}</option>`).join("");
-  bStateSel.value = bState;
-  bMeasSel.innerHTML = Object.entries(BMEAS).map(([k, m]) => `<option value="${k}">${esc(m.label)}</option>`).join("");
-  bMeasSel.value = bMeasure;
-  bStateSel.addEventListener("change", () => { bState = bStateSel.value; store.set("bState", bState); renderDynamism(); });
-  bMeasSel.addEventListener("change", () => { bMeasure = bMeasSel.value; store.set("bMeasure", bMeasure); renderDynamism(); });
-  toggleChips(document.getElementById("grpChips"), GROUPS.map((g) => ({ key: g, label: GM[g].short, color: gColor(g), dash: !!gDash(g) })), grpActive, () => { store.set("bGroups", [...grpActive]); renderDynamism(); });
-
-  const yearRate = (b, i, kind) => {
-    if (!b) return null;
-    const st = b.start[i];
-    const v = kind === "net" ? b.entries[i] - b.exits[i] : kind === "churn" ? b.entries[i] + b.exits[i] : b[kind][i];
-    return isNum(st) && st > 0 && isNum(v) ? (v / st) * 100 : null;
-  };
   function renderDynamism() {
     const ys = bizIn(), idx = ys.map((y) => B.bizYears.indexOf(y));
     const M = BMEAS[bMeasure];
-    document.getElementById("grpTitle").textContent = `${M.label} by barriers to entry, ${NAMES[bState]}`;
-    document.getElementById("grpUnit").textContent = `${M.unit}, ${scopeWord()}. Grey lines: the groups without barriers (dashed: tradeable; dotted: mostly public)`;
+    document.getElementById("grpTitle").textContent = `${M.title} by barrier group, ${NAMES[bState]}`;
+    document.getElementById("grpUnit").innerHTML = `${term(M.term, M.option.replace(/ \(.*/, ""))}, ${esc(scopeWord())}, per 100 operating at the start of each year. Grey lines: groups without barriers.`;
     const series = GROUPS.filter((g) => grpActive.has(g)).map((g) => ({
       key: g, label: GM[g].label, values: idx.map((i) => yearRate(B.bizGroup[bScope][bState]?.[g], i, bMeasure)),
       color: gColor(g), dash: gDash(g), width: PRIVATE.includes(g) ? 2 : 1.6,
     }));
-    lineChart(document.getElementById("grpChart"), { x: ys, xKind: "fy", series, ref: bMeasure === "net" ? 0 : null, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: `${M.label} by barriers-to-entry group` });
+    lineChart(document.getElementById("grpChart"), { x: ys, xKind: "fy", series, ref: bMeasure === "net" ? 0 : null, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: `${M.title} by barrier group` });
+    document.getElementById("grpSrc").innerHTML = SRC(["cabee"]);
     tableView(document.getElementById("grpTable"), ["Group", ...ys.map(fyLabel), "Average"], GROUPS.map((g) => {
       const vals = idx.map((i) => yearRate(B.bizGroup[bScope][bState]?.[g], i, bMeasure));
       const ok = vals.filter(isNum);
       return [GM[g].label, ...vals.map((v) => fmt(v, 1)), fmt(ok.length ? ok.reduce((a, v) => a + v, 0) / ok.length : null, 1)];
     }));
+    const inside = B.bizYears.filter((y) => y > win.start && y <= win.end).length;
+    document.getElementById("grpNote").textContent = `${inside < win.end - win.start ? `Business counts run from ${fyLabel(B.bizYears[0])} to ${fyLabel(B.bizYears[B.bizYears.length - 1])}, so the charts show the years of the period inside that range (all years when fewer than two fall inside). ` : ""}${B.notes.cabee}`;
 
-    // Grattan's Figure 3.6: entry and exit rates, and net businesses created, for all industries (the groups summed).
+    // Grattan's Figure 3.6: entry and exit rates, and the net change in businesses, for all industries.
     const cells = Object.values(B.bizGroup[bScope][bState] || {});
     const tot = cells.length ? Object.fromEntries(["start", "end", "entries", "exits"].map((k) => [k, B.bizYears.map((y, i) => {
       const v = cells.map((c) => c[k][i]);
       return v.every(isNum) ? v.reduce((a, x) => a + x, 0) : null;
     })])) : null;
-    document.getElementById("dynUnit").textContent = `Per cent of ${scopeWord()} operating at the start of each year, all industries`;
-    document.getElementById("netUnit").textContent = `Entries less exits of ${scopeWord()}, thousands, all industries`;
-    document.getElementById("dynTitle").textContent = `Business entry and exit, ${NAMES[bState]}`;
-    document.getElementById("dynKey").innerHTML = `<span><span class="key" style="background:var(--c-1)"></span>Entry rate</span><span><span class="key" style="background:var(--c-4)"></span>Exit rate</span>`;
-    const di = idx;
+    document.getElementById("dynTitle").textContent = `Businesses starting and closing, ${NAMES[bState]}`;
+    document.getElementById("dynUnit").textContent = `Per 100 ${scopeWord()} operating at the start of each year, all industries.`;
+    document.getElementById("netUnit").textContent = `New ${scopeWord()} less closures, thousands, all industries.`;
+    document.getElementById("dynKey").innerHTML = `<span><span class="key" style="background:var(--c-1)"></span>${term("entry", "Entry rate")}</span><span><span class="key" style="background:var(--c-4)"></span>${term("exit", "Exit rate")}</span>`;
+    const entryR = idx.map((i) => yearRate(tot, i, "entries")), exitR = idx.map((i) => yearRate(tot, i, "exits"));
+    const net = idx.map((i) => (tot && isNum(tot.entries[i]) && isNum(tot.exits[i]) ? (tot.entries[i] - tot.exits[i]) / 1000 : null));
     lineChart(document.getElementById("dynChart"), {
       x: ys, xKind: "fy", height: 200, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: "Business entry and exit rates, all industries",
       series: [
-        { key: "en", label: "Entry rate", values: di.map((i) => yearRate(tot, i, "entries")), color: "var(--c-1)", width: 2 },
-        { key: "ex", label: "Exit rate", values: di.map((i) => yearRate(tot, i, "exits")), color: "var(--c-4)", width: 2 },
+        { key: "en", label: "Entry rate", values: entryR, color: "var(--c-1)", width: 2 },
+        { key: "ex", label: "Exit rate", values: exitR, color: "var(--c-4)", width: 2 },
       ],
     });
     columnChart(document.getElementById("netChart"), {
-      x: ys, xKind: "fy", height: 190, values: di.map((i) => (tot && isNum(tot.entries[i]) && isNum(tot.exits[i]) ? (tot.entries[i] - tot.exits[i]) / 1000 : null)),
-      yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmtSigned(v, 1)} thousand`, tipLabel: "Net businesses created", label: "Net businesses created, thousands",
+      x: ys, xKind: "fy", height: 190, values: net,
+      yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmtSigned(v, 1)} thousand`, tipLabel: "Net change in businesses", label: "Net change in the number of businesses, thousands",
     });
-    const inside = B.bizYears.filter((y) => y > win.start && y <= win.end).length;
-    document.getElementById("bizNote").textContent = `${inside < win.end - win.start ? `Business counts run from ${fyLabel(B.bizYears[0])} to ${fyLabel(B.bizYears[B.bizYears.length - 1])}; these charts show the years of the period inside that range (all of them when fewer than two fall inside). ` : ""}${B.notes.cabee}`;
-    document.getElementById("scopeNote").textContent = bScope === "employing" ? B.notes.employing : "All businesses, including sole traders without employees. Rideshare drivers and delivery riders registering since about 2016 dominate entry in taxis, couriers and other transport support services; choose employing businesses to set them aside.";
+    document.getElementById("dynSrc").innerHTML = SRC(["cabee"]);
+    tableView(document.getElementById("dynTable"), ["Year", "Entry rate, %", "Exit rate, %", "Net change, thousands"],
+      ys.map((y, k) => [fyLabel(y), fmt(entryR[k], 1), fmt(exitR[k], 1), fmtSigned(net[k], 1)]));
+    document.getElementById("scopeNote").textContent = bScope === "employing" ? B.notes.employing
+      : "Counting all businesses, including sole traders. Rideshare drivers and delivery riders registering since about 2016 make entry look much higher in taxis, couriers and transport support.";
   }
 
   function renderScatter() {
@@ -487,70 +516,95 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       if (!PRIVATE.includes(s.group)) continue;
       const st = atoStats[s.key], x = rateOf(B.bizSector[bScope][s.key], B.bizYears, "entries", ys);
       if (!st.n || !isNum(x) || !(st.E > 0)) continue;
-      const barrier = GM[s.group].barrier;
       pts.push({
-        x, y: st.roe, size: Math.sqrt(st.E / 1000) * 1.6, color: gColor(s.group), muted: !barrier, label: s.label,
+        x, y: st.roe, size: Math.sqrt(st.E / 1000) * 1.6, color: gColor(s.group), muted: !GM[s.group].barrier, label: s.label,
         tip: `<strong>${esc(s.label)}</strong><br>${esc(GM[s.group].label)}<table><tr><td>Return on equity</td><td class="v">${fmt(st.roe, 1)}%</td></tr><tr><td>Entry rate</td><td class="v">${fmt(x, 1)}%</td></tr><tr><td>Equity</td><td class="v">${fmtB(st.E)}</td></tr></table>`,
       });
       X.push(x); Y.push(st.roe); Wt.push(st.E); G.push(s.group);
     }
     const fit = wls(X, Y, Wt), r2g = groupR2(Y, Wt, G);
     const xs = [...X].sort((a, b) => a - b), xMax = xs[Math.floor(xs.length * 0.98)] || 20;
-    document.getElementById("scUnit").textContent = `Each dot is a sector, sized by its equity. Return on equity after tax: ATO, yearly average ${atoSpan}. Entry rate of ${scopeWord()}: ABS, Australia, yearly average over ${winLabel(win)} (from ${fyLabel(ys[0])}). Non-traded private sectors only; hollow dots lie beyond the axes.`;
-    document.getElementById("scKey").innerHTML = keyHtml(PRIVATE);
+    document.getElementById("scUnit").innerHTML = `Each dot is a ${term("sector", "sector")}, sized by its ${term("equity", "equity")}. Higher up: higher ${term("roe", "return on equity")} after tax (yearly average, ${esc(atoSpan)}). Further right: higher ${term("entry", "entry rate")} of ${esc(scopeWord())} (yearly average, ${esc(fyLabel(ys[0]))} to ${esc(fyLabel(ys[ys.length - 1]))}). Hollow dots are off the scale.`;
+    document.getElementById("scKey").innerHTML = groupKey(PRIVATE);
     scatterChart(document.getElementById("scChart"), {
       points: pts, xDomain: [0, Math.max(10, xMax)], yDomain: [-20, 40], xFmt: (v) => fmt(v, 0), yFmt: (v) => fmt(v, 0),
-      xTitle: "Business entry rate, % a year", yTitle: "Return on equity, %", fit, label: "Sector return on equity against business entry rate",
+      xTitle: "Entry rate, % a year", yTitle: "Return on equity, %", fit, label: "Sector return on equity against business entry rate",
     });
-    document.getElementById("scNote").textContent = fit
-      ? `Equity-weighted fit (line): each extra point of entry rate goes with ${fmtSigned(fit.slope, 2)} points of return on equity; entry explains ${fmt(fit.r2 * 100, 0)}% of the equity-weighted variation in sector returns. The barriers-to-entry groups explain ${fmt((r2g || 0) * 100, 0)}% (Grattan: 7%, for 2010-11 to 2015-16). Descriptive, not causal: entry and returns are both shaped by demand, risk and accounting conventions.`
+    document.getElementById("scNote").innerHTML = fit
+      ? `${fit.r2 < 0.1 ? "Hardly at all" : "Somewhat"}: the ${term("fit", "line of best fit")} ${Math.abs(fit.slope) < 0.5 ? "is almost flat" : fit.slope > 0 ? "slopes up" : "slopes down"} (${esc(fmtSigned(fit.slope, 2))} points of return for each extra point of entry), and entry rates ${term("explains", "explain")} ${esc(fmt(fit.r2 * 100, 0))}% of the differences in returns between sectors. The barrier groups explain ${esc(fmt((r2g || 0) * 100, 0))}%; Grattan found 7% with its 2010-11 to 2015-16 data.`
       : "Too few sectors to fit a line.";
+    document.getElementById("scSrc").innerHTML = SRC(["ato", "cabee"]);
     tableView(document.getElementById("scTable"), ["Sector", "Group", "Entry rate, %", "Return on equity, %", "Equity, $b"],
       pts.map((p, i) => [p.label, GM[G[i]].label, fmt(X[i], 1), fmt(Y[i], 1), fmt(Wt[i] / 1000, 1)]).sort((a, b) => a[1].localeCompare(b[1]) || a[0].localeCompare(b[0])));
+    document.getElementById("scMethod").textContent = `Only private businesses that mostly sell within Australia are shown. This shows what goes together, not what causes what: demand, risk and accounting choices shape both entry and returns. ${B.notes.ato}`;
   }
 
+  // ---- concentration (RBA, from BLADE) ----------------------------------------------------
   const CON = B.concentration;
-  const CONMEAS = { top4_weighted: "Top-4 firms' share", top10_weighted: "Top-10 firms' share", top20_weighted: "Top-20 firms' share", top5pc_weighted: "Top 5% of firms' share" };
-  const DIVLABEL = Object.fromEntries(B.divisions.map((d) => [d.code, d.code === "TOT" ? d.name : `${d.code} ${d.name}`]));
-  const conDivs = Object.keys(CON.values || {}).filter((d) => d !== "TOT");
+  const CONMEAS = { top4_weighted: "biggest 4 firms", top10_weighted: "biggest 10 firms", top20_weighted: "biggest 20 firms", top5pc_weighted: "top 5% of firms" };
+  const DIVLABEL = Object.fromEntries(B.divisions.map((d) => [d.code, d.name]));
   let conDiv = store.get("conDiv", "G"), conMeasure = store.get("conMeasure", "top4_weighted");
-  if (!conDivs.includes(conDiv)) conDiv = conDivs[0];
+  if (!CON.values?.[conDiv]) conDiv = "TOT";
   if (!CONMEAS[conMeasure]) conMeasure = "top4_weighted";
-  const conDivSel = document.getElementById("conDiv"), conMeasSel = document.getElementById("conMeasure");
-  conDivSel.innerHTML = conDivs.map((d) => `<option value="${d}">${esc(DIVLABEL[d])}</option>`).join("");
-  conDivSel.value = conDiv;
+  const conMeasSel = document.getElementById("conMeasure");
   conMeasSel.innerHTML = Object.entries(CONMEAS).map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join("");
   conMeasSel.value = conMeasure;
-  conDivSel.addEventListener("change", () => { conDiv = conDivSel.value; store.set("conDiv", conDiv); renderConcentration(); });
   conMeasSel.addEventListener("change", () => { conMeasure = conMeasSel.value; store.set("conMeasure", conMeasure); renderConcentration(); });
   function renderConcentration() {
-    if (!CON.years || !CON.years.length) { document.getElementById("conNote").textContent = "RBA concentration data not available in this build."; return; }
+    if (!CON.years || !CON.years.length) { document.getElementById("conHint").textContent = "The RBA concentration figures are not in this build."; return; }
+    // Years as labelled by the RBA authors; a period of financial years a..b covers labels a to b + 1.
     const inWin = CON.years.filter((y) => y >= win.start && y <= win.end + 1);
-    const ys = inWin.length >= 2 ? inWin : CON.years, idx = ys.map((y) => CON.years.indexOf(y));
-    document.getElementById("conUnit").textContent = `${CONMEAS[conMeasure]} of industry sales, per cent: the sales-weighted average across the industries in each division (RBA, from BLADE)`;
-    lineChart(document.getElementById("conChart"), {
-      x: ys, xKind: "year", zero: true, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: "Industry concentration",
-      series: [
-        { key: conDiv, label: DIVLABEL[conDiv], values: idx.map((i) => CON.values[conDiv]?.[conMeasure]?.[i] ?? null), color: "var(--accent)", width: 2.2 },
-        { key: "TOT", label: "All industries", values: idx.map((i) => CON.values.TOT?.[conMeasure]?.[i] ?? null), color: "var(--ink-3)", dash: true, width: 1.6 },
-      ],
+    const ys = inWin.length >= 2 ? inWin : CON.years;
+    const firstLast = (code) => {
+      const v = (CON.values[code]?.[conMeasure] || []).map((x, i) => [CON.years[i], x]).filter(([y, x]) => isNum(x) && ys.includes(y));
+      return v.length >= 2 ? { a: v[0], b: v[v.length - 1] } : null;
+    };
+    const codes = Object.keys(CON.values).filter((d) => d !== "TOT" && firstLast(d));
+    const tot = firstLast("TOT");
+    const ya = tot ? tot.a[0] : ys[0], yb = tot ? tot.b[0] : ys[ys.length - 1];
+    const rows = [
+      ...(tot ? [{ key: "TOT", label: "All industries", a: tot.a[1], b: tot.b[1], total: true }] : []),
+      ...codes.map((d) => { const fl = firstLast(d); return { key: d, label: DIVLABEL[d], a: fl.a[1], b: fl.b[1], ya: fl.a[0], yb: fl.b[0] }; })
+        .sort((p, q) => (q.b - q.a) - (p.b - p.a)),
+    ];
+    if (!rows.some((r) => r.key === conDiv)) conDiv = "TOT";
+    const hi = Math.ceil(Math.max(...rows.flatMap((r) => [r.a, r.b])) / 10) * 10;
+    document.getElementById("conUnit").innerHTML = `${term("topShare", `Share of each industry's sales made by its ${CONMEAS[conMeasure]}`)}, %, ${ya} compared with ${yb}. Sorted from the biggest rise to the biggest fall.`;
+    document.getElementById("conKey").innerHTML = `<span><span class="db-key a"></span>${ya}</span><span><span class="db-key b"></span>${yb}</span>`;
+    dumbbellChart(document.getElementById("conRows"), rows, {
+      domain: [0, Math.max(10, hi)], fmt: (v) => fmt(v, 1), fmtChange: (v) => fmtSigned(v, 1), aLabel: String(ya), bLabel: String(yb),
+      selected: conDiv, onSelect: (k) => { conDiv = k; store.set("conDiv", k); renderConcentration(); },
     });
-    document.getElementById("conNote").textContent = `${inWin.length >= 2 ? "" : `The RBA series run from ${CON.years[0]} to ${CON.years[CON.years.length - 1]}, outside most of the selected period, so all years are shown. `}Dashed line: all industries. ${B.notes.rba}`;
-    const f = (d) => { const v = (CON.values[d]?.[conMeasure] || []).map((x, i) => [CON.years[i], x]).filter(([, x]) => isNum(x)); return v.length ? [v[0], v[v.length - 1]] : null; };
-    tableView(document.getElementById("conTable"), ["Industry", "First year", "Share, %", "Last year", "Share, %", "Change, points"],
-      ["TOT", ...conDivs].map((d) => { const r = f(d); return r ? [DIVLABEL[d], String(r[0][0]), fmt(r[0][1], 1), String(r[1][0]), fmt(r[1][1], 1), fmtSigned(r[1][1] - r[0][1], 1)] : [DIVLABEL[d], "–", "–", "–", "–", "–"]; }));
+    const late = rows.filter((r) => !r.total && (r.ya !== ya || r.yb !== yb));
+    document.getElementById("conHint").textContent = [
+      "Change is in percentage points. Click an industry to see it over time.",
+      late.length ? `Different years for ${late.map((r) => `${r.label} (${r.ya} to ${r.yb})`).join(", ")}.` : "",
+      ys.length < 6 ? `The RBA figures run from ${CON.years[0]} to ${CON.years[CON.years.length - 1]}; widen the period at the top of the page to compare over more years.` : "",
+    ].filter(Boolean).join(" ");
+    const idx = ys.map((y) => CON.years.indexOf(y));
+    document.getElementById("conLineTitle").textContent = `Over time: ${conDiv === "TOT" ? "all industries" : DIVLABEL[conDiv]}`;
+    const series = [{ key: conDiv, label: conDiv === "TOT" ? "All industries" : DIVLABEL[conDiv], values: idx.map((i) => CON.values[conDiv]?.[conMeasure]?.[i] ?? null), color: "var(--accent)", width: 2.2 }];
+    if (conDiv !== "TOT") series.push({ key: "TOT", label: "All industries", values: idx.map((i) => CON.values.TOT?.[conMeasure]?.[i] ?? null), color: "var(--ink-3)", dash: true, width: 1.6 });
+    lineChart(document.getElementById("conChart"), { x: ys, xKind: "year", zero: true, height: 220, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: "Industry concentration over time", series });
+    document.getElementById("conSrc").innerHTML = SRC(["rba_rdp"]);
+    document.getElementById("conNote").innerHTML = `${esc(B.notes.rba)} ${term("blade", "What is BLADE?")} Industries the RBA doesn't report (finance, public administration, education, health and some others) are left out. Dashed line: all industries.`;
   }
 
   function renderFoot() {
+    const v = B.vintages;
+    const items = [
+      ["state_accounts", D.vintages.gva], ["lfs_detailed", D.vintages.emp], ["cabee", D.vintages.biz], ["ato", v.ato], ["rba_rdp", "supplementary data"],
+      ["grattan", "the charts recreated here"], ["anzsic", "industry codes"],
+    ];
     document.getElementById("foot").innerHTML = `
-      <p><strong>Sources.</strong> ABS, Australian National Accounts: State Accounts (${esc(D.vintages.gva)}); ABS, Labour Force, Australia, Detailed (${esc(D.vintages.emp)}); ABS, Counts of Australian Businesses (${esc(D.vintages.biz)}); Australian Taxation Office, Taxation Statistics, Company Table 4 (${esc(B.vintages.ato)}; CC BY 2.5 AU); Hambur and Freestone (2025), RBA Research Discussion Paper 2025-05, supplementary data. ABS and RBA data CC BY 4.0. Growth is the compound average between the first and last years of the period; financial years end on 30 June.</p>
-      <p>${esc(D.notes.gva)}</p><p>${esc(D.notes.emp)}</p><p>${esc(D.notes.biz)}</p>
-      <p>${esc(B.notes.classification)}</p><p>${esc(B.notes.ato)}</p>
-      <p>Built ${esc(D.generated)} from the processed panels in <span class="mono">data/processed</span> (<a href="${esc(D.repo)}data/SOURCES.md">data sources and licences</a>; <a href="${esc(D.repo)}docs/methods_competition_charts.md">methods for the barriers-to-entry and profitability charts</a>). Descriptive statistics only: they show what happened, not why.</p>`;
+      <h2>Data sources</h2>
+      <ul>${items.map(([k, note]) => `<li><a href="${esc(D.sources[k].url)}" target="_blank" rel="noopener">${esc(D.sources[k].label)}</a> <span class="muted">(${esc(note)})</span></li>`).join("")}</ul>
+      <p>ABS and RBA data are licensed CC BY 4.0; ATO data CC BY 2.5 AU. How the barriers-to-entry charts were made, and their limits: <a href="${esc(D.repo)}docs/methods_competition_charts.md" target="_blank" rel="noopener">methods note</a>. All licences: <a href="${esc(D.repo)}data/SOURCES.md" target="_blank" rel="noopener">data sources register</a>.</p>
+      <p>These are descriptive statistics: they show what happened, not why. Built ${esc(D.generated)}.</p>
+      <details class="more"><summary>Words used on this page</summary>${glossaryHtml()}</details>`;
   }
 
   function renderAll() {
-    document.getElementById("winNote").textContent = `Growth rates are averages over the ${win.end - win.start} years; business rates average the years after the first.`;
     renderGsp();
     renderHeat();
     renderDetail();
@@ -560,6 +614,8 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     renderScatter();
     renderConcentration();
   }
+  document.getElementById("gspSrc").innerHTML = SRC(["state_accounts"]);
+  document.getElementById("gspSrc2").innerHTML = SRC(["state_accounts"]);
   renderAll();
   renderFoot();
 })();

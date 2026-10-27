@@ -32,47 +32,40 @@ TAX_RATE = 30.0  # company tax rate, per cent, to put super-normal profit before
 COSTING = store.PROCESSED / "costing" / "parameters.json"
 NOTES = {
     "classification": (
-        "Barriers-to-entry groups follow Grattan Institute (2017): each ANZSIC class is put in the group of the "
-        "sector Grattan names, or by its division otherwise. Grattan called its own allocation 'inherently "
-        "subjective'; every assignment and its reason are in alicia/src/alicia/data/barriers.json."
+        "Industries are grouped by barriers to entry as in Grattan Institute's 2017 report: each detailed industry "
+        "goes in the group of the sector Grattan names, or by its broad industry otherwise. Grattan called its own "
+        "grouping 'inherently subjective'; every choice and its reason is listed in the project's barriers file."
     ),
     "ato": (
-        "Company tax returns summed by industry (ATO Taxation Statistics, Company Table 4). Companies only: sole "
-        "traders, partnerships and trusts are left out, and so are state-owned businesses that pay tax "
-        "equivalents to their state (several electricity networks, water utilities and ports). Industry is the "
-        "company's own description of its main business, and large companies sometimes change it, so sector "
-        "totals jump between years; averaging over several years damps this. Book equity (assets less "
-        "liabilities) includes goodwill, which Grattan removed, so returns in sectors built by acquisition read "
-        "lower. Profit after tax is profit before tax less tax payable."
+        "Company tax returns added up by industry (ATO). Companies only: sole traders, partnerships and trusts are "
+        "left out, and so are state-owned businesses that pay tax to their state instead (several electricity "
+        "networks, water utilities and ports). Companies choose their own industry code and some large ones change "
+        "it, so sector totals can jump between years; averaging over several years smooths this. Equity is book "
+        "value and includes goodwill, which Grattan removed, so returns read lower where firms grew by buying others."
     ),
     "excluded": (
-        "A sector-year whose total liabilities exceed its total assets has no usable return (for example banking "
-        "in 2021-22, where the published liabilities exceed assets by about $600 billion) and is left out of "
-        "returns, super-normal profit and mark-ups."
+        "A year in which a sector's reported liabilities exceed its assets can't give a sensible return, so it is "
+        "left out. The large case is banking in 2021-22, where reported liabilities exceed assets by about "
+        "$600 billion."
     ),
     "coe": (
-        "Cost of equity: the average 10-year Australian Government bond yield over the selected income years "
-        "plus a 6 per cent market risk premium, the same for every sector (Grattan used the same premium with "
-        "sector betas from Morningstar, which are not public). Super-normal profit is profit after tax less the "
-        "cost of equity times equity; the mark-up is super-normal profit, grossed up at the 30 per cent company "
-        "tax rate, as a share of total income, counting sectors with a shortfall as zero (Grattan's definition)."
+        "The cost of equity is the average 10-year government bond rate over the chosen years plus 6 percentage "
+        "points, the same for every sector. Grattan used the same 6 points, adjusted for each sector's risk with "
+        "Morningstar data that aren't public. You can type in a different rate."
     ),
     "cabee": (
-        "Entry and exit rates: entries or exits in a year per 100 businesses operating at its start (ABS Counts of "
-        "Australian Businesses, classes summed to sectors and groups). Cells are perturbed by the ABS and counts "
-        "shift between releases, so rates are more reliable than counts."
+        "Entry and exit rates are new and closed businesses per 100 operating at the start of each year (ABS "
+        "business register). The ABS slightly alters small counts to protect confidentiality."
     ),
     "employing": (
-        "Employing businesses only, by default: since about 2016 rideshare drivers and delivery riders, registered "
-        "as sole traders without employees, have multiplied the business counts in a few classes (taxis and other "
-        "road transport, couriers, and other transport support services), and their entries swamp the entry "
-        "rates of the groups those classes are in. Employing businesses are counted in the size band they were in, "
-        "so a business taking on its first employee is not an entry."
+        "Counting businesses with employees. Since about 2016, rideshare drivers and delivery riders registering as "
+        "sole traders have swamped the counts in a few industries (taxis, couriers and transport support), so they "
+        "are left out by default."
     ),
     "rba": (
-        "Hambur and Freestone (2025), RBA Research Discussion Paper 2025-05, supplementary data: mark-ups (price "
-        "over marginal cost, harmonic mean across firms) and the top-4 firms' share of industry sales, from the "
-        "ABS's BLADE firm data, summarised by ANZSIC division. Years as labelled by the authors."
+        "From Hambur and Freestone (2025), RBA Research Discussion Paper 2025-05, using the ABS's confidential BLADE "
+        "business data. Each broad industry is the average of its detailed industries, with bigger industries "
+        "counting for more. Years are as labelled by the authors."
     ),
 }
 
@@ -142,10 +135,10 @@ def ato_sectors() -> tuple[list[int], list[dict]]:
                 "group": g["group"].iloc[0],
                 "basis": basis,
                 "codes": published,
-                "income": [_num(v) for v in s["total_income"]],
-                "pbt": [_num(v) for v in s["profit_before_tax"]],
-                "npat": [_num(v) for v in s["profit_before_tax"] - s["tax_payable"]],
-                "equity": [_num(v) for v in s["total_assets"] - s["total_liabilities"]],
+                "income": [_num(v, 3) for v in s["total_income"]],
+                "pbt": [_num(v, 3) for v in s["profit_before_tax"]],
+                "npat": [_num(v, 3) for v in s["profit_before_tax"] - s["tax_payable"]],
+                "equity": [_num(v, 3) for v in s["total_assets"] - s["total_liabilities"]],
                 "assets": [_num(v, 0) for v in s["total_assets"]],
             }
         )
@@ -182,9 +175,9 @@ def ato_group_series() -> dict:
     sums = ok.groupby(["group", "year"])[["npat", "equity", "total_income"]].sum()
     series = {
         g: {
-            "npat": [_num(sums["npat"].get((g, y))) for y in years],
-            "equity": [_num(sums["equity"].get((g, y))) for y in years],
-            "income": [_num(sums["total_income"].get((g, y))) for y in years],
+            "npat": [_num(sums["npat"].get((g, y)), 3) for y in years],
+            "equity": [_num(sums["equity"].get((g, y)), 3) for y in years],
+            "income": [_num(sums["total_income"].get((g, y)), 3) for y in years],
         }
         for g in barriers.GROUPS
     }
@@ -267,7 +260,7 @@ def rba_concentration() -> dict:
         "years": years,
         "values": {
             div: {
-                m: [_num(v[y].get(m) * 100 if y in v and v[y].get(m) is not None else None) for y in years]
+                m: [_num(v[y].get(m) * 100 if y in v and v[y].get(m) is not None else None, 4) for y in years]
                 for m in measures
             }
             for div, v in sorted(by.items())
