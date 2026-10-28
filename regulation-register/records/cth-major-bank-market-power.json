@@ -1,0 +1,75 @@
+{
+  "id": "cth-major-bank-market-power",
+  "kind": "barrier",
+  "family": null,
+  "title": "Market power of the major banks",
+  "jurisdiction": "CTH",
+  "summary": "Australia's four major banks dominate retail banking and hold 60% of branches. The Productivity Commission found in 2018 that 'the major banks' market power is a defining feature of the financial system', with evidence they 'sustained prices above competitive levels', helped by funding cost advantages from their size, credit ratings and regulatory arrangements.",
+  "instruments": [],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Pricing power and funding cost advantages let the major banks sustain prices above competitive levels and make it harder for smaller lenders to grow.",
+  "direction_sources": [
+    "https://www.pc.gov.au/inquiries/completed/financial-system/report",
+    "https://assets.pc.gov.au/inquiries/completed/financial-system/report/financial-system.pdf"
+  ],
+  "channels": [
+    "prices-market-share",
+    "barriers"
+  ],
+  "industries": [
+    {
+      "anzsic": "6221",
+      "name": "Banking",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "A market structure, not a law: no dates. Quotes are from the overview of the Productivity Commission's 2018 inquiry report, read in full."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4 of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "The four major banks have market power the Productivity Commission called a defining feature of the financial system. Banking is an input to every industry, so weak competition there raises costs across the economy.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -2,
+        "reason": "The major banks have sustained prices above competitive levels (Productivity Commission, 2018)."
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Funding cost advantages from size, credit ratings and internal risk models make it harder for smaller lenders to grow."
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "high",
+    "confidence_note": null,
+    "evidence": [
+      "https://assets.pc.gov.au/inquiries/completed/financial-system/report/financial-system.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

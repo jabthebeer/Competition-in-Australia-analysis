@@ -1,5 +1,6 @@
 {
   "id": "qld-amr-not-adopted",
+  "kind": "setting",
   "family": "amr-occupational-licensing",
   "title": "Queensland stays out of automatic mutual recognition",
   "jurisdiction": "QLD",
@@ -76,5 +77,29 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Queensland stays out of automatic mutual recognition, so licensed workers moving into or out of the state still apply and pay for a separate registration.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Keeps the application and fee licensed workers face when moving between Queensland and other states."
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Keeps Queensland's licensed services market separate from the scheme the other states share."
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "multi-sector",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [
+      "https://assets.pc.gov.au/inquiries/completed/mutual-recognition-schemes/report/mutual-recognition-schemes.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

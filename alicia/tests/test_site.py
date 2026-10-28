@@ -40,17 +40,19 @@ def test_growth_payload_is_aligned_and_consistent():
 
 
 @needs_panels
-def test_conditions_payload_series_match_periods_and_mark_evaluated_reforms():
+def test_conditions_payload_series_match_periods_and_mark_major_reforms():
     records = load_records().records
-    evals = load_evaluations(records).evaluations
-    p = growth.conditions_payload(records, evals)
+    p = growth.conditions_payload(records)
     for block in (*p["quarterly"].values(), *p["monthly"].values()):
         for values in block["values"].values():
             assert len(values) == len(block["periods"])
     assert set(p["monthly"]["unemp"]["original"]) == {"NT", "ACT"}
     assert "AUS" not in p["quarterly"]["sfd"]["values"]  # state final demand is published for states only
+    # Markers are reforms with an overall framework mark of +3 or more, or -3 or less: NSW ride-share (+3) is one;
+    # Perth weeknight trading (+1) is not.
     dates = {(r["jurisdiction"], r["date"]) for r in p["reforms"]}
-    assert ("WA", "2010-11-01") in dates
+    assert ("NSW", "2015-12-18") in dates and ("WA", "2010-11-01") not in dates
+    assert all(abs(r["mark"]) >= growth.MAJOR_MARK for r in p["reforms"])
     assert all(v for v in p["vintages"].values())
 
 
@@ -63,12 +65,18 @@ def test_render_fills_every_placeholder_and_marks_the_current_page():
 
 
 @needs_panels
-def test_build_site_writes_three_linked_pages(tmp_path):
+def test_build_site_writes_the_linked_pages_and_the_econometric_archive(tmp_path):
     records = load_records().records
     evals = load_evaluations(records).evaluations
     paths = growth.build_site(tmp_path, records, evals)
     names = sorted(p.name for p in paths)
-    assert [n for n in names if not n.startswith("evaluation-")] == ["conditions.html", "growth.html", "index.html"]
+    assert [n for n in names if not n.startswith("evaluation-")] == [
+        "archive.html",
+        "conditions.html",
+        "framework.html",
+        "growth.html",
+        "index.html",
+    ]
     assert sorted(n for n in names if n.startswith("evaluation-")) == sorted(f"evaluation-{e.id}.html" for e in evals)
     one = (tmp_path / "evaluation-childcare-nqf-wa-delay-2012.html").read_text("utf-8")
     payload = json.loads(re.search(r'id="menu-data">(.*?)</script>', one, re.S).group(1))
@@ -76,8 +84,14 @@ def test_build_site_writes_three_linked_pages(tmp_path):
     assert {r["id"] for r in payload["records"]} == {"cth-nqf-childcare-2012", "wa-nqf-childcare-2012"}
     assert set(payload["evaluations"]) == {"childcare-nqf-wa-delay-2012", "childcare-nqf-2012"}  # follows link
     assert "<title>National Quality Framework" in one
+    assert "archive.html#results" in one  # evaluation pages lead back to the archive, not the menu
     index = (tmp_path / "index.html").read_text("utf-8")
     assert '<a href="index.html" aria-current="page">' in index and 'href="conditions.html"' in index
+    assert 'href="framework.html"' in index and 'href="archive.html"' in index
+    archive = (tmp_path / "archive.html").read_text("utf-8")
+    assert "Archived 28 October 2026" in archive and '<a href="framework.html">Framework</a>' in archive
+    fw = (tmp_path / "framework.html").read_text("utf-8")
+    assert '<a href="framework.html" aria-current="page">' in fw and not re.search(r"__[A-Z_]+__", fw)
     data = re.search(r'id="page-data">(.*?)</script>', (tmp_path / "growth.html").read_text("utf-8"), re.S)
     assert json.loads(data.group(1))["repo"].startswith("https://github.com/")
 
@@ -122,7 +136,7 @@ def test_build_site_links_the_costing_tab_from_every_page_only_when_built(tmp_pa
     evals = load_evaluations(records).evaluations
     names = {p.name for p in growth.build_site(tmp_path / "with", records, evals, costing_dist=_costing_dist(tmp_path))}
     assert {"costing.html", "index-abc.js"} <= names
-    for page in ("index.html", "growth.html", "conditions.html"):
+    for page in ("index.html", "framework.html", "archive.html", "growth.html", "conditions.html"):
         assert 'href="costing.html"' in (tmp_path / "with" / page).read_text("utf-8"), page
     growth.build_site(tmp_path / "without", records, evals)
     assert not (tmp_path / "without" / "costing.html").exists()

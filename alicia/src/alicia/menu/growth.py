@@ -10,7 +10,8 @@ the page from the levels embedded here, so every number shown can be traced to a
 - ``conditions.html``: the macroeconomic control series (``alicia.pipeline.controls``): state final
   demand, household consumption, unemployment, population, wages, dwelling approvals, commodity
   prices and national industry output; company profitability and market power by barriers to entry
-  (``alicia.menu.competition``).
+  (``alicia.menu.competition``). Optional markers show when the register's major reforms started (an overall
+  framework mark of +3 or more, or -3 or less).
 """
 
 from __future__ import annotations
@@ -23,7 +24,7 @@ import pandas as pd
 
 from .. import anzsic
 from ..pipeline import controls, schema, store
-from ..register.evaluation import Evaluation, current_evaluation
+from ..register.evaluation import Evaluation
 from ..register.schema import ChangeRecord
 from . import competition
 
@@ -42,6 +43,7 @@ WINDOWS = (
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
 PAGES = (
     ("index.html", "Legislation menu"),
+    ("framework.html", "Framework"),
     ("growth.html", "The state of competition in Australia"),
     ("conditions.html", "Economic conditions"),
 )
@@ -255,25 +257,22 @@ def _dated_series(df: pd.DataFrame, start: str) -> tuple[list[str], dict]:
     return [p.strftime("%Y-%m") for p in idx], out
 
 
-def _evaluated_reforms(records: list[ChangeRecord], evaluations: list[Evaluation]) -> list[dict]:
-    """Effective dates of evaluated changes, for optional markers on the charts."""
-    by_id = {r.id: r for r in records}
-    current = current_evaluation(evaluations)
+MAJOR_MARK = 3
+
+
+def _major_reforms(records: list[ChangeRecord]) -> list[dict]:
+    """Effective dates of reforms with a strong framework mark (overall +3 or more, or -3 or less), for optional
+    markers on the charts."""
     out = []
-    for rid, ev_id in sorted(current.items()):
-        r = by_id.get(rid)
-        c = r.effective_commencement if r else None
-        if c is None:
+    for r in records:
+        c, a = r.effective_commencement, r.assessment
+        if r.kind != "reform" or c is None or a is None or abs(a.total) < MAJOR_MARK:
             continue
-        out.append({"date": c.date.isoformat(), "jurisdiction": r.jurisdiction, "title": r.title, "evaluation": ev_id})
-    return sorted(out, key=lambda d: d["date"])
+        out.append({"date": c.date.isoformat(), "jurisdiction": r.jurisdiction, "title": r.title, "mark": a.total})
+    return sorted(out, key=lambda d: (d["date"], d["jurisdiction"]))
 
 
-def conditions_payload(
-    records: list[ChangeRecord] | None = None,
-    evaluations: list[Evaluation] | None = None,
-    repo_base: str = REPO_MAIN,
-) -> dict:
+def conditions_payload(records: list[ChangeRecord] | None = None, repo_base: str = REPO_MAIN) -> dict:
     sq = controls.load("state_quarter")
     sm = controls.load("state_month")
     iq = controls.load("industry_quarter")
@@ -349,7 +348,7 @@ def conditions_payload(
         },
         "commodity": {"periods": [p.strftime("%Y-%m") for p in com_idx], "values": commodity},
         "natgva": {"periods": [p.strftime("%Y-%m") for p in nat_idx], "values": natgva},
-        "reforms": _evaluated_reforms(records or [], evaluations or []),
+        "reforms": _major_reforms(records or []),
         "vintages": {
             src: "; ".join(sorted(df.loc[df["source"] == src, "vintage"].unique().tolist()))
             for df, srcs in (
@@ -441,10 +440,12 @@ def build_site(
     repo_base: str | None = None,
     costing_dist=None,
 ) -> list:
-    """Write the legislation menu (index.html), the two summary pages and, given its build, the Policy costing
-    tab into ``out_dir``."""
+    """Write the legislation menu (index.html), the Framework page, the econometric archive (archive.html and one
+    page per evaluation), the two summary pages and, given its build, the Policy costing tab into ``out_dir``."""
     from pathlib import Path
 
+    from . import framework as framework_page
+    from .archive import ARCHIVE_PAGE, build_archive
     from .explorer import build_explorer
 
     out = Path(out_dir)
@@ -459,15 +460,28 @@ def build_site(
             dates_report=dates_report,
             standalone=standalone,
             evaluations=evaluations,
-            repo_base=explorer_base,
-            nav=nav("index.html", pages),
-            evaluation_pages=True,
+            pages=pages,
         )
     ]
+    fw_path = out / "framework.html"
+    fw_path.write_text(framework_page.render(records, nav("framework.html", pages), standalone), encoding="utf-8")
+    written.append(fw_path)
+    written.append(
+        build_archive(
+            records,
+            out / ARCHIVE_PAGE,
+            dates_report=dates_report,
+            standalone=standalone,
+            evaluations=evaluations,
+            repo_base=explorer_base,
+            nav=nav(ARCHIVE_PAGE, pages),
+            evaluation_pages=True,
+        )
+    )
     written += sorted(out.glob("evaluation-*.html"))
     summaries = (
         ("growth.html", growth_payload(data_base)),
-        ("conditions.html", conditions_payload(records, evaluations, data_base)),
+        ("conditions.html", conditions_payload(records, data_base)),
     )
     for name, payload in summaries:
         path = out / name

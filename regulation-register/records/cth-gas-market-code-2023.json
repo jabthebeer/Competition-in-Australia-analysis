@@ -1,5 +1,6 @@
 {
   "id": "cth-gas-market-code-2023",
+  "kind": "reform",
   "family": "east-coast-gas-intervention",
   "title": "East-coast gas price cap and Gas Market Code",
   "jurisdiction": "CTH",
@@ -86,5 +87,27 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "An emergency cap on east-coast wholesale gas prices, then a mandatory code with a 'reasonable price' rule. It lowered input costs for gas users, but controls on the price of a major input dull the signal for new supply and add regulatory risk for investors.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "A binding price control in a major input market keeps prices from signalling scarcity."
+      },
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Price controls and exemptions negotiated case by case add regulatory risk to gas supply investment."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "multi-sector",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

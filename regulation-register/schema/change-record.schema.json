@@ -1,5 +1,103 @@
 {
   "$defs": {
+    "Assessment": {
+      "additionalProperties": false,
+      "description": "The item marked against the productivity impact framework (``register/framework.py``).",
+      "properties": {
+        "summary": {
+          "description": "Plain English: what it does to productivity and competition",
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        },
+        "marks": {
+          "items": {
+            "$ref": "#/$defs/DriverMark"
+          },
+          "minItems": 1,
+          "title": "Marks",
+          "type": "array"
+        },
+        "main_driver": {
+          "enum": [
+            "entry-exit",
+            "competition",
+            "market-integration",
+            "capital",
+            "labour",
+            "burden",
+            "innovation",
+            "prices-taxes"
+          ],
+          "title": "Main Driver",
+          "type": "string"
+        },
+        "reach": {
+          "enum": [
+            "narrow",
+            "sector",
+            "multi-sector",
+            "economy-wide"
+          ],
+          "title": "Reach",
+          "type": "string"
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "confidence_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence Note"
+        },
+        "evidence": {
+          "default": [],
+          "description": "Sources for the marks beyond the record's own",
+          "items": {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "framework": {
+          "default": "1.0",
+          "description": "Framework version the marks follow",
+          "title": "Framework",
+          "type": "string"
+        },
+        "assessed_on": {
+          "format": "date",
+          "title": "Assessed On",
+          "type": "string"
+        }
+      },
+      "required": [
+        "summary",
+        "marks",
+        "main_driver",
+        "reach",
+        "confidence",
+        "assessed_on"
+      ],
+      "title": "Assessment",
+      "type": "object"
+    },
     "Commencement": {
       "additionalProperties": false,
       "properties": {
@@ -98,6 +196,44 @@
         }
       },
       "title": "Dates",
+      "type": "object"
+    },
+    "DriverMark": {
+      "additionalProperties": false,
+      "description": "One driver's mark: -2 (major harm) to +2 (major gain). Drivers left out are marked 0.",
+      "properties": {
+        "driver": {
+          "enum": [
+            "entry-exit",
+            "competition",
+            "market-integration",
+            "capital",
+            "labour",
+            "burden",
+            "innovation",
+            "prices-taxes"
+          ],
+          "title": "Driver",
+          "type": "string"
+        },
+        "mark": {
+          "maximum": 2,
+          "minimum": -2,
+          "title": "Mark",
+          "type": "integer"
+        },
+        "reason": {
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "driver",
+        "mark",
+        "reason"
+      ],
+      "title": "DriverMark",
       "type": "object"
     },
     "Industry": {
@@ -283,6 +419,17 @@
       "title": "Id",
       "type": "string"
     },
+    "kind": {
+      "default": "reform",
+      "description": "reform, existing setting or non-legislative barrier",
+      "enum": [
+        "reform",
+        "setting",
+        "barrier"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
     "family": {
       "anyOf": [
         {
@@ -322,10 +469,11 @@
       "type": "string"
     },
     "instruments": {
+      "default": [],
+      "description": "Required for reforms and settings",
       "items": {
         "$ref": "#/$defs/Instrument"
       },
-      "minItems": 1,
       "title": "Instruments",
       "type": "array"
     },
@@ -375,17 +523,26 @@
       "type": "array"
     },
     "industries": {
+      "default": [],
+      "description": "Required unless the item is economy-wide",
       "items": {
         "$ref": "#/$defs/Industry"
       },
-      "minItems": 1,
       "title": "Industries",
       "type": "array"
     },
     "comparison": {
-      "minLength": 1,
-      "title": "Comparison",
-      "type": "string"
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Comparison group for an econometric evaluation",
+      "title": "Comparison"
     },
     "confounders": {
       "default": [],
@@ -430,6 +587,17 @@
         "on": null,
         "notes": null
       }
+    },
+    "assessment": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Assessment"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     }
   },
   "required": [
@@ -437,13 +605,10 @@
     "title",
     "jurisdiction",
     "summary",
-    "instruments",
     "dates",
     "direction",
     "direction_rationale",
     "channels",
-    "industries",
-    "comparison",
     "verified"
   ],
   "title": "Regulatory change record",

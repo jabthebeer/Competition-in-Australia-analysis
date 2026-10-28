@@ -1,5 +1,6 @@
 {
   "id": "vic-e-conveyancing-mandate-2019",
+  "kind": "reform",
   "family": "e-conveyancing-mandate",
   "title": "Mandatory electronic conveyancing (Victoria)",
   "jurisdiction": "VIC",
@@ -69,5 +70,32 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Requires property transfers and mortgages to be lodged electronically. Settlement is faster and cheaper, but with no working interoperability between networks the mandate entrenched a single lodgement network.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": 1,
+        "reason": "Electronic lodgement and settlement cut paperwork, settlement time and errors."
+      },
+      {
+        "driver": "innovation",
+        "mark": 1,
+        "reason": "Moves conveyancing onto a digital platform."
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Without interoperability, mandatory electronic lodgement entrenched one network (PEXA) as a near-monopoly supplier."
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "medium",
+    "confidence_note": "The archived econometric evaluation found no detectable effect on business entry in legal services (grade Weak).",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

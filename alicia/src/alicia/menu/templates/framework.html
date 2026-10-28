@@ -1,0 +1,72 @@
+<title>ALICIA Productivity Framework</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
+<style>
+/*__SITE_CSS__*/
+/* Layout: a short methods note. The logic of productivity growth and the three groups of drivers; one card per
+   driver with its question, evidence and marking guide; how marks combine; a worked example; limits. */
+:root {
+  --mk-p2: #1f7a6f; --mk-p2-ink: #ffffff; --mk-p1: #cfe6e2; --mk-p1-ink: #13312e;
+  --mk-n1: #f7d6d3; --mk-n1-ink: #4a1512; --mk-n2: #b3302a; --mk-n2-ink: #ffffff;
+  --mk-0: #ecebe5; --mk-0-ink: #52514e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --mk-p2: #5fb3a8; --mk-p2-ink: #0b0b0b; --mk-p1: #1f3a37; --mk-p1-ink: #d7efeb;
+    --mk-n1: #45221f; --mk-n1-ink: #f6d6d3; --mk-n2: #e46a64; --mk-n2-ink: #0b0b0b;
+    --mk-0: #2a2a27; --mk-0-ink: #c3c2b7;
+  }
+}
+:root[data-theme="dark"] {
+  --mk-p2: #5fb3a8; --mk-p2-ink: #0b0b0b; --mk-p1: #1f3a37; --mk-p1-ink: #d7efeb;
+  --mk-n1: #45221f; --mk-n1-ink: #f6d6d3; --mk-n2: #e46a64; --mk-n2-ink: #0b0b0b;
+  --mk-0: #2a2a27; --mk-0-ink: #c3c2b7;
+}
+.wrap { max-width: 1080px; }
+.meta-line { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--ink-3); font-size: var(--step--1); }
+.m2 { background: var(--mk-p2); color: var(--mk-p2-ink); } .m1 { background: var(--mk-p1); color: var(--mk-p1-ink); }
+.m0 { background: var(--mk-0); color: var(--mk-0-ink); }
+.mn1 { background: var(--mk-n1); color: var(--mk-n1-ink); } .mn2 { background: var(--mk-n2); color: var(--mk-n2-ink); }
+.mk { display: inline-block; min-width: 2.4rem; text-align: center; border-radius: 4px; padding: 1px 6px; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.8rem; white-space: nowrap; }
+ul.logic { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 80ch; }
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .pillars { grid-template-columns: minmax(0, 1fr); } }
+.pillar { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 12px 14px; display: grid; gap: 6px; align-content: start; }
+.pillar h3 { font-size: var(--step-0); }
+.pillar p { margin: 0; color: var(--ink-2); font-size: var(--step--1); }
+.pillar ul { margin: 0; padding-left: 1.1em; font-size: var(--step--1); display: grid; gap: 2px; }
+.drv-grid { display: grid; gap: 14px; }
+.pillar-h { font-size: var(--step-1); margin-top: 8px; color: var(--accent); }
+.drv-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 8px; scroll-margin-top: 16px; }
+.drv-card h3 { font-size: var(--step-1); }
+.drv-card h4 { margin: 0 0 4px; font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); font-weight: 600; }
+.drv-card p { margin: 0; max-width: 90ch; }
+.drv-card .q { font-family: var(--font-display); font-size: var(--step-0); }
+.drv-card ul { margin: 0; padding-left: 1.1em; font-size: var(--step--1); display: grid; gap: 2px; }
+.cite { font-size: var(--step--1); color: var(--ink-3); }
+.cite a { color: var(--ink-2); }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 16px; }
+@media (max-width: 760px) { .two { grid-template-columns: minmax(0, 1fr); } }
+table.mk-table { border-collapse: collapse; font-size: var(--step--1); }
+table.mk-table td { padding: 3px 8px 3px 0; vertical-align: top; }
+ol.steps { margin: 0; padding-left: 1.4em; display: grid; gap: 6px; }
+table.kvt th { text-align: left; white-space: nowrap; color: var(--ink); font-weight: 600; vertical-align: top; }
+table.kvt td { text-align: left; white-space: normal; color: var(--ink-2); }
+table.data.ex th, table.data.ex td { text-align: left; white-space: normal; vertical-align: top; }
+table.data.ex th[scope="row"] { font-weight: 500; white-space: nowrap; }
+table.data.ex tr.zero th, table.data.ex tr.zero td { color: var(--ink-3); }
+table.data.ex tfoot th, table.data.ex tfoot td { border-top: 1px solid var(--line-strong); font-weight: 600; }
+ul.plain { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; max-width: 95ch; }
+.split h3 { font-size: var(--step-0); }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <!--__NAV__-->
+    <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
+    <h1>Productivity Framework</h1>
+    <p class="lede">A short, consistent way to judge how a law, a regulatory setting or another barrier is likely to affect productivity and competition in Australia. Every item in the <a href="index.html">legislation menu</a> is marked against it.</p>
+<!--__BODY__-->
+</div>

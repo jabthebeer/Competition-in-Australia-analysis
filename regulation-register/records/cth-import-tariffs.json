@@ -1,0 +1,88 @@
+{
+  "id": "cth-import-tariffs",
+  "kind": "setting",
+  "family": null,
+  "title": "Remaining import tariffs",
+  "jurisdiction": "CTH",
+  "summary": "Many imported goods still attract a tariff, mostly at 5%, under the Customs Tariff Act 1995. The Government abolished almost 500 'nuisance' tariffs from 1 July 2024. The Productivity Commission estimates removing the remaining tariffs would add 0.13 to 0.25% to GDP.",
+  "instruments": [
+    {
+      "title": "Customs Tariff Act 1995",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": null
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Tariffs raise the price of imported goods and inputs, shelter some domestic producers from competition and add customs compliance costs.",
+  "direction_sources": [
+    "https://www.pc.gov.au/inquiries-and-research/competition-analysis/report",
+    "https://treasury.gov.au/consultation/c2024-506306"
+  ],
+  "channels": [
+    "prices-market-share",
+    "barriers"
+  ],
+  "industries": [
+    {
+      "anzsic": "C",
+      "name": "Manufacturing",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "G",
+      "name": "Retail Trade",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. The 2024 abolition is from Treasury's consultation and press coverage of the announcement."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4 of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "The tariffs left after decades of reform, mostly 5%. They raise prices for buyers of imported goods and inputs and add customs paperwork, for little protection.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Tariffs shelter domestic producers from import competition and raise input costs."
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Importers must classify goods and prove origin to pay or avoid duty."
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "multi-sector",
+    "confidence": "high",
+    "confidence_note": "The Productivity Commission modelled removing all remaining tariffs at +0.13 to 0.25% of GDP.",
+    "evidence": [
+      "https://www.pc.gov.au/inquiries-and-research/competition-analysis/report"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

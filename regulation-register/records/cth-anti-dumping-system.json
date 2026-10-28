@@ -1,0 +1,86 @@
+{
+  "id": "cth-anti-dumping-system",
+  "kind": "setting",
+  "family": null,
+  "title": "Anti-dumping and countervailing duties",
+  "jurisdiction": "CTH",
+  "summary": "Australian producers can ask for extra duties on imports found to be dumped (sold below their normal value) or subsidised, under Part XVB of the Customs Act 1901, administered by the Anti-Dumping Commission. Many measures apply to steel and aluminium products.",
+  "instruments": [
+    {
+      "title": "Customs Act 1901",
+      "register_url": "https://www.legislation.gov.au/C1901A00006",
+      "register_id": "C1901A00006",
+      "role": "principal",
+      "provisions": "Part XVB (special additional duties: dumping and countervailing)"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "The Productivity Commission found the system 'benefits a small number of import competing firms, but imposes greater costs on the rest of the economy', though the net cost is likely to be very small.",
+  "direction_sources": [
+    "https://www.pc.gov.au/inquiries-and-research/antidumping",
+    "https://assets.pc.gov.au/inquiries/completed/antidumping/report/anti-dumping.pdf"
+  ],
+  "channels": [
+    "prices-market-share",
+    "barriers"
+  ],
+  "industries": [
+    {
+      "anzsic": "2110",
+      "name": "Iron Smelting and Steel Manufacturing",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "2142",
+      "name": "Aluminium Rolling, Drawing, Extruding",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "E",
+      "name": "Construction",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4 of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Extra duties on imports found to be dumped or subsidised. They help a few import-competing producers at a greater cost to users of those products; the Productivity Commission judged the net cost to be very small.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Extra duties shelter some domestic producers from import competition and raise costs for downstream users."
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "multi-sector",
+    "confidence": "high",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

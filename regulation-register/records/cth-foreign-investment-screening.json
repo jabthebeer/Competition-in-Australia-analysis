@@ -1,0 +1,75 @@
+{
+  "id": "cth-foreign-investment-screening",
+  "kind": "setting",
+  "family": null,
+  "title": "Foreign investment screening",
+  "jurisdiction": "CTH",
+  "summary": "Foreign investors need approval, and pay fees, to buy into Australian businesses, land and sensitive assets above set thresholds, under the Foreign Acquisitions and Takeovers Act 1975. The Treasurer can block proposals or attach conditions; national security tests were tightened from 2021. The OECD's index of restrictions on foreign direct investment in Australia rose from 0.19 to 0.24 (0 open, 1 closed) in 2025.",
+  "instruments": [
+    {
+      "title": "Foreign Acquisitions and Takeovers Act 1975",
+      "register_url": "https://www.legislation.gov.au/C2004A01402",
+      "register_id": "C2004A01402",
+      "role": "principal",
+      "provisions": null
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": "1975-08-28",
+      "source": "https://legislation.gov.au/C2004A01402/asmade/1975-08-28/text/original/pdf"
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Screening, fees and conditions raise the cost and uncertainty of foreign investment, which brings capital, technology and competition to Australian markets.",
+  "direction_sources": [
+    "https://foreigninvestment.gov.au/",
+    "https://sdmx.oecd.org/public/rest/dataflow/OECD.DAF.INV/DSD_FDIRRI_SCORES@DF_FDIRRI_SCORES/2.0"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Making date from the Federal Register of Legislation. The OECD index values are from the committed costing parameters (data/processed/costing/parameters.json, OECD FDI RRI, 2018 to 2025)."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4 of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Approval, fees and conditions for foreign investment above set thresholds. They protect national security and other interests, which are not weighed here, but raise the cost and uncertainty of investment that brings capital, technology and competition.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Screening, fees and conditions restrict foreign investment; the OECD's restrictiveness index for Australia rose in 2025."
+      },
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Approval times and the risk of conditions raise the cost of investing for foreign buyers."
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

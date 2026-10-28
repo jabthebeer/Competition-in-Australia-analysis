@@ -1,12 +1,13 @@
 """Command line: ``alicia <command>``.
 
-alicia validate                      check every register record and evaluation
-alicia menu [filters]                list candidate changes, with an evaluability screen
+alicia validate                      check every register record (each needs a framework assessment) and evaluation
+alicia menu [filters]                list register items with their framework marks
 alicia show <id>                     one record in full
 alicia families                      reforms adopted by several jurisdictions, in date order
 alicia dates <id>... | --all         gather effective dates and check them against registers
-alicia explorer [-o file.html]       build the interactive menu explorer (one HTML file)
-alicia site [-o dir]                 build the website: the menu plus the growth and conditions pages
+alicia explorer [-o file.html]       build the legislation menu (one HTML file)
+alicia site [-o dir]                 build the website: the menu, framework, archive, growth and conditions pages
+alicia framework [-o file.md]        the productivity impact framework as a methods note
 alicia methods [-o file.md]          key insights and econometric methods of every evaluation, as Markdown
 alicia tables [-o file.md] [--latex file.tex]   every evaluation's regression tables, as Markdown and LaTeX
 alicia pipeline build <source>...    build outcome panels in data/processed (see alicia.pipeline.sources)
@@ -29,6 +30,7 @@ from pathlib import Path
 from . import anzsic, cpi
 from .register.catalogue import families, filter_records, load_records
 from .register.evaluation import load_evaluations
+from .register.framework import DRIVERS, KINDS
 from .register.schema import CHANNEL_LABELS, JURISDICTIONS, ChangeRecord
 
 
@@ -50,6 +52,11 @@ def cmd_validate(args) -> int:
         for r in result.records
         if r.price_series and not (cpi.matched_classes(r.price_series) or cpi.matched_aggregates(r.price_series))
     ]
+    problems.extend(
+        f"{r.id}.json: assessment: every item needs a framework assessment"
+        for r in result.records
+        if r.assessment is None
+    )
     evals = load_evaluations(result.records, Path(args.evaluations) if args.evaluations else None)
     problems.extend(evals.problems)
     for p in problems:
@@ -65,8 +72,6 @@ def cmd_validate(args) -> int:
 
 
 def cmd_menu(args) -> int:
-    from .menu.screen import screen_all
-
     all_records = _load(args)
     records = list(
         filter_records(
@@ -79,7 +84,6 @@ def cmd_menu(args) -> int:
             text=args.text,
         )
     )
-    screens = screen_all(all_records)
     rows = []
     for r in sorted(
         records,
@@ -88,18 +92,22 @@ def cmd_menu(args) -> int:
             r.effective_commencement.date if r.effective_commencement else None,
         ),
     ):
-        s = screens[r.id]
-        if args.rating and s.rating != args.rating:
+        a = r.assessment
+        if args.driver and not (a and a.main_driver == args.driver):
+            continue
+        if args.kind and r.kind != args.kind:
             continue
         eff = r.effective_commencement
         rows.append(
             {
                 "id": r.id,
+                "kind": r.kind,
                 "jurisdiction": r.jurisdiction,
                 "effective": eff.date.isoformat() if eff else "",
-                "direction": r.direction,
+                "main_driver": a.main_driver if a else "",
+                "mark": f"{a.total:+d}" if a else "",
+                "rating": a.rating if a else "",
                 "industries": " ".join(i.anzsic for i in r.industries),
-                "rating": s.rating,
                 "title": r.title,
             }
         )
@@ -110,10 +118,10 @@ def cmd_menu(args) -> int:
         return 0
     for row in rows:
         print(
-            f"{row['effective'] or 'not yet':10}  {row['jurisdiction']:3}  {row['direction']:9}  "
-            f"{row['rating']:8}  {row['id']:38}  {row['title']}"
+            f"{row['effective'] or '-':10}  {row['jurisdiction']:3}  {row['mark']:>3}  {row['main_driver']:18}  "
+            f"{row['id']:42}  {row['title']}"
         )
-    print(f"\n{len(rows)} change(s).")
+    print(f"\n{len(rows)} item(s).")
     return 0
 
 
@@ -126,9 +134,11 @@ def cmd_show(args) -> int:
     if rec is None:
         print(f"No record '{args.id}'.", file=sys.stderr)
         return 1
-    s = screen_all(records)[rec.id]
     out = rec.model_dump(mode="json")
-    out["evaluability"] = s.as_dict()
+    if rec.assessment:
+        out["assessment"] |= {"total": rec.assessment.total, "rating": rec.assessment.rating}
+    if rec.kind == "reform":
+        out["evaluability"] = screen_all([r for r in records if r.kind == "reform"])[rec.id].as_dict()
     out["channels_explained"] = [CHANNEL_LABELS[c] for c in rec.channels]
     print(json.dumps(out, indent=2, ensure_ascii=False))
     return 0
@@ -188,15 +198,20 @@ def cmd_explorer(args) -> int:
     evals = load_evaluations(records, Path(args.evaluations) if args.evaluations else None)
     if evals.problems:
         print(f"{len(evals.problems)} problem(s) in the evaluations; run 'alicia validate'.", file=sys.stderr)
-    build_explorer(
-        records,
-        out,
-        dates_report=report,
-        standalone=args.standalone,
-        evaluations=evals.evaluations,
-        repo_base=args.repo_base,
-    )
+    build_explorer(records, out, dates_report=report, standalone=args.standalone, evaluations=evals.evaluations)
     print(f"Wrote {out}")
+    return 0
+
+
+def cmd_framework(args) -> int:
+    from .register.framework import markdown
+
+    text = markdown()
+    if args.output:
+        Path(args.output).write_text(text, encoding="utf-8")
+        print(f"Wrote {args.output}")
+    else:
+        print(text)
     return 0
 
 
@@ -384,18 +399,19 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("validate", help="check every register record").set_defaults(func=cmd_validate)
 
-    m = sub.add_parser("menu", help="list candidate changes with an evaluability screen")
+    m = sub.add_parser("menu", help="list register items with their framework marks")
     m.add_argument("--jurisdiction", choices=[j.lower() for j in JURISDICTIONS] + list(JURISDICTIONS))
     m.add_argument("--direction", choices=["enhancing", "weakening", "mixed", "unclear"])
     m.add_argument("--channel", choices=list(CHANNEL_LABELS))
     m.add_argument("--industry", help="ANZSIC code or prefix, e.g. 4623 or 46")
     m.add_argument("--family")
-    m.add_argument("--rating", choices=["high", "medium", "low", "not-yet"])
+    m.add_argument("--driver", choices=list(DRIVERS), help="main driver of productivity impact")
+    m.add_argument("--kind", choices=list(KINDS), help="reform, existing setting or non-legislative barrier")
     m.add_argument("--text", help="search titles and summaries")
     m.add_argument("--csv", action="store_true", help="CSV output")
     m.set_defaults(func=cmd_menu)
 
-    s = sub.add_parser("show", help="one record in full, with its evaluability screen")
+    s = sub.add_parser("show", help="one record in full, with its assessment (and, for reforms, evaluability screen)")
     s.add_argument("id")
     s.set_defaults(func=cmd_show)
 
@@ -408,16 +424,22 @@ def main(argv: list[str] | None = None) -> int:
     d.add_argument("--json", action="store_true")
     d.set_defaults(func=cmd_dates)
 
-    e = sub.add_parser("explorer", help="build the interactive menu explorer (one HTML file)")
+    e = sub.add_parser("explorer", help="build the legislation menu (one HTML file)")
     e.add_argument("-o", "--output", default="regulation-menu.html")
     e.add_argument("--dates", help="a report from 'alicia dates --all --json', to show register checks")
     e.add_argument("--standalone", action="store_true", help="wrap in a full HTML document for local viewing")
-    e.add_argument("--repo-base", default=None, help="URL that evaluation document paths are linked under")
     e.set_defaults(func=cmd_explorer)
 
-    si = sub.add_parser("site", help="build the website: legislation menu, growth and conditions pages")
+    fr = sub.add_parser("framework", help="the productivity impact framework as a methods note (Markdown)")
+    fr.add_argument("-o", "--output", help="file to write (default: print)")
+    fr.set_defaults(func=cmd_framework)
+
+    si = sub.add_parser("site", help="build the website: legislation menu, framework, archive, growth and conditions")
     si.add_argument(
-        "-o", "--output", default="site", help="directory to write index.html, growth.html, conditions.html"
+        "-o",
+        "--output",
+        default="site",
+        help="directory to write index.html, framework.html, archive.html, growth.html, conditions.html",
     )
     si.add_argument("--dates", help="a report from 'alicia dates --all --json', to show register checks")
     si.add_argument("--fragment", action="store_true", help="write page fragments instead of full HTML documents")
