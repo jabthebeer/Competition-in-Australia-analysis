@@ -61,10 +61,12 @@ FAMILY_LABELS = {
     "ndis-quality-safeguards": "NDIS Quality and Safeguards Commission",
     "non-compete-clauses": "Non-compete clause ban",
     "pharmacist-uti-prescribing": "Pharmacist UTI prescribing",
+    "payroll-tax": "Payroll tax",
     "pharmacy-regulation": "Pharmacy regulation",
     "planning-zoning": "Planning and zoning reform",
     "point-to-point-licensing": "Taxi and booked-hire licensing",
     "rd-tax-incentive": "R&D Tax Incentive",
+    "residential-transfer-duty": "Stamp duty on residential property",
     "retail-energy-price-deregulation": "Retail energy price deregulation",
     "retail-trading-hours": "Retail trading hours",
     "rideshare-legalisation": "Ride-share legalisation",
@@ -283,9 +285,10 @@ def build_archive(
 ) -> Path:
     """Write the archive to ``out``. With ``evaluation_pages``, also write one page per evaluation next to it
     (``evaluation-<id>.html``), which the archive opens on a double-click or from an "Open as a page" link.
-    Only reforms are shown: existing settings and non-legislative barriers were never part of the evaluations."""
+    Only reforms with an econometric comparison design are shown: the register as it was when the evaluations were
+    paused. Existing settings, non-legislative barriers and reforms added for the framework were never evaluated."""
     report = json.loads(dates_report.read_text("utf-8")) if dates_report and dates_report.exists() else None
-    records = [r for r in records if r.kind == "reform"]
+    records = [r for r in records if r.kind == "reform" and r.comparison]
     payload = build_payload(records, report, evaluations=evaluations, repo_base=repo_base)
     if evaluation_pages:
         payload["evalPages"] = True

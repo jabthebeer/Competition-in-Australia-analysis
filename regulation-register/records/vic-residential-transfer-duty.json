@@ -1,0 +1,93 @@
+{
+  "id": "vic-residential-transfer-duty",
+  "kind": "setting",
+  "family": "residential-transfer-duty",
+  "title": "Stamp duty on residential property transfers (Victoria)",
+  "jurisdiction": "VIC",
+  "summary": "Victoria charges transfer (stamp) duty on purchases of homes and residential land under the Duties Act 2000 (Vic), at rates that rise with the price. Buyers pay it up front each time a property changes hands.",
+  "instruments": [
+    {
+      "title": "Duties Act 2000 (Vic)",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "duty on transfers of residential land"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Duty on every purchase raises the cost of moving, so households move less often, including to take better jobs, and homes are less well matched to the people in them. Treasury estimates each extra dollar raised by conveyancing duty costs 72 cents in lost efficiency, among the highest of the taxes it studied.",
+  "direction_sources": [
+    "https://www.sro.vic.gov.au/land-transfer-duty",
+    "https://treasury.gov.au/sites/default/files/2019-03/TWP2015-01.pdf"
+  ],
+  "channels": [
+    "barriers",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "6711",
+      "name": "Residential Property Operators",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6720",
+      "name": "Real Estate Services",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3011",
+      "name": "House Construction",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. The Act is named on the revenue office's page; rates and concessions change often and are not recorded here."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4 of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "A tax on buying a home, paid every time property changes hands. It discourages people from moving, including for work, and is one of the least efficient taxes in Australia; a broad annual land tax raising the same revenue would cost far less.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "A transaction tax in the largest asset market, with an efficiency cost Treasury puts at 72 cents per extra dollar raised."
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Raises the cost of moving home, so fewer people move to take better jobs."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "high",
+    "confidence_note": null,
+    "evidence": [
+      "https://treasury.gov.au/sites/default/files/2019-03/TWP2015-01.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

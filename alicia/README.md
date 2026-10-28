@@ -1,10 +1,12 @@
 # ALICIA: Australian Legislation Impact on Competition Industry Analysis
 
-A public-data toolkit for evaluating how Australian legislation and regulation affect competition (the Python package and command are `alicia`; it was called `regimpact`, then `alcia` (ALCIA), until 18 October 2026). It is part of the econometric foundation scoped in [`docs/econometric_foundation_scoping.md`](../docs/econometric_foundation_scoping.md). The evaluation design it serves is [`docs/impact_evaluation_design.md`](../docs/impact_evaluation_design.md).
+A public-data toolkit for assessing how Australian legislation, regulatory settings and other barriers affect productivity and competition (the Python package and command are `alicia`; it was called `regimpact`, then `alcia` (ALCIA), until 18 October 2026). Every item in the register is marked against the [productivity impact framework](../docs/productivity_framework.md). The econometric foundation it was first built for ([scoping note](../docs/econometric_foundation_scoping.md), [evaluation design](../docs/impact_evaluation_design.md)) is archived.
 
 > Unofficial research tooling. Not an Australian Government product.
 
-## Status (22 October 2026)
+## Status (28 October 2026)
+
+**Productivity framework (28 October 2026, E-85 to E-88).** The legislation menu now assesses every register item against a productivity impact framework: eight drivers of productivity, each marked from −2 to +2, with an overall mark, a main driver, a reach and a confidence rating (`src/alicia/register/framework.py`; [methods note](../docs/productivity_framework.md)). All 198 items are assessed (drafts): 171 reforms, 20 existing settings and 7 non-legislative barriers. The menu shows each item's assessment beside summary statistics for its industries; the econometric sections moved, unchanged, to the econometric archive (`archive.html` and the evaluation pages). The register review and the candidates still to add are in [`register_review_framework.md`](../docs/register_review_framework.md).
 
 **Change of direction (22 October 2026, E-75).** Retrospective evaluation is paused. The register and its hypotheses stay and become part of the product. The next build is a **Policy costing** tab on the website: a regulatory burden costing under the OIA framework, and a productivity and competition costing that turns a policy brief into productivity and GDP effects by channel, with ranges and sources ([plan](../docs/forward_plan_policy_costing.md)). Parked: a literature review for each register record ([P-1](../docs/parked_items.md)). Plan approved 22 October 2026 (E-77). **P0–P3 done**:<br>• the policy brief schema;<br>• the Policy costing tab on the website;<br>• the costing parameters (`alicia costing-params`, 16 sources, refreshed daily; [data dictionary](../docs/costing_parameters.md));<br>• the evidence library.
 
@@ -12,11 +14,13 @@ The table below is the state of the retrospective work when it was paused.
 
 | Part | What it does | Status |
 |---|---|---|
-| Register of changes | One validated record per regulatory change per jurisdiction, in [`regulation-register/`](../regulation-register/) | 171 draft records (102 added from the [gap scan](../docs/legislation_gap_scan.md)), none reviewed yet |
+| Productivity framework | Eight drivers, a −2 to +2 marking guide, bands, main driver, reach, confidence, overlap rules (`register/framework.py`); the website's Framework page; `alicia framework` writes the methods note | Done (v1.0, 28 Oct 2026) |
+| Register of changes | One validated record per reform, existing setting or non-legislative barrier per jurisdiction, each with its framework assessment, in [`regulation-register/`](../regulation-register/) | 198 draft records (102 from the [gap scan](../docs/legislation_gap_scan.md), 27 from the [framework review](../docs/register_review_framework.md)), none reviewed yet; review sheet `docs/review/framework_assessments_review.csv` |
 | Effective-date gatherer | Reads assent, commencement and version dates from the legislation registers and checks each record's effective date against them | Commonwealth, Qld, Tas, ACT, WA and NT automated; Victoria version dates only; NSW and SA blocked (sourced dates only) |
 | Timing | Maps a commencement onto financial years and quarters, with the partly exposed first period | Done |
 | Evaluability screen | Rates each change high, medium or low for public-data evaluation, with reasons | Done (rules stated in `menu/screen.py`) |
-| Menu explorer | One interactive HTML page: search and filters (including **Evaluated**), list, adoption timeline, record details, and a **Results** view. Each evaluation opens with plain-language **key insights**, then **in depth**: what was done, the econometric model (equations, terms, estimand, identifying assumption, inference), estimated effects and year-by-year charts. Each evaluation also has its own full-width page (`evaluation-<id>.html`), opened by double-clicking it or from its "Open as a page" link | Done |
+| Legislation menu | One interactive HTML page (`menu/explorer.py`): what weighs on productivity by main driver; filters by main driver, overall mark, kind, jurisdiction, reach, status and industry; list, scorecard and timeline; each item's assessment, then summary statistics for its industries (`menu/industry.py`) and its sources | Done (28 Oct 2026) |
+| Econometric archive | The previous menu, unchanged (`menu/archive.py`, `archive.html`): search and filters (including **Evaluated**), list, adoption timeline, record details, and a **Results** view. Each evaluation opens with plain-language **key insights**, then **in depth**: what was done, the econometric model (equations, terms, estimand, identifying assumption, inference), estimated effects and year-by-year charts. Each evaluation also has its own full-width page (`evaluation-<id>.html`), opened by double-clicking it or from its "Open as a page" link | Done |
 | Evaluation results | One validated file per evaluation in [`regulation-register/evaluations/`](../regulation-register/evaluations/), written from the analysis outputs by each analysis's builder script and checked against them by the tests | 20 evaluations covering 34 records: 12 current, 8 archived (superseded by the Phase 5 re-evaluations, kept and shown in a folded section). The menu lists evaluations newest first. Every current evaluation has regression tables in the academic layout, on its page and in [`econometric_tables.md`](../docs/econometric_tables.md) and [`.tex`](../docs/econometric_tables.tex) (`alicia tables`) |
 | Outcome panels | CABEE entry and exit by ANZSIC class, state and size (2007-08 to 2024-25, 15 releases stitched); CPI by capital city (ABS Data API); state retail output and pay per worker | Done |
 | Data pipeline | Connectors that write one common panel format, sorted by ANZSIC code and place: Retail Trade (monthly, class or subgroup × state), Labour Force EQ06 (employment and hours, group × state, quarterly), Data by Region (division × SA2 and LGA), ABN Bulk Extract and ASIC registers (monthly, postcode, industry inferred from names), City of Melbourne CLUE (class × small area), postcode-to-ASGS concordance; a coverage catalogue that matches every record to the finest data available ([feasibility note](../docs/data_pipeline_feasibility.md)) | Built; Internet Vacancy Index is a parser for hand-downloaded files (site not reachable here) |
@@ -60,8 +64,9 @@ uv run python analyses/childcare_nqf_wa/paths.py          # display paths, then 
 ## Commands
 
 ```bash
-uv run alicia validate                    # check every register record (schema, ANZSIC codes and names, CPI classes) and evaluation
-uv run alicia menu                        # list changes with their evaluability rating
+uv run alicia validate                    # check every register record (schema, framework assessment, ANZSIC codes and names, CPI classes) and evaluation
+uv run alicia menu                        # list items with their overall mark and main driver
+uv run alicia menu --driver labour --kind setting   # filter by main driver and kind of item
 uv run alicia menu --jurisdiction nsw --direction weakening
 uv run alicia menu --industry 4623        # ANZSIC code or prefix
 uv run alicia show nsw-rideshare-2015     # one record in full, with its screen
@@ -71,7 +76,10 @@ uv run alicia dates --all --json > ../regulation-register/reports/effective_date
 uv run alicia dates --all --offline       # sourced dates and timing only, no network
 uv run alicia explorer -o menu.html --dates ../regulation-register/reports/effective_dates_2026-10-15.json
 uv run alicia explorer -o menu.html --standalone   # full HTML document for opening locally
-uv run alicia site -o ../site --dates ../regulation-register/reports/effective_dates_2026-10-15.json   # menu + growth + conditions pages
+uv run alicia site -o ../site --dates ../regulation-register/reports/effective_dates_2026-10-15.json   # menu, framework, archive, growth and conditions pages
+uv run alicia framework -o ../docs/productivity_framework.md   # the framework as a methods note (a test keeps it in sync)
+uv run python scripts/assessment_sheet.py   # review sheet of every assessment (--check validates a completed one)
+uv run python scripts/register_summary.py   # tables of the register by main driver, band, kind and reach
 uv run alicia methods -o ../docs/evaluation_methods.md   # key insights and methods of every evaluation, as Markdown
 uv run alicia pipeline build              # build every outcome panel (downloads ~1.5 GB on first run, mostly the ABN extract)
 uv run alicia pipeline build abs_lfs asic  # or named sources; see BUILDERS in cli.py
@@ -118,10 +126,13 @@ Requests carry a descriptive User-Agent, are spaced per host, are retried on tim
 ```
 alicia/
   src/alicia/
-    register/      schema.py (record model), catalogue.py (load, filter, families), evaluation.py (results model)
+    register/      schema.py (record and assessment model), framework.py (the productivity impact framework),
+                   catalogue.py (load, filter, families), evaluation.py (results model)
     legislation/   frl.py (Commonwealth), states.py (states and territories), gather.py (reconcile),
                    adapters.py (routing), http.py (polite fetching), cache.py, text.py (dates, Word tables)
-    menu/          screen.py (evaluability), explorer.py + templates/explorer.html (the menu page),
+    menu/          explorer.py + templates/explorer.html (the legislation menu), industry.py (industry statistics),
+                   framework.py + templates/framework.html (the Framework page), archive.py + templates/archive.html
+                   (the econometric archive and evaluation pages), screen.py (evaluability, archive only),
                    growth.py + templates/growth.html, conditions.html, site.css, charts.js (summary pages, `alicia site`),
                    xlsx.js (their Excel export), competition.py (barriers-to-entry and profitability data for those pages)
     outcomes/      cabee.py (entries and exits), abs_series.py (ABS workbooks, CPI Data API), productivity.py
@@ -151,7 +162,7 @@ alicia/
 
 - **No invented data.** Every date in a record has a source URL. Test records are labelled illustrative.
 - **Draft until reviewed.** Records from desk research stay `draft` until a person has checked them.
-- **Hypotheses, not findings.** The direction (enhancing or weakening) is what the evaluation tests.
+- **Hypotheses, not findings.** The direction (enhancing or weakening) and the framework marks are judgements about likely effects, not estimates or findings.
 - **Public data only.** No BLADE microdata, and no confidential proposals in the register.
 
 Decisions are logged in [`DECISIONS.md`](DECISIONS.md).

@@ -1,0 +1,77 @@
+{
+  "id": "vic-payroll-tax",
+  "kind": "setting",
+  "family": "payroll-tax",
+  "title": "Payroll tax (Victoria)",
+  "jurisdiction": "VIC",
+  "summary": "Victoria taxes employers' wages above a tax-free threshold under the Payroll Tax Act 2007 (Vic). Small employers pay nothing; a firm that grows past the threshold starts paying, and exemptions for some employers narrow the base.",
+  "instruments": [
+    {
+      "title": "Payroll Tax Act 2007 (Vic)",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": null
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "A tax-free threshold works as a tax on growing past it: firms have an incentive to stay below it or to split. e61 found firms bunching just below South Australia's threshold. Exemptions favour some employers over others.",
+  "direction_sources": [
+    "https://www.sro.vic.gov.au/payroll-tax",
+    "https://e61.in/wp-content/uploads/2024/08/A_Counterproductive_Tax_Cut_.pdf"
+  ],
+  "channels": [
+    "barriers",
+    "ability-incentive"
+  ],
+  "industries": [],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. Thresholds and rates change often and are not recorded here."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4 of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "A tax on wages above a tax-free threshold. The threshold makes it a tax on growing past a certain size, and exemptions narrow the base; a broad, flat payroll tax would distort less.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "The threshold is a tax on growing past it, which can hold firms below it."
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Thresholds and exemptions make the tax fall unevenly across employers, distorting hiring and firm size."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "Evidence on bunching is mixed: e61 found strong bunching at South Australia's threshold; Treasury found little at most states' thresholds before 2015.",
+    "evidence": [
+      "https://e61.in/wp-content/uploads/2024/08/A_Counterproductive_Tax_Cut_.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

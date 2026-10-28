@@ -1,0 +1,77 @@
+{
+  "id": "cth-domestic-airline-duopoly",
+  "kind": "barrier",
+  "family": null,
+  "title": "Domestic airline duopoly",
+  "jurisdiction": "CTH",
+  "summary": "Two airline groups, Qantas (with Jetstar) and Virgin Australia, carry about 98% of domestic passengers after Bonza collapsed and Rex left capital-city routes in 2024. The ACCC has linked reduced domestic competition to the groups' significant earnings.",
+  "instruments": [],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "With two groups left, there is little pressure on fares, and slots at congested airports, aircraft and scale make entry hard.",
+  "direction_sources": [
+    "https://www.accc.gov.au/media-release/strong-demand-and-reduced-domestic-competition-have-contributed-to-significant-earnings-for-qantas-group-and-virgin-australia"
+  ],
+  "channels": [
+    "prices-market-share",
+    "barriers"
+  ],
+  "industries": [
+    {
+      "anzsic": "4900",
+      "name": "Air and Space Transport",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "5220",
+      "name": "Airport Operations and Other Air Transport Support Services",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "A market structure, not a law: no dates. ACCC pages refuse automated requests; the findings are from search excerpts of the ACCC's report and press coverage, not read in full. The 98% share is from the ACCC's 2025 domestic airline competition reporting."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4 of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Two airline groups carry almost all domestic passengers, after two challengers failed in 2024. Fares face little competitive pressure, and new entrants struggle to get slots and scale.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -2,
+        "reason": "Two groups carry about 98% of domestic passengers."
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Airport slots, aircraft and scale make entry hard; two entrants failed in 2024."
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "narrow",
+    "confidence": "high",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

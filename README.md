@@ -3,25 +3,37 @@ A series of econometric analyses for competition in Australia, aiming to ultimat
 
 ## Browse the ALICIA legislation menu
 
-The menu explorer is one HTML page built from the register. Use it to search the 69 changes, filter for **Evaluated** ones and open the **Results** tab for each evaluation's estimated effects and charts.
+The legislation menu is a register of what shapes competition and productivity in Australia: reforms (passed or proposed), existing regulatory settings and non-legislative barriers. Every item is marked against the [ALICIA productivity framework](docs/productivity_framework.md) on eight drivers of productivity, and shown with summary statistics for the industries it affects. Filter by **main driver** to see what weighs on productivity.
 
-- **On GitHub Pages:** <https://jabthebeer.github.io/Competition-in-Australia-analysis/>
+- **On GitHub Pages:** <https://jabthebeer.github.io/Competition-in-Australia-analysis/> (the menu, the Framework page, the State and industry growth and Economic conditions pages, the Policy costing tab, and the econometric archive)
   - It is published by `.github/workflows/menu-explorer-pages.yml` on every push to `main`.
   - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-- **Locally:** `cd alicia && uv run alicia explorer --standalone -o menu.html`, then open `menu.html` in a browser.
+- **Locally:** `cd alicia && uv run alicia explorer --standalone -o menu.html`, then open `menu.html` in a browser; `uv run alicia site -o ../site` builds every page.
 
-## Current priority (22 October 2026)
+## Current priority (28 October 2026)
 
-Forward-looking costing of prospective policies: a new interactive **Policy costing** tab on the ALICIA website, with a regulatory burden costing (OIA *Regulatory Burden Measurement Framework*) and a productivity and competition costing. Plan: [`docs/forward_plan_policy_costing.md`](docs/forward_plan_policy_costing.md). Validation (P6): [PC shock chains and external anchors](docs/costing_validation.md), [re-costings of published Impact Analyses](docs/rbm_recostings.md) and [five worked examples of real policies](docs/worked_examples.md). The retrospective evaluations are paused (`alicia/DECISIONS.md` E-75); parked items are in [`docs/parked_items.md`](docs/parked_items.md).
+**A productivity framework applied to legislation, settings and barriers** (owner decision, `alicia/DECISIONS.md` E-85 to E-88):
+
+1. **Framework** (done): eight drivers of productivity, each marked from −2 to +2 ([methods note](docs/productivity_framework.md); the website's Framework page).
+2. **Assessment of the register** (done): all records assessed; the menu's econometric sections are replaced by the assessments and industry statistics. The econometric evaluations are archived on the site, unchanged.
+3. **Review of the register** (done): [`docs/register_review_framework.md`](docs/register_review_framework.md). The reforms were chosen for evaluability and are a skewed sample.
+4. **Additions** (first tranche done, 27 items: stamp duty, payroll tax, trade and foreign investment settings, and concentrated markets and other barriers); the review lists further candidates in priority order.
+
+Every assessment is a draft until checked by a person: the review sheet is [`docs/review/framework_assessments_review.csv`](docs/review/framework_assessments_review.csv). The Policy costing tab ([plan](docs/forward_plan_policy_costing.md)) quantifies what the framework marks. The retrospective evaluations were paused on 22 October 2026 (E-75); parked items are in [`docs/parked_items.md`](docs/parked_items.md).
 
 ## Projects
 
 - [`regulatory-burden-tool/`](regulatory-burden-tool/): an unofficial calculator for regulatory burden under the OIA Regulatory Burden Measurement framework, with reform (remove-and-replace) comparisons and analysis-ready exports for competition and business-dynamism research.
-- [`alicia/`](alicia/): **ALICIA**, Australian Legislation Impact on Competition Industry Analysis: a public-data toolkit for evaluating how legislation affects competition. It has a register of changes, an effective-date gatherer that checks the legislation registers, an evaluability screen, a menu explorer that shows evaluated changes and their results, and the analyses behind those results.
-- [`regulation-register/`](regulation-register/): the register itself, with one record per regulatory change per jurisdiction, and dated reports from the date checks.
+- [`alicia/`](alicia/): **ALICIA**, Australian Legislation Impact on Competition Industry Analysis: a public-data toolkit for assessing how legislation, regulatory settings and other barriers affect productivity and competition. It holds the productivity framework, the register and its validation, an effective-date gatherer that checks the legislation registers, the website (legislation menu, framework, growth and conditions pages, econometric archive) and the archived econometric analyses.
+- [`regulation-register/`](regulation-register/): the register itself, with one record per reform, setting or barrier per jurisdiction, each with its framework assessment, and dated reports from the date checks.
 - **Barriers to entry and profitability** (on the ALICIA website's State and industry growth and Economic conditions pages): Grattan Institute's 2017 *Competition in Australia* charts recreated from public data (ABS business counts, ATO company tax statistics, RBA). Each chart downloads as an Excel workbook with the chart, its numbers and its sources. Methods and results: [`docs/methods_competition_charts.md`](docs/methods_competition_charts.md).
 
 ## Planning
+
+- [`docs/productivity_framework.md`](docs/productivity_framework.md): the productivity impact framework (version 1.0, 28 October 2026), written by `alicia framework` from the same definition the website uses.
+- [`docs/register_review_framework.md`](docs/register_review_framework.md): the register reviewed under the framework, the items added, and candidates to add next (28 October 2026).
+
+Archived econometric work (paused 22 October 2026; the results stay published in the site's econometric archive):
 
 - [`docs/econometric_foundation_scoping.md`](docs/econometric_foundation_scoping.md): scoping note (14 October 2026) for an econometric foundation that links regulatory changes and their compliance costs to competition, business dynamism and innovation outcomes. Decisions taken 14 October 2026 (`alicia/DECISIONS.md`, E-01 to E-07).
 - [`docs/impact_evaluation_design.md`](docs/impact_evaluation_design.md): how each change will be evaluated against entry and exit, productivity, real prices and wages (draft, 15 October 2026).
