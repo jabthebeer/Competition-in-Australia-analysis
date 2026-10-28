@@ -12,7 +12,7 @@ The legislation menu is a register of what shapes competition and productivity i
 
 ## Current priority (28 October 2026)
 
-**A productivity framework applied to legislation, settings and barriers** (owner decision, `alicia/DECISIONS.md` E-87 to E-91):
+**A productivity framework applied to legislation, settings and barriers** (owner decision, `alicia/DECISIONS.md` E-87 to E-90 and E-92):
 
 1. **Framework** (done): eight drivers of productivity, each marked from −2 to +2 ([methods note](docs/productivity_framework.md); the website's Framework page).
 2. **Assessment of the register** (done): all records assessed; the menu's econometric sections are replaced by the assessments and industry statistics. The econometric evaluations are archived on the site, unchanged.
