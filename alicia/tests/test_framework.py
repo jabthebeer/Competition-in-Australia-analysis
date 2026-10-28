@@ -59,6 +59,17 @@ def test_every_driver_has_a_question_evidence_a_full_marking_guide_and_costing_c
     assert {p for p in fw.PILLARS} == {d["pillar"] for d in fw.DRIVERS.values()}
 
 
+def test_the_plain_language_content_is_complete():
+    for key, d in fw.DRIVERS.items():
+        assert d["plain"].endswith("."), key
+        assert set(d["marks_short"]) == set(d["marks"]), key
+    assert len({c["key"] for c in fw.CONCEPTS}) == len(fw.CONCEPTS)
+    assert all(c["plain"] and c["detail"] for c in fw.CONCEPTS)
+    assert all(s in fw.SOURCES for x in fw.SIGNS for s in x["sources"])
+    assert len(fw.STEP_TITLES) == len(fw.STEPS) and len(fw.CAVEAT_TITLES) == len(fw.CAVEATS)
+    assert all(set(o["under"]) <= set(fw.DRIVERS) for o in fw.OVERLAP_TABLE)
+
+
 @pytest.mark.parametrize(
     ("total", "band"),
     [

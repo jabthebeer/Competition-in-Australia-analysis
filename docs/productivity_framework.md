@@ -4,6 +4,20 @@
 
 A short, consistent way to judge how a law, a regulatory setting or another barrier is likely to affect productivity and competition in Australia. Every item in the legislation menu is marked against it.
 
+## Key ideas
+
+| Idea | In plain words |
+|---|---|
+| Labour productivity | How much the economy produces for each hour people work. |
+| Capital deepening | Giving each worker more and better tools: machines, buildings, vehicles and software. |
+| Multifactor productivity | Getting more out of the same workers and tools. |
+| Dynamic efficiency | Finding, and spreading, better products and ways of working. |
+| Productive efficiency | Making things at the lowest possible cost. |
+| Allocative efficiency | Getting workers and money to the jobs and businesses where they are worth most. |
+| Competition | Rivals pushing each other to offer better prices, quality and service. |
+| Business dynamism | The turnover of firms: new ones starting and growing, weak ones shrinking and closing. |
+| Mark-up | How far prices sit above the cost of making one more unit. |
+
 ## How productivity grows
 
 - Output per hour worked grows in two ways: workers get more and better capital to work with (capital deepening), and the economy gets more out of the capital and labour it has (multifactor productivity).
@@ -17,6 +31,8 @@ Sources: [Productivity Commission (2023), Advancing Prosperity: 5-year Productiv
 ### Competition and dynamism: Who gets to compete, and how hard?
 
 #### Entry, exit and scale-up (`entry-exit`)
+
+**In plain words.** How easy it is to start a business, grow it, or close it.
 
 **Question.** Does it change how easily new firms can start, small firms can grow and failing firms can close?
 
@@ -35,6 +51,8 @@ Policy costing channels: C4, C5.
 
 #### Competitive pressure (`competition`)
 
+**In plain words.** How hard businesses have to work to win customers from each other.
+
 **Question.** Does it change how hard existing firms must compete on price, quality and service?
 
 **Why it matters.** Rivalry pushes firms to cut costs, improve and pass gains on. Mark-ups in Australia rose from about 1.18 to 1.25 between the mid-2000s and mid-2010s, and the RBA estimates productivity would be 1 to 3% higher with the competition of the mid-2000s. ([Hambur and Freestone (2025), RBA Research Discussion Paper 2025-05 (mark-ups and misallocation)](https://www.rba.gov.au/publications/rdp/2025/2025-05.html); [OECD (2019), Competition Assessment Toolkit: Principles, version 4.0](https://www.oecd.org/en/publications/competition-assessment-toolkit-principles-version-4-0-volume-i_5f9fa6ca-en.html))
@@ -51,6 +69,8 @@ Policy costing channels: C4, C5.
 Policy costing channels: C6, C7.
 
 #### Trade and market integration (`market-integration`)
+
+**In plain words.** How far businesses can sell across state lines and borders, and how open markets are to rivals from elsewhere.
 
 **Question.** Does it change how large a market firms can serve, and how open it is to rivals from other states and countries?
 
@@ -71,6 +91,8 @@ Policy costing channels: C10.
 
 #### Capital deepening (`capital`)
 
+**In plain words.** How much businesses invest in machines, buildings, software and other tools.
+
 **Question.** Does it change firms' incentive or ability to invest in equipment, buildings, software and other capital?
 
 **Why it matters.** Workers produce more with more and better capital. Non-mining business investment has fallen by about 3 percentage points of GDP since the global financial crisis; the Productivity Commission estimates its company tax package would lift investment by 2.2% and labour productivity by 0.5%. ([Productivity Commission (2025), Creating a more dynamic and resilient economy, inquiry report](https://www.pc.gov.au/inquiries-and-research/resilient-economy/report/); [Hambur and Andrews (2023), Doing less, with less: capital misallocation, investment and the productivity slowdown in Australia, RBA Research Discussion Paper 2023-03](https://www.rba.gov.au/publications/rdp/2023/2023-03.html))
@@ -87,6 +109,8 @@ Policy costing channels: C10.
 Policy costing channels: C3, C2.
 
 #### Labour mobility and skills (`labour`)
+
+**In plain words.** How easily people can move to better jobs, and build their skills.
 
 **Question.** Does it change workers' ability to move to more productive jobs, firms and places, or to gain skills?
 
@@ -107,6 +131,8 @@ Policy costing channels: C8.
 
 #### Regulatory burden (`burden`)
 
+**In plain words.** The time and money businesses spend following rules and waiting for approvals.
+
 **Question.** Does it change the time and money firms spend complying with rules, including waiting for decisions?
 
 **Why it matters.** Staff time and spending on compliance produce no measured output. The Productivity Commission puts the compliance and delay costs of Australian Government regulation at about $115 to $160 billion a year, and recommends cutting them by $10 billion by 2030. ([Productivity Commission (2025), Creating a more dynamic and resilient economy, inquiry report](https://www.pc.gov.au/inquiries-and-research/resilient-economy/report/); [Office of Impact Analysis, Regulatory Burden Measurement Framework](https://oia.pmc.gov.au/resources/regulatory-burden-measurement-framework))
@@ -124,6 +150,8 @@ Policy costing channels: C1, C2.
 
 #### Innovation and technology diffusion (`innovation`)
 
+**In plain words.** How free, and how keen, businesses are to try new products, technology and ways of working.
+
 **Question.** Does it change incentives and freedom to develop new products, adopt better technology or try new business models?
 
 **Why it matters.** Most Australian firms sit well below the productivity frontier, and the spread of better methods from leading firms to the rest has slowed. Rules written around one technology or business model can lock out better ones. ([Productivity Commission (2023), Advancing Prosperity, Vol. 5: Innovation for the 98%](https://assets.pc.gov.au/inquiries/completed/productivity/report/productivity-volume5-innovation-diffusion.pdf); [Andrews, Hambur, Hansell and Wheeler (2022), Reaching for the stars: Australian firms and the global productivity frontier, Treasury Working Paper 2022-01](https://treasury.gov.au/sites/default/files/2022-02/p2022-243535.pdf))
@@ -140,6 +168,8 @@ Policy costing channels: C1, C2.
 Policy costing channels: C9.
 
 #### Price and tax signals (`prices-taxes`)
+
+**In plain words.** Whether prices reflect real costs, so that money and effort go where they are worth most.
 
 **Question.** Does it change whether prices reflect costs, so that resources go where they are most valued?
 

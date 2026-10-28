@@ -55,6 +55,7 @@ DRIVERS: dict[str, dict] = {
     "entry-exit": {
         "label": "Entry, exit and scale-up",
         "short": "Entry and exit",
+        "plain": "How easy it is to start a business, grow it, or close it.",
         "pillar": "dynamism",
         "question": "Does it change how easily new firms can start, small firms can grow and failing firms can close?",
         "why": (
@@ -76,11 +77,18 @@ DRIVERS: dict[str, dict] = {
             -1: "Adds a cost, condition or delay for new or growing firms",
             -2: "Creates or entrenches a cap, exclusive right, moratorium or ban on entry",
         },
+        "marks_short": {
+            2: "Removes a ban or cap on entry",
+            1: "Makes starting or growing cheaper or quicker",
+            -1: "Adds cost or delay for new or growing firms",
+            -2: "Bans or caps entry, or grants an exclusive right",
+        },
         "channels": ("C4", "C5"),
     },
     "competition": {
         "label": "Competitive pressure",
         "short": "Competition",
+        "plain": "How hard businesses have to work to win customers from each other.",
         "pillar": "dynamism",
         "question": "Does it change how hard existing firms must compete on price, quality and service?",
         "why": (
@@ -102,11 +110,21 @@ DRIVERS: dict[str, dict] = {
             -1: "Dampens rivalry: limits on conduct, coordination made easier, shelter from competition law",
             -2: "Shields incumbents from competition: a statutory monopoly, cartel-like price setting",
         },
+        "marks_short": {
+            2: "Opens a closed market to strong rivalry",
+            1: "Makes rivalry a little stronger",
+            -1: "Softens rivalry",
+            -2: "Protects a monopoly or cartel",
+        },
         "channels": ("C6", "C7"),
     },
     "market-integration": {
         "label": "Trade and market integration",
         "short": "Market integration",
+        "plain": (
+            "How far businesses can sell across state lines and borders, and how open markets are to rivals from "
+            "elsewhere."
+        ),
         "pillar": "dynamism",
         "question": (
             "Does it change how large a market firms can serve, and how open it is to rivals from other states and "
@@ -130,11 +148,18 @@ DRIVERS: dict[str, dict] = {
             -1: "Adds a jurisdiction-specific rule, or a restriction on imports or foreign investment",
             -2: "Closes a market to interstate or foreign competitors",
         },
+        "marks_short": {
+            2: "Removes a major barrier between states or countries",
+            1: "Lines up rules across states",
+            -1: "Adds a local rule or an import limit",
+            -2: "Shuts out interstate or foreign rivals",
+        },
         "channels": ("C10",),
     },
     "capital": {
         "label": "Capital deepening",
         "short": "Capital",
+        "plain": "How much businesses invest in machines, buildings, software and other tools.",
         "pillar": "inputs",
         "question": (
             "Does it change firms' incentive or ability to invest in equipment, buildings, software and other capital?"
@@ -157,11 +182,18 @@ DRIVERS: dict[str, dict] = {
             -1: "Raises the cost, risk or delay of investing",
             -2: "A major deterrent to investment: a large new tax on capital, expropriation risk, open-ended delays",
         },
+        "marks_short": {
+            2: "Raises the return to investing in many industries",
+            1: "Makes investing cheaper, quicker or safer",
+            -1: "Makes investing costlier, slower or riskier",
+            -2: "Strongly deters investment",
+        },
         "channels": ("C3", "C2"),
     },
     "labour": {
         "label": "Labour mobility and skills",
         "short": "Labour and skills",
+        "plain": "How easily people can move to better jobs, and build their skills.",
         "pillar": "inputs",
         "question": (
             "Does it change workers' ability to move to more productive jobs, firms and places, or to gain skills?"
@@ -185,11 +217,18 @@ DRIVERS: dict[str, dict] = {
             -1: "Adds a restriction or cost to moving jobs, or narrows the pool of workers firms can hire",
             -2: "Locks large numbers of workers out of occupations or jobs",
         },
+        "marks_short": {
+            2: "Frees many workers to move",
+            1: "Eases moves or builds skills",
+            -1: "Makes moving jobs harder",
+            -2: "Locks many workers out of jobs",
+        },
         "channels": ("C8",),
     },
     "burden": {
         "label": "Regulatory burden",
         "short": "Regulatory burden",
+        "plain": "The time and money businesses spend following rules and waiting for approvals.",
         "pillar": "efficiency",
         "question": (
             "Does it change the time and money firms spend complying with rules, including waiting for decisions?"
@@ -212,11 +251,18 @@ DRIVERS: dict[str, dict] = {
             -1: "Adds compliance or delay costs",
             -2: "Large new compliance or delay costs: a material share of revenue, or delays of years",
         },
+        "marks_short": {
+            2: "Removes a large compliance load",
+            1: "Cuts paperwork or waiting",
+            -1: "Adds paperwork or waiting",
+            -2: "Adds heavy costs or years of delay",
+        },
         "channels": ("C1", "C2"),
     },
     "innovation": {
         "label": "Innovation and technology diffusion",
         "short": "Innovation",
+        "plain": "How free, and how keen, businesses are to try new products, technology and ways of working.",
         "pillar": "efficiency",
         "question": (
             "Does it change incentives and freedom to develop new products, adopt better technology or try new "
@@ -240,11 +286,18 @@ DRIVERS: dict[str, dict] = {
             -1: "Locks in incumbent technology, or adds approval hurdles for new products",
             -2: "Bans a new technology or business model",
         },
+        "marks_short": {
+            2: "Legalises a new technology or business model",
+            1: "Helps firms adopt better technology",
+            -1: "Favours old technology or adds hurdles",
+            -2: "Bans a new technology or business model",
+        },
         "channels": ("C9",),
     },
     "prices-taxes": {
         "label": "Price and tax signals",
         "short": "Prices and taxes",
+        "plain": "Whether prices reflect real costs, so that money and effort go where they are worth most.",
         "pillar": "efficiency",
         "question": "Does it change whether prices reflect costs, so that resources go where they are most valued?",
         "why": (
@@ -264,6 +317,12 @@ DRIVERS: dict[str, dict] = {
             1: "Moves prices closer to costs",
             -1: "Adds a modest distortion: a levy, a targeted subsidy, a cap or floor that binds",
             -2: "A large distortion in a major market: transaction taxes on property, binding price controls",
+        },
+        "marks_short": {
+            2: "Swaps a distorting tax or price control for an efficient one",
+            1: "Moves prices closer to costs",
+            -1: "Adds a modest distortion",
+            -2: "Badly distorts a major market",
         },
         "channels": ("C11",),
     },
@@ -431,6 +490,167 @@ LOGIC: tuple[str, ...] = (
 )
 LOGIC_SOURCES: tuple[str, ...] = ("pc2023", "pc2025", "oia_comp", "andrews2022", "andrews_hansell", "hf2025")
 
+# The key ideas behind the drivers, in plain words (the Framework page's table and the methods note). Each detail
+# restates LOGIC or a driver's evidence; nothing here is a new claim.
+CONCEPTS: tuple[dict, ...] = (
+    {
+        "key": "productivity",
+        "label": "Labour productivity",
+        "plain": "How much the economy produces for each hour people work.",
+        "detail": "Output per hour worked. It grows in two ways: capital deepening and multifactor productivity.",
+    },
+    {
+        "key": "capital-deepening",
+        "label": "Capital deepening",
+        "plain": "Giving each worker more and better tools: machines, buildings, vehicles and software.",
+        "detail": "One of the two ways output per hour grows: workers get more and better capital to work with.",
+    },
+    {
+        "key": "mfp",
+        "label": "Multifactor productivity",
+        "plain": "Getting more out of the same workers and tools.",
+        "detail": (
+            "The other way output per hour grows: the economy gets more out of the capital and labour it has. It "
+            "rises through the three kinds of efficiency below."
+        ),
+    },
+    {
+        "key": "dynamic",
+        "label": "Dynamic efficiency",
+        "plain": "Finding, and spreading, better products and ways of working.",
+        "detail": (
+            "Firms innovate and adopt better methods. The Office of Impact Analysis uses this term, with productive "
+            "and allocative efficiency."
+        ),
+    },
+    {
+        "key": "productive",
+        "label": "Productive efficiency",
+        "plain": "Making things at the lowest possible cost.",
+        "detail": (
+            "Firms produce at least cost. Staff time and spending on compliance, and waiting for decisions, produce "
+            "no measured output."
+        ),
+    },
+    {
+        "key": "allocative",
+        "label": "Allocative efficiency",
+        "plain": "Getting workers and money to the jobs and businesses where they are worth most.",
+        "detail": (
+            "Workers and capital move to the firms and uses where they are worth most. Prices that reflect costs "
+            "guide them there."
+        ),
+    },
+    {
+        "key": "competition",
+        "label": "Competition",
+        "plain": "Rivals pushing each other to offer better prices, quality and service.",
+        "detail": (
+            "Competition drives all three kinds of efficiency: new firms entering and weak ones leaving, rivalry "
+            "among incumbents and open markets push firms to improve and move resources to the best of them."
+        ),
+    },
+    {
+        "key": "dynamism",
+        "label": "Business dynamism",
+        "plain": "The turnover of firms: new ones starting and growing, weak ones shrinking and closing.",
+        "detail": (
+            "New firms bring new products and methods, and push incumbents to keep up. Australia's business entry "
+            "rate fell from 14.5% to 11.5% between 2004 and 2016."
+        ),
+    },
+    {
+        "key": "markup",
+        "label": "Mark-up",
+        "plain": "How far prices sit above the cost of making one more unit.",
+        "detail": (
+            "Firms facing weaker competition can charge more over cost. Mark-ups in Australia rose from about 1.18 "
+            "to 1.25 between the mid-2000s and mid-2010s."
+        ),
+    },
+)
+
+# Signs that competition and dynamism have weakened in Australia: the figures in the drivers' evidence.
+SIGNS: tuple[dict, ...] = (
+    {
+        "key": "entry",
+        "label": "Fewer new firms",
+        "figure": "14.5% → 11.5%",
+        "plain": "Business entry rate, 2004 to 2016",
+        "detail": (
+            "The fall explains about three quarters of the slowdown in how fast firms catch up to the most "
+            "productive ones."
+        ),
+        "sources": ("andrews2022",),
+    },
+    {
+        "key": "jobs",
+        "label": "Less job switching",
+        "figure": "−0.15 pp a year",
+        "plain": "Off labour productivity growth by 2016, from weaker job reallocation",
+        "detail": "Moving workers to where they are most productive raises output without extra inputs.",
+        "sources": ("andrews_hansell",),
+    },
+    {
+        "key": "markups",
+        "label": "Higher mark-ups",
+        "figure": "1.18 → 1.25",
+        "plain": "Average mark-up, mid-2000s to mid-2010s",
+        "detail": "The RBA estimates productivity would be 1 to 3% higher with the competition of the mid-2000s.",
+        "sources": ("hf2025",),
+    },
+    {
+        "key": "investment",
+        "label": "Weaker investment",
+        "figure": "−3 pp of GDP",
+        "plain": "Non-mining business investment, since the global financial crisis",
+        "detail": "Workers produce more with more and better capital.",
+        "sources": ("pc2025", "hambur_andrews2023"),
+    },
+)
+
+# Short titles for the marking steps and the limits, in the same order as STEPS and CAVEATS.
+STEP_TITLES: tuple[tuple[str, str], ...] = (
+    ("Describe it", "What it changes, with sources"),
+    ("Mark eight drivers", "−2 to +2 each, with a reason; 0 if small"),
+    ("Add up the marks", "The sum gives the overall band"),
+    ("Name the main driver", "The biggest mark, either way"),
+    ("Rate reach and confidence", "How much of the economy, and how sure"),
+)
+CAVEAT_TITLES: tuple[str, ...] = (
+    "Productivity only",
+    "Judgements, not estimates",
+    "Drafts, not yet reviewed",
+    "Reach is breadth, not size",
+)
+
+# The double-counting rules (OVERLAP_RULES) as a lookup: what the item involves, and where to mark it. Rows in one
+# group are the two halves of one rule.
+OVERLAP_TABLE: tuple[dict, ...] = (
+    {"group": 1, "case": "A licence a business needs before it can start", "under": ("entry-exit",), "note": None},
+    {"group": 1, "case": "The ongoing paperwork that licence brings", "under": ("burden",), "note": None},
+    {
+        "group": 2,
+        "case": "A licence a worker needs to practise an occupation",
+        "under": ("labour",),
+        "note": "Also entry and exit, but only if it caps the number of businesses.",
+    },
+    {"group": 3, "case": "A tax change that alters the return on investment", "under": ("capital",), "note": None},
+    {
+        "group": 3,
+        "case": "A tax that distorts a purchase, or a choice between products",
+        "under": ("prices-taxes",),
+        "note": "Mark both capital and prices only when both effects are material.",
+    },
+    {"group": 4, "case": "A rule that restrains market power", "under": ("competition",), "note": None},
+    {
+        "group": 4,
+        "case": "Whether prices under such a rule still cover costs",
+        "under": ("prices-taxes",),
+        "note": None,
+    },
+)
+
 
 def rating(total: int) -> str:
     """The band for an overall mark."""
@@ -450,7 +670,12 @@ def as_dict() -> dict:
         "logicSources": list(LOGIC_SOURCES),
         "pillars": PILLARS,
         "drivers": {
-            k: {**v, "marks": {str(m): t for m, t in v["marks"].items()}, "look_for": list(v["look_for"])}
+            k: {
+                **v,
+                "marks": {str(m): t for m, t in v["marks"].items()},
+                "marks_short": {str(m): t for m, t in v["marks_short"].items()},
+                "look_for": list(v["look_for"]),
+            }
             for k, v in DRIVERS.items()
         },
         "markLabels": {str(k): v for k, v in MARK_LABELS.items()},
@@ -480,6 +705,12 @@ def markdown() -> str:
         "",
         INTRO,
         "",
+        "## Key ideas",
+        "",
+        "| Idea | In plain words |",
+        "|---|---|",
+        *[f"| {c['label']} | {c['plain']} |" for c in CONCEPTS],
+        "",
         "## How productivity grows",
         "",
         *[f"- {p}" for p in LOGIC],
@@ -496,6 +727,8 @@ def markdown() -> str:
                 continue
             out += [
                 f"#### {d['label']} (`{k}`)",
+                "",
+                f"**In plain words.** {d['plain']}",
                 "",
                 f"**Question.** {d['question']}",
                 "",
