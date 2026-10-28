@@ -151,8 +151,12 @@ def test_summary_pages_use_period_sliders_and_carry_the_competition_data(tmp_pat
     growth.build_site(tmp_path, records, evals)
     g = (tmp_path / "growth.html").read_text("utf-8")
     c = (tmp_path / "conditions.html").read_text("utf-8")
-    assert '<div id="period"></div>' in g and '<select id="win">' not in g
-    assert '<div id="range"></div>' in c and '<select id="range">' not in c and '<div id="pRange"></div>' in c
+    # Each section has its own slider, spanning the years its data cover; there is no page-wide period any more.
+    for i in ("conRange", "entRange", "whereRange", "retRange", "indRange", "gspRange"):
+        assert f'<div id="{i}"></div>' in g and f'periodSlider("{i}"' in g, i
+    assert '<div id="period"></div>' not in g and '<select id="win">' not in g
+    for i in ("range", "comRange", "pRange"):
+        assert f'<div id="{i}"></div>' in c, i
     gd = json.loads(re.search(r'id="page-data">(.*?)</script>', g, re.S).group(1))
     cd = json.loads(re.search(r'id="page-data">(.*?)</script>', c, re.S).group(1))
     assert {"groups", "sectors", "bizGroup", "concentration"} <= set(gd["barriers"])

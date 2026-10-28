@@ -5,9 +5,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
 <style>
 /*__SITE_CSS__*/
-/* Layout: a statistical bulletin that tells a story. A sticky period slider on top; then concentration, business entry,
-   where the barriers to entry are and what they earn, each under a heading that states what the data show; then the
-   state x industry heatmap and the selected cell's history; state economies last. */
+/* Layout: a statistical bulletin that tells a story: concentration, business entry, where the barriers to entry are and
+   what they earn, each under a heading that states what the data show; then the state x industry heatmap and the
+   selected cell's history; state economies last. Each section has its own period slider, spanning only the years its
+   data cover. */
 table.data td.gsp-best { color: var(--ink-2); text-align: left; }
 #detail .facts { padding: 14px; }
 </style>
@@ -20,15 +21,12 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     <p class="lede">Whether big firms are taking a bigger share of sales, how often new businesses start up, where <span data-term="barriers">barriers to entry</span> are high and what those industries earn, and how each state's industries and economy have grown.</p>
   </header>
 
-  <div class="sticky-key toolbar" role="region" aria-label="Period">
-    <div id="period"></div>
-  </div>
-
   <section class="block" aria-labelledby="h-con">
     <div class="block-head">
       <h2 id="h-con">Concentration</h2>
       <p id="conLede"></p>
     </div>
+    <div class="toolbar" role="group" aria-label="Years for concentration"><div id="conRange"></div></div>
     <div class="panel chart-card">
       <h3>Concentration by industry</h3>
       <p class="unit" id="conUnit"></p>
@@ -52,6 +50,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       <h2 id="h-entry">Business entry</h2>
       <p id="entryLede"></p>
     </div>
+    <div class="toolbar" role="group" aria-label="Years for business entry"><div id="entRange"></div></div>
     <div class="toolbar">
       <label for="bScope">Businesses counted</label>
       <select id="bScope"><option value="employing">Businesses with employees</option><option value="all">All businesses</option></select>
@@ -89,6 +88,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       <h2 id="h-where">Where the barriers to entry are</h2>
       <p id="whereLede"></p>
     </div>
+    <div class="toolbar" role="group" aria-label="Years for where the barriers to entry are"><div id="whereRange"></div></div>
     <div class="panel chart-card">
       <h3>Where the barriers to entry are</h3>
       <p class="unit" id="shareUnit"></p>
@@ -104,6 +104,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       <h2 id="h-ret">Business entry and returns</h2>
       <p id="retLede"></p>
     </div>
+    <div class="toolbar" role="group" aria-label="Years for business entry and returns"><div id="retRange"></div></div>
     <div class="panel chart-card">
       <h3>Business entry and company returns, by sector</h3>
       <p class="unit" id="scUnit"></p>
@@ -119,12 +120,10 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       <h2 id="h-ind">Industries in each state</h2>
       <p>Each cell is one <span data-term="industry">industry</span> in one state. Click a cell to see its history below.</p>
     </div>
+    <div class="toolbar"><label for="metric">Show</label><select id="metric"></select></div>
+    <div class="toolbar" role="group" aria-label="Years for industries in each state"><div id="indRange"></div></div>
     <div class="panel stack">
-      <div class="toolbar">
-        <label for="metric">Show</label>
-        <select id="metric"></select>
-        <div class="scale" id="heatScale"></div>
-      </div>
+      <div class="toolbar"><div class="scale" id="heatScale"></div></div>
       <p class="hint" id="heatHint"></p>
       <div class="tscroll"><table class="heat" id="heat"></table></div>
       <p class="source" id="heatSrc"></p>
@@ -171,6 +170,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       <h2 id="h-gsp">State economies</h2>
       <p>Each state's <span data-term="gsp">gross state product</span> in the last year of the period, and how fast it grew.</p>
     </div>
+    <div class="toolbar" role="group" aria-label="Years for state economies"><div id="gspRange"></div></div>
     <div class="stack">
       <div class="panel stack">
         <div class="tscroll"><table class="data sticky" id="gspTable"></table></div>
@@ -211,16 +211,37 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     set(k, v) { try { localStorage.setItem(`alicia-growth-${k}`, JSON.stringify(v)); } catch { /* storage unavailable */ } },
   };
 
-  // The period: any span of financial years on the slider (presets for the common ones).
-  const Y0 = D.years[0], Y1 = D.years[D.years.length - 1];
-  const savedWin = store.get("range", null);
-  let win = savedWin && savedWin.start >= Y0 && savedWin.end <= Y1 && savedWin.end > savedWin.start
-    ? { start: savedWin.start, end: savedWin.end } : { start: D.windows[0].start, end: D.windows[0].end };
-  const winLabel = (w) => `${fyLabel(w.start)} to ${fyLabel(w.end)}`;
+  // Each section has its own period slider, spanning only the years its data cover, so a slider never offers years
+  // its charts can't show. A window is {from, to}: financial (or income) years, or calendar years for the RBA figures.
+  const winLabel = (w, f = fyLabel) => (w.from === w.to ? f(w.from) : `${f(w.from)} to ${f(w.to)}`);
+  const loadWin = (key, lo, hi, def, gap) => {
+    const w = store.get(key, null);
+    return w && isNum(w.from) && isNum(w.to) && w.from >= lo && w.to <= hi && w.to - w.from >= gap ? { from: w.from, to: w.to } : def;
+  };
+  // o: {min, max, win, gap (shortest span), year (calendar years), label, presets [{label, from, to}], onChange(from, to)}.
+  const periodSlider = (id, o) => {
+    const f = o.year ? String : fyLabel;
+    return rangeSlider(document.getElementById(id), {
+      min: o.min, max: o.max, from: o.win.from, to: o.win.to, minGap: o.gap, fmt: f, label: o.label,
+      fromLabel: o.year ? "First year" : "First financial year", toLabel: o.year ? "Last year" : "Last financial year",
+      presets: o.presets.filter((p) => p.from >= o.min && p.to <= o.max && p.to - p.from >= o.gap),
+      summary: (a, b) => winLabel({ from: a, to: b }, f), onChange: o.onChange,
+    });
+  };
+  const GROWTH_PRESETS = D.windows.map((w) => ({ label: w.label, from: w.start, to: w.end }));
+  const yearsPresets = (lo, hi) => [{ label: "All years", from: lo, to: hi }, { label: "Last 10 years", from: hi - 9, to: hi }, { label: "Last 5 years", from: hi - 4, to: hi }];
   let metric = store.get("metric", "gva");
+  if (!["gva", "emp", "share", "dshare", "entry", "exit", "net"].includes(metric)) metric = "gva";
   let sel = store.get("sel", { state: "WA", div: "G" });
   if (!STATES.includes(sel.state) || !DIVNAME[sel.div]) sel = { state: "WA", div: "G" };
   const gspActive = new Set(STATES);
+  const isBiz = (m) => ["entry", "exit", "net"].includes(m);
+  // Industries in each state: output and jobs from 1989-90; business rates from 2007-08, one for each year chosen.
+  const indRange = () => (isBiz(metric) ? [D.bizYears[0], D.bizYears[D.bizYears.length - 1]] : [D.years[0], D.years[D.years.length - 1]]);
+  const indDefault = () => { const [lo, hi] = indRange(); return { from: Math.max(lo, hi - (isBiz(metric) ? 9 : 10)), to: hi }; };
+  let indWin = loadWin("indYears", ...indRange(), indDefault(), 1);
+  // State economies: gross state product from 1989-90.
+  let gspWin = loadWin("gspYears", D.years[0], D.years[D.years.length - 1], { from: D.years[D.years.length - 11], to: D.years[D.years.length - 1] }, 1);
 
   // ---- calculations ------------------------------------------------------------------
   const at = (arr, years, y) => { const i = years.indexOf(y); return i < 0 || !arr ? null : arr[i]; };
@@ -228,15 +249,15 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const x0 = at(arr, years, a), x1 = at(arr, years, b);
     return isNum(x0) && isNum(x1) && x0 > 0 && b > a ? (Math.pow(x1 / x0, 1 / (b - a)) - 1) * 100 : null;
   };
-  const gvaGrowth = (s, c) => cagr(D.gva.volume[s]?.[c], D.years, win.start, win.end);
-  const empGrowth = (s, c) => cagr(D.emp[s]?.[c], D.empYears, win.start, win.end);
+  const gvaGrowth = (s, c, w = indWin) => cagr(D.gva.volume[s]?.[c], D.years, w.from, w.to);
+  const empGrowth = (s, c, w = indWin) => cagr(D.emp[s]?.[c], D.empYears, w.from, w.to);
   const share = (s, c, y) => {
     const v = at(D.gva.current[s]?.[c], D.years, y), t = at(D.gva.current[s]?.[TOT], D.years, y);
     return isNum(v) && isNum(t) && t > 0 ? (v / t) * 100 : null;
   };
-  // Business rates average the yearly rates for the years after the first of the period.
-  const bizYearsIn = () => D.bizYears.filter((y) => y > win.start && y <= win.end);
-  const lastBizIn = () => { const ys = D.bizYears.filter((y) => y <= win.end); return ys.length ? ys[ys.length - 1] : null; };
+  // Business rates average the yearly rates of the years chosen.
+  const bizYearsIn = () => D.bizYears.filter((y) => y >= indWin.from && y <= indWin.to);
+  const lastBizIn = () => { const ys = D.bizYears.filter((y) => y <= indWin.to); return ys.length ? ys[ys.length - 1] : null; };
   const yearRate = (b, i, kind) => {
     if (!b) return null;
     const st = b.start[i];
@@ -250,40 +271,52 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   };
   const bizRate = (s, c, kind) => rateOf(D.biz[s]?.[c], D.bizYears, kind, bizYearsIn());
   const METRICS = {
-    gva: { option: "Output growth (% a year)", hint: () => `${term("real", "Real")} ${term("output", "output")} growth: ${term("avgGrowth", "average annual growth")}, ${winLabel(win)}.`, unit: "% a year", f: gvaGrowth, kind: "div", note: "gva", src: ["state_accounts"] },
-    emp: { option: "Jobs growth (% a year)", hint: () => `Growth in the number of people employed: ${term("avgGrowth", "average annual growth")}, ${winLabel(win)}.`, unit: "% a year", f: empGrowth, kind: "div", note: "emp", src: ["lfs_detailed"] },
-    share: { option: "Share of the state's output, last year (%)", hint: () => `Each industry's share of the state's ${term("output", "output")}, ${fyLabel(win.end)}.`, unit: "% of state output", f: (s, c) => (c === TOT ? null : share(s, c, win.end)), kind: "seq", note: "gva", src: ["state_accounts"] },
-    dshare: { option: "Change in share of the state's output (points)", hint: () => `Change in each industry's share of the state's ${term("output", "output")} from ${fyLabel(win.start)} to ${fyLabel(win.end)}, in ${term("pp", "percentage points")}.`, unit: "percentage points", f: (s, c) => (c === TOT ? null : (isNum(share(s, c, win.end)) && isNum(share(s, c, win.start)) ? share(s, c, win.end) - share(s, c, win.start) : null)), kind: "div", note: "gva", src: ["state_accounts"] },
-    entry: { option: "Business entry rate (% a year)", hint: () => `${term("entry", "Entry rate")}: new businesses per 100 operating at the start of the year, yearly average.`, unit: "% a year", f: (s, c) => bizRate(s, c, "entries"), kind: "seq", note: "biz", src: ["cabee"] },
-    exit: { option: "Business exit rate (% a year)", hint: () => `${term("exit", "Exit rate")}: businesses closing per 100 operating at the start of the year, yearly average.`, unit: "% a year", f: (s, c) => bizRate(s, c, "exits"), kind: "seq", note: "biz", src: ["cabee"] },
-    net: { option: "Net business entry rate (% a year)", hint: () => `${term("netEntry", "Net entry rate")}: entry rate less exit rate, yearly average. Above zero, the number of businesses grew.`, unit: "% a year", f: (s, c) => bizRate(s, c, "net"), kind: "div", note: "biz", src: ["cabee"] },
+    gva: { option: "Output growth (% a year)", hint: () => `${term("real", "Real")} ${term("output", "output")} growth: ${term("avgGrowth", "average annual growth")}, ${winLabel(indWin)}.`, unit: "% a year", f: (s, c) => gvaGrowth(s, c), kind: "div", note: "gva", src: ["state_accounts"] },
+    emp: { option: "Jobs growth (% a year)", hint: () => `Growth in the number of people employed: ${term("avgGrowth", "average annual growth")}, ${winLabel(indWin)}.`, unit: "% a year", f: (s, c) => empGrowth(s, c), kind: "div", note: "emp", src: ["lfs_detailed"] },
+    share: { option: "Share of the state's output, last year (%)", hint: () => `Each industry's share of the state's ${term("output", "output")}, ${fyLabel(indWin.to)}.`, unit: "% of state output", f: (s, c) => (c === TOT ? null : share(s, c, indWin.to)), kind: "seq", note: "gva", src: ["state_accounts"] },
+    dshare: { option: "Change in share of the state's output (points)", hint: () => `Change in each industry's share of the state's ${term("output", "output")} from ${fyLabel(indWin.from)} to ${fyLabel(indWin.to)}, in ${term("pp", "percentage points")}.`, unit: "percentage points", f: (s, c) => (c === TOT ? null : (isNum(share(s, c, indWin.to)) && isNum(share(s, c, indWin.from)) ? share(s, c, indWin.to) - share(s, c, indWin.from) : null)), kind: "div", note: "gva", src: ["state_accounts"] },
+    entry: { option: "Business entry rate (% a year)", hint: () => `${term("entry", "Entry rate")}: new businesses per 100 operating at the start of the year, yearly average, ${winLabel(indWin)}.`, unit: "% a year", f: (s, c) => bizRate(s, c, "entries"), kind: "seq", note: "biz", src: ["cabee"] },
+    exit: { option: "Business exit rate (% a year)", hint: () => `${term("exit", "Exit rate")}: businesses closing per 100 operating at the start of the year, yearly average, ${winLabel(indWin)}.`, unit: "% a year", f: (s, c) => bizRate(s, c, "exits"), kind: "seq", note: "biz", src: ["cabee"] },
+    net: { option: "Net business entry rate (% a year)", hint: () => `${term("netEntry", "Net entry rate")}: entry rate less exit rate, yearly average, ${winLabel(indWin)}. Above zero, the number of businesses grew.`, unit: "% a year", f: (s, c) => bizRate(s, c, "net"), kind: "div", note: "biz", src: ["cabee"] },
   };
   if (!METRICS[metric]) metric = "gva";
-  const isBiz = (m) => ["entry", "exit", "net"].includes(m);
   const signedMetric = (m) => METRICS[m].kind === "div";
 
   // ---- controls ----------------------------------------------------------------------
-  const presets = D.windows.map((w) => ({ label: w.label, from: w.start, to: w.end }));
-  rangeSlider(document.getElementById("period"), {
-    min: Y0, max: Y1, from: win.start, to: win.end, minGap: 1, fmt: fyLabel, label: "Period (financial years, July to June)",
-    fromLabel: "First financial year", toLabel: "Last financial year", presets,
-    summary: (a, b) => `${fyLabel(a)} to ${fyLabel(b)} · ${b - a} year${b - a === 1 ? "" : "s"}`,
-    onChange: (a, b) => { win = { start: a, end: b }; store.set("range", win); renderAll(); },
-  });
+  // The industries slider spans the chosen measure's years; changing the measure keeps as much of the window as fits.
+  function indSlider() {
+    const [lo, hi] = indRange();
+    periodSlider("indRange", {
+      min: lo, max: hi, win: indWin, gap: 1, label: isBiz(metric) ? `Financial years averaged (business counts start in ${fyLabel(lo)})` : "Period (financial years, July to June)",
+      presets: isBiz(metric) ? yearsPresets(lo, hi) : GROWTH_PRESETS,
+      onChange: (a, b) => { indWin = { from: a, to: b }; store.set("indYears", indWin); renderHeat(); renderDetail(); renderRank(); },
+    });
+  }
+  indSlider();
   const metSel = document.getElementById("metric");
   metSel.innerHTML = Object.entries(METRICS).map(([k, m]) => `<option value="${k}">${esc(m.option)}</option>`).join("");
   metSel.value = metric;
-  metSel.addEventListener("change", () => { metric = metSel.value; store.set("metric", metric); renderHeat(); renderRank(); });
+  metSel.addEventListener("change", () => {
+    metric = metSel.value; store.set("metric", metric);
+    const [lo, hi] = indRange(), w = { from: Math.max(lo, indWin.from), to: Math.min(hi, indWin.to) };
+    indWin = w.to - w.from >= 1 ? w : indDefault();
+    store.set("indYears", indWin);
+    indSlider(); renderHeat(); renderDetail(); renderRank();
+  });
+  periodSlider("gspRange", {
+    min: D.years[0], max: D.years[D.years.length - 1], win: gspWin, gap: 1, label: "Period (financial years, July to June)", presets: GROWTH_PRESETS,
+    onChange: (a, b) => { gspWin = { from: a, to: b }; store.set("gspYears", gspWin); renderGsp(); },
+  });
 
   // ---- state economies ----------------------------------------------------------------
   function gspRows() {
-    const nat = at(D.gsp.current.AUS, D.years, win.end);
+    const w = gspWin, nat = at(D.gsp.current.AUS, D.years, w.to);
     return STATES.map((s) => {
-      const cur = at(D.gsp.current[s], D.years, win.end);
-      const best = DIVS.map((c) => ({ c, g: gvaGrowth(s, c) })).filter((r) => isNum(r.g)).sort((a, b) => b.g - a.g)[0];
+      const cur = at(D.gsp.current[s], D.years, w.to);
+      const best = DIVS.map((c) => ({ c, g: gvaGrowth(s, c, w) })).filter((r) => isNum(r.g)).sort((a, b) => b.g - a.g)[0];
       return {
-        s, size: isNum(cur) ? cur / 1000 : null, share: isNum(cur) && nat ? (cur / nat) * 100 : null, best, mining: share(s, "B", win.end),
-        growth: cagr(D.gsp.volume[s], D.years, win.start, win.end), perPerson: cagr(D.gsp.perCapita[s], D.years, win.start, win.end),
+        s, size: isNum(cur) ? cur / 1000 : null, share: isNum(cur) && nat ? (cur / nat) * 100 : null, best, mining: share(s, "B", w.to),
+        growth: cagr(D.gsp.volume[s], D.years, w.from, w.to), perPerson: cagr(D.gsp.perCapita[s], D.years, w.from, w.to),
       };
     });
   }
@@ -292,10 +325,10 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
         <td class="num">${fmt(r.size, 1)}</td><td class="num">${fmt(r.share, 1)}</td>
         <td class="num">${fmtSigned(r.growth, 1)}</td><td class="num">${fmtSigned(r.perPerson, 1)}</td><td class="num">${fmt(r.mining, 1)}</td>
         <td class="gsp-best">${r.best ? `${esc(DIVNAME[r.best.c])} <span class="num">${fmtSigned(r.best.g, 1)}</span>` : "–"}</td></tr>`).join("");
-    document.getElementById("gspTable").innerHTML = `<thead><tr><th>State</th><th>Size, ${esc(fyLabel(win.end))}<br>$ billion</th>
+    document.getElementById("gspTable").innerHTML = `<thead><tr><th>State</th><th>Size, ${esc(fyLabel(gspWin.to))}<br>$ billion</th>
       <th>Share of<br>Australia, %</th><th>Growth,<br>% a year</th><th>Growth per<br>person, % a year</th>
       <th>Mining share of<br>output, %</th><th style="text-align:left">Fastest-growing industry<br>(output growth, % a year)</th></tr></thead><tbody>${rows}</tbody>`;
-    document.getElementById("gspUnit").innerHTML = `${term("real", "Real")} ${term("gsp", "gross state product")} as an ${term("index100", "index")}, ${esc(fyLabel(win.start))} = 100. Dashed line: Australia.`;
+    document.getElementById("gspUnit").innerHTML = `${term("real", "Real")} ${term("gsp", "gross state product")} as an ${term("index100", "index")}, ${esc(fyLabel(gspWin.from))} = 100. Dashed line: Australia.`;
     const keys = STATES.map((s) => ({ key: s, label: s === "AUS" ? "Australia" : s, color: stateColor(s), dash: s === "AUS" }));
     toggleChips(document.getElementById("gspChips"), keys, gspActive, drawGspChart);
     drawGspChart();
@@ -307,10 +340,10 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   }
   function drawGspChart() {
     const series = STATES.filter((s) => gspActive.has(s)).map((s) => {
-      const { vals } = indexSeries(D.gsp.volume[s], D.years, win.start, win.end);
+      const { vals } = indexSeries(D.gsp.volume[s], D.years, gspWin.from, gspWin.to);
       return { key: s, label: NAMES[s], values: vals, color: stateColor(s), dash: s === "AUS", width: s === "AUS" ? 2.2 : 1.8 };
     });
-    const ys = D.years.filter((y) => y >= win.start && y <= win.end);
+    const ys = D.years.filter((y) => y >= gspWin.from && y <= gspWin.to);
     lineChart(document.getElementById("gspChart"), { x: ys, xKind: "fy", series, ref: 100, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label: "Real gross state product index by state" });
   }
 
@@ -354,40 +387,40 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     document.getElementById("heatScale").innerHTML = `<span>${M.kind === "div" ? fmtSigned(-scale, 1) : "0"}</span><span class="bar" style="background:${grad}"></span><span>${M.kind === "div" ? fmtSigned(scale, 1) : fmt(scale, 1)}</span><span>${esc(M.unit)}</span>`;
     document.getElementById("heatHint").innerHTML = M.hint();
     document.getElementById("heatSrc").innerHTML = SRC(M.src);
-    const early = isBiz(metric) && win.start < D.bizYears[0];
-    document.getElementById("heatNote").textContent = `${D.notes[M.note]}${early ? ` Business counts start in ${fyLabel(D.bizYears[0])}, so this period uses the years from ${fyLabel(Math.max(D.bizYears[0], win.start + 1))}.` : ""}`;
+    document.getElementById("heatNote").textContent = D.notes[M.note];
   }
 
   // ---- selected cell -----------------------------------------------------------------
   function renderDetail() {
     const { state: s, div: c } = sel;
     document.getElementById("detailTitle").textContent = `${DIVNAME[c]}, ${NAMES[s]}`;
-    document.getElementById("detailSub").textContent = `${winLabel(win)}${s === "AUS" ? "." : ", compared with the same industry across Australia (dashed lines)."}`;
+    document.getElementById("detailSub").textContent = `${winLabel(indWin)}, the years chosen for Industries in each state${s === "AUS" ? "." : ", compared with the same industry across Australia (dashed lines)."}`;
     const yb = lastBizIn(), ib = D.bizYears.indexOf(yb);
     const bz = D.biz[s]?.[c];
-    const cur = at(D.gva.current[s]?.[c], D.years, win.end);
-    const jobs = at(D.emp[s]?.[c], D.empYears, win.end);
+    const cur = at(D.gva.current[s]?.[c], D.years, indWin.to);
+    const jobs = at(D.emp[s]?.[c], D.empYears, indWin.to);
+    const bys = bizYearsIn();
     const vsAus = (v) => `${fmtSigned(v(s, c), 1)}${s === "AUS" ? "" : ` (Australia ${fmtSigned(v("AUS", c), 1)})`}`;
     const facts = [
-      [`Output, ${fyLabel(win.end)}`, isNum(cur) ? `$${fmt(cur / 1000, 1)} billion` : "–"],
-      ["Share of the state's output", c === TOT ? "–" : `${fmt(share(s, c, win.end), 1)}%`],
+      [`Output, ${fyLabel(indWin.to)}`, isNum(cur) ? `$${fmt(cur / 1000, 1)} billion` : "–"],
+      ["Share of the state's output", c === TOT ? "–" : `${fmt(share(s, c, indWin.to), 1)}%`],
       ["Output growth, % a year", vsAus(gvaGrowth)],
-      [`Jobs, ${fyLabel(win.end)}`, isNum(jobs) ? fmt(Math.round(jobs * 10) * 100, 0) : "–"],
+      [`Jobs, ${fyLabel(indWin.to)}`, isNum(jobs) ? fmt(Math.round(jobs * 10) * 100, 0) : "–"],
       ["Jobs growth, % a year", vsAus(empGrowth)],
       [yb === null ? "Businesses" : `Businesses, June ${yb + 1}`, bz && ib >= 0 && isNum(bz.end[ib]) ? fmt(bz.end[ib], 0) : "–"],
-      ["Entry and exit rates, % a year", `${fmt(bizRate(s, c, "entries"), 1)} and ${fmt(bizRate(s, c, "exits"), 1)}`],
+      [`Entry and exit rates, % a year${bys.length ? `, ${winLabel({ from: bys[0], to: bys[bys.length - 1] })}` : ` (business counts start in ${fyLabel(D.bizYears[0])})`}`, `${fmt(bizRate(s, c, "entries"), 1)} and ${fmt(bizRate(s, c, "exits"), 1)}`],
     ];
     document.getElementById("detailFacts").innerHTML = facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
 
     const pair = (src, years, label) => {
-      const ys = years.filter((y) => y >= win.start && y <= win.end);
+      const ys = years.filter((y) => y >= indWin.from && y <= indWin.to);
       const series = [s, ...(s === "AUS" ? [] : ["AUS"])].map((g) => ({
-        key: g, label: NAMES[g], values: indexSeries(src[g]?.[c], years, win.start, win.end).vals,
+        key: g, label: NAMES[g], values: indexSeries(src[g]?.[c], years, indWin.from, indWin.to).vals,
         color: stateColor(g), dash: g === "AUS" && s !== "AUS", width: 2,
       }));
       return { x: ys, xKind: "fy", series, ref: 100, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label };
     };
-    const idxUnit = (extra) => `${term("index100", "Index")}, ${esc(fyLabel(win.start))} = 100${extra}${s === "AUS" ? "." : ". Dashed line: Australia."}`;
+    const idxUnit = (extra) => `${term("index100", "Index")}, ${esc(fyLabel(indWin.from))} = 100${extra}${s === "AUS" ? "." : ". Dashed line: Australia."}`;
     document.getElementById("uGva").innerHTML = idxUnit(`, adjusted for inflation`);
     document.getElementById("uEmp").innerHTML = idxUnit(", people employed");
     lineChart(document.getElementById("dGva"), pair(D.gva.volume, D.years, "Output index"));
@@ -409,7 +442,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     );
     document.getElementById("uBiz").innerHTML = `Per 100 businesses operating at the start of each year, all years available. Shaded: the selected period.${s === "AUS" ? "" : " Dashed lines: Australia."}`;
     document.getElementById("bizKey").innerHTML = `<span><span class="key" style="background:var(--c-1)"></span>${term("entry", "Entry rate")}</span><span><span class="key" style="background:var(--c-4)"></span>${term("exit", "Exit rate")}</span>`;
-    lineChart(document.getElementById("dBiz"), { x: D.bizYears, xKind: "fy", series: bizSeries, band: { from: win.start + 1, to: win.end, xlLabel: "Shaded: the selected period" }, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: "Business entry and exit rates" });
+    lineChart(document.getElementById("dBiz"), { x: D.bizYears, xKind: "fy", series: bizSeries, band: { from: indWin.from, to: indWin.to, xlLabel: "Shaded: the selected period" }, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: "Business entry and exit rates" });
     document.getElementById("srcBiz").innerHTML = SRC(["cabee"]);
   }
 
@@ -417,7 +450,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const M = METRICS[metric];
     const s = sel.state;
     document.getElementById("rankTitle").textContent = `Industries in ${NAMES[s]}, ranked`;
-    document.getElementById("rankUnit").textContent = `${M.option}, ${winLabel(win)}`;
+    document.getElementById("rankUnit").textContent = `${M.option}, ${winLabel(indWin)}`;
     const rows = DIVS.map((c) => ({ label: `${c} ${DIVNAME[c]}`, value: M.f(s, c), title: DIVNAME[c] }))
       .sort((a, b) => (isNum(b.value) ? b.value : -Infinity) - (isNum(a.value) ? a.value : -Infinity));
     rankedBars(document.getElementById("dRank"), rows, { fmt: (v) => (signedMetric(metric) ? fmtSigned(v, 1) : fmt(v, 1)), xlCat: "Industry", xlValue: M.option });
@@ -429,10 +462,28 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   const gDash = (g) => (g === "tradeable" ? "6 4" : g === "public" ? "1.5 3.5" : false);
   const groupKey = (gs) => gs.map((g) => `<span><span class="key box" style="background:${gColor(g)}"></span>${term(g)}</span>`).join("");
   const bAt = (arr, y) => at(arr, B.bizYears, y);
-  const bizIn = () => { const ys = B.bizYears.filter((y) => y > win.start && y <= win.end); return ys.length >= 2 ? ys : B.bizYears; };
-  // Company returns by sector, averaged over every published income year (2018-19 on).
-  const atoStats = Object.fromEntries(B.sectors.map((s) => [s.key, sectorStats(s, B.atoYears, B.atoYears[0], B.atoYears[B.atoYears.length - 1], 0)]));
-  const atoSpan = `${fyLabel(B.atoYears[0])} to ${fyLabel(B.atoYears[B.atoYears.length - 1])}`;
+  // Business entry: the years shown, 2007-08 on.
+  const E0 = B.bizYears[0], E1 = B.bizYears[B.bizYears.length - 1];
+  let entWin = loadWin("entYears", E0, E1, { from: E0, to: E1 }, 1);
+  const entYears = () => B.bizYears.filter((y) => y >= entWin.from && y <= entWin.to);
+  periodSlider("entRange", {
+    min: E0, max: E1, win: entWin, gap: 1, label: "Financial years shown", presets: yearsPresets(E0, E1),
+    onChange: (a, b) => { entWin = { from: a, to: b }; store.set("entYears", entWin); renderDynamism(); },
+  });
+  // Where the barriers are, and returns: the income years with company balance sheets by industry (2018-19 on).
+  // Company figures, business counts and entry rates are all averaged over the same years.
+  const A0 = B.atoYears[0], A1 = B.atoYears[B.atoYears.length - 1];
+  const atoPresets = [{ label: `All ${A1 - A0 + 1} years`, from: A0, to: A1 }, { label: `${fyLabel(A0)}, before COVID`, from: A0, to: A0 }, { label: "Latest year", from: A1, to: A1 }];
+  const atoStatsFor = (w) => Object.fromEntries(B.sectors.map((s) => [s.key, sectorStats(s, B.atoYears, w.from, w.to, 0)]));
+  let whereWin = loadWin("whereYears", A0, A1, { from: A0, to: A1 }, 0), retWin = loadWin("retYears", A0, A1, { from: A0, to: A1 }, 0);
+  periodSlider("whereRange", {
+    min: A0, max: A1, win: whereWin, gap: 0, label: "Income years averaged (July to June)", presets: atoPresets,
+    onChange: (a, b) => { whereWin = { from: a, to: b }; store.set("whereYears", whereWin); renderShares(); },
+  });
+  periodSlider("retRange", {
+    min: A0, max: A1, win: retWin, gap: 0, label: "Income years averaged (July to June)", presets: atoPresets,
+    onChange: (a, b) => { retWin = { from: a, to: b }; store.set("retYears", retWin); renderScatter(); },
+  });
   const BARRIER = GROUPS.filter((g) => GM[g].barrier);
   const grattan = `<a href="${esc(D.sources.grattan.url)}" target="_blank" rel="noopener">Grattan Institute's 2017 report</a>`;
   const setHead = (id, text) => { document.getElementById(id).textContent = text; };
@@ -467,12 +518,16 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     return tot > 0 && gs.some((g) => isNum(parts[g])) ? (gs.reduce((a, g) => a + Math.max(0, parts[g] || 0), 0) / tot) * 100 : null;
   };
   function renderShares() {
-    const y = lastBizIn() ?? B.bizYears[B.bizYears.length - 1];
+    const w = whereWin, span = winLabel(w), ato = atoStatsFor(w);
     const parts = (f) => Object.fromEntries(GROUPS.map((g) => [g, f(g)]));
-    const sum = (g, field) => B.sectors.filter((s) => s.group === g).reduce((a, s) => a + (atoStats[s.key].n ? atoStats[s.key][field] : 0), 0);
+    const sum = (g, field) => B.sectors.filter((s) => s.group === g).reduce((a, s) => a + (ato[s.key].n ? ato[s.key][field] : 0), 0);
     const empl = bScope === "employing";
+    // Businesses at the end of each income year chosen (June), averaged.
+    const yrs = B.bizYears.filter((y) => y >= w.from && y <= w.to);
+    const avgEnd = (g) => { const v = yrs.map((y) => bAt(B.bizGroup[bScope].AUS[g]?.end, y)).filter(isNum); return v.length ? v.reduce((a, x) => a + x, 0) / v.length : null; };
+    const when = w.from === w.to ? `June ${w.to + 1}` : `average of June ${w.from + 1} to June ${w.to + 1}`;
     const rows = [
-      { key: "biz", label: `${empl ? "Businesses with employees" : "Businesses"}, June ${y + 1}`, parts: parts((g) => bAt(B.bizGroup[bScope].AUS[g]?.end, y)), kind: "count" },
+      { key: "biz", label: `${empl ? "Businesses with employees" : "Businesses"}, ${when}`, parts: parts(avgEnd), kind: "count" },
       { key: "I", label: "Company income", parts: parts((g) => sum(g, "I")), kind: "flow" },
       { key: "E", label: "Company equity", parts: parts((g) => sum(g, "E")), kind: "stock" },
       { key: "N", label: "Company profit after tax", parts: parts((g) => sum(g, "N")), kind: "flow" },
@@ -503,8 +558,8 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     document.getElementById("shareUnit").textContent = "Each group's share of the total in each column, %. Hover over a bar for the amount.";
     document.getElementById("shareMethod").innerHTML = [
       `<strong>Groups:</strong> each detailed industry is put in one group, following ${grattan} (<a href="${esc(D.repo)}alicia/src/alicia/data/barriers.json" target="_blank" rel="noopener">every choice, with its reason</a>). Hover over a group for what it covers.`,
-      `<strong>Businesses:</strong> the ABS count of ${empl ? "businesses with employees" : "all businesses"} in June ${y + 1}, the end of the period chosen at the top of the page. It covers every kind of business.`,
-      `<strong>Company income, equity and profit:</strong> company tax returns added up by industry (ATO), yearly averages for ${esc(atoSpan)}, the years with balance sheets by industry. Equity is assets less liabilities; profit is after tax. Companies only: sole traders, partnerships and trusts are left out.`,
+      `<strong>Businesses:</strong> the ABS count of ${empl ? "businesses with employees" : "all businesses"} at the end of each income year chosen (${esc(w.from === w.to ? `June ${w.to + 1}` : `June ${w.from + 1} to June ${w.to + 1}, averaged`)}). It covers every kind of business.`,
+      `<strong>Company income, equity and profit:</strong> company tax returns added up by industry (ATO), yearly averages for ${esc(span)}. The ATO publishes balance sheets by industry from 2018-19 only, which is why the years run from there. Equity is assets less liabilities; profit is after tax. Companies only: sole traders, partnerships and trusts are left out.`,
       "<strong>Each column adds to 100%.</strong> A group whose total is negative counts as zero.",
     ].map((t) => `<li>${t}</li>`).join("");
     document.getElementById("shareSrc").innerHTML = SRC(["cabee", "ato"]);
@@ -521,7 +576,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     scale_economies: ["Fewer new firms start up where scale matters", "industries with big economies of scale"],
   };
   function renderDynamism() {
-    const ys = bizIn(), idx = ys.map((y) => B.bizYears.indexOf(y));
+    const ys = entYears(), idx = ys.map((y) => B.bizYears.indexOf(y));
     const M = BMEAS[bMeasure];
     const avgEntry = (g) => {
       const v = idx.map((i) => yearRate(B.bizGroup[bScope][bState]?.[g], i, "entries")).filter(isNum);
@@ -545,8 +600,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       const ok = vals.filter(isNum);
       return [GM[g].label, ...vals.map((v) => fmt(v, 1)), fmt(ok.length ? ok.reduce((a, v) => a + v, 0) / ok.length : null, 1)];
     }));
-    const inside = B.bizYears.filter((y) => y > win.start && y <= win.end).length;
-    document.getElementById("grpNote").textContent = `${inside < win.end - win.start ? `Business counts run from ${fyLabel(B.bizYears[0])} to ${fyLabel(B.bizYears[B.bizYears.length - 1])}, so the charts show the years of the period inside that range (all years when fewer than two fall inside). ` : ""}${B.notes.cabee}`;
+    document.getElementById("grpNote").textContent = B.notes.cabee;
 
     // Grattan's Figure 3.6: entry and exit rates, and the net change in businesses, for all industries.
     const cells = Object.values(B.bizGroup[bScope][bState] || {});
@@ -579,11 +633,11 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   }
 
   function renderScatter() {
-    const ys = bizYearsIn().length ? bizYearsIn() : B.bizYears;
+    const ys = B.bizYears.filter((y) => y >= retWin.from && y <= retWin.to), ato = atoStatsFor(retWin);
     const pts = [], X = [], Y = [], Wt = [], G = [];
     for (const s of B.sectors) {
       if (!PRIVATE.includes(s.group)) continue;
-      const st = atoStats[s.key], x = rateOf(B.bizSector[bScope][s.key], B.bizYears, "entries", ys);
+      const st = ato[s.key], x = rateOf(B.bizSector[bScope][s.key], B.bizYears, "entries", ys);
       if (!st.n || !isNum(x) || !(st.E > 0)) continue;
       pts.push({
         x, y: st.roe, size: Math.sqrt(st.E / 1000) * 1.6, color: gColor(s.group), muted: !GM[s.group].barrier, label: s.label,
@@ -594,7 +648,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     }
     const fit = wls(X, Y, Wt), r2g = groupR2(Y, Wt, G);
     const xs = [...X].sort((a, b) => a - b), xMax = xs[Math.floor(xs.length * 0.98)] || 20;
-    document.getElementById("scUnit").innerHTML = `Each dot is a ${term("sector", "sector")}, sized by its ${term("equity", "equity")}. Higher up: higher ${term("roe", "return on equity")} after tax (yearly average, ${esc(atoSpan)}). Further right: higher ${term("entry", "entry rate")} of ${esc(scopeWord())} (yearly average, ${esc(fyLabel(ys[0]))} to ${esc(fyLabel(ys[ys.length - 1]))}). Hollow dots are off the scale.`;
+    document.getElementById("scUnit").innerHTML = `Each dot is a ${term("sector", "sector")}, sized by its ${term("equity", "equity")}. Higher up: higher ${term("roe", "return on equity")} after tax. Further right: higher ${term("entry", "entry rate")} of ${esc(scopeWord())}. Both are yearly averages for ${esc(winLabel(retWin))}. Hollow dots are off the scale.`;
     document.getElementById("scKey").innerHTML = groupKey(PRIVATE);
     scatterChart(document.getElementById("scChart"), {
       points: pts, xDomain: [0, Math.max(10, xMax)], yDomain: [-20, 40], xFmt: (v) => fmt(v, 0), yFmt: (v) => fmt(v, 0),
@@ -623,11 +677,19 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   conMeasSel.innerHTML = Object.entries(CONMEAS).map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join("");
   conMeasSel.value = conMeasure;
   conMeasSel.addEventListener("change", () => { conMeasure = conMeasSel.value; store.set("conMeasure", conMeasure); renderConcentration(); });
+  // Concentration: the RBA's years (as labelled by its authors), 2002 to 2019.
+  const C0 = CON.years?.[0], C1 = CON.years?.[CON.years.length - 1];
+  let conWin = CON.years?.length ? loadWin("conYears", C0, C1, { from: C0, to: C1 }, 1) : null;
+  if (conWin) {
+    periodSlider("conRange", {
+      min: C0, max: C1, win: conWin, gap: 1, year: true, label: `Years compared (the RBA figures run from ${C0} to ${C1})`,
+      presets: [{ label: "All years", from: C0, to: C1 }, { label: "Since 2010", from: 2010, to: C1 }, { label: "Last 5 years", from: C1 - 5, to: C1 }],
+      onChange: (a, b) => { conWin = { from: a, to: b }; store.set("conYears", conWin); renderConcentration(); },
+    });
+  }
   function renderConcentration() {
-    if (!CON.years || !CON.years.length) { document.getElementById("conHint").textContent = "The RBA concentration figures are not in this build."; return; }
-    // Years as labelled by the RBA authors; a period of financial years a..b covers labels a to b + 1.
-    const inWin = CON.years.filter((y) => y >= win.start && y <= win.end + 1);
-    const ys = inWin.length >= 2 ? inWin : CON.years;
+    if (!conWin) { document.getElementById("conHint").textContent = "The RBA concentration figures are not in this build."; return; }
+    const ys = CON.years.filter((y) => y >= conWin.from && y <= conWin.to);
     const firstLast = (code) => {
       const v = (CON.values[code]?.[conMeasure] || []).map((x, i) => [CON.years[i], x]).filter(([y, x]) => isNum(x) && ys.includes(y));
       return v.length >= 2 ? { a: v[0], b: v[v.length - 1] } : null;
@@ -657,7 +719,6 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     document.getElementById("conHint").textContent = [
       "Change is in percentage points. Click an industry to see it over time.",
       late.length ? `Different years for ${late.map((r) => `${r.label} (${r.ya} to ${r.yb})`).join(", ")}.` : "",
-      ys.length < 6 ? `The RBA figures run from ${CON.years[0]} to ${CON.years[CON.years.length - 1]}; widen the period at the top of the page to compare over more years.` : "",
     ].filter(Boolean).join(" ");
     const idx = ys.map((y) => CON.years.indexOf(y));
     document.getElementById("conLineTitle").textContent = `Over time: ${conDiv === "TOT" ? "all industries" : DIVLABEL[conDiv]}`;
@@ -710,16 +771,16 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   const cardOf = (id) => document.getElementById(id).closest(".panel");
   const selText = (id) => { const e = document.getElementById(id); return e.options[e.selectedIndex]?.text ?? ""; };
   const k1 = (v) => (isNum(v) ? v / 1000 : null);
-  const periodSet = () => ["Period", `${winLabel(win)} (financial years, July to June)`];
+  const periodSet = (w, label = "Period") => [label, `${winLabel(w)} (financial years, July to June)`];
   const cellSet = () => [["Industry", DIVNAME[sel.div]], ["State", NAMES[sel.state]]];
   const plainUnit = (id) => document.getElementById(id).textContent.replace(/\s+/g, " ").trim();
   const signedFmt = "+0.0;-0.0;0.0";
   excelButton(cardOf("gspChart"), {
-    settings: () => [periodSet(), ["States shown", STATES.filter((s) => gspActive.has(s)).map((s) => NAMES[s]).join(", ")]],
-    file: () => winLabel(win),
+    settings: () => [periodSet(gspWin), ["States shown", STATES.filter((s) => gspActive.has(s)).map((s) => NAMES[s]).join(", ")]],
+    file: () => winLabel(gspWin),
     tables: () => [{
-      name: "State summary", title: `State economies, ${winLabel(win)}`, unit: "Growth rates are average annual growth over the period, adjusted for inflation (real).",
-      head: ["State", `Size, ${fyLabel(win.end)}, $ billion`, "Share of Australia, %", "Growth, % a year", "Growth per person, % a year", "Mining share of output, %", "Fastest-growing industry", "Its output growth, % a year"],
+      name: "State summary", title: `State economies, ${winLabel(gspWin)}`, unit: "Growth rates are average annual growth over the period, adjusted for inflation (real).",
+      head: ["State", `Size, ${fyLabel(gspWin.to)}, $ billion`, "Share of Australia, %", "Growth, % a year", "Growth per person, % a year", "Mining share of output, %", "Fastest-growing industry", "Its output growth, % a year"],
       rows: gspRows().map((r) => [NAMES[r.s], r.size, r.share, r.growth, r.perPerson, r.mining, r.best ? DIVNAME[r.best.c] : null, r.best ? r.best.g : null]),
       fmts: ["text", "#,##0.0", "0.0", signedFmt, signedFmt, "0.0", "text", signedFmt],
     }],
@@ -727,8 +788,8 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   excelButton(cardOf("heat"), {
     anchor: document.getElementById("heatScale").parentElement,
     title: () => `Industries in each state: ${METRICS[metric].option}`,
-    settings: () => [periodSet(), ["Show", METRICS[metric].option]],
-    file: () => winLabel(win), terms: ["industry"],
+    settings: () => [periodSet(indWin), ["Show", METRICS[metric].option]],
+    file: () => winLabel(indWin), terms: ["industry"],
     tables: () => {
       const { M, cells, scale } = heatData();
       const div = M.kind === "div", surface = xlColor("var(--surface)");
@@ -742,34 +803,34 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     },
   });
   [["dGva", "Output"], ["dEmp", "Jobs"], ["dBiz", "Businesses starting and closing"]].forEach(([id, what]) => excelButton(cardOf(id), {
-    title: () => `${what}: ${DIVNAME[sel.div]}, ${NAMES[sel.state]}`, settings: () => [periodSet(), ...cellSet()], file: () => winLabel(win),
+    title: () => `${what}: ${DIVNAME[sel.div]}, ${NAMES[sel.state]}`, settings: () => [periodSet(indWin), ...cellSet()], file: () => winLabel(indWin),
   }));
-  excelButton(cardOf("dRank"), { settings: () => [periodSet(), ["Show", METRICS[metric].option], ["State", NAMES[sel.state]]], file: () => winLabel(win), sources: METRICS[metric].src });
+  excelButton(cardOf("dRank"), { settings: () => [periodSet(indWin), ["Show", METRICS[metric].option], ["State", NAMES[sel.state]]], file: () => winLabel(indWin), sources: METRICS[metric].src });
   const scopeSet = () => ["Businesses counted", selText("bScope")];
   excelButton(cardOf("shares"), {
-    settings: () => [scopeSet(), ["Business counts", shareRows[0]?.label ?? ""], ["Company figures", `yearly averages, ${atoSpan}`], periodSet()],
-    sources: ["grattan"], file: () => winLabel(win),
+    settings: () => [periodSet(whereWin, "Income years averaged"), scopeSet(), ["Business counts", shareRows[0]?.label ?? ""]],
+    sources: ["grattan"], file: () => winLabel(whereWin),
     tables: () => [{
-      name: "Totals", title: "Where the barriers to entry are: totals by group", unit: `Business counts at the end of the period; company figures are yearly averages, ${atoSpan}.`,
+      name: "Totals", title: "Where the barriers to entry are: totals by group", unit: `${shareRows[0].label}; company figures are yearly averages, ${winLabel(whereWin)}.`,
       head: ["Group", shareRows[0].label, "Company income, $ billion a year", "Equity, $ billion", "Profit after tax, $ billion a year"],
       rows: GROUPS.map((g) => [GM[g].label, isNum(shareRows[0].parts[g]) ? shareRows[0].parts[g] : null, k1(shareRows[1].parts[g]), k1(shareRows[2].parts[g]), k1(shareRows[3].parts[g])]),
       fmts: ["text", "#,##0", "#,##0.0", "#,##0.0", "#,##0.0"],
     }],
   });
   excelButton(cardOf("grpChart"), {
-    settings: () => [periodSet(), scopeSet(), ["State", NAMES[bState]], ["Measure", selText("bMeasure")], ["Groups shown", GROUPS.filter((g) => grpActive.has(g)).map((g) => GM[g].label).join(", ")]],
-    sources: ["grattan"], file: () => winLabel(win),
+    settings: () => [periodSet(entWin, "Financial years shown"), scopeSet(), ["State", NAMES[bState]], ["Measure", selText("bMeasure")], ["Groups shown", GROUPS.filter((g) => grpActive.has(g)).map((g) => GM[g].label).join(", ")]],
+    sources: ["grattan"], file: () => winLabel(entWin),
   });
   excelButton(cardOf("dynChart"), {
-    settings: () => [periodSet(), scopeSet(), ["State", NAMES[bState]]], sheets: ["Entry and exit rates", "Net change"],
-    sources: ["grattan"], file: () => winLabel(win),
+    settings: () => [periodSet(entWin, "Financial years shown"), scopeSet(), ["State", NAMES[bState]]], sheets: ["Entry and exit rates", "Net change"],
+    sources: ["grattan"], file: () => winLabel(entWin),
   });
   excelButton(cardOf("scChart"), {
-    settings: () => [periodSet(), scopeSet(), ["Company returns", `yearly averages, ${atoSpan}`]], sources: ["grattan"], file: () => winLabel(win),
+    settings: () => [periodSet(retWin, "Income years averaged"), scopeSet()], sources: ["grattan"], file: () => winLabel(retWin),
   });
   excelButton(cardOf("conRows"), {
-    settings: () => [periodSet(), ["Share of sales made by the", CONMEAS[conMeasure]], ["Industry shown over time", conDiv === "TOT" ? "All industries" : DIVLABEL[conDiv]]],
-    sheets: ["Change by industry", "Over time"], sources: ["grattan"], file: () => CONMEAS[conMeasure],
+    settings: () => [["Years compared", winLabel(conWin, String)], ["Share of sales made by the", CONMEAS[conMeasure]], ["Industry shown over time", conDiv === "TOT" ? "All industries" : DIVLABEL[conDiv]]],
+    sheets: ["Change by industry", "Over time"], sources: ["grattan"], file: () => `${CONMEAS[conMeasure]}, ${winLabel(conWin, String)}`,
   });
 })();
 </script>
