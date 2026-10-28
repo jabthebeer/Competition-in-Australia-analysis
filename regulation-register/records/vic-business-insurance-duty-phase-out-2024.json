@@ -1,0 +1,89 @@
+{
+  "id": "vic-business-insurance-duty-phase-out-2024",
+  "kind": "reform",
+  "family": "insurance-duty",
+  "title": "Duty on business insurance phased out (Victoria)",
+  "jurisdiction": "VIC",
+  "summary": "Victoria is abolishing duty on business insurance premiums, cutting the rate by one percentage point a year from 1 July 2024 until it reaches zero on 1 July 2033. It covers classes such as public and product liability, professional indemnity, fire and industrial special risks, and marine and aviation insurance. Duty on home, contents and car insurance stays at 10%.",
+  "instruments": [
+    {
+      "title": "Duties Act 2000 (Vic)",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "duty on business insurance premiums, reduced each year"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2024-07-01",
+        "what": "Duty on business insurance cut from 10% to 9%, the first of ten annual cuts",
+        "source": "https://www.sro.vic.gov.au/insurance-duty/abolition-duty-business-insurance-premiums",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "enhancing",
+  "direction_rationale": "Removing a tax on insurance lowers the cost of cover for businesses and moves insurance towards the treatment the Henry Review recommended (GST only).",
+  "direction_sources": [
+    "https://www.sro.vic.gov.au/insurance-duty/abolition-duty-business-insurance-premiums",
+    "https://treasury.gov.au/review/the-australias-future-tax-system-review/final-report"
+  ],
+  "channels": [
+    "prices-market-share"
+  ],
+  "industries": [
+    {
+      "anzsic": "6322",
+      "name": "General Insurance",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6420",
+      "name": "Auxiliary Insurance Services",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Dates and scope from the revenue office's page, read in full. The amending Act was not identified; the Victorian 2023-24 Budget announced the change."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Phases out duty on business insurance over ten years. It lowers the cost of cover for businesses and removes a tax the Henry Review recommended abolishing; duty on household insurance remains.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": 1,
+        "reason": "Removes a tax that discouraged businesses from insuring, step by step to 2033."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "multi-sector",
+    "confidence": "medium",
+    "confidence_note": "The direction is well supported; the gain builds slowly as the rate falls each year.",
+    "evidence": [
+      "https://treasury.gov.au/sites/default/files/2019-10/afts_final_report_part_1_consolidated.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

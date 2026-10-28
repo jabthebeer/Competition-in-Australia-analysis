@@ -1,0 +1,93 @@
+{
+  "id": "cth-bespoke-mandatory-standards",
+  "kind": "setting",
+  "family": null,
+  "title": "Mandatory standards that differ from international ones",
+  "jurisdiction": "CTH",
+  "summary": "Commonwealth, state and territory laws make about 893 Australian Standards mandatory. The Productivity Commission found 675 of them (76%) are bespoke Australian standards with no international counterpart, only 26% are incorporated consistently by every jurisdiction, and 659 more references are to superseded or withdrawn standards. Many incorporated standards sit behind a paywall.",
+  "instruments": [
+    {
+      "title": "Australian Standards incorporated by reference in Commonwealth, state and territory legislation",
+      "register_url": null,
+      "register_id": null,
+      "role": "other",
+      "provisions": "about 893 current standards made mandatory by legislation (2025)"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Bespoke and inconsistent standards make imported products and interstate suppliers meet different rules, which raises costs and narrows choice. The Productivity Commission estimated aligning mandatory standards with international and overseas ones could add $1.1 to 3 billion a year (0.04 to 0.11% of GDP).",
+  "direction_sources": [
+    "https://www.pc.gov.au/inquiries-and-research/competition-analysis-2025/report",
+    "https://assets.pc.gov.au/2025-11/competition-analysis-2025.pdf"
+  ],
+  "channels": [
+    "barriers",
+    "consumer-choice"
+  ],
+  "industries": [
+    {
+      "anzsic": "C",
+      "name": "Manufacturing",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "E",
+      "name": "Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "F",
+      "name": "Wholesale Trade",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting spread across many laws: no dates. Figures are from the key points of the Productivity Commission's National Competition Policy analysis 2025, read in full. The industries are indicative: the report says 90% of bespoke standards relate to three industries, which were not checked here."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Most standards that laws make mandatory are Australian-only, and states incorporate them inconsistently. Suppliers must meet rules the rest of the world does not use, which keeps out imports and adds cost; the Productivity Commission puts the gain from alignment at $1.1 to 3 billion a year.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Bespoke and inconsistently incorporated standards make imported products and interstate suppliers meet different rules."
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Firms must buy and follow paywalled, sometimes outdated standards to comply with the law."
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "multi-sector",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [
+      "https://assets.pc.gov.au/2025-11/competition-analysis-2025.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

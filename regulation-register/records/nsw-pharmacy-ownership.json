@@ -1,0 +1,77 @@
+{
+  "id": "nsw-pharmacy-ownership",
+  "kind": "setting",
+  "family": "pharmacy-ownership",
+  "title": "Pharmacy ownership restrictions (New South Wales)",
+  "jurisdiction": "NSW",
+  "summary": "In New South Wales, with limited exceptions, only registered pharmacists may own a community pharmacy business, under the Health Practitioner Regulation National Law (NSW), and there is a limit on how many pharmacies one pharmacist may own.",
+  "instruments": [
+    {
+      "title": "Health Practitioner Regulation National Law (NSW)",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "who may own, or hold an interest in, a pharmacy business"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Ownership rules keep supermarkets, chains and other investors out of community pharmacy and cap how large a pharmacist's business can grow. The Harper Review found the ownership and location rules are not needed to ensure quality of care and recommended removing them.",
+  "direction_sources": [
+    "https://treasury.gov.au/publication/p2015-cpr-final-report"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "4271",
+      "name": "Pharmaceutical, Cosmetic and Toiletry Goods Retailing",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. The Act is named by a law firm's summary (King & Wood Mallesons); the NSW legislation site refuses automated requests. The ACT and the Northern Territory also restrict ownership, but their laws could not be verified; Queensland's regime is the 2025 reform record."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Only pharmacists may own pharmacies, and each may own only a few. It keeps other investors and business models out of community pharmacy; the Harper Review recommended removing the restriction.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "Reserves ownership of pharmacies to pharmacists and caps how many each may own: an exclusive right to enter."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The restriction is explicit; its effect on prices and access has not been measured in Australia.",
+    "evidence": [
+      "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

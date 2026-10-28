@@ -1,0 +1,95 @@
+{
+  "id": "wa-domestic-gas-reservation",
+  "kind": "setting",
+  "family": null,
+  "title": "Domestic gas reservation (Western Australia)",
+  "jurisdiction": "WA",
+  "summary": "Western Australia requires LNG exporters to reserve gas equal to 15% of their LNG exports for the WA market over the life of the project, negotiated as a condition of approval. The policy was released in October 2006. From September 2024, onshore projects on the existing pipeline network must reserve 80% of their gas for domestic use until the end of 2030.",
+  "instruments": [
+    {
+      "title": "WA Domestic Gas Policy",
+      "register_url": "https://www.wa.gov.au/government/wa-domestic-gas-policy",
+      "register_id": null,
+      "role": "other",
+      "provisions": "reservation of the equivalent of 15% of LNG production for domestic use"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": "2006-10-12",
+      "source": "https://www.wa.gov.au/government/media-statements/Carpenter%20Labor%20Government/State-Government's-domestic-gas-reservation-policy-released-20061012"
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "The Productivity Commission found gas reservation diverts gas from its highest-value use, distorts investment towards gas-intensive industries and reduces the return on new supply, at a net cost to the community.",
+  "direction_sources": [
+    "https://www.wa.gov.au/government/wa-domestic-gas-policy",
+    "https://www.wa.gov.au/government/media-statements/Carpenter%20Labor%20Government/State-Government's-domestic-gas-reservation-policy-released-20061012",
+    "https://www.pc.gov.au/inquiries-and-research/gas-markets",
+    "https://assets.pc.gov.au/research/completed/gas-markets/gas-markets.pdf"
+  ],
+  "channels": [
+    "prices-market-share",
+    "barriers"
+  ],
+  "industries": [
+    {
+      "anzsic": "0700",
+      "name": "Oil and Gas Extraction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "2700",
+      "name": "Gas Supply",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "C",
+      "name": "Manufacturing",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "The release date is from the 2006 media statement and the 15% rule from the WA Government's policy page, both read in full. The 2024 onshore rule is from the Government's September 2024 media statement as quoted in search results. The Productivity Commission's 2015 analysis is of reservation policies in general, with the WA policy as its example."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Reserves part of WA's gas for local users. It holds domestic gas prices below export prices, which favours gas-using industries over others and weakens the incentive to develop new supply; the Productivity Commission found such policies cost more than they deliver.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Holds domestic gas prices below their export value, so gas does not go to its most valued use."
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Diverts gas from export markets by condition of approval."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "multi-sector",
+    "confidence": "medium",
+    "confidence_note": "Supporters argue it has kept WA gas affordable for industry; the Productivity Commission's modelling finds the costs outweigh those gains.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/gas-markets/gas-markets.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

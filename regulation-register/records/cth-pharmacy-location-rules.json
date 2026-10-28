@@ -1,0 +1,84 @@
+{
+  "id": "cth-pharmacy-location-rules",
+  "kind": "setting",
+  "family": "pharmacy-regulation",
+  "title": "Pharmacy location rules",
+  "jurisdiction": "CTH",
+  "summary": "A pharmacy needs the Australian Government's approval to dispense medicines under the Pharmaceutical Benefits Scheme, and the location rules decide where new approved pharmacies may open. In the usual case a new pharmacy must be at least 1.5 km in a straight line from the nearest approved pharmacy, and no approved pharmacy may be directly accessible from inside a supermarket.",
+  "instruments": [
+    {
+      "title": "National Health (Australian Community Pharmacy Authority Rules) Determination 2018",
+      "register_url": "https://www.legislation.gov.au/F2018L01321",
+      "register_id": "F2018L01321",
+      "role": "regulation",
+      "provisions": "pharmacy location rules, including item 130 (new pharmacy at least 1.5 km) and the supermarket access condition"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": "2018-09-18",
+      "source": "https://www.legislation.gov.au/F2018L01321"
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "The rules stop new pharmacies opening near existing ones or inside supermarkets. The Harper Review found the ownership and location rules are not needed to ensure quality of care and recommended removing them.",
+  "direction_sources": [
+    "https://www.health.gov.au/committees-and-groups/australian-community-pharmacy-authority-acpa/pharmacy-location-rules",
+    "https://treasury.gov.au/publication/p2015-cpr-final-report"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type",
+    "consumer-choice"
+  ],
+  "industries": [
+    {
+      "anzsic": "4271",
+      "name": "Pharmaceutical, Cosmetic and Toiletry Goods Retailing",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Making date from the Federal Register of Legislation. The distance and supermarket rules were read in the Determination as made (2018); later amendments were not checked. The health.gov.au page reset automated connections."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "The location rules ration where new pharmacies may open, keeping new rivals away from existing pharmacies and out of supermarkets. The Harper Review recommended removing them.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "A new pharmacy cannot open within 1.5 km of an existing one in the usual case: a distance-based restriction on entry."
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Existing pharmacies are shielded from nearby rivals and from pharmacies inside supermarkets."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "high",
+    "confidence_note": null,
+    "evidence": [
+      "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

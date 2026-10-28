@@ -1,0 +1,107 @@
+{
+  "id": "vic-planning-zoning",
+  "kind": "setting",
+  "family": "planning-zoning",
+  "title": "Planning and zoning restrictions (Victoria)",
+  "jurisdiction": "VIC",
+  "summary": "Victoria's planning system, under the Planning and Environment Act 1987 (Vic), decides what may be built where: zoning limits the number and type of homes and the sites open to shops and other businesses, and development approvals add time and cost. The RBA estimated that zoning raised the price of a detached house in Melbourne 69% above its marginal cost of supply in 2016.",
+  "instruments": [
+    {
+      "title": "Planning and Environment Act 1987 (Vic)",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "planning schemes, zoning and development approval"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Restrictive zoning holds the supply of housing below demand, so prices sit well above the cost of building; the Productivity Commission estimates housing regulation costs about 1% of GDP a year, with zoning the largest part. Zoning and approvals also limit where new businesses can open; the Harper Review said planning rules should not restrict competition unless the benefits outweigh the costs.",
+  "direction_sources": [
+    "https://www.pc.gov.au/inquiries-and-research/resilient-economy/report/",
+    "https://www.rba.gov.au/publications/rdp/2018/2018-03.html",
+    "https://treasury.gov.au/publication/p2015-cpr-final-report"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type",
+    "prices-market-share"
+  ],
+  "industries": [
+    {
+      "anzsic": "3011",
+      "name": "House Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3019",
+      "name": "Other Residential Building Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6712",
+      "name": "Non-Residential Property Operators",
+      "exposure": "indirect"
+    },
+    {
+      "anzsic": "4110",
+      "name": "Supermarket and Grocery Stores",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. The Act's title was checked on the Victorian legislation site. The zoning premium is from the RBA paper's abstract, which cautions that it is not the amount prices would fall if zoning were relaxed."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Zoning and planning approvals limit how many homes can be built and where businesses can open. They push house prices far above the cost of building, add delays and paperwork, and can shelter existing businesses from new rivals. The Productivity Commission puts the cost of housing regulation at about 1% of GDP a year, mostly from zoning.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "Zoning keeps house prices well above the cost of supply: a large distortion in the largest asset market. The RBA put the premium at 69% in Melbourne in 2016."
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Zoning and approvals limit the sites open to new businesses; the Harper Review found planning rules can favour incumbents."
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Development approvals add paperwork, holding costs and delay to building homes and business premises."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [
+      "https://assets.pc.gov.au/2025-12/resilient-economy.pdf",
+      "https://www.rba.gov.au/publications/rdp/2018/pdf/rdp2018-03.pdf",
+      "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "qld-insurance-duty",
+  "kind": "setting",
+  "family": "insurance-duty",
+  "title": "Insurance duty (Queensland)",
+  "jurisdiction": "QLD",
+  "summary": "Queensland charges duty on general insurance premiums under the Duties Act 2001 (Qld): 9% on general insurance. It is paid on top of GST, so households and businesses pay more for cover of their homes, cars and businesses.",
+  "instruments": [
+    {
+      "title": "Duties Act 2001 (Qld)",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "insurance duty"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "The Henry Review found specific taxes on insurance deter people from insuring and recommended abolishing them all (recommendation 79), so that insurance bears only GST like most services.",
+  "direction_sources": [
+    "https://qro.qld.gov.au/duties/insurance-duty/rates/",
+    "https://treasury.gov.au/review/the-australias-future-tax-system-review/final-report"
+  ],
+  "channels": [
+    "prices-market-share",
+    "consumer-choice"
+  ],
+  "industries": [
+    {
+      "anzsic": "6322",
+      "name": "General Insurance",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6420",
+      "name": "Auxiliary Insurance Services",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. The rate is from the revenue office's page; the Act's name was not on that page."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "A tax on insurance premiums on top of GST. It discourages people and businesses from insuring and leaves more risk unpooled; the Henry Review recommended abolishing all such taxes.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Raises the price of insurance relative to other services, so people under-insure (Henry Review)."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "The direction is well supported; no official estimate of the efficiency cost of insurance duty was found.",
+    "evidence": [
+      "https://treasury.gov.au/sites/default/files/2019-10/afts_final_report_part_1_consolidated.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

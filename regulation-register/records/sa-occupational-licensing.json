@@ -1,0 +1,88 @@
+{
+  "id": "sa-occupational-licensing",
+  "kind": "setting",
+  "family": "occupational-licensing",
+  "title": "Occupational licensing (South Australia)",
+  "jurisdiction": "SA",
+  "summary": "South Australia requires a licence to work in many trades and professions. Licences for electrical, plumbing and building work are examples: the Plumbers, Gas Fitters and Electricians Act 1995 (SA) set who may do the work and the training they need. Requirements differ between states.",
+  "instruments": [
+    {
+      "title": "Plumbers, Gas Fitters and Electricians Act 1995 (SA)",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "licences for plumbing, gas fitting and electrical contractors and workers"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Licences that ask more than safety requires keep qualified people out of occupations and raise the cost of services. The Productivity Commission modelled removing unnecessary licensing requirements at a 0.8% productivity gain in licence-heavy industries and 0.19 to 0.39% of GDP.",
+  "direction_sources": [
+    "https://www.pc.gov.au/inquiries-and-research/competition-analysis/report",
+    "https://www.pc.gov.au/inquiries-and-research/competition-analysis-2025/report"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "3232",
+      "name": "Electrical Services",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3231",
+      "name": "Plumbing Services",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "E",
+      "name": "Construction",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. The Acts are examples, not the full list of licensing laws in the jurisdiction. The Act's title was found on the SA legislation site through search results."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Licences protect safety, which is not weighed here, but they also narrow who may work in an occupation and raise the cost of moving into it. The Productivity Commission estimates cutting unnecessary requirements would add 0.19 to 0.39% to GDP, one of the largest gains it modelled.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Licensing requirements narrow the pool of workers who may do licensed work and the ease of moving into it."
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "multi-sector",
+    "confidence": "medium",
+    "confidence_note": "The Productivity Commission's estimate is for unnecessary requirements across Australia; which licences are unnecessary in each jurisdiction has not been assessed.",
+    "evidence": [
+      "https://assets.pc.gov.au/2025-10/competition-analysis-study-report-plus.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}
