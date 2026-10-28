@@ -220,9 +220,11 @@ function heatColor(v, scale, kind = "div") {
   return `color-mix(in oklab, ${base} ${p}%, var(--surface))`;
 }
 
-/* Legend chips that toggle series. keys: [{key, label, color, dash}]; state: Set of active keys. */
+/* Legend chips that toggle series. keys: [{key, label, color, dash}]; state: Set of active keys. A chip whose key has
+ * a definition (TERMS) shows it on hover, focus or tap, like a defined word. */
 function toggleChips(container, keys, active, onChange) {
-  container.innerHTML = keys.map((k) => `<button type="button" class="chip" data-key="${esc(k.key)}" aria-pressed="${active.has(k.key)}">
+  const def = (k) => (TERMS[k] ? ` data-term="${esc(k)}" aria-describedby="def-${esc(k)}"` : "");
+  container.innerHTML = keys.map((k) => `<button type="button" class="chip" data-key="${esc(k.key)}"${def(k.key)} aria-pressed="${active.has(k.key)}">
     <span class="key${k.dash ? " dash" : ""}" style="${k.dash ? `color:${k.color}` : `background:${k.color}`}"></span>${esc(k.label)}</button>`).join("");
   container.querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => {
     const key = b.dataset.key;
@@ -505,23 +507,23 @@ function mekkoChart(container, opts) {
   mount(container, draw);
 }
 
-/* 100 per cent stacked horizontal bars. rows [{label, parts: {key: value}, total}], keys [{key, label}] in
- * stacking order; fills come from --fill-<key>, text inside from --ink-<key>. tipFmt(row, key) -> html. */
-function shareBars(container, rows, keys, opts = {}) {
-  container._xl = { kind: "shares", rows, keys, opts };
-  container.innerHTML = rows.map((r, i) => {
-    const sum = keys.reduce((a, k) => a + Math.max(0, r.parts[k.key] || 0), 0);
-    const segs = keys.map((k) => {
-      const v = Math.max(0, r.parts[k.key] || 0), p = sum > 0 ? (v / sum) * 100 : 0;
-      if (p <= 0) return "";
-      return `<span class="seg" data-r="${i}" data-k="${esc(k.key)}" style="flex-basis:${p}%;background:var(--fill-${k.key});color:var(--ink-${k.key})">${p >= 9 ? `${fmt(p, 0)}%` : ""}</span>`;
-    }).join("");
-    return `<div class="share-row"><span class="lab">${esc(r.label)}</span><span class="share-bar">${segs}</span></div>`;
-  }).join("");
-  container.querySelectorAll(".seg").forEach((s) => {
-    const tip = (ev) => showTip((opts.tipFmt || ((r, k) => esc(k)))(rows[+s.dataset.r], s.dataset.k), ev);
-    s.addEventListener("pointermove", tip); s.addEventListener("pointerdown", tip);
-    s.addEventListener("pointerleave", hideTip);
+/* Bar table: a row per item, a column per measure, and in each cell a bar of the item's share of the column's total
+ * (0-100) with its value. rows [{key, label (plain text), labelHtml, cells: {colKey: [{value, color}]}, cls}]: a cell
+ * with several parts is a stacked bar (a subtotal). cols [{key, label, labelHtml, short (label on phones)}].
+ * opts: fmt, tipFmt(row, col) -> html. */
+function barTable(container, rows, cols, opts = {}) {
+  container._xl = { kind: "bartable", rows, cols, opts };
+  const f = opts.fmt || ((v) => `${fmt(v, 1)}%`);
+  const total = (parts) => (parts.some((p) => isNum(p.value)) ? parts.reduce((a, p) => a + (isNum(p.value) ? p.value : 0), 0) : null);
+  container.innerHTML = `<table class="bartable"><thead><tr><th></th>${cols.map((c) => `<th scope="col">${c.labelHtml || esc(c.label)}</th>`).join("")}</tr></thead><tbody>${rows.map((r, i) => `<tr class="${r.cls || ""}"><th scope="row">${r.labelHtml || esc(r.label)}</th>${cols.map((c, j) => {
+    const parts = r.cells[c.key] || [], v = total(parts);
+    const fills = parts.filter((p) => isNum(p.value) && p.value > 0).map((p) => `<span class="bt-fill" style="width:${Math.min(100, p.value)}%;background:${p.color}"></span>`).join("");
+    return `<td data-r="${i}" data-c="${j}" aria-label="${esc(`${r.label}, ${c.label}: ${isNum(v) ? f(v) : "no data"}`)}"><span class="bt" data-label="${esc(c.short || c.label)}"><span class="bt-track">${fills}</span><span class="bt-val">${isNum(v) ? esc(f(v)) : "–"}</span></span></td>`;
+  }).join("")}</tr>`).join("")}</tbody></table>`;
+  container.querySelectorAll("td[data-r]").forEach((td) => {
+    const tip = (ev) => showTip((opts.tipFmt || ((r, c) => esc(`${r.label}, ${c.label}`)))(rows[+td.dataset.r], cols[+td.dataset.c]), ev);
+    td.addEventListener("pointermove", tip); td.addEventListener("pointerdown", tip);
+    td.addEventListener("pointerleave", hideTip);
   });
 }
 
@@ -587,8 +589,9 @@ const fmtB = (v, d = 1) => (isNum(v) ? `$${fmt(v / 1000, d)}b` : "–");
 
 /* ---- Plain-English definitions --------------------------------------------------------------------------
  * term(key, text) marks a word that has a definition: dotted underline; the definition shows on hover,
- * keyboard focus or tap, and screen readers get it as the button's description. Pages add their own
- * entries (for example the barriers-to-entry groups) with initTerms(). */
+ * keyboard focus or tap, and screen readers get it as the button's description. An entry is [word, meaning]
+ * or [word, meaning, examples]. Pages add their own entries (for example the barriers-to-entry groups) with
+ * initTerms(). */
 const TERMS = {
   gsp: ["Gross state product", "The value of everything produced in a state in a year: the state version of GDP."],
   real: ["Real", "Adjusted for inflation, so it shows changes in quantities rather than prices."],
@@ -647,32 +650,40 @@ function showTipAt(html, target) {
   TIP.style.left = `${x}px`;
   TIP.style.top = `${Math.max(8, y)}px`;
 }
+const termText = (t) => `${t[1]}${t[2] ? ` For example: ${t[2]}.` : ""}`;
 function initTerms(extra = {}) {
   Object.assign(TERMS, extra);
   // Static markup marks a defined word as <span data-term="key">word</span>.
   document.querySelectorAll("span[data-term]").forEach((s) => { s.outerHTML = term(s.dataset.term, s.textContent); });
   const box = document.createElement("div");
   box.hidden = true;
-  box.innerHTML = Object.entries(TERMS).map(([k, [, d]]) => `<span id="def-${esc(k)}">${esc(d)}</span>`).join("");
+  box.innerHTML = Object.entries(TERMS).map(([k, t]) => `<span id="def-${esc(k)}">${esc(termText(t))}</span>`).join("");
   document.body.appendChild(box);
-  let pinned = null;
-  const show = (b) => { const t = TERMS[b.dataset.term]; showTipAt(`<strong>${esc(t[0])}</strong><br>${esc(t[1])}`, b); };
-  const termOf = (e) => (e.target instanceof Element ? e.target.closest(".term") : null);
+  let pinned = null, pointer = "mouse";
+  const show = (b) => {
+    const t = TERMS[b.dataset.term];
+    showTipAt(`<strong>${esc(t[0])}</strong><br>${esc(t[1])}${t[2] ? `<br><span class="tip-ex">For example: ${esc(t[2])}.</span>` : ""}`, b);
+  };
+  // Defined words, and legend chips whose series has a definition.
+  const termOf = (e) => (e.target instanceof Element ? e.target.closest(".term, .chip[data-term]") : null);
+  document.addEventListener("pointerdown", (e) => { pointer = e.pointerType; }, true);
   document.addEventListener("pointerover", (e) => { const b = termOf(e); if (b && e.pointerType === "mouse") show(b); });
   document.addEventListener("pointerout", (e) => { const b = termOf(e); if (b && b !== pinned && e.pointerType === "mouse") hideTip(); });
   document.addEventListener("focusin", (e) => { const b = termOf(e); if (b) show(b); });
   document.addEventListener("focusout", (e) => { if (termOf(e)) { pinned = null; hideTip(); } });
   document.addEventListener("click", (e) => {
     const b = termOf(e);
+    // A mouse click on a chip toggles its series; hovering already shows the definition.
+    if (b && b.classList.contains("chip") && pointer === "mouse") return;
     if (b) { pinned = b; show(b); } else if (pinned) { pinned = null; hideTip(); }
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") { pinned = null; hideTip(); } });
 }
 /* A list of every defined word on the page, for the footer. */
 function glossaryHtml() {
-  const keys = [...new Set([...document.querySelectorAll(".term")].map((b) => b.dataset.term))].filter((k) => TERMS[k]);
+  const keys = [...new Set([...document.querySelectorAll(".term, .chip[data-term]")].map((b) => b.dataset.term))].filter((k) => TERMS[k]);
   keys.sort((a, b) => TERMS[a][0].localeCompare(TERMS[b][0]));
-  return `<dl class="glossary">${keys.map((k) => `<div><dt>${esc(TERMS[k][0])}</dt><dd>${esc(TERMS[k][1])}</dd></div>`).join("")}</dl>`;
+  return `<dl class="glossary">${keys.map((k) => `<div><dt>${esc(TERMS[k][0])}</dt><dd>${esc(TERMS[k][1])}${TERMS[k][2] ? ` <span class="ex">For example: ${esc(TERMS[k][2])}.</span>` : ""}</dd></div>`).join("")}</dl>`;
 }
 
 /* "Source: ..." links under a chart. sources: {key: {label, url}}; keys: the datasets the chart uses. */

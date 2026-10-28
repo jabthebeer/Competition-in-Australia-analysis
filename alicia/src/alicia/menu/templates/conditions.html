@@ -149,7 +149,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   const STATES = D.states, NAMES = D.stateNames;
   const SRC = (keys) => sourceHtml(D.sources, keys);
   const GROUPS = P.groups.map((g) => g.id), GM = Object.fromEntries(P.groups.map((g) => [g.id, g]));
-  initTerms(Object.fromEntries(P.groups.map((g) => [g.id, [g.label, g.about]])));
+  initTerms(Object.fromEntries(P.groups.map((g) => [g.id, [g.label, g.definition, g.examples]])));
   const store = {
     get(k, d) { try { const v = localStorage.getItem(`alicia-cond-${k}`); return v === null ? d : JSON.parse(v); } catch { return d; } },
     set(k, v) { try { localStorage.setItem(`alicia-cond-${k}`, JSON.stringify(v)); } catch { /* storage unavailable */ } },
@@ -382,7 +382,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   let mkGroup = store.get("mkGroup", "natural_monopoly");
   if (!PRIVATE.includes(mkGroup)) mkGroup = "natural_monopoly";
   const mkTabs = document.getElementById("mkTabs");
-  mkTabs.innerHTML = PRIVATE.map((g) => `<button type="button" class="chip" data-g="${g}" aria-pressed="${g === mkGroup}"><span class="key box" style="background:${gColor(g)}"></span>${esc(GM[g].label)}</button>`).join("");
+  mkTabs.innerHTML = PRIVATE.map((g) => `<button type="button" class="chip" data-g="${g}" data-term="${g}" aria-describedby="def-${g}" aria-pressed="${g === mkGroup}"><span class="key box" style="background:${gColor(g)}"></span>${esc(GM[g].label)}</button>`).join("");
   mkTabs.querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => {
     mkGroup = b.dataset.g; store.set("mkGroup", mkGroup);
     mkTabs.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.g === mkGroup)));

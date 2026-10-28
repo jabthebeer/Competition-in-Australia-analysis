@@ -1,7 +1,7 @@
 # Barriers to entry and profitability charts: methods note
 
 25 October 2026. The charts recreate, from public data, the barriers-to-entry and profitability analysis in Grattan Institute's *Competition in Australia: too little of a good thing?* (Minifie, Chisholm and Percival, December 2017). Grattan used IBISWorld industry data and Morningstar firm data, which are proprietary. These charts are on the ALICIA website (`alicia site`):
-- **State and industry growth** has barriers to entry and business dynamism.
+- **The state of competition in Australia** (formerly State and industry growth) has concentration, business entry and barriers to entry. It reads as a story: each section's heading states what the data show for the settings chosen, and is worked out from the same numbers as the chart.
 - **Economic conditions** has profitability and market power.
 
 Both pages now pick their time span with a slider instead of a drop-down list. Words that need explaining have a plain-English definition on hover, focus or tap, every chart names its source with a link, and each page ends with a list of its data sources and a glossary.
@@ -18,10 +18,10 @@ Tests: `alicia/tests/test_competition.py`.
 
 | Grattan figure | Chart | Page | Data |
 |---|---|---|---|
-| 1.1 Value added by barriers group | Where the barriers to entry are: each group's share of employing businesses, company income, equity and profit | Growth | ABS CABEE; ATO Table 4 |
-| 1.2, 3.3, 3.4 Concentration | Has concentration risen? Every industry's top-4 (10, 20, top 5%) firms' share of sales in the first and last years of the chosen period, sorted by the change, with one industry over time below; 2002–2019 | Growth | RBA RDP 2025-05 (BLADE) |
-| 3.6 Entry, exit, net firms created | Business entry and exit; Net businesses created, by state; extended to **entry and exit rates by barriers group** | Growth | ABS CABEE |
-| 4.3 Returns against concentration | Business entry and company returns by sector (entry rate in place of concentration, which is not published by sector) | Growth | CABEE; ATO Table 4 |
+| 1.1 Value added by barriers group | Where the barriers to entry are: a bar table of each group's share of employing businesses, company income, equity and profit, with the three barrier groups together in the top row | Competition | ABS CABEE; ATO Table 4 |
+| 1.2, 3.3, 3.4 Concentration | Concentration by industry: every industry's top-4 (10, 20, top 5%) firms' share of sales in the first and last years of the chosen period, sorted by the change, with one industry over time below; 2002–2019 | Competition | RBA RDP 2025-05 (BLADE) |
+| 3.6 Entry, exit, net firms created | Business entry and exit; Net businesses created, by state; extended to **entry and exit rates by barriers group** | Competition | ABS CABEE |
+| 4.3 Returns against concentration | Business entry and company returns by sector (entry rate in place of concentration, which is not published by sector) | Competition | CABEE; ATO Table 4 |
 | 4.1 Return on equity by group | Return on equity by barriers to entry | Conditions | ATO Table 4 |
 | 4.2 Super-normal share of profit | How much profit is above the cost of equity (table) | Conditions | ATO Table 4; RBA F2.1 |
 | 4.4, A.7 Profit by sector (width equity, height return) | Profit by sector, one group at a time | Conditions | ATO Table 4; RBA F2.1 |
@@ -34,6 +34,16 @@ Not recreated, because public data cannot support them:
 - **ASX revenue shares** (3.1, 3.2), **profit persistence** and **market-to-book** (4.5–4.7): these need listed-firm panels.
 - **The welfare cost of mark-ups** (5.3): this needs demand elasticities by sector.
 - **Margins by firm rank** (5.4, 5.5): these need firm-level data.
+
+## The story on the page
+
+The page runs: concentration; business entry by barrier group and for all industries; where the barriers to entry are; whether low entry goes with high returns; then industries in each state, and state economies last. The narrative headings follow the data shown, so they change with the period, state, measure and businesses counted:
+- **Concentration**: the all-industries change between the first and last years: risen (+1 point or more), fallen (−1 point or more), or barely changed. The summary names the industries where the share rose and fell most.
+- **Business entry**: the barrier group with the lowest average entry rate, against low barriers. Fewer new firms start up there when its rate is below the low-barriers rate; otherwise "Entry is no lower behind barriers to entry". With businesses with employees, heavily regulated industries have a lower entry rate than low-barrier industries in every state and in every period checked (2015-16 to 2024-25, 2008-09 to 2024-25, 2020-21 to 2024-25). Counting all businesses, it is mixed, because of rideshare and delivery sole traders.
+- **Where the barriers are**: the barrier groups' share of businesses and of company income. By default: 3.6% of businesses with employees in June 2025, but 19.6% of company income, 22.2% of company equity and 12.4% of company profit (2018-19 to 2022-23).
+- **Entry and returns**: from the weighted line of best fit. If entry explains less than 10% of the differences in returns, the heading says low entry does not go with higher returns; otherwise it gives the direction.
+
+Each barrier group's name shows a plain definition and example industries on hover, keyboard focus or tap, including in chart legends (`definition` and `examples` in `barriers.json`).
 
 ## Barriers-to-entry groups
 
@@ -129,7 +139,7 @@ These figures use income years 2018-19 to 2022-23, a cost of equity of 8.0% (bon
 
 Every chart that follows a slider or a drop-down list has a **Download Excel** button. The workbook has, for each chart, a sheet with the chart rebuilt as a native Excel chart from the numbers below it (as on the page, unrounded), and an About sheet with the settings in use, each dataset's link, release and licence, the notes and the definitions. Three charts have no exact Excel form:
 - **Profit by sector**: every bar has the same width (each sector's equity is in the table);
-- **Has concentration risen?**: the two years are paired bars rather than dots joined by a line;
+- **Concentration by industry**: the two years are paired bars rather than dots joined by a line;
 - **shaded periods**: drawn as light columns reaching the top of the axis; the table's "Shaded" column only draws them.
 
 Code: `alicia/src/alicia/menu/templates/xlsx.js` (decision E-84). Tests: `alicia/tests/test_xlsx_export.py`.
