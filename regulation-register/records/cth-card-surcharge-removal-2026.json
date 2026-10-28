@@ -1,5 +1,6 @@
 {
   "id": "cth-card-surcharge-removal-2026",
+  "kind": "reform",
   "family": "card-payments",
   "title": "Surcharges removed on eftpos, Mastercard and Visa; lower interchange caps",
   "jurisdiction": "CTH",
@@ -70,5 +71,27 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Bans surcharges on eftpos, Mastercard and Visa cards and lowers interchange caps. The price shown is the price paid, and acceptance costs fall; but card costs are now spread across all customers rather than charged to card users.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "The headline price is the price paid, so prices are easier to compare."
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Card acceptance costs are spread across all customers, weakening the signal to use cheaper payment methods; lower interchange caps cut the cost itself."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

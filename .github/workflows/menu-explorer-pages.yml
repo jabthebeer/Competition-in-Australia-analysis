@@ -1,6 +1,8 @@
 # Builds the ALICIA website from the register and the processed panels, and publishes it with GitHub Pages:
-# index.html (legislation menu), growth.html (state and industry growth), conditions.html (economic conditions)
-# and costing.html (the Policy costing tab, built from regulatory-burden-tool/).
+# index.html (legislation menu: every item's framework assessment and industry statistics), framework.html (the
+# productivity framework), growth.html (state and industry growth), conditions.html (economic conditions),
+# costing.html (the Policy costing tab, built from regulatory-burden-tool/), and archive.html with one
+# evaluation-<id>.html page per evaluation (the econometric archive).
 # One-time setup: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
 # The page is then at https://<owner>.github.io/<repository>/. It is rebuilt on every push to main and once a
 # day, when the costing data is checked against the publishers' latest releases: a new release (for example

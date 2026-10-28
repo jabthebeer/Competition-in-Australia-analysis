@@ -1,5 +1,6 @@
 {
   "id": "qld-cds-2018",
+  "kind": "reform",
   "family": "container-deposit-scheme",
   "title": "Containers for Change (Queensland)",
   "jurisdiction": "QLD",
@@ -91,5 +92,32 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Beverage suppliers fund a 10-cent refund on containers. It prices litter and waste more fully, but each state runs its own scheme, with its own registration and costs, which weighs most on small and interstate suppliers.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Suppliers must register every container type and report and pay scheme costs."
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Each state's scheme has its own registration and cost recovery, adding costs to selling in several states."
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": 1,
+        "reason": "The deposit puts a price on littered and landfilled containers, a cost the market otherwise ignores."
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

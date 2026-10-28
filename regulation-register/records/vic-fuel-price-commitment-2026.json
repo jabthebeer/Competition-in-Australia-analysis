@@ -1,5 +1,6 @@
 {
   "id": "vic-fuel-price-commitment-2026",
+  "kind": "reform",
   "family": "fuel-price-commitment",
   "title": "Daily fuel price cap: next-day maximum price (Victoria)",
   "jurisdiction": "VIC",
@@ -61,5 +62,27 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Retailers must post tomorrow's price the day before and may only cut it during the day, as in Perth. It ends sudden price jumps, but restricting price changes and publishing commitments in advance can make prices easier to match; Perth's experience does not show a clear fall in average margins.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Limits when retailers can change prices, and advance commitments make rivals' prices easy to match."
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Retailers must set and report the next day's price within a daily window."
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

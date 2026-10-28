@@ -1,5 +1,6 @@
 {
   "id": "cth-childcare-fee-growth-cap-2024",
+  "kind": "reform",
   "family": "childcare-subsidy",
   "title": "Fee growth cap for services taking the early childhood worker retention payment",
   "jurisdiction": "CTH",
@@ -61,5 +62,32 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Services taking the worker retention payment must hold fee growth to about 4.4% a year. It funds higher pay for educators but caps prices for services whose costs rise faster, which may slow expansion.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A cap on fee growth ties prices to a set rate rather than to each service's costs."
+      },
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Capped revenue growth lowers the expected return on new or expanded centres."
+      },
+      {
+        "driver": "labour",
+        "mark": 1,
+        "reason": "The payment funds a wage rise that helps attract and keep qualified educators."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

@@ -1,0 +1,78 @@
+{
+  "id": "cth-supermarket-concentration",
+  "kind": "barrier",
+  "family": null,
+  "title": "Concentrated supermarket market",
+  "jurisdiction": "CTH",
+  "summary": "The ACCC's supermarkets inquiry (final report, March 2025) found an oligopoly dominated by Woolworths and Coles, judged them among the most profitable supermarket businesses compared with international peers, and found their product margins rose over the five years it examined.",
+  "instruments": [],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Two dominant chains face limited pressure to cut prices, and their scale and store networks make entry and expansion costly for rivals.",
+  "direction_sources": [
+    "https://www.accc.gov.au/inquiries-and-consultations/finalised-inquiries/supermarkets-inquiry-2024-25/final-report"
+  ],
+  "channels": [
+    "prices-market-share",
+    "barriers",
+    "consumer-choice"
+  ],
+  "industries": [
+    {
+      "anzsic": "4110",
+      "name": "Supermarket and Grocery Stores",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "11",
+      "name": "Food Product Manufacturing",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "A market structure, not a law: no dates. ACCC pages refuse automated requests; the findings are from search excerpts of the ACCC's report and press coverage, not read in full."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4 of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Two chains dominate grocery retailing, and the ACCC found them among the most profitable supermarkets in the world relative to peers. Weak rivalry in the biggest consumer market keeps prices and margins high.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -2,
+        "reason": "An oligopoly of two chains faces limited pressure to compete on price."
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "The incumbents' scale and store networks make entry and expansion costly for rivals."
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "high",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

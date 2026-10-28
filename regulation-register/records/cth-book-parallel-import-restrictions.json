@@ -1,0 +1,81 @@
+{
+  "id": "cth-book-parallel-import-restrictions",
+  "kind": "setting",
+  "family": null,
+  "title": "Parallel import restrictions on books",
+  "jurisdiction": "CTH",
+  "summary": "The Copyright Act 1968 lets the Australian publisher of a book block commercial imports of copies published overseas, as long as it supplies the book locally within set times. The Productivity Commission recommended repealing the restrictions in 2009 and again in 2016.",
+  "instruments": [
+    {
+      "title": "Copyright Act 1968",
+      "register_url": "https://www.legislation.gov.au/C1968A00063",
+      "register_id": "C1968A00063",
+      "role": "principal",
+      "provisions": "importation provisions as they apply to books"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Blocking cheaper imported editions shields local publishers and distributors from price competition; the Productivity Commission found the restrictions raise book prices.",
+  "direction_sources": [
+    "https://www.pc.gov.au/inquiries-and-research/books/report",
+    "https://www.pc.gov.au/inquiries-and-research/intellectual-property/report"
+  ],
+  "channels": [
+    "prices-market-share",
+    "consumer-choice"
+  ],
+  "industries": [
+    {
+      "anzsic": "5413",
+      "name": "Book Publishing",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "4244",
+      "name": "Newspaper and Book Retailing",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. The provisions are named generally; the exact sections were not checked."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4 of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Local publishers can block cheaper imported editions of books. It protects local publishing at the cost of higher prices for readers; the Productivity Commission has twice recommended repeal.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Restricts imports of books published overseas, sheltering local editions from price competition."
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "narrow",
+    "confidence": "high",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

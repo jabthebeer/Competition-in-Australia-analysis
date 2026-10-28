@@ -1,5 +1,6 @@
 {
   "id": "cth-coastal-trading-2012",
+  "kind": "reform",
   "family": null,
   "title": "Coastal shipping cabotage regime (Coastal Trading Act)",
   "jurisdiction": "CTH",
@@ -76,5 +77,29 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Licences for coastal shipping favour Australian-registered vessels and restrict foreign ships to voyage-limited temporary licences. The Harper Review and the Productivity Commission found it raises freight costs and reduces competition.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -2,
+        "reason": "Restricts foreign vessels to voyage-limited temporary licences, closing much of coastal freight to the cheapest ships."
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Temporary licence applications, notices and variations add delay and cost for shippers."
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "sector",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [
+      "https://treasury.gov.au/publication/p2015-cpr-final-report"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }
