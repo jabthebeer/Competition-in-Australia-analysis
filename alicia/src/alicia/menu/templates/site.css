@@ -77,6 +77,8 @@
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
+/* Elements switched off by the page stay off, whatever display their class gives them. */
+[hidden] { display: none !important; }
 body {
   margin: 0; background: var(--bg); color: var(--ink); font: var(--step-0)/1.5 var(--font-body);
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -186,6 +188,12 @@ svg .cross { stroke: var(--ink-3); }
 .bars .axis0 { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--line-strong); }
 .bars .fill { position: absolute; top: 0; bottom: 0; border-radius: 2px; }
 .bars .val { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.bars .row.total { font-weight: 600; }
+/* Ranked bars you can pick from: each row is a button. */
+.bars button.row { font: inherit; color: var(--ink); background: none; border: 1px solid transparent; border-radius: 6px; padding: 3px 6px; text-align: left; cursor: pointer; width: 100%; }
+.bars button.row:hover { background: var(--accent-soft); }
+.bars button.row[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.bars.pick { max-height: 27rem; overflow-y: auto; padding-right: 4px; }
 @media (max-width: 640px) { .bars .row { grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) 3.6rem; } }
 
 .stack { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); align-content: start; }
@@ -262,6 +270,9 @@ table.bartable tbody tr:last-child th, table.bartable tbody tr:last-child td { b
 .bt-track { flex: 1; display: flex; height: 12px; min-width: 4.5rem; border-radius: 2px; background: var(--grid); overflow: hidden; }
 .bt-fill { height: 100%; flex: none; }
 .bt-val { flex: none; width: 3.2em; text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.bt-num { justify-content: flex-end; }
+.bt-num .bt-val { width: auto; }
+table.bartable thead th.numcol { text-align: right; min-width: 5.5rem; }
 table.bartable td:hover .bt-track { box-shadow: 0 0 0 1px var(--line-strong); }
 /* On a phone each group's four bars stack under its name, each labelled with its measure. */
 @media (max-width: 640px) {
@@ -271,6 +282,7 @@ table.bartable td:hover .bt-track { box-shadow: 0 0 0 1px var(--line-strong); }
   table.bartable tbody th, table.bartable td, table.bartable tr.total th, table.bartable tr.total td { position: static; border: 0; padding: 2px 0; }
   table.bartable tr.total { border-bottom-color: var(--line-strong); }
   table.bartable td .bt::before { content: attr(data-label); flex: none; width: 8.5rem; color: var(--ink-3); }
+  table.bartable td .bt-num { justify-content: space-between; }
 }
 ul.method { margin: 0; padding-left: 1.1em; font-size: var(--step--1); color: var(--ink-2); display: grid; gap: 3px; max-width: 100ch; }
 ul.method strong { color: var(--ink); font-weight: 600; }

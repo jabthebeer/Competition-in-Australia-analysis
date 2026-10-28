@@ -222,3 +222,8 @@ def test_competition_page_tells_its_story_in_order(tmp_path):
     assert re.search(r"\.chart-card \{[^}]*grid-template-columns: minmax\(0, 1fr\)", g)
     data = json.loads(re.search(r'id="page-data">(.*?)</script>', g, re.S).group(1))
     assert all(grp["definition"] and grp["examples"] for grp in data["barriers"]["groups"])
+    # Each group breaks into its sectors: on the entry chart, the starting-and-closing chart and the sectors card.
+    for i in ("grpBreak", "grpBars", "dynInd", "dynSec", "secGroup", "secTable"):
+        assert f'id="{i}"' in g, i
+    assert g.index('id="shares"') < g.index('id="secTable"') < g.index('id="scChart"')
+    assert 'excelButton(cardOf("secTable")' in g

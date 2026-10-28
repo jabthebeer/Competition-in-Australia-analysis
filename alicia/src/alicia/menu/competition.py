@@ -203,26 +203,29 @@ def ato_group_series() -> dict:
 EMPLOYING = ("1-19 employees", "20-199 employees", "200+ employees")
 
 
-def cabee_by_sector() -> tuple[list[int], dict, dict]:
+def cabee_by_sector() -> tuple[list[int], dict, dict, dict, dict]:
     """Business counts, entries and exits, for all businesses and for employing businesses only: by sector for
-    Australia, and by barriers group for each state and Australia. Employing businesses are counted in the size
-    band they were in (entries and exits by size, as the ABS publishes them), so a business that takes on its
-    first employee is not an entry."""
+    Australia and for each state, and by barriers group for each state and Australia; with each sector's label
+    and group. Employing businesses are counted in the size band they were in (entries and exits by size, as the
+    ABS publishes them), so a business that takes on its first employee is not an entry."""
     raw = store.read_panel("abs_cabee", "class_state_fy")
     years = sorted(int(y) for y in raw["period"].dt.year.unique())
     cls = _classes(raw["industry_code"])
-    by_sector, by_group = {}, {}
+    by_sector, by_group, by_sector_state = {}, {}, {}
     for scope, keep in (("all", raw["breakdown"] == ""), ("employing", raw["breakdown"].isin(EMPLOYING))):
         cab = raw[keep].assign(year=raw.loc[keep, "period"].dt.year)
         d = cab.merge(cls, left_on="industry_code", right_on="code")
-        by_sector[scope], by_group[scope] = _cabee_arrays(d, years)
-    return years, by_sector, by_group
+        by_sector[scope], by_group[scope], by_sector_state[scope] = _cabee_arrays(d, years)
+    info = {r.sector: [r.label, r.group] for r in cls.drop_duplicates("sector").itertuples()}
+    return years, by_sector, by_group, by_sector_state, info
 
 
-def _cabee_arrays(d: pd.DataFrame, years: list[int]) -> tuple[dict, dict]:
+def _cabee_arrays(d: pd.DataFrame, years: list[int]) -> tuple[dict, dict, dict]:
     measures = {"businesses_start": "start", "businesses_end": "end", "entries": "entries", "exits": "exits"}
+    # Sectors by state carry only what entry and exit rates and net change need, to keep the page small.
+    flows = {k: v for k, v in measures.items() if k != "businesses_end"}
 
-    def arrays(frame: pd.DataFrame, keys: list[str]) -> dict:
+    def arrays(frame: pd.DataFrame, keys: list[str], measures: dict = measures) -> dict:
         s = frame.groupby([*keys, "measure", "year"])["value"].sum()
         out: dict = {}
         for idx in s.index.droplevel(["measure", "year"]).unique():
@@ -239,7 +242,7 @@ def _cabee_arrays(d: pd.DataFrame, years: list[int]) -> tuple[dict, dict]:
 
     states = arrays(d, ["geo_code", "group"])
     states["AUS"] = arrays(d, ["group"])
-    return arrays(d, ["sector"]), states
+    return arrays(d, ["sector"]), states, arrays(d, ["geo_code", "sector"], flows)
 
 
 def _rba(table: str) -> list[dict]:
@@ -304,20 +307,21 @@ def _vintage(table: str) -> str:
 
 
 def barriers_payload() -> dict:
-    """For The state of competition in Australia page: entry and exit by barriers group and sector, company profit by
-    sector (for group shares and the entry-and-returns chart), and concentration by division."""
+    """For The state of competition in Australia page: entry and exit by barriers group and by sector (Australia and
+    each state, so every group can be broken into its sectors), company profit by sector (for group shares, the
+    sectors in each group and the entry-and-returns chart), and concentration by division."""
     ato_years, sectors = ato_sectors()
-    biz_years, biz_sector, biz_states = cabee_by_sector()
+    biz_years, biz_sector, biz_states, biz_sector_states, biz_info = cabee_by_sector()
     for s in sectors:
         s.pop("assets", None)
-    private = {s["key"] for s in sectors if s["group"] not in ("tradeable", "public")}
-    biz_sector = {scope: {k: v for k, v in d.items() if k in private} for scope, d in biz_sector.items()}
     return {
         "groups": _groups_meta(),
         "atoYears": ato_years,
         "sectors": sectors,
         "bizYears": biz_years,
         "bizSector": biz_sector,
+        "bizSectorState": biz_sector_states,
+        "bizSectorInfo": biz_info,
         "bizGroup": biz_states,
         "concentration": rba_concentration(),
         "divisions": _divisions(),

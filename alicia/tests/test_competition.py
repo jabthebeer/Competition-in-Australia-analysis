@@ -183,6 +183,16 @@ def test_barriers_payload_counts_employing_businesses_within_all_businesses():
     # Australia is the sum of the states.
     nsw_plus = sum(b["bizGroup"]["all"][s]["low_barriers"]["entries"][i] for s in ato_company.schema.STATES)
     assert nsw_plus == b["bizGroup"]["all"]["AUS"]["low_barriers"]["entries"][i]
-    # Sectors for the entry-and-returns chart are the non-traded private ones.
-    groups = {s["key"]: s["group"] for s in b["sectors"]}
-    assert all(groups.get(k) not in ("tradeable", "public") for k in b["bizSector"]["employing"])
+    # Every group can be broken into its sectors, for Australia and each state; the states add up to Australia.
+    info = b["bizSectorInfo"]
+    assert {g for _, g in info.values()} == set(barriers.GROUPS)
+    assert set(b["bizSector"]["employing"]) <= set(info)
+    for scope in ("all", "employing"):
+        assert set(b["bizSectorState"][scope]) == set(ato_company.schema.STATES)
+    key = next(k for k, (label, g) in info.items() if label == "Supermarkets")
+    by_state = sum(
+        b["bizSectorState"]["all"][s].get(key, {}).get("entries", [0] * len(years))[i] or 0
+        for s in ato_company.schema.STATES
+    )
+    assert by_state == b["bizSector"]["all"][key]["entries"][i]
+    assert set(next(iter(b["bizSectorState"]["all"]["NSW"].values()))) == {"start", "entries", "exits"}

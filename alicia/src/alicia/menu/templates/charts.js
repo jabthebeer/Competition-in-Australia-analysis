@@ -195,7 +195,8 @@ function lineChart(container, opts) {
   mount(container, draw);
 }
 
-/* Horizontal bars around zero, sorted by the caller. rows: [{label, value, title}] */
+/* Horizontal bars around zero, sorted by the caller. rows: [{key, label, value, title, color, cls}]. With
+ * opts.onSelect, each row is a button (opts.selected is pressed) that calls onSelect(key). */
 function rankedBars(container, rows, opts = {}) {
   container._xl = { kind: "ranked", rows, opts };
   const vals = rows.map((r) => r.value).filter(isNum);
@@ -206,10 +207,15 @@ function rankedBars(container, rows, opts = {}) {
     const ok = isNum(r.value);
     const a = ok ? pos(Math.min(0, r.value)) : 0, b = ok ? pos(Math.max(0, r.value)) : 0;
     const color = r.color || (ok && r.value < 0 ? "var(--neg)" : "var(--pos)");
-    return `<div class="row" title="${esc(r.title || r.label)}"><span class="lab">${esc(r.label)}</span>
+    const inner = `<span class="lab">${esc(r.label)}</span>
       <span class="track"><span class="axis0" style="left:${pos(0)}%"></span>${ok ? `<span class="fill" style="left:${a}%;width:${Math.max(0.5, b - a)}%;background:${color}"></span>` : ""}</span>
-      <span class="val">${ok ? esc((opts.fmt || fmtSigned)(r.value)) : "–"}</span></div>`;
+      <span class="val">${ok ? esc((opts.fmt || fmtSigned)(r.value)) : "–"}</span>`;
+    const cls = `row${r.cls ? ` ${r.cls}` : ""}`;
+    return opts.onSelect
+      ? `<button type="button" class="${cls}" data-key="${esc(r.key)}" aria-pressed="${r.key === opts.selected}" title="${esc(r.title || r.label)}">${inner}</button>`
+      : `<div class="${cls}" title="${esc(r.title || r.label)}">${inner}</div>`;
   }).join("");
+  if (opts.onSelect) container.querySelectorAll("button.row").forEach((b) => b.addEventListener("click", () => opts.onSelect(b.dataset.key)));
 }
 
 /* Cell shading: diverging (growth) or sequential (shares), mixed into the surface colour so text stays legible. */
@@ -509,14 +515,18 @@ function mekkoChart(container, opts) {
 
 /* Bar table: a row per item, a column per measure, and in each cell a bar of the item's share of the column's total
  * (0-100) with its value. rows [{key, label (plain text), labelHtml, cells: {colKey: [{value, color}]}, cls}]: a cell
- * with several parts is a stacked bar (a subtotal). cols [{key, label, labelHtml, short (label on phones)}].
- * opts: fmt, tipFmt(row, col) -> html. */
+ * with several parts is a stacked bar (a subtotal). cols [{key, label, labelHtml, short (label on phones), kind, fmt}]:
+ * a column of kind "num" shows its value (formatted by its fmt) without a bar. opts: fmt, tipFmt(row, col) -> html. */
 function barTable(container, rows, cols, opts = {}) {
   container._xl = { kind: "bartable", rows, cols, opts };
   const f = opts.fmt || ((v) => `${fmt(v, 1)}%`);
   const total = (parts) => (parts.some((p) => isNum(p.value)) ? parts.reduce((a, p) => a + (isNum(p.value) ? p.value : 0), 0) : null);
-  container.innerHTML = `<table class="bartable"><thead><tr><th></th>${cols.map((c) => `<th scope="col">${c.labelHtml || esc(c.label)}</th>`).join("")}</tr></thead><tbody>${rows.map((r, i) => `<tr class="${r.cls || ""}"><th scope="row">${r.labelHtml || esc(r.label)}</th>${cols.map((c, j) => {
+  container.innerHTML = `<table class="bartable"><thead><tr><th></th>${cols.map((c) => `<th scope="col"${c.kind === "num" ? ' class="numcol"' : ""}>${c.labelHtml || esc(c.label)}</th>`).join("")}</tr></thead><tbody>${rows.map((r, i) => `<tr class="${r.cls || ""}"><th scope="row">${r.labelHtml || esc(r.label)}</th>${cols.map((c, j) => {
     const parts = r.cells[c.key] || [], v = total(parts);
+    if (c.kind === "num") {
+      const t = isNum(v) ? (c.fmt || f)(v) : "–";
+      return `<td data-r="${i}" data-c="${j}" aria-label="${esc(`${r.label}, ${c.label}: ${isNum(v) ? t : "no data"}`)}"><span class="bt bt-num" data-label="${esc(c.short || c.label)}"><span class="bt-val">${esc(t)}</span></span></td>`;
+    }
     const fills = parts.filter((p) => isNum(p.value) && p.value > 0).map((p) => `<span class="bt-fill" style="width:${Math.min(100, p.value)}%;background:${p.color}"></span>`).join("");
     return `<td data-r="${i}" data-c="${j}" aria-label="${esc(`${r.label}, ${c.label}: ${isNum(v) ? f(v) : "no data"}`)}"><span class="bt" data-label="${esc(c.short || c.label)}"><span class="bt-track">${fills}</span><span class="bt-val">${isNum(v) ? esc(f(v)) : "–"}</span></span></td>`;
   }).join("")}</tr>`).join("")}</tbody></table>`;

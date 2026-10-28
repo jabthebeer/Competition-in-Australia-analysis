@@ -532,11 +532,13 @@ function xlMekko(o) {
 }
 function xlBarTable(rows, cols) {
   const total = (parts) => (parts.some((p) => xlNum(p.value)) ? parts.reduce((a, p) => a + (xlNum(p.value) ? p.value : 0), 0) : null);
+  // The chart draws the share columns; columns of plain numbers (kind "num") go in the table only.
+  const bars = cols.map((c, j) => [c, j]).filter(([c]) => c.kind !== "num");
   return {
     head: ["Share of the total, %", ...cols.map((c) => c.label)],
     rows: rows.map((r) => [r.label, ...cols.map((c) => total(r.cells[c.key] || []))]), fmts: ["text", ...cols.map(() => "0.0")],
     chart: { type: "bar", dir: "bar", grouping: "clustered", gap: 60, cat: 0, reverse: true, yMin: 0, legend: true,
-      series: cols.map((c, j) => ({ col: j + 1, color: xlColor(c.color || `var(--c-${j + 1})`), labels: { fmt: "0.0", pos: "outEnd" } })) },
+      series: bars.map(([c, j], k) => ({ col: j + 1, color: xlColor(c.color || `var(--c-${k + 1})`), labels: { fmt: "0.0", pos: "outEnd" } })) },
     notes: [["In this workbook", "On the page each row's bars take its group's colour; Excel colours them by measure instead. Each column adds to 100%."]],
   };
 }
@@ -591,6 +593,7 @@ function xlCardBook(card, cfg = {}) {
   const parts = [];
   let h = title, unit = "", first = true;
   for (const node of card.querySelectorAll("h3, .unit, .chart, .bars, .dumbbell, .bt-wrap")) {
+    if (node.closest("[hidden]")) continue;
     if (node.matches("h3")) { h = first && cfg.title ? title : xlText(node); first = false; unit = ""; }
     else if (node.matches(".unit")) unit = xlText(node);
     else if (node._xl) {
