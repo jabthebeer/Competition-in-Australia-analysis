@@ -1,5 +1,6 @@
 {
   "id": "vic-default-offer-2019",
+  "kind": "reform",
   "family": "default-offer-reregulation",
   "title": "Victorian Default Offer",
   "jurisdiction": "VIC",
@@ -69,5 +70,32 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Victoria's regulator sets a default electricity price for customers who do not choose a market offer, and retailers must tell customers about their best offer. It protects customers who do not shop around, but a regulated price can compress the margins entrants rely on.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A regulated default price replaces retailer-set standing offers and may sit away from some retailers' costs."
+      },
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "A common reference price makes offers easier to compare and curbs the 'loyalty tax' on customers who do not switch."
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Lower standing-offer margins can deter smaller retailers from entering or expanding."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

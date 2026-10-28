@@ -1,5 +1,6 @@
 {
   "id": "cth-instant-asset-write-off-2015",
+  "kind": "reform",
   "family": "investment-incentives",
   "title": "Instant asset write-off threshold increases and temporary full expensing",
   "jurisdiction": "CTH",
@@ -101,5 +102,29 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Small and then most businesses could deduct the cost of new equipment immediately, with temporary full expensing from 2020 to 2023. It lowered the cost of capital across the economy, though some investment was brought forward rather than added, and the thresholds and time limits distort which assets and firms benefit.",
+    "marks": [
+      {
+        "driver": "capital",
+        "mark": 2,
+        "reason": "Immediate deduction lowers the after-tax cost of investing across most industries."
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Temporary, threshold-based concessions favour some assets and firm sizes and pull investment forward."
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "The Productivity Commission's 2025 report prefers permanent partial expensing to temporary measures.",
+    "evidence": [
+      "https://www.pc.gov.au/inquiries-and-research/resilient-economy/report/"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

@@ -1,5 +1,6 @@
 {
   "id": "vic-commercial-industrial-property-tax-2024",
+  "kind": "reform",
   "family": "commercial-property-transfer-tax",
   "title": "Commercial and industrial property tax replaces stamp duty (Victoria)",
   "jurisdiction": "VIC",
@@ -65,5 +66,29 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Victoria replaces stamp duty on commercial and industrial property with an annual property tax, one property at a time from its next sale; the full effect builds over decades. Stamp duty is one of the most inefficient taxes: it discourages firms from moving to better premises and makes property slower to change hands.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": 2,
+        "reason": "Removes or replaces a transaction tax that Treasury estimates costs 72 cents of efficiency per extra dollar raised."
+      },
+      {
+        "driver": "capital",
+        "mark": 1,
+        "reason": "Lowers the up-front cost of buying business premises."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "multi-sector",
+    "confidence": "medium",
+    "confidence_note": "The efficiency case rests on Treasury's estimates of the cost of each tax; there is no ex post evaluation of these reforms here.",
+    "evidence": [
+      "https://treasury.gov.au/sites/default/files/2019-03/TWP2015-01.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

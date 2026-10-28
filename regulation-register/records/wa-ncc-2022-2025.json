@@ -1,5 +1,6 @@
 {
   "id": "wa-ncc-2022-2025",
+  "kind": "reform",
   "family": "ncc-2022-adoption",
   "title": "2022 building code energy and accessibility standards adopted (Western Australia)",
   "jurisdiction": "WA",
@@ -70,5 +71,29 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Adopts the 2022 National Construction Code's higher energy efficiency (7-star) and livable housing standards for new homes. Western Australia adopted the 7-star energy provisions but not livable housing. The standards cut running costs and improve access, which are not weighed here; they also add to the cost of building.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Adds design and compliance costs to every new home, which weigh most on small builders."
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Adopting only part of the national code, or a local version, leaves builders working across states with different rules."
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "medium",
+    "confidence_note": "The Productivity Commission estimates housing construction regulation costs about 1% of GDP a year.",
+    "evidence": [
+      "https://www.pc.gov.au/inquiries-and-research/resilient-economy/report/"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }

@@ -35,7 +35,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     </div>
     <div class="sticky-key toolbar">
       <div id="range"></div>
-      <label class="check"><input type="checkbox" id="marks"> Show when evaluated reforms started</label>
+      <label class="check"><input type="checkbox" id="marks"> Show when major reforms started</label>
       <div class="chips" id="stateChips"></div>
     </div>
     <div class="charts-grid" id="stateCharts"></div>
@@ -489,7 +489,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
       <h2>Data sources</h2>
       <ul>${items.map(([k, note]) => `<li><a href="${esc(D.sources[k].url)}" target="_blank" rel="noopener">${esc(D.sources[k].label)}</a> <span class="muted">(${esc(note)})</span></li>`).join("")}</ul>
       <p>ABS and RBA data are licensed CC BY 4.0; ATO data CC BY 2.5 AU. How the profit charts were made, and their limits: <a href="${esc(D.repo)}docs/methods_competition_charts.md" target="_blank" rel="noopener">methods note</a>. All licences: <a href="${esc(D.repo)}data/SOURCES.md" target="_blank" rel="noopener">data sources register</a>.</p>
-      <p>The dates of evaluated reforms come from the legislation menu. These are descriptive statistics: they show what happened, not why. Built ${esc(D.generated)}.</p>
+      <p>Major reforms are reforms in the legislation menu with an overall framework mark of +3 or more, or −3 or less; their dates come from the menu. These are descriptive statistics: they show what happened, not why. Built ${esc(D.generated)}.</p>
       <details class="more"><summary>Words used on this page</summary>${glossaryHtml()}</details>`;
   }
 

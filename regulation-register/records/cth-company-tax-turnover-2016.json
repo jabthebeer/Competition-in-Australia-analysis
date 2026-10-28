@@ -1,5 +1,6 @@
 {
   "id": "cth-company-tax-turnover-2016",
+  "kind": "reform",
   "family": "small-business-tax",
   "title": "Lower company tax rate for base rate entities, with a rising turnover threshold",
   "jurisdiction": "CTH",
@@ -102,5 +103,29 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use. 'alicia dates' notes assent after the effective date: the 2017 Act applied the lower rate retrospectively to the 2016-17 income year."
+  },
+  "assessment": {
+    "summary": "A lower company tax rate (now 25%) for companies under a turnover threshold that rose to $50 million. It raises after-tax returns for smaller firms, but the gap between the two rates is a tax on growing past the threshold.",
+    "marks": [
+      {
+        "driver": "capital",
+        "mark": 1,
+        "reason": "A lower tax rate raises after-tax returns on investment for smaller companies."
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "The five-point jump in the tax rate at the threshold discourages firms from growing past it."
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "The Productivity Commission's 2025 report analyses bunching of firms around the company tax threshold, and finds rate cuts give less investment per dollar than changes to the tax base.",
+    "evidence": [
+      "https://www.pc.gov.au/inquiries-and-research/resilient-economy/report/"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
   }
 }
