@@ -42,7 +42,7 @@ WINDOWS = (
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
 PAGES = (
     ("index.html", "Legislation menu"),
-    ("growth.html", "State and industry growth"),
+    ("growth.html", "The state of competition in Australia"),
     ("conditions.html", "Economic conditions"),
 )
 # The Policy costing tab is built separately (Vite, `npm run build:site` in regulatory-burden-tool/) and added
