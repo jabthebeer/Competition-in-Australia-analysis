@@ -1,0 +1,75 @@
+{
+  "id": "cth-australia-post-reserved-services",
+  "kind": "setting",
+  "family": null,
+  "title": "Australia Post's reserved letter service",
+  "jurisdiction": "CTH",
+  "summary": "Australia Post has the exclusive right to carry letters within Australia under section 29 of the Australian Postal Corporation Act 1989, with exceptions that include letters over 250 grams. Letters are a shrinking market, but no rival may compete to deliver ordinary letters.",
+  "instruments": [
+    {
+      "title": "Australian Postal Corporation Act 1989",
+      "register_url": "https://www.legislation.gov.au/C2004A03812",
+      "register_id": "C2004A03812",
+      "role": "principal",
+      "provisions": "s 29 (reserved services) and its exceptions"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "A statutory monopoly bars rivals from carrying ordinary letters; it funds Australia Post's universal service obligation, which is not weighed here.",
+  "direction_sources": [
+    "https://www.infrastructure.gov.au/media-communications-arts/post/australia-post"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "5101",
+      "name": "Postal Services",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. Act identifier from the Federal Register of Legislation; the 250 gram threshold is from the department's Australia Post page."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "A legal monopoly on carrying ordinary letters. It shuts out rivals in a market that is now small and shrinking, so its cost to productivity is limited.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "Rivals are barred by law from carrying ordinary letters: an exclusive right."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The restriction is explicit; letter volumes have fallen, so the market it closes is small.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

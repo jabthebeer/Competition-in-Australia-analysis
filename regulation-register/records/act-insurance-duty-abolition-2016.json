@@ -1,0 +1,89 @@
+{
+  "id": "act-insurance-duty-abolition-2016",
+  "kind": "reform",
+  "family": "insurance-duty",
+  "title": "Insurance duty abolished (ACT)",
+  "jurisdiction": "ACT",
+  "summary": "The ACT phased out duty on insurance premiums, previously 10% on general and 5% on life insurance, as part of the tax reform program it began in 2012, and set the rate to nil for all insurance from 1 July 2016. General rates replaced the revenue.",
+  "instruments": [
+    {
+      "title": "Duties Act 1999 (ACT)",
+      "register_url": null,
+      "register_id": null,
+      "role": "principal",
+      "provisions": "insurance duty, set to nil by a determination under s 139 of the Taxation Administration Act 1999"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2016-07-01",
+        "what": "Insurance duty set to nil on all insurance premiums",
+        "source": "https://legislation.act.gov.au/DownloadFile/es/db_54246/20160627-63929/PDF/db_54246.PDF",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "enhancing",
+  "direction_rationale": "Abolishing insurance duty lowers the cost of cover; the ACT replaced the revenue with general rates, an efficient land tax.",
+  "direction_sources": [
+    "https://legislation.act.gov.au/DownloadFile/es/db_54246/20160627-63929/PDF/db_54246.PDF",
+    "https://treasury.gov.au/review/the-australias-future-tax-system-review/final-report"
+  ],
+  "channels": [
+    "prices-market-share"
+  ],
+  "industries": [
+    {
+      "anzsic": "6322",
+      "name": "General Insurance",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6420",
+      "name": "Auxiliary Insurance Services",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "The 1 July 2016 date is from the explanatory statement for the ACT duties determination, read in full. The earlier rates and the start of the phase-out in 2012 are from search results (law-firm and trade press summaries); the ACT Revenue Office site refuses automated requests."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Abolished duty on insurance premiums, replacing the revenue with general rates. People and businesses pay less for cover, as the Henry Review recommended.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": 1,
+        "reason": "Removes a tax that discouraged insurance, replaced by a broad land tax."
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [
+      "https://treasury.gov.au/sites/default/files/2019-10/afts_final_report_part_1_consolidated.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

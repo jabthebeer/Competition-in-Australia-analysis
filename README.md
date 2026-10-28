@@ -12,12 +12,12 @@ The legislation menu is a register of what shapes competition and productivity i
 
 ## Current priority (28 October 2026)
 
-**A productivity framework applied to legislation, settings and barriers** (owner decision, `alicia/DECISIONS.md` E-87 to E-90):
+**A productivity framework applied to legislation, settings and barriers** (owner decision, `alicia/DECISIONS.md` E-87 to E-90 and E-92):
 
 1. **Framework** (done): eight drivers of productivity, each marked from −2 to +2 ([methods note](docs/productivity_framework.md); the website's Framework page).
 2. **Assessment of the register** (done): all records assessed; the menu's econometric sections are replaced by the assessments and industry statistics. The econometric evaluations are archived on the site, unchanged.
 3. **Review of the register** (done): [`docs/register_review_framework.md`](docs/register_review_framework.md). The reforms were chosen for evaluability and are a skewed sample.
-4. **Additions** (first tranche done, 27 items: stamp duty, payroll tax, trade and foreign investment settings, and concentrated markets and other barriers); the review lists further candidates in priority order.
+4. **Additions** (two tranches done, 63 items: stamp duty, payroll tax, trade and foreign investment settings and concentrated markets, then planning and zoning, occupational licensing, pharmacy ownership and location rules, mandatory standards, insurance duty and other settings); the review lists the remaining candidates.
 
 Every assessment is a draft until checked by a person: the review sheet is [`docs/review/framework_assessments_review.csv`](docs/review/framework_assessments_review.csv). The Policy costing tab ([plan](docs/forward_plan_policy_costing.md)) quantifies what the framework marks. The retrospective evaluations were paused on 22 October 2026 (E-75); parked items are in [`docs/parked_items.md`](docs/parked_items.md).
 

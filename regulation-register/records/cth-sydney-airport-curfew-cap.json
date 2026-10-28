@@ -1,0 +1,87 @@
+{
+  "id": "cth-sydney-airport-curfew-cap",
+  "kind": "setting",
+  "family": null,
+  "title": "Sydney Airport curfew and movement cap",
+  "jurisdiction": "CTH",
+  "summary": "Sydney Airport, the busiest in Australia, has a curfew from 11 pm to 6 am under the Sydney Airport Curfew Act 1995 and a cap of 80 aircraft movements an hour under the Sydney Airport Demand Management Act 1997. Take-off and landing slots are scarce at peak times, and airlines that use their slots keep them from season to season (the slot rules were reformed from 2025; see the related reform).",
+  "instruments": [
+    {
+      "title": "Sydney Airport Curfew Act 1995",
+      "register_url": "https://www.legislation.gov.au/C2004A04984",
+      "register_id": "C2004A04984",
+      "role": "principal",
+      "provisions": "curfew, 11 pm to 6 am"
+    },
+    {
+      "title": "Sydney Airport Demand Management Act 1997",
+      "register_url": "https://www.legislation.gov.au/C2004A05267",
+      "register_id": "C2004A05267",
+      "role": "principal",
+      "provisions": "movement cap of 80 an hour; slot management"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "The cap and curfew limit the slots at the airport most airlines need, and slots held by incumbents are hard for new entrants to get, which limits competition on routes to and from Sydney.",
+  "direction_sources": [
+    "https://www.infrastructure.gov.au/infrastructure-transport-vehicles/aviation/airports/demand-management-sydney-airport"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "4900",
+      "name": "Air and Space Transport",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "5220",
+      "name": "Airport Operations and Other Air Transport Support Services",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. Act identifiers from the Federal Register of Legislation. The cap and curfew hours are from the department's demand management page as quoted in search results; the site reset automated connections. The cap and curfew limit noise, which is not weighed here."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 28 October 2026 (phase 4, second tranche, of the productivity framework pivot) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "The curfew and the hourly cap limit how many flights can use Sydney Airport, so peak slots are scarce and mostly held by incumbents. New airlines struggle to get them.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Scarce peak slots, kept by the airlines that use them, make entry to Sydney routes harder."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  }
+}

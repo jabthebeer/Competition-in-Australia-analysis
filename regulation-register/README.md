@@ -4,7 +4,7 @@ Commonwealth, state and territory reforms, existing regulatory settings and non-
 
 Browse it with the legislation menu (`uv run alicia explorer` in `alicia/`, or the website) or the command line (`uv run alicia menu`).
 
-> **Status (28 October 2026):** 198 records, all `draft`: 171 reforms, 20 existing settings and 7 non-legislative barriers. Every record has a framework assessment (28 October 2026). The reforms were first chosen because they could be evaluated with public data (102 added on 18 October from the [legislation gap scan](../docs/legislation_gap_scan.md)); the settings and barriers were added after the [framework review](../docs/register_review_framework.md). Records not yet in force have no commencement. Everything was compiled by AI-assisted desk research from the sources each record cites and has not yet been checked by a person. The `direction` and the assessment are judgements about likely effects, not findings.
+> **Status (28 October 2026):** 234 records, all `draft`: 173 reforms, 54 existing settings and 7 non-legislative barriers. Every record has a framework assessment (28 October 2026). The reforms were first chosen because they could be evaluated with public data (102 added on 18 October from the [legislation gap scan](../docs/legislation_gap_scan.md)); the settings and barriers were added after the [framework review](../docs/register_review_framework.md). Records not yet in force have no commencement. Everything was compiled by AI-assisted desk research from the sources each record cites and has not yet been checked by a person. The `direction` and the assessment are judgements about likely effects, not findings.
 
 ## What a record holds
 
