@@ -52,6 +52,13 @@ The page runs: concentration; business entry by barrier group and for all indust
 
 Each barrier group's name shows a plain definition and example industries on hover, keyboard focus or tap, including in chart legends (`definition` and `examples` in `barriers.json`).
 
+**Sectors within each group.** Every group can be broken into its sectors (a sector is a listed ANZSIC class, or otherwise an ANZSIC group; see below):
+- **New businesses by barrier group**: "Show" ranks the group's sectors by their yearly average rate for the measure, state and years chosen; clicking one shows it over time against its group.
+- **Businesses starting and closing**: "Industries" picks all industries or one group, and "Sector" one of its sectors, for any state.
+- **Sectors in each group** (under "Where the barriers to entry are"): for the income years chosen, each sector's share of the group's businesses (average count at the end of each year), company income, equity and profit, with its return on equity and entry rate. Company figures follow the data rules below; a sector's left-out years are listed.
+
+Sectors with few businesses have jumpy rates (a handful of entries can move them by tens of points), and the ABS perturbs small counts; the charts give each sector's size on hover.
+
 ## Barriers-to-entry groups
 
 Every ANZSIC 2006 class is put in one of six groups:
