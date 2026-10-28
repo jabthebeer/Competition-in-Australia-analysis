@@ -530,17 +530,14 @@ function xlMekko(o) {
     notes: [["In this workbook", `Excel has no chart with bars of different widths, so every sector's bar is the same width here. On the page each bar is as wide as the sector's equity (column C). Bars beyond ${fmt(Y0, 0)}% to ${fmt(Y1, 0)}% are cut off at the edge, as on the page.`]],
   };
 }
-function xlShares(rows, keys) {
-  const pct = rows.map((r) => {
-    const sum = keys.reduce((a, k) => a + Math.max(0, r.parts[k.key] || 0), 0);
-    return keys.map((k) => (sum > 0 ? (Math.max(0, r.parts[k.key] || 0) / sum) * 100 : null));
-  });
+function xlBarTable(rows, cols) {
+  const total = (parts) => (parts.some((p) => xlNum(p.value)) ? parts.reduce((a, p) => a + (xlNum(p.value) ? p.value : 0), 0) : null);
   return {
-    head: ["Share of the total, %", ...keys.map((k) => k.label)],
-    rows: rows.map((r, i) => [r.label, ...pct[i]]), fmts: ["text", ...keys.map(() => "0.0")],
-    chart: { type: "bar", dir: "bar", grouping: "stacked", gap: 40, cat: 0, reverse: true, yMin: 0, yMax: 100, legend: true,
-      series: keys.map((k, j) => ({ col: j + 1, color: xlColor(`var(--fill-${k.key})`), labels: { fmt: "0", pos: "ctr", color: xlColor(`var(--ink-${k.key})`), hide: pct.map((p, i) => (!(p[j] >= 9) ? i : -1)).filter((i) => i >= 0) } })) },
-    notes: [["In this workbook", "Each bar adds to 100%. A group whose total is negative counts as zero, as on the page."]],
+    head: ["Share of the total, %", ...cols.map((c) => c.label)],
+    rows: rows.map((r) => [r.label, ...cols.map((c) => total(r.cells[c.key] || []))]), fmts: ["text", ...cols.map(() => "0.0")],
+    chart: { type: "bar", dir: "bar", grouping: "clustered", gap: 60, cat: 0, reverse: true, yMin: 0, legend: true,
+      series: cols.map((c, j) => ({ col: j + 1, color: xlColor(c.color || `var(--c-${j + 1})`), labels: { fmt: "0.0", pos: "outEnd" } })) },
+    notes: [["In this workbook", "On the page each row's bars take its group's colour; Excel colours them by measure instead. Each column adds to 100%."]],
   };
 }
 function xlRanked(rows, o) {
@@ -567,7 +564,7 @@ function xlFromChart(x) {
     case "bar": return xlBars(x.opts);
     case "scatter": return xlScatter(x.opts);
     case "mekko": return xlMekko(x.opts);
-    case "shares": return xlShares(x.rows, x.keys, x.opts);
+    case "bartable": return xlBarTable(x.rows, x.cols);
     case "ranked": return xlRanked(x.rows, x.opts);
     case "dumbbell": return xlDumbbell(x.rows, x.opts);
     default: return null;
@@ -593,7 +590,7 @@ function xlCardBook(card, cfg = {}) {
   const srcLine = srcKeys.length ? `Source${srcKeys.length > 1 ? "s" : ""}: ${srcKeys.map((k) => XL_PAGE.sources[k].label).join("; ")}. Links, releases and licences are on the About sheet.` : "";
   const parts = [];
   let h = title, unit = "", first = true;
-  for (const node of card.querySelectorAll("h3, .unit, .chart, .bars, .dumbbell, .shares")) {
+  for (const node of card.querySelectorAll("h3, .unit, .chart, .bars, .dumbbell, .bt-wrap")) {
     if (node.matches("h3")) { h = first && cfg.title ? title : xlText(node); first = false; unit = ""; }
     else if (node.matches(".unit")) unit = xlText(node);
     else if (node._xl) {
@@ -608,16 +605,25 @@ function xlCardBook(card, cfg = {}) {
     ...extra.map((t, i) => xlTableSheet({ ...t, name: names[parts.length + i], title: t.title || title, lines: [settingsLine, srcLine] })),
   ];
   const notes = [];
-  card.querySelectorAll(".hint, .note, details.more p").forEach((n) => { const t = xlText(n); if (t) notes.push([n.closest("details") ? xlText(n.closest("details").querySelector("summary")) : "Note", t]); });
+  // The section's narrative heading and summary, as on the page.
+  const lead = card.closest("section.block")?.querySelector(".block-head");
+  if (lead) {
+    const h = xlText(lead.querySelector("h2")), p = xlText(lead.querySelector("p"));
+    if (h || p) notes.push(["Summary on the page", [h, p].filter(Boolean).join(/[.?!]$/.test(h) ? " " : ". ")]);
+  }
+  card.querySelectorAll(".hint, .note, ul.method li, details.more p").forEach((n) => {
+    const t = xlText(n), d = n.closest("details");
+    if (t) notes.push([n.closest("ul.method") ? "How it's measured" : d ? xlText(d.querySelector("summary")) : "Note", t]);
+  });
   if (cfg.notes) notes.push(...cfg.notes());
   for (const p of parts) for (const nt of p.notes || []) if (!notes.some(([, t]) => t === nt[1])) notes.push(nt);
-  const keys = [...new Set([...[...card.querySelectorAll(".term[data-term]")].map((b) => b.dataset.term), ...(cfg.terms || [])])].filter((k) => TERMS[k]);
+  const keys = [...new Set([...[...card.querySelectorAll(".term[data-term], .chip[data-term]")].map((b) => b.dataset.term), ...(cfg.terms || [])])].filter((k) => TERMS[k]);
   const about = xlAboutSheet({
     title, unit: parts.length === 1 ? parts[0].unit : parts.map((p) => p.unit).filter(Boolean).join(" ") || (extra[0]?.unit ?? ""),
     page: location.href.split("#")[0], exported: new Date().toLocaleString("en-AU", { dateStyle: "long", timeStyle: "short" }), built: XL_PAGE.built,
     settings,
     sources: srcKeys.map((k) => ({ ...XL_PAGE.sources[k], release: XL_PAGE.release[k] || "" })),
-    notes, terms: keys.map((k) => TERMS[k]).sort((a, b) => a[0].localeCompare(b[0])),
+    notes, terms: keys.map((k) => [TERMS[k][0], termText(TERMS[k])]).sort((a, b) => a[0].localeCompare(b[0])),
     links: XL_PAGE.links, caveat: "These are descriptive statistics: they show what happened, not why.",
   });
   return { title, file: `ALICIA - ${xlFile(title)}${cfg.file ? ` - ${xlFile(cfg.file())}` : ""}.xlsx`, sheets: [...sheets, { ...about, name: names[names.length - 1] }] };

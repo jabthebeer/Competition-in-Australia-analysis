@@ -304,7 +304,7 @@ def _vintage(table: str) -> str:
 
 
 def barriers_payload() -> dict:
-    """For the State and industry growth page: entry and exit by barriers group and sector, company profit by
+    """For The state of competition in Australia page: entry and exit by barriers group and sector, company profit by
     sector (for group shares and the entry-and-returns chart), and concentration by division."""
     ato_years, sectors = ato_sectors()
     biz_years, biz_sector, biz_states = cabee_by_sector()

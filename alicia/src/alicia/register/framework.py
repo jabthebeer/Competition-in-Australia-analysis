@@ -3,7 +3,7 @@ likely effect on productivity and competition in Australia.
 
 One definition, used by the register's validation (``register/schema.py``), the website's legislation menu and
 framework page (``menu/explorer.py``, ``menu/framework.py``) and the methods note (``alicia framework``,
-``docs/productivity_framework.md``). Owner request, 28 October 2026 (DECISIONS E-85).
+``docs/productivity_framework.md``). Owner request, 28 October 2026 (DECISIONS E-87).
 
 Each item in the register gets a mark from -2 to +2 on each of eight drivers of productivity. Marks are judgements
 from desk research and the evidence cited, not estimates: the Policy costing tab quantifies. The drivers follow

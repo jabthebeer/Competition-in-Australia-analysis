@@ -46,6 +46,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
       <h2 id="h-com">Commodity prices</h2>
       <p>Prices of Australia's main commodity exports. Booms and busts hit the mining states hardest.</p>
     </div>
+    <div class="toolbar" role="group" aria-label="Years for commodity prices"><div id="comRange"></div></div>
     <div class="panel chart-card">
       <p class="unit" id="comUnit"></p>
       <div class="chips" id="comChips"></div>
@@ -149,7 +150,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   const STATES = D.states, NAMES = D.stateNames;
   const SRC = (keys) => sourceHtml(D.sources, keys);
   const GROUPS = P.groups.map((g) => g.id), GM = Object.fromEntries(P.groups.map((g) => [g.id, g]));
-  initTerms(Object.fromEntries(P.groups.map((g) => [g.id, [g.label, g.about]])));
+  initTerms(Object.fromEntries(P.groups.map((g) => [g.id, [g.label, g.definition, g.examples]])));
   const store = {
     get(k, d) { try { const v = localStorage.getItem(`alicia-cond-${k}`); return v === null ? d : JSON.parse(v); } catch { return d; } },
     set(k, v) { try { localStorage.setItem(`alicia-cond-${k}`, JSON.stringify(v)); } catch { /* storage unavailable */ } },
@@ -173,11 +174,14 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   }
   const lastX = Math.max(...CHARTS.map((c) => c.x[c.x.length - 1]));
   const lastYear = new Date(lastX).getUTCFullYear();
+  // Where each chart's figures start (a change over a year starts a year after its series), for its note.
+  for (const c of CHARTS) c.first = Math.min(...STATES.map((s) => { const i = c.series[s].findIndex(isNum); return i < 0 ? Infinity : c.x[i]; }));
 
-  // The period: any span of calendar years on the slider (presets for the common ones).
-  const FIRST = 1990;
+  // The state charts' period: any span of calendar years from the first year any of them has figures. A chart whose
+  // figures start later says so.
+  const FIRST = new Date(Math.min(...CHARTS.map((c) => c.first))).getUTCFullYear();
   const PRESETS = [
-    { label: "Since 1990", from: FIRST, to: lastYear },
+    { label: `Since ${FIRST}`, from: FIRST, to: lastYear },
     { label: "Since 2000", from: 2000, to: lastYear },
     { label: "2008 to 2016", from: 2008, to: 2016 },
     { label: "Since 2010", from: 2010, to: lastYear },
@@ -185,9 +189,9 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   ];
   const savedRange = store.get("years", null);
   let range = savedRange && savedRange.from >= FIRST && savedRange.to <= lastYear && savedRange.to > savedRange.from ? savedRange : { from: 2000, to: lastYear };
-  const bounds = () => [Date.UTC(range.from, 0, 1), Date.UTC(range.to, 11, 31)];
-  const slice = (x, vals) => {
-    const [a, b] = bounds();
+  const bounds = (w = range) => [Date.UTC(w.from, 0, 1), Date.UTC(w.to, 11, 31)];
+  const slice = (x, vals, w = range) => {
+    const [a, b] = bounds(w);
     const idx = x.map((t, i) => (t >= a && t <= b ? i : -1)).filter((i) => i >= 0);
     return { x: idx.map((i) => x[i]), vals: idx.map((i) => vals[i]) };
   };
@@ -220,16 +224,21 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
 
   // ---- state charts ---------------------------------------------------------------------
   const grid = document.getElementById("stateCharts");
-  grid.innerHTML = CHARTS.map((c) => `<div class="panel chart-card"><h3>${esc(c.title)}</h3><p class="unit">${c.unit}</p><div class="chart" id="ch-${c.id}"></div><p class="note">${esc(c.note)}</p><p class="source">${SRC(c.srcKeys)}</p></div>`).join("");
+  grid.innerHTML = CHARTS.map((c) => `<div class="panel chart-card"><h3>${esc(c.title)}</h3><p class="unit">${c.unit}</p><div class="chart" id="ch-${c.id}"></div><p class="note">${esc(c.note)}<span id="start-${c.id}"></span></p><p class="source">${SRC(c.srcKeys)}</p></div>`).join("");
   function drawStates() {
     for (const c of CHARTS) {
+      // The chart starts where its figures do, inside the period chosen.
+      const w = { from: Math.max(range.from, new Date(c.first).getUTCFullYear()), to: range.to };
       let x = null;
       const series = STATES.filter((s) => active.has(s)).map((s) => {
-        const sl = slice(c.x, c.series[s]);
-        x = sl.x;
+        const sl = slice(c.x, c.series[s], w);
+        const at = Math.max(0, sl.x.findIndex((t) => t >= c.first));
+        x = sl.x.slice(at);
         const label = c.id === "unemp" && D.monthly.unemp.original.includes(s) ? `${NAMES[s]} (12-month average)` : NAMES[s];
-        return { key: s, label, values: sl.vals, color: stateColor(s), dash: s === "AUS", width: s === "AUS" ? 2.2 : 1.6 };
+        return { key: s, label, values: sl.vals.slice(at), color: stateColor(s), dash: s === "AUS", width: s === "AUS" ? 2.2 : 1.6 };
       });
+      document.getElementById(`start-${c.id}`).textContent = Date.UTC(range.from, 0, 1) < c.first
+        ? ` Figures start in ${c.kind === "quarter" ? quarterLabel(c.first) : monthLabel(c.first)}.` : "";
       lineChart(document.getElementById(`ch-${c.id}`), {
         x: x || [], xKind: c.kind, series, ref: c.ref, markers: markers(),
         yFmt: (v) => fmt(v, Math.abs(v) < 10 && !Number.isInteger(v) ? 1 : 0), tipFmt: (v) => fmt(v, 1), label: c.title,
@@ -242,12 +251,15 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   const comColors = { "All items": "var(--c-1)", "Rural": "var(--c-2)", "Non-rural": "var(--c-3)", "Base metals": "var(--c-4)", "Bulk commodities": "var(--c-5)" };
   const comActive = new Set(["All items", "Rural", "Non-rural"].filter((k) => COM.includes(k)));
   const comX = D.commodity.periods.map(parseYm);
+  const COM0 = new Date(comX[0]).getUTCFullYear(), COM1 = new Date(comX[comX.length - 1]).getUTCFullYear();
+  const savedCom = store.get("comYears", null);
+  let comRange = savedCom && savedCom.from >= COM0 && savedCom.to <= COM1 && savedCom.to > savedCom.from ? savedCom : { from: Math.max(COM0, 2000), to: COM1 };
   function drawCommodity() {
     const series = COM.filter((k) => comActive.has(k)).map((k) => {
-      const sl = slice(comX, D.commodity.values[k]);
+      const sl = slice(comX, D.commodity.values[k], comRange);
       return { key: k, label: k, values: sl.vals, color: comColors[k] || "var(--ink-2)", width: k === "All items" ? 2.2 : 1.6, _x: sl.x };
     });
-    const x = series.length ? series[0]._x : slice(comX, comX).x;
+    const x = series.length ? series[0]._x : slice(comX, comX, comRange).x;
     lineChart(document.getElementById("comChart"), { x, xKind: "month", series, ref: 100, markers: markers(), yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label: "RBA index of commodity prices" });
   }
 
@@ -271,7 +283,13 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   rangeSlider(document.getElementById("range"), {
     min: FIRST, max: lastYear, from: range.from, to: range.to, minGap: 1, label: "Period (calendar years)",
     fromLabel: "First year", toLabel: "Last year", presets: PRESETS, summary: (a, b) => `${a} to ${b}`,
-    onChange: (a, b) => { range = { from: a, to: b }; store.set("years", range); drawStates(); drawCommodity(); },
+    onChange: (a, b) => { range = { from: a, to: b }; store.set("years", range); drawStates(); },
+  });
+  rangeSlider(document.getElementById("comRange"), {
+    min: COM0, max: COM1, from: comRange.from, to: comRange.to, minGap: 1, label: "Period (calendar years)",
+    fromLabel: "First year", toLabel: "Last year", summary: (a, b) => `${a} to ${b}`,
+    presets: [{ label: `Since ${COM0}`, from: COM0, to: COM1 }, { label: "Since 2000", from: 2000, to: COM1 }, { label: "Since 2010", from: 2010, to: COM1 }, { label: "Last 5 years", from: COM1 - 5, to: COM1 }].filter((p) => p.from >= COM0),
+    onChange: (a, b) => { comRange = { from: a, to: b }; store.set("comYears", comRange); drawCommodity(); },
   });
   const marksBox = document.getElementById("marks");
   marksBox.checked = marks;
@@ -382,7 +400,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   let mkGroup = store.get("mkGroup", "natural_monopoly");
   if (!PRIVATE.includes(mkGroup)) mkGroup = "natural_monopoly";
   const mkTabs = document.getElementById("mkTabs");
-  mkTabs.innerHTML = PRIVATE.map((g) => `<button type="button" class="chip" data-g="${g}" aria-pressed="${g === mkGroup}"><span class="key box" style="background:${gColor(g)}"></span>${esc(GM[g].label)}</button>`).join("");
+  mkTabs.innerHTML = PRIVATE.map((g) => `<button type="button" class="chip" data-g="${g}" data-term="${g}" aria-describedby="def-${g}" aria-pressed="${g === mkGroup}"><span class="key box" style="background:${gColor(g)}"></span>${esc(GM[g].label)}</button>`).join("");
   mkTabs.querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => {
     mkGroup = b.dataset.g; store.set("mkGroup", mkGroup);
     mkTabs.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.g === mkGroup)));
@@ -513,23 +531,23 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     links: [["Methods note", `${D.repo}docs/methods_competition_charts.md`], ["Data sources register (all licences)", `${D.repo}data/SOURCES.md`]],
   });
   const cardOf = (id) => document.getElementById(id).closest(".panel");
-  const yearsSet = () => ["Period", `${range.from} to ${range.to} (calendar years)`];
-  const shownReforms = () => {
-    const [a, b] = bounds();
+  const yearsSet = (w = range) => ["Period", `${w.from} to ${w.to} (calendar years)`];
+  const shownReforms = (w = range) => {
+    const [a, b] = bounds(w);
     return D.reforms.filter((r) => Date.parse(r.date) >= a && Date.parse(r.date) <= b);
   };
-  const reformSet = () => ["Reform start dates", marks ? `shown on the page (${shownReforms().length} in this period; listed in the notes)` : "not shown"];
-  const reformNotes = () => (marks && shownReforms().length
-    ? [["Reform start dates", `Marked on the page's chart; Excel can't draw them: ${shownReforms().map((r) => `${r.title} (${r.jurisdiction}, ${r.date})`).join("; ")}.`]] : []);
+  const reformSet = (w = range) => ["Reform start dates", marks ? `shown on the page (${shownReforms(w).length} in this period; listed in the notes)` : "not shown"];
+  const reformNotes = (w = range) => (marks && shownReforms(w).length
+    ? [["Reform start dates", `Marked on the page's chart; Excel can't draw them: ${shownReforms(w).map((r) => `${r.title} (${r.jurisdiction}, ${r.date})`).join("; ")}.`]] : []);
   for (const c of CHARTS) {
     excelButton(cardOf(`ch-${c.id}`), {
       settings: () => [yearsSet(), ["States shown", STATES.filter((s) => active.has(s)).map((s) => NAMES[s]).join(", ")], reformSet()],
-      notes: reformNotes, file: () => `${range.from} to ${range.to}`,
+      notes: () => reformNotes(), file: () => `${range.from} to ${range.to}`,
     });
   }
   excelButton(cardOf("comChart"), {
-    title: () => "Commodity prices", settings: () => [yearsSet(), ["Series shown", COM.filter((k) => comActive.has(k)).join(", ")], reformSet()],
-    notes: reformNotes, file: () => `${range.from} to ${range.to}`,
+    title: () => "Commodity prices", settings: () => [yearsSet(comRange), ["Series shown", COM.filter((k) => comActive.has(k)).join(", ")], reformSet(comRange)],
+    notes: () => reformNotes(comRange), file: () => `${comRange.from} to ${comRange.to}`,
   });
   const incomeSet = () => ["Income years averaged", `${yearsLabel()} (July to June)`];
   const coeSet = () => ["Cost of equity", `${fmt(coe(), 1)}% (${coeManual === null ? `the 10-year bond rate averaged over these years + ${fmt(P.riskPremium, 0)} percentage points` : "typed in on the page"})`];

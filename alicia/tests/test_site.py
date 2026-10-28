@@ -165,8 +165,12 @@ def test_summary_pages_use_period_sliders_and_carry_the_competition_data(tmp_pat
     growth.build_site(tmp_path, records, evals)
     g = (tmp_path / "growth.html").read_text("utf-8")
     c = (tmp_path / "conditions.html").read_text("utf-8")
-    assert '<div id="period"></div>' in g and '<select id="win">' not in g
-    assert '<div id="range"></div>' in c and '<select id="range">' not in c and '<div id="pRange"></div>' in c
+    # Each section has its own slider, spanning the years its data cover; there is no page-wide period any more.
+    for i in ("conRange", "entRange", "whereRange", "retRange", "indRange", "gspRange"):
+        assert f'<div id="{i}"></div>' in g and f'periodSlider("{i}"' in g, i
+    assert '<div id="period"></div>' not in g and '<select id="win">' not in g
+    for i in ("range", "comRange", "pRange"):
+        assert f'<div id="{i}"></div>' in c, i
     gd = json.loads(re.search(r'id="page-data">(.*?)</script>', g, re.S).group(1))
     cd = json.loads(re.search(r'id="page-data">(.*?)</script>', c, re.S).group(1))
     assert {"groups", "sectors", "bizGroup", "concentration"} <= set(gd["barriers"])
@@ -210,3 +214,25 @@ def test_every_chart_that_follows_a_control_can_be_exported_to_excel(tmp_path):
     c = (tmp_path / "conditions.html").read_text("utf-8")
     assert '[["dGva", "Output"], ["dEmp", "Jobs"], ["dBiz", "Businesses starting and closing"]].forEach' in g
     assert "for (const c of CHARTS) {\n    excelButton(cardOf(`ch-${c.id}`)" in c
+
+
+@needs_panels
+def test_competition_page_tells_its_story_in_order(tmp_path):
+    records = load_records().records
+    evals = load_evaluations(records).evaluations
+    growth.build_site(tmp_path, records, evals)
+    g = (tmp_path / "growth.html").read_text("utf-8")
+    assert "<h1>The state of competition in Australia</h1>" in g
+    c = (tmp_path / "conditions.html").read_text("utf-8")
+    assert '<a href="growth.html">The state of competition in Australia</a>' in c
+    # Concentration, business entry, where the barriers are, returns, then industries by state, state economies last.
+    ids = ["conRows", "grpChart", "dynChart", "shares", "scChart", "heat", "detailTitle", "gspTable"]
+    at = [g.index(f'id="{i}"') for i in ids]
+    assert at == sorted(at)
+    # Each section's heading is filled in from the data shown.
+    for h in ("h-con", "h-entry", "h-where", "h-ret"):
+        assert f'setHead("{h}"' in g
+    # A card's column never grows past the card, so an opened table scrolls inside it.
+    assert re.search(r"\.chart-card \{[^}]*grid-template-columns: minmax\(0, 1fr\)", g)
+    data = json.loads(re.search(r'id="page-data">(.*?)</script>', g, re.S).group(1))
+    assert all(grp["definition"] and grp["examples"] for grp in data["barriers"]["groups"])

@@ -1,6 +1,6 @@
 # Guide: checking the framework assessments with Claude Cowork
 
-**Date:** 28 October 2026. **For:** the project owner, working in Claude Cowork. **Why:** every one of the register's 198 assessments was drafted by AI-assisted desk research and needs a person's check before the marks are relied on (`alicia/DECISIONS.md` E-86).
+**Date:** 28 October 2026. **For:** the project owner, working in Claude Cowork. **Why:** every one of the register's 198 assessments was drafted by AI-assisted desk research and needs a person's check before the marks are relied on (`alicia/DECISIONS.md` E-88).
 
 ## What Cowork fills in
 

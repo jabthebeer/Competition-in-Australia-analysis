@@ -5,14 +5,14 @@ A series of econometric analyses for competition in Australia, aiming to ultimat
 
 The legislation menu is a register of what shapes competition and productivity in Australia: reforms (passed or proposed), existing regulatory settings and non-legislative barriers. Every item is marked against the [ALICIA productivity framework](docs/productivity_framework.md) on eight drivers of productivity, and shown with summary statistics for the industries it affects. Filter by **main driver** to see what weighs on productivity.
 
-- **On GitHub Pages:** <https://jabthebeer.github.io/Competition-in-Australia-analysis/> (the menu, the Framework page, the State and industry growth and Economic conditions pages, the Policy costing tab, and the econometric archive)
+- **On GitHub Pages:** <https://jabthebeer.github.io/Competition-in-Australia-analysis/> (the menu, the Framework page, The state of competition in Australia and Economic conditions pages, the Policy costing tab, and the econometric archive)
   - It is published by `.github/workflows/menu-explorer-pages.yml` on every push to `main`.
   - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 - **Locally:** `cd alicia && uv run alicia explorer --standalone -o menu.html`, then open `menu.html` in a browser; `uv run alicia site -o ../site` builds every page.
 
 ## Current priority (28 October 2026)
 
-**A productivity framework applied to legislation, settings and barriers** (owner decision, `alicia/DECISIONS.md` E-85 to E-88):
+**A productivity framework applied to legislation, settings and barriers** (owner decision, `alicia/DECISIONS.md` E-87 to E-90):
 
 1. **Framework** (done): eight drivers of productivity, each marked from −2 to +2 ([methods note](docs/productivity_framework.md); the website's Framework page).
 2. **Assessment of the register** (done): all records assessed; the menu's econometric sections are replaced by the assessments and industry statistics. The econometric evaluations are archived on the site, unchanged.
@@ -26,7 +26,7 @@ Every assessment is a draft until checked by a person: the review sheet is [`doc
 - [`regulatory-burden-tool/`](regulatory-burden-tool/): an unofficial calculator for regulatory burden under the OIA Regulatory Burden Measurement framework, with reform (remove-and-replace) comparisons and analysis-ready exports for competition and business-dynamism research.
 - [`alicia/`](alicia/): **ALICIA**, Australian Legislation Impact on Competition Industry Analysis: a public-data toolkit for assessing how legislation, regulatory settings and other barriers affect productivity and competition. It holds the productivity framework, the register and its validation, an effective-date gatherer that checks the legislation registers, the website (legislation menu, framework, growth and conditions pages, econometric archive) and the archived econometric analyses.
 - [`regulation-register/`](regulation-register/): the register itself, with one record per reform, setting or barrier per jurisdiction, each with its framework assessment, and dated reports from the date checks.
-- **Barriers to entry and profitability** (on the ALICIA website's State and industry growth and Economic conditions pages): Grattan Institute's 2017 *Competition in Australia* charts recreated from public data (ABS business counts, ATO company tax statistics, RBA). Each chart downloads as an Excel workbook with the chart, its numbers and its sources. Methods and results: [`docs/methods_competition_charts.md`](docs/methods_competition_charts.md).
+- **Barriers to entry and profitability** (on the ALICIA website's The state of competition in Australia and Economic conditions pages): Grattan Institute's 2017 *Competition in Australia* charts recreated from public data (ABS business counts, ATO company tax statistics, RBA). Each chart downloads as an Excel workbook with the chart, its numbers and its sources. Methods and results: [`docs/methods_competition_charts.md`](docs/methods_competition_charts.md).
 
 ## Planning
 
