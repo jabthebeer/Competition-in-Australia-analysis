@@ -44,7 +44,7 @@ Not recreated, because public data cannot support them:
 
 ## The story on the page
 
-The page runs: concentration; business entry by barrier group and for all industries; where the barriers to entry are; whether low entry goes with high returns; then industries in each state, and state economies last. The narrative headings follow the data shown, so they change with the period, state, measure and businesses counted:
+The page runs: concentration; business entry by barrier group and for all industries; whether low entry goes with high returns; then industries in each state, with the selected industry's productivity; and state economies. "Where the barriers to entry are" is shelved (owner's request, 29 October 2026): it is folded away at the end of the page, unchanged. Each chart's description sits behind an "i" beside its title, and its notes and sources in one "About this chart" dropdown. The narrative headings follow the data shown, so they change with the period, state, measure and businesses counted:
 - **Concentration**: the all-industries change between the first and last years: risen (+1 point or more), fallen (−1 point or more), or barely changed. The summary names the industries where the share rose and fell most.
 - **Business entry**: the barrier group with the lowest average entry rate, against low barriers. Fewer new firms start up there when its rate is below the low-barriers rate; otherwise "Entry is no lower behind barriers to entry". With businesses with employees, heavily regulated industries have a lower entry rate than low-barrier industries in every state and in every period checked (2015-16 to 2024-25, 2008-09 to 2024-25, 2020-21 to 2024-25). Counting all businesses, it is mixed, because of rideshare and delivery sole traders.
 - **Where the barriers are**: the barrier groups' share of businesses and of company income. By default (2018-19 to 2022-23): 3.7% of businesses with employees (June 2019 to June 2023, averaged), but 19.6% of company income, 22.2% of company equity and 12.4% of company profit.
@@ -148,6 +148,12 @@ These figures use income years 2018-19 to 2022-23, a cost of equity of 8.0% (bon
 - **Book equity includes goodwill.** Grattan removed it, so returns in sectors built by acquisition read lower here.
 - **One beta for every sector.** This overstates super-normal profit in low-risk regulated sectors and understates it in risky ones.
 - **Descriptive only.** None of these charts identifies a causal effect of barriers to entry. Public data are too aggregated for firm-level mark-ups or concentration by sector (BLADE is restricted).
+
+## Productivity
+
+- **Output per worker** (Industries in each state): output, adjusted for inflation (State Accounts, chain volume), divided by the number of people employed (Labour Force, Detailed, four surveys averaged over the financial year). Its growth is the average yearly growth between the first and last years chosen; its level is at current prices, in $ thousand a worker. It counts people, not hours, so industries with many part-time workers read lower. Employment in small industries in small states is a survey estimate that jumps around, so their productivity is noisy. All industries includes the rent of owner-occupied homes, which has no workers, so its level reads high.
+- **ABS labour productivity**: the ABS's official output per hour worked, by industry, Australia (Estimates of Industry Multifactor Productivity, 5260.0.55.002, hours-worked basis), for the 16 market-sector industries, 2005-06 on; read from the costing parameters. It is not published for public administration, education or health. On the productivity chart it is an index that starts on the Australia output-per-worker line in its first year shown.
+- The State Accounts publish output by state only for the 19 industries, so productivity by state cannot go below that.
 
 ## Excel export
 
