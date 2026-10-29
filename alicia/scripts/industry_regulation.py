@@ -182,7 +182,33 @@ def main() -> int:
         )
     if issues:
         counts = Counter(i.tag for i in issues)
-        lines += ["", "## Issues found (Phase 2)", "", "| Tag | Meaning | Issues |", "|---|---|---|"]
+        none = sorted(r.name for r in regimes if not r.issues)
+        lines += [
+            "",
+            "## Issues found (Phase 2)",
+            "",
+            f"{len(issues)} issues in {len(regimes) - len(none)} regimes: places where a source reports that "
+            "businesses face duplication, rules that differ between states or councils, unclear guidance, many "
+            "agencies for one activity, or complex rules. Each issue quotes its source word for word. The sources "
+            "are Productivity Commission inquiries and benchmarking studies (including its 2007-2010 reviews of "
+            "regulatory burdens, which gathered industry submissions sector by sector), national and state reviews, "
+            "and regulator pages.",
+            "",
+            "- **Status.** *Current*: the source reports the problem and no later fix was found. *Partly addressed*: "
+            "a later reform covers part of it (the note says what). Older evidence is marked 'not rechecked' where "
+            "no newer source was found; such issues may since have been dealt with.",
+            "- **Counts.** A class's *issues* count (in `class_profiles.csv`) sums the issues not yet addressed "
+            "across the regimes that apply to it; the `issue_*` columns split it by tag.",
+            "- **Where reviews have looked.** Counts reflect where reviews have gathered evidence as well as where "
+            "the problems are: agriculture, for example, had a dedicated Productivity Commission inquiry in 2016. "
+            "Every class also carries the issues in cross-cutting regimes (payroll tax, workers' compensation, work "
+            "health and safety, awards and planning), so compare classes on the industry-specific measures.",
+            "- **No issue found** is not the same as no problem: these regimes had no evidenced issue in the sources "
+            f"searched: {', '.join(none)}.",
+            "",
+            "| Tag | Meaning | Issues |",
+            "|---|---|---|",
+        ]
         lines += [f"| {ISSUE_LABELS[t]} | {ISSUE_HELP[t]} | {counts[t]} |" for t in ISSUE_LABELS]
         lines += ["", "| Regime | Issue | Tag | Status | Sources |", "|---|---|---|---|---|"]
         for r in sorted(regimes, key=lambda r: r.name):
@@ -191,6 +217,19 @@ def main() -> int:
                 lines.append(
                     f"| {_cell(r.name)} | {_cell(i.what)} | {ISSUE_LABELS[i.tag]} | {i.status} | {_cell(src)} |"
                 )
+        lines += [
+            "",
+            "### Classes with the most evidenced issues",
+            "",
+            "| Class | Issues | Inconsistent | Duplicative | Many agencies | Other |",
+            "|---|---|---|---|---|---|",
+        ]
+        for p in sorted(profiles, key=lambda p: (-p["issues"], p["anzsic"]))[:20]:
+            other = p["issues"] - p["issue_inconsistent"] - p["issue_duplicative"] - p["issue_multi_agency"]
+            lines.append(
+                f"| {p['anzsic']} {_cell(p['name'])} | {p['issues']} | {p['issue_inconsistent']} | "
+                f"{p['issue_duplicative']} | {p['issue_multi_agency']} | {other} |"
+            )
     lines.append("")
     NOTE.write_text("\n".join(lines), encoding="utf-8")
     print(f"Wrote {OUT_DIR}/class_profiles.csv, class_regimes.csv and {NOTE}")

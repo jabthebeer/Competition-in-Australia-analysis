@@ -79,7 +79,56 @@
     "vic-payroll-tax",
     "wa-payroll-tax"
   ],
-  "issues": [],
+  "issues": [
+    {
+      "tag": "inconsistent",
+      "what": "Each state sets its own payroll tax thresholds, rates, exemptions and administration, so an employer in several states files and calculates under several regimes.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Australia's Future Tax System: Report to the Treasurer, Part Two, Volume 2 (Henry review)",
+          "publisher": "Australian Treasury",
+          "year": 2010,
+          "url": "https://treasury.gov.au/sites/default/files/2019-10/afts_final_report_part_2_vol_2_consolidated.pdf",
+          "locator": "Section G2, p. 677",
+          "quote": "While there are similarities in the main taxes used in each State, the thresholds, rates and range of exemptions often differ between States.",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "NSW Productivity Commission White Paper 2021: Rebooting the economy",
+          "publisher": "NSW Productivity Commission",
+          "year": 2021,
+          "url": "https://www.productivity.nsw.gov.au/sites/default/files/2022-04/Productivity-Commission-White-Paper-2021.pdf",
+          "locator": "Chapter 6, p. 246",
+          "quote": "Employers operating in more than one state and territory would benefit from a common set of rules for payroll tax administration. Their tax would be simpler and their compliance costs would fall.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "partly-addressed",
+      "status_note": "NSW committed to implement its 2018 review of payroll tax administration; the NSW Productivity Commission (2021) proposed a national coordination body for consistent administration."
+    },
+    {
+      "tag": "complex",
+      "what": "Thresholds and exemptions make payroll tax more complex than it needs to be.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Australia's Future Tax System: Report to the Treasurer, Part Two, Volume 1 (Henry review)",
+          "publisher": "Australian Treasury",
+          "year": 2010,
+          "url": "https://treasury.gov.au/sites/default/files/2019-10/afts_final_report_part_2_vol_1_consolidated.pdf",
+          "locator": "Section D3, key points, p. 293",
+          "quote": "Existing payroll taxes are more complex and less efficient than they could be because of tax-free thresholds and other exemptions.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
   "review": {
     "status": "draft",
     "by": null,

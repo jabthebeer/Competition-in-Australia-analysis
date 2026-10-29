@@ -53,7 +53,27 @@
     "vic-pharmacy-ownership",
     "wa-pharmacy-ownership"
   ],
-  "issues": [],
+  "issues": [
+    {
+      "tag": "inconsistent",
+      "what": "Each state limits pharmacy ownership to pharmacists and caps how many pharmacies one pharmacist may own, with different caps in each state.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Competition Policy Review: Final Report (Harper review)",
+          "publisher": "Australian Government",
+          "year": 2015,
+          "url": "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf",
+          "locator": "Part 3, p. 178",
+          "quote": "There are also limits in each State (but not the Territories) on how many pharmacies each pharmacist can own. These limits vary by State.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
   "review": {
     "status": "draft",
     "by": null,

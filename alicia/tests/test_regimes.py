@@ -131,6 +131,11 @@ def test_the_committed_regimes_validate_and_reach_every_class():
     assert result.problems == [] and len(result.regimes) >= 50
     assert check_regimes(result.regimes, load_records().records, load_bodies()[0]) == []
     assert all(e.quote for r in result.regimes for e in r.basis)
+    # Phase 2: evidenced issues, each quoting a source; a partly addressed issue says what changed.
+    issues = [i for r in result.regimes for i in r.issues]
+    assert len(issues) >= 40 and all(e.quote for i in issues for e in i.evidence)
+    assert {"duplicative", "inconsistent", "multi-agency"} <= {i.tag for i in issues}
+    assert all(i.status_note for i in issues if i.status == "partly-addressed")
     by_id = {r.id: r for r in result.regimes}
     # Pubs face liquor licensing, food safety and gambling regulation, among others.
     pubs = {q["anzsic"]: q for q in industry_profiles(result.regimes)}["4520"]["regime_ids"].split()

@@ -47,65 +47,65 @@ Function and consistency categories:
 |---|---|---|---|---|---|---|
 | Australian Consumer Law | cross-cutting | One national law or regulator | Commonwealth, State or territory | inspects | 492 | 0 |
 | Business and tax registration | cross-cutting | Commonwealth only | Commonwealth | none | 492 | 0 |
-| Employment law and awards | cross-cutting | One national law or regulator | Commonwealth, State or territory | sets | 503 | 0 |
-| Payroll tax | cross-cutting | Each state and territory has its own law | State or territory | none | 492 | 0 |
-| Planning and development approval | cross-cutting | Each state and territory has its own law | State or territory, Local council | approves | 503 | 0 |
-| Work health and safety | cross-cutting | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | sets, inspects | 506 | 0 |
-| Workers' compensation | cross-cutting | Each state and territory has its own law | Commonwealth, State or territory | none | 503 | 0 |
+| Employment law and awards | cross-cutting | One national law or regulator | Commonwealth, State or territory | sets | 503 | 1 |
+| Payroll tax | cross-cutting | Each state and territory has its own law | State or territory | none | 492 | 2 |
+| Planning and development approval | cross-cutting | Each state and territory has its own law | State or territory, Local council | approves | 503 | 3 |
+| Work health and safety | cross-cutting | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | sets, inspects | 506 | 2 |
+| Workers' compensation | cross-cutting | Each state and territory has its own law | Commonwealth, State or territory | none | 503 | 2 |
 | Accommodation premises | sector | Each state and territory has its own law | State or territory, Local council | none | 1 | 0 |
-| Aged care | sector | Commonwealth only | Commonwealth, State or territory | licenses, | 2 | 0 |
-| Agricultural and veterinary chemicals | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 44 | 0 |
-| Animal welfare and livestock | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 21 | 0 |
+| Aged care | sector | Commonwealth only | Commonwealth, State or territory | licenses, | 2 | 2 |
+| Agricultural and veterinary chemicals | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 44 | 1 |
+| Animal welfare and livestock | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 21 | 1 |
 | Aviation and airports | sector | Commonwealth only | Commonwealth | none | 2 | 0 |
-| Biosecurity | sector | Each state and territory has its own law | Commonwealth, State or territory | inspects | 55 | 0 |
-| Building licensing, approvals and the building code | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory, Local council | sets, inspects | 27 | 0 |
+| Biosecurity | sector | Each state and territory has its own law | Commonwealth, State or territory | inspects | 55 | 1 |
+| Building licensing, approvals and the building code | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory, Local council | sets, inspects | 27 | 4 |
 | Commercial agents and debt collectors | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 1 | 0 |
-| Container deposits and packaging | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 9 | 0 |
+| Container deposits and packaging | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 9 | 1 |
 | Conveyancing and land titles | sector | Model law or national code, adopted state by state with variations | State or territory | none | 2 | 0 |
 | Customs, excise and trade | sector | Commonwealth only | Commonwealth | none | 50 | 0 |
-| Disability services (NDIS) | sector | One national law or regulator | Commonwealth, State or territory | licenses, | 2 | 0 |
-| Early childhood education and care | sector | One national law or regulator | Commonwealth, State or territory | none | 2 | 0 |
-| Electrical, plumbing and gas licensing and equipment safety | sector | State laws differ, but registrations are recognised across states | State or territory | none | 9 | 0 |
-| Electricity and gas market regulation | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | sets, licenses, | 7 | 0 |
-| Environment protection licences and approvals | sector | Each state and territory has its own law | Commonwealth, State or territory, Local council | inspects | 227 | 0 |
+| Disability services (NDIS) | sector | One national law or regulator | Commonwealth, State or territory | licenses, | 2 | 2 |
+| Early childhood education and care | sector | One national law or regulator | Commonwealth, State or territory | none | 2 | 2 |
+| Electrical, plumbing and gas licensing and equipment safety | sector | State laws differ, but registrations are recognised across states | State or territory | none | 9 | 1 |
+| Electricity and gas market regulation | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | sets, licenses, | 7 | 1 |
+| Environment protection licences and approvals | sector | Each state and territory has its own law | Commonwealth, State or territory, Local council | inspects | 227 | 1 |
 | Film, game and publication classification | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | none | 4 | 0 |
 | Financial services, credit and prudential regulation | sector | Commonwealth only | Commonwealth | none | 14 | 0 |
-| Fisheries and aquaculture | sector | Each state and territory has its own law | Commonwealth, State or territory | licenses, | 8 | 0 |
-| Food safety | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory, Local council | licenses,, inspects | 44 | 0 |
+| Fisheries and aquaculture | sector | Each state and territory has its own law | Commonwealth, State or territory | licenses, | 8 | 1 |
+| Food safety | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory, Local council | licenses,, inspects | 44 | 4 |
 | Fuel retailing | sector | Each state and territory has its own law | Commonwealth, State or territory | inspects | 1 | 0 |
-| Gambling and wagering | sector | Each state and territory has its own law | Commonwealth, State or territory | inspects | 7 | 0 |
-| Hairdressing, beauty and skin penetration | sector | Each state and territory has its own law | State or territory, Local council | licenses, | 2 | 0 |
-| Hazardous chemicals and dangerous goods | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | licenses, | 49 | 0 |
+| Gambling and wagering | sector | Each state and territory has its own law | Commonwealth, State or territory | inspects | 7 | 1 |
+| Hairdressing, beauty and skin penetration | sector | Each state and territory has its own law | State or territory, Local council | licenses, | 2 | 1 |
+| Hazardous chemicals and dangerous goods | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | licenses, | 49 | 1 |
 | Health practitioner registration and facility licensing | sector | One national law or regulator | Commonwealth, State or territory | none | 12 | 0 |
-| Heavy vehicle registration, access and safety | sector | Model law or national code, adopted state by state with variations | State or territory, Local council | none | 8 | 0 |
+| Heavy vehicle registration, access and safety | sector | Model law or national code, adopted state by state with variations | State or territory, Local council | none | 8 | 2 |
 | Home warranty insurance | sector | Each state and territory has its own law | State or territory | none | 16 | 0 |
-| Labour hire licensing | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 2 | 0 |
+| Labour hire licensing | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 2 | 1 |
 | Legal profession | sector | Model law or national code, adopted state by state with variations | State or territory | none | 1 | 0 |
-| Liquor licensing | sector | Each state and territory has its own law | State or territory, Local council | none | 12 | 0 |
-| Mandatory product standards and labelling | sector | One national law or regulator | Commonwealth, State or territory | inspects | 72 | 0 |
+| Liquor licensing | sector | Each state and territory has its own law | State or territory, Local council | none | 12 | 1 |
+| Mandatory product standards and labelling | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | inspects | 72 | 1 |
 | Maritime safety and ports | sector | One national law or regulator | Commonwealth, State or territory | licenses, | 10 | 0 |
-| Mining and petroleum titles and approvals | sector | Each state and territory has its own law | Commonwealth, State or territory | approves | 16 | 0 |
-| Motor vehicle dealers and repairers | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 14 | 0 |
-| Native vegetation and land clearing | sector | Each state and territory has its own law | Commonwealth, State or territory, Local council | approves | 39 | 0 |
+| Mining and petroleum titles and approvals | sector | Each state and territory has its own law | Commonwealth, State or territory | approves | 16 | 2 |
+| Motor vehicle dealers and repairers | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 14 | 1 |
+| Native vegetation and land clearing | sector | Each state and territory has its own law | Commonwealth, State or territory, Local council | approves | 39 | 2 |
 | Passenger transport accreditation | sector | Each state and territory has its own law | State or territory | none | 4 | 0 |
-| Pharmacy ownership, premises and PBS approval | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 1 | 0 |
-| Primary production food safety and export controls | sector | Each state and territory has its own law | Commonwealth, State or territory | licenses,, inspects | 33 | 0 |
-| Property agents and residential tenancies | sector | Each state and territory has its own law | State or territory | none | 2 | 0 |
-| Rail safety and access | sector | One national law or regulator | State or territory | none | 2 | 0 |
-| Retail trading hours | sector | Each state and territory has its own law | State or territory | none | 34 | 0 |
-| Security industry licensing | sector | State laws differ, but registrations are recognised across states | State or territory | none | 1 | 0 |
+| Pharmacy ownership, premises and PBS approval | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 1 | 1 |
+| Primary production food safety and export controls | sector | Each state and territory has its own law | Commonwealth, State or territory | licenses,, inspects | 33 | 1 |
+| Property agents and residential tenancies | sector | Each state and territory has its own law | State or territory | none | 2 | 1 |
+| Rail safety and access | sector | One national law or regulator | Commonwealth, State or territory | approves | 2 | 1 |
+| Retail trading hours | sector | Each state and territory has its own law | State or territory | none | 34 | 1 |
+| Security industry licensing | sector | State laws differ, but registrations are recognised across states | State or territory | none | 1 | 1 |
 | Security of payment in construction | sector | Each state and territory has its own law | State or territory | none | 24 | 0 |
 | Supermarket and agricultural codes of conduct | sector | Commonwealth only | Commonwealth | none | 25 | 0 |
 | Tax agents, BAS agents and auditors | sector | Commonwealth only | Commonwealth | none | 1 | 0 |
 | Telecommunications, broadcasting and online services | sector | Commonwealth only | Commonwealth, Local council | none | 8 | 0 |
-| Therapeutic goods and poisons | sector | Each state and territory has its own law | Commonwealth, State or territory | licenses, | 4 | 0 |
+| Therapeutic goods and poisons | sector | Each state and territory has its own law | Commonwealth, State or territory | licenses, | 4 | 1 |
 | Tobacco and vape sales | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 6 | 0 |
 | Veterinary registration and premises | sector | Each state and territory has its own law | State or territory | none | 1 | 0 |
-| Vocational and higher education providers | sector | One national law or regulator | Commonwealth, State or territory | licenses, | 5 | 0 |
+| Vocational and higher education providers | sector | One national law or regulator | Commonwealth, State or territory | licenses, | 5 | 1 |
 | Waste management and levies | sector | Each state and territory has its own law | State or territory, Local council | none | 4 | 0 |
-| Water access and use | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 27 | 0 |
+| Water access and use | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 27 | 1 |
 | Water and sewerage utility regulation | sector | Each state and territory has its own law | State or territory | none | 2 | 0 |
-| Working with children checks | sector | Each state and territory has its own law | State or territory | none | 12 | 0 |
+| Working with children checks | sector | Each state and territory has its own law | State or territory | none | 12 | 1 |
 
 ## By division
 
@@ -115,11 +115,11 @@ Medians across the classes in each division, industry-specific regimes only.
 |---|---|---|---|---|---|
 | A Agriculture, Forestry and Fishing | 49 | 6 | 15 | 5 | 4 |
 | B Mining | 16 | 3 | 9 | 3 | 3 |
-| C Manufacturing | 143 | 2 | 5 | 1 | 2 |
+| C Manufacturing | 143 | 2 | 5 | 2 | 2 |
 | D Electricity, Gas, Water and Waste Services | 13 | 3 | 6 | 3 | 2 |
 | E Construction | 24 | 3 | 6 | 3 | 1 |
-| F Wholesale Trade | 39 | 2 | 6 | 0 | 1 |
-| G Retail Trade | 37 | 2 | 3 | 1 | 1 |
+| F Wholesale Trade | 39 | 2 | 7 | 1 | 1 |
+| G Retail Trade | 37 | 2 | 4 | 2 | 1 |
 | H Accommodation and Food Services | 6 | 2.5 | 8 | 2.5 | 1 |
 | I Transport, Postal and Warehousing | 23 | 1 | 4 | 0 | 0 |
 | J Information Media and Telecommunications | 24 | 0 | 0 | 0 | 0 |
@@ -137,28 +137,130 @@ Medians across the classes in each division, industry-specific regimes only.
 
 | Class | Regimes | Touchpoints | Varying | Overlapping | Issues |
 |---|---|---|---|---|---|
-| 0160 Dairy Cattle Farming | 8 | 18 | 7 | 4 | 0 |
-| 0141 Sheep Farming (Specialised) | 7 | 17 | 7 | 4 | 0 |
-| 0142 Beef Cattle Farming (Specialised) | 7 | 17 | 7 | 4 | 0 |
-| 0143 Beef Cattle Feedlots (Specialised) | 7 | 17 | 7 | 4 | 0 |
-| 0144 Sheep-Beef Cattle Farming | 7 | 17 | 7 | 4 | 0 |
-| 0145 Grain-Sheep or Grain-Beef Cattle Farming | 7 | 17 | 7 | 4 | 0 |
-| 0146 Rice Growing | 7 | 17 | 7 | 4 | 0 |
-| 0149 Other Grain Growing | 7 | 17 | 7 | 4 | 0 |
-| 3606 Liquor and Tobacco Product Wholesaling | 6 | 17 | 4 | 1 | 0 |
-| 0131 Grape Growing | 7 | 16 | 6 | 4 | 0 |
-| 0132 Kiwifruit Growing | 7 | 16 | 6 | 4 | 0 |
-| 0133 Berry Fruit Growing | 7 | 16 | 6 | 4 | 0 |
-| 0134 Apple and Pear Growing | 7 | 16 | 6 | 4 | 0 |
-| 0135 Stone Fruit Growing | 7 | 16 | 6 | 4 | 0 |
-| 0136 Citrus Fruit Growing | 7 | 16 | 6 | 4 | 0 |
-| 0137 Olive Growing | 7 | 16 | 6 | 4 | 0 |
-| 0139 Other Fruit and Tree Nut Growing | 7 | 16 | 6 | 4 | 0 |
-| 0171 Poultry Farming (Meat) | 6 | 16 | 6 | 4 | 0 |
-| 0172 Poultry Farming (Eggs) | 6 | 16 | 6 | 4 | 0 |
-| 1211 Soft Drink, Cordial and Syrup Manufacturing | 5 | 16 | 4 | 2 | 0 |
-| 1212 Beer Manufacturing | 5 | 16 | 4 | 2 | 0 |
-| 1213 Spirit Manufacturing | 5 | 16 | 4 | 2 | 0 |
-| 1214 Wine and Other Alcoholic Beverage Manufacturing | 5 | 16 | 4 | 2 | 0 |
-| 0201 Offshore Longline and Rack Aquaculture | 6 | 15 | 6 | 4 | 0 |
-| 0202 Offshore Caged Aquaculture | 6 | 15 | 6 | 4 | 0 |
+| 0160 Dairy Cattle Farming | 8 | 18 | 7 | 4 | 18 |
+| 0141 Sheep Farming (Specialised) | 7 | 17 | 7 | 4 | 18 |
+| 0142 Beef Cattle Farming (Specialised) | 7 | 17 | 7 | 4 | 18 |
+| 0143 Beef Cattle Feedlots (Specialised) | 7 | 17 | 7 | 4 | 18 |
+| 0144 Sheep-Beef Cattle Farming | 7 | 17 | 7 | 4 | 18 |
+| 0145 Grain-Sheep or Grain-Beef Cattle Farming | 7 | 17 | 7 | 4 | 18 |
+| 0146 Rice Growing | 7 | 17 | 7 | 4 | 18 |
+| 0149 Other Grain Growing | 7 | 17 | 7 | 4 | 18 |
+| 3606 Liquor and Tobacco Product Wholesaling | 6 | 17 | 4 | 1 | 16 |
+| 0131 Grape Growing | 7 | 16 | 6 | 4 | 17 |
+| 0132 Kiwifruit Growing | 7 | 16 | 6 | 4 | 17 |
+| 0133 Berry Fruit Growing | 7 | 16 | 6 | 4 | 17 |
+| 0134 Apple and Pear Growing | 7 | 16 | 6 | 4 | 17 |
+| 0135 Stone Fruit Growing | 7 | 16 | 6 | 4 | 17 |
+| 0136 Citrus Fruit Growing | 7 | 16 | 6 | 4 | 17 |
+| 0137 Olive Growing | 7 | 16 | 6 | 4 | 17 |
+| 0139 Other Fruit and Tree Nut Growing | 7 | 16 | 6 | 4 | 17 |
+| 0171 Poultry Farming (Meat) | 6 | 16 | 6 | 4 | 17 |
+| 0172 Poultry Farming (Eggs) | 6 | 16 | 6 | 4 | 17 |
+| 1211 Soft Drink, Cordial and Syrup Manufacturing | 5 | 16 | 4 | 2 | 17 |
+| 1212 Beer Manufacturing | 5 | 16 | 4 | 2 | 17 |
+| 1213 Spirit Manufacturing | 5 | 16 | 4 | 2 | 17 |
+| 1214 Wine and Other Alcoholic Beverage Manufacturing | 5 | 16 | 4 | 2 | 17 |
+| 0201 Offshore Longline and Rack Aquaculture | 6 | 15 | 6 | 4 | 16 |
+| 0202 Offshore Caged Aquaculture | 6 | 15 | 6 | 4 | 16 |
+
+## Issues found (Phase 2)
+
+55 issues in 38 regimes: places where a source reports that businesses face duplication, rules that differ between states or councils, unclear guidance, many agencies for one activity, or complex rules. Each issue quotes its source word for word. The sources are Productivity Commission inquiries and benchmarking studies (including its 2007-2010 reviews of regulatory burdens, which gathered industry submissions sector by sector), national and state reviews, and regulator pages.
+
+- **Status.** *Current*: the source reports the problem and no later fix was found. *Partly addressed*: a later reform covers part of it (the note says what). Older evidence is marked 'not rechecked' where no newer source was found; such issues may since have been dealt with.
+- **Counts.** A class's *issues* count (in `class_profiles.csv`) sums the issues not yet addressed across the regimes that apply to it; the `issue_*` columns split it by tag.
+- **Where reviews have looked.** Counts reflect where reviews have gathered evidence as well as where the problems are: agriculture, for example, had a dedicated Productivity Commission inquiry in 2016. Every class also carries the issues in cross-cutting regimes (payroll tax, workers' compensation, work health and safety, awards and planning), so compare classes on the industry-specific measures.
+- **No issue found** is not the same as no problem: these regimes had no evidenced issue in the sources searched: Accommodation premises, Australian Consumer Law, Aviation and airports, Business and tax registration, Commercial agents and debt collectors, Conveyancing and land titles, Customs, excise and trade, Film, game and publication classification, Financial services, credit and prudential regulation, Fuel retailing, Health practitioner registration and facility licensing, Home warranty insurance, Legal profession, Maritime safety and ports, Passenger transport accreditation, Security of payment in construction, Supermarket and agricultural codes of conduct, Tax agents, BAS agents and auditors, Telecommunications, broadcasting and online services, Tobacco and vape sales, Veterinary registration and premises, Waste management and levies, Water and sewerage utility regulation.
+
+| Tag | Meaning | Issues |
+|---|---|---|
+| Duplicative | Two or more agencies regulate the same risk, or ask the business for the same information. | 10 |
+| Inconsistent across states | The rules, licences or definitions differ between states and territories, so a business operating in several must comply with several regimes. | 27 |
+| Vague or inconsistent guidance | Regulator guidance is vague, or regulators and inspectors interpret the same rule differently. | 3 |
+| Many agencies for one activity | One business activity needs separate approvals from several agencies or tiers, with no single point of contact. | 5 |
+| Commonwealth and state overlap | Commonwealth and state laws cover the same ground, overlap or conflict. | 3 |
+| Varies council by council | Councils apply different requirements to the same activity. | 3 |
+| Complex or changing rules | The rules are voluminous, prescriptive or change often, making compliance hard even when each rule is light. | 4 |
+
+| Regime | Issue | Tag | Status | Sources |
+|---|---|---|---|---|
+| Aged care | Providers working across aged care, disability and veterans' care register and are audited separately in each sector. | Duplicative | current | Productivity Commission 2025 |
+| Aged care | Care workers need separate screening checks for aged care, the NDIS and working with children. | Duplicative | current | Productivity Commission 2025 |
+| Agricultural and veterinary chemicals | Each state sets its own rules for using farm and veterinary chemicals after sale, including which 'off-label' uses are allowed, so the same product can be used differently across a border. | Inconsistent across states | current | Productivity Commission 2016 |
+| Animal welfare and livestock | Farm animal welfare rules are set state by state, so standards and their enforcement differ across borders. | Inconsistent across states | current | Productivity Commission 2016 |
+| Biosecurity | Moving plants, animals or produce interstate means meeting each state's own biosecurity entry conditions, which differ more than the risks require. | Inconsistent across states | current | Productivity Commission 2016 |
+| Building licensing, approvals and the building code | States vary the National Construction Code and assess compliance differently, so builders working in several states meet different standards. | Inconsistent across states | current | Productivity Commission 2025 |
+| Building licensing, approvals and the building code | Some councils add their own design and materials rules on top of the building code. | Varies council by council | current | Productivity Commission 2025 |
+| Building licensing, approvals and the building code | The building code runs to more than 2,000 pages and changes every three years, with no single list of what a builder must comply with. | Complex or changing rules | current | Productivity Commission 2025 |
+| Building licensing, approvals and the building code | Builders' licences are state-based; automatic mutual recognition helps, but not every state has joined and exemptions remain. | Inconsistent across states | partly-addressed | Productivity Commission 2025 |
+| Container deposits and packaging | Each state's container deposit scheme sets its own eligible containers, refunds and labelling, so beverage suppliers register and report in each. | Inconsistent across states | partly-addressed | WA Department of Water and Environmental Regulation 2026 |
+| Disability services (NDIS) | Providers working across disability, aged care and veterans' care register and are audited separately in each sector. | Duplicative | current | Productivity Commission 2025 |
+| Disability services (NDIS) | Disability workers need separate screening checks for the NDIS, aged care and working with children. | Duplicative | current | Productivity Commission 2025 |
+| Early childhood education and care | The national quality framework is applied differently by state regulators. | Inconsistent across states | current | Productivity Commission 2024 |
+| Early childhood education and care | Early childhood teachers register state by state under differing requirements. | Inconsistent across states | current | Productivity Commission 2024 |
+| Electrical, plumbing and gas licensing and equipment safety | What a plumbing or electrical licence lets you do differs by state, so a tradesperson working interstate under mutual recognition may still need a separate licence. | Inconsistent across states | partly-addressed | Productivity Commission 2025 |
+| Electricity and gas market regulation | The national energy retail law applies with major state variations, and some states sit outside it. | Inconsistent across states | current | Australian Government 2015; Productivity Commission 2009 |
+| Employment law and awards | Modern awards are complex, so employers find it hard to know whether they are paying correctly. | Complex or changing rules | current | Productivity Commission 2023 |
+| Environment protection licences and approvals | Developers report long, shifting requests for information in Commonwealth environmental assessments. | Vague or inconsistent guidance | current | Productivity Commission 2025 |
+| Fisheries and aquaculture | Commonwealth fisheries are assessed under both fisheries law and environment law. | Duplicative | current | Productivity Commission 2007 |
+| Food safety | Councils enforce food safety for most food businesses, and differ in fees, inspection frequency and enforcement. | Varies council by council | current | Productivity Commission 2009 |
+| Food safety | Some food businesses are inspected by their council and audited again by a state regulator for the same food safety matters. | Duplicative | current | Productivity Commission 2009 |
+| Food safety | Businesses report that environmental health officers interpret the same food laws differently. | Vague or inconsistent guidance | current | Productivity Commission 2009 |
+| Food safety | States differed on whether food businesses must have a food safety supervisor or a food safety plan. | Inconsistent across states | partly-addressed | Productivity Commission 2009; Food Standards Australia New Zealand 2026 |
+| Gambling and wagering | Venue staff in border towns must complete separate responsible conduct of gambling courses for each state. | Inconsistent across states | current | Productivity Commission 2015 |
+| Hairdressing, beauty and skin penetration | Hairdressers need a certificate III in some states but not others. | Inconsistent across states | current | Productivity Commission 2025 |
+| Hazardous chemicals and dangerous goods | Making or importing chemicals involves several regulators at every tier, with complaints of duplication and delay. | Many agencies for one activity | current | Productivity Commission 2008 |
+| Heavy vehicle registration, access and safety | Western Australia and the Northern Territory sit outside the national heavy vehicle law, so operators crossing northern Australia work under separate systems. | Inconsistent across states | current | Productivity Commission 2016 |
+| Heavy vehicle registration, access and safety | Access permits need consent from every road manager on the route, including each council, which delays approvals even for low-impact vehicles. | Many agencies for one activity | current | Productivity Commission 2016 |
+| Labour hire licensing | Without a national scheme, labour hire licensing has been left to individual states. | Inconsistent across states | current | Productivity Commission 2016 |
+| Liquor licensing | Staff in border towns must complete separate responsible service of alcohol courses for each state. | Inconsistent across states | current | Productivity Commission 2015 |
+| Mandatory product standards and labelling | Suppliers of electrical products comply with a national scheme, the NSW scheme, other state requirements and the consumer law's product safety rules, all at once. | Duplicative | partly-addressed | Productivity Commission 2025 |
+| Mining and petroleum titles and approvals | A single mine can hold hundreds of environmental licences, permits and consents from several agencies and tiers. | Many agencies for one activity | current | Productivity Commission 2007 |
+| Mining and petroleum titles and approvals | Offshore petroleum operators submitted the same safety and environmental information to different agencies under separate management plans. | Duplicative | current | Productivity Commission 2007 |
+| Motor vehicle dealers and repairers | A licence to repair motor vehicles is required in only some states. | Inconsistent across states | current | Productivity Commission 2025 |
+| Native vegetation and land clearing | Clearing land can need approval from both the Commonwealth (threatened species under the EPBC Act) and the state, assessed separately. | Commonwealth and state overlap | current | Productivity Commission 2016 |
+| Native vegetation and land clearing | Environmental rules on farms come from several tiers at once and are hard to navigate. | Complex or changing rules | current | Productivity Commission 2016 |
+| Payroll tax | Each state sets its own payroll tax thresholds, rates, exemptions and administration, so an employer in several states files and calculates under several regimes. | Inconsistent across states | partly-addressed | Australian Treasury 2010; NSW Productivity Commission 2021 |
+| Payroll tax | Thresholds and exemptions make payroll tax more complex than it needs to be. | Complex or changing rules | current | Australian Treasury 2010 |
+| Pharmacy ownership, premises and PBS approval | Each state limits pharmacy ownership to pharmacists and caps how many pharmacies one pharmacist may own, with different caps in each state. | Inconsistent across states | current | Australian Government 2015 |
+| Planning and development approval | A development application can be referred to several state agencies (environment, heritage, transport, fire) as well as the council, each needing its own information. | Many agencies for one activity | current | Productivity Commission 2025 |
+| Planning and development approval | Planning systems, referral rules and timeframes differ greatly between states. | Inconsistent across states | current | Productivity Commission 2011 |
+| Planning and development approval | Councils apply planning rules differently, adding risk and uncertainty for developers working across council areas. | Varies council by council | current | Productivity Commission 2025 |
+| Primary production food safety and export controls | Meat processors meet different state standards and international requirements, so certification costs far more than for competitors overseas. | Inconsistent across states | current | Productivity Commission 2025 |
+| Property agents and residential tenancies | Agents working across a state border must meet two sets of conduct rules, such as separate trust accounts in each state. | Inconsistent across states | current | Productivity Commission 2015 |
+| Rail safety and access | Rail access in NSW is regulated under both a state and a national regime, which price access differently. | Commonwealth and state overlap | current | NSW Productivity Commission 2021 |
+| Retail trading hours | Each state sets its own trading hours, and some restrict hours by type of shop. | Inconsistent across states | current | Australian Government 2015 |
+| Security industry licensing | State regulators take different approaches to security training and qualifications, which led to licence shopping between states and extra checks on interstate applicants. | Inconsistent across states | current | Productivity Commission 2015 |
+| Therapeutic goods and poisons | States schedule poisons and drug precursors differently, so suppliers selling nationally track several lists. | Inconsistent across states | partly-addressed | Productivity Commission 2010 |
+| Vocational and higher education providers | Universities and training providers faced overlapping Commonwealth and state quality requirements and poorly coordinated regulators. | Commonwealth and state overlap | partly-addressed | Productivity Commission 2009 |
+| Water access and use | Irrigators and water operators report the same data to state and Commonwealth agencies in different formats. | Duplicative | current | Productivity Commission 2016 |
+| Work health and safety | The model WHS laws are in force everywhere except Victoria, which keeps its own OHS law, and adopting states have made their own variations. | Inconsistent across states | partly-addressed | Productivity Commission 2023; Productivity Commission 2025 |
+| Work health and safety | A business can deal with more than one safety regulator: a state regulator and Comcare on mixed sites, or separate regulators for mining, electrical safety or dangerous goods. | Many agencies for one activity | current | Productivity Commission 2010 |
+| Workers' compensation | Each state runs its own workers' compensation scheme, with different definitions of a worker, benefits, return-to-work rules and reporting, so national employers comply with each. | Inconsistent across states | current | Productivity Commission 2008; Productivity Commission 2025 |
+| Workers' compensation | Whether a contractor counts as a 'deemed worker' depends on the state. | Vague or inconsistent guidance | current | Productivity Commission 2023 |
+| Working with children checks | Each state issues its own working with children check, separate from aged care and NDIS worker checks, so workers in several sectors or states hold several. | Duplicative | current | Productivity Commission 2025 |
+
+### Classes with the most evidenced issues
+
+| Class | Issues | Inconsistent | Duplicative | Many agencies | Other |
+|---|---|---|---|---|---|
+| 0141 Sheep Farming (Specialised) | 18 | 8 | 1 | 2 | 7 |
+| 0142 Beef Cattle Farming (Specialised) | 18 | 8 | 1 | 2 | 7 |
+| 0143 Beef Cattle Feedlots (Specialised) | 18 | 8 | 1 | 2 | 7 |
+| 0144 Sheep-Beef Cattle Farming | 18 | 8 | 1 | 2 | 7 |
+| 0145 Grain-Sheep or Grain-Beef Cattle Farming | 18 | 8 | 1 | 2 | 7 |
+| 0146 Rice Growing | 18 | 8 | 1 | 2 | 7 |
+| 0149 Other Grain Growing | 18 | 8 | 1 | 2 | 7 |
+| 0160 Dairy Cattle Farming | 18 | 8 | 1 | 2 | 7 |
+| 0131 Grape Growing | 17 | 7 | 1 | 2 | 7 |
+| 0132 Kiwifruit Growing | 17 | 7 | 1 | 2 | 7 |
+| 0133 Berry Fruit Growing | 17 | 7 | 1 | 2 | 7 |
+| 0134 Apple and Pear Growing | 17 | 7 | 1 | 2 | 7 |
+| 0135 Stone Fruit Growing | 17 | 7 | 1 | 2 | 7 |
+| 0136 Citrus Fruit Growing | 17 | 7 | 1 | 2 | 7 |
+| 0137 Olive Growing | 17 | 7 | 1 | 2 | 7 |
+| 0139 Other Fruit and Tree Nut Growing | 17 | 7 | 1 | 2 | 7 |
+| 0171 Poultry Farming (Meat) | 17 | 8 | 0 | 2 | 7 |
+| 0172 Poultry Farming (Eggs) | 17 | 8 | 0 | 2 | 7 |
+| 1111 Meat Processing | 17 | 7 | 1 | 2 | 7 |
+| 1211 Soft Drink, Cordial and Syrup Manufacturing | 17 | 7 | 1 | 2 | 7 |

@@ -38,10 +38,17 @@
       "who": "State fair trading agencies",
       "bodies": [],
       "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "approves",
+      "who": "State electrical safety regulator (electrical product certification)",
+      "bodies": [],
+      "jurisdictions": []
     }
   ],
-  "consistency": "national",
-  "consistency_note": null,
+  "consistency": "harmonised",
+  "consistency_note": "Consumer product safety standards and trade measurement are national; electrical product safety is regulated state by state.",
   "basis": [
     {
       "source": "Administrative and support services industry (industry information)",
@@ -62,12 +69,52 @@
       "quote": "increasingly accepting product standards adopted in other leading economies as 'deemed to comply'",
       "origin": "australian",
       "checked": "full-text"
+    },
+    {
+      "source": "National Competition Policy analysis 2025",
+      "publisher": "Productivity Commission",
+      "year": 2025,
+      "url": "https://assets.pc.gov.au/2025-11/competition-analysis-2025-with-appendices.pdf",
+      "locator": "Section B (Standards), p. 85",
+      "quote": "Each state and territory has its own legislative scheme. Suppliers of electrical products, both within Australia and importers, must comply with the Electrical Equipment Safety System, the NSW system, various other state and territory requirements, and the Australian Consumer Law product safety regime.",
+      "origin": "australian",
+      "checked": "full-text"
     }
   ],
   "records": [
     "cth-bespoke-mandatory-standards"
   ],
-  "issues": [],
+  "issues": [
+    {
+      "tag": "duplicative",
+      "what": "Suppliers of electrical products comply with a national scheme, the NSW scheme, other state requirements and the consumer law's product safety rules, all at once.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "National Competition Policy analysis 2025",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-11/competition-analysis-2025-with-appendices.pdf",
+          "locator": "Section B (Standards), p. 85",
+          "quote": "Each state and territory has its own legislative scheme. Suppliers of electrical products, both within Australia and importers, must comply with the Electrical Equipment Safety System, the NSW system, various other state and territory requirements, and the Australian Consumer Law product safety regime.",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "National Competition Policy analysis 2025",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-11/competition-analysis-2025-with-appendices.pdf",
+          "locator": "Section B (Standards), p. 85",
+          "quote": "There is no obvious benefit to Australians from this fragmented system.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "partly-addressed",
+      "status_note": "Treasurers agreed in November 2024 to a ministers' forum to oversee harmonised regulation (PC 2025)."
+    }
+  ],
   "review": {
     "status": "draft",
     "by": null,

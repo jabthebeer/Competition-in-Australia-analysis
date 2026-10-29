@@ -80,7 +80,58 @@
     }
   ],
   "records": [],
-  "issues": [],
+  "issues": [
+    {
+      "tag": "inconsistent",
+      "what": "The model WHS laws are in force everywhere except Victoria, which keeps its own OHS law, and adopting states have made their own variations.",
+      "jurisdictions": [
+        "VIC"
+      ],
+      "evidence": [
+        {
+          "source": "5-year Productivity Inquiry: A more productive labour market (volume 7)",
+          "publisher": "Productivity Commission",
+          "year": 2023,
+          "url": "https://assets.pc.gov.au/inquiries/completed/productivity/report/productivity-volume7-labour-market.pdf",
+          "locator": "Box 5.9, p. 164",
+          "quote": "Model WHS laws, which are implemented in all states and territories bar Victoria",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "National Competition Policy analysis 2025",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-11/competition-analysis-2025-with-appendices.pdf",
+          "locator": "Section B (Standards), p. 88",
+          "quote": "the lack of harmonisation across state and territory workplace safety frameworks, particularly with respect to workers compensation, increases compliance costs and administrative complexity for companies operating across borders",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "partly-addressed",
+      "status_note": "Harmonisation since 2012 has brought most jurisdictions onto the model laws."
+    },
+    {
+      "tag": "multi-agency",
+      "what": "A business can deal with more than one safety regulator: a state regulator and Comcare on mixed sites, or separate regulators for mining, electrical safety or dangerous goods.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Performance Benchmarking of Australian Business Regulation: Occupational Health and Safety",
+          "publisher": "Productivity Commission",
+          "year": 2010,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulation-benchmarking-ohs/report/ohs-report.pdf",
+          "locator": "Box 1.3, p. 7",
+          "quote": "In addition, a business may have to interact with more than one regulator, either within or across jurisdictions. Different approaches to enforcement by these regulators could also create additional burdens.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": "Benchmarked in 2010; not rechecked."
+    }
+  ],
   "review": {
     "status": "draft",
     "by": null,

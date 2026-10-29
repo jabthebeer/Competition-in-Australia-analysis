@@ -21,7 +21,14 @@
     {
       "tier": "state",
       "function": "approves",
-      "who": "State access regulator or ACCC (track access)",
+      "who": "State access regulator (state track access regimes)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "approves",
+      "who": "ACCC (national access undertakings)",
       "bodies": [
         "cth-accc"
       ],
@@ -29,7 +36,7 @@
     }
   ],
   "consistency": "national",
-  "consistency_note": null,
+  "consistency_note": "Rail safety is regulated nationally; track access is regulated under national and state regimes.",
   "basis": [
     {
       "source": "NSW Productivity Commission White Paper 2021: Rebooting the economy",
@@ -43,7 +50,29 @@
     }
   ],
   "records": [],
-  "issues": [],
+  "issues": [
+    {
+      "tag": "cth-state-overlap",
+      "what": "Rail access in NSW is regulated under both a state and a national regime, which price access differently.",
+      "jurisdictions": [
+        "NSW"
+      ],
+      "evidence": [
+        {
+          "source": "NSW Productivity Commission White Paper 2021: Rebooting the economy",
+          "publisher": "NSW Productivity Commission",
+          "year": 2021,
+          "url": "https://www.productivity.nsw.gov.au/sites/default/files/2022-04/Productivity-Commission-White-Paper-2021.pdf",
+          "locator": "Chapter 4, p. 166",
+          "quote": "Both national and state regimes now govern NSW rail access. These are the NSW Rail Access Undertaking and the national rail access regime overseen by the Australian Competition and Consumer Commission (ACCC). Each calculates prices and decides access terms differently.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
   "review": {
     "status": "draft",
     "by": null,
