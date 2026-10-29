@@ -1,6 +1,6 @@
 """Command line: ``alicia <command>``.
 
-alicia validate                      check every register record (each needs a framework assessment) and evaluation
+alicia validate                      check every register record (assessment, responsible bodies, history), evaluation
 alicia menu [filters]                list register items with their framework marks
 alicia show <id>                     one record in full
 alicia families                      reforms adopted by several jurisdictions, in date order
@@ -28,6 +28,7 @@ import sys
 from pathlib import Path
 
 from . import anzsic, cpi
+from .register.bodies import check_records, department_of, load_bodies
 from .register.catalogue import families, filter_records, load_records
 from .register.evaluation import load_evaluations
 from .register.framework import DRIVERS, KINDS
@@ -59,6 +60,16 @@ def cmd_validate(args) -> int:
     )
     evals = load_evaluations(result.records, Path(args.evaluations) if args.evaluations else None)
     problems.extend(evals.problems)
+    bodies, body_problems = load_bodies()
+    problems.extend(body_problems)
+    problems.extend(check_records(result.records, bodies))
+    ids = {r.id for r in result.records}
+    problems.extend(
+        f"{r.id}.json: history: unknown record '{h.record}'"
+        for r in result.records
+        for h in r.history
+        if h.record and h.record not in ids
+    )
     for p in problems:
         print(p)
     for w in warnings:
@@ -69,6 +80,15 @@ def cmd_validate(args) -> int:
         f"problem(s); {len(warnings)} warning(s); {drafts} record(s) awaiting review."
     )
     return 1 if problems else 0
+
+
+def _dept_short(body: str, bodies: dict) -> str:
+    """The short name of the department a body sits in (or of the body, if it has none)."""
+    b = bodies.get(body)
+    if b is None:
+        return body
+    d = department_of(b, bodies)
+    return (d or b).short
 
 
 def cmd_menu(args) -> int:
@@ -84,6 +104,10 @@ def cmd_menu(args) -> int:
             text=args.text,
         )
     )
+    bodies = load_bodies()[0]
+    if args.body and args.body not in bodies:
+        print(f"Unknown body '{args.body}'; ids are in regulation-register/bodies.json.", file=sys.stderr)
+        return 2
     rows = []
     for r in sorted(
         records,
@@ -97,6 +121,10 @@ def cmd_menu(args) -> int:
             continue
         if args.kind and r.kind != args.kind:
             continue
+        if args.body and not any(
+            x.body == args.body or (x.body in bodies and bodies[x.body].parent == args.body) for x in r.responsible
+        ):
+            continue
         eff = r.effective_commencement
         rows.append(
             {
@@ -108,6 +136,8 @@ def cmd_menu(args) -> int:
                 "mark": f"{a.total:+d}" if a else "",
                 "rating": a.rating if a else "",
                 "industries": " ".join(i.anzsic for i in r.industries),
+                "responsible": " ".join(dict.fromkeys(_dept_short(x.body, bodies) for x in r.responsible)),
+                "ended": r.ended.date.isoformat() if r.ended else "",
                 "title": r.title,
             }
         )
@@ -407,6 +437,9 @@ def main(argv: list[str] | None = None) -> int:
     m.add_argument("--family")
     m.add_argument("--driver", choices=list(DRIVERS), help="main driver of productivity impact")
     m.add_argument("--kind", choices=list(KINDS), help="reform, existing setting or non-legislative barrier")
+    m.add_argument(
+        "--body", help="department or agency id (regulation-register/bodies.json); a department includes its agencies"
+    )
     m.add_argument("--text", help="search titles and summaries")
     m.add_argument("--csv", action="store_true", help="CSV output")
     m.set_defaults(func=cmd_menu)

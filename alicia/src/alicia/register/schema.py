@@ -181,6 +181,52 @@ class Assessment(_Strict):
         return next((m.mark for m in self.marks if m.driver == driver), 0)
 
 
+# Who is responsible for an item (owner request, 28 October 2026; DECISIONS E-94). "administers": the department
+# whose Minister administers the law or runs the program, per the jurisdiction's administrative arrangements;
+# "regulates": the body that licenses, enforces, collects or monitors under it; "policy": the department that leads
+# policy on an issue that is not a law (a non-legislative barrier) or on a national scheme.
+ResponsibilityRole = Literal["administers", "regulates", "policy"]
+ROLE_LABELS: dict[str, str] = {
+    "administers": "Administers",
+    "regulates": "Regulates",
+    "policy": "Leads policy",
+}
+
+
+class Responsibility(_Strict):
+    """A government body responsible for the item, from the bodies registry (``regulation-register/bodies.json``)."""
+
+    body: RecordId = Field(description="Id in regulation-register/bodies.json")
+    role: ResponsibilityRole
+    source: HttpUrl = Field(description="Where the responsibility is stated (administrative arrangements, Act page)")
+    note: str | None = None
+
+
+# What happened to the item's law or setting after the change the record describes.
+HistoryKind = Literal["announced", "amended", "eased", "tightened", "extended", "reviewed", "repealed", "replaced"]
+HISTORY_LABELS: dict[str, str] = {
+    "announced": "Announced",
+    "amended": "Amended",
+    "eased": "Eased",
+    "tightened": "Tightened",
+    "extended": "Extended",
+    "reviewed": "Reviewed",
+    "repealed": "Repealed",
+    "replaced": "Replaced",
+}
+ENDING_KINDS = ("repealed", "replaced")
+
+
+class HistoryEvent(_Strict):
+    """A later change to the item's law or setting: an amendment, easing, review, repeal or replacement."""
+
+    date: dt.date
+    kind: HistoryKind
+    what: str = Field(min_length=1, description="Plain English: what changed")
+    source: HttpUrl
+    record: RecordId | None = Field(default=None, description="The register record that covers this change, if any")
+
+
 class ChangeRecord(_Strict):
     id: RecordId
     kind: Kind = Field(default="reform", description="reform, existing setting or non-legislative barrier")
@@ -202,6 +248,8 @@ class ChangeRecord(_Strict):
     verified: Verification
     review: Review = Review()
     assessment: Assessment | None = None
+    responsible: tuple[Responsibility, ...] = Field(default=(), description="Departments and regulators responsible")
+    history: tuple[HistoryEvent, ...] = Field(default=(), description="Later changes, oldest first")
 
     @model_validator(mode="after")
     def _no_duplicates(self) -> ChangeRecord:
@@ -219,6 +267,25 @@ class ChangeRecord(_Strict):
         if not self.industries and not (self.assessment and self.assessment.reach == "economy-wide"):
             raise ValueError("industries can be left empty only for an item assessed as economy-wide")
         return self
+
+    @model_validator(mode="after")
+    def _history_in_order(self) -> ChangeRecord:
+        dates = [h.date for h in self.history]
+        if dates != sorted(dates):
+            raise ValueError("history events must be in date order, oldest first")
+        bodies = [(x.body, x.role) for x in self.responsible]
+        if len(set(bodies)) != len(bodies):
+            raise ValueError("a body can hold each role once")
+        return self
+
+    @property
+    def ended(self) -> HistoryEvent | None:
+        """The repeal or replacement that ended the item, if it has ended."""
+        last = None
+        for h in self.history:
+            if h.kind in ENDING_KINDS and h.date <= dt.date.today():
+                last = h
+        return last
 
     @property
     def effective_commencement(self) -> Commencement | None:

@@ -3,7 +3,7 @@ A series of econometric analyses for competition in Australia, aiming to ultimat
 
 ## Browse the ALICIA legislation menu
 
-The legislation menu is a register of what shapes competition and productivity in Australia: reforms (passed or proposed), existing regulatory settings and non-legislative barriers. Every item is marked against the [ALICIA productivity framework](docs/productivity_framework.md) on eight drivers of productivity, and shown with summary statistics for the industries it affects. Filter by **main driver** to see what weighs on productivity.
+The legislation menu is a register of what shapes competition and productivity in Australia: reforms (passed or proposed), existing regulatory settings and non-legislative barriers. Every item is marked against the [ALICIA productivity framework](docs/productivity_framework.md) on eight drivers of productivity, and shown with summary statistics for the industries it affects. Filter by **main driver** to see what weighs on productivity, or by the **department** responsible. Each item shows who is responsible for it and a timeline of later changes, such as the repeal of Sydney's lockout laws.
 
 - **On GitHub Pages:** <https://jabthebeer.github.io/Competition-in-Australia-analysis/> (the menu, the Framework page, The state of competition in Australia and Economic conditions pages, the Policy costing tab, and the econometric archive)
   - It is published by `.github/workflows/menu-explorer-pages.yml` on every push to `main`.
@@ -31,6 +31,7 @@ Every assessment is a draft until checked by a person: the review sheet is [`doc
 ## Planning
 
 - [`docs/productivity_framework.md`](docs/productivity_framework.md): the productivity impact framework (version 1.0, 28 October 2026), written by `alicia framework` from the same definition the website uses.
+- [`docs/responsibility_and_history.md`](docs/responsibility_and_history.md): who is responsible for each register item (departments, agencies, regulators) and the later changes recorded against them, with sources and open checks (29 October 2026).
 - [`docs/register_review_framework.md`](docs/register_review_framework.md): the register reviewed under the framework, the items added, and candidates to add next (28 October 2026).
 
 Archived econometric work (paused 22 October 2026; the results stay published in the site's econometric archive):

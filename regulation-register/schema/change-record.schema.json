@@ -236,6 +236,65 @@
       "title": "DriverMark",
       "type": "object"
     },
+    "HistoryEvent": {
+      "additionalProperties": false,
+      "description": "A later change to the item's law or setting: an amendment, easing, review, repeal or replacement.",
+      "properties": {
+        "date": {
+          "format": "date",
+          "title": "Date",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "announced",
+            "amended",
+            "eased",
+            "tightened",
+            "extended",
+            "reviewed",
+            "repealed",
+            "replaced"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "what": {
+          "description": "Plain English: what changed",
+          "minLength": 1,
+          "title": "What",
+          "type": "string"
+        },
+        "source": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "record": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The register record that covers this change, if any",
+          "title": "Record"
+        }
+      },
+      "required": [
+        "date",
+        "kind",
+        "what",
+        "source"
+      ],
+      "title": "HistoryEvent",
+      "type": "object"
+    },
     "Industry": {
       "additionalProperties": false,
       "properties": {
@@ -330,6 +389,53 @@
         "role"
       ],
       "title": "Instrument",
+      "type": "object"
+    },
+    "Responsibility": {
+      "additionalProperties": false,
+      "description": "A government body responsible for the item, from the bodies registry (``regulation-register/bodies.json``).",
+      "properties": {
+        "body": {
+          "description": "Id in regulation-register/bodies.json",
+          "title": "Body",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "administers",
+            "regulates",
+            "policy"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "source": {
+          "description": "Where the responsibility is stated (administrative arrangements, Act page)",
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "body",
+        "role",
+        "source"
+      ],
+      "title": "Responsibility",
       "type": "object"
     },
     "Review": {
@@ -598,6 +704,24 @@
         }
       ],
       "default": null
+    },
+    "responsible": {
+      "default": [],
+      "description": "Departments and regulators responsible",
+      "items": {
+        "$ref": "#/$defs/Responsibility"
+      },
+      "title": "Responsible",
+      "type": "array"
+    },
+    "history": {
+      "default": [],
+      "description": "Later changes, oldest first",
+      "items": {
+        "$ref": "#/$defs/HistoryEvent"
+      },
+      "title": "History",
+      "type": "array"
     }
   },
   "required": [
