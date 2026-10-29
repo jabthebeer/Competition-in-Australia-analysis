@@ -33,6 +33,7 @@ from . import anzsic, cpi
 from .register.bodies import check_records, department_of, load_bodies
 from .register.catalogue import families, filter_records, load_records
 from .register.evaluation import load_evaluations
+from .register.families import check_families, load_families
 from .register.framework import DRIVERS, KINDS
 from .register.recommendations import check_coverage, check_recommendations, load_gaps, load_recommendations
 from .register.regimes import check_regimes, load_regimes
@@ -74,6 +75,9 @@ def cmd_validate(args) -> int:
     regimes = load_regimes()
     problems.extend(regimes.problems)
     problems.extend(check_regimes(regimes.regimes, result.records, bodies))
+    families, family_problems = load_families()
+    problems.extend(family_problems)
+    problems.extend(check_families(families, result.records))
     ids = {r.id for r in result.records}
     problems.extend(
         f"{r.id}.json: history: unknown record '{h.record}'"

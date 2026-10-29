@@ -112,7 +112,8 @@ table.sc { border-collapse: separate; border-spacing: 0; font-size: var(--step--
 table.sc th, table.sc td { padding: 0; border-bottom: 1px solid var(--line); }
 table.sc thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); color: var(--ink-3); font-weight: 500; vertical-align: bottom; padding: 6px 2px; text-align: center; font-size: var(--step--1); line-height: 1.2; min-width: 3.8rem; }
 table.sc thead tr.pillars th { top: 0; font-size: var(--step--1); padding-bottom: 2px; border-bottom: 0; }
-table.sc thead tr.pillars th span { display: block; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; margin: 0 4px; }
+table.sc thead tr.pillars th span { display: block; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; margin: 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+table.sc thead tr.pillars th { height: 26px; box-sizing: border-box; max-width: 0; }
 table.sc thead tr.drv th { top: 26px; }
 table.sc th.item { text-align: left; position: sticky; left: 0; z-index: 1; background: var(--surface); padding: 5px 10px; font-weight: 400; min-width: 15rem; max-width: 22rem; }
 table.sc thead th.item { z-index: 3; text-align: left; }
@@ -290,6 +291,29 @@ details.about { border-top: 1px solid var(--line); padding-top: 10px; }
 details.about > summary { cursor: pointer; font-weight: 600; color: var(--ink-2); }
 details.about[open] > summary { margin-bottom: 8px; }
 .mono, .num, table.st td.num { font-size: 1em; }
+/* Families shown as one expandable row (DECISIONS E-99). */
+.grpbtn { font: inherit; font-weight: 600; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; color: var(--ink); }
+.grpbtn::before { content: "▸"; display: inline-block; width: 1em; color: var(--ink-3); }
+.grpbtn[aria-expanded="true"]::before { content: "▾"; }
+.grpbtn:hover { color: var(--accent); }
+.list tr.grp-row td { background: color-mix(in oklab, var(--accent-soft) 40%, var(--surface)); }
+.list tr.grp-sum td { padding: 4px 10px 8px calc(10px + 1em); color: var(--ink-2); font-size: var(--step--1); }
+.list tr.member td.c-title { padding-left: calc(10px + 1em); }
+.list tr.member td.c-title .rowbtn { font-weight: 400; }
+.mark-range { display: inline-flex; gap: 4px; align-items: center; white-space: nowrap; }
+.mark-range .to { color: var(--ink-3); font-size: var(--step--1); }
+.mark-range .badge { padding: 1px 3px; }
+table.sc tr.sc-grp th { position: static; text-align: left; padding: 6px 10px; background: color-mix(in oklab, var(--accent-soft) 40%, var(--surface)); }
+table.sc tr.sc-member th.item button { padding-left: 1em; }
+.grp-of { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
+@media (max-width: 640px) {
+  .list tr.grp-row { background: color-mix(in oklab, var(--accent-soft) 40%, var(--surface)); }
+  .list tr.sel { background: var(--accent-soft); }
+  .list tr.grp-row td, .list tr.sel td, .list tbody tr:hover td { background: none; }
+}
+.count-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; margin: 0 0 8px; }
+.count-row .count-line { margin: 0; }
+.count-row .lnk { font-size: var(--step--1); }
 .issue-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
 </style>
 
@@ -358,7 +382,7 @@ details.about[open] > summary { margin-bottom: 8px; }
           <option value="neg">Most negative first</option><option value="pos">Most positive first</option><option value="title">Title</option>
         </select></label>
       </div>
-      <p class="count-line" id="countLine" aria-live="polite"></p>
+      <div class="count-row"><p class="count-line" id="countLine" aria-live="polite"></p><button type="button" class="lnk" id="toggleGroups"></button></div>
       <div id="view-list" role="tabpanel" aria-labelledby="tab-list">
         <table class="list">
           <thead><tr><th>Effective</th><th>Jur.</th><th>Item</th><th>Main driver</th><th>Overall mark</th><th>Reach</th></tr></thead>
@@ -478,6 +502,8 @@ details.about[open] > summary { margin-bottom: 8px; }
   const bodyMatch = (r, id) => r.responsible.some((x) => x.body === id || deptOf(x.body) === id);
   const RECS = Object.fromEntries((DATA.recommendations || []).map((x) => [x.id, x]));
   const RBY = Object.fromEntries(R.map((r) => [r.id, r]));
+  const GROUPS = DATA.groups || {};
+  const groupOf = (r) => (r.family && GROUPS[r.family] ? r.family : null);
   const REGS = DATA.regimes || [];
   const REG = Object.fromEntries(REGS.map((g) => [g.id, g]));
   const TAGS = DATA.issueTags || {};
@@ -509,7 +535,7 @@ details.about[open] > summary { margin-bottom: 8px; }
   }
 
   // --- State --------------------------------------------------------------------------------------
-  const state = { q: "", driver: new Set(), rating: new Set(), kind: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", cx: new Set(), regime: "", indSort: "parties", selected: null, tab: "list", sort: "new" };
+  const state = { q: "", driver: new Set(), rating: new Set(), kind: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", cx: new Set(), regime: "", indSort: "parties", open: new Set(), selected: null, tab: "list", sort: "new" };
 
   function matches(r, skip) {
     const a = A(r);
@@ -528,6 +554,7 @@ details.about[open] > summary { margin-bottom: 8px; }
       const hay = [r.id, r.title, r.summary, r.family, DATA.familyLabels[r.family], r.jurisdiction, FW.kinds[r.kind].label,
         ...r.responsible.flatMap((x) => [x.body, bodyName(x.body), B[x.body] ? B[x.body].short : ""]),
         ...r.recs.map((id) => (RECS[id] ? RECS[id].title : "")), ...r.regimes.map((id) => (REG[id] ? REG[id].name : "")),
+        ...(groupOf(r) ? [GROUPS[r.family].title] : []),
         ...r.industries.map((i) => `${i.anzsic} ${i.name}`), ...(a ? [a.summary, DRV[a.main_driver].label, ...a.marks.map((m) => m.reason)] : [])].join(" ").toLowerCase();
       if (!state.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
     }
@@ -584,6 +611,12 @@ details.about[open] > summary { margin-bottom: 8px; }
   $("f-div").addEventListener("change", (e) => { state.div = e.target.value; render(); });
   $("f-body").addEventListener("change", (e) => { state.body = e.target.value; render(); });
   $("sort").addEventListener("change", (e) => { state.sort = e.target.value; render(); });
+  $("toggleGroups").addEventListener("click", (e) => {
+    const gs = e.target.dataset.groups.split(" ").filter(Boolean);
+    const close = gs.every((g) => state.open.has(g));
+    gs.forEach((g) => (close ? state.open.delete(g) : state.open.add(g)));
+    render();
+  });
   $("reset").addEventListener("click", () => {
     state.q = ""; state.status = ""; state.div = ""; state.body = "";
     ["driver", "rating", "kind", "jur", "reach", "cx"].forEach((k) => state[k].clear());
@@ -630,28 +663,71 @@ details.about[open] > summary { margin-bottom: 8px; }
   }
 
   // --- List ---------------------------------------------------------------------------------------
-  function renderList(rows) {
-    $("rows").innerHTML = rows.map((r) => {
-      const a = A(r);
-      return `<tr class="${state.selected === r.id ? "sel" : ""}">
+  // Items of one family (one policy in several jurisdictions) collapse into a row under the family's group name, at the
+  // position of its first item in the chosen order; opening it shows the group summary and each jurisdiction's item.
+  function units(rows) {
+    const out = [], byGroup = new Map();
+    rows.forEach((r) => {
+      const g = groupOf(r);
+      if (!g) { out.push({ r }); return; }
+      if (!byGroup.has(g)) { const u = { g, items: [] }; byGroup.set(g, u); out.push(u); }
+      byGroup.get(g).items.push(r);
+    });
+    return out;
+  }
+  const same = (xs) => xs.every((x) => x === xs[0]);
+  function groupCells(u) {
+    const items = u.items, all = GROUPS[u.g].members.length, as = items.map(A).filter(Boolean);
+    const years = items.filter((r) => r.kind !== "barrier" && r.effective && r.kind === "reform").map((r) => +r.effective.slice(0, 4));
+    const eff = years.length ? (Math.min(...years) === Math.max(...years) ? `${years[0]}` : `${Math.min(...years)}–${Math.max(...years)}`) : items.some((r) => r.kind === "setting") ? "in place" : "–";
+    const jurs = [...new Set(items.map((r) => r.jurisdiction))];
+    const totals = as.map((a) => a.total), lo = Math.min(...totals), hi = Math.max(...totals);
+    const loA = as.find((a) => a.total === lo), hiA = as.find((a) => a.total === hi);
+    const mini = (a) => `<span class="badge ${RATING_CLS[a.rating]}" title="${esc(RATING_LABEL[a.rating])}"><span class="n">${esc(signed(a.total))}</span></span>`;
+    const mark = !as.length ? "" : lo === hi ? ratingBadge(as[0]) : `<span class="mark-range" title="${esc(`Overall marks range from ${signed(lo)} to ${signed(hi)}; open the row to see each jurisdiction`)}">${mini(loA)}<span class="to">to</span>${mini(hiA)}</span>`;
+    const drv = same(as.map((a) => a.main_driver)) && as.length ? drvTag(as[0].main_driver) : "Varies";
+    const reach = same(as.map((a) => a.reach)) && as.length ? esc(reachLabel(as[0].reach)) : "Varies";
+    return { eff, jur: items.length === all ? `${jurs.length}` : `${items.length} of ${all}`, jurTitle: jurs.join(", "), mark, drv, reach };
+  }
+  function itemRow(r, member) {
+    const a = A(r);
+    return `<tr class="${member ? "member " : ""}${state.selected === r.id ? "sel" : ""}">
         <td class="mono">${esc(effLabel(r))}</td>
         <td class="mono">${esc(r.jurisdiction)}</td>
-        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}" title="${esc([r.family ? DATA.familyLabels[r.family] || r.family : "", r.responsible.length ? `Responsible: ${whoShort(r)}` : "", r.complexity.length ? `Complexity: ${r.complexity.map((t) => (TAGS[t] ? TAGS[t].label : t)).join(", ")}` : ""].filter(Boolean).join(" · "))}">${esc(r.title)}</button> ${kindTag(r.kind)} ${endTag(r)}</td>
+        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}" title="${esc([r.responsible.length ? `Responsible: ${whoShort(r)}` : "", r.complexity.length ? `Complexity: ${r.complexity.map((t) => (TAGS[t] ? TAGS[t].label : t)).join(", ")}` : ""].filter(Boolean).join(" · "))}">${esc(r.title)}</button> ${kindTag(r.kind)} ${endTag(r)}</td>
         <td>${a ? drvTag(a.main_driver) : ""}</td>
         <td>${ratingBadge(a)}</td>
         <td>${a ? esc(reachLabel(a.reach)) : ""}</td>
       </tr>`;
+  }
+  function renderList(rows) {
+    $("rows").innerHTML = units(rows).map((u) => {
+      if (u.r) return itemRow(u.r, false);
+      const c = groupCells(u), open = state.open.has(u.g), G = GROUPS[u.g];
+      const head = `<tr class="grp-row" id="grp-${esc(u.g)}">
+        <td class="mono">${esc(c.eff)}</td>
+        <td class="mono" title="${esc(c.jurTitle)}">${esc(c.jur)}</td>
+        <td class="c-title"><button type="button" class="grpbtn" data-group="${esc(u.g)}" aria-expanded="${open}">${esc(G.title)}</button></td>
+        <td>${c.drv}</td><td>${c.mark}</td><td>${c.reach}</td></tr>`;
+      if (!open) return head;
+      return head + (G.summary ? `<tr class="grp-sum"><td colspan="6">${esc(G.summary)}</td></tr>` : "") + u.items.map((r) => itemRow(r, true)).join("");
     }).join("");
     $("rows").querySelectorAll(".rowbtn").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
+    $("rows").querySelectorAll(".grpbtn").forEach((b) => b.addEventListener("click", () => toggleGroup(b.dataset.group)));
+  }
+  function toggleGroup(g, open) {
+    const on = open ?? !state.open.has(g);
+    if (on) state.open.add(g); else state.open.delete(g);
+    render();
   }
 
   // --- Scorecard ----------------------------------------------------------------------------------
   function renderScorecard(rows) {
     const pillars = Object.keys(FW.pillars).map((p) => ({ p, ds: DRV_KEYS.filter((d) => DRV[d].pillar === p) }));
-    const head = `<thead><tr class="pillars"><th class="item"></th>${pillars.map((g) => `<th colspan="${g.ds.length}"><span>${esc(FW.pillars[g.p].label)}</span></th>`).join("")}<th></th></tr>
+    const head = `<thead><tr class="pillars"><th class="item"></th>${pillars.map((g) => `<th colspan="${g.ds.length}" title="${esc(FW.pillars[g.p].label)}"><span>${esc(FW.pillars[g.p].label)}</span></th>`).join("")}<th></th></tr>
       <tr class="drv"><th class="item">Item</th>${pillars.flatMap((g) => g.ds).map((d) => `<th title="${esc(DRV[d].question)}">${esc(DRV[d].short)}</th>`).join("")}<th>Overall</th></tr></thead>`;
     const order = pillars.flatMap((g) => g.ds);
-    const body = rows.map((r) => {
+    const itemRow = (r, member) => {
       const a = A(r);
       const cells = order.map((d) => {
         const m = markOf(r, d);
@@ -660,10 +736,16 @@ details.about[open] > summary { margin-bottom: 8px; }
         return `<td class="cell${a && a.main_driver === d ? " is-main" : ""}" title="${esc(tip)}"><span class="${markCls(m)}">${m ? esc(signed(m)) : "·"}</span></td>`;
       }).join("");
       const tot = a ? `<span class="${RATING_CLS[a.rating]}" title="${esc(`${RATING_LABEL[a.rating]}${a.mixed ? ", mixed" : ""}`)}">${esc(signed(a.total))}</span>` : "";
-      return `<tr class="${state.selected === r.id ? "sel" : ""}"><th class="item" scope="row"><button type="button" data-id="${esc(r.id)}" title="${esc(r.title)}"><span class="j">${esc(r.jurisdiction)}</span>${esc(r.short)}</button></th>${cells}<td class="tot">${tot}</td></tr>`;
+      return `<tr class="${member ? "sc-member " : ""}${state.selected === r.id ? "sel" : ""}"><th class="item" scope="row"><button type="button" data-id="${esc(r.id)}" title="${esc(r.title)}"><span class="j">${esc(r.jurisdiction)}</span>${esc(r.short)}</button></th>${cells}<td class="tot">${tot}</td></tr>`;
+    };
+    const body = units(rows).map((u) => {
+      if (u.r) return itemRow(u.r, false);
+      const open = state.open.has(u.g);
+      return `<tr class="sc-grp"><th colspan="${order.length + 2}"><button type="button" class="grpbtn" data-group="${esc(u.g)}" aria-expanded="${open}">${esc(GROUPS[u.g].title)} (${u.items.length})</button></th></tr>` + (open ? u.items.map((r) => itemRow(r, true)).join("") : "");
     }).join("");
     $("sc").innerHTML = head + `<tbody>${body}</tbody>`;
     $("sc").querySelectorAll("th.item button").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
+    $("sc").querySelectorAll(".grpbtn").forEach((b) => b.addEventListener("click", () => toggleGroup(b.dataset.group)));
     $("scKey").innerHTML = [2, 1, -1, -2].map((m) => `<span><span class="k ${markCls(m)}">${esc(signed(m))}</span> ${esc(FW.markLabels[String(m)])}</span>`).join("") +
       `<span><span class="k" style="box-shadow: inset 0 0 0 1.5px var(--ink)">±</span> Main driver</span>${info("helpScorecard", "Reading the scorecard")}`;
   }
@@ -690,7 +772,7 @@ details.about[open] > summary { margin-bottom: 8px; }
     let y = TOP;
     const parts = [], rowsOut = [];
     groups.forEach((g) => {
-      rowsOut.push({ head: g === "_single" ? "Single-jurisdiction and national reforms" : (DATA.familyLabels[g] || g), y });
+      rowsOut.push({ head: g === "_single" ? "Single-jurisdiction and national reforms" : (GROUPS[g] ? GROUPS[g].title : DATA.familyLabels[g] || g), y });
       y += HEAD;
       fams.get(g).forEach((r) => { rowsOut.push({ r, y }); y += ROW; });
       y += 6;
@@ -883,6 +965,12 @@ details.about[open] > summary { margin-bottom: 8px; }
     el.querySelectorAll(".lnk[data-id]").forEach((b) => b.addEventListener("click", () => { select(b.dataset.id); el.scrollTop = 0; }));
     el.querySelectorAll(".lnk[data-regime]").forEach((b) => b.addEventListener("click", () => { selectRegime(b.dataset.regime); el.scrollTop = 0; }));
     el.querySelectorAll(".lnk[data-class]").forEach((b) => b.addEventListener("click", () => { selectClass(b.dataset.class); el.scrollTop = 0; }));
+    el.querySelectorAll("[data-show-group]").forEach((b) => b.addEventListener("click", () => {
+      state.open.add(b.dataset.showGroup);
+      setTab("list");
+      const row = $(`grp-${b.dataset.showGroup}`);
+      if (row) row.scrollIntoView({ block: "center" });
+    }));
     el.querySelectorAll("[data-show-ind]").forEach((b) => b.addEventListener("click", () => { state.regime = b.dataset.showInd; setTab("ind"); $("view-ind").scrollIntoView({ block: "start" }); }));
     const close = $("closeDetail");
     if (close) close.addEventListener("click", () => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* ignore */ } select(null); });
@@ -929,6 +1017,7 @@ details.about[open] > summary { margin-bottom: 8px; }
     const el = $("detail");
     if (!r) { el.className = "detail empty"; el.innerHTML = "<p>Select an item to see its productivity assessment, the industries it affects and its sources.</p>"; render(); return; }
     if (!fromHash) { try { history.replaceState(null, "", `#${id}`); } catch (e) { /* ignore */ } }
+    if (groupOf(r)) state.open.add(r.family);
     el.className = "detail";
     const a = A(r);
     const assess = a ? `<section class="d-sec"><h3>Productivity assessment${info("helpAssess", "How items are marked")}</h3><div class="assess">
@@ -956,6 +1045,7 @@ details.about[open] > summary { margin-bottom: 8px; }
       <div class="d-head">
         <h2>${esc(r.title)}</h2>
         <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${eff ? `<span>${esc(eff)}</span>` : ""}${kindTag(r.kind)}${endTag(r)}</div>
+        ${groupOf(r) ? `<p class="grp-of">One of ${GROUPS[r.family].members.length} items in <button type="button" class="lnk" data-show-group="${esc(r.family)}">${esc(GROUPS[r.family].title)}</button></p>` : ""}
         <p>${esc(r.summary)}</p>
         ${r.ended ? `<p class="ended-note"><strong>No longer in force: ${esc(r.ended.label.toLowerCase())} ${esc(fmtDate(r.ended.date))}.</strong> ${esc(r.ended.what)} The assessment below is of the item while it applied.</p>` : ""}
       </div>
@@ -1013,6 +1103,11 @@ details.about[open] > summary { margin-bottom: 8px; }
     $("countLine").textContent = `${rows.length} of ${R.length} items shown`;
     const more = state.kind.size + state.jur.size + state.reach.size + state.cx.size + (state.status ? 1 : 0) + (state.div ? 1 : 0) + (state.body ? 1 : 0);
     $("moreCount").textContent = more ? ` (${more} on)` : "";
+    const shownGroups = [...new Set(rows.map(groupOf).filter(Boolean))];
+    const grouped = state.tab === "list" || state.tab === "scorecard";
+    $("toggleGroups").hidden = !grouped || !shownGroups.length;
+    $("toggleGroups").textContent = shownGroups.length && shownGroups.every((g) => state.open.has(g)) ? "Collapse all groups" : "Expand all groups";
+    $("toggleGroups").dataset.groups = shownGroups.join(" ");
     renderGlance();
     if (state.tab === "list") renderList(rows);
     if (state.tab === "scorecard") renderScorecard(rows);
