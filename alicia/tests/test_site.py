@@ -225,11 +225,24 @@ def test_competition_page_tells_its_story_in_order(tmp_path):
     assert "<h1>The state of competition in Australia</h1>" in g
     c = (tmp_path / "conditions.html").read_text("utf-8")
     assert '<a href="growth.html">The state of competition in Australia</a>' in c
-    # Concentration, business entry, where the barriers are, returns, then industries by state, state economies last.
-    ids = ["conRows", "grpChart", "dynChart", "shares", "scChart", "heat", "detailTitle", "gspTable"]
+    # Concentration, business entry, returns, industries by state (productivity first), state economies, and folded away
+    # at the end, where the barriers to entry are.
+    ids = [
+        "conRows",
+        "grpChart",
+        "dynChart",
+        "scChart",
+        "heat",
+        "detailTitle",
+        "prodChart",
+        "dGva",
+        "gspTable",
+        "shares",
+    ]
     at = [g.index(f'id="{i}"') for i in ids]
     assert at == sorted(at)
     # Each section's heading is filled in from the data shown.
+    assert g.index('<details class="shelf">') < g.index('id="h-where"')
     for h in ("h-con", "h-entry", "h-where", "h-ret"):
         assert f'setHead("{h}"' in g
     # A card's column never grows past the card, so an opened table scrolls inside it.
@@ -239,5 +252,14 @@ def test_competition_page_tells_its_story_in_order(tmp_path):
     # Each group breaks into its sectors: on the entry chart, the starting-and-closing chart and the sectors card.
     for i in ("grpBreak", "grpBars", "dynInd", "dynSec", "secGroup", "secTable"):
         assert f'id="{i}"' in g, i
-    assert g.index('id="shares"') < g.index('id="secTable"') < g.index('id="scChart"')
+    assert g.index('id="shares"') < g.index('id="secTable"')
+    # Chart descriptions sit behind an "i" beside the title; every chart's sources are in a dropdown.
+    for u in re.findall(r'<p class="unit" id="(\w+)"', g):
+        assert f'<p class="unit" id="{u}" hidden>' in g and f'data-for="{u}"' in g, u
+    assert '<p class="source"' not in re.sub(r"<details.*?</details>", "", g, flags=re.S)
+    # Productivity: in the heatmap's menu, and the official ABS series by industry for the selected industry's card.
+    assert '"Productivity growth (output per worker, % a year)"' in g and 'id="pickDiv"' in g
+    p = data["productivity"]
+    assert p["years"][0] == 2005 and {"G", "B", "MKT16"} <= set(p["lp"]) and "Q" not in p["lp"]
+    assert data["sources"]["abs_mfp"]["url"].startswith("https://www.abs.gov.au/")
     assert 'excelButton(cardOf("secTable")' in g

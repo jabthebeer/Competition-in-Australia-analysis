@@ -170,7 +170,32 @@ svg .cross { stroke: var(--ink-3); }
 .chart-card h3 { font-size: var(--step-0); font-family: var(--font-body); font-weight: 600; }
 .chart-card .unit { font-size: var(--step--1); color: var(--ink-3); margin: 0; }
 /* "Download Excel" on a chart card: beside its heading, or at the end of a toolbar. */
-.card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.card-head { display: flex; align-items: flex-start; gap: 8px; }
+.card-head .xl-btn { margin-left: auto; }
+/* A title with an "i" beside it; the "i" shows the chart's description on hover, focus or tap. */
+.title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.info { flex: none; display: inline-grid; place-items: center; width: 18px; height: 18px; margin-top: 1px; padding: 0; border-radius: 50%;
+  border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink-3); font: 600 11px/1 var(--font-display); font-style: italic; cursor: help; }
+.info:hover, .info:focus-visible { border-color: var(--accent); color: var(--accent); }
+.tip .term { font: inherit; color: inherit; background: none; border: 0; padding: 0; text-decoration: underline dotted; }
+/* The industry and state menu beside the selected industry's name. */
+.picker { position: relative; }
+.picker > summary { list-style: none; display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.picker > summary::-webkit-details-marker { display: none; }
+.picker > summary svg { width: 16px; height: 16px; }
+.picker > summary:hover, .picker[open] > summary { border-color: var(--accent); color: var(--accent); }
+.picker-body { position: absolute; z-index: 6; top: 38px; left: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 10px; align-items: center;
+  padding: 12px; min-width: min(22rem, 86vw); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; box-shadow: 0 6px 18px rgb(0 0 0 / 0.14); font-size: var(--step--1); }
+/* Headline figures. */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: 10px; margin: 4px 0 6px; }
+.tile { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; display: grid; gap: 2px; align-content: start; }
+.tile .t-label { font-size: var(--step--1); color: var(--ink-3); }
+.tile .t-value { font-family: var(--font-display); font-size: var(--step-2); font-weight: 600; color: var(--ink); line-height: 1.15; }
+.tile .t-sub { font-size: var(--step--1); color: var(--ink-2); }
+/* A section folded away at the end of the page. */
+details.shelf { border-top: 1px solid var(--line); padding-top: 14px; }
+details.shelf > summary { cursor: pointer; font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; color: var(--ink-2); width: max-content; max-width: 100%; }
+details.shelf[open] > summary { margin-bottom: 14px; }
 .xl-btn { font: inherit; font-size: var(--step--1); line-height: 1.4; display: inline-flex; align-items: center; gap: 4px; flex: none; white-space: nowrap;
   border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink-2); border-radius: 6px; padding: 1px 8px; cursor: pointer; }
 .xl-btn:hover { border-color: var(--accent); color: var(--accent); }

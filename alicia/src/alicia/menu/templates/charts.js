@@ -626,6 +626,8 @@ const TERMS = {
   weighted: ["Weighted by equity", "Sectors with more equity count for more in the average, so it reflects where most of the money is."],
   fit: ["Line of best fit", "The straight line that best follows the dots, giving more weight to sectors with more equity."],
   explains: ["How much a measure explains", "The share of the differences in returns between sectors that lines up with the measure (R²). 0% means none; 100% would mean all of it."],
+  productivity: ["Productivity", "How much is produced for each unit of work. Here: output, adjusted for inflation, per person employed. Rising productivity is the main source of higher incomes."],
+  labourProd: ["Labour productivity (ABS)", "The ABS's official measure: output per hour worked, for the industries it covers (most private industries, not public administration, education or health)."],
   concentration: ["Concentration", "How much of an industry's sales its biggest firms make. Higher concentration can mean less competition, but not always."],
   topShare: ["Share of sales made by the biggest firms", "Worked out for each detailed industry, then averaged within each broad industry, with bigger industries counting for more."],
   blade: ["BLADE", "The ABS's confidential database of business tax and survey records. The RBA used it to calculate these figures; the firm-level data are not public."],
@@ -671,11 +673,13 @@ function initTerms(extra = {}) {
   document.body.appendChild(box);
   let pinned = null, pointer = "mouse";
   const show = (b) => {
+    // An "i" beside a title shows the description it points to (kept hidden on the page).
+    if (b.dataset.for) { const src = document.getElementById(b.dataset.for); if (src) showTipAt(src.innerHTML, b); return; }
     const t = TERMS[b.dataset.term];
     showTipAt(`<strong>${esc(t[0])}</strong><br>${esc(t[1])}${t[2] ? `<br><span class="tip-ex">For example: ${esc(t[2])}.</span>` : ""}`, b);
   };
-  // Defined words, and legend chips whose series has a definition.
-  const termOf = (e) => (e.target instanceof Element ? e.target.closest(".term, .chip[data-term]") : null);
+  // Defined words, legend chips whose series has a definition, and "i" buttons.
+  const termOf = (e) => (e.target instanceof Element ? e.target.closest(".term, .chip[data-term], .info[data-for]") : null);
   document.addEventListener("pointerdown", (e) => { pointer = e.pointerType; }, true);
   document.addEventListener("pointerover", (e) => { const b = termOf(e); if (b && e.pointerType === "mouse") show(b); });
   document.addEventListener("pointerout", (e) => { const b = termOf(e); if (b && b !== pinned && e.pointerType === "mouse") hideTip(); });

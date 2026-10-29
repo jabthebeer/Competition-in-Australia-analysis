@@ -593,7 +593,7 @@ function xlCardBook(card, cfg = {}) {
   const parts = [];
   let h = title, unit = "", first = true;
   for (const node of card.querySelectorAll("h3, .unit, .chart, .bars, .dumbbell, .bt-wrap")) {
-    if (node.closest("[hidden]")) continue;
+    if (!node.matches(".unit") && node.closest("[hidden]")) continue;
     if (node.matches("h3")) { h = first && cfg.title ? title : xlText(node); first = false; unit = ""; }
     else if (node.matches(".unit")) unit = xlText(node);
     else if (node._xl) {
@@ -614,7 +614,7 @@ function xlCardBook(card, cfg = {}) {
     const h = xlText(lead.querySelector("h2")), p = xlText(lead.querySelector("p"));
     if (h || p) notes.push(["Summary on the page", [h, p].filter(Boolean).join(/[.?!]$/.test(h) ? " " : ". ")]);
   }
-  card.querySelectorAll(".hint, .note, ul.method li, details.more p").forEach((n) => {
+  card.querySelectorAll(".hint, .note, ul.method li, details.more p:not(.source)").forEach((n) => {
     const t = xlText(n), d = n.closest("details");
     if (t) notes.push([n.closest("ul.method") ? "How it's measured" : d ? xlText(d.querySelector("summary")) : "Note", t]);
   });
@@ -658,11 +658,12 @@ function excelButton(card, cfg = {}) {
   });
   if (cfg.anchor) cfg.anchor.appendChild(b);
   else {
-    const first = card.querySelector("h3") || card.firstElementChild;
+    // The heading, with the "i" beside it if it has one, then the button.
+    const first = card.querySelector("h3") || card.firstElementChild, info = first.nextElementSibling?.matches(".info") ? first.nextElementSibling : null;
     const head = document.createElement("div");
     head.className = "card-head";
     first.replaceWith(head);
-    head.append(first, b);
+    head.append(first, ...(info ? [info] : []), b);
   }
   return b;
 }

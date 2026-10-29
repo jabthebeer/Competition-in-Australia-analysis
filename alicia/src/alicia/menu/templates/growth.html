@@ -5,12 +5,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
 <style>
 /*__SITE_CSS__*/
-/* Layout: a statistical bulletin that tells a story: concentration, business entry, where the barriers to entry are and
-   what they earn, each under a heading that states what the data show; then the state x industry heatmap and the
-   selected cell's history; state economies last. Each section has its own period slider, spanning only the years its
-   data cover. */
+/* Layout: a statistical bulletin that tells a story: concentration, business entry and what it earns, each under a
+   heading that states what the data show; then the state x industry heatmap with the selected industry's productivity
+   and history; state economies; and, folded away at the end, where the barriers to entry are. Each section has its own
+   period slider. A chart's description sits behind the "i" beside its title; its notes and sources in one dropdown. */
 table.data td.gsp-best { color: var(--ink-2); text-align: left; }
-#detail .facts { padding: 14px; }
 </style>
 
 <div class="wrap">
@@ -18,7 +17,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     <!--__NAV__-->
     <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
     <h1>The state of competition in Australia</h1>
-    <p class="lede">Whether big firms are taking a bigger share of sales, how often new businesses start up, where <span data-term="barriers">barriers to entry</span> are high and what those industries earn, and how each state's industries and economy have grown.</p>
+    <p class="lede">How concentrated industries are, how often new businesses start up, and how productive each state's industries are.</p>
   </header>
 
   <section class="block" aria-labelledby="h-con">
@@ -28,20 +27,18 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     </div>
     <div class="toolbar" role="group" aria-label="Years for concentration"><div id="conRange"></div></div>
     <div class="panel chart-card">
-      <h3>Concentration by industry</h3>
-      <p class="unit" id="conUnit"></p>
+      <h3>Concentration by industry</h3><button type="button" class="info" data-for="conUnit" aria-describedby="conUnit" aria-label="About this chart">i</button>
+      <p class="unit" id="conUnit" hidden></p>
       <div class="toolbar">
         <label for="conMeasure">Share of sales made by the</label>
         <select id="conMeasure"></select>
         <span class="legend" id="conKey"></span>
       </div>
       <div class="dumbbell" id="conRows"></div>
-      <p class="hint" id="conHint"></p>
       <h3 id="conLineTitle"></h3>
       <div class="legend" id="conLineKey"></div>
       <div class="chart" id="conChart"></div>
-      <p class="source" id="conSrc"></p>
-      <details class="more"><summary>About these figures</summary><p id="conNote"></p></details>
+      <details class="more"><summary>About this chart</summary><p class="hint" id="conHint"></p><p id="conNote"></p><p class="source" id="conSrc"></p></details>
     </div>
   </section>
 
@@ -53,65 +50,39 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     <div class="toolbar" role="group" aria-label="Years for business entry"><div id="entRange"></div></div>
     <div class="toolbar">
       <label for="bScope">Businesses counted</label>
-      <select id="bScope"><option value="employing">Businesses with employees</option><option value="all">All businesses</option></select>
+      <select id="bScope"><option value="employing">Businesses with employees</option><option value="all">All businesses</option></select><button type="button" class="info" data-for="scopeNote" aria-describedby="scopeNote" aria-label="About the businesses counted">i</button>
       <label for="bState">State</label>
       <select id="bState"></select>
       <label for="bMeasure">Measure</label>
       <select id="bMeasure"></select>
     </div>
-    <p class="hint" id="scopeNote"></p>
+    <p id="scopeNote" hidden></p>
     <div class="charts-grid">
       <div class="panel chart-card">
-        <h3 id="grpTitle"></h3>
+        <h3 id="grpTitle"></h3><button type="button" class="info" data-for="grpUnit" aria-describedby="grpUnit" aria-label="About this chart">i</button>
         <div class="toolbar"><label for="grpBreak">Show</label><select id="grpBreak"></select></div>
-        <p class="unit" id="grpUnit"></p>
+        <p class="unit" id="grpUnit" hidden></p>
         <div class="chips" id="grpChips"></div>
         <div class="bars pick" id="grpBars" hidden></div>
         <h3 id="grpLineTitle" hidden></h3>
         <div class="legend" id="grpLineKey" hidden></div>
         <div class="chart" id="grpChart"></div>
-        <p class="source" id="grpSrc"></p>
-        <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="grpTable"></div><p id="grpNote"></p></details>
+        <details class="more"><summary>About this chart</summary><p id="grpNote"></p><p class="source" id="grpSrc"></p><div class="tscroll" id="grpTable"></div></details>
       </div>
       <div class="panel chart-card">
-        <h3 id="dynTitle"></h3>
+        <h3 id="dynTitle"></h3><button type="button" class="info" data-for="dynUnit" aria-describedby="dynUnit" aria-label="About this chart">i</button>
         <div class="toolbar">
           <label for="dynInd">Industries</label><select id="dynInd"></select>
           <label for="dynSec" id="dynSecLabel">Sector</label><select id="dynSec"></select>
         </div>
-        <p class="unit" id="dynUnit"></p>
+        <p class="unit" id="dynUnit" hidden></p>
         <div class="legend" id="dynKey"></div>
         <div class="chart" id="dynChart"></div>
-        <h3>Net change in the number of businesses</h3>
-        <p class="unit" id="netUnit"></p>
+        <div class="title-row"><h3>Net change in the number of businesses</h3><button type="button" class="info" data-for="netUnit" aria-describedby="netUnit" aria-label="About this chart">i</button></div>
+        <p class="unit" id="netUnit" hidden></p>
         <div class="chart" id="netChart"></div>
-        <p class="source" id="dynSrc"></p>
-        <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="dynTable"></div></details>
+        <details class="more"><summary>About this chart</summary><p class="source" id="dynSrc"></p><div class="tscroll" id="dynTable"></div></details>
       </div>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-where">
-    <div class="block-head">
-      <h2 id="h-where">Where the barriers to entry are</h2>
-      <p id="whereLede"></p>
-    </div>
-    <div class="toolbar" role="group" aria-label="Years for where the barriers to entry are"><div id="whereRange"></div></div>
-    <div class="panel chart-card">
-      <h3>Where the barriers to entry are</h3>
-      <p class="unit" id="shareUnit"></p>
-      <div class="tscroll bt-wrap" id="shares"></div>
-      <ul class="method" id="shareMethod"></ul>
-      <p class="source" id="shareSrc"></p>
-      <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="shareTable"></div><p id="shareNote"></p></details>
-    </div>
-    <div class="panel chart-card">
-      <h3>Sectors in each group</h3>
-      <div class="toolbar"><label for="secGroup">Group</label><select id="secGroup"></select></div>
-      <p class="unit" id="secUnit"></p>
-      <div class="tscroll bt-wrap" id="secTable"></div>
-      <p class="source" id="secSrc"></p>
-      <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="secNums"></div><p id="secNote"></p></details>
     </div>
   </section>
 
@@ -122,60 +93,75 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     </div>
     <div class="toolbar" role="group" aria-label="Years for business entry and returns"><div id="retRange"></div></div>
     <div class="panel chart-card">
-      <h3>Business entry and company returns, by sector</h3>
-      <p class="unit" id="scUnit"></p>
+      <h3>Business entry and company returns, by sector</h3><button type="button" class="info" data-for="scUnit" aria-describedby="scUnit" aria-label="About this chart">i</button>
+      <p class="unit" id="scUnit" hidden></p>
       <div class="legend" id="scKey"></div>
       <div class="chart" id="scChart"></div>
-      <p class="source" id="scSrc"></p>
-      <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="scTable"></div><p id="scMethod"></p></details>
+      <details class="more"><summary>About this chart</summary><p id="scFit"></p><p id="scMethod"></p><p class="source" id="scSrc"></p><div class="tscroll" id="scTable"></div></details>
     </div>
   </section>
 
   <section class="block" aria-labelledby="h-ind">
     <div class="block-head">
       <h2 id="h-ind">Industries in each state</h2>
-      <p>Each cell is one <span data-term="industry">industry</span> in one state. Click a cell to see its history below.</p>
+      <p>Click a cell to see that industry's productivity and history below.</p>
     </div>
     <div class="toolbar"><label for="metric">Show</label><select id="metric"></select></div>
     <div class="toolbar" role="group" aria-label="Years for industries in each state"><div id="indRange"></div></div>
     <div class="panel stack">
-      <div class="toolbar"><div class="scale" id="heatScale"></div></div>
-      <p class="hint" id="heatHint"></p>
+      <div class="toolbar"><div class="scale" id="heatScale"></div><button type="button" class="info" data-for="heatHint" aria-describedby="heatHint" aria-label="About these figures">i</button></div>
+      <p id="heatHint" hidden></p>
       <div class="tscroll"><table class="heat" id="heat"></table></div>
-      <p class="source" id="heatSrc"></p>
-      <details class="more"><summary>About these figures</summary><p id="heatNote"></p></details>
+      <details class="more"><summary>About these figures</summary><p id="heatNote"></p><p class="source" id="heatSrc"></p></details>
     </div>
   </section>
 
   <section class="block" id="detail" aria-labelledby="detailTitle" aria-live="polite">
     <div class="block-head">
-      <h2 id="detailTitle"></h2>
+      <div class="title-row">
+        <h2 id="detailTitle"></h2>
+        <details class="picker" id="picker">
+          <summary title="Choose an industry and state" aria-label="Choose an industry and state"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></summary>
+          <div class="picker-body">
+            <label for="pickDiv">Industry</label><select id="pickDiv"></select>
+            <label for="pickState">State</label><select id="pickState"></select>
+          </div>
+        </details>
+      </div>
       <p id="detailSub"></p>
     </div>
-    <dl class="facts panel" id="detailFacts"></dl>
+    <div class="panel chart-card">
+      <h3 id="prodTitle">Productivity</h3><button type="button" class="info" data-for="prodUnit" aria-describedby="prodUnit" aria-label="About this chart">i</button>
+      <p class="unit" id="prodUnit" hidden></p>
+      <div class="tiles" id="prodTiles"></div>
+      <div class="legend" id="prodKey"></div>
+      <div class="chart" id="prodChart"></div>
+      <details class="more"><summary>More figures</summary><dl class="facts" id="detailFacts"></dl></details>
+      <details class="more"><summary>About this chart</summary><p id="prodNote"></p><p class="source" id="prodSrc"></p></details>
+    </div>
     <div class="charts-grid">
       <div class="panel chart-card">
-        <h3>Output</h3>
-        <p class="unit" id="uGva"></p>
+        <h3>Output</h3><button type="button" class="info" data-for="uGva" aria-describedby="uGva" aria-label="About this chart">i</button>
+        <p class="unit" id="uGva" hidden></p>
         <div class="chart" id="dGva"></div>
-        <p class="source" id="srcGva"></p>
+        <details class="more"><summary>About this chart</summary><p class="source" id="srcGva"></p></details>
       </div>
       <div class="panel chart-card">
-        <h3>Jobs</h3>
-        <p class="unit" id="uEmp"></p>
+        <h3>Jobs</h3><button type="button" class="info" data-for="uEmp" aria-describedby="uEmp" aria-label="About this chart">i</button>
+        <p class="unit" id="uEmp" hidden></p>
         <div class="chart" id="dEmp"></div>
-        <p class="source" id="srcEmp"></p>
+        <details class="more"><summary>About this chart</summary><p class="source" id="srcEmp"></p></details>
       </div>
       <div class="panel chart-card">
-        <h3>Businesses starting and closing</h3>
-        <p class="unit" id="uBiz"></p>
+        <h3>Businesses starting and closing</h3><button type="button" class="info" data-for="uBiz" aria-describedby="uBiz" aria-label="About this chart">i</button>
+        <p class="unit" id="uBiz" hidden></p>
         <div class="legend" id="bizKey"></div>
         <div class="chart" id="dBiz"></div>
-        <p class="source" id="srcBiz"></p>
+        <details class="more"><summary>About this chart</summary><p class="source" id="srcBiz"></p></details>
       </div>
       <div class="panel chart-card">
-        <h3 id="rankTitle"></h3>
-        <p class="unit" id="rankUnit"></p>
+        <h3 id="rankTitle"></h3><button type="button" class="info" data-for="rankUnit" aria-describedby="rankUnit" aria-label="About this chart">i</button>
+        <p class="unit" id="rankUnit" hidden></p>
         <div class="bars" id="dRank"></div>
       </div>
     </div>
@@ -184,24 +170,47 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   <section class="block" aria-labelledby="h-gsp">
     <div class="block-head">
       <h2 id="h-gsp">State economies</h2>
-      <p>Each state's <span data-term="gsp">gross state product</span> in the last year of the period, and how fast it grew.</p>
+      <p>Each state's <span data-term="gsp">economy</span> in the last year of the period, and how fast it grew.</p>
     </div>
     <div class="toolbar" role="group" aria-label="Years for state economies"><div id="gspRange"></div></div>
     <div class="stack">
       <div class="panel stack">
         <div class="tscroll"><table class="data sticky" id="gspTable"></table></div>
-        <p class="hint">Growth rates are <span data-term="avgGrowth">average annual growth</span> over the period, adjusted for inflation (<span data-term="real">real</span>).</p>
-        <p class="source" id="gspSrc"></p>
+        <details class="more"><summary>About this table</summary><p>Growth rates are <span data-term="avgGrowth">average annual growth</span> over the period, adjusted for inflation (<span data-term="real">real</span>).</p><p class="source" id="gspSrc"></p></details>
       </div>
       <div class="panel chart-card">
-        <h3>Growth in each state's economy</h3>
-        <p class="unit" id="gspUnit"></p>
+        <h3>Growth in each state's economy</h3><button type="button" class="info" data-for="gspUnit" aria-describedby="gspUnit" aria-label="About this chart">i</button>
+        <p class="unit" id="gspUnit" hidden></p>
         <div class="chips" id="gspChips"></div>
         <div class="chart" id="gspChart"></div>
-        <p class="source" id="gspSrc2"></p>
+        <details class="more"><summary>About this chart</summary><p class="source" id="gspSrc2"></p></details>
       </div>
     </div>
   </section>
+
+  <details class="shelf">
+    <summary>Where the barriers to entry are</summary>
+    <section class="block" aria-labelledby="h-where">
+      <div class="block-head">
+        <h2 id="h-where">Where the barriers to entry are</h2>
+        <p id="whereLede"></p>
+      </div>
+      <div class="toolbar" role="group" aria-label="Years for where the barriers to entry are"><div id="whereRange"></div></div>
+      <div class="panel chart-card">
+        <h3>Where the barriers to entry are</h3><button type="button" class="info" data-for="shareUnit" aria-describedby="shareUnit" aria-label="About this chart">i</button>
+        <p class="unit" id="shareUnit" hidden></p>
+        <div class="tscroll bt-wrap" id="shares"></div>
+        <details class="more"><summary>About this chart</summary><ul class="method" id="shareMethod"></ul><p id="shareNote"></p><p class="source" id="shareSrc"></p><div class="tscroll" id="shareTable"></div></details>
+      </div>
+      <div class="panel chart-card">
+        <h3>Sectors in each group</h3><button type="button" class="info" data-for="secUnit" aria-describedby="secUnit" aria-label="About this chart">i</button>
+        <div class="toolbar"><label for="secGroup">Group</label><select id="secGroup"></select></div>
+        <p class="unit" id="secUnit" hidden></p>
+        <div class="tscroll bt-wrap" id="secTable"></div>
+        <details class="more"><summary>About this chart</summary><p id="secNote"></p><p class="source" id="secSrc"></p><div class="tscroll" id="secNums"></div></details>
+      </div>
+    </section>
+  </details>
 
   <footer class="foot" id="foot"></footer>
 </div>
@@ -247,7 +256,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   const GROWTH_PRESETS = D.windows.map((w) => ({ label: w.label, from: w.start, to: w.end }));
   const yearsPresets = (lo, hi) => [{ label: "All years", from: lo, to: hi }, { label: "Last 10 years", from: hi - 9, to: hi }, { label: "Last 5 years", from: hi - 4, to: hi }];
   let metric = store.get("metric", "gva");
-  if (!["gva", "emp", "share", "dshare", "entry", "exit", "net"].includes(metric)) metric = "gva";
+  if (!["gva", "emp", "prod", "prodLevel", "share", "dshare", "entry", "exit", "net"].includes(metric)) metric = "gva";
   let sel = store.get("sel", { state: "WA", div: "G" });
   if (!STATES.includes(sel.state) || !DIVNAME[sel.div]) sel = { state: "WA", div: "G" };
   const gspActive = new Set(STATES);
@@ -286,8 +295,21 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     return vals.length ? vals.reduce((a, v) => a + v, 0) / vals.length : null;
   };
   const bizRate = (s, c, kind) => rateOf(D.biz[s]?.[c], D.bizYears, kind, bizYearsIn());
+  // Productivity: output per person employed. Real output (chain volume, $m) for growth; current prices ($m) for the
+  // level, which per thousand people employed is $ thousand a worker.
+  const perWorker = (s, c, y, real = true) => {
+    const g = at((real ? D.gva.volume : D.gva.current)[s]?.[c], D.years, y), e = at(D.emp[s]?.[c], D.empYears, y);
+    return isNum(g) && isNum(e) && e > 0 ? g / e : null;
+  };
+  const prodGrowth = (s, c, w = indWin) => {
+    const a = perWorker(s, c, w.from), b = perWorker(s, c, w.to);
+    return isNum(a) && isNum(b) && a > 0 && w.to > w.from ? (Math.pow(b / a, 1 / (w.to - w.from)) - 1) * 100 : null;
+  };
+  const prodLevel = (s, c, y = indWin.to) => perWorker(s, c, y, false);
   const METRICS = {
     gva: { option: "Output growth (% a year)", hint: () => `${term("real", "Real")} ${term("output", "output")} growth: ${term("avgGrowth", "average annual growth")}, ${winLabel(indWin)}.`, unit: "% a year", f: (s, c) => gvaGrowth(s, c), kind: "div", note: "gva", src: ["state_accounts"] },
+    prod: { option: "Productivity growth (output per worker, % a year)", hint: () => `${term("productivity", "Productivity")} growth: real output per person employed, ${term("avgGrowth", "average annual growth")}, ${winLabel(indWin)}.`, unit: "% a year", f: (s, c) => prodGrowth(s, c), kind: "div", note: "prod", src: ["state_accounts", "lfs_detailed"] },
+    prodLevel: { option: "Output per worker, last year ($ thousand)", hint: () => `${term("productivity", "Output per worker")}: output per person employed, ${fyLabel(indWin.to)}, $ thousand at current prices.`, unit: "$ thousand a worker", f: (s, c) => prodLevel(s, c), kind: "seq", digits: 0, note: "prod", src: ["state_accounts", "lfs_detailed"] },
     emp: { option: "Jobs growth (% a year)", hint: () => `Growth in the number of people employed: ${term("avgGrowth", "average annual growth")}, ${winLabel(indWin)}.`, unit: "% a year", f: (s, c) => empGrowth(s, c), kind: "div", note: "emp", src: ["lfs_detailed"] },
     share: { option: "Share of the state's output, last year (%)", hint: () => `Each industry's share of the state's ${term("output", "output")}, ${fyLabel(indWin.to)}.`, unit: "% of state output", f: (s, c) => (c === TOT ? null : share(s, c, indWin.to)), kind: "seq", note: "gva", src: ["state_accounts"] },
     dshare: { option: "Change in share of the state's output (points)", hint: () => `Change in each industry's share of the state's ${term("output", "output")} from ${fyLabel(indWin.from)} to ${fyLabel(indWin.to)}, in ${term("pp", "percentage points")}.`, unit: "percentage points", f: (s, c) => (c === TOT ? null : (isNum(share(s, c, indWin.to)) && isNum(share(s, c, indWin.from)) ? share(s, c, indWin.to) - share(s, c, indWin.from) : null)), kind: "div", note: "gva", src: ["state_accounts"] },
@@ -303,7 +325,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   function indSlider() {
     const [lo, hi] = indRange();
     periodSlider("indRange", {
-      min: lo, max: hi, win: indWin, gap: 1, label: isBiz(metric) ? `Financial years averaged (business counts start in ${fyLabel(lo)})` : "Period (financial years, July to June)",
+      min: lo, max: hi, win: indWin, gap: 1, label: "Years",
       presets: isBiz(metric) ? yearsPresets(lo, hi) : GROWTH_PRESETS,
       onChange: (a, b) => { indWin = { from: a, to: b }; store.set("indYears", indWin); renderHeat(); renderDetail(); renderRank(); },
     });
@@ -320,7 +342,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     indSlider(); renderHeat(); renderDetail(); renderRank();
   });
   periodSlider("gspRange", {
-    min: D.years[0], max: D.years[D.years.length - 1], win: gspWin, gap: 1, label: "Period (financial years, July to June)", presets: GROWTH_PRESETS,
+    min: D.years[0], max: D.years[D.years.length - 1], win: gspWin, gap: 1, label: "Years", presets: GROWTH_PRESETS,
     onChange: (a, b) => { gspWin = { from: a, to: b }; store.set("gspYears", gspWin); renderGsp(); },
   });
 
@@ -378,7 +400,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   }
   function renderHeat() {
     const { M, cells, scale } = heatData();
-    const f = (v) => (M.kind === "div" ? fmtSigned(v, 1) : fmt(v, 1));
+    const f = (v) => (M.kind === "div" ? fmtSigned(v, M.digits ?? 1) : fmt(v, M.digits ?? 1));
     const head = `<thead><tr><th></th>${STATES.map((s) => `<th scope="col">${s === "AUS" ? "Aus." : s}</th>`).join("")}</tr></thead>`;
     const body = [...DIVS, TOT].map((c) => `<tr class="${c === TOT ? "total" : ""}"><th class="row" scope="row" title="${esc(DIVNAME[c])}">${c === TOT ? "" : `<span class="code">${c}</span>`}${esc(DIVNAME[c])}</th>${STATES.map((s) => {
       const v = cells[`${s}|${c}`];
@@ -410,7 +432,9 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   function renderDetail() {
     const { state: s, div: c } = sel;
     document.getElementById("detailTitle").textContent = `${DIVNAME[c]}, ${NAMES[s]}`;
-    document.getElementById("detailSub").textContent = `${winLabel(indWin)}, the years chosen for Industries in each state${s === "AUS" ? "." : ", compared with the same industry across Australia (dashed lines)."}`;
+    document.getElementById("detailSub").textContent = `${winLabel(indWin)}.${s === "AUS" ? "" : ` Solid lines: ${NAMES[s]}; dashed: Australia.`}`;
+    pickDiv.value = c; pickState.value = s;
+    renderProductivity(s, c);
     const yb = lastBizIn(), ib = D.bizYears.indexOf(yb);
     const bz = D.biz[s]?.[c];
     const cur = at(D.gva.current[s]?.[c], D.years, indWin.to);
@@ -462,6 +486,56 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     document.getElementById("srcBiz").innerHTML = SRC(["cabee"]);
   }
 
+  // The selected industry's productivity: headline figures, and output per worker over the years chosen against
+  // Australia and the ABS's labour productivity for the industry (per hour worked, Australia; market sector only).
+  const pickDiv = document.getElementById("pickDiv"), pickState = document.getElementById("pickState"), picker = document.getElementById("picker");
+  pickDiv.innerHTML = [...DIVS, TOT].map((c) => `<option value="${c}">${esc(c === TOT ? DIVNAME[c] : `${c} ${DIVNAME[c]}`)}</option>`).join("");
+  pickState.innerHTML = STATES.map((st) => `<option value="${st}">${esc(NAMES[st])}</option>`).join("");
+  const pick = () => { sel = { state: pickState.value, div: pickDiv.value }; store.set("sel", sel); renderHeat(); renderDetail(); renderRank(); };
+  pickDiv.addEventListener("change", pick); pickState.addEventListener("change", pick);
+  document.addEventListener("click", (e) => { if (picker.open && !picker.contains(e.target)) picker.open = false; });
+  let prodHead = [];
+  function renderProductivity(s, c) {
+    const P = D.productivity, abs = P.lp[c === TOT ? "MKT16" : c];
+    const ys = D.years.filter((y) => y >= indWin.from && y <= indWin.to);
+    const index = (vals) => { const b = vals[0]; return vals.map((v) => (isNum(v) && isNum(b) && b > 0 ? (v / b) * 100 : null)); };
+    const mine = index(ys.map((y) => perWorker(s, c, y))), aus = index(ys.map((y) => perWorker("AUS", c, y)));
+    // The ABS series starts in 2005-06: from its first year shown, it starts on the Australia line.
+    const absYears = abs ? ys.filter((y) => isNum(at(abs, P.years, y))) : [];
+    const a0 = absYears[0], absIdx = ys.map((y, i) => (abs && isNum(at(abs, P.years, y)) && isNum(aus[ys.indexOf(a0)]) ? (aus[ys.indexOf(a0)] * at(abs, P.years, y)) / at(abs, P.years, a0) : null));
+    const absGrowth = absYears.length >= 2 ? (Math.pow(at(abs, P.years, absYears[absYears.length - 1]) / at(abs, P.years, a0), 1 / (absYears[absYears.length - 1] - a0)) - 1) * 100 : null;
+    const name = DIVNAME[c];
+    document.getElementById("prodTitle").textContent = `Productivity: ${name}, ${NAMES[s]}`;
+    const lvl = prodLevel(s, c), g = prodGrowth(s, c);
+    prodHead = [
+      [`Output per worker, ${fyLabel(indWin.to)}, $ thousand`, lvl, s === "AUS" ? null : prodLevel("AUS", c)],
+      ["Productivity growth, % a year", g, s === "AUS" ? null : prodGrowth("AUS", c)],
+      ["Output growth, % a year", gvaGrowth(s, c), s === "AUS" ? null : gvaGrowth("AUS", c)],
+      ["Jobs growth, % a year", empGrowth(s, c), s === "AUS" ? null : empGrowth("AUS", c)],
+      [`ABS labour productivity growth (per hour worked), Australia, % a year${absYears.length >= 2 ? `, ${winLabel({ from: a0, to: absYears[absYears.length - 1] })}` : ""}`, absGrowth, null],
+    ];
+    const pc = (v) => (isNum(v) ? `${fmtSigned(v, 1)}%` : "–");
+    const tile = (label, value, sub) => `<div class="tile"><span class="t-label">${label}</span><span class="t-value">${esc(value)}</span><span class="t-sub">${sub}</span></div>`;
+    document.getElementById("prodTiles").innerHTML = [
+      tile(`Output per worker, ${esc(fyLabel(indWin.to))}`, isNum(lvl) ? `$${fmt(lvl, 0)}k` : "–", s === "AUS" ? "at current prices" : esc(`Australia $${fmt(prodLevel("AUS", c), 0)}k`)),
+      tile(`${term("productivity", "Productivity")} growth a year`, pc(g), s === "AUS" ? "output per worker" : esc(`Australia ${pc(prodGrowth("AUS", c))}`)),
+      tile("Output and jobs growth a year", `${pc(gvaGrowth(s, c))} and ${pc(empGrowth(s, c))}`, "productivity rises when output outpaces jobs"),
+      tile(`${term("labourProd", "ABS labour productivity")}, Australia`, pc(absGrowth),
+        !abs ? "not published for this industry" : absYears.length >= 2 ? esc(`a year per hour worked, ${winLabel({ from: a0, to: absYears[absYears.length - 1] })}`) : esc(`published from ${fyLabel(P.years[0])}`)),
+    ].join("");
+    const series = [{ key: s, label: `${NAMES[s]}, output per worker`, values: mine, color: stateColor(s), width: 2.4 }];
+    if (s !== "AUS") series.push({ key: "AUS", label: "Australia, output per worker", values: aus, color: stateColor("AUS"), dash: true, width: 1.6 });
+    if (absYears.length) series.push({ key: "abs", label: "Australia, ABS labour productivity (per hour)", values: absIdx, color: "var(--accent)", dash: "1.5 3.5", width: 2 });
+    document.getElementById("prodKey").innerHTML = series.map((x) => `<span><span class="key${x.dash ? " dash" : ""}" style="${x.dash ? `color:${x.color}` : `background:${x.color}`}"></span>${esc(x.label)}</span>`).join("");
+    lineChart(document.getElementById("prodChart"), {
+      x: ys, xKind: "fy", series, ref: 100, height: 260, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label: `Productivity: ${name}, ${NAMES[s]}`,
+      xlUnit: `Index, ${fyLabel(indWin.from)} = 100.`,
+    });
+    document.getElementById("prodUnit").innerHTML = `${term("productivity", "Productivity")} as an ${term("index100", "index")}, ${esc(fyLabel(indWin.from))} = 100: output per person employed, adjusted for inflation${s === "AUS" ? "" : `, in ${esc(NAMES[s])} (solid) and Australia (dashed)`}${absYears.length ? `, and the ABS's ${term("labourProd", "labour productivity")} for the industry across Australia (dotted${a0 > indWin.from ? `, from ${esc(fyLabel(a0))}, starting on the Australia line` : ""})` : ""}.`;
+    document.getElementById("prodNote").textContent = `${D.notes.prod} ${abs ? "The ABS measure is output per hour worked, for the industry across Australia." : "The ABS does not publish labour productivity for this industry (it covers the market sector: not public administration, education or health)."}`;
+    document.getElementById("prodSrc").innerHTML = SRC(["state_accounts", "lfs_detailed", "abs_mfp"]);
+  }
+
   function renderRank() {
     const M = METRICS[metric];
     const s = sel.state;
@@ -469,7 +543,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     document.getElementById("rankUnit").textContent = `${M.option}, ${winLabel(indWin)}`;
     const rows = DIVS.map((c) => ({ label: `${c} ${DIVNAME[c]}`, value: M.f(s, c), title: DIVNAME[c] }))
       .sort((a, b) => (isNum(b.value) ? b.value : -Infinity) - (isNum(a.value) ? a.value : -Infinity));
-    rankedBars(document.getElementById("dRank"), rows, { fmt: (v) => (signedMetric(metric) ? fmtSigned(v, 1) : fmt(v, 1)), xlCat: "Industry", xlValue: M.option });
+    rankedBars(document.getElementById("dRank"), rows, { fmt: (v) => (signedMetric(metric) ? fmtSigned(v, M.digits ?? 1) : fmt(v, M.digits ?? 1)), xlCat: "Industry", xlValue: M.option });
   }
 
   // ---- barriers to entry ----------------------------------------------------------------
@@ -483,7 +557,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   let entWin = loadWin("entYears", E0, E1, { from: E0, to: E1 }, 1);
   const entYears = () => B.bizYears.filter((y) => y >= entWin.from && y <= entWin.to);
   periodSlider("entRange", {
-    min: E0, max: E1, win: entWin, gap: 1, label: "Financial years shown", presets: yearsPresets(E0, E1),
+    min: E0, max: E1, win: entWin, gap: 1, label: "Years", presets: yearsPresets(E0, E1),
     onChange: (a, b) => { entWin = { from: a, to: b }; store.set("entYears", entWin); renderDynamism(); },
   });
   // Where the barriers are, and returns: the income years with company balance sheets by industry (2018-19 on).
@@ -493,11 +567,11 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   const atoStatsFor = (w) => Object.fromEntries(B.sectors.map((s) => [s.key, sectorStats(s, B.atoYears, w.from, w.to, 0)]));
   let whereWin = loadWin("whereYears", A0, A1, { from: A0, to: A1 }, 0), retWin = loadWin("retYears", A0, A1, { from: A0, to: A1 }, 0);
   periodSlider("whereRange", {
-    min: A0, max: A1, win: whereWin, gap: 0, label: "Income years averaged (July to June)", presets: atoPresets,
+    min: A0, max: A1, win: whereWin, gap: 0, label: "Income years", presets: atoPresets,
     onChange: (a, b) => { whereWin = { from: a, to: b }; store.set("whereYears", whereWin); renderShares(); renderSectors(); },
   });
   periodSlider("retRange", {
-    min: A0, max: A1, win: retWin, gap: 0, label: "Income years averaged (July to June)", presets: atoPresets,
+    min: A0, max: A1, win: retWin, gap: 0, label: "Income years", presets: atoPresets,
     onChange: (a, b) => { retWin = { from: a, to: b }; store.set("retYears", retWin); renderScatter(); },
   });
   const BARRIER = GROUPS.filter((g) => GM[g].barrier);
@@ -677,8 +751,8 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const low = avgEntry("low_barriers");
     const least = BARRIER.map((g) => ({ g, v: avgEntry(g) })).filter((r) => isNum(r.v)).sort((a, b) => a.v - b.v)[0];
     setHead("h-entry", least && isNum(low) && least.v < low ? ENTRY[least.g][0] : "Entry is no lower behind barriers to entry");
-    document.getElementById("entryLede").innerHTML = `As in ${grattan}, industries are grouped by their main ${term("barriers", "barrier to entry")}; hover over a group for what it covers.${least && isNum(low)
-      ? ` In ${esc(["ACT", "NT"].includes(bState) ? `the ${NAMES[bState]}` : NAMES[bState])}, ${term(least.g, ENTRY[least.g][1])} saw ${esc(fmt(least.v, 1))} new ${esc(scopeWord())} a year for every 100 operating, against ${esc(fmt(low, 1))} ${term("low_barriers", "where barriers are low")} (${esc(fyLabel(ys[0]))} to ${esc(fyLabel(ys[ys.length - 1]))}).` : ""}`;
+    document.getElementById("entryLede").innerHTML = least && isNum(low)
+      ? `In ${esc(["ACT", "NT"].includes(bState) ? `the ${NAMES[bState]}` : NAMES[bState])}, ${term(least.g, ENTRY[least.g][1])} saw ${esc(fmt(least.v, 1))} new businesses a year for every 100, against ${esc(fmt(low, 1))} ${term("low_barriers", "where barriers are low")}.` : "";
     renderGroupChart(ys, idx, M);
     renderStartClose(ys, idx);
     document.getElementById("scopeNote").textContent = bScope === "employing" ? B.notes.employing
@@ -699,7 +773,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const groupRates = (g) => idx.map((i) => yearRate(B.bizGroup[bScope][bState]?.[g], i, bMeasure));
     const avgFmt = (v) => (bMeasure === "net" ? fmtSigned(v, 1) : fmt(v, 1));
     document.getElementById("grpSrc").innerHTML = SRC(["cabee"]);
-    document.getElementById("grpNote").textContent = B.notes.cabee;
+    document.getElementById("grpNote").innerHTML = `Industries are grouped by their main ${term("barriers", "barrier to entry")}, as in ${grattan}; hover over a group for what it covers. ${esc(B.notes.cabee)}`;
     const bySector = grpBreak !== "groups";
     document.getElementById("grpChips").hidden = bySector;
     bars.hidden = lineTitle.hidden = lineKey.hidden = !bySector;
@@ -823,6 +897,8 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     setHead("h-ret", !fit ? "Business entry and company returns" : fit.r2 < 0.1 ? "Low entry does not go with higher returns"
       : fit.slope < 0 ? "Sectors with fewer new firms earn higher returns" : "Sectors with more new firms earn higher returns");
     document.getElementById("retLede").innerHTML = fit
+      ? `Entry rates ${term("explains", "explain")} ${esc(fmt(fit.r2 * 100, 0))}% of the differences in returns between sectors; the barrier groups explain ${esc(fmt((r2g || 0) * 100, 0))}%.` : "";
+    document.getElementById("scFit").innerHTML = fit
       ? `The ${term("fit", "line of best fit")} ${Math.abs(fit.slope) < 0.5 ? "is almost flat" : fit.slope > 0 ? "slopes up" : "slopes down"} (${esc(fmtSigned(fit.slope, 2))} points of return for each extra point of entry), and entry rates ${term("explains", "explain")} ${esc(fmt(fit.r2 * 100, 0))}% of the differences in returns between sectors. The barrier groups explain ${esc(fmt((r2g || 0) * 100, 0))}%; Grattan found 7% with its 2010-11 to 2015-16 data.`
       : "Too few sectors to fit a line.";
     document.getElementById("scSrc").innerHTML = SRC(["ato", "cabee"]);
@@ -847,7 +923,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   let conWin = CON.years?.length ? loadWin("conYears", C0, C1, { from: C0, to: C1 }, 1) : null;
   if (conWin) {
     periodSlider("conRange", {
-      min: C0, max: C1, win: conWin, gap: 1, year: true, label: `Years compared (the RBA figures run from ${C0} to ${C1})`,
+      min: C0, max: C1, win: conWin, gap: 1, year: true, label: "Years",
       presets: [{ label: "All years", from: C0, to: C1 }, { label: "Since 2010", from: 2010, to: C1 }, { label: "Last 5 years", from: C1 - 5, to: C1 }],
       onChange: (a, b) => { conWin = { from: a, to: b }; store.set("conYears", conWin); renderConcentration(); },
     });
@@ -873,8 +949,8 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     setHead("h-con", !isNum(d) ? "Concentration" : d >= 1 ? "Big firms' share of sales has risen overall" : d <= -1 ? "Big firms' share of sales has fallen overall" : "Big firms' share of sales has barely changed overall");
     const others = rows.filter((r) => !r.total), item = (r) => `${r.label.toLowerCase()} (${fmtSigned(r.b - r.a, 1)} points)`;
     const up = others.filter((r) => r.b - r.a >= 1)[0], down = others.filter((r) => r.b - r.a <= -1).slice(-1)[0];
-    document.getElementById("conLede").textContent = tot ? `On average, each industry's ${CONMEAS[conMeasure]} made ${fmt(tot.a[1], 1)}% of its sales in ${ya} and ${fmt(tot.b[1], 1)}% in ${yb}.${up ? ` The share rose most in ${item(up)}` : ""}${down ? `${up ? " and fell most in " : " The share fell most in "}${item(down)}` : ""}${up || down ? "." : ""}` : "";
-    document.getElementById("conUnit").innerHTML = `${term("topShare", "Share of sales")} made by each industry's ${esc(CONMEAS[conMeasure])}, %, ${ya} compared with ${yb}. Sorted from the biggest rise to the biggest fall.`;
+    document.getElementById("conLede").textContent = tot ? `All industries: ${fmt(tot.a[1], 1)}% in ${ya}, ${fmt(tot.b[1], 1)}% in ${yb}.${up ? ` Biggest rise: ${item(up)}.` : ""}${down ? ` Biggest fall: ${item(down)}.` : ""}` : "";
+    document.getElementById("conUnit").innerHTML = `${term("topShare", "Share of sales")} made by each industry's ${esc(CONMEAS[conMeasure])}, %, ${ya} compared with ${yb}, from the biggest rise to the biggest fall. Change is in percentage points. Click an industry to see it over time.`;
     document.getElementById("conKey").innerHTML = `<span><span class="db-key a"></span>${ya}</span><span><span class="db-key b"></span>${yb}</span>`;
     dumbbellChart(document.getElementById("conRows"), rows, {
       domain: [0, Math.max(10, hi)], fmt: (v) => fmt(v, 1), fmtChange: (v) => fmtSigned(v, 1), aLabel: String(ya), bLabel: String(yb), xlCat: "Industry",
@@ -882,7 +958,6 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     });
     const late = rows.filter((r) => !r.total && (r.ya !== ya || r.yb !== yb));
     document.getElementById("conHint").textContent = [
-      "Change is in percentage points. Click an industry to see it over time.",
       late.length ? `Different years for ${late.map((r) => `${r.label} (${r.ya} to ${r.yb})`).join(", ")}.` : "",
     ].filter(Boolean).join(" ");
     const idx = ys.map((y) => CON.years.indexOf(y));
@@ -967,6 +1042,13 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
         colorScale: { kind: M.kind, scale, mid: surface, neg: xlMix(xlColor("var(--neg)"), surface, 0.58), pos: xlMix(xlColor(div ? "var(--pos)" : "var(--seq)"), surface, 0.58) },
       }];
     },
+  });
+  excelButton(cardOf("prodChart"), {
+    settings: () => [periodSet(indWin), ...cellSet()], file: () => winLabel(indWin),
+    tables: () => [{
+      name: "Headline figures", title: `Productivity: ${DIVNAME[sel.div]}, ${NAMES[sel.state]}, ${winLabel(indWin)}`,
+      head: ["Figure", NAMES[sel.state], "Australia"], rows: prodHead.map(([k, a, b]) => [k, isNum(a) ? a : null, isNum(b) ? b : null]), fmts: ["text", "0.0", "0.0"],
+    }],
   });
   [["dGva", "Output"], ["dEmp", "Jobs"], ["dBiz", "Businesses starting and closing"]].forEach(([id, what]) => excelButton(cardOf(id), {
     title: () => `${what}: ${DIVNAME[sel.div]}, ${NAMES[sel.state]}`, settings: () => [periodSet(indWin), ...cellSet()], file: () => winLabel(indWin),

@@ -62,6 +62,14 @@ GROWTH_NOTES = {
         "in each financial year. They are survey estimates, so small industries in small states (Tasmania, the "
         "Northern Territory and the ACT) can jump around from year to year."
     ),
+    "prod": (
+        "Output per worker is output, adjusted for inflation (State Accounts), divided by the number of people "
+        "employed (Labour Force, four surveys averaged over the financial year). It counts people, not hours, so "
+        "industries with many part-time workers read lower, and the level is at current prices. Employment in small "
+        "industries in small states is a survey estimate that jumps around, so their productivity is noisy. All "
+        "industries includes the rent of owner-occupied homes, which has no workers, so its output per worker reads "
+        "high."
+    ),
     "biz": (
         "Business counts come from the ABS business register, from 2007-08 on. Rates are averages of the yearly "
         "rates over the period. The ABS slightly alters small counts to protect confidentiality, and counts shift "
@@ -137,6 +145,10 @@ SOURCES = {
         "Grattan Institute, Competition in Australia: too little of a good thing? (2017)",
         "https://grattan.edu.au/report/competition-in-the-australian-economy/",
     ),
+    "abs_mfp": (
+        "ABS, Estimates of Industry Multifactor Productivity",
+        "https://www.abs.gov.au/statistics/industry/industry-overview/estimates-industry-multifactor-productivity/latest-release",
+    ),
     "anzsic": (
         "ABS, Australian and New Zealand Standard Industrial Classification (ANZSIC) 2006",
         "https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0",
@@ -147,6 +159,27 @@ SOURCES = {
 # Each source's licence, as recorded in data/SOURCES.md (the Excel exports list it). Grattan's report is cited, not
 # used as data.
 LICENCES = {k: "CC BY 4.0" for k in SOURCES} | {"ato": "CC BY 2.5 AU", "grattan": ""}
+
+
+def abs_productivity() -> dict:
+    """The ABS's official productivity indexes by industry, Australia (5260.0.55.002, read from the costing
+    parameters): labour productivity (value added per hour worked) and multifactor productivity, on the hours-worked
+    basis, for the 16 market-sector divisions and the market sector as a whole (MKT16). Financial years by their
+    first calendar year; empty if the parameters are not built."""
+    if not competition.COSTING.exists():
+        return {"years": [], "lp": {}, "mfp": {}, "release": ""}
+    params = json.loads(competition.COSTING.read_text("utf-8"))
+    rows = params["tables"].get("abs_mfp.industry", {}).get("rows", [])
+    years = sorted({int(r["fy"][:4]) for r in rows})
+    out: dict = {"lp": {}, "mfp": {}}
+    for r in rows:
+        i = years.index(int(r["fy"][:4]))
+        for key, col in (("lp", "lp_hours"), ("mfp", "mfp_hours")):
+            out[key].setdefault(r["anzsic"], [None] * len(years))[i] = r.get(col)
+    meta = next((m for m in params.get("sources", []) if m.get("id") == "abs_mfp"), {})
+    title = meta.get("title", "ABS 5260.0.55.002")
+    release = f"{title}, {meta.get('release', '')} release ({meta.get('release_date', '')})"
+    return {"years": years, **out, "release": release}
 
 
 def _sources(*keys: str) -> dict:
@@ -245,7 +278,10 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         },
         "notes": GROWTH_NOTES,
         "barriers": competition.barriers_payload(),
-        "sources": _sources("state_accounts", "lfs_detailed", "cabee", "ato", "rba_rdp", "grattan", "anzsic"),
+        "productivity": abs_productivity(),
+        "sources": _sources(
+            "state_accounts", "lfs_detailed", "cabee", "abs_mfp", "ato", "rba_rdp", "grattan", "anzsic"
+        ),
     }
 
 
