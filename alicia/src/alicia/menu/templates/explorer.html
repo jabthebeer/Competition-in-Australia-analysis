@@ -243,7 +243,6 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     <h1>Legislation Menu</h1>
     <p class="lede">Laws, regulatory settings and other barriers that shape competition and productivity in Australia. Each one is marked against the <a href="framework.html">ALICIA productivity framework</a> and shown with statistics on the industries it affects.</p>
     <div class="meta-line" id="metaLine"></div>
-    <p class="notice" id="draftNotice"></p>
   </header>
 
   <section class="block" aria-labelledby="h-glance">
@@ -822,7 +821,8 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     `Generated ${esc(fmtDate(DATA.generated))}`,
   ].map((s) => `<span>${s}</span>`).join("");
   const drafts = count((r) => r.review.status === "draft");
-  $("draftNotice").innerHTML = drafts
+  // The draft notice sits at the foot of the page (owner request, 29 October 2026).
+  const draftNotice = drafts
     ? `<strong>Draft register.</strong> ${drafts} of ${R.length} items, and their assessments, come from AI-assisted desk research and have not yet been checked by a person. Marks are judgements about likely effects, not estimates or findings.`
     : `<strong>Reviewed register.</strong> Marks are judgements about likely effects, not estimates or findings.`;
   const fsrc = Object.values(DATA.statsSources || {}).map((s) => link(s.url, s.label)).join("; ");
@@ -836,7 +836,8 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     <p><strong>Econometric archive.</strong> The ${DATA.archivedEvaluations} econometric evaluations this page used to show, with the evaluability screen and data coverage, are kept unchanged in the <a href="archive.html">econometric archive</a> (paused 22 October 2026).</p>
     <p><strong>Sources.</strong> Industry codes: ABS ANZSIC 2006. Every date in a record links to its source. Unofficial research, not an Australian Government product.</p>
     <h2>Words used on this page</h2>
-    <dl class="glossary">${GLOSSARY.filter((k) => TERMS[k]).map((k) => `<div><dt>${esc(TERMS[k][0])}</dt><dd>${esc(TERMS[k][1])}</dd></div>`).join("")}</dl>`;
+    <dl class="glossary">${GLOSSARY.filter((k) => TERMS[k]).map((k) => `<div><dt>${esc(TERMS[k][0])}</dt><dd>${esc(TERMS[k][1])}</dd></div>`).join("")}</dl>
+    <p class="notice" id="draftNotice">${draftNotice}</p>`;
 
   render();
   // #<record id> opens an item; #driver=<driver> filters by main driver (links from the Framework page); #body=<id>
