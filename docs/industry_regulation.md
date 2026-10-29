@@ -41,6 +41,11 @@ Function and consistency categories:
 - **No licence counts yet.** The Australian Business Licence and Information Service (ABLIS) maps licences to industries and locations, but its API requires registration. Its counts could later test these measures.
 - **Local government** is counted as one party per regime, though rules can differ council by council.
 
+## On the website
+
+- **Legislation menu.** Each register item linked to a regime carries that regime's issue tags (a *Complexity* filter selects them) and, in its detail, a *Regulatory complexity* section: each regime with a three-circle diagram of which tier of government does what (a function in an overlap is done by more than one tier), its issues with quoted evidence, and who does what. An *Industries* view lists all 506 classes with these measures; each class opens with a diagram counting its regimes' functions by tier. Links: `index.html#complexity=<tag>`, `#industries`, `#regime=<id>`, `#class=<ANZSIC class>`.
+- **Framework page.** A *Regulatory complexity* section explains the method and tags, shows a worked diagram, and says how complexity relates to the marks: it is marked under regulatory burden, and the tags do not change any mark by themselves.
+
 ## Regimes
 
 | Regime | Scope | Consistency | Tiers | Overlapping functions | Classes | Issues |
@@ -62,7 +67,7 @@ Function and consistency categories:
 | Commercial agents and debt collectors | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 1 | 0 |
 | Container deposits and packaging | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 9 | 1 |
 | Conveyancing and land titles | sector | Model law or national code, adopted state by state with variations | State or territory | none | 2 | 0 |
-| Customs, excise and trade | sector | Commonwealth only | Commonwealth | none | 50 | 0 |
+| Customs, excise and trade | sector | Commonwealth only | Commonwealth | none | 49 | 0 |
 | Disability services (NDIS) | sector | One national law or regulator | Commonwealth, State or territory | licenses, | 2 | 2 |
 | Early childhood education and care | sector | One national law or regulator | Commonwealth, State or territory | none | 2 | 2 |
 | Electrical, plumbing and gas licensing and equipment safety | sector | State laws differ, but registrations are recognised across states | State or territory | none | 9 | 1 |
@@ -81,7 +86,7 @@ Function and consistency categories:
 | Home warranty insurance | sector | Each state and territory has its own law | State or territory | none | 16 | 0 |
 | Labour hire licensing | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 2 | 1 |
 | Legal profession | sector | Model law or national code, adopted state by state with variations | State or territory | none | 1 | 0 |
-| Liquor licensing | sector | Each state and territory has its own law | State or territory, Local council | none | 12 | 1 |
+| Liquor licensing | sector | Each state and territory has its own law | State or territory, Local council | none | 11 | 1 |
 | Mandatory product standards and labelling | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | inspects | 72 | 1 |
 | Maritime safety and ports | sector | One national law or regulator | Commonwealth, State or territory | licenses, | 10 | 0 |
 | Mining and petroleum titles and approvals | sector | Each state and territory has its own law | Commonwealth, State or territory | approves | 16 | 2 |
@@ -156,12 +161,12 @@ Medians across the classes in each division, industry-specific regimes only.
 | 0139 Other Fruit and Tree Nut Growing | 7 | 16 | 6 | 4 | 17 |
 | 0171 Poultry Farming (Meat) | 6 | 16 | 6 | 4 | 17 |
 | 0172 Poultry Farming (Eggs) | 6 | 16 | 6 | 4 | 17 |
-| 1211 Soft Drink, Cordial and Syrup Manufacturing | 5 | 16 | 4 | 2 | 17 |
 | 1212 Beer Manufacturing | 5 | 16 | 4 | 2 | 17 |
 | 1213 Spirit Manufacturing | 5 | 16 | 4 | 2 | 17 |
 | 1214 Wine and Other Alcoholic Beverage Manufacturing | 5 | 16 | 4 | 2 | 17 |
 | 0201 Offshore Longline and Rack Aquaculture | 6 | 15 | 6 | 4 | 16 |
 | 0202 Offshore Caged Aquaculture | 6 | 15 | 6 | 4 | 16 |
+| 0203 Onshore Aquaculture | 6 | 15 | 6 | 4 | 16 |
 
 ## Issues found (Phase 2)
 
@@ -263,4 +268,4 @@ Medians across the classes in each division, industry-specific regimes only.
 | 0171 Poultry Farming (Meat) | 17 | 8 | 0 | 2 | 7 |
 | 0172 Poultry Farming (Eggs) | 17 | 8 | 0 | 2 | 7 |
 | 1111 Meat Processing | 17 | 7 | 1 | 2 | 7 |
-| 1211 Soft Drink, Cordial and Syrup Manufacturing | 17 | 7 | 1 | 2 | 7 |
+| 1212 Beer Manufacturing | 17 | 7 | 1 | 2 | 7 |

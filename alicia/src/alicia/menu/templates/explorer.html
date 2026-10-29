@@ -234,6 +234,41 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
 .reclist .rec.hl { box-shadow: 0 0 0 2px var(--accent); }
 .rec-items { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 0.8rem; }
 .rec-items .lnk { font-size: 0.8rem; }
+/* Regulatory complexity (DECISIONS E-96): tags, regime cards with their tier diagram, and the industries view. */
+.tag.cx { border-style: dashed; border-color: var(--ink-3); color: var(--ink); background: var(--surface); }
+.cxs { display: inline-flex; flex-wrap: wrap; gap: 3px; margin-left: 6px; vertical-align: middle; }
+.cxs .tag.cx { font-size: 0.7rem; padding: 0 6px; }
+.regime { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin: 0 0 10px; background: var(--surface); }
+.regime h4 { margin: 0 0 4px; font-size: var(--step-0); }
+.regime h4 .lnk { font: inherit; font-weight: 600; }
+.regime p { margin: 4px 0; font-size: var(--step--1); }
+.regime-body { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 6px; }
+.regime-body svg.venn { max-width: 320px; }
+.venn-key { font-size: 0.75rem; color: var(--ink-3); margin: 2px 0 0; }
+ul.issues { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+ul.issues li { font-size: var(--step--1); border-left: 2px solid var(--line-strong); padding-left: 8px; }
+ul.issues li p { margin: 2px 0; }
+.ist { font-size: 0.75rem; color: var(--ink-3); margin-left: 4px; }
+.no-issue { font-size: var(--step--1); color: var(--ink-3); margin: 0; }
+ul.layers { margin: 4px 0; padding-left: 0; list-style: none; font-size: var(--step--1); display: grid; gap: 2px; }
+.tier { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
+.tier::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--t-cth); display: inline-block; }
+.tier.t-state::before { background: var(--t-state); } .tier.t-local::before { background: var(--t-local); }
+table.ind { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.ind th, table.ind td { padding: 5px 6px; border-bottom: 1px solid var(--line); text-align: right; }
+table.ind th:first-child, table.ind td:first-child { text-align: left; }
+table.ind thead th { color: var(--ink-3); font-weight: 500; vertical-align: bottom; }
+table.ind tr.sel td { background: var(--accent-soft); }
+table.ind .rowbtn .code { font-family: var(--font-mono); color: var(--ink-3); margin-right: 6px; }
+.ind-tools { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 0 0 8px; font-size: var(--step--1); }
+.ind-tools .chip { font-size: 0.78rem; }
+.tscroll-ind { overflow-x: auto; }
+.cls-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin: 8px 0; }
+.cls-tiles div { border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
+.cls-tiles .n { display: block; font-size: var(--step-1); font-weight: 600; font-family: var(--font-mono); }
+.cls-tiles .l { font-size: 0.75rem; color: var(--ink-3); }
+ul.reg-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: var(--step--1); }
+ul.reg-rows .muted { font-size: 0.75rem; }
 </style>
 
 <div class="wrap">
@@ -283,6 +318,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
       <label class="filter-label" for="f-body">Responsible</label>
       <select id="f-body"></select>
     </div>
+    <div class="filter-row"><span class="filter-label"><span data-term="complexity">Complexity</span></span><div class="chips" id="f-cx"></div></div>
   </section>
 
   <div class="main">
@@ -293,6 +329,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
           <button class="tab" role="tab" id="tab-scorecard" aria-selected="false" aria-controls="view-scorecard">Scorecard</button>
           <button class="tab" role="tab" id="tab-timeline" aria-selected="false" aria-controls="view-timeline">Timeline</button>
           <button class="tab" role="tab" id="tab-recs" aria-selected="false" aria-controls="view-recs">Recommendations</button>
+          <button class="tab" role="tab" id="tab-ind" aria-selected="false" aria-controls="view-ind">Industries</button>
         </div>
         <label class="sortbox">Sort <select id="sort">
           <option value="new">Newest first</option><option value="old">Oldest first</option>
@@ -318,6 +355,11 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
       </div>
       <div id="view-recs" role="tabpanel" aria-labelledby="tab-recs" hidden>
         <div class="reclist" id="reclist"></div>
+      </div>
+      <div id="view-ind" role="tabpanel" aria-labelledby="tab-ind" hidden>
+        <p class="small muted" id="indNote"></p>
+        <div class="ind-tools" id="indTools"></div>
+        <div class="tscroll-ind"><table class="ind" id="ind"></table></div>
       </div>
     </section>
     <aside class="detail empty" id="detail" aria-live="polite">
@@ -378,12 +420,16 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     administers: ["Administers", "The department whose minister is responsible for the law or program under the government's administrative arrangements, or the agency in it that runs the scheme day to day."],
     regulates: ["Regulates", "The body that licenses, enforces, collects or monitors under the law: a regulator, tax office or agency."],
     policy: ["Leads policy", "The department that leads policy on an issue that is not a single law, such as a non-legislative barrier or a national scheme."],
+    complexity: ["Complexity", "Problems a source has reported in the regulatory regime an item belongs to: duplication, rules that differ between states or councils, unclear guidance, many agencies for one activity, or complex rules. Each is quoted from its source."],
+    regime: ["Regulatory regime", "A body of regulation a business deals with as one task, such as food safety or liquor licensing, with the tiers of government that set its rules, license, approve, inspect or collect."],
+    touchpoints: ["Government parties", "The distinct agencies, by tier, that a business deals with directly under a regime: those that license, approve, inspect, collect or fund. Setting the rules is not counted."],
+    ...Object.fromEntries(Object.entries(DATA.issueTags || {}).map(([k, t]) => [`cx-${k}`, [t.label, t.help]])),
   });
 
   // Every defined word the page can show (the detail panel adds most of them only when an item is open).
   const GLOSSARY = ["mainDriver", "overall", "mixed", "reach", "confidence", "employing", "entry", "exit", "avgGrowth", "valueAdded",
     "ebitda", "labourProductivity", "mfp", "topShare", "markupRba", "blade", "noCompetition", "regHampered", "capex", "rd",
-    "administers", "regulates", "policy"];
+    "administers", "regulates", "policy", "complexity", "regime", "touchpoints", ...Object.keys(DATA.issueTags || {}).map((k) => `cx-${k}`)];
 
   // --- Helpers ------------------------------------------------------------------------------------
   const ratingBadge = (a, big) => a
@@ -402,6 +448,15 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   const bodyMatch = (r, id) => r.responsible.some((x) => x.body === id || deptOf(x.body) === id);
   const RECS = Object.fromEntries((DATA.recommendations || []).map((x) => [x.id, x]));
   const RBY = Object.fromEntries(R.map((r) => [r.id, r]));
+  const REGS = DATA.regimes || [];
+  const REG = Object.fromEntries(REGS.map((g) => [g.id, g]));
+  const TAGS = DATA.issueTags || {};
+  const TIERS = DATA.tiers || {};
+  const FN = DATA.functions || {};
+  const IND = (DATA.industries || []).map(([code, name, div, regs, tp, stp, issues]) => ({ code, name, div, regs: regs.map((n) => REGS[n]), tp, stp, issues }));
+  const INDBY = Object.fromEntries(IND.map((c) => [c.code, c]));
+  const cxTag = (t) => `<span class="tag cx" title="${esc(TAGS[t] ? TAGS[t].help : t)}">${esc(TAGS[t] ? TAGS[t].label : t)}</span>`;
+  const STATUS = { current: "Current", "partly-addressed": "Partly addressed", addressed: "Addressed" };
 
   function fmtStat(v, f) {
     if (!isNum(v)) return "–";
@@ -416,7 +471,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   }
 
   // --- State --------------------------------------------------------------------------------------
-  const state = { q: "", driver: new Set(), rating: new Set(), kind: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", selected: null, tab: "list", sort: "new" };
+  const state = { q: "", driver: new Set(), rating: new Set(), kind: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", cx: new Set(), regime: "", indSort: "parties", selected: null, tab: "list", sort: "new" };
 
   function matches(r, skip) {
     const a = A(r);
@@ -429,11 +484,12 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     if (state.status === "not-yet" && (inForce(r) || r.ended)) return false;
     if (state.status === "ended" && !r.ended) return false;
     if (state.body && !bodyMatch(r, state.body)) return false;
+    if (state.cx.size && !r.complexity.some((t) => state.cx.has(t))) return false;
     if (state.div && !(r.industries.some((i) => i.division === state.div) || (a && a.reach === "economy-wide" && !r.industries.length))) return false;
     if (state.q) {
       const hay = [r.id, r.title, r.summary, r.family, DATA.familyLabels[r.family], r.jurisdiction, FW.kinds[r.kind].label,
         ...r.responsible.flatMap((x) => [x.body, bodyName(x.body), B[x.body] ? B[x.body].short : ""]),
-        ...r.recs.map((id) => (RECS[id] ? RECS[id].title : "")),
+        ...r.recs.map((id) => (RECS[id] ? RECS[id].title : "")), ...r.regimes.map((id) => (REG[id] ? REG[id].name : "")),
         ...r.industries.map((i) => `${i.anzsic} ${i.name}`), ...(a ? [a.summary, DRV[a.main_driver].label, ...a.marks.map((m) => m.reason)] : [])].join(" ").toLowerCase();
       if (!state.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
     }
@@ -459,7 +515,9 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   chipGroup($("f-kind"), "kind", Object.keys(FW.kinds).map((k) => ({ value: k, label: FW.kinds[k].label, title: FW.kinds[k].help, n: count((r) => r.kind === k) })));
   chipGroup($("f-jur"), "jur", JURS.map((j) => ({ value: j, label: j, n: count((r) => r.jurisdiction === j) })));
   chipGroup($("f-reach"), "reach", Object.keys(FW.reach).map((k) => ({ value: k, label: FW.reach[k].label, title: FW.reach[k].help, n: count((r) => A(r) && A(r).reach === k) })));
-  const divs = [...new Set(R.flatMap((r) => r.industries.map((i) => i.division)))].filter(Boolean).sort();
+  chipGroup($("f-cx"), "cx", Object.keys(TAGS).map((t) => ({ value: t, label: TAGS[t].label, title: TAGS[t].help, n: count((r) => r.complexity.includes(t)) })));
+  // Every division, so the Industries view can show any of them; items outside the register's industries count 0.
+  const divs = [...new Set([...R.flatMap((r) => r.industries.map((i) => i.division)), ...(DATA.industries || []).map((c) => c[2])])].filter(Boolean).sort();
   $("f-div").innerHTML = `<option value="">All industries</option>` + divs.map((d) => `<option value="${esc(d)}">${esc(d)} ${esc(DATA.divisions[d] || "")}</option>`).join("");
   // Departments by jurisdiction, each followed by the agencies and regulators in it; a department's count includes theirs.
   const bodyCount = (id) => count((r) => bodyMatch(r, id));
@@ -490,14 +548,15 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   $("sort").addEventListener("change", (e) => { state.sort = e.target.value; render(); });
   $("reset").addEventListener("click", () => {
     state.q = ""; state.status = ""; state.div = ""; state.body = "";
-    ["driver", "rating", "kind", "jur", "reach"].forEach((k) => state[k].clear());
+    ["driver", "rating", "kind", "jur", "reach", "cx"].forEach((k) => state[k].clear());
+    state.regime = "";
     $("q").value = ""; $("f-status").value = ""; $("f-div").value = ""; $("f-body").value = "";
     syncChips();
     render();
   });
 
   // --- Tabs ---------------------------------------------------------------------------------------
-  const TABS = ["list", "scorecard", "timeline", "recs"];
+  const TABS = ["list", "scorecard", "timeline", "recs", "ind"];
   function setTab(t) {
     state.tab = t;
     TABS.forEach((x) => { $(`tab-${x}`).setAttribute("aria-selected", t === x); $(`view-${x}`).hidden = t !== x; });
@@ -542,7 +601,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
       return `<tr class="${state.selected === r.id ? "sel" : ""}">
         <td class="mono">${esc(effLabel(r))}</td>
         <td class="mono">${esc(r.jurisdiction)}</td>
-        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(r.title)}</button>${r.family ? `<span class="fam">${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}${kindTag(r.kind)} ${endTag(r)}${r.responsible.length ? `<span class="who" title="Responsible">${esc(whoShort(r))}</span>` : ""}</td>
+        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(r.title)}</button>${r.family ? `<span class="fam">${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}${kindTag(r.kind)} ${endTag(r)}${r.responsible.length ? `<span class="who" title="Responsible">${esc(whoShort(r))}</span>` : ""}${r.complexity.length ? `<span class="cxs" aria-label="Complexity">${r.complexity.map(cxTag).join("")}</span>` : ""}</td>
         <td>${a ? drvTag(a.main_driver) : ""}</td>
         <td>${ratingBadge(a)}</td>
         <td>${a ? esc(reachLabel(a.reach)) : ""}</td>
@@ -748,6 +807,93 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
       ${later ? "" : r.kind === "barrier" ? "" : `<p class="small muted">No later change to this law or setting is recorded in the register.</p>`}
       ${changes}`;
   }
+  // --- Regulatory complexity --------------------------------------------------------------------------
+  // The tiers that do each function, as Venn regions: a function done by two tiers sits in their overlap.
+  function regionsOf(g) {
+    const by = {};
+    g.layers.forEach((l) => { (by[l.function] = by[l.function] || []).push(l); });
+    const regions = {};
+    Object.keys(FN).filter((f) => by[f]).forEach((f) => {
+      const tiers = VENN_TIERS.filter((t) => by[f].some((l) => l.tier === t));
+      const key = tiers.join("+");
+      const who = by[f].map((l) => `${TIERS[l.tier]}: ${l.who}${l.jurisdictions.length ? ` (${l.jurisdictions.join(", ")})` : ""}`).join("\n");
+      (regions[key] = regions[key] || []).push({ label: FN[f].short, title: `${FN[f].label}\n${who}`, hot: tiers.length > 1 });
+    });
+    return regions;
+  }
+  const evList = (evs) => evs.map((e) => `<li><blockquote>${esc(e.quote)}</blockquote><span class="src">${link(e.url, e.source)}, ${esc(e.publisher)}, ${esc(e.year)}${e.locator ? `, ${esc(e.locator)}` : ""}${e.checked === "web-page" ? " (quote read from the web page)" : ""}</span></li>`).join("");
+  function issueHtml(i) {
+    return `<li>${cxTag(i.tag)}<span class="ist">${esc(STATUS[i.status])}${i.jurisdictions.length ? ` · ${esc(i.jurisdictions.join(", "))}` : ""}</span>
+      <p>${esc(i.what)}</p>${i.status_note ? `<p class="small muted">${esc(i.status_note)}</p>` : ""}
+      <details><summary>Evidence (${i.evidence.length} source${i.evidence.length === 1 ? "" : "s"})</summary><ul class="ev">${evList(i.evidence)}</ul></details></li>`;
+  }
+  function regimeCard(g, full) {
+    const ov = Object.keys(g.overlap);
+    const layers = g.layers.map((l) => `<li><span class="tier t-${esc(l.tier)}">${esc(TIERS[l.tier])}</span> ${esc(FN[l.function].label.toLowerCase())}: ${esc(l.who)}${l.jurisdictions.length ? ` <span class="muted">(${esc(l.jurisdictions.join(", "))})</span>` : ""}</li>`).join("");
+    return `<article class="regime" id="regime-${esc(g.id)}">
+      <h4>${full ? esc(g.name) : `<button type="button" class="lnk" data-regime="${esc(g.id)}" title="Open this regime">${esc(g.name)}</button>`}</h4>
+      <div class="rec-meta"><span class="tag">${esc(g.scope === "sector" ? "Industry-specific" : "Applies across industries")}</span><span>${esc(DATA.consistency[g.consistency])}</span><span>${term("touchpoints", "Government parties")}: <strong>${g.touchpoints}</strong></span><span>${g.classes} of ${IND.length} industries</span></div>
+      <p>${esc(g.what)}</p>
+      <div class="regime-body"><div>${vennSvg(regionsOf(g), { names: TIERS, label: `${g.name}: which tiers of government do what` })}
+        <p class="venn-key">${ov.length ? `Bold: done by more than one tier (${esc(ov.map((f) => FN[f].short.toLowerCase()).join(", "))}).` : "No function is done by more than one tier."} Hover a label for the bodies.</p></div>
+        <div>${g.issues.length ? `<ul class="issues">${g.issues.map(issueHtml).join("")}</ul>` : `<p class="no-issue">No duplication, inconsistency or complexity found in the sources searched for this regime. That is not evidence there is none.</p>`}</div></div>
+      <details><summary>Who does what (${g.layers.length})</summary><ul class="layers">${layers}</ul>${g.consistency_note ? `<p class="small muted">${esc(g.consistency_note)}</p>` : ""}</details>
+      <details><summary>Sources for this description (${g.basis.length})</summary><ul class="ev">${evList(g.basis)}</ul></details>
+    </article>`;
+  }
+  function complexityHtml(r) {
+    const gs = r.regimes.map((id) => REG[id]).filter(Boolean);
+    if (!gs.length) return "";
+    const cards = gs.map((g) => regimeCard(g, false));
+    const more = cards.length > 2 ? `<details><summary>${cards.length - 2} more regime${cards.length - 2 === 1 ? "" : "s"}</summary>${cards.slice(2).join("")}</details>` : "";
+    return `<p class="small muted">This item belongs to ${gs.length === 1 ? "the" : `${gs.length}`} ${term("regime", gs.length === 1 ? "regulatory regime" : "regulatory regimes")} below. The diagram shows which tier of government does what; a function in an overlap is done by more than one tier. Tags are problems a source has reported, each quoted.</p>${cards.slice(0, 2).join("")}${more}`;
+  }
+  function bindDetail(el) {
+    el.querySelectorAll(".lnk[data-id]").forEach((b) => b.addEventListener("click", () => { select(b.dataset.id); el.scrollTop = 0; }));
+    el.querySelectorAll(".lnk[data-regime]").forEach((b) => b.addEventListener("click", () => { selectRegime(b.dataset.regime); el.scrollTop = 0; }));
+    el.querySelectorAll(".lnk[data-class]").forEach((b) => b.addEventListener("click", () => { selectClass(b.dataset.class); el.scrollTop = 0; }));
+    el.querySelectorAll("[data-show-ind]").forEach((b) => b.addEventListener("click", () => { state.regime = b.dataset.showInd; setTab("ind"); $("view-ind").scrollIntoView({ block: "start" }); }));
+    const close = $("closeDetail");
+    if (close) close.addEventListener("click", () => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* ignore */ } select(null); });
+  }
+  function openAside(key, html, hash) {
+    state.selected = key;
+    if (hash) { try { history.replaceState(null, "", `#${hash}`); } catch (e) { /* ignore */ } }
+    const el = $("detail");
+    el.className = "detail";
+    el.innerHTML = `<button type="button" class="close" id="closeDetail">Close</button>${html}`;
+    bindDetail(el);
+    render();
+  }
+  function selectRegime(id, fromHash) {
+    const g = REG[id];
+    if (!g) return;
+    const items = R.filter((r) => r.regimes.includes(id));
+    openAside(`regime:${id}`, `<div class="d-head"><h2>${esc(g.name)}</h2><div class="d-meta"><span>${term("regime", "Regulatory regime")}</span>${g.tags.map(cxTag).join("")}</div></div>
+      <section class="d-sec">${regimeCard(g, true)}</section>
+      <section class="d-sec"><h3>Register items in this regime</h3>${items.length ? li(items.map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`)) : `<p class="small muted">None yet.</p>`}</section>
+      <section class="d-sec"><h3>Industries it applies to</h3><p class="small">${g.classes} of the ${IND.length} detailed industries (ANZSIC classes). <button type="button" class="lnk" data-show-ind="${esc(g.id)}">Show them in the Industries view</button></p></section>`, fromHash ? null : `regime=${id}`);
+  }
+  function selectClass(code, fromHash) {
+    const c = INDBY[code];
+    if (!c) return;
+    const regions = {};
+    c.regs.forEach((g) => Object.entries(regionsOf(g)).forEach(([k, items]) => items.forEach((i) => (regions[k] = regions[k] || []).push({ label: i.label, title: `${g.name}: ${i.label.toLowerCase()}` }))));
+    const sector = c.regs.filter((g) => g.scope === "sector"), cross = c.regs.filter((g) => g.scope !== "sector");
+    const row = (g) => `<li><button type="button" class="lnk" data-regime="${esc(g.id)}">${esc(g.name)}</button> <span class="muted">${esc(DATA.consistency[g.consistency])}; ${g.touchpoints} government part${g.touchpoints === 1 ? "y" : "ies"}</span>${g.tags.length ? `<span class="cxs">${g.tags.map(cxTag).join("")}</span>` : ""}</li>`;
+    const nOv = c.regs.filter((g) => Object.keys(g.overlap).length).length, nVar = c.regs.filter((g) => g.varies).length;
+    const items = R.filter((r) => r.regimes.some((id) => c.regs.some((g) => g.id === id)));
+    openAside(`class:${code}`, `<div class="d-head"><h2><span class="mono">${esc(c.code)}</span> ${esc(c.name)}</h2><div class="d-meta"><span>Division ${esc(c.div)} ${esc(DATA.divisions[c.div] || "")}</span><span>ANZSIC 2006 class</span></div></div>
+      <section class="d-sec"><h3>Regulation this industry deals with</h3>
+        <div class="cls-tiles"><div><span class="n">${sector.length}</span><span class="l">industry-specific regimes (${c.regs.length} in all)</span></div><div><span class="n">${c.stp}</span><span class="l">${term("touchpoints", "government parties")} in them (${c.tp} in all)</span></div><div><span class="n">${nOv}</span><span class="l">regimes where tiers overlap</span></div><div><span class="n">${nVar}</span><span class="l">regimes that differ by state</span></div><div><span class="n">${c.issues}</span><span class="l">reported issues</span></div></div>
+        ${vennSvg(regions, { names: TIERS, count: true, label: `${c.name}: how many functions each tier, or several tiers together, perform across its regimes` })}
+        <p class="venn-key">Each number counts the functions (licensing, inspecting, collecting and so on) that a tier, or several tiers together, perform across this industry's ${c.regs.length} regimes. Numbers in an overlap are functions done by more than one tier. Hover a number for the list.</p></section>
+      <section class="d-sec"><h3>Industry-specific regimes</h3>${sector.length ? `<ul class="reg-rows">${sector.map(row).join("")}</ul>` : `<p class="small muted">None mapped: only the regimes that apply across industries.</p>`}</section>
+      <section class="d-sec"><h3>Regimes that apply across industries</h3><ul class="reg-rows">${cross.map(row).join("")}</ul></section>
+      ${items.length ? `<section class="d-sec"><h3>Register items in these regimes</h3>${li(items.slice(0, 40).map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`))}${items.length > 40 ? `<p class="small muted">and ${items.length - 40} more.</p>` : ""}</section>` : ""}
+      <p class="small muted">A class's regimes describe a typical business in it; a given business may face more or fewer. Method: <code>docs/industry_regulation.md</code>.</p>`, fromHash ? null : `class=${code}`);
+  }
+
   function select(id, fromHash) {
     state.selected = id;
     const r = R.find((x) => x.id === id);
@@ -776,6 +922,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
         ${r.ended ? `<p class="ended-note"><strong>No longer in force: ${esc(r.ended.label.toLowerCase())} ${esc(fmtDate(r.ended.date))}.</strong> ${esc(r.ended.what)} The assessment below is of the item while it applied.</p>` : ""}
       </div>
       ${assess}
+      ${sec("Regulatory complexity", complexityHtml(r))}
       ${sec("What government could do", recsHtml(r))}
       ${sec("Who is responsible", whoHtml(r))}
       ${sec("Timeline", timelineHtml(r))}
@@ -787,8 +934,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
       ${sec("Notes", r.notes ? `<p class="small">${esc(r.notes)}</p>` : "")}
       ${sec("Verification", `<p class="small muted">${r.verified.dates ? "Dates verified against official sources." : "Dates not fully verified."} ${esc(r.verified.notes || "")}</p><p class="small muted">Review: ${esc(r.review.status)}. ${esc(r.review.notes || "")}</p>`)}
     `;
-    el.querySelectorAll(".lnk[data-id]").forEach((b) => b.addEventListener("click", () => { select(b.dataset.id); el.scrollTop = 0; }));
-    $("closeDetail").addEventListener("click", () => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* ignore */ } select(null); });
+    bindDetail(el);
     render();
   }
 
@@ -802,6 +948,34 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     $("reclist").querySelectorAll(".lnk[data-id]").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
   }
 
+  // --- Industries -------------------------------------------------------------------------------------
+  const IND_SORTS = {
+    parties: [(a, b) => b.stp - a.stp || b.issues - a.issues || a.code.localeCompare(b.code), "Most government parties (industry-specific regimes)"],
+    issues: [(a, b) => b.issues - a.issues || b.stp - a.stp || a.code.localeCompare(b.code), "Most reported issues"],
+    code: [(a, b) => a.code.localeCompare(b.code), "ANZSIC code"],
+  };
+  function renderInd() {
+    const q = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+    const rows = IND.filter((c) => (!state.div || c.div === state.div)
+      && (!state.regime || c.regs.some((g) => g.id === state.regime))
+      && (!state.cx.size || c.regs.some((g) => g.tags.some((t) => state.cx.has(t))))
+      && q.every((w) => `${c.code} ${c.name} ${c.regs.map((g) => g.name).join(" ")}`.toLowerCase().includes(w)))
+      .sort(IND_SORTS[state.indSort][0]);
+    $("countLine").textContent = `${rows.length} of ${IND.length} industries (ANZSIC classes) shown`;
+    $("indNote").innerHTML = `Every detailed industry in the ABS classification, with the ${term("regime", "regulatory regimes")} it deals with. The search box, the industry filter and the complexity tags apply here; the other filters are for register items. Click an industry to see its regimes and a diagram of which tiers of government do what.`;
+    $("indTools").innerHTML = `<label>Order <select id="indSort">${Object.entries(IND_SORTS).map(([k, v]) => `<option value="${k}"${state.indSort === k ? " selected" : ""}>${esc(v[1])}</option>`).join("")}</select></label>${state.regime && REG[state.regime] ? `<button type="button" class="chip" aria-pressed="true" id="indRegime" title="Clear">Regime: ${esc(REG[state.regime].name)} ✕</button>` : ""}`;
+    $("indSort").addEventListener("change", (e) => { state.indSort = e.target.value; render(); });
+    if ($("indRegime")) $("indRegime").addEventListener("click", () => { state.regime = ""; render(); });
+    const head = `<thead><tr><th>Industry (ANZSIC class)</th><th title="Regimes specific to the industry, and all regimes including those that apply across industries">Regimes<br><span class="muted">specific / all</span></th><th>${term("touchpoints", "Government parties")}<br><span class="muted">specific / all</span></th><th>Tiers overlap</th><th>Differ by state</th><th>Reported issues</th></tr></thead>`;
+    const body = rows.map((c) => {
+      const sp = c.regs.filter((g) => g.scope === "sector").length;
+      return `<tr class="${state.selected === `class:${c.code}` ? "sel" : ""}"><td><button type="button" class="rowbtn" data-class="${esc(c.code)}"><span class="code">${esc(c.code)}</span>${esc(c.name)}</button></td>
+        <td>${sp} / ${c.regs.length}</td><td>${c.stp} / ${c.tp}</td><td>${c.regs.filter((g) => Object.keys(g.overlap).length).length}</td><td>${c.regs.filter((g) => g.varies).length}</td><td>${c.issues}</td></tr>`;
+    }).join("");
+    $("ind").innerHTML = head + `<tbody>${body}</tbody>`;
+    $("ind").querySelectorAll(".rowbtn[data-class]").forEach((b) => b.addEventListener("click", () => selectClass(b.dataset.class)));
+  }
+
   // --- Render -------------------------------------------------------------------------------------
   function render() {
     const rows = R.filter((r) => matches(r)).sort(SORTS[state.sort]);
@@ -811,6 +985,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     if (state.tab === "scorecard") renderScorecard(rows);
     if (state.tab === "timeline") drawTimeline(rows);
     if (state.tab === "recs") renderRecs(rows);
+    if (state.tab === "ind") renderInd();
   }
 
   const kinds = Object.fromEntries(Object.keys(FW.kinds).map((k) => [k, count((r) => r.kind === k)]));
@@ -832,6 +1007,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     <p><strong>Who is responsible.</strong> Each item names the department that administers the law (or leads policy on it) and the bodies that regulate under it. Commonwealth, Queensland, Tasmanian, Victorian and ACT departments come from each government's administrative arrangements; other states' from their legislation sites and portfolio lists. Each tag links to its source, and notes say where an allocation was inferred rather than read from an order. Choosing a department in the filter includes the agencies in it.</p>
     <p><strong>Timeline.</strong> Each item's own dates, then later changes to the law or setting (amendments, easings, repeals), each with its source. A repealed or replaced item stays in the register, marked as no longer in force, so its assessment can still be read.</p>
     <p><strong>What government could do.</strong> Recommendations come from Australian and international reviews and research: the Productivity Commission, the Harper and Henry reviews, state productivity commissions, Treasury reviews and overseas regulators. Each one quotes the exact words of its sources; quotes were checked against the full text of each document, except where marked as read from a web page. They are drafts compiled by AI-assisted desk research and have not yet been checked by a person. Where no recommendation is given, the item says why.</p>
+    <p><strong>Regulatory complexity.</strong> ${esc(DATA.complexityNote || "")} ${REGS.length} regimes are mapped to all ${IND.length} detailed industries (ANZSIC classes) in the Industries view. Sources: Productivity Commission inquiries and benchmarking studies, national and state reviews, business.gov.au and regulator pages; drafts compiled by AI-assisted desk research, not yet checked by a person. Method: <code>docs/industry_regulation.md</code>.</p>
     <p><strong>Register check.</strong> ${esc(DATA.checkNote)}</p>
     <p><strong>Econometric archive.</strong> The ${DATA.archivedEvaluations} econometric evaluations this page used to show, with the evaluability screen and data coverage, are kept unchanged in the <a href="archive.html">econometric archive</a> (paused 22 October 2026).</p>
     <p><strong>Sources.</strong> Industry codes: ABS ANZSIC 2006. Every date in a record links to its source. Unofficial research, not an Australian Government product.</p>
@@ -841,10 +1017,16 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
 
   render();
   // #<record id> opens an item; #driver=<driver> filters by main driver (links from the Framework page); #body=<id>
-  // filters by department or agency (ids in regulation-register/bodies.json); #rec=<id> opens a recommendation.
+  // filters by department or agency (ids in regulation-register/bodies.json); #rec=<id> opens a recommendation;
+  // #complexity=<tag> filters by complexity tag; #industries opens the Industries view; #regime=<id> opens a
+  // regulatory regime and #class=<ANZSIC class> an industry.
   const fromHash = decodeURIComponent((location.hash || "").slice(1));
   if (fromHash.startsWith("driver=") && DRV[fromHash.slice(7)]) { state.driver.add(fromHash.slice(7)); syncChips(); render(); }
   else if (fromHash.startsWith("body=") && B[fromHash.slice(5)]) { state.body = fromHash.slice(5); $("f-body").value = state.body; render(); }
+  else if (fromHash.startsWith("complexity=") && TAGS[fromHash.slice(11)]) { state.cx.add(fromHash.slice(11)); syncChips(); render(); }
+  else if (fromHash === "industries") setTab("ind");
+  else if (fromHash.startsWith("regime=") && REG[fromHash.slice(7)]) { selectRegime(fromHash.slice(7), true); $("detail").scrollIntoView({ block: "start" }); }
+  else if (fromHash.startsWith("class=") && INDBY[fromHash.slice(6)]) { setTab("ind"); selectClass(fromHash.slice(6), true); $("detail").scrollIntoView({ block: "start" }); }
   else if (fromHash.startsWith("rec=") && RECS[fromHash.slice(4)]) {
     setTab("recs");
     const card = $(`rec-${fromHash.slice(4)}`);

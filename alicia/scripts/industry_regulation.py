@@ -138,6 +138,18 @@ def main() -> int:
         "industries and locations, but its API requires registration. Its counts could later test these measures.",
         "- **Local government** is counted as one party per regime, though rules can differ council by council.",
         "",
+        "## On the website",
+        "",
+        "- **Legislation menu.** Each register item linked to a regime carries that regime's issue tags (a "
+        "*Complexity* filter selects them) and, in its detail, a *Regulatory complexity* section: each regime with "
+        "a three-circle diagram of which tier of government does what (a function in an overlap is done by more "
+        "than one tier), its issues with quoted evidence, and who does what. An *Industries* view lists all 506 "
+        "classes with these measures; each class opens with a diagram counting its regimes' functions by tier. Links: "
+        "`index.html#complexity=<tag>`, `#industries`, `#regime=<id>`, `#class=<ANZSIC class>`.",
+        "- **Framework page.** A *Regulatory complexity* section explains the method and tags, shows a worked "
+        "diagram, and says how complexity relates to the marks: it is marked under regulatory burden, and the tags "
+        "do not change any mark by themselves.",
+        "",
         "## Regimes",
         "",
         "| Regime | Scope | Consistency | Tiers | Overlapping functions | Classes | Issues |",

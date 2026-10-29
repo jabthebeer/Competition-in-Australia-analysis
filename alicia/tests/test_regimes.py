@@ -149,3 +149,31 @@ def test_the_exported_regime_schema_is_up_to_date():
     assert json.loads(path.read_text("utf-8")) == json.loads(json.dumps(json_schema())), (
         "regenerate with: uv run python scripts/export_schema.py"
     )
+
+
+def test_the_menu_tags_items_with_their_regimes_and_lists_every_industry():
+    from alicia.menu.explorer import build_payload
+
+    record = load_records().records[0]
+    issue = {"tag": "duplicative", "what": "Two inspectors check the same thing.", "evidence": [EVIDENCE]}
+    done = {**issue, "tag": "complex", "status": "addressed"}
+    reg = Regime.model_validate(regime(records=[record.id], issues=[issue, done]))
+    data = build_payload([record], regimes=[reg])
+    row = data["records"][0]
+    # Addressed issues give no tag; the regime carries its overlap for the diagram.
+    assert row["regimes"] == ["illustrative-regime"] and row["complexity"] == ["duplicative"]
+    assert data["regimes"][0]["overlap"] == {"inspects": ["state", "local"]} and data["regimes"][0]["classes"] == 4
+    assert len(data["industries"]) == 506 and set(data["issueTags"]) == set(ISSUE_LABELS)
+    code, name, division, regs, *_ = next(c for c in data["industries"] if c[0] == "4511")
+    assert (name, division, regs) == ("Cafes and Restaurants", "H", [0])
+
+
+def test_the_framework_page_explains_complexity_with_a_diagram():
+    from alicia.menu import framework as page
+
+    regimes = load_regimes().regimes
+    html = page.body(load_records().records, regimes=regimes)
+    assert 'id="h-complexity"' in html and "data-venn=" in html and "index.html#complexity=duplicative" in html
+    # The page's worked example says councils and state agencies both license and inspect food businesses.
+    food = page.venn_regions(next(r for r in regimes if r.id == page.COMPLEXITY_EXAMPLE))
+    assert {"Licenses", "Inspects"} <= {x["label"] for x in food["state+local"]}
