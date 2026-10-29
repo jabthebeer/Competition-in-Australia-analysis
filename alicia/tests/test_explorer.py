@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from pathlib import Path
 
 from alicia.menu import growth
 from alicia.menu.explorer import build_payload
@@ -104,3 +105,18 @@ def test_the_real_register_links_archived_evaluations_without_tagging_them():
     assert by_id["wa-trading-hours-weeknight-2010"]["archivedEvaluation"]["id"] == "wa-trading-hours-2010-2012-phase5"
     assert by_id["cth-pharmacy-location-rules-2018"]["archivedEvaluation"] is None
     assert data["archivedEvaluations"] == len(evals)
+
+
+def test_the_menu_keeps_text_readable_and_folds_secondary_detail():
+    """No text below 13px (0.8125rem), apart from the letter inside the round "i" buttons; secondary filters, item
+    sections and the page notes sit in collapsible elements (owner request, 29 October 2026)."""
+    template = (Path(growth.__file__).parent / "templates" / "explorer.html").read_text("utf-8")
+    css = re.search(r"<style>(.*?)</style>", template, re.S).group(1)  # the page's own styles
+    small = []
+    for rule in re.finditer(r"([^{}]+)\{([^{}]*)\}", css):
+        for size in re.findall(r"font(?:-size)?:[^;]*?([\d.]+)rem", rule.group(2)):
+            if float(size) < 0.8125 and ".term.info" not in rule.group(1):
+                small.append((rule.group(1).strip(), size))
+    assert small == []
+    html = growth.render("explorer.html", build_payload([illustrative()]), "index.html", standalone=True)
+    assert 'id="moreFilters"' in html and 'class="about"' in html and 'details class="d-sec fold"' in html
