@@ -292,24 +292,58 @@ details.about > summary { cursor: pointer; font-weight: 600; color: var(--ink-2)
 details.about[open] > summary { margin-bottom: 8px; }
 .mono, .num, table.st td.num { font-size: 1em; }
 /* Families shown as one expandable row (DECISIONS E-99). */
-.grpbtn { font: inherit; font-weight: 600; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; color: var(--ink); }
-.grpbtn::before { content: "▸"; display: inline-block; width: 1em; color: var(--ink-3); }
-.grpbtn[aria-expanded="true"]::before { content: "▾"; }
-.grpbtn:hover { color: var(--accent); }
-.list tr.grp-row td { background: color-mix(in oklab, var(--accent-soft) 40%, var(--surface)); }
-.list tr.grp-sum td { padding: 4px 10px 8px calc(10px + 1em); color: var(--ink-2); font-size: var(--step--1); }
-.list tr.member td.c-title { padding-left: calc(10px + 1em); }
+/* A group row is a container: a stack icon, a coloured left edge, a tinted band and a count badge that opens it.
+   Its items, once open, hang off a rail beneath it; single items stay plain rows. */
+.grpbtn { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; color: var(--ink);
+  display: inline-flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+.grp-icon { flex: none; display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 6px;
+  background: var(--accent); color: var(--surface); margin-top: -1px; }
+.grp-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; }
+.grp-name { font-weight: 600; flex: 1 1 14rem; min-width: 0; }
+.grp-count { flex: none; display: inline-flex; align-items: center; gap: 5px; font-size: var(--step--1); font-weight: 600;
+  color: var(--accent); background: var(--surface); border: 1.5px solid var(--accent); border-radius: 999px; padding: 1px 10px;
+  white-space: nowrap; }
+.grp-count::after { content: "▾"; font-size: 0.9em; }
+.grpbtn[aria-expanded="true"] .grp-count { background: var(--accent); color: var(--surface); }
+.grpbtn[aria-expanded="true"] .grp-count::after { content: "▴"; }
+.grpbtn:hover .grp-name, .grpbtn:focus-visible .grp-name { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.list tr.grp-row { cursor: pointer; }
+.list tr.grp-row td { background: color-mix(in oklab, var(--accent-soft) 70%, var(--surface)); border-top: 1px solid var(--line-strong); }
+.list tr.grp-row td:first-child { box-shadow: inset 5px 0 0 var(--accent); }
+.list tbody tr.grp-row:hover td { background: var(--accent-soft); }
+.list tr.grp-row.open td { border-bottom-color: transparent; }
+.list tr.grp-sum td, .list tr.member td { background: color-mix(in oklab, var(--accent-soft) 22%, var(--surface)); }
+.list tr.grp-sum td:first-child, .list tr.member td:first-child { box-shadow: inset 5px 0 0 color-mix(in oklab, var(--accent) 40%, var(--surface)); }
+.list tr.grp-sum td { padding: 2px 10px 10px calc(10px + 2.2rem); color: var(--ink-2); font-size: var(--step--1); }
+.list tr.member td.c-title { padding-left: calc(10px + 2.2rem); position: relative; }
+.list tr.member td.c-title::before { content: ""; position: absolute; left: calc(10px + 0.8rem); top: 0; bottom: 0; border-left: 1.5px solid color-mix(in oklab, var(--accent) 45%, var(--surface)); }
+.list tr.member td.c-title::after { content: ""; position: absolute; left: calc(10px + 0.8rem); top: 1.2em; width: 0.9rem; border-top: 1.5px solid color-mix(in oklab, var(--accent) 45%, var(--surface)); }
+.list tr.member.last td.c-title::before { bottom: auto; height: 1.2em; }
+.list tr.member.last td { border-bottom: 1px solid var(--line-strong); }
 .list tr.member td.c-title .rowbtn { font-weight: 400; }
+.list tr.member.sel td { background: var(--accent-soft); }
+.grp-legend { display: inline-flex; align-items: center; gap: 6px; font-size: var(--step--1); color: var(--ink-2); }
+.grp-legend .grp-icon { width: 1.25rem; height: 1.25rem; border-radius: 4px; }
+.grp-legend .grp-icon svg { width: 13px; height: 13px; }
 .mark-range { display: inline-flex; gap: 4px; align-items: center; white-space: nowrap; }
 .mark-range .to { color: var(--ink-3); font-size: var(--step--1); }
 .mark-range .badge { padding: 1px 3px; }
-table.sc tr.sc-grp th { position: static; text-align: left; padding: 6px 10px; background: color-mix(in oklab, var(--accent-soft) 40%, var(--surface)); }
-table.sc tr.sc-member th.item button { padding-left: 1em; }
+table.sc tr.sc-grp th { position: static; text-align: left; padding: 7px 10px; background: color-mix(in oklab, var(--accent-soft) 70%, var(--surface)); box-shadow: inset 5px 0 0 var(--accent); border-top: 1px solid var(--line-strong); }
+table.sc tr.sc-member th.item { box-shadow: inset 5px 0 0 color-mix(in oklab, var(--accent) 40%, var(--surface)); }
+table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
 .grp-of { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
 @media (max-width: 640px) {
-  .list tr.grp-row { background: color-mix(in oklab, var(--accent-soft) 40%, var(--surface)); }
+  /* Rows stack as cards on phones: the band, edge and rail move from the cells to the row. */
+  .list tr.grp-row { background: color-mix(in oklab, var(--accent-soft) 70%, var(--surface)); box-shadow: inset 5px 0 0 var(--accent); padding-left: 16px; }
+  .list tr.grp-sum, .list tr.member { background: color-mix(in oklab, var(--accent-soft) 22%, var(--surface)); box-shadow: inset 5px 0 0 color-mix(in oklab, var(--accent) 40%, var(--surface)); padding-left: 28px; }
   .list tr.sel { background: var(--accent-soft); }
-  .list tr.grp-row td, .list tr.sel td, .list tbody tr:hover td { background: none; }
+  .list tr.grp-row td, .list tr.grp-row td:first-child, .list tr.grp-sum td, .list tr.grp-sum td:first-child,
+  .list tr.member td, .list tr.member td:first-child, .list tr.sel td, .list tbody tr:hover td { background: none; box-shadow: none; border: 0; }
+  .list tr.grp-row td:nth-child(2) { display: none; }
+  .list tbody tr.grp-row:hover { background: var(--accent-soft); }
+  .list tbody tr.grp-row:hover td { background: none; }
+  .list tr.grp-sum td, .list tr.member td.c-title { padding-left: 0; }
+  .list tr.member td.c-title::before, .list tr.member td.c-title::after { display: none; }
 }
 .count-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; margin: 0 0 8px; }
 .count-row .count-line { margin: 0; }
@@ -382,7 +416,7 @@ table.sc tr.sc-member th.item button { padding-left: 1em; }
           <option value="neg">Most negative first</option><option value="pos">Most positive first</option><option value="title">Title</option>
         </select></label>
       </div>
-      <div class="count-row"><p class="count-line" id="countLine" aria-live="polite"></p><button type="button" class="lnk" id="toggleGroups"></button></div>
+      <div class="count-row"><p class="count-line" id="countLine" aria-live="polite"></p><span class="grp-legend" id="grpLegend"><span class="grp-icon" id="grpLegendIcon"></span>A group of related items, often one policy in several states. Click to open.</span><button type="button" class="lnk" id="toggleGroups"></button></div>
       <div id="view-list" role="tabpanel" aria-labelledby="tab-list">
         <table class="list">
           <thead><tr><th>Effective</th><th>Jur.</th><th>Item</th><th>Main driver</th><th>Overall mark</th><th>Reach</th></tr></thead>
@@ -503,6 +537,13 @@ table.sc tr.sc-member th.item button { padding-left: 1em; }
   const RECS = Object.fromEntries((DATA.recommendations || []).map((x) => [x.id, x]));
   const RBY = Object.fromEntries(R.map((r) => [r.id, r]));
   const GROUPS = DATA.groups || {};
+  const STACK = `<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="7.5" width="11" height="9" rx="1.5"/><path d="M6 4.5h9.5a1.5 1.5 0 0 1 1.5 1.5v7.5"/></svg>`;
+  // The control that opens a group: stack icon, group name, and a count badge ("8 jurisdictions ▾").
+  const grpButton = (g, items, open) => {
+    const all = GROUPS[g].members.length, jurs = new Set(items.map((r) => r.jurisdiction)).size;
+    const noun = jurs === items.length && items.length === all ? `${all} jurisdiction${all === 1 ? "" : "s"}` : items.length === all ? `${all} items` : `${items.length} of ${all}`;
+    return `<button type="button" class="grpbtn" data-group="${esc(g)}" aria-expanded="${open}" aria-label="${esc(`${GROUPS[g].title}: group of ${all} items, ${open ? "open" : "closed"}`)}"><span class="grp-icon">${STACK}</span><span class="grp-name">${esc(GROUPS[g].title)}</span><span class="grp-count">${esc(noun)}</span></button>`;
+  };
   const groupOf = (r) => (r.family && GROUPS[r.family] ? r.family : null);
   const REGS = DATA.regimes || [];
   const REG = Object.fromEntries(REGS.map((g) => [g.id, g]));
@@ -611,6 +652,7 @@ table.sc tr.sc-member th.item button { padding-left: 1em; }
   $("f-div").addEventListener("change", (e) => { state.div = e.target.value; render(); });
   $("f-body").addEventListener("change", (e) => { state.body = e.target.value; render(); });
   $("sort").addEventListener("change", (e) => { state.sort = e.target.value; render(); });
+  $("grpLegendIcon").innerHTML = STACK;
   $("toggleGroups").addEventListener("click", (e) => {
     const gs = e.target.dataset.groups.split(" ").filter(Boolean);
     const close = gs.every((g) => state.open.has(g));
@@ -691,7 +733,7 @@ table.sc tr.sc-member th.item button { padding-left: 1em; }
   }
   function itemRow(r, member) {
     const a = A(r);
-    return `<tr class="${member ? "member " : ""}${state.selected === r.id ? "sel" : ""}">
+    return `<tr class="${member ? `member ${member === "last" ? "last " : ""}` : ""}${state.selected === r.id ? "sel" : ""}">
         <td class="mono">${esc(effLabel(r))}</td>
         <td class="mono">${esc(r.jurisdiction)}</td>
         <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}" title="${esc([r.responsible.length ? `Responsible: ${whoShort(r)}` : "", r.complexity.length ? `Complexity: ${r.complexity.map((t) => (TAGS[t] ? TAGS[t].label : t)).join(", ")}` : ""].filter(Boolean).join(" · "))}">${esc(r.title)}</button> ${kindTag(r.kind)} ${endTag(r)}</td>
@@ -704,16 +746,16 @@ table.sc tr.sc-member th.item button { padding-left: 1em; }
     $("rows").innerHTML = units(rows).map((u) => {
       if (u.r) return itemRow(u.r, false);
       const c = groupCells(u), open = state.open.has(u.g), G = GROUPS[u.g];
-      const head = `<tr class="grp-row" id="grp-${esc(u.g)}">
+      const head = `<tr class="grp-row${open ? " open" : ""}" id="grp-${esc(u.g)}" data-group="${esc(u.g)}">
         <td class="mono">${esc(c.eff)}</td>
-        <td class="mono" title="${esc(c.jurTitle)}">${esc(c.jur)}</td>
-        <td class="c-title"><button type="button" class="grpbtn" data-group="${esc(u.g)}" aria-expanded="${open}">${esc(G.title)}</button></td>
+        <td class="mono" title="${esc(c.jurTitle)}"></td>
+        <td class="c-title">${grpButton(u.g, u.items, open)}</td>
         <td>${c.drv}</td><td>${c.mark}</td><td>${c.reach}</td></tr>`;
       if (!open) return head;
-      return head + (G.summary ? `<tr class="grp-sum"><td colspan="6">${esc(G.summary)}</td></tr>` : "") + u.items.map((r) => itemRow(r, true)).join("");
+      return head + (G.summary ? `<tr class="grp-sum"><td colspan="6">${esc(G.summary)}</td></tr>` : "") + u.items.map((r, k) => itemRow(r, k === u.items.length - 1 ? "last" : true)).join("");
     }).join("");
     $("rows").querySelectorAll(".rowbtn").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
-    $("rows").querySelectorAll(".grpbtn").forEach((b) => b.addEventListener("click", () => toggleGroup(b.dataset.group)));
+    $("rows").querySelectorAll("tr.grp-row").forEach((tr) => tr.addEventListener("click", () => toggleGroup(tr.dataset.group)));
   }
   function toggleGroup(g, open) {
     const on = open ?? !state.open.has(g);
@@ -741,7 +783,7 @@ table.sc tr.sc-member th.item button { padding-left: 1em; }
     const body = units(rows).map((u) => {
       if (u.r) return itemRow(u.r, false);
       const open = state.open.has(u.g);
-      return `<tr class="sc-grp"><th colspan="${order.length + 2}"><button type="button" class="grpbtn" data-group="${esc(u.g)}" aria-expanded="${open}">${esc(GROUPS[u.g].title)} (${u.items.length})</button></th></tr>` + (open ? u.items.map((r) => itemRow(r, true)).join("") : "");
+      return `<tr class="sc-grp"><th colspan="${order.length + 2}">${grpButton(u.g, u.items, open)}</th></tr>` + (open ? u.items.map((r) => itemRow(r, true)).join("") : "");
     }).join("");
     $("sc").innerHTML = head + `<tbody>${body}</tbody>`;
     $("sc").querySelectorAll("th.item button").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
@@ -1106,6 +1148,7 @@ table.sc tr.sc-member th.item button { padding-left: 1em; }
     const shownGroups = [...new Set(rows.map(groupOf).filter(Boolean))];
     const grouped = state.tab === "list" || state.tab === "scorecard";
     $("toggleGroups").hidden = !grouped || !shownGroups.length;
+    $("grpLegend").hidden = !grouped || !shownGroups.length;
     $("toggleGroups").textContent = shownGroups.length && shownGroups.every((g) => state.open.has(g)) ? "Collapse all groups" : "Expand all groups";
     $("toggleGroups").dataset.groups = shownGroups.join(" ");
     renderGlance();
