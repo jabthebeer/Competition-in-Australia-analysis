@@ -2,6 +2,7 @@
 
 alicia validate                      check every register record (assessment, responsible bodies, history), evaluation
 alicia menu [filters]                list register items with their framework marks
+alicia recommendations [filters]     what government could do about register items, with their sources
 alicia show <id>                     one record in full
 alicia families                      reforms adopted by several jurisdictions, in date order
 alicia dates <id>... | --all         gather effective dates and check them against registers
@@ -32,6 +33,7 @@ from .register.bodies import check_records, department_of, load_bodies
 from .register.catalogue import families, filter_records, load_records
 from .register.evaluation import load_evaluations
 from .register.framework import DRIVERS, KINDS
+from .register.recommendations import check_coverage, check_recommendations, load_gaps, load_recommendations
 from .register.schema import CHANNEL_LABELS, JURISDICTIONS, ChangeRecord
 
 
@@ -63,6 +65,10 @@ def cmd_validate(args) -> int:
     bodies, body_problems = load_bodies()
     problems.extend(body_problems)
     problems.extend(check_records(result.records, bodies))
+    recs = load_recommendations()
+    problems.extend(recs.problems)
+    problems.extend(check_recommendations(recs.recommendations, result.records, bodies))
+    warnings.extend(check_coverage(recs.recommendations, result.records, load_gaps()))
     ids = {r.id for r in result.records}
     problems.extend(
         f"{r.id}.json: history: unknown record '{h.record}'"
@@ -76,7 +82,8 @@ def cmd_validate(args) -> int:
         print(f"warning: {w}")
     drafts = sum(r.review.status == "draft" for r in result.records)
     print(
-        f"{len(result.records)} record(s) and {len(evals.evaluations)} evaluation(s) loaded; {len(problems)} "
+        f"{len(result.records)} record(s), {len(evals.evaluations)} evaluation(s) and "
+        f"{len(recs.recommendations)} recommendation(s) loaded; {len(problems)} "
         f"problem(s); {len(warnings)} warning(s); {drafts} record(s) awaiting review."
     )
     return 1 if problems else 0
@@ -152,6 +159,43 @@ def cmd_menu(args) -> int:
             f"{row['id']:42}  {row['title']}"
         )
     print(f"\n{len(rows)} item(s).")
+    return 0
+
+
+def cmd_recommendations(args) -> int:
+    from .register.recommendations import KIND_LABELS, actors_of
+
+    records = {r.id: r for r in _load(args)}
+    recs = load_recommendations().recommendations
+    bodies = load_bodies()[0]
+    rows = []
+    for rec in recs:
+        actors = actors_of(rec, records)
+        if args.record and args.record not in rec.applies_to:
+            continue
+        if args.kind and rec.kind != args.kind:
+            continue
+        if args.body and not any(a == args.body or (a in bodies and bodies[a].parent == args.body) for a in actors):
+            continue
+        rows.append(
+            {
+                "id": rec.id,
+                "kind": rec.kind,
+                "items": len(rec.applies_to),
+                "confidence": rec.confidence,
+                "actors": " ".join(dict.fromkeys(_dept_short(a, bodies) for a in actors)),
+                "sources": len(rec.evidence),
+                "title": rec.title,
+            }
+        )
+    if args.csv:
+        w = csv.DictWriter(sys.stdout, fieldnames=list(rows[0]) if rows else ["id"])
+        w.writeheader()
+        w.writerows(rows)
+        return 0
+    for row in rows:
+        print(f"{KIND_LABELS[row['kind']][:26]:26}  {row['items']:>3} item(s)  {row['id']:48}  {row['title']}")
+    print(f"\n{len(rows)} recommendation(s).")
     return 0
 
 
@@ -443,6 +487,13 @@ def main(argv: list[str] | None = None) -> int:
     m.add_argument("--text", help="search titles and summaries")
     m.add_argument("--csv", action="store_true", help="CSV output")
     m.set_defaults(func=cmd_menu)
+
+    rc = sub.add_parser("recommendations", help="what government could do about register items, with sources")
+    rc.add_argument("--record", help="only recommendations that apply to this record id")
+    rc.add_argument("--body", help="department or agency id that would act (a department includes its agencies)")
+    rc.add_argument("--kind", choices=["remove", "reform", "replace", "extend", "harmonise", "review", "keep"])
+    rc.add_argument("--csv", action="store_true", help="CSV output")
+    rc.set_defaults(func=cmd_recommendations)
 
     s = sub.add_parser("show", help="one record in full, with its assessment (and, for reforms, evaluability screen)")
     s.add_argument("id")

@@ -4,7 +4,7 @@ Commonwealth, state and territory reforms, existing regulatory settings and non-
 
 Browse it with the legislation menu (`uv run alicia explorer` in `alicia/`, or the website) or the command line (`uv run alicia menu`).
 
-> **Status (28 October 2026):** 234 records, all `draft`: 173 reforms, 54 existing settings and 7 non-legislative barriers. Every record has a framework assessment (28 October 2026), names the bodies responsible for it, and 29 record later changes to their law or setting (29 October 2026). The reforms were first chosen because they could be evaluated with public data (102 added on 18 October from the [legislation gap scan](../docs/legislation_gap_scan.md)); the settings and barriers were added after the [framework review](../docs/register_review_framework.md). Records not yet in force have no commencement. Everything was compiled by AI-assisted desk research from the sources each record cites and has not yet been checked by a person. The `direction` and the assessment are judgements about likely effects, not findings.
+> **Status (28 October 2026):** 234 records, all `draft`: 173 reforms, 54 existing settings and 7 non-legislative barriers. Every record has a framework assessment (28 October 2026), names the bodies responsible for it, and 29 record later changes to their law or setting (29 October 2026). 63 recommendations cover 197 items (29 October 2026). The reforms were first chosen because they could be evaluated with public data (102 added on 18 October from the [legislation gap scan](../docs/legislation_gap_scan.md)); the settings and barriers were added after the [framework review](../docs/register_review_framework.md). Records not yet in force have no commencement. Everything was compiled by AI-assisted desk research from the sources each record cites and has not yet been checked by a person. The `direction` and the assessment are judgements about likely effects, not findings.
 
 ## What a record holds
 
@@ -26,6 +26,10 @@ Browse it with the legislation menu (`uv run alicia explorer` in `alicia/`, or t
 ## Bodies
 
 [`bodies.json`](bodies.json) lists the departments, agencies and regulators that records name (105 on 29 October 2026): each with its id, name, short name, jurisdiction (or `national` for bodies of national schemes such as Ahpra), type (department, agency, regulator), the department it sits in (`parent`), its URL, the source for its place in government and whether it still exists. Departments come from each government's administrative arrangements; see [`docs/responsibility_and_history.md`](../docs/responsibility_and_history.md) for the sources and the allocations that could not be checked directly.
+
+## Recommendations
+
+[`recommendations/`](recommendations/) holds what government could do about the items, one JSON file per recommendation (validated against `schema/recommendation.schema.json`): a plain-English title and action, why it would help, the kind of action, the items it applies to, who would act (by default the bodies that administer them), the evidence (each source quoted word for word, with a locator, its origin and how the quote was checked), precedents, progress and trade-offs. [`recommendation-gaps.json`](recommendation-gaps.json) records why some items have none. Every item needs one or the other (`alicia validate`). See [`docs/recommendations.md`](../docs/recommendations.md).
 
 ## Coding protocol
 

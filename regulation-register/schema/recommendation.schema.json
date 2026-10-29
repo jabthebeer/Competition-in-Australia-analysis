@@ -1,0 +1,380 @@
+{
+  "$defs": {
+    "Evidence": {
+      "additionalProperties": false,
+      "description": "A source for the recommendation, with the exact words that support it.",
+      "properties": {
+        "source": {
+          "description": "Title of the report or study",
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "publisher": {
+          "minLength": 1,
+          "title": "Publisher",
+          "type": "string"
+        },
+        "year": {
+          "maximum": 2100,
+          "minimum": 1950,
+          "title": "Year",
+          "type": "integer"
+        },
+        "url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Url",
+          "type": "string"
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Recommendation number, chapter or page",
+          "title": "Locator"
+        },
+        "quote": {
+          "description": "Exact words from the source",
+          "minLength": 20,
+          "title": "Quote",
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "australian",
+            "international"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "checked": {
+          "default": "full-text",
+          "enum": [
+            "full-text",
+            "web-page"
+          ],
+          "title": "Checked",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "publisher",
+        "year",
+        "url",
+        "quote",
+        "origin"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Precedent": {
+      "additionalProperties": false,
+      "description": "Where the action has been taken, in Australia or abroad.",
+      "properties": {
+        "where": {
+          "minLength": 1,
+          "title": "Where",
+          "type": "string"
+        },
+        "what": {
+          "minLength": 1,
+          "title": "What",
+          "type": "string"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source"
+        },
+        "record": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The register record that covers it, if any",
+          "title": "Record"
+        }
+      },
+      "required": [
+        "where",
+        "what"
+      ],
+      "title": "Precedent",
+      "type": "object"
+    },
+    "Progress": {
+      "additionalProperties": false,
+      "description": "What governments have already done towards the action, with its source.",
+      "properties": {
+        "what": {
+          "minLength": 1,
+          "title": "What",
+          "type": "string"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source"
+        },
+        "records": {
+          "default": [],
+          "description": "Register records that show it",
+          "items": {
+            "type": "string"
+          },
+          "title": "Records",
+          "type": "array"
+        }
+      },
+      "required": [
+        "what"
+      ],
+      "title": "Progress",
+      "type": "object"
+    },
+    "Review": {
+      "additionalProperties": false,
+      "description": "Whether a person has checked the record. Desk-research drafts start as ``draft``.",
+      "properties": {
+        "status": {
+          "default": "draft",
+          "enum": [
+            "draft",
+            "reviewed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "By"
+        },
+        "on": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "On"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "title": "Review",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "title": {
+      "description": "The action, in a few plain words",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "action": {
+      "description": "What government should do, in plain English",
+      "minLength": 1,
+      "title": "Action",
+      "type": "string"
+    },
+    "why": {
+      "description": "Why it would lift productivity or competition",
+      "minLength": 1,
+      "title": "Why",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "remove",
+        "reform",
+        "replace",
+        "extend",
+        "harmonise",
+        "review",
+        "keep"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "applies_to": {
+      "description": "Register records it concerns",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Applies To",
+      "type": "array"
+    },
+    "actors": {
+      "default": [],
+      "description": "Bodies that would act; empty means those that administer the records",
+      "items": {
+        "type": "string"
+      },
+      "title": "Actors",
+      "type": "array"
+    },
+    "drivers": {
+      "description": "Framework drivers it works through",
+      "items": {
+        "enum": [
+          "entry-exit",
+          "competition",
+          "market-integration",
+          "capital",
+          "labour",
+          "burden",
+          "innovation",
+          "prices-taxes"
+        ],
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Drivers",
+      "type": "array"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "minItems": 1,
+      "title": "Evidence",
+      "type": "array"
+    },
+    "precedents": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Precedent"
+      },
+      "title": "Precedents",
+      "type": "array"
+    },
+    "progress": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Progress"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "What governments have already done towards it"
+    },
+    "tradeoffs": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "What to weigh: safety, health, revenue, transition",
+      "title": "Tradeoffs"
+    },
+    "confidence": {
+      "description": "How strong and consistent the evidence for the action is",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "title": "Confidence",
+      "type": "string"
+    },
+    "drafted_on": {
+      "format": "date",
+      "title": "Drafted On",
+      "type": "string"
+    },
+    "review": {
+      "$ref": "#/$defs/Review",
+      "default": {
+        "status": "draft",
+        "by": null,
+        "on": null,
+        "notes": null
+      }
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "action",
+    "why",
+    "kind",
+    "applies_to",
+    "drivers",
+    "evidence",
+    "confidence",
+    "drafted_on"
+  ],
+  "title": "Recommendation",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

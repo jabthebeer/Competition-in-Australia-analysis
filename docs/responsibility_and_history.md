@@ -127,6 +127,6 @@ Where a source could not be read directly, a note says so: on the tag, or for Ta
 - The NSW tags place each Act with the agency that runs it and that agency's department; the Allocation of the Administration of Acts should be checked when the NSW legislation site can be read.
 - History is recorded where a later change was found; an item with no history may still have been amended. Coverage is fullest for items that other register items change.
 
-## Next: recommendations
+## Recommendations
 
-The owner plans a recommendations section, drawing on best practice in the Australian and international literature, once the timeline work is done (parked item [P-2](parked_items.md)).
+What government could do about each item, and which of these bodies would act, is in [`recommendations.md`](recommendations.md) (DECISIONS E-95).
