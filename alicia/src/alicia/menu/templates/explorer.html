@@ -34,11 +34,10 @@
 .badge { display: inline-flex; align-items: center; gap: 6px; font-size: var(--step--1); border-radius: 999px; padding: 1px 9px 1px 3px; white-space: nowrap; font-weight: 500; }
 .badge .n { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 600; border-radius: 999px; padding: 0 6px; background: rgb(255 255 255 / 0.28); }
 .badge.big { font-size: var(--step-0); padding: 3px 12px 3px 4px; }
-.mixed { font-size: 0.75rem; color: var(--ink-3); white-space: nowrap; }
-.tag { display: inline-block; font-size: 0.78rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
+.tag { display: inline-block; font-size: var(--step--1); padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
 .tag.kind { border-style: dashed; }
 .tag.drv { border-color: var(--accent); color: var(--accent); }
-.pill { display: inline-block; font-size: 0.78rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
+.pill { display: inline-block; font-size: var(--step--1); padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
 .pill.ok { border-color: var(--accent); color: var(--accent); }
 .pill.warn { border-color: var(--warn-ink); color: var(--warn-ink); }
 
@@ -49,7 +48,7 @@
 .dv { display: grid; gap: 3px; font-size: var(--step--1); }
 .dv-head, .dv-row { display: grid; grid-template-columns: minmax(0, 15.5rem) minmax(0, 1fr) minmax(0, 1fr); gap: 0 8px; align-items: center; }
 @media (max-width: 640px) { .dv-head, .dv-row { grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) minmax(0, 1fr); } }
-.dv-head { color: var(--ink-3); font-size: 0.75rem; }
+.dv-head { color: var(--ink-3); font-size: var(--step--1); }
 .dv-head span:nth-child(2) { text-align: right; }
 .dv-row { font: inherit; color: var(--ink); background: none; border: 1px solid transparent; border-radius: 6px; padding: 3px 6px; text-align: left; cursor: pointer; width: 100%; }
 .dv-row:hover { background: var(--accent-soft); }
@@ -61,20 +60,18 @@
 .dv-bar { height: 14px; border-radius: 2px; min-width: 0; }
 .dv-neg .dv-bar { background: var(--neg); border-radius: 2px 0 0 2px; }
 .dv-pos .dv-bar { background: var(--pos); border-radius: 0 2px 2px 0; }
-.dv-n { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-2); min-width: 1.6em; }
+.dv-n { font-family: var(--font-mono); font-size: var(--step--1); color: var(--ink-2); min-width: 1.6em; }
 .dv-neg .dv-n { text-align: right; }
 .ratings { display: grid; gap: 6px; }
 .ratings .row { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) 2.5rem; gap: 8px; align-items: center; font-size: var(--step--1); }
 .ratings .bar { height: 14px; border-radius: 2px; }
 .ratings .val { font-family: var(--font-mono); text-align: right; color: var(--ink-2); }
-.glance-note { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
 
 /* Filters */
 .filters { display: grid; gap: 10px; }
 .filter-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
 .filters > * { min-width: 0; }
 .filter-label { font-size: var(--step--1); color: var(--ink-3); min-width: 7.5em; }
-.chip .n { color: var(--ink-3); font-family: var(--font-mono); font-size: 0.85em; }
 .chip[aria-pressed="false"] { color: var(--ink); }
 .chip .sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
 .search { font: inherit; padding: 6px 10px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); color: var(--ink); min-width: 0; width: min(100%, 22rem); }
@@ -101,7 +98,6 @@
 .list tbody tr:hover td { background: color-mix(in oklab, var(--accent-soft) 55%, var(--surface)); }
 .rowbtn { font: inherit; text-align: left; background: none; border: 0; padding: 0; color: var(--ink); cursor: pointer; font-weight: 500; }
 .rowbtn:hover { color: var(--accent); }
-.fam { display: block; font-size: var(--step--1); color: var(--ink-3); }
 @media (max-width: 640px) {
   .list thead { display: none; }
   .list, .list tbody, .list tr, .list td { display: block; width: 100%; }
@@ -114,24 +110,24 @@
 .sc-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: auto; max-height: 78vh; }
 table.sc { border-collapse: separate; border-spacing: 0; font-size: var(--step--1); width: 100%; }
 table.sc th, table.sc td { padding: 0; border-bottom: 1px solid var(--line); }
-table.sc thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); color: var(--ink-3); font-weight: 500; vertical-align: bottom; padding: 6px 2px; text-align: center; font-size: 0.72rem; line-height: 1.2; min-width: 3.4rem; }
-table.sc thead tr.pillars th { top: 0; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 2px; border-bottom: 0; }
+table.sc thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); color: var(--ink-3); font-weight: 500; vertical-align: bottom; padding: 6px 2px; text-align: center; font-size: var(--step--1); line-height: 1.2; min-width: 3.8rem; }
+table.sc thead tr.pillars th { top: 0; font-size: var(--step--1); padding-bottom: 2px; border-bottom: 0; }
 table.sc thead tr.pillars th span { display: block; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; margin: 0 4px; }
-table.sc thead tr.drv th { top: 22px; }
+table.sc thead tr.drv th { top: 26px; }
 table.sc th.item { text-align: left; position: sticky; left: 0; z-index: 1; background: var(--surface); padding: 5px 10px; font-weight: 400; min-width: 15rem; max-width: 22rem; }
 table.sc thead th.item { z-index: 3; text-align: left; }
 table.sc th.item button { font: inherit; background: none; border: 0; padding: 0; color: var(--ink); cursor: pointer; text-align: left; }
 table.sc th.item button:hover { color: var(--accent); }
-table.sc th.item .j { font-family: var(--font-mono); color: var(--ink-3); margin-right: 6px; font-size: 0.85em; }
+table.sc th.item .j { font-family: var(--font-mono); color: var(--ink-3); margin-right: 6px; }
 table.sc td.cell { text-align: center; padding: 3px 2px; }
-table.sc td.cell span { display: inline-block; min-width: 2.2rem; border-radius: 4px; padding: 2px 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.78rem; }
+table.sc td.cell span { display: inline-block; min-width: 2.2rem; border-radius: 4px; padding: 2px 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: var(--step--1); }
 table.sc td.cell span.m0 { background: none; color: var(--ink-3); }
 table.sc td.tot { text-align: center; padding: 3px 6px; border-left: 1px solid var(--line-strong); }
 table.sc tr.sel th.item, table.sc tr.sel td { background: var(--accent-soft); }
 table.sc td.is-main span { box-shadow: inset 0 0 0 1.5px var(--ink); }
-table.sc td.tot span { display: inline-block; min-width: 2.4rem; border-radius: 4px; padding: 2px 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.78rem; font-weight: 600; }
+table.sc td.tot span { display: inline-block; min-width: 2.4rem; border-radius: 4px; padding: 2px 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: var(--step--1); font-weight: 600; }
 .sc-key { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: var(--step--1); color: var(--ink-2); margin-top: 8px; align-items: center; }
-.sc-key span.k { display: inline-block; min-width: 1.8rem; text-align: center; border-radius: 4px; font-family: var(--font-mono); font-size: 0.75rem; padding: 1px 0; }
+.sc-key span.k { display: inline-block; min-width: 1.8rem; text-align: center; border-radius: 4px; font-family: var(--font-mono); font-size: var(--step--1); padding: 1px 0; }
 
 /* Timeline */
 .tl-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 6px 6px; }
@@ -167,50 +163,47 @@ table.sc td.tot span { display: inline-block; min-width: 2.4rem; border-radius: 
 .mrow .scale::after { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--ink-3); }
 .mrow .val { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
 .mrow.zero .val { color: var(--ink-3); }
-.mrow .why { grid-column: 1 / -1; color: var(--ink-2); font-size: 0.8rem; padding-left: 0.9em; border-left: 2px solid var(--line-strong); margin: 0 0 4px; }
+.mrow .why { color: var(--ink-2); font-size: var(--step--1); padding-left: 0.9em; border-left: 2px solid var(--line-strong); margin: 2px 0 6px; }
 .mrow.main .lab { font-weight: 600; }
 .ev-links { font-size: var(--step--1); display: grid; gap: 2px; }
 .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .tile { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; display: grid; gap: 1px; align-content: start; }
-.tile .t-lab { font-size: 0.75rem; color: var(--ink-3); }
+.tile .t-lab { font-size: var(--step--1); color: var(--ink-2); }
 .tile .t-val { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: var(--step-1); }
-.tile .t-all { font-size: 0.75rem; color: var(--ink-2); }
-table.st { border-collapse: collapse; width: 100%; font-size: 0.8rem; }
+.tile .t-all { font-size: var(--step--1); color: var(--ink-3); }
+table.st { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
 table.st th, table.st td { padding: 4px 4px; border-bottom: 1px solid var(--line); vertical-align: top; }
 table.st thead th { color: var(--ink-3); font-weight: 500; text-align: right; }
 table.st thead th:first-child { text-align: left; }
 table.st td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
 table.st td.num.all { color: var(--ink-2); }
-table.st tr.grp th { text-align: left; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); font-weight: 600; padding-top: 8px; }
-table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
+table.st tr.grp th { text-align: left; font-size: var(--step--1); color: var(--ink-2); font-weight: 600; padding-top: 10px; }
 .detail details.more .tscroll { max-height: none; overflow: visible; }
-.st-src { font-size: 0.75rem; color: var(--ink-3); margin: 6px 0 0; }
+.st-src { font-size: var(--step--1); color: var(--ink-2); margin: 6px 0 0; }
 .d-list { margin: 0; padding-left: 1.1em; font-size: var(--step--1); display: grid; gap: 4px; }
 .d-list li { overflow-wrap: anywhere; }
 .close { justify-self: end; font: inherit; font-size: var(--step--1); background: none; border: 1px solid var(--line-strong); border-radius: 6px; color: var(--ink-2); padding: 2px 8px; cursor: pointer; }
 .arch-note { font-size: var(--step--1); color: var(--ink-2); border: 1px dashed var(--line-strong); border-radius: 8px; padding: 8px 10px; margin: 0; }
 
 /* Who is responsible, and what happened to the law since */
-.who { display: block; font-size: 0.75rem; color: var(--ink-3); margin-top: 2px; }
 .tag.end { background: var(--mk-0); color: var(--ink-2); border-color: var(--ink-3); }
 .ended-note { font-size: var(--step--1); border-left: 3px solid var(--ink-3); padding: 4px 0 4px 10px; color: var(--ink-2); }
 .ended-note strong { color: var(--ink); }
 .lnk { font: inherit; background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; text-align: left; }
 .resp { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: var(--step--1); }
 .resp li { display: grid; gap: 1px; overflow-wrap: anywhere; }
-.resp .role { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); }
+.resp .role { font-size: var(--step--1); color: var(--ink-3); }
 .resp .in { color: var(--ink-2); }
-.resp .rnote { color: var(--ink-3); font-size: 0.78rem; }
 .tline { list-style: none; margin: 0; padding: 0 0 0 16px; border-left: 2px solid var(--line-strong); display: grid; gap: 10px; font-size: var(--step--1); margin-left: 6px; }
 .tline li { position: relative; display: grid; gap: 1px; overflow-wrap: anywhere; }
 .tline li::before { content: ""; position: absolute; left: -24px; top: 0.25em; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink-3); }
 .tline li.later::before { background: var(--accent); border-color: var(--accent); }
 .tline li.end::before { background: var(--ink); border-color: var(--ink); }
 .tline li.upcoming::before { border-style: dashed; background: var(--surface); }
-.tline .t-when { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-3); }
+.tline .t-when { font-family: var(--font-mono); color: var(--ink-3); }
 .tline .t-kind { font-weight: 600; }
-.tline .t-src { font-size: 0.75rem; color: var(--ink-3); }
-.tl-key { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.75rem; color: var(--ink-3); }
+.tline .t-src { color: var(--ink-3); }
+.tl-key { display: none; flex-wrap: wrap; gap: 4px 14px; font-size: var(--step--1); color: var(--ink-3); }
 .tl-key i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--ink-3); box-sizing: border-box; vertical-align: -1px; margin-right: 4px; }
 .tl-key i.later { background: var(--accent); border-color: var(--accent); }
 .tl-key i.end { background: var(--ink); border-color: var(--ink); }
@@ -221,34 +214,32 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
 .rec h4 { margin: 0; font-size: var(--step-0); font-family: var(--font-body); font-weight: 600; line-height: 1.35; }
 .rec p { margin: 0; font-size: var(--step--1); overflow-wrap: anywhere; }
 .rec .r-why { color: var(--ink-2); }
-.rec .r-sub { color: var(--ink-2); font-size: 0.8rem; }
+.rec .r-sub { color: var(--ink-2); }
 .rec .r-sub strong { color: var(--ink); font-weight: 600; }
-.rec-meta { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: 0.78rem; color: var(--ink-3); }
+.rec-meta { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: var(--step--1); color: var(--ink-2); }
 .rec details summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); }
 .ev { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: var(--step--1); }
 .ev li { overflow-wrap: anywhere; }
 .ev blockquote { margin: 0 0 2px; padding: 2px 0 2px 10px; border-left: 2px solid var(--line-strong); color: var(--ink-2); font-style: italic; }
-.ev .src { font-size: 0.78rem; color: var(--ink-3); }
+.ev .src { color: var(--ink-3); }
 .tag.intl { border-color: var(--accent); color: var(--accent); }
 .rec-gap { font-size: var(--step--1); color: var(--ink-2); border: 1px dashed var(--line-strong); border-radius: 8px; padding: 8px 10px; margin: 0; }
 .reclist .rec.hl { box-shadow: 0 0 0 2px var(--accent); }
-.rec-items { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 0.8rem; }
-.rec-items .lnk { font-size: 0.8rem; }
+.rec-items { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: var(--step--1); }
 /* Regulatory complexity (DECISIONS E-96): tags, regime cards with their tier diagram, and the industries view. */
 .tag.cx { border-style: dashed; border-color: var(--ink-3); color: var(--ink); background: var(--surface); }
 .cxs { display: inline-flex; flex-wrap: wrap; gap: 3px; margin-left: 6px; vertical-align: middle; }
-.cxs .tag.cx { font-size: 0.7rem; padding: 0 6px; }
 .regime { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin: 0 0 10px; background: var(--surface); }
 .regime h4 { margin: 0 0 4px; font-size: var(--step-0); }
 .regime h4 .lnk { font: inherit; font-weight: 600; }
 .regime p { margin: 4px 0; font-size: var(--step--1); }
 .regime-body { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 6px; }
 .regime-body svg.venn { max-width: 320px; }
-.venn-key { font-size: 0.75rem; color: var(--ink-3); margin: 2px 0 0; }
+.venn-key { font-size: var(--step--1); color: var(--ink-2); margin: 2px 0 0; }
 ul.issues { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 ul.issues li { font-size: var(--step--1); border-left: 2px solid var(--line-strong); padding-left: 8px; }
 ul.issues li p { margin: 2px 0; }
-.ist { font-size: 0.75rem; color: var(--ink-3); margin-left: 4px; }
+.ist { font-size: var(--step--1); color: var(--ink-3); margin-left: 6px; }
 .no-issue { font-size: var(--step--1); color: var(--ink-3); margin: 0; }
 ul.layers { margin: 4px 0; padding-left: 0; list-style: none; font-size: var(--step--1); display: grid; gap: 2px; }
 .tier { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
@@ -261,14 +252,45 @@ table.ind thead th { color: var(--ink-3); font-weight: 500; vertical-align: bott
 table.ind tr.sel td { background: var(--accent-soft); }
 table.ind .rowbtn .code { font-family: var(--font-mono); color: var(--ink-3); margin-right: 6px; }
 .ind-tools { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 0 0 8px; font-size: var(--step--1); }
-.ind-tools .chip { font-size: 0.78rem; }
 .tscroll-ind { overflow-x: auto; }
 .cls-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin: 8px 0; }
 .cls-tiles div { border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
 .cls-tiles .n { display: block; font-size: var(--step-1); font-weight: 600; font-family: var(--font-mono); }
-.cls-tiles .l { font-size: 0.75rem; color: var(--ink-3); }
+.cls-tiles .l { font-size: var(--step--1); color: var(--ink-2); }
 ul.reg-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: var(--step--1); }
-ul.reg-rows .muted { font-size: 0.75rem; }
+ul.reg-rows .muted { font-size: var(--step--1); }
+/* Decluttered layout (owner request, 29 October 2026): secondary detail sits behind "i" buttons and collapsible
+   sections, and no text is set below 13px. */
+.term.info { display: inline-grid; place-items: center; width: 1.15rem; height: 1.15rem; border-radius: 50%; border: 1px solid var(--line-strong);
+  font: 600 0.75rem/1 var(--font-body); color: var(--ink-3); text-decoration: none; vertical-align: 0.15em; margin-left: 6px; cursor: help; }
+.term.info:hover, .term.info:focus-visible { color: var(--accent); border-color: var(--accent); }
+.more-filters { border-top: 1px solid var(--line); padding-top: 8px; }
+.more-filters > summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); width: max-content; }
+.more-filters[open] > summary { margin-bottom: 10px; }
+.more-filters .filters-more { display: grid; gap: 10px; }
+details.fold { border-top: 1px solid var(--line); padding-top: 10px; }
+details.fold > summary { cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+details.fold > summary::-webkit-details-marker { display: none; }
+details.fold > summary::before { content: "▸"; color: var(--ink-3); width: 0.8em; flex: none; }
+details.fold[open] > summary::before { content: "▾"; }
+details.fold > summary .fold-t { font-size: var(--step--1); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); }
+details.fold > summary .fold-n { font-size: var(--step--1); color: var(--ink-3); }
+details.fold > summary:hover .fold-t { color: var(--accent); }
+details.fold > .fold-body { display: grid; gap: 10px; margin-top: 10px; }
+details.mrow { display: block; padding: 2px 0; }
+details.mrow > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 7.5rem 2.2rem; gap: 2px 8px; align-items: center; }
+details.mrow > summary::-webkit-details-marker { display: none; }
+details.mrow > summary .lab::before { content: "▸ "; color: var(--ink-3); }
+details.mrow[open] > summary .lab::before { content: "▾ "; }
+.zero-note { font-size: var(--step--1); color: var(--ink-3); margin: 4px 0 0; }
+details.sub > summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); }
+details.sub[open] > summary { margin-bottom: 6px; }
+details.sub > .sub-body { display: grid; gap: 6px; font-size: var(--step--1); color: var(--ink-2); }
+details.about { border-top: 1px solid var(--line); padding-top: 10px; }
+details.about > summary { cursor: pointer; font-weight: 600; color: var(--ink-2); }
+details.about[open] > summary { margin-bottom: 8px; }
+.mono, .num, table.st td.num { font-size: 1em; }
+.issue-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
 </style>
 
 <div class="wrap">
@@ -284,15 +306,13 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     <div class="panel glance">
       <div class="stack">
         <div class="block-head">
-          <h2 id="h-glance">What weighs on productivity</h2>
-          <p class="glance-note">Items in the register by their <span data-term="mainDriver">main driver</span>: those marked negative overall to the left, positive to the right. Click a driver to filter. Counts follow the filters below.</p>
+          <h2 id="h-glance">What weighs on productivity<button type="button" class="term info" data-term="helpGlance" aria-label="About this chart" aria-describedby="def-helpGlance">i</button></h2>
         </div>
         <div class="dv" id="dv" role="group" aria-label="Items by main driver"></div>
       </div>
       <div class="stack">
-        <h2>Overall marks</h2>
+        <h2>Overall marks<button type="button" class="term info" data-term="helpMarks" aria-label="About the overall marks" aria-describedby="def-helpMarks">i</button></h2>
         <div class="ratings" id="ratingBars"></div>
-        <p class="glance-note" id="glanceNote"></p>
       </div>
     </div>
   </section>
@@ -305,6 +325,7 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     </div>
     <div class="filter-row"><span class="filter-label">Main driver</span><div class="chips" id="f-driver"></div></div>
     <div class="filter-row"><span class="filter-label">Overall mark</span><div class="chips" id="f-rating"></div></div>
+    <details class="more-filters" id="moreFilters"><summary>More filters<span id="moreCount"></span></summary><div class="filters-more">
     <div class="filter-row"><span class="filter-label">Kind of item</span><div class="chips" id="f-kind"></div></div>
     <div class="filter-row"><span class="filter-label">Jurisdiction</span><div class="chips" id="f-jur"></div></div>
     <div class="filter-row"><span class="filter-label">Reach</span><div class="chips" id="f-reach"></div></div>
@@ -319,6 +340,7 @@ ul.reg-rows .muted { font-size: 0.75rem; }
       <select id="f-body"></select>
     </div>
     <div class="filter-row"><span class="filter-label"><span data-term="complexity">Complexity</span></span><div class="chips" id="f-cx"></div></div>
+    </div></details>
   </section>
 
   <div class="main">
@@ -357,7 +379,6 @@ ul.reg-rows .muted { font-size: 0.75rem; }
         <div class="reclist" id="reclist"></div>
       </div>
       <div id="view-ind" role="tabpanel" aria-labelledby="tab-ind" hidden>
-        <p class="small muted" id="indNote"></p>
         <div class="ind-tools" id="indTools"></div>
         <div class="tscroll-ind"><table class="ind" id="ind"></table></div>
       </div>
@@ -424,16 +445,25 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     regime: ["Regulatory regime", "A body of regulation a business deals with as one task, such as food safety or liquor licensing, with the tiers of government that set its rules, license, approve, inspect or collect."],
     touchpoints: ["Government parties", "The distinct agencies, by tier, that a business deals with directly under a regime: those that license, approve, inspect, collect or fund. Setting the rules is not counted."],
     ...Object.fromEntries(Object.entries(DATA.issueTags || {}).map(([k, t]) => [`cx-${k}`, [t.label, t.help]])),
+    helpGlance: ["What weighs on productivity", "Items in the register by their main driver (the driver with the largest mark): those marked negative overall to the left, positive to the right. Click a driver to filter. Counts follow the filters below."],
+    helpMarks: ["Overall marks", "Each item's marks on the eight drivers added up. Most reforms in the register were first chosen because they could be evaluated with public data, so the register is not yet a balanced sample of everything that weighs on productivity."],
+    helpAssess: ["How items are marked", DATA.menuNote],
+    helpScorecard: ["Reading the scorecard", "Each row is an item; each column a driver of productivity. A cell shows the item's mark on that driver; the outlined cell is its main driver. Overall is the sum of the marks. Hover a cell for the reason, and click an item to open it."],
+    helpVenn: ["Which tier does what", "Each circle is a tier of government: Commonwealth, state or territory, or local council. Each label is something it does under the regime. A label in an overlap is done by more than one tier, shown in bold. Hover a label for the bodies involved."],
+    helpClassVenn: ["Reading the diagram", "Each number counts the jobs (licensing, approving, inspecting, collecting, funding, setting rules) that a tier, or several tiers together, perform across this industry's regimes. Numbers in an overlap are jobs done by more than one tier. Hover a number for the list."],
+    helpInd: ["Industries", "Every detailed industry in the ABS classification (ANZSIC classes), with the regulatory regimes it deals with. Every number counts only the regimes specific to the industry, so industries can be compared (the regimes that apply across industries, such as payroll tax, reach them all); hover a number for the total including those. The search box, the industry filter and the complexity tags apply here; the other filters are for register items. Click an industry for its regimes and a diagram of which tiers of government do what."],
   });
 
   // Every defined word the page can show (the detail panel adds most of them only when an item is open).
+  // An "i" button: more detail on hover, focus or tap.
+  const info = (key, label) => `<button type="button" class="term info" data-term="${esc(key)}" aria-label="${esc(label || "More detail")}" aria-describedby="def-${esc(key)}">i</button>`;
   const GLOSSARY = ["mainDriver", "overall", "mixed", "reach", "confidence", "employing", "entry", "exit", "avgGrowth", "valueAdded",
     "ebitda", "labourProductivity", "mfp", "topShare", "markupRba", "blade", "noCompetition", "regHampered", "capex", "rd",
     "administers", "regulates", "policy", "complexity", "regime", "touchpoints", ...Object.keys(DATA.issueTags || {}).map((k) => `cx-${k}`)];
 
   // --- Helpers ------------------------------------------------------------------------------------
   const ratingBadge = (a, big) => a
-    ? `<span class="badge ${RATING_CLS[a.rating]}${big ? " big" : ""}" title="${esc(`Overall mark ${signed(a.total)}: ${RATING_LABEL[a.rating]}`)}"><span class="n">${esc(signed(a.total))}</span>${esc(RATING_LABEL[a.rating])}</span>${a.mixed ? ` <span class="mixed">mixed</span>` : ""}`
+    ? `<span class="badge ${RATING_CLS[a.rating]}${big ? " big" : ""}" title="${esc(`Overall mark ${signed(a.total)}: ${RATING_LABEL[a.rating]}${a.mixed ? ". Mixed: some drivers are marked up and some down" : ""}`)}"><span class="n">${esc(signed(a.total))}</span>${esc(RATING_LABEL[a.rating])}</span>`
     : `<span class="muted small">Not assessed</span>`;
   const drvTag = (d) => `<span class="tag drv">${esc(DRV[d].short)}</span>`;
   const kindTag = (k) => (k === "reform" ? "" : `<span class="tag kind" title="${esc(FW.kinds[k].help)}">${esc(FW.kinds[k].label)}</span>`);
@@ -453,7 +483,15 @@ ul.reg-rows .muted { font-size: 0.75rem; }
   const TAGS = DATA.issueTags || {};
   const TIERS = DATA.tiers || {};
   const FN = DATA.functions || {};
-  const IND = (DATA.industries || []).map(([code, name, div, regs, tp, stp, issues]) => ({ code, name, div, regs: regs.map((n) => REGS[n]), tp, stp, issues }));
+  const live = (g) => g.issues.filter((i) => i.status !== "addressed").length;
+  // Each industry's measures for its industry-specific regimes (comparable across industries, since the regimes that
+  // apply across industries reach them all), with the totals for all its regimes.
+  const IND = (DATA.industries || []).map(([code, name, div, idx, tp, stp, issues]) => {
+    const regs = idx.map((n) => REGS[n]), sec = regs.filter((g) => g.scope === "sector");
+    const ov = (gs) => gs.filter((g) => Object.keys(g.overlap).length).length, vr = (gs) => gs.filter((g) => g.varies).length;
+    return { code, name, div, regs, tp, stp, issues, sp: sec.length, ov: ov(sec), ovAll: ov(regs), vr: vr(sec), vrAll: vr(regs),
+      iss: sec.reduce((n, g) => n + live(g), 0) };
+  });
   const INDBY = Object.fromEntries(IND.map((c) => [c.code, c]));
   const cxTag = (t) => `<span class="tag cx" title="${esc(TAGS[t] ? TAGS[t].help : t)}">${esc(TAGS[t] ? TAGS[t].label : t)}</span>`;
   const STATUS = { current: "Current", "partly-addressed": "Partly addressed", addressed: "Addressed" };
@@ -508,7 +546,7 @@ ul.reg-rows .muted { font-size: 0.75rem; }
   // --- Filters ------------------------------------------------------------------------------------
   const count = (fn) => R.filter(fn).length;
   function chipGroup(el, key, options) {
-    el.innerHTML = options.map((o) => `<button type="button" class="chip" data-key="${key}" data-val="${esc(o.value)}" aria-pressed="false"${o.title ? ` title="${esc(o.title)}"` : ""}>${o.icon || ""}${esc(o.label)} <span class="n">${o.n}</span></button>`).join("");
+    el.innerHTML = options.map((o) => `<button type="button" class="chip" data-key="${key}" data-val="${esc(o.value)}" aria-pressed="false" title="${esc(`${o.title ? `${o.title} ` : ""}(${o.n} item${o.n === 1 ? "" : "s"})`)}">${o.icon || ""}${esc(o.label)}</button>`).join("");
   }
   chipGroup($("f-driver"), "driver", DRV_KEYS.map((d) => ({ value: d, label: DRV[d].short, title: DRV[d].question, n: count((r) => A(r) && A(r).main_driver === d) })));
   chipGroup($("f-rating"), "rating", RATING_ORDER.map((k) => ({ value: k, label: RATING_LABEL[k], icon: `<i class="sw ${RATING_CLS[k]}" aria-hidden="true"></i>`, n: count((r) => A(r) && A(r).rating === k) })));
@@ -589,9 +627,6 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     const rc = RATING_ORDER.map((k) => ({ k, n: rows.filter((r) => A(r) && A(r).rating === k).length }));
     const rmax = Math.max(1, ...rc.map((x) => x.n));
     $("ratingBars").innerHTML = rc.map((x) => `<div class="row"><span>${esc(RATING_LABEL[x.k])}</span><span class="bar ${RATING_CLS[x.k]}" style="width:${(x.n / rmax) * 100}%"></span><span class="val">${x.n}</span></div>`).join("");
-    const neg = rows.filter((r) => A(r) && A(r).total < 0).length, pos = rows.filter((r) => A(r) && A(r).total > 0).length;
-    const broadNeg = rows.filter((r) => A(r) && A(r).total < 0 && (A(r).reach === "economy-wide" || A(r).reach === "multi-sector")).length;
-    $("glanceNote").innerHTML = `${rows.length} items: ${neg} marked negative overall and ${pos} positive. ${broadNeg} of the negative items reach several sectors or the whole economy. Most reforms in the register were chosen because they could be evaluated with public data, so the register is not yet a balanced sample of everything that weighs on productivity.`;
   }
 
   // --- List ---------------------------------------------------------------------------------------
@@ -601,7 +636,7 @@ ul.reg-rows .muted { font-size: 0.75rem; }
       return `<tr class="${state.selected === r.id ? "sel" : ""}">
         <td class="mono">${esc(effLabel(r))}</td>
         <td class="mono">${esc(r.jurisdiction)}</td>
-        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(r.title)}</button>${r.family ? `<span class="fam">${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}${kindTag(r.kind)} ${endTag(r)}${r.responsible.length ? `<span class="who" title="Responsible">${esc(whoShort(r))}</span>` : ""}${r.complexity.length ? `<span class="cxs" aria-label="Complexity">${r.complexity.map(cxTag).join("")}</span>` : ""}</td>
+        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}" title="${esc([r.family ? DATA.familyLabels[r.family] || r.family : "", r.responsible.length ? `Responsible: ${whoShort(r)}` : "", r.complexity.length ? `Complexity: ${r.complexity.map((t) => (TAGS[t] ? TAGS[t].label : t)).join(", ")}` : ""].filter(Boolean).join(" · "))}">${esc(r.title)}</button> ${kindTag(r.kind)} ${endTag(r)}</td>
         <td>${a ? drvTag(a.main_driver) : ""}</td>
         <td>${ratingBadge(a)}</td>
         <td>${a ? esc(reachLabel(a.reach)) : ""}</td>
@@ -630,7 +665,7 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     $("sc").innerHTML = head + `<tbody>${body}</tbody>`;
     $("sc").querySelectorAll("th.item button").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
     $("scKey").innerHTML = [2, 1, -1, -2].map((m) => `<span><span class="k ${markCls(m)}">${esc(signed(m))}</span> ${esc(FW.markLabels[String(m)])}</span>`).join("") +
-      `<span><span class="k" style="box-shadow: inset 0 0 0 1.5px var(--ink)">±</span> Main driver</span><span>Overall: the sum of the marks, coloured by band.</span><span>Hover a cell for the reason; click an item to open it.</span>`;
+      `<span><span class="k" style="box-shadow: inset 0 0 0 1.5px var(--ink)">±</span> Main driver</span>${info("helpScorecard", "Reading the scorecard")}`;
   }
 
   // --- Timeline -----------------------------------------------------------------------------------
@@ -708,21 +743,17 @@ ul.reg-rows .muted { font-size: 0.75rem; }
 
   // --- Detail -------------------------------------------------------------------------------------
   const li = (items) => (items.length ? `<ul class="d-list">${items.join("")}</ul>` : "");
+  // A collapsible section: the heading and a short summary show; the body opens on request.
+  const fold = (title, body, note = "", open = false) => (body ? `<details class="d-sec fold"${open ? " open" : ""}><summary><span class="fold-t">${esc(title)}</span>${note ? `<span class="fold-n">${esc(note)}</span>` : ""}</summary><div class="fold-body">${body}</div></details>` : "");
   function marksHtml(a) {
-    const order = DRV_KEYS;
-    return `<div class="marks">${order.map((d) => {
-      const m = a.marks.find((x) => x.driver === d);
-      const v = m ? m.mark : 0;
-      const cells = [-2, -1, 1, 2].map((s) => {
-        const on = v !== 0 && Math.sign(s) === Math.sign(v) && Math.abs(s) <= Math.abs(v);
-        return `<i class="${on ? markCls(v) : ""}"></i>`;
-      }).join("");
-      return `<div class="mrow${v ? "" : " zero"}${a.main_driver === d ? " main" : ""}">
-        <span class="lab">${esc(DRV[d].label)}${a.main_driver === d ? " · main driver" : ""}</span>
-        <span class="scale" role="img" aria-label="${esc(`${DRV[d].label}: ${signed(v)}, ${FW.markLabels[String(v)]}`)}">${cells}</span>
-        <span class="val">${esc(v ? signed(v) : "0")}</span>
-        ${m ? `<p class="why">${esc(m.reason)}</p>` : ""}</div>`;
-    }).join("")}</div>`;
+    const scale = (v) => [-2, -1, 1, 2].map((x) => `<i class="${v !== 0 && Math.sign(x) === Math.sign(v) && Math.abs(x) <= Math.abs(v) ? markCls(v) : ""}"></i>`).join("");
+    const marked = DRV_KEYS.map((d) => a.marks.find((x) => x.driver === d)).filter(Boolean);
+    const rows = marked.map((m) => `<details class="mrow${a.main_driver === m.driver ? " main" : ""}"><summary>
+        <span class="lab">${esc(DRV[m.driver].label)}${a.main_driver === m.driver ? " (main driver)" : ""}</span>
+        <span class="scale" role="img" aria-label="${esc(`${DRV[m.driver].label}: ${signed(m.mark)}, ${FW.markLabels[String(m.mark)]}`)}">${scale(m.mark)}</span>
+        <span class="val">${esc(signed(m.mark))}</span></summary><p class="why">${esc(m.reason)}</p></details>`).join("");
+    const rest = DRV_KEYS.filter((d) => !a.marks.some((x) => x.driver === d)).map((d) => DRV[d].label);
+    return `<div class="marks">${rows}</div>${rest.length ? `<p class="zero-note" title="${esc(rest.join(", "))}">No material effect on the other ${rest.length} driver${rest.length === 1 ? "" : "s"}.</p>` : ""}`;
   }
   function statsHtml(r) {
     const s = r.stats;
@@ -740,13 +771,13 @@ ul.reg-rows .muted { font-size: 0.75rem; }
       grp = x.group;
       const cap = [x.level !== lastLevel ? x.level : "", x.period].filter(Boolean).join(", ");
       lastLevel = x.level;
-      return `${head}<tr><td>${named(x.id)}<span class="lv">${esc(cap)}</span></td>
+      return `${head}<tr><td title="${esc(cap)}">${named(x.id)}</td>
         <td class="num">${esc(fmtStat(x.value, x.fmt))}</td><td class="num all">${s.economyWide ? "" : esc(fmtStat(x.all, x.fmt))}</td></tr>`;
     }).join("");
     const used = [...new Set(rows.map((x) => x.source))].filter((k) => src[k]).map((k) => link(src[k].url, src[k].label));
-    return `<p class="small muted">${s.economyWide ? "Economy-wide: the figures are for all industries." : `Industries: ${esc(s.industries)}.`}</p>
+    return `<p>${s.economyWide ? "Economy-wide: the figures are for all industries." : `Industries: ${esc(s.industries)}.`}</p>
       <div class="tiles">${tiles}</div>
-      <details class="more" open><summary>All statistics</summary><div class="tscroll"><table class="st"><thead><tr><th>Measure</th><th>${s.economyWide ? "All industries" : "Affected"}</th><th>${s.economyWide ? "" : "All industries"}</th></tr></thead><tbody>${body}</tbody></table></div>
+      <details class="more sub"><summary>All statistics, sources and notes</summary><div class="tscroll"><table class="st"><thead><tr><th>Measure</th><th>${s.economyWide ? "All industries" : "Affected"}</th><th>${s.economyWide ? "" : "All industries"}</th></tr></thead><tbody>${body}</tbody></table></div>
       <p class="st-src">Sources: ${used.join("; ")}.</p>
       <p>${esc(DATA.statsNote)}</p></details>`;
   }
@@ -758,16 +789,18 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     const prec = x.precedents.length ? `<p class="r-sub"><strong>Done elsewhere:</strong> ${x.precedents.map((pr) => `${esc(pr.where)}: ${esc(pr.what)} ${pr.record && RBY[pr.record] ? recLink(pr.record) : pr.source ? link(pr.source, "Source") : ""}`).join(" ")}</p>` : "";
     const ev = x.evidence.map((e) => `<li><blockquote>${esc(e.quote)}</blockquote><span class="src">${link(e.url, e.source)}, ${esc(e.publisher)}, ${esc(e.year)}${e.locator ? `, ${esc(e.locator)}` : ""}${e.origin === "international" ? ` <span class="tag intl">International</span>` : ""}${e.checked === "web-page" ? " (quote read from the web page)" : ""}</span></li>`).join("");
     const items = withItems ? `<div class="rec-items"><span class="muted">Applies to:</span>${x.applies_to.filter((id) => RBY[id]).map(recLink).join("")}</div>` : "";
+    const facts = [`${esc(x.kindLabel)}`, `evidence ${esc(FW.confidence[x.confidence].label.toLowerCase())}`, x.international ? "draws on international evidence" : "", x.review.status === "draft" ? "draft" : ""].filter(Boolean).join(" · ");
     return `<article class="rec" id="rec-${esc(x.id)}">
       <h4>${esc(x.title)}</h4>
-      <div class="rec-meta"><span class="tag kind">${esc(x.kindLabel)}</span><span>Evidence: ${esc(FW.confidence[x.confidence].label.toLowerCase())}</span>${x.international ? `<span class="tag intl" title="Draws on international evidence or practice">International evidence</span>` : ""}${x.review.status === "draft" ? `<span>Draft</span>` : ""}</div>
       <p>${esc(x.action)}</p>
-      <p class="r-why">${esc(x.why)}</p>
-      ${actors.length ? `<p class="r-sub"><strong>Who would act:</strong> ${actors.join("; ")}</p>` : ""}
-      ${prog}${prec}
-      ${x.tradeoffs ? `<p class="r-sub"><strong>To weigh:</strong> ${esc(x.tradeoffs)}</p>` : ""}
-      ${items}
-      <details><summary>Evidence (${x.evidence.length} source${x.evidence.length === 1 ? "" : "s"})</summary><ul class="ev">${ev}</ul></details>
+      <details class="sub"><summary>Why, who and evidence</summary><div class="sub-body">
+        <p class="r-why">${esc(x.why)}</p>
+        ${actors.length ? `<p class="r-sub"><strong>Who would act:</strong> ${actors.join("; ")}</p>` : ""}
+        ${prog}${prec}
+        ${x.tradeoffs ? `<p class="r-sub"><strong>To weigh:</strong> ${esc(x.tradeoffs)}</p>` : ""}
+        ${items}
+        <p class="r-sub">${facts}</p>
+        <ul class="ev">${ev}</ul></div></details>
     </article>`;
   }
   function recsHtml(r) {
@@ -780,16 +813,14 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     return `<ul class="resp">${r.responsible.map((x) => {
       const b = B[x.body], d = b && b.type !== "department" && b.parent && B[b.parent] ? B[b.parent] : null;
       return `<li><span class="role">${term(x.role, DATA.roles[x.role])}</span>
-        <span>${b ? link(b.url, b.name) : esc(x.body)}${b && !b.current ? ` <span class="muted">(former)</span>` : ""}${d ? ` <span class="in">· in ${esc(d.name)}</span>` : ""}</span>
-        ${x.note ? `<span class="rnote">${esc(x.note)}</span>` : ""}
-        <span class="rnote">${link(x.source, "Source")}</span></li>`;
+        <span${x.note ? ` title="${esc(x.note)}"` : ""}>${b ? link(b.url, b.name) : esc(x.body)}${b && !b.current ? ` (former)` : ""}${d ? ` <span class="in">· in ${esc(d.name)}</span>` : ""} <span class="t-src">· ${link(x.source, "source")}</span></span></li>`;
     }).join("")}</ul>`;
   }
   function timelineHtml(r) {
     const c = r.check;
     const head = r.kind !== "barrier" && r.effective
       ? `<p class="small">${r.kind === "setting" ? "In place since" : "Effective"} <strong>${esc(fmtDate(r.effective))}</strong>${r.effectiveWhat ? `: ${esc(r.effectiveWhat)}` : ""}</p>
-        ${c ? `<p><span class="pill ${CHECK[c.status].cls}">${esc(CHECK[c.status].label)}</span> <span class="muted small">${esc(CHECK[c.status].help)}.</span></p>${li(c.issues.map((i) => `<li>${esc(i)}</li>`))}` : ""}`
+        ${c ? `<p><span class="pill ${CHECK[c.status].cls}" title="${esc(`${CHECK[c.status].help}.${c.issues.length ? ` ${c.issues.join(" ")}` : ""}`)}">${esc(CHECK[c.status].label)}</span></p>` : ""}`
       : r.kind === "reform" && !r.effective ? `<p class="small"><strong>Not yet in force.</strong></p>` : "";
     const later = r.timeline.filter((e) => !e.own).length;
     const items = r.timeline.map((e) => {
@@ -803,8 +834,8 @@ ul.reg-rows .muted { font-size: 0.75rem; }
       : "";
     if (!head && !items && !changes) return "";
     return `${head}
-      ${items ? `<div class="tl-key"><span><i></i>This item's own dates</span>${later ? `<span><i class="later"></i>Later change</span>` : ""}${r.ended ? `<span><i class="end"></i>Repealed or replaced</span>` : ""}</div><ol class="tline">${items}</ol>` : ""}
-      ${later ? "" : r.kind === "barrier" ? "" : `<p class="small muted">No later change to this law or setting is recorded in the register.</p>`}
+      ${items ? `<ol class="tline">${items}</ol>` : ""}
+      ${later || r.kind === "barrier" ? "" : `<p>No later change is recorded.</p>`}
       ${changes}`;
   }
   // --- Regulatory complexity --------------------------------------------------------------------------
@@ -823,30 +854,30 @@ ul.reg-rows .muted { font-size: 0.75rem; }
   }
   const evList = (evs) => evs.map((e) => `<li><blockquote>${esc(e.quote)}</blockquote><span class="src">${link(e.url, e.source)}, ${esc(e.publisher)}, ${esc(e.year)}${e.locator ? `, ${esc(e.locator)}` : ""}${e.checked === "web-page" ? " (quote read from the web page)" : ""}</span></li>`).join("");
   function issueHtml(i) {
-    return `<li>${cxTag(i.tag)}<span class="ist">${esc(STATUS[i.status])}${i.jurisdictions.length ? ` · ${esc(i.jurisdictions.join(", "))}` : ""}</span>
-      <p>${esc(i.what)}</p>${i.status_note ? `<p class="small muted">${esc(i.status_note)}</p>` : ""}
-      <details><summary>Evidence (${i.evidence.length} source${i.evidence.length === 1 ? "" : "s"})</summary><ul class="ev">${evList(i.evidence)}</ul></details></li>`;
+    return `<li><div class="issue-head">${cxTag(i.tag)}<span class="ist">${esc(STATUS[i.status])}${i.jurisdictions.length ? ` · ${esc(i.jurisdictions.join(", "))}` : ""}</span></div>
+      <p>${esc(i.what)}</p>
+      <details class="sub"><summary>Evidence</summary><div class="sub-body">${i.status_note ? `<p>${esc(i.status_note)}</p>` : ""}<ul class="ev">${evList(i.evidence)}</ul></div></details></li>`;
   }
   function regimeCard(g, full) {
     const ov = Object.keys(g.overlap);
-    const layers = g.layers.map((l) => `<li><span class="tier t-${esc(l.tier)}">${esc(TIERS[l.tier])}</span> ${esc(FN[l.function].label.toLowerCase())}: ${esc(l.who)}${l.jurisdictions.length ? ` <span class="muted">(${esc(l.jurisdictions.join(", "))})</span>` : ""}</li>`).join("");
+    const layers = g.layers.map((l) => `<li><span class="tier t-${esc(l.tier)}">${esc(TIERS[l.tier])}</span> ${esc(FN[l.function].label.toLowerCase())}: ${esc(l.who)}${l.jurisdictions.length ? ` (${esc(l.jurisdictions.join(", "))})` : ""}</li>`).join("");
+    const scope = g.scope === "sector" ? "Industry-specific" : "Applies across industries";
     return `<article class="regime" id="regime-${esc(g.id)}">
-      <h4>${full ? esc(g.name) : `<button type="button" class="lnk" data-regime="${esc(g.id)}" title="Open this regime">${esc(g.name)}</button>`}</h4>
-      <div class="rec-meta"><span class="tag">${esc(g.scope === "sector" ? "Industry-specific" : "Applies across industries")}</span><span>${esc(DATA.consistency[g.consistency])}</span><span>${term("touchpoints", "Government parties")}: <strong>${g.touchpoints}</strong></span><span>${g.classes} of ${IND.length} industries</span></div>
+      <h4 title="${esc(`${scope}; applies to ${g.classes} of ${IND.length} industries`)}">${full ? esc(g.name) : `<button type="button" class="lnk" data-regime="${esc(g.id)}" title="Open this regime">${esc(g.name)}</button>`}</h4>
       <p>${esc(g.what)}</p>
+      <p class="rec-meta">${esc(DATA.consistency[g.consistency])}; ${g.touchpoints} ${term("touchpoints", `government part${g.touchpoints === 1 ? "y" : "ies"}`)}.</p>
       <div class="regime-body"><div>${vennSvg(regionsOf(g), { names: TIERS, label: `${g.name}: which tiers of government do what` })}
-        <p class="venn-key">${ov.length ? `Bold: done by more than one tier (${esc(ov.map((f) => FN[f].short.toLowerCase()).join(", "))}).` : "No function is done by more than one tier."} Hover a label for the bodies.</p></div>
-        <div>${g.issues.length ? `<ul class="issues">${g.issues.map(issueHtml).join("")}</ul>` : `<p class="no-issue">No duplication, inconsistency or complexity found in the sources searched for this regime. That is not evidence there is none.</p>`}</div></div>
-      <details><summary>Who does what (${g.layers.length})</summary><ul class="layers">${layers}</ul>${g.consistency_note ? `<p class="small muted">${esc(g.consistency_note)}</p>` : ""}</details>
-      <details><summary>Sources for this description (${g.basis.length})</summary><ul class="ev">${evList(g.basis)}</ul></details>
+        <p class="venn-key">${ov.length ? `Bold: done by more than one tier.` : "No job is done by more than one tier."}${info("helpVenn", "Reading the diagram")}</p></div>
+        ${g.issues.length ? `<ul class="issues">${g.issues.map(issueHtml).join("")}</ul>` : `<p class="no-issue">No problems found in the sources searched.</p>`}</div>
+      <details class="sub"><summary>Who does what, and sources</summary><div class="sub-body"><ul class="layers">${layers}</ul>${g.consistency_note ? `<p>${esc(g.consistency_note)}</p>` : ""}<ul class="ev">${evList(g.basis)}</ul></div></details>
     </article>`;
   }
   function complexityHtml(r) {
     const gs = r.regimes.map((id) => REG[id]).filter(Boolean);
     if (!gs.length) return "";
     const cards = gs.map((g) => regimeCard(g, false));
-    const more = cards.length > 2 ? `<details><summary>${cards.length - 2} more regime${cards.length - 2 === 1 ? "" : "s"}</summary>${cards.slice(2).join("")}</details>` : "";
-    return `<p class="small muted">This item belongs to ${gs.length === 1 ? "the" : `${gs.length}`} ${term("regime", gs.length === 1 ? "regulatory regime" : "regulatory regimes")} below. The diagram shows which tier of government does what; a function in an overlap is done by more than one tier. Tags are problems a source has reported, each quoted.</p>${cards.slice(0, 2).join("")}${more}`;
+    const more = cards.length > 2 ? `<details class="sub"><summary>${cards.length - 2} more regime${cards.length - 2 === 1 ? "" : "s"}</summary>${cards.slice(2).join("")}</details>` : "";
+    return `${cards.slice(0, 2).join("")}${more}`;
   }
   function bindDetail(el) {
     el.querySelectorAll(".lnk[data-id]").forEach((b) => b.addEventListener("click", () => { select(b.dataset.id); el.scrollTop = 0; }));
@@ -871,8 +902,8 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     const items = R.filter((r) => r.regimes.includes(id));
     openAside(`regime:${id}`, `<div class="d-head"><h2>${esc(g.name)}</h2><div class="d-meta"><span>${term("regime", "Regulatory regime")}</span>${g.tags.map(cxTag).join("")}</div></div>
       <section class="d-sec">${regimeCard(g, true)}</section>
-      <section class="d-sec"><h3>Register items in this regime</h3>${items.length ? li(items.map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`)) : `<p class="small muted">None yet.</p>`}</section>
-      <section class="d-sec"><h3>Industries it applies to</h3><p class="small">${g.classes} of the ${IND.length} detailed industries (ANZSIC classes). <button type="button" class="lnk" data-show-ind="${esc(g.id)}">Show them in the Industries view</button></p></section>`, fromHash ? null : `regime=${id}`);
+      ${fold("Register items in this regime", items.length ? li(items.map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`)) : "<p>None yet.</p>", String(items.length))}
+      ${fold("Industries it applies to", `<p><button type="button" class="lnk" data-show-ind="${esc(g.id)}">Show the ${g.classes} industries in the Industries view</button></p>`, `${g.classes} of ${IND.length}`)}`, fromHash ? null : `regime=${id}`);
   }
   function selectClass(code, fromHash) {
     const c = INDBY[code];
@@ -880,18 +911,16 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     const regions = {};
     c.regs.forEach((g) => Object.entries(regionsOf(g)).forEach(([k, items]) => items.forEach((i) => (regions[k] = regions[k] || []).push({ label: i.label, title: `${g.name}: ${i.label.toLowerCase()}` }))));
     const sector = c.regs.filter((g) => g.scope === "sector"), cross = c.regs.filter((g) => g.scope !== "sector");
-    const row = (g) => `<li><button type="button" class="lnk" data-regime="${esc(g.id)}">${esc(g.name)}</button> <span class="muted">${esc(DATA.consistency[g.consistency])}; ${g.touchpoints} government part${g.touchpoints === 1 ? "y" : "ies"}</span>${g.tags.length ? `<span class="cxs">${g.tags.map(cxTag).join("")}</span>` : ""}</li>`;
-    const nOv = c.regs.filter((g) => Object.keys(g.overlap).length).length, nVar = c.regs.filter((g) => g.varies).length;
+    const row = (g) => `<li><button type="button" class="lnk" data-regime="${esc(g.id)}" title="${esc(`${DATA.consistency[g.consistency]}; ${g.touchpoints} government part${g.touchpoints === 1 ? "y" : "ies"}`)}">${esc(g.name)}</button>${g.tags.length ? ` <span class="cxs">${g.tags.map(cxTag).join("")}</span>` : ""}</li>`;
     const items = R.filter((r) => r.regimes.some((id) => c.regs.some((g) => g.id === id)));
     openAside(`class:${code}`, `<div class="d-head"><h2><span class="mono">${esc(c.code)}</span> ${esc(c.name)}</h2><div class="d-meta"><span>Division ${esc(c.div)} ${esc(DATA.divisions[c.div] || "")}</span><span>ANZSIC 2006 class</span></div></div>
       <section class="d-sec"><h3>Regulation this industry deals with</h3>
-        <div class="cls-tiles"><div><span class="n">${sector.length}</span><span class="l">industry-specific regimes (${c.regs.length} in all)</span></div><div><span class="n">${c.stp}</span><span class="l">${term("touchpoints", "government parties")} in them (${c.tp} in all)</span></div><div><span class="n">${nOv}</span><span class="l">regimes where tiers overlap</span></div><div><span class="n">${nVar}</span><span class="l">regimes that differ by state</span></div><div><span class="n">${c.issues}</span><span class="l">reported issues</span></div></div>
+        <div class="cls-tiles"><div title="${c.regs.length} including regimes that apply across industries"><span class="n">${c.sp}</span><span class="l">industry-specific regimes</span></div><div title="${c.tp} including regimes that apply across industries"><span class="n">${c.stp}</span><span class="l">${term("touchpoints", "government parties")} in them</span></div><div title="${c.ovAll} including regimes that apply across industries"><span class="n">${c.ov}</span><span class="l">where tiers overlap</span></div><div title="${c.vrAll} including regimes that apply across industries"><span class="n">${c.vr}</span><span class="l">that differ by state</span></div><div title="${c.issues} including regimes that apply across industries"><span class="n">${c.iss}</span><span class="l">reported issues in them</span></div></div>
         ${vennSvg(regions, { names: TIERS, count: true, label: `${c.name}: how many functions each tier, or several tiers together, perform across its regimes` })}
-        <p class="venn-key">Each number counts the functions (licensing, inspecting, collecting and so on) that a tier, or several tiers together, perform across this industry's ${c.regs.length} regimes. Numbers in an overlap are functions done by more than one tier. Hover a number for the list.</p></section>
-      <section class="d-sec"><h3>Industry-specific regimes</h3>${sector.length ? `<ul class="reg-rows">${sector.map(row).join("")}</ul>` : `<p class="small muted">None mapped: only the regimes that apply across industries.</p>`}</section>
-      <section class="d-sec"><h3>Regimes that apply across industries</h3><ul class="reg-rows">${cross.map(row).join("")}</ul></section>
-      ${items.length ? `<section class="d-sec"><h3>Register items in these regimes</h3>${li(items.slice(0, 40).map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`))}${items.length > 40 ? `<p class="small muted">and ${items.length - 40} more.</p>` : ""}</section>` : ""}
-      <p class="small muted">A class's regimes describe a typical business in it; a given business may face more or fewer. Method: <code>docs/industry_regulation.md</code>.</p>`, fromHash ? null : `class=${code}`);
+        <p class="venn-key">Numbers count jobs (licensing, inspecting, collecting) done by each tier across these regimes.${info("helpClassVenn", "Reading the diagram")}</p></section>
+      ${fold("Industry-specific regimes", sector.length ? `<ul class="reg-rows">${sector.map(row).join("")}</ul>` : "<p>None mapped: only the regimes that apply across industries.</p>", String(sector.length), true)}
+      ${fold("Regimes that apply across industries", `<ul class="reg-rows">${cross.map(row).join("")}</ul>`, String(cross.length))}
+      ${items.length ? fold("Register items in these regimes", `${li(items.slice(0, 40).map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`))}${items.length > 40 ? `<p>and ${items.length - 40} more.</p>` : ""}`, String(items.length)) : ""}`, fromHash ? null : `class=${code}`);
   }
 
   function select(id, fromHash) {
@@ -902,37 +931,42 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     if (!fromHash) { try { history.replaceState(null, "", `#${id}`); } catch (e) { /* ignore */ } }
     el.className = "detail";
     const a = A(r);
-    const sec = (title, body) => (body ? `<section class="d-sec"><h3>${esc(title)}</h3>${body}</section>` : "");
-    const assess = a ? `<section class="d-sec"><h3>Productivity assessment</h3><div class="assess">
+    const assess = a ? `<section class="d-sec"><h3>Productivity assessment${info("helpAssess", "How items are marked")}</h3><div class="assess">
         <div class="assess-top">${ratingBadge(a, true)} ${drvTag(a.main_driver)}</div>
         <p class="assess-sum">${esc(a.summary)}</p>
-        <div class="facts-row"><span>${term("overall", "Overall mark")}: <strong>${esc(signed(a.total))}</strong></span><span>${term("reach", "Reach")}: <strong>${esc(reachLabel(a.reach))}</strong></span><span>${term("confidence", "Confidence")}: <strong>${esc(FW.confidence[a.confidence].label)}</strong></span>${a.mixed ? `<span>${term("mixed", "Mixed")}</span>` : ""}</div>
         ${marksHtml(a)}
-        ${a.confidence_note ? `<p class="small muted">${esc(a.confidence_note)}</p>` : ""}
-        ${a.evidence.length ? `<div class="ev-links"><span class="small muted">Evidence:</span>${a.evidence.map((u) => link(u)).join("")}</div>` : ""}
-        <p class="small muted">Assessed ${esc(fmtDate(a.assessed_on))} against <a href="framework.html">framework</a> version ${esc(a.framework)}. A judgement, not an estimate.</p>
+        <div class="facts-row"><span>${term("reach", "Reach")}: <strong>${esc(reachLabel(a.reach))}</strong></span><span>${term("confidence", "Confidence")}: <strong>${esc(FW.confidence[a.confidence].label)}</strong></span></div>
+        <details class="sub"><summary>About this assessment</summary><div class="sub-body">
+          ${a.confidence_note ? `<p>${esc(a.confidence_note)}</p>` : ""}
+          ${a.evidence.length ? `<p>Evidence: ${a.evidence.map((u) => link(u)).join(" · ")}</p>` : ""}
+          <p>Assessed ${esc(fmtDate(a.assessed_on))} against <a href="framework.html">framework</a> version ${esc(a.framework)}. A judgement, not an estimate.</p></div></details>
       </div></section>` : `<p class="notice">This item has not been assessed yet.</p>`;
+    const nRegs = r.regimes.length, nTags = r.complexity.length;
+    const recsN = r.recs.filter((x) => RECS[x]).length;
+    const later = r.timeline.filter((e) => !e.own).length;
+    const eff = r.kind === "barrier" ? "" : r.effective ? `${r.kind === "setting" ? "In place since" : "Effective"} ${fmtDate(r.effective)}` : r.kind === "setting" ? "In place" : "Not yet in force";
+    const sources = `${li(r.instruments.map((x) => `<li>${link(x.register_url, x.title)}${x.provisions ? ` (${esc(x.provisions)})` : ""}</li>`))}
+      ${r.notes ? `<p>${esc(r.notes)}</p>` : ""}
+      <p>${r.verified.dates ? "Dates checked against official sources." : "Dates not fully checked."} ${esc(r.verified.notes || "")}</p>
+      <p>Review: ${esc(r.review.status)}. ${esc(r.review.notes || "")}</p>
+      ${r.archivedEvaluation ? `<p>An econometric evaluation of this change is kept in the <a href="evaluation-${encodeURIComponent(r.archivedEvaluation.id)}.html">econometric archive</a>: ${esc(r.archivedEvaluation.finding.toLowerCase())}. It is provisional.</p>` : ""}`;
+    const industries = `${r.industries.length ? li(r.industries.map((x) => `<li><span class="mono">${esc(x.anzsic)}</span> ${esc(x.name)}${x.exposure !== "direct" ? ` (${esc(x.exposure)})` : ""}</li>`)) : ""}${statsHtml(r)}`;
     el.innerHTML = `
       <button type="button" class="close" id="closeDetail">Close</button>
       <div class="d-head">
         <h2>${esc(r.title)}</h2>
-        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${r.family ? `<span>${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}${kindTag(r.kind)}${endTag(r)}<span>${esc(r.kind === "barrier" ? "" : r.effective ? `${r.kind === "setting" ? "In place since" : "Effective"} ${fmtDate(r.effective)}` : r.kind === "setting" ? "In place" : "Not yet in force")}</span></div>
-        ${r.responsible.length ? `<div class="d-meta">${r.responsible.map((x) => `<span class="tag" title="${esc(`${DATA.roles[x.role]}: ${bodyName(x.body)}`)}">${esc(B[x.body] ? B[x.body].short : x.body)}</span>`).join("")}</div>` : ""}
+        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${eff ? `<span>${esc(eff)}</span>` : ""}${kindTag(r.kind)}${endTag(r)}</div>
         <p>${esc(r.summary)}</p>
         ${r.ended ? `<p class="ended-note"><strong>No longer in force: ${esc(r.ended.label.toLowerCase())} ${esc(fmtDate(r.ended.date))}.</strong> ${esc(r.ended.what)} The assessment below is of the item while it applied.</p>` : ""}
       </div>
       ${assess}
-      ${sec("Regulatory complexity", complexityHtml(r))}
-      ${sec("What government could do", recsHtml(r))}
-      ${sec("Who is responsible", whoHtml(r))}
-      ${sec("Timeline", timelineHtml(r))}
-      ${sec("The industries affected", statsHtml(r))}
-      ${sec("Competition rationale", `<p>${esc(r.direction_rationale)}</p><p class="small muted">Hypothesised effect on competition: ${esc(r.direction)}. Competition channels (OIA): ${esc(r.channelLabels.join("; "))}.</p>${li(r.direction_sources.map((u) => `<li>${link(u)}</li>`))}`)}
-      ${r.archivedEvaluation ? `<p class="arch-note">An econometric evaluation of this change is kept in the <a href="evaluation-${encodeURIComponent(r.archivedEvaluation.id)}.html">econometric archive</a>: ${esc(r.archivedEvaluation.finding.toLowerCase())}. It is provisional and was paused with the rest of the evaluation programme.</p>` : ""}
-      ${sec("Industries (ANZSIC 2006)", li(r.industries.map((i) => `<li><span class="mono">${esc(i.anzsic)}</span> ${esc(i.name)} <span class="muted">(${esc(i.exposure)})</span></li>`)))}
-      ${sec("Instruments", li(r.instruments.map((i) => `<li>${link(i.register_url, i.title)} <span class="muted">(${esc(i.role)}${i.provisions ? `; ${esc(i.provisions)}` : ""})</span></li>`)))}
-      ${sec("Notes", r.notes ? `<p class="small">${esc(r.notes)}</p>` : "")}
-      ${sec("Verification", `<p class="small muted">${r.verified.dates ? "Dates verified against official sources." : "Dates not fully verified."} ${esc(r.verified.notes || "")}</p><p class="small muted">Review: ${esc(r.review.status)}. ${esc(r.review.notes || "")}</p>`)}
+      ${fold("Regulatory complexity", complexityHtml(r), nRegs ? `${nRegs} regime${nRegs === 1 ? "" : "s"}${nTags ? ` · ${nTags} issue tag${nTags === 1 ? "" : "s"}` : ""}` : "")}
+      ${fold("What government could do", recsHtml(r), recsN ? `${recsN} recommendation${recsN === 1 ? "" : "s"}` : "none yet")}
+      ${fold("Who is responsible", whoHtml(r), whoShort(r))}
+      ${fold("Timeline", timelineHtml(r), later ? `${later} later change${later === 1 ? "" : "s"}` : "")}
+      ${fold("The industries affected", industries, r.industries.length ? `${r.industries.length} industr${r.industries.length === 1 ? "y" : "ies"}` : "economy-wide")}
+      ${fold("Competition rationale", `<p>${esc(r.direction_rationale)}</p><p>Expected effect on competition: ${esc(r.direction)}. Channels: ${esc(r.channelLabels.join("; "))}.</p>${li(r.direction_sources.map((u) => `<li>${link(u)}</li>`))}`)}
+      ${fold("Sources and checks", sources)}
     `;
     bindDetail(el);
     render();
@@ -951,7 +985,7 @@ ul.reg-rows .muted { font-size: 0.75rem; }
   // --- Industries -------------------------------------------------------------------------------------
   const IND_SORTS = {
     parties: [(a, b) => b.stp - a.stp || b.issues - a.issues || a.code.localeCompare(b.code), "Most government parties (industry-specific regimes)"],
-    issues: [(a, b) => b.issues - a.issues || b.stp - a.stp || a.code.localeCompare(b.code), "Most reported issues"],
+    issues: [(a, b) => b.iss - a.iss || b.stp - a.stp || a.code.localeCompare(b.code), "Most reported issues (industry-specific regimes)"],
     code: [(a, b) => a.code.localeCompare(b.code), "ANZSIC code"],
   };
   function renderInd() {
@@ -962,16 +996,13 @@ ul.reg-rows .muted { font-size: 0.75rem; }
       && q.every((w) => `${c.code} ${c.name} ${c.regs.map((g) => g.name).join(" ")}`.toLowerCase().includes(w)))
       .sort(IND_SORTS[state.indSort][0]);
     $("countLine").textContent = `${rows.length} of ${IND.length} industries (ANZSIC classes) shown`;
-    $("indNote").innerHTML = `Every detailed industry in the ABS classification, with the ${term("regime", "regulatory regimes")} it deals with. The search box, the industry filter and the complexity tags apply here; the other filters are for register items. Click an industry to see its regimes and a diagram of which tiers of government do what.`;
-    $("indTools").innerHTML = `<label>Order <select id="indSort">${Object.entries(IND_SORTS).map(([k, v]) => `<option value="${k}"${state.indSort === k ? " selected" : ""}>${esc(v[1])}</option>`).join("")}</select></label>${state.regime && REG[state.regime] ? `<button type="button" class="chip" aria-pressed="true" id="indRegime" title="Clear">Regime: ${esc(REG[state.regime].name)} ✕</button>` : ""}`;
+    $("indTools").innerHTML = `${info("helpInd", "About the Industries view")}<label>Order <select id="indSort">${Object.entries(IND_SORTS).map(([k, v]) => `<option value="${k}"${state.indSort === k ? " selected" : ""}>${esc(v[1])}</option>`).join("")}</select></label>${state.regime && REG[state.regime] ? `<button type="button" class="chip" aria-pressed="true" id="indRegime" title="Clear">Regime: ${esc(REG[state.regime].name)} ✕</button>` : ""}`;
     $("indSort").addEventListener("change", (e) => { state.indSort = e.target.value; render(); });
     if ($("indRegime")) $("indRegime").addEventListener("click", () => { state.regime = ""; render(); });
-    const head = `<thead><tr><th>Industry (ANZSIC class)</th><th title="Regimes specific to the industry, and all regimes including those that apply across industries">Regimes<br><span class="muted">specific / all</span></th><th>${term("touchpoints", "Government parties")}<br><span class="muted">specific / all</span></th><th>Tiers overlap</th><th>Differ by state</th><th>Reported issues</th></tr></thead>`;
-    const body = rows.map((c) => {
-      const sp = c.regs.filter((g) => g.scope === "sector").length;
-      return `<tr class="${state.selected === `class:${c.code}` ? "sel" : ""}"><td><button type="button" class="rowbtn" data-class="${esc(c.code)}"><span class="code">${esc(c.code)}</span>${esc(c.name)}</button></td>
-        <td>${sp} / ${c.regs.length}</td><td>${c.stp} / ${c.tp}</td><td>${c.regs.filter((g) => Object.keys(g.overlap).length).length}</td><td>${c.regs.filter((g) => g.varies).length}</td><td>${c.issues}</td></tr>`;
-    }).join("");
+    const head = `<thead><tr><th>Industry (ANZSIC class)</th><th>Regimes</th><th>${term("touchpoints", "Government parties")}</th><th>Tiers overlap</th><th>Differ by state</th><th>Reported issues</th></tr></thead>`;
+    const all = (n) => `${n} including regimes that apply across industries`;
+    const body = rows.map((c) => `<tr class="${state.selected === `class:${c.code}` ? "sel" : ""}"><td><button type="button" class="rowbtn" data-class="${esc(c.code)}"><span class="code">${esc(c.code)}</span>${esc(c.name)}</button></td>
+        <td title="${all(c.regs.length)}">${c.sp}</td><td title="${all(c.tp)}">${c.stp}</td><td title="${all(c.ovAll)}">${c.ov}</td><td title="${all(c.vrAll)}">${c.vr}</td><td title="${all(c.issues)}">${c.iss}</td></tr>`).join("");
     $("ind").innerHTML = head + `<tbody>${body}</tbody>`;
     $("ind").querySelectorAll(".rowbtn[data-class]").forEach((b) => b.addEventListener("click", () => selectClass(b.dataset.class)));
   }
@@ -980,6 +1011,8 @@ ul.reg-rows .muted { font-size: 0.75rem; }
   function render() {
     const rows = R.filter((r) => matches(r)).sort(SORTS[state.sort]);
     $("countLine").textContent = `${rows.length} of ${R.length} items shown`;
+    const more = state.kind.size + state.jur.size + state.reach.size + state.cx.size + (state.status ? 1 : 0) + (state.div ? 1 : 0) + (state.body ? 1 : 0);
+    $("moreCount").textContent = more ? ` (${more} on)` : "";
     renderGlance();
     if (state.tab === "list") renderList(rows);
     if (state.tab === "scorecard") renderScorecard(rows);
@@ -989,12 +1022,8 @@ ul.reg-rows .muted { font-size: 0.75rem; }
   }
 
   const kinds = Object.fromEntries(Object.keys(FW.kinds).map((k) => [k, count((r) => r.kind === k)]));
-  $("metaLine").innerHTML = [
-    `${R.length} items: ${[[kinds.reform, "reform"], [kinds.setting, "existing setting"], [kinds.barrier, "non-legislative barrier"]].map(([n, w]) => `${n} ${w}${n === 1 ? "" : "s"}`).join(", ")}`,
-    `${new Set(R.map((r) => r.jurisdiction)).size} jurisdictions`,
-    `Framework version ${esc(FW.version)}`,
-    `Generated ${esc(fmtDate(DATA.generated))}`,
-  ].map((s) => `<span>${s}</span>`).join("");
+  // One short line; the breakdown is on hover.
+  $("metaLine").innerHTML = `<span title="${esc(`${[[kinds.reform, "reform"], [kinds.setting, "existing setting"], [kinds.barrier, "non-legislative barrier"]].map(([n, w]) => `${n} ${w}${n === 1 ? "" : "s"}`).join(", ")}; ${new Set(R.map((r) => r.jurisdiction)).size} jurisdictions; framework version ${FW.version}`)}">${R.length} items · updated ${esc(fmtDate(DATA.generated))}</span>`;
   const drafts = count((r) => r.review.status === "draft");
   // The draft notice sits at the foot of the page (owner request, 29 October 2026).
   const draftNotice = drafts
@@ -1002,6 +1031,7 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     : `<strong>Reviewed register.</strong> Marks are judgements about likely effects, not estimates or findings.`;
   const fsrc = Object.values(DATA.statsSources || {}).map((s) => link(s.url, s.label)).join("; ");
   $("foot").innerHTML = `
+    <details class="about"><summary>About this page: method and sources</summary>
     <p><strong>How items are marked.</strong> ${esc(DATA.menuNote)} The full method, with its evidence, is on the <a href="framework.html">Framework</a> page.</p>
     <p><strong>Industry statistics.</strong> ${esc(DATA.statsNote)} Sources: ${fsrc || "not available in this build"}.</p>
     <p><strong>Who is responsible.</strong> Each item names the department that administers the law (or leads policy on it) and the bodies that regulate under it. Commonwealth, Queensland, Tasmanian, Victorian and ACT departments come from each government's administrative arrangements; other states' from their legislation sites and portfolio lists. Each tag links to its source, and notes say where an allocation was inferred rather than read from an order. Choosing a department in the filter includes the agencies in it.</p>
@@ -1011,8 +1041,10 @@ ul.reg-rows .muted { font-size: 0.75rem; }
     <p><strong>Register check.</strong> ${esc(DATA.checkNote)}</p>
     <p><strong>Econometric archive.</strong> The ${DATA.archivedEvaluations} econometric evaluations this page used to show, with the evaluability screen and data coverage, are kept unchanged in the <a href="archive.html">econometric archive</a> (paused 22 October 2026).</p>
     <p><strong>Sources.</strong> Industry codes: ABS ANZSIC 2006. Every date in a record links to its source. Unofficial research, not an Australian Government product.</p>
-    <h2>Words used on this page</h2>
+    </details>
+    <details class="about"><summary>Words used on this page</summary>
     <dl class="glossary">${GLOSSARY.filter((k) => TERMS[k]).map((k) => `<div><dt>${esc(TERMS[k][0])}</dt><dd>${esc(TERMS[k][1])}</dd></div>`).join("")}</dl>
+    </details>
     <p class="notice" id="draftNotice">${draftNotice}</p>`;
 
   render();
@@ -1022,8 +1054,8 @@ ul.reg-rows .muted { font-size: 0.75rem; }
   // regulatory regime and #class=<ANZSIC class> an industry.
   const fromHash = decodeURIComponent((location.hash || "").slice(1));
   if (fromHash.startsWith("driver=") && DRV[fromHash.slice(7)]) { state.driver.add(fromHash.slice(7)); syncChips(); render(); }
-  else if (fromHash.startsWith("body=") && B[fromHash.slice(5)]) { state.body = fromHash.slice(5); $("f-body").value = state.body; render(); }
-  else if (fromHash.startsWith("complexity=") && TAGS[fromHash.slice(11)]) { state.cx.add(fromHash.slice(11)); syncChips(); render(); }
+  else if (fromHash.startsWith("body=") && B[fromHash.slice(5)]) { state.body = fromHash.slice(5); $("f-body").value = state.body; $("moreFilters").open = true; render(); }
+  else if (fromHash.startsWith("complexity=") && TAGS[fromHash.slice(11)]) { state.cx.add(fromHash.slice(11)); syncChips(); $("moreFilters").open = true; render(); }
   else if (fromHash === "industries") setTab("ind");
   else if (fromHash.startsWith("regime=") && REG[fromHash.slice(7)]) { selectRegime(fromHash.slice(7), true); $("detail").scrollIntoView({ block: "start" }); }
   else if (fromHash.startsWith("class=") && INDBY[fromHash.slice(6)]) { setTab("ind"); selectClass(fromHash.slice(6), true); $("detail").scrollIntoView({ block: "start" }); }

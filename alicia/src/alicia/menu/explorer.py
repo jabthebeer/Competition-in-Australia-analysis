@@ -7,8 +7,11 @@ non-legislative barrier), jurisdiction, reach, status (including repealed or rep
 responsible, and the complexity tags of the regulatory regimes an item belongs to (duplicative, inconsistent across
 states, unclear guidance and others; DECISIONS E-96). Views: a list, a scorecard of every item's marks by driver, a
 timeline of reforms, recommendations, and industries (every ANZSIC class with the regimes it faces). Each item opens
-with its assessment, its regimes (with a diagram of which tiers of government do what, and where they overlap), who is
-responsible and a timeline of its changes, then its industries' statistics, then its sources.
+with its assessment (only the drivers it affects; each opens to its reason), then collapsible sections: its regimes
+(with a diagram of which tiers of government do what, and where they overlap), recommendations, who is responsible, a
+timeline of its changes, its industries' statistics, and its sources. Secondary filters, explanations and the page's
+method notes sit behind a "More filters" dropdown, "i" buttons and folds, and no text is set below 13px (owner request,
+29 October 2026, DECISIONS E-98).
 
 The econometric evaluations that the menu used to show are kept, unchanged, in the econometric archive
 (``menu/archive.py``; DECISIONS E-75, E-87).
