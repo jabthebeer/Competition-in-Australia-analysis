@@ -31,6 +31,8 @@ Browse it with the legislation menu (`uv run alicia explorer` in `alicia/`, or t
 
 [`recommendations/`](recommendations/) holds what government could do about the items, one JSON file per recommendation (validated against `schema/recommendation.schema.json`): a plain-English title and action, why it would help, the kind of action, the items it applies to, who would act (by default the bodies that administer them), the evidence (each source quoted word for word, with a locator, its origin and how the quote was checked), precedents, progress and trade-offs. [`recommendation-gaps.json`](recommendation-gaps.json) records why some items have none. Every item needs one or the other (`alicia validate`). See [`docs/recommendations.md`](../docs/recommendations.md).
 
+[`families.json`](families.json) names each family of two or more items (one policy in several jurisdictions) by the issue across them, such as "Inconsistent adoption of the 2022 building code standards", with a short summary; the menu shows each family as one expandable row (`alicia validate` checks every family has a name).
+
 [`regimes/`](regimes/) holds regulatory regimes, one JSON file each (validated against `schema/regime.schema.json`): a body of regulation a business deals with as one task, the ANZSIC codes it applies to, which tier of government sets the rules, licenses, approves, inspects or collects, how consistent it is across states, quoted sources, and links to register items. See [`docs/industry_regulation.md`](../docs/industry_regulation.md).
 
 ## Coding protocol

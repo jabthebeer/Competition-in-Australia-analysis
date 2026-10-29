@@ -6,7 +6,9 @@ framework's drivers ("main driver" tags), the overall mark, the kind of item (re
 non-legislative barrier), jurisdiction, reach, status (including repealed or replaced) and the department or agency
 responsible, and the complexity tags of the regulatory regimes an item belongs to (duplicative, inconsistent across
 states, unclear guidance and others; DECISIONS E-96). Views: a list, a scorecard of every item's marks by driver, a
-timeline of reforms, recommendations, and industries (every ANZSIC class with the regimes it faces). Each item opens
+timeline of reforms, recommendations, and industries (every ANZSIC class with the regimes it faces). Items that share a
+family (one policy in several jurisdictions) appear as one row under a group name that says what the issue is across
+them, and expand to each jurisdiction's item (DECISIONS E-99). Each item opens
 with its assessment (only the drivers it affects; each opens to its reason), then collapsible sections: its regimes
 (with a diagram of which tiers of government do what, and where they overlap), recommendations, who is responsible, a
 timeline of its changes, its industries' statistics, and its sources. Secondary filters, explanations and the page's
@@ -27,6 +29,7 @@ from .. import anzsic
 from ..register import framework
 from ..register.bodies import BODY_TYPE_LABELS, Body, load_bodies
 from ..register.evaluation import Evaluation, current_evaluation
+from ..register.families import Family, load_families
 from ..register.recommendations import KIND_LABELS as REC_KIND_LABELS
 from ..register.recommendations import Recommendation, actors_of, by_record, gap_for, load_gaps, load_recommendations
 from ..register.regimes import (
@@ -136,6 +139,23 @@ def industries_list(regimes: list[Regime]) -> list[list]:
     ]
 
 
+def groups_dict(records: list[ChangeRecord], families: dict[str, Family]) -> dict:
+    """Families of two or more items, each shown in the menu as one expandable row under its group name."""
+    members: dict[str, list[str]] = {}
+    for r in records:
+        if r.family:
+            members.setdefault(r.family, []).append(r.id)
+    return {
+        f: {
+            "title": families[f].title if f in families else FAMILY_LABELS.get(f, _humanise(f)),
+            "summary": families[f].summary if f in families else None,
+            "members": ids,
+        }
+        for f, ids in members.items()
+        if len(ids) > 1
+    }
+
+
 def build_payload(
     records: list[ChangeRecord],
     dates_report: list[dict] | None = None,
@@ -146,6 +166,7 @@ def build_payload(
     recommendations: list[Recommendation] | None = None,
     gaps: dict[str, str] | None = None,
     regimes: list[Regime] | None = None,
+    families: dict[str, Family] | None = None,
 ) -> dict:
     """``stats`` defaults to the committed panels (``IndustryStats.load``), ``bodies`` to the committed registry
     (``load_bodies``) and ``recommendations``, ``gaps`` and ``regimes`` to the committed ones; pass fixtures in
@@ -164,6 +185,7 @@ def build_payload(
     evals = {e.id: e for e in evaluations or []}
     archived = current_evaluation(evaluations or [])
     regimes = load_regimes().regimes if regimes is None else regimes
+    families = load_families()[0] if families is None else families
     reg_index = regimes_by_record(regimes)
     out = []
     for r in records:
@@ -202,6 +224,7 @@ def build_payload(
         "framework": framework.as_dict(),
         "channels": [{"id": k, "label": v} for k, v in CHANNEL_LABELS.items()],
         "familyLabels": {f: FAMILY_LABELS.get(f, _humanise(f)) for f in {r.family for r in records if r.family}},
+        "groups": groups_dict(records, families),
         "bodies": bodies_dict(records, bodies, {b for x in rec_dicts for b in x["actors"]}),
         "recommendations": rec_dicts,
         "recKinds": REC_KIND_LABELS,
