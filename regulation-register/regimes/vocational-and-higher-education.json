@@ -1,0 +1,85 @@
+{
+  "id": "vocational-and-higher-education",
+  "name": "Vocational and higher education providers",
+  "what": "Register as a training organisation or higher education provider with the national regulators (or a state regulator), and register on CRICOS to enrol overseas students.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "8101",
+      "8102",
+      "821"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "ASQA (training) and TEQSA (higher education)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State VET regulator (some providers in Victoria and Western Australia)",
+      "bodies": [],
+      "jurisdictions": [
+        "VIC",
+        "WA"
+      ]
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "CRICOS registration (overseas students)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "funds",
+      "who": "State training department (contestable funding)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "national",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Education and training industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/education-and-training",
+      "locator": "Laws you need to follow",
+      "quote": "Registered training organisations (RTOs) must comply with the VET Quality Framework laws.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Education and training industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/education-and-training",
+      "locator": "Laws you need to follow",
+      "quote": "Businesses that enrol overseas students must follow the Education Services for Overseas Students (ESOS) Framework laws.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "nsw-smart-and-skilled-2015",
+    "qld-certificate-3-guarantee-2013",
+    "sa-skills-for-all-2012",
+    "vic-training-guarantee-2009"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

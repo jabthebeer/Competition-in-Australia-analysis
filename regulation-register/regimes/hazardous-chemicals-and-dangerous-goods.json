@@ -1,0 +1,78 @@
+{
+  "id": "hazardous-chemicals-and-dangerous-goods",
+  "name": "Hazardous chemicals and dangerous goods",
+  "what": "Register to import or make industrial chemicals, and meet state rules for storing, handling and transporting hazardous chemicals and dangerous goods, including licences for some quantities.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "B",
+      "17",
+      "18",
+      "19",
+      "27",
+      "332",
+      "4000",
+      "4231",
+      "4232",
+      "461",
+      "7312"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Australian Industrial Chemicals Introduction Scheme (importers and makers)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State dangerous goods or work safety regulator",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State dangerous goods or work safety regulator",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "harmonised",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Retail and wholesale trade industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/retail-and-wholesale-trade-industry",
+      "locator": "Industrial chemicals",
+      "quote": "If you import industrial chemicals, you must register your business with the Australian Industrial Chemicals Introduction Scheme (AICIS) .",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Retail and wholesale trade industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/retail-and-wholesale-trade-industry",
+      "locator": "Licences and permits",
+      "quote": "handling, storage and use of chemicals or dangerous substances",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

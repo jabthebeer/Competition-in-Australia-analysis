@@ -1,0 +1,63 @@
+{
+  "id": "pharmacy",
+  "name": "Pharmacy ownership, premises and PBS approval",
+  "what": "Meet state rules on who may own a pharmacy and how premises are registered, and Commonwealth location rules to gain approval to dispense PBS medicines.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "4271"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State pharmacy authority or board (premises and ownership)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "approves",
+      "who": "Commonwealth health department (PBS approval, location rules)",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Competition Policy Review: Final Report (Harper review)",
+      "publisher": "Australian Government",
+      "year": 2015,
+      "url": "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf",
+      "locator": "Pharmacy",
+      "quote": "The current anti-competitive regulations on the location of pharmacies, or the requirement (with limited exceptions) that only pharmacists own pharmacies",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-60-day-dispensing-2023",
+    "cth-pharmacy-location-rules",
+    "cth-pharmacy-location-rules-2018",
+    "nsw-pharmacy-ownership",
+    "qld-pharmacy-business-ownership-2025",
+    "sa-pharmacy-ownership",
+    "tas-pharmacy-ownership",
+    "vic-pharmacy-ownership",
+    "wa-pharmacy-ownership"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

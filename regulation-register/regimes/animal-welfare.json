@@ -1,0 +1,69 @@
+{
+  "id": "animal-welfare",
+  "name": "Animal welfare and livestock",
+  "what": "Meet state animal welfare standards for keeping, transporting and slaughtering animals, and Commonwealth rules for live export.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "014",
+      "016",
+      "017",
+      "018",
+      "019",
+      "1111",
+      "6620",
+      "8921",
+      "912",
+      "6970"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State animal welfare law",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State primary industries department or RSPCA inspectors",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Commonwealth agriculture department (live export licences)",
+      "bodies": [
+        "cth-daff"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Agriculture, forestry and fishing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/agriculture-forestry-and-fishing-industry",
+      "locator": "Laws you need to follow",
+      "quote": "Animal welfare laws may apply if your business keeps, breeds, transports or manages animals.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

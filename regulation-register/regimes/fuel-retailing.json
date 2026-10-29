@@ -1,0 +1,79 @@
+{
+  "id": "fuel-retailing",
+  "name": "Fuel retailing",
+  "what": "Report prices under each state's fuel price scheme, meet the Oilcode for supply agreements, and environmental rules for fuel storage.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "4000"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State fuel price reporting scheme",
+      "bodies": [
+        "nsw-fair-trading"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State fair trading agency",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "ACCC (Oilcode and petrol monitoring)",
+      "bodies": [
+        "cth-accc"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State environment protection authority (underground storage)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Competition Policy Review: Final Report (Harper review)",
+      "publisher": "Australian Government",
+      "year": 2015,
+      "url": "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf",
+      "locator": "Appendix",
+      "quote": "The displaying of discounted fuel prices on fuel retailers' price boards is specifically regulated in New South Wales and South Australia.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-petroleum-retail-repeal-2007",
+    "nsw-fuel-price-reporting-2016",
+    "nt-fuel-price-commitment-2026",
+    "nt-fuel-price-reporting-2017",
+    "qld-fuel-price-reporting-2018",
+    "sa-fuel-price-reporting-2021",
+    "tas-fuel-price-reporting-2020",
+    "vic-fuel-price-commitment-2026",
+    "vic-fuel-price-reporting-2025"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

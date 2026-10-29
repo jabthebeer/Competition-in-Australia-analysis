@@ -32,6 +32,7 @@ Every assessment is a draft until checked by a person: the review sheet is [`doc
 
 - [`docs/productivity_framework.md`](docs/productivity_framework.md): the productivity impact framework (version 1.0, 28 October 2026), written by `alicia framework` from the same definition the website uses.
 - [`docs/recommendations.md`](docs/recommendations.md): what government could do about each register item: 63 recommendations from Australian and international reviews, each with quoted sources, and why some items have none (29 October 2026).
+- [`docs/industry_regulation.md`](docs/industry_regulation.md): regulatory complexity by industry: the regimes each of the 506 ANZSIC classes deals with, how many government parties, where tiers overlap and where rules vary by state (29 October 2026).
 - [`docs/responsibility_and_history.md`](docs/responsibility_and_history.md): who is responsible for each register item (departments, agencies, regulators) and the later changes recorded against them, with sources and open checks (29 October 2026).
 - [`docs/register_review_framework.md`](docs/register_review_framework.md): the register reviewed under the framework, the items added, and candidates to add next (28 October 2026).
 

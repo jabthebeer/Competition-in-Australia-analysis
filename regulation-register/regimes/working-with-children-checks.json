@@ -1,0 +1,68 @@
+{
+  "id": "working-with-children-checks",
+  "name": "Working with children checks",
+  "what": "Ensure staff and volunteers who work with children hold a working with children check from each state where they work, and meet child safety standards.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "80",
+      "8211",
+      "8212",
+      "8219",
+      "822",
+      "8710",
+      "8790",
+      "9112"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State working with children screening agency",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State child safety regulator or commission",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Education and training industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/education-and-training",
+      "locator": "Child safety",
+      "quote": "Some staff need to meet child safety requirements before they can work with children and young people. For example: pre-employment screening checks , including for tutors, coaches and other instructors",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Education and training industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/education-and-training",
+      "locator": "Laws you need to follow",
+      "quote": "State, territory and federal child safety laws may apply if your business works with children or young people.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

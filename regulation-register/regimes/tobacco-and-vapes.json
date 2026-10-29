@@ -1,0 +1,67 @@
+{
+  "id": "tobacco-and-vapes",
+  "name": "Tobacco and vape sales",
+  "what": "Meet each state's rules for selling tobacco (licensing or notification, display and smoke-free laws) and Commonwealth rules restricting vapes to pharmacies.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "122",
+      "3606",
+      "4000",
+      "4110",
+      "4271",
+      "4279"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State health department or tobacco regulator",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State health department and councils",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "approves",
+      "who": "Therapeutic Goods Administration (vapes)",
+      "bodies": [
+        "cth-tga"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Retail and wholesale trade industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/retail-and-wholesale-trade-industry",
+      "locator": "Licences and permits",
+      "quote": "selling tobacco products",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-vaping-reforms-2024"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

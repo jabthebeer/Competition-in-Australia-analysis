@@ -3,6 +3,7 @@
 alicia validate                      check every register record (assessment, responsible bodies, history), evaluation
 alicia menu [filters]                list register items with their framework marks
 alicia recommendations [filters]     what government could do about register items, with their sources
+alicia industries [--class] [--division]   regulatory regimes and complexity measures for each ANZSIC class
 alicia show <id>                     one record in full
 alicia families                      reforms adopted by several jurisdictions, in date order
 alicia dates <id>... | --all         gather effective dates and check them against registers
@@ -34,6 +35,7 @@ from .register.catalogue import families, filter_records, load_records
 from .register.evaluation import load_evaluations
 from .register.framework import DRIVERS, KINDS
 from .register.recommendations import check_coverage, check_recommendations, load_gaps, load_recommendations
+from .register.regimes import check_regimes, load_regimes
 from .register.schema import CHANNEL_LABELS, JURISDICTIONS, ChangeRecord
 
 
@@ -69,6 +71,9 @@ def cmd_validate(args) -> int:
     problems.extend(recs.problems)
     problems.extend(check_recommendations(recs.recommendations, result.records, bodies))
     warnings.extend(check_coverage(recs.recommendations, result.records, load_gaps()))
+    regimes = load_regimes()
+    problems.extend(regimes.problems)
+    problems.extend(check_regimes(regimes.regimes, result.records, bodies))
     ids = {r.id for r in result.records}
     problems.extend(
         f"{r.id}.json: history: unknown record '{h.record}'"
@@ -82,8 +87,8 @@ def cmd_validate(args) -> int:
         print(f"warning: {w}")
     drafts = sum(r.review.status == "draft" for r in result.records)
     print(
-        f"{len(result.records)} record(s), {len(evals.evaluations)} evaluation(s) and "
-        f"{len(recs.recommendations)} recommendation(s) loaded; {len(problems)} "
+        f"{len(result.records)} record(s), {len(evals.evaluations)} evaluation(s), "
+        f"{len(recs.recommendations)} recommendation(s) and {len(regimes.regimes)} regime(s) loaded; {len(problems)} "
         f"problem(s); {len(warnings)} warning(s); {drafts} record(s) awaiting review."
     )
     return 1 if problems else 0
@@ -196,6 +201,40 @@ def cmd_recommendations(args) -> int:
     for row in rows:
         print(f"{KIND_LABELS[row['kind']][:26]:26}  {row['items']:>3} item(s)  {row['id']:48}  {row['title']}")
     print(f"\n{len(rows)} recommendation(s).")
+    return 0
+
+
+def cmd_industries(args) -> int:
+    from .register.regimes import CONSISTENCY_LABELS, ISSUE_LABELS, industry_profiles, regimes_by_class
+
+    regimes = load_regimes().regimes
+    if args.anzsic:
+        regs = regimes_by_class(regimes).get(args.anzsic)
+        if regs is None:
+            print(f"No ANZSIC class '{args.anzsic}'.", file=sys.stderr)
+            return 2
+        print(f"{args.anzsic} {anzsic.name(args.anzsic)}: {len(regs)} regime(s)")
+        for r in sorted(regs, key=lambda r: (r.scope != "sector", r.name)):
+            tags = ", ".join(dict.fromkeys(ISSUE_LABELS[i.tag] for i in r.issues if i.status != "addressed"))
+            print(f"  {r.name:60} {CONSISTENCY_LABELS[r.consistency][:38]:38}  {', '.join(r.tiers):16}  {tags}")
+        return 0
+    rows = [p for p in industry_profiles(regimes) if not args.division or p["division"] == args.division.upper()]
+    rows.sort(key=lambda p: (-p["sector_touchpoints"], -p["issues"], p["anzsic"]))
+    if args.csv:
+        w = csv.DictWriter(sys.stdout, fieldnames=list(rows[0]) if rows else ["anzsic"])
+        w.writeheader()
+        w.writerows(rows)
+        return 0
+    print(
+        f"{'class':5}  {'regimes':>7}  {'touch':>5}  {'vary':>4}  {'overlap':>7}  {'issues':>6}  "
+        "name (industry-specific counts)"
+    )
+    for p in rows:
+        print(
+            f"{p['anzsic']:5}  {p['sector_regimes']:>7}  {p['sector_touchpoints']:>5}  {p['sector_varying']:>4}  "
+            f"{p['sector_overlapping']:>7}  {p['issues']:>6}  {p['name']}"
+        )
+    print(f"\n{len(rows)} class(es).")
     return 0
 
 
@@ -494,6 +533,12 @@ def main(argv: list[str] | None = None) -> int:
     rc.add_argument("--kind", choices=["remove", "reform", "replace", "extend", "harmonise", "review", "keep"])
     rc.add_argument("--csv", action="store_true", help="CSV output")
     rc.set_defaults(func=cmd_recommendations)
+
+    ind = sub.add_parser("industries", help="regulatory regimes and complexity measures for each ANZSIC class")
+    ind.add_argument("--class", dest="anzsic", help="one ANZSIC class (4 digits): list its regimes")
+    ind.add_argument("--division", help="ANZSIC division letter")
+    ind.add_argument("--csv", action="store_true", help="CSV output")
+    ind.set_defaults(func=cmd_industries)
 
     s = sub.add_parser("show", help="one record in full, with its assessment (and, for reforms, evaluability screen)")
     s.add_argument("id")

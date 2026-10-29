@@ -12,6 +12,8 @@ A public-data toolkit for assessing how Australian legislation, regulatory setti
 
 **What government could do (29 October 2026, E-95).** 63 recommendations, drawn from Australian and international reviews and research, cover 197 of the 234 items (`regulation-register/recommendations/`, `register/recommendations.py`). Each gives the action in plain English, who would act and the evidence, quoted word for word; items without one say why. The menu shows them in each item and in a Recommendations view ([methods note](../docs/recommendations.md); review sheet `docs/review/recommendations_review.csv`).
 
+**Regulatory complexity by industry (29 October 2026, E-96).** 61 regulatory regimes, each with the tiers of government that license, approve, inspect or collect under it and how consistent it is across states, mapped to every ANZSIC class (`regulation-register/regimes/`, `register/regimes.py`). Per class: how many regimes and government parties a business deals with, where tiers overlap and where rules vary by state ([methods note](../docs/industry_regulation.md); `data/processed/industry_regulation/`).
+
 **Change of direction (22 October 2026, E-75).** Retrospective evaluation is paused. The register and its hypotheses stay and become part of the product. The next build is a **Policy costing** tab on the website: a regulatory burden costing under the OIA framework, and a productivity and competition costing that turns a policy brief into productivity and GDP effects by channel, with ranges and sources ([plan](../docs/forward_plan_policy_costing.md)). Parked: a literature review for each register record ([P-1](../docs/parked_items.md)). Plan approved 22 October 2026 (E-77). **P0–P3 done**:<br>• the policy brief schema;<br>• the Policy costing tab on the website;<br>• the costing parameters (`alicia costing-params`, 16 sources, refreshed daily; [data dictionary](../docs/costing_parameters.md));<br>• the evidence library.
 
 The table below is the state of the retrospective work when it was paused.
@@ -75,6 +77,7 @@ uv run alicia menu --jurisdiction nsw --direction weakening
 uv run alicia menu --industry 4623        # ANZSIC code or prefix
 uv run alicia menu --body cth-dcceew      # items a department (with its agencies) or a regulator is responsible for
 uv run alicia recommendations --record nsw-payroll-tax   # what government could do, with sources; --body, --kind, --csv
+uv run alicia industries --class 4520                    # regimes a pub deals with; --division, --csv
 uv run alicia show nsw-rideshare-2015     # one record in full, with its screen
 uv run alicia families                    # multi-jurisdiction reforms in date order
 uv run alicia dates cth-uct-penalties-2023      # effective date, checked against the register

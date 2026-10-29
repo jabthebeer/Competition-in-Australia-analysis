@@ -1,0 +1,62 @@
+{
+  "id": "therapeutic-goods-and-poisons",
+  "name": "Therapeutic goods and poisons",
+  "what": "Hold a Commonwealth licence to manufacture medicines and list or register products, and state licences to wholesale, store or supply scheduled medicines and poisons.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "184",
+      "3720",
+      "4271"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Therapeutic Goods Administration (manufacturing licences, product registration)",
+      "bodies": [
+        "cth-tga"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State health department (poisons and wholesale licences)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State health department",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Manufacturing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/manufacturing-industry",
+      "locator": "Licences and permits",
+      "quote": "Licence to manufacture therapeutic goods",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

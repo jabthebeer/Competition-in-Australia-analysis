@@ -1,0 +1,78 @@
+{
+  "id": "workers-compensation",
+  "name": "Workers' compensation",
+  "what": "Insure employees under the workers' compensation scheme of each state where they work, or self-insure.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "96"
+    ],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State workers' compensation law",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "collects",
+      "who": "State scheme insurer or authority",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Comcare (licensed self-insurers and Commonwealth employers)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "5-year Productivity Inquiry: A more productive labour market (volume 7)",
+      "publisher": "Productivity Commission",
+      "year": 2023,
+      "url": "https://assets.pc.gov.au/inquiries/completed/productivity/report/productivity-volume7-labour-market.pdf",
+      "locator": "Chapter on workplace relations",
+      "quote": "with the exception of Comcare, workers compensation schemes are operated at a state level. As there are differences between states for insurance requirements and workers compensation eligibility",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

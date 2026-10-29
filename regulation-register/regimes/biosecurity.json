@@ -1,0 +1,70 @@
+{
+  "id": "biosecurity",
+  "name": "Biosecurity",
+  "what": "Meet Commonwealth biosecurity rules for imports and exports, and state rules for moving plants, animals and produce between states and managing pests and diseases.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "331",
+      "5291",
+      "8921",
+      "6970"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "Commonwealth agriculture department (border biosecurity)",
+      "bodies": [
+        "cth-daff"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "approves",
+      "who": "Commonwealth agriculture department (import permits)",
+      "bodies": [
+        "cth-daff"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State primary industries department (interstate movement, pests and diseases)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Agriculture, forestry and fishing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/agriculture-forestry-and-fishing-industry",
+      "locator": "Laws you need to follow",
+      "quote": "The Biosecurity Act 2015 may apply if your business grows, moves, imports or exports plants, animals or related products.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

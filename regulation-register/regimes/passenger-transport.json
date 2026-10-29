@@ -1,0 +1,69 @@
+{
+  "id": "passenger-transport",
+  "name": "Passenger transport accreditation",
+  "what": "Hold accreditation or authorisation from the state to run taxis, ride-share, hire cars, buses or tours, and meet driver and vehicle requirements.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "4621",
+      "4622",
+      "4623",
+      "501"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State point-to-point or transport regulator",
+      "bodies": [
+        "nsw-transport",
+        "vic-dtp"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State point-to-point or transport regulator",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Transport, postal and warehousing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/transport-postal-and-warehousing-industry",
+      "locator": "Licences and permits",
+      "quote": "limousine and luxury car licence",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "act-rideshare-2015",
+    "nsw-rideshare-2015",
+    "nt-rideshare-2017",
+    "qld-booked-hire-licences-2017",
+    "qld-rideshare-2016",
+    "sa-rideshare-2016",
+    "sa-taxi-licence-reform-2025",
+    "tas-rideshare-2016",
+    "vic-rideshare-2017",
+    "vic-taxi-licensing-2014",
+    "wa-on-demand-transport-2019"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

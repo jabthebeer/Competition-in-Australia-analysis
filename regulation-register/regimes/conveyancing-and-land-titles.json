@@ -1,0 +1,67 @@
+{
+  "id": "conveyancing-and-land-titles",
+  "name": "Conveyancing and land titles",
+  "what": "Lodge property transactions with each state's land registry, using an electronic lodgment network, and hold a conveyancer's licence where required.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "6931",
+      "6720"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State land registry or registrar-general",
+      "bodies": [
+        "nsw-registrar-general"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "National electronic conveyancing rules (ARNECC, applied by each state)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State conveyancer licensing body",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "harmonised",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "NSW Productivity Commission White Paper 2021: Rebooting the economy",
+      "publisher": "NSW Productivity Commission",
+      "year": 2021,
+      "url": "https://www.productivity.nsw.gov.au/sites/default/files/2022-04/Productivity-Commission-White-Paper-2021.pdf",
+      "locator": "Recommendation 4.15",
+      "quote": "Support the implementation of interoperability in the NSW e-conveyancing market as a matter of urgency.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "nsw-e-conveyancing-mandate-2018",
+    "qld-e-conveyancing-mandate-2023",
+    "sa-e-conveyancing-mandate-2020",
+    "vic-e-conveyancing-mandate-2019",
+    "wa-e-conveyancing-mandate-2018"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

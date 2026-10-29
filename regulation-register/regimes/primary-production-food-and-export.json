@@ -1,0 +1,77 @@
+{
+  "id": "primary-production-food-and-export",
+  "name": "Primary production food safety and export controls",
+  "what": "Meet primary production standards for meat, dairy, seafood and eggs under state agencies, and Commonwealth export controls and registration to export food and agricultural products.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "014",
+      "013",
+      "016",
+      "017",
+      "020",
+      "041",
+      "111",
+      "112",
+      "113"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Commonwealth agriculture department (export registration)",
+      "bodies": [
+        "cth-daff"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "Commonwealth agriculture department (export inspection)",
+      "bodies": [
+        "cth-daff"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State primary production food safety agency",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State primary production food safety agency",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Agriculture, forestry and fishing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/agriculture-forestry-and-fishing-industry",
+      "locator": "Laws you need to follow",
+      "quote": "The Biosecurity Act 2015 may apply if your business grows, moves, imports or exports plants, animals or related products.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

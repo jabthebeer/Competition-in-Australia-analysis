@@ -1,0 +1,96 @@
+{
+  "id": "customs-and-excise",
+  "name": "Customs, excise and trade",
+  "what": "Clear imports through customs and biosecurity, hold customs broker, depot or warehouse licences, and excise licences to make alcohol, fuel or tobacco.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "5291",
+      "5292",
+      "530",
+      "121",
+      "122",
+      "170",
+      "F"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Australian Border Force (customs brokers, depots, warehouses)",
+      "bodies": [
+        "cth-abf"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Australian Taxation Office (excise licences)",
+      "bodies": [
+        "cth-ato"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "Australian Border Force and agriculture department at the border",
+      "bodies": [
+        "cth-abf",
+        "cth-daff"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "collects",
+      "who": "Australian Border Force and ATO (duties)",
+      "bodies": [
+        "cth-abf",
+        "cth-ato"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "cth",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Manufacturing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/manufacturing-industry",
+      "locator": "Licences and permits",
+      "quote": "you may require an excise licence for activities related to producing or manufacturing",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Transport, postal and warehousing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/transport-postal-and-warehousing-industry",
+      "locator": "Licences and permits",
+      "quote": "customs licensing warehouse licensing",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-anti-dumping-system",
+    "cth-book-parallel-import-restrictions",
+    "cth-coastal-trading-2012",
+    "cth-import-tariffs"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

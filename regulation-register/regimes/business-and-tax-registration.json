@@ -1,0 +1,92 @@
+{
+  "id": "business-and-tax-registration",
+  "name": "Business and tax registration",
+  "what": "Register for an ABN and, depending on the business, a company, GST, PAYG withholding and fringe benefits tax, then lodge activity statements.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "75",
+      "76",
+      "7711",
+      "7713",
+      "7714",
+      "7720",
+      "96"
+    ],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Australian Taxation Office and Treasury",
+      "bodies": [
+        "cth-ato",
+        "cth-treasury"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Australian Business Register and ASIC (companies)",
+      "bodies": [
+        "cth-ato",
+        "cth-asic"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "cth",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Manufacturing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/manufacturing-industry",
+      "locator": "Taxation",
+      "quote": "make sure you register with the Australian Taxation Office (ATO) to ensure you can claim your GST credits.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

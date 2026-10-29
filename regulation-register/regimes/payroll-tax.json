@@ -1,0 +1,89 @@
+{
+  "id": "payroll-tax",
+  "name": "Payroll tax",
+  "what": "Register and pay payroll tax in each state where wages exceed that state's threshold.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "75",
+      "76",
+      "7711",
+      "7713",
+      "7714",
+      "7720",
+      "96"
+    ],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State treasury",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "collects",
+      "who": "State revenue office",
+      "bodies": [
+        "nsw-revenue",
+        "sa-revenuesa"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": "Most states harmonised parts of payroll tax administration, but each sets its own rate, threshold and exemptions.",
+  "basis": [
+    {
+      "source": "NSW Productivity Commission White Paper 2021: Rebooting the economy",
+      "publisher": "NSW Productivity Commission",
+      "year": 2021,
+      "url": "https://www.productivity.nsw.gov.au/sites/default/files/2022-04/Productivity-Commission-White-Paper-2021.pdf",
+      "locator": "Chapter 6",
+      "quote": "Jurisdictional differences in payroll tax administration can distort competition between states, by encouraging business to set-up in states with lower compliance costs.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "act-payroll-tax",
+    "nsw-payroll-tax",
+    "nt-payroll-tax",
+    "qld-payroll-tax",
+    "sa-payroll-tax",
+    "tas-payroll-tax",
+    "vic-payroll-tax",
+    "wa-payroll-tax"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

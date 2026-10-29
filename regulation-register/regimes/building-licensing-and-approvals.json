@@ -1,0 +1,119 @@
+{
+  "id": "building-licensing-and-approvals",
+  "name": "Building licensing, approvals and the building code",
+  "what": "Hold a builder's or building practitioner's licence or registration, get building approval and inspections from a council or private certifier, and build to the National Construction Code and each state's variations.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "30",
+      "31",
+      "32",
+      "6921",
+      "6922",
+      "6923"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Australian Building Codes Board (National Construction Code)",
+      "bodies": [
+        "nat-abcb"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State building law and variations to the code",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State building regulator",
+      "bodies": [
+        "nsw-building-commission",
+        "vic-bpc",
+        "qld-qbcc"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "approves",
+      "who": "Local council or private building certifier",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State building regulator",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "inspects",
+      "who": "Local council",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "harmonised",
+  "consistency_note": "One national code adopted by each state with its own variations; licensing and approvals differ by state.",
+  "basis": [
+    {
+      "source": "Construction industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/construction-industry",
+      "locator": "Licences and permits",
+      "quote": "State, territory and local governments set the rules for construction licences and permits.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Construction industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/construction-industry",
+      "locator": "Laws you need to follow",
+      "quote": "The design and construction of buildings, structures, plumbing and drainage systems must follow the National Construction Code .",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "act-ncc-2022-2024",
+    "act-occupational-licensing",
+    "nsw-design-building-practitioners-2021",
+    "nsw-ncc-2022-2023",
+    "nsw-occupational-licensing",
+    "nt-ncc-2022-2023",
+    "nt-occupational-licensing",
+    "qld-ncc-2022-2024",
+    "qld-occupational-licensing",
+    "sa-ncc-2022-2024",
+    "sa-occupational-licensing",
+    "tas-ncc-2022-2024",
+    "tas-occupational-licensing",
+    "vic-engineers-registration-2021",
+    "vic-ncc-2022-2024",
+    "vic-occupational-licensing",
+    "wa-ncc-2022-2025",
+    "wa-occupational-licensing"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

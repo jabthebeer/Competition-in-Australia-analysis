@@ -1,0 +1,74 @@
+{
+  "id": "agvet-chemicals",
+  "name": "Agricultural and veterinary chemicals",
+  "what": "Use only registered agricultural and veterinary chemicals and follow each state's rules on how they may be used, by whom, and when off-label use is allowed.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "01",
+      "02",
+      "052",
+      "1832",
+      "6970",
+      "7312",
+      "7313"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "approves",
+      "who": "Australian Pesticides and Veterinary Medicines Authority (product registration)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State agriculture or environment agency (control of use)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State agriculture or environment agency (control of use)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Administrative and support services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/administrative-and-support-services-industry",
+      "locator": "Laws you need to follow",
+      "quote": "States and territories regulate the use of agricultural chemical products , such as pesticides.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Manufacturing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/manufacturing-industry",
+      "locator": "Licences and permits",
+      "quote": "Registration for the manufacturing, transport, trade or supply of pesticides and veterinary medicines",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

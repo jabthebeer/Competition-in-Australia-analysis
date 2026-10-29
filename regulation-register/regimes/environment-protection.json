@@ -1,0 +1,89 @@
+{
+  "id": "environment-protection",
+  "name": "Environment protection licences and approvals",
+  "what": "Hold an environment protection licence for scheduled activities (such as mining, manufacturing, waste and intensive farming) and get Commonwealth approval where a project may affect matters of national environmental significance.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "31",
+      "521",
+      "522"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State environment protection authority",
+      "bodies": [
+        "nsw-epa"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State environment protection authority",
+      "bodies": [
+        "nsw-epa"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "approves",
+      "who": "Commonwealth environment department (EPBC Act)",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "inspects",
+      "who": "Local council (noise, nuisance, smaller premises)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Construction industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/construction-industry",
+      "locator": "Laws you need to follow",
+      "quote": "Where construction work could harm protected plants, animals, habitats or places, businesses must follow the Environment Protection and Biodiversity Conservation Act 1999 .",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Performance Benchmarking of Australian Business Regulation: Planning, Zoning and Development Assessments (volume 1)",
+      "publisher": "Productivity Commission",
+      "year": 2011,
+      "url": "https://assets.pc.gov.au/inquiries/completed/regulation-benchmarking-planning/report/planning-volume1.pdf",
+      "locator": "Chapter 3",
+      "quote": "Impact of Commonwealth environmental requirements Under the Environment Protection and Biodiversity Conservation Act 1999 (Cwlth) (EPBC Act)",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-epbc-reform-2025"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

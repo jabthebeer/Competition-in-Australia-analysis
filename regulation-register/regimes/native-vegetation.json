@@ -1,0 +1,73 @@
+{
+  "id": "native-vegetation",
+  "name": "Native vegetation and land clearing",
+  "what": "Get approval to clear native vegetation under state law and, where protected species or habitats are affected, under the Commonwealth EPBC Act.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "01",
+      "03",
+      "051",
+      "321"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "approves",
+      "who": "State environment or agriculture department",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "approves",
+      "who": "Commonwealth environment department (EPBC Act)",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "approves",
+      "who": "Local council (local vegetation controls)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Agriculture, forestry and fishing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/agriculture-forestry-and-fishing-industry",
+      "locator": "Licences and permits",
+      "quote": "clear native vegetation, harvest timber or set up a plantation",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Agriculture, forestry and fishing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/agriculture-forestry-and-fishing-industry",
+      "locator": "Laws you need to follow",
+      "quote": "The Environment Protection and Biodiversity Conservation Act 1999 may apply if land clearing, forestry, aquaculture or fishing affects protected species or habitats.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

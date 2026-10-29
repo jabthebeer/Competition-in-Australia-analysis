@@ -1,0 +1,91 @@
+{
+  "id": "heavy-vehicles",
+  "name": "Heavy vehicle registration, access and safety",
+  "what": "Register heavy vehicles, get route access permits, and meet mass, dimension, fatigue and maintenance rules.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "461",
+      "462",
+      "2911",
+      "5102",
+      "310"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "Heavy Vehicle National Law (adopted by participating states)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "National Heavy Vehicle Regulator (participating states)",
+      "bodies": [
+        "nat-nhvr"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State road agency (WA and NT, and vehicle registration)",
+      "bodies": [],
+      "jurisdictions": [
+        "WA",
+        "NT"
+      ]
+    },
+    {
+      "tier": "local",
+      "function": "approves",
+      "who": "Local council (road manager consent for access permits)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "harmonised",
+  "consistency_note": "A national law in all states except Western Australia and the Northern Territory.",
+  "basis": [
+    {
+      "source": "Regulation of Australian Agriculture",
+      "publisher": "Productivity Commission",
+      "year": 2016,
+      "url": "https://assets.pc.gov.au/inquiries/completed/agriculture/report/agriculture.pdf",
+      "locator": "Finding 9.1",
+      "quote": "Despite the commencement of the Heavy Vehicle National Law and the establishment of the National Heavy Vehicle Regulator, there remain significant variations and inefficiencies in heavy vehicle regulation, including costly delays in processing road access permits.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Transport, postal and warehousing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/transport-postal-and-warehousing-industry",
+      "locator": "Licences and permits",
+      "quote": "heavy vehicle licensing and accreditation",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "act-heavy-vehicle-national-law-2014",
+    "nsw-heavy-vehicle-national-law-2014",
+    "qld-heavy-vehicle-national-law-2014",
+    "sa-heavy-vehicle-national-law-2014",
+    "tas-heavy-vehicle-national-law-2014",
+    "vic-heavy-vehicle-national-law-2014"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

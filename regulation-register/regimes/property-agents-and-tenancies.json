@@ -1,0 +1,55 @@
+{
+  "id": "property-agents-and-tenancies",
+  "name": "Property agents and residential tenancies",
+  "what": "Hold a real estate or property agent licence in each state where you work, and meet each state's residential tenancy and trust account rules.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "6720",
+      "6711"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State fair trading or consumer affairs agency",
+      "bodies": [
+        "nsw-fair-trading",
+        "vic-cav"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State fair trading or consumer affairs agency",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Rental, hiring and real estate services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/rental-hiring-and-real-estate-services-industry",
+      "locator": "Licences and permits",
+      "quote": "real estate agent accreditation",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

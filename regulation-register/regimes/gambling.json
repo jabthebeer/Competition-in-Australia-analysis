@@ -1,0 +1,83 @@
+{
+  "id": "gambling",
+  "name": "Gambling and wagering",
+  "what": "Hold gaming venue, machine, wagering or casino licences from the state, meet harm minimisation rules, and Commonwealth rules for online gambling and anti-money laundering.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "920",
+      "4520",
+      "4530",
+      "912"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State gaming regulator",
+      "bodies": [
+        "vic-vgccc"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State gaming regulator",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Commonwealth (Interactive Gambling Act, AML/CTF Act)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "ACMA (online gambling) and AUSTRAC (money laundering)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Arts and recreation services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/arts-and-recreation-services-industry",
+      "locator": "Laws you need to follow",
+      "quote": "Online and telephone gambling businesses must follow the Interactive Gambling Act 2001 .",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Arts and recreation services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/arts-and-recreation-services-industry",
+      "locator": "Laws you need to follow",
+      "quote": "Anti-money laundering and counter-terrorism financing laws apply to some gambling businesses.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "tas-future-gaming-market-2023",
+    "vic-gaming-venue-operator-2012"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

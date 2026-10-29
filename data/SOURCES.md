@@ -42,6 +42,19 @@ Parameters for the Policy costing tab (forward plan phase P2), merged into `data
 | PC National CGE model results workbook (`ncp-pc-national-modelling.xlsx`), supporting *National Competition Policy: modelling proposed reforms* (`pc_national`) | Productivity Commission | <https://assets.pc.gov.au/2025-10/ncp-pc-national-modelling.xlsx?VersionId=2honZkozE_IfFLvy71JB5tFXmQ4UGblu> (report page <https://www.pc.gov.au/inquiries-and-research/competition-analysis/report>) | 23 Oct 2026 (SHA-256 `0a0e3058d1f39a1b29acecad358230ae88d2667d99d85ab9ec2b0b0a3f8d94e6`, as consulted on 22 Oct 2026) | CC BY 4.0: the PC's copyright statement (<https://www.pc.gov.au/copyright/>, checked 22 Oct 2026); attribute "Source: Productivity Commission" | 36 simulation tabs (27 scenarios, lower and higher bounds), linearity tests; 114 industries × states (2018-19 database) | Scenario codes and shocks, macro results, real GSP by state; initial GSP by industry × state | Built (for the P4 Layer B back-test); L1's real GSP block appears to be L2's (flagged, not corrected) |
 | RBA RDP 2025-05 (Hambur and Freestone) supplementary information (`rba_hf2025`) | Reserve Bank of Australia | <https://www.rba.gov.au/publications/rdp/2025/2025-05/rdp-2025-05-supplementary-information.zip> | 23 Oct 2026 (zip Last-Modified 12 Aug 2025) | CC BY 4.0 (the RBA notice in the zip; Excluded Material excepted). Only two input workbooks are read; the zip's code is not extracted or run | Divisions and aggregate; mark-ups 2004-2017, concentration 2002-2019 | Harmonic mark-ups (BLADE-derived), top-4/10/20 and top 5% shares, HHI | Built (optional source) |
 
+### Compiled for the industry regulation inventory (`regulation-register/regimes/`)
+
+61 regulatory regimes, each mapped to the ANZSIC 2006 classes it applies to, with the tiers of government that license, approve, inspect or collect under it and how consistent it is across states (DECISIONS E-96). Each regime quotes its sources word for word; the quotes were checked against the downloaded text. Built outputs: `data/processed/industry_regulation/class_profiles.csv` (one row per ANZSIC class, 506) and `class_regimes.csv` (one row per class and regime), from `alicia/scripts/industry_regulation.py`; methods note [`docs/industry_regulation.md`](../docs/industry_regulation.md).
+
+| Source | Publisher | URL | Accessed | Access / licence | Coverage | Used for | Status |
+|---|---|---|---|---|---|---|---|
+| Industry information pages (15 industries) | business.gov.au (Department of Industry, Science and Resources) | <https://business.gov.au/planning/industry-information> (each page's URL in the regime files) | 29 Oct 2026 | Public web pages; short quotes with attribution, under the site's copyright notice (not checked: the page could not be fetched) | Licences, permits and regulators by ANZSIC division | Which regimes apply to which industries, and who administers them | Compiled (quoted in regime bases) |
+| Performance benchmarking of business regulation: food safety (2009); planning, zoning and development assessments (2011) | Productivity Commission | <https://www.pc.gov.au/inquiries-and-research> (each report's URL in the regime files) | 29 Oct 2026 | Creative Commons Attribution licence, as stated in each report | All states and territories | Tiers and functions in each regime; differences between states and councils | Compiled |
+| Regulation of Australian Agriculture (2016); Economic Regulation of Airports (2019); 5-year Productivity Inquiry (2023); Building a skilled and adaptable workforce (2025) | Productivity Commission | As above | 29 Oct 2026 (some downloaded for E-95) | Creative Commons Attribution licence, as stated in each report | National | As above | Compiled |
+| Competition Policy Review (Harper review, 2015); NSW Productivity Commission White Paper (2021) | Australian Government; NSW Productivity Commission | URLs in the regime files | 29 Oct 2026 (downloaded for E-95) | As stated in each report | National; NSW | As above | Compiled |
+| Domestic commercial vessels | Australian Maritime Safety Authority | <https://www.amsa.gov.au/vessels-operators/domestic-commercial-vessels> | 29 Oct 2026 | Public web page | National | Maritime regime | Compiled |
+| Container deposit scheme expansion: consultation summary report (2026) | WA Department of Water and Environmental Regulation | URL in the regime file | 29 Oct 2026 | Public document | WA and other schemes | Container deposits regime | Compiled |
+
 ## Controls (macroeconomic conditions)
 
 Series that evaluations net out rather than outcomes (`alicia/src/alicia/pipeline/controls.py`, forward plan Phase 1). Panels are in `data/processed/controls/` (`state_quarter`, `state_month`, `industry_quarter`, `national_month`) and are left out of the outcome coverage catalogue. ABS Data API queries are recorded in `data/manifests/abs_api.json`.
@@ -70,7 +83,11 @@ Listed in `alicia/SOURCES.md`: CPI (ABS Data API), State Accounts, Labour Force 
 
 ## Consulted, not yet ingested
 
-None at present. The PC National CGE results workbook, consulted for the plan on 22 Oct 2026, was ingested in P2 (`pc_national`, under **Built**).
+The PC National CGE results workbook, consulted for the plan on 22 Oct 2026, was ingested in P2 (`pc_national`, under **Built**).
+
+| Source | Publisher | URL | Accessed | Access / licence | Coverage | Key variables | Status |
+|---|---|---|---|---|---|---|---|
+| Australian Business Licence and Information Service (ABLIS) | Australian Government (business.gov.au) | <https://ablis.business.gov.au> | 29 Oct 2026 (site, API guides and terms read) | API needs a key, issued by email on registration; terms limit use to non-commercial purposes. The public site should not be scraped at scale | Licences, permits and registrations by activity, industry and location, all tiers of government | Number and type of licences a business needs, by jurisdiction | Consulted, not ingested: would let the industry regulation inventory (E-96) be checked against licence counts, if the owner registers for a key |
 
 ## To do
 

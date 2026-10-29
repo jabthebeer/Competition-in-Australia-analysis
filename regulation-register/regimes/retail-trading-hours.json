@@ -1,0 +1,71 @@
+{
+  "id": "retail-trading-hours",
+  "name": "Retail trading hours",
+  "what": "Open only on the days and hours each state allows for the type of shop, with permits for restricted days.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "41",
+      "42",
+      "391",
+      "392"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State industrial relations or fair trading department",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "approves",
+      "who": "State department (exemptions and restricted-day permits)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Accommodation and food services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/accommodation-and-food-services-industry",
+      "locator": "Trading hours and public holiday rules",
+      "quote": "State governments set the days and hours a business can open and trade.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Accommodation and food services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/accommodation-and-food-services-industry",
+      "locator": "Trading hours and public holiday rules",
+      "quote": "The Australian Capital Territory and the Northern Territory don't regulate trading hours.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "nsw-boxing-day-2015",
+    "qld-trading-hours-2017",
+    "sa-trading-hours-2012",
+    "sa-trading-hours-2022",
+    "wa-trading-hours-sunday-2012",
+    "wa-trading-hours-weeknight-2010"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
