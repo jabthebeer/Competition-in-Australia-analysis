@@ -84,7 +84,8 @@
 .main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 27rem); gap: 20px; align-items: start; }
 @media (max-width: 1000px) { .main { grid-template-columns: minmax(0, 1fr); } .detail { order: -1; } .detail.empty { display: none; } }
 .tabbar { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
-.tablist { display: flex; gap: 4px; }
+.tablist { display: flex; gap: 4px; min-width: 0; max-width: 100%; overflow-x: auto; }
+@media (max-width: 640px) { .tab { padding: 8px 7px; } }
 .tab { font: inherit; background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; cursor: pointer; color: var(--ink-2); margin-bottom: -1px; }
 .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
 .sortbox { display: flex; gap: 6px; align-items: center; font-size: var(--step--1); color: var(--ink-3); padding-bottom: 6px; }
@@ -213,6 +214,26 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
 .tl-key i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--ink-3); box-sizing: border-box; vertical-align: -1px; margin-right: 4px; }
 .tl-key i.later { background: var(--accent); border-color: var(--accent); }
 .tl-key i.end { background: var(--ink); border-color: var(--ink); }
+
+/* Recommendations: what government could do */
+.recs, .reclist { display: grid; gap: 10px; }
+.rec { border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 10px 12px; display: grid; gap: 6px; background: var(--surface); min-width: 0; }
+.rec h4 { margin: 0; font-size: var(--step-0); font-family: var(--font-body); font-weight: 600; line-height: 1.35; }
+.rec p { margin: 0; font-size: var(--step--1); overflow-wrap: anywhere; }
+.rec .r-why { color: var(--ink-2); }
+.rec .r-sub { color: var(--ink-2); font-size: 0.8rem; }
+.rec .r-sub strong { color: var(--ink); font-weight: 600; }
+.rec-meta { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: 0.78rem; color: var(--ink-3); }
+.rec details summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); }
+.ev { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: var(--step--1); }
+.ev li { overflow-wrap: anywhere; }
+.ev blockquote { margin: 0 0 2px; padding: 2px 0 2px 10px; border-left: 2px solid var(--line-strong); color: var(--ink-2); font-style: italic; }
+.ev .src { font-size: 0.78rem; color: var(--ink-3); }
+.tag.intl { border-color: var(--accent); color: var(--accent); }
+.rec-gap { font-size: var(--step--1); color: var(--ink-2); border: 1px dashed var(--line-strong); border-radius: 8px; padding: 8px 10px; margin: 0; }
+.reclist .rec.hl { box-shadow: 0 0 0 2px var(--accent); }
+.rec-items { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 0.8rem; }
+.rec-items .lnk { font-size: 0.8rem; }
 </style>
 
 <div class="wrap">
@@ -222,7 +243,6 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     <h1>Legislation Menu</h1>
     <p class="lede">Laws, regulatory settings and other barriers that shape competition and productivity in Australia. Each one is marked against the <a href="framework.html">ALICIA productivity framework</a> and shown with statistics on the industries it affects.</p>
     <div class="meta-line" id="metaLine"></div>
-    <p class="notice" id="draftNotice"></p>
   </header>
 
   <section class="block" aria-labelledby="h-glance">
@@ -272,6 +292,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
           <button class="tab" role="tab" id="tab-list" aria-selected="true" aria-controls="view-list">List</button>
           <button class="tab" role="tab" id="tab-scorecard" aria-selected="false" aria-controls="view-scorecard">Scorecard</button>
           <button class="tab" role="tab" id="tab-timeline" aria-selected="false" aria-controls="view-timeline">Timeline</button>
+          <button class="tab" role="tab" id="tab-recs" aria-selected="false" aria-controls="view-recs">Recommendations</button>
         </div>
         <label class="sortbox">Sort <select id="sort">
           <option value="new">Newest first</option><option value="old">Oldest first</option>
@@ -294,6 +315,9 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
           <div class="legend" id="tlLegend"></div>
           <div class="tl-scroll"><svg id="tl" role="img" aria-label="Timeline of reforms by effective date, grouped by reform family, coloured by overall mark"></svg></div>
         </div>
+      </div>
+      <div id="view-recs" role="tabpanel" aria-labelledby="tab-recs" hidden>
+        <div class="reclist" id="reclist"></div>
       </div>
     </section>
     <aside class="detail empty" id="detail" aria-live="polite">
@@ -376,6 +400,8 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   const whoShort = (r) => [...new Set(r.responsible.map((x) => (B[x.body] ? B[x.body].short : x.body)))].join(" · ");
   const endTag = (r) => (r.ended ? `<span class="tag end" title="${esc(r.ended.what)}">${esc(r.ended.label)} ${esc(fmtDate(r.ended.date))}</span>` : "");
   const bodyMatch = (r, id) => r.responsible.some((x) => x.body === id || deptOf(x.body) === id);
+  const RECS = Object.fromEntries((DATA.recommendations || []).map((x) => [x.id, x]));
+  const RBY = Object.fromEntries(R.map((r) => [r.id, r]));
 
   function fmtStat(v, f) {
     if (!isNum(v)) return "–";
@@ -407,6 +433,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     if (state.q) {
       const hay = [r.id, r.title, r.summary, r.family, DATA.familyLabels[r.family], r.jurisdiction, FW.kinds[r.kind].label,
         ...r.responsible.flatMap((x) => [x.body, bodyName(x.body), B[x.body] ? B[x.body].short : ""]),
+        ...r.recs.map((id) => (RECS[id] ? RECS[id].title : "")),
         ...r.industries.map((i) => `${i.anzsic} ${i.name}`), ...(a ? [a.summary, DRV[a.main_driver].label, ...a.marks.map((m) => m.reason)] : [])].join(" ").toLowerCase();
       if (!state.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
     }
@@ -470,7 +497,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   });
 
   // --- Tabs ---------------------------------------------------------------------------------------
-  const TABS = ["list", "scorecard", "timeline"];
+  const TABS = ["list", "scorecard", "timeline", "recs"];
   function setTab(t) {
     state.tab = t;
     TABS.forEach((x) => { $(`tab-${x}`).setAttribute("aria-selected", t === x); $(`view-${x}`).hidden = t !== x; });
@@ -664,6 +691,31 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
       <p class="st-src">Sources: ${used.join("; ")}.</p>
       <p>${esc(DATA.statsNote)}</p></details>`;
   }
+  function recCard(x, withItems) {
+    // Full names for a few bodies; short names (with the full name on hover) for long lists of state bodies.
+    const actors = x.actors.map((b) => (B[b] ? (x.actors.length > 3 ? `<span title="${esc(B[b].name)}">${esc(B[b].short)}</span>` : esc(B[b].name)) : esc(b)));
+    const recLink = (id) => `<button type="button" class="lnk" data-id="${esc(id)}">${esc(RBY[id] ? `${RBY[id].jurisdiction} · ${RBY[id].short}` : id)}</button>`;
+    const prog = x.progress ? `<p class="r-sub"><strong>Progress:</strong> ${esc(x.progress.what)} ${x.progress.source ? link(x.progress.source, "Source") : ""}${x.progress.records.filter((id) => RBY[id]).map(recLink).join(" ")}</p>` : "";
+    const prec = x.precedents.length ? `<p class="r-sub"><strong>Done elsewhere:</strong> ${x.precedents.map((pr) => `${esc(pr.where)}: ${esc(pr.what)} ${pr.record && RBY[pr.record] ? recLink(pr.record) : pr.source ? link(pr.source, "Source") : ""}`).join(" ")}</p>` : "";
+    const ev = x.evidence.map((e) => `<li><blockquote>${esc(e.quote)}</blockquote><span class="src">${link(e.url, e.source)}, ${esc(e.publisher)}, ${esc(e.year)}${e.locator ? `, ${esc(e.locator)}` : ""}${e.origin === "international" ? ` <span class="tag intl">International</span>` : ""}${e.checked === "web-page" ? " (quote read from the web page)" : ""}</span></li>`).join("");
+    const items = withItems ? `<div class="rec-items"><span class="muted">Applies to:</span>${x.applies_to.filter((id) => RBY[id]).map(recLink).join("")}</div>` : "";
+    return `<article class="rec" id="rec-${esc(x.id)}">
+      <h4>${esc(x.title)}</h4>
+      <div class="rec-meta"><span class="tag kind">${esc(x.kindLabel)}</span><span>Evidence: ${esc(FW.confidence[x.confidence].label.toLowerCase())}</span>${x.international ? `<span class="tag intl" title="Draws on international evidence or practice">International evidence</span>` : ""}${x.review.status === "draft" ? `<span>Draft</span>` : ""}</div>
+      <p>${esc(x.action)}</p>
+      <p class="r-why">${esc(x.why)}</p>
+      ${actors.length ? `<p class="r-sub"><strong>Who would act:</strong> ${actors.join("; ")}</p>` : ""}
+      ${prog}${prec}
+      ${x.tradeoffs ? `<p class="r-sub"><strong>To weigh:</strong> ${esc(x.tradeoffs)}</p>` : ""}
+      ${items}
+      <details><summary>Evidence (${x.evidence.length} source${x.evidence.length === 1 ? "" : "s"})</summary><ul class="ev">${ev}</ul></details>
+    </article>`;
+  }
+  function recsHtml(r) {
+    const xs = r.recs.map((id) => RECS[id]).filter(Boolean);
+    if (xs.length) return `<div class="recs">${xs.map((x) => recCard(x, false)).join("")}</div>`;
+    return r.recGap ? `<p class="rec-gap"><strong>No recommendation yet.</strong> ${esc(r.recGap)}</p>` : "";
+  }
   function whoHtml(r) {
     if (!r.responsible.length) return "";
     return `<ul class="resp">${r.responsible.map((x) => {
@@ -724,6 +776,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
         ${r.ended ? `<p class="ended-note"><strong>No longer in force: ${esc(r.ended.label.toLowerCase())} ${esc(fmtDate(r.ended.date))}.</strong> ${esc(r.ended.what)} The assessment below is of the item while it applied.</p>` : ""}
       </div>
       ${assess}
+      ${sec("What government could do", recsHtml(r))}
       ${sec("Who is responsible", whoHtml(r))}
       ${sec("Timeline", timelineHtml(r))}
       ${sec("The industries affected", statsHtml(r))}
@@ -739,6 +792,16 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     render();
   }
 
+  // --- Recommendations ----------------------------------------------------------------------------
+  function renderRecs(rows) {
+    const shown = new Set(rows.map((r) => r.id));
+    const xs = Object.values(RECS).filter((x) => x.applies_to.some((id) => shown.has(id)));
+    xs.sort((a, b) => b.applies_to.filter((id) => shown.has(id)).length - a.applies_to.filter((id) => shown.has(id)).length || a.title.localeCompare(b.title));
+    $("countLine").textContent = `${xs.length} recommendation${xs.length === 1 ? "" : "s"} for the ${rows.length} of ${R.length} items shown`;
+    $("reclist").innerHTML = xs.length ? xs.map((x) => recCard(x, true)).join("") : `<p class="rec-gap">No recommendations for the items shown.</p>`;
+    $("reclist").querySelectorAll(".lnk[data-id]").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
+  }
+
   // --- Render -------------------------------------------------------------------------------------
   function render() {
     const rows = R.filter((r) => matches(r)).sort(SORTS[state.sort]);
@@ -747,6 +810,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     if (state.tab === "list") renderList(rows);
     if (state.tab === "scorecard") renderScorecard(rows);
     if (state.tab === "timeline") drawTimeline(rows);
+    if (state.tab === "recs") renderRecs(rows);
   }
 
   const kinds = Object.fromEntries(Object.keys(FW.kinds).map((k) => [k, count((r) => r.kind === k)]));
@@ -757,7 +821,8 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     `Generated ${esc(fmtDate(DATA.generated))}`,
   ].map((s) => `<span>${s}</span>`).join("");
   const drafts = count((r) => r.review.status === "draft");
-  $("draftNotice").innerHTML = drafts
+  // The draft notice sits at the foot of the page (owner request, 29 October 2026).
+  const draftNotice = drafts
     ? `<strong>Draft register.</strong> ${drafts} of ${R.length} items, and their assessments, come from AI-assisted desk research and have not yet been checked by a person. Marks are judgements about likely effects, not estimates or findings.`
     : `<strong>Reviewed register.</strong> Marks are judgements about likely effects, not estimates or findings.`;
   const fsrc = Object.values(DATA.statsSources || {}).map((s) => link(s.url, s.label)).join("; ");
@@ -766,18 +831,25 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     <p><strong>Industry statistics.</strong> ${esc(DATA.statsNote)} Sources: ${fsrc || "not available in this build"}.</p>
     <p><strong>Who is responsible.</strong> Each item names the department that administers the law (or leads policy on it) and the bodies that regulate under it. Commonwealth, Queensland, Tasmanian, Victorian and ACT departments come from each government's administrative arrangements; other states' from their legislation sites and portfolio lists. Each tag links to its source, and notes say where an allocation was inferred rather than read from an order. Choosing a department in the filter includes the agencies in it.</p>
     <p><strong>Timeline.</strong> Each item's own dates, then later changes to the law or setting (amendments, easings, repeals), each with its source. A repealed or replaced item stays in the register, marked as no longer in force, so its assessment can still be read.</p>
+    <p><strong>What government could do.</strong> Recommendations come from Australian and international reviews and research: the Productivity Commission, the Harper and Henry reviews, state productivity commissions, Treasury reviews and overseas regulators. Each one quotes the exact words of its sources; quotes were checked against the full text of each document, except where marked as read from a web page. They are drafts compiled by AI-assisted desk research and have not yet been checked by a person. Where no recommendation is given, the item says why.</p>
     <p><strong>Register check.</strong> ${esc(DATA.checkNote)}</p>
     <p><strong>Econometric archive.</strong> The ${DATA.archivedEvaluations} econometric evaluations this page used to show, with the evaluability screen and data coverage, are kept unchanged in the <a href="archive.html">econometric archive</a> (paused 22 October 2026).</p>
     <p><strong>Sources.</strong> Industry codes: ABS ANZSIC 2006. Every date in a record links to its source. Unofficial research, not an Australian Government product.</p>
     <h2>Words used on this page</h2>
-    <dl class="glossary">${GLOSSARY.filter((k) => TERMS[k]).map((k) => `<div><dt>${esc(TERMS[k][0])}</dt><dd>${esc(TERMS[k][1])}</dd></div>`).join("")}</dl>`;
+    <dl class="glossary">${GLOSSARY.filter((k) => TERMS[k]).map((k) => `<div><dt>${esc(TERMS[k][0])}</dt><dd>${esc(TERMS[k][1])}</dd></div>`).join("")}</dl>
+    <p class="notice" id="draftNotice">${draftNotice}</p>`;
 
   render();
   // #<record id> opens an item; #driver=<driver> filters by main driver (links from the Framework page); #body=<id>
-  // filters by department or agency (ids in regulation-register/bodies.json).
+  // filters by department or agency (ids in regulation-register/bodies.json); #rec=<id> opens a recommendation.
   const fromHash = decodeURIComponent((location.hash || "").slice(1));
   if (fromHash.startsWith("driver=") && DRV[fromHash.slice(7)]) { state.driver.add(fromHash.slice(7)); syncChips(); render(); }
   else if (fromHash.startsWith("body=") && B[fromHash.slice(5)]) { state.body = fromHash.slice(5); $("f-body").value = state.body; render(); }
+  else if (fromHash.startsWith("rec=") && RECS[fromHash.slice(4)]) {
+    setTab("recs");
+    const card = $(`rec-${fromHash.slice(4)}`);
+    if (card) { card.classList.add("hl"); card.scrollIntoView({ block: "center" }); }
+  }
   else if (fromHash && R.some((r) => r.id === fromHash)) { select(fromHash, true); $("detail").scrollIntoView({ block: "start" }); }
 })();
 </script>

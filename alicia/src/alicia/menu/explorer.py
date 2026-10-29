@@ -22,6 +22,8 @@ from .. import anzsic
 from ..register import framework
 from ..register.bodies import BODY_TYPE_LABELS, Body, load_bodies
 from ..register.evaluation import Evaluation, current_evaluation
+from ..register.recommendations import KIND_LABELS as REC_KIND_LABELS
+from ..register.recommendations import Recommendation, actors_of, by_record, gap_for, load_gaps, load_recommendations
 from ..register.schema import CHANNEL_LABELS, ROLE_LABELS, ChangeRecord
 from ..register.timeline import changed_by_index, changes_list, ended_dict, timeline
 from ..timing import timing
@@ -48,12 +50,20 @@ def assessment_dict(record: ChangeRecord) -> dict | None:
     return a.model_dump(mode="json") | {"total": a.total, "rating": a.rating, "mixed": a.mixed}
 
 
-def bodies_dict(records: list[ChangeRecord], bodies: dict[str, Body]) -> dict:
-    """The bodies the records name, and the departments they sit in, by id."""
-    used = {x.body for r in records for x in r.responsible if x.body in bodies}
+def bodies_dict(records: list[ChangeRecord], bodies: dict[str, Body], extra: set[str] = frozenset()) -> dict:
+    """The bodies the records (and ``extra``, such as recommendations' actors) name, and their departments, by id."""
+    used = {x.body for r in records for x in r.responsible if x.body in bodies} | {b for b in extra if b in bodies}
     used |= {bodies[b].parent for b in used if bodies[b].parent}
     keep = ("name", "short", "jurisdiction", "type", "parent", "url", "current", "note")
     return {b: bodies[b].model_dump(mode="json", include=set(keep)) for b in sorted(used)}
+
+
+def recommendation_dict(rec: Recommendation, records: dict[str, ChangeRecord]) -> dict:
+    data = rec.model_dump(mode="json", exclude={"drafted_on"})
+    data["actors"] = actors_of(rec, records)
+    data["kindLabel"] = REC_KIND_LABELS[rec.kind]
+    data["international"] = any(e.origin == "international" for e in rec.evidence)
+    return data
 
 
 def build_payload(
@@ -63,13 +73,21 @@ def build_payload(
     evaluations: list[Evaluation] | None = None,
     stats: IndustryStats | None = None,
     bodies: dict[str, Body] | None = None,
+    recommendations: list[Recommendation] | None = None,
+    gaps: dict[str, str] | None = None,
 ) -> dict:
-    """``stats`` defaults to the committed panels (``IndustryStats.load``) and ``bodies`` to the committed registry
-    (``load_bodies``); pass ones built from fixtures in tests."""
+    """``stats`` defaults to the committed panels (``IndustryStats.load``), ``bodies`` to the committed registry
+    (``load_bodies``) and ``recommendations`` and ``gaps`` to the committed ones; pass fixtures in tests."""
     stats = IndustryStats.load() if stats is None else stats
     bodies = load_bodies()[0] if bodies is None else bodies
     titles = {r.id: r.title for r in records}
     changed = changed_by_index(records)
+    recs = load_recommendations().recommendations if recommendations is None else recommendations
+    gaps = load_gaps() if gaps is None else gaps
+    by_id = {r.id: r for r in records}
+    recs = [x for x in recs if any(a in by_id for a in x.applies_to)]
+    rec_index = by_record(recs)
+    rec_dicts = [recommendation_dict(x, by_id) for x in recs]
     checks = {d["record_id"]: d for d in dates_report or []}
     evals = {e.id: e for e in evaluations or []}
     archived = current_evaluation(evaluations or [])
@@ -96,6 +114,8 @@ def build_payload(
                 "ended": ended_dict(r),
                 "timeline": timeline(r, titles, generated),
                 "changes": changes_list(changed.get(r.id, [])),
+                "recs": [x.id for x in rec_index.get(r.id, [])],
+                "recGap": None if r.id in rec_index else gap_for(r, gaps),
             }
         )
         data["industries"] = [{**i, "division": anzsic.division(i["anzsic"])} for i in data["industries"]]
@@ -106,7 +126,9 @@ def build_payload(
         "framework": framework.as_dict(),
         "channels": [{"id": k, "label": v} for k, v in CHANNEL_LABELS.items()],
         "familyLabels": {f: FAMILY_LABELS.get(f, _humanise(f)) for f in {r.family for r in records if r.family}},
-        "bodies": bodies_dict(records, bodies),
+        "bodies": bodies_dict(records, bodies, {b for x in rec_dicts for b in x["actors"]}),
+        "recommendations": rec_dicts,
+        "recKinds": REC_KIND_LABELS,
         "bodyTypes": BODY_TYPE_LABELS,
         "roles": ROLE_LABELS,
         "divisions": _division_names(),
