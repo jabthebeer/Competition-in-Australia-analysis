@@ -8,6 +8,8 @@ A public-data toolkit for assessing how Australian legislation, regulatory setti
 
 **Productivity framework (28 October 2026, E-87 to E-90 and E-92).** The legislation menu now assesses every register item against a productivity impact framework: eight drivers of productivity, each marked from −2 to +2, with an overall mark, a main driver, a reach and a confidence rating (`src/alicia/register/framework.py`; [methods note](../docs/productivity_framework.md)). All 234 items are assessed (drafts): 173 reforms, 54 existing settings and 7 non-legislative barriers. The menu shows each item's assessment beside summary statistics for its industries; the econometric sections moved, unchanged, to the econometric archive (`archive.html` and the evaluation pages). The register review and the candidates still to add are in [`register_review_framework.md`](../docs/register_review_framework.md).
 
+**Who is responsible, and what changed since (29 October 2026, E-94).** Every item names the departments, agencies and regulators responsible for it, from a registry of 105 bodies (`regulation-register/bodies.json`, `register/bodies.py`), and 29 items record later changes to their law or setting (`history`; `register/timeline.py`). The menu filters by department (including its agencies), marks items that were repealed or replaced, and shows each item's responsible bodies and a timeline of its changes ([methods note](../docs/responsibility_and_history.md)). A recommendations section is parked as [P-2](../docs/parked_items.md).
+
 **Change of direction (22 October 2026, E-75).** Retrospective evaluation is paused. The register and its hypotheses stay and become part of the product. The next build is a **Policy costing** tab on the website: a regulatory burden costing under the OIA framework, and a productivity and competition costing that turns a policy brief into productivity and GDP effects by channel, with ranges and sources ([plan](../docs/forward_plan_policy_costing.md)). Parked: a literature review for each register record ([P-1](../docs/parked_items.md)). Plan approved 22 October 2026 (E-77). **P0–P3 done**:<br>• the policy brief schema;<br>• the Policy costing tab on the website;<br>• the costing parameters (`alicia costing-params`, 16 sources, refreshed daily; [data dictionary](../docs/costing_parameters.md));<br>• the evidence library.
 
 The table below is the state of the retrospective work when it was paused.
@@ -64,11 +66,12 @@ uv run python analyses/childcare_nqf_wa/paths.py          # display paths, then 
 ## Commands
 
 ```bash
-uv run alicia validate                    # check every register record (schema, framework assessment, ANZSIC codes and names, CPI classes) and evaluation
+uv run alicia validate                    # check every register record (schema, framework assessment, ANZSIC codes and names, CPI classes, responsible bodies, history links) and evaluation
 uv run alicia menu                        # list items with their overall mark and main driver
 uv run alicia menu --driver labour --kind setting   # filter by main driver and kind of item
 uv run alicia menu --jurisdiction nsw --direction weakening
 uv run alicia menu --industry 4623        # ANZSIC code or prefix
+uv run alicia menu --body cth-dcceew      # items a department (with its agencies) or a regulator is responsible for
 uv run alicia show nsw-rideshare-2015     # one record in full, with its screen
 uv run alicia families                    # multi-jurisdiction reforms in date order
 uv run alicia dates cth-uct-penalties-2023      # effective date, checked against the register

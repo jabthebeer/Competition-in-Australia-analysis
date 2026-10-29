@@ -184,14 +184,35 @@ table.st tr.grp th { text-align: left; font-size: 0.7rem; text-transform: upperc
 table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
 .detail details.more .tscroll { max-height: none; overflow: visible; }
 .st-src { font-size: 0.75rem; color: var(--ink-3); margin: 6px 0 0; }
-.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; font-size: var(--step--1); margin: 0; }
-.kv dt { color: var(--ink-3); }
-.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
 .d-list { margin: 0; padding-left: 1.1em; font-size: var(--step--1); display: grid; gap: 4px; }
 .d-list li { overflow-wrap: anywhere; }
 .close { justify-self: end; font: inherit; font-size: var(--step--1); background: none; border: 1px solid var(--line-strong); border-radius: 6px; color: var(--ink-2); padding: 2px 8px; cursor: pointer; }
-.big-date { font-family: var(--font-mono); font-size: var(--step-1); }
 .arch-note { font-size: var(--step--1); color: var(--ink-2); border: 1px dashed var(--line-strong); border-radius: 8px; padding: 8px 10px; margin: 0; }
+
+/* Who is responsible, and what happened to the law since */
+.who { display: block; font-size: 0.75rem; color: var(--ink-3); margin-top: 2px; }
+.tag.end { background: var(--mk-0); color: var(--ink-2); border-color: var(--ink-3); }
+.ended-note { font-size: var(--step--1); border-left: 3px solid var(--ink-3); padding: 4px 0 4px 10px; color: var(--ink-2); }
+.ended-note strong { color: var(--ink); }
+.lnk { font: inherit; background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; text-align: left; }
+.resp { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: var(--step--1); }
+.resp li { display: grid; gap: 1px; overflow-wrap: anywhere; }
+.resp .role { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); }
+.resp .in { color: var(--ink-2); }
+.resp .rnote { color: var(--ink-3); font-size: 0.78rem; }
+.tline { list-style: none; margin: 0; padding: 0 0 0 16px; border-left: 2px solid var(--line-strong); display: grid; gap: 10px; font-size: var(--step--1); margin-left: 6px; }
+.tline li { position: relative; display: grid; gap: 1px; overflow-wrap: anywhere; }
+.tline li::before { content: ""; position: absolute; left: -24px; top: 0.25em; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink-3); }
+.tline li.later::before { background: var(--accent); border-color: var(--accent); }
+.tline li.end::before { background: var(--ink); border-color: var(--ink); }
+.tline li.upcoming::before { border-style: dashed; background: var(--surface); }
+.tline .t-when { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-3); }
+.tline .t-kind { font-weight: 600; }
+.tline .t-src { font-size: 0.75rem; color: var(--ink-3); }
+.tl-key { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.75rem; color: var(--ink-3); }
+.tl-key i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--ink-3); box-sizing: border-box; vertical-align: -1px; margin-right: 4px; }
+.tl-key i.later { background: var(--accent); border-color: var(--accent); }
+.tl-key i.end { background: var(--ink); border-color: var(--ink); }
 </style>
 
 <div class="wrap">
@@ -234,9 +255,13 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     <div class="filter-row"><span class="filter-label">Reach</span><div class="chips" id="f-reach"></div></div>
     <div class="filter-row">
       <label class="filter-label" for="f-status">Status</label>
-      <select id="f-status"><option value="">Any</option><option value="in-force">In force</option><option value="not-yet">Not yet in force</option></select>
+      <select id="f-status"><option value="">Any</option><option value="in-force">In force</option><option value="not-yet">Not yet in force</option><option value="ended">Repealed or replaced</option></select>
       <label class="filter-label" for="f-div">Industry</label>
       <select id="f-div"></select>
+    </div>
+    <div class="filter-row">
+      <label class="filter-label" for="f-body">Responsible</label>
+      <select id="f-body"></select>
     </div>
   </section>
 
@@ -326,11 +351,15 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     regHampered: ["Hampered by regulation", "Share of businesses telling the ABS that government regulation or compliance hampered their activities or performance in 2024-25."],
     capex: ["Capital spending", "Private new capital expenditure (buildings, structures, equipment) as a share of value added. The ABS survey leaves out some industries, such as farming."],
     rd: ["Business R&D", "Spending by businesses on research and experimental development, as a share of the value they add."],
+    administers: ["Administers", "The department whose minister is responsible for the law or program under the government's administrative arrangements, or the agency in it that runs the scheme day to day."],
+    regulates: ["Regulates", "The body that licenses, enforces, collects or monitors under the law: a regulator, tax office or agency."],
+    policy: ["Leads policy", "The department that leads policy on an issue that is not a single law, such as a non-legislative barrier or a national scheme."],
   });
 
   // Every defined word the page can show (the detail panel adds most of them only when an item is open).
   const GLOSSARY = ["mainDriver", "overall", "mixed", "reach", "confidence", "employing", "entry", "exit", "avgGrowth", "valueAdded",
-    "ebitda", "labourProductivity", "mfp", "topShare", "markupRba", "blade", "noCompetition", "regHampered", "capex", "rd"];
+    "ebitda", "labourProductivity", "mfp", "topShare", "markupRba", "blade", "noCompetition", "regHampered", "capex", "rd",
+    "administers", "regulates", "policy"];
 
   // --- Helpers ------------------------------------------------------------------------------------
   const ratingBadge = (a, big) => a
@@ -340,7 +369,13 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   const kindTag = (k) => (k === "reform" ? "" : `<span class="tag kind" title="${esc(FW.kinds[k].help)}">${esc(FW.kinds[k].label)}</span>`);
   const reachLabel = (k) => (FW.reach[k] ? FW.reach[k].label : "");
   const effLabel = (r) => (r.kind === "barrier" ? "–" : r.effective ? (r.kind === "setting" ? `since ${r.effective.slice(0, 4)}` : fmtDate(r.effective)) : (r.kind === "setting" ? "in place" : "not yet"));
-  const inForce = (r) => r.kind !== "reform" || !!r.effective;
+  const inForce = (r) => !r.ended && (r.kind !== "reform" || !!r.effective);
+  const B = DATA.bodies;
+  const deptOf = (id) => (B[id] && B[id].type !== "department" && B[id].parent ? B[id].parent : id);
+  const bodyName = (id) => (B[id] ? B[id].name : id);
+  const whoShort = (r) => [...new Set(r.responsible.map((x) => (B[x.body] ? B[x.body].short : x.body)))].join(" · ");
+  const endTag = (r) => (r.ended ? `<span class="tag end" title="${esc(r.ended.what)}">${esc(r.ended.label)} ${esc(fmtDate(r.ended.date))}</span>` : "");
+  const bodyMatch = (r, id) => r.responsible.some((x) => x.body === id || deptOf(x.body) === id);
 
   function fmtStat(v, f) {
     if (!isNum(v)) return "–";
@@ -355,7 +390,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   }
 
   // --- State --------------------------------------------------------------------------------------
-  const state = { q: "", driver: new Set(), rating: new Set(), kind: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", selected: null, tab: "list", sort: "new" };
+  const state = { q: "", driver: new Set(), rating: new Set(), kind: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", selected: null, tab: "list", sort: "new" };
 
   function matches(r, skip) {
     const a = A(r);
@@ -365,10 +400,13 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     if (state.jur.size && !state.jur.has(r.jurisdiction)) return false;
     if (state.reach.size && !(a && state.reach.has(a.reach))) return false;
     if (state.status === "in-force" && !inForce(r)) return false;
-    if (state.status === "not-yet" && inForce(r)) return false;
+    if (state.status === "not-yet" && (inForce(r) || r.ended)) return false;
+    if (state.status === "ended" && !r.ended) return false;
+    if (state.body && !bodyMatch(r, state.body)) return false;
     if (state.div && !(r.industries.some((i) => i.division === state.div) || (a && a.reach === "economy-wide" && !r.industries.length))) return false;
     if (state.q) {
       const hay = [r.id, r.title, r.summary, r.family, DATA.familyLabels[r.family], r.jurisdiction, FW.kinds[r.kind].label,
+        ...r.responsible.flatMap((x) => [x.body, bodyName(x.body), B[x.body] ? B[x.body].short : ""]),
         ...r.industries.map((i) => `${i.anzsic} ${i.name}`), ...(a ? [a.summary, DRV[a.main_driver].label, ...a.marks.map((m) => m.reason)] : [])].join(" ").toLowerCase();
       if (!state.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
     }
@@ -396,6 +434,18 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   chipGroup($("f-reach"), "reach", Object.keys(FW.reach).map((k) => ({ value: k, label: FW.reach[k].label, title: FW.reach[k].help, n: count((r) => A(r) && A(r).reach === k) })));
   const divs = [...new Set(R.flatMap((r) => r.industries.map((i) => i.division)))].filter(Boolean).sort();
   $("f-div").innerHTML = `<option value="">All industries</option>` + divs.map((d) => `<option value="${esc(d)}">${esc(d)} ${esc(DATA.divisions[d] || "")}</option>`).join("");
+  // Departments by jurisdiction, each followed by the agencies and regulators in it; a department's count includes theirs.
+  const bodyCount = (id) => count((r) => bodyMatch(r, id));
+  const JUR_GROUPS = [["CTH", "Commonwealth"], ["national", "National schemes"], ["NSW", "New South Wales"], ["VIC", "Victoria"], ["QLD", "Queensland"],
+    ["WA", "Western Australia"], ["SA", "South Australia"], ["TAS", "Tasmania"], ["ACT", "Australian Capital Territory"], ["NT", "Northern Territory"]];
+  const byName = (a, b) => B[a].name.localeCompare(B[b].name);
+  $("f-body").innerHTML = `<option value="">Any department or agency</option>` + JUR_GROUPS.map(([j, label]) => {
+    const ids = Object.keys(B).filter((id) => B[id].jurisdiction === j);
+    const tops = ids.filter((id) => B[id].type === "department" || !B[id].parent || !B[B[id].parent] || B[B[id].parent].jurisdiction !== j).sort(byName);
+    const opts = tops.flatMap((d) => [[d, 0], ...ids.filter((id) => B[id].parent === d && id !== d).sort(byName).map((id) => [id, 1])])
+      .map(([id, depth]) => `<option value="${esc(id)}">${depth ? "\u00a0\u00a0\u00a0– " : ""}${esc(B[id].name)} (${bodyCount(id)})</option>`).join("");
+    return opts ? `<optgroup label="${esc(label)}">${opts}</optgroup>` : "";
+  }).join("");
 
   function syncChips() {
     document.querySelectorAll(".chip[data-key]").forEach((b) => b.setAttribute("aria-pressed", state[b.dataset.key].has(b.dataset.val)));
@@ -409,11 +459,12 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   $("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
   $("f-status").addEventListener("change", (e) => { state.status = e.target.value; render(); });
   $("f-div").addEventListener("change", (e) => { state.div = e.target.value; render(); });
+  $("f-body").addEventListener("change", (e) => { state.body = e.target.value; render(); });
   $("sort").addEventListener("change", (e) => { state.sort = e.target.value; render(); });
   $("reset").addEventListener("click", () => {
-    state.q = ""; state.status = ""; state.div = "";
+    state.q = ""; state.status = ""; state.div = ""; state.body = "";
     ["driver", "rating", "kind", "jur", "reach"].forEach((k) => state[k].clear());
-    $("q").value = ""; $("f-status").value = ""; $("f-div").value = "";
+    $("q").value = ""; $("f-status").value = ""; $("f-div").value = ""; $("f-body").value = "";
     syncChips();
     render();
   });
@@ -464,7 +515,7 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
       return `<tr class="${state.selected === r.id ? "sel" : ""}">
         <td class="mono">${esc(effLabel(r))}</td>
         <td class="mono">${esc(r.jurisdiction)}</td>
-        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(r.title)}</button>${r.family ? `<span class="fam">${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}${kindTag(r.kind)}</td>
+        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(r.title)}</button>${r.family ? `<span class="fam">${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}${kindTag(r.kind)} ${endTag(r)}${r.responsible.length ? `<span class="who" title="Responsible">${esc(whoShort(r))}</span>` : ""}</td>
         <td>${a ? drvTag(a.main_driver) : ""}</td>
         <td>${ratingBadge(a)}</td>
         <td>${a ? esc(reachLabel(a.reach)) : ""}</td>
@@ -536,6 +587,14 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
       parts.push(`<text x="14" y="${cy + 4}" font-size="11.5" style="fill:var(--ink-2)">${esc(r.family ? r.jurisdiction : `${r.jurisdiction} · ${r.short}`)}</text>`);
       parts.push(`<line x1="${LBL}" x2="${width - RIGHT}" y1="${cy}" y2="${cy}" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 3"/>`);
       const cx = x(r.effective), sel = state.selected === r.id;
+      if (r.ended) {
+        const ex = Math.min(width - RIGHT, x(r.ended.date));
+        parts.push(`<line x1="${cx}" x2="${ex}" y1="${cy}" y2="${cy}" stroke="var(--ink-3)" stroke-width="2"/><path d="M${ex - 4} ${cy - 4}L${ex + 4} ${cy + 4}M${ex - 4} ${cy + 4}L${ex + 4} ${cy - 4}" stroke="var(--ink)" stroke-width="1.6"><title>${esc(`${r.ended.label} ${fmtDate(r.ended.date)}`)}</title></path>`);
+      }
+      r.timeline.filter((e) => !e.own && e.date && !["repealed", "replaced"].includes(e.kind)).forEach((e) => {
+        const tx = Math.min(width - RIGHT, x(e.date));
+        parts.push(`<line x1="${tx}" x2="${tx}" y1="${cy - 6}" y2="${cy + 6}" stroke="var(--accent)" stroke-width="2"><title>${esc(`${e.label} ${fmtDate(e.date)}: ${e.what}`)}</title></line>`);
+      });
       parts.push(`<g class="tl-mark" tabindex="0" role="button" data-id="${esc(r.id)}" aria-label="${esc(`${r.jurisdiction}: ${r.title}, ${fmtDate(r.effective)}, overall mark ${a ? signed(a.total) : "none"}`)}">
         <circle class="hit" cx="${cx}" cy="${cy}" r="10" fill="${sel ? "var(--accent-soft)" : "transparent"}" stroke="${sel ? "var(--accent)" : "none"}"/>
         <circle cx="${cx}" cy="${cy}" r="6" fill="${a ? fill[a.rating] : "var(--mk-0)"}" stroke="var(--ink-3)" stroke-width="1"/></g>`);
@@ -556,10 +615,13 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     });
     const undated = rows.length - dated.length;
     $("tlLegend").innerHTML = RATING_ORDER.map((k) => `<span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5" fill="${fill[k]}" stroke="var(--ink-3)"/></svg>${esc(RATING_LABEL[k])}</span>`).join("") +
+      `<span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><line x1="6" x2="6" y1="0" y2="12" stroke="var(--accent)" stroke-width="2"/></svg>Later change</span>` +
+      `<span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 2L10 10M2 10L10 2" stroke="var(--ink)" stroke-width="1.6"/></svg>Repealed or replaced</span>` +
       (undated ? `<span>${undated} not shown: not yet in force, existing settings or barriers</span>` : "");
   }
 
   // --- Detail -------------------------------------------------------------------------------------
+  const li = (items) => (items.length ? `<ul class="d-list">${items.join("")}</ul>` : "");
   function marksHtml(a) {
     const order = DRV_KEYS;
     return `<div class="marks">${order.map((d) => {
@@ -602,6 +664,38 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
       <p class="st-src">Sources: ${used.join("; ")}.</p>
       <p>${esc(DATA.statsNote)}</p></details>`;
   }
+  function whoHtml(r) {
+    if (!r.responsible.length) return "";
+    return `<ul class="resp">${r.responsible.map((x) => {
+      const b = B[x.body], d = b && b.type !== "department" && b.parent && B[b.parent] ? B[b.parent] : null;
+      return `<li><span class="role">${term(x.role, DATA.roles[x.role])}</span>
+        <span>${b ? link(b.url, b.name) : esc(x.body)}${b && !b.current ? ` <span class="muted">(former)</span>` : ""}${d ? ` <span class="in">· in ${esc(d.name)}</span>` : ""}</span>
+        ${x.note ? `<span class="rnote">${esc(x.note)}</span>` : ""}
+        <span class="rnote">${link(x.source, "Source")}</span></li>`;
+    }).join("")}</ul>`;
+  }
+  function timelineHtml(r) {
+    const c = r.check;
+    const head = r.kind !== "barrier" && r.effective
+      ? `<p class="small">${r.kind === "setting" ? "In place since" : "Effective"} <strong>${esc(fmtDate(r.effective))}</strong>${r.effectiveWhat ? `: ${esc(r.effectiveWhat)}` : ""}</p>
+        ${c ? `<p><span class="pill ${CHECK[c.status].cls}">${esc(CHECK[c.status].label)}</span> <span class="muted small">${esc(CHECK[c.status].help)}.</span></p>${li(c.issues.map((i) => `<li>${esc(i)}</li>`))}` : ""}`
+      : r.kind === "reform" && !r.effective ? `<p class="small"><strong>Not yet in force.</strong></p>` : "";
+    const later = r.timeline.filter((e) => !e.own).length;
+    const items = r.timeline.map((e) => {
+      const cls = [e.own ? "" : "later", ["repealed", "replaced"].includes(e.kind) ? "end" : "", e.upcoming ? "upcoming" : ""].filter(Boolean).join(" ");
+      return `<li class="${cls}"><span class="t-when">${esc(fmtDate(e.date))}${e.upcoming ? " · to come" : ""}</span>
+        <span><span class="t-kind">${esc(e.label)}.</span> ${esc(e.what)}</span>
+        <span class="t-src">${e.source ? link(e.source, "Source") : ""}${e.record ? `${e.source ? " · " : ""}<button type="button" class="lnk" data-id="${esc(e.record)}">Open: ${esc(e.recordTitle || e.record)}</button>` : ""}</span></li>`;
+    }).join("");
+    const changes = r.changes.length
+      ? `<p class="small">This item changed ${r.changes.length === 1 ? "an earlier item" : "earlier items"} in the register:</p><ul class="d-list">${r.changes.map((x) => `<li>${esc(x.label)}: <button type="button" class="lnk" data-id="${esc(x.record)}">${esc(x.title)}</button></li>`).join("")}</ul>`
+      : "";
+    if (!head && !items && !changes) return "";
+    return `${head}
+      ${items ? `<div class="tl-key"><span><i></i>This item's own dates</span>${later ? `<span><i class="later"></i>Later change</span>` : ""}${r.ended ? `<span><i class="end"></i>Repealed or replaced</span>` : ""}</div><ol class="tline">${items}</ol>` : ""}
+      ${later ? "" : r.kind === "barrier" ? "" : `<p class="small muted">No later change to this law or setting is recorded in the register.</p>`}
+      ${changes}`;
+  }
   function select(id, fromHash) {
     state.selected = id;
     const r = R.find((x) => x.id === id);
@@ -611,8 +705,6 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     el.className = "detail";
     const a = A(r);
     const sec = (title, body) => (body ? `<section class="d-sec"><h3>${esc(title)}</h3>${body}</section>` : "");
-    const li = (items) => (items.length ? `<ul class="d-list">${items.join("")}</ul>` : "");
-    const c = r.check;
     const assess = a ? `<section class="d-sec"><h3>Productivity assessment</h3><div class="assess">
         <div class="assess-top">${ratingBadge(a, true)} ${drvTag(a.main_driver)}</div>
         <p class="assess-sum">${esc(a.summary)}</p>
@@ -626,27 +718,23 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
       <button type="button" class="close" id="closeDetail">Close</button>
       <div class="d-head">
         <h2>${esc(r.title)}</h2>
-        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${r.family ? `<span>${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}${kindTag(r.kind)}<span>${esc(r.kind === "barrier" ? "" : r.effective ? `${r.kind === "setting" ? "In place since" : "Effective"} ${fmtDate(r.effective)}` : r.kind === "setting" ? "In place" : "Not yet in force")}</span></div>
+        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${r.family ? `<span>${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}${kindTag(r.kind)}${endTag(r)}<span>${esc(r.kind === "barrier" ? "" : r.effective ? `${r.kind === "setting" ? "In place since" : "Effective"} ${fmtDate(r.effective)}` : r.kind === "setting" ? "In place" : "Not yet in force")}</span></div>
+        ${r.responsible.length ? `<div class="d-meta">${r.responsible.map((x) => `<span class="tag" title="${esc(`${DATA.roles[x.role]}: ${bodyName(x.body)}`)}">${esc(B[x.body] ? B[x.body].short : x.body)}</span>`).join("")}</div>` : ""}
         <p>${esc(r.summary)}</p>
+        ${r.ended ? `<p class="ended-note"><strong>No longer in force: ${esc(r.ended.label.toLowerCase())} ${esc(fmtDate(r.ended.date))}.</strong> ${esc(r.ended.what)} The assessment below is of the item while it applied.</p>` : ""}
       </div>
       ${assess}
+      ${sec("Who is responsible", whoHtml(r))}
+      ${sec("Timeline", timelineHtml(r))}
       ${sec("The industries affected", statsHtml(r))}
       ${sec("Competition rationale", `<p>${esc(r.direction_rationale)}</p><p class="small muted">Hypothesised effect on competition: ${esc(r.direction)}. Competition channels (OIA): ${esc(r.channelLabels.join("; "))}.</p>${li(r.direction_sources.map((u) => `<li>${link(u)}</li>`))}`)}
       ${r.archivedEvaluation ? `<p class="arch-note">An econometric evaluation of this change is kept in the <a href="evaluation-${encodeURIComponent(r.archivedEvaluation.id)}.html">econometric archive</a>: ${esc(r.archivedEvaluation.finding.toLowerCase())}. It is provisional and was paused with the rest of the evaluation programme.</p>` : ""}
-      ${r.kind !== "barrier" ? sec(r.kind === "setting" ? "In place since" : "Effective date", `
-        <div class="big-date">${esc(r.effective ? fmtDate(r.effective) : r.kind === "setting" ? "–" : "Not yet in force")}</div>
-        ${r.effectiveWhat ? `<p class="muted small">${esc(r.effectiveWhat)}</p>` : ""}
-        ${c ? `<p><span class="pill ${CHECK[c.status].cls}">${esc(CHECK[c.status].label)}</span> <span class="muted small">${esc(CHECK[c.status].help)}.</span></p>${li(c.issues.map((i) => `<li>${esc(i)}</li>`))}` : ""}`) : ""}
       ${sec("Industries (ANZSIC 2006)", li(r.industries.map((i) => `<li><span class="mono">${esc(i.anzsic)}</span> ${esc(i.name)} <span class="muted">(${esc(i.exposure)})</span></li>`)))}
       ${sec("Instruments", li(r.instruments.map((i) => `<li>${link(i.register_url, i.title)} <span class="muted">(${esc(i.role)}${i.provisions ? `; ${esc(i.provisions)}` : ""})</span></li>`)))}
-      ${(r.dates.announced.date || r.dates.assent_or_made.date || r.dates.commenced.length) ? sec("Dates and sources", `<dl class="kv">
-        ${r.dates.announced.date ? `<dt>Announced</dt><dd>${link(r.dates.announced.source, fmtDate(r.dates.announced.date))}</dd>` : ""}
-        ${r.dates.assent_or_made.date ? `<dt>Assent or made</dt><dd>${link(r.dates.assent_or_made.source, fmtDate(r.dates.assent_or_made.date))}</dd>` : ""}
-        ${r.dates.commenced.map((cm) => `<dt>Commenced${cm.primary ? " (primary)" : ""}</dt><dd>${link(cm.source, fmtDate(cm.date))}: ${esc(cm.what)}</dd>`).join("")}
-      </dl>`) : ""}
       ${sec("Notes", r.notes ? `<p class="small">${esc(r.notes)}</p>` : "")}
       ${sec("Verification", `<p class="small muted">${r.verified.dates ? "Dates verified against official sources." : "Dates not fully verified."} ${esc(r.verified.notes || "")}</p><p class="small muted">Review: ${esc(r.review.status)}. ${esc(r.review.notes || "")}</p>`)}
     `;
+    el.querySelectorAll(".lnk[data-id]").forEach((b) => b.addEventListener("click", () => { select(b.dataset.id); el.scrollTop = 0; }));
     $("closeDetail").addEventListener("click", () => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* ignore */ } select(null); });
     render();
   }
@@ -676,6 +764,8 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
   $("foot").innerHTML = `
     <p><strong>How items are marked.</strong> ${esc(DATA.menuNote)} The full method, with its evidence, is on the <a href="framework.html">Framework</a> page.</p>
     <p><strong>Industry statistics.</strong> ${esc(DATA.statsNote)} Sources: ${fsrc || "not available in this build"}.</p>
+    <p><strong>Who is responsible.</strong> Each item names the department that administers the law (or leads policy on it) and the bodies that regulate under it. Commonwealth, Queensland, Tasmanian, Victorian and ACT departments come from each government's administrative arrangements; other states' from their legislation sites and portfolio lists. Each tag links to its source, and notes say where an allocation was inferred rather than read from an order. Choosing a department in the filter includes the agencies in it.</p>
+    <p><strong>Timeline.</strong> Each item's own dates, then later changes to the law or setting (amendments, easings, repeals), each with its source. A repealed or replaced item stays in the register, marked as no longer in force, so its assessment can still be read.</p>
     <p><strong>Register check.</strong> ${esc(DATA.checkNote)}</p>
     <p><strong>Econometric archive.</strong> The ${DATA.archivedEvaluations} econometric evaluations this page used to show, with the evaluability screen and data coverage, are kept unchanged in the <a href="archive.html">econometric archive</a> (paused 22 October 2026).</p>
     <p><strong>Sources.</strong> Industry codes: ABS ANZSIC 2006. Every date in a record links to its source. Unofficial research, not an Australian Government product.</p>
@@ -683,9 +773,11 @@ table.st .lv { display: block; font-size: 0.72rem; color: var(--ink-3); }
     <dl class="glossary">${GLOSSARY.filter((k) => TERMS[k]).map((k) => `<div><dt>${esc(TERMS[k][0])}</dt><dd>${esc(TERMS[k][1])}</dd></div>`).join("")}</dl>`;
 
   render();
-  // #<record id> opens an item; #driver=<driver> filters by main driver (links from the Framework page).
+  // #<record id> opens an item; #driver=<driver> filters by main driver (links from the Framework page); #body=<id>
+  // filters by department or agency (ids in regulation-register/bodies.json).
   const fromHash = decodeURIComponent((location.hash || "").slice(1));
   if (fromHash.startsWith("driver=") && DRV[fromHash.slice(7)]) { state.driver.add(fromHash.slice(7)); syncChips(); render(); }
+  else if (fromHash.startsWith("body=") && B[fromHash.slice(5)]) { state.body = fromHash.slice(5); $("f-body").value = state.body; render(); }
   else if (fromHash && R.some((r) => r.id === fromHash)) { select(fromHash, true); $("detail").scrollIntoView({ block: "start" }); }
 })();
 </script>
