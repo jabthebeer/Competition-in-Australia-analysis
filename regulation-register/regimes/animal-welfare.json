@@ -1,0 +1,89 @@
+{
+  "id": "animal-welfare",
+  "name": "Animal welfare and livestock",
+  "what": "Meet state animal welfare standards for keeping, transporting and slaughtering animals, and Commonwealth rules for live export.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "014",
+      "016",
+      "017",
+      "018",
+      "019",
+      "1111",
+      "6620",
+      "8921",
+      "912",
+      "6970"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State animal welfare law",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State primary industries department or RSPCA inspectors",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Commonwealth agriculture department (live export licences)",
+      "bodies": [
+        "cth-daff"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Agriculture, forestry and fishing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/agriculture-forestry-and-fishing-industry",
+      "locator": "Laws you need to follow",
+      "quote": "Animal welfare laws may apply if your business keeps, breeds, transports or manages animals.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [
+    {
+      "tag": "inconsistent",
+      "what": "Farm animal welfare rules are set state by state, so standards and their enforcement differ across borders.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Regulation of Australian Agriculture",
+          "publisher": "Productivity Commission",
+          "year": 2016,
+          "url": "https://assets.pc.gov.au/inquiries/completed/agriculture/report/agriculture.pdf",
+          "locator": "Overview, p. 11",
+          "quote": "animal welfare - inconsistent regulation makes it difficult to effectively inform consumers, and inconsistent standards create uncertainty for industry",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

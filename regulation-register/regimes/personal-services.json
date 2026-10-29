@@ -1,0 +1,94 @@
+{
+  "id": "personal-services",
+  "name": "Hairdressing, beauty and skin penetration",
+  "what": "Register premises for skin penetration and hygiene with the local council and, in some states, hold an occupational licence.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "9511",
+      "9539"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "local",
+      "function": "licenses",
+      "who": "Local council (premises registration)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "inspects",
+      "who": "Local council environmental health officers",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State occupational licensing (some states)",
+      "bodies": [],
+      "jurisdictions": [
+        "NSW",
+        "SA"
+      ]
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Building a skilled and adaptable workforce: Inquiry report",
+      "publisher": "Productivity Commission",
+      "year": 2025,
+      "url": "https://assets.pc.gov.au/2025-12/adaptable-workforce.pdf",
+      "locator": "Recommendation 4.1",
+      "quote": "hairdressers in New South Wales and South Australia",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "act-occupational-licensing",
+    "nsw-occupational-licensing",
+    "nt-occupational-licensing",
+    "qld-occupational-licensing",
+    "sa-occupational-licensing",
+    "tas-occupational-licensing",
+    "vic-occupational-licensing",
+    "wa-occupational-licensing"
+  ],
+  "issues": [
+    {
+      "tag": "inconsistent",
+      "what": "Hairdressers need a certificate III in some states but not others.",
+      "jurisdictions": [
+        "NSW",
+        "SA"
+      ],
+      "evidence": [
+        {
+          "source": "Building a skilled and adaptable workforce: Inquiry report",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-12/adaptable-workforce.pdf",
+          "locator": "Box 4.1, p. 77",
+          "quote": "hairdressers in New South Wales and South Australia do not require a licence but are required to possess a certificate III",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

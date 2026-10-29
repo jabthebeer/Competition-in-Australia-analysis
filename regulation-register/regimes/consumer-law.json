@@ -1,0 +1,94 @@
+{
+  "id": "consumer-law",
+  "name": "Australian Consumer Law",
+  "what": "Meet consumer guarantees, avoid misleading conduct, follow rules on pricing, refunds, contracts and product safety.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "75",
+      "76",
+      "7711",
+      "7713",
+      "7714",
+      "7720",
+      "96"
+    ],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Treasury (Competition and Consumer Act)",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "ACCC",
+      "bodies": [
+        "cth-accc"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State fair trading agency",
+      "bodies": [
+        "nsw-fair-trading",
+        "vic-cav"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "national",
+  "consistency_note": "One law, applied as a law of each state and enforced by the ACCC and eight state and territory agencies.",
+  "basis": [
+    {
+      "source": "Administrative and support services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/administrative-and-support-services-industry",
+      "locator": "Laws you need to follow",
+      "quote": "Rules about pricing, refunds, contracts and advertising are set out in Australian Consumer Law (ACL)",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-uct-penalties-2023",
+    "cth-uct-small-business-2016"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

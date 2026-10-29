@@ -1,0 +1,116 @@
+{
+  "id": "mining-and-petroleum-titles",
+  "name": "Mining and petroleum titles and approvals",
+  "what": "Obtain exploration and production titles, project and environmental approvals, native title agreements and pay royalties; offshore petroleum is regulated by the Commonwealth.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "B"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State mines and resources department",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "approves",
+      "who": "State mines, planning and environment agencies",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "collects",
+      "who": "State revenue or resources department (royalties)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "approves",
+      "who": "Commonwealth environment department and offshore petroleum regulators",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Mining industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/mining-industry",
+      "locator": "Licences and permits",
+      "quote": "State and territory governments manage the licences and permits for the mining industry.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Mining industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/mining-industry",
+      "locator": "Licences and permits",
+      "quote": "Indigenous Land Use Agreements may need to be made with Aboriginal landowners",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [
+    {
+      "tag": "multi-agency",
+      "what": "A single mine can hold hundreds of environmental licences, permits and consents from several agencies and tiers.",
+      "jurisdictions": [
+        "NSW"
+      ],
+      "evidence": [
+        {
+          "source": "Annual Review of Regulatory Burdens on Business: Primary Sector",
+          "publisher": "Productivity Commission",
+          "year": 2007,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulatory-burdens/primary-sector/report/primarysector.pdf",
+          "locator": "Box 4.1, p. 168",
+          "quote": "Cadia estimates that its operations are subject to some 700 licences, permits and consents imposing environmental requirements relating to emissions, waste, noise, dust, flora, fauna, site rehabilitation etc.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": "Case study reported in 2007; not rechecked."
+    },
+    {
+      "tag": "duplicative",
+      "what": "Offshore petroleum operators submitted the same safety and environmental information to different agencies under separate management plans.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Annual Review of Regulatory Burdens on Business: Primary Sector",
+          "publisher": "Productivity Commission",
+          "year": 2007,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulatory-burdens/primary-sector/report/primarysector.pdf",
+          "locator": "Chapter 4, pp. 187-188",
+          "quote": "Many of the regulations necessitate submission of the same information - for example, about safety and environmental considerations - at different times and to different agencies.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": "Reported in 2007 and not rechecked; it may since have been partly addressed."
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

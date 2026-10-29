@@ -1,0 +1,124 @@
+{
+  "id": "product-standards",
+  "name": "Mandatory product standards and labelling",
+  "what": "Make or sell goods that meet mandatory safety and information standards, labelling and trade measurement rules.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "13",
+      "24",
+      "25",
+      "37",
+      "42",
+      "4310"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Commonwealth (mandatory standards under the consumer law)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "ACCC (product safety)",
+      "bodies": [
+        "cth-accc"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State fair trading agencies",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "approves",
+      "who": "State electrical safety regulator (electrical product certification)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "harmonised",
+  "consistency_note": "Consumer product safety standards and trade measurement are national; electrical product safety is regulated state by state.",
+  "basis": [
+    {
+      "source": "Administrative and support services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/administrative-and-support-services-industry",
+      "locator": "Laws you need to follow",
+      "quote": "Packaging must have correct product details and meet product labelling laws .",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "5-year Productivity Inquiry: Advancing Prosperity, Recommendations and Reform Directives",
+      "publisher": "Productivity Commission",
+      "year": 2023,
+      "url": "https://assets.pc.gov.au/inquiries/completed/productivity/report/productivity-recommendations-reform-directives.pdf",
+      "locator": "Recommendation 3.8",
+      "quote": "increasingly accepting product standards adopted in other leading economies as 'deemed to comply'",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "National Competition Policy analysis 2025",
+      "publisher": "Productivity Commission",
+      "year": 2025,
+      "url": "https://assets.pc.gov.au/2025-11/competition-analysis-2025-with-appendices.pdf",
+      "locator": "Section B (Standards), p. 85",
+      "quote": "Each state and territory has its own legislative scheme. Suppliers of electrical products, both within Australia and importers, must comply with the Electrical Equipment Safety System, the NSW system, various other state and territory requirements, and the Australian Consumer Law product safety regime.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-bespoke-mandatory-standards"
+  ],
+  "issues": [
+    {
+      "tag": "duplicative",
+      "what": "Suppliers of electrical products comply with a national scheme, the NSW scheme, other state requirements and the consumer law's product safety rules, all at once.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "National Competition Policy analysis 2025",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-11/competition-analysis-2025-with-appendices.pdf",
+          "locator": "Section B (Standards), p. 85",
+          "quote": "Each state and territory has its own legislative scheme. Suppliers of electrical products, both within Australia and importers, must comply with the Electrical Equipment Safety System, the NSW system, various other state and territory requirements, and the Australian Consumer Law product safety regime.",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "National Competition Policy analysis 2025",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-11/competition-analysis-2025-with-appendices.pdf",
+          "locator": "Section B (Standards), p. 85",
+          "quote": "There is no obvious benefit to Australians from this fragmented system.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "partly-addressed",
+      "status_note": "Treasurers agreed in November 2024 to a ministers' forum to oversee harmonised regulation (PC 2025)."
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

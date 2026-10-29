@@ -3,18 +3,23 @@ rubric, rendered to static HTML from ``register/framework.py``.
 
 The page shows how the ideas fit together, a table of key ideas in plain words, the signs that competition has
 weakened, the rubric (eight drivers by five marks, with the register's items counted in each cell), how an item is
-marked, one real assessment on the rubric, the double-counting rules and the limits. Hovering over, focusing or
+marked, one real assessment on the rubric, the double-counting rules, regulatory complexity (how duplication,
+differences between states and complex rules are recorded, DECISIONS E-96) and the limits. Hovering over, focusing or
 tapping a component shows more detail; the details are also in the page, linked by ``aria-describedby``, for screen
 readers. The evidence and full marking guide for each driver sit in a collapsible section under the rubric."""
 
 from __future__ import annotations
 
 import datetime as dt
+import json
 import re
+from collections import Counter
 from html import escape
 from importlib import resources
 
 from ..register import framework as fw
+from ..register.regimes import ISSUE_HELP, ISSUE_LABELS, TIER_LABELS, Regime, industry_profiles, load_regimes
+from ..register.regimes import regimes_by_record as _regimes_by_record
 from ..register.schema import ChangeRecord
 from .archive import FAMILY_LABELS
 
@@ -502,6 +507,129 @@ def _overlap(tips: _Tips) -> str:
     )
 
 
+# The regime shown as a worked diagram, and the Productivity Commission's words on why fragmentation matters.
+COMPLEXITY_EXAMPLE = "food-safety"
+COMPLEXITY_QUOTE = (
+    "Businesses would wait shorter periods of time for regulatory decisions. They would not need to provide the same "
+    "information to multiple regulators. And they would no longer need to wade through the confusing and "
+    "contradictory requirements of different regulators in the same space."
+)
+FUNCTION_SHORT = {
+    "sets-rules": "Sets rules",
+    "licenses": "Licenses",
+    "approves": "Approves",
+    "inspects": "Inspects",
+    "collects": "Collects",
+    "funds": "Funds",
+}
+
+
+def venn_regions(reg: Regime) -> dict[str, list[dict]]:
+    """The regime's functions placed by the tiers that perform them, for ``vennSvg`` in charts.js."""
+    out: dict[str, list[dict]] = {}
+    for f, label in FUNCTION_SHORT.items():
+        layers = [x for x in reg.layers if x.function == f]
+        if not layers:
+            continue
+        tiers = [t for t in TIER_LABELS if any(x.tier == t for x in layers)]
+        who = "\n".join(f"{TIER_LABELS[x.tier]}: {x.who}" for x in layers)
+        out.setdefault("+".join(tiers), []).append({"label": label, "title": f"{label}\n{who}", "hot": len(tiers) > 1})
+    return out
+
+
+def _complexity(records: list[ChangeRecord], regimes: list[Regime]) -> str:
+    if not regimes:
+        return ""
+    issues = [i for r in regimes for i in r.issues if i.status != "addressed"]
+    counts = Counter(i.tag for i in issues)
+    by_record = _regimes_by_record(regimes)
+    items = Counter(
+        t
+        for r in records
+        for t in {i.tag for g in by_record.get(r.id, []) for i in g.issues if i.status != "addressed"}
+    )
+    rows = "".join(
+        f'<tr><td><a href="index.html#complexity={t}">{escape(label)}</a>'
+        f'<span class="cx-help">{escape(ISSUE_HELP[t])}</span></td>'
+        f'<td class="num">{counts[t]}</td><td class="num">{items[t]}</td></tr>'
+        for t, label in ISSUE_LABELS.items()
+    )
+    profiles = industry_profiles(regimes)
+    top = sorted(profiles, key=lambda p: (-p["sector_touchpoints"], -p["sector_regimes"], p["anzsic"]))[:8]
+    top_rows = "".join(
+        f'<tr><td><a href="index.html#class={p["anzsic"]}"><span class="mono">{p["anzsic"]}</span> '
+        f'{escape(p["name"])}</a></td><td class="num">{p["sector_regimes"]}</td>'
+        f'<td class="num">{p["sector_touchpoints"]}</td><td class="num">{p["sector_varying"]}</td></tr>'
+        for p in top
+    )
+    ex = next((r for r in regimes if r.id == COMPLEXITY_EXAMPLE), regimes[0])
+    venn = escape(
+        json.dumps(
+            {
+                "regions": venn_regions(ex),
+                "names": TIER_LABELS,
+                "label": f"{ex.name}: which tiers of government do what",
+            }
+        ),
+        quote=True,
+    )
+    sector = sum(r.scope == "sector" for r in regimes)
+    linked = sum(1 for r in records if r.id in by_record)
+    src = fw.SOURCES["pc2025"]
+    return f"""
+<section class="block" aria-labelledby="h-complexity">
+  <div class="block-head"><h2 id="h-complexity">Regulatory complexity</h2>
+  <p>A rule can be light on its own and still costly when a business must deal with several agencies or tiers of
+  government for one activity, meet different rules in each state, or follow guidance that is vague or keeps
+  changing. The framework counts these costs under <strong>regulatory burden</strong>, whose checklist already looks
+  for &ldquo;the same thing regulated by several governments&rdquo; and &ldquo;complexity, and frequent changes to the
+  rules&rdquo;. The menu now shows where they arise, industry by industry.</p></div>
+  <div class="cx-grid">
+    <figure class="panel cx-quote"><blockquote>{escape(COMPLEXITY_QUOTE)}</blockquote>
+    <figcaption>What success would look like: <a href="{escape(src["url"])}" target="_blank"
+    rel="noopener">{escape(src["label"])}</a>, p. 37.</figcaption></figure>
+    <div class="panel"><h3 class="sub">How it is recorded</h3><ol class="cx-steps">
+      <li><strong>Regimes.</strong> {len(regimes)} bodies of regulation a business deals with as one task
+      ({len(regimes) - sector} that apply across industries, such as payroll tax; {sector} industry-specific, such as
+      food safety). Each records which tier of government sets the rules, licenses, approves, inspects or collects,
+      and whether the rules are national, a model law adopted with variations, or different in each state.</li>
+      <li><strong>Industries.</strong> Every detailed industry in the ABS classification (all
+      {len(profiles)} ANZSIC classes) is mapped to the regimes it faces, giving the number of government parties it
+      deals with, where tiers overlap and where rules differ by state.</li>
+      <li><strong>Evidence.</strong> Where a review or regulator reports a problem, the regime is tagged, with the
+      source quoted word for word: {len(issues)} issues so far. {linked} of the {len(records)} register items belong to
+      a regime and carry its tags.</li></ol></div>
+  </div>
+  <div class="cx-grid">
+    <div class="panel"><h3 class="sub">Reading the diagram: {escape(ex.name.lower())}</h3>
+      <div class="venn-wrap" data-venn="{venn}"></div>
+      <p class="small muted">Each circle is a tier of government; each label is something it does. A label in an overlap
+      is done by more than one tier (shown in bold): here councils and state agencies both license and inspect food
+      businesses. Every item in the <a href="index.html">menu</a> shows this diagram for its regimes, and each industry
+      shows one for all of its regimes together.</p></div>
+    <div class="panel tscroll"><h3 class="sub">The tags</h3>
+      <table class="data cx-tags"><thead><tr><th scope="col">Tag and meaning</th><th scope="col">Issues</th>
+      <th scope="col">Menu items</th></tr></thead><tbody>{rows}</tbody></table>
+      <p class="small muted">Click a tag to see the items that carry it. No tag means no evidence was found in the
+      sources searched, not that there is no problem; counts also reflect where reviews have looked.</p></div>
+  </div>
+  <div class="cx-grid">
+    <div class="panel"><h3 class="sub">How it relates to the marks</h3>
+      <p class="small">The tags do not change any mark by themselves: each effect is marked once (see above), and
+      complexity is marked under regulatory burden. An item that adds a second approval for the same activity, or
+      that departs from a national model, is marked down on burden; one that removes a duplicate approval, joins a
+      national scheme or recognises other states' licences is marked up. The tags show the assessor, and the reader,
+      where the evidence is. Marks under framework version {escape(fw.VERSION)} are unchanged.</p></div>
+    <div class="panel tscroll"><h3 class="sub">Industries dealing with the most government parties</h3>
+      <table class="data"><thead><tr><th scope="col">Industry</th><th scope="col">Regimes</th>
+      <th scope="col">Parties</th><th scope="col">Differ by state</th></tr></thead><tbody>{top_rows}</tbody></table>
+      <p class="small muted">Industry-specific regimes only; every industry also deals with about
+      {len(regimes) - sector} that apply across industries. The <a href="index.html#industries">Industries view</a>
+      lists all {len(profiles)}. Method and limits: <code>docs/industry_regulation.md</code>.</p></div>
+  </div>
+</section>"""
+
+
 def _limits() -> str:
     cards = "".join(
         f'<div class="limit"><span class="badge">{icon(ic)}</span><div><strong>{escape(t)}</strong>'
@@ -511,7 +639,9 @@ def _limits() -> str:
     return f'<div class="limits">{cards}</div>'
 
 
-def body(records: list[ChangeRecord], generated: dt.date | None = None) -> str:
+def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes: list[Regime] | None = None) -> str:
+    """``regimes`` defaults to the committed regulatory regimes (``load_regimes``)."""
+    regimes = load_regimes().regimes if regimes is None else regimes
     tips = _Tips()
     flow = _flow(tips)
     concepts = _concepts(tips)
@@ -575,6 +705,7 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None) -> str:
   <p>Each effect is marked once, under the driver it acts through.</p></div>
   {overlap}
 </section>
+{_complexity(records, regimes)}
 
 <section class="block" aria-labelledby="h-limits">
   <div class="block-head"><h2 id="h-limits">Limits</h2></div>
@@ -592,7 +723,13 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None) -> str:
 {tips.html()}"""
 
 
-def render(records: list[ChangeRecord], nav: str, standalone: bool = True, generated: dt.date | None = None) -> str:
+def render(
+    records: list[ChangeRecord],
+    nav: str,
+    standalone: bool = True,
+    generated: dt.date | None = None,
+    regimes: list[Regime] | None = None,
+) -> str:
     from .growth import _asset
 
     template = resources.files("alicia.menu").joinpath("templates/framework.html").read_text("utf-8")
@@ -600,7 +737,7 @@ def render(records: list[ChangeRecord], nav: str, standalone: bool = True, gener
         template.replace("/*__SITE_CSS__*/", _asset("site.css"))
         .replace("/*__CHARTS_JS__*/", _asset("charts.js"))
         .replace("<!--__NAV__-->", nav)
-        .replace("<!--__BODY__-->", body(records, generated))
+        .replace("<!--__BODY__-->", body(records, generated, regimes))
     )
     if standalone:
         page = (

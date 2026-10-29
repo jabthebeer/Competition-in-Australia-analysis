@@ -1,0 +1,94 @@
+{
+  "id": "financial-services",
+  "name": "Financial services, credit and prudential regulation",
+  "what": "Hold an Australian financial services or credit licence, meet prudential standards if a bank, insurer or super fund, and anti-money laundering and data obligations.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "62",
+      "63",
+      "64"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "ASIC (financial services and credit licences)",
+      "bodies": [
+        "cth-asic"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "APRA (banks, insurers, super funds)",
+      "bodies": [
+        "cth-apra"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "AUSTRAC (anti-money laundering)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "ACCC (Consumer Data Right) and RBA (payments)",
+      "bodies": [
+        "cth-accc",
+        "cth-rba"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "cth",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Financial and insurance services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/financial-and-insurance-services-industry",
+      "locator": "Licences and permits",
+      "quote": "Australian Government regulators issue most industry licences, registrations and approvals. Some business activities may also need state or territory licences or permits.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Financial and insurance services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/financial-and-insurance-services-industry",
+      "locator": "Laws you need to follow",
+      "quote": "Some businesses have obligations under the Anti-Money Laundering and Counter-Terrorism Financing Act 2006 .",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-card-surcharge-removal-2026",
+    "cth-card-surcharging-2016",
+    "cth-cdr-open-banking-2020",
+    "cth-four-pillars-policy",
+    "cth-loyalty-pricing",
+    "cth-major-bank-levy-2017",
+    "cth-major-bank-market-power",
+    "cth-small-amount-credit-caps-2013",
+    "cth-super-performance-test-2021"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

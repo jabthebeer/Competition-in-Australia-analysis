@@ -730,3 +730,48 @@ function dumbbellChart(container, rows, opts) {
     btn.addEventListener("pointerleave", hideTip);
   });
 }
+
+/* Three-circle Venn of the tiers of government in a regulatory regime: Commonwealth (top left), state or territory
+   (top right) and local council (bottom). regions: {key: [{label, title, hot}]}, keyed by the tiers that share the
+   region joined with "+" in the order cth, state, local (e.g. "state+local"). A tier in no region is drawn dashed.
+   opts.names: {cth, state, local} labels; opts.max: labels listed per region before "+n more"; opts.count: show
+   each region's number of items instead of their labels (for many regimes at once). Returns an SVG string: text is
+   in ink colours; each circle is named directly beside it, so identity never rests on colour alone. */
+const VENN_TIERS = ["cth", "state", "local"];
+function vennSvg(regions, opts = {}) {
+  const names = opts.names || { cth: "Commonwealth", state: "State or territory", local: "Local council" };
+  const max = opts.max || 3;
+  const C = { cth: [112, 100], state: [196, 100], local: [154, 172] };
+  const R = 76;
+  const AT = { cth: [78, 84], state: [230, 84], local: [154, 212], "cth+state": [154, 76], "cth+local": [105, 149],
+    "state+local": [203, 149], "cth+state+local": [154, 124] };
+  const used = new Set(Object.keys(regions).filter((k) => regions[k].length).flatMap((k) => k.split("+")));
+  const parts = [];
+  VENN_TIERS.forEach((t) => {
+    const [cx, cy] = C[t], on = used.has(t);
+    parts.push(`<circle cx="${cx}" cy="${cy}" r="${R}" class="vc vc-${t}${on ? "" : " off"}"/>`);
+  });
+  const lab = { cth: [18, 18, "start"], state: [290, 18, "end"], local: [154, 266, "middle"] };
+  VENN_TIERS.forEach((t) => {
+    const [x, y, anchor] = lab[t];
+    const sw = anchor === "start" ? x : anchor === "end" ? x - (names[t].length * 6.4 + 14) : x - (names[t].length * 3.2 + 7);
+    parts.push(`<circle cx="${sw + 5}" cy="${y - 4}" r="5" class="vc-key vc-${t}${used.has(t) ? "" : " off"}"/>`);
+    parts.push(`<text x="${anchor === "start" ? x + 14 : anchor === "end" ? x : x + 7}" y="${y}" text-anchor="${anchor}" class="vt${used.has(t) ? "" : " off"}">${esc(names[t])}${used.has(t) ? "" : " (none)"}</text>`);
+  });
+  Object.entries(regions).forEach(([key, items]) => {
+    if (!items.length || !AT[key]) return;
+    const [x, y] = AT[key];
+    const hot = key.includes("+");
+    const all = items.map((i) => i.title || i.label).join("\n");
+    if (opts.count) {
+      parts.push(`<g class="vg${hot ? " hot" : ""}" tabindex="0"><title>${esc(all)}</title><text x="${x}" y="${y + 2}" text-anchor="middle" class="vn">${items.length}</text></g>`);
+      return;
+    }
+    const shown = items.length > max ? items.slice(0, max - 1) : items;
+    const lines = shown.map((i) => ({ text: i.label, title: i.title || i.label, hot: i.hot }));
+    if (items.length > shown.length) lines.push({ text: `+${items.length - shown.length} more`, title: all, hot: false });
+    const y0 = y - ((lines.length - 1) * 13) / 2 + 4;
+    lines.forEach((l, n) => parts.push(`<text x="${x}" y="${y0 + n * 13}" text-anchor="middle" class="vl${l.hot ? " hot" : ""}"><title>${esc(l.title)}</title>${esc(l.text)}</text>`));
+  });
+  return `<svg class="venn" viewBox="0 0 308 274" role="img" aria-label="${esc(opts.label || "Which tiers of government do what")}">${parts.join("")}</svg>`;
+}

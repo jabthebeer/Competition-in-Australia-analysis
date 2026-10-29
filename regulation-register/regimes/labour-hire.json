@@ -1,0 +1,76 @@
+{
+  "id": "labour-hire",
+  "name": "Labour hire licensing",
+  "what": "Hold a labour hire licence in each state that requires one, and meet Fair Work rules on labour hire pay.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "7212",
+      "7211"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State labour hire licensing authority",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Fair Work Commission (same job, same pay orders)",
+      "bodies": [
+        "cth-fwc"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Administrative and support services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/administrative-and-support-services-industry",
+      "locator": "Licences and permits",
+      "quote": "supply labour hire workers to other businesses",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-same-job-same-pay-2023"
+  ],
+  "issues": [
+    {
+      "tag": "inconsistent",
+      "what": "Without a national scheme, labour hire licensing has been left to individual states.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Regulation of Australian Agriculture",
+          "publisher": "Productivity Commission",
+          "year": 2016,
+          "url": "https://assets.pc.gov.au/inquiries/completed/agriculture/report/agriculture.pdf",
+          "locator": "Chapter 11, p. 463",
+          "quote": "In the absence of a national regime, the South Australian and Victorian reviews recommended implementing state-based systems.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

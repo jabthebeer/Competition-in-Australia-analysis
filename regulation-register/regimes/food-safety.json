@@ -1,0 +1,176 @@
+{
+  "id": "food-safety",
+  "name": "Food safety",
+  "what": "Meet the Food Standards Code, register or license the food business, appoint a food safety supervisor where required, and be inspected.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "11",
+      "121",
+      "360",
+      "41",
+      "4400",
+      "45",
+      "8601",
+      "8710"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Food Standards Australia New Zealand (the Food Standards Code)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State food authority or health department (higher-risk businesses)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State food authority or health department",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "licenses",
+      "who": "Local council (registration of retail and food service businesses)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "inspects",
+      "who": "Local council",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "harmonised",
+  "consistency_note": "One national food code, adopted by each state's food law; registration, licensing and inspection are run differently by each state and by councils.",
+  "basis": [
+    {
+      "source": "Accommodation and food services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/accommodation-and-food-services-industry",
+      "locator": "Laws you need to follow",
+      "quote": "All food sold, processed or handled for sale in Australia and New Zealand must comply with the Food Standards Code .",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Performance Benchmarking of Australian and New Zealand Business Regulation: Food Safety",
+      "publisher": "Productivity Commission",
+      "year": 2009,
+      "url": "https://assets.pc.gov.au/inquiries/completed/regulation-benchmarking-food-safety/report/food-safety-report.pdf",
+      "locator": "Overview",
+      "quote": "Local councils play a key role in the administration and enforcement of consumer food safety regulation, except in the Australian territories.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [
+    {
+      "tag": "local-variation",
+      "what": "Councils enforce food safety for most food businesses, and differ in fees, inspection frequency and enforcement.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Performance Benchmarking of Australian and New Zealand Business Regulation: Food Safety",
+          "publisher": "Productivity Commission",
+          "year": 2009,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulation-benchmarking-food-safety/report/food-safety-report.pdf",
+          "locator": "Overview, key points, p. XII",
+          "quote": "There are significant differences in councils' fees and charges, inspection rates, enforcement practices and transparency of their activities, which can lead to unnecessary burdens on business.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": "Benchmarked in 2009; not rechecked."
+    },
+    {
+      "tag": "duplicative",
+      "what": "Some food businesses are inspected by their council and audited again by a state regulator for the same food safety matters.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Performance Benchmarking of Australian and New Zealand Business Regulation: Food Safety",
+          "publisher": "Productivity Commission",
+          "year": 2009,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulation-benchmarking-food-safety/report/food-safety-report.pdf",
+          "locator": "Chapter 4, p. 67",
+          "quote": "the overlap and duplication of inspection requirements (sub. 10) - for example, butchers being inspected by the local council and then being audited (or inspected) on food safety matters by other regulators",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": "Raised in 2009; not rechecked."
+    },
+    {
+      "tag": "unclear-guidance",
+      "what": "Businesses report that environmental health officers interpret the same food laws differently.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Performance Benchmarking of Australian and New Zealand Business Regulation: Food Safety",
+          "publisher": "Productivity Commission",
+          "year": 2009,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulation-benchmarking-food-safety/report/food-safety-report.pdf",
+          "locator": "Chapter 7, p. 143",
+          "quote": "criticisms from food business interests centred around issues of inconsistent interpretation and implementation of food laws by environmental health and similarly authorised officers",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    },
+    {
+      "tag": "inconsistent",
+      "what": "States differed on whether food businesses must have a food safety supervisor or a food safety plan.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Performance Benchmarking of Australian and New Zealand Business Regulation: Food Safety",
+          "publisher": "Productivity Commission",
+          "year": 2009,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulation-benchmarking-food-safety/report/food-safety-report.pdf",
+          "locator": "Overview, key points, p. XII",
+          "quote": "The most significant difference occurs over requirements to employ a food safety supervisor and to prepare a food safety plan.",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "Standard 3.2.2A - Food safety management tools",
+          "publisher": "Food Standards Australia New Zealand",
+          "year": 2026,
+          "url": "https://www.foodstandards.gov.au/business/food-safety/overview-food-safety-management-tools",
+          "locator": "What is Standard 3.2.2A?",
+          "quote": "Food service, caterer and related retail businesses in Australia need to meet food safety requirements that came in December 2023.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "partly-addressed",
+      "status_note": "A national standard requiring food safety supervisors in food service, catering and retail took effect in December 2023 (FSANZ)."
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

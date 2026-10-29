@@ -1,0 +1,117 @@
+{
+  "id": "aged-care",
+  "name": "Aged care",
+  "what": "Be approved as a Commonwealth-funded aged care provider, meet the quality standards and be audited, and meet state rules on worker screening and premises.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "8601",
+      "8790"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Aged Care Quality and Safety Commission (provider registration)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "Aged Care Quality and Safety Commission",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "funds",
+      "who": "Commonwealth health and aged care department",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State worker screening agency",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "cth",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Health care and social assistance industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/health-care-and-social-assistance",
+      "locator": "Laws you need to follow",
+      "quote": "Aged care services must follow multiple aged care laws .",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [
+    {
+      "tag": "duplicative",
+      "what": "Providers working across aged care, disability and veterans' care register and are audited separately in each sector.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Delivering quality care more efficiently: Inquiry report",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-12/quality-care.pdf",
+          "locator": "Chapter 1, p. 11",
+          "quote": "Removing unnecessary complexities and duplication can make it easier to protect the rights and safety of care users and improve efficiency. Similarities between the aged care, National Disability Insurance Scheme and veterans' care sectors provide scope to better align quality and safety regulation.",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "Delivering quality care more efficiently: Inquiry report",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-12/quality-care.pdf",
+          "locator": "Chapter 1, p. 22",
+          "quote": "Such an arrangement would reduce the time and costs associated with multiple registration processes",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    },
+    {
+      "tag": "duplicative",
+      "what": "Care workers need separate screening checks for aged care, the NDIS and working with children.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Delivering quality care more efficiently: Inquiry report",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-12/quality-care.pdf",
+          "locator": "Executive summary, p. 1",
+          "quote": "A single worker screening check will save care workers - 75% of whom are women - about $88 million a year. This includes the time value of approximately 419,000 hours a year that workers spend on duplicative paperwork.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "id": "heavy-vehicles",
+  "name": "Heavy vehicle registration, access and safety",
+  "what": "Register heavy vehicles, get route access permits, and meet mass, dimension, fatigue and maintenance rules.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "461",
+      "462",
+      "2911",
+      "5102",
+      "310"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "Heavy Vehicle National Law (adopted by participating states)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "National Heavy Vehicle Regulator (participating states)",
+      "bodies": [
+        "nat-nhvr"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State road agency (WA and NT, and vehicle registration)",
+      "bodies": [],
+      "jurisdictions": [
+        "WA",
+        "NT"
+      ]
+    },
+    {
+      "tier": "local",
+      "function": "approves",
+      "who": "Local council (road manager consent for access permits)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "harmonised",
+  "consistency_note": "A national law in all states except Western Australia and the Northern Territory.",
+  "basis": [
+    {
+      "source": "Regulation of Australian Agriculture",
+      "publisher": "Productivity Commission",
+      "year": 2016,
+      "url": "https://assets.pc.gov.au/inquiries/completed/agriculture/report/agriculture.pdf",
+      "locator": "Finding 9.1",
+      "quote": "Despite the commencement of the Heavy Vehicle National Law and the establishment of the National Heavy Vehicle Regulator, there remain significant variations and inefficiencies in heavy vehicle regulation, including costly delays in processing road access permits.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Transport, postal and warehousing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/transport-postal-and-warehousing-industry",
+      "locator": "Licences and permits",
+      "quote": "heavy vehicle licensing and accreditation",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "act-heavy-vehicle-national-law-2014",
+    "nsw-heavy-vehicle-national-law-2014",
+    "qld-heavy-vehicle-national-law-2014",
+    "sa-heavy-vehicle-national-law-2014",
+    "tas-heavy-vehicle-national-law-2014",
+    "vic-heavy-vehicle-national-law-2014"
+  ],
+  "issues": [
+    {
+      "tag": "inconsistent",
+      "what": "Western Australia and the Northern Territory sit outside the national heavy vehicle law, so operators crossing northern Australia work under separate systems.",
+      "jurisdictions": [
+        "WA",
+        "NT"
+      ],
+      "evidence": [
+        {
+          "source": "Regulation of Australian Agriculture",
+          "publisher": "Productivity Commission",
+          "year": 2016,
+          "url": "https://assets.pc.gov.au/inquiries/completed/agriculture/report/agriculture.pdf",
+          "locator": "Chapter 9, p. 352",
+          "quote": "Inconsistencies also persist because Western Australia and the Northern Territory are not currently participating in the HVNL.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    },
+    {
+      "tag": "multi-agency",
+      "what": "Access permits need consent from every road manager on the route, including each council, which delays approvals even for low-impact vehicles.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Regulation of Australian Agriculture",
+          "publisher": "Productivity Commission",
+          "year": 2016,
+          "url": "https://assets.pc.gov.au/inquiries/completed/agriculture/report/agriculture.pdf",
+          "locator": "Chapter 9, p. 355",
+          "quote": "The delays are in part caused by the requirement to obtain explicit consent from all road managers (including local governments) under the HVNL.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

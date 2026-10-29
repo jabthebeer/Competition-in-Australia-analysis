@@ -1,0 +1,139 @@
+{
+  "id": "energy-markets",
+  "name": "Electricity and gas market regulation",
+  "what": "Hold the authorisations or licences needed to generate, transmit, distribute or retail energy and meet national market rules and state-specific obligations.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "26",
+      "27"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Australian Energy Market Commission (national rules)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Australian Energy Regulator (retailer authorisation, network revenue)",
+      "bodies": [
+        "cth-aer"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State energy regulator (licences outside or alongside the national framework)",
+      "bodies": [
+        "vic-esc"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State energy department (jurisdictional derogations, price settings)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "harmonised",
+  "consistency_note": "National laws for the eastern and southern states; Western Australia and the Northern Territory run their own systems, and the Harper review found the national retail law applied with major derogations in Victoria and Queensland.",
+  "basis": [
+    {
+      "source": "Competition Policy Review: Final Report (Harper review)",
+      "publisher": "Australian Government",
+      "year": 2015,
+      "url": "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf",
+      "locator": "Recommendation 19",
+      "quote": "application of the National Energy Retail Law with minimal derogation by all National Electricity Market jurisdictions",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Competition Policy Review: Final Report (Harper review)",
+      "publisher": "Australian Government",
+      "year": 2015,
+      "url": "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf",
+      "locator": "Recommendation 19",
+      "quote": "The Panel supports moves to include Western Australia and the Northern Territory in the National Electricity Market",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Competition Policy Review: Final Report (Harper review)",
+      "publisher": "Australian Government",
+      "year": 2015,
+      "url": "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf",
+      "locator": "Electricity and gas",
+      "quote": "In Victoria and Queensland, the National Energy Retail Law has yet to be applied without major derogations",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "act-necf-2012",
+    "cth-default-market-offer-2019",
+    "cth-gas-market-code-2023",
+    "nsw-energy-price-deregulation-2014",
+    "nsw-necf-2013",
+    "qld-electricity-frc-2007",
+    "qld-necf-2015",
+    "qld-seq-energy-price-deregulation-2016",
+    "sa-energy-price-deregulation-2013",
+    "sa-necf-2013",
+    "tas-electricity-frc-2014",
+    "tas-necf-2012",
+    "vic-default-offer-2019",
+    "vic-energy-price-deregulation-2009",
+    "wa-domestic-gas-reservation"
+  ],
+  "issues": [
+    {
+      "tag": "inconsistent",
+      "what": "The national energy retail law applies with major state variations, and some states sit outside it.",
+      "jurisdictions": [
+        "VIC",
+        "QLD"
+      ],
+      "evidence": [
+        {
+          "source": "Competition Policy Review: Final Report (Harper review)",
+          "publisher": "Australian Government",
+          "year": 2015,
+          "url": "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf",
+          "locator": "Section 2.9, p. 52",
+          "quote": "In Victoria and Queensland, the National Energy Retail Law has yet to be applied without major derogations, undermining the benefits of a national law.",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "Annual Review of Regulatory Burdens on Business: Social and Economic Infrastructure Services",
+          "publisher": "Productivity Commission",
+          "year": 2009,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulatory-burdens/social-economic-infrastructure/report/social-economic-infrastructure.pdf",
+          "locator": "Chapter 5, p. 216",
+          "quote": "even where areas of regulation are nominally covered by the national regime, specific derogations lead to differences between jurisdictions.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

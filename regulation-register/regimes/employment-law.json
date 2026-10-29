@@ -1,0 +1,106 @@
+{
+  "id": "employment-law",
+  "name": "Employment law and awards",
+  "what": "Pay award or agreement rates, meet the National Employment Standards and keep employment records.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "96"
+    ],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Fair Work Commission (awards, agreements)",
+      "bodies": [
+        "cth-fwc"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "Fair Work Ombudsman",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "WA industrial relations system (unincorporated employers)",
+      "bodies": [],
+      "jurisdictions": [
+        "WA"
+      ]
+    }
+  ],
+  "consistency": "national",
+  "consistency_note": "A national system, except that Western Australia regulates unincorporated private employers and all states regulate their own public sectors.",
+  "basis": [
+    {
+      "source": "Mining industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/mining-industry",
+      "locator": "Employing people",
+      "quote": "If you employ staff , you need to comply with Australia's national workplace laws specific to the mining industry.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-multi-employer-bargaining-2023",
+    "cth-right-to-disconnect-2024",
+    "cth-same-job-same-pay-2023"
+  ],
+  "issues": [
+    {
+      "tag": "complex",
+      "what": "Modern awards are complex, so employers find it hard to know whether they are paying correctly.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "5-year Productivity Inquiry: A more productive labour market (volume 7)",
+          "publisher": "Productivity Commission",
+          "year": 2023,
+          "url": "https://assets.pc.gov.au/inquiries/completed/productivity/report/productivity-volume7-labour-market.pdf",
+          "locator": "Chapter 4, p. 100",
+          "quote": "Complexity can make it hard for employees to discover whether they have received the right pay and impose compliance costs on employers and create uncertainty about whether they have met the obligations set out in the FW Act.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

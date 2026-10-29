@@ -1,0 +1,131 @@
+{
+  "id": "electrical-plumbing-gas-licensing",
+  "name": "Electrical, plumbing and gas licensing and equipment safety",
+  "what": "Hold a state licence for electrical, plumbing or gas work, issue compliance certificates, and register electrical equipment where required.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "3231",
+      "3232",
+      "3233",
+      "243",
+      "4221",
+      "9421",
+      "9411"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State technical or building regulator",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State technical or building regulator",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "approves",
+      "who": "State regulator (electrical equipment registration)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "recognised",
+  "consistency_note": "State licences, recognised in other states under automatic mutual recognition, except where a state has exempted an occupation.",
+  "basis": [
+    {
+      "source": "Construction industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/construction-industry",
+      "locator": "Licences and permits",
+      "quote": "building and trade work, such as a 'white card' for site access and licences for plumbing, gas fitting or electrical work",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Manufacturing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/manufacturing-industry",
+      "locator": "Licences and permits",
+      "quote": "Registration as a responsible supplier under the Electrical Equipment Safety System (EESS)",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "act-amr-2021",
+    "act-occupational-licensing",
+    "nsw-amr-2021",
+    "nsw-occupational-licensing",
+    "nt-amr-2021",
+    "nt-occupational-licensing",
+    "qld-amr-not-adopted",
+    "qld-occupational-licensing",
+    "sa-amr-2021",
+    "sa-occupational-licensing",
+    "tas-amr-2021",
+    "tas-occupational-licensing",
+    "vic-amr-2021",
+    "vic-occupational-licensing",
+    "wa-amr-2022",
+    "wa-occupational-licensing"
+  ],
+  "issues": [
+    {
+      "tag": "inconsistent",
+      "what": "What a plumbing or electrical licence lets you do differs by state, so a tradesperson working interstate under mutual recognition may still need a separate licence.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Building a skilled and adaptable workforce: Inquiry report",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-12/adaptable-workforce.pdf",
+          "locator": "Box 4.1, p. 77",
+          "quote": "Installation of fire protection equipment, such as sprinklers, is covered under a plumbing licence in Victoria but not in Western Australia. As a result, a plumber from Western Australia working in Victoria under AMR is not authorised to perform fire protection work without obtaining a separate licence in Victoria",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "Building a skilled and adaptable workforce: Inquiry report",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-12/adaptable-workforce.pdf",
+          "locator": "Chapter 4, p. 83",
+          "quote": "in some but not all jurisdictions, plumbers may undertake roofing and mechanical services or incidental electrical work",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "National Competition Policy analysis 2025",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/2025-11/competition-analysis-2025-with-appendices.pdf",
+          "locator": "Section C (Occupational licensing), key points, p. 89",
+          "quote": "Not all states have joined the automatic mutual recognition scheme (Queensland does not participate), and states and territories continue to exclude some professions.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "partly-addressed",
+      "status_note": "Automatic mutual recognition now operates in most jurisdictions; Queensland does not take part (PC 2025)."
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

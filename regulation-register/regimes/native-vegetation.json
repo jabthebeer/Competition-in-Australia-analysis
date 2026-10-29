@@ -1,0 +1,122 @@
+{
+  "id": "native-vegetation",
+  "name": "Native vegetation and land clearing",
+  "what": "Get approval to clear native vegetation under state law and, where protected species or habitats are affected, under the Commonwealth EPBC Act.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "01",
+      "03",
+      "051",
+      "321"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "approves",
+      "who": "State environment or agriculture department",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "approves",
+      "who": "Commonwealth environment department (EPBC Act)",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "approves",
+      "who": "Local council (local vegetation controls)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Agriculture, forestry and fishing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/agriculture-forestry-and-fishing-industry",
+      "locator": "Licences and permits",
+      "quote": "clear native vegetation, harvest timber or set up a plantation",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Agriculture, forestry and fishing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/agriculture-forestry-and-fishing-industry",
+      "locator": "Laws you need to follow",
+      "quote": "The Environment Protection and Biodiversity Conservation Act 1999 may apply if land clearing, forestry, aquaculture or fishing affects protected species or habitats.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [
+    {
+      "tag": "cth-state-overlap",
+      "what": "Clearing land can need approval from both the Commonwealth (threatened species under the EPBC Act) and the state, assessed separately.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Regulation of Australian Agriculture",
+          "publisher": "Productivity Commission",
+          "year": 2016,
+          "url": "https://assets.pc.gov.au/inquiries/completed/agriculture/report/agriculture.pdf",
+          "locator": "Overview, p. 11",
+          "quote": "overlap and duplication between the Environment Protection and Biodiversity Conservation Act 1999 (Cwlth) (EPBC Act) and state native vegetation regulations. For example, a farmer wanting to clear trees may need approval from both the Australian Government and the relevant state government.",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "Regulation of Australian Agriculture",
+          "publisher": "Productivity Commission",
+          "year": 2016,
+          "url": "https://assets.pc.gov.au/inquiries/completed/agriculture/report/agriculture.pdf",
+          "locator": "Chapter 3, p. 132",
+          "quote": "Overlap and duplication in native vegetation and biodiversity conservation regulations contribute to slow decision making timeframes.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    },
+    {
+      "tag": "complex",
+      "what": "Environmental rules on farms come from several tiers at once and are hard to navigate.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Regulation of Australian Agriculture",
+          "publisher": "Productivity Commission",
+          "year": 2016,
+          "url": "https://assets.pc.gov.au/inquiries/completed/agriculture/report/agriculture.pdf",
+          "locator": "Chapter 3, key points, p. 105",
+          "quote": "But environmental regulations are complex, and there are many potentially overlapping international, federal, state and (sometimes) local requirements.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

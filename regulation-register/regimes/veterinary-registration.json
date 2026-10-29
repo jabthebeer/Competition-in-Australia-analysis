@@ -1,0 +1,51 @@
+{
+  "id": "veterinary-registration",
+  "name": "Veterinary registration and premises",
+  "what": "Register as a veterinarian with the board in each state where you practise, and register or license the veterinary premises.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "6970"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State veterinary surgeons board",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State veterinary surgeons board",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Professional, scientific and technical services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/professional-scientific-and-technical-services-industry",
+      "locator": "Vets",
+      "quote": "registration to work as a veterinarian in your state or territory",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

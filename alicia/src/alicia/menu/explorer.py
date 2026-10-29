@@ -4,9 +4,11 @@ statistics for the industries it affects.
 One self-contained page (``index.html`` on the website, ``alicia explorer`` on its own). Filters include the
 framework's drivers ("main driver" tags), the overall mark, the kind of item (reform, existing setting,
 non-legislative barrier), jurisdiction, reach, status (including repealed or replaced) and the department or agency
-responsible. Views: a list, a scorecard of every item's marks by driver, and a timeline of reforms. Each item opens
-with its assessment, who is responsible and a timeline of its changes, then its industries' statistics, then its
-sources.
+responsible, and the complexity tags of the regulatory regimes an item belongs to (duplicative, inconsistent across
+states, unclear guidance and others; DECISIONS E-96). Views: a list, a scorecard of every item's marks by driver, a
+timeline of reforms, recommendations, and industries (every ANZSIC class with the regimes it faces). Each item opens
+with its assessment, its regimes (with a diagram of which tiers of government do what, and where they overlap), who is
+responsible and a timeline of its changes, then its industries' statistics, then its sources.
 
 The econometric evaluations that the menu used to show are kept, unchanged, in the econometric archive
 (``menu/archive.py``; DECISIONS E-75, E-87).
@@ -24,6 +26,19 @@ from ..register.bodies import BODY_TYPE_LABELS, Body, load_bodies
 from ..register.evaluation import Evaluation, current_evaluation
 from ..register.recommendations import KIND_LABELS as REC_KIND_LABELS
 from ..register.recommendations import Recommendation, actors_of, by_record, gap_for, load_gaps, load_recommendations
+from ..register.regimes import (
+    CONSISTENCY_LABELS,
+    FUNCTION_LABELS,
+    ISSUE_HELP,
+    ISSUE_LABELS,
+    TIER_LABELS,
+    VARYING,
+    Regime,
+    classes_for,
+    industry_profiles,
+    load_regimes,
+    regimes_by_record,
+)
 from ..register.schema import CHANNEL_LABELS, ROLE_LABELS, ChangeRecord
 from ..register.timeline import changed_by_index, changes_list, ended_dict, timeline
 from ..timing import timing
@@ -66,6 +81,58 @@ def recommendation_dict(rec: Recommendation, records: dict[str, ChangeRecord]) -
     return data
 
 
+FUNCTION_SHORT = {
+    "sets-rules": "Sets rules",
+    "licenses": "Licenses",
+    "approves": "Approves",
+    "inspects": "Inspects",
+    "collects": "Collects",
+    "funds": "Funds",
+}
+COMPLEXITY_NOTE = (
+    "Regulation can weigh on business through how it is organised as well as how much there is: several agencies or "
+    "tiers of government for one activity, rules that differ between states, or rules that are hard to follow. Each "
+    "item is linked to the regulatory regimes it belongs to; a regime's tags are problems a source has reported, each "
+    "quoted. The diagram shows which tier of government does what; a function in an overlap is done by more than one "
+    "tier. No tag means no evidence was found in the sources searched, not that there is no problem."
+)
+
+
+def live_tags(regs: list[Regime]) -> list[str]:
+    """The issue tags, not yet addressed, across some regimes, in the order of ISSUE_LABELS."""
+    tags = {i.tag for r in regs for i in r.issues if i.status != "addressed"}
+    return [t for t in ISSUE_LABELS if t in tags]
+
+
+def regime_dict(reg: Regime) -> dict:
+    data = reg.model_dump(mode="json", exclude={"coverage", "review"})
+    data["overlap"] = reg.overlap()
+    data["tiers"] = reg.tiers
+    data["touchpoints"] = reg.touchpoints
+    data["varies"] = reg.consistency in VARYING
+    data["classes"] = len(classes_for(reg))
+    data["tags"] = live_tags([reg])
+    return data
+
+
+def industries_list(regimes: list[Regime]) -> list[list]:
+    """One compact row per ANZSIC class: code, name, division, the indexes of its regimes in ``regimes``, then
+    touchpoints, industry-specific touchpoints and issues not yet addressed."""
+    index = {r.id: n for n, r in enumerate(regimes)}
+    return [
+        [
+            p["anzsic"],
+            p["name"],
+            p["division"],
+            [index[x] for x in p["regime_ids"].split()],
+            p["touchpoints"],
+            p["sector_touchpoints"],
+            p["issues"],
+        ]
+        for p in industry_profiles(regimes)
+    ]
+
+
 def build_payload(
     records: list[ChangeRecord],
     dates_report: list[dict] | None = None,
@@ -75,9 +142,11 @@ def build_payload(
     bodies: dict[str, Body] | None = None,
     recommendations: list[Recommendation] | None = None,
     gaps: dict[str, str] | None = None,
+    regimes: list[Regime] | None = None,
 ) -> dict:
     """``stats`` defaults to the committed panels (``IndustryStats.load``), ``bodies`` to the committed registry
-    (``load_bodies``) and ``recommendations`` and ``gaps`` to the committed ones; pass fixtures in tests."""
+    (``load_bodies``) and ``recommendations``, ``gaps`` and ``regimes`` to the committed ones; pass fixtures in
+    tests."""
     stats = IndustryStats.load() if stats is None else stats
     bodies = load_bodies()[0] if bodies is None else bodies
     titles = {r.id: r.title for r in records}
@@ -91,6 +160,8 @@ def build_payload(
     checks = {d["record_id"]: d for d in dates_report or []}
     evals = {e.id: e for e in evaluations or []}
     archived = current_evaluation(evaluations or [])
+    regimes = load_regimes().regimes if regimes is None else regimes
+    reg_index = regimes_by_record(regimes)
     out = []
     for r in records:
         eff = r.effective_commencement
@@ -116,6 +187,8 @@ def build_payload(
                 "changes": changes_list(changed.get(r.id, [])),
                 "recs": [x.id for x in rec_index.get(r.id, [])],
                 "recGap": None if r.id in rec_index else gap_for(r, gaps),
+                "regimes": [x.id for x in reg_index.get(r.id, [])],
+                "complexity": live_tags(reg_index.get(r.id, [])),
             }
         )
         data["industries"] = [{**i, "division": anzsic.division(i["anzsic"])} for i in data["industries"]]
@@ -129,6 +202,13 @@ def build_payload(
         "bodies": bodies_dict(records, bodies, {b for x in rec_dicts for b in x["actors"]}),
         "recommendations": rec_dicts,
         "recKinds": REC_KIND_LABELS,
+        "regimes": [regime_dict(x) for x in regimes],
+        "industries": industries_list(regimes) if regimes else [],
+        "issueTags": {k: {"label": v, "help": ISSUE_HELP[k]} for k, v in ISSUE_LABELS.items()},
+        "tiers": TIER_LABELS,
+        "functions": {k: {"label": v, "short": FUNCTION_SHORT[k]} for k, v in FUNCTION_LABELS.items()},
+        "consistency": CONSISTENCY_LABELS,
+        "complexityNote": COMPLEXITY_NOTE,
         "bodyTypes": BODY_TYPE_LABELS,
         "roles": ROLE_LABELS,
         "divisions": _division_names(),

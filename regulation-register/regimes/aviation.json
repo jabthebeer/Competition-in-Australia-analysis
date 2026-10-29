@@ -1,0 +1,58 @@
+{
+  "id": "aviation",
+  "name": "Aviation and airports",
+  "what": "Hold Commonwealth aviation certificates, meet airspace, security and noise rules, and airport access charges and slot rules.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "490",
+      "522"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Civil Aviation Safety Authority",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Commonwealth infrastructure department (security, slots, curfews)",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "cth",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Economic Regulation of Airports",
+      "publisher": "Productivity Commission",
+      "year": 2019,
+      "url": "https://assets.pc.gov.au/inquiries/completed/airports-2019/report/airports-2019.pdf",
+      "locator": "Recommendation 7.5",
+      "quote": "The Australian Government should commission a public review of the Sydney Airport Slot Management Scheme 2013 (Cwlth)",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-domestic-airline-duopoly",
+    "cth-sydney-airport-curfew-cap",
+    "cth-sydney-airport-slots-2025"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

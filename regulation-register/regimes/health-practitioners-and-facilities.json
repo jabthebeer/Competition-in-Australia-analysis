@@ -1,0 +1,98 @@
+{
+  "id": "health-practitioners-and-facilities",
+  "name": "Health practitioner registration and facility licensing",
+  "what": "Register practitioners under the national scheme, license private hospitals and day procedure centres with the state, and meet Medicare and private health insurance conditions.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "84",
+      "85"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "Ahpra and national boards (practitioner registration)",
+      "bodies": [
+        "nat-ahpra"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State health department (private health facility licences)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "funds",
+      "who": "Commonwealth health department (Medicare and PBS)",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State health complaints bodies and health department",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "national",
+  "consistency_note": "Practitioner registration is national; facility licensing differs by state.",
+  "basis": [
+    {
+      "source": "Health care and social assistance industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/health-care-and-social-assistance",
+      "locator": "Laws you need to follow",
+      "quote": "Some medical and allied health professions must follow the Health Practitioner Regulation National Law . This includes registration and professional standards.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Health care and social assistance industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/health-care-and-social-assistance",
+      "locator": "Licences and permits",
+      "quote": "Federal, state, territory and local governments manage the licences and permits for this industry.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "act-health-practitioner-national-law-2010",
+    "act-pharmacist-uti-2023",
+    "cth-overseas-health-practitioner-recognition",
+    "nsw-health-practitioner-national-law-2010",
+    "nsw-pharmacist-uti-2023",
+    "nt-health-practitioner-national-law-2010",
+    "nt-pharmacist-uti-2024",
+    "qld-health-practitioner-national-law-2010",
+    "qld-pharmacist-uti-2020",
+    "sa-health-practitioner-national-law-2010",
+    "sa-pharmacist-uti-2024",
+    "tas-health-practitioner-national-law-2010",
+    "tas-pharmacist-uti-2024",
+    "vic-health-practitioner-national-law-2010",
+    "vic-pharmacist-uti-2023",
+    "wa-health-practitioner-national-law-2010",
+    "wa-pharmacist-uti-2023"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

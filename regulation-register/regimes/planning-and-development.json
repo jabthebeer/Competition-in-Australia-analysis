@@ -1,0 +1,183 @@
+{
+  "id": "planning-and-development",
+  "name": "Planning and development approval",
+  "what": "Get planning approval to use or develop premises, change their use, put up signage or trade outdoors.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "96"
+    ],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State planning law and department",
+      "bodies": [
+        "nsw-dphi",
+        "vic-dtp"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "approves",
+      "who": "Local council",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "approves",
+      "who": "State planning department (major projects) and referral agencies",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Construction industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/construction-industry",
+      "locator": "Licences and permits",
+      "quote": "land use and development, such as planning and zoning permits or using public land",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Performance Benchmarking of Australian Business Regulation: Planning, Zoning and Development Assessments (volume 1)",
+      "publisher": "Productivity Commission",
+      "year": 2011,
+      "url": "https://assets.pc.gov.au/inquiries/completed/regulation-benchmarking-planning/report/planning-volume1.pdf",
+      "locator": "Chapter 3",
+      "quote": "Jurisdictions differ on the number of referral agencies they have; the criteria that determine when referrals are necessary; the way responses are coordinated",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "act-planning-zoning",
+    "nsw-employment-zones-2023",
+    "nsw-planning-zoning",
+    "nsw-stra-2021",
+    "nsw-transport-oriented-development-2024",
+    "nt-planning-zoning",
+    "qld-planning-zoning",
+    "sa-planning-zoning",
+    "tas-planning-zoning",
+    "vic-planning-zoning",
+    "vic-short-stay-levy-2025",
+    "wa-planning-zoning",
+    "wa-stra-register-2025"
+  ],
+  "issues": [
+    {
+      "tag": "multi-agency",
+      "what": "A development application can be referred to several state agencies (environment, heritage, transport, fire) as well as the council, each needing its own information.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Housing construction productivity: Can we fix it?",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf",
+          "locator": "Chapter 3, p. 35",
+          "quote": "Even where it is well justified, the large volume of regulation makes the planning and development process unambiguously longer and more complex, involving more agencies and more decision makers who require distinct pieces of information.",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "Housing construction productivity: Can we fix it?",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf",
+          "locator": "Section 4.1, p. 44",
+          "quote": "Participants described the process as too slow, overly complex, lacking coordination and that there are too many 'information gaps'. This has occurred as more government agencies have become involved in the planning process",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    },
+    {
+      "tag": "inconsistent",
+      "what": "Planning systems, referral rules and timeframes differ greatly between states.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Performance Benchmarking of Australian Business Regulation: Planning, Zoning and Development Assessments (volume 1)",
+          "publisher": "Productivity Commission",
+          "year": 2011,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulation-benchmarking-planning/report/planning-volume1.pdf",
+          "locator": "Overview, key points, p. XVIII",
+          "quote": "Planning systems vary greatly across the states and territories - but all suffer from 'objectives overload' which has been increasing.",
+          "origin": "australian",
+          "checked": "full-text"
+        },
+        {
+          "source": "Performance Benchmarking of Australian Business Regulation: Planning, Zoning and Development Assessments (volume 1)",
+          "publisher": "Productivity Commission",
+          "year": 2011,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulation-benchmarking-planning/report/planning-volume1.pdf",
+          "locator": "Chapter 3, p. 77",
+          "quote": "Jurisdictions differ on the number of referral agencies they have; the criteria that determine when referrals are necessary; the way responses are coordinated ... time allowed for responses.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    },
+    {
+      "tag": "local-variation",
+      "what": "Councils apply planning rules differently, adding risk and uncertainty for developers working across council areas.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Housing construction productivity: Can we fix it?",
+          "publisher": "Productivity Commission",
+          "year": 2025,
+          "url": "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf",
+          "locator": "Chapter 3, p. 35",
+          "quote": "Lack of coordination and consistency between decision-making bodies - including at the local government level - can increase the risk and uncertainty associated with housing development.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
