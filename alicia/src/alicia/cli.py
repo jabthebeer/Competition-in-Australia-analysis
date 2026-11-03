@@ -506,6 +506,26 @@ def cmd_costing_register(args) -> int:
     return 0
 
 
+def cmd_international(args) -> int:
+    from .international import concordance, peers, stan, wdi
+
+    steps = {
+        "concordance": concordance.build,
+        "stan": stan.build,
+        "wdi": wdi.build,
+        "peers": peers.build,
+    }
+    for name in steps if args.step == "all" else [args.step]:
+        result = steps[name](refresh=args.refresh)
+        if name == "concordance":
+            print(f"concordance: {len(result['classes'])} ANZSIC classes in {len(result['groups'])} groups")
+        elif name == "peers":
+            print(f"peers: proposed core {', '.join(result['proposed_core'])} (awaiting approval)")
+        else:
+            print(f"{name}: {len(result):,} rows")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(
         prog="alicia", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -624,6 +644,11 @@ def main(argv: list[str] | None = None) -> int:
     cr = sub.add_parser("costing-register", help="export the register for the Policy costing tab")
     cr.add_argument("-o", "--output", help="file to write (default: data/processed/costing/register.json)")
     cr.set_defaults(func=cmd_costing_register)
+
+    it = sub.add_parser("international", help="data for comparing Australia with similar economies")
+    it.add_argument("step", choices=["concordance", "stan", "wdi", "peers", "all"])
+    it.add_argument("--refresh", action="store_true", help="download the raw files again")
+    it.set_defaults(func=cmd_international)
 
     args = p.parse_args(argv)
     return args.func(args)

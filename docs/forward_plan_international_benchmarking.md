@@ -1,6 +1,6 @@
 # Forward plan: benchmarking Australia's business dynamism against comparable economies
 
-3 November 2026. Status: **proposed, awaiting owner decisions** (§8). Nothing is built yet.
+3 November 2026. Status: **approved** (decisions D-1 to D-8 as recommended, E-102). **P0 done**: the common industry groups and ANZSIC concordance ([note](international_industry_groups.md)) and the peer ranking ([note](international_peers.md)). The core peer group is proposed and awaits the owner's approval before P1.
 
 ## 1. Goal
 
@@ -111,7 +111,7 @@ Each flagged industry then lists the levers it triggers, the register items that
 
 The connectors stay in Python, as the rest of ALICIA does (owner decision, 18 October 2026). The benchmark statistics get an R cross-check.
 
-## 8. Decisions needed from the owner
+## 8. Decisions (approved 3 November 2026 as recommended, E-102)
 
 - **D-1 Peer group:** a data-driven similarity ranking with an approved core group (recommended), or a fixed list. If fixed, which countries?
 - **D-2 Comparator:** median with the interquartile range, with the mean shown (recommended), or the mean alone ("the average").
