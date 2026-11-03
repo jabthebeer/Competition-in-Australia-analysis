@@ -1,6 +1,6 @@
 # Forward plan: benchmarking Australia's business dynamism against comparable economies
 
-3 November 2026. Status: **approved** (decisions D-1 to D-8 as recommended, E-102). **P0 done**: the common industry groups and ANZSIC concordance ([note](international_industry_groups.md)) and the peer ranking ([note](international_peers.md)). Core peer group approved (E-103): Canada, the UK, New Zealand, France, Spain and Italy (Italy in place of the ranking's Chile, which has no OECD business demography). Industries classified differently in other countries are flagged on the website (a † with a hover note).
+3 November 2026. Status: **approved** (decisions D-1 to D-8 as recommended, E-102). **P0 done**: the common industry groups and ANZSIC concordance ([note](international_industry_groups.md)) and the peer ranking ([note](international_peers.md)). Core peer group approved (E-103): Canada, the UK, New Zealand, France, Spain and Italy (Italy in place of the ranking's Chile, which has no OECD business demography). Industries classified differently in other countries are flagged on the website (a † with a hover note). **P1 done** (E-104): connectors for every source below, for all 38 members; what each covers for Australia and the peers is in the [coverage note](international_data_coverage.md). The main gaps: the UK's OECD business demography ends in 2018; Canada has no survival or high-growth series; Australia's size structure needs ABS data.
 
 ## 1. Goal
 
@@ -22,7 +22,7 @@ All of these are on the OECD's SDMX service (`sdmx.oecd.org`), which the project
 | Employer business births, deaths, churn | SDBS employer business demography (`OECD.SDD.TPS,DSD_SDBSBD_ISIC4@DF_BD_EMP_B_D`) | **No** | Canada, New Zealand, UK, Norway, Sweden, Denmark, Finland, Netherlands, Ireland, Israel, Korea, Japan; **not the US** | 1989–2024 |
 | Employer business survival | SDBS (`DF_BD_EMP_S`) | No | as above | to confirm |
 | High-growth enterprises | SDBS (`DF_BD_EMP_HG`) | No | as above, except Japan | 2004–2024 |
-| Size structure (enterprises, employment, value added by size class) | SDBS structural business statistics (`DSD_SDBSBSC_ISIC4@DF_SDBS_ISIC4`) | Yes | all, including the US | 1995–2024 |
+| Size structure (enterprises, employment, value added by size class) | SDBS structural business statistics (`DSD_SDBSBSC_ISIC4@DF_SDBS_ISIC4`) | **Only 2007–2010, all sizes together** (corrected in P1: the availability listing names Australia, but its data stop in 2010 and have no size classes) | all core peers; the US only 2010–2015 | 1995–2024 |
 | Output, employment, hours (productivity by industry) | STAN 2025 (`OECD.STI.PIE,DSD_STAN@DF_STAN_2025`) | Yes | all | 1949–2025 |
 | Product market regulation, economy-wide and by sector | PMR (`OECD.ECO.GCRD,DSD_PMR@DF_PMR`) | Yes | all | 2018, 2023 |
 | Services trade restrictiveness, 19 sectors | STRI (`OECD.TAD.TPD,DSD_STRI@DF_STRI_MAIN`) | Yes | all | 2014–2025 |

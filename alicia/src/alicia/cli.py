@@ -507,13 +507,16 @@ def cmd_costing_register(args) -> int:
 
 
 def cmd_international(args) -> int:
-    from .international import concordance, peers, stan, wdi
+    from .international import bds, concordance, coverage, oecd, peers, stan, wdi
 
     steps = {
         "concordance": concordance.build,
         "stan": stan.build,
         "wdi": wdi.build,
-        "peers": peers.build,
+        "oecd": oecd.build,
+        "bds": bds.build,
+        "peers": peers.build,  # after oecd: its demography flags use the downloaded births
+        "coverage": coverage.build,
     }
     for name in steps if args.step == "all" else [args.step]:
         result = steps[name](refresh=args.refresh)
@@ -521,6 +524,10 @@ def cmd_international(args) -> int:
             print(f"concordance: {len(result['classes'])} ANZSIC classes in {len(result['groups'])} groups")
         elif name == "peers":
             print(f"peers: core {', '.join(result['core'])} (ranking proposed {', '.join(result['proposed_core'])})")
+        elif name == "oecd":
+            print("oecd: " + ", ".join(f"{t} {n:,}" for t, n in result.items()))
+        elif name == "coverage":
+            print("coverage: docs/international_data_coverage.md")
         else:
             print(f"{name}: {len(result):,} rows")
     return 0
@@ -646,7 +653,7 @@ def main(argv: list[str] | None = None) -> int:
     cr.set_defaults(func=cmd_costing_register)
 
     it = sub.add_parser("international", help="data for comparing Australia with similar economies")
-    it.add_argument("step", choices=["concordance", "stan", "wdi", "peers", "all"])
+    it.add_argument("step", choices=["concordance", "stan", "wdi", "peers", "oecd", "bds", "coverage", "all"])
     it.add_argument("--refresh", action="store_true", help="download the raw files again")
     it.set_defaults(func=cmd_international)
 

@@ -237,3 +237,98 @@ def test_built_peer_ranking_proposes_a_core_group_for_approval():
     assert len(set(out["core"]) - set(out["proposed_core"])) <= 1
     assert all(rank[c] <= peers.CORE + 2 for c in out["core"])
     assert all(r["in_business_demography"] for r in out["ranking"] if r["country"] in out["core"])
+
+
+# ---- Phase P1 connectors -------------------------------------------------------------------------------------
+
+
+def test_oecd_parse_keeps_dimensions_and_drops_missing_values():
+    from alicia.international import oecd
+
+    ds = oecd.DATASETS["sdbs_births_deaths"]
+    text = (
+        "DATAFLOW,FREQ,REF_AREA,MEASURE,ACTIVITY,SIZE_CLASS,AGE,ENT_TYPE,BUSINESS_STAGE,UNIT_MEASURE,TIME_PERIOD,"
+        "OBS_VALUE,UNIT_MULT,OBS_STATUS\n"
+        "x,A,CAN,ENT,C,_T,Y_LT1,ENT_EMP,B,ENT_EM,2019,4200,0,A\n"
+        "x,A,CAN,ENT,C,_T,_T,ENT_EMP,ACTIVE,ENT_EM,2019,60000,,A\n"
+        "x,A,CAN,ENT,C,_T,_T,ENT_EMP,D,ENT_EM,2019,,0,M\n"
+    )
+    df = oecd.parse(text, ds)
+    assert list(df.columns[:7]) == [
+        "country",
+        "measure",
+        "activity",
+        "size_class",
+        "age",
+        "business_stage",
+        "unit_measure",
+    ]
+    assert len(df) == 2 and set(df["business_stage"]) == {"B", "ACTIVE"}
+    assert df["unit_mult"].tolist() == [0, 0] and df["value"].sum() == 64200
+    with pytest.raises(ValueError):
+        oecd.parse("<html>error</html>", ds)
+    with pytest.raises(ValueError):
+        oecd.parse("DATAFLOW,FREQ,REF_AREA,TIME_PERIOD,OBS_VALUE\nx,A,CAN,2019,1\n", ds)
+
+
+def test_oecd_datasets_ask_only_for_the_oecd_members():
+    from alicia.international import oecd
+
+    for ds in oecd.DATASETS.values():
+        assert "+".join(OECD) in ds.url and ds.url.startswith(oecd.SDMX) and ds.url.endswith("format=csvfile")
+    # births are stage B at age under one; deaths stage D; the denominator for high growth is 10+ employees
+    bd = oecd.DATASETS["sdbs_births_deaths"].key
+    assert "ACTIVE+B+D" in bd and "_T+Y_LT1" in bd and "S_GE10" in bd
+
+
+def test_recorded_url_reads_the_manifest(tmp_path, monkeypatch):
+    from alicia.international import oecd
+    from alicia.pipeline import store
+
+    monkeypatch.setattr(store, "ROOT", tmp_path)
+    monkeypatch.setattr(store, "RAW", tmp_path / "data" / "raw")
+    monkeypatch.setattr(store, "MANIFESTS", tmp_path / "data" / "manifests")
+    assert oecd.recorded_url("src", "t.csv") is None
+    (tmp_path / "data" / "raw" / "src").mkdir(parents=True)
+    f = tmp_path / "data" / "raw" / "src" / "t.csv"
+    f.write_text("x", encoding="utf-8")
+    store.record_download("src", f, "https://example.org/q?a=1", "CC BY 4.0")
+    assert oecd.recorded_url("src", "t.csv") == "https://example.org/q?a=1"
+
+
+def test_bds_parse_and_latest_release():
+    from alicia.international import bds
+
+    assert bds.latest_release('<a href="2021/">x</a><a href="2023/">y</a><a href="2022/">') == "2023"
+    with pytest.raises(ValueError):
+        bds.latest_release("<html></html>")
+    text = "year,sector,fage,firms,emp,firmdeath_firms\n2019,44-45,a) 0,44570,202814,X\n2019,44-45,b) 1,35648,D,7208\n"
+    df = bds.parse(text)
+    assert set(df["measure"]) == {"firms", "emp", "firmdeath_firms"}
+    assert len(df) == 4  # the suppressed cells ("X", "D") are left out
+    assert df[(df["fage"] == "a) 0") & (df["measure"] == "firms")]["value"].item() == 44570
+
+
+def test_coverage_reads_years_from_spans():
+    from alicia.international import coverage
+
+    assert coverage._last_year("2005-Q1 to 2025-Q3") == 2025 and coverage._last_year("2012 to 2018") == 2018
+    assert coverage._last_year("") is None
+    assert coverage.countries()[0] == "AUS" and set(peers.APPROVED["core"]) <= set(coverage.countries())
+
+
+@pytest.mark.skipif(not (OUT / "sdbs_births_deaths.parquet").exists(), reason="business demography not built")
+def test_built_business_demography_has_births_for_the_core_peers():
+    from alicia.international import oecd
+
+    df = oecd.read("sdbs_births_deaths")
+    # by section: European members do not publish an all-industries total, so groups are summed from sections
+    births = df[(df["business_stage"] == "B") & (df["measure"] == "ENT") & (df["activity"] == "C")]
+    assert set(peers.APPROVED["core"]) <= set(births["country"])
+    assert "AUS" not in set(df["country"]) and "USA" not in set(df["country"])
+    # births are a plausible share of active employer enterprises (Canada, 2019)
+    can = df[
+        (df["country"] == "CAN") & (df["activity"] == "_T") & (df["size_class"] == "_T") & (df["period"] == "2019")
+    ]
+    can = can[(can["measure"] == "ENT") & (can["unit_measure"] == "ENT_EM")].set_index("business_stage")["value"]
+    assert 0.03 < can["B"] / can["ACTIVE"] < 0.15

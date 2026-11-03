@@ -213,6 +213,12 @@ def build(refresh: bool = False) -> dict:
     stan_rows, wdi_rows = stan.read(), wdi.read()
     names = {r["country"]: r["country_name"] for r in stan_rows}
     demog = set(demography_countries(refresh))
+    built = OUT / "sdbs_births_deaths.parquet"
+    if built.exists():  # the downloaded births themselves, which are narrower than the availability listing
+        import pandas as pd
+
+        bd = pd.read_parquet(built, columns=["country", "business_stage"])
+        demog = set(bd.loc[bd["business_stage"] == "B", "country"])
     runs = {k: rank(stan_rows, wdi_rows, w, win) for k, (_, w, win) in VARIANTS.items()}
     base = runs["baseline"]
     ranks = {k: {r["country"]: r["rank"] for r in run["ranking"]} for k, run in runs.items()}
