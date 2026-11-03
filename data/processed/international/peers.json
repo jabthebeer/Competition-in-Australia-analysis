@@ -1,6 +1,6 @@
 {
  "title": "Economies most similar to Australia (OECD members)",
- "status": "proposed core group, awaiting owner approval (decision D-1)",
+ "status": "core group approved by the owner on 2026-11-03 (E-103)",
  "method": "Four distances from Australia, each averaged over a window of years:\n\n- **Industry structure**: the dissimilarity index of value-added shares across the common industry groups (half the sum of absolute differences in shares, from 0 for identical structures to 1 for no overlap). Shares exclude the imputed rent of owner-occupied dwellings, which has no businesses or workers.\n- **Income**: the gap in log GDP per head at purchasing power parity.\n- **Size**: the gap in log population.\n- **Openness**: the gap in log trade (exports plus imports) as a share of GDP.\n\nEach distance is divided by its typical size between two OECD economies (the root mean square over all pairs of members), so the four are in the same units, and the score is their weighted sum: industry structure 1/2 and the other three 1/6 each, because structure matters most for comparing industry statistics. Lower is more similar. Variants change the weights, drop one distance at a time and move the window, to show how stable the ranking is; the proposed core group is the six most similar economies, which the owner approves before any benchmark is computed.\n\nShares are averaged over the window's years in which every group is available. Where fewer than three such years exist (mostly because the country does not split out imputed rent, which real estate needs), real estate is left out of that country's comparison and the shares of both countries are taken over the other groups. Where a country does not split out rental and leasing, it stays with professional and administrative services. The ranking describes similarity only; it says nothing about which economy performs better.",
  "window": [
   2015,
@@ -2349,6 +2349,15 @@
   "FRA",
   "ESP"
  ],
+ "core": [
+  "CAN",
+  "GBR",
+  "NZL",
+  "FRA",
+  "ESP",
+  "ITA"
+ ],
+ "core_change": "Italy (7th, level with Spain) in place of Chile (2nd), because the data are better: Chile is not in the OECD's employer business demography and no comparable national source has been identified, while Italy is",
  "fixed_list": [
   "CAN",
   "NZL",

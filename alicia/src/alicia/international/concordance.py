@@ -216,6 +216,95 @@ def division_fit(assigned: dict[str, dict], weights: dict[str, float]) -> dict[s
     return out
 
 
+FLAG = 0.05  # a division is flagged when at least 5% of the businesses on either side are mismatched
+
+
+def _sentence(name: str) -> str:
+    """An ABS title in sentence case ("Computer System Design" -> "Computer system design")."""
+    return name[:1] + name[1:].lower()
+
+
+def by_division(assigned: dict[str, dict], weights: dict[str, float]) -> dict[str, dict]:
+    """For each ANZSIC division, how far it differs from its group as other countries define it (ISIC).
+
+    ``out_share``: of the division's businesses, the share in classes that ISIC puts in another group.
+    ``in_share``: of the businesses in the division's group (classes assigned to it), the share in classes that
+    ANZSIC puts in other divisions. A division is flagged when either is at least ``FLAG``; the note says what
+    differs in plain language, for the website's hover text. Classes split between groups count wholly in their
+    main group, as for data published by class."""
+    div_group = {d: g["id"] for g in groups()["groups"] for d in g["anzsic_divisions"]}
+    label = {g["id"]: g["label"] for g in groups()["groups"]}
+    tot, grp_tot = Counter(), Counter()
+    out_c: dict[str, Counter] = defaultdict(Counter)
+    in_c: dict[str, Counter] = defaultdict(Counter)
+    for a, info in assigned.items():
+        d = anzsic.division(a) or ""
+        w = weights.get(a, 0.0) if weights else 1.0
+        tot[d] += w
+        grp_tot[info["group"]] += w
+        if info["group"] != div_group.get(d):
+            out_c[d][a] += w
+            in_c[info["group"]][a] += w
+    res = {}
+    for d in sorted(tot):
+        g = div_group[d]
+        o = sum(out_c[d].values()) / tot[d] if tot[d] else 0.0
+        i = sum(in_c[g].values()) / grp_tot[g] if grp_tot[g] else 0.0
+        info = {
+            "group": g,
+            "merged_with": [
+                x for grp in groups()["groups"] if grp["id"] == g for x in grp["anzsic_divisions"] if x != d
+            ],
+            "out_share": round(o, 4),
+            "out": [
+                {"anzsic": a, "name": anzsic.name(a), "group": assigned[a]["group"], "weight": w}
+                for a, w in out_c[d].most_common(3)
+            ],
+            "in_share": round(i, 4),
+            "in": [
+                {"anzsic": a, "name": anzsic.name(a), "division": anzsic.division(a), "weight": w}
+                for a, w in in_c[g].most_common(3)
+                if anzsic.division(a) != d
+            ],
+            "flag": o >= FLAG or i >= FLAG,
+        }
+        parts = []
+        if o >= FLAG:
+            top = info["out"][0]
+            parts.append(
+                f"About {_share(o)} of its employing businesses do work that other countries count in another "
+                f"industry, mainly ‘{_sentence(top['name']).lower()}’ (counted in {label[top['group']].lower()})."
+            )
+        if i >= FLAG and info["in"]:
+            top = info["in"][0]
+            here = _sentence(anzsic.name(top["division"]) or "").lower()
+            parts.append(
+                "Other countries' version also takes in work that Australia counts elsewhere, mainly "
+                f"‘{_sentence(top['name']).lower()}’ (here in {here}). That work is about {_share(i)} of the "
+                "industry's employing businesses as other countries define it."
+            )
+        if parts and info["merged_with"]:
+            others = " and ".join(_sentence(anzsic.name(x) or x).lower() for x in info["merged_with"])
+            parts.append(f"They also combine it with {others}.")
+        if parts:
+            parts.append("Comparisons with other countries are approximate.")
+        info["note"] = " ".join(parts)
+        res[d] = info
+    return res
+
+
+NOTE_TITLE = "Classified differently in other countries"
+
+
+def division_notes() -> dict[str, str]:
+    """The hover note for each flagged ANZSIC division, from the built concordance (empty if not built)."""
+    path = OUT / "anzsic_isic4.json"
+    if not path.exists():
+        return {}
+    divs = json.loads(path.read_text("utf-8")).get("divisions", {})
+    return {d: v["note"] for d, v in divs.items() if v.get("flag") and v.get("note")}
+
+
 def _manifest() -> list[dict]:
     path = store.MANIFESTS / f"{SOURCE}.json"
     return json.loads(path.read_text("utf-8"))["files"] if path.exists() else []
@@ -263,6 +352,7 @@ def build(refresh: bool = False) -> dict:
             }
             for grp in g["groups"]
         ],
+        "divisions": by_division(assigned, weights),
         "classes": assigned,
     }
     OUT.mkdir(parents=True, exist_ok=True)
@@ -319,6 +409,23 @@ def markdown(out: dict) -> str:
         )
     lines += ["", "Notes on the groups:", ""]
     lines += [f"- **{gid}**: {n}" for gid, n in notes.items() if n]
+    lines += [
+        "",
+        "## By ANZSIC division",
+        "",
+        f"Divisions are flagged on the website (a † with a hover note) when at least {_share(FLAG)} of the employing "
+        "businesses on either side are mismatched: 'Out' is the share of the division's businesses in classes ISIC "
+        "puts in another group; 'In' is the share of its group's businesses in classes ANZSIC puts in other "
+        "divisions.",
+        "",
+        "| Division | Group | Out | In | Flagged | Hover note |",
+        "|---|---|---:|---:|---|---|",
+    ]
+    for d, v in out.get("divisions", {}).items():
+        lines.append(
+            f"| {d} {anzsic.name(d)} | {v['group']} | {_share(v['out_share'])} | {_share(v['in_share'])} | "
+            f"{'yes' if v['flag'] else ''} | {v['note']} |"
+        )
     split = {a: v for a, v in out["classes"].items() if v["share"] < 1}
     lines += [
         "",

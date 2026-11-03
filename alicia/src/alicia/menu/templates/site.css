@@ -326,6 +326,10 @@ details.tview .tscroll { margin-top: 8px; max-height: 26rem; overflow: auto; }
 .term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; display: inline; text-align: inherit; cursor: help;
   text-decoration: underline dotted; text-decoration-color: var(--ink-3); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .term:hover, .term:focus-visible { color: var(--accent); text-decoration-color: var(--accent); }
+/* A † beside an industry classified differently in other countries' statistics (hover, focus or tap for the note) */
+.flag { font: inherit; font-weight: 600; line-height: 1; color: var(--accent); background: none; border: 0; padding: 0 2px; margin: 0 4px 0 -2px; cursor: help; vertical-align: baseline; }
+.flag:hover, .flag:focus-visible { color: var(--ink); outline-offset: 1px; }
+.title-row .flag { font-size: var(--step-1); margin: 0; }
 .source { font-size: var(--step--1); color: var(--ink-3); margin: 0; }
 .source a { color: var(--ink-2); }
 details.more { font-size: var(--step--1); color: var(--ink-2); }

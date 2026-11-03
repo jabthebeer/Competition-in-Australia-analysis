@@ -520,7 +520,7 @@ def cmd_international(args) -> int:
         if name == "concordance":
             print(f"concordance: {len(result['classes'])} ANZSIC classes in {len(result['groups'])} groups")
         elif name == "peers":
-            print(f"peers: proposed core {', '.join(result['proposed_core'])} (awaiting approval)")
+            print(f"peers: core {', '.join(result['core'])} (ranking proposed {', '.join(result['proposed_core'])})")
         else:
             print(f"{name}: {len(result):,} rows")
     return 0

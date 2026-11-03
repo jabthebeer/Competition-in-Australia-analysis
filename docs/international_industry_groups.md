@@ -40,6 +40,32 @@ Notes on the groups:
 - **PRO**: Two divisions merged, as the OECD often does (STAN M_N), less rental and leasing.
 - **OTH**: Arts and recreation with personal and other services and private households. ANZSIC puts motor vehicle and machinery repair here; ISIC puts them in trade and manufacturing.
 
+## By ANZSIC division
+
+Divisions are flagged on the website (a † with a hover note) when at least 5% of the employing businesses on either side are mismatched: 'Out' is the share of the division's businesses in classes ISIC puts in another group; 'In' is the share of its group's businesses in classes ANZSIC puts in other divisions.
+
+| Division | Group | Out | In | Flagged | Hover note |
+|---|---|---:|---:|---|---|
+| A Agriculture, Forestry and Fishing | AGR | 0% | 0% |  |  |
+| B Mining | MIN | 0% | 15% | yes | Other countries' version also takes in work that Australia counts elsewhere, mainly ‘other professional, scientific and technical services n.e.c.’ (here in professional, scientific and technical services). That work is about 15% of the industry's employing businesses as other countries define it. Comparisons with other countries are approximate. |
+| C Manufacturing | MAN | 0% | 15% | yes | Other countries' version also takes in work that Australia counts elsewhere, mainly ‘other machinery and equipment repair and maintenance’ (here in other services). That work is about 15% of the industry's employing businesses as other countries define it. Comparisons with other countries are approximate. |
+| D Electricity, Gas, Water and Waste Services | UTL | 0% | 0% |  |  |
+| E Construction | CON | 0% | 0% |  |  |
+| F Wholesale Trade | TRD | 0% | 17% | yes | Other countries' version also takes in work that Australia counts elsewhere, mainly ‘other automotive repair and maintenance’ (here in other services). That work is about 17% of the industry's employing businesses as other countries define it. They also combine it with retail trade. Comparisons with other countries are approximate. |
+| G Retail Trade | TRD | 0% | 17% | yes | Other countries' version also takes in work that Australia counts elsewhere, mainly ‘other automotive repair and maintenance’ (here in other services). That work is about 17% of the industry's employing businesses as other countries define it. They also combine it with wholesale trade. Comparisons with other countries are approximate. |
+| H Accommodation and Food Services | ACC | 0% | 0% |  |  |
+| I Transport, Postal and Warehousing | TRN | 0% | 0% |  |  |
+| J Information Media and Telecommunications | ICT | 0% | 76% | yes | Other countries' version also takes in work that Australia counts elsewhere, mainly ‘computer system design and related services’ (here in professional, scientific and technical services). That work is about 76% of the industry's employing businesses as other countries define it. Comparisons with other countries are approximate. |
+| K Financial and Insurance Services | FIN | 0% | 0% |  |  |
+| L Rental, Hiring and Real Estate Services | RES | 0% | 0% |  |  |
+| M Professional, Scientific and Technical Services | PRO | 20% | 2% | yes | About 20% of its employing businesses do work that other countries count in another industry, mainly ‘computer system design and related services’ (counted in information, media and telecommunications). They also combine it with administrative and support services. Comparisons with other countries are approximate. |
+| N Administrative and Support Services | PRO | 0% | 2% |  |  |
+| O Public Administration and Safety | PUB | 82% | 0% | yes | About 82% of its employing businesses do work that other countries count in another industry, mainly ‘investigation and security services’ (counted in professional, scientific, technical, administrative and support services). Comparisons with other countries are approximate. |
+| P Education and Training | EDU | 0% | 0% |  |  |
+| Q Health Care and Social Assistance | HLT | 0% | 0% |  |  |
+| R Arts and Recreation Services | OTH | 0% | 0% |  |  |
+| S Other Services | OTH | 51% | 0% | yes | About 51% of its employing businesses do work that other countries count in another industry, mainly ‘other automotive repair and maintenance’ (counted in wholesale and retail trade). They also combine it with arts and recreation services. Comparisons with other countries are approximate. |
+
 ## Classes that span groups
 
 40 of 506 ANZSIC classes have ISIC matches in more than one group (or, for 7552, only in division 99). Each goes to the group with most of its matches:

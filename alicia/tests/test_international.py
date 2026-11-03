@@ -210,6 +210,20 @@ def test_built_concordance_covers_every_anzsic_class():
     assert out["classes"]["7000"]["group"] == "ICT"
 
 
+@pytest.mark.skipif(not (OUT / "anzsic_isic4.json").exists(), reason="concordance not built")
+def test_division_notes_flag_the_mismatched_divisions():
+    out = json.loads((OUT / "anzsic_isic4.json").read_text("utf-8"))
+    divs = out["divisions"]
+    assert set(divs) == {c for c in anzsic._codes() if len(c) == 1 and c.isalpha()}
+    for v in divs.values():
+        assert v["flag"] == (v["out_share"] >= concordance.FLAG or v["in_share"] >= concordance.FLAG)
+        assert bool(v["note"]) == v["flag"]
+    assert divs["J"]["in"][0]["anzsic"] == "7000" and divs["M"]["out"][0]["anzsic"] == "7000"
+    assert not divs["A"]["flag"] and divs["S"]["flag"]
+    assert "retail trade" in divs["F"]["note"]  # the merge with the other trade division is mentioned
+    assert concordance.division_notes() == {d: v["note"] for d, v in divs.items() if v["flag"]}
+
+
 @pytest.mark.skipif(not (OUT / "peers.json").exists(), reason="peer ranking not built")
 def test_built_peer_ranking_proposes_a_core_group_for_approval():
     out = json.loads((OUT / "peers.json").read_text("utf-8"))
@@ -217,4 +231,9 @@ def test_built_peer_ranking_proposes_a_core_group_for_approval():
     assert out["proposed_core"] == [r["country"] for r in out["ranking"][: peers.CORE]]
     assert len(out["ranking"]) == len(OECD) - 1
     assert out["checks"]["stan_groups_vs_total_max_gap"] < 0.01
-    assert "awaiting owner approval" in out["status"]
+    assert out["core"] == peers.APPROVED["core"] and "approved" in out["status"]
+    # The approved group swaps at most one economy of the proposal, for one ranked close behind
+    rank = {r["country"]: r["rank"] for r in out["ranking"]}
+    assert len(set(out["core"]) - set(out["proposed_core"])) <= 1
+    assert all(rank[c] <= peers.CORE + 2 for c in out["core"])
+    assert all(r["in_business_demography"] for r in out["ranking"] if r["country"] in out["core"])

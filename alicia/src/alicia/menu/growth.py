@@ -23,6 +23,7 @@ from importlib import resources
 import pandas as pd
 
 from .. import anzsic
+from ..international import concordance
 from ..pipeline import controls, schema, store
 from ..register.evaluation import Evaluation
 from ..register.schema import ChangeRecord
@@ -153,6 +154,10 @@ SOURCES = {
         "ABS, Australian and New Zealand Standard Industrial Classification (ANZSIC) 2006",
         "https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0",
     ),
+    "abs_isic": (
+        "ABS, correspondence between ANZSIC 2006 and ISIC Rev. 4",
+        "https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0/correspondences/anzsic-2006-isic-rev-4",
+    ),
 }
 
 
@@ -279,8 +284,10 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         "notes": GROWTH_NOTES,
         "barriers": competition.barriers_payload(),
         "productivity": abs_productivity(),
+        # Industries classified differently in other countries' statistics (ISIC): a † and hover note on the page
+        "intl": {"title": concordance.NOTE_TITLE, "notes": concordance.division_notes()},
         "sources": _sources(
-            "state_accounts", "lfs_detailed", "cabee", "abs_mfp", "ato", "rba_rdp", "grattan", "anzsic"
+            "state_accounts", "lfs_detailed", "cabee", "abs_mfp", "ato", "rba_rdp", "grattan", "anzsic", "abs_isic"
         ),
     }
 

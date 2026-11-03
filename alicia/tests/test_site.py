@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from importlib import resources
 
 import pytest
 
@@ -37,6 +38,19 @@ def test_growth_payload_is_aligned_and_consistent():
     aus = p["biz"]["AUS"]["TOT"]["entries"][j]
     assert aus == sum(p["biz"][s]["TOT"]["entries"][j] for s in p["states"] if s != "AUS")
     assert len(p["empYears"]) == len(p["emp"]["NSW"]["G"])
+    # Industries classified differently in other countries carry a hover note (international/concordance.py)
+    notes = p["intl"]["notes"]
+    assert {"J", "S"} <= set(notes) and "A" not in notes and set(notes) <= set(growth.DIVISIONS)
+    assert "computer system design" in notes["J"] and "abs_isic" in p["sources"]
+
+
+def test_growth_page_flags_industries_classified_differently_overseas():
+    html = resources.files("alicia.menu").joinpath("templates/growth.html").read_text("utf-8")
+    js = resources.files("alicia.menu").joinpath("templates/charts.js").read_text("utf-8")
+    assert 'class="flag" data-term="intl-' in html and "${intlFlag(c)}${esc(DIVNAME[c])}" in html
+    assert 'id="detailFlag"' in html and ".flag[data-term]" in js
+    # Flags work like defined words but stay out of the glossary
+    assert 'querySelectorAll(".term, .chip[data-term]")' in js
 
 
 @needs_panels

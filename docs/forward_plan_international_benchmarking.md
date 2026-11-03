@@ -1,6 +1,6 @@
 # Forward plan: benchmarking Australia's business dynamism against comparable economies
 
-3 November 2026. Status: **approved** (decisions D-1 to D-8 as recommended, E-102). **P0 done**: the common industry groups and ANZSIC concordance ([note](international_industry_groups.md)) and the peer ranking ([note](international_peers.md)). The core peer group is proposed and awaits the owner's approval before P1.
+3 November 2026. Status: **approved** (decisions D-1 to D-8 as recommended, E-102). **P0 done**: the common industry groups and ANZSIC concordance ([note](international_industry_groups.md)) and the peer ranking ([note](international_peers.md)). Core peer group approved (E-103): Canada, the UK, New Zealand, France, Spain and Italy (Italy in place of the ranking's Chile, which has no OECD business demography). Industries classified differently in other countries are flagged on the website (a † with a hover note).
 
 ## 1. Goal
 

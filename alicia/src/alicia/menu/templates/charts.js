@@ -679,7 +679,8 @@ function initTerms(extra = {}) {
     showTipAt(`<strong>${esc(t[0])}</strong><br>${esc(t[1])}${t[2] ? `<br><span class="tip-ex">For example: ${esc(t[2])}.</span>` : ""}`, b);
   };
   // Defined words, legend chips whose series has a definition, and "i" buttons.
-  const termOf = (e) => (e.target instanceof Element ? e.target.closest(".term, .chip[data-term], .info[data-for]") : null);
+  // A † flag (class "flag") works like a defined word but stays out of the glossary.
+  const termOf = (e) => (e.target instanceof Element ? e.target.closest(".term, .chip[data-term], .info[data-for], .flag[data-term]") : null);
   document.addEventListener("pointerdown", (e) => { pointer = e.pointerType; }, true);
   document.addEventListener("pointerover", (e) => { const b = termOf(e); if (b && e.pointerType === "mouse") show(b); });
   document.addEventListener("pointerout", (e) => { const b = termOf(e); if (b && b !== pinned && e.pointerType === "mouse") hideTip(); });

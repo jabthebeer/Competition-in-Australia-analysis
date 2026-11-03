@@ -593,6 +593,361 @@
    ]
   }
  ],
+ "divisions": {
+  "A": {
+   "group": "AGR",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0,
+   "in": [],
+   "flag": false,
+   "note": ""
+  },
+  "B": {
+   "group": "MIN",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.1543,
+   "in": [
+    {
+     "anzsic": "6999",
+     "name": "Other Professional, Scientific and Technical Services n.e.c.",
+     "division": "M",
+     "weight": 663.0
+    }
+   ],
+   "flag": true,
+   "note": "Other countries' version also takes in work that Australia counts elsewhere, mainly ‘other professional, scientific and technical services n.e.c.’ (here in professional, scientific and technical services). That work is about 15% of the industry's employing businesses as other countries define it. Comparisons with other countries are approximate."
+  },
+  "C": {
+   "group": "MAN",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.1537,
+   "in": [
+    {
+     "anzsic": "9429",
+     "name": "Other Machinery and Equipment Repair and Maintenance",
+     "division": "S",
+     "weight": 7125.0
+    },
+    {
+     "anzsic": "9422",
+     "name": "Electronic (except Domestic Appliance) and Precision Equipment Repair",
+     "division": "S",
+     "weight": 1538.0
+    }
+   ],
+   "flag": true,
+   "note": "Other countries' version also takes in work that Australia counts elsewhere, mainly ‘other machinery and equipment repair and maintenance’ (here in other services). That work is about 15% of the industry's employing businesses as other countries define it. Comparisons with other countries are approximate."
+  },
+  "D": {
+   "group": "UTL",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0,
+   "in": [],
+   "flag": false,
+   "note": ""
+  },
+  "E": {
+   "group": "CON",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0,
+   "in": [],
+   "flag": false,
+   "note": ""
+  },
+  "F": {
+   "group": "TRD",
+   "merged_with": [
+    "G"
+   ],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.1738,
+   "in": [
+    {
+     "anzsic": "9419",
+     "name": "Other Automotive Repair and Maintenance",
+     "division": "S",
+     "weight": 16184.0
+    },
+    {
+     "anzsic": "9412",
+     "name": "Automotive Body, Paint and Interior Repair",
+     "division": "S",
+     "weight": 6736.0
+    },
+    {
+     "anzsic": "9411",
+     "name": "Automotive Electrical Services",
+     "division": "S",
+     "weight": 1834.0
+    }
+   ],
+   "flag": true,
+   "note": "Other countries' version also takes in work that Australia counts elsewhere, mainly ‘other automotive repair and maintenance’ (here in other services). That work is about 17% of the industry's employing businesses as other countries define it. They also combine it with retail trade. Comparisons with other countries are approximate."
+  },
+  "G": {
+   "group": "TRD",
+   "merged_with": [
+    "F"
+   ],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.1738,
+   "in": [
+    {
+     "anzsic": "9419",
+     "name": "Other Automotive Repair and Maintenance",
+     "division": "S",
+     "weight": 16184.0
+    },
+    {
+     "anzsic": "9412",
+     "name": "Automotive Body, Paint and Interior Repair",
+     "division": "S",
+     "weight": 6736.0
+    },
+    {
+     "anzsic": "9411",
+     "name": "Automotive Electrical Services",
+     "division": "S",
+     "weight": 1834.0
+    }
+   ],
+   "flag": true,
+   "note": "Other countries' version also takes in work that Australia counts elsewhere, mainly ‘other automotive repair and maintenance’ (here in other services). That work is about 17% of the industry's employing businesses as other countries define it. They also combine it with wholesale trade. Comparisons with other countries are approximate."
+  },
+  "H": {
+   "group": "ACC",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0,
+   "in": [],
+   "flag": false,
+   "note": ""
+  },
+  "I": {
+   "group": "TRN",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0,
+   "in": [],
+   "flag": false,
+   "note": ""
+  },
+  "J": {
+   "group": "ICT",
+   "merged_with": [],
+   "out_share": 0.004,
+   "out": [
+    {
+     "anzsic": "6010",
+     "name": "Libraries and Archives",
+     "group": "OTH",
+     "weight": 37.0
+    }
+   ],
+   "in_share": 0.7615,
+   "in": [
+    {
+     "anzsic": "7000",
+     "name": "Computer System Design and Related Services",
+     "division": "M",
+     "weight": 29563.0
+    }
+   ],
+   "flag": true,
+   "note": "Other countries' version also takes in work that Australia counts elsewhere, mainly ‘computer system design and related services’ (here in professional, scientific and technical services). That work is about 76% of the industry's employing businesses as other countries define it. Comparisons with other countries are approximate."
+  },
+  "K": {
+   "group": "FIN",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0,
+   "in": [],
+   "flag": false,
+   "note": ""
+  },
+  "L": {
+   "group": "RES",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0,
+   "in": [],
+   "flag": false,
+   "note": ""
+  },
+  "M": {
+   "group": "PRO",
+   "merged_with": [
+    "N"
+   ],
+   "out_share": 0.2004,
+   "out": [
+    {
+     "anzsic": "7000",
+     "name": "Computer System Design and Related Services",
+     "group": "ICT",
+     "weight": 29563.0
+    },
+    {
+     "anzsic": "6999",
+     "name": "Other Professional, Scientific and Technical Services n.e.c.",
+     "group": "MIN",
+     "weight": 663.0
+    }
+   ],
+   "in_share": 0.0177,
+   "in": [
+    {
+     "anzsic": "7712",
+     "name": "Investigation and Security Services",
+     "division": "O",
+     "weight": 2914.0
+    },
+    {
+     "anzsic": "9532",
+     "name": "Photographic Film Processing",
+     "division": "S",
+     "weight": 144.0
+    }
+   ],
+   "flag": true,
+   "note": "About 20% of its employing businesses do work that other countries count in another industry, mainly ‘computer system design and related services’ (counted in information, media and telecommunications). They also combine it with administrative and support services. Comparisons with other countries are approximate."
+  },
+  "N": {
+   "group": "PRO",
+   "merged_with": [
+    "M"
+   ],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0177,
+   "in": [
+    {
+     "anzsic": "7712",
+     "name": "Investigation and Security Services",
+     "division": "O",
+     "weight": 2914.0
+    },
+    {
+     "anzsic": "9532",
+     "name": "Photographic Film Processing",
+     "division": "S",
+     "weight": 144.0
+    }
+   ],
+   "flag": false,
+   "note": ""
+  },
+  "O": {
+   "group": "PUB",
+   "merged_with": [],
+   "out_share": 0.8243,
+   "out": [
+    {
+     "anzsic": "7712",
+     "name": "Investigation and Security Services",
+     "group": "PRO",
+     "weight": 2914.0
+    }
+   ],
+   "in_share": 0.0,
+   "in": [],
+   "flag": true,
+   "note": "About 82% of its employing businesses do work that other countries count in another industry, mainly ‘investigation and security services’ (counted in professional, scientific, technical, administrative and support services). Comparisons with other countries are approximate."
+  },
+  "P": {
+   "group": "EDU",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0,
+   "in": [],
+   "flag": false,
+   "note": ""
+  },
+  "Q": {
+   "group": "HLT",
+   "merged_with": [],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0,
+   "in": [],
+   "flag": false,
+   "note": ""
+  },
+  "R": {
+   "group": "OTH",
+   "merged_with": [
+    "S"
+   ],
+   "out_share": 0.0,
+   "out": [],
+   "in_share": 0.0008,
+   "in": [
+    {
+     "anzsic": "6010",
+     "name": "Libraries and Archives",
+     "division": "J",
+     "weight": 37.0
+    }
+   ],
+   "flag": false,
+   "note": ""
+  },
+  "S": {
+   "group": "OTH",
+   "merged_with": [
+    "R"
+   ],
+   "out_share": 0.5058,
+   "out": [
+    {
+     "anzsic": "9419",
+     "name": "Other Automotive Repair and Maintenance",
+     "group": "TRD",
+     "weight": 16184.0
+    },
+    {
+     "anzsic": "9429",
+     "name": "Other Machinery and Equipment Repair and Maintenance",
+     "group": "MAN",
+     "weight": 7125.0
+    },
+    {
+     "anzsic": "9412",
+     "name": "Automotive Body, Paint and Interior Repair",
+     "group": "TRD",
+     "weight": 6736.0
+    }
+   ],
+   "in_share": 0.0008,
+   "in": [
+    {
+     "anzsic": "6010",
+     "name": "Libraries and Archives",
+     "division": "J",
+     "weight": 37.0
+    }
+   ],
+   "flag": true,
+   "note": "About 51% of its employing businesses do work that other countries count in another industry, mainly ‘other automotive repair and maintenance’ (counted in wholesale and retail trade). They also combine it with arts and recreation services. Comparisons with other countries are approximate."
+  }
+ },
  "classes": {
   "0111": {
    "group": "AGR",
