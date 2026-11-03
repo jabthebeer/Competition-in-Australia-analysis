@@ -26,6 +26,8 @@ The business economy total sums the same groups for every country: the demograph
 | Businesses with 20 or more people (`size_20plus`) | % of all businesses | ABS CABEE | OECD SDBS |
 | Labour productivity growth per hour worked (`lp_growth_hour`) | % a year | ABS 5260 | OECD STAN |
 | Labour productivity growth per person employed (`lp_growth_person`) | % a year | OECD STAN | OECD STAN |
+| Output growth (value added, volume) (`va_growth`) | % a year | OECD STAN | OECD STAN |
+| Jobs growth (persons employed) (`emp_growth`) | % a year | OECD STAN | OECD STAN |
 | Product market regulation, the group's sector indicators (`pmr_sector`) | 0 to 6 | OECD PMR | OECD PMR |
 | Product market regulation, economy-wide (`pmr_economy`) | 0 to 6 | OECD PMR | OECD PMR |
 | Services trade restrictiveness, the group's sectors (`stri_sector`) | 0 to 1 | OECD STRI | OECD STRI |

@@ -42,6 +42,43 @@ def test_growth_payload_is_aligned_and_consistent():
     notes = p["intl"]["notes"]
     assert {"J", "S"} <= set(notes) and "A" not in notes and set(notes) <= set(growth.DIVISIONS)
     assert "computer system design" in notes["J"] and "abs_isic" in p["sources"]
+    # Comparisons with similar economies (E-107): series for Australia and the six core peers, by group
+    intl = p["intl"]
+    assert len(intl["peers"]) == 6 and "AUS" not in intl["peers"]
+    assert set(intl["heat"]) <= set(growth.GROWTH_NOTES) | {"gva", "emp", "prod", "entry", "exit", "net"}
+    s = intl["series"]["net_entry_rate"]["TRD"]
+    assert set(s) >= {"AUS", "OECD"} and all(len(v) == len(intl["years"]) for v in s.values())
+    assert all(len(r) == len(intl["years"]) for g in intl["ratings"].values() for r in g.values())
+    assert intl["divGroup"]["F"] == intl["divGroup"]["G"] == "TRD" and intl["divGroup"]["TOT"] == "ALL"
+    assert {"oecd_sdbs", "oecd_stan", "oecd_pmr", "oecd_stri", "oecd_fdi"} <= set(p["sources"])
+
+
+def test_growth_page_compares_industries_with_similar_economies():
+    html = resources.files("alicia.menu").joinpath("templates/growth.html").read_text("utf-8")
+    js = resources.files("alicia.menu").joinpath("templates/charts.js").read_text("utf-8")
+    # the heatmap column, the by-industry chart, the selected industry's card and the bands on its charts
+    assert 'class="peer-th"' in html and "button[data-peer]" in html
+    for el in ('id="peerChart"', 'id="peerMeasure"', 'id="cmpChart"', 'id="peerToggle"', 'id="gvaKey"', 'id="empKey"'):
+        assert el in html
+    assert "peerBand(" in html and "areas" in html and "rangeChart(" in html
+    # each range row speaks its figures and position, and shows them in words, not colour alone
+    assert "aria-label" in js and "RANGE_POS" in js and "function rangeChart" in js and "function quantile7" in js
+
+
+def test_page_quantile_matches_the_benchmark_engine():
+    import shutil
+    import subprocess
+
+    if shutil.which("node") is None:
+        pytest.skip("Node.js not installed")
+    src = resources.files("alicia.menu").joinpath("templates/charts.js").read_text("utf-8")
+    fn = re.search(r"function quantile7\(.*?\n}\n", src, re.S).group(0)
+    code = "const isNum = (v) => typeof v === 'number' && Number.isFinite(v);" + fn
+    code += "console.log(JSON.stringify([0.25, 0.5, 0.75].map((x) => quantile7([3, 1, 4, 1.5, 9, 2.6], x))));"
+    out = subprocess.run(["node", "-e", code], capture_output=True, text=True, check=True).stdout
+    from alicia.international import benchmark
+
+    assert json.loads(out) == pytest.approx([benchmark.quantile([3, 1, 4, 1.5, 9, 2.6], x) for x in (0.25, 0.5, 0.75)])
 
 
 def test_growth_page_flags_industries_classified_differently_overseas():

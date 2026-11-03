@@ -85,6 +85,8 @@ MEASURES = {
     "size_20plus": ("Businesses with 20 or more people", "% of all businesses"),
     "lp_growth_hour": ("Labour productivity growth per hour worked", "% a year"),
     "lp_growth_person": ("Labour productivity growth per person employed", "% a year"),
+    "va_growth": ("Output growth (value added, volume)", "% a year"),
+    "emp_growth": ("Jobs growth (persons employed)", "% a year"),
     "pmr_sector": ("Product market regulation, the group's sector indicators", "0 to 6"),
     "pmr_economy": ("Product market regulation, economy-wide", "0 to 6"),
     "stri_sector": ("Services trade restrictiveness, the group's sectors", "0 to 1"),
@@ -293,6 +295,10 @@ def stan_productivity(vh: pd.DataFrame, va: list[dict]) -> list[dict]:
                 if measure in m and not (measure == "lp_growth_hour" and m.get("broken")):
                     vy, v0, e1, e0, note = m[measure]
                     out.append(_rows(c, gid, measure, y, 100 * ((vy / v0) / (e1 / e0) - 1), "OECD STAN", note))
+            if "lp_growth_person" in m:  # context for the website: output and jobs growth on the same basis
+                vy, v0, e1, e0, note = m["lp_growth_person"]
+                out.append(_rows(c, gid, "va_growth", y, 100 * (vy / v0 - 1), "OECD STAN", note))
+                out.append(_rows(c, gid, "emp_growth", y, 100 * (e1 / e0 - 1), "OECD STAN", note))
         for measure in ("lp_growth_hour", "lp_growth_person"):
             parts = [found[g].get(measure) for g in ALL_GROUPS]
             if any(p is None for p in parts):
@@ -302,6 +308,9 @@ def stan_productivity(vh: pd.DataFrame, va: list[dict]) -> list[dict]:
                 continue  # a component group's hours series breaks this year
             vy, v0, e1, e0 = (sum(p[k] for p in parts) for k in range(4))
             out.append(_rows(c, ALL, measure, y, 100 * ((vy / v0) / (e1 / e0) - 1), "OECD STAN"))
+            if measure == "lp_growth_person":
+                out.append(_rows(c, ALL, "va_growth", y, 100 * (vy / v0 - 1), "OECD STAN"))
+                out.append(_rows(c, ALL, "emp_growth", y, 100 * (e1 / e0 - 1), "OECD STAN"))
     return out
 
 

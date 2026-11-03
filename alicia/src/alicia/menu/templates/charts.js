@@ -80,8 +80,8 @@ function mount(container, draw) {
  * opts: x (numbers: years, or UTC ms), xKind ("fy" | "year" | "month" | "quarter"),
  * series [{key, label, values, color, dash (true or a dash pattern), width}], yFmt (value -> text),
  * ref (y value for a dashed reference line), zero (true: the y axis includes 0), markers [{x, label}],
- * band ({from, to, label}: a shaded span of x),
- * height, yLabel, tipDigits.
+ * band ({from, to, label}: a shaded span of x), areas ([{key, label, lo, hi, color}]: a shaded range of y in each
+ * year, drawn behind the lines, such as the peers' middle half), height, yLabel, tipDigits.
  */
 function lineChart(container, opts) {
   container._xl = { kind: "line", opts };
@@ -91,6 +91,7 @@ function lineChart(container, opts) {
     const m = { t: 14 + (opts.markers && opts.markers.length ? 14 : 0), r: 14, b: 26, l: 46 };
     const xs = opts.x;
     const series = opts.series.filter((s) => s.values.some(isNum));
+    const areas = (opts.areas || []).filter((a) => a.lo.some(isNum) && a.hi.some(isNum));
     container.innerHTML = "";
     const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img", "aria-label": opts.label || "" });
     container.appendChild(svg);
@@ -100,6 +101,7 @@ function lineChart(container, opts) {
     }
     let lo = Infinity, hi = -Infinity;
     for (const s of series) for (const v of s.values) if (isNum(v)) { lo = Math.min(lo, v); hi = Math.max(hi, v); }
+    for (const a of areas) for (const v of [...a.lo, ...a.hi]) if (isNum(v)) { lo = Math.min(lo, v); hi = Math.max(hi, v); }
     if (isNum(opts.ref)) { lo = Math.min(lo, opts.ref); hi = Math.max(hi, opts.ref); }
     if (opts.zero) { lo = Math.min(lo, 0); hi = Math.max(hi, 0); }
     const ticks = niceTicks(lo, hi, H > 240 ? 5 : 4);
@@ -125,6 +127,20 @@ function lineChart(container, opts) {
       tx.textContent = yFmt(t);
     }
     if (isNum(opts.ref)) el("line", { class: "refline", x1: m.l, x2: W - m.r, y1: sy(opts.ref), y2: sy(opts.ref) }, svg);
+    // Shaded ranges, broken where either edge is missing.
+    for (const a of areas) {
+      let run = [];
+      const flush = () => {
+        if (run.length > 1) {
+          const top = run.map((i) => `${sx(xs[i]).toFixed(1)},${sy(a.hi[i]).toFixed(1)}`);
+          const bot = run.slice().reverse().map((i) => `${sx(xs[i]).toFixed(1)},${sy(a.lo[i]).toFixed(1)}`);
+          el("path", { class: "area", d: `M${top.join("L")}L${bot.join("L")}Z`, style: `fill:${a.color}` }, svg);
+        }
+        run = [];
+      };
+      xs.forEach((_, i) => (isNum(a.lo[i]) && isNum(a.hi[i]) ? run.push(i) : flush()));
+      flush();
+    }
 
     // x ticks: years for financial years, calendar years for monthly and quarterly data.
     const axis = el("g", { class: "axis" }, svg);
@@ -185,8 +201,10 @@ function lineChart(container, opts) {
       cross.setAttribute("visibility", "visible");
       const rows = series.map((s) => ({ s, v: s.values[best] })).filter((r) => isNum(r.v)).sort((a, b) => b.v - a.v);
       const tipFmt = opts.tipFmt || yFmt;
+      const ranges = areas.filter((a) => isNum(a.lo[best]) && isNum(a.hi[best])).map((a) =>
+        `<tr><td><span class="k area-key" style="background:${a.color}"></span>${esc(a.label)}</td><td class="v">${esc(tipFmt(a.lo[best]))} to ${esc(tipFmt(a.hi[best]))}</td></tr>`).join("");
       showTip(`<strong>${esc(xLabel(xs[best]))}</strong><table>${rows.map((r) =>
-        `<tr><td><span class="k" style="background:${r.s.color}"></span>${esc(r.s.label)}</td><td class="v">${esc(tipFmt(r.v))}</td></tr>`).join("")}</table>`, ev);
+        `<tr><td><span class="k" style="background:${r.s.color}"></span>${esc(r.s.label)}</td><td class="v">${esc(tipFmt(r.v))}</td></tr>`).join("")}${ranges}</table>`, ev);
     };
     hit.addEventListener("pointermove", move);
     hit.addEventListener("pointerdown", move);
@@ -733,6 +751,106 @@ function dumbbellChart(container, rows, opts) {
     const tip = (ev) => showTip(`<strong>${esc(r.label)}</strong><table><tr><td>${esc(opts.aLabel)}</td><td class="v">${esc(fmtV(r.a))}</td></tr><tr><td>${esc(opts.bLabel)}</td><td class="v">${esc(fmtV(r.b))}</td></tr><tr><td>Change</td><td class="v">${esc(fmtC(r.b - r.a))}</td></tr></table>`, ev);
     btn.addEventListener("pointermove", tip);
     btn.addEventListener("pointerleave", hideTip);
+  });
+}
+
+/* The q-quantile by linear interpolation between order statistics (R's type 7), as the benchmark engine uses. */
+function quantile7(xs, q) {
+  const v = xs.filter(isNum).sort((a, b) => a - b);
+  if (!v.length) return null;
+  const h = (v.length - 1) * q, lo = Math.floor(h);
+  return v[lo] + (h - lo) * (v[Math.min(lo + 1, v.length - 1)] - v[lo]);
+}
+
+/* Range rows: Australia against a group of peers, one row per item. Each row shows the peers' middle half (25th to
+ * 75th percentile) as a band, their median as a tick, each peer as a small hollow dot and Australia as a large filled
+ * dot, and writes Australia's figure and position at the end, so nothing rests on colour alone. Hover, focus or tap
+ * shows every figure.
+ * rows [{key, label, title, au, peers: [{code, name, v}], q1, med, q3, oecd, position ("below" | "within" | "above" |
+ * ""), rating ("h" | "m" | "l"), ratingWhy, flag (text), dagger (text), extra (html), fmt (this row's number format)}].
+ * opts: {domain ([lo, hi]: one axis for all rows; without it each row is scaled to its own figures), fmt, onSelect,
+ * selected, unit}. */
+/* The figures behind one range row, for its tooltip (also used by the heatmap's "Similar economies" cells). */
+function rangeTip(r, fmtV) {
+  fmtV = r.fmt || fmtV;
+  const peerRows = (r.peers || []).filter((p) => isNum(p.v)).sort((a, b) => b.v - a.v)
+    .map((p) => `<tr><td>${esc(p.name)}</td><td class="v">${esc(fmtV(p.v))}</td></tr>`).join("");
+  return `<strong>${esc(r.title || r.label)}</strong><table>
+    <tr><td><span class="k rg-k-au"></span>Australia</td><td class="v">${esc(isNum(r.au) ? fmtV(r.au) : "–")}</td></tr>
+    <tr><td><span class="k rg-k-med"></span>Median of similar economies</td><td class="v">${esc(isNum(r.med) ? fmtV(r.med) : "–")}</td></tr>
+    <tr><td><span class="k rg-k-band"></span>Their middle half</td><td class="v">${isNum(r.q1) ? `${esc(fmtV(r.q1))} to ${esc(fmtV(r.q3))}` : "–"}</td></tr>
+    ${peerRows}${isNum(r.oecd) ? `<tr><td><span class="k rg-k-oecd"></span>OECD median</td><td class="v">${esc(fmtV(r.oecd))}</td></tr>` : ""}</table>
+    ${r.position ? `<div>Australia is <b>${esc(RANGE_POS[r.position].toLowerCase())}</b> the middle half.</div>` : ""}
+    ${r.rating ? `<div class="tip-ex">How comparable Australia's figure is: ${esc(RANGE_RATING[r.rating])}${r.ratingWhy ? ` (${esc(r.ratingWhy)})` : ""}.</div>` : ""}
+    ${r.flag ? `<div>${esc(r.flag)}</div>` : ""}${r.dagger ? `<div class="tip-ex">† ${esc(r.dagger)}</div>` : ""}${r.extra || ""}`;
+}
+
+const RANGE_POS = { below: "Below", within: "Within", above: "Above", "": "–" };
+const RANGE_RATING = { h: "high", m: "medium", l: "low" };
+function rangeChart(container, rows, opts = {}) {
+  container._range = { rows, opts };
+  const fmtV = opts.fmt || ((v) => fmt(v, 1));
+  const domainOf = (r) => {
+    const vs = [r.au, r.q1, r.q3, r.med, r.oecd, ...(r.peers || []).map((p) => p.v)].filter(isNum);
+    if (!vs.length) return [0, 1];
+    let lo = Math.min(...vs), hi = Math.max(...vs);
+    if (hi - lo < 1e-9) { lo -= 1; hi += 1; }
+    const pad = (hi - lo) * 0.06;
+    return [lo - pad, hi + pad];
+  };
+  const shared = opts.domain;
+  const axis = (dom) => {
+    const [lo, hi] = dom;
+    return (v) => (Math.min(hi, Math.max(lo, v)) - lo) / Math.max(1e-9, hi - lo) * 100;
+  };
+  let head = "";
+  if (shared) {
+    const pos = axis(shared);
+    const ticks = niceTicks(shared[0], shared[1], 5).filter((t) => t >= shared[0] && t <= shared[1]);
+    head = `<div class="rg-head" aria-hidden="true"><span></span><span class="rg-axis">${ticks.map((t) => `<span style="left:${pos(t)}%">${esc(fmtV(t).replace(/\.0$/, ""))}</span>`).join("")}</span><span class="rg-val">Australia</span></div>`;
+  }
+  const tipHtml = (r) => rangeTip(r, fmtV);
+  const say = (r, f = r.fmt || fmtV) => [
+    `${r.title || r.label}.`,
+    isNum(r.au) ? `Australia ${f(r.au)}` : "No Australian figure",
+    isNum(r.med) ? `; similar economies' median ${f(r.med)}, middle half ${f(r.q1)} to ${f(r.q3)}` : "; too few similar economies",
+    r.position ? `; ${RANGE_POS[r.position].toLowerCase()} the middle half` : "",
+    r.rating ? `; comparability ${RANGE_RATING[r.rating]}` : "",
+    r.flag ? `; ${r.flag}` : "",
+    ".",
+  ].join("");
+  container.innerHTML = head + rows.map((r) => {
+    const pos = axis(shared || domainOf(r));
+    const ok = isNum(r.au) || isNum(r.med);
+    const [dlo, dhi] = shared || domainOf(r);
+    const zero = dlo < 0 && dhi > 0 ? `<span class="rg-zero" style="left:${pos(0)}%"></span>` : "";
+    const out = (v) => (v < dlo || v > dhi ? " clipped" : "");
+    const marks = !ok ? "" : [
+      zero,
+      isNum(r.q1) ? `<span class="rg-band" style="left:${pos(r.q1)}%;width:${Math.max(0.6, pos(r.q3) - pos(r.q1))}%"></span>` : "",
+      isNum(r.med) ? `<span class="rg-med" style="left:${pos(r.med)}%"></span>` : "",
+      ...(r.peers || []).filter((p) => isNum(p.v)).map((p) => `<span class="rg-peer${out(p.v)}" style="left:${pos(p.v)}%"></span>`),
+      isNum(r.oecd) ? `<span class="rg-oecd${out(r.oecd)}" style="left:${pos(r.oecd)}%"></span>` : "",
+      isNum(r.au) ? `<span class="rg-au${r.rating === "l" ? " low" : ""}${out(r.au)}" style="left:${pos(r.au)}%"></span>` : "",
+    ].join("");
+    const flagMark = r.flag ? '<span class="rg-flag" title="Gap flagged by the formal test" aria-hidden="true">⚑</span>' : "";
+    const val = isNum(r.au)
+      ? `${flagMark}<span class="rg-num">${esc((r.fmt || fmtV)(r.au))}</span><span class="rg-pos ${r.position || "none"}">${r.position === "below" ? "▼ " : r.position === "above" ? "▲ " : ""}${esc(RANGE_POS[r.position || ""])}</span>`
+      : `<span class="rg-num">–</span>`;
+    const lab = `<span class="rg-lab">${esc(r.label)}${r.dagger ? ' <span class="rg-dagger" aria-hidden="true">†</span>' : ""}</span>`;
+    const inner = `${lab}<span class="rg-track">${marks}</span><span class="rg-val">${val}</span>`;
+    const cls = `rg-row${r.rating === "l" ? " low" : ""}${r.total ? " total" : ""}`;
+    return opts.onSelect
+      ? `<button type="button" class="${cls}" data-key="${esc(r.key)}" aria-pressed="${r.key === opts.selected}" aria-label="${esc(say(r))}">${inner}</button>`
+      : `<div class="${cls}" data-key="${esc(r.key)}" tabindex="0" role="img" aria-label="${esc(say(r))}">${inner}</div>`;
+  }).join("");
+  container.querySelectorAll(".rg-row").forEach((node) => {
+    const r = rows.find((x) => x.key === node.dataset.key);
+    node.addEventListener("pointermove", (ev) => showTip(tipHtml(r), ev));
+    node.addEventListener("pointerleave", hideTip);
+    node.addEventListener("focus", () => showTipAt(tipHtml(r), node));
+    node.addEventListener("blur", hideTip);
+    if (opts.onSelect) node.addEventListener("click", () => opts.onSelect(node.dataset.key));
   });
 }
 

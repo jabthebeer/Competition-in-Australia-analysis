@@ -438,8 +438,18 @@ function xlLine(o) {
   const fmts = [date ? "mmm yyyy" : "text", ...series.map(() => o.xlFmt || "0.0")];
   const chart = { type: "line", cat: 0, catKind: date ? "date" : "str", series: series.map((s, i) => ({ col: i + 1, color: xlColor(s.color), width: (s.width || 1.8) * 0.75, dash: xlDash(s.dash) })) };
   const notes = [];
+  // A shaded range (such as the peers' middle half) becomes its two edges, as thin dotted lines.
+  for (const a of (o.areas || []).filter((a) => a.lo.some(xlNum) && a.hi.some(xlNum))) {
+    for (const [edge, vals] of [["25th percentile", a.lo], ["75th percentile", a.hi]]) {
+      head.push(`${a.xlLabel || a.label}, ${edge}`);
+      fmts.push(o.xlFmt || "0.0");
+      rows.forEach((row, i) => row.push(xlNum(vals[i]) ? vals[i] : null));
+      chart.series.push({ col: head.length - 1, color: xlColor(a.xlColor || "var(--ink-3)"), width: 0.75, dash: "sysDot" });
+    }
+    notes.push(["In this workbook", `On the page, ${a.label.toLowerCase()} is a shaded band; here its edges are dotted lines.`]);
+  }
   // The page's axis range, so Excel's matches it (and the shading below can fill it).
-  const vals = series.flatMap((s) => s.values.filter(xlNum));
+  const vals = [...series.flatMap((s) => s.values.filter(xlNum)), ...(o.areas || []).flatMap((a) => [...a.lo, ...a.hi].filter(xlNum))];
   if (vals.length) {
     let lo = Math.min(...vals), hi = Math.max(...vals);
     if (xlNum(o.ref)) { lo = Math.min(lo, o.ref); hi = Math.max(hi, o.ref); }

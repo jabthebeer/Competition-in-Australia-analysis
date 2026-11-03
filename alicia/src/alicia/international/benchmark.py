@@ -37,8 +37,12 @@ from .harmonise import ALL, ALL_GROUPS, DEMOG_GROUPS, LEVELS, MEASURES, _groups
 
 MIN_PEERS = 4
 DEMOG_WINDOWS = {"2015-2019": (2015, 2019), "2022-2024": (2022, 2024)}
+CONTEXT = (
+    "va_growth",
+    "emp_growth",
+)  # shown on the website for context, not tested (they are not competition measures)
 WINDOWS = {
-    **{m: DEMOG_WINDOWS for m in MEASURES},
+    **{m: DEMOG_WINDOWS for m in MEASURES if m not in CONTEXT},
     "pmr_sector": {"2018-2023": (2018, 2023)},
     "pmr_economy": {"2018-2023": (2018, 2023)},
     "stri_sector": {"2021-2025": (2021, 2025)},
@@ -129,7 +133,7 @@ def benchmark(df: pd.DataFrame, core: list[str] | None = None) -> tuple[pd.DataF
     fixed = [c for c in peers.FIXED]
     summary, annual = [], []
     for (g, m), cell in df.groupby(["group", "measure"]):
-        if "AUS" not in set(cell["country"]):
+        if m not in WINDOWS or "AUS" not in set(cell["country"]):
             continue
         ratings = cell[cell["country"] == "AUS"].set_index("year")["comparability"]
         prev_gap = None
@@ -308,7 +312,7 @@ def markdown(s: pd.DataFrame) -> str:
         "mixed: outside in some years only; within; too few years: fewer than two years with four peers.",
         "",
     ]
-    for m in MEASURES:
+    for m in WINDOWS:
         sub = s[s["measure"] == m]
         if sub.empty:
             continue

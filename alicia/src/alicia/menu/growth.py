@@ -23,7 +23,7 @@ from importlib import resources
 import pandas as pd
 
 from .. import anzsic
-from ..international import concordance
+from ..international import concordance, site
 from ..pipeline import controls, schema, store
 from ..register.evaluation import Evaluation
 from ..register.schema import ChangeRecord
@@ -154,6 +154,26 @@ SOURCES = {
         "ABS, Australian and New Zealand Standard Industrial Classification (ANZSIC) 2006",
         "https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0",
     ),
+    "oecd_sdbs": (
+        "OECD, Structural and Demographic Business Statistics: employer business demography",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.SDD.TPS/DSD_SDBSBD_ISIC4@DF_BD_EMP_B_D/latest",
+    ),
+    "oecd_stan": (
+        "OECD, STAN Database for Structural Analysis (2025 edition)",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.STI.PIE/DSD_STAN@DF_STAN_2025/latest",
+    ),
+    "oecd_pmr": (
+        "OECD, Product Market Regulation indicators",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.ECO.GCRD/DSD_PMR@DF_PMR/latest",
+    ),
+    "oecd_stri": (
+        "OECD, Services Trade Restrictiveness Index",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.TAD.TPD/DSD_STRI@DF_STRI_MAIN/latest",
+    ),
+    "oecd_fdi": (
+        "OECD, FDI Regulatory Restrictiveness Index",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.DAF.INV/DSD_FDIRRI_SCORES@DF_FDIRRI_SCORES/latest",
+    ),
     "abs_isic": (
         "ABS, correspondence between ANZSIC 2006 and ISIC Rev. 4",
         "https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0/correspondences/anzsic-2006-isic-rev-4",
@@ -163,7 +183,12 @@ SOURCES = {
 
 # Each source's licence, as recorded in data/SOURCES.md (the Excel exports list it). Grattan's report is cited, not
 # used as data.
-LICENCES = {k: "CC BY 4.0" for k in SOURCES} | {"ato": "CC BY 2.5 AU", "grattan": ""}
+OECD_LICENCE = "CC BY 4.0 is the OECD default for data from 1 July 2024 (not verified: oecd.org refused requests)"
+LICENCES = (
+    {k: "CC BY 4.0" for k in SOURCES}
+    | {"ato": "CC BY 2.5 AU", "grattan": ""}
+    | {k: OECD_LICENCE for k in ("oecd_sdbs", "oecd_stan", "oecd_pmr", "oecd_stri", "oecd_fdi")}
+)
 
 
 def abs_productivity() -> dict:
@@ -285,9 +310,23 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         "barriers": competition.barriers_payload(),
         "productivity": abs_productivity(),
         # Industries classified differently in other countries' statistics (ISIC): a † and hover note on the page
-        "intl": {"title": concordance.NOTE_TITLE, "notes": concordance.division_notes()},
+        # and the comparisons with similar economies (phase P4, E-107)
+        "intl": {"title": concordance.NOTE_TITLE, "notes": concordance.division_notes(), **site.payload()},
         "sources": _sources(
-            "state_accounts", "lfs_detailed", "cabee", "abs_mfp", "ato", "rba_rdp", "grattan", "anzsic", "abs_isic"
+            "state_accounts",
+            "lfs_detailed",
+            "cabee",
+            "abs_mfp",
+            "ato",
+            "rba_rdp",
+            "grattan",
+            "anzsic",
+            "abs_isic",
+            "oecd_sdbs",
+            "oecd_stan",
+            "oecd_pmr",
+            "oecd_stri",
+            "oecd_fdi",
         ),
     }
 

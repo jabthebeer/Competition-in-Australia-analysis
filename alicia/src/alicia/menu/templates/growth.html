@@ -114,6 +114,14 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       <div class="tscroll"><table class="heat" id="heat"></table></div>
       <details class="more"><summary>About these figures</summary><p id="heatNote"></p><p class="source" id="heatSrc"></p></details>
     </div>
+    <div class="panel chart-card" id="peerCard">
+      <h3 id="peerTitle">Australia against similar economies, by industry</h3><button type="button" class="info" data-for="peerUnit" aria-describedby="peerUnit" aria-label="About this chart">i</button>
+      <p class="unit" id="peerUnit" hidden></p>
+      <div class="toolbar"><label for="peerMeasure">Measure</label><select id="peerMeasure"></select></div>
+      <div class="rg-legend" id="peerKey"></div>
+      <div class="rangeplot" id="peerChart"></div>
+      <details class="more"><summary>About this chart</summary><p id="peerNote"></p><p class="source" id="peerSrc"></p></details>
+    </div>
   </section>
 
   <section class="block" id="detail" aria-labelledby="detailTitle" aria-live="polite">
@@ -129,6 +137,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
         </details>
       </div>
       <p id="detailSub"></p>
+      <div class="toolbar" id="peerToggleBar"><button type="button" class="chip" id="peerToggle" aria-pressed="true"><span class="key area-key" style="background:var(--ink-3)"></span>Similar economies on the charts</button></div>
     </div>
     <div class="panel chart-card">
       <h3 id="prodTitle">Productivity</h3><button type="button" class="info" data-for="prodUnit" aria-describedby="prodUnit" aria-label="About this chart">i</button>
@@ -139,16 +148,26 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       <details class="more"><summary>More figures</summary><dl class="facts" id="detailFacts"></dl></details>
       <details class="more"><summary>About this chart</summary><p id="prodNote"></p><p class="source" id="prodSrc"></p></details>
     </div>
+    <div class="panel chart-card" id="cmpCard">
+      <h3 id="cmpTitle"></h3><button type="button" class="info" data-for="cmpUnit" aria-describedby="cmpUnit" aria-label="About this chart">i</button>
+      <p class="unit" id="cmpUnit" hidden></p>
+      <p class="sub" id="cmpSub"></p>
+      <div class="rg-legend" id="cmpKey"></div>
+      <div class="rangeplot" id="cmpChart"></div>
+      <details class="more"><summary>About this chart</summary><p id="cmpNote"></p><p class="source" id="cmpSrc"></p></details>
+    </div>
     <div class="charts-grid">
       <div class="panel chart-card">
         <h3>Output</h3><button type="button" class="info" data-for="uGva" aria-describedby="uGva" aria-label="About this chart">i</button>
         <p class="unit" id="uGva" hidden></p>
+        <div class="legend" id="gvaKey"></div>
         <div class="chart" id="dGva"></div>
         <details class="more"><summary>About this chart</summary><p class="source" id="srcGva"></p></details>
       </div>
       <div class="panel chart-card">
         <h3>Jobs</h3><button type="button" class="info" data-for="uEmp" aria-describedby="uEmp" aria-label="About this chart">i</button>
         <p class="unit" id="uEmp" hidden></p>
+        <div class="legend" id="empKey"></div>
         <div class="chart" id="dEmp"></div>
         <details class="more"><summary>About this chart</summary><p class="source" id="srcEmp"></p></details>
       </div>
@@ -235,6 +254,9 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   initTerms({
     ...Object.fromEntries(B.groups.map((g) => [g.id, [g.label, g.definition, g.examples]])),
     ...Object.fromEntries(Object.entries(INTL).map(([c, note]) => [`intl-${c}`, [D.intl.title, note]])),
+    peers: ["Similar economies", `The six OECD economies most like Australia in industry structure, income, size and trade, chosen for these comparisons: ${(D.intl?.peers || []).map((c) => D.intl.names[c]).join(", ")}.`],
+    peerRange: ["Middle half", "The range from the 25th to the 75th percentile of the six similar economies: the middle of the pack."],
+    comparability: ["Comparability", "How closely Australia's figure matches the definitions the other countries use: high, medium or low. A gap in a figure rated low may come from the definitions rather than the economy."],
   });
   const intlFlag = (c) => (INTL[c] ? `<button type="button" class="flag" data-term="intl-${esc(c)}" aria-describedby="def-intl-${esc(c)}" aria-label="${esc(D.intl.title)}">†</button>` : "");
   const store = {
@@ -391,6 +413,83 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     lineChart(document.getElementById("gspChart"), { x: ys, xKind: "fy", series, ref: 100, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label: "Real gross state product index by state" });
   }
 
+  // ---- similar economies (international comparisons, E-107) ----------------------------
+  const I = D.intl || {};
+  const HAS_INTL = !!(I.series && I.peers && I.peers.length);
+  const IY = I.years || [], PEERS = I.peers || [], INAME = I.names || {}, IGROUPS = I.groups || [], IM = I.measures || {};
+  const groupOfDiv = (c) => (I.divGroup || {})[c];
+  const groupInfo = (g) => IGROUPS.find((x) => x.id === g);
+  const ifmt = (m) => (v) => (!isNum(v) ? "–" : IM[m].signed ? fmtSigned(v, IM[m].digits) : fmt(v, IM[m].digits));
+  const intlSrc = (m) => (m.startsWith("pmr") ? ["oecd_pmr"] : m === "stri_sector" ? ["oecd_stri"] : m === "fdi_rri" ? ["oecd_fdi"]
+    : ["birth_rate", "death_rate", "net_entry_rate", "survival_3y"].includes(m) ? ["oecd_sdbs", "cabee"] : m === "lp_growth_hour" ? ["oecd_stan", "abs_mfp"] : ["oecd_stan"]);
+  const intlMethods = () => `<a href="${esc(D.repo)}docs/methods_international_benchmarks.md" target="_blank" rel="noopener">methods note</a>`;
+  // The page's financial years (by their first year) meet the international years by the year they end in: rates in
+  // 2014-15 to 2018-19 are 2015 to 2019; growth over the same span is growth in 2016 to 2019.
+  const intlYears = (win, kind) => IY.filter((y) => y >= win.from + (kind === "growth" ? 2 : 1) && y <= win.to + 1);
+  const yearsText = (ys) => (!ys || !ys.length ? "" : ys.length === 1 ? String(ys[0]) : `${ys[0]} to ${ys[ys.length - 1]}`);
+  // One economy over the given years: growth rates compounded, other rates averaged (with figures in at least half of
+  // them, unless "any"); a regulation indicator is its latest edition up to the last year.
+  function winValue(vals, years, kind, win, any = false) {
+    if (!vals) return { v: null, years: [] };
+    const has = (y) => isNum(vals[IY.indexOf(y)]);
+    if (kind === "level") {
+      const last = years.length ? years[years.length - 1] : win.to + 1;
+      const ys = IY.filter((y) => y <= last && has(y));
+      const y = ys[ys.length - 1];
+      return { v: isNum(y) ? vals[IY.indexOf(y)] : null, years: isNum(y) ? [y] : [] };
+    }
+    const got = years.filter(has);
+    if (!got.length || (!any && got.length * 2 < years.length)) return { v: null, years: got };
+    const pts = got.map((y) => vals[IY.indexOf(y)]);
+    const v = kind === "growth" ? (Math.pow(pts.reduce((a, x) => a * (1 + x / 100), 1), 1 / pts.length) - 1) * 100 : pts.reduce((a, x) => a + x, 0) / pts.length;
+    return { v, years: got };
+  }
+  // Australia against the six similar economies for one measure, group and window. Australia's figure uses every
+  // year it has in the window, and each economy is averaged over those same years, so the comparison is like for like.
+  function compare(measure, g, win) {
+    const M = IM[measure], S = I.series?.[measure]?.[g];
+    if (!M || !S || !S.AUS) return null;
+    const years = intlYears(win, M.kind);
+    if (!years.length && M.kind !== "level") return null;
+    const au = winValue(S.AUS, years, M.kind, win, true);
+    const basis = M.kind === "level" || !au.years.length ? years : au.years;
+    const peers = PEERS.map((c) => {
+      const w = winValue(S[c], basis, M.kind, win);
+      return { code: c, name: INAME[c] || c, v: w.v, years: w.years };
+    });
+    const vals = peers.map((p) => p.v).filter(isNum);
+    const enough = vals.length >= 4;
+    const [q1, med, q3] = enough ? [0.25, 0.5, 0.75].map((q) => quantile7(vals, q)) : [null, null, null];
+    const position = isNum(au.v) && enough ? (au.v < q1 ? "below" : au.v > q3 ? "above" : "within") : "";
+    const codes = I.ratings?.[measure]?.[g] || "";
+    const used = au.years.map((y) => codes[IY.indexOf(y)]).filter((x) => x && x !== "-");
+    const rating = used.length ? (used.includes("l") ? "l" : used.includes("m") ? "m" : "h") : null;
+    const flags = (I.tests?.[measure]?.[g] || []).filter((t) => t.status === "flag");
+    const flag = flags.length ? `The formal test flags this gap: Australia ${flags.map((t) => `${t.side} the middle half in ${t.window}`).join(", and ")}.` : "";
+    const peerYears = M.kind === "level" ? [...new Set(peers.flatMap((p) => p.years))].sort() : basis;
+    return { au: au.v, peers, q1, med, q3, oecd: winValue(S.OECD, basis, M.kind, win).v, position, rating, ratingWhy: I.reasons?.[measure]?.[g] || "", flag, years: M.kind === "level" ? peerYears : basis, nPeers: vals.length, fmt: ifmt(measure) };
+  }
+  const daggerOf = (g) => { const d = (groupInfo(g)?.divisions || []).find((x) => INTL[x]); return d ? `${DIVNAME[d]} is classified differently in other countries: ${INTL[d]}` : ""; };
+  const RANGE_KEY = () => `<span><span class="rg-au"></span>Australia</span><span><span class="rg-au low"></span>Australia, ${term("comparability", "low comparability")}</span><span><span class="rg-band"></span>${term("peerRange", "Middle half")} of ${term("peers", "similar economies")}</span><span><span class="rg-med"></span>Their median</span><span><span class="rg-peer"></span>Each economy</span><span><span class="rg-oecd"></span>OECD median</span><span><span class="rg-flag">⚑</span>Gap flagged by the formal test</span>`;
+  // The similar economies' median and middle half as an index (first year = 100), for the line charts; ys are the
+  // page's financial years, and growth into a financial year is the international growth of the year it ends in.
+  function peerBand(measure, g, ys) {
+    const S = I.series?.[measure]?.[g];
+    if (!HAS_INTL || !S || ys.length < 2) return null;
+    const idx = PEERS.filter((c) => S[c]).map((c) => {
+      const out = [100];
+      for (let i = 1; i < ys.length; i++) {
+        const gr = S[c][IY.indexOf(ys[i] + 1)];
+        out.push(isNum(gr) && isNum(out[i - 1]) ? out[i - 1] * (1 + gr / 100) : null);
+      }
+      return out;
+    });
+    const pick = (q) => ys.map((_, i) => { const v = idx.map((a) => a[i]).filter(isNum); return v.length >= 4 ? quantile7(v, q) : null; });
+    const med = pick(0.5);
+    return med.slice(1).some(isNum) ? { med, lo: pick(0.25), hi: pick(0.75) } : null;
+  }
+  let showPeers = store.get("showPeers", true);
+
   // ---- heatmap -----------------------------------------------------------------------
   function heatData() {
     const M = METRICS[metric];
@@ -407,16 +506,38 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   function renderHeat() {
     const { M, cells, scale } = heatData();
     const f = (v) => (M.kind === "div" ? fmtSigned(v, M.digits ?? 1) : fmt(v, M.digits ?? 1));
-    const head = `<thead><tr><th></th>${STATES.map((s) => `<th scope="col">${s === "AUS" ? "Aus." : s}</th>`).join("")}</tr></thead>`;
+    // The similar economies' median, where the measure has a comparable international one, and Australia's position.
+    const im = HAS_INTL ? I.heat?.[metric] : null;
+    const peerCells = {};
+    if (im) for (const c of [...DIVS, TOT]) { const g = groupOfDiv(c); peerCells[c] = g ? compare(im, g, indWin) : null; }
+    const peerTd = (c) => {
+      if (!im) return "";
+      const r = peerCells[c];
+      if (!r || !isNum(r.med)) return `<td class="peer-td"><span class="peer-cell na" title="Too few similar economies with figures for these years">–</span></td>`;
+      const sym = r.position === "below" ? "▼" : r.position === "above" ? "▲" : "●";
+      const lab = `${DIVNAME[c]}, similar economies: median ${r.fmt(r.med)}; Australia ${r.fmt(r.au)}, ${r.position ? `${RANGE_POS[r.position].toLowerCase()} their middle half` : "no position"}${r.rating === "l" ? ", low comparability" : ""}`;
+      return `<td class="peer-td"><button type="button" class="peer-cell${r.rating === "l" ? " low" : ""}" data-peer="${c}" aria-label="${esc(lab)}"><span class="ps ${r.position}" aria-hidden="true">${sym}</span><span class="pm">${esc(r.fmt(r.med))}</span></button></td>`;
+    };
+    const head = `<thead><tr><th></th>${STATES.map((s) => `<th scope="col">${s === "AUS" ? "Aus." : s}</th>`).join("")}${im ? `<th scope="col" class="peer-th">${term("peers", "Similar economies")}</th>` : ""}</tr></thead>`;
     const body = [...DIVS, TOT].map((c) => `<tr class="${c === TOT ? "total" : ""}"><th class="row" scope="row" title="${esc(DIVNAME[c])}">${c === TOT ? "" : `<span class="code">${c}</span>`}${intlFlag(c)}${esc(DIVNAME[c])}</th>${STATES.map((s) => {
       const v = cells[`${s}|${c}`];
       const pressed = sel.state === s && sel.div === c;
       return `<td><button type="button" data-s="${s}" data-c="${c}" class="${isNum(v) ? "" : "na"}" aria-pressed="${pressed}"
         aria-label="${esc(`${DIVNAME[c]}, ${NAMES[s]}: ${isNum(v) ? `${f(v)} ${M.unit}` : "no data"}`)}"
         style="background:${heatColor(v, scale, M.kind)}">${isNum(v) ? f(v) : "–"}</button></td>`;
-    }).join("")}</tr>`).join("");
+    }).join("")}${peerTd(c)}</tr>`).join("");
     const heat = document.getElementById("heat");
     heat.innerHTML = `${head}<tbody>${body}</tbody>`;
+    heat.querySelectorAll("button[data-peer]").forEach((b) => {
+      const c = b.dataset.peer, r = peerCells[c];
+      const tip = { ...r, title: `${DIVNAME[c]}: ${IM[im].label}${isBiz(metric) ? " (businesses with employees)" : ""}, ${yearsText(r.years)}`, dagger: daggerOf(groupOfDiv(c)),
+        extra: groupInfo(groupOfDiv(c))?.divisions.length > 1 ? `<div class="tip-ex">Compared as ${esc(groupInfo(groupOfDiv(c)).short.toLowerCase())}, as other countries publish it.</div>` : "" };
+      b.addEventListener("pointermove", (ev) => showTip(rangeTip(tip, r.fmt), ev));
+      b.addEventListener("pointerleave", hideTip);
+      b.addEventListener("focus", () => showTipAt(rangeTip(tip, r.fmt), b));
+      b.addEventListener("blur", hideTip);
+      b.addEventListener("click", () => { sel = { state: sel.state, div: c }; store.set("sel", sel); renderHeat(); renderDetail(); renderRank(); });
+    });
     heat.querySelectorAll("button[data-s]").forEach((b) => b.addEventListener("click", () => {
       sel = { state: b.dataset.s, div: b.dataset.c };
       store.set("sel", sel);
@@ -430,8 +551,11 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       : `linear-gradient(90deg, var(--surface), ${heatColor(1, 1, "seq")})`;
     document.getElementById("heatScale").innerHTML = `<span>${M.kind === "div" ? fmtSigned(-scale, 1) : "0"}</span><span class="bar" style="background:${grad}"></span><span>${M.kind === "div" ? fmtSigned(scale, 1) : fmt(scale, 1)}</span><span>${esc(M.unit)}</span>`;
     const flagged = Object.keys(INTL).length > 0;
-    document.getElementById("heatHint").innerHTML = M.hint() + (flagged ? ` † ${esc(D.intl.title)}: hover the mark to see what differs.` : "");
-    document.getElementById("heatSrc").innerHTML = SRC(flagged ? [...M.src, "abs_isic"] : M.src);
+    const peerHint = !HAS_INTL ? "" : im
+      ? ` ${term("peers", "Similar economies")}: the median of six comparable economies for the same measure${isBiz(metric) ? ", on businesses with employees (the basis other countries use, so it is set against Australia's employer figure, not the all-business figure shown)" : ""}; ▲ Australia above their ${term("peerRange", "middle half")}, ● within, ▼ below.`
+      : " Other countries publish no comparable figure for this view, so the similar economies column is hidden.";
+    document.getElementById("heatHint").innerHTML = M.hint() + peerHint + (flagged ? ` † ${esc(D.intl.title)}: hover the mark to see what differs.` : "");
+    document.getElementById("heatSrc").innerHTML = SRC([...new Set([...M.src, ...(flagged ? ["abs_isic"] : []), ...(im ? intlSrc(im) : [])])]);
     document.getElementById("heatNote").textContent = D.notes[M.note];
   }
 
@@ -460,21 +584,30 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     ];
     document.getElementById("detailFacts").innerHTML = facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
 
-    const pair = (src, years, label) => {
+    const pair = (src, years, label, measure) => {
       const ys = years.filter((y) => y >= indWin.from && y <= indWin.to);
       const series = [s, ...(s === "AUS" ? [] : ["AUS"])].map((g) => ({
         key: g, label: NAMES[g], values: indexSeries(src[g]?.[c], years, indWin.from, indWin.to).vals,
         color: stateColor(g), dash: g === "AUS" && s !== "AUS", width: 2,
       }));
-      return { x: ys, xKind: "fy", series, ref: 100, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label };
+      const band = showPeers ? peerBand(measure, groupOfDiv(c), ys) : null;
+      if (band) series.push({ key: "peers", label: "Similar economies, median", values: band.med, color: "var(--ink-3)", dash: "2 3", width: 1.6 });
+      const areas = band ? [{ key: "peerRange", label: "Similar economies, middle half", lo: band.lo, hi: band.hi, color: "var(--ink-3)" }] : [];
+      return { x: ys, xKind: "fy", series, areas, ref: 100, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label, _band: !!band };
     };
-    const idxUnit = (extra) => `${term("index100", "Index")}, ${esc(fyLabel(indWin.from))} = 100${extra}${s === "AUS" ? "." : ". Dashed line: Australia."}`;
-    document.getElementById("uGva").innerHTML = idxUnit(`, adjusted for inflation`);
-    document.getElementById("uEmp").innerHTML = idxUnit(", people employed");
-    lineChart(document.getElementById("dGva"), pair(D.gva.volume, D.years, "Output index"));
-    lineChart(document.getElementById("dEmp"), pair(D.emp, D.empYears, "Jobs index"));
-    document.getElementById("srcGva").innerHTML = SRC(["state_accounts"]);
-    document.getElementById("srcEmp").innerHTML = SRC(["lfs_detailed"]);
+    const peerNote = (b) => (b ? ` Grey band and dotted line: the ${term("peerRange", "middle half")} and median of six ${term("peers", "similar economies")}, for ${esc(groupInfo(groupOfDiv(c))?.short.toLowerCase() || "the industry")} as they classify it.` : "");
+    const idxUnit = (extra, b) => `${term("index100", "Index")}, ${esc(fyLabel(indWin.from))} = 100${extra}${s === "AUS" ? "." : ". Dashed line: Australia."}${peerNote(b)}`;
+    const gvaOpts = pair(D.gva.volume, D.years, "Output index", "va_growth"), empOpts = pair(D.emp, D.empYears, "Jobs index", "emp_growth");
+    document.getElementById("uGva").innerHTML = idxUnit(`, adjusted for inflation`, gvaOpts._band);
+    document.getElementById("uEmp").innerHTML = idxUnit(", people employed", empOpts._band);
+    const lineKey = (o) => o.series.map((x) => `<span><span class="key${x.dash ? " dash" : ""}" style="${x.dash ? `color:${x.color}` : `background:${x.color}`}"></span>${esc(x.label)}</span>`).join("")
+      + (o._band ? `<span><span class="key area-key" style="background:var(--ink-3)"></span>${term("peerRange", "Middle half of similar economies")}</span>` : "");
+    document.getElementById("gvaKey").innerHTML = lineKey(gvaOpts);
+    document.getElementById("empKey").innerHTML = lineKey(empOpts);
+    lineChart(document.getElementById("dGva"), gvaOpts);
+    lineChart(document.getElementById("dEmp"), empOpts);
+    document.getElementById("srcGva").innerHTML = SRC(["state_accounts", ...(gvaOpts._band ? ["oecd_stan"] : [])]);
+    document.getElementById("srcEmp").innerHTML = SRC(["lfs_detailed", ...(empOpts._band ? ["oecd_stan"] : [])]);
 
     const rate = (g, kind) => {
       const b = D.biz[g]?.[c];
@@ -492,6 +625,8 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     document.getElementById("bizKey").innerHTML = `<span><span class="key" style="background:var(--c-1)"></span>${term("entry", "Entry rate")}</span><span><span class="key" style="background:var(--c-4)"></span>${term("exit", "Exit rate")}</span>`;
     lineChart(document.getElementById("dBiz"), { x: D.bizYears, xKind: "fy", series: bizSeries, band: { from: indWin.from, to: indWin.to, xlLabel: "Shaded: the selected period" }, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`, label: "Business entry and exit rates" });
     document.getElementById("srcBiz").innerHTML = SRC(["cabee"]);
+    renderCompare(s, c);
+    renderPeerCard();
   }
 
   // The selected industry's productivity: headline figures, and output per worker over the years chosen against
@@ -534,14 +669,18 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const series = [{ key: s, label: `${NAMES[s]}, output per worker`, values: mine, color: stateColor(s), width: 2.4 }];
     if (s !== "AUS") series.push({ key: "AUS", label: "Australia, output per worker", values: aus, color: stateColor("AUS"), dash: true, width: 1.6 });
     if (absYears.length) series.push({ key: "abs", label: "Australia, ABS labour productivity (per hour)", values: absIdx, color: "var(--accent)", dash: "1.5 3.5", width: 2 });
-    document.getElementById("prodKey").innerHTML = series.map((x) => `<span><span class="key${x.dash ? " dash" : ""}" style="${x.dash ? `color:${x.color}` : `background:${x.color}`}"></span>${esc(x.label)}</span>`).join("");
+    const pBand = showPeers ? peerBand("lp_growth_person", groupOfDiv(c), ys) : null;
+    if (pBand) series.push({ key: "peers", label: "Similar economies, output per worker, median", values: pBand.med, color: "var(--ink-3)", dash: "2 3", width: 1.6 });
+    document.getElementById("prodKey").innerHTML = series.map((x) => `<span><span class="key${x.dash ? " dash" : ""}" style="${x.dash ? `color:${x.color}` : `background:${x.color}`}"></span>${esc(x.label)}</span>`).join("")
+      + (pBand ? `<span><span class="key area-key" style="background:var(--ink-3)"></span>${term("peerRange", "Middle half of similar economies")}</span>` : "");
     lineChart(document.getElementById("prodChart"), {
-      x: ys, xKind: "fy", series, ref: 100, height: 260, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label: `Productivity: ${name}, ${NAMES[s]}`,
+      x: ys, xKind: "fy", series, ref: 100, height: 260,
+      areas: pBand ? [{ key: "peerRange", label: "Similar economies, middle half", lo: pBand.lo, hi: pBand.hi, color: "var(--ink-3)" }] : [], yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label: `Productivity: ${name}, ${NAMES[s]}`,
       xlUnit: `Index, ${fyLabel(indWin.from)} = 100.`,
     });
     document.getElementById("prodUnit").innerHTML = `${term("productivity", "Productivity")} as an ${term("index100", "index")}, ${esc(fyLabel(indWin.from))} = 100: output per person employed, adjusted for inflation${s === "AUS" ? "" : `, in ${esc(NAMES[s])} (solid) and Australia (dashed)`}${absYears.length ? `, and the ABS's ${term("labourProd", "labour productivity")} for the industry across Australia (dotted${a0 > indWin.from ? `, from ${esc(fyLabel(a0))}, starting on the Australia line` : ""})` : ""}.`;
     document.getElementById("prodNote").textContent = `${D.notes.prod} ${abs ? "The ABS measure is output per hour worked, for the industry across Australia." : "The ABS does not publish labour productivity for this industry (it covers the market sector: not public administration, education or health)."}`;
-    document.getElementById("prodSrc").innerHTML = SRC(["state_accounts", "lfs_detailed", "abs_mfp"]);
+    document.getElementById("prodSrc").innerHTML = SRC(["state_accounts", "lfs_detailed", "abs_mfp", ...(pBand ? ["oecd_stan"] : [])]);
   }
 
   function renderRank() {
@@ -553,6 +692,78 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       .sort((a, b) => (isNum(b.value) ? b.value : -Infinity) - (isNum(a.value) ? a.value : -Infinity));
     rankedBars(document.getElementById("dRank"), rows, { fmt: (v) => (signedMetric(metric) ? fmtSigned(v, M.digits ?? 1) : fmt(v, M.digits ?? 1)), xlCat: "Industry", xlValue: M.option });
   }
+
+  // ---- Australia against similar economies: by industry, and for the selected industry ----------------
+  const PEER_MEASURES = Object.keys(IM).filter((m) => m !== "pmr_economy" && m !== "fdi_rri");
+  const peerSel = document.getElementById("peerMeasure");
+  let peerMeasure = store.get("peerMeasure", (I.heat || {})[metric] || "lp_growth_person");
+  if (!PEER_MEASURES.includes(peerMeasure)) peerMeasure = PEER_MEASURES.includes("lp_growth_person") ? "lp_growth_person" : PEER_MEASURES[0];
+  peerSel.innerHTML = PEER_MEASURES.map((m) => `<option value="${m}">${esc(IM[m].label)}</option>`).join("");
+  if (peerMeasure) peerSel.value = peerMeasure;
+  peerSel.addEventListener("change", () => { peerMeasure = peerSel.value; store.set("peerMeasure", peerMeasure); renderPeerCard(); });
+  let peerRows = [], cmpRows = [];
+  const RATE_LOW = "A hollow Australian dot means its figure is rated low for comparability: its definition differs from the other countries' (for example, the ABS business register does not count a business that takes on its first employee as a birth, as the OECD does), so a gap may come from the definitions.";
+  const METHOD = () => `Each economy's figure is averaged over the years chosen (growth rates compounded); a regulation indicator is its latest edition. Australian financial years are matched to the calendar year they end in. The median and ${term("peerRange", "middle half")} are taken across the six ${term("peers", "similar economies")} when at least four have figures. ${RATE_LOW} "Flagged" marks gaps that pass the formal test: outside the middle half in most years of 2015-2019 or 2022-2024, still so when any one economy is left out, and rated medium or high. Descriptive only: a gap says where to look, not why it exists. Method and limits: ${intlMethods()}.`;
+  function renderPeerCard() {
+    const card = document.getElementById("peerCard");
+    card.hidden = !HAS_INTL || !peerMeasure;
+    if (card.hidden) return;
+    const m = peerMeasure, M = IM[m];
+    const rows = IGROUPS.map((g) => {
+      const r = compare(m, g.id, indWin);
+      if (!r || (!isNum(r.au) && !isNum(r.med))) return null;
+      return { key: g.id, label: g.short, title: `${g.label}: ${M.short.toLowerCase()}, ${yearsText(r.years)}`, total: g.id === "ALL", dagger: daggerOf(g.id), ...r };
+    }).filter(Boolean);
+    peerRows = rows;
+    const vals = rows.flatMap((r) => [r.au, r.q1, r.q3, r.med]).filter(isNum);
+    let lo = Math.min(...vals), hi = Math.max(...vals);
+    const span = Math.max(1e-6, hi - lo);
+    lo -= span * 0.12; hi += span * 0.12;
+    const selG = groupOfDiv(sel.div);
+    rangeChart(document.getElementById("peerChart"), rows, {
+      domain: vals.length ? [lo, hi] : undefined, fmt: ifmt(m), selected: selG,
+      onSelect: (g) => {
+        const div = g === "ALL" ? TOT : groupInfo(g).divisions[0];
+        sel = { state: sel.state, div }; store.set("sel", sel);
+        renderHeat(); renderDetail(); renderRank();
+        document.getElementById("detail").scrollIntoView({ behavior: "smooth", block: "start" });
+      },
+    });
+    const ys = rows[0]?.years || [];
+    document.getElementById("peerUnit").innerHTML = `${esc(M.label)}: ${esc(M.unit)}${M.kind === "level" ? `, latest edition (${esc(yearsText(ys))})` : `, ${esc(yearsText(ys))}`}. Australia against six ${term("peers", "similar economies")}, by industry as other countries group them. Select an industry to see it below.`;
+    document.getElementById("peerKey").innerHTML = RANGE_KEY();
+    document.getElementById("peerNote").innerHTML = `${METHOD()} Industries are the common groups other countries can be compared on, so some combine two of Australia's (wholesale with retail, professional with administrative services, arts with other services).`;
+    document.getElementById("peerSrc").innerHTML = SRC(intlSrc(m));
+  }
+  function renderCompare(s, c) {
+    const card = document.getElementById("cmpCard");
+    const g = groupOfDiv(c), G = groupInfo(g);
+    card.hidden = !HAS_INTL || !G;
+    if (card.hidden) return;
+    const ms = Object.keys(IM).filter((m) => g === "ALL" || (m !== "pmr_economy" && m !== "fdi_rri"));
+    const rows = ms.map((m) => {
+      const r = compare(m, g, indWin);
+      if (!r || (!isNum(r.au) && !isNum(r.med))) return null;
+      return { key: m, label: IM[m].short, title: `${G.label}: ${IM[m].label} (${IM[m].unit}), ${yearsText(r.years)}`, ...r };
+    }).filter(Boolean);
+    cmpRows = rows;
+    rangeChart(document.getElementById("cmpChart"), rows, {});
+    document.getElementById("cmpTitle").textContent = `${G.label}: Australia against similar economies`;
+    const merged = G.divisions.length > 1 ? `Compared as ${G.short.toLowerCase()} (ANZSIC ${G.divisions.join(" and ")} together), as other countries publish it. ` : "";
+    const whole = s === "AUS" ? "" : `These comparisons are for Australia as a whole, not ${NAMES[s]}. `;
+    document.getElementById("cmpSub").innerHTML = `${esc(merged + whole)}${daggerOf(g) ? `${intlFlag(c)} Classified differently in other countries. ` : ""}Each row on its own scale; hover or tap a row for the figures.`;
+    document.getElementById("cmpUnit").innerHTML = `Each row: Australia against six ${term("peers", "similar economies")} on one measure, over ${esc(winLabel(indWin))} (regulation: the latest edition). The band is their ${term("peerRange", "middle half")}, the tick their median, the small dots each economy and the diamond the OECD median.`;
+    document.getElementById("cmpKey").innerHTML = RANGE_KEY();
+    document.getElementById("cmpNote").innerHTML = METHOD();
+    document.getElementById("cmpSrc").innerHTML = SRC([...new Set(rows.flatMap((r) => intlSrc(r.key)))]);
+  }
+  document.getElementById("peerToggle").setAttribute("aria-pressed", String(showPeers));
+  document.getElementById("peerToggleBar").hidden = !HAS_INTL;
+  document.getElementById("peerToggle").addEventListener("click", (e) => {
+    showPeers = !showPeers; store.set("showPeers", showPeers);
+    e.currentTarget.setAttribute("aria-pressed", String(showPeers));
+    renderDetail();
+  });
 
   // ---- barriers to entry ----------------------------------------------------------------
   const PRIVATE = GROUPS.filter((g) => g !== "tradeable" && g !== "public");
@@ -1045,13 +1256,39 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       const div = M.kind === "div", surface = xlColor("var(--surface)");
       return [{
         name: "Table", unit: `${plainUnit("heatHint").replace(/ † .*$/, "")} Unit: ${M.unit}. Cells are coloured as on the page.${Object.keys(INTL).length ? ` † ${D.intl.title}: see the About sheet.` : ""}`,
-        head: ["Industry", ...STATES.map((s) => NAMES[s])],
-        rows: [...DIVS, TOT].map((c) => [c === TOT ? DIVNAME[c] : `${c} ${DIVNAME[c]}${INTL[c] ? " †" : ""}`, ...STATES.map((s) => (isNum(cells[`${s}|${c}`]) ? cells[`${s}|${c}`] : null))]),
-        fmts: ["text", ...STATES.map(() => (div ? signedFmt : "0.0"))],
+        head: ["Industry", ...STATES.map((s) => NAMES[s]), ...(HAS_INTL && I.heat?.[metric] ? ["Similar economies, median", "Australia, comparable figure", "Australia's position"] : [])],
+        rows: [...DIVS, TOT].map((c) => {
+          const im = HAS_INTL ? I.heat?.[metric] : null, r = im && groupOfDiv(c) ? compare(im, groupOfDiv(c), indWin) : null;
+          return [c === TOT ? DIVNAME[c] : `${c} ${DIVNAME[c]}${INTL[c] ? " †" : ""}`, ...STATES.map((s) => (isNum(cells[`${s}|${c}`]) ? cells[`${s}|${c}`] : null)),
+            ...(im ? [r && isNum(r.med) ? r.med : null, r && isNum(r.au) ? r.au : null, r?.position ? `${RANGE_POS[r.position]} the middle half` : ""] : [])];
+        }),
+        fmts: ["text", ...STATES.map(() => (div ? signedFmt : "0.0")), ...(HAS_INTL && I.heat?.[metric] ? ["0.0", "0.0", "text"] : [])],
         colorScale: { kind: M.kind, scale, mid: surface, neg: xlMix(xlColor("var(--neg)"), surface, 0.58), pos: xlMix(xlColor(div ? "var(--pos)" : "var(--seq)"), surface, 0.58) },
       }];
     },
   });
+  // Australia against similar economies: the figures behind each row (Excel has no range chart).
+  const rangeTable = (rows, first, unitOf) => ({
+    head: [first, ...(unitOf ? ["Unit"] : []), "Australia", "Median of similar economies", "25th percentile", "75th percentile",
+      ...PEERS.map((c) => INAME[c]), "OECD median", "Australia's position", "Comparability of Australia's figure", "Formal test", "Years"],
+    rows: rows.map((r) => [r.label, ...(unitOf ? [unitOf(r)] : []), r.au, r.med, r.q1, r.q3, ...PEERS.map((c) => r.peers.find((p) => p.code === c)?.v ?? null),
+      r.oecd, r.position ? `${RANGE_POS[r.position]} the middle half` : "too few economies", RANGE_RATING[r.rating] || "", r.flag || "", yearsText(r.years)]),
+    fmts: ["text", ...(unitOf ? ["text"] : []), ...Array(5 + PEERS.length).fill("0.00"), "text", "text", "text", "text"].map((f, i, a) => (i >= a.length - 4 ? "text" : f)),
+  });
+  if (HAS_INTL) {
+    excelButton(cardOf("peerChart"), {
+      title: () => `Australia against similar economies, by industry: ${IM[peerMeasure].label}`,
+      settings: () => [periodSet(indWin), ["Measure", `${IM[peerMeasure].label} (${IM[peerMeasure].unit})`], ["Similar economies", PEERS.map((c) => INAME[c]).join(", ")]],
+      file: () => `${IM[peerMeasure].short} ${winLabel(indWin)}`, terms: ["peers", "peerRange", "comparability"],
+      tables: () => [{ name: "By industry", unit: `${IM[peerMeasure].label}, ${IM[peerMeasure].unit}.`, ...rangeTable(peerRows, "Industry (as other countries group them)") }],
+    });
+    excelButton(cardOf("cmpChart"), {
+      title: () => document.getElementById("cmpTitle").textContent,
+      settings: () => [periodSet(indWin), ["Industry", DIVNAME[sel.div]], ["Similar economies", PEERS.map((c) => INAME[c]).join(", ")]],
+      file: () => `${groupInfo(groupOfDiv(sel.div))?.short || ""} ${winLabel(indWin)}`, terms: ["peers", "peerRange", "comparability"],
+      tables: () => [{ name: "Measures", unit: "Each measure in its own unit.", ...rangeTable(cmpRows, "Measure", (r) => IM[r.key].unit) }],
+    });
+  }
   excelButton(cardOf("prodChart"), {
     settings: () => [periodSet(indWin), ...cellSet()], file: () => winLabel(indWin),
     tables: () => [{
