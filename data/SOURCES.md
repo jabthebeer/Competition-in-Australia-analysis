@@ -44,7 +44,7 @@ Parameters for the Policy costing tab (forward plan phase P2), merged into `data
 
 ### Built for international benchmarking (`alicia/src/alicia/international/`)
 
-Data for comparing Australia with similar economies ([plan](../docs/forward_plan_international_benchmarking.md), phases P0 to P2, E-102 to E-105). `alicia international all` downloads each source with a manifest and writes `data/processed/international/`.
+Data for comparing Australia with similar economies ([plan](../docs/forward_plan_international_benchmarking.md), phases P0 to P3, E-102 to E-106). `alicia international all` downloads each source with a manifest and writes `data/processed/international/`.
 
 | Source (connector) | Publisher | URL | Accessed | Access / licence | Coverage | Used for | Status |
 |---|---|---|---|---|---|---|---|
@@ -58,6 +58,7 @@ Data for comparing Australia with similar economies ([plan](../docs/forward_plan
 | Business Dynamics Statistics, by sector and by sector and firm age (`us_bds`) | US Census Bureau | <https://www2.census.gov/programs-surveys/bds/tables/time-series/2023/bds2023_sec.csv> and `bds2023_sec_fa.csv` (latest release found from the directory listing; the BDS API needs a key, these files do not) | 3 Nov 2026 (2023 release) | Public domain as a US federal government work (17 U.S.C. 105); Census Bureau terms not re-checked | Employer firms, 19 NAICS 2017 sectors, 1978-2023 | Firms, establishments, employment, firm births (age 0) and deaths (`us_bds`); the US is in the fixed comparison list | Built |
 | Counts of Australian Businesses (CABEE), data cube 5: survival of entries by main state, subdivision and employment size (`abs_cabee_survival`) | ABS | <https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/jul2021-jun2025/8165DC05.xlsx> and the same cube in the four releases before it (`816505.xlsx` to Jul 2018-Jun 2022) | 3 Nov 2026 | CC BY 4.0 | Entry cohorts 2017-18 to 2021-22, each followed to the third June after entry; 86 subdivisions, states | Australian three-year survival of employing entries (P2, `au_cabee_survival`) | Built |
 | Business demography metadata (reference, not data) | Eurostat | <https://ec.europa.eu/eurostat/cache/metadata/en/bd_sims.htm> | 3 Nov 2026 | Public web page | EU and OECD-consistent definitions | The definitions of employer enterprise births and deaths (including enterprises crossing the one-employee threshold) that the Australian series are harmonised to | Read |
+| Estimates of Industry Multifactor Productivity, 5260.0.55.002 (`abs_mfp`, from the costing parameters above) | ABS | As for the costing connector | 3 Nov 2026 (the release in `data/processed/costing/parameters.json`) | CC BY 4.0 | Hours-based labour productivity indexes by ANZSIC division, financial years | Australia's per-hour labour productivity growth in the benchmarks, for the ten groups that are one division (E-106), because STAN's Australian hours disagree with it | Used |
 
 ### Compiled for the industry regulation inventory (`regulation-register/regimes/`)
 

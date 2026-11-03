@@ -507,7 +507,7 @@ def cmd_costing_register(args) -> int:
 
 
 def cmd_international(args) -> int:
-    from .international import bds, concordance, coverage, harmonise, oecd, peers, stan, wdi
+    from .international import bds, benchmark, concordance, coverage, harmonise, oecd, peers, stan, wdi
 
     steps = {
         "concordance": concordance.build,
@@ -518,6 +518,7 @@ def cmd_international(args) -> int:
         "peers": peers.build,  # after oecd: its demography flags use the downloaded births
         "coverage": coverage.build,
         "harmonise": harmonise.build,
+        "benchmark": benchmark.build,
     }
     for name in steps if args.step == "all" else [args.step]:
         result = steps[name](refresh=args.refresh)
@@ -531,6 +532,11 @@ def cmd_international(args) -> int:
             print("coverage: docs/international_data_coverage.md")
         elif name == "harmonise":
             print(f"harmonise: {len(result):,} rows; docs/methods_international_benchmarks.md")
+        elif name == "benchmark":
+            print(
+                f"benchmark: {len(result)} comparisons, {int(result['flag'].sum())} flagged; "
+                "docs/international_benchmarks.md"
+            )
         else:
             print(f"{name}: {len(result):,} rows")
     return 0
@@ -657,7 +663,8 @@ def main(argv: list[str] | None = None) -> int:
 
     it = sub.add_parser("international", help="data for comparing Australia with similar economies")
     it.add_argument(
-        "step", choices=["concordance", "stan", "wdi", "peers", "oecd", "bds", "coverage", "harmonise", "all"]
+        "step",
+        choices=["concordance", "stan", "wdi", "peers", "oecd", "bds", "coverage", "harmonise", "benchmark", "all"],
     )
     it.add_argument("--refresh", action="store_true", help="download the raw files again")
     it.set_defaults(func=cmd_international)

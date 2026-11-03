@@ -29,7 +29,12 @@ growth of hours worked (or persons employed). A year's growth per hour is droppe
 grow more than 10 log points apart, a sign of a break in the hours series (STAN's Australian manufacturing hours fall
 22% in 2018 while persons employed rise 4%); the test also drops genuine swings when job-retention schemes cut hours
 in 2020-2022, mostly outside the windows, and a group with breaks in two or more years is rated one level lower
-per hour. Regulation indicators (PMR, STRI, FDI RRI) are the OECD's own, by
+per hour. STAN's Australian hours, though, disagree with the ABS's official industry productivity estimates
+(5260.0.55.002): over 2015-2019 per-hour growth differs by more than a point a year in most divisions where both
+exist, while STAN's Australian employment matches the Labour Force survey's calendar-year averages. So Australia's
+per-hour growth is the ABS's official series for the groups that are one division (rated medium: financial years
+against the peers' calendar years), and STAN's for the rest, rated low; growth per person stays on STAN. Regulation
+indicators (PMR, STRI, FDI RRI) are the OECD's own, by
 the sector indicators that apply to each group. The US (Census BDS) is mapped from NAICS sectors.
 
 Each country, group and measure gets a rating. It starts from the source: high for the OECD's own data, medium
@@ -307,9 +312,9 @@ def regulation(pmr: pd.DataFrame, stri: pd.DataFrame, fdi: pd.DataFrame) -> list
     st = stri.assign(year=stri["period"].astype(int))
     for (c, y), sub in pm.groupby(["country", "year"]):
         v = sub.set_index("measure")["value"]
+        if "PMR" in v:  # economy-wide: one row, under the business-economy total
+            out.append(_rows(c, ALL, "pmr_economy", y, v["PMR"], "OECD PMR"))
         for gid, g in G.items():
-            if "PMR" in v:
-                out.append(_rows(c, gid, "pmr_economy", y, v["PMR"], "OECD PMR"))
             codes = [m for m in g["pmr"] if m in v]
             if codes:
                 out.append(_rows(c, gid, "pmr_sector", y, v[codes].mean(), "OECD PMR", "mean of " + ", ".join(codes)))
@@ -321,8 +326,7 @@ def regulation(pmr: pd.DataFrame, stri: pd.DataFrame, fdi: pd.DataFrame) -> list
                 out.append(_rows(c, gid, "stri_sector", y, v[codes].mean(), "OECD STRI", "mean of " + ", ".join(codes)))
     tot = fdi[(fdi["activity"] == "_T") & (fdi["pol_cat"] == "_T")]
     for _, r in tot.iterrows():
-        for gid in G:
-            out.append(_rows(r["country"], gid, "fdi_rri", int(r["period"]), r["value"], "OECD FDI RRI"))
+        out.append(_rows(r["country"], ALL, "fdi_rri", int(r["period"]), r["value"], "OECD FDI RRI"))
     return out
 
 
@@ -474,16 +478,70 @@ def us_demography(b: pd.DataFrame) -> list[dict]:
     return out
 
 
+# ---- Australia's official productivity --------------------------------------------------------------------
+
+# Groups that are one ANZSIC division with an ABS hours-based labour productivity series (5260.0.55.002)
+ABS_LP_GROUPS = {"A": "AGR", "B": "MIN", "C": "MAN", "D": "UTL", "E": "CON", "H": "ACC", "I": "TRN", "J": "ICT"}
+ABS_LP_GROUPS |= {"K": "FIN", "L": "RES"}
+STAN_CHECK: dict = {}  # STAN's Australian per-hour growth against the ABS's, 2015-2019, for the record
+
+
+def au_productivity_abs() -> list[dict]:
+    """Australia's labour productivity growth per hour worked from the ABS's official industry estimates, for the
+    groups that are one division. Financial years are labelled by the year they end in (the ABS series by the year
+    they start)."""
+    from ..menu.growth import abs_productivity
+
+    p = abs_productivity()
+    out = []
+    for div, gid in ABS_LP_GROUPS.items():
+        s = pd.Series(p["lp"].get(div) or [], index=p["years"][: len(p["lp"].get(div) or [])], dtype=float)
+        g = 100 * (s / s.shift(1) - 1)
+        for start, v in g.dropna().items():
+            out.append(
+                _rows("AUS", gid, "lp_growth_hour", int(start) + 1, v, "ABS 5260", "ABS official, financial years")
+            )
+    return out
+
+
+def check_stan_australia(rows: list[dict], lo: int = 2015, hi: int = 2019) -> dict:
+    """STAN's Australian per-hour growth against the ABS's official series, by group, averaged over a window."""
+    df = pd.DataFrame(rows)
+    a = df[(df["country"] == "AUS") & (df["measure"] == "lp_growth_hour") & df["year"].between(lo, hi)]
+    by = a.groupby(["group", "source"])["value"].mean().unstack("source")
+    if not {"OECD STAN", "ABS 5260"} <= set(by.columns):
+        return {"window": f"{lo}-{hi}", "groups": {}, "differ": 0, "compared": 0}
+    by = by.dropna(subset=["OECD STAN", "ABS 5260"])
+    diff = (by["OECD STAN"] - by["ABS 5260"]).round(2)
+    return {
+        "window": f"{lo}-{hi}",
+        "groups": {
+            g: {"stan": round(by.loc[g, "OECD STAN"], 2), "abs": round(by.loc[g, "ABS 5260"], 2)} for g in by.index
+        },
+        "differ": int((diff.abs() > 1).sum()),
+        "compared": int(len(diff)),
+    }
+
+
 # ---- comparability -----------------------------------------------------------------------------------------
 
+# Australia's gross birth, death and churn rates: low, not D-5's medium, because CABEE does not count businesses
+# crossing the one-employee threshold (E-105). The owner accepted this on 3 November 2026 and may revisit it
+# (E-106): setting this to "medium" restores D-5 as first approved, and lets gaps in those rates be flagged.
+GROSS_RATES_RATING = "low"
+
 BASE_RATING = {
-    ("ABS CABEE", "birth_rate"): ("low", "gross births exclude businesses taking on their first employee"),
-    ("ABS CABEE", "death_rate"): ("low", "gross deaths exclude businesses that stop employing"),
-    ("ABS CABEE", "churn"): ("low", "gross flows exclude businesses crossing the one-employee threshold"),
+    ("ABS CABEE", "birth_rate"): (GROSS_RATES_RATING, "gross births exclude businesses taking on their first employee"),
+    ("ABS CABEE", "death_rate"): (GROSS_RATES_RATING, "gross deaths exclude businesses that stop employing"),
+    ("ABS CABEE", "churn"): (GROSS_RATES_RATING, "gross flows exclude businesses crossing the one-employee threshold"),
     ("ABS CABEE", "net_entry_rate"): ("medium", "stock change includes threshold crossings, as the OECD's does"),
     ("ABS CABEE", "survival_3y"): ("low", "CABEE survivors include businesses that stopped employing"),
     ("ABS CABEE", "size_20plus"): ("low", "employees (CABEE) against persons employed (OECD)"),
     ("US Census BDS", None): ("medium", "national source on NAICS sectors"),
+    ("ABS 5260", "lp_growth_hour"): (
+        "medium",
+        "the ABS's official labour productivity, by financial year, against the peers' STAN calendar years",
+    ),
 }
 
 
@@ -501,6 +559,7 @@ def rate(df: pd.DataFrame, class_split: dict[str, float], sub_split: dict[str, f
         for g in con["groups"]
     }
     division_gap[ALL] = 0.0
+    stan_unreliable = STAN_CHECK.get("compared", 0) and STAN_CHECK["differ"] * 2 >= STAN_CHECK["compared"]
     repeated_breaks: dict[tuple[str, str], int] = defaultdict(int)
     for b in BREAKS:
         repeated_breaks[(b["country"], b["group"])] += 1
@@ -514,7 +573,14 @@ def rate(df: pd.DataFrame, class_split: dict[str, float], sub_split: dict[str, f
             if split >= SPLIT:
                 level = _down(level)
                 why.append(f"{100 * split:.0f}% of the group's businesses are in units split between groups")
-        if r.country == "AUS" and r.source == "OECD STAN" and division_gap.get(r.group, 0.0) >= SPLIT:
+        if r.country == "AUS" and r.source == "OECD STAN" and r.measure == "lp_growth_hour" and stan_unreliable:
+            level = "low"
+            why.append(
+                "STAN's Australian hours disagree with the ABS: per-hour growth differs by more than a point a "
+                f"year in {STAN_CHECK['differ']} of the {STAN_CHECK['compared']} groups where both exist "
+                f"({STAN_CHECK['window']})"
+            )
+        if r.country == "AUS" and r.source in ("OECD STAN", "ABS 5260") and division_gap.get(r.group, 0.0) >= SPLIT:
             level = _down(level)
             why.append(
                 f"Australian national accounts are by ANZSIC division; {100 * division_gap[r.group]:.0f}% of the "
@@ -557,6 +623,15 @@ def build(refresh: bool = False) -> pd.DataFrame:
     rows += oecd_size(oecd.read("sdbs_size"))
     BREAKS.clear()
     rows += stan_productivity(oecd.read("stan_volumes_hours"), stan.read())
+    # Australia per hour: the ABS's official series where a group is one division (STAN's Australian hours are
+    # checked against it and, where they disagree, the remaining STAN groups are rated low)
+    abs_rows = au_productivity_abs()
+    STAN_CHECK.clear()
+    STAN_CHECK.update(check_stan_australia(rows + abs_rows))
+    replaced = {r["group"] for r in abs_rows}
+    rows = [
+        r for r in rows if not (r["country"] == "AUS" and r["measure"] == "lp_growth_hour" and r["group"] in replaced)
+    ] + abs_rows
     rows += regulation(oecd.read("pmr"), oecd.read("stri"), oecd.read("fdi_rri"))
     rows += au_demography(panel)
     surv, sub_split = au_survival(cabee_survival.read(), weights)
@@ -581,6 +656,7 @@ def build(refresh: bool = False) -> pd.DataFrame:
                 "class_split": {g: round(v, 4) for g, v in class_split.items()},
                 "subdivision_split": {g: round(v, 4) for g, v in sub_split.items()},
                 "hours_breaks": BREAKS,
+                "stan_australia_vs_abs": STAN_CHECK,
             },
             indent=1,
         )

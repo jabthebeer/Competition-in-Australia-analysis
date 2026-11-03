@@ -486,3 +486,132 @@ def test_built_inputs_rate_australias_gross_rates_low_and_net_change_medium():
     assert 5 < a.loc["birth_rate", "value"] < 15 and -5 < a.loc["net_entry_rate", "value"] < 5
     assert set(df["comparability"]) <= {"low", "medium", "high"}
     assert set(peers.APPROVED["core"]) <= set(df[(df["measure"] == "birth_rate") & (df["group"] == "ALL")]["country"])
+
+
+# ---- Phase P3 benchmark engine -------------------------------------------------------------------------------
+
+
+def test_quantile_matches_r_type_7():
+    from alicia.international import benchmark as b
+
+    xs = [3.0, 1.0, 4.0, 1.5, 9.0, 2.6]
+    # R: quantile(c(3, 1, 4, 1.5, 9, 2.6), c(.25, .5, .75), type = 7) -> 1.775 2.8 3.75
+    assert [round(b.quantile(xs, q), 10) for q in (0.25, 0.5, 0.75)] == [1.775, 2.8, 3.75]
+    assert b.quantile([5.0], 0.25) == 5.0
+
+
+def test_persistence_needs_most_years_on_one_side():
+    from alicia.international import benchmark as b
+
+    assert b.persistent(["below", "below", "within"]) == "below"
+    assert b.persistent(["below", "above", "within", "below"]) is None  # half is not most
+    assert b.persistent(["above"]) is None  # one year is too few
+
+
+def _cells(au: dict, peers_: dict, measure="net_entry_rate", group="TRN", rating="medium"):
+    import pandas as pd
+
+    rows = [
+        dict(country="AUS", group=group, measure=measure, year=y, value=v, comparability=rating) for y, v in au.items()
+    ]
+    for c, vals in peers_.items():
+        rows += [
+            dict(country=c, group=group, measure=measure, year=y, value=v, comparability="high")
+            for y, v in vals.items()
+        ]
+    return pd.DataFrame(rows)
+
+
+CORE6 = ["CAN", "GBR", "NZL", "FRA", "ESP", "ITA"]
+
+
+def test_benchmark_flags_a_persistent_robust_gap_and_explains_the_rest():
+    from alicia.international import benchmark as b
+
+    years = range(2015, 2020)
+    spread = {c: {y: 1.0 + 0.2 * i for y in years} for i, c in enumerate(CORE6)}  # peers 1.0 to 2.0
+    flag = _cells({y: 0.2 for y in years}, spread)
+    s, annual = b.benchmark(flag, CORE6)
+    r = s[s["window"] == "2015-2019"].iloc[0]
+    assert r["status"] == "flag" and r["side"] == "below" and r["years"] == 5 and r["rank"] == 7
+    assert r["peer_median"] == pytest.approx(1.5) and r["gap"] == pytest.approx(-1.3)
+    assert len(annual[annual["window"] == "2015-2019"]) == 5
+    # the same gap with Australia's figure rated low is shown, not flagged
+    low = _cells({y: 0.2 for y in years}, spread, rating="low")
+    assert b.benchmark(low, CORE6)[0].iloc[0]["status"] == "outside, low comparability"
+    # outside in two of five years only
+    mixed = _cells({2015: 0.2, 2016: 0.2, 2017: 1.5, 2018: 1.5, 2019: 1.5}, spread)
+    assert b.benchmark(mixed, CORE6)[0].iloc[0]["status"] == "outside, not persistent"
+    # too few peers in each year
+    few = _cells({y: 0.2 for y in years}, {c: spread[c] for c in CORE6[:3]})
+    assert b.benchmark(few, CORE6)[0].iloc[0]["status"] == "too few years"
+
+
+def test_leave_one_out_and_average_checks_can_stop_a_flag():
+    from alicia.international import benchmark as b
+
+    years = range(2015, 2020)
+    # Australia just below the 25th percentile (0.85 with these six peers); leaving out any peer at 1.0 moves the
+    # 25th percentile to 0.8, and Australia inside the range
+    peers_ = {c: {y: 1.0 for y in years} for c in CORE6}
+    peers_["CAN"] = {y: 0.5 for y in years}
+    peers_["GBR"] = {y: 0.8 for y in years}
+    s = b.benchmark(_cells({y: 0.84 for y in years}, peers_), CORE6)[0].iloc[0]
+    assert s["side"] == "below" and s["status"] == "outside, fails leave-one-out"
+    assert "FRA" in s["leave_one_out_failed_without"]
+    # below the range in three years by a little, far above it in two: the average points the other way
+    spread = {c: {y: 1.0 + 0.2 * i for y in years} for i, c in enumerate(CORE6)}
+    s = b.benchmark(_cells({2015: 1.2, 2016: 1.2, 2017: 1.2, 2018: 9.0, 2019: 9.0}, spread), CORE6)[0].iloc[0]
+    assert s["side"] == "below" and s["status"] == "outside, average on the other side"
+
+
+def test_benchmark_windows_leave_out_the_pandemic_years():
+    from alicia.international import benchmark as b
+
+    assert b._years(_cells({y: 1.0 for y in range(2019, 2025)}, {}), "birth_rate", 2015, 2024) == [
+        2019,
+        2022,
+        2023,
+        2024,
+    ]
+    assert b._years(_cells({2018: 1.0, 2023: 1.0}, {}, measure="pmr_sector"), "pmr_sector", 2018, 2023) == [2018, 2023]
+
+
+@pytest.mark.skipif(not (OUT / "benchmarks.parquet").exists(), reason="benchmarks not built")
+def test_built_benchmarks_never_flag_a_low_rated_comparison():
+    import pandas as pd
+
+    s = pd.read_parquet(OUT / "benchmarks.parquet")
+    assert not s[s["flag"]]["comparability"].eq("low").any()
+    assert s[s["flag"]]["years"].min() >= 2
+    assert set(s["status"]) <= {
+        "flag",
+        "outside, low comparability",
+        "outside, fails leave-one-out",
+        "outside, not persistent",
+        "outside, average on the other side",
+        "within the range",
+        "too few years",
+    }
+    # Australia's gross birth rate is rated low (E-105, accepted in E-106), so it is never flagged
+    assert not s[(s["measure"] == "birth_rate") & s["flag"]].shape[0]
+
+
+@pytest.mark.skipif(
+    __import__("shutil").which("Rscript") is None or not (OUT / "benchmarks.parquet").exists(),
+    reason="R not installed, or benchmarks not built",
+)
+def test_r_cross_check_reproduces_the_benchmarks():
+    import subprocess
+
+    from alicia.pipeline import store
+
+    done = subprocess.run(
+        ["Rscript", "analysis/crosscheck_international_benchmarks.R"],
+        cwd=store.ROOT,
+        capture_output=True,
+        text=True,
+        timeout=300,
+    )
+    assert done.returncode == 0, done.stdout + done.stderr
+    assert "CROSS-CHECK PASSED" in done.stdout

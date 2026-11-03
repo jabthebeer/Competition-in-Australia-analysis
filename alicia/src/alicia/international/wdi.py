@@ -63,6 +63,14 @@ def parse(response: list, indicator: str) -> list[dict]:
     ]
 
 
+def _recorded_licence(path) -> str | None:
+    mpath = store.MANIFESTS / f"{SOURCE}.json"
+    if not mpath.exists():
+        return None
+    want = str(path.relative_to(store.ROOT))
+    return next((f["licence"] for f in json.loads(mpath.read_text("utf-8"))["files"] if f["file"] == want), None)
+
+
 def build(refresh: bool = False) -> list[dict]:
     """Download the three indicators (with their metadata) and write data/processed/international/wdi.csv."""
     rows = []
@@ -70,7 +78,8 @@ def build(refresh: bool = False) -> list[dict]:
         name = ind.replace(".", "_")
         meta_path = store.download(SOURCE, meta_url(ind), f"{name}_metadata.json", "World Bank", refresh=refresh)
         _, lic = licence(json.loads(meta_path.read_text("utf-8")))
-        store.record_download(SOURCE, meta_path, meta_url(ind), lic)
+        if _recorded_licence(meta_path) != lic:  # record the licence read from the metadata (once, not every run)
+            store.record_download(SOURCE, meta_path, meta_url(ind), lic)
         path = store.download(SOURCE, data_url(ind), f"{name}.json", lic, refresh=refresh)
         rows += parse(json.loads(path.read_text("utf-8")), ind)
     rows.sort(key=lambda r: (r["country"], r["indicator"], r["year"]))
