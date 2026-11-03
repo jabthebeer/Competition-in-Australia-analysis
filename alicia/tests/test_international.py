@@ -332,3 +332,157 @@ def test_built_business_demography_has_births_for_the_core_peers():
     ]
     can = can[(can["measure"] == "ENT") & (can["unit_measure"] == "ENT_EM")].set_index("business_stage")["value"]
     assert 0.03 < can["B"] / can["ACTIVE"] < 0.15
+
+
+# ---- Phase P2 harmonisation ----------------------------------------------------------------------------------
+
+
+def test_section_sum_treats_missing_rental_as_unsplit():
+    from alicia.international import harmonise as h
+
+    assert h._section_sum({"M": 10.0, "N": 5.0, "N77": 1.0}, [["M", 1], ["N", 1], ["N77", -1]]) == (14.0, False)
+    assert h._section_sum({"M": 10.0, "N": 5.0}, [["M", 1], ["N", 1], ["N77", -1]]) == (15.0, True)
+    assert h._section_sum({"M": 10.0}, [["M", 1], ["N", 1]]) == (None, False)
+
+
+def _bd_rows(country, year, sections, active=100.0, births=10.0, deaths=8.0):
+    rows = []
+    for a in sections:
+        for stage, age, v in (("ACTIVE", "_T", active), ("B", "Y_LT1", births), ("D", "_T", deaths)):
+            rows.append(
+                {
+                    "country": country,
+                    "measure": "ENT",
+                    "activity": a,
+                    "size_class": "_T",
+                    "age": age,
+                    "business_stage": stage,
+                    "unit_measure": "ENT_EM",
+                    "period": str(year),
+                    "value": v,
+                }
+            )
+    return rows
+
+
+def test_oecd_demography_sums_sections_and_needs_every_group_for_the_total():
+    import pandas as pd
+
+    from alicia.international import harmonise as h
+
+    full = [*"BCDEFGHIJKLMNPQRS", "N77"]
+    df = pd.DataFrame(_bd_rows("FRA", 2018, [a for a in full if a != "K"]) + _bd_rows("CAN", 2018, ["C"]))
+    out = pd.DataFrame(h.oecd_demography(df))
+    fra = out[out["country"] == "FRA"].set_index(["group", "measure"])["value"]
+    assert fra[("MAN", "birth_rate")] == pytest.approx(10.0) and fra[("MAN", "net_entry_rate")] == pytest.approx(2.0)
+    # finance (K) is missing, but it is not in the business-economy total
+    assert ("FIN", "birth_rate") not in fra.index and fra[("ALL", "birth_rate")] == pytest.approx(10.0)
+    # PRO = M + N - N77: (100 + 100 - 100) active, (10 + 10 - 10) births
+    assert fra[("PRO", "birth_rate")] == pytest.approx(10.0)
+    # Canada has manufacturing only: no total
+    assert set(out[out["country"] == "CAN"]["group"]) == {"MAN"}
+
+
+def test_hours_break_test_and_optional_activities():
+    from alicia.international import harmonise as h
+
+    assert h._broken({"lp_growth_hour": (78.5, 100.0), "lp_growth_person": (104.1, 100.0)})  # AUS manufacturing 2018
+    assert not h._broken({"lp_growth_hour": (97.0, 100.0), "lp_growth_person": (99.0, 100.0)})
+    P = {("AUS", 2019, "L"): 1.0, ("AUS", 2019, "L68A"): 1.0}
+    V = {("AUS", 2018, "L"): 1.0, ("AUS", 2018, "L68A"): 1.0, ("AUS", 2018, "N77"): 1.0}
+    f, missing = h._formula([(P, 2019), (V, 2018)], "AUS", 2019, [["L", 1], ["L68A", -1], ["N77", 1]])
+    assert missing == ["N77"] and f == [("L", 1), ("L68A", -1)]
+
+
+def test_stan_productivity_chain_links_and_divides_by_employment():
+    import pandas as pd
+
+    from alicia.international import harmonise as h
+
+    acts = ["A", "B", "C", "D_E", "F", "G", "H", "I", "J", "K", "L", "L68A", "M_N", "N77", "O", "P", "Q", "R", "S", "T"]
+    size = {"L68A": 0.2, "N77": 0.1}  # small parts, so the groups that subtract them stay positive
+    vh, va = [], []
+
+    def row(a, measure, base, unit, year, value, mult):
+        return dict(
+            country="ITA",
+            activity=a,
+            measure=measure,
+            price_base=base,
+            unit_measure=unit,
+            period=str(year),
+            value=value,
+            unit_mult=mult,
+        )
+
+    for a in acts:
+        k = size.get(a, 1.0)
+        vh.append(row(a, "B1G", "Y", "XDC", 2019, 106.0 * k, 6))  # value added up 6% in volume
+        for y, hours, persons in ((2018, 100.0, 100.0), (2019, 102.0, 101.0)):
+            e = 0.0 if a == "L68A" else k  # imputed rent has no hours or workers
+            vh.append(row(a, "EMP", "_Z", "H", y, hours * e, 6))
+            vh.append(row(a, "EMP", "_Z", "PS", y, persons * e, 3))
+        va.append({"country": "ITA", "activity": a, "year": 2018, "value_added_mn": 100.0 * k})
+    out = pd.DataFrame(h.stan_productivity(pd.DataFrame(vh), va)).set_index(["group", "measure"])["value"]
+    # value added +6%, hours +2%, persons +1%, in every group and so in the total
+    for g in ("MAN", "RES", "PRO", "ALL"):
+        assert out[(g, "lp_growth_hour")] == pytest.approx(100 * (1.06 / 1.02 - 1))
+        assert out[(g, "lp_growth_person")] == pytest.approx(100 * (1.06 / 1.01 - 1))
+
+
+def test_ratings_start_from_the_source_and_drop_for_mismatches():
+    import pandas as pd
+
+    from alicia.international import harmonise as h
+
+    if not (OUT / "anzsic_isic4.json").exists():
+        pytest.skip("concordance not built")
+    df = pd.DataFrame(
+        [
+            h._rows("AUS", "MAN", "birth_rate", 2018, 10.0, "ABS CABEE"),
+            h._rows("AUS", "MAN", "net_entry_rate", 2018, 1.0, "ABS CABEE"),
+            h._rows("AUS", "RES", "net_entry_rate", 2018, 1.0, "ABS CABEE"),
+            h._rows("AUS", "ICT", "lp_growth_hour", 2018, 1.0, "OECD STAN"),
+            h._rows("AUS", "CON", "lp_growth_hour", 2018, 1.0, "OECD STAN"),
+            h._rows("CAN", "RES", "birth_rate", 2018, 1.0, "OECD SDBS", "rental and leasing not split out"),
+            h._rows("FRA", "MAN", "birth_rate", 2018, 1.0, "OECD SDBS"),
+        ]
+    )
+    r = h.rate(df, class_split={"MAN": 0.07, "RES": 0.23}, sub_split={}).set_index(["country", "group", "measure"])
+    assert r.loc[("AUS", "MAN", "birth_rate"), "comparability"] == "low"
+    assert r.loc[("AUS", "MAN", "net_entry_rate"), "comparability"] == "medium"
+    assert r.loc[("AUS", "RES", "net_entry_rate"), "comparability"] == "low"  # 23% split
+    assert r.loc[("AUS", "ICT", "lp_growth_hour"), "comparability"] == "medium"  # division-level mismatch
+    assert r.loc[("AUS", "CON", "lp_growth_hour"), "comparability"] == "high"
+    assert r.loc[("CAN", "RES", "birth_rate"), "comparability"] == "medium"
+    assert r.loc[("FRA", "MAN", "birth_rate"), "comparability"] == "high"
+
+
+@pytest.mark.skipif(not (OUT / "benchmark_inputs.parquet").exists(), reason="harmonised inputs not built")
+def test_built_survival_matches_the_oecd_published_rates():
+    import pandas as pd
+
+    from alicia.international import oecd
+
+    df = pd.read_parquet(OUT / "benchmark_inputs.parquet")
+    sv = oecd.read("sdbs_survival")
+    pub = sv[(sv["age"] == "Y3") & (sv["unit_measure"] == "PT_ENT_B") & (sv["size_class"] == "_T")]
+    pub = pub[pub["activity"] == "C"].assign(year=lambda x: x["period"].astype(int)).set_index(["country", "year"])
+    # the core peers exactly; a few others (Iceland, Finland, Denmark, 2015-2017) differ where births were revised
+    ours = df[(df["measure"] == "survival_3y") & (df["group"] == "MAN") & df["country"].isin(peers.APPROVED["core"])]
+    ours = ours.set_index(["country", "year"])["value"]
+    common = ours.index.intersection(pub.index)
+    assert len(common) > 30
+    assert (ours[common] - pub.loc[common, "value"]).abs().max() < 0.1
+
+
+@pytest.mark.skipif(not (OUT / "benchmark_inputs.parquet").exists(), reason="harmonised inputs not built")
+def test_built_inputs_rate_australias_gross_rates_low_and_net_change_medium():
+    import pandas as pd
+
+    df = pd.read_parquet(OUT / "benchmark_inputs.parquet")
+    a = df[(df["country"] == "AUS") & (df["group"] == "ALL") & (df["year"] == 2019)].set_index("measure")
+    assert a.loc["birth_rate", "comparability"] == "low" and a.loc["net_entry_rate", "comparability"] == "medium"
+    assert 5 < a.loc["birth_rate", "value"] < 15 and -5 < a.loc["net_entry_rate", "value"] < 5
+    assert set(df["comparability"]) <= {"low", "medium", "high"}
+    assert set(peers.APPROVED["core"]) <= set(df[(df["measure"] == "birth_rate") & (df["group"] == "ALL")]["country"])

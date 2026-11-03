@@ -97,7 +97,7 @@ DATASETS = {
             "OECD.SDD.TPS",
             "DSD_SDBSBSC_ISIC4@DF_SDBS_ISIC4",
             "1.0",
-            f"A.{ALL}.ENTR+EMPN+VALU.{ACTS}._T+S1T9+S10T49+S50T249+S_GE250.",
+            f"A.{ALL}.ENTR+EMPN+VALU.{ACTS}._T+S1T9+S10T49+S_GE20+S50T249+S_GE250.",
             "2010",
             ("REF_AREA", "MEASURE", "ACTIVITY", "SIZE_CLASS", "UNIT_MEASURE"),
         ),
@@ -137,7 +137,7 @@ DATASETS = {
         Dataset(
             "stri",
             "oecd_stri_peers",
-            "Services Trade Restrictiveness Index, 22 sectors (0 to 1, higher is more restrictive)",
+            "Services Trade Restrictiveness Index, 19 sectors (0 to 1, higher is more restrictive)",
             "OECD.TAD.TPD",
             "DSD_STRI@DF_STRI_MAIN",
             "1.0",
