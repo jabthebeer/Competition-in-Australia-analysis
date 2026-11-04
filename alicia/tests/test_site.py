@@ -58,9 +58,22 @@ def test_growth_page_compares_industries_with_similar_economies():
     js = resources.files("alicia.menu").joinpath("templates/charts.js").read_text("utf-8")
     # the heatmap column, the by-industry chart, the selected industry's card and the bands on its charts
     assert 'class="peer-th"' in html and "button[data-peer]" in html
-    for el in ('id="peerChart"', 'id="peerMeasure"', 'id="cmpChart"', 'id="peerToggle"', 'id="gvaKey"', 'id="empKey"'):
+    for el in (
+        'id="peerChart"',
+        'id="peerMeasure"',
+        'id="cmpChart"',
+        'id="peerToggleBar"',
+        'id="gvaKey"',
+        'id="empKey"',
+    ):
         assert el in html
     assert "peerBand(" in html and "areas" in html and "rangeChart(" in html
+    # a Compare with menu beside both comparison charts sets what they draw: the middle half and median, the OECD
+    # median, Australia beside a state, and single economies, labelled (not told apart by colour)
+    assert html.count("<span data-cmp></span>") == 2
+    for el in ('data-k="band"', 'data-k="oecd"', 'data-k="australia"', "data-peer=", "data-reset"):
+        assert el in html
+    assert "rg-cty-lab" in js and "endLabel" in js and "function rangeDomain" in js
     # each range row speaks its figures and position, and shows them in words, not colour alone
     assert "aria-label" in js and "RANGE_POS" in js and "function rangeChart" in js and "function quantile7" in js
 
@@ -79,6 +92,24 @@ def test_page_quantile_matches_the_benchmark_engine():
     from alicia.international import benchmark
 
     assert json.loads(out) == pytest.approx([benchmark.quantile([3, 1, 4, 1.5, 9, 2.6], x) for x in (0.25, 0.5, 0.75)])
+
+
+def test_comparison_row_scales_are_rounded_and_never_end_on_a_figure():
+    import shutil
+    import subprocess
+
+    if shutil.which("node") is None:
+        pytest.skip("Node.js not installed")
+    src = resources.files("alicia.menu").joinpath("templates/charts.js").read_text("utf-8")
+    code = "const isNum = (v) => typeof v === 'number' && Number.isFinite(v);"
+    for name in ("niceStep", "rangeDomain"):
+        code += re.search(rf"function {name}\(.*?\n}}\n", src, re.S).group(0)
+    cases = [[-3.6, 0.9, 1.1, 2.2, 0.2], [9.7, 13.0, 12.1, 12.6], [0.23, 0.12, 0.21, 0.27], [5.0, 5.0]]
+    code += f"console.log(JSON.stringify({json.dumps(cases)}.map((vs) => rangeDomain(vs))));"
+    out = json.loads(subprocess.run(["node", "-e", code], capture_output=True, text=True, check=True).stdout)
+    for vs, (lo, hi) in zip(cases, out, strict=True):
+        assert lo < min(vs) and hi > max(vs)  # padded: the ends are the scale's, not an economy's
+        assert all(abs(v * 100 - round(v * 100)) < 1e-6 for v in (lo, hi))  # and round numbers
 
 
 @pytest.mark.parametrize("template", ["growth.html", "conditions.html"])

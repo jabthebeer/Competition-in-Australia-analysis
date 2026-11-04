@@ -92,6 +92,7 @@ function lineChart(container, opts) {
     const xs = opts.x;
     const series = opts.series.filter((s) => s.values.some(isNum));
     const areas = (opts.areas || []).filter((a) => a.lo.some(isNum) && a.hi.some(isNum));
+    if (series.some((s) => s.endLabel)) m.r = 40;  // room for short labels at the line ends
     container.innerHTML = "";
     const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img", "aria-label": opts.label || "" });
     container.appendChild(svg);
@@ -187,6 +188,14 @@ function lineChart(container, opts) {
         "stroke-dasharray": s.dash ? (typeof s.dash === "string" ? s.dash : "5 4") : null, "stroke-linejoin": "round", "stroke-linecap": "round",
       }, svg);
     }
+
+    // Short labels at the ends of the lines that carry one (s.endLabel), nudged apart vertically.
+    const ends = series.filter((s) => s.endLabel).map((s) => {
+      const i = s.values.map((v, k) => (isNum(v) ? k : -1)).filter((k) => k >= 0).pop();
+      return { s, x: sx(xs[i]), y: sy(s.values[i]) };
+    }).sort((a, b) => a.y - b.y);
+    ends.forEach((e, k) => { if (k && e.y - ends[k - 1].y < 11) e.y = ends[k - 1].y + 11; });
+    for (const e of ends) el("text", { class: "end-label", x: e.x + 4, y: e.y + 3.5 }, svg).textContent = e.s.endLabel;
 
     // Hover readout.
     const cross = el("line", { class: "cross", y1: m.t, y2: H - m.b, visibility: "hidden" }, svg);
@@ -796,17 +805,26 @@ function rangeTip(r, fmtV) {
 
 const RANGE_POS = { below: "Below", within: "Within", above: "Above", "": "–" };
 const RANGE_RATING = { h: "high", m: "medium", l: "low" };
+/* opts.show sets what is drawn besides the large dot: {band (middle half and median), oecd, ref (the Australia
+ * triangle), peers: [codes] (each economy, a small labelled dot; null for all, unlabelled)}; the tooltip always has
+ * every figure. Without a shared opts.domain each row gets its own scale, rounded and padded so that no mark sits
+ * on its ends, which are printed faintly. */
+const rangeShown = (r, show) => [r.au, show.ref ? r.ref : null, ...(show.band ? [r.q1, r.q3, r.med] : []), show.oecd ? r.oecd : null,
+  ...(r.peers || []).filter((p) => !show.peers || show.peers.includes(p.code)).map((p) => p.v)].filter(isNum);
+function rangeDomain(vs, pad = 0.15) {
+  if (!vs.length) return [0, 1];
+  let lo = Math.min(...vs), hi = Math.max(...vs);
+  if (hi - lo < 1e-9) { const d = Math.max(1, Math.abs(hi) * 0.2); lo -= d; hi += d; }
+  const p = (hi - lo) * pad;
+  const step = niceStep(hi - lo + 2 * p, 4);
+  return [Math.floor((lo - p) / step) * step, Math.ceil((hi + p) / step) * step].map((v) => +v.toPrecision(12));
+}
 function rangeChart(container, rows, opts = {}) {
   container._range = { rows, opts };
   const fmtV = opts.fmt || ((v) => fmt(v, 1));
-  const domainOf = (r) => {
-    const vs = [r.au, r.ref, r.q1, r.q3, r.med, r.oecd, ...(r.peers || []).map((p) => p.v)].filter(isNum);
-    if (!vs.length) return [0, 1];
-    let lo = Math.min(...vs), hi = Math.max(...vs);
-    if (hi - lo < 1e-9) { lo -= 1; hi += 1; }
-    const pad = (hi - lo) * 0.06;
-    return [lo - pad, hi + pad];
-  };
+  const show = opts.show || { band: true, oecd: true, ref: true, peers: null };
+  const domainOf = (r) => rangeDomain(rangeShown(r, show));
+  const short = (s) => String(s).replace(/(\.\d*?[1-9])0+$/, "$1").replace(/\.0+$/, "");
   const shared = opts.domain;
   const axis = (dom) => {
     const [lo, hi] = dom;
@@ -828,6 +846,8 @@ function rangeChart(container, rows, opts = {}) {
     r.rating ? `; comparability ${RANGE_RATING[r.rating]}` : "",
     r.flag ? `; ${r.flag}` : "",
     r.wide ? `; ${r.wide}` : "",
+    show.oecd && isNum(r.oecd) ? `; OECD median ${f(r.oecd)}` : "",
+    ...(show.peers ? (r.peers || []).filter((p) => show.peers.includes(p.code) && isNum(p.v)).map((p) => `; ${p.name} ${f(p.v)}`) : []),
     ".",
   ].join("");
   container.innerHTML = head + rows.map((r) => {
@@ -836,13 +856,24 @@ function rangeChart(container, rows, opts = {}) {
     const [dlo, dhi] = shared || domainOf(r);
     const zero = dlo < 0 && dhi > 0 ? `<span class="rg-zero" style="left:${pos(0)}%"></span>` : "";
     const out = (v) => (v < dlo || v > dhi ? " clipped" : "");
+    // Each economy shown: a small dot labelled below the track, on a second line where two labels would touch
+    let level = 0;
+    const named = (r.peers || []).filter((p) => isNum(p.v) && show.peers && show.peers.includes(p.code)).sort((a, b) => a.v - b.v);
+    const placed = [];
+    const peerMarks = named.map((p) => {
+      const x = pos(p.v), lv = placed.some((q) => q.lv === 0 && Math.abs(q.x - x) < 7) ? 1 : 0;
+      placed.push({ x, lv }); level = Math.max(level, lv + 1);
+      return `<span class="rg-cty${out(p.v)}" style="left:${x}%"></span><span class="rg-cty-lab${lv ? " lv2" : ""}" style="left:${x}%" aria-hidden="true">${esc(p.short || p.code)}</span>`;
+    });
+    const ends = shared ? "" : `<span class="rg-end lo" aria-hidden="true">${esc(short((r.fmt || fmtV)(dlo)))}</span><span class="rg-end hi" aria-hidden="true">${esc(short((r.fmt || fmtV)(dhi)))}</span>`;
     const marks = !ok ? "" : [
+      ends,
       zero,
-      isNum(r.q1) ? `<span class="rg-band" style="left:${pos(r.q1)}%;width:${Math.max(0.6, pos(r.q3) - pos(r.q1))}%"></span>` : "",
-      isNum(r.med) ? `<span class="rg-med" style="left:${pos(r.med)}%"></span>` : "",
-      ...(r.peers || []).filter((p) => isNum(p.v)).map((p) => `<span class="rg-peer${out(p.v)}" style="left:${pos(p.v)}%"></span>`),
-      isNum(r.oecd) ? `<span class="rg-oecd${out(r.oecd)}" style="left:${pos(r.oecd)}%"></span>` : "",
-      isNum(r.ref) ? `<span class="rg-ref${out(r.ref)}" style="left:${pos(r.ref)}%"></span>` : "",
+      show.band && isNum(r.q1) ? `<span class="rg-band" style="left:${pos(r.q1)}%;width:${Math.max(0.6, pos(r.q3) - pos(r.q1))}%"></span>` : "",
+      show.band && isNum(r.med) ? `<span class="rg-med" style="left:${pos(r.med)}%"></span>` : "",
+      ...(show.peers ? peerMarks : (r.peers || []).filter((p) => isNum(p.v)).map((p) => `<span class="rg-peer${out(p.v)}" style="left:${pos(p.v)}%"></span>`)),
+      show.oecd && isNum(r.oecd) ? `<span class="rg-oecd${out(r.oecd)}" style="left:${pos(r.oecd)}%"></span>` : "",
+      show.ref && isNum(r.ref) ? `<span class="rg-ref${out(r.ref)}" style="left:${pos(r.ref)}%"></span>` : "",
       isNum(r.au) && r.wide ? `<span class="rg-ref${out(r.au)}" style="left:${pos(r.au)}%"></span>` : "",
       isNum(r.au) && !r.wide ? `<span class="rg-au${r.rating === "l" ? " low" : ""}${out(r.au)}" style="left:${pos(r.au)}%"></span>` : "",
     ].join("");
@@ -852,7 +883,7 @@ function rangeChart(container, rows, opts = {}) {
       : `<span class="rg-num">–</span>`;
     const lab = `<span class="rg-lab">${esc(r.label)}${r.dagger ? ' <span class="rg-dagger" aria-hidden="true">†</span>' : ""}</span>`;
     const inner = `${lab}<span class="rg-track">${marks}</span><span class="rg-val">${val}</span>`;
-    const cls = `rg-row${r.rating === "l" ? " low" : ""}${r.total ? " total" : ""}`;
+    const cls = `rg-row${r.rating === "l" ? " low" : ""}${r.total ? " total" : ""}${level ? ` lab${level}` : ""}`;
     return opts.onSelect
       ? `<button type="button" class="${cls}" data-key="${esc(r.key)}" aria-pressed="${r.key === opts.selected}" aria-label="${esc(say(r))}">${inner}</button>`
       : `<div class="${cls}" data-key="${esc(r.key)}" tabindex="0" role="img" aria-label="${esc(say(r))}">${inner}</div>`;
