@@ -8,9 +8,13 @@ The benchmark definitions are the OECD's employer business demography (Eurostat-
 
 Australia (ABS business register, CABEE, employing businesses) comes closest as follows. Births are entries with employees, deaths exits with employees, and active businesses those at the start of the year plus entries. CABEE does not count businesses that take on their first employee as entries, or those that stop employing as exits, so its gross birth and death rates are lower bounds of the OECD's. Across all industries the net movement across the one-employee threshold is known (CABEE's balancing item), and was out of employing, about 1 to 3% of active businesses a year outside 2020-21 (JobKeeper moved many businesses into employing that year). The net change in employer businesses includes those movements, as the OECD's births less deaths do, so it is the comparable measure; within an industry group it also includes businesses reclassified between industries. Financial years are labelled by the calendar year they end in.
 
-Three-year survival compares the OECD's survivors in year t of the enterprises born in t-3 with CABEE's employing entries of a financial year still trading two Junes after it ends: both about two and a half years after an average birth. CABEE survival is published by subdivision, so groups are built from subdivisions. Size structure compares enterprises with 20 or more persons employed (OECD) with businesses with 20 or more employees (CABEE), each as a share of all businesses. Labour productivity growth uses STAN for every country, Australia included: value added at previous year's prices over the year before at current prices (chain-linking the group), less the growth of hours worked (or persons employed). A year's growth per hour is dropped where hours and persons employed grow more than 10 log points apart, a sign of a break in the hours series (STAN's Australian manufacturing hours fall 22% in 2018 while persons employed rise 4%); the test also drops genuine swings when job-retention schemes cut hours in 2020-2022, mostly outside the windows, and a group with breaks in two or more years is rated one level lower per hour. STAN's Australian hours, though, disagree with the ABS's official industry productivity estimates (5260.0.55.002): over 2015-2019 per-hour growth differs by more than a point a year in most divisions where both exist, while STAN's Australian employment matches the Labour Force survey's calendar-year averages. So Australia's per-hour growth is the ABS's official series for the groups that are one division (rated medium: financial years against the peers' calendar years), and STAN's for the rest, rated low; growth per person stays on STAN. Regulation indicators (PMR, STRI, FDI RRI) are the OECD's own, by the sector indicators that apply to each group. The US (Census BDS) is mapped from NAICS sectors.
+Three-year survival compares the OECD's survivors in year t of the enterprises born in t-3 with CABEE's employing entries of a financial year still trading two Junes after it ends: both about two and a half years after an average birth. CABEE survival is published by subdivision, so groups are built from subdivisions. Size structure compares enterprises with 20 or more persons employed (OECD) with businesses with 20 or more employees (CABEE), each as a share of all businesses. Labour productivity growth uses STAN for the other countries: value added at previous year's prices over the year before at current prices (chain-linking the group), less the growth of hours worked (or persons employed). A year's growth per hour is dropped where hours and persons employed grow more than 10 log points apart, a sign of a break in the hours series; the test also drops genuine swings when job-retention schemes cut hours in 2020-2022, mostly outside the windows, and a group with breaks in two or more years is rated one level lower per hour.
 
-Each country, group and measure gets a rating. It starts from the source: high for the OECD's own data, medium for Australia's net change in employer businesses and for the US BDS, low for Australia's gross birth and death rates, survival and size shares. It drops one level where the classification does not line up enough to move a rate: for Australian data built from classes or subdivisions, when at least 15% of the group's businesses are in units whose ISIC matches lie in other groups (each split unit counted by the share of its matches elsewhere); for Australian STAN figures, which come from national accounts by ANZSIC division, when at least 15% of the group's businesses fall on the other side of the division boundary; for a peer that does not split out rental and leasing; for US NAICS sectors that differ from ISIC. Rates are less sensitive to misclassification than levels, hence a higher threshold than the 5% at which the website notes a difference. Low-rated comparisons are shown but never flagged (decision D-8).
+Australia's output, jobs and productivity come from the ABS, not STAN (E-109). STAN's Australian value added is the ABS's by financial year, but labelled by the year the financial year starts (STAN's 2020 is 2020-21), while its persons employed are the Labour Force survey's calendar-year means on ISIC (computer system design counts in ICT): the two cover different periods and, in some groups, different activities (the check is in the methods note). Australia's output is the ABS state accounts' value added by division (Australia's total is the national accounts'), chain-linked across a group's divisions with the previous year's current-price weights as STAN does; its jobs and hours are the Labour Force survey's persons employed and hours actually worked, the means of the four quarters of each financial year; all are labelled by the year the financial year ends. Per hour, the groups that are one division use the ABS's official industry productivity (5260.0.55.002); the rest use output over the survey's hours, rated low, as the survey's hours are not the ABS's productivity hours. Financial years against the peers' calendar years make all of these medium at best. Regulation indicators (PMR, STRI, FDI RRI) are the OECD's own, by the sector indicators that apply to each group. The US (Census BDS) is mapped from NAICS sectors.
+
+The states and territories get the same measures from the same ABS sources (state accounts, the Labour Force survey, and CABEE, which counts a business in its main state), for the website (E-110). They are rated by Australia's rules and three more, and never tested for flags: a state's jobs and productivity figures are rated low when its yearly jobs growth in the group swings more than twice as much as Australia's (the survey's sample is small there); its business rates drop a level when the group has fewer than 500 employer businesses in the state, where a few entries or exits move the rate; and its survival drops a level when fewer than 100 employer businesses start a year.
+
+Each country, group and measure gets a rating. It starts from the source: high for the OECD's own data, medium for Australia's output, jobs and productivity (financial years), its net change in employer businesses and the US BDS, low for Australia's gross birth and death rates, survival, size shares and survey-hours productivity. It drops one level where the classification does not line up enough to move a rate: for Australian data built from classes or subdivisions, when at least 15% of the group's businesses are in units whose ISIC matches lie in other groups (each split unit counted by the share of its matches elsewhere); for Australian output, jobs and productivity, which are by ANZSIC division, when at least 15% of the group's businesses fall on the other side of the division boundary; for a peer that does not split out rental and leasing; for US NAICS sectors that differ from ISIC. Rates are less sensitive to misclassification than levels, hence a higher threshold than the 5% at which the website notes a difference. Low-rated comparisons are shown but never flagged (decision D-8).
 
 The business economy total sums the same groups for every country: the demography groups less utilities and finance, which several peers do not publish (Canada has no electricity births; France, Italy, Spain and the UK no finance). Where STAN does not split out rental and leasing or households as employers, they stay in their parent groups for value added and hours alike, and the rating drops one level.
 
@@ -24,10 +28,10 @@ The business economy total sums the same groups for every country: the demograph
 | Net change in employer businesses (`net_entry_rate`) | % of active employer businesses | ABS CABEE | OECD SDBS, US Census BDS |
 | Three-year survival of new employer businesses (`survival_3y`) | % of births | ABS CABEE | OECD SDBS |
 | Businesses with 20 or more people (`size_20plus`) | % of all businesses | ABS CABEE | OECD SDBS |
-| Labour productivity growth per hour worked (`lp_growth_hour`) | % a year | ABS 5260 | OECD STAN |
-| Labour productivity growth per person employed (`lp_growth_person`) | % a year | OECD STAN | OECD STAN |
-| Output growth (value added, volume) (`va_growth`) | % a year | OECD STAN | OECD STAN |
-| Jobs growth (persons employed) (`emp_growth`) | % a year | OECD STAN | OECD STAN |
+| Labour productivity growth per hour worked (`lp_growth_hour`) | % a year | ABS accounts and LFS hours | OECD STAN |
+| Labour productivity growth per person employed (`lp_growth_person`) | % a year | ABS accounts and LFS | OECD STAN |
+| Output growth (value added, volume) (`va_growth`) | % a year | ABS accounts and LFS | OECD STAN |
+| Jobs growth (persons employed) (`emp_growth`) | % a year | ABS accounts and LFS | OECD STAN |
 | Product market regulation, the group's sector indicators (`pmr_sector`) | 0 to 6 | OECD PMR | OECD PMR |
 | Product market regulation, economy-wide (`pmr_economy`) | 0 to 6 | OECD PMR | OECD PMR |
 | Services trade restrictiveness, the group's sectors (`stri_sector`) | 0 to 1 | OECD STRI | OECD STRI |
@@ -41,24 +45,29 @@ Comparability of Australia's figure with the peers', by group and measure (H hig
 |---|---|---|---|---|---|---|---|
 | Mining (MIN) | L | L | L | M | L | L | L |
 | Manufacturing (MAN) | L | L | L | M | L | L | L |
-| Electricity, gas, water and waste (UTL) | L | L | L | M | L | L | L |
+| Electricity, gas, water and waste (UTL) | L | L | L | M | L | L | M |
 | Construction (CON) | L | L | L | M | L | L | M |
 | Wholesale and retail trade (TRD) | L | L | L | M | L | L | L |
 | Transport, postal and warehousing (TRN) | L | L | L | M | L | L | M |
 | Accommodation and food services (ACC) | L | L | L | M | L | L | M |
 | Information, media and telecommunications (ICT) | L | L | L | L | L | L | L |
-| Financial and insurance services (FIN) | L | L | L | M | L | L | L |
+| Financial and insurance services (FIN) | L | L | L | M | L | L | M |
 | Rental, hiring and real estate (RES) | L | L | L | L | L | L | M |
 | Professional, scientific, technical, administrative and support services (PRO) | L | L | L | L | L | L | L |
 | Education and training (EDU) | L | L | L | M | L | L | L |
 | Health care and social assistance (HLT) | L | L | L | M | L | L | L |
 | Arts, recreation and other services (OTH) | L | L | L | M | L | L | L |
-| Agriculture, forestry and fishing (AGR) | – | – | – | – | – | – | L |
+| Agriculture, forestry and fishing (AGR) | – | – | – | – | – | – | M |
 | Public administration and safety (PUB) | – | – | – | – | – | – | L |
 | Business economy (the groups above except utilities and finance) (ALL) | L | L | L | M | L | L | L |
 
 Reasons for the downgrades:
 
+- ABS accounts and Labour Force survey, by financial year, against the peers' STAN calendar years; Australian accounts and jobs are by ANZSIC division; 15% of the group's businesses differ from ISIC
+- ABS accounts and Labour Force survey, by financial year, against the peers' STAN calendar years; Australian accounts and jobs are by ANZSIC division; 17% of the group's businesses differ from ISIC
+- ABS accounts and Labour Force survey, by financial year, against the peers' STAN calendar years; Australian accounts and jobs are by ANZSIC division; 42% of the group's businesses differ from ISIC
+- ABS accounts and Labour Force survey, by financial year, against the peers' STAN calendar years; Australian accounts and jobs are by ANZSIC division; 76% of the group's businesses differ from ISIC
+- ABS accounts and Labour Force survey, by financial year, against the peers' STAN calendar years; Australian accounts and jobs are by ANZSIC division; 82% of the group's businesses differ from ISIC
 - employees (CABEE) against persons employed (OECD); 15% of the group's businesses are in units split between groups
 - employees (CABEE) against persons employed (OECD); 20% of the group's businesses are in units split between groups
 - employees (CABEE) against persons employed (OECD); 23% of the group's businesses are in units split between groups
@@ -71,23 +80,15 @@ Reasons for the downgrades:
 - gross flows exclude businesses crossing the one-employee threshold; 15% of the group's businesses are in units split between groups
 - gross flows exclude businesses crossing the one-employee threshold; 20% of the group's businesses are in units split between groups
 - gross flows exclude businesses crossing the one-employee threshold; 23% of the group's businesses are in units split between groups
+- output over the Labour Force survey's hours actually worked, not the ABS's productivity hours; Australian accounts and jobs are by ANZSIC division; 15% of the group's businesses differ from ISIC
+- output over the Labour Force survey's hours actually worked, not the ABS's productivity hours; Australian accounts and jobs are by ANZSIC division; 17% of the group's businesses differ from ISIC
+- output over the Labour Force survey's hours actually worked, not the ABS's productivity hours; Australian accounts and jobs are by ANZSIC division; 42% of the group's businesses differ from ISIC
+- output over the Labour Force survey's hours actually worked, not the ABS's productivity hours; Australian accounts and jobs are by ANZSIC division; 82% of the group's businesses differ from ISIC
 - stock change includes threshold crossings, as the OECD's does; 15% of the group's businesses are in units split between groups
 - stock change includes threshold crossings, as the OECD's does; 20% of the group's businesses are in units split between groups
 - stock change includes threshold crossings, as the OECD's does; 23% of the group's businesses are in units split between groups
-- the ABS's official labour productivity, by financial year, against the peers' STAN calendar years; Australian national accounts are by ANZSIC division; 15% of the group's businesses differ from ISIC
-- the ABS's official labour productivity, by financial year, against the peers' STAN calendar years; Australian national accounts are by ANZSIC division; 15% of the group's businesses differ from ISIC; its hours series breaks in 4 years (those years dropped)
-- the ABS's official labour productivity, by financial year, against the peers' STAN calendar years; Australian national accounts are by ANZSIC division; 76% of the group's businesses differ from ISIC; its hours series breaks in 6 years (those years dropped)
-- the OECD's own data; Australian national accounts are by ANZSIC division; 15% of the group's businesses differ from ISIC
-- the OECD's own data; Australian national accounts are by ANZSIC division; 15% of the group's businesses differ from ISIC; N77 not split out of value added
-- the OECD's own data; Australian national accounts are by ANZSIC division; 17% of the group's businesses differ from ISIC
-- the OECD's own data; Australian national accounts are by ANZSIC division; 42% of the group's businesses differ from ISIC; T not split out of value added
-- the OECD's own data; Australian national accounts are by ANZSIC division; 76% of the group's businesses differ from ISIC
-- the OECD's own data; Australian national accounts are by ANZSIC division; 82% of the group's businesses differ from ISIC
-- the OECD's own data; N77 not split out of value added
-- the OECD's own data; STAN's Australian hours disagree with the ABS: per-hour growth differs by more than a point a year in 7 of the 10 groups where both exist (2015-2019); Australian national accounts are by ANZSIC division; 15% of the group's businesses differ from ISIC; N77 not split out of value added
-- the OECD's own data; STAN's Australian hours disagree with the ABS: per-hour growth differs by more than a point a year in 7 of the 10 groups where both exist (2015-2019); Australian national accounts are by ANZSIC division; 17% of the group's businesses differ from ISIC
-- the OECD's own data; STAN's Australian hours disagree with the ABS: per-hour growth differs by more than a point a year in 7 of the 10 groups where both exist (2015-2019); Australian national accounts are by ANZSIC division; 42% of the group's businesses differ from ISIC; its hours series breaks in 4 years (those years dropped); T not split out of value added
-- the OECD's own data; STAN's Australian hours disagree with the ABS: per-hour growth differs by more than a point a year in 7 of the 10 groups where both exist (2015-2019); Australian national accounts are by ANZSIC division; 82% of the group's businesses differ from ISIC
+- the ABS's official labour productivity, by financial year, against the peers' STAN calendar years; Australian accounts and jobs are by ANZSIC division; 15% of the group's businesses differ from ISIC
+- the ABS's official labour productivity, by financial year, against the peers' STAN calendar years; Australian accounts and jobs are by ANZSIC division; 76% of the group's businesses differ from ISIC
 
 ## The one-employee threshold (Australia, all industries)
 
@@ -126,10 +127,40 @@ Australia against the median of the six core peers, business economy, averaged o
 | Net change in employer businesses | 1.4 | 1.3 (6) | 0.4 | 1.7 (1) | medium |
 | Three-year survival of new employer businesses | – | 52.4 (5) | 69.2 | 57.6 (1) | low |
 | Businesses with 20 or more people | 2.8 | 5.0 (1) | 2.8 | 5.0 (1) | low |
-| Labour productivity growth per hour worked | 0.6 | 0.6 (5) | – | 0.2 (5) | low |
-| Labour productivity growth per person employed | -0.0 | 0.6 (5) | -1.3 | 1.4 (5) | high |
+| Labour productivity growth per hour worked | 1.0 | 0.6 (5) | -0.4 | 0.2 (5) | low |
+| Labour productivity growth per person employed | 0.6 | 0.6 (5) | -0.4 | 1.4 (5) | medium |
 
 In brackets: the number of core peers with data in the window.
+
+
+## Why Australia's output, jobs and productivity are the ABS's, not STAN's
+
+Median correlation of yearly growth, 2010-2023, across the ANZSIC divisions that are one STAN activity (agriculture, manufacturing, construction, accommodation, transport, finance, education, health):
+
+| STAN's Australian series | Against | Correlation |
+|---|---|---:|
+| Value added, STAN's year read as the financial year that starts in it | ABS value added | 1.00 |
+| Value added, STAN's year read as the financial year that ends in it | ABS value added | 0.15 |
+| Persons employed | Labour Force survey, calendar-year means | 1.00 |
+| Persons employed | Labour Force survey, financial-year means | 0.50 |
+
+STAN's Australian ICT employment in 2024 is 525 thousand, against 190 thousand in the ABS's ICT division: STAN's employment is on ISIC, which counts computer system design in ICT, while its value added is the ABS's by division. So STAN's Australian value added is a financial year labelled by the year it starts, and its jobs are calendar years on another classification; Australia's figures are rebuilt from the ABS on one basis (decision E-109).
+
+
+## States and territories
+
+The same measures for each state, from the same ABS sources, for the website's comparisons (decision E-110; `benchmark_inputs_states.parquet`). Not tested for flags. Share of state figures rated low, by measure (all groups and years):
+
+| Measure | NSW | VIC | QLD | SA | WA | TAS | NT | ACT |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Output growth (value added, volume) | 41% | 41% | 41% | 41% | 41% | 41% | 41% | 41% |
+| Jobs growth (persons employed) | 41% | 47% | 65% | 76% | 76% | 88% | 100% | 100% |
+| Labour productivity growth per person employed | 41% | 47% | 65% | 76% | 76% | 88% | 100% | 100% |
+| Labour productivity growth per hour worked | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| Employer business birth rate | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| Employer business death rate | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| Net change in employer businesses | 20% | 20% | 20% | 33% | 27% | 47% | 73% | 60% |
+| Three-year survival of new employer businesses | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 
 
 ## Limits
@@ -137,5 +168,5 @@ In brackets: the number of core peers with data in the window.
 - Australia's gross birth and death rates are lower bounds of the OECD's definitions by an amount that public data cannot fix: the ABS publishes the net movement across the one-employee threshold, not the flows each way. A gap in them is never flagged (rated low); the net change in employer businesses is.
 - CABEE counts businesses by ABN-based units, the OECD enterprises; CABEE exits are not held back for two years to exclude reactivations. Financial years are compared with calendar years half a year apart.
 - The recent window is thin: the peers' business demography ends in 2022 or 2023, and deaths, which wait two years to rule out reactivation, end earlier. The UK's ends in 2018, so it has no figures for 2022-2024.
-- STAN's hours for Australia break in several groups (mining, ICT, finance, utilities); per-person growth is the steadier comparison there.
+- Australia's output, jobs and productivity are by ANZSIC division and financial year; the peers' are by ISIC section and calendar year. Groups where the divisions and sections differ most are rated lower.
 - Regulation indicators are national; a group's sector indicators cover only part of it.

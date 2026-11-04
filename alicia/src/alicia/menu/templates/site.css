@@ -246,7 +246,10 @@ button.rg-row[aria-pressed="true"] { border-color: var(--accent); background: va
 .rg-oecd { position: absolute; top: 50%; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; transform: rotate(45deg); border: 1.5px solid var(--ink-2); background: transparent; }
 .rg-au { position: absolute; top: 50%; width: 13px; height: 13px; margin: -6.5px 0 0 -6.5px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--accent); }
 .rg-au.low { background: var(--surface); border: 2.5px solid var(--accent); box-shadow: none; }
-.rg-peer.clipped, .rg-oecd.clipped { opacity: 0.45; }
+/* Australia, beside a state's own figure: a small triangle on the top edge of the track */
+.rg-ref { position: absolute; top: -3px; width: 0; height: 0; margin-left: -5px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid var(--ink); }
+.rg-wide { color: var(--ink-3); font-weight: 400; font-size: 0.85em; }
+.rg-peer.clipped, .rg-oecd.clipped, .rg-ref.clipped { opacity: 0.45; }
 .rg-val { display: flex; gap: 6px; justify-content: flex-end; align-items: baseline; white-space: nowrap; }
 .rg-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 600; }
 .rg-pos { font-size: 0.78rem; color: var(--ink-2); min-width: 4.2rem; }
@@ -257,13 +260,14 @@ button.rg-row[aria-pressed="true"] { border-color: var(--accent); background: va
 .rg-axis span { position: absolute; transform: translateX(-50%); font-family: var(--font-mono); }
 .rg-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--step--1); color: var(--ink-2); }
 .rg-legend > span { display: inline-flex; align-items: center; gap: 6px; }
-.rg-legend .rg-au, .rg-legend .rg-peer, .rg-legend .rg-oecd, .rg-legend .rg-med { position: relative; top: auto; margin: 0; flex: none; }
+.rg-legend .rg-au, .rg-legend .rg-peer, .rg-legend .rg-oecd, .rg-legend .rg-med, .rg-legend .rg-ref { position: relative; top: auto; margin: 0; flex: none; }
 .rg-legend .rg-med { width: 2px; height: 13px; }
 .rg-legend .rg-band { position: relative; top: auto; bottom: auto; display: inline-block; width: 22px; height: 10px; }
 .tip .rg-k-au { background: var(--accent); border-radius: 50%; }
 .tip .rg-k-med { background: var(--ink-2); width: 3px; }
 .tip .rg-k-band { background: color-mix(in oklab, var(--ink-3) 30%, var(--surface)); }
 .tip .rg-k-oecd { border: 1.5px solid var(--ink-2); background: transparent; transform: rotate(45deg); }
+.tip .k.rg-k-ref { width: 0; height: 0; background: none; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid var(--ink); border-radius: 0; }
 .tip .area-key { opacity: 0.6; }
 .legend .key.area-key, .chip .key.area-key { width: 16px; height: 10px; border-radius: 2px; opacity: 0.4; }
 svg path.area { opacity: 0.22; stroke: none; }
@@ -278,7 +282,7 @@ table.heat td button.peer-cell:hover, table.heat td button.peer-cell:focus-visib
 .peer-cell .ps.below, .peer-cell .ps.above { color: var(--accent); }
 .peer-cell.low .ps { opacity: 0.55; }
 @media (max-width: 640px) {
-  .rg-row, .rg-head { grid-template-columns: minmax(0, 1fr) 6.4rem; grid-template-areas: "lab val" "track track"; row-gap: 3px; }
+  .rg-row, .rg-head { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "lab val" "track track"; row-gap: 3px; }
   .rg-row .rg-lab, .rg-head > span:first-child { grid-area: lab; }
   .rg-row .rg-track, .rg-head .rg-axis { grid-area: track; }
   .rg-row .rg-val, .rg-head .rg-val { grid-area: val; }

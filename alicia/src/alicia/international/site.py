@@ -2,9 +2,12 @@
 core peers, by group, measure and year, with the OECD median, Australia's comparability ratings and the result of
 the formal tests (P3), as compact JSON for The state of competition in Australia.
 
-Years are the international years: calendar years for the OECD's data and STAN, and for Australia's business
-register and ABS series the calendar year the financial year ends in (2018-19 is 2019). The page maps its
-financial-year slider onto them.
+Years are the international years: calendar years for the OECD's data and STAN, and for Australia's ABS series
+(accounts, Labour Force survey and business register) the calendar year the financial year ends in (2018-19 is
+2019). The page maps its financial-year slider onto them.
+
+The states' series (E-110) are the same measures from the same ABS sources, with Australia on the states' basis
+for reference; the regulation indicators are national only.
 """
 
 from __future__ import annotations
@@ -109,7 +112,7 @@ def payload() -> dict:
     yi = {y: i for i, y in enumerate(years)}
     series: dict = {}
     for (m, g), cell in df.groupby(["measure", "group"]):
-        digits = max(MEASURES[m][3] + 2, 3)  # two past display, at least three, so averages stay exact to show
+        digits = MEASURES[m][3] + 3  # three past display, so averages of these stay exact to show (E-110)
         by = {}
         for c in ["AUS", *core]:
             sub = cell[cell["country"] == c]
@@ -132,6 +135,7 @@ def payload() -> dict:
         ratings.setdefault(m, {})[g] = "".join(r[y][0] if y in r else "-" for y in years)
         last = sub[~sub["year"].isin((2020, 2021))].sort_values("year")
         reasons.setdefault(m, {})[g] = (last if len(last) else sub)["reasons"].iloc[-1]
+    states = _states(years, yi)
     tests = {}
     if (OUT / "benchmarks.parquet").exists():
         b = pd.read_parquet(OUT / "benchmarks.parquet")
@@ -173,4 +177,40 @@ def payload() -> dict:
         "ratings": ratings,
         "reasons": reasons,
         "tests": tests,
+        "states": states,
     }
+
+
+def _states(years: list[int], yi: dict[int, int]) -> dict:
+    """The states' series by measure, group and state (AUS on the states' basis); their ratings as one letter a year
+    (a dash for no figure; one letter alone when it is the same every year); and each one's reasons from its latest
+    year outside 2020 and 2021, as an index into ``reasonList`` (each reason is stored once)."""
+    from .harmonise import read_states
+
+    st = read_states()
+    if st.empty:
+        return {}
+    st = st[st["measure"].isin(MEASURES)]
+    series: dict = {}
+    ratings: dict = {}
+    reasons: dict = {}
+    reason_list: list[str] = []
+    for (m, g, a), sub in st.groupby(["measure", "group", "state"]):
+        digits = MEASURES[m][3] + 3
+        vals = [None] * len(years)
+        codes = ["-"] * len(years)
+        for y, v, c in zip(sub["year"], sub["value"], sub["comparability"], strict=True):
+            if y in yi:
+                vals[yi[y]] = _round(v, digits)
+                codes[yi[y]] = c[0]
+        if all(v is None for v in vals):
+            continue
+        series.setdefault(m, {}).setdefault(g, {})[a] = vals
+        one = {c for c in codes if c != "-"}  # one rating throughout: stored as that letter alone
+        ratings.setdefault(m, {}).setdefault(g, {})[a] = one.pop() if len(one) == 1 else "".join(codes)
+        last = sub[~sub["year"].isin((2020, 2021))].sort_values("year")
+        why = (last if len(last) else sub)["reasons"].iloc[-1]
+        if why not in reason_list:
+            reason_list.append(why)
+        reasons.setdefault(m, {}).setdefault(g, {})[a] = reason_list.index(why)
+    return {"series": series, "ratings": ratings, "reasons": reasons, "reasonList": reason_list}

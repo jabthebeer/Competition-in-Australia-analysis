@@ -773,17 +773,24 @@ function quantile7(xs, q) {
  * opts: {domain ([lo, hi]: one axis for all rows; without it each row is scaled to its own figures), fmt, onSelect,
  * selected, unit}. */
 /* The figures behind one range row, for its tooltip (also used by the heatmap's "Similar economies" cells). */
+// r.subject names the large dot (default Australia: a state's own figures say its name; r.subjectSay is the name
+// mid-sentence, "the Northern Territory"); r.ref is Australia's figure on the state's basis, drawn as a small triangle;
+// r.wide marks Australia's figure in a state's view where there is no state figure, drawn as the triangle alone.
+const rgCap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 function rangeTip(r, fmtV) {
   fmtV = r.fmt || fmtV;
+  const who = r.subject || "Australia", whoSay = r.subjectSay || who;
   const peerRows = (r.peers || []).filter((p) => isNum(p.v)).sort((a, b) => b.v - a.v)
     .map((p) => `<tr><td>${esc(p.name)}</td><td class="v">${esc(fmtV(p.v))}</td></tr>`).join("");
   return `<strong>${esc(r.title || r.label)}</strong><table>
-    <tr><td><span class="k rg-k-au"></span>Australia</td><td class="v">${esc(isNum(r.au) ? fmtV(r.au) : "–")}</td></tr>
+    <tr><td><span class="k ${r.wide ? "rg-k-ref" : "rg-k-au"}"></span>${esc(who)}</td><td class="v">${esc(isNum(r.au) ? fmtV(r.au) : "–")}</td></tr>
+    ${isNum(r.ref) ? `<tr><td><span class="k rg-k-ref"></span>Australia</td><td class="v">${esc(fmtV(r.ref))}</td></tr>` : ""}
     <tr><td><span class="k rg-k-med"></span>Median of similar economies</td><td class="v">${esc(isNum(r.med) ? fmtV(r.med) : "–")}</td></tr>
     <tr><td><span class="k rg-k-band"></span>Their middle half</td><td class="v">${isNum(r.q1) ? `${esc(fmtV(r.q1))} to ${esc(fmtV(r.q3))}` : "–"}</td></tr>
     ${peerRows}${isNum(r.oecd) ? `<tr><td><span class="k rg-k-oecd"></span>OECD median</td><td class="v">${esc(fmtV(r.oecd))}</td></tr>` : ""}</table>
-    ${r.position ? `<div>Australia is <b>${esc(RANGE_POS[r.position].toLowerCase())}</b> the middle half.</div>` : ""}
-    ${r.rating ? `<div class="tip-ex">How comparable Australia's figure is: ${esc(RANGE_RATING[r.rating])}${r.ratingWhy ? ` (${esc(r.ratingWhy)})` : ""}.</div>` : ""}
+    ${r.position ? `<div>${esc(rgCap(whoSay))} is <b>${esc(RANGE_POS[r.position].toLowerCase())}</b> the middle half.</div>` : ""}
+    ${r.wide ? `<div class="tip-ex">${esc(r.wide)}</div>` : ""}
+    ${r.rating ? `<div class="tip-ex">How comparable ${esc(whoSay)}'s figure is: ${esc(RANGE_RATING[r.rating])}${r.ratingWhy ? ` (${esc(r.ratingWhy)})` : ""}.</div>` : ""}
     ${r.flag ? `<div>${esc(r.flag)}</div>` : ""}${r.dagger ? `<div class="tip-ex">† ${esc(r.dagger)}</div>` : ""}${r.extra || ""}`;
 }
 
@@ -793,7 +800,7 @@ function rangeChart(container, rows, opts = {}) {
   container._range = { rows, opts };
   const fmtV = opts.fmt || ((v) => fmt(v, 1));
   const domainOf = (r) => {
-    const vs = [r.au, r.q1, r.q3, r.med, r.oecd, ...(r.peers || []).map((p) => p.v)].filter(isNum);
+    const vs = [r.au, r.ref, r.q1, r.q3, r.med, r.oecd, ...(r.peers || []).map((p) => p.v)].filter(isNum);
     if (!vs.length) return [0, 1];
     let lo = Math.min(...vs), hi = Math.max(...vs);
     if (hi - lo < 1e-9) { lo -= 1; hi += 1; }
@@ -809,16 +816,18 @@ function rangeChart(container, rows, opts = {}) {
   if (shared) {
     const pos = axis(shared);
     const ticks = niceTicks(shared[0], shared[1], 5).filter((t) => t >= shared[0] && t <= shared[1]);
-    head = `<div class="rg-head" aria-hidden="true"><span></span><span class="rg-axis">${ticks.map((t) => `<span style="left:${pos(t)}%">${esc(fmtV(t).replace(/\.0$/, ""))}</span>`).join("")}</span><span class="rg-val">Australia</span></div>`;
+    head = `<div class="rg-head" aria-hidden="true"><span></span><span class="rg-axis">${ticks.map((t) => `<span style="left:${pos(t)}%">${esc(fmtV(t).replace(/\.0$/, ""))}</span>`).join("")}</span><span class="rg-val">${esc(opts.subject || "Australia")}</span></div>`;
   }
   const tipHtml = (r) => rangeTip(r, fmtV);
   const say = (r, f = r.fmt || fmtV) => [
     `${r.title || r.label}. `,
-    isNum(r.au) ? `Australia ${f(r.au)}` : "No Australian figure",
+    isNum(r.au) ? `${r.subject || "Australia"} ${f(r.au)}` : `No figure for ${r.subject || "Australia"}`,
+    isNum(r.ref) ? `; Australia ${f(r.ref)}` : "",
     isNum(r.med) ? `; similar economies' median ${f(r.med)}, middle half ${f(r.q1)} to ${f(r.q3)}` : "; too few similar economies",
     r.position ? `; ${RANGE_POS[r.position].toLowerCase()} the middle half` : "",
     r.rating ? `; comparability ${RANGE_RATING[r.rating]}` : "",
     r.flag ? `; ${r.flag}` : "",
+    r.wide ? `; ${r.wide}` : "",
     ".",
   ].join("");
   container.innerHTML = head + rows.map((r) => {
@@ -833,11 +842,13 @@ function rangeChart(container, rows, opts = {}) {
       isNum(r.med) ? `<span class="rg-med" style="left:${pos(r.med)}%"></span>` : "",
       ...(r.peers || []).filter((p) => isNum(p.v)).map((p) => `<span class="rg-peer${out(p.v)}" style="left:${pos(p.v)}%"></span>`),
       isNum(r.oecd) ? `<span class="rg-oecd${out(r.oecd)}" style="left:${pos(r.oecd)}%"></span>` : "",
-      isNum(r.au) ? `<span class="rg-au${r.rating === "l" ? " low" : ""}${out(r.au)}" style="left:${pos(r.au)}%"></span>` : "",
+      isNum(r.ref) ? `<span class="rg-ref${out(r.ref)}" style="left:${pos(r.ref)}%"></span>` : "",
+      isNum(r.au) && r.wide ? `<span class="rg-ref${out(r.au)}" style="left:${pos(r.au)}%"></span>` : "",
+      isNum(r.au) && !r.wide ? `<span class="rg-au${r.rating === "l" ? " low" : ""}${out(r.au)}" style="left:${pos(r.au)}%"></span>` : "",
     ].join("");
     const flagMark = r.flag ? '<span class="rg-flag" title="Gap flagged by the formal test" aria-hidden="true">⚑</span>' : "";
     const val = isNum(r.au)
-      ? `${flagMark}<span class="rg-num">${esc((r.fmt || fmtV)(r.au))}</span><span class="rg-pos ${r.position || "none"}">${r.position === "below" ? "▼ " : r.position === "above" ? "▲ " : ""}${esc(RANGE_POS[r.position || ""])}</span>`
+      ? `${flagMark}${r.wide ? '<span class="rg-wide">Aus.</span>' : ""}<span class="rg-num">${esc((r.fmt || fmtV)(r.au))}</span><span class="rg-pos ${r.position || "none"}">${r.position === "below" ? "▼ " : r.position === "above" ? "▲ " : ""}${esc(RANGE_POS[r.position || ""])}</span>`
       : `<span class="rg-num">–</span>`;
     const lab = `<span class="rg-lab">${esc(r.label)}${r.dagger ? ' <span class="rg-dagger" aria-hidden="true">†</span>' : ""}</span>`;
     const inner = `${lab}<span class="rg-track">${marks}</span><span class="rg-val">${val}</span>`;

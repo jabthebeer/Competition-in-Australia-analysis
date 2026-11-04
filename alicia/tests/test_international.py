@@ -442,20 +442,61 @@ def test_ratings_start_from_the_source_and_drop_for_mismatches():
             h._rows("AUS", "MAN", "birth_rate", 2018, 10.0, "ABS CABEE"),
             h._rows("AUS", "MAN", "net_entry_rate", 2018, 1.0, "ABS CABEE"),
             h._rows("AUS", "RES", "net_entry_rate", 2018, 1.0, "ABS CABEE"),
-            h._rows("AUS", "ICT", "lp_growth_hour", 2018, 1.0, "OECD STAN"),
-            h._rows("AUS", "CON", "lp_growth_hour", 2018, 1.0, "OECD STAN"),
+            h._rows("AUS", "ICT", "lp_growth_person", 2018, 1.0, h.ABS_ACCOUNTS),
+            h._rows("AUS", "CON", "lp_growth_person", 2018, 1.0, h.ABS_ACCOUNTS),
+            h._rows("AUS", "CON", "lp_growth_hour", 2018, 1.0, "ABS 5260"),
+            h._rows("AUS", "TRD", "lp_growth_hour", 2018, 1.0, h.ABS_HOURS),
+            h._rows("WA", "ICT", "lp_growth_person", 2018, 1.0, h.ABS_ACCOUNTS),
             h._rows("CAN", "RES", "birth_rate", 2018, 1.0, "OECD SDBS", "rental and leasing not split out"),
             h._rows("FRA", "MAN", "birth_rate", 2018, 1.0, "OECD SDBS"),
+            h._rows("FRA", "MAN", "lp_growth_hour", 2018, 1.0, "OECD STAN"),
         ]
     )
-    r = h.rate(df, class_split={"MAN": 0.07, "RES": 0.23}, sub_split={}).set_index(["country", "group", "measure"])
+    h.BREAKS[:] = [{"country": "AUS", "group": "CON", "year": y} for y in (2018, 2019, 2019)]  # one repeated
+    h.BREAKS += [{"country": "FRA", "group": "MAN", "year": y} for y in (2018, 2019)]
+    try:
+        r = h.rate(df, class_split={"MAN": 0.07, "RES": 0.23}, sub_split={})
+    finally:
+        h.BREAKS.clear()
+    r = r.set_index(["country", "group", "measure"])
     assert r.loc[("AUS", "MAN", "birth_rate"), "comparability"] == "low"
     assert r.loc[("AUS", "MAN", "net_entry_rate"), "comparability"] == "medium"
     assert r.loc[("AUS", "RES", "net_entry_rate"), "comparability"] == "low"  # 23% split
-    assert r.loc[("AUS", "ICT", "lp_growth_hour"), "comparability"] == "medium"  # division-level mismatch
-    assert r.loc[("AUS", "CON", "lp_growth_hour"), "comparability"] == "high"
+    # ABS output and jobs: medium (financial years), one lower where divisions and ISIC differ (76% for ICT)
+    assert r.loc[("AUS", "CON", "lp_growth_person"), "comparability"] == "medium"
+    assert r.loc[("AUS", "ICT", "lp_growth_person"), "comparability"] == "low"
+    assert r.loc[("WA", "ICT", "lp_growth_person"), "comparability"] == "low"  # a state follows Australia's rules
+    assert r.loc[("AUS", "TRD", "lp_growth_hour"), "comparability"] == "low"  # survey hours
+    # breaks in survey or STAN hours do not lower the ABS's official per-hour series; repeated years count once
+    assert r.loc[("AUS", "CON", "lp_growth_hour"), "comparability"] == "medium"
+    assert r.loc[("FRA", "MAN", "lp_growth_hour"), "comparability"] == "medium"
     assert r.loc[("CAN", "RES", "birth_rate"), "comparability"] == "medium"
     assert r.loc[("FRA", "MAN", "birth_rate"), "comparability"] == "high"
+
+
+def test_abs_growth_chain_links_divisions_and_drops_hours_breaks():
+    import pandas as pd
+
+    from alicia.international import harmonise as h
+
+    if not (OUT / "anzsic_isic4.json").exists():
+        pytest.skip("concordance not built")
+    rows = []
+    for d, cur, vol1, n1, h1 in (("F", 100.0, 110.0, 105.0, 105.0), ("G", 300.0, 302.0, 100.0, 140.0)):
+        rows.append(("WA", d, 2019, vol1 / 1.1, cur, 100.0, 100.0))  # volumes rebased: growth is what counts
+        rows.append(("WA", d, 2020, vol1, cur, n1, h1))
+    inp = pd.DataFrame(
+        rows, columns=["geo_code", "industry_code", "year", "gva_volume", "gva_current", "employed", "hours_actual"]
+    )
+    inp.loc[inp["industry_code"] == "G", "gva_volume"] = [300.0, 302.0]
+    out = pd.DataFrame(h.abs_growth(inp.set_index(["geo_code", "industry_code", "year"]), "WA"))
+    trd = out[(out["group"] == "TRD") & (out["year"] == 2020)].set_index("measure")["value"]
+    va = (100 * 1.1 + 300 * 302 / 300) / 400  # each division's volume growth, weighted by last year's prices
+    assert trd["va_growth"] == pytest.approx(100 * (va - 1))
+    assert trd["emp_growth"] == pytest.approx(100 * (205 / 200 - 1))
+    assert trd["lp_growth_person"] == pytest.approx(100 * (va / (205 / 200) - 1))
+    assert "lp_growth_hour" not in trd  # hours +22.5% against persons +2.5%: a break, dropped
+    assert set(out["source"]) == {h.ABS_ACCOUNTS}
 
 
 @pytest.mark.skipif(not (OUT / "benchmark_inputs.parquet").exists(), reason="harmonised inputs not built")
@@ -486,6 +527,39 @@ def test_built_inputs_rate_australias_gross_rates_low_and_net_change_medium():
     assert 5 < a.loc["birth_rate", "value"] < 15 and -5 < a.loc["net_entry_rate", "value"] < 5
     assert set(df["comparability"]) <= {"low", "medium", "high"}
     assert set(peers.APPROVED["core"]) <= set(df[(df["measure"] == "birth_rate") & (df["group"] == "ALL")]["country"])
+
+
+@pytest.mark.skipif(not (OUT / "benchmark_inputs_states.parquet").exists(), reason="harmonised inputs not built")
+def test_built_australia_is_on_abs_financial_years_and_the_states_add_up():
+    import json
+
+    import pandas as pd
+
+    from alicia.pipeline import store
+
+    df = pd.read_parquet(OUT / "benchmark_inputs.parquet")
+    st = pd.read_parquet(OUT / "benchmark_inputs_states.parquet")
+    # STAN's Australian value added is labelled by the year the financial year starts; its jobs are calendar years
+    check = json.loads((OUT / "comparability.json").read_text("utf-8"))["stan_australia"]
+    assert check["output_by_start_year"] > 0.95 > 0.5 > check["output_by_end_year"]
+    assert check["persons_calendar_year"] > 0.95 > check["persons_financial_year"]
+    # Australia's construction output growth is the state accounts', labelled by the year the financial year ends
+    sa = store.read_panel("abs_state_accounts", "industry_state_fy")
+    e = sa[(sa["measure"] == "gva_volume") & (sa["geo_code"] == "AUS") & (sa["industry_code"] == "E")]
+    v = e.set_index(e["period"].dt.year + 1)["value"]
+    ours = df[(df["country"] == "AUS") & (df["measure"] == "va_growth") & (df["group"] == "CON")].set_index("year")
+    for y in (2016, 2020, 2025):
+        assert ours.loc[y, "value"] == pytest.approx(100 * (v[y] / v[y - 1] - 1))
+    # the state file's Australia is the national figure, wherever both use the same source
+    nat = df[df["country"] == "AUS"].set_index(["measure", "group", "year"])["value"]
+    aus = st[st["state"] == "AUS"].set_index(["measure", "group", "year"])
+    same = aus[aus["source"] != "ABS accounts and LFS hours"]
+    assert (same["value"] - nat.reindex(same.index)).abs().max() < 1e-9
+    # every state has every measure; NT construction jobs are rated low (a small survey sample), NSW's medium
+    assert set(st["state"]) == {"AUS", "NSW", "VIC", "QLD", "SA", "WA", "TAS", "NT", "ACT"}
+    assert st.groupby("state")["measure"].nunique().min() == 8
+    r = st[(st["measure"] == "emp_growth") & (st["group"] == "CON") & (st["year"] == 2019)].set_index("state")
+    assert r.loc["NT", "comparability"] == "low" and r.loc["NSW", "comparability"] == "medium"
 
 
 # ---- Phase P3 benchmark engine -------------------------------------------------------------------------------

@@ -23,30 +23,43 @@ Three-year survival compares the OECD's survivors in year t of the enterprises b
 entries of a financial year still trading two Junes after it ends: both about two and a half years after an
 average birth. CABEE survival is published by subdivision, so groups are built from subdivisions. Size structure
 compares enterprises with 20 or more persons employed (OECD) with businesses with 20 or more employees (CABEE),
-each as a share of all businesses. Labour productivity growth uses STAN for every country, Australia included:
-value added at previous year's prices over the year before at current prices (chain-linking the group), less the
-growth of hours worked (or persons employed). A year's growth per hour is dropped where hours and persons employed
-grow more than 10 log points apart, a sign of a break in the hours series (STAN's Australian manufacturing hours fall
-22% in 2018 while persons employed rise 4%); the test also drops genuine swings when job-retention schemes cut hours
-in 2020-2022, mostly outside the windows, and a group with breaks in two or more years is rated one level lower
-per hour. STAN's Australian hours, though, disagree with the ABS's official industry productivity estimates
-(5260.0.55.002): over 2015-2019 per-hour growth differs by more than a point a year in most divisions where both
-exist, while STAN's Australian employment matches the Labour Force survey's calendar-year averages. So Australia's
-per-hour growth is the ABS's official series for the groups that are one division (rated medium: financial years
-against the peers' calendar years), and STAN's for the rest, rated low; growth per person stays on STAN. Regulation
-indicators (PMR, STRI, FDI RRI) are the OECD's own, by
-the sector indicators that apply to each group. The US (Census BDS) is mapped from NAICS sectors.
+each as a share of all businesses. Labour productivity growth uses STAN for the other countries: value added at
+previous year's prices over the year before at current prices (chain-linking the group), less the growth of hours
+worked (or persons employed). A year's growth per hour is dropped where hours and persons employed grow more than 10
+log points apart, a sign of a break in the hours series; the test also drops genuine swings when job-retention schemes
+cut hours in 2020-2022, mostly outside the windows, and a group with breaks in two or more years is rated one level
+lower per hour.
 
-Each country, group and measure gets a rating. It starts from the source: high for the OECD's own data, medium
-for Australia's net change in employer businesses and for the US BDS, low for Australia's gross birth and death
-rates, survival and size shares. It drops one level where the classification does not line up enough to move a
-rate: for Australian data built from classes or subdivisions, when at least 15% of the group's businesses are in
-units whose ISIC matches lie in other groups (each split unit counted by the share of its matches elsewhere); for
-Australian STAN figures, which come from national accounts by ANZSIC division, when at least 15% of the group's
-businesses fall on the other side of the division boundary; for a peer that does not split out rental and leasing;
-for US NAICS sectors that differ from ISIC. Rates are less sensitive to misclassification than levels, hence a
-higher threshold than the 5% at which the website notes a difference. Low-rated comparisons are shown but never
-flagged (decision D-8).
+Australia's output, jobs and productivity come from the ABS, not STAN (E-109). STAN's Australian value added is the
+ABS's by financial year, but labelled by the year the financial year starts (STAN's 2020 is 2020-21), while its
+persons employed are the Labour Force survey's calendar-year means on ISIC (computer system design counts in ICT): the
+two cover different periods and, in some groups, different activities (the check is in the methods note). Australia's
+output is the ABS state accounts' value added by division (Australia's total is the national accounts'), chain-linked
+across a group's divisions with the previous year's current-price weights as STAN does; its jobs and hours are the
+Labour Force survey's persons employed and hours actually worked, the means of the four quarters of each financial
+year; all are labelled by the year the financial year ends. Per hour, the groups that are one division use the ABS's
+official industry productivity (5260.0.55.002); the rest use output over the survey's hours, rated low, as the
+survey's hours are not the ABS's productivity hours. Financial years against the peers' calendar years make all of
+these medium at best. Regulation indicators (PMR, STRI, FDI RRI) are the OECD's own, by the sector indicators that
+apply to each group. The US (Census BDS) is mapped from NAICS sectors.
+
+The states and territories get the same measures from the same ABS sources (state accounts, the Labour Force survey,
+and CABEE, which counts a business in its main state), for the website (E-110). They are rated by Australia's rules
+and three more, and never tested for flags: a state's jobs and productivity figures are rated low when its yearly
+jobs growth in the group swings more than twice as much as Australia's (the survey's sample is small there); its
+business rates drop a level when the group has fewer than 500 employer businesses in the state, where a few entries
+or exits move the rate; and its survival drops a level when fewer than 100 employer businesses start a year.
+
+Each country, group and measure gets a rating. It starts from the source: high for the OECD's own data, medium for
+Australia's output, jobs and productivity (financial years), its net change in employer businesses and the US BDS,
+low for Australia's gross birth and death rates, survival, size shares and survey-hours productivity. It drops one
+level where the classification does not line up enough to move a rate: for Australian data built from classes or
+subdivisions, when at least 15% of the group's businesses are in units whose ISIC matches lie in other groups (each
+split unit counted by the share of its matches elsewhere); for Australian output, jobs and productivity, which are
+by ANZSIC division, when at least 15% of the group's businesses fall on the other side of the division boundary; for
+a peer that does not split out rental and leasing; for US NAICS sectors that differ from ISIC. Rates are less
+sensitive to misclassification than levels, hence a higher threshold than the 5% at which the website notes a
+difference. Low-rated comparisons are shown but never flagged (decision D-8).
 
 The business economy total sums the same groups for every country: the demography groups less utilities and
 finance, which several peers do not publish (Canada has no electricity births; France, Italy, Spain and the UK no
@@ -76,6 +89,36 @@ BREAK = 0.10  # per-hour growth is dropped when hours and persons employed grow 
 BREAKS: list[dict] = []  # the group-years dropped by that test, for the record
 LEVELS = ("low", "medium", "high")
 COVID = (2020, 2021)
+AU_STATES = ("NSW", "VIC", "QLD", "SA", "WA", "TAS", "NT", "ACT")
+STATE_NAMES = {
+    "NSW": "New South Wales",
+    "VIC": "Victoria",
+    "QLD": "Queensland",
+    "SA": "South Australia",
+    "WA": "Western Australia",
+    "TAS": "Tasmania",
+    "NT": "Northern Territory",
+    "ACT": "Australian Capital Territory",
+}
+ABS_ACCOUNTS = "ABS accounts and LFS"  # output (state accounts) with persons employed (Labour Force survey)
+ABS_HOURS = "ABS accounts and LFS hours"  # output over the survey's hours actually worked
+# The measures built for each state (the regulation indicators are national)
+STATE_MEASURES = ("va_growth", "emp_growth", "lp_growth_person", "lp_growth_hour")
+STATE_MEASURES += ("birth_rate", "death_rate", "net_entry_rate", "survival_3y")
+NOISE = 2.0  # a state's survey-based figures are rated low when its yearly jobs growth swings this much more
+MIN_ACTIVE = 500  # a state's business rates drop a level with fewer employer businesses in the group than this
+MIN_COHORT = 100  # and its survival with fewer new employer businesses a year than this
+
+
+def _in(state: str) -> str:
+    """A state's name after "in": "the" before the territories."""
+    return ("the " if state in ("NT", "ACT") else "") + STATE_NAMES[state]
+
+
+def _au(country: str) -> bool:
+    return country == "AUS" or country in AU_STATES
+
+
 MEASURES = {
     "birth_rate": ("Employer business birth rate", "% of active employer businesses"),
     "death_rate": ("Employer business death rate", "% of active employer businesses"),
@@ -265,7 +308,7 @@ def _broken(got: dict) -> bool:
 
 def stan_productivity(vh: pd.DataFrame, va: list[dict]) -> list[dict]:
     """Labour productivity growth by group and year, per hour worked and per person employed, for every country
-    with STAN data (Australia included), and for the business economy (ALL_GROUPS chain-linked together)."""
+    with STAN data but Australia, and for the business economy (ALL_GROUPS chain-linked together)."""
     scaled = vh.assign(v=vh["value"] * 10.0 ** vh["unit_mult"].astype(float), year=vh["period"].astype(int))
     prev = scaled[(scaled["measure"] == "B1G") & (scaled["price_base"] == "Y")]
     hours = scaled[(scaled["measure"] == "EMP") & (scaled["unit_measure"] == "H")]
@@ -276,6 +319,8 @@ def stan_productivity(vh: pd.DataFrame, va: list[dict]) -> list[dict]:
     out = []
     G = _groups()
     for c, y in sorted({(c, y) for c, y, _ in P}):
+        if c == "AUS":
+            continue  # Australia's come from the ABS (STAN's Australian years and jobs do not line up; E-109)
         found: dict[str, dict] = {}  # group -> measure -> (vy, v0, e1, e0, note)
         for gid, g in G.items():
             found[gid] = {}
@@ -362,9 +407,12 @@ def subdivision_groups(weights: dict[str, float]) -> dict[str, tuple[str, float]
     return out
 
 
-def au_demography(panel: pd.DataFrame) -> list[dict]:
+def au_demography(panel: pd.DataFrame, area: str = "AUS") -> list[dict]:
+    """Employer business rates by group and year for Australia, or for one state (its businesses by main state)."""
     cg = _class_groups()
     p = panel[panel["industry_level"] == "class"]
+    if area != "AUS":
+        p = p[p["geo_code"] == area]
     emp = p[p["breakdown"].isin(EMPLOYING)]
     emp = emp.assign(year=emp["period"].dt.year + 1, group=emp["industry_code"].map(cg))
     t = emp.groupby(["group", "year", "measure"])["value"].sum().unstack("measure")
@@ -374,11 +422,11 @@ def au_demography(panel: pd.DataFrame) -> list[dict]:
         if gid not in DEMOG_GROUPS:
             continue
         active = r["businesses_start"] + r["entries"]
-        _rates(out, "AUS", gid, y, r["entries"], r["exits"], active, "ABS CABEE", note)
+        _rates(out, area, gid, y, r["entries"], r["exits"], active, "ABS CABEE", note)
     allg = t[t.index.get_level_values("group").isin(ALL_GROUPS)].groupby(level="year").sum()
     for y, r in allg.iterrows():
         active = r["businesses_start"] + r["entries"]
-        _rates(out, "AUS", ALL, y, r["entries"], r["exits"], active, "ABS CABEE", note)
+        _rates(out, area, ALL, y, r["entries"], r["exits"], active, "ABS CABEE", note)
     # net change in employer businesses: the stock change, which includes threshold crossings (as the OECD's does)
     out = [o for o in out if o["measure"] != "net_entry_rate"]
     for (gid, y), r in pd.concat([t, pd.concat({ALL: allg}, names=["group"])]).iterrows():
@@ -387,7 +435,7 @@ def au_demography(panel: pd.DataFrame) -> list[dict]:
             if active > 0:
                 v = 100 * (r["businesses_end"] - r["businesses_start"]) / active
                 n = "covid: JobKeeper moved businesses into employing" if y in COVID else ""
-                out.append(_rows("AUS", gid, "net_entry_rate", y, v, "ABS CABEE", n))
+                out.append(_rows(area, gid, "net_entry_rate", y, v, "ABS CABEE", n))
     return out
 
 
@@ -412,19 +460,22 @@ def au_threshold_bounds(panel: pd.DataFrame) -> pd.DataFrame:
     ).round(2)
 
 
-def au_survival(sv: pd.DataFrame, weights: dict[str, float]) -> tuple[list[dict], dict[str, float]]:
+def au_survival(sv: pd.DataFrame, weights: dict[str, float], area: str = "AUS") -> tuple[list[dict], dict[str, float]]:
     sg = subdivision_groups(weights)
     e = sv[sv["size"].isin(EMPLOYING)]
+    if area != "AUS":
+        e = e[e["state"] == STATE_NAMES[area]]
     e = e.assign(group=e["subdivision"].map(lambda s: sg.get(s, (None, 0))[0]))
     t = e.groupby(["group", "cohort", "june"])["count"].sum().unstack("june")
     out = []
     note = "employing entries still trading two Junes after the entry year"
     for (gid, cohort), r in t.iterrows():
         if gid in DEMOG_GROUPS and r.get(0):
-            out.append(_rows("AUS", gid, "survival_3y", cohort + 2, 100 * r[2] / r[0], "ABS CABEE", note))
+            out.append(_rows(area, gid, "survival_3y", cohort + 2, 100 * r[2] / r[0], "ABS CABEE", note))
     allg = t[t.index.get_level_values("group").isin(ALL_GROUPS)].groupby(level="cohort").sum()
     for cohort, r in allg.iterrows():
-        out.append(_rows("AUS", ALL, "survival_3y", cohort + 2, 100 * r[2] / r[0], "ABS CABEE", note))
+        if r.get(0):
+            out.append(_rows(area, ALL, "survival_3y", cohort + 2, 100 * r[2] / r[0], "ABS CABEE", note))
     # share of each group's businesses in subdivisions that span groups (for the rating)
     tot, split = defaultdict(float), defaultdict(float)
     for a, w in weights.items():
@@ -487,12 +538,83 @@ def us_demography(b: pd.DataFrame) -> list[dict]:
     return out
 
 
-# ---- Australia's official productivity --------------------------------------------------------------------
+# ---- Australia from the ABS: output, jobs and productivity, nationally and by state ---------------------------
 
 # Groups that are one ANZSIC division with an ABS hours-based labour productivity series (5260.0.55.002)
 ABS_LP_GROUPS = {"A": "AGR", "B": "MIN", "C": "MAN", "D": "UTL", "E": "CON", "H": "ACC", "I": "TRN", "J": "ICT"}
 ABS_LP_GROUPS |= {"K": "FIN", "L": "RES"}
-STAN_CHECK: dict = {}  # STAN's Australian per-hour growth against the ABS's, 2015-2019, for the record
+STAN_CHECK: dict = {}  # why Australia's figures are not STAN's: STAN's Australian years and jobs against the ABS's
+# ANZSIC divisions that are one STAN activity, for that check
+STAN_AU = {"A": "A", "C": "C", "E": "F", "H": "I", "I": "H", "K": "K", "P": "P", "Q": "Q"}
+
+
+def abs_inputs() -> pd.DataFrame:
+    """ABS output and labour by area (the states and AUS), ANZSIC division and financial year, labelled by the year
+    it ends: value added in chain volumes and at current prices ($m, state accounts), and persons employed and hours
+    actually worked (thousands, the means of the Labour Force survey's four quarters)."""
+    sa = store.read_panel("abs_state_accounts", "industry_state_fy")
+    sa = sa[sa["measure"].isin(("gva_volume", "gva_current")) & (sa["industry_code"] != "")]
+    sa = sa.assign(year=sa["period"].dt.year + 1)  # a period is the start of its financial year
+    acc = sa.pivot_table(index=["geo_code", "industry_code", "year"], columns="measure", values="value")
+    lfs = store.read_panel("abs_lfs", "industry_state_quarter")
+    lfs = lfs[lfs["measure"].isin(("employed", "hours_actual")) & (lfs["industry_level"] == "division")]
+    lfs = lfs.assign(year=lfs["period"].dt.year + (lfs["period"].dt.month >= 7))
+    q = lfs.groupby(["geo_code", "industry_code", "year", "measure"])["value"].agg(["mean", "size"])
+    return acc.join(q[q["size"] == 4]["mean"].unstack("measure"), how="outer")
+
+
+def abs_divisions() -> dict[str, list[str]]:
+    """Each group's ANZSIC divisions, and the business economy's."""
+    out = {gid: list(g["anzsic_divisions"]) for gid, g in _groups().items()}
+    out[ALL] = sorted({d for gid in ALL_GROUPS for d in out[gid]})
+    return out
+
+
+def abs_growth(inp: pd.DataFrame, area: str) -> list[dict]:
+    """Output, jobs and productivity growth by group and financial year for Australia or a state, on the peers'
+    definitions: value added chain-linked across the group's divisions (each division's volume growth weighted by its
+    current-price value added the year before, as STAN's previous-year prices do); persons employed and hours summed.
+    Growth per hour is dropped in a year when hours and persons employed grow more than BREAK log points apart."""
+    import math
+
+    if area not in inp.index.get_level_values("geo_code"):
+        return []
+    x = inp.xs(area, level="geo_code")
+    col = {c: (x[c].dropna().to_dict() if c in x else {}) for c in ("gva_volume", "gva_current", "employed")}
+    col["hours_actual"] = x["hours_actual"].dropna().to_dict() if "hours_actual" in x else {}
+    years = sorted(set(x.index.get_level_values("year")))
+
+    def vals(c: str, divs: list[str], yr: int) -> list[float] | None:
+        v = [col[c].get((d, yr)) for d in divs]
+        return None if any(a is None or not a > 0 for a in v) else v
+
+    out = []
+    for gid, divs in abs_divisions().items():
+        for y in years:
+            vol1, vol0, cur0 = (
+                vals("gva_volume", divs, y),
+                vals("gva_volume", divs, y - 1),
+                vals("gva_current", divs, y - 1),
+            )
+            n1, n0 = vals("employed", divs, y), vals("employed", divs, y - 1)
+            h1, h0 = vals("hours_actual", divs, y), vals("hours_actual", divs, y - 1)
+            va = None
+            if vol1 and vol0 and cur0:
+                va = sum(c * a / b for c, a, b in zip(cur0, vol1, vol0, strict=True)) / sum(cur0)
+                out.append(_rows(area, gid, "va_growth", y, 100 * (va - 1), ABS_ACCOUNTS))
+            en = sum(n1) / sum(n0) if n1 and n0 else None
+            if en:
+                out.append(_rows(area, gid, "emp_growth", y, 100 * (en - 1), ABS_ACCOUNTS))
+            if va and en:
+                out.append(_rows(area, gid, "lp_growth_person", y, 100 * (va / en - 1), ABS_ACCOUNTS))
+            if va and en and h1 and h0:
+                eh = sum(h1) / sum(h0)
+                if abs(math.log(eh) - math.log(en)) > BREAK:
+                    gaps = {"hours_growth": round(100 * (eh - 1), 1), "persons_growth": round(100 * (en - 1), 1)}
+                    BREAKS.append({"country": area, "group": gid, "year": y, **gaps})
+                else:
+                    out.append(_rows(area, gid, "lp_growth_hour", y, 100 * (va / eh - 1), ABS_HOURS))
+    return out
 
 
 def au_productivity_abs() -> list[dict]:
@@ -513,23 +635,50 @@ def au_productivity_abs() -> list[dict]:
     return out
 
 
-def check_stan_australia(rows: list[dict], lo: int = 2015, hi: int = 2019) -> dict:
-    """STAN's Australian per-hour growth against the ABS's official series, by group, averaged over a window."""
-    df = pd.DataFrame(rows)
-    a = df[(df["country"] == "AUS") & (df["measure"] == "lp_growth_hour") & df["year"].between(lo, hi)]
-    by = a.groupby(["group", "source"])["value"].mean().unstack("source")
-    if not {"OECD STAN", "ABS 5260"} <= set(by.columns):
-        return {"window": f"{lo}-{hi}", "groups": {}, "differ": 0, "compared": 0}
-    by = by.dropna(subset=["OECD STAN", "ABS 5260"])
-    diff = (by["OECD STAN"] - by["ABS 5260"]).round(2)
-    return {
-        "window": f"{lo}-{hi}",
-        "groups": {
-            g: {"stan": round(by.loc[g, "OECD STAN"], 2), "abs": round(by.loc[g, "ABS 5260"], 2)} for g in by.index
-        },
-        "differ": int((diff.abs() > 1).sum()),
-        "compared": int(len(diff)),
+def check_stan_australia(vh: pd.DataFrame, va: list[dict], inp: pd.DataFrame) -> dict:
+    """Why Australia's figures are not STAN's: the median correlation, across the divisions that are one STAN activity,
+    of yearly growth in STAN's Australian value added with the ABS's under each reading of STAN's years, and of its
+    persons employed with the Labour Force survey's calendar-year and financial-year means; and STAN's ICT employment
+    against the ABS's ICT division."""
+    import numpy as np
+
+    a = vh[vh["country"] == "AUS"].assign(v=lambda d: d["value"] * 10.0 ** d["unit_mult"].astype(float))
+    a = a.assign(year=a["period"].astype(int))
+    prev = a[(a["measure"] == "B1G") & (a["price_base"] == "Y")].set_index(["activity", "year"])["v"]
+    persons = a[(a["measure"] == "EMP") & (a["unit_measure"] == "PS")].set_index(["activity", "year"])["v"] / 1e3
+    cur = {(r["activity"], r["year"]): r["value_added_mn"] * 1e6 for r in va if r["country"] == "AUS"}
+    lfs = store.read_panel("abs_lfs", "industry_state_quarter")
+    lfs = lfs[(lfs["geo_code"] == "AUS") & (lfs["measure"] == "employed") & (lfs["industry_level"] == "division")]
+    q = lfs.assign(y=lfs["period"].dt.year).groupby(["industry_code", "y"])["value"].agg(["mean", "size"])
+    calendar = q[q["size"] == 4]["mean"]
+    x = inp.xs("AUS", level="geo_code")
+    vol, emp = x["gva_volume"], x["employed"]
+    years = range(2010, 2024)
+
+    def corr(pairs: list[tuple[float, float]]) -> float:
+        pairs = [(p, q) for p, q in pairs if pd.notna(p) and pd.notna(q)]
+        return float(np.corrcoef(*zip(*pairs, strict=True))[0, 1]) if len(pairs) > 5 else float("nan")
+
+    g = lambda s, k, y: s.get((k, y)) / s.get((k, y - 1)) - 1 if s.get((k, y)) and s.get((k, y - 1)) else None  # noqa: E731
+    res: dict[str, list[float]] = defaultdict(list)
+    for div, act in STAN_AU.items():
+        stan_va = {
+            y: prev.get((act, y)) / cur[(act, y - 1)] - 1 for y in years if prev.get((act, y)) and cur.get((act, y - 1))
+        }
+        res["output_by_start_year"].append(corr([(v, g(vol, div, y + 1)) for y, v in stan_va.items()]))
+        res["output_by_end_year"].append(corr([(v, g(vol, div, y)) for y, v in stan_va.items()]))
+        stan_n = {y: g(persons, act, y) for y in years}
+        res["persons_calendar_year"].append(corr([(v, g(calendar, div, y)) for y, v in stan_n.items()]))
+        res["persons_financial_year"].append(corr([(v, g(emp, div, y)) for y, v in stan_n.items()]))
+    out = {k: round(float(np.nanmedian(v)), 2) for k, v in res.items()}
+    y = max(yr for (act, yr) in persons.index if act == "J")
+    out["ict_persons"] = {
+        "year": int(y),
+        "stan": round(float(persons[("J", y)]), 1),
+        "abs": round(float(calendar[("J", y)]), 1),
     }
+    out["years"] = f"{years.start}-{years.stop - 1}"
+    return out
 
 
 # ---- comparability -----------------------------------------------------------------------------------------
@@ -551,6 +700,14 @@ BASE_RATING = {
         "medium",
         "the ABS's official labour productivity, by financial year, against the peers' STAN calendar years",
     ),
+    (ABS_ACCOUNTS, None): (
+        "medium",
+        "ABS accounts and Labour Force survey, by financial year, against the peers' STAN calendar years",
+    ),
+    (ABS_HOURS, "lp_growth_hour"): (
+        "low",
+        "output over the Labour Force survey's hours actually worked, not the ABS's productivity hours",
+    ),
 }
 
 
@@ -568,34 +725,28 @@ def rate(df: pd.DataFrame, class_split: dict[str, float], sub_split: dict[str, f
         for g in con["groups"]
     }
     division_gap[ALL] = 0.0
-    stan_unreliable = STAN_CHECK.get("compared", 0) and STAN_CHECK["differ"] * 2 >= STAN_CHECK["compared"]
     repeated_breaks: dict[tuple[str, str], int] = defaultdict(int)
-    for b in BREAKS:
-        repeated_breaks[(b["country"], b["group"])] += 1
+    for c, g, _ in {(b["country"], b["group"], b["year"]) for b in BREAKS}:
+        repeated_breaks[(c, g)] += 1
     ratings, reasons = [], []
     for r in df.itertuples(index=False):
         base = BASE_RATING.get((r.source, r.measure)) or BASE_RATING.get((r.source, None))
         level, why = base if base else ("high", "the OECD's own data")
         why = [why]
-        if r.country == "AUS" and r.source == "ABS CABEE":
+        if _au(r.country) and r.source == "ABS CABEE":
             split = (sub_split if r.measure == "survival_3y" else class_split).get(r.group, 0.0)
             if split >= SPLIT:
                 level = _down(level)
                 why.append(f"{100 * split:.0f}% of the group's businesses are in units split between groups")
-        if r.country == "AUS" and r.source == "OECD STAN" and r.measure == "lp_growth_hour" and stan_unreliable:
-            level = "low"
-            why.append(
-                "STAN's Australian hours disagree with the ABS: per-hour growth differs by more than a point a "
-                f"year in {STAN_CHECK['differ']} of the {STAN_CHECK['compared']} groups where both exist "
-                f"({STAN_CHECK['window']})"
-            )
-        if r.country == "AUS" and r.source in ("OECD STAN", "ABS 5260") and division_gap.get(r.group, 0.0) >= SPLIT:
+        abs_division = r.source in (ABS_ACCOUNTS, ABS_HOURS, "ABS 5260")
+        if _au(r.country) and abs_division and division_gap.get(r.group, 0.0) >= SPLIT:
             level = _down(level)
             why.append(
-                f"Australian national accounts are by ANZSIC division; {100 * division_gap[r.group]:.0f}% of the "
+                f"Australian accounts and jobs are by ANZSIC division; {100 * division_gap[r.group]:.0f}% of the "
                 "group's businesses differ from ISIC"
             )
-        if r.measure == "lp_growth_hour" and repeated_breaks.get((r.country, r.group), 0) >= 2:
+        hours_break = r.source in ("OECD STAN", ABS_HOURS) and repeated_breaks.get((r.country, r.group), 0) >= 2
+        if r.measure == "lp_growth_hour" and hours_break:
             level = _down(level)
             why.append(
                 f"its hours series breaks in {repeated_breaks[(r.country, r.group)]} years (those years dropped)"
@@ -606,11 +757,68 @@ def rate(df: pd.DataFrame, class_split: dict[str, float], sub_split: dict[str, f
         if r.source == "US Census BDS" and r.note:
             level = _down(level)
             why.append(r.note)
-        if r.country == "AUS" and r.year in COVID and r.source == "ABS CABEE":
+        if _au(r.country) and r.year in COVID and r.source == "ABS CABEE":
             why.append("2020 and 2021 are distorted by JobKeeper")
         ratings.append(level)
         reasons.append("; ".join(why))
     return df.assign(comparability=ratings, reasons=reasons)
+
+
+def rate_states(df: pd.DataFrame, panel: pd.DataFrame, sv: pd.DataFrame, weights: dict[str, float]) -> pd.DataFrame:
+    """The states' own rules, on top of Australia's (``df`` holds the states and AUS, rated): survey-based figures
+    rated low where the state's yearly jobs growth in the group swings more than NOISE times Australia's; business
+    rates down a level with fewer than MIN_ACTIVE employer businesses, survival with fewer than MIN_COHORT starting
+    a year."""
+    emp = df[(df["measure"] == "emp_growth") & ~df["year"].isin(COVID)]
+    sd = emp.groupby(["country", "group"])["value"].std()
+    cg = _class_groups()
+    p = panel[(panel["industry_level"] == "class") & panel["breakdown"].isin(EMPLOYING)]
+    p = p.assign(group=p["industry_code"].map(cg), year=p["period"].dt.year)
+    t = p.groupby(["geo_code", "group", "year", "measure"])["value"].sum().unstack("measure")
+    active = (t["businesses_start"] + t["entries"]).groupby(level=["geo_code", "group"]).mean()
+    act_all = t["businesses_start"] + t["entries"]
+    act_all = (
+        act_all[act_all.index.get_level_values("group").isin(ALL_GROUPS)].groupby(level=["geo_code", "year"]).sum()
+    )
+    for geo, v in act_all.groupby(level="geo_code").mean().items():
+        active[(geo, ALL)] = v
+    sg = subdivision_groups(weights)
+    e = sv[sv["size"].isin(EMPLOYING) & (sv["june"] == 0)]
+    e = e.assign(group=e["subdivision"].map(lambda x: sg.get(x, (None, 0))[0]))
+    by_name = {v: k for k, v in STATE_NAMES.items()}
+    e = e.assign(geo=e["state"].map(by_name))
+    cohort = e.groupby(["geo", "group", "cohort"])["count"].sum().groupby(level=["geo", "group"]).mean()
+    c_all = e[e["group"].isin(ALL_GROUPS)].groupby(["geo", "cohort"])["count"].sum().groupby(level="geo").mean()
+    for geo, v in c_all.items():
+        cohort[(geo, ALL)] = v
+    levels, reasons = [], []
+    for r in df.itertuples(index=False):
+        level, why = r.comparability, r.reasons
+        name = STATE_NAMES.get(r.country)
+        if name and r.measure in ("emp_growth", "lp_growth_person", "lp_growth_hour"):
+            ratio = sd.get((r.country, r.group), float("nan")) / sd.get(("AUS", r.group), float("nan"))
+            if ratio > NOISE:
+                level = "low"
+                why += (
+                    f"; the Labour Force survey's figure for this industry in {_in(r.country)} is small: its "
+                    "yearly jobs "
+                    f"growth swings {ratio:.1f} times as much as Australia's"
+                )
+        if name and r.measure in ("birth_rate", "death_rate", "net_entry_rate"):
+            n = active.get((r.country, r.group), 0.0)
+            if n < MIN_ACTIVE:
+                level = _down(level)
+                why += (
+                    f"; about {n:,.0f} employer businesses in {_in(r.country)}, so a few entries or exits move the rate"
+                )
+        if name and r.measure == "survival_3y":
+            n = cohort.get((r.country, r.group), 0.0)
+            if n < MIN_COHORT:
+                level = _down(level)
+                why += f"; about {n:,.0f} new employer businesses a year in {_in(r.country)}"
+        levels.append(level)
+        reasons.append(why)
+    return df.assign(comparability=levels, reasons=reasons)
 
 
 # ---- build -------------------------------------------------------------------------------------------------
@@ -625,22 +833,23 @@ def build(refresh: bool = False) -> pd.DataFrame:
         cabee_survival.build(refresh)
     weights = employing_businesses()
     panel = store.read_panel("abs_cabee", "class_state_fy")
+    inp = abs_inputs()
     rows = []
     bd = oecd.read("sdbs_births_deaths")
     rows += oecd_demography(bd)
     rows += oecd_survival(bd, oecd.read("sdbs_survival"))
     rows += oecd_size(oecd.read("sdbs_size"))
     BREAKS.clear()
-    rows += stan_productivity(oecd.read("stan_volumes_hours"), stan.read())
-    # Australia per hour: the ABS's official series where a group is one division (STAN's Australian hours are
-    # checked against it and, where they disagree, the remaining STAN groups are rated low)
+    vh, va = oecd.read("stan_volumes_hours"), stan.read()
+    rows += stan_productivity(vh, va)
+    # Australia from the ABS (E-109): output, jobs and growth per person; per hour, the ABS's official series for the
+    # groups that are one division, and output over the survey's hours for the rest
     abs_rows = au_productivity_abs()
-    STAN_CHECK.clear()
-    STAN_CHECK.update(check_stan_australia(rows + abs_rows))
     replaced = {r["group"] for r in abs_rows}
-    rows = [
-        r for r in rows if not (r["country"] == "AUS" and r["measure"] == "lp_growth_hour" and r["group"] in replaced)
-    ] + abs_rows
+    rows += [r for r in abs_growth(inp, "AUS") if not (r["measure"] == "lp_growth_hour" and r["group"] in replaced)]
+    rows += abs_rows
+    STAN_CHECK.clear()
+    STAN_CHECK.update(check_stan_australia(vh, va, inp))
     rows += regulation(oecd.read("pmr"), oecd.read("stri"), oecd.read("fdi_rri"))
     rows += au_demography(panel)
     surv, sub_split = au_survival(cabee_survival.read(), weights)
@@ -653,6 +862,9 @@ def build(refresh: bool = False) -> pd.DataFrame:
     class_split = class_split_shares(con, weights)
     df = rate(df, class_split, sub_split).sort_values(["measure", "group", "country", "year"]).reset_index(drop=True)
     df.to_parquet(OUT / "benchmark_inputs.parquet", index=False)
+    national_breaks = list(BREAKS)
+    states = build_states(inp, panel, weights, class_split, sub_split)
+    states.to_parquet(OUT / "benchmark_inputs_states.parquet", index=False)
     bounds = au_threshold_bounds(panel)
     summary = au_ratings(df)
     (OUT / "comparability.json").write_text(
@@ -664,16 +876,39 @@ def build(refresh: bool = False) -> pd.DataFrame:
                 "threshold_bounds": {int(y): r.to_dict() for y, r in bounds.iterrows()},
                 "class_split": {g: round(v, 4) for g, v in class_split.items()},
                 "subdivision_split": {g: round(v, 4) for g, v in sub_split.items()},
-                "hours_breaks": BREAKS,
-                "stan_australia_vs_abs": STAN_CHECK,
+                "hours_breaks": national_breaks,
+                "stan_australia": STAN_CHECK,
             },
             indent=1,
         )
         + "\n",
         encoding="utf-8",
     )
-    (store.ROOT / "docs" / "methods_international_benchmarks.md").write_text(markdown(df, summary, bounds), "utf-8")
+    (store.ROOT / "docs" / "methods_international_benchmarks.md").write_text(
+        markdown(df, summary, bounds, states), "utf-8"
+    )
     return df
+
+
+def build_states(inp, panel, weights: dict[str, float], class_split: dict, sub_split: dict) -> pd.DataFrame:
+    """STATE_MEASURES for each state and for Australia on the same basis (per hour, output over the survey's hours in
+    every group), rated by Australia's rules and the states' own; the website's state comparisons (E-110)."""
+    sv = cabee_survival.read()
+    rows = []
+    for area in ("AUS", *AU_STATES):
+        rows += abs_growth(inp, area)
+        rows += au_demography(panel, area)
+        rows += au_survival(sv, weights, area)[0]
+    df = pd.DataFrame(rows)
+    df = rate(df[df["measure"].isin(STATE_MEASURES)], class_split, sub_split)
+    df = rate_states(df, panel, sv, weights).rename(columns={"country": "state"})
+    return df.sort_values(["measure", "group", "state", "year"]).reset_index(drop=True)
+
+
+def read_states() -> pd.DataFrame:
+    """The state series built by ``build`` (empty if not built)."""
+    path = OUT / "benchmark_inputs_states.parquet"
+    return pd.read_parquet(path) if path.exists() else pd.DataFrame()
 
 
 def class_split_shares(con: dict, weights: dict[str, float]) -> dict[str, float]:
@@ -706,7 +941,7 @@ def _median(xs: list[float]) -> float | None:
     return xs[n // 2] if n % 2 else (xs[n // 2 - 1] + xs[n // 2]) / 2
 
 
-def markdown(df: pd.DataFrame, summary: dict, bounds: pd.DataFrame) -> str:
+def markdown(df: pd.DataFrame, summary: dict, bounds: pd.DataFrame, states: pd.DataFrame | None = None) -> str:
     G = _groups()
     labels = {g: G[g]["label"] for g in G} | {ALL: "Business economy (the groups above except utilities and finance)"}
     core = peers.APPROVED["core"]
@@ -810,6 +1045,53 @@ def markdown(df: pd.DataFrame, summary: dict, bounds: pd.DataFrame) -> str:
         rating = summary.get(ALL, {}).get(m, {}).get("rating", "–")
         lines.append(f"| {MEASURES[m][0]} | " + " | ".join(cells) + f" | {rating} |")
     lines += ["", "In brackets: the number of core peers with data in the window.", ""]
+    c = STAN_CHECK
+    if c:
+        lines += [
+            "",
+            "## Why Australia's output, jobs and productivity are the ABS's, not STAN's",
+            "",
+            f"Median correlation of yearly growth, {c['years']}, across the ANZSIC divisions that are one STAN "
+            "activity (agriculture, manufacturing, construction, accommodation, transport, finance, education, "
+            "health):",
+            "",
+            "| STAN's Australian series | Against | Correlation |",
+            "|---|---|---:|",
+            f"| Value added, STAN's year read as the financial year that starts in it | ABS value added | "
+            f"{c['output_by_start_year']:.2f} |",
+            f"| Value added, STAN's year read as the financial year that ends in it | ABS value added | "
+            f"{c['output_by_end_year']:.2f} |",
+            f"| Persons employed | Labour Force survey, calendar-year means | {c['persons_calendar_year']:.2f} |",
+            f"| Persons employed | Labour Force survey, financial-year means | {c['persons_financial_year']:.2f} |",
+            "",
+            f"STAN's Australian ICT employment in {c['ict_persons']['year']} is {c['ict_persons']['stan']:,.0f} "
+            f"thousand, against {c['ict_persons']['abs']:,.0f} thousand in the ABS's ICT division: STAN's employment "
+            "is on ISIC, which counts computer system design in ICT, while its value added is the ABS's by division. "
+            "So STAN's Australian value added is a financial year labelled by the year it starts, and its jobs are "
+            "calendar years on another classification; Australia's figures are rebuilt from the ABS on one basis "
+            "(decision E-109).",
+            "",
+        ]
+    if states is not None and len(states):
+        lines += [
+            "",
+            "## States and territories",
+            "",
+            "The same measures for each state, from the same ABS sources, for the website's comparisons (decision "
+            "E-110; `benchmark_inputs_states.parquet`). Not tested for flags. Share of state figures rated low, by "
+            "measure (all groups and years):",
+            "",
+            "| Measure | " + " | ".join(AU_STATES) + " |",
+            "|---|" + "---:|" * len(AU_STATES),
+        ]
+        for m in STATE_MEASURES:
+            sub = states[states["measure"] == m]
+            cells = []
+            for st in AU_STATES:
+                x = sub[sub["state"] == st]
+                cells.append(f"{100 * (x['comparability'] == 'low').mean():.0f}%" if len(x) else "–")
+            lines.append(f"| {MEASURES[m][0]} | " + " | ".join(cells) + " |")
+        lines.append("")
     lines += [
         "",
         "## Limits",
@@ -821,8 +1103,8 @@ def markdown(df: pd.DataFrame, summary: dict, bounds: pd.DataFrame) -> str:
         "years to exclude reactivations. Financial years are compared with calendar years half a year apart.",
         "- The recent window is thin: the peers' business demography ends in 2022 or 2023, and deaths, which wait two "
         "years to rule out reactivation, end earlier. The UK's ends in 2018, so it has no figures for 2022-2024.",
-        "- STAN's hours for Australia break in several groups (mining, ICT, finance, utilities); per-person growth is "
-        "the steadier comparison there.",
+        "- Australia's output, jobs and productivity are by ANZSIC division and financial year; the peers' are by ISIC "
+        "section and calendar year. Groups where the divisions and sections differ most are rated lower.",
         "- Regulation indicators are national; a group's sector indicators cover only part of it.",
         "",
     ]

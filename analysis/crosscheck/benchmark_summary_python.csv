@@ -7,18 +7,18 @@ ACC,death_rate,2015-2019,5,,low,within the range
 ACC,death_rate,2022-2024,1,,low,too few years
 ACC,lp_growth_hour,2015-2019,5,,medium,"outside, not persistent"
 ACC,lp_growth_hour,2022-2024,2,below,medium,flag
-ACC,lp_growth_person,2015-2019,5,,high,"outside, not persistent"
-ACC,lp_growth_person,2022-2024,3,,high,"outside, not persistent"
+ACC,lp_growth_person,2015-2019,5,,medium,"outside, not persistent"
+ACC,lp_growth_person,2022-2024,3,,medium,"outside, not persistent"
 ACC,net_entry_rate,2015-2019,5,,medium,"outside, not persistent"
 ACC,net_entry_rate,2022-2024,1,,medium,too few years
 ACC,size_20plus,2015-2019,0,,,too few years
 ACC,size_20plus,2022-2024,3,above,low,"outside, low comparability"
 ACC,survival_3y,2015-2019,0,,,too few years
 ACC,survival_3y,2022-2024,1,,low,too few years
-AGR,lp_growth_hour,2015-2019,5,,low,"outside, not persistent"
-AGR,lp_growth_hour,2022-2024,3,,low,"outside, not persistent"
-AGR,lp_growth_person,2015-2019,5,below,high,flag
-AGR,lp_growth_person,2022-2024,3,,high,"outside, not persistent"
+AGR,lp_growth_hour,2015-2019,5,,medium,"outside, not persistent"
+AGR,lp_growth_hour,2022-2024,3,,medium,"outside, not persistent"
+AGR,lp_growth_person,2015-2019,5,below,medium,flag
+AGR,lp_growth_person,2022-2024,3,above,medium,flag
 ALL,birth_rate,2015-2019,5,,low,"outside, not persistent"
 ALL,birth_rate,2022-2024,0,,,too few years
 ALL,churn,2015-2019,5,below,low,"outside, fails leave-one-out"
@@ -26,10 +26,10 @@ ALL,churn,2022-2024,0,,,too few years
 ALL,death_rate,2015-2019,5,below,low,"outside, low comparability"
 ALL,death_rate,2022-2024,0,,,too few years
 ALL,fdi_rri,2021-2025,5,above,high,flag
-ALL,lp_growth_hour,2015-2019,2,,low,"outside, not persistent"
-ALL,lp_growth_hour,2022-2024,0,,,too few years
-ALL,lp_growth_person,2015-2019,5,,high,"outside, not persistent"
-ALL,lp_growth_person,2022-2024,2,below,high,flag
+ALL,lp_growth_hour,2015-2019,5,,low,"outside, not persistent"
+ALL,lp_growth_hour,2022-2024,1,,low,too few years
+ALL,lp_growth_person,2015-2019,5,,medium,"outside, not persistent"
+ALL,lp_growth_person,2022-2024,2,below,medium,flag
 ALL,net_entry_rate,2015-2019,5,,medium,"outside, not persistent"
 ALL,net_entry_rate,2022-2024,0,,,too few years
 ALL,pmr_economy,2018-2023,2,,high,"outside, not persistent"
@@ -45,8 +45,8 @@ CON,death_rate,2015-2019,5,below,low,"outside, low comparability"
 CON,death_rate,2022-2024,1,,low,too few years
 CON,lp_growth_hour,2015-2019,5,below,medium,flag
 CON,lp_growth_hour,2022-2024,3,,medium,"outside, not persistent"
-CON,lp_growth_person,2015-2019,5,below,high,flag
-CON,lp_growth_person,2022-2024,3,below,high,flag
+CON,lp_growth_person,2015-2019,5,below,medium,flag
+CON,lp_growth_person,2022-2024,3,,medium,"outside, not persistent"
 CON,net_entry_rate,2015-2019,5,,medium,within the range
 CON,net_entry_rate,2022-2024,1,,medium,too few years
 CON,size_20plus,2015-2019,0,,,too few years
@@ -61,9 +61,9 @@ EDU,churn,2022-2024,1,,low,too few years
 EDU,death_rate,2015-2019,5,,low,"outside, not persistent"
 EDU,death_rate,2022-2024,1,,low,too few years
 EDU,lp_growth_hour,2015-2019,5,,low,"outside, not persistent"
-EDU,lp_growth_hour,2022-2024,2,below,low,"outside, low comparability"
-EDU,lp_growth_person,2015-2019,5,,high,"outside, not persistent"
-EDU,lp_growth_person,2022-2024,3,below,high,flag
+EDU,lp_growth_hour,2022-2024,3,,low,"outside, not persistent"
+EDU,lp_growth_person,2015-2019,5,,medium,"outside, not persistent"
+EDU,lp_growth_person,2022-2024,3,below,medium,"outside, fails leave-one-out"
 EDU,net_entry_rate,2015-2019,5,above,medium,flag
 EDU,net_entry_rate,2022-2024,1,,medium,too few years
 EDU,size_20plus,2015-2019,0,,,too few years
@@ -76,10 +76,10 @@ FIN,churn,2015-2019,0,,,too few years
 FIN,churn,2022-2024,1,,low,too few years
 FIN,death_rate,2015-2019,0,,,too few years
 FIN,death_rate,2022-2024,1,,low,too few years
-FIN,lp_growth_hour,2015-2019,5,,low,"outside, not persistent"
-FIN,lp_growth_hour,2022-2024,3,above,low,"outside, fails leave-one-out"
-FIN,lp_growth_person,2015-2019,5,,high,"outside, not persistent"
-FIN,lp_growth_person,2022-2024,3,above,high,flag
+FIN,lp_growth_hour,2015-2019,5,,medium,"outside, not persistent"
+FIN,lp_growth_hour,2022-2024,3,above,medium,"outside, fails leave-one-out"
+FIN,lp_growth_person,2015-2019,5,,medium,"outside, not persistent"
+FIN,lp_growth_person,2022-2024,3,,medium,"outside, not persistent"
 FIN,net_entry_rate,2015-2019,0,,,too few years
 FIN,net_entry_rate,2022-2024,1,,medium,too few years
 FIN,size_20plus,2015-2019,0,,,too few years
@@ -93,10 +93,10 @@ HLT,churn,2015-2019,5,,low,"outside, not persistent"
 HLT,churn,2022-2024,1,,low,too few years
 HLT,death_rate,2015-2019,5,below,low,"outside, low comparability"
 HLT,death_rate,2022-2024,1,,low,too few years
-HLT,lp_growth_hour,2015-2019,4,,low,"outside, not persistent"
-HLT,lp_growth_hour,2022-2024,2,below,low,"outside, low comparability"
-HLT,lp_growth_person,2015-2019,5,above,high,flag
-HLT,lp_growth_person,2022-2024,3,below,high,flag
+HLT,lp_growth_hour,2015-2019,5,above,low,"outside, low comparability"
+HLT,lp_growth_hour,2022-2024,3,below,low,"outside, low comparability"
+HLT,lp_growth_person,2015-2019,5,above,medium,flag
+HLT,lp_growth_person,2022-2024,3,below,medium,flag
 HLT,net_entry_rate,2015-2019,5,above,medium,flag
 HLT,net_entry_rate,2022-2024,1,,medium,too few years
 HLT,size_20plus,2015-2019,0,,,too few years
@@ -111,8 +111,8 @@ ICT,death_rate,2015-2019,5,below,low,"outside, low comparability"
 ICT,death_rate,2022-2024,1,,low,too few years
 ICT,lp_growth_hour,2015-2019,5,above,low,"outside, low comparability"
 ICT,lp_growth_hour,2022-2024,3,above,low,"outside, low comparability"
-ICT,lp_growth_person,2015-2019,5,above,medium,"outside, fails leave-one-out"
-ICT,lp_growth_person,2022-2024,3,,medium,"outside, not persistent"
+ICT,lp_growth_person,2015-2019,5,above,low,"outside, low comparability"
+ICT,lp_growth_person,2022-2024,3,above,low,"outside, low comparability"
 ICT,net_entry_rate,2015-2019,5,,low,within the range
 ICT,net_entry_rate,2022-2024,1,,low,too few years
 ICT,pmr_sector,2018-2023,2,below,high,flag
@@ -129,8 +129,8 @@ MAN,death_rate,2015-2019,5,,low,"outside, not persistent"
 MAN,death_rate,2022-2024,1,,low,too few years
 MAN,lp_growth_hour,2015-2019,5,below,low,"outside, fails leave-one-out"
 MAN,lp_growth_hour,2022-2024,3,below,low,"outside, low comparability"
-MAN,lp_growth_person,2015-2019,5,,medium,"outside, not persistent"
-MAN,lp_growth_person,2022-2024,3,below,medium,"outside, average on the other side"
+MAN,lp_growth_person,2015-2019,5,,low,"outside, not persistent"
+MAN,lp_growth_person,2022-2024,3,,low,"outside, not persistent"
 MAN,net_entry_rate,2015-2019,5,,medium,"outside, not persistent"
 MAN,net_entry_rate,2022-2024,1,,medium,too few years
 MAN,size_20plus,2015-2019,0,,,too few years
@@ -145,8 +145,8 @@ MIN,death_rate,2015-2019,5,,low,"outside, not persistent"
 MIN,death_rate,2022-2024,1,,low,too few years
 MIN,lp_growth_hour,2015-2019,5,,low,"outside, not persistent"
 MIN,lp_growth_hour,2022-2024,2,,low,within the range
-MIN,lp_growth_person,2015-2019,5,below,medium,flag
-MIN,lp_growth_person,2022-2024,3,,medium,"outside, not persistent"
+MIN,lp_growth_person,2015-2019,5,below,low,"outside, average on the other side"
+MIN,lp_growth_person,2022-2024,3,,low,within the range
 MIN,net_entry_rate,2015-2019,5,,medium,"outside, not persistent"
 MIN,net_entry_rate,2022-2024,1,,medium,too few years
 MIN,size_20plus,2015-2019,0,,,too few years
@@ -159,8 +159,8 @@ OTH,churn,2015-2019,5,,low,within the range
 OTH,churn,2022-2024,0,,,too few years
 OTH,death_rate,2015-2019,5,,low,"outside, not persistent"
 OTH,death_rate,2022-2024,0,,,too few years
-OTH,lp_growth_hour,2015-2019,4,above,low,"outside, fails leave-one-out"
-OTH,lp_growth_hour,2022-2024,1,,low,too few years
+OTH,lp_growth_hour,2015-2019,5,,low,"outside, not persistent"
+OTH,lp_growth_hour,2022-2024,3,,low,within the range
 OTH,lp_growth_person,2015-2019,5,,low,"outside, not persistent"
 OTH,lp_growth_person,2022-2024,3,below,low,"outside, low comparability"
 OTH,net_entry_rate,2015-2019,5,above,medium,flag
@@ -175,10 +175,10 @@ PRO,churn,2015-2019,5,below,low,"outside, low comparability"
 PRO,churn,2022-2024,1,,low,too few years
 PRO,death_rate,2015-2019,5,below,low,"outside, low comparability"
 PRO,death_rate,2022-2024,1,,low,too few years
-PRO,lp_growth_hour,2015-2019,4,,low,"outside, not persistent"
-PRO,lp_growth_hour,2022-2024,2,,low,within the range
-PRO,lp_growth_person,2015-2019,5,above,low,"outside, low comparability"
-PRO,lp_growth_person,2022-2024,3,below,low,"outside, low comparability"
+PRO,lp_growth_hour,2015-2019,5,,low,"outside, not persistent"
+PRO,lp_growth_hour,2022-2024,3,,low,within the range
+PRO,lp_growth_person,2015-2019,5,,low,"outside, not persistent"
+PRO,lp_growth_person,2022-2024,3,,low,"outside, not persistent"
 PRO,net_entry_rate,2015-2019,5,,low,"outside, not persistent"
 PRO,net_entry_rate,2022-2024,1,,low,too few years
 PRO,pmr_sector,2018-2023,2,below,high,flag
@@ -187,10 +187,10 @@ PRO,size_20plus,2022-2024,3,above,low,"outside, low comparability"
 PRO,stri_sector,2021-2025,5,below,high,flag
 PRO,survival_3y,2015-2019,0,,,too few years
 PRO,survival_3y,2022-2024,1,,low,too few years
-PUB,lp_growth_hour,2015-2019,4,above,low,"outside, fails leave-one-out"
-PUB,lp_growth_hour,2022-2024,2,,low,"outside, not persistent"
-PUB,lp_growth_person,2015-2019,5,,medium,"outside, not persistent"
-PUB,lp_growth_person,2022-2024,3,,medium,"outside, not persistent"
+PUB,lp_growth_hour,2015-2019,5,above,low,"outside, average on the other side"
+PUB,lp_growth_hour,2022-2024,3,,low,"outside, not persistent"
+PUB,lp_growth_person,2015-2019,5,above,low,"outside, average on the other side"
+PUB,lp_growth_person,2022-2024,3,,low,"outside, not persistent"
 RES,birth_rate,2015-2019,5,below,low,"outside, fails leave-one-out"
 RES,birth_rate,2022-2024,2,below,low,"outside, low comparability"
 RES,churn,2015-2019,5,below,low,"outside, low comparability"
@@ -199,7 +199,7 @@ RES,death_rate,2015-2019,5,below,low,"outside, low comparability"
 RES,death_rate,2022-2024,1,,low,too few years
 RES,lp_growth_hour,2015-2019,5,above,medium,flag
 RES,lp_growth_hour,2022-2024,2,,medium,within the range
-RES,lp_growth_person,2015-2019,5,,medium,"outside, not persistent"
+RES,lp_growth_person,2015-2019,5,above,medium,flag
 RES,lp_growth_person,2022-2024,2,,medium,"outside, not persistent"
 RES,net_entry_rate,2015-2019,5,,low,"outside, not persistent"
 RES,net_entry_rate,2022-2024,1,,low,too few years
@@ -214,10 +214,10 @@ TRD,churn,2015-2019,5,below,low,"outside, low comparability"
 TRD,churn,2022-2024,1,,low,too few years
 TRD,death_rate,2015-2019,5,below,low,"outside, low comparability"
 TRD,death_rate,2022-2024,1,,low,too few years
-TRD,lp_growth_hour,2015-2019,5,above,low,"outside, low comparability"
-TRD,lp_growth_hour,2022-2024,2,,low,"outside, not persistent"
-TRD,lp_growth_person,2015-2019,5,,medium,"outside, not persistent"
-TRD,lp_growth_person,2022-2024,3,,medium,"outside, not persistent"
+TRD,lp_growth_hour,2015-2019,5,,low,"outside, not persistent"
+TRD,lp_growth_hour,2022-2024,3,above,low,"outside, low comparability"
+TRD,lp_growth_person,2015-2019,5,,low,"outside, not persistent"
+TRD,lp_growth_person,2022-2024,3,above,low,"outside, low comparability"
 TRD,net_entry_rate,2015-2019,5,below,medium,flag
 TRD,net_entry_rate,2022-2024,1,,medium,too few years
 TRD,pmr_sector,2018-2023,2,,high,within the range
@@ -234,8 +234,8 @@ TRN,death_rate,2015-2019,5,below,low,"outside, low comparability"
 TRN,death_rate,2022-2024,1,,low,too few years
 TRN,lp_growth_hour,2015-2019,5,,medium,"outside, not persistent"
 TRN,lp_growth_hour,2022-2024,3,,medium,"outside, not persistent"
-TRN,lp_growth_person,2015-2019,5,,high,"outside, not persistent"
-TRN,lp_growth_person,2022-2024,3,,high,"outside, not persistent"
+TRN,lp_growth_person,2015-2019,5,,medium,"outside, not persistent"
+TRN,lp_growth_person,2022-2024,3,,medium,"outside, not persistent"
 TRN,net_entry_rate,2015-2019,5,below,medium,flag
 TRN,net_entry_rate,2022-2024,1,,medium,too few years
 TRN,pmr_sector,2018-2023,2,above,high,flag
@@ -250,10 +250,10 @@ UTL,churn,2015-2019,5,,low,within the range
 UTL,churn,2022-2024,0,,,too few years
 UTL,death_rate,2015-2019,5,,low,within the range
 UTL,death_rate,2022-2024,0,,,too few years
-UTL,lp_growth_hour,2015-2019,5,above,low,"outside, low comparability"
-UTL,lp_growth_hour,2022-2024,3,,low,"outside, not persistent"
-UTL,lp_growth_person,2015-2019,5,above,high,"outside, average on the other side"
-UTL,lp_growth_person,2022-2024,3,,high,"outside, not persistent"
+UTL,lp_growth_hour,2015-2019,5,above,medium,flag
+UTL,lp_growth_hour,2022-2024,3,,medium,"outside, not persistent"
+UTL,lp_growth_person,2015-2019,5,,medium,"outside, not persistent"
+UTL,lp_growth_person,2022-2024,3,above,medium,flag
 UTL,net_entry_rate,2015-2019,5,,medium,"outside, not persistent"
 UTL,net_entry_rate,2022-2024,0,,,too few years
 UTL,pmr_sector,2018-2023,2,,high,within the range

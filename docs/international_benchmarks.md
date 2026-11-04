@@ -14,23 +14,23 @@ A flag says where to look, not why a gap exists; it is descriptive and identifie
 
 ## Flags
 
-23 of 262 comparisons are flagged. Status counts: too few years 102; mixed 61; outside (low comparability) 40; **FLAG** 23; within 22; outside (fails leave-one-out) 12; mixed (average on the other side) 2.
+23 of 262 comparisons are flagged. Status counts: too few years 101; mixed 61; outside (low comparability) 40; within 24; **FLAG** 23; outside (fails leave-one-out) 10; mixed (average on the other side) 3.
 
 | Group | Measure | Window | Australia | Peer median | Peer range (25th-75th) | Gap | Side | Years | Rank |
 |---|---|---|---:|---:|---|---:|---|---:|---:|
 | Business economy | FDI regulatory restrictiveness, all sectors | 2021-2025 | 0.20 | 0.05 | 0.01 to 0.12 | 0.16 | above | 5 | 1 of 7 |
+| Electricity, gas, water and waste | Labour productivity growth per hour worked | 2015-2019 | 0.82 | -0.69 | -2.34 to 1.68 | 1.51 | above | 5 | 2 of 7 |
 | Construction | Labour productivity growth per hour worked | 2015-2019 | -3.01 | -0.08 | -1.11 to 1.48 | -2.93 | below | 5 | 7 of 7 |
 | Accommodation and food services | Labour productivity growth per hour worked | 2022-2024 | -6.33 | -0.12 | -3.42 to 3.27 | -6.20 | below | 2 | 7 of 7 |
 | Rental, hiring and real estate | Labour productivity growth per hour worked | 2015-2019 | 1.28 | -0.59 | -1.48 to -0.09 | 1.87 | above | 5 | 2 of 6 |
-| Business economy | Labour productivity growth per person employed | 2022-2024 | -1.17 | 2.12 | 0.57 to 2.41 | -3.29 | below | 2 | 6 of 6 |
-| Mining | Labour productivity growth per person employed | 2015-2019 | 2.26 | 4.05 | -0.67 to 10.55 | -1.79 | below | 5 | 5 of 7 |
-| Construction | Labour productivity growth per person employed | 2015-2019 | -3.44 | 0.12 | -1.14 to 1.76 | -3.56 | below | 5 | 7 of 7 |
-| Construction | Labour productivity growth per person employed | 2022-2024 | -3.77 | 1.83 | -3.10 to 4.06 | -5.59 | below | 3 | 7 of 7 |
-| Financial and insurance services | Labour productivity growth per person employed | 2022-2024 | -0.54 | -1.50 | -3.79 to 0.88 | 0.97 | above | 3 | 3 of 7 |
-| Education and training | Labour productivity growth per person employed | 2022-2024 | -2.19 | 0.79 | -1.41 to 2.32 | -2.98 | below | 3 | 7 of 7 |
-| Health care and social assistance | Labour productivity growth per person employed | 2015-2019 | 1.07 | -0.23 | -1.20 to 0.57 | 1.31 | above | 5 | 1 of 7 |
-| Health care and social assistance | Labour productivity growth per person employed | 2022-2024 | -2.44 | 0.14 | -0.76 to 1.50 | -2.58 | below | 3 | 7 of 7 |
-| Agriculture, forestry and fishing | Labour productivity growth per person employed | 2015-2019 | -4.43 | -0.41 | -2.20 to 1.75 | -4.02 | below | 5 | 7 of 7 |
+| Business economy | Labour productivity growth per person employed | 2022-2024 | -0.04 | 2.12 | 0.57 to 2.41 | -2.16 | below | 2 | 5 of 6 |
+| Electricity, gas, water and waste | Labour productivity growth per person employed | 2022-2024 | -3.45 | -4.56 | -7.48 to -3.05 | 1.11 | above | 3 | 2 of 7 |
+| Construction | Labour productivity growth per person employed | 2015-2019 | -3.24 | 0.12 | -1.14 to 1.76 | -3.36 | below | 5 | 7 of 7 |
+| Rental, hiring and real estate | Labour productivity growth per person employed | 2015-2019 | 2.13 | 0.01 | -1.53 to 0.67 | 2.12 | above | 5 | 1 of 6 |
+| Health care and social assistance | Labour productivity growth per person employed | 2015-2019 | 1.46 | -0.23 | -1.20 to 0.57 | 1.70 | above | 5 | 1 of 7 |
+| Health care and social assistance | Labour productivity growth per person employed | 2022-2024 | -2.18 | 0.14 | -0.76 to 1.50 | -2.32 | below | 3 | 7 of 7 |
+| Agriculture, forestry and fishing | Labour productivity growth per person employed | 2015-2019 | -3.09 | -0.41 | -2.20 to 1.75 | -2.68 | below | 5 | 7 of 7 |
+| Agriculture, forestry and fishing | Labour productivity growth per person employed | 2022-2024 | 9.09 | 2.40 | -0.82 to 7.74 | 6.69 | above | 3 | 1 of 7 |
 | Wholesale and retail trade | Net change in employer businesses | 2015-2019 | -0.47 | 0.43 | -0.29 to 0.83 | -0.90 | below | 5 | 6 of 7 |
 | Transport, postal and warehousing | Net change in employer businesses | 2015-2019 | 0.04 | 1.37 | 0.88 to 2.19 | -1.32 | below | 5 | 7 of 7 |
 | Education and training | Net change in employer businesses | 2015-2019 | 2.99 | 1.31 | -0.18 to 2.30 | 1.68 | above | 5 | 1 of 7 |
@@ -186,23 +186,23 @@ Unit: % a year. Australia | peer median (range) | status, by window.
 
 | Group | 2015-2019 | 2022-2024 |
 |---|---|---|
-| Business economy | 0.6 \| 0.4 (0.1 to 0.7) \| mixed | no years with enough peers |
+| Business economy | 1.0 \| 0.6 (0.3 to 0.8) \| mixed | -3.0 \| -0.6 (-1.5 to 0.3) \| too few years |
 | Mining | 6.5 \| 3.7 (-1.6 to 11.9) \| mixed | -5.2 \| -14.7 (-21.6 to 0.8) \| within |
 | Manufacturing | -0.3 \| 0.8 (-0.0 to 1.9) \| outside (fails leave-one-out) | -1.3 \| -0.5 (-1.9 to 1.5) \| outside (low comparability) |
-| Electricity, gas, water and waste | 0.8 \| -0.7 (-2.3 to 1.7) \| outside (low comparability) | -1.7 \| -5.5 (-9.5 to -1.4) \| mixed |
+| Electricity, gas, water and waste | 0.8 \| -0.7 (-2.3 to 1.7) \| **FLAG** | -1.7 \| -5.5 (-9.5 to -1.4) \| mixed |
 | Construction | -3.0 \| -0.1 (-1.1 to 1.5) \| **FLAG** | -1.2 \| 1.4 (-2.7 to 3.5) \| mixed |
-| Wholesale and retail trade | 2.2 \| 1.4 (0.2 to 2.2) \| outside (low comparability) | 0.6 \| -1.6 (-3.4 to -0.7) \| mixed |
+| Wholesale and retail trade | 2.3 \| 1.4 (0.2 to 2.2) \| mixed | 1.2 \| -0.9 (-2.3 to -0.1) \| outside (low comparability) |
 | Transport, postal and warehousing | 0.2 \| -0.6 (-2.7 to 1.7) \| mixed | 3.8 \| 3.1 (1.8 to 4.6) \| mixed |
 | Accommodation and food services | 0.7 \| -0.2 (-1.9 to 0.9) \| mixed | -6.3 \| -0.1 (-3.4 to 3.3) \| **FLAG** |
 | Information, media and telecommunications | 5.7 \| 0.7 (-0.1 to 2.6) \| outside (low comparability) | 7.2 \| 1.9 (0.4 to 2.9) \| outside (low comparability) |
 | Financial and insurance services | 0.3 \| 0.9 (-1.3 to 3.8) \| mixed | 0.4 \| -1.3 (-3.5 to 0.3) \| outside (fails leave-one-out) |
 | Rental, hiring and real estate | 1.3 \| -0.6 (-1.5 to -0.1) \| **FLAG** | -0.9 \| -0.5 (-3.8 to 1.7) \| within |
-| Professional, scientific, technical, administrative and support services | 1.9 \| 0.2 (-1.1 to 1.1) \| mixed | 0.0 \| 1.6 (-1.2 to 3.3) \| within |
-| Education and training | 2.5 \| 0.1 (-1.0 to 1.3) \| mixed | -3.2 \| -0.4 (-1.5 to 1.9) \| outside (low comparability) |
-| Health care and social assistance | 0.6 \| 0.1 (-1.3 to 1.1) \| mixed | -3.8 \| -0.6 (-1.2 to 1.3) \| outside (low comparability) |
-| Arts, recreation and other services | 4.2 \| 0.3 (-0.3 to 1.9) \| outside (fails leave-one-out) | -4.0 \| 2.8 (1.5 to 3.2) \| too few years |
+| Professional, scientific, technical, administrative and support services | 1.3 \| 0.3 (-0.8 to 1.1) \| mixed | 2.2 \| 1.2 (-0.9 to 2.7) \| within |
+| Education and training | -0.6 \| 0.1 (-1.0 to 1.3) \| mixed | -0.7 \| -0.8 (-2.4 to 2.4) \| mixed |
+| Health care and social assistance | 1.6 \| -0.2 (-1.4 to 0.8) \| outside (low comparability) | -2.2 \| -0.4 (-0.9 to 1.6) \| outside (low comparability) |
+| Arts, recreation and other services | 1.3 \| 0.3 (-0.4 to 1.7) \| mixed | 1.2 \| 3.7 (0.3 to 5.5) \| within |
 | Agriculture, forestry and fishing | 0.7 \| 0.0 (-1.1 to 2.2) \| mixed | 3.1 \| 3.1 (-1.4 to 9.7) \| mixed |
-| Public administration and safety | 3.1 \| 0.5 (0.2 to 1.3) \| outside (fails leave-one-out) | 0.8 \| 0.3 (-0.4 to 1.1) \| mixed |
+| Public administration and safety | -0.2 \| 0.7 (0.2 to 1.4) \| mixed (average on the other side) | 0.9 \| -0.3 (-0.8 to 0.7) \| mixed |
 
 ### Labour productivity growth per person employed
 
@@ -210,23 +210,23 @@ Unit: % a year. Australia | peer median (range) | status, by window.
 
 | Group | 2015-2019 | 2022-2024 |
 |---|---|---|
-| Business economy | -0.0 \| 0.4 (0.3 to 0.7) \| mixed | -1.2 \| 2.1 (0.6 to 2.4) \| **FLAG** |
-| Mining | 2.3 \| 4.1 (-0.7 to 10.5) \| **FLAG** | -1.6 \| -9.1 (-20.4 to 0.4) \| mixed |
-| Manufacturing | 0.3 \| 1.0 (-0.2 to 1.9) \| mixed | -0.3 \| -0.9 (-2.2 to 1.6) \| mixed (average on the other side) |
-| Electricity, gas, water and waste | -1.3 \| -0.8 (-2.0 to 1.9) \| mixed (average on the other side) | -7.2 \| -4.6 (-7.5 to -3.1) \| mixed |
-| Construction | -3.4 \| 0.1 (-1.1 to 1.8) \| **FLAG** | -3.8 \| 1.8 (-3.1 to 4.1) \| **FLAG** |
-| Wholesale and retail trade | 1.6 \| 1.4 (0.2 to 2.1) \| mixed | 0.1 \| 0.3 (-1.6 to 1.3) \| mixed |
-| Transport, postal and warehousing | -1.6 \| -0.5 (-2.6 to 1.6) \| mixed | 2.2 \| 4.2 (3.4 to 5.4) \| mixed |
-| Accommodation and food services | -3.2 \| -1.0 (-1.9 to -0.1) \| mixed | 0.4 \| 4.3 (1.1 to 10.6) \| mixed |
-| Information, media and telecommunications | 1.9 \| 1.1 (0.3 to 2.5) \| outside (fails leave-one-out) | 2.7 \| 1.7 (1.2 to 3.1) \| mixed |
-| Financial and insurance services | 0.6 \| 1.2 (-1.3 to 3.7) \| mixed | -0.5 \| -1.5 (-3.8 to 0.9) \| **FLAG** |
-| Rental, hiring and real estate | 2.0 \| 0.0 (-1.5 to 0.7) \| mixed | 2.4 \| 0.9 (-2.0 to 2.9) \| mixed |
-| Professional, scientific, technical, administrative and support services | 1.0 \| 0.1 (-0.6 to 1.2) \| outside (low comparability) | 0.5 \| 2.0 (0.7 to 3.2) \| outside (low comparability) |
-| Education and training | -1.3 \| -0.0 (-1.2 to 0.9) \| mixed | -2.2 \| 0.8 (-1.4 to 2.3) \| **FLAG** |
-| Health care and social assistance | 1.1 \| -0.2 (-1.2 to 0.6) \| **FLAG** | -2.4 \| 0.1 (-0.8 to 1.5) \| **FLAG** |
-| Arts, recreation and other services | -2.4 \| 0.3 (-0.5 to 1.2) \| mixed | 2.3 \| 5.1 (2.0 to 7.4) \| outside (low comparability) |
-| Agriculture, forestry and fishing | -4.4 \| -0.4 (-2.2 to 1.7) \| **FLAG** | 4.1 \| 2.4 (-0.8 to 7.7) \| mixed |
-| Public administration and safety | -0.0 \| 0.4 (0.0 to 1.1) \| mixed | 1.1 \| -0.5 (-1.5 to 0.9) \| mixed |
+| Business economy | 0.6 \| 0.4 (0.3 to 0.7) \| mixed | -0.0 \| 2.1 (0.6 to 2.4) \| **FLAG** |
+| Mining | 5.5 \| 4.1 (-0.7 to 10.5) \| mixed (average on the other side) | -4.0 \| -9.1 (-20.4 to 0.4) \| within |
+| Manufacturing | -0.0 \| 1.0 (-0.2 to 1.9) \| mixed | -0.8 \| -0.9 (-2.2 to 1.6) \| mixed |
+| Electricity, gas, water and waste | 1.0 \| -0.8 (-2.0 to 1.9) \| mixed | -3.4 \| -4.6 (-7.5 to -3.1) \| **FLAG** |
+| Construction | -3.2 \| 0.1 (-1.1 to 1.8) \| **FLAG** | -2.0 \| 1.8 (-3.1 to 4.1) \| mixed |
+| Wholesale and retail trade | 2.0 \| 1.4 (0.2 to 2.1) \| mixed | 1.0 \| 0.3 (-1.6 to 1.3) \| outside (low comparability) |
+| Transport, postal and warehousing | -0.3 \| -0.5 (-2.6 to 1.6) \| mixed | 3.9 \| 4.2 (3.4 to 5.4) \| mixed |
+| Accommodation and food services | -0.7 \| -1.0 (-1.9 to -0.1) \| mixed | 1.7 \| 4.3 (1.1 to 10.6) \| mixed |
+| Information, media and telecommunications | 4.5 \| 1.1 (0.3 to 2.5) \| outside (low comparability) | 9.3 \| 1.7 (1.2 to 3.1) \| outside (low comparability) |
+| Financial and insurance services | 1.4 \| 1.2 (-1.3 to 3.7) \| mixed | -2.4 \| -1.5 (-3.8 to 0.9) \| mixed |
+| Rental, hiring and real estate | 2.1 \| 0.0 (-1.5 to 0.7) \| **FLAG** | 0.1 \| 0.9 (-2.0 to 2.9) \| mixed |
+| Professional, scientific, technical, administrative and support services | 0.9 \| 0.1 (-0.6 to 1.2) \| mixed | 2.6 \| 2.0 (0.7 to 3.2) \| mixed |
+| Education and training | -1.0 \| -0.0 (-1.2 to 0.9) \| mixed | -1.1 \| 0.8 (-1.4 to 2.3) \| outside (fails leave-one-out) |
+| Health care and social assistance | 1.5 \| -0.2 (-1.2 to 0.6) \| **FLAG** | -2.2 \| 0.1 (-0.8 to 1.5) \| **FLAG** |
+| Arts, recreation and other services | 0.6 \| 0.3 (-0.5 to 1.2) \| mixed | 2.5 \| 5.1 (2.0 to 7.4) \| outside (low comparability) |
+| Agriculture, forestry and fishing | -3.1 \| -0.4 (-2.2 to 1.7) \| **FLAG** | 9.1 \| 2.4 (-0.8 to 7.7) \| **FLAG** |
+| Public administration and safety | -0.2 \| 0.4 (0.0 to 1.1) \| mixed (average on the other side) | 1.0 \| -0.5 (-1.5 to 0.9) \| mixed |
 
 ### Product market regulation, the group's sector indicators
 
