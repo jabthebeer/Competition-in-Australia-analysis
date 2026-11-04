@@ -727,7 +727,8 @@ function sourceHtml(sources, keys) {
 
 /* Dumbbell rows: one row per item, a hollow dot for the first value and a filled dot for the last, joined by a
  * line, with the change written at the end. Rows are buttons (select one with onSelect).
- * rows [{key, label, a, b, total}], opts: {domain: [lo, hi], fmt, fmtChange, selected, onSelect, aLabel, bLabel}. */
+ * rows [{key, label, a, b, total, aLabel, bLabel}] (a row's own labels, when its years differ from the chart's), opts:
+ * {domain: [lo, hi], fmt, fmtChange, selected, onSelect, aLabel, bLabel}. */
 function dumbbellChart(container, rows, opts) {
   container._xl = { kind: "dumbbell", rows, opts };
   const [lo, hi] = opts.domain;
@@ -739,7 +740,8 @@ function dumbbellChart(container, rows, opts) {
   container.innerHTML = head + rows.map((r) => {
     const ok = isNum(r.a) && isNum(r.b);
     const a = ok ? pos(r.a) : 0, b = ok ? pos(r.b) : 0;
-    const label = `${r.label}: ${ok ? `${fmtV(r.a)} in ${opts.aLabel}, ${fmtV(r.b)} in ${opts.bLabel}, change ${fmtC(r.b - r.a)}` : "no data"}`;
+    const aL = r.aLabel || opts.aLabel, bL = r.bLabel || opts.bLabel;
+    const label = `${r.label}: ${ok ? `${fmtV(r.a)} in ${aL}, ${fmtV(r.b)} in ${bL}, change ${fmtC(r.b - r.a)}` : "no data"}`;
     return `<button type="button" class="db-row${r.total ? " total" : ""}" data-key="${esc(r.key)}" aria-pressed="${r.key === opts.selected}" aria-label="${esc(label)}">
       <span class="db-lab">${esc(r.label)}</span>
       <span class="db-track">${grid}${ok ? `<span class="db-seg" style="left:${Math.min(a, b)}%;width:${Math.abs(b - a)}%"></span><span class="db-dot a" style="left:${a}%"></span><span class="db-dot b" style="left:${b}%"></span>` : ""}</span>
@@ -748,7 +750,7 @@ function dumbbellChart(container, rows, opts) {
   container.querySelectorAll(".db-row").forEach((btn) => {
     const r = rows.find((x) => x.key === btn.dataset.key);
     btn.addEventListener("click", () => opts.onSelect && opts.onSelect(btn.dataset.key));
-    const tip = (ev) => showTip(`<strong>${esc(r.label)}</strong><table><tr><td>${esc(opts.aLabel)}</td><td class="v">${esc(fmtV(r.a))}</td></tr><tr><td>${esc(opts.bLabel)}</td><td class="v">${esc(fmtV(r.b))}</td></tr><tr><td>Change</td><td class="v">${esc(fmtC(r.b - r.a))}</td></tr></table>`, ev);
+    const tip = (ev) => showTip(`<strong>${esc(r.label)}</strong><table><tr><td>${esc(r.aLabel || opts.aLabel)}</td><td class="v">${esc(fmtV(r.a))}</td></tr><tr><td>${esc(r.bLabel || opts.bLabel)}</td><td class="v">${esc(fmtV(r.b))}</td></tr><tr><td>Change</td><td class="v">${esc(fmtC(r.b - r.a))}</td></tr></table>`, ev);
     btn.addEventListener("pointermove", tip);
     btn.addEventListener("pointerleave", hideTip);
   });
@@ -811,7 +813,7 @@ function rangeChart(container, rows, opts = {}) {
   }
   const tipHtml = (r) => rangeTip(r, fmtV);
   const say = (r, f = r.fmt || fmtV) => [
-    `${r.title || r.label}.`,
+    `${r.title || r.label}. `,
     isNum(r.au) ? `Australia ${f(r.au)}` : "No Australian figure",
     isNum(r.med) ? `; similar economies' median ${f(r.med)}, middle half ${f(r.q1)} to ${f(r.q3)}` : "; too few similar economies",
     r.position ? `; ${RANGE_POS[r.position].toLowerCase()} the middle half` : "",

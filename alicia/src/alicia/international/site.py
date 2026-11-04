@@ -109,7 +109,7 @@ def payload() -> dict:
     yi = {y: i for i, y in enumerate(years)}
     series: dict = {}
     for (m, g), cell in df.groupby(["measure", "group"]):
-        digits = MEASURES[m][3] + 2
+        digits = max(MEASURES[m][3] + 2, 3)  # two past display, at least three, so averages stay exact to show
         by = {}
         for c in ["AUS", *core]:
             sub = cell[cell["country"] == c]

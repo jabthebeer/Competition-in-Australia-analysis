@@ -261,7 +261,9 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         range(int(counts.index.get_level_values("year").min()), int(counts.index.get_level_values("year").max()) + 1)
     )
     emp = {
-        s: {c: _series(counts.loc[(s, c)], emp_years, 3) for c in (*DIVISIONS, TOTAL) if (s, c) in counts.index}
+        # Five decimals keep the four-quarter mean of figures published to three decimals exact: rounding it to three
+        # put two heatmap cells on the wrong side of their display rounding.
+        s: {c: _series(counts.loc[(s, c)], emp_years, 5) for c in (*DIVISIONS, TOTAL) if (s, c) in counts.index}
         for s in STATES
     }
 

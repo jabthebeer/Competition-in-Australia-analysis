@@ -81,6 +81,22 @@ def test_page_quantile_matches_the_benchmark_engine():
     assert json.loads(out) == pytest.approx([benchmark.quantile([3, 1, 4, 1.5, 9, 2.6], x) for x in (0.25, 0.5, 0.75)])
 
 
+@pytest.mark.parametrize("template", ["growth.html", "conditions.html"])
+def test_page_scripts_parse(template, tmp_path):
+    """A syntax error (such as a name declared twice) stops the whole page drawing, so check every script parses."""
+    import shutil
+    import subprocess
+
+    if shutil.which("node") is None:
+        pytest.skip("Node.js not installed")
+    scripts = re.findall(r"<script>(.*?)</script>", growth.render(template, {}, template), re.S)
+    assert len(scripts) >= 2
+    for i, code in enumerate(scripts):
+        (tmp_path / f"{i}.js").write_text(code, "utf-8")
+        r = subprocess.run(["node", "--check", str(tmp_path / f"{i}.js")], capture_output=True, text=True)
+        assert r.returncode == 0, r.stderr
+
+
 def test_growth_page_flags_industries_classified_differently_overseas():
     html = resources.files("alicia.menu").joinpath("templates/growth.html").read_text("utf-8")
     js = resources.files("alicia.menu").joinpath("templates/charts.js").read_text("utf-8")
@@ -276,17 +292,20 @@ def test_competition_page_tells_its_story_in_order(tmp_path):
     assert "<h1>The state of competition in Australia</h1>" in g
     c = (tmp_path / "conditions.html").read_text("utf-8")
     assert '<a href="growth.html">The state of competition in Australia</a>' in c
-    # Concentration, business entry, returns, industries by state (productivity first), state economies, and folded away
-    # at the end, where the barriers to entry are.
+    # Industries by state first (with similar economies, then the selected industry, productivity first), then
+    # concentration, business entry, returns, state economies, and folded away at the end, where the barriers to entry
+    # are.
     ids = [
+        "heat",
+        "peerChart",
+        "detailTitle",
+        "prodChart",
+        "cmpChart",
+        "dGva",
         "conRows",
         "grpChart",
         "dynChart",
         "scChart",
-        "heat",
-        "detailTitle",
-        "prodChart",
-        "dGva",
         "gspTable",
         "shares",
     ]

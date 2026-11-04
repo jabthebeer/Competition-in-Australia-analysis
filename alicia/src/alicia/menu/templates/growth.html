@@ -5,9 +5,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
 <style>
 /*__SITE_CSS__*/
-/* Layout: a statistical bulletin that tells a story: concentration, business entry and what it earns, each under a
-   heading that states what the data show; then the state x industry heatmap with the selected industry's productivity
-   and history; state economies; and, folded away at the end, where the barriers to entry are. Each section has its own
+/* Layout: a statistical bulletin that tells a story: first the state x industry heatmap, compared with similar
+   economies, with the selected industry's productivity and history; then concentration, business entry and what it
+   earns, each under a heading that states what the data show; state economies; and, folded away at the end, where
+   the barriers to entry are. Each section has its own
    period slider. A chart's description sits behind the "i" beside its title; its notes and sources in one dropdown. */
 table.data td.gsp-best { color: var(--ink-2); text-align: left; }
 </style>
@@ -17,89 +18,8 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     <!--__NAV__-->
     <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
     <h1>The state of competition in Australia</h1>
-    <p class="lede">How concentrated industries are, how often new businesses start up, and how productive each state's industries are.</p>
+    <p class="lede">How each state's industries are growing and how productive they are, set against similar economies; how concentrated industries are; and how often new businesses start up.</p>
   </header>
-
-  <section class="block" aria-labelledby="h-con">
-    <div class="block-head">
-      <h2 id="h-con">Concentration</h2>
-      <p id="conLede"></p>
-    </div>
-    <div class="toolbar" role="group" aria-label="Years for concentration"><div id="conRange"></div></div>
-    <div class="panel chart-card">
-      <h3>Concentration by industry</h3><button type="button" class="info" data-for="conUnit" aria-describedby="conUnit" aria-label="About this chart">i</button>
-      <p class="unit" id="conUnit" hidden></p>
-      <div class="toolbar">
-        <label for="conMeasure">Share of sales made by the</label>
-        <select id="conMeasure"></select>
-        <span class="legend" id="conKey"></span>
-      </div>
-      <div class="dumbbell" id="conRows"></div>
-      <h3 id="conLineTitle"></h3>
-      <div class="legend" id="conLineKey"></div>
-      <div class="chart" id="conChart"></div>
-      <details class="more"><summary>About this chart</summary><p class="hint" id="conHint"></p><p id="conNote"></p><p class="source" id="conSrc"></p></details>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-entry">
-    <div class="block-head">
-      <h2 id="h-entry">Business entry</h2>
-      <p id="entryLede"></p>
-    </div>
-    <div class="toolbar" role="group" aria-label="Years for business entry"><div id="entRange"></div></div>
-    <div class="toolbar">
-      <label for="bScope">Businesses counted</label>
-      <select id="bScope"><option value="employing">Businesses with employees</option><option value="all">All businesses</option></select><button type="button" class="info" data-for="scopeNote" aria-describedby="scopeNote" aria-label="About the businesses counted">i</button>
-      <label for="bState">State</label>
-      <select id="bState"></select>
-      <label for="bMeasure">Measure</label>
-      <select id="bMeasure"></select>
-    </div>
-    <p id="scopeNote" hidden></p>
-    <div class="charts-grid">
-      <div class="panel chart-card">
-        <h3 id="grpTitle"></h3><button type="button" class="info" data-for="grpUnit" aria-describedby="grpUnit" aria-label="About this chart">i</button>
-        <div class="toolbar"><label for="grpBreak">Show</label><select id="grpBreak"></select></div>
-        <p class="unit" id="grpUnit" hidden></p>
-        <div class="chips" id="grpChips"></div>
-        <div class="bars pick" id="grpBars" hidden></div>
-        <h3 id="grpLineTitle" hidden></h3>
-        <div class="legend" id="grpLineKey" hidden></div>
-        <div class="chart" id="grpChart"></div>
-        <details class="more"><summary>About this chart</summary><p id="grpNote"></p><p class="source" id="grpSrc"></p><div class="tscroll" id="grpTable"></div></details>
-      </div>
-      <div class="panel chart-card">
-        <h3 id="dynTitle"></h3><button type="button" class="info" data-for="dynUnit" aria-describedby="dynUnit" aria-label="About this chart">i</button>
-        <div class="toolbar">
-          <label for="dynInd">Industries</label><select id="dynInd"></select>
-          <label for="dynSec" id="dynSecLabel">Sector</label><select id="dynSec"></select>
-        </div>
-        <p class="unit" id="dynUnit" hidden></p>
-        <div class="legend" id="dynKey"></div>
-        <div class="chart" id="dynChart"></div>
-        <div class="title-row"><h3>Net change in the number of businesses</h3><button type="button" class="info" data-for="netUnit" aria-describedby="netUnit" aria-label="About this chart">i</button></div>
-        <p class="unit" id="netUnit" hidden></p>
-        <div class="chart" id="netChart"></div>
-        <details class="more"><summary>About this chart</summary><p class="source" id="dynSrc"></p><div class="tscroll" id="dynTable"></div></details>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-ret">
-    <div class="block-head">
-      <h2 id="h-ret">Business entry and returns</h2>
-      <p id="retLede"></p>
-    </div>
-    <div class="toolbar" role="group" aria-label="Years for business entry and returns"><div id="retRange"></div></div>
-    <div class="panel chart-card">
-      <h3>Business entry and company returns, by sector</h3><button type="button" class="info" data-for="scUnit" aria-describedby="scUnit" aria-label="About this chart">i</button>
-      <p class="unit" id="scUnit" hidden></p>
-      <div class="legend" id="scKey"></div>
-      <div class="chart" id="scChart"></div>
-      <details class="more"><summary>About this chart</summary><p id="scFit"></p><p id="scMethod"></p><p class="source" id="scSrc"></p><div class="tscroll" id="scTable"></div></details>
-    </div>
-  </section>
 
   <section class="block" aria-labelledby="h-ind">
     <div class="block-head">
@@ -183,6 +103,87 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
         <p class="unit" id="rankUnit" hidden></p>
         <div class="bars" id="dRank"></div>
       </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-con">
+    <div class="block-head">
+      <h2 id="h-con">Concentration</h2>
+      <p id="conLede"></p>
+    </div>
+    <div class="toolbar" role="group" aria-label="Years for concentration"><div id="conRange"></div></div>
+    <div class="panel chart-card">
+      <h3>Concentration by industry</h3><button type="button" class="info" data-for="conUnit" aria-describedby="conUnit" aria-label="About this chart">i</button>
+      <p class="unit" id="conUnit" hidden></p>
+      <div class="toolbar">
+        <label for="conMeasure">Share of sales made by the</label>
+        <select id="conMeasure"></select>
+        <span class="legend" id="conKey"></span>
+      </div>
+      <div class="dumbbell" id="conRows"></div>
+      <h3 id="conLineTitle"></h3>
+      <div class="legend" id="conLineKey"></div>
+      <div class="chart" id="conChart"></div>
+      <details class="more"><summary>About this chart</summary><p class="hint" id="conHint"></p><p id="conNote"></p><p class="source" id="conSrc"></p></details>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-entry">
+    <div class="block-head">
+      <h2 id="h-entry">Business entry</h2>
+      <p id="entryLede"></p>
+    </div>
+    <div class="toolbar" role="group" aria-label="Years for business entry"><div id="entRange"></div></div>
+    <div class="toolbar">
+      <label for="bScope">Businesses counted</label>
+      <select id="bScope"><option value="employing">Businesses with employees</option><option value="all">All businesses</option></select><button type="button" class="info" data-for="scopeNote" aria-describedby="scopeNote" aria-label="About the businesses counted">i</button>
+      <label for="bState">State</label>
+      <select id="bState"></select>
+      <label for="bMeasure">Measure</label>
+      <select id="bMeasure"></select>
+    </div>
+    <p id="scopeNote" hidden></p>
+    <div class="charts-grid">
+      <div class="panel chart-card">
+        <h3 id="grpTitle"></h3><button type="button" class="info" data-for="grpUnit" aria-describedby="grpUnit" aria-label="About this chart">i</button>
+        <div class="toolbar"><label for="grpBreak">Show</label><select id="grpBreak"></select></div>
+        <p class="unit" id="grpUnit" hidden></p>
+        <div class="chips" id="grpChips"></div>
+        <div class="bars pick" id="grpBars" hidden></div>
+        <h3 id="grpLineTitle" hidden></h3>
+        <div class="legend" id="grpLineKey" hidden></div>
+        <div class="chart" id="grpChart"></div>
+        <details class="more"><summary>About this chart</summary><p id="grpNote"></p><p class="source" id="grpSrc"></p><div class="tscroll" id="grpTable"></div></details>
+      </div>
+      <div class="panel chart-card">
+        <h3 id="dynTitle"></h3><button type="button" class="info" data-for="dynUnit" aria-describedby="dynUnit" aria-label="About this chart">i</button>
+        <div class="toolbar">
+          <label for="dynInd">Industries</label><select id="dynInd"></select>
+          <label for="dynSec" id="dynSecLabel">Sector</label><select id="dynSec"></select>
+        </div>
+        <p class="unit" id="dynUnit" hidden></p>
+        <div class="legend" id="dynKey"></div>
+        <div class="chart" id="dynChart"></div>
+        <div class="title-row"><h3>Net change in the number of businesses</h3><button type="button" class="info" data-for="netUnit" aria-describedby="netUnit" aria-label="About this chart">i</button></div>
+        <p class="unit" id="netUnit" hidden></p>
+        <div class="chart" id="netChart"></div>
+        <details class="more"><summary>About this chart</summary><p class="source" id="dynSrc"></p><div class="tscroll" id="dynTable"></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-ret">
+    <div class="block-head">
+      <h2 id="h-ret">Business entry and returns</h2>
+      <p id="retLede"></p>
+    </div>
+    <div class="toolbar" role="group" aria-label="Years for business entry and returns"><div id="retRange"></div></div>
+    <div class="panel chart-card">
+      <h3>Business entry and company returns, by sector</h3><button type="button" class="info" data-for="scUnit" aria-describedby="scUnit" aria-label="About this chart">i</button>
+      <p class="unit" id="scUnit" hidden></p>
+      <div class="legend" id="scKey"></div>
+      <div class="chart" id="scChart"></div>
+      <details class="more"><summary>About this chart</summary><p id="scFit"></p><p id="scMethod"></p><p class="source" id="scSrc"></p><div class="tscroll" id="scTable"></div></details>
     </div>
   </section>
 
@@ -427,6 +428,15 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
   // 2014-15 to 2018-19 are 2015 to 2019; growth over the same span is growth in 2016 to 2019.
   const intlYears = (win, kind) => IY.filter((y) => y >= win.from + (kind === "growth" ? 2 : 1) && y <= win.to + 1);
   const yearsText = (ys) => (!ys || !ys.length ? "" : ys.length === 1 ? String(ys[0]) : `${ys[0]} to ${ys[ys.length - 1]}`);
+  // The span a comparison covers: Australia's financial years, then the others' calendar years (growth in 2016 is growth
+  // from 2015, which for Australia is 2014-15 to 2015-16). A regulation indicator gives its editions.
+  const intlSpan = (ys, kind) => {
+    if (!ys || !ys.length) return "";
+    if (kind === "level") return yearsText(ys);
+    const a = ys[0] - (kind === "growth" ? 1 : 0), b = ys[ys.length - 1];
+    return `${winLabel({ from: a - 1, to: b - 1 })} (other economies ${a === b ? b : `${a} to ${b}`})`;
+  };
+  const INTL_BASIS = "Australia's figure here is on the other economies' definitions (their industry groups, harmonised to the OECD's) and for the years their data cover, so it can differ from the Aus. column of the state table.";
   // One economy over the given years: growth rates compounded, other rates averaged (with figures in at least half of
   // them, unless "any"); a regulation indicator is its latest edition up to the last year.
   function winValue(vals, years, kind, win, any = false) {
@@ -467,7 +477,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const flags = (I.tests?.[measure]?.[g] || []).filter((t) => t.status === "flag");
     const flag = flags.length ? `The formal test flags this gap: Australia ${flags.map((t) => `${t.side} the middle half in ${t.window}`).join(", and ")}.` : "";
     const peerYears = M.kind === "level" ? [...new Set(peers.flatMap((p) => p.years))].sort() : basis;
-    return { au: au.v, peers, q1, med, q3, oecd: winValue(S.OECD, basis, M.kind, win).v, position, rating, ratingWhy: I.reasons?.[measure]?.[g] || "", flag, years: M.kind === "level" ? peerYears : basis, nPeers: vals.length, fmt: ifmt(measure) };
+    return { au: au.v, peers, q1, med, q3, oecd: winValue(S.OECD, basis, M.kind, win).v, position, rating, ratingWhy: I.reasons?.[measure]?.[g] || "", flag, years: M.kind === "level" ? peerYears : basis, span: intlSpan(M.kind === "level" ? peerYears : basis, M.kind), nPeers: vals.length, fmt: ifmt(measure) };
   }
   const daggerOf = (g) => { const d = (groupInfo(g)?.divisions || []).find((x) => INTL[x]); return d ? `${DIVNAME[d]} is classified differently in other countries: ${INTL[d]}` : ""; };
   const RANGE_KEY = () => `<span><span class="rg-au"></span>Australia</span><span><span class="rg-au low"></span>Australia, ${term("comparability", "low comparability")}</span><span><span class="rg-band"></span>${term("peerRange", "Middle half")} of ${term("peers", "similar economies")}</span><span><span class="rg-med"></span>Their median</span><span><span class="rg-peer"></span>Each economy</span><span><span class="rg-oecd"></span>OECD median</span><span><span class="rg-flag">⚑</span>Gap flagged by the formal test</span>`;
@@ -530,7 +540,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     heat.innerHTML = `${head}<tbody>${body}</tbody>`;
     heat.querySelectorAll("button[data-peer]").forEach((b) => {
       const c = b.dataset.peer, r = peerCells[c];
-      const tip = { ...r, title: `${DIVNAME[c]}: ${IM[im].label}${isBiz(metric) ? " (businesses with employees)" : ""}, ${yearsText(r.years)}`, dagger: daggerOf(groupOfDiv(c)),
+      const tip = { ...r, title: `${DIVNAME[c]}: ${IM[im].label}${isBiz(metric) ? " (businesses with employees)" : ""}, ${r.span}`, dagger: daggerOf(groupOfDiv(c)),
         extra: groupInfo(groupOfDiv(c))?.divisions.length > 1 ? `<div class="tip-ex">Compared as ${esc(groupInfo(groupOfDiv(c)).short.toLowerCase())}, as other countries publish it.</div>` : "" };
       b.addEventListener("pointermove", (ev) => showTip(rangeTip(tip, r.fmt), ev));
       b.addEventListener("pointerleave", hideTip);
@@ -552,7 +562,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     document.getElementById("heatScale").innerHTML = `<span>${M.kind === "div" ? fmtSigned(-scale, 1) : "0"}</span><span class="bar" style="background:${grad}"></span><span>${M.kind === "div" ? fmtSigned(scale, 1) : fmt(scale, 1)}</span><span>${esc(M.unit)}</span>`;
     const flagged = Object.keys(INTL).length > 0;
     const peerHint = !HAS_INTL ? "" : im
-      ? ` ${term("peers", "Similar economies")}: the median of six comparable economies for the same measure${isBiz(metric) ? ", on businesses with employees (the basis other countries use, so it is set against Australia's employer figure, not the all-business figure shown)" : ""}; ▲ Australia above their ${term("peerRange", "middle half")}, ● within, ▼ below.`
+      ? ` ${term("peers", "Similar economies")}: the median of six comparable economies for the same measure${isBiz(metric) ? ", on businesses with employees (the basis other countries use, so it is set against Australia's employer figure, not the all-business figure shown)" : ""}; ▲ Australia above their ${term("peerRange", "middle half")}, ● within, ▼ below. ${INTL_BASIS}`
       : " Other countries publish no comparable figure for this view, so the similar economies column is hidden.";
     document.getElementById("heatHint").innerHTML = M.hint() + peerHint + (flagged ? ` † ${esc(D.intl.title)}: hover the mark to see what differs.` : "");
     document.getElementById("heatSrc").innerHTML = SRC([...new Set([...M.src, ...(flagged ? ["abs_isic"] : []), ...(im ? intlSrc(im) : [])])]);
@@ -712,7 +722,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const rows = IGROUPS.map((g) => {
       const r = compare(m, g.id, indWin);
       if (!r || (!isNum(r.au) && !isNum(r.med))) return null;
-      return { key: g.id, label: g.short, title: `${g.label}: ${M.short.toLowerCase()}, ${yearsText(r.years)}`, total: g.id === "ALL", dagger: daggerOf(g.id), ...r };
+      return { key: g.id, label: g.short, title: `${g.label}: ${M.short.toLowerCase()}, ${r.span}`, total: g.id === "ALL", dagger: daggerOf(g.id), ...r };
     }).filter(Boolean);
     peerRows = rows;
     const vals = rows.flatMap((r) => [r.au, r.q1, r.q3, r.med]).filter(isNum);
@@ -729,8 +739,12 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
         document.getElementById("detail").scrollIntoView({ behavior: "smooth", block: "start" });
       },
     });
-    const ys = rows[0]?.years || [];
-    document.getElementById("peerUnit").innerHTML = `${esc(M.label)}: ${esc(M.unit)}${M.kind === "level" ? `, latest edition (${esc(yearsText(ys))})` : `, ${esc(yearsText(ys))}`}. Australia against six ${term("peers", "similar economies")}, by industry as other countries group them. Select an industry to see it below.`;
+    // The span most industries share (the business economy can have fewer years); each row's own is in its tooltip.
+    const count = {};
+    for (const r of rows) if (r.span) count[r.span] = (count[r.span] || 0) + 1;
+    const spans = Object.keys(count).sort((p, q) => count[q] - count[p]);
+    const common = spans[0] || "", differ = spans.length > 1 ? " (some industries differ: hover a row)" : "";
+    document.getElementById("peerUnit").innerHTML = `${esc(M.label)}: ${esc(M.unit)}${M.kind === "level" ? `, latest edition (${esc(common)})` : `, ${esc(common)}`}${differ}. Australia against six ${term("peers", "similar economies")}, by industry as other countries group them. ${INTL_BASIS} Select an industry to see it below.`;
     document.getElementById("peerKey").innerHTML = RANGE_KEY();
     document.getElementById("peerNote").innerHTML = `${METHOD()} Industries are the common groups other countries can be compared on, so some combine two of Australia's (wholesale with retail, professional with administrative services, arts with other services).`;
     document.getElementById("peerSrc").innerHTML = SRC(intlSrc(m));
@@ -744,7 +758,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const rows = ms.map((m) => {
       const r = compare(m, g, indWin);
       if (!r || (!isNum(r.au) && !isNum(r.med))) return null;
-      return { key: m, label: IM[m].short, title: `${G.label}: ${IM[m].label} (${IM[m].unit}), ${yearsText(r.years)}`, ...r };
+      return { key: m, label: IM[m].short, title: `${G.label}: ${IM[m].label} (${IM[m].unit}), ${r.span}`, ...r };
     }).filter(Boolean);
     cmpRows = rows;
     rangeChart(document.getElementById("cmpChart"), rows, {});
@@ -752,7 +766,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const merged = G.divisions.length > 1 ? `Compared as ${G.short.toLowerCase()} (ANZSIC ${G.divisions.join(" and ")} together), as other countries publish it. ` : "";
     const whole = s === "AUS" ? "" : `These comparisons are for Australia as a whole, not ${NAMES[s]}. `;
     document.getElementById("cmpSub").innerHTML = `${esc(merged + whole)}${daggerOf(g) ? `${intlFlag(c)} Classified differently in other countries. ` : ""}Each row on its own scale; hover or tap a row for the figures.`;
-    document.getElementById("cmpUnit").innerHTML = `Each row: Australia against six ${term("peers", "similar economies")} on one measure, over ${esc(winLabel(indWin))} (regulation: the latest edition). The band is their ${term("peerRange", "middle half")}, the tick their median, the small dots each economy and the diamond the OECD median.`;
+    document.getElementById("cmpUnit").innerHTML = `Each row: Australia against six ${term("peers", "similar economies")} on one measure, within ${esc(winLabel(indWin))} (each row's years are in its tooltip; regulation: the latest edition). ${INTL_BASIS} The band is their ${term("peerRange", "middle half")}, the tick their median, the small dots each economy and the diamond the OECD median.`;
     document.getElementById("cmpKey").innerHTML = RANGE_KEY();
     document.getElementById("cmpNote").innerHTML = METHOD();
     document.getElementById("cmpSrc").innerHTML = SRC([...new Set(rows.flatMap((r) => intlSrc(r.key)))]);
@@ -1159,7 +1173,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const ya = tot ? tot.a[0] : ys[0], yb = tot ? tot.b[0] : ys[ys.length - 1];
     const rows = [
       ...(tot ? [{ key: "TOT", label: "All industries", a: tot.a[1], b: tot.b[1], total: true }] : []),
-      ...codes.map((d) => { const fl = firstLast(d); return { key: d, label: DIVLABEL[d], a: fl.a[1], b: fl.b[1], ya: fl.a[0], yb: fl.b[0] }; })
+      ...codes.map((d) => { const fl = firstLast(d); return { key: d, label: DIVLABEL[d], a: fl.a[1], b: fl.b[1], ya: fl.a[0], yb: fl.b[0], aLabel: String(fl.a[0]), bLabel: String(fl.b[0]) }; })
         .sort((p, q) => (q.b - q.a) - (p.b - p.a)),
     ];
     if (!rows.some((r) => r.key === conDiv)) conDiv = "TOT";
@@ -1272,7 +1286,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     head: [first, ...(unitOf ? ["Unit"] : []), "Australia", "Median of similar economies", "25th percentile", "75th percentile",
       ...PEERS.map((c) => INAME[c]), "OECD median", "Australia's position", "Comparability of Australia's figure", "Formal test", "Years"],
     rows: rows.map((r) => [r.label, ...(unitOf ? [unitOf(r)] : []), r.au, r.med, r.q1, r.q3, ...PEERS.map((c) => r.peers.find((p) => p.code === c)?.v ?? null),
-      r.oecd, r.position ? `${RANGE_POS[r.position]} the middle half` : "too few economies", RANGE_RATING[r.rating] || "", r.flag || "", yearsText(r.years)]),
+      r.oecd, r.position ? `${RANGE_POS[r.position]} the middle half` : "too few economies", RANGE_RATING[r.rating] || "", r.flag || "", r.span]),
     fmts: ["text", ...(unitOf ? ["text"] : []), ...Array(5 + PEERS.length).fill("0.00"), "text", "text", "text", "text"].map((f, i, a) => (i >= a.length - 4 ? "text" : f)),
   });
   if (HAS_INTL) {

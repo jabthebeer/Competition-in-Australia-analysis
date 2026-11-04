@@ -561,12 +561,17 @@ function xlRanked(rows, o) {
   };
 }
 function xlDumbbell(rows, o) {
+  // Rows can carry their own years (r.aLabel, r.bLabel); when any differs, the columns say so and list each row's years.
+  const A = String(o.aLabel), B = String(o.bLabel);
+  const own = rows.some((r) => (r.aLabel && r.aLabel !== A) || (r.bLabel && r.bLabel !== B));
   return {
-    head: [o.xlCat || "Item", String(o.aLabel), String(o.bLabel), "Change, percentage points"],
-    rows: rows.map((r) => [r.label, xlNum(r.a) ? r.a : null, xlNum(r.b) ? r.b : null, xlNum(r.a) && xlNum(r.b) ? r.b - r.a : null]), fmts: ["text", "0.0", "0.0", "+0.0;-0.0;0.0"],
+    head: [o.xlCat || "Item", own ? `First year (${A} unless shown)` : A, own ? `Last year (${B} unless shown)` : B, "Change, percentage points", ...(own ? ["First year", "Last year"] : [])],
+    rows: rows.map((r) => [r.label, xlNum(r.a) ? r.a : null, xlNum(r.b) ? r.b : null, xlNum(r.a) && xlNum(r.b) ? r.b - r.a : null, ...(own ? [r.aLabel || A, r.bLabel || B] : [])]),
+    fmts: ["text", "0.0", "0.0", "+0.0;-0.0;0.0", ...(own ? ["text", "text"] : [])],
     chart: { type: "bar", dir: "bar", grouping: "clustered", gap: 50, cat: 0, reverse: true, yMin: o.domain[0], legend: true,
       series: [{ col: 1, color: "#D3D2CA" }, { col: 2, color: xlColor("var(--accent)") }] },
-    notes: [["In this workbook", "On the page each row is a pair of dots joined by a line; Excel shows the two years as a pair of bars."]],
+    notes: [["In this workbook", "On the page each row is a pair of dots joined by a line; Excel shows the two years as a pair of bars."],
+      ...(own ? [["Years", `Most rows compare ${A} with ${B}; rows with fewer years use their own first and last years, in the last two columns.`]] : [])],
   };
 }
 function xlFromChart(x) {
