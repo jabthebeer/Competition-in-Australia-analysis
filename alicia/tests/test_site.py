@@ -51,6 +51,11 @@ def test_growth_payload_is_aligned_and_consistent():
     assert all(len(r) == len(intl["years"]) for g in intl["ratings"].values() for r in g.values())
     assert intl["divGroup"]["F"] == intl["divGroup"]["G"] == "TRD" and intl["divGroup"]["TOT"] == "ALL"
     assert {"oecd_sdbs", "oecd_stan", "oecd_pmr", "oecd_stri", "oecd_fdi"} <= set(p["sources"])
+    # Levels on the selected industry's charts say whose prices they are in: the chain volume reference year,
+    # when volumes equal current prices
+    k = p["years"].index(p["cvmRef"])
+    for c in ("C", "E", "G"):
+        assert abs(p["gva"]["volume"]["AUS"][c][k] - p["gva"]["current"]["AUS"][c][k]) < 1
 
 
 def test_growth_page_compares_industries_with_similar_economies():
@@ -74,6 +79,10 @@ def test_growth_page_compares_industries_with_similar_economies():
     for el in ('data-k="band"', 'data-k="oecd"', 'data-k="australia"', "data-peer=", "data-reset"):
         assert el in html
     assert "rg-cty-lab" in js and "endLabel" in js and "function rangeDomain" in js
+    # the selected industry's productivity, output and jobs charts show an index, a level or growth each year
+    for k in ("prod", "gva", "emp"):
+        assert f'<select id="{k}Show"></select>' in html
+    assert "function modeChart" in html and "function peerGrowth" in html
     # each range row speaks its figures and position, and shows them in words, not colour alone
     assert "aria-label" in js and "RANGE_POS" in js and "function rangeChart" in js and "function quantile7" in js
 
@@ -310,7 +319,9 @@ def test_every_chart_that_follows_a_control_can_be_exported_to_excel(tmp_path):
         assert data["sources"]["ato"]["licence"] == "CC BY 2.5 AU"
     g = (tmp_path / "growth.html").read_text("utf-8")
     c = (tmp_path / "conditions.html").read_text("utf-8")
-    assert '[["dGva", "Output"], ["dEmp", "Jobs"], ["dBiz", "Businesses starting and closing"]].forEach' in g
+    assert (
+        '[["dGva", "Output", "gva"], ["dEmp", "Jobs", "emp"], ["dBiz", "Businesses starting and closing"]].forEach' in g
+    )
     assert "for (const c of CHARTS) {\n    excelButton(cardOf(`ch-${c.id}`)" in c
 
 

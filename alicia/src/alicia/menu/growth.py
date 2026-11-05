@@ -230,6 +230,16 @@ def _division_list() -> list[dict]:
     return [{"code": c, "name": anzsic.name(c) or c} for c in DIVISIONS] + [{"code": TOTAL, "name": "All industries"}]
 
 
+def _cvm_reference_year(sa: pd.DataFrame) -> int | None:
+    """The reference year of the chain volume series (the financial year, by its first year, in which they equal
+    current prices for every division of Australia), so levels can say whose prices they are in."""
+    a = sa[(sa["geo_code"] == "AUS") & sa["measure"].isin(("gva_volume", "gva_current")) & (sa["div"] != TOTAL)]
+    w = a.pivot_table(index=["div", "year"], columns="measure", values="value")
+    same = w[(w["gva_volume"] - w["gva_current"]).abs() < 0.5].reset_index().groupby("year")["div"].nunique()
+    full = same[same == w.index.get_level_values("div").nunique()]
+    return int(full.index[-1]) if len(full) else None
+
+
 def growth_payload(repo_base: str = REPO_MAIN) -> dict:
     sa = store.read_panel("abs_state_accounts", "industry_state_fy")
     sa = sa.assign(year=_fy_year(sa["period"]), div=sa["industry_code"].replace("", TOTAL))
@@ -299,6 +309,7 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         "years": years,
         "gsp": {"volume": gsp("gsp_volume"), "current": gsp("gsp_current"), "perCapita": gsp("gsp_per_capita")},
         "gva": {"volume": gva("gva_volume"), "current": gva("gva_current")},
+        "cvmRef": _cvm_reference_year(sa),
         "empYears": emp_years,
         "emp": emp,
         "bizYears": biz_years,

@@ -63,6 +63,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       <h3 id="prodTitle">Productivity</h3><button type="button" class="info" data-for="prodUnit" aria-describedby="prodUnit" aria-label="About this chart">i</button>
       <p class="unit" id="prodUnit" hidden></p>
       <div class="tiles" id="prodTiles"></div>
+      <div class="toolbar"><label for="prodShow">Show</label><select id="prodShow"></select></div>
       <div class="legend" id="prodKey"></div>
       <div class="chart" id="prodChart"></div>
       <details class="more"><summary>More figures</summary><dl class="facts" id="detailFacts"></dl></details>
@@ -80,6 +81,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       <div class="panel chart-card">
         <h3>Output</h3><button type="button" class="info" data-for="uGva" aria-describedby="uGva" aria-label="About this chart">i</button>
         <p class="unit" id="uGva" hidden></p>
+        <div class="toolbar"><label for="gvaShow">Show</label><select id="gvaShow"></select></div>
         <div class="legend" id="gvaKey"></div>
         <div class="chart" id="dGva"></div>
         <details class="more"><summary>About this chart</summary><p class="source" id="srcGva"></p></details>
@@ -87,6 +89,7 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
       <div class="panel chart-card">
         <h3>Jobs</h3><button type="button" class="info" data-for="uEmp" aria-describedby="uEmp" aria-label="About this chart">i</button>
         <p class="unit" id="uEmp" hidden></p>
+        <div class="toolbar"><label for="empShow">Show</label><select id="empShow"></select></div>
         <div class="legend" id="empKey"></div>
         <div class="chart" id="dEmp"></div>
         <details class="more"><summary>About this chart</summary><p class="source" id="srcEmp"></p></details>
@@ -581,6 +584,55 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     return { series, areas, band: areas.length > 0, oecd: series.some((x) => x.key === "oecd"), each: series.some((x) => PEERS.includes(x.key)) };
   };
 
+  // ---- Show: the selected industry's productivity, output and jobs charts as an index (first year = 100), a level,
+  // or growth each year. Levels are real (chain volumes, at the reference year's prices); other economies' levels are
+  // in their own currencies and prices, so only the index and growth compare with them.
+  const SHOWS = { index: "Index (first year = 100)", level: "Level", growth: "Growth each year (%)" };
+  const SHOW_LEVEL = { prod: "Level ($ thousand a worker)", gva: "Level ($ billion)", emp: "Level (thousand people)" };
+  const chartShow = {};
+  for (const k of ["prod", "gva", "emp"]) {
+    const v = store.get(`${k}Show`, "index");
+    chartShow[k] = SHOWS[v] ? v : "index";
+    const el = document.getElementById(`${k}Show`);
+    el.innerHTML = Object.entries(SHOWS).map(([m, label]) => `<option value="${m}">${esc(m === "level" ? SHOW_LEVEL[k] : label)}</option>`).join("");
+    el.value = chartShow[k];
+    el.addEventListener("change", () => { chartShow[k] = el.value; store.set(`${k}Show`, el.value); renderDetail(); });
+  }
+  const showLabel = (k) => (chartShow[k] === "level" ? SHOW_LEVEL[k] : SHOWS[chartShow[k]]);
+  const CVM_REF = isNum(D.cvmRef) ? fyLabel(D.cvmRef) : "";
+  const atPrices = CVM_REF ? `at ${CVM_REF} prices` : "in chain volumes";
+  const index100 = (vals) => { const b = vals[0]; return vals.map((v) => (isNum(v) && isNum(b) && b > 0 ? (v / b) * 100 : null)); };
+  const growthOf = (vals) => vals.map((v, i) => (i && isNum(v) && isNum(vals[i - 1]) && vals[i - 1] > 0 ? (v / vals[i - 1] - 1) * 100 : null));
+  const tidy = (v) => fmt(v, Math.abs(v - Math.round(v)) < 1e-9 ? 0 : Math.abs(v) < 1 ? 2 : 1);  // axis labels
+  // Each year's growth for the six economies, as peerBand: growth into a financial year is the international
+  // growth of the year it ends in
+  function peerGrowth(measure, g, ys) {
+    const S = I.series?.[measure]?.[g];
+    if (!HAS_INTL || !S || !ys.length) return null;
+    const yearly = (vals) => ys.map((y) => { const v = vals?.[IY.indexOf(y + 1)]; return isNum(v) ? v : null; });
+    const each = Object.fromEntries(PEERS.filter((c) => S[c]).map((c) => [c, yearly(S[c])]));
+    const pick = (q) => ys.map((_, i) => { const v = Object.values(each).map((a) => a[i]).filter(isNum); return v.length >= 4 ? quantile7(v, q) : null; });
+    const med = pick(0.5);
+    return med.some(isNum) ? { med, lo: pick(0.25), hi: pick(0.75), each, oecd: S.OECD ? yearly(S.OECD) : null } : null;
+  }
+  // One of the three charts in its chosen mode. lines: [{key, label, levels (one a year of ys), color, dash, width,
+  // index (instead of levels / first), growth (instead of growth of levels), noLevel}]; measure: the international
+  // series to compare with; level: {scale, yFmt, tipFmt}.
+  function modeChart(mode, ys, lines, measure, c, level, label) {
+    const x = mode === "growth" ? ys.slice(1) : ys;
+    const series = lines.filter((l) => !(mode === "level" && l.noLevel)).map((l) => ({
+      key: l.key, label: l.label, color: l.color, dash: l.dash, width: l.width,
+      values: mode === "index" ? l.index || index100(l.levels) : mode === "growth" ? (l.growth || growthOf(l.levels)).slice(1) : l.levels.map((v) => (isNum(v) ? v * (level.scale || 1) : null)),
+    }));
+    const band = mode === "index" ? peerBand(measure, groupOfDiv(c), ys) : mode === "growth" ? peerGrowth(measure, groupOfDiv(c), x) : null;
+    const ov = overlays(band);
+    series.push(...ov.series);
+    const base = { x, xKind: "fy", series, areas: ov.areas, label, _ov: ov, _mode: mode };
+    if (mode === "index") return { ...base, ref: 100, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1) };
+    if (mode === "growth") return { ...base, ref: 0, zero: true, yFmt: (v) => fmtSigned(v, 0), tipFmt: (v) => `${fmtSigned(v, 1)}%`, xlFmt: "+0.0;-0.0;0.0" };
+    return { ...base, zero: true, yFmt: level.yFmt || tidy, tipFmt: level.tipFmt };
+  }
+
   // ---- heatmap -----------------------------------------------------------------------
   function heatData() {
     const M = METRICS[metric];
@@ -675,20 +727,30 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     ];
     document.getElementById("detailFacts").innerHTML = facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
 
-    const pair = (src, years, label, measure) => {
+    // Australia's output or jobs is many times a state's, so a state's level is shown alone
+    const pair = (k, src, years, what, measure, level) => {
       const ys = years.filter((y) => y >= indWin.from && y <= indWin.to);
-      const series = [s, ...(s === "AUS" ? [] : ["AUS"])].map((g) => ({
-        key: g, label: NAMES[g], values: indexSeries(src[g]?.[c], years, indWin.from, indWin.to).vals,
-        color: stateColor(g), dash: g === "AUS" && s !== "AUS", width: 2,
+      const lines = [s, ...(s === "AUS" ? [] : ["AUS"])].map((g) => ({
+        key: g, label: NAMES[g], levels: ys.map((y) => at(src[g]?.[c], years, y)),
+        color: stateColor(g), dash: g === "AUS" && s !== "AUS", width: 2, noLevel: g === "AUS" && s !== "AUS",
       }));
-      const ov = overlays(peerBand(measure, groupOfDiv(c), ys));
-      series.push(...ov.series);
-      return { x: ys, xKind: "fy", series, areas: ov.areas, ref: 100, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label, _band: ov.band, _ov: ov };
+      const o = modeChart(chartShow[k], ys, lines, measure, c, level, `${what}, ${showLabel(k).toLowerCase()}`);
+      return { ...o, _band: o._ov.band, xlUnit: unitText(k, what, o, true) };
     };
-    const idxUnit = (extra, o) => `${term("index100", "Index")}, ${esc(fyLabel(indWin.from))} = 100${extra}${s === "AUS" ? "." : ". Dashed line: Australia."}${peerNote(o._ov, c)}`;
-    const gvaOpts = pair(D.gva.volume, D.years, "Output index", "va_growth"), empOpts = pair(D.emp, D.empYears, "Jobs index", "emp_growth");
-    document.getElementById("uGva").innerHTML = idxUnit(`, adjusted for inflation`, gvaOpts);
-    document.getElementById("uEmp").innerHTML = idxUnit(", people employed", empOpts);
+    // What a chart shows, in words (plain for Excel)
+    const unitText = (k, what, o, plain = false) => {
+      const T = plain ? (key, text) => text : term;
+      const aus = s === "AUS" ? "" : o._mode === "level" ? ` ${NAMES[s]} alone: Australia's is many times larger.` : " Dashed line: Australia.";
+      const body = o._mode === "index" ? `${T("index100", "Index")}, ${fyLabel(indWin.from)} = 100, ${k === "gva" ? "real output (adjusted for inflation)" : "people employed"}.`
+        : o._mode === "growth" ? `Growth each year, %: ${k === "gva" ? "real output (adjusted for inflation)" : "people employed"}, on the year before.`
+        : k === "gva" ? `Real output, $ billion ${atPrices} (chain volumes).` : "People employed, thousand (the mean of the year's four quarters).";
+      const peers = o._mode === "level" ? " Other economies' levels are in their own currencies, so they are not shown: choose the index or growth to compare." : plain ? "" : peerNote(o._ov, c, o._mode === "growth");
+      return `${body}${aus}${peers}`;
+    };
+    const gvaOpts = pair("gva", D.gva.volume, D.years, "Output", "va_growth", { scale: 1 / 1000, tipFmt: (v) => `$${fmt(v, v < 10 ? 2 : 1)} billion` });
+    const empOpts = pair("emp", D.emp, D.empYears, "Jobs", "emp_growth", { tipFmt: (v) => `${fmt(v, v < 10 ? 2 : 1)} thousand` });
+    document.getElementById("uGva").innerHTML = unitText("gva", "Output", gvaOpts);
+    document.getElementById("uEmp").innerHTML = unitText("emp", "Jobs", empOpts);
     const lineKey = (o) => o.series.map((x) => `<span><span class="key${x.dash ? " dash" : ""}" style="${x.dash ? `color:${x.color}` : `background:${x.color}`}"></span>${esc(x.label)}</span>`).join("")
       + (o._band ? `<span><span class="key area-key" style="background:var(--ink-3)"></span>${term("peerRange", "Middle half of similar economies")}</span>` : "");
     document.getElementById("gvaKey").innerHTML = lineKey(gvaOpts);
@@ -718,10 +780,10 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     renderPeerCard();
     syncCmp();
   }
-  // What the comparison lines on an index chart are, for the industry's group
-  function peerNote(ov, c) {
+  // What the comparison lines on an index chart (or a chart of growth each year) are, for the industry's group
+  function peerNote(ov, c, growth = false) {
     if (!ov || !ov.series.length) return "";
-    const parts = [ov.band ? `grey band and dotted line: the ${term("peerRange", "middle half")} and median of six ${term("peers", "similar economies")}` : "",
+    const parts = [ov.band ? `grey band and dotted line: the ${term("peerRange", "middle half")} and median of six ${term("peers", "similar economies")}${growth ? "' growth each year" : ""}` : "",
       ov.oecd ? "dashed line marked OECD: the OECD median" : "", ov.each ? "thin labelled lines: single economies" : ""].filter(Boolean).join("; ");
     return ` ${parts.charAt(0).toUpperCase()}${parts.slice(1)}, for ${esc(groupInfo(groupOfDiv(c))?.short.toLowerCase() || "the industry")} as they classify it (Compare with sets which).`;
   }
@@ -757,26 +819,37 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     const pc = (v) => (isNum(v) ? `${fmtSigned(v, 1)}%` : "–");
     const tile = (label, value, sub) => `<div class="tile"><span class="t-label">${label}</span><span class="t-value">${esc(value)}</span><span class="t-sub">${sub}</span></div>`;
     document.getElementById("prodTiles").innerHTML = [
-      tile(`Output per worker, ${esc(fyLabel(indWin.to))}`, isNum(lvl) ? `$${fmt(lvl, 0)}k` : "–", s === "AUS" ? "at current prices" : esc(`Australia $${fmt(prodLevel("AUS", c), 0)}k`)),
+      tile(`Output per worker, ${esc(fyLabel(indWin.to))}`, isNum(lvl) ? `$${fmt(lvl, 0)}k` : "–", s === "AUS" ? "at current prices" : esc(`at current prices; Australia $${fmt(prodLevel("AUS", c), 0)}k`)),
       tile(`${term("productivity", "Productivity")} growth a year`, pc(g), s === "AUS" ? "output per worker" : esc(`Australia ${pc(prodGrowth("AUS", c))}`)),
       tile("Output and jobs growth a year", `${pc(gvaGrowth(s, c))} and ${pc(empGrowth(s, c))}`, "productivity rises when output outpaces jobs"),
       tile(`${term("labourProd", "ABS labour productivity")}, Australia`, pc(absGrowth),
         !abs ? "not published for this industry" : absYears.length >= 2 ? esc(`a year per hour worked, ${winLabel({ from: a0, to: absYears[absYears.length - 1] })}`) : esc(`published from ${fyLabel(P.years[0])}`)),
     ].join("");
-    const series = [{ key: s, label: `${NAMES[s]}, output per worker`, values: mine, color: stateColor(s), width: 2.4 }];
-    if (s !== "AUS") series.push({ key: "AUS", label: "Australia, output per worker", values: aus, color: stateColor("AUS"), dash: true, width: 1.6 });
-    if (absYears.length) series.push({ key: "abs", label: "Australia, ABS labour productivity (per hour)", values: absIdx, color: "var(--accent)", dash: "1.5 3.5", width: 2 });
-    const pOv = overlays(peerBand("lp_growth_person", groupOfDiv(c), ys));
-    series.push(...pOv.series.map((x) => (x.key === "peers" ? { ...x, label: "Similar economies, output per worker, median" } : x)));
+    const mode = chartShow.prod;
+    const lines = [{ key: s, label: `${NAMES[s]}, output per worker`, levels: ys.map((y) => perWorker(s, c, y)), index: mine, color: stateColor(s), width: 2.4 }];
+    if (s !== "AUS") lines.push({ key: "AUS", label: "Australia, output per worker", levels: ys.map((y) => perWorker("AUS", c, y)), index: aus, color: stateColor("AUS"), dash: true, width: 1.6 });
+    if (absYears.length) {
+      const absLv = ys.map((y) => (abs && isNum(at(abs, P.years, y)) ? at(abs, P.years, y) : null));
+      lines.push({ key: "abs", label: "Australia, ABS labour productivity (per hour)", levels: absLv, index: absIdx, growth: growthOf(absLv), color: "var(--accent)", dash: "1.5 3.5", width: 2, noLevel: true });
+    }
+    const po = modeChart(mode, ys, lines, "lp_growth_person", c, { tipFmt: (v) => `$${fmt(v, 0)}k a worker` }, `Productivity: ${name}, ${NAMES[s]}, ${showLabel("prod").toLowerCase()}`);
+    const pOv = po._ov;
+    const series = po.series.map((x) => (x.key === "peers" ? { ...x, label: `Similar economies, output per worker${mode === "growth" ? " growth" : ""}, median` } : x));
     const pBand = pOv.band;
     document.getElementById("prodKey").innerHTML = series.map((x) => `<span><span class="key${x.dash ? " dash" : ""}" style="${x.dash ? `color:${x.color}` : `background:${x.color}`}"></span>${esc(x.label)}</span>`).join("")
       + (pBand ? `<span><span class="key area-key" style="background:var(--ink-3)"></span>${term("peerRange", "Middle half of similar economies")}</span>` : "");
+    const who = s === "AUS" ? "" : `, in ${esc(NAMES[s])} (solid) and Australia (dashed)`;
+    const absText = absYears.length ? `, and the ABS's ${term("labourProd", "labour productivity")} for the industry across Australia` : "";
+    const prodText = mode === "index"
+      ? `${term("productivity", "Productivity")} as an ${term("index100", "index")}, ${esc(fyLabel(indWin.from))} = 100: output per person employed, adjusted for inflation${who}${absText ? `${absText} (dotted${a0 > indWin.from ? `, from ${esc(fyLabel(a0))}, starting on the Australia line` : ""})` : ""}.${peerNote(pOv, c)}`
+      : mode === "growth"
+        ? `${term("productivity", "Productivity")} growth each year, %: real output per person employed, on the year before${who}${absText ? `${absText} (per hour worked, dotted)` : ""}.${peerNote(pOv, c, true)}`
+        : `${term("productivity", "Productivity")} as a level: real output per person employed, $ thousand a worker ${esc(atPrices)} (chain volumes)${who}. ${absYears.length ? "The ABS's labour productivity is published only as an index, so it is left out here; other" : "Other"} economies' levels are in their own currencies, so they are not shown: choose the index or growth to compare.`;
     lineChart(document.getElementById("prodChart"), {
-      x: ys, xKind: "fy", series, ref: 100, height: 260,
-      areas: pOv.areas, yFmt: (v) => fmt(v, 0), tipFmt: (v) => fmt(v, 1), label: `Productivity: ${name}, ${NAMES[s]}`,
-      xlUnit: `Index, ${fyLabel(indWin.from)} = 100.`,
+      ...po, series, height: 260,
+      xlUnit: prodText.replace(/<[^>]+>/g, ""),
     });
-    document.getElementById("prodUnit").innerHTML = `${term("productivity", "Productivity")} as an ${term("index100", "index")}, ${esc(fyLabel(indWin.from))} = 100: output per person employed, adjusted for inflation${s === "AUS" ? "" : `, in ${esc(NAMES[s])} (solid) and Australia (dashed)`}${absYears.length ? `, and the ABS's ${term("labourProd", "labour productivity")} for the industry across Australia (dotted${a0 > indWin.from ? `, from ${esc(fyLabel(a0))}, starting on the Australia line` : ""})` : ""}.${peerNote(pOv, c)}`;
+    document.getElementById("prodUnit").innerHTML = prodText;
     document.getElementById("prodNote").textContent = `${D.notes.prod} ${abs ? "The ABS measure is output per hour worked, for the industry across Australia." : "The ABS does not publish labour productivity for this industry (it covers the market sector: not public administration, education or health)."}`;
     document.getElementById("prodSrc").innerHTML = SRC(["state_accounts", "lfs_detailed", "abs_mfp", ...(pOv.series.length ? ["oecd_stan"] : [])]);
   }
@@ -1393,14 +1466,14 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
     });
   }
   excelButton(cardOf("prodChart"), {
-    settings: () => [periodSet(indWin), ...cellSet()], file: () => winLabel(indWin),
+    settings: () => [periodSet(indWin), ...cellSet(), ["Show", showLabel("prod")]], file: () => winLabel(indWin),
     tables: () => [{
       name: "Headline figures", title: `Productivity: ${DIVNAME[sel.div]}, ${NAMES[sel.state]}, ${winLabel(indWin)}`,
       head: ["Figure", NAMES[sel.state], "Australia"], rows: prodHead.map(([k, a, b]) => [k, isNum(a) ? a : null, isNum(b) ? b : null]), fmts: ["text", "0.0", "0.0"],
     }],
   });
-  [["dGva", "Output"], ["dEmp", "Jobs"], ["dBiz", "Businesses starting and closing"]].forEach(([id, what]) => excelButton(cardOf(id), {
-    title: () => `${what}: ${DIVNAME[sel.div]}, ${NAMES[sel.state]}`, settings: () => [periodSet(indWin), ...cellSet()], file: () => winLabel(indWin),
+  [["dGva", "Output", "gva"], ["dEmp", "Jobs", "emp"], ["dBiz", "Businesses starting and closing"]].forEach(([id, what, k]) => excelButton(cardOf(id), {
+    title: () => `${what}: ${DIVNAME[sel.div]}, ${NAMES[sel.state]}`, settings: () => [periodSet(indWin), ...cellSet(), ...(k ? [["Show", showLabel(k)]] : [])], file: () => winLabel(indWin),
   }));
   excelButton(cardOf("dRank"), { settings: () => [periodSet(indWin), ["Show", METRICS[metric].option], ["State", NAMES[sel.state]]], file: () => winLabel(indWin), sources: METRICS[metric].src });
   const scopeSet = () => ["Businesses counted", selText("bScope")];
