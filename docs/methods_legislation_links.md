@@ -35,6 +35,14 @@
    - For NSW and SA, the quote may be read from the Open Australian Legal Corpus's copy of the official text (`checked: corpus-copy`, with the corpus document ID), cited by its official register link.
    - The reach quotes the law's scope or definitions, or official guidance (the regulator, business.gov.au, ABLIS) naming the industry.
    - Thresholds quote the official value, with the date it applied.
+
+   **5a. ABLIS-first drafts.** Where the law's text is slow to reach (registers that refuse automated requests, obligations spread across definitions), a requirement may be drafted from its official ABLIS service page before the law is quoted. Such a draft:
+   - quotes the first sentence of the ABLIS description, unaltered and attributed (ABLIS's copyright allows nothing more);
+   - names the Act or Acts the listing gives, linked through the ABLIS page and with no register ID yet;
+   - records the ABLIS service ID (`ablis`);
+   - is rated **medium** at most, with a `confidence_note` saying the law's own text is not yet quoted.
+
+   Phase D replaces the ABLIS link with the register ID and a quote from the law, and raises the confidence where the law's words support it. The ABLIS listing stays as a reach source.
 6. **Confidence.**
    - **High:** the law's own words name the activity, or its scope clearly covers every business in the class.
    - **Medium:** official guidance names the industry.
