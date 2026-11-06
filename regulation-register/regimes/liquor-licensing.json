@@ -1,0 +1,104 @@
+{
+  "id": "liquor-licensing",
+  "name": "Liquor licensing",
+  "what": "Hold a liquor licence for the premises and type of sale, meet trading-hour and responsible service rules, and get planning approval for licensed premises.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "4520",
+      "4530",
+      "4123",
+      "4511",
+      "4400",
+      "1212",
+      "1213",
+      "1214",
+      "3606",
+      "9003",
+      "9201"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State liquor regulator",
+      "bodies": [
+        "nsw-ilga",
+        "vic-vgccc"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State liquor regulator and police",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "approves",
+      "who": "Local council (planning and amenity)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Accommodation and food services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/accommodation-and-food-services-industry",
+      "locator": "Licences and permits",
+      "quote": "sell alcohol to consume on site or take away",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "nsw-lockout-2014",
+    "nsw-lockout-repeal-cbd-2020",
+    "nsw-lockout-repeal-kings-cross-2021",
+    "nsw-small-bar-licence-2013",
+    "nt-alcohol-minimum-unit-price-2018",
+    "nt-takeaway-liquor-moratorium-2017",
+    "qld-tafv-2016",
+    "vic-late-night-liquor-freeze-lifted-2023",
+    "wa-small-bar-licence-2007"
+  ],
+  "issues": [
+    {
+      "tag": "inconsistent",
+      "what": "Staff in border towns must complete separate responsible service of alcohol courses for each state.",
+      "jurisdictions": [
+        "NSW",
+        "VIC"
+      ],
+      "evidence": [
+        {
+          "source": "Mutual Recognition Schemes",
+          "publisher": "Productivity Commission",
+          "year": 2015,
+          "url": "https://assets.pc.gov.au/inquiries/completed/mutual-recognition-schemes/report/mutual-recognition-schemes.pdf",
+          "locator": "Chapter 6, p. 201",
+          "quote": "Participants have raised examples of the need for staff in border areas to do separate Responsible Service of Alcohol or Responsible Conduct of Gambling courses in both New South Wales and Victoria",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": null
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

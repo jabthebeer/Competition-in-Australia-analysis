@@ -1,0 +1,67 @@
+{
+  "id": "short-term-accommodation",
+  "name": "Accommodation premises",
+  "what": "Get council approval and fire safety certification for accommodation premises, and meet state short-term rental registration, caps or levies where they apply.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "4400"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "local",
+      "function": "approves",
+      "who": "Local council (planning and fire safety)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State short-term rental register (some states)",
+      "bodies": [],
+      "jurisdictions": [
+        "NSW",
+        "WA"
+      ]
+    },
+    {
+      "tier": "state",
+      "function": "collects",
+      "who": "State revenue office (short stay levy, Victoria)",
+      "bodies": [],
+      "jurisdictions": [
+        "VIC"
+      ]
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Accommodation and food services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/accommodation-and-food-services-industry",
+      "locator": "Licences and permits",
+      "quote": "start or build an accommodation business",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "nsw-stra-2021",
+    "vic-short-stay-levy-2025",
+    "wa-stra-register-2025"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

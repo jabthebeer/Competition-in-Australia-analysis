@@ -1,0 +1,79 @@
+{
+  "id": "fisheries",
+  "name": "Fisheries and aquaculture",
+  "what": "Hold a fishing or aquaculture licence from the government that manages those waters, and meet catch, gear and reporting rules.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "020",
+      "041"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State fisheries agency (coastal waters and aquaculture)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Australian Fisheries Management Authority (Commonwealth fisheries)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State fisheries agency",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Agriculture, forestry and fishing industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/agriculture-forestry-and-fishing-industry",
+      "locator": "Laws you need to follow",
+      "quote": "Businesses that catch, farm or harvest fish and other aquatic species must follow fishing and aquaculture rules for their location and activity.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [
+    {
+      "tag": "duplicative",
+      "what": "Commonwealth fisheries are assessed under both fisheries law and environment law.",
+      "jurisdictions": [],
+      "evidence": [
+        {
+          "source": "Annual Review of Regulatory Burdens on Business: Primary Sector",
+          "publisher": "Productivity Commission",
+          "year": 2007,
+          "url": "https://assets.pc.gov.au/inquiries/completed/regulatory-burdens/primary-sector/report/primarysector.pdf",
+          "locator": "Chapter 5, p. 258",
+          "quote": "The Commonwealth Fisheries Association (CFA) expressed concern about the lack of harmonisation between the Fisheries Management Act and the EPBC Act.",
+          "origin": "australian",
+          "checked": "full-text"
+        }
+      ],
+      "status": "current",
+      "status_note": "Reported in 2007; not rechecked."
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

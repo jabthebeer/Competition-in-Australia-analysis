@@ -165,6 +165,18 @@ SOURCES: dict[str, Source] = {
             "gross value added by division (chain volume and current prices), factor income, gross state product",
         ),
         Source(
+            "ato_company",
+            "Taxation Statistics: Companies, Table 4 (selected items by industry)",
+            "Australian Taxation Office (via data.gov.au)",
+            "https://data.gov.au/data/organization/australiantaxationoffice",
+            "CC BY 2.5 AU",
+            "annual (income year): ANZSIC class 2018-19 to 2022-23; ANZSIC group 2014-15 to 2022-23",
+            "ANZSIC 2006 class (from the ATO's five-digit industry code)",
+            "Australia",
+            "companies, income, expenses, profit before tax, taxable income, tax payable, total assets and "
+            "liabilities, depreciation, interest, wages (companies only)",
+        ),
+        Source(
             "abs_sfd",
             "Australian National Accounts: State Final Demand (5206.0, dataflow ANA_SFD)",
             "ABS",
@@ -260,6 +272,18 @@ SOURCES: dict[str, Source] = {
             "commodity price index: all items, rural, non-rural, base metals, bulk; A$, SDR and US$",
             role="control",
         ),
+        Source(
+            "rba_yields",
+            "Capital Market Yields: Government Bonds, monthly (statistical table F2.1)",
+            "Reserve Bank of Australia",
+            "https://www.rba.gov.au/statistics/tables/#interest-rates",
+            "CC BY 4.0",
+            "monthly, from May 2013",
+            "none",
+            "Australia",
+            "Australian Government bond yields: 2, 3, 5 and 10 years; 10-year indexed bond",
+            role="control",
+        ),
     )
 }
 
@@ -294,6 +318,17 @@ MEASURE_LABELS = {
     "gsp_current": "gross state product (current prices)",
     "gsp_per_capita": "gross state product per person (chain volume)",
     "real_income": "real gross state income",
+    "companies": "companies lodging",
+    "total_income": "company total income",
+    "total_expenses": "company total expenses",
+    "profit_before_tax": "company profit before tax",
+    "taxable_income": "company taxable income",
+    "tax_payable": "company tax payable",
+    "total_assets": "company total assets",
+    "total_liabilities": "company total liabilities",
+    "depreciation": "company depreciation expenses",
+    "interest_expenses": "company interest expenses",
+    "wages": "company salary and wage expenses",
 }
 
 

@@ -18,7 +18,9 @@ Tables
   (chain volume, seasonally adjusted; ANA_IND_GVA); Business Indicators sales, wages and gross
   operating profits by division (QBIS; current prices, and chain volume sales).
 - ``national_month``: RBA index of commodity prices (statistical table I2; all items, rural,
-  non-rural, base metals and bulk commodities, in A$, SDR and US$).
+  non-rural, base metals and bulk commodities, in A$, SDR and US$); Australian Government bond yields
+  (table F2.1, monthly from May 2013; 2, 3, 5 and 10 years and the 10-year indexed bond), used for the
+  risk-free rate in the cost of equity on the Economic conditions page.
 
 Periods are the first day of the month or quarter. Data: ABS Data API (CC BY 4.0) and Reserve Bank
 of Australia (CC BY 4.0).
@@ -35,6 +37,7 @@ DIR = "controls"
 RBA_SOURCE = "rba"
 RBA_LICENCE = "CC BY 4.0, Reserve Bank of Australia (rba.gov.au/copyright)"
 RBA_I2 = "https://www.rba.gov.au/statistics/tables/xls/i02hist.xlsx"
+RBA_F2 = "https://www.rba.gov.au/statistics/tables/xls/f02hist.xlsx"
 ADJUSTMENT = {"10": "original", "20": "seasonally adjusted", "30": "trend"}
 
 # ANA_SFD (DATA_ITEM, SECTOR) -> measure stem; household consumption by purpose goes in ``breakdown``.
@@ -228,7 +231,7 @@ def business_indicators() -> pd.DataFrame:
 
 
 def read_rba_i2(path) -> pd.DataFrame:
-    """RBA table I2 as a long frame: date, series_id, title, units, value."""
+    """An RBA statistical table (I2, F2.1) as a long frame: date, series_id, title, units, value."""
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
     rows = list(wb["Data"].iter_rows(values_only=True))
     wb.close()
@@ -268,11 +271,31 @@ def commodity_prices() -> pd.DataFrame:
     )
 
 
+def bond_yields() -> pd.DataFrame:
+    path = store.download(RBA_SOURCE, RBA_F2, "f02hist.xlsx", RBA_LICENCE)
+    d = read_rba_i2(path)
+    return pd.DataFrame(
+        {
+            "source": "rba_yields",
+            "measure": "bond_yield",
+            "unit": "% a year",
+            "adjustment": "original",
+            "breakdown": d["title"].str.replace("Australian Government ", "", regex=False),
+            "geo_level": "AUS",
+            "geo_code": "AUS",
+            "period_type": "month",
+            "period": d["date"].dt.to_period("M").dt.to_timestamp(),
+            "value": d["value"],
+            "vintage": f"RBA F2.1 to {d['date'].max():%Y-%m}",
+        }
+    )
+
+
 TABLES = {
     "state_quarter": (state_final_demand, population, wages),
     "state_month": (labour_force, building_approvals),
     "industry_quarter": (industry_gva, business_indicators),
-    "national_month": (commodity_prices,),
+    "national_month": (commodity_prices, bond_yields),
 }
 
 
@@ -287,9 +310,12 @@ def _finish(frames: list[pd.DataFrame]) -> pd.DataFrame:
     return schema.make(df.assign(industry_scheme=scheme))
 
 
-def build() -> dict[str, pd.DataFrame]:
+def build(tables=None) -> dict[str, pd.DataFrame]:
+    """Build the control tables (all of them, or those named in ``tables``)."""
     out = {}
     for table, builders in TABLES.items():
+        if tables is not None and table not in tables:
+            continue
         panel = _finish([b() for b in builders])
         store.write_panel(panel, DIR, table)
         out[table] = panel

@@ -1,5 +1,6 @@
 {
   "id": "vic-fuel-price-reporting-2025",
+  "kind": "reform",
   "family": "fuel-price-transparency",
   "title": "Mandatory fuel price reporting, Servo Saver (Victoria)",
   "jurisdiction": "VIC",
@@ -69,5 +70,44 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
-  }
+  },
+  "assessment": {
+    "summary": "Retailers must report every price change for publication, so motorists can find the cheapest fuel. Lower search costs should sharpen price competition, but rivals also see each other's prices at once, which can help them coordinate.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Real-time public prices cut motorists' search costs; the risk that rivals use them to coordinate tempers the gain."
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Retailers must register sites and report each price change within a set time."
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": null,
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  },
+  "responsible": [
+    {
+      "body": "vic-cav",
+      "role": "administers",
+      "source": "https://www.vic.gov.au/general-order-effective-7-august-2026",
+      "note": "The Minister for Consumer Affairs administers the Australian Consumer Law and Fair Trading Act 2012."
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-03-10",
+      "kind": "tightened",
+      "what": "Retailers must commit a day ahead to a maximum price.",
+      "source": "https://www.legislation.vic.gov.au/in-force/statutory-rules/australian-consumer-law-and-fair-trading-code-practice-fuel-price-reporting-regulations-2025/002",
+      "record": "vic-fuel-price-commitment-2026"
+    }
+  ]
 }

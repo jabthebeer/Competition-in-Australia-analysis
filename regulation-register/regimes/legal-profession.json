@@ -1,0 +1,55 @@
+{
+  "id": "legal-profession",
+  "name": "Legal profession",
+  "what": "Be admitted as a lawyer and hold a practising certificate in each state or territory, under the Uniform Law where it applies.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "6931"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State admission board, law society or legal services regulator",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "inspects",
+      "who": "State legal services commissioner",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "harmonised",
+  "consistency_note": "A uniform law in New South Wales, Victoria and Western Australia; separate laws elsewhere.",
+  "basis": [
+    {
+      "source": "Professional, scientific and technical services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/professional-scientific-and-technical-services-industry",
+      "locator": "Lawyers and solicitors",
+      "quote": "Admission as a legal practitioner, through the court system in your state or territory; and A practising certificate in your state or territory.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "nsw-legal-profession-uniform-law-2015",
+    "vic-legal-profession-uniform-law-2015",
+    "wa-legal-profession-uniform-law-2022"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

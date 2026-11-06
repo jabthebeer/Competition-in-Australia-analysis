@@ -1,0 +1,2406 @@
+{
+ "title": "Economies most similar to Australia (OECD members)",
+ "status": "core group approved by the owner on 2026-11-03 (E-103)",
+ "method": "Four distances from Australia, each averaged over a window of years:\n\n- **Industry structure**: the dissimilarity index of value-added shares across the common industry groups (half the sum of absolute differences in shares, from 0 for identical structures to 1 for no overlap). Shares exclude the imputed rent of owner-occupied dwellings, which has no businesses or workers.\n- **Income**: the gap in log GDP per head at purchasing power parity.\n- **Size**: the gap in log population.\n- **Openness**: the gap in log trade (exports plus imports) as a share of GDP.\n\nEach distance is divided by its typical size between two OECD economies (the root mean square over all pairs of members), so the four are in the same units, and the score is their weighted sum: industry structure 1/2 and the other three 1/6 each, because structure matters most for comparing industry statistics. Lower is more similar. Variants change the weights, drop one distance at a time and move the window, to show how stable the ranking is; the proposed core group is the six most similar economies, which the owner approves before any benchmark is computed.\n\nShares are averaged over the window's years in which every group is available. Where fewer than three such years exist (mostly because the country does not split out imputed rent, which real estate needs), real estate is left out of that country's comparison and the shares of both countries are taken over the other groups. Where a country does not split out rental and leasing, it stays with professional and administrative services. The ranking describes similarity only; it says nothing about which economy performs better.",
+ "window": [
+  2015,
+  2019
+ ],
+ "weights": {
+  "structure": 0.5,
+  "income": 0.16666666666666666,
+  "size": 0.16666666666666666,
+  "openness": 0.16666666666666666
+ },
+ "scale": {
+  "structure": 0.2014,
+  "income": 0.587,
+  "size": 2.1688,
+  "openness": 0.7799
+ },
+ "variants": {
+  "baseline": "Baseline: structure 1/2, the others 1/6 each, 2015-2019",
+  "equal": "Equal weights, 1/4 each",
+  "structure_only": "Industry structure only",
+  "no_income": "Without income",
+  "no_size": "Without size",
+  "no_openness": "Without openness",
+  "recent": "Baseline weights, 2019-2023",
+  "earlier": "Baseline weights, 2010-2014"
+ },
+ "australia": {
+  "shares": {
+   "AGR": 0.028,
+   "MIN": 0.0984,
+   "MAN": 0.067,
+   "UTL": 0.0317,
+   "CON": 0.0901,
+   "TRD": 0.0957,
+   "TRN": 0.0555,
+   "ACC": 0.0286,
+   "ICT": 0.0483,
+   "FIN": 0.0911,
+   "RES": 0.0349,
+   "PRO": 0.0963,
+   "PUB": 0.0633,
+   "EDU": 0.0569,
+   "HLT": 0.0839,
+   "OTH": 0.0302
+  },
+  "years": [
+   2015,
+   2016,
+   2017,
+   2018,
+   2019
+  ],
+  "gdp_per_head_ppp": 56992,
+  "population_m": 24.6,
+  "trade_share_gdp": 42.7
+ },
+ "levels": {
+  "AUS": {
+   "gdp_per_head_ppp": 56992,
+   "population_m": 24.6,
+   "trade_share_gdp": 42.7
+  },
+  "AUT": {
+   "gdp_per_head_ppp": 62675,
+   "population_m": 8.8,
+   "trade_share_gdp": 105.3
+  },
+  "BEL": {
+   "gdp_per_head_ppp": 58746,
+   "population_m": 11.4,
+   "trade_share_gdp": 162.9
+  },
+  "CAN": {
+   "gdp_per_head_ppp": 56554,
+   "population_m": 36.6,
+   "trade_share_gdp": 65.9
+  },
+  "CHE": {
+   "gdp_per_head_ppp": 79925,
+   "population_m": 8.4,
+   "trade_share_gdp": 121.7
+  },
+  "CHL": {
+   "gdp_per_head_ppp": 28081,
+   "population_m": 18.6,
+   "trade_share_gdp": 57.4
+  },
+  "COL": {
+   "gdp_per_head_ppp": 17049,
+   "population_m": 48.3,
+   "trade_share_gdp": 36.8
+  },
+  "CRI": {
+   "gdp_per_head_ppp": 22466,
+   "population_m": 4.9,
+   "trade_share_gdp": 64.0
+  },
+  "CZE": {
+   "gdp_per_head_ppp": 44827,
+   "population_m": 10.6,
+   "trade_share_gdp": 146.6
+  },
+  "DEU": {
+   "gdp_per_head_ppp": 61502,
+   "population_m": 82.5,
+   "trade_share_gdp": 77.9
+  },
+  "DNK": {
+   "gdp_per_head_ppp": 64607,
+   "population_m": 5.8,
+   "trade_share_gdp": 106.2
+  },
+  "ESP": {
+   "gdp_per_head_ppp": 45178,
+   "population_m": 46.7,
+   "trade_share_gdp": 65.2
+  },
+  "EST": {
+   "gdp_per_head_ppp": 39224,
+   "population_m": 1.3,
+   "trade_share_gdp": 144.9
+  },
+  "FIN": {
+   "gdp_per_head_ppp": 55090,
+   "population_m": 5.5,
+   "trade_share_gdp": 75.8
+  },
+  "FRA": {
+   "gdp_per_head_ppp": 51905,
+   "population_m": 66.9,
+   "trade_share_gdp": 65.1
+  },
+  "GBR": {
+   "gdp_per_head_ppp": 52072,
+   "population_m": 65.9,
+   "trade_share_gdp": 61.9
+  },
+  "GRC": {
+   "gdp_per_head_ppp": 32197,
+   "population_m": 10.8,
+   "trade_share_gdp": 71.6
+  },
+  "HUN": {
+   "gdp_per_head_ppp": 34158,
+   "population_m": 9.7,
+   "trade_share_gdp": 163.8
+  },
+  "IRL": {
+   "gdp_per_head_ppp": 87501,
+   "population_m": 4.8,
+   "trade_share_gdp": 235.0
+  },
+  "ISL": {
+   "gdp_per_head_ppp": 64926,
+   "population_m": 0.3,
+   "trade_share_gdp": 88.3
+  },
+  "ISR": {
+   "gdp_per_head_ppp": 42776,
+   "population_m": 8.7,
+   "trade_share_gdp": 57.8
+  },
+  "ITA": {
+   "gdp_per_head_ppp": 48631,
+   "population_m": 60.0,
+   "trade_share_gdp": 57.1
+  },
+  "JPN": {
+   "gdp_per_head_ppp": 45475,
+   "population_m": 126.9,
+   "trade_share_gdp": 33.8
+  },
+  "KOR": {
+   "gdp_per_head_ppp": 47386,
+   "population_m": 51.4,
+   "trade_share_gdp": 72.9
+  },
+  "LTU": {
+   "gdp_per_head_ppp": 38857,
+   "population_m": 2.9,
+   "trade_share_gdp": 142.6
+  },
+  "LUX": {
+   "gdp_per_head_ppp": 132072,
+   "population_m": 0.6,
+   "trade_share_gdp": 359.4
+  },
+  "LVA": {
+   "gdp_per_head_ppp": 33002,
+   "population_m": 1.9,
+   "trade_share_gdp": 126.4
+  },
+  "MEX": {
+   "gdp_per_head_ppp": 21692,
+   "population_m": 123.4,
+   "trade_share_gdp": 76.1
+  },
+  "NLD": {
+   "gdp_per_head_ppp": 65502,
+   "population_m": 17.1,
+   "trade_share_gdp": 159.0
+  },
+  "NOR": {
+   "gdp_per_head_ppp": 89238,
+   "population_m": 5.3,
+   "trade_share_gdp": 68.1
+  },
+  "NZL": {
+   "gdp_per_head_ppp": 46292,
+   "population_m": 4.8,
+   "trade_share_gdp": 54.4
+  },
+  "POL": {
+   "gdp_per_head_ppp": 34601,
+   "population_m": 38.0,
+   "trade_share_gdp": 98.7
+  },
+  "PRT": {
+   "gdp_per_head_ppp": 37905,
+   "population_m": 10.3,
+   "trade_share_gdp": 83.6
+  },
+  "SVK": {
+   "gdp_per_head_ppp": 35229,
+   "population_m": 5.4,
+   "trade_share_gdp": 184.2
+  },
+  "SVN": {
+   "gdp_per_head_ppp": 41511,
+   "population_m": 2.1,
+   "trade_share_gdp": 155.2
+  },
+  "SWE": {
+   "gdp_per_head_ppp": 59872,
+   "population_m": 10.0,
+   "trade_share_gdp": 87.3
+  },
+  "TUR": {
+   "gdp_per_head_ppp": 27613,
+   "population_m": 80.3,
+   "trade_share_gdp": 56.2
+  },
+  "USA": {
+   "gdp_per_head_ppp": 66459,
+   "population_m": 326.3,
+   "trade_share_gdp": 27.0
+  }
+ },
+ "shares": {
+  "AUS": {
+   "AGR": 0.028,
+   "MIN": 0.0984,
+   "MAN": 0.067,
+   "UTL": 0.0317,
+   "CON": 0.0901,
+   "TRD": 0.0957,
+   "TRN": 0.0555,
+   "ACC": 0.0286,
+   "ICT": 0.0483,
+   "FIN": 0.0911,
+   "RES": 0.0349,
+   "PRO": 0.0963,
+   "PUB": 0.0633,
+   "EDU": 0.0569,
+   "HLT": 0.0839,
+   "OTH": 0.0302
+  },
+  "AUT": {
+   "AGR": 0.0134,
+   "MIN": 0.0037,
+   "MAN": 0.2055,
+   "UTL": 0.0281,
+   "CON": 0.067,
+   "TRD": 0.1264,
+   "TRN": 0.0597,
+   "ACC": 0.0433,
+   "ICT": 0.039,
+   "FIN": 0.0447,
+   "RES": 0.062,
+   "PRO": 0.0899,
+   "PUB": 0.0543,
+   "EDU": 0.0563,
+   "HLT": 0.0792,
+   "OTH": 0.0275
+  },
+  "BEL": {
+   "AGR": 0.0084,
+   "MIN": 0.0007,
+   "MAN": 0.1466,
+   "UTL": 0.0257,
+   "CON": 0.0538,
+   "TRD": 0.1226,
+   "TRN": 0.0598,
+   "ACC": 0.0198,
+   "ICT": 0.0443,
+   "FIN": 0.068,
+   "RES": 0.0564,
+   "PRO": 0.1442,
+   "PUB": 0.0795,
+   "EDU": 0.0733,
+   "HLT": 0.076,
+   "OTH": 0.0208
+  },
+  "CAN": {
+   "AGR": 0.0211,
+   "MIN": 0.0553,
+   "MAN": 0.1177,
+   "UTL": 0.0288,
+   "CON": 0.0834,
+   "TRD": 0.1168,
+   "TRN": 0.051,
+   "ACC": 0.0252,
+   "ICT": 0.0514,
+   "FIN": 0.0785,
+   "RES": 0.052,
+   "PRO": 0.0759,
+   "PUB": 0.0782,
+   "EDU": 0.06,
+   "HLT": 0.0819,
+   "OTH": 0.0228
+  },
+  "CHE": {
+   "AGR": 0.0071,
+   "MIN": 0.0012,
+   "MAN": 0.2061,
+   "UTL": 0.0206,
+   "CON": 0.0521,
+   "TRD": 0.1762,
+   "TRN": 0.041,
+   "ACC": 0.0212,
+   "ICT": 0.0485,
+   "FIN": 0.0979,
+   "PRO": 0.106,
+   "PUB": 0.0719,
+   "EDU": 0.0453,
+   "HLT": 0.0788,
+   "OTH": 0.026
+  },
+  "CHL": {
+   "AGR": 0.0457,
+   "MIN": 0.1013,
+   "MAN": 0.1206,
+   "UTL": 0.0352,
+   "CON": 0.0773,
+   "TRD": 0.1087,
+   "TRN": 0.063,
+   "ACC": 0.0248,
+   "ICT": 0.0323,
+   "FIN": 0.0524,
+   "RES": 0.039,
+   "PRO": 0.1048,
+   "PUB": 0.0564,
+   "EDU": 0.0601,
+   "HLT": 0.0557,
+   "OTH": 0.0228
+  },
+  "COL": {
+   "AGR": 0.0737,
+   "MIN": 0.0634,
+   "MAN": 0.1357,
+   "UTL": 0.0378,
+   "CON": 0.0803,
+   "TRD": 0.1014,
+   "TRN": 0.058,
+   "ACC": 0.0448,
+   "ICT": 0.0337,
+   "FIN": 0.0496,
+   "RES": 0.0447,
+   "PRO": 0.0788,
+   "PUB": 0.0697,
+   "EDU": 0.0555,
+   "HLT": 0.0448,
+   "OTH": 0.0281
+  },
+  "CRI": {
+   "AGR": 0.0528,
+   "MIN": 0.0037,
+   "MAN": 0.135,
+   "UTL": 0.0312,
+   "CON": 0.0541,
+   "TRD": 0.1045,
+   "TRN": 0.0507,
+   "ACC": 0.0382,
+   "ICT": 0.0492,
+   "FIN": 0.0626,
+   "RES": 0.0482,
+   "PRO": 0.1192,
+   "PUB": 0.0495,
+   "EDU": 0.088,
+   "HLT": 0.0737,
+   "OTH": 0.0393
+  },
+  "CZE": {
+   "AGR": 0.0247,
+   "MIN": 0.0076,
+   "MAN": 0.2744,
+   "UTL": 0.0429,
+   "CON": 0.0584,
+   "TRD": 0.1156,
+   "TRN": 0.0599,
+   "ACC": 0.021,
+   "ICT": 0.0574,
+   "FIN": 0.0432,
+   "RES": 0.0429,
+   "PRO": 0.0696,
+   "PUB": 0.0639,
+   "EDU": 0.0461,
+   "HLT": 0.0489,
+   "OTH": 0.0233
+  },
+  "DEU": {
+   "AGR": 0.0091,
+   "MIN": 0.0016,
+   "MAN": 0.2332,
+   "UTL": 0.0226,
+   "CON": 0.0452,
+   "TRD": 0.1062,
+   "TRN": 0.0472,
+   "ACC": 0.0179,
+   "ICT": 0.0492,
+   "FIN": 0.0434,
+   "RES": 0.0828,
+   "PRO": 0.1073,
+   "PUB": 0.0619,
+   "EDU": 0.0486,
+   "HLT": 0.0859,
+   "OTH": 0.038
+  },
+  "DNK": {
+   "AGR": 0.0129,
+   "MIN": 0.0103,
+   "MAN": 0.157,
+   "UTL": 0.0209,
+   "CON": 0.0574,
+   "TRD": 0.1363,
+   "TRN": 0.0564,
+   "ACC": 0.0171,
+   "ICT": 0.0491,
+   "FIN": 0.0592,
+   "RES": 0.0694,
+   "PRO": 0.0929,
+   "PUB": 0.0526,
+   "EDU": 0.0659,
+   "HLT": 0.1088,
+   "OTH": 0.0338
+  },
+  "ESP": {
+   "AGR": 0.0325,
+   "MIN": 0.0023,
+   "MAN": 0.1309,
+   "UTL": 0.0384,
+   "CON": 0.0667,
+   "TRD": 0.142,
+   "TRN": 0.0502,
+   "ACC": 0.0703,
+   "ICT": 0.0405,
+   "FIN": 0.042,
+   "RES": 0.0494,
+   "PRO": 0.0869,
+   "PUB": 0.0665,
+   "EDU": 0.0588,
+   "HLT": 0.0696,
+   "OTH": 0.0531
+  },
+  "EST": {
+   "AGR": 0.0285,
+   "MIN": 0.012,
+   "MAN": 0.165,
+   "UTL": 0.0378,
+   "CON": 0.07,
+   "TRD": 0.1346,
+   "TRN": 0.081,
+   "ACC": 0.0208,
+   "ICT": 0.0626,
+   "FIN": 0.045,
+   "RES": 0.0706,
+   "PRO": 0.0831,
+   "PUB": 0.0678,
+   "EDU": 0.0502,
+   "HLT": 0.0439,
+   "OTH": 0.0271
+  },
+  "FIN": {
+   "AGR": 0.0266,
+   "MIN": 0.0044,
+   "MAN": 0.1884,
+   "UTL": 0.034,
+   "CON": 0.0756,
+   "TRD": 0.0982,
+   "TRN": 0.052,
+   "ACC": 0.0186,
+   "ICT": 0.0635,
+   "FIN": 0.0351,
+   "RES": 0.0538,
+   "PRO": 0.0897,
+   "PUB": 0.0581,
+   "EDU": 0.0595,
+   "HLT": 0.1088,
+   "OTH": 0.0338
+  },
+  "FRA": {
+   "AGR": 0.0178,
+   "MIN": 0.0011,
+   "MAN": 0.1242,
+   "UTL": 0.0225,
+   "CON": 0.061,
+   "TRD": 0.1116,
+   "TRN": 0.0489,
+   "ACC": 0.0246,
+   "ICT": 0.0574,
+   "FIN": 0.043,
+   "RES": 0.0752,
+   "PRO": 0.1366,
+   "PUB": 0.0865,
+   "EDU": 0.0589,
+   "HLT": 0.0975,
+   "OTH": 0.033
+  },
+  "GBR": {
+   "AGR": 0.0073,
+   "MIN": 0.0099,
+   "MAN": 0.1123,
+   "UTL": 0.0303,
+   "CON": 0.0681,
+   "TRD": 0.1123,
+   "TRN": 0.0436,
+   "ACC": 0.0322,
+   "ICT": 0.0692,
+   "FIN": 0.0927,
+   "RES": 0.0574,
+   "PRO": 0.1295,
+   "PUB": 0.053,
+   "EDU": 0.0627,
+   "HLT": 0.0825,
+   "OTH": 0.0368
+  },
+  "GRC": {
+   "AGR": 0.0463,
+   "MIN": 0.006,
+   "MAN": 0.1027,
+   "UTL": 0.0493,
+   "CON": 0.0182,
+   "TRD": 0.1343,
+   "TRN": 0.0686,
+   "ACC": 0.0746,
+   "ICT": 0.0341,
+   "FIN": 0.0589,
+   "RES": 0.0936,
+   "PRO": 0.0533,
+   "PUB": 0.1146,
+   "EDU": 0.0607,
+   "HLT": 0.0472,
+   "OTH": 0.0378
+  },
+  "HUN": {
+   "AGR": 0.0458,
+   "MIN": 0.0024,
+   "MAN": 0.2385,
+   "UTL": 0.0295,
+   "CON": 0.0488,
+   "TRD": 0.1101,
+   "TRN": 0.067,
+   "ACC": 0.0191,
+   "ICT": 0.0521,
+   "FIN": 0.0399,
+   "RES": 0.0389,
+   "PRO": 0.0957,
+   "PUB": 0.0857,
+   "EDU": 0.0484,
+   "HLT": 0.0472,
+   "OTH": 0.0308
+  },
+  "IRL": {
+   "AGR": 0.0107,
+   "MIN": 0.0019,
+   "MAN": 0.3662,
+   "UTL": 0.015,
+   "CON": 0.0267,
+   "TRD": 0.0827,
+   "TRN": 0.0246,
+   "ACC": 0.0185,
+   "ICT": 0.1207,
+   "FIN": 0.0597,
+   "RES": 0.0773,
+   "PRO": 0.0653,
+   "PUB": 0.0313,
+   "EDU": 0.0328,
+   "HLT": 0.0517,
+   "OTH": 0.0149
+  },
+  "ISL": {
+   "AGR": 0.056,
+   "MIN": 0.0012,
+   "MAN": 0.117,
+   "UTL": 0.0504,
+   "CON": 0.0794,
+   "TRD": 0.1022,
+   "TRN": 0.076,
+   "ACC": 0.0413,
+   "ICT": 0.0523,
+   "FIN": 0.0669,
+   "RES": 0.0177,
+   "PRO": 0.0775,
+   "PUB": 0.0622,
+   "EDU": 0.0708,
+   "HLT": 0.0953,
+   "OTH": 0.0338
+  },
+  "ISR": {
+   "AGR": 0.0185,
+   "MIN": 0.0071,
+   "MAN": 0.1565,
+   "UTL": 0.0181,
+   "CON": 0.0685,
+   "TRD": 0.1133,
+   "TRN": 0.0406,
+   "ACC": 0.025,
+   "ICT": 0.1055,
+   "FIN": 0.0573,
+   "PRO": 0.1169,
+   "PUB": 0.0893,
+   "EDU": 0.0761,
+   "HLT": 0.0711,
+   "OTH": 0.0362
+  },
+  "ITA": {
+   "AGR": 0.0233,
+   "MIN": 0.0029,
+   "MAN": 0.1823,
+   "UTL": 0.0252,
+   "CON": 0.047,
+   "TRD": 0.131,
+   "TRN": 0.0568,
+   "ACC": 0.043,
+   "ICT": 0.0404,
+   "FIN": 0.0581,
+   "RES": 0.0534,
+   "PRO": 0.1051,
+   "PUB": 0.074,
+   "EDU": 0.0473,
+   "HLT": 0.0665,
+   "OTH": 0.0436
+  },
+  "JPN": {
+   "AGR": 0.0116,
+   "MIN": 0.0005,
+   "MAN": 0.2225,
+   "UTL": 0.0315,
+   "CON": 0.0697,
+   "TRD": 0.1337,
+   "TRN": 0.0585,
+   "ACC": 0.0283,
+   "ICT": 0.0562,
+   "FIN": 0.0436,
+   "RES": 0.043,
+   "PRO": 0.079,
+   "PUB": 0.0528,
+   "EDU": 0.041,
+   "HLT": 0.0786,
+   "OTH": 0.0496
+  },
+  "KOR": {
+   "AGR": 0.0201,
+   "MIN": 0.0013,
+   "MAN": 0.3263,
+   "UTL": 0.0259,
+   "CON": 0.0608,
+   "TRD": 0.1043,
+   "TRN": 0.0426,
+   "ACC": 0.0279,
+   "ICT": 0.0477,
+   "FIN": 0.0594,
+   "PRO": 0.077,
+   "PUB": 0.0681,
+   "EDU": 0.0528,
+   "HLT": 0.0529,
+   "OTH": 0.0329
+  },
+  "LTU": {
+   "AGR": 0.0373,
+   "MIN": 0.003,
+   "MAN": 0.1927,
+   "UTL": 0.0307,
+   "CON": 0.0732,
+   "TRD": 0.1834,
+   "TRN": 0.122,
+   "ACC": 0.018,
+   "ICT": 0.0381,
+   "FIN": 0.0228,
+   "RES": 0.042,
+   "PRO": 0.0629,
+   "PUB": 0.0612,
+   "EDU": 0.0468,
+   "HLT": 0.0423,
+   "OTH": 0.0235
+  },
+  "LUX": {
+   "AGR": 0.0026,
+   "MIN": 0.0007,
+   "MAN": 0.0594,
+   "UTL": 0.0136,
+   "CON": 0.0564,
+   "TRD": 0.0951,
+   "TRN": 0.0465,
+   "ACC": 0.0187,
+   "ICT": 0.0601,
+   "FIN": 0.2792,
+   "RES": 0.0674,
+   "PRO": 0.1187,
+   "PUB": 0.0602,
+   "EDU": 0.0421,
+   "HLT": 0.0616,
+   "OTH": 0.0178
+  },
+  "LVA": {
+   "AGR": 0.0433,
+   "MIN": 0.0054,
+   "MAN": 0.1304,
+   "UTL": 0.0336,
+   "CON": 0.0654,
+   "TRD": 0.1594,
+   "TRN": 0.0972,
+   "ACC": 0.0206,
+   "ICT": 0.0584,
+   "FIN": 0.0436,
+   "RES": 0.0586,
+   "PRO": 0.0743,
+   "PUB": 0.083,
+   "EDU": 0.0504,
+   "HLT": 0.0411,
+   "OTH": 0.0351
+  },
+  "MEX": {
+   "AGR": 0.038,
+   "MIN": 0.0449,
+   "MAN": 0.2352,
+   "UTL": 0.021,
+   "CON": 0.0678,
+   "TRD": 0.2176,
+   "TRN": 0.079,
+   "ACC": 0.0288,
+   "ICT": 0.0201,
+   "FIN": 0.0429,
+   "RES": 0.0044,
+   "PRO": 0.064,
+   "PUB": 0.0424,
+   "EDU": 0.0442,
+   "HLT": 0.0266,
+   "OTH": 0.0231
+  },
+  "NLD": {
+   "AGR": 0.0209,
+   "MIN": 0.0129,
+   "MAN": 0.1191,
+   "UTL": 0.0185,
+   "CON": 0.0461,
+   "TRD": 0.1384,
+   "TRN": 0.049,
+   "ACC": 0.0208,
+   "ICT": 0.0473,
+   "FIN": 0.079,
+   "RES": 0.0574,
+   "PRO": 0.1469,
+   "PUB": 0.0757,
+   "EDU": 0.0511,
+   "HLT": 0.0911,
+   "OTH": 0.0258
+  },
+  "NOR": {
+   "AGR": 0.0191,
+   "MIN": 0.1771,
+   "MAN": 0.0736,
+   "UTL": 0.029,
+   "CON": 0.0637,
+   "TRD": 0.0767,
+   "TRN": 0.0537,
+   "ACC": 0.0144,
+   "ICT": 0.0427,
+   "FIN": 0.0522,
+   "RES": 0.0824,
+   "PRO": 0.068,
+   "PUB": 0.0656,
+   "EDU": 0.0528,
+   "HLT": 0.1101,
+   "OTH": 0.0189
+  },
+  "NZL": {
+   "AGR": 0.0647,
+   "MIN": 0.0111,
+   "MAN": 0.1214,
+   "UTL": 0.0337,
+   "CON": 0.0774,
+   "TRD": 0.1087,
+   "TRN": 0.053,
+   "ACC": 0.0257,
+   "ICT": 0.0282,
+   "FIN": 0.0651,
+   "RES": 0.0849,
+   "PRO": 0.1191,
+   "PUB": 0.0478,
+   "EDU": 0.0513,
+   "HLT": 0.0698,
+   "OTH": 0.038
+  },
+  "POL": {
+   "AGR": 0.0302,
+   "MIN": 0.0176,
+   "MAN": 0.2012,
+   "UTL": 0.0429,
+   "CON": 0.085,
+   "TRD": 0.1662,
+   "TRN": 0.0719,
+   "ACC": 0.0142,
+   "ICT": 0.0409,
+   "FIN": 0.043,
+   "RES": 0.0348,
+   "PRO": 0.0827,
+   "PUB": 0.0569,
+   "EDU": 0.0475,
+   "HLT": 0.0458,
+   "OTH": 0.0191
+  },
+  "PRT": {
+   "AGR": 0.0244,
+   "MIN": 0.0036,
+   "MAN": 0.1528,
+   "UTL": 0.0396,
+   "CON": 0.0452,
+   "TRD": 0.1515,
+   "TRN": 0.0536,
+   "ACC": 0.062,
+   "ICT": 0.0387,
+   "FIN": 0.0525,
+   "RES": 0.0594,
+   "PRO": 0.0772,
+   "PUB": 0.0771,
+   "EDU": 0.062,
+   "HLT": 0.0693,
+   "OTH": 0.0311
+  },
+  "SVK": {
+   "AGR": 0.023,
+   "MIN": 0.0024,
+   "MAN": 0.2174,
+   "UTL": 0.0405,
+   "CON": 0.0865,
+   "TRD": 0.1097,
+   "TRN": 0.071,
+   "ACC": 0.0157,
+   "ICT": 0.0555,
+   "FIN": 0.0332,
+   "RES": 0.0319,
+   "PRO": 0.109,
+   "PUB": 0.0755,
+   "EDU": 0.0412,
+   "HLT": 0.0429,
+   "OTH": 0.0445
+  },
+  "SVN": {
+   "AGR": 0.0229,
+   "MIN": 0.0039,
+   "MAN": 0.2515,
+   "UTL": 0.0319,
+   "CON": 0.0582,
+   "TRD": 0.1281,
+   "TRN": 0.0697,
+   "ACC": 0.0257,
+   "ICT": 0.0423,
+   "FIN": 0.0411,
+   "RES": 0.0162,
+   "PRO": 0.1048,
+   "PUB": 0.0631,
+   "EDU": 0.0577,
+   "HLT": 0.0558,
+   "OTH": 0.0269
+  },
+  "SWE": {
+   "AGR": 0.0149,
+   "MIN": 0.0061,
+   "MAN": 0.1558,
+   "UTL": 0.0299,
+   "CON": 0.0657,
+   "TRD": 0.114,
+   "TRN": 0.0538,
+   "ACC": 0.019,
+   "ICT": 0.0713,
+   "FIN": 0.0428,
+   "RES": 0.0683,
+   "PRO": 0.1097,
+   "PUB": 0.0435,
+   "EDU": 0.0602,
+   "HLT": 0.1149,
+   "OTH": 0.0301
+  },
+  "TUR": {
+   "AGR": 0.0752,
+   "MIN": 0.0108,
+   "MAN": 0.2076,
+   "UTL": 0.0264,
+   "CON": 0.0882,
+   "TRD": 0.1391,
+   "TRN": 0.091,
+   "ACC": 0.0341,
+   "ICT": 0.0287,
+   "FIN": 0.0363,
+   "RES": 0.0465,
+   "PRO": 0.0614,
+   "PUB": 0.0526,
+   "EDU": 0.0495,
+   "HLT": 0.0293,
+   "OTH": 0.0233
+  },
+  "USA": {
+   "AGR": 0.0104,
+   "MIN": 0.0149,
+   "MAN": 0.1263,
+   "UTL": 0.019,
+   "CON": 0.0452,
+   "TRD": 0.1095,
+   "TRN": 0.0362,
+   "ACC": 0.0304,
+   "ICT": 0.0735,
+   "FIN": 0.0855,
+   "RES": 0.0678,
+   "PRO": 0.1163,
+   "PUB": 0.0933,
+   "EDU": 0.0604,
+   "HLT": 0.0829,
+   "OTH": 0.0284
+  }
+ },
+ "ranking": [
+  {
+   "country": "CAN",
+   "score": 0.3987,
+   "distance": {
+    "structure": 0.1102,
+    "income": 0.0077,
+    "size": 0.3985,
+    "openness": 0.4326
+   },
+   "standardised": {
+    "structure": 0.547,
+    "income": 0.013,
+    "size": 0.184,
+    "openness": 0.555
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 1,
+   "name": "Canada",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 1,
+    "structure_only": 1,
+    "no_income": 2,
+    "no_size": 1,
+    "no_openness": 1,
+    "recent": 1,
+    "earlier": 1
+   },
+   "top_core_in": 8
+  },
+  {
+   "country": "CHL",
+   "score": 0.568,
+   "distance": {
+    "structure": 0.1138,
+    "income": 0.7078,
+    "size": 0.2791,
+    "openness": 0.2953
+   },
+   "standardised": {
+    "structure": 0.565,
+    "income": 1.206,
+    "size": 0.129,
+    "openness": 0.379
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 2,
+   "name": "Chile",
+   "in_business_demography": false,
+   "variants": {
+    "equal": 6,
+    "structure_only": 2,
+    "no_income": 1,
+    "no_size": 3,
+    "no_openness": 3,
+    "recent": 2,
+    "earlier": 4
+   },
+   "top_core_in": 8
+  },
+  {
+   "country": "GBR",
+   "score": 0.5683,
+   "distance": {
+    "structure": 0.1561,
+    "income": 0.0903,
+    "size": 0.9867,
+    "openness": 0.3709
+   },
+   "standardised": {
+    "structure": 0.775,
+    "income": 0.154,
+    "size": 0.455,
+    "openness": 0.476
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 3,
+   "name": "United Kingdom",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 2,
+    "structure_only": 3,
+    "no_income": 4,
+    "no_size": 2,
+    "no_openness": 2,
+    "recent": 3,
+    "earlier": 2
+   },
+   "top_core_in": 8
+  },
+  {
+   "country": "NZL",
+   "score": 0.6992,
+   "distance": {
+    "structure": 0.1866,
+    "income": 0.208,
+    "size": 1.6331,
+    "openness": 0.2409
+   },
+   "standardised": {
+    "structure": 0.926,
+    "income": 0.354,
+    "size": 0.753,
+    "openness": 0.309
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 4,
+   "name": "New Zealand",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 7,
+    "structure_only": 8,
+    "no_income": 6,
+    "no_size": 4,
+    "no_openness": 12,
+    "recent": 4,
+    "earlier": 7
+   },
+   "top_core_in": 4
+  },
+  {
+   "country": "FRA",
+   "score": 0.7013,
+   "distance": {
+    "structure": 0.2046,
+    "income": 0.0935,
+    "size": 1.0022,
+    "openness": 0.4204
+   },
+   "standardised": {
+    "structure": 1.016,
+    "income": 0.159,
+    "size": 0.462,
+    "openness": 0.539
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 5,
+   "name": "France",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 4,
+    "structure_only": 13,
+    "no_income": 9,
+    "no_size": 8,
+    "no_openness": 8,
+    "recent": 5,
+    "earlier": 6
+   },
+   "top_core_in": 4
+  },
+  {
+   "country": "ESP",
+   "score": 0.7157,
+   "distance": {
+    "structure": 0.2055,
+    "income": 0.2323,
+    "size": 0.6414,
+    "openness": 0.4229
+   },
+   "standardised": {
+    "structure": 1.02,
+    "income": 0.396,
+    "size": 0.296,
+    "openness": 0.542
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 6,
+   "name": "Spain",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 5,
+    "structure_only": 14,
+    "no_income": 7,
+    "no_size": 11,
+    "no_openness": 9,
+    "recent": 7,
+    "earlier": 5
+   },
+   "top_core_in": 3
+  },
+  {
+   "country": "ITA",
+   "score": 0.7161,
+   "distance": {
+    "structure": 0.2178,
+    "income": 0.1587,
+    "size": 0.8925,
+    "openness": 0.2887
+   },
+   "standardised": {
+    "structure": 1.081,
+    "income": 0.27,
+    "size": 0.412,
+    "openness": 0.37
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 7,
+   "name": "Italy",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 3,
+    "structure_only": 18,
+    "no_income": 8,
+    "no_size": 10,
+    "no_openness": 13,
+    "recent": 6,
+    "earlier": 3
+   },
+   "top_core_in": 3
+  },
+  {
+   "country": "FIN",
+   "score": 0.7219,
+   "distance": {
+    "structure": 0.1913,
+    "income": 0.034,
+    "size": 1.4962,
+    "openness": 0.5726
+   },
+   "standardised": {
+    "structure": 0.95,
+    "income": 0.058,
+    "size": 0.69,
+    "openness": 0.734
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 8,
+   "name": "Finland",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 8,
+    "structure_only": 11,
+    "no_income": 12,
+    "no_size": 6,
+    "no_openness": 6,
+    "recent": 8,
+    "earlier": 8
+   },
+   "top_core_in": 2
+  },
+  {
+   "country": "NOR",
+   "score": 0.7453,
+   "distance": {
+    "structure": 0.1612,
+    "income": 0.4484,
+    "size": 1.5393,
+    "openness": 0.4654
+   },
+   "standardised": {
+    "structure": 0.801,
+    "income": 0.764,
+    "size": 0.71,
+    "openness": 0.597
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 9,
+   "name": "Norway",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 15,
+    "structure_only": 5,
+    "no_income": 5,
+    "no_size": 9,
+    "no_openness": 11,
+    "recent": 9,
+    "earlier": 19
+   },
+   "top_core_in": 2
+  },
+  {
+   "country": "SWE",
+   "score": 0.7597,
+   "distance": {
+    "structure": 0.2112,
+    "income": 0.0493,
+    "size": 0.8946,
+    "openness": 0.7141
+   },
+   "standardised": {
+    "structure": 1.049,
+    "income": 0.084,
+    "size": 0.412,
+    "openness": 0.916
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 10,
+   "name": "Sweden",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 10,
+    "structure_only": 15,
+    "no_income": 13,
+    "no_size": 14,
+    "no_openness": 7,
+    "recent": 11,
+    "earlier": 10
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "ISR",
+   "score": 0.7704,
+   "distance": {
+    "structure": 0.2195,
+    "income": 0.287,
+    "size": 1.037,
+    "openness": 0.301
+   },
+   "standardised": {
+    "structure": 1.09,
+    "income": 0.489,
+    "size": 0.478,
+    "openness": 0.386
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": true,
+   "rental_not_split": false,
+   "rank": 11,
+   "name": "Israel",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 9,
+    "structure_only": 19,
+    "no_income": 11,
+    "no_size": 13,
+    "no_openness": 16,
+    "recent": 10,
+    "earlier": 11
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "USA",
+   "score": 0.8035,
+   "distance": {
+    "structure": 0.1865,
+    "income": 0.1537,
+    "size": 2.5861,
+    "openness": 0.4598
+   },
+   "standardised": {
+    "structure": 0.926,
+    "income": 0.262,
+    "size": 1.192,
+    "openness": 0.59
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 12,
+   "name": "United States",
+   "in_business_demography": false,
+   "variants": {
+    "equal": 16,
+    "structure_only": 7,
+    "no_income": 15,
+    "no_size": 5,
+    "no_openness": 15,
+    "recent": 18,
+    "earlier": 12
+   },
+   "top_core_in": 1
+  },
+  {
+   "country": "NLD",
+   "score": 0.8132,
+   "distance": {
+    "structure": 0.1874,
+    "income": 0.1392,
+    "size": 0.3605,
+    "openness": 1.3135
+   },
+   "standardised": {
+    "structure": 0.931,
+    "income": 0.237,
+    "size": 0.166,
+    "openness": 1.684
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 13,
+   "name": "Netherlands",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 17,
+    "structure_only": 9,
+    "no_income": 16,
+    "no_size": 19,
+    "no_openness": 4,
+    "recent": 15,
+    "earlier": 9
+   },
+   "top_core_in": 1
+  },
+  {
+   "country": "JPN",
+   "score": 0.816,
+   "distance": {
+    "structure": 0.2319,
+    "income": 0.2257,
+    "size": 1.6419,
+    "openness": 0.2348
+   },
+   "standardised": {
+    "structure": 1.151,
+    "income": 0.385,
+    "size": 0.757,
+    "openness": 0.301
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 14,
+   "name": "Japan",
+   "in_business_demography": false,
+   "variants": {
+    "equal": 11,
+    "structure_only": 23,
+    "no_income": 14,
+    "no_size": 12,
+    "no_openness": 21,
+    "recent": 16,
+    "earlier": 15
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "COL",
+   "score": 0.8268,
+   "distance": {
+    "structure": 0.1612,
+    "income": 1.2068,
+    "size": 0.6754,
+    "openness": 0.1505
+   },
+   "standardised": {
+    "structure": 0.8,
+    "income": 2.056,
+    "size": 0.311,
+    "openness": 0.193
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 15,
+   "name": "Colombia",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 22,
+    "structure_only": 4,
+    "no_income": 3,
+    "no_size": 18,
+    "no_openness": 25,
+    "recent": 23,
+    "earlier": 16
+   },
+   "top_core_in": 2
+  },
+  {
+   "country": "AUT",
+   "score": 0.8331,
+   "distance": {
+    "structure": 0.2152,
+    "income": 0.095,
+    "size": 1.0293,
+    "openness": 0.9019
+   },
+   "standardised": {
+    "structure": 1.069,
+    "income": 0.162,
+    "size": 0.475,
+    "openness": 1.156
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 16,
+   "name": "Austria",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 14,
+    "structure_only": 17,
+    "no_income": 19,
+    "no_size": 16,
+    "no_openness": 10,
+    "recent": 12,
+    "earlier": 17
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "DNK",
+   "score": 0.8491,
+   "distance": {
+    "structure": 0.2044,
+    "income": 0.1254,
+    "size": 1.4513,
+    "openness": 0.9104
+   },
+   "standardised": {
+    "structure": 1.015,
+    "income": 0.214,
+    "size": 0.669,
+    "openness": 1.167
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 17,
+   "name": "Denmark",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 18,
+    "structure_only": 12,
+    "no_income": 20,
+    "no_size": 15,
+    "no_openness": 14,
+    "recent": 20,
+    "earlier": 13
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "DEU",
+   "score": 0.8542,
+   "distance": {
+    "structure": 0.2463,
+    "income": 0.0761,
+    "size": 1.2116,
+    "openness": 0.5999
+   },
+   "standardised": {
+    "structure": 1.223,
+    "income": 0.13,
+    "size": 0.559,
+    "openness": 0.769
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 18,
+   "name": "Germany",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 13,
+    "structure_only": 29,
+    "no_income": 22,
+    "no_size": 17,
+    "no_openness": 17,
+    "recent": 13,
+    "earlier": 18
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "BEL",
+   "score": 0.8824,
+   "distance": {
+    "structure": 0.213,
+    "income": 0.0303,
+    "size": 0.7699,
+    "openness": 1.3377
+   },
+   "standardised": {
+    "structure": 1.057,
+    "income": 0.052,
+    "size": 0.355,
+    "openness": 1.715
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 19,
+   "name": "Belgium",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 20,
+    "structure_only": 16,
+    "no_income": 24,
+    "no_size": 21,
+    "no_openness": 5,
+    "recent": 19,
+    "earlier": 20
+   },
+   "top_core_in": 1
+  },
+  {
+   "country": "KOR",
+   "score": 0.8839,
+   "distance": {
+    "structure": 0.2662,
+    "income": 0.1846,
+    "size": 0.7377,
+    "openness": 0.5338
+   },
+   "standardised": {
+    "structure": 1.321,
+    "income": 0.314,
+    "size": 0.34,
+    "openness": 0.685
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": true,
+   "rental_not_split": false,
+   "rank": 20,
+   "name": "Korea",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 12,
+    "structure_only": 32,
+    "no_income": 21,
+    "no_size": 23,
+    "no_openness": 22,
+    "recent": 14,
+    "earlier": 24
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "PRT",
+   "score": 0.8901,
+   "distance": {
+    "structure": 0.2273,
+    "income": 0.4078,
+    "size": 0.8685,
+    "openness": 0.6713
+   },
+   "standardised": {
+    "structure": 1.128,
+    "income": 0.695,
+    "size": 0.4,
+    "openness": 0.861
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 21,
+   "name": "Portugal",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 19,
+    "structure_only": 21,
+    "no_income": 17,
+    "no_size": 22,
+    "no_openness": 18,
+    "recent": 17,
+    "earlier": 14
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "POL",
+   "score": 0.936,
+   "distance": {
+    "structure": 0.2345,
+    "income": 0.499,
+    "size": 0.4352,
+    "openness": 0.8365
+   },
+   "standardised": {
+    "structure": 1.164,
+    "income": 0.85,
+    "size": 0.201,
+    "openness": 1.073
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 22,
+   "name": "Poland",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 21,
+    "structure_only": 24,
+    "no_income": 18,
+    "no_size": 25,
+    "no_openness": 20,
+    "recent": 21,
+    "earlier": 22
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "ISL",
+   "score": 0.9402,
+   "distance": {
+    "structure": 0.1693,
+    "income": 0.1303,
+    "size": 4.2676,
+    "openness": 0.7252
+   },
+   "standardised": {
+    "structure": 0.841,
+    "income": 0.222,
+    "size": 1.968,
+    "openness": 0.93
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 23,
+   "name": "Iceland",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 28,
+    "structure_only": 6,
+    "no_income": 27,
+    "no_size": 7,
+    "no_openness": 24,
+    "recent": 22,
+    "earlier": 27
+   },
+   "top_core_in": 1
+  },
+  {
+   "country": "CRI",
+   "score": 0.9425,
+   "distance": {
+    "structure": 0.1886,
+    "income": 0.9309,
+    "size": 1.6103,
+    "openness": 0.4037
+   },
+   "standardised": {
+    "structure": 0.936,
+    "income": 1.586,
+    "size": 0.742,
+    "openness": 0.518
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 24,
+   "name": "Costa Rica",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 27,
+    "structure_only": 10,
+    "no_income": 10,
+    "no_size": 20,
+    "no_openness": 28,
+    "recent": 24,
+    "earlier": 23
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "CHE",
+   "score": 0.972,
+   "distance": {
+    "structure": 0.2297,
+    "income": 0.3382,
+    "size": 1.0688,
+    "openness": 1.0465
+   },
+   "standardised": {
+    "structure": 1.14,
+    "income": 0.576,
+    "size": 0.493,
+    "openness": 1.342
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": true,
+   "rental_not_split": false,
+   "rank": 25,
+   "name": "Switzerland",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 25,
+    "structure_only": 22,
+    "no_income": 25,
+    "no_size": 24,
+    "no_openness": 19,
+    "recent": 25,
+    "earlier": 26
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "CZE",
+   "score": 1.0433,
+   "distance": {
+    "structure": 0.2607,
+    "income": 0.2401,
+    "size": 0.8407,
+    "openness": 1.2327
+   },
+   "standardised": {
+    "structure": 1.294,
+    "income": 0.409,
+    "size": 0.388,
+    "openness": 1.581
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 26,
+   "name": "Czechia",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 26,
+    "structure_only": 31,
+    "no_income": 29,
+    "no_size": 29,
+    "no_openness": 23,
+    "recent": 26,
+    "earlier": 25
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "GRC",
+   "score": 1.0571,
+   "distance": {
+    "structure": 0.2906,
+    "income": 0.571,
+    "size": 0.8257,
+    "openness": 0.5157
+   },
+   "standardised": {
+    "structure": 1.443,
+    "income": 0.973,
+    "size": 0.381,
+    "openness": 0.661
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 27,
+   "name": "Greece",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 23,
+    "structure_only": 34,
+    "no_income": 26,
+    "no_size": 30,
+    "no_openness": 31,
+    "recent": 28,
+    "earlier": 21
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "TUR",
+   "score": 1.0599,
+   "distance": {
+    "structure": 0.2839,
+    "income": 0.7246,
+    "size": 1.1847,
+    "openness": 0.2733
+   },
+   "standardised": {
+    "structure": 1.409,
+    "income": 1.235,
+    "size": 0.546,
+    "openness": 0.35
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": true,
+   "rank": 28,
+   "name": "Türkiye",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 24,
+    "structure_only": 33,
+    "no_income": 23,
+    "no_size": 28,
+    "no_openness": 33,
+    "recent": 32,
+    "earlier": 28
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "HUN",
+   "score": 1.1143,
+   "distance": {
+    "structure": 0.2461,
+    "income": 0.5119,
+    "size": 0.9257,
+    "openness": 1.3432
+   },
+   "standardised": {
+    "structure": 1.222,
+    "income": 0.872,
+    "size": 0.427,
+    "openness": 1.722
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 29,
+   "name": "Hungary",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 29,
+    "structure_only": 28,
+    "no_income": 28,
+    "no_size": 33,
+    "no_openness": 26,
+    "recent": 27,
+    "earlier": 32
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "EST",
+   "score": 1.1467,
+   "distance": {
+    "structure": 0.2236,
+    "income": 0.3736,
+    "size": 2.9244,
+    "openness": 1.2209
+   },
+   "standardised": {
+    "structure": 1.11,
+    "income": 0.637,
+    "size": 1.348,
+    "openness": 1.566
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 30,
+   "name": "Estonia",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 32,
+    "structure_only": 20,
+    "no_income": 32,
+    "no_size": 26,
+    "no_openness": 30,
+    "recent": 30,
+    "earlier": 34
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "SVK",
+   "score": 1.1483,
+   "distance": {
+    "structure": 0.2351,
+    "income": 0.4811,
+    "size": 1.5081,
+    "openness": 1.4609
+   },
+   "standardised": {
+    "structure": 1.167,
+    "income": 0.82,
+    "size": 0.695,
+    "openness": 1.873
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 31,
+   "name": "Slovak Republic",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 31,
+    "structure_only": 25,
+    "no_income": 30,
+    "no_size": 32,
+    "no_openness": 27,
+    "recent": 31,
+    "earlier": 30
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "SVN",
+   "score": 1.153,
+   "distance": {
+    "structure": 0.2407,
+    "income": 0.317,
+    "size": 2.4734,
+    "openness": 1.2897
+   },
+   "standardised": {
+    "structure": 1.195,
+    "income": 0.54,
+    "size": 1.14,
+    "openness": 1.654
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 32,
+   "name": "Slovenia",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 30,
+    "structure_only": 26,
+    "no_income": 34,
+    "no_size": 27,
+    "no_openness": 29,
+    "recent": 29,
+    "earlier": 29
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "LVA",
+   "score": 1.1887,
+   "distance": {
+    "structure": 0.2445,
+    "income": 0.5464,
+    "size": 2.537,
+    "openness": 1.084
+   },
+   "standardised": {
+    "structure": 1.214,
+    "income": 0.931,
+    "size": 1.17,
+    "openness": 1.39
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 33,
+   "name": "Latvia",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 34,
+    "structure_only": 27,
+    "no_income": 31,
+    "no_size": 31,
+    "no_openness": 32,
+    "recent": 34,
+    "earlier": 35
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "LTU",
+   "score": 1.2672,
+   "distance": {
+    "structure": 0.2963,
+    "income": 0.383,
+    "size": 2.1536,
+    "openness": 1.2046
+   },
+   "standardised": {
+    "structure": 1.471,
+    "income": 0.653,
+    "size": 0.993,
+    "openness": 1.545
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 34,
+   "name": "Lithuania",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 33,
+    "structure_only": 35,
+    "no_income": 35,
+    "no_size": 34,
+    "no_openness": 34,
+    "recent": 33,
+    "earlier": 36
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "MEX",
+   "score": 1.3253,
+   "distance": {
+    "structure": 0.3238,
+    "income": 0.966,
+    "size": 1.6138,
+    "openness": 0.5765
+   },
+   "standardised": {
+    "structure": 1.608,
+    "income": 1.646,
+    "size": 0.744,
+    "openness": 0.739
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 35,
+   "name": "Mexico",
+   "in_business_demography": false,
+   "variants": {
+    "equal": 35,
+    "structure_only": 36,
+    "no_income": 33,
+    "no_size": 35,
+    "no_openness": 36,
+    "recent": 35,
+    "earlier": 31
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "LUX",
+   "score": 1.6117,
+   "distance": {
+    "structure": 0.2547,
+    "income": 0.8404,
+    "size": 3.721,
+    "openness": 2.1291
+   },
+   "standardised": {
+    "structure": 1.264,
+    "income": 1.432,
+    "size": 1.716,
+    "openness": 2.73
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 36,
+   "name": "Luxembourg",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 37,
+    "structure_only": 30,
+    "no_income": 36,
+    "no_size": 36,
+    "no_openness": 35,
+    "recent": 36,
+    "earlier": 37
+   },
+   "top_core_in": 0
+  },
+  {
+   "country": "IRL",
+   "score": 1.6388,
+   "distance": {
+    "structure": 0.4141,
+    "income": 0.4287,
+    "size": 1.6263,
+    "openness": 1.7044
+   },
+   "standardised": {
+    "structure": 2.056,
+    "income": 0.73,
+    "size": 0.75,
+    "openness": 2.186
+   },
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "real_estate_left_out": false,
+   "rental_not_split": false,
+   "rank": 37,
+   "name": "Ireland",
+   "in_business_demography": true,
+   "variants": {
+    "equal": 36,
+    "structure_only": 37,
+    "no_income": 37,
+    "no_size": 37,
+    "no_openness": 37,
+    "recent": 37,
+    "earlier": 33
+   },
+   "top_core_in": 0
+  }
+ ],
+ "proposed_core": [
+  "CAN",
+  "CHL",
+  "GBR",
+  "NZL",
+  "FRA",
+  "ESP"
+ ],
+ "core": [
+  "CAN",
+  "GBR",
+  "NZL",
+  "FRA",
+  "ESP",
+  "ITA"
+ ],
+ "core_change": "Italy (7th, level with Spain) in place of Chile (2nd), because the data are better: Chile is not in the OECD's employer business demography and no comparable national source has been identified, while Italy is",
+ "fixed_list": [
+  "CAN",
+  "NZL",
+  "NOR",
+  "GBR",
+  "USA"
+ ],
+ "checks": {
+  "stan_groups_vs_total_max_gap": 0.0077
+ },
+ "business_demography": [
+  "AUT",
+  "BEL",
+  "CAN",
+  "CHE",
+  "COL",
+  "CRI",
+  "CZE",
+  "DEU",
+  "DNK",
+  "ESP",
+  "EST",
+  "FIN",
+  "FRA",
+  "GBR",
+  "GRC",
+  "HUN",
+  "IRL",
+  "ISL",
+  "ISR",
+  "ITA",
+  "KOR",
+  "LTU",
+  "LUX",
+  "LVA",
+  "NLD",
+  "NOR",
+  "NZL",
+  "POL",
+  "PRT",
+  "SVK",
+  "SVN",
+  "SWE",
+  "TUR"
+ ]
+}

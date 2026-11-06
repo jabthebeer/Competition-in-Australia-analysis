@@ -1,5 +1,6 @@
 {
   "id": "nsw-e-conveyancing-mandate-2018",
+  "kind": "reform",
   "family": "e-conveyancing-mandate",
   "title": "Mandatory electronic conveyancing (New South Wales)",
   "jurisdiction": "NSW",
@@ -65,7 +66,7 @@
     "COVID-19 property market 2020-21"
   ],
   "price_series": null,
-  "notes": "Correction, 6 Nov 2026: the e-conveyancing evaluation (registered 18 Oct 2026) used the earlier date, 1 May 2018, and so treated NSW from 2017-18 (first post year 2018). With the corrected date the first post year is 2018-19; the result needs a registered follow-up re-run.",
+  "notes": "Correction, 6 Nov 2026: the e-conveyancing evaluation (registered 18 Oct 2026) used the earlier date, 1 May 2018, and so treated NSW from 2017-18 (first post year 2018). With the corrected date the first post year is 2018-19. Not re-run: the econometric evaluations are archived (E-87) and ALICIA now assesses items against the productivity framework only (owner decision, 6 Nov 2026, E-113). The archived result stands as registered, with this caveat.",
   "verified": {
     "dates": true,
     "notes": "Corrected in the fact-check of 6 Nov 2026: the first mandate is 1 July 2018, not 1 May 2018. Registrar General, 'Revised Conveyancing Rules' (13 Apr 2018): Version 4 replaces Version 3 on 15 May 2018 and makes standalone transfers, standalone caveats, and mortgages and discharges mandatory for electronic lodgment from 1 July 2018. 1 July 2019: Registrar General, NSW eConveyancing news (June 2019): 'mandatory for you to lodge all mainstream dealings electronically from 1 July 2019'."
@@ -75,5 +76,41 @@
     "by": null,
     "on": null,
     "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
-  }
+  },
+  "assessment": {
+    "summary": "Requires property transfers and mortgages to be lodged electronically. Settlement is faster and cheaper, but with no working interoperability between networks the mandate entrenched a single lodgement network.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": 1,
+        "reason": "Electronic lodgement and settlement cut paperwork, settlement time and errors."
+      },
+      {
+        "driver": "innovation",
+        "mark": 1,
+        "reason": "Moves conveyancing onto a digital platform."
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Without interoperability, mandatory electronic lodgement entrenched one network (PEXA) as a near-monopoly supplier."
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "medium",
+    "confidence_note": "The archived econometric evaluation found no detectable effect on business entry in legal services (grade Weak).",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-10-28"
+  },
+  "responsible": [
+    {
+      "body": "nsw-registrar-general",
+      "role": "administers",
+      "source": "https://www.registrargeneral.nsw.gov.au/regulator/interoperability",
+      "note": null
+    }
+  ],
+  "history": []
 }

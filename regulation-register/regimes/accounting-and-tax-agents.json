@@ -1,0 +1,53 @@
+{
+  "id": "accounting-and-tax-agents",
+  "name": "Tax agents, BAS agents and auditors",
+  "what": "Register with the Tax Practitioners Board to give tax or BAS services, and with ASIC to audit companies.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "6932"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Tax Practitioners Board",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "ASIC (registered company auditors)",
+      "bodies": [
+        "cth-asic"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "cth",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Professional, scientific and technical services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/professional-scientific-and-technical-services-industry",
+      "locator": "Accountants",
+      "quote": "Tax agent and BAS agent registration",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

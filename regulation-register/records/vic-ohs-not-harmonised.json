@@ -1,0 +1,86 @@
+{
+  "id": "vic-ohs-not-harmonised",
+  "kind": "setting",
+  "family": "whs-harmonisation",
+  "title": "Victoria keeps its own occupational health and safety law",
+  "jurisdiction": "VIC",
+  "summary": "Victoria did not adopt the national model work health and safety laws. Its Occupational Health and Safety Act 2004 and regulations still apply, so businesses operating in Victoria and other states run safety systems against two sets of rules.",
+  "instruments": [
+    {
+      "title": "Occupational Health and Safety Act 2004 (Vic)",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/occupational-health-and-safety-act-2004",
+      "register_id": null,
+      "role": "principal",
+      "provisions": "workplace health and safety duties in Victoria"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "The Productivity Commission records that the model laws are implemented in all states and territories bar Victoria, and businesses told it in 2025 that the lack of harmonisation across state workplace safety frameworks increases compliance costs and administrative complexity for companies operating across borders.",
+  "direction_sources": [
+    "https://assets.pc.gov.au/inquiries/completed/productivity/report/productivity-volume7-labour-market.pdf",
+    "https://assets.pc.gov.au/2025-11/competition-analysis-2025-with-appendices.pdf"
+  ],
+  "channels": [
+    "barriers"
+  ],
+  "industries": [],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no commencement date is recorded. That Victoria has not adopted the model laws is from the Productivity Commission (2023, Box 5.9)."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 29 October 2026 (tranche 3: laws in regulatory regimes with no register items) from the sources cited. Not yet checked by a person: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Victoria's separate safety law means firms working across state lines keep two sets of safety systems, training and paperwork. The two laws are similar in aim, so the cost is mostly duplication rather than different safety outcomes.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Multi-state employers maintain compliance against both the Victorian Act and the model laws."
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "A different safety law in the second-largest state raises the cost of operating nationally."
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "The cost of the difference has not been estimated; the evidence is the Productivity Commission's reports of business concerns.",
+    "evidence": [
+      "https://assets.pc.gov.au/inquiries/completed/productivity/report/productivity-volume7-labour-market.pdf",
+      "https://assets.pc.gov.au/2025-11/competition-analysis-2025-with-appendices.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-10-29"
+  },
+  "responsible": [
+    {
+      "body": "vic-worksafe",
+      "role": "administers",
+      "source": "https://www.worksafe.vic.gov.au/about-worksafe",
+      "note": "The general order allocates the Act to the Minister for WorkSafe and the TAC."
+    }
+  ],
+  "history": []
+}

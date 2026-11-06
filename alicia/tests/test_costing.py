@@ -758,7 +758,7 @@ def test_register_export():
     evals = load_evaluations(records).evaluations
     doc = register.export(records, evals)
     assert doc["schema"] == "alicia-costing-register" and doc["version"] == 1
-    assert [r["id"] for r in doc["records"]] == sorted(r.id for r in records)
+    assert [r["id"] for r in doc["records"]] == sorted(r.id for r in records if r.kind == "reform")
     fields = {
         "id",
         "title",

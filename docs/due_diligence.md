@@ -59,7 +59,7 @@ Full results: [`results_phase5.md`](results_phase5.md). Regression tables: [`eco
   - Synthetic DiD (+4.8%) and generalised synthetic control (+22%) disagree with the registered estimate (−2.8%).
   - COVID falls in the Tasmanian and SA windows.
 - **E-conveyancing:**
-  - **NSW's date was wrong** (fact-check, 6 Nov 2026): the first mandate began on 1 July 2018 (Registrar General, Conveyancing Rules v4), not 1 May 2018. The registered run treats NSW from 2017-18; it should start in 2018-19. The result needs a registered follow-up re-run.
+  - **NSW's date was wrong** (fact-check, 6 Nov 2026): the first mandate began on 1 July 2018 (Registrar General, Conveyancing Rules v4), not 1 May 2018. The registered run treats NSW from 2017-18; it should start in 2018-19. Not re-run: the econometric evaluations are archived, and ALICIA now does framework assessments only (owner decision, 6 Nov 2026, `alicia/DECISIONS.md` E-113). Read the result with this caveat.
   - Conveyancing is a small part of legal services, so any effect is diluted. Synthetic DiD disagrees (−3.0).
 - **Victorian taxi licensing:** only one post-reform year. Unlicensed UberX arrived in 2014. The fares fall dates to 2015-Q1, not the reform (see item 7).
 - **Childcare NQF:**

@@ -1,0 +1,433 @@
+{
+  "$defs": {
+    "Coverage": {
+      "additionalProperties": false,
+      "description": "The ANZSIC 2006 codes (division, subdivision, group or class) the regime applies to.",
+      "properties": {
+        "anzsic": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Anzsic",
+          "type": "array"
+        },
+        "exclude": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Exclude",
+          "type": "array"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "anzsic"
+      ],
+      "title": "Coverage",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "description": "A source for the recommendation, with the exact words that support it.",
+      "properties": {
+        "source": {
+          "description": "Title of the report or study",
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "publisher": {
+          "minLength": 1,
+          "title": "Publisher",
+          "type": "string"
+        },
+        "year": {
+          "maximum": 2100,
+          "minimum": 1950,
+          "title": "Year",
+          "type": "integer"
+        },
+        "url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Url",
+          "type": "string"
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Recommendation number, chapter or page",
+          "title": "Locator"
+        },
+        "quote": {
+          "description": "Exact words from the source",
+          "minLength": 20,
+          "title": "Quote",
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "australian",
+            "international"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "checked": {
+          "default": "full-text",
+          "enum": [
+            "full-text",
+            "web-page"
+          ],
+          "title": "Checked",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "publisher",
+        "year",
+        "url",
+        "quote",
+        "origin"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Issue": {
+      "additionalProperties": false,
+      "description": "Evidence of duplication, inconsistency, unclear guidance or complexity in the regime (Phase 2).",
+      "properties": {
+        "tag": {
+          "enum": [
+            "duplicative",
+            "inconsistent",
+            "unclear-guidance",
+            "multi-agency",
+            "cth-state-overlap",
+            "local-variation",
+            "complex"
+          ],
+          "title": "Tag",
+          "type": "string"
+        },
+        "what": {
+          "description": "Plain English: what the problem is, from the industry's view",
+          "minLength": 1,
+          "title": "What",
+          "type": "string"
+        },
+        "jurisdictions": {
+          "default": [],
+          "description": "Where it applies; empty means all",
+          "items": {
+            "enum": [
+              "CTH",
+              "NSW",
+              "VIC",
+              "QLD",
+              "WA",
+              "SA",
+              "TAS",
+              "ACT",
+              "NT"
+            ],
+            "type": "string"
+          },
+          "title": "Jurisdictions",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        },
+        "status": {
+          "default": "current",
+          "enum": [
+            "current",
+            "partly-addressed",
+            "addressed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "status_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Status Note"
+        }
+      },
+      "required": [
+        "tag",
+        "what",
+        "evidence"
+      ],
+      "title": "Issue",
+      "type": "object"
+    },
+    "Layer": {
+      "additionalProperties": false,
+      "description": "One tier of government's role in the regime.",
+      "properties": {
+        "tier": {
+          "enum": [
+            "cth",
+            "state",
+            "local"
+          ],
+          "title": "Tier",
+          "type": "string"
+        },
+        "function": {
+          "enum": [
+            "sets-rules",
+            "licenses",
+            "approves",
+            "inspects",
+            "collects",
+            "funds"
+          ],
+          "title": "Function",
+          "type": "string"
+        },
+        "who": {
+          "description": "Plain English: which body, e.g. 'State food authority'",
+          "minLength": 1,
+          "title": "Who",
+          "type": "string"
+        },
+        "bodies": {
+          "default": [],
+          "description": "Examples from bodies.json",
+          "items": {
+            "type": "string"
+          },
+          "title": "Bodies",
+          "type": "array"
+        },
+        "jurisdictions": {
+          "default": [],
+          "description": "Where it applies; empty means all",
+          "items": {
+            "enum": [
+              "CTH",
+              "NSW",
+              "VIC",
+              "QLD",
+              "WA",
+              "SA",
+              "TAS",
+              "ACT",
+              "NT"
+            ],
+            "type": "string"
+          },
+          "title": "Jurisdictions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "tier",
+        "function",
+        "who"
+      ],
+      "title": "Layer",
+      "type": "object"
+    },
+    "Review": {
+      "additionalProperties": false,
+      "description": "Whether a person has checked the record. Desk-research drafts start as ``draft``.",
+      "properties": {
+        "status": {
+          "default": "draft",
+          "enum": [
+            "draft",
+            "reviewed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "By"
+        },
+        "on": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "On"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "title": "Review",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "what": {
+      "description": "Plain English: what it requires of a business",
+      "minLength": 1,
+      "title": "What",
+      "type": "string"
+    },
+    "scope": {
+      "enum": [
+        "cross-cutting",
+        "sector"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "coverage": {
+      "$ref": "#/$defs/Coverage"
+    },
+    "layers": {
+      "items": {
+        "$ref": "#/$defs/Layer"
+      },
+      "minItems": 1,
+      "title": "Layers",
+      "type": "array"
+    },
+    "consistency": {
+      "enum": [
+        "national",
+        "harmonised",
+        "recognised",
+        "varies",
+        "cth"
+      ],
+      "title": "Consistency",
+      "type": "string"
+    },
+    "consistency_note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Consistency Note"
+    },
+    "basis": {
+      "description": "Sources for the description, quoted",
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "minItems": 1,
+      "title": "Basis",
+      "type": "array"
+    },
+    "records": {
+      "default": [],
+      "description": "Register items about this regime",
+      "items": {
+        "type": "string"
+      },
+      "title": "Records",
+      "type": "array"
+    },
+    "issues": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Issue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "review": {
+      "$ref": "#/$defs/Review",
+      "default": {
+        "status": "draft",
+        "by": null,
+        "on": null,
+        "notes": null
+      }
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "what",
+    "scope",
+    "coverage",
+    "layers",
+    "consistency",
+    "basis"
+  ],
+  "title": "Regulatory regime",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

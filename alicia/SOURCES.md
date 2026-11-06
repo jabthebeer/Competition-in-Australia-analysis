@@ -7,7 +7,9 @@
 | `src/alicia/data/anzsic2006.json` | ABS Data API codelist `CL_ANZSIC_2006` <https://data.api.abs.gov.au/rest/codelist/ABS/CL_ANZSIC_2006/1.1.0> (19 divisions, 86 subdivisions, 215 groups, 506 classes) | 1.1.0 | CC BY 4.0, Australian Bureau of Statistics | 14 Oct 2026 (response SHA-256 in the file) |
 | `src/alicia/data/cpi17_classes.json` | ABS Data API, CPI dataflow 1.1.0, codelist `CL_CPI_INDEX_17`: the 87 expenditure classes <https://data.api.abs.gov.au/rest/dataflow/ABS/CPI/1.1.0?references=codelist> | 17th series | CC BY 4.0, Australian Bureau of Statistics | 15 Oct 2026 (response SHA-256 in the file) |
 
-Regenerate with `scripts/fetch_anzsic.py` and `scripts/fetch_cpi_classes.py`.
+| `src/alicia/data/barriers.json` | Not a data source: the barriers-to-entry classification of ANZSIC classes, written for ALICIA after Grattan Institute (Minifie, Chisholm and Percival 2017, *Competition in Australia: too little of a good thing?*, Figures 1.3, 4.4 and 5.2), with the reason for each assignment | 25 Oct 2026 | ALICIA (Grattan's sector names are cited, not copied data) | – |
+
+Regenerate the ABS files with `scripts/fetch_anzsic.py` and `scripts/fetch_cpi_classes.py`.
 
 ## Legislation registers read by `alicia dates`
 

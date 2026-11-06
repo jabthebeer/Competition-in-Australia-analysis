@@ -5,10 +5,13 @@ can rebuild them) and use the explorer's design. Growth rates, shares and indexe
 the page from the levels embedded here, so every number shown can be traced to a panel.
 
 - ``growth.html``: gross state product; gross value added, employment and business entry and exit
-  by ANZSIC division and state (State Accounts, Labour Force EQ06, CABEE).
+  by ANZSIC division and state (State Accounts, Labour Force EQ06, CABEE); barriers to entry and
+  business dynamism (``alicia.menu.competition``). A slider picks any span of financial years.
 - ``conditions.html``: the macroeconomic control series (``alicia.pipeline.controls``): state final
   demand, household consumption, unemployment, population, wages, dwelling approvals, commodity
-  prices and national industry output.
+  prices and national industry output; company profitability and market power by barriers to entry
+  (``alicia.menu.competition``). Optional markers show when the register's major reforms started (an overall
+  framework mark of +3 or more, or -3 or less).
 """
 
 from __future__ import annotations
@@ -20,29 +23,33 @@ from importlib import resources
 import pandas as pd
 
 from .. import anzsic
+from ..international import concordance, site
 from ..pipeline import controls, schema, store
-from ..register.evaluation import Evaluation, current_evaluation
+from ..register.evaluation import Evaluation
 from ..register.schema import ChangeRecord
+from . import competition
 
 STATES = (*schema.STATES, "AUS")
 STATE_NAMES = {v: k for k, v in schema.STATE_NAMES.items()} | {"AUS": "Australia"}
 DIVISIONS = tuple("ABCDEFGHIJKLMNOPQRS")
 TOTAL = "TOT"
-# Windows are financial years, named by the year in which they start (2014 = 2014-15).
+# Preset periods for the slider. Financial years, named by the year in which they start (2014 = 2014-15).
 WINDOWS = (
-    {"id": "10y", "start": 2014, "end": 2024},
-    {"id": "5y", "start": 2019, "end": 2024},
-    {"id": "0414", "start": 2004, "end": 2014},
-    {"id": "9404", "start": 1994, "end": 2004},
-    {"id": "all", "start": 1989, "end": 2024},
+    {"id": "10y", "label": "Last 10 years", "start": 2014, "end": 2024},
+    {"id": "5y", "label": "Last 5 years", "start": 2019, "end": 2024},
+    {"id": "0414", "label": "2004-05 to 2014-15", "start": 2004, "end": 2014},
+    {"id": "9404", "label": "1994-95 to 2004-05", "start": 1994, "end": 2004},
+    {"id": "all", "label": "All years", "start": 1989, "end": 2024},
 )
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
 HOME_PAGE = ("index.html", "Home")
 MENU_PAGE = ("menu.html", "Legislation menu")
+COMPETITION_PAGE = ("growth.html", "The state of competition in Australia")
 PAGES = (
     HOME_PAGE,
     MENU_PAGE,
-    ("growth.html", "State and industry growth"),
+    ("framework.html", "Framework"),
+    COMPETITION_PAGE,
     ("conditions.html", "Economic conditions"),
 )
 # The landing page's two views of the competition landscape. A page that is not part of the build shows as
@@ -51,17 +58,17 @@ LANDING = (
     {
         "id": "top-down",
         "title": "Top down",
-        "text": "Start from the whole economy: how competition is faring across states and industries, and the legislative changes that shape it.",
+        "text": "Start from the whole economy: how competition is faring across states and industries, and the laws and regulatory settings that shape it.",
         "links": (
             {
-                "href": "growth.html",
-                "name": "State of competition",
-                "text": "State and industry growth: output, jobs, and business entry and exit by state and ANZSIC division.",
+                "href": COMPETITION_PAGE[0],
+                "name": COMPETITION_PAGE[1],
+                "text": "How each state's industries are growing and how productive they are, set against similar economies; how concentrated industries are; and how often new businesses start up.",
             },
             {
                 "href": MENU_PAGE[0],
-                "name": "Legislation menu",
-                "text": "Commonwealth, state and territory changes that could affect competition, with their dates, expected direction and evaluability, and what the evaluations found.",
+                "name": MENU_PAGE[1],
+                "text": "Laws, regulatory settings and other barriers that shape competition and productivity, each marked against the ALICIA productivity framework.",
             },
         ),
     },
@@ -81,38 +88,166 @@ COSTING_PAGE = ("costing.html", "Policy costing")
 COSTING_ASSETS = "costing-assets"
 GROWTH_NOTES = {
     "gva": (
-        "Gross value added in chain volume terms from the State Accounts, 2024-25 release. "
-        "Chain volume series do not add up across industries, so shares use current prices. 'All industries' "
-        "includes ownership of dwellings, which is not an ANZSIC division."
+        "Output is gross value added, adjusted for inflation (chain volume measures). Shares of a state's output "
+        "use current prices, because inflation-adjusted figures don't add up across industries. 'All industries' "
+        "also includes the rent value of owner-occupied homes, which is not an industry."
     ),
     "emp": (
-        "Employed persons by industry of main job, averaged over the four mid-quarter Labour Force surveys of "
-        "each financial year (EQ06). Survey estimates: small industry-by-state cells, especially in Tasmania, "
-        "the Northern Territory and the ACT, have large sampling errors."
+        "Jobs are employed people by the industry of their main job, averaged over the four Labour Force surveys "
+        "in each financial year. They are survey estimates, so small industries in small states (Tasmania, the "
+        "Northern Territory and the ACT) can jump around from year to year."
+    ),
+    "prod": (
+        "Output per worker is output, adjusted for inflation (State Accounts), divided by the number of people "
+        "employed (Labour Force, four surveys averaged over the financial year). It counts people, not hours, so "
+        "industries with many part-time workers read lower, and the level is at current prices. Employment in small "
+        "industries in small states is a survey estimate that jumps around, so their productivity is noisy. All "
+        "industries includes the rent of owner-occupied homes, which has no workers, so its output per worker reads "
+        "high."
     ),
     "biz": (
-        "Counts of Australian Businesses (CABEE), summed from ANZSIC classes. Rates are entries or exits in a "
-        "year as a share of businesses operating at its start, averaged over the years in the window from "
-        "2007-08 on. Cells are perturbed by the ABS, and counts shift between releases (largest between the "
-        "2016-20 and 2017-21 releases), so rates are more reliable than growth in counts."
+        "Business counts come from the ABS business register, from 2007-08 on. Rates are averages of the yearly "
+        "rates over the period. The ABS slightly alters small counts to protect confidentiality, and counts shift "
+        "between releases, so rates are more reliable than changes in counts."
     ),
 }
 CONDITIONS_NOTES = {
-    "sfd": (
-        "State final demand and household consumption: chain volume, seasonally adjusted (ABS 5206). Published for "
-        "the states and territories only, so there is no Australia line."
-    ),
+    "sfd": "Adjusted for inflation and seasonal patterns. Published for states and territories only, so there is no "
+    "Australia line.",
     "unemp": (
-        "Seasonally adjusted unemployment rate for the six states and Australia. The ABS does not publish "
-        "seasonally adjusted state series for the Northern Territory and the ACT here; their lines are "
-        "12-month averages of the original series."
+        "Seasonally adjusted for the six states and Australia. The Northern Territory and ACT lines are 12-month "
+        "averages, because the ABS doesn't publish seasonally adjusted figures for them in this series."
     ),
-    "pop": "Estimated resident population at the end of each quarter (ERP).",
-    "wpi": "Wage Price Index, total hourly rates of pay excluding bonuses, all sectors, original series.",
-    "dwell": "Dwelling units approved over the previous 12 months per 1,000 residents (building approvals, ERP).",
-    "commodity": "RBA index of commodity prices in Australian dollars, 2024-25 = 100.",
-    "natgva": "National gross value added by division, chain volume, seasonally adjusted (ABS 5206).",
+    "pop": "Estimated resident population at the end of each quarter.",
+    "wpi": "Hourly pay rates excluding bonuses, all sectors, not seasonally adjusted.",
+    "dwell": "Homes approved over the previous 12 months, per 1,000 residents.",
+    "commodity": "Index, 2024-25 = 100, in Australian dollars.",
+    "natgva": "Output adjusted for inflation and seasonal patterns. Growth over 5 and 10 years is the average yearly "
+    "rate from the same quarter.",
 }
+# Links for the datasets each page uses (checked 26 Oct 2026). The ATO's own site blocks automated checks, so the
+# ATO link is to the dataset on data.gov.au the data were downloaded from.
+SOURCES = {
+    "state_accounts": (
+        "ABS, Australian National Accounts: State Accounts",
+        "https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-state-accounts/latest-release",
+    ),
+    "lfs_detailed": (
+        "ABS, Labour Force, Australia, Detailed",
+        "https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia-detailed/latest-release",
+    ),
+    "cabee": (
+        "ABS, Counts of Australian Businesses, including Entries and Exits",
+        "https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/latest-release",
+    ),
+    "ato": (
+        "ATO, Taxation Statistics, company tables (data.gov.au)",
+        "https://data.gov.au/data/dataset/taxation-statistics-2022-23",
+    ),
+    "rba_rdp": (
+        "RBA, Hambur and Freestone (2025), Research Discussion Paper 2025-05",
+        "https://www.rba.gov.au/publications/rdp/2025/2025-05.html",
+    ),
+    "rba_yields": (
+        "RBA, table F2.1: government bond yields",
+        "https://www.rba.gov.au/statistics/tables/#interest-rates",
+    ),
+    "rba_commodity": (
+        "RBA, table I2: index of commodity prices",
+        "https://www.rba.gov.au/statistics/tables/#commodity-prices",
+    ),
+    "national_accounts": (
+        "ABS, Australian National Accounts: National Income, Expenditure and Product",
+        "https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product/latest-release",
+    ),
+    "population": (
+        "ABS, National, state and territory population",
+        "https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/latest-release",
+    ),
+    "wpi": (
+        "ABS, Wage Price Index, Australia",
+        "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/wage-price-index-australia/latest-release",
+    ),
+    "labour_force": (
+        "ABS, Labour Force, Australia",
+        "https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release",
+    ),
+    "building": (
+        "ABS, Building Approvals, Australia",
+        "https://www.abs.gov.au/statistics/industry/building-and-construction/building-approvals-australia/latest-release",
+    ),
+    "grattan": (
+        "Grattan Institute, Competition in Australia: too little of a good thing? (2017)",
+        "https://grattan.edu.au/report/competition-in-the-australian-economy/",
+    ),
+    "abs_mfp": (
+        "ABS, Estimates of Industry Multifactor Productivity",
+        "https://www.abs.gov.au/statistics/industry/industry-overview/estimates-industry-multifactor-productivity/latest-release",
+    ),
+    "anzsic": (
+        "ABS, Australian and New Zealand Standard Industrial Classification (ANZSIC) 2006",
+        "https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0",
+    ),
+    "oecd_sdbs": (
+        "OECD, Structural and Demographic Business Statistics: employer business demography",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.SDD.TPS/DSD_SDBSBD_ISIC4@DF_BD_EMP_B_D/latest",
+    ),
+    "oecd_stan": (
+        "OECD, STAN Database for Structural Analysis (2025 edition)",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.STI.PIE/DSD_STAN@DF_STAN_2025/latest",
+    ),
+    "oecd_pmr": (
+        "OECD, Product Market Regulation indicators",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.ECO.GCRD/DSD_PMR@DF_PMR/latest",
+    ),
+    "oecd_stri": (
+        "OECD, Services Trade Restrictiveness Index",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.TAD.TPD/DSD_STRI@DF_STRI_MAIN/latest",
+    ),
+    "oecd_fdi": (
+        "OECD, FDI Regulatory Restrictiveness Index",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.DAF.INV/DSD_FDIRRI_SCORES@DF_FDIRRI_SCORES/latest",
+    ),
+    "abs_isic": (
+        "ABS, correspondence between ANZSIC 2006 and ISIC Rev. 4",
+        "https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0/correspondences/anzsic-2006-isic-rev-4",
+    ),
+}
+
+
+# Each source's licence, as recorded in data/SOURCES.md (the Excel exports list it). Grattan's report is cited, not
+# used as data.
+OECD_LICENCE = "CC BY 4.0 is the OECD default for data from 1 July 2024 (not verified: oecd.org refused requests)"
+LICENCES = (
+    {k: "CC BY 4.0" for k in SOURCES}
+    | {"ato": "CC BY 2.5 AU", "grattan": ""}
+    | {k: OECD_LICENCE for k in ("oecd_sdbs", "oecd_stan", "oecd_pmr", "oecd_stri", "oecd_fdi")}
+)
+
+
+def abs_productivity() -> dict:
+    """The ABS's official productivity indexes by industry, Australia (5260.0.55.002, read from the costing
+    parameters): labour productivity (value added per hour worked) and multifactor productivity, on the hours-worked
+    basis, for the 16 market-sector divisions and the market sector as a whole (MKT16). Financial years by their
+    first calendar year; empty if the parameters are not built."""
+    if not competition.COSTING.exists():
+        return {"years": [], "lp": {}, "mfp": {}, "release": ""}
+    params = json.loads(competition.COSTING.read_text("utf-8"))
+    rows = params["tables"].get("abs_mfp.industry", {}).get("rows", [])
+    years = sorted({int(r["fy"][:4]) for r in rows})
+    out: dict = {"lp": {}, "mfp": {}}
+    for r in rows:
+        i = years.index(int(r["fy"][:4]))
+        for key, col in (("lp", "lp_hours"), ("mfp", "mfp_hours")):
+            out[key].setdefault(r["anzsic"], [None] * len(years))[i] = r.get(col)
+    meta = next((m for m in params.get("sources", []) if m.get("id") == "abs_mfp"), {})
+    title = meta.get("title", "ABS 5260.0.55.002")
+    release = f"{title}, {meta.get('release', '')} release ({meta.get('release_date', '')})"
+    return {"years": years, **out, "release": release}
+
+
+def _sources(*keys: str) -> dict:
+    return {k: {"label": SOURCES[k][0], "url": SOURCES[k][1], "licence": LICENCES[k]} for k in keys}
 
 
 def _fy_year(period: pd.Series) -> pd.Series:
@@ -127,6 +262,16 @@ def _series(df: pd.DataFrame, index: list, digits: int = 0) -> list:
 
 def _division_list() -> list[dict]:
     return [{"code": c, "name": anzsic.name(c) or c} for c in DIVISIONS] + [{"code": TOTAL, "name": "All industries"}]
+
+
+def _cvm_reference_year(sa: pd.DataFrame) -> int | None:
+    """The reference year of the chain volume series (the financial year, by its first year, in which they equal
+    current prices for every division of Australia), so levels can say whose prices they are in."""
+    a = sa[(sa["geo_code"] == "AUS") & sa["measure"].isin(("gva_volume", "gva_current")) & (sa["div"] != TOTAL)]
+    w = a.pivot_table(index=["div", "year"], columns="measure", values="value")
+    same = w[(w["gva_volume"] - w["gva_current"]).abs() < 0.5].reset_index().groupby("year")["div"].nunique()
+    full = same[same == w.index.get_level_values("div").nunique()]
+    return int(full.index[-1]) if len(full) else None
 
 
 def growth_payload(repo_base: str = REPO_MAIN) -> dict:
@@ -160,7 +305,9 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         range(int(counts.index.get_level_values("year").min()), int(counts.index.get_level_values("year").max()) + 1)
     )
     emp = {
-        s: {c: _series(counts.loc[(s, c)], emp_years, 2) for c in (*DIVISIONS, TOTAL) if (s, c) in counts.index}
+        # Five decimals keep the four-quarter mean of figures published to three decimals exact: rounding it to three
+        # put two heatmap cells on the wrong side of their display rounding.
+        s: {c: _series(counts.loc[(s, c)], emp_years, 5) for c in (*DIVISIONS, TOTAL) if (s, c) in counts.index}
         for s in STATES
     }
 
@@ -196,6 +343,7 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         "years": years,
         "gsp": {"volume": gsp("gsp_volume"), "current": gsp("gsp_current"), "perCapita": gsp("gsp_per_capita")},
         "gva": {"volume": gva("gva_volume"), "current": gva("gva_current")},
+        "cvmRef": _cvm_reference_year(sa),
         "empYears": emp_years,
         "emp": emp,
         "bizYears": biz_years,
@@ -206,6 +354,27 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
             "biz": "ABS 8165.0, releases Jun 2007-Jun 2009 to Jul 2021-Jun 2025",
         },
         "notes": GROWTH_NOTES,
+        "barriers": competition.barriers_payload(),
+        "productivity": abs_productivity(),
+        # Industries classified differently in other countries' statistics (ISIC): a † and hover note on the page
+        # and the comparisons with similar economies (phase P4, E-107)
+        "intl": {"title": concordance.NOTE_TITLE, "notes": concordance.division_notes(), **site.payload()},
+        "sources": _sources(
+            "state_accounts",
+            "lfs_detailed",
+            "cabee",
+            "abs_mfp",
+            "ato",
+            "rba_rdp",
+            "grattan",
+            "anzsic",
+            "abs_isic",
+            "oecd_sdbs",
+            "oecd_stan",
+            "oecd_pmr",
+            "oecd_stri",
+            "oecd_fdi",
+        ),
     }
 
 
@@ -217,25 +386,22 @@ def _dated_series(df: pd.DataFrame, start: str) -> tuple[list[str], dict]:
     return [p.strftime("%Y-%m") for p in idx], out
 
 
-def _evaluated_reforms(records: list[ChangeRecord], evaluations: list[Evaluation]) -> list[dict]:
-    """Effective dates of evaluated changes, for optional markers on the charts."""
-    by_id = {r.id: r for r in records}
-    current = current_evaluation(evaluations)
+MAJOR_MARK = 3
+
+
+def _major_reforms(records: list[ChangeRecord]) -> list[dict]:
+    """Effective dates of reforms with a strong framework mark (overall +3 or more, or -3 or less), for optional
+    markers on the charts."""
     out = []
-    for rid, ev_id in sorted(current.items()):
-        r = by_id.get(rid)
-        c = r.effective_commencement if r else None
-        if c is None:
+    for r in records:
+        c, a = r.effective_commencement, r.assessment
+        if r.kind != "reform" or c is None or a is None or abs(a.total) < MAJOR_MARK:
             continue
-        out.append({"date": c.date.isoformat(), "jurisdiction": r.jurisdiction, "title": r.title, "evaluation": ev_id})
-    return sorted(out, key=lambda d: d["date"])
+        out.append({"date": c.date.isoformat(), "jurisdiction": r.jurisdiction, "title": r.title, "mark": a.total})
+    return sorted(out, key=lambda d: (d["date"], d["jurisdiction"]))
 
 
-def conditions_payload(
-    records: list[ChangeRecord] | None = None,
-    evaluations: list[Evaluation] | None = None,
-    repo_base: str = REPO_MAIN,
-) -> dict:
+def conditions_payload(records: list[ChangeRecord] | None = None, repo_base: str = REPO_MAIN) -> dict:
     sq = controls.load("state_quarter")
     sm = controls.load("state_month")
     iq = controls.load("industry_quarter")
@@ -311,7 +477,7 @@ def conditions_payload(
         },
         "commodity": {"periods": [p.strftime("%Y-%m") for p in com_idx], "values": commodity},
         "natgva": {"periods": [p.strftime("%Y-%m") for p in nat_idx], "values": natgva},
-        "reforms": _evaluated_reforms(records or [], evaluations or []),
+        "reforms": _major_reforms(records or []),
         "vintages": {
             src: "; ".join(sorted(df.loc[df["source"] == src, "vintage"].unique().tolist()))
             for df, srcs in (
@@ -323,6 +489,19 @@ def conditions_payload(
             for src in srcs
         },
         "notes": CONDITIONS_NOTES,
+        "profit": competition.profit_payload(),
+        "sources": _sources(
+            "national_accounts",
+            "population",
+            "wpi",
+            "labour_force",
+            "building",
+            "rba_commodity",
+            "ato",
+            "rba_yields",
+            "rba_rdp",
+            "grattan",
+        ),
     }
 
 
@@ -367,12 +546,12 @@ def landing(built: set[str]) -> str:
 
 
 def render(template: str, payload: dict, page: str, standalone: bool = False, pages: tuple = PAGES) -> str:
-    """Fill a page template: shared styles and chart code, navigation, then the embedded data."""
+    """Fill a page template: shared styles, chart code and Excel export, navigation, then the embedded data."""
     blob = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     html = (
         _asset(template)
         .replace("/*__SITE_CSS__*/", _asset("site.css"))
-        .replace("/*__CHARTS_JS__*/", _asset("charts.js"))
+        .replace("/*__CHARTS_JS__*/", _asset("charts.js") + "\n" + _asset("xlsx.js"))
         .replace("<!--__NAV__-->", nav(page, pages))
         .replace("__PAGE_DATA__", blob)
     )
@@ -418,10 +597,12 @@ def build_site(
     repo_base: str | None = None,
     costing_dist=None,
 ) -> list:
-    """Write the landing page (index.html), the legislation menu (menu.html), the two summary pages and, given its
-    build, the Policy costing tab into ``out_dir``."""
+    """Write the landing page (index.html), the legislation menu (menu.html), the Framework page, the econometric archive (archive.html and one
+    page per evaluation), the two summary pages and, given its build, the Policy costing tab into ``out_dir``."""
     from pathlib import Path
 
+    from . import framework as framework_page
+    from .archive import ARCHIVE_PAGE, build_archive
     from .explorer import build_explorer
 
     out = Path(out_dir)
@@ -436,15 +617,28 @@ def build_site(
             dates_report=dates_report,
             standalone=standalone,
             evaluations=evaluations,
-            repo_base=explorer_base,
-            nav=nav(MENU_PAGE[0], pages),
-            evaluation_pages=True,
+            pages=pages,
         )
     ]
+    fw_path = out / "framework.html"
+    fw_path.write_text(framework_page.render(records, nav("framework.html", pages), standalone), encoding="utf-8")
+    written.append(fw_path)
+    written.append(
+        build_archive(
+            records,
+            out / ARCHIVE_PAGE,
+            dates_report=dates_report,
+            standalone=standalone,
+            evaluations=evaluations,
+            repo_base=explorer_base,
+            nav=nav(ARCHIVE_PAGE, pages),
+            evaluation_pages=True,
+        )
+    )
     written += sorted(out.glob("evaluation-*.html"))
     summaries = (
         ("growth.html", growth_payload(data_base)),
-        ("conditions.html", conditions_payload(records, evaluations, data_base)),
+        ("conditions.html", conditions_payload(records, data_base)),
     )
     for name, payload in summaries:
         path = out / name

@@ -1,157 +1,159 @@
-"""Build the interactive menu explorer: one self-contained HTML page with the register embedded.
+"""The legislation menu: every register item marked against the productivity impact framework, with summary
+statistics for the industries it affects.
 
-The page is a fragment (title, styles, markup, data, script) so it can be published as a
-hosted page; ``standalone=True`` wraps it in a full HTML document for opening locally.
+One self-contained page (``menu.html`` on the website, ``alicia explorer`` on its own). Filters include the
+framework's drivers ("main driver" tags), the overall mark, the kind of item (reform, existing setting,
+non-legislative barrier), jurisdiction, reach, status (including repealed or replaced) and the department or agency
+responsible, and the complexity tags of the regulatory regimes an item belongs to (duplicative, inconsistent across
+states, unclear guidance and others; DECISIONS E-96). Views: a list, a scorecard of every item's marks by driver, a
+timeline of reforms, recommendations, and industries (every ANZSIC class with the regimes it faces). Items that share a
+family (one policy in several jurisdictions) appear as one row under a group name that says what the issue is across
+them, and expand to each jurisdiction's item (DECISIONS E-99). Each item opens
+with its assessment (only the drivers it affects; each opens to its reason), then collapsible sections: its regimes
+(with a diagram of which tiers of government do what, and where they overlap), recommendations, who is responsible, a
+timeline of its changes, its industries' statistics, and its sources. Secondary filters, explanations and the page's
+method notes sit behind a "More filters" dropdown, "i" buttons and folds, and no text is set below 13px (owner request,
+29 October 2026, DECISIONS E-98).
+
+The econometric evaluations that the menu used to show are kept, unchanged, in the econometric archive
+(``menu/archive.py``; DECISIONS E-75, E-87).
 """
 
 from __future__ import annotations
 
 import datetime as dt
-import html
 import json
-from importlib import resources
 from pathlib import Path
 
 from .. import anzsic
-from ..register.evaluation import CATEGORY_LABELS, Evaluation, archived, current_evaluation
-from ..register.schema import CHANNEL_LABELS, ChangeRecord
-from ..register.tables import table_latex
-from ..timing import fy_bounds, timing
-from .screen import COVID_FYS, DEFAULT_COVERAGE, screen_all
-
-FAMILY_LABELS = {
-    "amr-occupational-licensing": "Automatic mutual recognition of occupational licences",
-    "building-practitioner-registration": "Building practitioner registration",
-    "card-payments": "Card surcharging and payments",
-    "childcare-nqf": "Childcare National Quality Framework",
-    "childcare-subsidy": "Childcare subsidy and fee cap",
-    "commercial-property-transfer-tax": "Commercial property stamp duty reform",
-    "consumer-credit": "Consumer credit cost caps",
-    "consumer-data-right": "Consumer Data Right",
-    "container-deposit-scheme": "Container deposit schemes",
-    "ctp-insurance-competition": "Compulsory third-party insurance markets",
-    "default-offer-reregulation": "Default electricity offers",
-    "e-conveyancing-mandate": "Mandatory electronic conveyancing",
-    "east-coast-gas-intervention": "East-coast gas market interventions",
-    "electricity-retail-contestability": "Electricity full retail contestability",
-    "fair-work-2022-2024": "Fair Work changes 2022-2024",
-    "fuel-price-commitment": "Next-day fuel price commitment",
-    "fuel-price-transparency": "Mandatory fuel price reporting",
-    "gaming-market-structure": "Gaming machine market structure",
-    "harper-cca-2017": "Harper competition law reforms (2017)",
-    "health-practitioner-registration": "National health practitioner registration",
-    "heavy-vehicle-national-law": "Heavy Vehicle National Law",
-    "industry-codes": "Mandatory industry codes",
-    "infrastructure-privatisation": "Infrastructure privatisation (port leases)",
-    "insolvency-reform": "Insolvency and restructuring reform",
-    "investment-incentives": "Investment tax incentives",
-    "legal-profession-uniform-law": "Legal Profession Uniform Law",
-    "liquor-licence-entry-restrictions": "Liquor licence entry restrictions",
-    "liquor-lockouts-last-drinks": "Liquor lockouts and last drinks",
-    "merger-control": "Merger control",
-    "national-competition-policy": "National Competition Policy (revitalised)",
-    "national-energy-customer-framework": "National Energy Customer Framework",
-    "ncc-2022-adoption": "2022 building code adoption",
-    "ndis-quality-safeguards": "NDIS Quality and Safeguards Commission",
-    "non-compete-clauses": "Non-compete clause ban",
-    "pharmacist-uti-prescribing": "Pharmacist UTI prescribing",
-    "pharmacy-regulation": "Pharmacy regulation",
-    "planning-zoning": "Planning and zoning reform",
-    "point-to-point-licensing": "Taxi and booked-hire licensing",
-    "rd-tax-incentive": "R&D Tax Incentive",
-    "retail-energy-price-deregulation": "Retail energy price deregulation",
-    "retail-trading-hours": "Retail trading hours",
-    "rideshare-legalisation": "Ride-share legalisation",
-    "short-term-rental-regulation": "Short-term rental regulation",
-    "small-bar-licences": "Small-bar licences",
-    "small-business-tax": "Small business company tax",
-    "unfair-contract-terms": "Unfair contract terms",
-    "vet-contestable-funding": "Contestable vocational training funding",
-}
-
-SCREEN_RULES = (
-    "A triage aid, not a judgement on the reform. Weaknesses counted: no geographic comparison group "
-    "(national change); fewer than 3 financial years of entry and exit data before the first full year, or "
-    "fewer than 2 from it; affected industries only at division or subdivision level; an event window "
-    "overlapping 2019-20 to 2021-22 (COVID); another recorded change in the same industry and place within "
-    "two years; dates not fully verified. None: high. One: medium. Two or more: low."
+from ..register import framework
+from ..register.bodies import BODY_TYPE_LABELS, Body, load_bodies
+from ..register.evaluation import Evaluation, current_evaluation
+from ..register.families import Family, load_families
+from ..register.recommendations import KIND_LABELS as REC_KIND_LABELS
+from ..register.recommendations import Recommendation, actors_of, by_record, gap_for, load_gaps, load_recommendations
+from ..register.regimes import (
+    CONSISTENCY_LABELS,
+    FUNCTION_LABELS,
+    ISSUE_HELP,
+    ISSUE_LABELS,
+    TIER_LABELS,
+    VARYING,
+    Regime,
+    classes_for,
+    industry_profiles,
+    load_regimes,
+    regimes_by_record,
 )
-# Evaluation documents are linked on GitHub; override with --repo-base once the work is merged.
-REPO_BASE = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/claude/sharp-bell-4dsvcz/"
-EVALUATION_NOTE = (
-    "Evaluated changes have a pre-registered analysis in this repository: a plan committed before the "
-    "results were estimated, a graded result and its caveats. A record's direction stays a hypothesis; the "
-    "evaluation says what the data showed. Grades follow the evaluation design: Strong, Moderate, Weak or "
-    "Not identified. Each evaluation opens with key insights in plain language, then the econometrics in depth: "
-    "what was done, the model's equations and assumptions, and the full results."
+from ..register.schema import CHANNEL_LABELS, ROLE_LABELS, ChangeRecord
+from ..register.timeline import changed_by_index, changes_list, ended_dict, timeline
+from ..timing import timing
+from .archive import CHECK_NOTE, FAMILY_LABELS, _humanise, _short
+from .industry import NOTE as STATS_NOTE
+from .industry import STATE_NAMES, TILES, IndustryStats, measures_dict
+
+MENU_NOTE = (
+    "Every item is marked from −2 to +2 on each of the framework's eight drivers of productivity; the overall mark "
+    "is their sum. Marks are judgements from desk research and the sources cited, not estimates. They cover "
+    "productivity and competition only: many rules have benefits for health, safety, the environment or fairness "
+    "that are not weighed here."
 )
-CHECK_NOTE = (
-    "Effective dates are checked against the official legislation registers by 'alicia dates'. "
-    "Commonwealth, Queensland, Tasmania, ACT, WA and NT registers can be read automatically; Victoria gives "
-    "version dates only; NSW and SA block automated requests, so their records rely on sourced dates."
-)
-
-
-def _humanise(family: str) -> str:
-    return family.replace("-", " ").capitalize()
-
-
-def _short(title: str, limit: int = 30) -> str:
-    base = title.split(" (")[0]
-    return base if len(base) <= limit else base[: limit - 1].rstrip() + "…"
 
 
 def _division_names() -> dict[str, str]:
     return {code: anzsic.name(code) or "" for code in "ABCDEFGHIJKLMNOPQRS"}
 
 
-LEVEL_ORDER = ("class", "group", "retail-group", "subdivision", "division", "inferred", "occupation", "total")
-DATA_NOTE = (
-    "Data that can measure a change: every processed panel in data/processed matched to the change's ANZSIC "
-    "codes and jurisdiction, at the finest industry level the panel offers. 'Local' means areas finer than the "
-    "state (postcode, SA2, LGA and so on) are available in the change's state. 'Inferred' industries come from "
-    "business names in the ABN and ASIC registers (81% precise on held-out names, and only some names say what a "
-    "business does), so read them as changes over time, not levels."
+def assessment_dict(record: ChangeRecord) -> dict | None:
+    a = record.assessment
+    if a is None:
+        return None
+    return a.model_dump(mode="json") | {"total": a.total, "rating": a.rating, "mixed": a.mixed}
+
+
+def bodies_dict(records: list[ChangeRecord], bodies: dict[str, Body], extra: set[str] = frozenset()) -> dict:
+    """The bodies the records (and ``extra``, such as recommendations' actors) name, and their departments, by id."""
+    used = {x.body for r in records for x in r.responsible if x.body in bodies} | {b for b in extra if b in bodies}
+    used |= {bodies[b].parent for b in used if bodies[b].parent}
+    keep = ("name", "short", "jurisdiction", "type", "parent", "url", "current", "note")
+    return {b: bodies[b].model_dump(mode="json", include=set(keep)) for b in sorted(used)}
+
+
+def recommendation_dict(rec: Recommendation, records: dict[str, ChangeRecord]) -> dict:
+    data = rec.model_dump(mode="json", exclude={"drafted_on"})
+    data["actors"] = actors_of(rec, records)
+    data["kindLabel"] = REC_KIND_LABELS[rec.kind]
+    data["international"] = any(e.origin == "international" for e in rec.evidence)
+    return data
+
+
+FUNCTION_SHORT = {
+    "sets-rules": "Sets rules",
+    "licenses": "Licenses",
+    "approves": "Approves",
+    "inspects": "Inspects",
+    "collects": "Collects",
+    "funds": "Funds",
+}
+COMPLEXITY_NOTE = (
+    "Regulation can weigh on business through how it is organised as well as how much there is: several agencies or "
+    "tiers of government for one activity, rules that differ between states, or rules that are hard to follow. Each "
+    "item is linked to the regulatory regimes it belongs to; a regime's tags are problems a source has reported, each "
+    "quoted. The diagram shows which tier of government does what; a function in an overlap is done by more than one "
+    "tier. No tag means no evidence was found in the sources searched, not that there is no problem."
 )
 
 
-def data_summary(record: ChangeRecord, catalogue: list[dict]) -> list[dict]:
-    """Coverage matches grouped by source panel: its measures, and the finest industry level found."""
-    from ..pipeline.coverage import coverage
-    from ..pipeline.sources import measure_label
+def live_tags(regs: list[Regime]) -> list[str]:
+    """The issue tags, not yet addressed, across some regimes, in the order of ISSUE_LABELS."""
+    tags = {i.tag for r in regs for i in r.issues if i.status != "addressed"}
+    return [t for t in ISSUE_LABELS if t in tags]
 
-    if not catalogue:
-        return []
-    groups: dict[tuple[str, str], dict] = {}
-    for m in coverage(record, catalogue):
-        g = groups.setdefault(
-            (m.source, m.table),
-            {
-                "source": m.source,
-                "table": m.table,
-                "measures": [],
-                "level": m.matched_level,
-                "codes": [],
-                "state": m.state,
-                "local": list(m.local_levels),
-                "first": m.first,
-                "last": m.last,
-                "periodType": m.period_type,
-            },
-        )
-        label = f"{measure_label(m.measure)} ({m.unit})"
-        if label not in g["measures"]:
-            g["measures"].append(label)
-        if LEVEL_ORDER.index(m.matched_level) < LEVEL_ORDER.index(g["level"]):
-            g["level"] = m.matched_level
-        if m.matched_code and m.matched_code not in g["codes"]:
-            g["codes"].append(m.matched_code)
-        g["first"], g["last"] = min(g["first"], m.first), max(g["last"], m.last)
-        g["state"] = g["state"] or m.state
-        g["local"] = sorted(set(g["local"]) | set(m.local_levels))
-        if m.period_type not in g["periodType"].split("/"):
-            g["periodType"] += f"/{m.period_type}"
-    return sorted(groups.values(), key=lambda g: (LEVEL_ORDER.index(g["level"]), g["source"]))
+
+def regime_dict(reg: Regime) -> dict:
+    data = reg.model_dump(mode="json", exclude={"coverage", "review"})
+    data["overlap"] = reg.overlap()
+    data["tiers"] = reg.tiers
+    data["touchpoints"] = reg.touchpoints
+    data["varies"] = reg.consistency in VARYING
+    data["classes"] = len(classes_for(reg))
+    data["tags"] = live_tags([reg])
+    return data
+
+
+def industries_list(regimes: list[Regime]) -> list[list]:
+    """One compact row per ANZSIC class: code, name, division, the indexes of its regimes in ``regimes``, then
+    touchpoints, industry-specific touchpoints and issues not yet addressed."""
+    index = {r.id: n for n, r in enumerate(regimes)}
+    return [
+        [
+            p["anzsic"],
+            p["name"],
+            p["division"],
+            [index[x] for x in p["regime_ids"].split()],
+            p["touchpoints"],
+            p["sector_touchpoints"],
+            p["issues"],
+        ]
+        for p in industry_profiles(regimes)
+    ]
+
+
+def groups_dict(records: list[ChangeRecord], families: dict[str, Family]) -> dict:
+    """Families of two or more items, each shown in the menu as one expandable row under its group name."""
+    members: dict[str, list[str]] = {}
+    for r in records:
+        if r.family:
+            members.setdefault(r.family, []).append(r.id)
+    return {
+        f: {
+            "title": families[f].title if f in families else FAMILY_LABELS.get(f, _humanise(f)),
+            "summary": families[f].summary if f in families else None,
+            "members": ids,
+        }
+        for f, ids in members.items()
+        if len(ids) > 1
+    }
 
 
 def build_payload(
@@ -159,106 +161,91 @@ def build_payload(
     dates_report: list[dict] | None = None,
     generated: dt.date | None = None,
     evaluations: list[Evaluation] | None = None,
-    repo_base: str | None = None,
-    catalogue: list[dict] | None = None,
+    stats: IndustryStats | None = None,
+    bodies: dict[str, Body] | None = None,
+    recommendations: list[Recommendation] | None = None,
+    gaps: dict[str, str] | None = None,
+    regimes: list[Regime] | None = None,
+    families: dict[str, Family] | None = None,
 ) -> dict:
-    from ..pipeline.coverage import load_catalogue
-    from ..pipeline.sources import SOURCES
-
-    catalogue = load_catalogue() if catalogue is None else catalogue
-    screens = screen_all(records)
+    """``stats`` defaults to the committed panels (``IndustryStats.load``), ``bodies`` to the committed registry
+    (``load_bodies``) and ``recommendations``, ``gaps`` and ``regimes`` to the committed ones; pass fixtures in
+    tests."""
+    stats = IndustryStats.load() if stats is None else stats
+    bodies = load_bodies()[0] if bodies is None else bodies
+    titles = {r.id: r.title for r in records}
+    changed = changed_by_index(records)
+    recs = load_recommendations().recommendations if recommendations is None else recommendations
+    gaps = load_gaps() if gaps is None else gaps
+    by_id = {r.id: r for r in records}
+    recs = [x for x in recs if any(a in by_id for a in x.applies_to)]
+    rec_index = by_record(recs)
+    rec_dicts = [recommendation_dict(x, by_id) for x in recs]
     checks = {d["record_id"]: d for d in dates_report or []}
-    evaluations = evaluations or []
-    evaluated = current_evaluation(evaluations)
+    evals = {e.id: e for e in evaluations or []}
+    archived = current_evaluation(evaluations or [])
+    regimes = load_regimes().regimes if regimes is None else regimes
+    families = load_families()[0] if families is None else families
+    reg_index = regimes_by_record(regimes)
     out = []
     for r in records:
         eff = r.effective_commencement
-        t = screens[r.id]
         check = checks.get(r.id)
-        data = r.model_dump(mode="json")
+        ev = evals.get(archived.get(r.id, ""))
+        # The timeline carries the dates and the history.
+        data = r.model_dump(
+            mode="json", exclude={"comparison", "confounders", "price_series", "assessment", "dates", "history"}
+        )
         data.update(
             {
                 "effective": eff.date.isoformat() if eff else None,
                 "effectiveWhat": eff.what if eff else None,
-                "timing": None,
-                "screen": t.as_dict(),
+                "firstFullFy": timing(eff.date).first_full_fy if eff else None,
                 "channelLabels": [CHANNEL_LABELS[c] for c in r.channels],
                 "short": _short(r.title),
                 "check": {"status": check["status"], "issues": check["issues"]} if check else None,
-                "evaluation": evaluated.get(r.id),
-                "data": data_summary(r, catalogue),
+                "assessment": assessment_dict(r),
+                "stats": stats.snapshot(r) if stats else None,
+                "archivedEvaluation": {"id": ev.id, "title": ev.title, "finding": ev.finding_label} if ev else None,
+                "ended": ended_dict(r),
+                "timeline": timeline(r, titles, generated),
+                "changes": changes_list(changed.get(r.id, [])),
+                "recs": [x.id for x in rec_index.get(r.id, [])],
+                "recGap": None if r.id in rec_index else gap_for(r, gaps),
+                "regimes": [x.id for x in reg_index.get(r.id, [])],
+                "complexity": live_tags(reg_index.get(r.id, [])),
             }
         )
-        if eff:
-            data["timing"] = timing(eff.date).as_dict()
         data["industries"] = [{**i, "division": anzsic.division(i["anzsic"])} for i in data["industries"]]
         out.append(data)
-    first_start, _ = fy_bounds(DEFAULT_COVERAGE.first_fy)
-    _, last_end = fy_bounds(DEFAULT_COVERAGE.last_fy)
     return {
         "generated": (generated or dt.date.today()).isoformat(),
         "records": out,
+        "framework": framework.as_dict(),
         "channels": [{"id": k, "label": v} for k, v in CHANNEL_LABELS.items()],
         "familyLabels": {f: FAMILY_LABELS.get(f, _humanise(f)) for f in {r.family for r in records if r.family}},
+        "groups": groups_dict(records, families),
+        "bodies": bodies_dict(records, bodies, {b for x in rec_dicts for b in x["actors"]}),
+        "recommendations": rec_dicts,
+        "recKinds": REC_KIND_LABELS,
+        "regimes": [regime_dict(x) for x in regimes],
+        "industries": industries_list(regimes) if regimes else [],
+        "issueTags": {k: {"label": v, "help": ISSUE_HELP[k]} for k, v in ISSUE_LABELS.items()},
+        "tiers": TIER_LABELS,
+        "functions": {k: {"label": v, "short": FUNCTION_SHORT[k]} for k, v in FUNCTION_LABELS.items()},
+        "consistency": CONSISTENCY_LABELS,
+        "complexityNote": COMPLEXITY_NOTE,
+        "bodyTypes": BODY_TYPE_LABELS,
+        "roles": ROLE_LABELS,
         "divisions": _division_names(),
-        "coverage": {
-            "firstStart": first_start.isoformat(),
-            "lastEnd": last_end.isoformat(),
-            "label": f"ABS CABEE, {first_start.year}-{str(first_start.year + 1)[2:]} to "
-            f"{last_end.year - 1}-{str(last_end.year)[2:]}",
-        },
-        "covidFys": [min(COVID_FYS), max(COVID_FYS)],
-        "evaluations": {ev.id: ev.model_dump(mode="json") for ev in evaluations},
-        "archived": archived(evaluations),
-        "tablesTex": {t.id: table_latex(t) for ev in evaluations for t in ev.tables},
-        "categoryLabels": CATEGORY_LABELS,
-        "repoBase": repo_base or REPO_BASE,
-        "evaluationNote": EVALUATION_NOTE,
-        "dataSources": {k: v.as_dict() for k, v in SOURCES.items()},
-        "dataNote": DATA_NOTE,
-        "screenRules": SCREEN_RULES,
+        "menuNote": MENU_NOTE,
+        "statsNote": STATS_NOTE,
+        "statsSources": stats.sources if stats else {},
+        "statsMeasures": measures_dict(),
+        "statsTiles": list(TILES),
+        "places": STATE_NAMES,
         "checkNote": CHECK_NOTE,
-    }
-
-
-def render(payload: dict, standalone: bool = False, nav: str = "", title: str | None = None) -> str:
-    """``nav`` is the site navigation (``growth.nav``), set when the page is built with the other pages;
-    ``title`` replaces the page title (used for single-evaluation pages)."""
-    template = resources.files("alicia.menu").joinpath("templates/explorer.html").read_text("utf-8")
-    # Embed the data safely inside <script type="application/json">.
-    blob = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    page = template.replace("<!--__NAV__-->", nav).replace("__MENU_DATA__", blob)
-    if title:
-        page = page.replace("<title>ALICIA Legislation Menu</title>", f"<title>{html.escape(title)}</title>", 1)
-    if standalone:
-        page = (
-            '<!doctype html>\n<html lang="en-AU">\n<head>\n<meta charset="utf-8">\n'
-            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-            "</head>\n<body>\n" + page + "\n</body>\n</html>\n"
-        )
-    return page
-
-
-def evaluation_page_name(evaluation_id: str) -> str:
-    return f"evaluation-{evaluation_id}.html"
-
-
-def single_payload(payload: dict, evaluation_id: str) -> dict:
-    """The menu payload cut down to one evaluation: its records, and the evaluations it follows or is
-    followed by (for the links between them)."""
-    evs = payload["evaluations"]
-    ev = evs[evaluation_id]
-    linked = {evaluation_id, ev.get("follows"), *ev.get("supersedes", ())} | {
-        k for k, v in evs.items() if v.get("follows") == evaluation_id or evaluation_id in v.get("supersedes", ())
-    }
-    keep = set(ev["records"])
-    tables = {t["id"] for k in linked if k in evs for t in evs[k].get("tables", ())}
-    return payload | {
-        "records": [r for r in payload["records"] if r["id"] in keep],
-        "evaluations": {k: v for k, v in evs.items() if k in linked},
-        "tablesTex": {k: v for k, v in payload.get("tablesTex", {}).items() if k in tables},
-        "single": evaluation_id,
-        "evalPages": True,
+        "archivedEvaluations": len(evaluations or []),
     }
 
 
@@ -268,18 +255,13 @@ def build_explorer(
     dates_report: Path | None = None,
     standalone: bool = False,
     evaluations: list[Evaluation] | None = None,
-    repo_base: str | None = None,
-    nav: str = "",
-    evaluation_pages: bool = False,
+    pages: tuple | None = None,
 ) -> Path:
-    """Write the menu to ``out``. With ``evaluation_pages``, also write one page per evaluation next to it
-    (``evaluation-<id>.html``), which the menu opens on a double-click or from an "Open as a page" link."""
+    """Write the menu to ``out``. ``pages`` is the site navigation (``growth.PAGES`` and the costing tab, when
+    built); left out, the page is written with the navigation of a full site build."""
+    from .growth import MENU_PAGE, PAGES, render
+
     report = json.loads(dates_report.read_text("utf-8")) if dates_report and dates_report.exists() else None
-    payload = build_payload(records, report, evaluations=evaluations, repo_base=repo_base)
-    if evaluation_pages:
-        payload["evalPages"] = True
-        for ev in evaluations or []:
-            page = render(single_payload(payload, ev.id), standalone, nav, title=f"{ev.title} · ALICIA")
-            (out.parent / evaluation_page_name(ev.id)).write_text(page, encoding="utf-8")
-    out.write_text(render(payload, standalone, nav), encoding="utf-8")
+    payload = build_payload(records, report, evaluations=evaluations)
+    out.write_text(render("explorer.html", payload, MENU_PAGE[0], standalone, pages or PAGES), encoding="utf-8")
     return out

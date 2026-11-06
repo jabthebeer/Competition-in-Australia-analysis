@@ -75,7 +75,7 @@ def test_valid_record_round_trips(tmp_path):
         ({"channels": ["barriers", "barriers"]}, "channels must not repeat"),
         ({"channels": ["prices"]}, "channels"),
         ({"industries": [{"anzsic": "46a", "name": "x", "exposure": "direct"}]}, "ANZSIC"),
-        ({"instruments": []}, "instruments"),
+        ({"instruments": []}, "needs at least one instrument"),
         ({"extra_field": 1}, "extra"),
     ],
 )

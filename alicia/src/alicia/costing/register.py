@@ -1,6 +1,7 @@
 """``alicia costing-register``: the register of changes as the Policy costing tab's reference class.
 
-One entry per record (sorted by id): its hypothesis (direction, rationale and sources), the OIA competition
+One entry per reform (sorted by id; existing settings and non-legislative barriers are not past changes, so they are
+left out): its hypothesis (direction, rationale and sources), the OIA competition
 channels, the industries it affects, its primary commencement date, its review status, and, where it has been
 evaluated, the evaluation shown for it (the latest one that is not archived; otherwise the latest archived one,
 flagged). Written to ``data/processed/costing/register.json``; deterministic (no timestamps).
@@ -65,6 +66,7 @@ def entry(rec: ChangeRecord, ev: tuple[Evaluation, bool] | None) -> dict:
 
 
 def export(records: list[ChangeRecord], evaluations: list[Evaluation]) -> dict:
+    records = [r for r in records if r.kind == "reform"]
     evs = _evaluation_for(records, evaluations)
     return {
         "schema": SCHEMA,

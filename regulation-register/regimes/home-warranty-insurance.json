@@ -1,0 +1,55 @@
+{
+  "id": "home-warranty-insurance",
+  "name": "Home warranty insurance",
+  "what": "Buy home warranty (domestic building) insurance for residential building work where the state requires it, through the state scheme or approved insurers.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "3011",
+      "3019",
+      "322",
+      "323",
+      "324"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State building or home warranty law",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State home warranty scheme or approved insurers",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Construction industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/construction-industry",
+      "locator": "Insurance",
+      "quote": "domestic building or home warranty insurance protects customers if you can't finish work or fix defects",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -4,142 +4,138 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
 <style>
-/* Layout: a register ledger. Filters and summary on top; the list or timeline on the left; the selected change's file on the right (stacked on phones). */
+/*__SITE_CSS__*/
+/* Layout: a register ledger. What weighs on productivity at a glance; filters; the list, scorecard or timeline on
+   the left; the selected item's assessment and its industries' statistics on the right (stacked on phones). */
 :root {
-  --bg: #f4f4f0;
-  --surface: #fcfcfb;
-  --ink: #1b1c1a;
-  --ink-2: #52514e;
-  --ink-3: #6b6a65;
-  --line: #e1e0d9;
-  --line-strong: #c3c2b7;
-  --accent: #1d5c57;
-  --accent-soft: #e2edeb;
-  --enh: #2a78d6;
-  --weak: #e34948;
-  --mixed: #52514e;
-  --band: #e8efed;
-  --covid: #e9e4da;
-  --warn-ink: #7a4b00;
-  --warn-soft: #fff4dc;
-  --est: #1f7a6f;
-  --est-band: #d3e6e2;
-  --noeff: #e8e7e1;
-  --font-display: "Literata", "Iowan Old Style", Georgia, serif;
-  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --step--1: 0.8125rem;
-  --step-0: 0.9375rem;
-  --step-1: 1.125rem;
-  --step-2: 1.5rem;
-  --step-3: 2rem;
+  /* Marks from -2 to +2 (diverging; the fills carry the text colour named beside them). */
+  --mk-p2: #1f7a6f; --mk-p2-ink: #ffffff; --mk-p1: #cfe6e2; --mk-p1-ink: #13312e;
+  --mk-n1: #f7d6d3; --mk-n1-ink: #4a1512; --mk-n2: #b3302a; --mk-n2-ink: #ffffff;
+  --mk-0: #ecebe5; --mk-0-ink: #52514e;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #121211; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --ink-3: #a5a49c;
-    --line: #2e2e2b; --line-strong: #4a4a46; --accent: #7cc2b9; --accent-soft: #1d3330;
-    --enh: #3987e5; --weak: #e66767; --mixed: #c3c2b7; --band: #1c2826; --covid: #2a2620;
-    --warn-ink: #f2c46b; --warn-soft: #2e2512; --est: #3f9d8f; --est-band: #1f3532; --noeff: #2c2c29; color-scheme: dark;
+    --mk-p2: #5fb3a8; --mk-p2-ink: #0b0b0b; --mk-p1: #1f3a37; --mk-p1-ink: #d7efeb;
+    --mk-n1: #45221f; --mk-n1-ink: #f6d6d3; --mk-n2: #e46a64; --mk-n2-ink: #0b0b0b;
+    --mk-0: #2a2a27; --mk-0-ink: #c3c2b7;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #121211; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --ink-3: #a5a49c;
-  --line: #2e2e2b; --line-strong: #4a4a46; --accent: #7cc2b9; --accent-soft: #1d3330;
-  --enh: #3987e5; --weak: #e66767; --mixed: #c3c2b7; --band: #1c2826; --covid: #2a2620;
-  --warn-ink: #f2c46b; --warn-soft: #2e2512; --est: #3f9d8f; --est-band: #1f3532; --noeff: #2c2c29; color-scheme: dark;
+  --mk-p2: #5fb3a8; --mk-p2-ink: #0b0b0b; --mk-p1: #1f3a37; --mk-p1-ink: #d7efeb;
+  --mk-n1: #45221f; --mk-n1-ink: #f6d6d3; --mk-n2: #e46a64; --mk-n2-ink: #0b0b0b;
+  --mk-0: #2a2a27; --mk-0-ink: #c3c2b7;
 }
-* { box-sizing: border-box; }
 [hidden] { display: none !important; }
-body {
-  margin: 0; background: var(--bg); color: var(--ink); font: var(--step-0)/1.5 var(--font-body);
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 24px 48px;
-}
-.wrap { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
-.main > * { min-width: 0; }
-h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; margin: 0; }
-h1 { font-size: var(--step-3); line-height: 1.15; letter-spacing: -0.01em; }
-h2 { font-size: var(--step-2); line-height: 1.2; }
-h3 { font-size: var(--step-0); font-family: var(--font-body); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); }
-a { color: var(--accent); text-underline-offset: 2px; }
-a:hover { text-decoration-thickness: 2px; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
-.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.92em; }
-.muted { color: var(--ink-2); }
-header.top { display: grid; gap: 8px; }
-.lede { max-width: 70ch; color: var(--ink-2); margin: 0; }
-.kicker { margin: 0; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.wrap { max-width: 1320px; gap: 20px; }
 .meta-line { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--ink-3); font-size: var(--step--1); }
-.notice { background: var(--warn-soft); color: var(--ink); border-left: 3px solid var(--warn-ink); padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: var(--step--1); max-width: 100ch; }
-.notice strong { color: var(--warn-ink); }
-.site-nav { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
-.site-nav a { padding: 8px 12px; color: var(--ink-2); text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-.site-nav a:hover { color: var(--ink); }
-.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+.m2 { background: var(--mk-p2); color: var(--mk-p2-ink); } .m1 { background: var(--mk-p1); color: var(--mk-p1-ink); }
+.m0 { background: var(--mk-0); color: var(--mk-0-ink); }
+.mn1 { background: var(--mk-n1); color: var(--mk-n1-ink); } .mn2 { background: var(--mk-n2); color: var(--mk-n2-ink); }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: var(--step--1); border-radius: 999px; padding: 1px 9px 1px 3px; white-space: nowrap; font-weight: 500; }
+.badge .n { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 600; border-radius: 999px; padding: 0 6px; background: rgb(255 255 255 / 0.28); }
+.badge.big { font-size: var(--step-0); padding: 3px 12px 3px 4px; }
+.tag { display: inline-block; font-size: var(--step--1); padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
+.tag.kind { border-style: dashed; }
+.tag.drv { border-color: var(--accent); color: var(--accent); }
+.pill { display: inline-block; font-size: var(--step--1); padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
+.pill.ok { border-color: var(--accent); color: var(--accent); }
+.pill.warn { border-color: var(--warn-ink); color: var(--warn-ink); }
+
+/* At a glance */
+.glance { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 900px) { .glance { grid-template-columns: minmax(0, 1fr); } }
+.glance h2 { font-size: var(--step-1); }
+.dv { display: grid; gap: 3px; font-size: var(--step--1); }
+.dv-head, .dv-row { display: grid; grid-template-columns: minmax(0, 15.5rem) minmax(0, 1fr) minmax(0, 1fr); gap: 0 8px; align-items: center; }
+@media (max-width: 640px) { .dv-head, .dv-row { grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) minmax(0, 1fr); } }
+.dv-head { color: var(--ink-3); font-size: var(--step--1); }
+.dv-head span:nth-child(2) { text-align: right; }
+.dv-row { font: inherit; color: var(--ink); background: none; border: 1px solid transparent; border-radius: 6px; padding: 3px 6px; text-align: left; cursor: pointer; width: 100%; }
+.dv-row:hover { background: var(--accent-soft); }
+.dv-row[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.dv-lab { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-neg, .dv-pos { display: flex; height: 16px; align-items: center; gap: 4px; }
+.dv-neg { justify-content: flex-end; border-right: 1px solid var(--line-strong); padding-right: 0; }
+.dv-pos { justify-content: flex-start; }
+.dv-bar { height: 14px; border-radius: 2px; min-width: 0; }
+.dv-neg .dv-bar { background: var(--neg); border-radius: 2px 0 0 2px; }
+.dv-pos .dv-bar { background: var(--pos); border-radius: 0 2px 2px 0; }
+.dv-n { font-family: var(--font-mono); font-size: var(--step--1); color: var(--ink-2); min-width: 1.6em; }
+.dv-neg .dv-n { text-align: right; }
+.ratings { display: grid; gap: 6px; }
+.ratings .row { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) 2.5rem; gap: 8px; align-items: center; font-size: var(--step--1); }
+.ratings .bar { height: 14px; border-radius: 2px; }
+.ratings .val { font-family: var(--font-mono); text-align: right; color: var(--ink-2); }
 
 /* Filters */
-.filters { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+.filters { display: grid; gap: 10px; }
 .filter-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
-.filters > * { min-width: 0; } /* long select options must not widen the page on phones */
+.filters > * { min-width: 0; }
 .filter-label { font-size: var(--step--1); color: var(--ink-3); min-width: 7.5em; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { font: inherit; font-size: var(--step--1); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 3px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); font-weight: 600; }
-.chip .n { color: var(--ink-3); font-family: var(--font-mono); font-size: 0.85em; }
+.chip[aria-pressed="false"] { color: var(--ink); }
+.chip .sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
 .search { font: inherit; padding: 6px 10px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); color: var(--ink); min-width: 0; width: min(100%, 22rem); }
-select { font: inherit; font-size: var(--step--1); padding: 4px 8px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); color: var(--ink); max-width: 100%; }
 .reset { font: inherit; font-size: var(--step--1); background: none; border: 0; color: var(--accent); cursor: pointer; text-decoration: underline; padding: 0; }
 
-/* Shapes for direction */
-.shape { display: inline-block; width: 11px; height: 11px; flex: none; }
-.shape svg { display: block; }
-
-/* Main layout */
-.main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); gap: 20px; align-items: start; }
+/* Main */
+.main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 27rem); gap: 20px; align-items: start; }
 @media (max-width: 1000px) { .main { grid-template-columns: minmax(0, 1fr); } .detail { order: -1; } .detail.empty { display: none; } }
-.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
-.tab { font: inherit; background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; cursor: pointer; color: var(--ink-2); }
+.tabbar { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+.tablist { display: flex; gap: 4px; min-width: 0; max-width: 100%; overflow-x: auto; }
+@media (max-width: 640px) { .tab { padding: 8px 7px; } }
+.tab { font: inherit; background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; cursor: pointer; color: var(--ink-2); margin-bottom: -1px; }
 .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+.sortbox { display: flex; gap: 6px; align-items: center; font-size: var(--step--1); color: var(--ink-3); padding-bottom: 6px; }
 .count-line { font-size: var(--step--1); color: var(--ink-3); margin: 0 0 8px; }
 
 /* List */
 .list { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 .list th { text-align: left; font-size: var(--step--1); font-weight: 500; color: var(--ink-3); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-.list td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.list td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: var(--step--1); }
+.list td.c-title { font-size: var(--step-0); }
 .list tr:last-child td { border-bottom: 0; }
 .list tr.sel td { background: var(--accent-soft); }
 .list tbody tr:hover td { background: color-mix(in oklab, var(--accent-soft) 55%, var(--surface)); }
 .rowbtn { font: inherit; text-align: left; background: none; border: 0; padding: 0; color: var(--ink); cursor: pointer; font-weight: 500; }
 .rowbtn:hover { color: var(--accent); }
-.fam { display: block; font-size: var(--step--1); color: var(--ink-3); }
-.dir { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: var(--step--1); }
-.rating { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: var(--step--1); }
-.dots { display: inline-flex; gap: 2px; }
-.dots i { width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--ink-2); display: block; }
-.dots i.on { background: var(--ink-2); }
-.pill { display: inline-block; font-size: 0.78rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
-.pill.ok { border-color: var(--accent); color: var(--accent); }
-.pill.warn { border-color: var(--warn-ink); color: var(--warn-ink); }
-.pill svg { vertical-align: -1px; margin-right: 3px; }
 @media (max-width: 640px) {
   .list thead { display: none; }
   .list, .list tbody, .list tr, .list td { display: block; width: 100%; }
-  .list tr { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; padding: 10px; border-bottom: 1px solid var(--line); }
+  .list tr { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; padding: 10px; border-bottom: 1px solid var(--line); }
   .list td { border: 0; padding: 0; }
   .list td.c-title { grid-column: 1 / -1; }
 }
 
+/* Scorecard */
+.sc-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: auto; max-height: 78vh; }
+table.sc { border-collapse: separate; border-spacing: 0; font-size: var(--step--1); width: 100%; }
+table.sc th, table.sc td { padding: 0; border-bottom: 1px solid var(--line); }
+table.sc thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); color: var(--ink-3); font-weight: 500; vertical-align: bottom; padding: 6px 2px; text-align: center; font-size: var(--step--1); line-height: 1.2; min-width: 3.8rem; }
+table.sc thead tr.pillars th { top: 0; font-size: var(--step--1); padding-bottom: 2px; border-bottom: 0; }
+table.sc thead tr.pillars th span { display: block; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; margin: 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+table.sc thead tr.pillars th { height: 26px; box-sizing: border-box; max-width: 0; }
+table.sc thead tr.drv th { top: 26px; }
+table.sc th.item { text-align: left; position: sticky; left: 0; z-index: 1; background: var(--surface); padding: 5px 10px; font-weight: 400; min-width: 15rem; max-width: 22rem; }
+table.sc thead th.item { z-index: 3; text-align: left; }
+table.sc th.item button { font: inherit; background: none; border: 0; padding: 0; color: var(--ink); cursor: pointer; text-align: left; }
+table.sc th.item button:hover { color: var(--accent); }
+table.sc th.item .j { font-family: var(--font-mono); color: var(--ink-3); margin-right: 6px; }
+table.sc td.cell { text-align: center; padding: 3px 2px; }
+table.sc td.cell span { display: inline-block; min-width: 2.2rem; border-radius: 4px; padding: 2px 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: var(--step--1); }
+table.sc td.cell span.m0 { background: none; color: var(--ink-3); }
+table.sc td.tot { text-align: center; padding: 3px 6px; border-left: 1px solid var(--line-strong); }
+table.sc tr.sel th.item, table.sc tr.sel td { background: var(--accent-soft); }
+table.sc td.is-main span { box-shadow: inset 0 0 0 1.5px var(--ink); }
+table.sc td.tot span { display: inline-block; min-width: 2.4rem; border-radius: 4px; padding: 2px 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: var(--step--1); font-weight: 600; }
+.sc-key { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: var(--step--1); color: var(--ink-2); margin-top: 8px; align-items: center; }
+.sc-key span.k { display: inline-block; min-width: 1.8rem; text-align: center; border-radius: 4px; font-family: var(--font-mono); font-size: var(--step--1); padding: 1px 0; }
+
 /* Timeline */
 .tl-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 6px 6px; }
 .tl-scroll { overflow-x: auto; }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: var(--step--1); color: var(--ink-2); padding: 0 8px 8px; }
-.legend span { display: inline-flex; align-items: center; gap: 6px; }
-.swatch { width: 14px; height: 10px; border-radius: 2px; display: inline-block; }
-svg text { font-family: var(--font-body); }
 .tl-mark { cursor: pointer; }
 .tl-mark:focus-visible { outline: none; }
 .tl-mark:focus-visible .hit, .tl-mark:hover .hit { stroke: var(--accent); stroke-width: 1.5; }
-.tip { position: fixed; z-index: 10; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 6px; padding: 6px 9px; font-size: var(--step--1); box-shadow: 0 4px 14px rgb(0 0 0 / 0.12); max-width: 20rem; }
 
 /* Detail */
 .detail { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 16px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow: auto; }
@@ -147,160 +143,212 @@ svg text { font-family: var(--font-body); }
 .detail.empty { color: var(--ink-2); }
 .detail h2 { font-size: var(--step-1); }
 .d-head { display: grid; gap: 6px; }
+.d-head p { margin: 0; }
 .d-meta { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: var(--step--1); color: var(--ink-2); }
-.d-sec { display: grid; gap: 6px; }
+.d-sec { display: grid; gap: 8px; }
+.d-sec > h3 { font-size: var(--step--1); font-family: var(--font-body); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); }
 .d-sec p { margin: 0; }
-.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; font-size: var(--step--1); }
-.kv dt { color: var(--ink-3); }
-.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.assess { background: color-mix(in oklab, var(--accent-soft) 55%, var(--surface)); border-radius: 8px; padding: 12px; display: grid; gap: 10px; }
+.assess-top { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.assess-sum { font-family: var(--font-display); font-size: var(--step-0); line-height: 1.5; }
+.facts-row { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--step--1); color: var(--ink-2); }
+.facts-row strong { color: var(--ink); font-weight: 600; }
+.marks { display: grid; gap: 2px; }
+.mrow { display: grid; grid-template-columns: minmax(0, 1fr) 7.5rem 2.2rem; gap: 2px 8px; align-items: center; font-size: var(--step--1); padding: 2px 0; }
+.mrow .lab { min-width: 0; }
+.mrow.zero .lab { color: var(--ink-3); }
+.mrow .scale { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; height: 12px; position: relative; align-items: stretch; flex-wrap: nowrap; }
+.mrow .scale i { display: block; border-radius: 2px; background: var(--line); }
+.mrow .scale i.m2 { background: var(--mk-p2); } .mrow .scale i.m1 { background: var(--mk-p2); opacity: 0.55; }
+.mrow .scale i.mn1 { background: var(--mk-n2); opacity: 0.55; } .mrow .scale i.mn2 { background: var(--mk-n2); }
+.mrow .scale::after { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--ink-3); }
+.mrow .val { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.mrow.zero .val { color: var(--ink-3); }
+.mrow .why { color: var(--ink-2); font-size: var(--step--1); padding-left: 0.9em; border-left: 2px solid var(--line-strong); margin: 2px 0 6px; }
+.mrow.main .lab { font-weight: 600; }
+.ev-links { font-size: var(--step--1); display: grid; gap: 2px; }
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.tile { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; display: grid; gap: 1px; align-content: start; }
+.tile .t-lab { font-size: var(--step--1); color: var(--ink-2); }
+.tile .t-val { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: var(--step-1); }
+.tile .t-all { font-size: var(--step--1); color: var(--ink-3); }
+table.st { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+table.st th, table.st td { padding: 4px 4px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.st thead th { color: var(--ink-3); font-weight: 500; text-align: right; }
+table.st thead th:first-child { text-align: left; }
+table.st td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.st td.num.all { color: var(--ink-2); }
+table.st tr.grp th { text-align: left; font-size: var(--step--1); color: var(--ink-2); font-weight: 600; padding-top: 10px; }
+.detail details.more .tscroll { max-height: none; overflow: visible; }
+.st-src { font-size: var(--step--1); color: var(--ink-2); margin: 6px 0 0; }
 .d-list { margin: 0; padding-left: 1.1em; font-size: var(--step--1); display: grid; gap: 4px; }
 .d-list li { overflow-wrap: anywhere; }
 .close { justify-self: end; font: inherit; font-size: var(--step--1); background: none; border: 1px solid var(--line-strong); border-radius: 6px; color: var(--ink-2); padding: 2px 8px; cursor: pointer; }
-.big-date { font-family: var(--font-mono); font-size: var(--step-1); }
-footer { font-size: var(--step--1); color: var(--ink-3); max-width: 100ch; display: grid; gap: 4px; }
-/* Evaluations: badges, results cards, effect strips and year-by-year charts */
-.pill.eval { border-color: var(--est); color: var(--est); }
-.pill.enh { border-color: var(--enh); color: var(--enh); }
-.pill.weak { border-color: var(--weak); color: var(--weak); }
-.tab .n { font-family: var(--font-mono); font-size: 0.8em; color: var(--ink-3); margin-left: 2px; }
-.small { font-size: var(--step--1); }
-.results { display: grid; gap: 16px; }
-.results-intro { margin: 0; color: var(--ink-2); font-size: var(--step--1); max-width: 80ch; }
-.ov-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; }
-.ov { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
-.ov th { text-align: left; font-weight: 500; color: var(--ink-3); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-.ov td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.ov tr:last-child td { border-bottom: 0; }
-.ov .eff { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.ov .ov-unit { display: block; font-family: var(--font-body, inherit); font-size: 0.8em; color: var(--ink-2); white-space: normal; max-width: 28ch; }
-.ev-chain { margin: 0.25rem 0 0; }
-.pill.new { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
-.pill.arch { border-style: dashed; }
-.archived-note { margin: 0; padding: 8px 12px; border: 1px dashed var(--line-strong); border-radius: 8px; color: var(--ink-2); font-size: var(--step--1); }
-.ev-earlier { border-top: 1px dashed var(--line-strong); padding-top: 12px; display: grid; gap: 6px; }
-.ev-earlier h3 { color: var(--ink-3); }
-.ev-earlier .ev-old { display: grid; gap: 4px; font-size: var(--step--1); color: var(--ink-2); }
-.ev-archive { border: 1px dashed var(--line-strong); border-radius: 10px; padding: 12px 16px; }
-.ev-archive > summary { cursor: pointer; font-weight: 500; color: var(--ink-2); }
-.ev-archive[open] > summary { margin-bottom: 12px; }
-.ev-archive .ev-card { border-style: dashed; margin-top: 12px; }
-/* Regression tables, booktabs style: heavy top and bottom rules, light rule under the header and above the footer. */
-.reg { margin: 0; display: grid; gap: 6px; min-width: 0; }
-.reg + .reg { margin-top: 14px; }
-.reg figcaption { font-family: var(--font-display); font-size: var(--step-0); color: var(--ink); text-wrap: balance; }
-.reg-no { font-weight: 600; }
-.reg-wrap { overflow-x: auto; }
-.reg-table { border-collapse: collapse; font-family: var(--font-display); font-size: var(--step--1); font-variant-numeric: tabular-nums lining-nums; color: var(--ink); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
-.reg-table th, .reg-table td { padding: 1px 10px; white-space: nowrap; }
-.reg-table td { text-align: center; }
-.reg-table tbody th { text-align: left; font-weight: 400; }
-.reg-table thead th { font-weight: 500; text-align: center; padding-top: 5px; }
-.reg-table thead tr.labs th { white-space: normal; min-width: 6.5em; max-width: 9.5em; vertical-align: bottom; padding-bottom: 5px; border-bottom: 1px solid var(--ink); line-height: 1.25; }
-.reg-table tr.grp th span { display: block; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; font-style: italic; font-weight: 400; }
-.reg-table tr.panel th { font-style: italic; padding-top: 10px; padding-bottom: 3px; white-space: normal; }
-.reg-table tr.coef td { padding-top: 3px; }
-.reg-table tr.sd td, .reg-table tr.pv td { color: var(--ink-2); }
-.reg-table tr.pv td { padding-bottom: 4px; }
-.reg-table td.is-reg { font-weight: 600; }
-.reg-table sup { font-size: 0.72em; margin-left: 1px; }
-.reg-table tr.stat th { color: var(--ink-2); }
-.reg-table tbody.foot tr:first-child > * { border-top: 1px solid var(--ink); padding-top: 5px; }
-.reg-table tbody.foot tr:last-child > * { padding-bottom: 5px; }
-.reg-notes { margin: 0; font-size: var(--step--1); color: var(--ink-2); max-width: 110ch; line-height: 1.45; }
-.reg-tex summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); width: max-content; }
-.reg-tex pre { max-height: 260px; overflow: auto; margin: 6px 0 0; font: 11px/1.4 var(--font-mono); background: var(--bg); color: var(--ink); border: 1px solid var(--line); padding: 8px; border-radius: 6px; }
-.est-wrap { overflow-x: auto; }
-.est-table { border-collapse: collapse; font-size: var(--step--1); min-width: 520px; }
-.est-table th { text-align: left; font-weight: 500; color: var(--ink-3); padding: 5px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-.est-table td { padding: 5px 8px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
-.est-table td.num { font-family: var(--font-mono); white-space: nowrap; }
-.est-table tr.reg td { font-weight: 600; }
-.est-table caption { text-align: left; color: var(--ink-2); padding: 0 0 4px; font-size: var(--step--1); }
-.ov .linkbtn { text-align: left; }
-@media (max-width: 640px) {
-  .ov thead { display: none; }
-  .ov, .ov tbody, .ov tr, .ov td { display: block; width: 100%; }
-  .ov tr { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; padding: 10px; border-bottom: 1px solid var(--line); }
-  .ov td { border: 0; padding: 0; }
-  .ov td.ov-title { grid-column: 1 / -1; }
-}
-.ev-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 14px; }
-.ev-card h2 { font-size: var(--step-2); }
-.ev-kicker { font-size: 0.75rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; }
-.ev-body { container-type: inline-size; display: grid; gap: 18px; min-width: 0; }
-.ev-badges { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: var(--step--1); }
-.ev-recs { display: flex; flex-wrap: wrap; gap: 6px; }
-.recbtn { font: inherit; font-size: var(--step--1); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); border-radius: 6px; padding: 3px 9px; cursor: pointer; }
-.recbtn:hover { border-color: var(--accent); color: var(--accent); }
-.ev-headline { margin: 0; font-family: var(--font-display); font-size: var(--step-1); line-height: 1.45; max-width: 68ch; }
-.detail .ev-headline { font-size: var(--step-0); }
-.cats { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-@container (max-width: 640px) { .cats { grid-template-columns: minmax(0, 1fr); } }
-.cat { border-top: 2px solid var(--line-strong); padding-top: 8px; display: grid; gap: 3px; align-content: start; font-size: var(--step--1); }
-.cat-label { text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); font-size: 0.72rem; }
-.cat strong { font-size: var(--step-0); font-weight: 600; }
-.cat p { margin: 0; color: var(--ink-2); }
-.ev-sec { display: grid; gap: 8px; min-width: 0; }
-.open-page { margin-left: auto; font-size: var(--step--1); white-space: nowrap; }
-.ev-card[data-ev], tr[data-ev] { cursor: default; }
-.ev-page { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: clamp(14px, 3vw, 28px); display: grid; gap: 14px; max-width: 1080px; width: 100%; min-width: 0; }
-.single-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--ink-3); font-size: var(--step--1); align-items: center; }
-.ev-insights { background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; display: grid; gap: 6px; max-width: 80ch; }
-.ev-insights h3 { color: var(--accent); }
-.ev-insights ul { margin: 0; padding-left: 1.1em; display: grid; gap: 5px; font-size: var(--step--1); line-height: 1.5; }
-.ev-insights li::marker { color: var(--accent); }
-.ev-deep { display: grid; gap: 18px; min-width: 0; border-top: 1px solid var(--line); padding-top: 14px; }
-details.ev-deep > summary { cursor: pointer; font-weight: 600; font-size: var(--step--1); color: var(--accent); width: max-content; max-width: 100%; }
-details.ev-deep[open] > summary { margin-bottom: 4px; }
-.ev-deep-h { font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; text-transform: none; letter-spacing: 0; color: var(--ink); }
-.steps { margin: 0; padding-left: 1.4em; display: grid; gap: 5px; font-size: var(--step--1); max-width: 85ch; }
-.method-sum { margin: 0; font-size: var(--step--1); max-width: 85ch; }
-.eqs { display: grid; gap: 8px; }
-.eq { margin: 0; display: grid; gap: 2px; min-width: 0; }
-.eq figcaption { font-size: 0.75rem; color: var(--ink-3); }
-.eq-math { font-family: var(--font-display); font-size: var(--step-0); line-height: 1.7; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; overflow-x: auto; white-space: nowrap; }
-.eq-math sub, .eq-math sup, .terms sub, .terms sup, .kv sub, .kv sup { font-size: 0.72em; line-height: 0; }
-.ss { display: inline-flex; flex-direction: column; vertical-align: middle; font-size: 0.72em; line-height: 1.05; margin: 0 0.05em; text-align: left; }
-.hat { position: relative; display: inline-block; }
-.hat::after { content: "^"; position: absolute; left: 50%; top: -0.38em; transform: translateX(-45%); font-size: 0.8em; line-height: 1; }
-.terms { display: grid; grid-template-columns: minmax(0, max-content) minmax(0, 1fr); gap: 4px 14px; margin: 0; font-size: var(--step--1); max-width: 90ch; }
-.terms dt { font-family: var(--font-display); white-space: nowrap; }
-.terms dd { margin: 0; color: var(--ink-2); }
-@container (max-width: 520px) { .terms { grid-template-columns: minmax(0, 1fr); } .terms dd { margin-bottom: 4px; } }
-.fx { display: grid; gap: 16px; max-width: 760px; }
-.fx-group { display: grid; gap: 2px; }
-.fx-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 10px; align-items: baseline; border-bottom: 1px solid var(--line); padding: 0 4px 4px; margin-bottom: 4px; }
-.fx-cat { font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); }
-.fx-unit { font-size: 0.78rem; color: var(--ink-3); }
-.fx-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 10px; padding: 5px 4px 2px; border-radius: 6px; }
-.fx-row:hover, .fx-row:focus-visible { background: color-mix(in oklab, var(--accent-soft) 60%, var(--surface)); }
-.fx-label { font-size: var(--step--1); font-weight: 500; min-width: 0; }
-.fx-val { font-family: var(--font-mono); font-size: 0.8rem; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.fx-val .muted { color: var(--ink-3); }
-.fx-sub { grid-column: 1 / -1; font-size: 0.75rem; color: var(--ink-3); }
-.fx-strip { grid-column: 1 / -1; height: 24px; }
-.fx-axis { height: 20px; margin: 0 4px; }
-.key { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.75rem; color: var(--ink-3); }
-.key span { display: inline-flex; align-items: center; gap: 5px; }
-.chart { min-width: 0; }
-.chart svg { display: block; overflow: visible; }
-.chart svg text { font-family: var(--font-body); }
-.es-grid { display: grid; gap: 18px 20px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.es-grid .wide { grid-column: 1 / -1; }
-@container (max-width: 620px) { .es-grid { grid-template-columns: minmax(0, 1fr); } }
-.es { display: grid; gap: 4px; min-width: 0; }
-.es h4 { font-family: var(--font-body); font-size: var(--step--1); font-weight: 600; }
-.es .cap { margin: 0; font-size: 0.75rem; color: var(--ink-3); }
-.es-chart { height: 196px; }
-.nums summary { cursor: pointer; font-size: 0.78rem; color: var(--accent); width: max-content; }
-.nums .scroll { overflow-x: auto; margin-top: 6px; }
-.nums table { border-collapse: collapse; font-family: var(--font-mono); font-size: 0.75rem; font-variant-numeric: tabular-nums; }
-.nums th, .nums td { padding: 2px 10px 2px 0; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
-.nums th:first-child, .nums td:first-child { text-align: left; }
-.ev-docs { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: var(--step--1); }
-.linkbtn { font: inherit; font-size: var(--step--1); background: none; border: 0; color: var(--accent); cursor: pointer; text-decoration: underline; padding: 0; text-underline-offset: 2px; }
+.arch-note { font-size: var(--step--1); color: var(--ink-2); border: 1px dashed var(--line-strong); border-radius: 8px; padding: 8px 10px; margin: 0; }
 
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+/* Who is responsible, and what happened to the law since */
+.tag.end { background: var(--mk-0); color: var(--ink-2); border-color: var(--ink-3); }
+.ended-note { font-size: var(--step--1); border-left: 3px solid var(--ink-3); padding: 4px 0 4px 10px; color: var(--ink-2); }
+.ended-note strong { color: var(--ink); }
+.lnk { font: inherit; background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; text-align: left; }
+.resp { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: var(--step--1); }
+.resp li { display: grid; gap: 1px; overflow-wrap: anywhere; }
+.resp .role { font-size: var(--step--1); color: var(--ink-3); }
+.resp .in { color: var(--ink-2); }
+.tline { list-style: none; margin: 0; padding: 0 0 0 16px; border-left: 2px solid var(--line-strong); display: grid; gap: 10px; font-size: var(--step--1); margin-left: 6px; }
+.tline li { position: relative; display: grid; gap: 1px; overflow-wrap: anywhere; }
+.tline li::before { content: ""; position: absolute; left: -24px; top: 0.25em; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink-3); }
+.tline li.later::before { background: var(--accent); border-color: var(--accent); }
+.tline li.end::before { background: var(--ink); border-color: var(--ink); }
+.tline li.upcoming::before { border-style: dashed; background: var(--surface); }
+.tline .t-when { font-family: var(--font-mono); color: var(--ink-3); }
+.tline .t-kind { font-weight: 600; }
+.tline .t-src { color: var(--ink-3); }
+.tl-key { display: none; flex-wrap: wrap; gap: 4px 14px; font-size: var(--step--1); color: var(--ink-3); }
+.tl-key i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--ink-3); box-sizing: border-box; vertical-align: -1px; margin-right: 4px; }
+.tl-key i.later { background: var(--accent); border-color: var(--accent); }
+.tl-key i.end { background: var(--ink); border-color: var(--ink); }
+
+/* Recommendations: what government could do */
+.recs, .reclist { display: grid; gap: 10px; }
+.rec { border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 10px 12px; display: grid; gap: 6px; background: var(--surface); min-width: 0; }
+.rec h4 { margin: 0; font-size: var(--step-0); font-family: var(--font-body); font-weight: 600; line-height: 1.35; }
+.rec p { margin: 0; font-size: var(--step--1); overflow-wrap: anywhere; }
+.rec .r-why { color: var(--ink-2); }
+.rec .r-sub { color: var(--ink-2); }
+.rec .r-sub strong { color: var(--ink); font-weight: 600; }
+.rec-meta { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: var(--step--1); color: var(--ink-2); }
+.rec details summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); }
+.ev { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: var(--step--1); }
+.ev li { overflow-wrap: anywhere; }
+.ev blockquote { margin: 0 0 2px; padding: 2px 0 2px 10px; border-left: 2px solid var(--line-strong); color: var(--ink-2); font-style: italic; }
+.ev .src { color: var(--ink-3); }
+.tag.intl { border-color: var(--accent); color: var(--accent); }
+.rec-gap { font-size: var(--step--1); color: var(--ink-2); border: 1px dashed var(--line-strong); border-radius: 8px; padding: 8px 10px; margin: 0; }
+.reclist .rec.hl { box-shadow: 0 0 0 2px var(--accent); }
+.rec-items { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: var(--step--1); }
+/* Regulatory complexity (DECISIONS E-96): tags, regime cards with their tier diagram, and the industries view. */
+.tag.cx { border-style: dashed; border-color: var(--ink-3); color: var(--ink); background: var(--surface); }
+.cxs { display: inline-flex; flex-wrap: wrap; gap: 3px; margin-left: 6px; vertical-align: middle; }
+.regime { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin: 0 0 10px; background: var(--surface); }
+.regime h4 { margin: 0 0 4px; font-size: var(--step-0); }
+.regime h4 .lnk { font: inherit; font-weight: 600; }
+.regime p { margin: 4px 0; font-size: var(--step--1); }
+.regime-body { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 6px; }
+.regime-body svg.venn { max-width: 320px; }
+.venn-key { font-size: var(--step--1); color: var(--ink-2); margin: 2px 0 0; }
+ul.issues { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+ul.issues li { font-size: var(--step--1); border-left: 2px solid var(--line-strong); padding-left: 8px; }
+ul.issues li p { margin: 2px 0; }
+.ist { font-size: var(--step--1); color: var(--ink-3); margin-left: 6px; }
+.no-issue { font-size: var(--step--1); color: var(--ink-3); margin: 0; }
+ul.layers { margin: 4px 0; padding-left: 0; list-style: none; font-size: var(--step--1); display: grid; gap: 2px; }
+.tier { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
+.tier::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--t-cth); display: inline-block; }
+.tier.t-state::before { background: var(--t-state); } .tier.t-local::before { background: var(--t-local); }
+table.ind { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+table.ind th, table.ind td { padding: 5px 6px; border-bottom: 1px solid var(--line); text-align: right; }
+table.ind th:first-child, table.ind td:first-child { text-align: left; }
+table.ind thead th { color: var(--ink-3); font-weight: 500; vertical-align: bottom; }
+table.ind tr.sel td { background: var(--accent-soft); }
+table.ind .rowbtn .code { font-family: var(--font-mono); color: var(--ink-3); margin-right: 6px; }
+.ind-tools { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 0 0 8px; font-size: var(--step--1); }
+.tscroll-ind { overflow-x: auto; }
+.cls-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin: 8px 0; }
+.cls-tiles div { border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
+.cls-tiles .n { display: block; font-size: var(--step-1); font-weight: 600; font-family: var(--font-mono); }
+.cls-tiles .l { font-size: var(--step--1); color: var(--ink-2); }
+ul.reg-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: var(--step--1); }
+ul.reg-rows .muted { font-size: var(--step--1); }
+/* Decluttered layout (owner request, 29 October 2026): secondary detail sits behind "i" buttons and collapsible
+   sections, and no text is set below 13px. */
+.term.info { display: inline-grid; place-items: center; width: 1.15rem; height: 1.15rem; border-radius: 50%; border: 1px solid var(--line-strong);
+  font: 600 0.75rem/1 var(--font-body); color: var(--ink-3); text-decoration: none; vertical-align: 0.15em; margin-left: 6px; cursor: help; }
+.term.info:hover, .term.info:focus-visible { color: var(--accent); border-color: var(--accent); }
+.more-filters { border-top: 1px solid var(--line); padding-top: 8px; }
+.more-filters > summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); width: max-content; }
+.more-filters[open] > summary { margin-bottom: 10px; }
+.more-filters .filters-more { display: grid; gap: 10px; }
+details.fold { border-top: 1px solid var(--line); padding-top: 10px; }
+details.fold > summary { cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+details.fold > summary::-webkit-details-marker { display: none; }
+details.fold > summary::before { content: "▸"; color: var(--ink-3); width: 0.8em; flex: none; }
+details.fold[open] > summary::before { content: "▾"; }
+details.fold > summary .fold-t { font-size: var(--step--1); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); }
+details.fold > summary .fold-n { font-size: var(--step--1); color: var(--ink-3); }
+details.fold > summary:hover .fold-t { color: var(--accent); }
+details.fold > .fold-body { display: grid; gap: 10px; margin-top: 10px; }
+details.mrow { display: block; padding: 2px 0; }
+details.mrow > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 7.5rem 2.2rem; gap: 2px 8px; align-items: center; }
+details.mrow > summary::-webkit-details-marker { display: none; }
+details.mrow > summary .lab::before { content: "▸ "; color: var(--ink-3); }
+details.mrow[open] > summary .lab::before { content: "▾ "; }
+.zero-note { font-size: var(--step--1); color: var(--ink-3); margin: 4px 0 0; }
+details.sub > summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); }
+details.sub[open] > summary { margin-bottom: 6px; }
+details.sub > .sub-body { display: grid; gap: 6px; font-size: var(--step--1); color: var(--ink-2); }
+details.about { border-top: 1px solid var(--line); padding-top: 10px; }
+details.about > summary { cursor: pointer; font-weight: 600; color: var(--ink-2); }
+details.about[open] > summary { margin-bottom: 8px; }
+.mono, .num, table.st td.num { font-size: 1em; }
+/* Families shown as one expandable row (DECISIONS E-99). */
+/* A group row is a container: a stack icon, a coloured left edge, a tinted band and a count badge that opens it.
+   Its items, once open, hang off a rail beneath it; single items stay plain rows. */
+.grpbtn { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; color: var(--ink);
+  display: inline-flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+.grp-icon { flex: none; display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 6px;
+  background: var(--accent); color: var(--surface); margin-top: -1px; }
+.grp-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; }
+.grp-name { font-weight: 600; flex: 1 1 14rem; min-width: 0; }
+.grp-count { flex: none; display: inline-flex; align-items: center; gap: 5px; font-size: var(--step--1); font-weight: 600;
+  color: var(--accent); background: var(--surface); border: 1.5px solid var(--accent); border-radius: 999px; padding: 1px 10px;
+  white-space: nowrap; }
+.grp-count::after { content: "▾"; font-size: 0.9em; }
+.grpbtn[aria-expanded="true"] .grp-count { background: var(--accent); color: var(--surface); }
+.grpbtn[aria-expanded="true"] .grp-count::after { content: "▴"; }
+.grpbtn:hover .grp-name, .grpbtn:focus-visible .grp-name { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.list tr.grp-row { cursor: pointer; }
+.list tr.grp-row td { background: color-mix(in oklab, var(--accent-soft) 70%, var(--surface)); border-top: 1px solid var(--line-strong); }
+.list tr.grp-row td:first-child { box-shadow: inset 5px 0 0 var(--accent); }
+.list tbody tr.grp-row:hover td { background: var(--accent-soft); }
+.list tr.grp-row.open td { border-bottom-color: transparent; }
+.list tr.grp-sum td, .list tr.member td { background: color-mix(in oklab, var(--accent-soft) 22%, var(--surface)); }
+.list tr.grp-sum td:first-child, .list tr.member td:first-child { box-shadow: inset 5px 0 0 color-mix(in oklab, var(--accent) 40%, var(--surface)); }
+.list tr.grp-sum td { padding: 2px 10px 10px calc(10px + 2.2rem); color: var(--ink-2); font-size: var(--step--1); }
+.list tr.member td.c-title { padding-left: calc(10px + 2.2rem); position: relative; }
+.list tr.member td.c-title::before { content: ""; position: absolute; left: calc(10px + 0.8rem); top: 0; bottom: 0; border-left: 1.5px solid color-mix(in oklab, var(--accent) 45%, var(--surface)); }
+.list tr.member td.c-title::after { content: ""; position: absolute; left: calc(10px + 0.8rem); top: 1.2em; width: 0.9rem; border-top: 1.5px solid color-mix(in oklab, var(--accent) 45%, var(--surface)); }
+.list tr.member.last td.c-title::before { bottom: auto; height: 1.2em; }
+.list tr.member.last td { border-bottom: 1px solid var(--line-strong); }
+.list tr.member td.c-title .rowbtn { font-weight: 400; }
+.list tr.member.sel td { background: var(--accent-soft); }
+.grp-legend { display: inline-flex; align-items: center; gap: 6px; font-size: var(--step--1); color: var(--ink-2); }
+.grp-legend .grp-icon { width: 1.25rem; height: 1.25rem; border-radius: 4px; }
+.grp-legend .grp-icon svg { width: 13px; height: 13px; }
+.mark-range { display: inline-flex; gap: 4px; align-items: center; white-space: nowrap; }
+.mark-range .to { color: var(--ink-3); font-size: var(--step--1); }
+.mark-range .badge { padding: 1px 3px; }
+table.sc tr.sc-grp th { position: static; text-align: left; padding: 7px 10px; background: color-mix(in oklab, var(--accent-soft) 70%, var(--surface)); box-shadow: inset 5px 0 0 var(--accent); border-top: 1px solid var(--line-strong); }
+table.sc tr.sc-member th.item { box-shadow: inset 5px 0 0 color-mix(in oklab, var(--accent) 40%, var(--surface)); }
+table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
+.grp-of { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
+@media (max-width: 640px) {
+  /* Rows stack as cards on phones: the band, edge and rail move from the cells to the row. */
+  .list tr.grp-row { background: color-mix(in oklab, var(--accent-soft) 70%, var(--surface)); box-shadow: inset 5px 0 0 var(--accent); padding-left: 16px; }
+  .list tr.grp-sum, .list tr.member { background: color-mix(in oklab, var(--accent-soft) 22%, var(--surface)); box-shadow: inset 5px 0 0 color-mix(in oklab, var(--accent) 40%, var(--surface)); padding-left: 28px; }
+  .list tr.sel { background: var(--accent-soft); }
+  .list tr.grp-row td, .list tr.grp-row td:first-child, .list tr.grp-sum td, .list tr.grp-sum td:first-child,
+  .list tr.member td, .list tr.member td:first-child, .list tr.sel td, .list tbody tr:hover td { background: none; box-shadow: none; border: 0; }
+  .list tr.grp-row td:nth-child(2) { display: none; }
+  .list tbody tr.grp-row:hover { background: var(--accent-soft); }
+  .list tbody tr.grp-row:hover td { background: none; }
+  .list tr.grp-sum td, .list tr.member td.c-title { padding-left: 0; }
+  .list tr.member td.c-title::before, .list tr.member td.c-title::after { display: none; }
+}
+.count-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; margin: 0 0 8px; }
+.count-row .count-line { margin: 0; }
+.count-row .lnk { font-size: var(--step--1); }
+.issue-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
 </style>
 
 <div class="wrap">
@@ -308,583 +356,320 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
     <!--__NAV__-->
     <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
     <h1>Legislation Menu</h1>
-    <p class="lede">Commonwealth, state and territory changes that could be evaluated for their effects on competition (business entry and exit, prices and productivity) with public data. Each change carries a hypothesised direction, its effective date and an evaluability screen. Evaluated changes show what the data found.</p>
+    <p class="lede">Laws, regulatory settings and other barriers that shape competition and productivity in Australia. Each one is marked against the <a href="framework.html">ALICIA productivity framework</a> and shown with statistics on the industries it affects.</p>
     <div class="meta-line" id="metaLine"></div>
-    <p class="notice" id="draftNotice"></p>
   </header>
 
-  <section class="filters" aria-label="Filters">
+  <section class="block" aria-labelledby="h-glance">
+    <div class="panel glance">
+      <div class="stack">
+        <div class="block-head">
+          <h2 id="h-glance">What weighs on productivity<button type="button" class="term info" data-term="helpGlance" aria-label="About this chart" aria-describedby="def-helpGlance">i</button></h2>
+        </div>
+        <div class="dv" id="dv" role="group" aria-label="Items by main driver"></div>
+      </div>
+      <div class="stack">
+        <h2>Overall marks<button type="button" class="term info" data-term="helpMarks" aria-label="About the overall marks" aria-describedby="def-helpMarks">i</button></h2>
+        <div class="ratings" id="ratingBars"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel filters" aria-label="Filters">
     <div class="filter-row">
       <label class="filter-label" for="q">Search</label>
       <input class="search" id="q" type="search" placeholder="Title, summary, ANZSIC code…" autocomplete="off">
       <button class="reset" id="reset" type="button">Clear all filters</button>
     </div>
-    <div class="filter-row"><span class="filter-label">Evaluation</span><div class="chips" id="f-eval"></div></div>
-    <div class="filter-row"><span class="filter-label">Outcome data</span><div class="chips" id="f-data"></div></div>
+    <div class="filter-row"><span class="filter-label">Main driver</span><div class="chips" id="f-driver"></div></div>
+    <div class="filter-row"><span class="filter-label">Overall mark</span><div class="chips" id="f-rating"></div></div>
+    <details class="more-filters" id="moreFilters"><summary>More filters<span id="moreCount"></span></summary><div class="filters-more">
+    <div class="filter-row"><span class="filter-label">Kind of item</span><div class="chips" id="f-kind"></div></div>
     <div class="filter-row"><span class="filter-label">Jurisdiction</span><div class="chips" id="f-jur"></div></div>
-    <div class="filter-row"><span class="filter-label">Hypothesised direction</span><div class="chips" id="f-dir"></div></div>
-    <div class="filter-row"><span class="filter-label">Evaluability</span><div class="chips" id="f-rating"></div></div>
+    <div class="filter-row"><span class="filter-label">Reach</span><div class="chips" id="f-reach"></div></div>
     <div class="filter-row">
-      <label class="filter-label" for="f-channel">Competition channel</label>
-      <select id="f-channel"></select>
-      <label class="filter-label" for="f-div">Industry division</label>
+      <label class="filter-label" for="f-status">Status</label>
+      <select id="f-status"><option value="">Any</option><option value="in-force">In force</option><option value="not-yet">Not yet in force</option><option value="ended">Repealed or replaced</option></select>
+      <label class="filter-label" for="f-div">Industry</label>
       <select id="f-div"></select>
     </div>
+    <div class="filter-row">
+      <label class="filter-label" for="f-body">Responsible</label>
+      <select id="f-body"></select>
+    </div>
+    <div class="filter-row"><span class="filter-label"><span data-term="complexity">Complexity</span></span><div class="chips" id="f-cx"></div></div>
+    </div></details>
   </section>
 
   <div class="main">
-    <section aria-label="Changes">
-      <div class="tabs" role="tablist">
-        <button class="tab" role="tab" id="tab-list" aria-selected="true" aria-controls="view-list">List</button>
-        <button class="tab" role="tab" id="tab-timeline" aria-selected="false" aria-controls="view-timeline">Timeline</button>
-        <button class="tab" role="tab" id="tab-results" aria-selected="false" aria-controls="view-results">Results <span class="n" id="resultsN"></span></button>
+    <section aria-label="Items">
+      <div class="tabbar">
+        <div class="tablist" role="tablist">
+          <button class="tab" role="tab" id="tab-list" aria-selected="true" aria-controls="view-list">List</button>
+          <button class="tab" role="tab" id="tab-scorecard" aria-selected="false" aria-controls="view-scorecard">Scorecard</button>
+          <button class="tab" role="tab" id="tab-timeline" aria-selected="false" aria-controls="view-timeline">Timeline</button>
+          <button class="tab" role="tab" id="tab-recs" aria-selected="false" aria-controls="view-recs">Recommendations</button>
+          <button class="tab" role="tab" id="tab-ind" aria-selected="false" aria-controls="view-ind">Industries</button>
+        </div>
+        <label class="sortbox">Sort <select id="sort">
+          <option value="new">Newest first</option><option value="old">Oldest first</option>
+          <option value="neg">Most negative first</option><option value="pos">Most positive first</option><option value="title">Title</option>
+        </select></label>
       </div>
-      <p class="count-line" id="countLine" aria-live="polite"></p>
+      <div class="count-row"><p class="count-line" id="countLine" aria-live="polite"></p><span class="grp-legend" id="grpLegend"><span class="grp-icon" id="grpLegendIcon"></span>A group of related items, often one policy in several states. Click to open.</span><button type="button" class="lnk" id="toggleGroups"></button></div>
       <div id="view-list" role="tabpanel" aria-labelledby="tab-list">
         <table class="list">
-          <thead><tr><th>Effective</th><th>Jur.</th><th>Change</th><th>Direction</th><th>Evaluability</th><th>Register check</th><th>Evaluation</th></tr></thead>
+          <thead><tr><th>Effective</th><th>Jur.</th><th>Item</th><th>Main driver</th><th>Overall mark</th><th>Reach</th></tr></thead>
           <tbody id="rows"></tbody>
         </table>
       </div>
-      <div id="view-results" role="tabpanel" aria-labelledby="tab-results" hidden>
-        <div class="results" id="results"></div>
+      <div id="view-scorecard" role="tabpanel" aria-labelledby="tab-scorecard" hidden>
+        <div class="sc-wrap"><table class="sc" id="sc"></table></div>
+        <div class="sc-key" id="scKey"></div>
       </div>
       <div id="view-timeline" role="tabpanel" aria-labelledby="tab-timeline" hidden>
         <div class="tl-wrap">
           <div class="legend" id="tlLegend"></div>
-          <div class="tl-scroll"><svg id="tl" role="img" aria-label="Timeline of effective dates, grouped by reform family"></svg></div>
+          <div class="tl-scroll"><svg id="tl" role="img" aria-label="Timeline of reforms by effective date, grouped by reform family, coloured by overall mark"></svg></div>
         </div>
+      </div>
+      <div id="view-recs" role="tabpanel" aria-labelledby="tab-recs" hidden>
+        <div class="reclist" id="reclist"></div>
+      </div>
+      <div id="view-ind" role="tabpanel" aria-labelledby="tab-ind" hidden>
+        <div class="ind-tools" id="indTools"></div>
+        <div class="tscroll-ind"><table class="ind" id="ind"></table></div>
       </div>
     </section>
     <aside class="detail empty" id="detail" aria-live="polite">
-      <p>Select a change to see its dates, sources, competition hypothesis and evaluability.</p>
+      <p>Select an item to see its productivity assessment, the industries it affects and its sources.</p>
     </aside>
   </div>
 
-  <footer id="foot"></footer>
+  <footer class="foot" id="foot"></footer>
 </div>
-<div class="tip" id="tip" hidden></div>
 
-<script type="application/json" id="menu-data">__MENU_DATA__</script>
+<script type="application/json" id="page-data">__PAGE_DATA__</script>
 <script>
+/*__CHARTS_JS__*/
 (() => {
-  const DATA = JSON.parse(document.getElementById("menu-data").textContent);
+  const DATA = JSON.parse(document.getElementById("page-data").textContent);
+  const FW = DATA.framework;
   const R = DATA.records;
   const $ = (id) => document.getElementById(id);
-  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const safeUrl = (u) => (/^https?:\/\//i.test(u || "") ? u : null);
   const link = (u, text) => (safeUrl(u) ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(text || u)}</a>` : esc(text || ""));
+  const MONTHS3 = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const fmtDate = (iso) => {
-    if (!iso) return "not commenced";
+    if (!iso) return "not yet";
     const [y, m, d] = iso.split("-").map(Number);
-    return `${d} ${["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][m - 1]} ${y}`;
+    return `${d} ${MONTHS3[m - 1]} ${y}`;
   };
-
-  const DIR = {
-    enhancing: { label: "Enhancing", color: "var(--enh)" },
-    weakening: { label: "Weakening", color: "var(--weak)" },
-    mixed: { label: "Mixed", color: "var(--mixed)" },
-    unclear: { label: "Unclear", color: "var(--ink-2)" },
-  };
-  const RATING = {
-    high: { label: "High", dots: 3 }, medium: { label: "Medium", dots: 2 }, low: { label: "Low", dots: 1 }, "not-yet": { label: "Not yet", dots: 0 },
-  };
+  const JURS = ["CTH", "NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"];
+  const DRV = FW.drivers;
+  const DRV_KEYS = Object.keys(DRV);
+  const RATING_ORDER = FW.ratings.map((r) => r.id);
+  const RATING_LABEL = Object.fromEntries(FW.ratings.map((r) => [r.id, r.label]));
+  const RATING_CLS = { "strongly-positive": "m2", positive: "m1", neutral: "m0", negative: "mn1", "strongly-negative": "mn2" };
+  const markCls = (m) => ({ 2: "m2", 1: "m1", 0: "m0", "-1": "mn1", "-2": "mn2" })[m];
+  const signed = (n) => (n > 0 ? `+${n}` : n < 0 ? `−${Math.abs(n)}` : "0");
+  const A = (r) => r.assessment;
+  const markOf = (r, d) => { const m = A(r) && A(r).marks.find((x) => x.driver === d); return m ? m.mark : 0; };
   const CHECK = {
     confirmed: { label: "Confirmed", cls: "ok", help: "A register date matches the effective date" },
     differs: { label: "Differs", cls: "warn", help: "The register has dates, but none matches the effective date" },
     unconfirmed: { label: "Sourced only", cls: "", help: "No machine-readable register date to check against" },
     "not-commenced": { label: "Not commenced", cls: "", help: "The change has not commenced" },
   };
-  const JURS = ["CTH", "NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"];
 
-  // --- Evaluations --------------------------------------------------------------------------------
-  const EV = DATA.evaluations || {};
-  const CAT = DATA.categoryLabels || {};
-  const VERDICT = {
-    "supports-enhancing": { label: "Supports “enhancing”", cls: "enh" },
-    "supports-weakening": { label: "Supports “weakening”", cls: "weak" },
-    "contradicts-enhancing": { label: "Contradicts \u201cenhancing\u201d", cls: "weak" },
-    "contradicts-weakening": { label: "Contradicts \u201cweakening\u201d", cls: "enh" },
-    "detects-increase": { label: "Detects an increase", cls: "" },
-    "detects-decrease": { label: "Detects a decrease", cls: "" },
-    inconclusive: { label: "Inconclusive", cls: "" },
-    "not-identified": { label: "Not identified", cls: "warn" },
+  initTerms({
+    mainDriver: ["Main driver", "The driver of productivity an item affects most, for better or worse: the one with the largest mark."],
+    overall: ["Overall mark", "The sum of an item's marks on the eight drivers, each from −2 to +2. +3 or more is strongly positive; −3 or less strongly negative."],
+    reach: ["Reach", "How much of the economy an item touches: one detailed industry (narrow), one broad industry (sector), several, or all (economy-wide). A state law reaches only that state."],
+    confidence: ["Confidence", "How well the evidence supports the marks: high (evaluations or consistent official findings), medium (official ex ante analysis or similar reforms elsewhere), low (reasoning and desk research only)."],
+    mixed: ["Mixed", "The item has both positive and negative marks, so its overall mark nets gains against harms."],
+    valueAdded: ["Value added per worker", "The value an industry adds (sales less what it buys from other businesses) divided by the people it employs: a simple measure of labour productivity."],
+    ebitda: ["Profit margin (EBITDA)", "Earnings before interest, tax, depreciation and amortisation, as a share of sales."],
+    labourProductivity: ["Labour productivity growth", "Average yearly growth in output per hour worked, adjusted for inflation (ABS, market-sector industries only)."],
+    mfp: ["Multifactor productivity growth", "Average yearly growth in output beyond what extra labour and capital explain: better methods, technology and use of resources (ABS, market-sector industries only)."],
+    noCompetition: ["No effective competition", "Share of businesses telling the ABS they face no effective competition (a captive market), in the 2024-25 Business Characteristics Survey."],
+    regHampered: ["Hampered by regulation", "Share of businesses telling the ABS that government regulation or compliance hampered their activities or performance in 2024-25."],
+    capex: ["Capital spending", "Private new capital expenditure (buildings, structures, equipment) as a share of value added. The ABS survey leaves out some industries, such as farming."],
+    rd: ["Business R&D", "Spending by businesses on research and experimental development, as a share of the value they add."],
+    administers: ["Administers", "The department whose minister is responsible for the law or program under the government's administrative arrangements, or the agency in it that runs the scheme day to day."],
+    regulates: ["Regulates", "The body that licenses, enforces, collects or monitors under the law: a regulator, tax office or agency."],
+    policy: ["Leads policy", "The department that leads policy on an issue that is not a single law, such as a non-legislative barrier or a national scheme."],
+    complexity: ["Complexity", "Problems a source has reported in the regulatory regime an item belongs to: duplication, rules that differ between states or councils, unclear guidance, many agencies for one activity, or complex rules. Each is quoted from its source."],
+    regime: ["Regulatory regime", "A body of regulation a business deals with as one task, such as food safety or liquor licensing, with the tiers of government that set its rules, license, approve, inspect or collect."],
+    touchpoints: ["Government parties", "The distinct agencies, by tier, that a business deals with directly under a regime: those that license, approve, inspect, collect or fund. Setting the rules is not counted."],
+    ...Object.fromEntries(Object.entries(DATA.issueTags || {}).map(([k, t]) => [`cx-${k}`, [t.label, t.help]])),
+    helpGlance: ["What weighs on productivity", "Items in the register by their main driver (the driver with the largest mark): those marked negative overall to the left, positive to the right. Click a driver to filter. Counts follow the filters below."],
+    helpMarks: ["Overall marks", "Each item's marks on the eight drivers added up. Most reforms in the register were first chosen because they could be evaluated with public data, so the register is not yet a balanced sample of everything that weighs on productivity."],
+    helpAssess: ["How items are marked", DATA.menuNote],
+    helpScorecard: ["Reading the scorecard", "Each row is an item; each column a driver of productivity. A cell shows the item's mark on that driver; the outlined cell is its main driver. Overall is the sum of the marks. Hover a cell for the reason, and click an item to open it."],
+    helpVenn: ["Which tier does what", "Each circle is a tier of government: Commonwealth, state or territory, or local council. Each label is something it does under the regime. A label in an overlap is done by more than one tier, shown in bold. Hover a label for the bodies involved."],
+    helpClassVenn: ["Reading the diagram", "Each number counts the jobs (licensing, approving, inspecting, collecting, funding, setting rules) that a tier, or several tiers together, perform across this industry's regimes. Numbers in an overlap are jobs done by more than one tier. Hover a number for the list."],
+    helpInd: ["Industries", "Every detailed industry in the ABS classification (ANZSIC classes), with the regulatory regimes it deals with. Every number counts only the regimes specific to the industry, so industries can be compared (the regimes that apply across industries, such as payroll tax, reach them all); hover a number for the total including those. The search box, the industry filter and the complexity tags apply here; the other filters are for register items. Click an industry for its regimes and a diagram of which tiers of government do what."],
+  });
+
+  // Every defined word the page can show (the detail panel adds most of them only when an item is open).
+  // An "i" button: more detail on hover, focus or tap.
+  const info = (key, label) => `<button type="button" class="term info" data-term="${esc(key)}" aria-label="${esc(label || "More detail")}" aria-describedby="def-${esc(key)}">i</button>`;
+  const GLOSSARY = ["mainDriver", "overall", "mixed", "reach", "confidence", "employing", "entry", "exit", "avgGrowth", "valueAdded",
+    "ebitda", "labourProductivity", "mfp", "topShare", "markupRba", "blade", "noCompetition", "regHampered", "capex", "rd",
+    "administers", "regulates", "policy", "complexity", "regime", "touchpoints", ...Object.keys(DATA.issueTags || {}).map((k) => `cx-${k}`)];
+
+  // --- Helpers ------------------------------------------------------------------------------------
+  const ratingBadge = (a, big) => a
+    ? `<span class="badge ${RATING_CLS[a.rating]}${big ? " big" : ""}" title="${esc(`Overall mark ${signed(a.total)}: ${RATING_LABEL[a.rating]}${a.mixed ? ". Mixed: some drivers are marked up and some down" : ""}`)}"><span class="n">${esc(signed(a.total))}</span>${esc(RATING_LABEL[a.rating])}</span>`
+    : `<span class="muted small">Not assessed</span>`;
+  const drvTag = (d) => `<span class="tag drv">${esc(DRV[d].short)}</span>`;
+  const kindTag = (k) => (k === "reform" ? "" : `<span class="tag kind" title="${esc(FW.kinds[k].help)}">${esc(FW.kinds[k].label)}</span>`);
+  const reachLabel = (k) => (FW.reach[k] ? FW.reach[k].label : "");
+  const effLabel = (r) => (r.kind === "barrier" ? "–" : r.effective ? (r.kind === "setting" ? `since ${r.effective.slice(0, 4)}` : fmtDate(r.effective)) : (r.kind === "setting" ? "in place" : "not yet"));
+  const inForce = (r) => !r.ended && (r.kind !== "reform" || !!r.effective);
+  const B = DATA.bodies;
+  const deptOf = (id) => (B[id] && B[id].type !== "department" && B[id].parent ? B[id].parent : id);
+  const bodyName = (id) => (B[id] ? B[id].name : id);
+  const whoShort = (r) => [...new Set(r.responsible.map((x) => (B[x.body] ? B[x.body].short : x.body)))].join(" · ");
+  const endTag = (r) => (r.ended ? `<span class="tag end" title="${esc(r.ended.what)}">${esc(r.ended.label)} ${esc(fmtDate(r.ended.date))}</span>` : "");
+  const bodyMatch = (r, id) => r.responsible.some((x) => x.body === id || deptOf(x.body) === id);
+  const RECS = Object.fromEntries((DATA.recommendations || []).map((x) => [x.id, x]));
+  const RBY = Object.fromEntries(R.map((r) => [r.id, r]));
+  const GROUPS = DATA.groups || {};
+  const STACK = `<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="7.5" width="11" height="9" rx="1.5"/><path d="M6 4.5h9.5a1.5 1.5 0 0 1 1.5 1.5v7.5"/></svg>`;
+  // The control that opens a group: stack icon, group name, and a count badge ("8 jurisdictions ▾").
+  const grpButton = (g, items, open) => {
+    const all = GROUPS[g].members.length, jurs = new Set(items.map((r) => r.jurisdiction)).size;
+    const noun = jurs === items.length && items.length === all ? `${all} jurisdiction${all === 1 ? "" : "s"}` : items.length === all ? `${all} items` : `${items.length} of ${all}`;
+    return `<button type="button" class="grpbtn" data-group="${esc(g)}" aria-expanded="${open}" aria-label="${esc(`${GROUPS[g].title}: group of ${all} items, ${open ? "open" : "closed"}`)}"><span class="grp-icon">${STACK}</span><span class="grp-name">${esc(GROUPS[g].title)}</span><span class="grp-count">${esc(noun)}</span></button>`;
   };
-  const GRADE_CLS = { Strong: "ok", Moderate: "ok", Weak: "warn", "Not identified": "warn" };
-  const FINDING = { increase: "Increase", decrease: "Decrease", "no-detectable-effect": "No detectable effect", "not-identified": "Not identified", "descriptive-only": "Descriptive only" };
-  const ROLE = { primary: "primary outcome", secondary: "secondary", descriptive: "descriptive" };
-  const fmtNum = (v, d = 1) => (v == null ? "–" : `${v > 0 ? "+" : v < 0 ? "−" : ""}${Math.abs(v).toFixed(d)}`);
-  const fmtTick = (t) => (t === 0 ? "0" : fmtNum(t, Number.isInteger(t) ? 0 : 1));
-  const fmtP = (p) => (p == null ? "–" : p < 0.01 ? "< 0.01" : p.toFixed(p < 0.1 ? 3 : 2));
-  const fmtAbs = (v) => (v == null ? "–" : Math.abs(v).toFixed(1));
-  const withUnit = (v, unit) => `${fmtNum(v)}${String(unit).startsWith("%") ? "" : " "}${unit}`;
-  const evalOf = (r) => (r && r.evaluation ? EV[r.evaluation] : null);
-  // Archived evaluations: replaced by a later re-evaluation (id -> the one that supersedes it). Kept, shown below.
-  const ARCH = DATA.archived || {};
-  const newestFirst = (a, b) => (b.evaluated_on || "").localeCompare(a.evaluated_on || "") ||
-    (b.evaluated_at || "").localeCompare(a.evaluated_at || "") || (b.follows ? 1 : 0) - (a.follows ? 1 : 0) ||
-    a.title.localeCompare(b.title);
-  const evalsOfRecord = (id) => Object.values(EV).filter((e) => e.records.includes(id)).sort(newestFirst);
-  const docUrl = (path) => `${DATA.repoBase || ""}${path}`;
-  const checkIcon = `<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2 6.5l2.6 2.5L10 3.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-  const ringIcon = `<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="none" stroke="var(--est)" stroke-width="1.6"/></svg>`;
-  const keyDot = (h) => `<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4.2" fill="${h ? "var(--surface)" : "var(--est)"}" stroke="var(--est)" stroke-width="${h ? 1.8 : 0}"/></svg>`;
-  const keyWhisker = `<svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M2 6H16M2 2V10M16 2V10" stroke="var(--est)" stroke-width="2" fill="none"/></svg>`;
-  const keyBand = (c) => `<svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><rect x="0" y="1" width="18" height="10" rx="2" fill="${c}"/></svg>`;
-  const keyDash = `<svg width="10" height="12" viewBox="0 0 10 12" aria-hidden="true"><path d="M5 0V12" stroke="var(--ink-3)" stroke-width="1.4" stroke-dasharray="3 2"/></svg>`;
-  const splitFirst = (t) => { const i = t.indexOf(". "); return i < 0 ? [t, ""] : [t.slice(0, i + 1), t.slice(i + 2)]; };
-  const outcomeOf = (evId, oId) => (EV[evId] ? EV[evId].outcomes.find((o) => o.id === oId) : null);
-  const hollow = (o) => o.finding === "descriptive-only" || o.finding === "not-identified";
-  const tipEl = document.getElementById("tip");
-  function showTip(html, cx, cy) {
-    tipEl.innerHTML = html;
-    tipEl.hidden = false;
-    tipEl.style.left = `${Math.max(8, Math.min(window.innerWidth - tipEl.offsetWidth - 8, cx + 12))}px`;
-    tipEl.style.top = `${Math.max(8, cy - tipEl.offsetHeight - 10)}px`;
-  }
-  const hideTip = () => { tipEl.hidden = true; };
+  const groupOf = (r) => (r.family && GROUPS[r.family] ? r.family : null);
+  const REGS = DATA.regimes || [];
+  const REG = Object.fromEntries(REGS.map((g) => [g.id, g]));
+  const TAGS = DATA.issueTags || {};
+  const TIERS = DATA.tiers || {};
+  const FN = DATA.functions || {};
+  const live = (g) => g.issues.filter((i) => i.status !== "addressed").length;
+  // Each industry's measures for its industry-specific regimes (comparable across industries, since the regimes that
+  // apply across industries reach them all), with the totals for all its regimes.
+  const IND = (DATA.industries || []).map(([code, name, div, idx, tp, stp, issues]) => {
+    const regs = idx.map((n) => REGS[n]), sec = regs.filter((g) => g.scope === "sector");
+    const ov = (gs) => gs.filter((g) => Object.keys(g.overlap).length).length, vr = (gs) => gs.filter((g) => g.varies).length;
+    return { code, name, div, regs, tp, stp, issues, sp: sec.length, ov: ov(sec), ovAll: ov(regs), vr: vr(sec), vrAll: vr(regs),
+      iss: sec.reduce((n, g) => n + live(g), 0) };
+  });
+  const INDBY = Object.fromEntries(IND.map((c) => [c.code, c]));
+  const cxTag = (t) => `<span class="tag cx" title="${esc(TAGS[t] ? TAGS[t].help : t)}">${esc(TAGS[t] ? TAGS[t].label : t)}</span>`;
+  const STATUS = { current: "Current", "partly-addressed": "Partly addressed", addressed: "Addressed" };
 
-  function niceTicks(lo, hi, n) {
-    const span = hi - lo || 1;
-    const mag = 10 ** Math.floor(Math.log10(span / n));
-    const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((st) => span / st <= n) || 10 * mag;
-    const out = [];
-    for (let t = Math.ceil(lo / step) * step; t <= hi + 1e-9; t += step) out.push(+(Math.round(t / step) * step).toFixed(6) || 0);
-    return out;
+  function fmtStat(v, f) {
+    if (!isNum(v)) return "–";
+    if (f === "int") return Math.round(v).toLocaleString("en-AU");
+    if (f === "pct0") return `${fmt(v, 0)}%`;
+    if (f === "pct1") return `${fmt(v, 1)}%`;
+    if (f === "pct2") return `${fmt(v, 2)}%`;
+    if (f === "pct1s") return `${fmtSigned(v, 1)}%`;
+    if (f === "ratio") return fmt(v, 2);
+    if (f === "dollars") return `$${(Math.round(v / 100) * 100).toLocaleString("en-AU")}`;
+    return fmt(v, 1);
   }
-  function domain(values, pad = 0.08) {
-    const v = values.filter((x) => x != null && Number.isFinite(x));
-    const lo = Math.min(0, ...v), hi = Math.max(0, ...v);
-    const p = (hi - lo) * pad || 1;
-    return [lo - p, hi + p];
-  }
-
-  function effectsHtml(ev) {
-    const groups = ["competition", "prices", "productivity"]
-      .map((c) => ({ c, rows: ev.outcomes.filter((o) => o.category === c) }))
-      .filter((g) => g.rows.length);
-    return `<div class="fx">${groups.map((g) => {
-      const [lo, hi] = domain(g.rows.flatMap((o) => [o.estimate, o.no_effect_range.low, o.no_effect_range.high, o.interval && o.interval.low, o.interval && o.interval.high]));
-      return `<div class="fx-group">
-        <div class="fx-head"><span class="fx-cat">${esc(CAT[g.c] || g.c)}</span><span class="fx-unit">${esc(g.rows[0].unit)}</span></div>
-        ${g.rows.map((o) => `<div class="fx-row" tabindex="0" data-ev="${esc(ev.id)}" data-o="${esc(o.id)}">
-          <div class="fx-label">${esc(o.label)}</div>
-          <div class="fx-val">${esc(fmtNum(o.estimate))}${o.interval ? ` <span class="muted">(${esc(fmtNum(o.interval.low))} to ${esc(fmtNum(o.interval.high))})</span>` : ""}</div>
-          <div class="fx-sub">${esc(FINDING[o.finding])}${o.p_value != null ? ` · p = ${esc(fmtP(o.p_value))}` : ""} · ${esc(ROLE[o.role])}${o.preregistered ? "" : " · not pre-registered"}</div>
-          <div class="chart fx-strip" data-kind="strip" data-ev="${esc(ev.id)}" data-o="${esc(o.id)}" data-lo="${lo}" data-hi="${hi}"></div>
-        </div>`).join("")}
-        <div class="chart fx-axis" data-kind="axis" data-lo="${lo}" data-hi="${hi}"></div>
-      </div>`;
-    }).join("")}
-    <div class="key"><span>${keyDot(false)}Estimate</span><span>${keyWhisker}90% interval</span><span>${keyBand("var(--noeff)")}Range with no reform (placebos)</span><span>${keyDot(true)}Not graded as a finding</span></div></div>`;
-  }
-
-  function eventsHtml(ev) {
-    if (!ev.event_studies.length) return "";
-    const anyBand = ev.event_studies.some((es) => es.points.some((p) => p.low != null));
-    return `<div class="es-grid">${ev.event_studies.map((es, i) => {
-      const band = es.points.some((p) => p.low != null);
-      return `<figure class="es${es.points.length > 12 ? " wide" : ""}" style="margin:0">
-        <h4>${esc(es.title)}</h4>
-        <div class="chart es-chart" data-kind="es" data-ev="${esc(ev.id)}" data-i="${i}" role="img" aria-label="${esc(`${es.title}. ${es.caption}`)}"></div>
-        <p class="cap">${esc(es.caption)} Units: ${esc(es.unit)}; ${esc(es.reference)} = 0.</p>
-        <details class="nums"><summary>Show the numbers</summary><div class="scroll"><table>
-          <thead><tr><th>Year</th><th>Estimate</th>${band ? "<th>90% band</th>" : ""}</tr></thead>
-          <tbody>${es.points.map((p) => `<tr><td>${esc(p.period)}</td><td>${band && p.low == null ? "0 (ref.)" : esc(fmtNum(p.estimate, 2))}</td>${band ? `<td>${p.low == null ? "" : `${esc(fmtNum(p.low))} to ${esc(fmtNum(p.high))}`}</td>` : ""}</tr>`).join("")}</tbody>
-        </table></div></details>
-      </figure>`;
-    }).join("")}</div>
-    <div class="key"><span>${keyDot(false)}Estimate by year</span>${anyBand ? `<span>${keyBand("var(--est-band)")}90% range across placebo groups</span>` : ""}<span>${keyDash}Reform starts</span></div>`;
-  }
-
-  // Equations and symbols: plain text with _{...} subscripts, ^{...} superscripts and hat{...} estimates.
-  function mathHtml(text) {
-    let h = esc(text).replace(/hat\{([^{}]*)\}/g, '<span class="hat">$1</span>');
-    h = h.replace(/\^\{([^{}]*)\}_\{([^{}]*)\}|_\{([^{}]*)\}\^\{([^{}]*)\}/g, (m, a, b, c, d) =>
-      `<span class="ss"><span>${a ?? d}</span><span>${b ?? c}</span></span>`);
-    for (let i = 0; i < 4; i++) h = h.replace(/_\{([^{}]*)\}/g, "<sub>$1</sub>").replace(/\^\{([^{}]*)\}/g, "<sup>$1</sup>");
-    return h;
-  }
-  const mathPlain = (text) => String(text).replace(/hat\{([^{}]*)\}/g, "$1-hat").replace(/[_^]\{([^{}]*)\}/g, " $1 ");
-  function insightsHtml(ev) {
-    if (!ev.key_insights || !ev.key_insights.length) return "";
-    const item = (t) => {
-      const i = t.indexOf(": ");
-      return i > 0 && i < 70 ? `<li><strong>${esc(t.slice(0, i + 1))}</strong> ${esc(t.slice(i + 2))}</li>` : `<li>${esc(t)}</li>`;
-    };
-    return `<section class="ev-insights" aria-label="Key insights"><h3>Key insights</h3><ul>${ev.key_insights.map(item).join("")}</ul></section>`;
-  }
-  function methodHtml(ev) {
-    const m = ev.method;
-    if (!m) return "";
-    return `<section class="ev-sec"><h3>What we did</h3><ol class="steps">${m.steps.map((s) => `<li>${mathHtml(s)}</li>`).join("")}</ol></section>
-      <section class="ev-sec"><h3>Econometric model</h3>
-        <p class="method-sum">${mathHtml(m.summary)}</p>
-        <div class="eqs">${m.equations.map((e) => `<figure class="eq">${e.label ? `<figcaption>${esc(e.label)}</figcaption>` : ""}<div class="eq-math" role="math" aria-label="${esc(mathPlain(e.text))}">${mathHtml(e.text)}</div></figure>`).join("")}</div>
-        ${m.terms.length ? `<p class="small muted" style="margin:0">where</p><dl class="terms">${m.terms.map((t) => `<dt>${mathHtml(t.symbol)}</dt><dd>${mathHtml(t.meaning)}</dd>`).join("")}</dl>` : ""}
-        <dl class="kv"><dt>Estimand</dt><dd>${mathHtml(m.estimand)}</dd><dt>Identifying assumption</dt><dd>${mathHtml(m.identification)}</dd><dt>Inference</dt><dd>${mathHtml(m.inference)}</dd></dl>
-      </section>`;
-  }
-
-  function evalBody(ev, currentId) {
-    const others = ev.records.filter((id) => id !== currentId).map((id) => R.find((r) => r.id === id)).filter(Boolean);
-    const deepOpen = currentId
-      ? `<details class="ev-deep"><summary>In depth: what we did, the econometric model and the full results</summary>`
-      : `<div class="ev-deep"><h3 class="ev-deep-h">In depth</h3>`;
-    const deepClose = currentId ? "</details>" : "</div>";
-    const pageLink = DATA.evalPages && !DATA.single
-      ? `<a class="open-page" href="${pageUrl(ev.id)}" target="_blank" rel="noopener" title="Or double-click the evaluation">Open as a page ↗</a>` : "";
-    const by = ARCH[ev.id] && EV[ARCH[ev.id]];
-    const banner = ARCH[ev.id]
-      ? `<p class="archived-note"><strong>Archived.</strong> Replaced by ${by ? `<button type="button" class="linkbtn jump" data-ev="${esc(by.id)}">${esc(by.title)}</button> (${esc(fmtDate(by.evaluated_on))})` : "a later re-evaluation"}. Kept for the record; the newer results come first.</p>` : "";
-    return `<div class="ev-body"${currentId ? ` data-ev="${esc(ev.id)}"` : ""}>
-      ${banner}
-      <div class="ev-badges">
-        ${(ev.supersedes || []).length ? `<span class="pill new" title="Replaces an earlier evaluation, now archived">Re-evaluation</span>` : ""}
-        ${ARCH[ev.id] ? `<span class="pill arch">Archived</span>` : ""}
-        <span class="pill ${VERDICT[ev.verdict].cls}">${esc(VERDICT[ev.verdict].label)}</span>
-        <span class="pill ${GRADE_CLS[ev.grade]}" title="${esc(ev.grade_reason)}">Grade: ${esc(ev.grade)}</span>
-        ${ev.preregistered ? `<span class="pill">Pre-registered</span>` : ""}
-        <span class="dir">${shapeIcon(ev.hypothesis)}Hypothesis tested: ${esc(DIR[ev.hypothesis].label.toLowerCase())}</span>
-        ${pageLink}
-      </div>
-      <p class="ev-headline">${esc(ev.headline)}</p>
-      ${insightsHtml(ev)}
-      ${currentId && others.length ? `<p class="small muted">This evaluation also covers ${others.map((r) => `<button type="button" class="linkbtn recbtn-inline" data-id="${esc(r.id)}">${esc(r.title)}</button>`).join(", ")}.</p>` : ""}
-      ${evalLinks(ev)}
-      ${deepOpen}
-      ${methodHtml(ev)}
-      <div class="cats">${Object.entries(ev.category_summaries).map(([c, txt]) => {
-        const [first, rest] = splitFirst(txt);
-        return `<div class="cat"><span class="cat-label">${esc(CAT[c] || c)}</span><strong>${esc(first)}</strong>${rest ? `<p>${esc(rest)}</p>` : ""}</div>`;
-      }).join("")}</div>
-      <section class="ev-sec"><h3>Estimated effects</h3>${effectsHtml(ev)}</section>
-      ${regTablesHtml(ev)}
-      ${estimatorsHtml(ev)}
-      <section class="ev-sec"><h3>Year by year</h3>${eventsHtml(ev)}</section>
-      <section class="ev-sec"><h3>Design summary</h3><dl class="kv">
-        <dt>Design</dt><dd>${esc(ev.design)}</dd><dt>Comparison</dt><dd>${esc(ev.comparison)}</dd>
-        <dt>Window</dt><dd>${esc(ev.window)}</dd><dt>Grade</dt><dd>${esc(ev.grade)}. ${esc(ev.grade_reason)}</dd>
-        <dt>Evaluated</dt><dd>${esc(fmtDate(ev.evaluated_on))}</dd></dl></section>
-      ${ev.caveats.length ? `<section class="ev-sec"><h3>Caveats</h3><ul class="d-list">${ev.caveats.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></section>` : ""}
-      ${ev.documents.length ? `<div class="ev-docs">${ev.documents.map((d) => link(docUrl(d.path), d.label)).join("")}</div>` : ""}
-      ${deepClose}
-      ${earlierHtml(ev)}
-    </div>`;
-  }
-
-  // Every estimator layer side by side (forward plan §5.3), the registered one marked.
-  function estimatorsHtml(ev) {
-    const rows = ev.estimators || [];
-    if (!rows.length) return "";
-    const outs = [...new Set(rows.map((r) => r.outcome))];
-    const cell = (v) => (v === null || v === undefined ? "—" : esc(fmtNum(v)));
-    return `<section class="ev-sec"><h3>Every estimator side by side</h3>${outs.map((oid) => {
-      const o = ev.outcomes.find((x) => x.id === oid);
-      return `<div class="est-wrap"><table class="est-table"><caption>${esc(o ? `${o.label} (${o.unit})` : oid)}</caption>
-        <thead><tr><th>Estimator</th><th>Estimate</th><th>90% interval</th><th>p</th><th>Detectable from</th></tr></thead>
-        <tbody>${rows.filter((r) => r.outcome === oid).map((r) => `<tr class="${r.registered ? "reg" : ""}">
-          <td>${esc(r.label)}${r.registered ? " · registered" : ""}</td><td class="num">${cell(r.estimate)}</td>
-          <td class="num">${r.interval ? `${cell(r.interval.low)} to ${cell(r.interval.high)}` : "—"}</td>
-          <td class="num">${esc(fmtP(r.p_value))}</td><td class="num">${esc(fmtAbs(r.mde_80))}</td></tr>`).join("")}</tbody></table></div>`;
-    }).join("")}<p class="small muted">Each estimator is judged against its own placebo distribution. The registered estimator was chosen before the results were computed; the others are reported, not chosen among.</p></section>`;
-  }
-
-  // Regression tables in the academic layout: estimate with stars, (spread), [p]; one panel per outcome; footer rows
-  // shared by every panel; notes. The same tables as LaTeX come from the payload (alicia.register.tables).
-  const STARS = [[0.01, "***"], [0.05, "**"], [0.10, "*"]];
-  const starsOf = (p) => (p == null ? "" : (STARS.find(([cut]) => p < cut) || [0, ""])[1]);
-  const fmt2 = (v) => (v == null ? "" : v.toFixed(2).replace("-", "−"));
-  const fmtP3 = (p) => (p == null ? "" : p < 0.001 ? "< 0.001" : p.toFixed(3));
-  function regTableHtml(t, n) {
-    const k = t.columns.length;
-    const groups = [];
-    t.columns.forEach((c) => {
-      const last = groups[groups.length - 1];
-      if (last && last.g === (c.group || null)) last.n += 1; else groups.push({ g: c.group || null, n: 1 });
-    });
-    const grpRow = groups.some((g) => g.g)
-      ? `<tr class="grp"><th></th>${groups.map((g) => `<th colspan="${g.n}">${g.g ? `<span>${esc(g.g)}</span>` : ""}</th>`).join("")}</tr>` : "";
-    const head = `<thead>${grpRow}<tr class="nums"><th></th>${t.columns.map((c, i) => `<th>(${i + 1})</th>`).join("")}</tr>
-      <tr class="labs"><th></th>${t.columns.map((c) => `<th>${esc(c.label)}</th>`).join("")}</tr></thead>`;
-    const valueRow = (r) => `<tr class="stat"><th scope="row">${esc(r.label)}</th>${r.values.map((v) => `<td>${esc(v || "")}</td>`).join("")}</tr>`;
-    const coefRows = (r) => {
-      const cs = r.coefficients;
-      const top = cs.map((c) => (c
-        ? `<td${c.registered ? ' class="is-reg" title="Registered estimator"' : ""}>${esc(fmt2(c.estimate))}<sup>${esc(starsOf(c.p_value) + (c.registered ? "†" : ""))}</sup></td>`
-        : "<td></td>")).join("");
-      const sd = cs.map((c) => `<td>${c && c.spread != null ? `(${esc(fmt2(c.spread))})` : ""}</td>`).join("");
-      const pv = cs.map((c) => `<td>${c && c.p_value != null ? `[${esc(fmtP3(c.p_value))}]` : ""}</td>`).join("");
-      return `<tr class="coef"><th scope="row">${esc(r.label)}</th>${top}</tr><tr class="sd"><th></th>${sd}</tr><tr class="pv"><th></th>${pv}</tr>`;
-    };
-    const body = t.panels.map((p) => `<tbody><tr class="panel"><th colspan="${k + 1}">${esc(p.title)}</th></tr>${
-      p.rows.map((r) => ((r.coefficients || []).length ? coefRows(r) : valueRow(r))).join("")}</tbody>`).join("");
-    const foot = t.footer.length ? `<tbody class="foot">${t.footer.map(valueRow).join("")}</tbody>` : "";
-    const legend = `${t.spread_label} in parentheses; two-sided p-values in brackets. * p < 0.10, ** p < 0.05, *** p < 0.01. † The registered (pre-specified) estimator for that outcome.`;
-    const tex = DATA.tablesTex && DATA.tablesTex[t.id];
-    return `<figure class="reg" id="tbl-${esc(t.id)}">
-      <figcaption><span class="reg-no">Table ${n}.</span> ${esc(t.title)}</figcaption>
-      <div class="reg-wrap"><table class="reg-table">${head}${body}${foot}</table></div>
-      <p class="reg-notes"><em>Notes:</em> ${esc([...t.notes, legend].join(" "))}</p>
-      ${tex ? `<details class="reg-tex"><summary>LaTeX (booktabs)</summary><button type="button" class="linkbtn copy-tex" data-t="${esc(t.id)}">Copy</button><pre>${esc(tex)}</pre></details>` : ""}
-    </figure>`;
-  }
-  function regTablesHtml(ev) {
-    const ts = ev.tables || [];
-    if (!ts.length) return "";
-    return `<section class="ev-sec"><h3>Regression table${ts.length > 1 ? "s" : ""}</h3>${ts.map((t, i) => regTableHtml(t, i + 1)).join("")}</section>`;
-  }
-
-  // The evaluations this one replaced, summarised below the new results.
-  function earlierHtml(ev) {
-    const olds = (ev.supersedes || []).map((id) => EV[id]).filter(Boolean);
-    if (!olds.length) return "";
-    return `<section class="ev-earlier"><h3>Earlier evaluation (archived)</h3>${olds.map((o) => {
-      const main = o.outcomes.find((x) => x.role === "primary") || o.outcomes[0];
-      return `<div class="ev-old"><div><button type="button" class="linkbtn jump" data-ev="${esc(o.id)}">${esc(o.title)}</button> · ${esc(fmtDate(o.evaluated_on))}
-        · <span class="pill ${VERDICT[o.verdict].cls}">${esc(VERDICT[o.verdict].label)}</span> <span class="pill ${GRADE_CLS[o.grade]}">Grade: ${esc(o.grade)}</span></div>
-        <div>${esc(o.headline)}</div>
-        ${main ? `<div class="muted">${esc(main.label)}: ${esc(withUnit(main.estimate, main.unit))}${main.mde_80 ? `; detectable from ${esc(fmtAbs(main.mde_80))}` : ""}.</div>` : ""}</div>`;
-    }).join("")}</section>`;
-  }
-
-  function evalCard(ev) {
-    const recs = ev.records.map((id) => R.find((r) => r.id === id)).filter(Boolean).sort(byDate);
-    const fam = ev.family && DATA.familyLabels[ev.family];
-    return `<article class="ev-card" id="ev-${esc(ev.id)}" aria-label="${esc(ev.title)}"${DATA.evalPages ? ` data-ev="${esc(ev.id)}" title="Double-click to open as a page"` : ""}>
-      <div class="ev-kicker">Evaluated ${esc(fmtDate(ev.evaluated_on))}${fam ? ` · ${esc(fam)}` : ""}</div>
-      <h2>${esc(ev.title)}</h2>
-      <div class="ev-recs">${recs.map((r) => `<button type="button" class="recbtn" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(fmtDate(r.effective))} · ${esc(r.short)}</button>`).join("")}</div>
-      ${evalBody(ev, null)}
-    </article>`;
-  }
-
-  // Each evaluation also has its own page (built by 'alicia site'), opened by double-click or link.
-  const pageUrl = (id) => `evaluation-${encodeURIComponent(id)}.html`;
-  function openEvalPage(id, e) {
-    if (!DATA.evalPages || !id) return;
-    if (e && e.target.closest("button, a, summary, input, select, textarea")) return;
-    if (e) e.preventDefault();
-    window.open(pageUrl(id), "_blank", "noopener");
-  }
-  function bindEval(root) {
-    root.querySelectorAll(".recbtn, .recbtn-inline").forEach((b) => b.addEventListener("click", () => {
-      if (DATA.single) location.href = `menu.html#${encodeURIComponent(b.dataset.id)}`;
-      else select(b.dataset.id);
-    }));
-    root.querySelectorAll(".ev-card[data-ev], .ev-body[data-ev]").forEach((el) => el.addEventListener("dblclick", (e) => openEvalPage(el.dataset.ev, e)));
-    root.querySelectorAll(".jump").forEach((b) => b.addEventListener("click", () => {
-      if (DATA.single) { location.href = pageUrl(b.dataset.ev); return; }
-      if (state.tab !== "results") setTab("results");
-      requestAnimationFrame(() => {
-        const card = document.getElementById(`ev-${b.dataset.ev}`);
-        const box = card && card.closest("details");
-        if (box) box.open = true;
-        if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    }));
-    root.querySelectorAll(".copy-tex").forEach((b) => b.addEventListener("click", () => {
-      const done = (msg) => { b.textContent = msg; setTimeout(() => { b.textContent = "Copy"; }, 1800); };
-      const pick = () => {
-        const range = document.createRange();
-        range.selectNodeContents(b.parentElement.querySelector("pre"));
-        const sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
-        done("Selected: press Ctrl+C");
-      };
-      const text = DATA.tablesTex[b.dataset.t];
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => done("Copied"), pick);
-      else pick();
-    }));
-    root.querySelectorAll(".fx-row").forEach((row) => {
-      const o = outcomeOf(row.dataset.ev, row.dataset.o);
-      if (!o) return;
-      const html = `<strong>${esc(o.label)}</strong><br>Estimate ${esc(fmtNum(o.estimate, 2))} (${esc(o.unit)})` +
-        (o.interval ? `<br>90% interval ${esc(fmtNum(o.interval.low, 2))} to ${esc(fmtNum(o.interval.high, 2))}` : "") +
-        `<br>With no reform: ${esc(fmtNum(o.no_effect_range.low))} to ${esc(fmtNum(o.no_effect_range.high))} (${esc(o.no_effect_range.basis)})` +
-        (o.p_value != null ? `<br>p = ${esc(fmtP(o.p_value))}: ${esc(o.inference)}` : "") +
-        (o.mde_80 ? `<br>Smallest effect detectable with 80% power: ${esc(o.mde_80.toFixed(1))}` : "") +
-        (o.note ? `<br>${esc(o.note)}` : "");
-      const show = (e) => { const b = row.getBoundingClientRect(); showTip(html, e && e.clientX != null ? e.clientX : b.left + 24, e && e.clientY != null ? e.clientY : b.top); };
-      row.addEventListener("pointermove", show);
-      row.addEventListener("focus", () => show());
-      row.addEventListener("pointerleave", hideTip);
-      row.addEventListener("blur", hideTip);
-    });
-  }
-
-  // Charts are drawn at their real width and redrawn when it changes.
-  function drawStrip(el, w) {
-    const o = outcomeOf(el.dataset.ev, el.dataset.o);
-    if (!o) return;
-    const lo = +el.dataset.lo, hi = +el.dataset.hi, H = 24, cy = 12;
-    const x = (v) => (6 + ((v - lo) / (hi - lo)) * (w - 12)).toFixed(1);
-    const b = o.no_effect_range;
-    let svg = `<rect x="${x(b.low)}" y="4" width="${Math.max(2, x(b.high) - x(b.low)).toFixed(1)}" height="16" rx="3" fill="var(--noeff)"/>`;
-    svg += `<line x1="${x(0)}" x2="${x(0)}" y1="0" y2="${H}" stroke="var(--ink-3)" stroke-width="1"/>`;
-    if (o.interval) {
-      const a = x(o.interval.low), c = x(o.interval.high);
-      svg += `<path d="M${a} ${cy}H${c}M${a} ${cy - 5}V${cy + 5}M${c} ${cy - 5}V${cy + 5}" stroke="var(--est)" stroke-width="2" fill="none"/>`;
-    }
-    svg += hollow(o)
-      ? `<circle cx="${x(o.estimate)}" cy="${cy}" r="4.5" fill="var(--surface)" stroke="var(--est)" stroke-width="2"/>`
-      : `<circle cx="${x(o.estimate)}" cy="${cy}" r="5" fill="var(--est)" stroke="var(--surface)" stroke-width="2"/>`;
-    el.innerHTML = `<svg width="${w}" height="${H}" viewBox="0 0 ${w} ${H}" aria-hidden="true">${svg}</svg>`;
-  }
-  function drawAxis(el, w) {
-    const lo = +el.dataset.lo, hi = +el.dataset.hi;
-    const x = (v) => (6 + ((v - lo) / (hi - lo)) * (w - 12)).toFixed(1);
-    const ticks = niceTicks(lo, hi, w < 340 ? 4 : 6);
-    el.innerHTML = `<svg width="${w}" height="20" viewBox="0 0 ${w} 20" aria-hidden="true"><line x1="6" x2="${w - 6}" y1="0.5" y2="0.5" stroke="var(--line-strong)"/>${ticks.map((t) => `<line x1="${x(t)}" x2="${x(t)}" y1="0" y2="4" stroke="var(--line-strong)"/><text x="${x(t)}" y="15" font-size="10.5" text-anchor="middle" fill="var(--ink-3)">${esc(fmtTick(t))}</text>`).join("")}</svg>`;
-  }
-  function drawEs(el, w) {
-    const ev = EV[el.dataset.ev];
-    const es = ev && ev.event_studies[+el.dataset.i];
-    if (!es) return;
-    const H = 196, L = 36, RM = 8, T = 32, B = 24;
-    const pts = es.points.slice().sort((a, b) => a.k - b.k);
-    const k0 = pts[0].k, k1 = pts[pts.length - 1].k;
-    const band = pts.some((p) => p.low != null);
-    const [lo, hi] = domain(pts.flatMap((p) => [p.estimate, p.low, p.high]), 0.06);
-    const x = (k) => L + ((k - k0) / (k1 - k0)) * (w - L - RM);
-    const y = (v) => T + ((hi - v) / (hi - lo)) * (H - T - B);
-    const parts = [];
-    // The band goes underneath, so the grid and the zero line stay visible across it.
-    if (band) {
-      const up = pts.map((p) => `${x(p.k).toFixed(1)},${y(p.high ?? p.estimate).toFixed(1)}`);
-      const dn = pts.slice().reverse().map((p) => `${x(p.k).toFixed(1)},${y(p.low ?? p.estimate).toFixed(1)}`);
-      parts.push(`<polygon points="${up.join(" ")} ${dn.join(" ")}" fill="var(--est-band)"/>`);
-    }
-    niceTicks(lo, hi, 4).forEach((t) => {
-      parts.push(`<line x1="${L}" x2="${w - RM}" y1="${y(t).toFixed(1)}" y2="${y(t).toFixed(1)}" stroke="${t === 0 ? "var(--ink-3)" : "var(--line)"}" stroke-width="1"/>`);
-      parts.push(`<text x="${L - 6}" y="${(y(t) + 3.5).toFixed(1)}" font-size="10.5" text-anchor="end" fill="var(--ink-3)">${esc(fmtTick(t))}</text>`);
-    });
-    let rowEnd = [-Infinity, -Infinity];
-    es.markers.forEach((m) => {
-      const mx = x(m.k);
-      if (mx < L || mx > w - RM) return;
-      const tw = m.label.length * 6.2;
-      const right = mx + 3 + tw <= w;
-      const start = right ? mx + 3 : mx - 3 - tw;
-      const row = start > rowEnd[0] + 4 ? 0 : 1;
-      rowEnd[row] = start + tw;
-      const ty = row ? T - 6 : T - 19;
-      parts.push(`<line x1="${mx.toFixed(1)}" x2="${mx.toFixed(1)}" y1="${ty + 3}" y2="${H - B}" stroke="var(--ink-3)" stroke-width="1.2" stroke-dasharray="4 3"/>`);
-      parts.push(`<text x="${(right ? mx + 3 : mx - 3).toFixed(1)}" y="${ty}" font-size="10.5" text-anchor="${right ? "start" : "end"}" fill="var(--ink-3)">${esc(m.label)}</text>`);
-    });
-    parts.push(`<polyline points="${pts.map((p) => `${x(p.k).toFixed(1)},${y(p.estimate).toFixed(1)}`).join(" ")}" fill="none" stroke="var(--est)" stroke-width="2" stroke-linejoin="round"/>`);
-    const r = pts.length > 14 ? 2.6 : 3.6;
-    pts.forEach((p) => parts.push(`<circle cx="${x(p.k).toFixed(1)}" cy="${y(p.estimate).toFixed(1)}" r="${r}" fill="var(--est)" stroke="var(--surface)" stroke-width="1.5"/>`));
-    const every = Math.max(1, Math.ceil((pts.length * 50) / (w - L - RM)));
-    pts.forEach((p, i) => {
-      if ((pts.length - 1 - i) % every) return;
-      const px = x(p.k), half = p.period.length * 3.1;
-      const anchor = px + half > w ? "end" : px - half < 0 ? "start" : "middle";
-      const tx = anchor === "end" ? w : anchor === "start" ? 0 : px;
-      parts.push(`<text x="${tx.toFixed(1)}" y="${H - 6}" font-size="10.5" text-anchor="${anchor}" fill="var(--ink-3)">${esc(p.period)}</text>`);
-    });
-    parts.push(`<circle class="hl" r="6" fill="none" stroke="var(--ink)" stroke-width="1.5" visibility="hidden"/>`);
-    parts.push(`<rect class="hit" x="${L}" y="${T}" width="${w - L - RM}" height="${H - T - B}" fill="transparent"/>`);
-    el.innerHTML = `<svg width="${w}" height="${H}" viewBox="0 0 ${w} ${H}" aria-hidden="true">${parts.join("")}</svg>`;
-    const svg = el.querySelector("svg"), hl = svg.querySelector(".hl"), hit = svg.querySelector(".hit");
-    const near = (e) => {
-      const mx = e.clientX - svg.getBoundingClientRect().left;
-      const p = pts.reduce((a, b) => (Math.abs(x(b.k) - mx) < Math.abs(x(a.k) - mx) ? b : a));
-      hl.setAttribute("cx", x(p.k));
-      hl.setAttribute("cy", y(p.estimate));
-      hl.setAttribute("visibility", "visible");
-      const val = band && p.low == null ? "Reference year (0)" : `${fmtNum(p.estimate, 2)} (${es.unit})`;
-      showTip(`<strong>${esc(p.period)}</strong><br>${esc(val)}${p.low != null ? `<br>90% band ${esc(fmtNum(p.low))} to ${esc(fmtNum(p.high))}` : ""}`, e.clientX, e.clientY);
-    };
-    hit.addEventListener("pointermove", near);
-    hit.addEventListener("pointerdown", near);
-    hit.addEventListener("pointerleave", () => { hl.setAttribute("visibility", "hidden"); hideTip(); });
-  }
-  function drawChart(el) {
-    const w = Math.floor(el.clientWidth);
-    if (!w || String(w) === el.dataset.w) return;
-    el.dataset.w = String(w);
-    if (el.dataset.kind === "strip") drawStrip(el, w);
-    else if (el.dataset.kind === "axis") drawAxis(el, w);
-    else if (el.dataset.kind === "es") drawEs(el, w);
-  }
-  let resizer = null;
-  function refreshCharts() {
-    if (resizer) resizer.disconnect();
-    if ("ResizeObserver" in window) resizer = new ResizeObserver((entries) => entries.forEach((e) => drawChart(e.target)));
-    document.querySelectorAll(".chart").forEach((el) => { drawChart(el); if (resizer) resizer.observe(el); });
-  }
-
-  function shapePath(dir, cx, cy, r) {
-    if (dir === "enhancing") return `<path d="M${cx} ${cy - r}L${cx + r} ${cy + r * 0.85}L${cx - r} ${cy + r * 0.85}Z" fill="${DIR[dir].color}"/>`;
-    if (dir === "weakening") return `<path d="M${cx} ${cy + r}L${cx + r} ${cy - r * 0.85}L${cx - r} ${cy - r * 0.85}Z" fill="${DIR[dir].color}"/>`;
-    if (dir === "mixed") return `<path d="M${cx} ${cy - r}L${cx + r} ${cy}L${cx} ${cy + r}L${cx - r} ${cy}Z" fill="${DIR[dir].color}"/>`;
-    return `<circle cx="${cx}" cy="${cy}" r="${r * 0.8}" fill="var(--surface)" stroke="${DIR.unclear.color}" stroke-width="1.6"/>`;
-  }
-  const shapeIcon = (dir) => `<span class="shape" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11">${shapePath(dir, 6, 6, 5)}</svg></span>`;
-  const dots = (n) => `<span class="dots" aria-hidden="true">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>`;
 
   // --- State --------------------------------------------------------------------------------------
-  const hasFine = (r) => (r.data || []).some((d) => (d.level === "class" || d.level === "group") && d.state);
-  const hasLocal = (r) => (r.data || []).some((d) => d.local.length);
-  const state = { q: "", data: new Set(), ev: new Set(), jur: new Set(), dir: new Set(), rating: new Set(), channel: "", div: "", selected: null, tab: "list" };
+  const state = { q: "", driver: new Set(), rating: new Set(), kind: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", cx: new Set(), regime: "", indSort: "parties", open: new Set(), selected: null, tab: "list", sort: "new" };
 
-  function matches(r) {
-    if (state.ev.size && !state.ev.has(r.evaluation ? "evaluated" : "not-evaluated")) return false;
-    if (state.data.has("fine") && !hasFine(r)) return false;
-    if (state.data.has("local") && !hasLocal(r)) return false;
+  function matches(r, skip) {
+    const a = A(r);
+    if (skip !== "driver" && state.driver.size && !(a && state.driver.has(a.main_driver))) return false;
+    if (skip !== "rating" && state.rating.size && !(a && state.rating.has(a.rating))) return false;
+    if (state.kind.size && !state.kind.has(r.kind)) return false;
     if (state.jur.size && !state.jur.has(r.jurisdiction)) return false;
-    if (state.dir.size && !state.dir.has(r.direction)) return false;
-    if (state.rating.size && !state.rating.has(r.screen.rating)) return false;
-    if (state.channel && !r.channels.includes(state.channel)) return false;
-    if (state.div && !r.industries.some((i) => i.division === state.div)) return false;
+    if (state.reach.size && !(a && state.reach.has(a.reach))) return false;
+    if (state.status === "in-force" && !inForce(r)) return false;
+    if (state.status === "not-yet" && (inForce(r) || r.ended)) return false;
+    if (state.status === "ended" && !r.ended) return false;
+    if (state.body && !bodyMatch(r, state.body)) return false;
+    if (state.cx.size && !r.complexity.some((t) => state.cx.has(t))) return false;
+    if (state.div && !(r.industries.some((i) => i.division === state.div) || (a && a.reach === "economy-wide" && !r.industries.length))) return false;
     if (state.q) {
-      const ev = evalOf(r);
-      const hay = [r.id, r.title, r.summary, r.family, r.jurisdiction, ...r.industries.map((i) => `${i.anzsic} ${i.name}`), ...(ev ? ["evaluated", ev.finding_label, ev.headline] : [])].join(" ").toLowerCase();
+      const hay = [r.id, r.title, r.summary, r.family, DATA.familyLabels[r.family], r.jurisdiction, FW.kinds[r.kind].label,
+        ...r.responsible.flatMap((x) => [x.body, bodyName(x.body), B[x.body] ? B[x.body].short : ""]),
+        ...r.recs.map((id) => (RECS[id] ? RECS[id].title : "")), ...r.regimes.map((id) => (REG[id] ? REG[id].name : "")),
+        ...(groupOf(r) ? [GROUPS[r.family].title] : []),
+        ...r.industries.map((i) => `${i.anzsic} ${i.name}`), ...(a ? [a.summary, DRV[a.main_driver].label, ...a.marks.map((m) => m.reason)] : [])].join(" ").toLowerCase();
       if (!state.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
     }
     return true;
   }
 
-  // --- Filters ------------------------------------------------------------------------------------
-  function chipGroup(el, key, options) {
-    el.innerHTML = options.map((o) => `<button type="button" class="chip" data-key="${key}" data-val="${esc(o.value)}" aria-pressed="false">${o.icon || ""}${esc(o.label)} <span class="n">${o.n}</span></button>`).join("");
-  }
-  const count = (fn) => R.filter(fn).length;
-  chipGroup($("f-eval"), "ev", [
-    { value: "evaluated", label: "Evaluated", icon: checkIcon, n: count((r) => r.evaluation) },
-    { value: "not-evaluated", label: "Not yet evaluated", n: count((r) => !r.evaluation) },
-  ]);
-  chipGroup($("f-data"), "data", [
-    { value: "fine", label: "Class or group level, by state", n: count(hasFine) },
-    { value: "local", label: "Local areas", n: count(hasLocal) },
-  ]);
-  chipGroup($("f-jur"), "jur", JURS.map((j) => ({ value: j, label: j, n: count((r) => r.jurisdiction === j) })));
-  chipGroup($("f-dir"), "dir", Object.keys(DIR).map((d) => ({ value: d, label: DIR[d].label, icon: shapeIcon(d), n: count((r) => r.direction === d) })));
-  chipGroup($("f-rating"), "rating", Object.keys(RATING).map((k) => ({ value: k, label: RATING[k].label, icon: dots(RATING[k].dots), n: count((r) => r.screen.rating === k) })));
-  $("f-channel").innerHTML = `<option value="">All channels</option>` + DATA.channels.map((c) => `<option value="${esc(c.id)}">${esc(c.label)}</option>`).join("");
-  const divs = [...new Set(R.flatMap((r) => r.industries.map((i) => i.division)))].filter(Boolean).sort();
-  $("f-div").innerHTML = `<option value="">All divisions</option>` + divs.map((d) => `<option value="${esc(d)}">${esc(d)} ${esc(DATA.divisions[d] || "")}</option>`).join("");
+  const byDate = (a, b) => (a.effective || "0000").localeCompare(b.effective || "0000") || a.jurisdiction.localeCompare(b.jurisdiction);
+  const SORTS = {
+    new: (a, b) => byDate(b, a),
+    old: (a, b) => (a.effective || "9999").localeCompare(b.effective || "9999") || a.title.localeCompare(b.title),
+    neg: (a, b) => ((A(a) ? A(a).total : 0) - (A(b) ? A(b).total : 0)) || byDate(b, a),
+    pos: (a, b) => ((A(b) ? A(b).total : 0) - (A(a) ? A(a).total : 0)) || byDate(b, a),
+    title: (a, b) => a.title.localeCompare(b.title),
+  };
 
-  document.querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => {
+  // --- Filters ------------------------------------------------------------------------------------
+  const count = (fn) => R.filter(fn).length;
+  function chipGroup(el, key, options) {
+    el.innerHTML = options.map((o) => `<button type="button" class="chip" data-key="${key}" data-val="${esc(o.value)}" aria-pressed="false" title="${esc(`${o.title ? `${o.title} ` : ""}(${o.n} item${o.n === 1 ? "" : "s"})`)}">${o.icon || ""}${esc(o.label)}</button>`).join("");
+  }
+  chipGroup($("f-driver"), "driver", DRV_KEYS.map((d) => ({ value: d, label: DRV[d].short, title: DRV[d].question, n: count((r) => A(r) && A(r).main_driver === d) })));
+  chipGroup($("f-rating"), "rating", RATING_ORDER.map((k) => ({ value: k, label: RATING_LABEL[k], icon: `<i class="sw ${RATING_CLS[k]}" aria-hidden="true"></i>`, n: count((r) => A(r) && A(r).rating === k) })));
+  chipGroup($("f-kind"), "kind", Object.keys(FW.kinds).map((k) => ({ value: k, label: FW.kinds[k].label, title: FW.kinds[k].help, n: count((r) => r.kind === k) })));
+  chipGroup($("f-jur"), "jur", JURS.map((j) => ({ value: j, label: j, n: count((r) => r.jurisdiction === j) })));
+  chipGroup($("f-reach"), "reach", Object.keys(FW.reach).map((k) => ({ value: k, label: FW.reach[k].label, title: FW.reach[k].help, n: count((r) => A(r) && A(r).reach === k) })));
+  chipGroup($("f-cx"), "cx", Object.keys(TAGS).map((t) => ({ value: t, label: TAGS[t].label, title: TAGS[t].help, n: count((r) => r.complexity.includes(t)) })));
+  // Every division, so the Industries view can show any of them; items outside the register's industries count 0.
+  const divs = [...new Set([...R.flatMap((r) => r.industries.map((i) => i.division)), ...(DATA.industries || []).map((c) => c[2])])].filter(Boolean).sort();
+  $("f-div").innerHTML = `<option value="">All industries</option>` + divs.map((d) => `<option value="${esc(d)}">${esc(d)} ${esc(DATA.divisions[d] || "")}</option>`).join("");
+  // Departments by jurisdiction, each followed by the agencies and regulators in it; a department's count includes theirs.
+  const bodyCount = (id) => count((r) => bodyMatch(r, id));
+  const JUR_GROUPS = [["CTH", "Commonwealth"], ["national", "National schemes"], ["NSW", "New South Wales"], ["VIC", "Victoria"], ["QLD", "Queensland"],
+    ["WA", "Western Australia"], ["SA", "South Australia"], ["TAS", "Tasmania"], ["ACT", "Australian Capital Territory"], ["NT", "Northern Territory"]];
+  const byName = (a, b) => B[a].name.localeCompare(B[b].name);
+  $("f-body").innerHTML = `<option value="">Any department or agency</option>` + JUR_GROUPS.map(([j, label]) => {
+    const ids = Object.keys(B).filter((id) => B[id].jurisdiction === j);
+    const tops = ids.filter((id) => B[id].type === "department" || !B[id].parent || !B[B[id].parent] || B[B[id].parent].jurisdiction !== j).sort(byName);
+    const opts = tops.flatMap((d) => [[d, 0], ...ids.filter((id) => B[id].parent === d && id !== d).sort(byName).map((id) => [id, 1])])
+      .map(([id, depth]) => `<option value="${esc(id)}">${depth ? "\u00a0\u00a0\u00a0– " : ""}${esc(B[id].name)} (${bodyCount(id)})</option>`).join("");
+    return opts ? `<optgroup label="${esc(label)}">${opts}</optgroup>` : "";
+  }).join("");
+
+  function syncChips() {
+    document.querySelectorAll(".chip[data-key]").forEach((b) => b.setAttribute("aria-pressed", state[b.dataset.key].has(b.dataset.val)));
+  }
+  document.querySelectorAll(".chip[data-key]").forEach((b) => b.addEventListener("click", () => {
     const set = state[b.dataset.key];
     set.has(b.dataset.val) ? set.delete(b.dataset.val) : set.add(b.dataset.val);
-    b.setAttribute("aria-pressed", set.has(b.dataset.val));
+    syncChips();
     render();
   }));
   $("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
-  $("f-channel").addEventListener("change", (e) => { state.channel = e.target.value; render(); });
+  $("f-status").addEventListener("change", (e) => { state.status = e.target.value; render(); });
   $("f-div").addEventListener("change", (e) => { state.div = e.target.value; render(); });
+  $("f-body").addEventListener("change", (e) => { state.body = e.target.value; render(); });
+  $("sort").addEventListener("change", (e) => { state.sort = e.target.value; render(); });
+  $("grpLegendIcon").innerHTML = STACK;
+  $("toggleGroups").addEventListener("click", (e) => {
+    const gs = e.target.dataset.groups.split(" ").filter(Boolean);
+    const close = gs.every((g) => state.open.has(g));
+    gs.forEach((g) => (close ? state.open.delete(g) : state.open.add(g)));
+    render();
+  });
   $("reset").addEventListener("click", () => {
-    state.q = ""; state.data.clear(); state.ev.clear(); state.jur.clear(); state.dir.clear(); state.rating.clear(); state.channel = ""; state.div = "";
-    $("q").value = ""; $("f-channel").value = ""; $("f-div").value = "";
-    document.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", "false"));
+    state.q = ""; state.status = ""; state.div = ""; state.body = "";
+    ["driver", "rating", "kind", "jur", "reach", "cx"].forEach((k) => state[k].clear());
+    state.regime = "";
+    $("q").value = ""; $("f-status").value = ""; $("f-div").value = ""; $("f-body").value = "";
+    syncChips();
     render();
   });
 
   // --- Tabs ---------------------------------------------------------------------------------------
-  const TABS = ["list", "timeline", "results"];
+  const TABS = ["list", "scorecard", "timeline", "recs", "ind"];
   function setTab(t) {
     state.tab = t;
     TABS.forEach((x) => { $(`tab-${x}`).setAttribute("aria-selected", t === x); $(`view-${x}`).hidden = t !== x; });
@@ -892,91 +677,128 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
   }
   TABS.forEach((x) => $(`tab-${x}`).addEventListener("click", () => setTab(x)));
 
+  // --- At a glance --------------------------------------------------------------------------------
+  function renderGlance() {
+    // Counts follow every filter except the main-driver and overall-mark ones, so the bars stay a guide to them.
+    const rows = R.filter((r) => matches(r, "driver") && matches(r, "rating"));
+    const by = DRV_KEYS.map((d) => {
+      const items = rows.filter((r) => A(r) && A(r).main_driver === d);
+      return { d, neg: items.filter((r) => A(r).total < 0).length, pos: items.filter((r) => A(r).total > 0).length, zero: items.filter((r) => A(r).total === 0).length };
+    });
+    const max = Math.max(1, ...by.map((x) => Math.max(x.neg, x.pos)));
+    $("dv").innerHTML = `<div class="dv-head" aria-hidden="true"><span></span><span>Negative overall</span><span>Positive overall</span></div>` + by.map((x) => {
+      const label = `${DRV[x.d].label}: ${x.neg} negative, ${x.pos} positive${x.zero ? `, ${x.zero} neutral` : ""}`;
+      return `<button type="button" class="dv-row" data-d="${esc(x.d)}" aria-pressed="${state.driver.has(x.d)}" aria-label="${esc(label)}" title="${esc(label)}">
+        <span class="dv-lab">${esc(DRV[x.d].label)}</span>
+        <span class="dv-neg"><span class="dv-n">${x.neg || ""}</span><span class="dv-bar" style="width:${(x.neg / max) * 82}%"></span></span>
+        <span class="dv-pos"><span class="dv-bar" style="width:${(x.pos / max) * 82}%"></span><span class="dv-n">${x.pos || ""}</span></span></button>`;
+    }).join("");
+    $("dv").querySelectorAll(".dv-row").forEach((b) => b.addEventListener("click", () => {
+      const d = b.dataset.d;
+      state.driver.has(d) ? state.driver.delete(d) : state.driver.add(d);
+      syncChips();
+      render();
+    }));
+    const rc = RATING_ORDER.map((k) => ({ k, n: rows.filter((r) => A(r) && A(r).rating === k).length }));
+    const rmax = Math.max(1, ...rc.map((x) => x.n));
+    $("ratingBars").innerHTML = rc.map((x) => `<div class="row"><span>${esc(RATING_LABEL[x.k])}</span><span class="bar ${RATING_CLS[x.k]}" style="width:${(x.n / rmax) * 100}%"></span><span class="val">${x.n}</span></div>`).join("");
+  }
+
   // --- List ---------------------------------------------------------------------------------------
-  const byDate = (a, b) => (a.effective || "9999").localeCompare(b.effective || "9999") || a.jurisdiction.localeCompare(b.jurisdiction);
-  function checkPill(r) {
-    if (!r.check) return `<span class="pill" title="Not checked against registers">Not checked</span>`;
-    const c = CHECK[r.check.status];
-    return `<span class="pill ${c.cls}" title="${esc(c.help)}">${esc(c.label)}</span>`;
+  // Items of one family (one policy in several jurisdictions) collapse into a row under the family's group name, at the
+  // position of its first item in the chosen order; opening it shows the group summary and each jurisdiction's item.
+  function units(rows) {
+    const out = [], byGroup = new Map();
+    rows.forEach((r) => {
+      const g = groupOf(r);
+      if (!g) { out.push({ r }); return; }
+      if (!byGroup.has(g)) { const u = { g, items: [] }; byGroup.set(g, u); out.push(u); }
+      byGroup.get(g).items.push(r);
+    });
+    return out;
   }
-  const LEVEL = { class: "ANZSIC class", group: "ANZSIC group", "retail-group": "ABS retail industry group", subdivision: "ANZSIC subdivision", division: "ANZSIC division", inferred: "industry inferred from business names", occupation: "occupations", total: "all industries together" };
-  function dataList(r) {
-    const rows = r.data || [];
-    if (!rows.length) return `<p class="muted">No processed data panel covers this change's industries yet.</p>`;
-    const where = r.jurisdiction === "CTH" ? "Australia" : r.jurisdiction;
-    return `<ul class="d-list">${rows.map((d) => {
-      const src = (DATA.dataSources || {})[d.source];
-      const lvl = `${LEVEL[d.level] || d.level}${d.codes.length && d.level !== "total" ? ` ${d.codes.join(", ")}` : ""}`;
-      const geo = d.state ? `${where} covered` : "not by state";
-      return `<li><strong>${esc(src ? src.title : d.source)}</strong>: ${esc(d.measures.join("; "))}<br>
-        <span class="muted">${esc(lvl)} · ${esc(geo)}${d.local.length ? ` · local: ${esc(d.local.join(", "))}` : ""} · ${esc(d.periodType)} ${esc(d.first.slice(0, 7))} to ${esc(d.last.slice(0, 7))}</span></li>`;
-    }).join("")}</ul><p class="muted small">${esc(DATA.dataNote || "")}</p>`;
+  const same = (xs) => xs.every((x) => x === xs[0]);
+  function groupCells(u) {
+    const items = u.items, all = GROUPS[u.g].members.length, as = items.map(A).filter(Boolean);
+    const years = items.filter((r) => r.kind !== "barrier" && r.effective && r.kind === "reform").map((r) => +r.effective.slice(0, 4));
+    const eff = years.length ? (Math.min(...years) === Math.max(...years) ? `${years[0]}` : `${Math.min(...years)}–${Math.max(...years)}`) : items.some((r) => r.kind === "setting") ? "in place" : "–";
+    const jurs = [...new Set(items.map((r) => r.jurisdiction))];
+    const totals = as.map((a) => a.total), lo = Math.min(...totals), hi = Math.max(...totals);
+    const loA = as.find((a) => a.total === lo), hiA = as.find((a) => a.total === hi);
+    const mini = (a) => `<span class="badge ${RATING_CLS[a.rating]}" title="${esc(RATING_LABEL[a.rating])}"><span class="n">${esc(signed(a.total))}</span></span>`;
+    const mark = !as.length ? "" : lo === hi ? ratingBadge(as[0]) : `<span class="mark-range" title="${esc(`Overall marks range from ${signed(lo)} to ${signed(hi)}; open the row to see each jurisdiction`)}">${mini(loA)}<span class="to">to</span>${mini(hiA)}</span>`;
+    const drv = same(as.map((a) => a.main_driver)) && as.length ? drvTag(as[0].main_driver) : "Varies";
+    const reach = same(as.map((a) => a.reach)) && as.length ? esc(reachLabel(as[0].reach)) : "Varies";
+    return { eff, jur: items.length === all ? `${jurs.length}` : `${items.length} of ${all}`, jurTitle: jurs.join(", "), mark, drv, reach };
   }
-  function evalLinks(ev) {
-    const earlier = ev.follows && EV[ev.follows];
-    const later = Object.values(EV).filter((e) => e.follows === ev.id);
-    const one = (e) => `<button type="button" class="linkbtn jump" data-ev="${esc(e.id)}">${esc(e.title)}</button> (${esc(fmtDate(e.evaluated_on))})`;
-    const parts = [];
-    if (earlier) parts.push(`Revisits an earlier evaluation: ${one(earlier)}.`);
-    if (later.length) parts.push(`Revisited by ${later.map(one).join(", ")}.`);
-    return parts.length ? `<p class="small muted ev-chain">${parts.join(" ")}</p>` : "";
-  }
-  function evalCell(r) {
-    const ev = evalOf(r);
-    if (!ev) return `<span class="muted small">Not yet</span>`;
-    return `<span class="pill eval">${checkIcon}Evaluated</span><span class="fam">${esc(ev.finding_label)}</span>`;
-  }
-  // Evaluations of the changes shown: current ones newest first (re-evaluations and new analyses lead), then archived.
-  function evalsShown(rows) {
-    const recIds = new Set(rows.map((r) => r.id));
-    const shown = Object.values(EV).filter((e) => e.records.some((id) => recIds.has(id)));
-    return { list: shown.filter((e) => !ARCH[e.id]).sort(newestFirst), old: shown.filter((e) => ARCH[e.id]).sort(newestFirst) };
-  }
-  function renderResults(rows) {
-    const { list, old } = evalsShown(rows);
-    const overview = list.length > 1 ? `<div class="ov-wrap"><table class="ov">
-      <thead><tr><th>Reform</th><th>Evaluated</th><th>Verdict</th><th>Main effect (90% interval)</th><th>Grade</th></tr></thead>
-      <tbody>${list.map((e) => {
-        const o = e.outcomes.find((x) => x.role === "primary") || e.outcomes.find((x) => x.id === "entry-rate");
-        const eff = o && o.finding !== "not-identified" && o.interval
-          ? `${esc(fmtNum(o.estimate))} <span class="muted">(${esc(fmtNum(o.interval.low))} to ${esc(fmtNum(o.interval.high))})</span><span class="ov-unit">${esc(o.label)}, ${esc(o.unit)}</span>`
-          : `<span class="muted">${o ? "not headlined" : "not measurable"}</span>`;
-        return `<tr><td class="ov-title"><button type="button" class="linkbtn jump" data-ev="${esc(e.id)}">${esc(e.title)}</button></td>
-          <td>${esc(fmtDate(e.evaluated_on))}${(e.supersedes || []).length ? ` <span class="pill new">Re-evaluation</span>` : ""}</td>
-          <td><span class="pill ${VERDICT[e.verdict].cls}">${esc(VERDICT[e.verdict].label)}</span></td>
-          <td class="eff">${eff}</td><td><span class="pill ${GRADE_CLS[e.grade]}">${esc(e.grade)}</span></td></tr>`;
-      }).join("")}</tbody></table></div>` : "";
-    const archive = old.length ? `<details class="ev-archive"><summary>Archived evaluations (${old.length}): replaced by the re-evaluations above, kept for the record</summary>${old.map(evalCard).join("")}</details>` : "";
-    $("results").innerHTML = `<p class="results-intro">${esc(DATA.evaluationNote)}</p>` + overview +
-      (list.length ? list.map(evalCard).join("") : `<p class="muted">${Object.keys(EV).length ? "No evaluated changes match these filters." : "No change has been evaluated yet."}</p>`) + archive;
-    bindEval($("results"));
+  function itemRow(r, member) {
+    const a = A(r);
+    return `<tr class="${member ? `member ${member === "last" ? "last " : ""}` : ""}${state.selected === r.id ? "sel" : ""}">
+        <td class="mono">${esc(effLabel(r))}</td>
+        <td class="mono">${esc(r.jurisdiction)}</td>
+        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}" title="${esc([r.responsible.length ? `Responsible: ${whoShort(r)}` : "", r.complexity.length ? `Complexity: ${r.complexity.map((t) => (TAGS[t] ? TAGS[t].label : t)).join(", ")}` : ""].filter(Boolean).join(" · "))}">${esc(r.title)}</button> ${kindTag(r.kind)} ${endTag(r)}</td>
+        <td>${a ? drvTag(a.main_driver) : ""}</td>
+        <td>${ratingBadge(a)}</td>
+        <td>${a ? esc(reachLabel(a.reach)) : ""}</td>
+      </tr>`;
   }
   function renderList(rows) {
-    $("rows").innerHTML = rows.map((r) => `
-      <tr class="${state.selected === r.id ? "sel" : ""}"${r.evaluation && DATA.evalPages ? ` data-ev="${esc(r.evaluation)}" title="Double-click to open the evaluation as a page"` : ""}>
-        <td class="mono">${esc(r.effective ? fmtDate(r.effective) : "not yet")}</td>
-        <td class="mono">${esc(r.jurisdiction)}</td>
-        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(r.title)}</button>${r.family ? `<span class="fam">${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}</td>
-        <td><span class="dir">${shapeIcon(r.direction)}${esc(DIR[r.direction].label)}</span></td>
-        <td><span class="rating">${dots(RATING[r.screen.rating].dots)}${esc(RATING[r.screen.rating].label)}</span></td>
-        <td>${checkPill(r)}</td>
-        <td>${evalCell(r)}</td>
-      </tr>`).join("");
+    $("rows").innerHTML = units(rows).map((u) => {
+      if (u.r) return itemRow(u.r, false);
+      const c = groupCells(u), open = state.open.has(u.g), G = GROUPS[u.g];
+      const head = `<tr class="grp-row${open ? " open" : ""}" id="grp-${esc(u.g)}" data-group="${esc(u.g)}">
+        <td class="mono">${esc(c.eff)}</td>
+        <td class="mono" title="${esc(c.jurTitle)}"></td>
+        <td class="c-title">${grpButton(u.g, u.items, open)}</td>
+        <td>${c.drv}</td><td>${c.mark}</td><td>${c.reach}</td></tr>`;
+      if (!open) return head;
+      return head + (G.summary ? `<tr class="grp-sum"><td colspan="6">${esc(G.summary)}</td></tr>` : "") + u.items.map((r, k) => itemRow(r, k === u.items.length - 1 ? "last" : true)).join("");
+    }).join("");
     $("rows").querySelectorAll(".rowbtn").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
-    $("rows").querySelectorAll("tr[data-ev]").forEach((tr) => tr.addEventListener("dblclick", (e) => {
-      if (e.target.closest("a, input, select")) return;
-      window.getSelection && window.getSelection().removeAllRanges();
-      window.open(pageUrl(tr.dataset.ev), "_blank", "noopener");
-    }));
+    $("rows").querySelectorAll("tr.grp-row").forEach((tr) => tr.addEventListener("click", () => toggleGroup(tr.dataset.group)));
+  }
+  function toggleGroup(g, open) {
+    const on = open ?? !state.open.has(g);
+    if (on) state.open.add(g); else state.open.delete(g);
+    render();
+  }
+
+  // --- Scorecard ----------------------------------------------------------------------------------
+  function renderScorecard(rows) {
+    const pillars = Object.keys(FW.pillars).map((p) => ({ p, ds: DRV_KEYS.filter((d) => DRV[d].pillar === p) }));
+    const head = `<thead><tr class="pillars"><th class="item"></th>${pillars.map((g) => `<th colspan="${g.ds.length}" title="${esc(FW.pillars[g.p].label)}"><span>${esc(FW.pillars[g.p].label)}</span></th>`).join("")}<th></th></tr>
+      <tr class="drv"><th class="item">Item</th>${pillars.flatMap((g) => g.ds).map((d) => `<th title="${esc(DRV[d].question)}">${esc(DRV[d].short)}</th>`).join("")}<th>Overall</th></tr></thead>`;
+    const order = pillars.flatMap((g) => g.ds);
+    const itemRow = (r, member) => {
+      const a = A(r);
+      const cells = order.map((d) => {
+        const m = markOf(r, d);
+        const why = a && a.marks.find((x) => x.driver === d);
+        const tip = why ? `${DRV[d].label}: ${signed(m)}. ${why.reason}` : `${DRV[d].label}: no material effect`;
+        return `<td class="cell${a && a.main_driver === d ? " is-main" : ""}" title="${esc(tip)}"><span class="${markCls(m)}">${m ? esc(signed(m)) : "·"}</span></td>`;
+      }).join("");
+      const tot = a ? `<span class="${RATING_CLS[a.rating]}" title="${esc(`${RATING_LABEL[a.rating]}${a.mixed ? ", mixed" : ""}`)}">${esc(signed(a.total))}</span>` : "";
+      return `<tr class="${member ? "sc-member " : ""}${state.selected === r.id ? "sel" : ""}"><th class="item" scope="row"><button type="button" data-id="${esc(r.id)}" title="${esc(r.title)}"><span class="j">${esc(r.jurisdiction)}</span>${esc(r.short)}</button></th>${cells}<td class="tot">${tot}</td></tr>`;
+    };
+    const body = units(rows).map((u) => {
+      if (u.r) return itemRow(u.r, false);
+      const open = state.open.has(u.g);
+      return `<tr class="sc-grp"><th colspan="${order.length + 2}">${grpButton(u.g, u.items, open)}</th></tr>` + (open ? u.items.map((r) => itemRow(r, true)).join("") : "");
+    }).join("");
+    $("sc").innerHTML = head + `<tbody>${body}</tbody>`;
+    $("sc").querySelectorAll("th.item button").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
+    $("sc").querySelectorAll(".grpbtn").forEach((b) => b.addEventListener("click", () => toggleGroup(b.dataset.group)));
+    $("scKey").innerHTML = [2, 1, -1, -2].map((m) => `<span><span class="k ${markCls(m)}">${esc(signed(m))}</span> ${esc(FW.markLabels[String(m)])}</span>`).join("") +
+      `<span><span class="k" style="box-shadow: inset 0 0 0 1.5px var(--ink)">±</span> Main driver</span>${info("helpScorecard", "Reading the scorecard")}`;
   }
 
   // --- Timeline -----------------------------------------------------------------------------------
   function drawTimeline(rows) {
     const svg = $("tl");
-    const dated = rows.filter((r) => r.effective);
+    const dated = rows.filter((r) => r.kind === "reform" && r.effective);
     const groups = [];
     const fams = new Map();
-    dated.sort(byDate).forEach((r) => {
+    dated.slice().sort(byDate).forEach((r) => {
       const key = r.family || "_single";
       if (!fams.has(key)) { fams.set(key, []); groups.push(key); }
       fams.get(key).push(r);
@@ -984,187 +806,402 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
     groups.sort((a, b) => (a === "_single") - (b === "_single") || fams.get(a)[0].effective.localeCompare(fams.get(b)[0].effective));
     const LBL = 210, ROW = 22, HEAD = 24, TOP = 30, RIGHT = 16;
     const width = Math.max(680, Math.min(1100, svg.parentElement.clientWidth || 800));
+    if (!dated.length) { svg.setAttribute("width", width); svg.setAttribute("height", 40); svg.innerHTML = `<text x="10" y="24" font-size="12">No dated reforms match these filters.</text>`; $("tlLegend").innerHTML = ""; return; }
     const years = dated.map((r) => +r.effective.slice(0, 4));
-    const y0 = Math.min(Number(DATA.coverage.firstStart.slice(0, 4)), ...years), y1 = Math.max(...years, 2026) + 1;
+    const y0 = Math.min(...years), y1 = Math.max(...years, 2026) + 1;
     const t0 = Date.UTC(y0, 0, 1), t1 = Date.UTC(y1, 0, 1);
     const x = (iso) => LBL + ((Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10)) - t0) / (t1 - t0)) * (width - LBL - RIGHT);
     let y = TOP;
-    const parts = [];
-    const rowsOut = [];
+    const parts = [], rowsOut = [];
     groups.forEach((g) => {
-      const members = fams.get(g);
-      rowsOut.push({ head: g === "_single" ? "Single-jurisdiction and national changes" : (DATA.familyLabels[g] || g), y });
+      rowsOut.push({ head: g === "_single" ? "Single-jurisdiction and national reforms" : (GROUPS[g] ? GROUPS[g].title : DATA.familyLabels[g] || g), y });
       y += HEAD;
-      members.forEach((r) => { rowsOut.push({ r, y }); y += ROW; });
+      fams.get(g).forEach((r) => { rowsOut.push({ r, y }); y += ROW; });
       y += 6;
     });
     const height = y + 6;
-    const clampX = (iso) => Math.max(LBL, Math.min(width - RIGHT, x(iso)));
-    // Bands: outcome data coverage and COVID period
-    parts.push(`<rect x="${clampX(DATA.coverage.firstStart)}" y="${TOP - 6}" width="${clampX(DATA.coverage.lastEnd) - clampX(DATA.coverage.firstStart)}" height="${height - TOP}" fill="var(--band)"/>`);
-    parts.push(`<rect x="${clampX("2019-07-01")}" y="${TOP - 6}" width="${clampX("2022-06-30") - clampX("2019-07-01")}" height="${height - TOP}" fill="var(--covid)"/>`);
-    // Year gridlines and labels
     for (let yr = y0; yr <= y1; yr++) {
       const gx = x(`${yr}-01-01`);
       parts.push(`<line x1="${gx}" x2="${gx}" y1="${TOP - 6}" y2="${height}" stroke="var(--line)" stroke-width="1"/>`);
-      if ((yr - y0) % (width < 800 ? 2 : 1) === 0 && yr < y1) parts.push(`<text x="${gx + 2}" y="${TOP - 12}" font-size="11" fill="var(--ink-3)">${yr}</text>`);
+      if ((yr - y0) % (width < 800 ? 2 : 1) === 0 && yr < y1) parts.push(`<text x="${gx + 2}" y="${TOP - 12}" font-size="11">${yr}</text>`);
     }
+    const fill = { "strongly-positive": "var(--mk-p2)", positive: "var(--mk-p1)", neutral: "var(--mk-0)", negative: "var(--mk-n1)", "strongly-negative": "var(--mk-n2)" };
     rowsOut.forEach((o) => {
-      if (o.head) {
-        parts.push(`<text x="6" y="${o.y + 15}" font-size="12" font-weight="600" fill="var(--ink)">${esc(o.head)}</text>`);
-        return;
-      }
-      const r = o.r;
-      const cy = o.y + ROW / 2;
-      const label = r.family ? r.jurisdiction : `${r.jurisdiction} · ${r.short}`;
-      parts.push(`<text x="14" y="${cy + 4}" font-size="11.5" fill="var(--ink-2)">${esc(label)}</text>`);
+      if (o.head) { parts.push(`<text x="6" y="${o.y + 15}" font-size="12" font-weight="600" style="fill:var(--ink)">${esc(o.head)}</text>`); return; }
+      const r = o.r, cy = o.y + ROW / 2, a = A(r);
+      parts.push(`<text x="14" y="${cy + 4}" font-size="11.5" style="fill:var(--ink-2)">${esc(r.family ? r.jurisdiction : `${r.jurisdiction} · ${r.short}`)}</text>`);
       parts.push(`<line x1="${LBL}" x2="${width - RIGHT}" y1="${cy}" y2="${cy}" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 3"/>`);
-      const cx = x(r.effective);
-      const sel = state.selected === r.id;
-      parts.push(`<g class="tl-mark" tabindex="0" role="button" data-id="${esc(r.id)}" aria-label="${esc(`${r.jurisdiction}: ${r.title}, ${fmtDate(r.effective)}, ${DIR[r.direction].label}`)}">
+      const cx = x(r.effective), sel = state.selected === r.id;
+      if (r.ended) {
+        const ex = Math.min(width - RIGHT, x(r.ended.date));
+        parts.push(`<line x1="${cx}" x2="${ex}" y1="${cy}" y2="${cy}" stroke="var(--ink-3)" stroke-width="2"/><path d="M${ex - 4} ${cy - 4}L${ex + 4} ${cy + 4}M${ex - 4} ${cy + 4}L${ex + 4} ${cy - 4}" stroke="var(--ink)" stroke-width="1.6"><title>${esc(`${r.ended.label} ${fmtDate(r.ended.date)}`)}</title></path>`);
+      }
+      r.timeline.filter((e) => !e.own && e.date && !["repealed", "replaced"].includes(e.kind)).forEach((e) => {
+        const tx = Math.min(width - RIGHT, x(e.date));
+        parts.push(`<line x1="${tx}" x2="${tx}" y1="${cy - 6}" y2="${cy + 6}" stroke="var(--accent)" stroke-width="2"><title>${esc(`${e.label} ${fmtDate(e.date)}: ${e.what}`)}</title></line>`);
+      });
+      parts.push(`<g class="tl-mark" tabindex="0" role="button" data-id="${esc(r.id)}" aria-label="${esc(`${r.jurisdiction}: ${r.title}, ${fmtDate(r.effective)}, overall mark ${a ? signed(a.total) : "none"}`)}">
         <circle class="hit" cx="${cx}" cy="${cy}" r="10" fill="${sel ? "var(--accent-soft)" : "transparent"}" stroke="${sel ? "var(--accent)" : "none"}"/>
-        ${r.evaluation ? `<circle cx="${cx}" cy="${cy}" r="8.6" fill="none" stroke="var(--est)" stroke-width="1.6"/>` : ""}
-        ${shapePath(r.direction, cx, cy, 5.5)}</g>`);
+        <circle cx="${cx}" cy="${cy}" r="6" fill="${a ? fill[a.rating] : "var(--mk-0)"}" stroke="var(--ink-3)" stroke-width="1"/></g>`);
     });
     svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
     svg.setAttribute("width", width);
     svg.setAttribute("height", height);
     svg.innerHTML = parts.join("");
-    const tip = $("tip");
     svg.querySelectorAll(".tl-mark").forEach((g) => {
-      const r = R.find((x) => x.id === g.dataset.id);
-      const show = (ev) => {
-        tip.innerHTML = `<strong>${esc(r.title)}</strong><br>${esc(r.jurisdiction)} · ${esc(fmtDate(r.effective))}<br>${esc(DIR[r.direction].label)} · evaluability ${esc(RATING[r.screen.rating].label.toLowerCase())}${evalOf(r) ? `<br>Evaluated: ${esc(evalOf(r).finding_label.toLowerCase())}` : ""}`;
-        tip.hidden = false;
-        const bx = ev.clientX ?? g.getBoundingClientRect().right, by = ev.clientY ?? g.getBoundingClientRect().top;
-        tip.style.left = `${Math.min(window.innerWidth - tip.offsetWidth - 8, bx + 12)}px`;
-        tip.style.top = `${Math.max(8, by - tip.offsetHeight - 10)}px`;
-      };
-      g.addEventListener("mousemove", show);
-      g.addEventListener("focus", (e) => show({ clientX: g.getBoundingClientRect().right, clientY: g.getBoundingClientRect().top }));
-      g.addEventListener("mouseleave", () => (tip.hidden = true));
-      g.addEventListener("blur", () => (tip.hidden = true));
+      const r = R.find((q) => q.id === g.dataset.id), a = A(r);
+      const html = `<strong>${esc(r.title)}</strong><br>${esc(r.jurisdiction)} · ${esc(fmtDate(r.effective))}${a ? `<br>Overall mark ${esc(signed(a.total))} (${esc(RATING_LABEL[a.rating].toLowerCase())}); main driver: ${esc(DRV[a.main_driver].label.toLowerCase())}` : ""}`;
+      g.addEventListener("mousemove", (e) => showTip(html, e));
+      g.addEventListener("focus", () => showTipAt(html, g));
+      g.addEventListener("mouseleave", hideTip);
+      g.addEventListener("blur", hideTip);
       g.addEventListener("click", () => select(r.id));
       g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(r.id); } });
     });
     const undated = rows.length - dated.length;
-    $("tlLegend").innerHTML = Object.keys(DIR).map((d) => `<span>${shapeIcon(d)}${esc(DIR[d].label)}</span>`).join("") +
-      `<span>${ringIcon}Evaluated</span>` +
-      `<span><i class="swatch" style="background:var(--band)"></i>Years with entry and exit data (${esc(DATA.coverage.label)})</span>` +
-      `<span><i class="swatch" style="background:var(--covid)"></i>COVID period (2019-20 to 2021-22)</span>` +
-      (undated ? `<span>${undated} not yet commenced (not shown)</span>` : "");
+    $("tlLegend").innerHTML = RATING_ORDER.map((k) => `<span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5" fill="${fill[k]}" stroke="var(--ink-3)"/></svg>${esc(RATING_LABEL[k])}</span>`).join("") +
+      `<span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><line x1="6" x2="6" y1="0" y2="12" stroke="var(--accent)" stroke-width="2"/></svg>Later change</span>` +
+      `<span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 2L10 10M2 10L10 2" stroke="var(--ink)" stroke-width="1.6"/></svg>Repealed or replaced</span>` +
+      (undated ? `<span>${undated} not shown: not yet in force, existing settings or barriers</span>` : "");
   }
 
   // --- Detail -------------------------------------------------------------------------------------
+  const li = (items) => (items.length ? `<ul class="d-list">${items.join("")}</ul>` : "");
+  // A collapsible section: the heading and a short summary show; the body opens on request.
+  const fold = (title, body, note = "", open = false) => (body ? `<details class="d-sec fold"${open ? " open" : ""}><summary><span class="fold-t">${esc(title)}</span>${note ? `<span class="fold-n">${esc(note)}</span>` : ""}</summary><div class="fold-body">${body}</div></details>` : "");
+  function marksHtml(a) {
+    const scale = (v) => [-2, -1, 1, 2].map((x) => `<i class="${v !== 0 && Math.sign(x) === Math.sign(v) && Math.abs(x) <= Math.abs(v) ? markCls(v) : ""}"></i>`).join("");
+    const marked = DRV_KEYS.map((d) => a.marks.find((x) => x.driver === d)).filter(Boolean);
+    const rows = marked.map((m) => `<details class="mrow${a.main_driver === m.driver ? " main" : ""}"><summary>
+        <span class="lab">${esc(DRV[m.driver].label)}${a.main_driver === m.driver ? " (main driver)" : ""}</span>
+        <span class="scale" role="img" aria-label="${esc(`${DRV[m.driver].label}: ${signed(m.mark)}, ${FW.markLabels[String(m.mark)]}`)}">${scale(m.mark)}</span>
+        <span class="val">${esc(signed(m.mark))}</span></summary><p class="why">${esc(m.reason)}</p></details>`).join("");
+    const rest = DRV_KEYS.filter((d) => !a.marks.some((x) => x.driver === d)).map((d) => DRV[d].label);
+    return `<div class="marks">${rows}</div>${rest.length ? `<p class="zero-note" title="${esc(rest.join(", "))}">No material effect on the other ${rest.length} driver${rest.length === 1 ? "" : "s"}.</p>` : ""}`;
+  }
+  function statsHtml(r) {
+    const s = r.stats;
+    if (!s || !s.rows.length) return `<p class="muted small">No statistics available for these industries.</p>`;
+    const src = DATA.statsSources || {}, M = DATA.statsMeasures;
+    const place = DATA.places[s.where] || s.where;
+    const label = (id) => M[id].label.replace("{where}", place).replace("{in}", s.where === "CTH" ? "" : ` (${place})`);
+    const named = (id) => (M[id].term ? term(M[id].term, label(id)) : esc(label(id)));
+    const rows = s.rows.map(([id, value, all, lv, period]) => ({ id, value, all, level: s.levels[lv], period, ...M[id] }));
+    const byId = Object.fromEntries(rows.map((x) => [x.id, x]));
+    const tiles = DATA.statsTiles.map((id) => byId[id]).filter(Boolean).map((x) => `<div class="tile"><span class="t-lab">${named(x.id)}</span><span class="t-val">${esc(fmtStat(x.value, x.fmt))}</span>${isNum(x.all) && x.id !== "biz" && !s.economyWide ? `<span class="t-all">All industries: ${esc(fmtStat(x.all, x.fmt))}</span>` : `<span class="t-all">${esc(x.period)}</span>`}</div>`).join("");
+    let grp = "", lastLevel = "";
+    const body = rows.map((x) => {
+      const head = x.group !== grp ? `<tr class="grp"><th colspan="3">${esc(x.group)}</th></tr>` : "";
+      grp = x.group;
+      const cap = [x.level !== lastLevel ? x.level : "", x.period].filter(Boolean).join(", ");
+      lastLevel = x.level;
+      return `${head}<tr><td title="${esc(cap)}">${named(x.id)}</td>
+        <td class="num">${esc(fmtStat(x.value, x.fmt))}</td><td class="num all">${s.economyWide ? "" : esc(fmtStat(x.all, x.fmt))}</td></tr>`;
+    }).join("");
+    const used = [...new Set(rows.map((x) => x.source))].filter((k) => src[k]).map((k) => link(src[k].url, src[k].label));
+    return `<p>${s.economyWide ? "Economy-wide: the figures are for all industries." : `Industries: ${esc(s.industries)}.`}</p>
+      <div class="tiles">${tiles}</div>
+      <details class="more sub"><summary>All statistics, sources and notes</summary><div class="tscroll"><table class="st"><thead><tr><th>Measure</th><th>${s.economyWide ? "All industries" : "Affected"}</th><th>${s.economyWide ? "" : "All industries"}</th></tr></thead><tbody>${body}</tbody></table></div>
+      <p class="st-src">Sources: ${used.join("; ")}.</p>
+      <p>${esc(DATA.statsNote)}</p></details>`;
+  }
+  function recCard(x, withItems) {
+    // Full names for a few bodies; short names (with the full name on hover) for long lists of state bodies.
+    const actors = x.actors.map((b) => (B[b] ? (x.actors.length > 3 ? `<span title="${esc(B[b].name)}">${esc(B[b].short)}</span>` : esc(B[b].name)) : esc(b)));
+    const recLink = (id) => `<button type="button" class="lnk" data-id="${esc(id)}">${esc(RBY[id] ? `${RBY[id].jurisdiction} · ${RBY[id].short}` : id)}</button>`;
+    const prog = x.progress ? `<p class="r-sub"><strong>Progress:</strong> ${esc(x.progress.what)} ${x.progress.source ? link(x.progress.source, "Source") : ""}${x.progress.records.filter((id) => RBY[id]).map(recLink).join(" ")}</p>` : "";
+    const prec = x.precedents.length ? `<p class="r-sub"><strong>Done elsewhere:</strong> ${x.precedents.map((pr) => `${esc(pr.where)}: ${esc(pr.what)} ${pr.record && RBY[pr.record] ? recLink(pr.record) : pr.source ? link(pr.source, "Source") : ""}`).join(" ")}</p>` : "";
+    const ev = x.evidence.map((e) => `<li><blockquote>${esc(e.quote)}</blockquote><span class="src">${link(e.url, e.source)}, ${esc(e.publisher)}, ${esc(e.year)}${e.locator ? `, ${esc(e.locator)}` : ""}${e.origin === "international" ? ` <span class="tag intl">International</span>` : ""}${e.checked === "web-page" ? " (quote read from the web page)" : ""}</span></li>`).join("");
+    const items = withItems ? `<div class="rec-items"><span class="muted">Applies to:</span>${x.applies_to.filter((id) => RBY[id]).map(recLink).join("")}</div>` : "";
+    const facts = [`${esc(x.kindLabel)}`, `evidence ${esc(FW.confidence[x.confidence].label.toLowerCase())}`, x.international ? "draws on international evidence" : "", x.review.status === "draft" ? "draft" : ""].filter(Boolean).join(" · ");
+    return `<article class="rec" id="rec-${esc(x.id)}">
+      <h4>${esc(x.title)}</h4>
+      <p>${esc(x.action)}</p>
+      <details class="sub"><summary>Why, who and evidence</summary><div class="sub-body">
+        <p class="r-why">${esc(x.why)}</p>
+        ${actors.length ? `<p class="r-sub"><strong>Who would act:</strong> ${actors.join("; ")}</p>` : ""}
+        ${prog}${prec}
+        ${x.tradeoffs ? `<p class="r-sub"><strong>To weigh:</strong> ${esc(x.tradeoffs)}</p>` : ""}
+        ${items}
+        <p class="r-sub">${facts}</p>
+        <ul class="ev">${ev}</ul></div></details>
+    </article>`;
+  }
+  function recsHtml(r) {
+    const xs = r.recs.map((id) => RECS[id]).filter(Boolean);
+    if (xs.length) return `<div class="recs">${xs.map((x) => recCard(x, false)).join("")}</div>`;
+    return r.recGap ? `<p class="rec-gap"><strong>No recommendation yet.</strong> ${esc(r.recGap)}</p>` : "";
+  }
+  function whoHtml(r) {
+    if (!r.responsible.length) return "";
+    return `<ul class="resp">${r.responsible.map((x) => {
+      const b = B[x.body], d = b && b.type !== "department" && b.parent && B[b.parent] ? B[b.parent] : null;
+      return `<li><span class="role">${term(x.role, DATA.roles[x.role])}</span>
+        <span${x.note ? ` title="${esc(x.note)}"` : ""}>${b ? link(b.url, b.name) : esc(x.body)}${b && !b.current ? ` (former)` : ""}${d ? ` <span class="in">· in ${esc(d.name)}</span>` : ""} <span class="t-src">· ${link(x.source, "source")}</span></span></li>`;
+    }).join("")}</ul>`;
+  }
+  function timelineHtml(r) {
+    const c = r.check;
+    const head = r.kind !== "barrier" && r.effective
+      ? `<p class="small">${r.kind === "setting" ? "In place since" : "Effective"} <strong>${esc(fmtDate(r.effective))}</strong>${r.effectiveWhat ? `: ${esc(r.effectiveWhat)}` : ""}</p>
+        ${c ? `<p><span class="pill ${CHECK[c.status].cls}" title="${esc(`${CHECK[c.status].help}.${c.issues.length ? ` ${c.issues.join(" ")}` : ""}`)}">${esc(CHECK[c.status].label)}</span></p>` : ""}`
+      : r.kind === "reform" && !r.effective ? `<p class="small"><strong>Not yet in force.</strong></p>` : "";
+    const later = r.timeline.filter((e) => !e.own).length;
+    const items = r.timeline.map((e) => {
+      const cls = [e.own ? "" : "later", ["repealed", "replaced"].includes(e.kind) ? "end" : "", e.upcoming ? "upcoming" : ""].filter(Boolean).join(" ");
+      return `<li class="${cls}"><span class="t-when">${esc(fmtDate(e.date))}${e.upcoming ? " · to come" : ""}</span>
+        <span><span class="t-kind">${esc(e.label)}.</span> ${esc(e.what)}</span>
+        <span class="t-src">${e.source ? link(e.source, "Source") : ""}${e.record ? `${e.source ? " · " : ""}<button type="button" class="lnk" data-id="${esc(e.record)}">Open: ${esc(e.recordTitle || e.record)}</button>` : ""}</span></li>`;
+    }).join("");
+    const changes = r.changes.length
+      ? `<p class="small">This item changed ${r.changes.length === 1 ? "an earlier item" : "earlier items"} in the register:</p><ul class="d-list">${r.changes.map((x) => `<li>${esc(x.label)}: <button type="button" class="lnk" data-id="${esc(x.record)}">${esc(x.title)}</button></li>`).join("")}</ul>`
+      : "";
+    if (!head && !items && !changes) return "";
+    return `${head}
+      ${items ? `<ol class="tline">${items}</ol>` : ""}
+      ${later || r.kind === "barrier" ? "" : `<p>No later change is recorded.</p>`}
+      ${changes}`;
+  }
+  // --- Regulatory complexity --------------------------------------------------------------------------
+  // The tiers that do each function, as Venn regions: a function done by two tiers sits in their overlap.
+  function regionsOf(g) {
+    const by = {};
+    g.layers.forEach((l) => { (by[l.function] = by[l.function] || []).push(l); });
+    const regions = {};
+    Object.keys(FN).filter((f) => by[f]).forEach((f) => {
+      const tiers = VENN_TIERS.filter((t) => by[f].some((l) => l.tier === t));
+      const key = tiers.join("+");
+      const who = by[f].map((l) => `${TIERS[l.tier]}: ${l.who}${l.jurisdictions.length ? ` (${l.jurisdictions.join(", ")})` : ""}`).join("\n");
+      (regions[key] = regions[key] || []).push({ label: FN[f].short, title: `${FN[f].label}\n${who}`, hot: tiers.length > 1 });
+    });
+    return regions;
+  }
+  const evList = (evs) => evs.map((e) => `<li><blockquote>${esc(e.quote)}</blockquote><span class="src">${link(e.url, e.source)}, ${esc(e.publisher)}, ${esc(e.year)}${e.locator ? `, ${esc(e.locator)}` : ""}${e.checked === "web-page" ? " (quote read from the web page)" : ""}</span></li>`).join("");
+  function issueHtml(i) {
+    return `<li><div class="issue-head">${cxTag(i.tag)}<span class="ist">${esc(STATUS[i.status])}${i.jurisdictions.length ? ` · ${esc(i.jurisdictions.join(", "))}` : ""}</span></div>
+      <p>${esc(i.what)}</p>
+      <details class="sub"><summary>Evidence</summary><div class="sub-body">${i.status_note ? `<p>${esc(i.status_note)}</p>` : ""}<ul class="ev">${evList(i.evidence)}</ul></div></details></li>`;
+  }
+  function regimeCard(g, full) {
+    const ov = Object.keys(g.overlap);
+    const layers = g.layers.map((l) => `<li><span class="tier t-${esc(l.tier)}">${esc(TIERS[l.tier])}</span> ${esc(FN[l.function].label.toLowerCase())}: ${esc(l.who)}${l.jurisdictions.length ? ` (${esc(l.jurisdictions.join(", "))})` : ""}</li>`).join("");
+    const scope = g.scope === "sector" ? "Industry-specific" : "Applies across industries";
+    return `<article class="regime" id="regime-${esc(g.id)}">
+      <h4 title="${esc(`${scope}; applies to ${g.classes} of ${IND.length} industries`)}">${full ? esc(g.name) : `<button type="button" class="lnk" data-regime="${esc(g.id)}" title="Open this regime">${esc(g.name)}</button>`}</h4>
+      <p>${esc(g.what)}</p>
+      <p class="rec-meta">${esc(DATA.consistency[g.consistency])}; ${g.touchpoints} ${term("touchpoints", `government part${g.touchpoints === 1 ? "y" : "ies"}`)}.</p>
+      <div class="regime-body"><div>${vennSvg(regionsOf(g), { names: TIERS, label: `${g.name}: which tiers of government do what` })}
+        <p class="venn-key">${ov.length ? `Bold: done by more than one tier.` : "No job is done by more than one tier."}${info("helpVenn", "Reading the diagram")}</p></div>
+        ${g.issues.length ? `<ul class="issues">${g.issues.map(issueHtml).join("")}</ul>` : `<p class="no-issue">No problems found in the sources searched.</p>`}</div>
+      <details class="sub"><summary>Who does what, and sources</summary><div class="sub-body"><ul class="layers">${layers}</ul>${g.consistency_note ? `<p>${esc(g.consistency_note)}</p>` : ""}<ul class="ev">${evList(g.basis)}</ul></div></details>
+    </article>`;
+  }
+  function complexityHtml(r) {
+    const gs = r.regimes.map((id) => REG[id]).filter(Boolean);
+    if (!gs.length) return "";
+    const cards = gs.map((g) => regimeCard(g, false));
+    const more = cards.length > 2 ? `<details class="sub"><summary>${cards.length - 2} more regime${cards.length - 2 === 1 ? "" : "s"}</summary>${cards.slice(2).join("")}</details>` : "";
+    return `${cards.slice(0, 2).join("")}${more}`;
+  }
+  function bindDetail(el) {
+    el.querySelectorAll(".lnk[data-id]").forEach((b) => b.addEventListener("click", () => { select(b.dataset.id); el.scrollTop = 0; }));
+    el.querySelectorAll(".lnk[data-regime]").forEach((b) => b.addEventListener("click", () => { selectRegime(b.dataset.regime); el.scrollTop = 0; }));
+    el.querySelectorAll(".lnk[data-class]").forEach((b) => b.addEventListener("click", () => { selectClass(b.dataset.class); el.scrollTop = 0; }));
+    el.querySelectorAll("[data-show-group]").forEach((b) => b.addEventListener("click", () => {
+      state.open.add(b.dataset.showGroup);
+      setTab("list");
+      const row = $(`grp-${b.dataset.showGroup}`);
+      if (row) row.scrollIntoView({ block: "center" });
+    }));
+    el.querySelectorAll("[data-show-ind]").forEach((b) => b.addEventListener("click", () => { state.regime = b.dataset.showInd; setTab("ind"); $("view-ind").scrollIntoView({ block: "start" }); }));
+    const close = $("closeDetail");
+    if (close) close.addEventListener("click", () => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* ignore */ } select(null); });
+  }
+  function openAside(key, html, hash) {
+    state.selected = key;
+    if (hash) { try { history.replaceState(null, "", `#${hash}`); } catch (e) { /* ignore */ } }
+    const el = $("detail");
+    el.className = "detail";
+    el.innerHTML = `<button type="button" class="close" id="closeDetail">Close</button>${html}`;
+    bindDetail(el);
+    render();
+  }
+  function selectRegime(id, fromHash) {
+    const g = REG[id];
+    if (!g) return;
+    const items = R.filter((r) => r.regimes.includes(id));
+    openAside(`regime:${id}`, `<div class="d-head"><h2>${esc(g.name)}</h2><div class="d-meta"><span>${term("regime", "Regulatory regime")}</span>${g.tags.map(cxTag).join("")}</div></div>
+      <section class="d-sec">${regimeCard(g, true)}</section>
+      ${fold("Register items in this regime", items.length ? li(items.map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`)) : "<p>None yet.</p>", String(items.length))}
+      ${fold("Industries it applies to", `<p><button type="button" class="lnk" data-show-ind="${esc(g.id)}">Show the ${g.classes} industries in the Industries view</button></p>`, `${g.classes} of ${IND.length}`)}`, fromHash ? null : `regime=${id}`);
+  }
+  function selectClass(code, fromHash) {
+    const c = INDBY[code];
+    if (!c) return;
+    const regions = {};
+    c.regs.forEach((g) => Object.entries(regionsOf(g)).forEach(([k, items]) => items.forEach((i) => (regions[k] = regions[k] || []).push({ label: i.label, title: `${g.name}: ${i.label.toLowerCase()}` }))));
+    const sector = c.regs.filter((g) => g.scope === "sector"), cross = c.regs.filter((g) => g.scope !== "sector");
+    const row = (g) => `<li><button type="button" class="lnk" data-regime="${esc(g.id)}" title="${esc(`${DATA.consistency[g.consistency]}; ${g.touchpoints} government part${g.touchpoints === 1 ? "y" : "ies"}`)}">${esc(g.name)}</button>${g.tags.length ? ` <span class="cxs">${g.tags.map(cxTag).join("")}</span>` : ""}</li>`;
+    const items = R.filter((r) => r.regimes.some((id) => c.regs.some((g) => g.id === id)));
+    openAside(`class:${code}`, `<div class="d-head"><h2><span class="mono">${esc(c.code)}</span> ${esc(c.name)}</h2><div class="d-meta"><span>Division ${esc(c.div)} ${esc(DATA.divisions[c.div] || "")}</span><span>ANZSIC 2006 class</span></div></div>
+      <section class="d-sec"><h3>Regulation this industry deals with</h3>
+        <div class="cls-tiles"><div title="${c.regs.length} including regimes that apply across industries"><span class="n">${c.sp}</span><span class="l">industry-specific regimes</span></div><div title="${c.tp} including regimes that apply across industries"><span class="n">${c.stp}</span><span class="l">${term("touchpoints", "government parties")} in them</span></div><div title="${c.ovAll} including regimes that apply across industries"><span class="n">${c.ov}</span><span class="l">where tiers overlap</span></div><div title="${c.vrAll} including regimes that apply across industries"><span class="n">${c.vr}</span><span class="l">that differ by state</span></div><div title="${c.issues} including regimes that apply across industries"><span class="n">${c.iss}</span><span class="l">reported issues in them</span></div></div>
+        ${vennSvg(regions, { names: TIERS, count: true, label: `${c.name}: how many functions each tier, or several tiers together, perform across its regimes` })}
+        <p class="venn-key">Numbers count jobs (licensing, inspecting, collecting) done by each tier across these regimes.${info("helpClassVenn", "Reading the diagram")}</p></section>
+      ${fold("Industry-specific regimes", sector.length ? `<ul class="reg-rows">${sector.map(row).join("")}</ul>` : "<p>None mapped: only the regimes that apply across industries.</p>", String(sector.length), true)}
+      ${fold("Regimes that apply across industries", `<ul class="reg-rows">${cross.map(row).join("")}</ul>`, String(cross.length))}
+      ${items.length ? fold("Register items in these regimes", `${li(items.slice(0, 40).map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`))}${items.length > 40 ? `<p>and ${items.length - 40} more.</p>` : ""}`, String(items.length)) : ""}`, fromHash ? null : `class=${code}`);
+  }
+
   function select(id, fromHash) {
     state.selected = id;
     const r = R.find((x) => x.id === id);
     const el = $("detail");
-    if (!r) { el.className = "detail empty"; el.innerHTML = "<p>Select a change to see its dates, sources, competition hypothesis and evaluability.</p>"; return; }
+    if (!r) { el.className = "detail empty"; el.innerHTML = "<p>Select an item to see its productivity assessment, the industries it affects and its sources.</p>"; render(); return; }
     if (!fromHash) { try { history.replaceState(null, "", `#${id}`); } catch (e) { /* ignore */ } }
+    if (groupOf(r)) state.open.add(r.family);
     el.className = "detail";
-    const t = r.timing;
-    const c = r.check;
-    const sec = (title, body) => body ? `<section class="d-sec"><h3>${esc(title)}</h3>${body}</section>` : "";
-    const li = (items) => items.length ? `<ul class="d-list">${items.join("")}</ul>` : "";
+    const a = A(r);
+    const assess = a ? `<section class="d-sec"><h3>Productivity assessment${info("helpAssess", "How items are marked")}</h3><div class="assess">
+        <div class="assess-top">${ratingBadge(a, true)} ${drvTag(a.main_driver)}</div>
+        <p class="assess-sum">${esc(a.summary)}</p>
+        ${marksHtml(a)}
+        <div class="facts-row"><span>${term("reach", "Reach")}: <strong>${esc(reachLabel(a.reach))}</strong></span><span>${term("confidence", "Confidence")}: <strong>${esc(FW.confidence[a.confidence].label)}</strong></span></div>
+        <details class="sub"><summary>About this assessment</summary><div class="sub-body">
+          ${a.confidence_note ? `<p>${esc(a.confidence_note)}</p>` : ""}
+          ${a.evidence.length ? `<p>Evidence: ${a.evidence.map((u) => link(u)).join(" · ")}</p>` : ""}
+          <p>Assessed ${esc(fmtDate(a.assessed_on))} against <a href="framework.html">framework</a> version ${esc(a.framework)}. A judgement, not an estimate.</p></div></details>
+      </div></section>` : `<p class="notice">This item has not been assessed yet.</p>`;
+    const nRegs = r.regimes.length, nTags = r.complexity.length;
+    const recsN = r.recs.filter((x) => RECS[x]).length;
+    const later = r.timeline.filter((e) => !e.own).length;
+    const eff = r.kind === "barrier" ? "" : r.effective ? `${r.kind === "setting" ? "In place since" : "Effective"} ${fmtDate(r.effective)}` : r.kind === "setting" ? "In place" : "Not yet in force";
+    const sources = `${li(r.instruments.map((x) => `<li>${link(x.register_url, x.title)}${x.provisions ? ` (${esc(x.provisions)})` : ""}</li>`))}
+      ${r.notes ? `<p>${esc(r.notes)}</p>` : ""}
+      <p>${r.verified.dates ? "Dates checked against official sources." : "Dates not fully checked."} ${esc(r.verified.notes || "")}</p>
+      <p>Review: ${esc(r.review.status)}. ${esc(r.review.notes || "")}</p>
+      ${r.archivedEvaluation ? `<p>An econometric evaluation of this change is kept in the <a href="evaluation-${encodeURIComponent(r.archivedEvaluation.id)}.html">econometric archive</a>: ${esc(r.archivedEvaluation.finding.toLowerCase())}. It is provisional.</p>` : ""}`;
+    const industries = `${r.industries.length ? li(r.industries.map((x) => `<li><span class="mono">${esc(x.anzsic)}</span> ${esc(x.name)}${x.exposure !== "direct" ? ` (${esc(x.exposure)})` : ""}</li>`)) : ""}${statsHtml(r)}`;
     el.innerHTML = `
       <button type="button" class="close" id="closeDetail">Close</button>
       <div class="d-head">
         <h2>${esc(r.title)}</h2>
-        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${r.family ? `<span>${esc(DATA.familyLabels[r.family] || r.family)}</span>` : ""}<span class="dir">${shapeIcon(r.direction)}${esc(DIR[r.direction].label)} (hypothesis)</span>${evalOf(r) ? `<span class="pill eval">${checkIcon}Evaluated</span>` : ""}</div>
+        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${eff ? `<span>${esc(eff)}</span>` : ""}${kindTag(r.kind)}${endTag(r)}</div>
+        ${groupOf(r) ? `<p class="grp-of">One of ${GROUPS[r.family].members.length} items in <button type="button" class="lnk" data-show-group="${esc(r.family)}">${esc(GROUPS[r.family].title)}</button></p>` : ""}
         <p>${esc(r.summary)}</p>
+        ${r.ended ? `<p class="ended-note"><strong>No longer in force: ${esc(r.ended.label.toLowerCase())} ${esc(fmtDate(r.ended.date))}.</strong> ${esc(r.ended.what)} The assessment below is of the item while it applied.</p>` : ""}
       </div>
-      ${evalOf(r) ? sec("Evaluation result", evalBody(evalOf(r), r.id)) : ""}
-      ${evalsOfRecord(r.id).length > 1 ? sec("Other evaluations of this change", `<ul class="d-list">${evalsOfRecord(r.id).filter((e) => e.id !== r.evaluation).map((e) =>
-        `<li><button type="button" class="linkbtn jump" data-ev="${esc(e.id)}">${esc(e.title)}</button> · ${esc(fmtDate(e.evaluated_on))} · ${esc(e.finding_label)}${ARCH[e.id] ? ` <span class="pill arch">Archived</span>` : ""}</li>`).join("")}</ul>`) : ""}
-      ${sec("Effective date", `
-        <div class="big-date">${esc(fmtDate(r.effective))}</div>
-        ${r.effectiveWhat ? `<p class="muted">${esc(r.effectiveWhat)}</p>` : ""}
-        ${t ? `<dl class="kv"><dt>First exposed year</dt><dd>${esc(t.first_exposed_fy)} (${Math.round(t.exposure_share_first_fy * 100)}% of the year)</dd><dt>First full year</dt><dd>${esc(t.first_full_fy)}</dd><dt>First full quarter</dt><dd>${esc(t.first_full_quarter)}</dd></dl>` : ""}
-        ${c ? `<p><span class="pill ${CHECK[c.status].cls}">${esc(CHECK[c.status].label)}</span> <span class="muted">${esc(CHECK[c.status].help)}.</span></p>${li(c.issues.map((i) => `<li>${esc(i)}</li>`))}` : `<p class="muted">Not yet checked against the legislation registers.</p>`}`)}
-      ${sec("Competition hypothesis", `<p>${esc(r.direction_rationale)}</p><p class="muted">Channels: ${esc(r.channelLabels.join("; "))}</p>${li(r.direction_sources.map((u) => `<li>${link(u)}</li>`))}`)}
-      ${sec(`Evaluability: ${RATING[r.screen.rating].label}`, `
-        ${r.screen.comparison ? `<p class="muted">Comparison: ${esc({ staggered: "staggered adoption across jurisdictions", "other-states": "other states and territories", "industry-only": "unaffected industries only (national change)" }[r.screen.comparison])}</p>` : ""}
-        ${li([...r.screen.strengths.map((s) => `<li>+ ${esc(s)}</li>`), ...r.screen.weaknesses.map((w) => `<li>− ${esc(w)}</li>`)])}
-        <p class="muted">${esc(r.comparison)}</p>`)}
-      ${sec("Data that can measure it", dataList(r))}
-      ${sec("Industries (ANZSIC 2006)", li(r.industries.map((i) => `<li><span class="mono">${esc(i.anzsic)}</span> ${esc(i.name)} <span class="muted">(${esc(i.exposure)})</span></li>`)))}
-      ${sec("Confounders to handle", li(r.confounders.map((x) => `<li>${esc(x)}</li>`)))}
-      ${sec("Price series (CPI)", r.price_series ? `<p>${esc(r.price_series)}</p>` : "")}
-      ${sec("Instruments", li(r.instruments.map((i) => `<li>${link(i.register_url, i.title)} <span class="muted">(${esc(i.role)}${i.provisions ? `; ${esc(i.provisions)}` : ""})</span></li>`)))}
-      ${sec("Dates and sources", `<dl class="kv">
-        ${r.dates.announced.date ? `<dt>Announced</dt><dd>${link(r.dates.announced.source, fmtDate(r.dates.announced.date))}</dd>` : ""}
-        ${r.dates.assent_or_made.date ? `<dt>Assent or made</dt><dd>${link(r.dates.assent_or_made.source, fmtDate(r.dates.assent_or_made.date))}</dd>` : ""}
-        ${r.dates.commenced.map((cm) => `<dt>Commenced${cm.primary ? " (primary)" : ""}</dt><dd>${link(cm.source, fmtDate(cm.date))}: ${esc(cm.what)}</dd>`).join("")}
-      </dl>`)}
-      ${sec("Notes", r.notes ? `<p>${esc(r.notes)}</p>` : "")}
-      ${sec("Verification", `<p class="muted">${r.verified.dates ? "Dates verified against official sources." : "Dates not fully verified."} ${esc(r.verified.notes || "")}</p><p class="muted">Review: ${esc(r.review.status)}. ${esc(r.review.notes || "")}</p>`)}
+      ${assess}
+      ${fold("Regulatory complexity", complexityHtml(r), nRegs ? `${nRegs} regime${nRegs === 1 ? "" : "s"}${nTags ? ` · ${nTags} issue tag${nTags === 1 ? "" : "s"}` : ""}` : "")}
+      ${fold("What government could do", recsHtml(r), recsN ? `${recsN} recommendation${recsN === 1 ? "" : "s"}` : "none yet")}
+      ${fold("Who is responsible", whoHtml(r), whoShort(r))}
+      ${fold("Timeline", timelineHtml(r), later ? `${later} later change${later === 1 ? "" : "s"}` : "")}
+      ${fold("The industries affected", industries, r.industries.length ? `${r.industries.length} industr${r.industries.length === 1 ? "y" : "ies"}` : "economy-wide")}
+      ${fold("Competition rationale", `<p>${esc(r.direction_rationale)}</p><p>Expected effect on competition: ${esc(r.direction)}. Channels: ${esc(r.channelLabels.join("; "))}.</p>${li(r.direction_sources.map((u) => `<li>${link(u)}</li>`))}`)}
+      ${fold("Sources and checks", sources)}
     `;
-    bindEval(el);
-    $("closeDetail").addEventListener("click", () => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* ignore */ } select(null); render(); });
+    bindDetail(el);
     render();
+  }
+
+  // --- Recommendations ----------------------------------------------------------------------------
+  function renderRecs(rows) {
+    const shown = new Set(rows.map((r) => r.id));
+    const xs = Object.values(RECS).filter((x) => x.applies_to.some((id) => shown.has(id)));
+    xs.sort((a, b) => b.applies_to.filter((id) => shown.has(id)).length - a.applies_to.filter((id) => shown.has(id)).length || a.title.localeCompare(b.title));
+    $("countLine").textContent = `${xs.length} recommendation${xs.length === 1 ? "" : "s"} for the ${rows.length} of ${R.length} items shown`;
+    $("reclist").innerHTML = xs.length ? xs.map((x) => recCard(x, true)).join("") : `<p class="rec-gap">No recommendations for the items shown.</p>`;
+    $("reclist").querySelectorAll(".lnk[data-id]").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
+  }
+
+  // --- Industries -------------------------------------------------------------------------------------
+  const IND_SORTS = {
+    parties: [(a, b) => b.stp - a.stp || b.issues - a.issues || a.code.localeCompare(b.code), "Most government parties (industry-specific regimes)"],
+    issues: [(a, b) => b.iss - a.iss || b.stp - a.stp || a.code.localeCompare(b.code), "Most reported issues (industry-specific regimes)"],
+    code: [(a, b) => a.code.localeCompare(b.code), "ANZSIC code"],
+  };
+  function renderInd() {
+    const q = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+    const rows = IND.filter((c) => (!state.div || c.div === state.div)
+      && (!state.regime || c.regs.some((g) => g.id === state.regime))
+      && (!state.cx.size || c.regs.some((g) => g.tags.some((t) => state.cx.has(t))))
+      && q.every((w) => `${c.code} ${c.name} ${c.regs.map((g) => g.name).join(" ")}`.toLowerCase().includes(w)))
+      .sort(IND_SORTS[state.indSort][0]);
+    $("countLine").textContent = `${rows.length} of ${IND.length} industries (ANZSIC classes) shown`;
+    $("indTools").innerHTML = `${info("helpInd", "About the Industries view")}<label>Order <select id="indSort">${Object.entries(IND_SORTS).map(([k, v]) => `<option value="${k}"${state.indSort === k ? " selected" : ""}>${esc(v[1])}</option>`).join("")}</select></label>${state.regime && REG[state.regime] ? `<button type="button" class="chip" aria-pressed="true" id="indRegime" title="Clear">Regime: ${esc(REG[state.regime].name)} ✕</button>` : ""}`;
+    $("indSort").addEventListener("change", (e) => { state.indSort = e.target.value; render(); });
+    if ($("indRegime")) $("indRegime").addEventListener("click", () => { state.regime = ""; render(); });
+    const head = `<thead><tr><th>Industry (ANZSIC class)</th><th>Regimes</th><th>${term("touchpoints", "Government parties")}</th><th>Tiers overlap</th><th>Differ by state</th><th>Reported issues</th></tr></thead>`;
+    const all = (n) => `${n} including regimes that apply across industries`;
+    const body = rows.map((c) => `<tr class="${state.selected === `class:${c.code}` ? "sel" : ""}"><td><button type="button" class="rowbtn" data-class="${esc(c.code)}"><span class="code">${esc(c.code)}</span>${esc(c.name)}</button></td>
+        <td title="${all(c.regs.length)}">${c.sp}</td><td title="${all(c.tp)}">${c.stp}</td><td title="${all(c.ovAll)}">${c.ov}</td><td title="${all(c.vrAll)}">${c.vr}</td><td title="${all(c.issues)}">${c.iss}</td></tr>`).join("");
+    $("ind").innerHTML = head + `<tbody>${body}</tbody>`;
+    $("ind").querySelectorAll(".rowbtn[data-class]").forEach((b) => b.addEventListener("click", () => selectClass(b.dataset.class)));
   }
 
   // --- Render -------------------------------------------------------------------------------------
   function render() {
-    const rows = R.filter(matches).sort(byDate);
-    const evaluated = rows.filter((r) => r.evaluation);
-    const { list, old } = evalsShown(rows);
-    const nEv = list.length;
-    $("countLine").textContent = state.tab === "results"
-      ? `${nEv} evaluation${nEv === 1 ? "" : "s"}${old.length ? ` (and ${old.length} archived)` : ""}, covering ${evaluated.length} of the ${rows.length} changes shown`
-      : `${rows.length} of ${R.length} changes shown`;
-    $("resultsN").textContent = String(nEv);
-    renderList(rows);
+    const rows = R.filter((r) => matches(r)).sort(SORTS[state.sort]);
+    $("countLine").textContent = `${rows.length} of ${R.length} items shown`;
+    const more = state.kind.size + state.jur.size + state.reach.size + state.cx.size + (state.status ? 1 : 0) + (state.div ? 1 : 0) + (state.body ? 1 : 0);
+    $("moreCount").textContent = more ? ` (${more} on)` : "";
+    const shownGroups = [...new Set(rows.map(groupOf).filter(Boolean))];
+    const grouped = state.tab === "list" || state.tab === "scorecard";
+    $("toggleGroups").hidden = !grouped || !shownGroups.length;
+    $("grpLegend").hidden = !grouped || !shownGroups.length;
+    $("toggleGroups").textContent = shownGroups.length && shownGroups.every((g) => state.open.has(g)) ? "Collapse all groups" : "Expand all groups";
+    $("toggleGroups").dataset.groups = shownGroups.join(" ");
+    renderGlance();
+    if (state.tab === "list") renderList(rows);
+    if (state.tab === "scorecard") renderScorecard(rows);
     if (state.tab === "timeline") drawTimeline(rows);
-    if (state.tab === "results") renderResults(rows);
-    refreshCharts();
+    if (state.tab === "recs") renderRecs(rows);
+    if (state.tab === "ind") renderInd();
   }
 
-  // --- One evaluation as its own page -----------------------------------------------------------
-  function renderSingle(ev) {
-    document.querySelector(".filters").hidden = true;
-    document.querySelector(".main").hidden = true;
-    const head = document.querySelector("header.top");
-    head.querySelector("h1").textContent = ev.title;
-    const fam = ev.family && DATA.familyLabels[ev.family];
-    head.querySelector(".lede").innerHTML = `<a href="menu.html#results">← All evaluations</a>`;
-    const recs = ev.records.map((id) => R.find((r) => r.id === id)).filter(Boolean).sort(byDate);
-    $("metaLine").innerHTML = [`Evaluated ${esc(fmtDate(ev.evaluated_on))}`, fam ? esc(fam) : "", `${recs.length} register record${recs.length === 1 ? "" : "s"}`]
-      .filter(Boolean).map((x) => `<span>${x}</span>`).join("");
-    $("draftNotice").hidden = true;
-    const page = document.createElement("article");
-    page.className = "ev-page";
-    page.setAttribute("aria-label", ev.title);
-    page.innerHTML = `<div class="ev-recs">${recs.map((r) => `<button type="button" class="recbtn" data-id="${esc(r.id)}" title="Open this record in the menu">${esc(r.jurisdiction)} · ${esc(fmtDate(r.effective))} · ${esc(r.short)}</button>`).join("")}</div>${evalBody(ev, null)}`;
-    head.after(page);
-    bindEval(page);
-    $("foot").innerHTML = `<p><strong>Evaluations.</strong> ${esc(DATA.evaluationNote)}</p>
-      <p><strong>Sources.</strong> Every number comes from the analysis outputs in the repository; documents are linked above. Unofficial research, not an Australian Government product.</p>`;
-    refreshCharts();
-  }
-  if (DATA.single && EV[DATA.single]) { renderSingle(EV[DATA.single]); return; }
-
-  const counts = { enhancing: count((r) => r.direction === "enhancing"), weakening: count((r) => r.direction === "weakening") };
-  $("metaLine").innerHTML = [
-    `${R.length} changes`, `${new Set(R.map((r) => r.jurisdiction)).size} jurisdictions`,
-    `${counts.enhancing} hypothesised to enhance competition, ${counts.weakening} to weaken it`,
-    `${count((r) => r.evaluation)} evaluated so far`,
-    `Generated ${esc(fmtDate(DATA.generated))}`,
-  ].map((s) => `<span>${s}</span>`).join("");
+  const kinds = Object.fromEntries(Object.keys(FW.kinds).map((k) => [k, count((r) => r.kind === k)]));
+  // One short line; the breakdown is on hover.
+  $("metaLine").innerHTML = `<span title="${esc(`${[[kinds.reform, "reform"], [kinds.setting, "existing setting"], [kinds.barrier, "non-legislative barrier"]].map(([n, w]) => `${n} ${w}${n === 1 ? "" : "s"}`).join(", ")}; ${new Set(R.map((r) => r.jurisdiction)).size} jurisdictions; framework version ${FW.version}`)}">${R.length} items · updated ${esc(fmtDate(DATA.generated))}</span>`;
   const drafts = count((r) => r.review.status === "draft");
-  $("draftNotice").innerHTML = drafts
-    ? `<strong>Draft register.</strong> ${drafts} of ${R.length} records come from AI-assisted desk research (14–15 October 2026) and have not yet been checked by a person. Directions are hypotheses to be tested, not findings. Evaluability ratings are a screening aid; see the stated rules below.`
-    : `<strong>Reviewed register.</strong> Directions are hypotheses to be tested, not findings.`;
+  // The draft notice sits at the foot of the page (owner request, 29 October 2026).
+  const draftNotice = drafts
+    ? `<strong>Draft register.</strong> ${drafts} of ${R.length} items, and their assessments, come from AI-assisted desk research and have not yet been checked by a person. Marks are judgements about likely effects, not estimates or findings.`
+    : `<strong>Reviewed register.</strong> Marks are judgements about likely effects, not estimates or findings.`;
+  const fsrc = Object.values(DATA.statsSources || {}).map((s) => link(s.url, s.label)).join("; ");
   $("foot").innerHTML = `
-    <p><strong>Evaluations.</strong> ${esc(DATA.evaluationNote)}</p>
-    <p><strong>Evaluability screen.</strong> ${esc(DATA.screenRules)}</p>
+    <details class="about"><summary>About this page: method and sources</summary>
+    <p><strong>How items are marked.</strong> ${esc(DATA.menuNote)} The full method, with its evidence, is on the <a href="framework.html">Framework</a> page.</p>
+    <p><strong>Industry statistics.</strong> ${esc(DATA.statsNote)} Sources: ${fsrc || "not available in this build"}.</p>
+    <p><strong>Who is responsible.</strong> Each item names the department that administers the law (or leads policy on it) and the bodies that regulate under it. Commonwealth, Queensland, Tasmanian, Victorian and ACT departments come from each government's administrative arrangements; other states' from their legislation sites and portfolio lists. Each tag links to its source, and notes say where an allocation was inferred rather than read from an order. Choosing a department in the filter includes the agencies in it.</p>
+    <p><strong>Timeline.</strong> Each item's own dates, then later changes to the law or setting (amendments, easings, repeals), each with its source. A repealed or replaced item stays in the register, marked as no longer in force, so its assessment can still be read.</p>
+    <p><strong>What government could do.</strong> Recommendations come from Australian and international reviews and research: the Productivity Commission, the Harper and Henry reviews, state productivity commissions, Treasury reviews and overseas regulators. Each one quotes the exact words of its sources; quotes were checked against the full text of each document, except where marked as read from a web page. They are drafts compiled by AI-assisted desk research and have not yet been checked by a person. Where no recommendation is given, the item says why.</p>
+    <p><strong>Regulatory complexity.</strong> ${esc(DATA.complexityNote || "")} ${REGS.length} regimes are mapped to all ${IND.length} detailed industries (ANZSIC classes) in the Industries view. Sources: Productivity Commission inquiries and benchmarking studies, national and state reviews, business.gov.au and regulator pages; drafts compiled by AI-assisted desk research, not yet checked by a person. Method: <code>docs/industry_regulation.md</code>.</p>
     <p><strong>Register check.</strong> ${esc(DATA.checkNote)}</p>
-    <p><strong>Sources.</strong> Industry codes: ABS ANZSIC 2006 (Revision 2.0). Outcome coverage: ${esc(DATA.coverage.label)}. Every date in a record links to its source. Unofficial research, not an Australian Government product.</p>`;
+    <p><strong>Econometric archive.</strong> The ${DATA.archivedEvaluations} econometric evaluations this page used to show, with the evaluability screen and data coverage, are kept unchanged in the <a href="archive.html">econometric archive</a> (paused 22 October 2026).</p>
+    <p><strong>Sources.</strong> Industry codes: ABS ANZSIC 2006. Every date in a record links to its source. Unofficial research, not an Australian Government product.</p>
+    </details>
+    <details class="about"><summary>Words used on this page</summary>
+    <dl class="glossary">${GLOSSARY.filter((k) => TERMS[k]).map((k) => `<div><dt>${esc(TERMS[k][0])}</dt><dd>${esc(TERMS[k][1])}</dd></div>`).join("")}</dl>
+    </details>
+    <p class="notice" id="draftNotice">${draftNotice}</p>`;
 
   render();
+  // #<record id> opens an item; #driver=<driver> filters by main driver (links from the Framework page); #body=<id>
+  // filters by department or agency (ids in regulation-register/bodies.json); #rec=<id> opens a recommendation;
+  // #complexity=<tag> filters by complexity tag; #industries opens the Industries view; #regime=<id> opens a
+  // regulatory regime and #class=<ANZSIC class> an industry.
   const fromHash = decodeURIComponent((location.hash || "").slice(1));
-  if (fromHash === "results") setTab("results");
-  else if (fromHash && R.some((r) => r.id === fromHash)) select(fromHash, true);
+  if (fromHash.startsWith("driver=") && DRV[fromHash.slice(7)]) { state.driver.add(fromHash.slice(7)); syncChips(); render(); }
+  else if (fromHash.startsWith("body=") && B[fromHash.slice(5)]) { state.body = fromHash.slice(5); $("f-body").value = state.body; $("moreFilters").open = true; render(); }
+  else if (fromHash.startsWith("complexity=") && TAGS[fromHash.slice(11)]) { state.cx.add(fromHash.slice(11)); syncChips(); $("moreFilters").open = true; render(); }
+  else if (fromHash === "industries") setTab("ind");
+  else if (fromHash.startsWith("regime=") && REG[fromHash.slice(7)]) { selectRegime(fromHash.slice(7), true); $("detail").scrollIntoView({ block: "start" }); }
+  else if (fromHash.startsWith("class=") && INDBY[fromHash.slice(6)]) { setTab("ind"); selectClass(fromHash.slice(6), true); $("detail").scrollIntoView({ block: "start" }); }
+  else if (fromHash.startsWith("rec=") && RECS[fromHash.slice(4)]) {
+    setTab("recs");
+    const card = $(`rec-${fromHash.slice(4)}`);
+    if (card) { card.classList.add("hl"); card.scrollIntoView({ block: "center" }); }
+  }
+  else if (fromHash && R.some((r) => r.id === fromHash)) { select(fromHash, true); $("detail").scrollIntoView({ block: "start" }); }
 })();
 </script>

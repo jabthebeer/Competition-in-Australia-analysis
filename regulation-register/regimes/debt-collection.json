@@ -1,0 +1,54 @@
+{
+  "id": "debt-collection",
+  "name": "Commercial agents and debt collectors",
+  "what": "Hold a commercial agent, debt collector or repossession licence in states that require one, and meet consumer and privacy rules on collecting debts.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "7293"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State fair trading or police licensing (some states)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "ACCC and ASIC (debt collection guidance)",
+      "bodies": [
+        "cth-accc",
+        "cth-asic"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Administrative and support services industry (industry information)",
+      "publisher": "business.gov.au",
+      "year": 2026,
+      "url": "https://business.gov.au/planning/industry-information/administrative-and-support-services-industry",
+      "locator": "Licences and permits",
+      "quote": "recover unpaid debts or repossess goods",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

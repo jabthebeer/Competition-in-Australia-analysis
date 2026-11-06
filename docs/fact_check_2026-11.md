@@ -25,7 +25,7 @@
 |---|---|---|---|
 | `nsw-e-conveyancing-mandate-2018` (evaluated) | First mandate 1 May 2018 | **1 July 2018**: standalone transfers, standalone caveats, and mortgages and discharges, under Conveyancing Rules v4 (in force 15 May 2018) | Registrar General, "Revised Conveyancing Rules" (13 Apr 2018); 1 July 2019 for all mainstream dealings, Registrar General, NSW eConveyancing news (June 2019) |
 
-**Effect on results:** the registered e-conveyancing evaluation (18 Oct 2026) treats NSW from 2017-18 (first post year 2018). With the corrected date, NSW starts in 2018-19. The result ("no detectable effect", grade Weak) needs a registered follow-up re-run. It has not been re-run here.
+**Effect on results:** the registered e-conveyancing evaluation (18 Oct 2026) treats NSW from 2017-18 (first post year 2018). With the corrected date, NSW starts in 2018-19. The result ("no detectable effect", grade Weak) is **not re-run**. The econometric evaluations are archived (`alicia/DECISIONS.md` E-87), and ALICIA now assesses items against the productivity framework only (owner decision, 6 Nov 2026, E-113). The archived result stands as registered, with this caveat. The item's framework assessment does not depend on the start month.
 
 ## Provenance corrected (dates unchanged)
 
@@ -55,5 +55,4 @@
    - WA and NSW short-term rental registers.
 
    Each needs a source that states the date.
-5. **The e-conveyancing evaluation's registered follow-up.**
-6. **Klapper, Laeven and Rajan (2004)**, evidence entry `c4.epsilon.klr2004`: NBER blocks the download.
+5. **Klapper, Laeven and Rajan (2004)**, evidence entry `c4.epsilon.klr2004`: NBER blocks the download.
