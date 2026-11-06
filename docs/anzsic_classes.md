@@ -31,6 +31,29 @@ The unit for collecting legislation in the Industry lens ([plan](plan_industry_l
 | [S Other Services](#s) | 3 | 9 | 23 | 223 |
 | **Total** | **86** | **214** | **506** | **4,440** |
 
+## Marked classes (16)
+
+Kept, and marked as mainly government (9), non-profit institutions serving households (4), households (3) (DECISIONS E-115). A class is marked when its ABS definition describes units of government, or when the ABS publishes no business counts for it (CABEE excludes general government and non-profit institutions serving households); `data/processed/anzsic/class_marks.csv` quotes the basis for each (`alicia/scripts/anzsic_class_marks.py`).
+
+| Class | Title | Mark | Test |
+|---|---|---|---|
+| 6210 | Central Banking | government | definition |
+| 7510 | Central Government Administration | government | definition |
+| 7520 | State Government Administration | government | definition |
+| 7530 | Local Government Administration | government | definition |
+| 7551 | Domestic Government Representation | government | definition |
+| 7552 | Foreign Government Representation | government | definition |
+| 7600 | Defence | government | definition |
+| 7711 | Police Services | government | no ABS business counts |
+| 7713 | Fire Protection and Other Emergency Services | government | no ABS business counts |
+| 9540 | Religious Services | non-profit institutions serving households | no ABS business counts |
+| 9551 | Business and Professional Association Services | non-profit institutions serving households | no ABS business counts |
+| 9552 | Labour Association Services | non-profit institutions serving households | no ABS business counts |
+| 9559 | Other Interest Group Services n.e.c. | non-profit institutions serving households | no ABS business counts |
+| 9601 | Private Households Employing Staff | households | no ABS business counts |
+| 9602 | Undifferentiated Goods-Producing Activities of Households for Own Use | households | no ABS business counts |
+| 9603 | Undifferentiated Service-Producing Activities of Households for Own Use | households | no ABS business counts |
+
 <a id="a"></a>
 
 ## A Agriculture, Forestry and Fishing
@@ -753,7 +776,7 @@ The unit for collecting legislation in the Industry lens ([plan](plan_industry_l
 
 | Class | Title | Group | Primary activities (ABS) |
 |---|---|---|---|
-| 6210 | Central Banking | 621 Central Banking | Central banking; Financial regulatory service |
+| 6210 | Central Banking *(marked: government)* | 621 Central Banking | Central banking; Financial regulatory service |
 | 6221 | Banking | 622 Depository Financial Intermediation | Development bank operation; Savings bank operation; Trading bank operation |
 | 6222 | Building Society Operation | 622 Depository Financial Intermediation | Building society operation |
 | 6223 | Credit Union Operation | 622 Depository Financial Intermediation | Credit union operation |
@@ -866,26 +889,26 @@ The unit for collecting legislation in the Industry lens ([plan](plan_industry_l
 
 | Class | Title | Group | Primary activities (ABS) |
 |---|---|---|---|
-| 7510 | Central Government Administration | 751 Central Government Administration | Administration, except justice and defence (central government); Financial and economic management except banking (central government); Governor-General’s unit operation; Legislation enactment (central government); Parliament operation (central government); Policy formulation and administration (central government) |
-| 7520 | State Government Administration | 752 State Government Administration | Financial and economic management except banking (state government); Legislation enactment and enforcement (state government); Parliament operation (state government); Policy formulation and administration (state government); State government administration (except justice); State governor’s unit operation |
-| 7530 | Local Government Administration | 753 Local Government Administration | Financial and economic management except banking (local government); Local government administration (except justice); Policy formulation and administration (local government); Regulation enactment and enforcement (local government) |
+| 7510 | Central Government Administration *(marked: government)* | 751 Central Government Administration | Administration, except justice and defence (central government); Financial and economic management except banking (central government); Governor-General’s unit operation; Legislation enactment (central government); Parliament operation (central government); Policy formulation and administration (central government) |
+| 7520 | State Government Administration *(marked: government)* | 752 State Government Administration | Financial and economic management except banking (state government); Legislation enactment and enforcement (state government); Parliament operation (state government); Policy formulation and administration (state government); State government administration (except justice); State governor’s unit operation |
+| 7530 | Local Government Administration *(marked: government)* | 753 Local Government Administration | Financial and economic management except banking (local government); Local government administration (except justice); Policy formulation and administration (local government); Regulation enactment and enforcement (local government) |
 | 7540 | Justice | 754 Justice | Arbitration court operation; Bankruptcy court operation; Children’s court operation; Conciliation and Arbitration Commission operation; Industrial relations court operation; Judicial authority operation (federal or state); Law court operation; Royal commission operation |
-| 7551 | Domestic Government Representation | 755 Government Representation | Consulate operation (domestic government); Embassy operation (domestic government); High commission operation (domestic government); Legation operation (domestic government); Trade commission operation (domestic government) |
-| 7552 | Foreign Government Representation | 755 Government Representation | Consulate operation (foreign government); Embassy operation (foreign government); High commission operation (foreign government); International government organisation (United Nations, World Trade Organisation e.t.c.) administration; Legation operation (foreign government); Trade commission operation (foreign government) |
+| 7551 | Domestic Government Representation *(marked: government)* | 755 Government Representation | Consulate operation (domestic government); Embassy operation (domestic government); High commission operation (domestic government); Legation operation (domestic government); Trade commission operation (domestic government) |
+| 7552 | Foreign Government Representation *(marked: government)* | 755 Government Representation | Consulate operation (foreign government); Embassy operation (foreign government); High commission operation (foreign government); International government organisation (United Nations, World Trade Organisation e.t.c.) administration; Legation operation (foreign government); Trade commission operation (foreign government) |
 
 ### 76 Defence
 
 | Class | Title | Group | Primary activities (ABS) |
 |---|---|---|---|
-| 7600 | Defence | 760 Defence | Armed forces unit operation (except manufacturing or educational); Civil defence operation (military); Government administration (defence) |
+| 7600 | Defence *(marked: government)* | 760 Defence | Armed forces unit operation (except manufacturing or educational); Civil defence operation (military); Government administration (defence) |
 
 ### 77 Public Order, Safety and Regulatory Services
 
 | Class | Title | Group | Primary activities (ABS) |
 |---|---|---|---|
-| 7711 | Police Services | 771 Public Order and Safety Services | Intelligence service operation; Police service operation; Police station operation; Traffic policing activity |
+| 7711 | Police Services *(marked: government)* | 771 Public Order and Safety Services | Intelligence service operation; Police service operation; Police station operation; Traffic policing activity |
 | 7712 | Investigation and Security Services | 771 Public Order and Safety Services | Alarm monitoring service; Armoured car service; Bodyguard service; Burglary protection service; Detective agency service; Enquiry agency service; Locksmith service; Night watchman service; Protection service; Security alarm monitoring service; Security guard service |
-| 7713 | Fire Protection and Other Emergency Services | 771 Public Order and Safety Services | Airport fire service; Emergency service (other than defence and police); Fire brigade service; Fire fighting service; Fire prevention service; Forest fire fighting service; Rescue service |
+| 7713 | Fire Protection and Other Emergency Services *(marked: government)* | 771 Public Order and Safety Services | Airport fire service; Emergency service (other than defence and police); Fire brigade service; Fire fighting service; Fire prevention service; Forest fire fighting service; Rescue service |
 | 7714 | Correctional and Detention Services | 771 Public Order and Safety Services | Correctional centre operation; Detention centre operation; Gaol operation; Juvenile detention centre operation; Operating correctional facility on a contract or fee basis; Prison farm operation; Prison operation; Remand centre operation |
 | 7719 | Other Public Order and Safety Services | 771 Public Order and Safety Services | Coastwatch service; Public order and safety service n.e.c.; Surveillance of country borders (by land, sea and air) |
 | 7720 | Regulatory Services | 772 Regulatory Services | Consumer protection service; Licensing and permit issuance; Motor vehicle testing; Regulating casino and other gambling; Regulating food and agricultural standards; Regulating qualification standards; Weights and measures regulations |
@@ -1030,15 +1053,15 @@ The unit for collecting legislation in the Industry lens ([plan](plan_industry_l
 | 9533 | Parking Services | 953 Other Personal Services | Automobile parking garage or lot operation; Car park operation; Parking service; Parking station operation; Valet parking services |
 | 9534 | Brothel Keeping and Prostitution Services | 953 Other Personal Services | Brothel operation; Escort service (prostitution); Massage parlour operation; Prostitution service |
 | 9539 | Other Personal Services n.e.c. | 953 Other Personal Services | Astrology service; Baby sitting service (except in child care centres or preschools); Cloak room service; Fortune telling service; Genealogy service; Heraldry service; Introductory agency operation; Marriage celebrant service; Personal fitness training service; Pet boarding service; Pet grooming service; Psychic service; Sauna bath operation; Shoe shining; Tattooing and piercing service; Turkish bath operation; Wedding chapel operation (except church) |
-| 9540 | Religious Services | 954 Religious Services | Bible society operation; Church operation; Convent operation (except schools); Diocesan registry operation; Missionary society operation; Monastery operation (except schools); Mosque operation; Religious organisation operation; Religious shrine operation; Religious temple operation; Synagogue operation |
-| 9551 | Business and Professional Association Services | 955 Civic, Professional and Other Interest Group Services | Accountants’ association operation; Architects’ association operation; Bankers’ association operation; Builders’ association operation; Chamber of Commerce operation; Chamber of Manufacturers operation; Chemists’ association operation; Dentists’ association operation; Employers’ association operation; Engineers’ association operation (except trade union); Farmers’ association operation; Lawyers’ association operation; Manufacturers’ association operation; Medical association operation; Mining association operation; Retail traders’ association operation; Surveyors’ association operation; Trade association operation (except trade union) |
-| 9552 | Labour Association Services | 955 Civic, Professional and Other Interest Group Services | Employees’ association operation; Industrial union operation; Trade union operation; Union association operation |
-| 9559 | Other Interest Group Services n.e.c. | 955 Civic, Professional and Other Interest Group Services | Accident prevention association operation; Animal (including wildlife) welfare association or league operation; Association operation (for promotion of community or sectional interests); Automobile association operation; Civil liberty service; Club operation (for the promotion of community or sectional interests); Community association operation; Conservation (including wildlife) association operation; Consumers’ association operation; Disease research (including cancer and heart disease) fundraising; Human rights association operation; Interest group service n.e.c.; Marae operation (NZ only); Parent-teachers’ association operation; Pensioners’ association operation; Political party operation; Social club operation; Veterans’ association operation; Welfare fundraising; Women’s interest group association operation; Youth club/association (including girl guides and scouts) operation |
+| 9540 | Religious Services *(marked: non-profit institutions serving households)* | 954 Religious Services | Bible society operation; Church operation; Convent operation (except schools); Diocesan registry operation; Missionary society operation; Monastery operation (except schools); Mosque operation; Religious organisation operation; Religious shrine operation; Religious temple operation; Synagogue operation |
+| 9551 | Business and Professional Association Services *(marked: non-profit institutions serving households)* | 955 Civic, Professional and Other Interest Group Services | Accountants’ association operation; Architects’ association operation; Bankers’ association operation; Builders’ association operation; Chamber of Commerce operation; Chamber of Manufacturers operation; Chemists’ association operation; Dentists’ association operation; Employers’ association operation; Engineers’ association operation (except trade union); Farmers’ association operation; Lawyers’ association operation; Manufacturers’ association operation; Medical association operation; Mining association operation; Retail traders’ association operation; Surveyors’ association operation; Trade association operation (except trade union) |
+| 9552 | Labour Association Services *(marked: non-profit institutions serving households)* | 955 Civic, Professional and Other Interest Group Services | Employees’ association operation; Industrial union operation; Trade union operation; Union association operation |
+| 9559 | Other Interest Group Services n.e.c. *(marked: non-profit institutions serving households)* | 955 Civic, Professional and Other Interest Group Services | Accident prevention association operation; Animal (including wildlife) welfare association or league operation; Association operation (for promotion of community or sectional interests); Automobile association operation; Civil liberty service; Club operation (for the promotion of community or sectional interests); Community association operation; Conservation (including wildlife) association operation; Consumers’ association operation; Disease research (including cancer and heart disease) fundraising; Human rights association operation; Interest group service n.e.c.; Marae operation (NZ only); Parent-teachers’ association operation; Pensioners’ association operation; Political party operation; Social club operation; Veterans’ association operation; Welfare fundraising; Women’s interest group association operation; Youth club/association (including girl guides and scouts) operation |
 
 ### 96 Private Households Employing Staff and Undifferentiated Goods- and Service-Producing Activities
 
 | Class | Title | Group | Primary activities (ABS) |
 |---|---|---|---|
-| 9601 | Private Households Employing Staff | 960 Private Households Employing Staff and Undifferentiated Goods- and | Household, private, employing; Private household employing domestic personnel; Private household employing staff |
-| 9602 | Undifferentiated Goods-Producing Activities of Households for Own Use | 960 Private Households Employing Staff and Undifferentiated Goods- and | Household undifferentiated goods-producing activities (for own use) |
-| 9603 | Undifferentiated Service-Producing Activities of Households for Own Use | 960 Private Households Employing Staff and Undifferentiated Goods- and | Household undifferentiated service-producing activities (for own use) |
+| 9601 | Private Households Employing Staff *(marked: households)* | 960 Private Households Employing Staff and Undifferentiated Goods- and | Household, private, employing; Private household employing domestic personnel; Private household employing staff |
+| 9602 | Undifferentiated Goods-Producing Activities of Households for Own Use *(marked: households)* | 960 Private Households Employing Staff and Undifferentiated Goods- and | Household undifferentiated goods-producing activities (for own use) |
+| 9603 | Undifferentiated Service-Producing Activities of Households for Own Use *(marked: households)* | 960 Private Households Employing Staff and Undifferentiated Goods- and | Household undifferentiated service-producing activities (for own use) |

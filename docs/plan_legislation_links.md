@@ -95,8 +95,8 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 
 | Phase | Status |
 |---|---|
-| A. Review | Started 6 November 2026 |
-| B. Design and calibration | Not started |
+| A. Review | **Done 6 November 2026**: [`legislation_inventory.md`](legislation_inventory.md); 16 classes marked (`data/processed/anzsic/class_marks.csv`) |
+| B. Design and calibration | Next |
 | C. Commonwealth | Not started |
 | D. States and territories | Not started (D2 open) |
 | E. Councils | Not started |

@@ -47,7 +47,7 @@ On that assumption, the licence-mapping and completeness steps shrink by about t
 
 The form at <https://ablis.business.gov.au/apiregistration> asks for your name, email, organisation and a business case of up to 2,500 characters. You also agree to the terms and confirm you won't use the APIs commercially. Production and test (UAT) access are applied for separately; production is the one we need. When the key arrives, I'll ask for it through a secure form, so it is stored as a secret on this environment and never pasted in chat.
 
-A business case you could paste (about 1,100 characters):
+A business case you could paste (about 1,050 characters):
 
 > ALICIA (Australian Legislation Impact on Competition Industry Analysis) is a non-commercial research project on competition and business dynamism in Australia. We are mapping the Australian, state and territory, and local government requirements that apply to businesses in each ANZSIC 2006 class, to show how regulation affects businesses as they start, grow and close, and where requirements differ between states and councils. We would use the ABLIS APIs, read-only, to (1) retrieve the services (licences, codes of practice and regulatory obligations) linked to each ANZSIC business activity and jurisdiction, with their tier of government, business life stage and administering organisation; (2) compare our own mapping, built from the legislation registers, with ABLIS to find requirements we have missed; and (3) cite ABLIS as a source. We will not use the APIs for commercial activities, will not reproduce ABLIS material in altered form, and will acknowledge ABLIS and the jurisdictions. Queries will run in small, rate-limited batches.
 

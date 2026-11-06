@@ -6,6 +6,7 @@ Usage: uv run python scripts/anzsic_classes_note.py
 
 from __future__ import annotations
 
+import csv
 import datetime as dt
 import json
 from collections import Counter, defaultdict
@@ -14,6 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SRC = ROOT / "data" / "processed" / "anzsic" / "anzsic2006_classes.json"
 OUT = ROOT / "docs" / "anzsic_classes.md"
+MARKS = ROOT / "data" / "processed" / "anzsic" / "class_marks.csv"
 
 
 def cell(s: str) -> str:
@@ -23,6 +25,10 @@ def cell(s: str) -> str:
 def main() -> None:
     data = json.loads(SRC.read_text("utf-8"))
     rows = data["rows"]
+    marks = {}
+    if MARKS.exists():
+        with MARKS.open(encoding="utf-8") as f:
+            marks = {r["class"]: r for r in csv.DictReader(f)}
     by_div: dict[str, list[dict]] = defaultdict(list)
     for r in rows:
         by_div[r["division"]].append(r)
@@ -71,6 +77,23 @@ def main() -> None:
         f"| **Total** | **{len({r['subdivision'] for r in rows})}** | **{len({r['group'] for r in rows})}** | "
         f"**{len(rows)}** | **{n_act:,}** |"
     )
+    if marks:
+        kinds = Counter(m["mark"] for m in marks.values())
+        out += [
+            "",
+            f"## Marked classes ({len(marks)})",
+            "",
+            "Kept, and marked as mainly "
+            + ", ".join(f"{k} ({n})" for k, n in kinds.most_common())
+            + " (DECISIONS E-115). A class is marked when its ABS definition describes units of government, or when "
+            "the ABS publishes no business counts for it (CABEE excludes general government and non-profit "
+            "institutions serving households); `data/processed/anzsic/class_marks.csv` quotes the basis for each "
+            "(`alicia/scripts/anzsic_class_marks.py`).",
+            "",
+            "| Class | Title | Mark | Test |",
+            "|---|---|---|---|",
+        ]
+        out += [f"| {c} | {cell(m['class_name'])} | {m['mark']} | {m['tests']} |" for c, m in marks.items()]
     for d, rs in by_div.items():
         out += ["", f'<a id="{d.lower()}"></a>', "", f"## {d} {rs[0]['division_name']}"]
         sub = None
@@ -85,9 +108,10 @@ def main() -> None:
                     "|---|---|---|---|",
                 ]
             acts = "; ".join(r["primary_activities"]) or "*(none listed)*"
-            out.append(
-                f"| {r['class']} | {cell(r['class_name'])} | {r['group']} {cell(r['group_name'])} | {cell(acts)} |"
-            )
+            title = cell(r["class_name"])
+            if r["class"] in marks:
+                title += f" *(marked: {marks[r['class']]['mark']})*"
+            out.append(f"| {r['class']} | {title} | {r['group']} {cell(r['group_name'])} | {cell(acts)} |")
     OUT.write_text("\n".join(out) + "\n", encoding="utf-8")
     print(f"Wrote {OUT} ({len(rows)} classes, {n_act} activities; per-class counts {dict(sorted(per_class.items()))})")
 
