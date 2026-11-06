@@ -145,3 +145,18 @@ def test_a_commonwealth_reach_can_skip_a_state():
     assert row["applies_in"] == "NSW | VIC" and row["legal_forms"] == "sole-proprietor"
     with pytest.raises(ValidationError, match="only a Commonwealth requirement"):
         Requirement.model_validate(req(jurisdiction="NSW", tier="state", reach=q.model_dump()["reach"]))
+
+
+def test_a_quantity_threshold_needs_its_unit_and_source():
+    trig = {
+        "type": "quantity",
+        "test": ">=",
+        "value": 1000,
+        "unit": "square metres of office space",
+        "as_at": "2026-11-06",
+    }
+    with pytest.raises(ValidationError, match="needs an official source"):
+        Requirement.model_validate(req(triggers=[trig]))
+    assert (
+        Requirement.model_validate(req(triggers=[trig | {"sources": [SOURCE]}])).triggers[0].unit.startswith("square")
+    )

@@ -1,0 +1,84 @@
+{
+  "id": "cth-epbc-approval",
+  "family": "epbc-approval",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Get approval for actions with a significant impact on nationally protected matters",
+  "kind": "approval",
+  "what": "Get approval from the Australian Government before taking an action likely to have a significant impact on a matter of national environmental significance.",
+  "laws": [
+    {
+      "title": "Environment Protection and Biodiversity Conservation Act 1999",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00485",
+      "register_url": "https://www.legislation.gov.au/C2004A00485/latest/text",
+      "provisions": "Part 3 (e.g. s 12)"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environment Protection and Biodiversity Conservation Act 1999",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00485/latest/text",
+      "locator": "s 12(1) (compilation C2026C00369, in force from 2026-08-24)",
+      "quote": "A person must not take an action that: (a) has or will have a significant impact on the world heritage values of a declared World Heritage property;",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-dcceew"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Taking an action likely to have a significant impact on a matter of national environmental significance.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it takes an action likely to have a significant impact on a matter of national environmental significance (e.g. clearing habitat of a listed threatened species)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environment Protection and Biodiversity Conservation Act 1999",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00485/latest/text",
+          "locator": "s 12(1) (compilation C2026C00369, in force from 2026-08-24)",
+          "quote": "A person must not take an action that: (a) has or will have a significant impact on the world heritage values of a declared World Heritage property;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted at s 12 (world heritage); Part 3 sets the same prohibition for each matter.",
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

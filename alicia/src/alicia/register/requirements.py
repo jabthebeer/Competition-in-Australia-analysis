@@ -60,7 +60,17 @@ KIND_LABELS: dict[str, str] = {
     "other": "Other",
 }
 TriggerType = Literal[
-    "entry", "first-employee", "employees", "payroll", "turnover", "revenue", "assets", "activity", "ongoing", "exit"
+    "entry",
+    "first-employee",
+    "employees",
+    "payroll",
+    "turnover",
+    "revenue",
+    "assets",
+    "quantity",
+    "activity",
+    "ongoing",
+    "exit",
 ]
 TRIGGER_LABELS: dict[str, str] = {
     "entry": "Before starting to trade",
@@ -70,12 +80,13 @@ TRIGGER_LABELS: dict[str, str] = {
     "turnover": "Above a turnover threshold",
     "revenue": "Above a revenue threshold",
     "assets": "Above an asset threshold",
+    "quantity": "Above another measured threshold (floor area, emissions, livestock and so on)",
     "activity": "When carrying out a particular activity",
     "ongoing": "While operating",
     "exit": "On closing or selling the business",
 }
 # Thresholds need a value, a test and a unit; the other triggers have none.
-VALUED: tuple[str, ...] = ("employees", "payroll", "turnover", "revenue", "assets")
+VALUED: tuple[str, ...] = ("employees", "payroll", "turnover", "revenue", "assets", "quantity")
 # Legal forms, after the ABS's Type of Legal Organisation (SESCA 2008) and ABLIS's business structures.
 LegalForm = Literal["sole-proprietor", "partnership", "trust", "company", "co-operative", "incorporated-association"]
 Confidence = Literal["high", "medium", "low"]

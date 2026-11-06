@@ -1,0 +1,109 @@
+{
+  "id": "cth-building-energy-efficiency-disclosure",
+  "family": "building-energy-efficiency-disclosure",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Disclose energy efficiency when selling or leasing large office space",
+  "kind": "reporting",
+  "what": "Obtain and register a building energy efficiency certificate before offering office space of 1,000 square metres or more for sale or lease.",
+  "laws": [
+    {
+      "title": "Building Energy Efficiency Disclosure Act 2010",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2010A00067",
+      "register_url": "https://www.legislation.gov.au/C2010A00067/latest/text",
+      "provisions": "s 11"
+    },
+    {
+      "title": "Building Energy Efficiency Disclosure (Disclosure Affected Buildings) Determination 2016",
+      "jurisdiction": "CTH",
+      "kind": "legislative-instrument",
+      "register_id": "F2016L01148",
+      "register_url": "https://www.legislation.gov.au/F2016L01148/latest/text",
+      "provisions": "s 5"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Energy Efficiency Disclosure Act 2010",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2010A00067/latest/text",
+      "locator": "s 11(1) (compilation C2024C00453, in force from 2024-10-14)",
+      "quote": "If a constitutional corporation owns a disclosure affected building, the corporation must not do any of the following unless a current building energy efficiency certificate for the building is registered: (a) offer, or continue to offer, to sell the building;",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-dcceew"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "quantity",
+      "test": ">=",
+      "value": 1000.0,
+      "unit": "square metres of office space in the building",
+      "as_at": "2026-11-06",
+      "note": "At least 75% of the building's lettable area must be office use; new, recently refurbished and strata-titled buildings are excluded.",
+      "sources": [
+        {
+          "title": "Building Energy Efficiency Disclosure (Disclosure Affected Buildings) Determination 2016",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2016L01148/latest/text",
+          "locator": "s 5(3) (compilation F2016L01148, in force from 2016-07-04)",
+          "quote": "(3) Subject to subsections 5(4), 5(5) and 5(6) of this Determination, from 1 July 2017, a building is disclosure affected if: (a) at least 75% of the space in the building by Net Lettable Area (or Gross Lettable Area if Net Lettable Area is not available) is for administrative, clerical, professional or similar information-based activities, including any support facilities for those activities; and (b) the Net Lettable Area (or Gross Lettable Area if Net Lettable Area is not available) of the space in the building that is for administrative, clerical, professional or similar information-based activities, including any support facilities for those activities, is at least 1000 square metres.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6712"
+      ],
+      "exclude": [],
+      "activities": [
+        "Office space renting or leasing"
+      ],
+      "condition": null,
+      "legal_forms": [
+        "company"
+      ],
+      "in_states": [],
+      "note": "The Act binds constitutional corporations (and some other owners and lessors).",
+      "sources": [
+        {
+          "title": "Building Energy Efficiency Disclosure Act 2010",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2010A00067/latest/text",
+          "locator": "s 11(1) (compilation C2024C00453, in force from 2024-10-14)",
+          "quote": "If a constitutional corporation owns a disclosure affected building, the corporation must not do any of the following unless a current building energy efficiency certificate for the building is registered: (a) offer, or continue to offer, to sell the building;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Leasing obligations (s 12) are not yet quoted; the administering department is inferred.",
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

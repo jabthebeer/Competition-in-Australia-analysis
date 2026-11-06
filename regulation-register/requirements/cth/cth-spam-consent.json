@@ -1,0 +1,82 @@
+{
+  "id": "cth-spam-consent",
+  "family": "spam-consent",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Send marketing emails and texts only with consent",
+  "kind": "standard",
+  "what": "Send commercial emails, texts and other electronic messages only with the recipient's consent (and with sender details and an unsubscribe facility).",
+  "laws": [
+    {
+      "title": "Spam Act 2003",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A01214",
+      "register_url": "https://www.legislation.gov.au/C2004A01214/latest/text",
+      "provisions": "ss 16-18"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Spam Act 2003",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A01214/latest/text",
+      "locator": "s 16(1) (compilation C2016C00614, in force from 2016-03-10)",
+      "quote": "A person must not send, or cause to be sent, a commercial electronic message that: (a) has an Australian link; and (b) is not a designated commercial electronic message.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Sending commercial electronic messages with an Australian link.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sends commercial emails, texts or other electronic messages",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Spam Act 2003",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01214/latest/text",
+          "locator": "s 16(1) (compilation C2016C00614, in force from 2016-03-10)",
+          "quote": "A person must not send, or cause to be sent, a commercial electronic message that: (a) has an Australian link; and (b) is not a designated commercial electronic message.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The regulator (ACMA) is not yet in bodies.json; no regime covers it yet.",
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

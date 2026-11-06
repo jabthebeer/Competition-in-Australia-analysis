@@ -1,0 +1,86 @@
+{
+  "id": "cth-afs-licence",
+  "family": "afs-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "financial-services",
+  "title": "Hold an Australian financial services licence",
+  "kind": "licence",
+  "what": "Hold an Australian financial services licence (or be authorised by a licensee) before carrying on a financial services business.",
+  "laws": [
+    {
+      "title": "Corporations Act 2001",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00818",
+      "register_url": "https://www.legislation.gov.au/C2004A00818/latest/text",
+      "provisions": "s 911A"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Corporations Act 2001",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00818/latest/text",
+      "locator": "s 911A(1) (compilation C2026C00432, in force from 2026-09-19)",
+      "quote": "Subject to this section, a person who carries on a financial services business in this jurisdiction must hold an Australian financial services licence covering the provision of the financial services.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-asic"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6240"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides financial services to others (investing only on its own account needs no licence)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Calibration: coded for the calibration classes; financial services classes follow in phase C.",
+      "sources": [
+        {
+          "title": "Corporations Act 2001",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00818/latest/text",
+          "locator": "s 911A(1) (compilation C2026C00432, in force from 2026-09-19)",
+          "quote": "Subject to this section, a person who carries on a financial services business in this jurisdiction must hold an Australian financial services licence covering the provision of the financial services.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Whether a 6240 business needs a licence depends on whether it deals for or advises others; exemptions in s 911A(2) not yet read.",
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
