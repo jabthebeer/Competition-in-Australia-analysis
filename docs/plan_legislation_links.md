@@ -96,9 +96,9 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 | Phase | Status |
 |---|---|
 | A. Review | **Done 6 November 2026**: [`legislation_inventory.md`](legislation_inventory.md); 16 classes marked (`data/processed/anzsic/class_marks.csv`) |
-| B. Design and calibration | Next |
+| B. Design and calibration | Design done 6 Nov 2026 ([`methods_legislation_links.md`](methods_legislation_links.md), E-119); calibration under way |
 | C. Commonwealth | Not started |
-| D. States and territories | Not started (D2 open) |
+| D. States and territories | Not started (D2 settled: the corpus indexes NSW and SA, E-118) |
 | E. Councils | Not started |
 | F. Completeness check | Waiting for the ABLIS key |
 | G. Assemble and check | Not started |
