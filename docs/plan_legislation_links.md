@@ -1,6 +1,6 @@
 # Plan: linking Commonwealth, state and council legislation to ANZSIC classes
 
-*Proposed 6 November 2026 for the owner's approval (DECISIONS E-115). Phase 2 of the [Industry lens plan](plan_industry_lens.md). Nothing here is started until the owner approves.*
+*Approved 6 November 2026 (DECISIONS E-115, E-116). Phase 2 of the [Industry lens plan](plan_industry_lens.md).*
 
 ## Goal
 
@@ -84,3 +84,21 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 | D3 | Register for an ABLIS API key (your action; stored as a secret on this environment) before phase F? | Yes |
 | D4 | Councils: start with a sample of three per state (capital city, a regional city, a rural council) and decide on all ~540 after measuring the variation? | Yes |
 | D5 | Bulk work: in-session AI-assisted research (no extra cost, slower), or batch runs through the Claude API (faster, needs an API key and costs money)? | Start in-session; decide after D1's timing |
+
+**Answers (6 November 2026):** D1, D4 and D5 approved as recommended. D3: the owner will apply for an ABLIS key, which may take time ([brief](ablis_brief.md)); phase F waits for it. D2 is open. AustLII refused this environment (Cloudflare block), and the owner will revisit with a preference for little work by hand. Options found the same day:
+
+- the Open Australian Legal Corpus (CC BY 4.0), covering in-force Commonwealth, NSW, Qld, WA, SA and Tas law as at 10 March 2025, with official register links;
+- SA's official XML update packages, published fortnightly on data.sa.gov.au;
+- NSW changes since March 2025, which have no open source found yet.
+
+## Progress
+
+| Phase | Status |
+|---|---|
+| A. Review | Started 6 November 2026 |
+| B. Design and calibration | Not started |
+| C. Commonwealth | Not started |
+| D. States and territories | Not started (D2 open) |
+| E. Councils | Not started |
+| F. Completeness check | Waiting for the ABLIS key |
+| G. Assemble and check | Not started |
