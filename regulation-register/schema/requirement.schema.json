@@ -1,0 +1,645 @@
+{
+  "$defs": {
+    "Law": {
+      "additionalProperties": false,
+      "description": "An Act, regulation, instrument, code, planning scheme or local law, as on its official register.",
+      "properties": {
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "jurisdiction": {
+          "enum": [
+            "CTH",
+            "NSW",
+            "VIC",
+            "QLD",
+            "WA",
+            "SA",
+            "TAS",
+            "ACT",
+            "NT"
+          ],
+          "title": "Jurisdiction",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "act",
+            "regulation",
+            "legislative-instrument",
+            "code",
+            "planning-instrument",
+            "local-law",
+            "other"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "register_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "e.g. C2004A00109, or the register's own identifier",
+          "title": "Register Id"
+        },
+        "register_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Register Url"
+        },
+        "provisions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "e.g. 's 9-5', 'Part 3, Division 2'",
+          "title": "Provisions"
+        }
+      },
+      "required": [
+        "title",
+        "jurisdiction",
+        "kind"
+      ],
+      "title": "Law",
+      "type": "object"
+    },
+    "Reach": {
+      "additionalProperties": false,
+      "description": "Which businesses the requirement reaches.\n\n``scope`` \"all\" reaches every class (less ``exclude``). Otherwise ``classes`` lists ANZSIC codes at any level;\n``activities`` (only with 4-digit classes) limits the reach to those ABS primary activities, quoted exactly; and\n``condition`` limits it to businesses in the classes that also do something else (an activity that crosses\nclasses, such as selling alcohol).",
+      "properties": {
+        "scope": {
+          "enum": [
+            "all",
+            "listed"
+          ],
+          "title": "Scope",
+          "type": "string"
+        },
+        "classes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Classes",
+          "type": "array"
+        },
+        "exclude": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Exclude",
+          "type": "array"
+        },
+        "activities": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Activities",
+          "type": "array"
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Plain English: 'if the business sells alcohol'",
+          "title": "Condition"
+        },
+        "legal_forms": {
+          "default": [],
+          "description": "Empty means every legal form",
+          "items": {
+            "enum": [
+              "sole-proprietor",
+              "partnership",
+              "trust",
+              "company",
+              "co-operative",
+              "incorporated-association"
+            ],
+            "type": "string"
+          },
+          "title": "Legal Forms",
+          "type": "array"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "sources": {
+          "description": "Where the reach comes from, quoted",
+          "items": {
+            "$ref": "#/$defs/Source"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "scope",
+        "sources"
+      ],
+      "title": "Reach",
+      "type": "object"
+    },
+    "Review": {
+      "additionalProperties": false,
+      "description": "Whether a person has checked the record. Desk-research drafts start as ``draft``.",
+      "properties": {
+        "status": {
+          "default": "draft",
+          "enum": [
+            "draft",
+            "reviewed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "By"
+        },
+        "on": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "On"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "title": "Review",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "description": "A source with the exact words that support a claim.",
+      "properties": {
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "publisher": {
+          "minLength": 1,
+          "title": "Publisher",
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Url",
+          "type": "string"
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Section, clause, page or heading",
+          "title": "Locator"
+        },
+        "quote": {
+          "description": "Exact words from the source",
+          "minLength": 20,
+          "title": "Quote",
+          "type": "string"
+        },
+        "accessed": {
+          "format": "date",
+          "title": "Accessed",
+          "type": "string"
+        },
+        "checked": {
+          "enum": [
+            "register-text",
+            "document",
+            "web-page",
+            "corpus-copy"
+          ],
+          "title": "Checked",
+          "type": "string"
+        },
+        "corpus_version_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The corpus document read, for 'corpus-copy'",
+          "title": "Corpus Version Id"
+        }
+      },
+      "required": [
+        "title",
+        "publisher",
+        "url",
+        "quote",
+        "accessed",
+        "checked"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "Trigger": {
+      "additionalProperties": false,
+      "description": "What sets the requirement off.",
+      "properties": {
+        "type": {
+          "enum": [
+            "entry",
+            "first-employee",
+            "employees",
+            "payroll",
+            "turnover",
+            "revenue",
+            "assets",
+            "activity",
+            "ongoing",
+            "exit"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "test": {
+          "anyOf": [
+            {
+              "enum": [
+                ">=",
+                ">",
+                "<=",
+                "<"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Test"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "e.g. 'AUD a financial year', 'employees'",
+          "title": "Unit"
+        },
+        "as_at": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "When the value applied, as checked",
+          "title": "As At"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "sources": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Source"
+          },
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "Trigger",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "family": {
+      "description": "The same requirement across jurisdictions, e.g. 'food-business-registration'",
+      "title": "Family",
+      "type": "string"
+    },
+    "jurisdiction": {
+      "enum": [
+        "CTH",
+        "NSW",
+        "VIC",
+        "QLD",
+        "WA",
+        "SA",
+        "TAS",
+        "ACT",
+        "NT"
+      ],
+      "title": "Jurisdiction",
+      "type": "string"
+    },
+    "tier": {
+      "enum": [
+        "cth",
+        "state",
+        "local"
+      ],
+      "title": "Tier",
+      "type": "string"
+    },
+    "lga": {
+      "anyOf": [
+        {
+          "pattern": "^\\d{5}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "ABS LGA code (ASGS 2021), for a council",
+      "title": "Lga"
+    },
+    "lga_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Lga Name"
+    },
+    "regime": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "The regime it belongs to (regulation-register/regimes)",
+      "title": "Regime"
+    },
+    "title": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "registration",
+        "licence",
+        "approval",
+        "notification",
+        "tax-or-levy",
+        "insurance",
+        "reporting",
+        "record-keeping",
+        "standard",
+        "other"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "what": {
+      "description": "Plain English: what the business must do",
+      "minLength": 1,
+      "title": "What",
+      "type": "string"
+    },
+    "laws": {
+      "items": {
+        "$ref": "#/$defs/Law"
+      },
+      "minItems": 1,
+      "title": "Laws",
+      "type": "array"
+    },
+    "sources": {
+      "description": "The obligation in the law's own words",
+      "items": {
+        "$ref": "#/$defs/Source"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "administered_by": {
+      "default": [],
+      "description": "Bodies in bodies.json",
+      "items": {
+        "type": "string"
+      },
+      "title": "Administered By",
+      "type": "array"
+    },
+    "administered_by_councils": {
+      "default": false,
+      "title": "Administered By Councils",
+      "type": "boolean"
+    },
+    "triggers": {
+      "items": {
+        "$ref": "#/$defs/Trigger"
+      },
+      "minItems": 1,
+      "title": "Triggers",
+      "type": "array"
+    },
+    "reach": {
+      "items": {
+        "$ref": "#/$defs/Reach"
+      },
+      "minItems": 1,
+      "title": "Reach",
+      "type": "array"
+    },
+    "confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "title": "Confidence",
+      "type": "string"
+    },
+    "confidence_note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Confidence Note"
+    },
+    "records": {
+      "default": [],
+      "description": "Register items about it",
+      "items": {
+        "type": "string"
+      },
+      "title": "Records",
+      "type": "array"
+    },
+    "ablis": {
+      "default": [],
+      "description": "ABLIS service IDs, once checked against ABLIS",
+      "items": {
+        "type": "string"
+      },
+      "title": "Ablis",
+      "type": "array"
+    },
+    "drafted_on": {
+      "format": "date",
+      "title": "Drafted On",
+      "type": "string"
+    },
+    "review": {
+      "$ref": "#/$defs/Review",
+      "default": {
+        "status": "draft",
+        "by": null,
+        "on": null,
+        "notes": null
+      }
+    }
+  },
+  "required": [
+    "id",
+    "family",
+    "jurisdiction",
+    "tier",
+    "title",
+    "kind",
+    "what",
+    "laws",
+    "sources",
+    "triggers",
+    "reach",
+    "confidence",
+    "drafted_on"
+  ],
+  "title": "Requirement: what a law asks of a business, and the ANZSIC classes it reaches",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

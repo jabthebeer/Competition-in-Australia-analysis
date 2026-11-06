@@ -37,6 +37,7 @@ from .register.families import check_families, load_families
 from .register.framework import DRIVERS, KINDS
 from .register.recommendations import check_coverage, check_recommendations, load_gaps, load_recommendations
 from .register.regimes import check_regimes, load_regimes
+from .register.requirements import check_requirements, load_requirements
 from .register.schema import CHANNEL_LABELS, JURISDICTIONS, ChangeRecord
 
 
@@ -75,6 +76,11 @@ def cmd_validate(args) -> int:
     regimes = load_regimes()
     problems.extend(regimes.problems)
     problems.extend(check_regimes(regimes.regimes, result.records, bodies))
+    reqs = load_requirements()
+    problems.extend(reqs.problems)
+    problems.extend(
+        check_requirements(reqs.requirements, bodies, {g.id for g in regimes.regimes}, {r.id for r in result.records})
+    )
     families, family_problems = load_families()
     problems.extend(family_problems)
     problems.extend(check_families(families, result.records))
@@ -92,7 +98,8 @@ def cmd_validate(args) -> int:
     drafts = sum(r.review.status == "draft" for r in result.records)
     print(
         f"{len(result.records)} record(s), {len(evals.evaluations)} evaluation(s), "
-        f"{len(recs.recommendations)} recommendation(s) and {len(regimes.regimes)} regime(s) loaded; {len(problems)} "
+        f"{len(recs.recommendations)} recommendation(s), {len(regimes.regimes)} regime(s) and "
+        f"{len(reqs.requirements)} requirement(s) loaded; {len(problems)} "
         f"problem(s); {len(warnings)} warning(s); {drafts} record(s) awaiting review."
     )
     return 1 if problems else 0
