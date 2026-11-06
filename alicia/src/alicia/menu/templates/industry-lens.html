@@ -1,0 +1,375 @@
+<title>ALICIA Industry lens (beta)</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
+<style>
+/*__SITE_CSS__*/
+/* Layout: the Industry lens. A picker (industry, then a map of the states), a summary of the codings, then one table:
+   a row per law, a column per market position, each cell coded for its effect on competition. */
+:root {
+  --good: #1f7a3a; --good-soft: #e2f0e5; --bad: #b3261e; --bad-soft: #f8e2df;
+  --mixed: #8a5a00; --mixed-soft: #faefd5; --unclear: #6b6a65; --unclear-soft: #ecebe5; --on-solid: #ffffff;
+  --map-fill: #d9d8d0; --map-hover: #c3c2b7;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --good: #73cf8f; --good-soft: #173020; --bad: #f08a82; --bad-soft: #3a1d1a;
+    --mixed: #f2c46b; --mixed-soft: #2e2512; --unclear: #a5a49c; --unclear-soft: #262624; --on-solid: #0b0b0b;
+    --map-fill: #3a3a36; --map-hover: #4a4a46;
+  }
+}
+:root[data-theme="dark"] {
+  --good: #73cf8f; --good-soft: #173020; --bad: #f08a82; --bad-soft: #3a1d1a;
+  --mixed: #f2c46b; --mixed-soft: #2e2512; --unclear: #a5a49c; --unclear-soft: #262624; --on-solid: #0b0b0b;
+  --map-fill: #3a3a36; --map-hover: #4a4a46;
+}
+h1 .beta { font-family: var(--font-body); font-size: var(--step--1); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--warn-ink); background: var(--warn-soft); border-radius: 999px; padding: 2px 10px; vertical-align: middle; margin-left: 8px; }
+.pick { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .pick { grid-template-columns: minmax(0, 1fr); } }
+.field { display: grid; gap: 6px; }
+.field label { font-size: var(--step--1); color: var(--ink-3); font-weight: 500; }
+.field input[type="search"] { font: inherit; font-size: var(--step-0); padding: 6px 10px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; }
+.field select { font-size: var(--step-0); padding: 6px 8px; width: 100%; }
+.cls-head { display: grid; gap: 4px; margin-top: 6px; }
+.cls-head .code { font-family: var(--font-mono); color: var(--ink-3); }
+.cls-head h2 { font-size: var(--step-2); }
+.crumbs { font-size: var(--step--1); color: var(--ink-3); margin: 0; }
+.tag { display: inline-block; font-size: 0.75rem; line-height: 1.5; border: 1px solid var(--line-strong); border-radius: 999px; padding: 0 8px; color: var(--ink-2); white-space: nowrap; }
+.tag.warn { border-color: var(--warn-ink); color: var(--warn-ink); background: var(--warn-soft); }
+details.defn > summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); }
+details.defn p { margin: 6px 0 0; font-size: var(--step--1); color: var(--ink-2); max-width: 75ch; }
+.map-wrap { display: grid; gap: 8px; }
+.map-wrap svg { width: 100%; height: auto; max-height: 360px; display: block; }
+.map-wrap path.st { fill: var(--map-fill); stroke: var(--surface); stroke-width: 1.6; cursor: pointer; transition: fill 0.12s; }
+.map-wrap path.st:hover, .map-wrap path.st:focus-visible { fill: var(--map-hover); outline: none; }
+.map-wrap path.st[aria-pressed="true"] { fill: var(--accent); }
+.map-wrap text.st-lab { font-size: 34px; font-weight: 600; fill: var(--ink-2); pointer-events: none; }
+.map-wrap text.st-lab.on { fill: var(--surface); }
+.map-wrap .callout line { stroke: var(--ink-3); stroke-width: 1.2; }
+.map-wrap .callout circle { fill: transparent; stroke: var(--ink-3); stroke-width: 1.5; cursor: pointer; }
+.map-wrap .callout circle[aria-pressed="true"] { fill: var(--accent); stroke: var(--accent); }
+.map-wrap .callout text { font-size: 30px; font-weight: 600; fill: var(--ink-2); cursor: pointer; }
+.state-chips .chip[aria-pressed="true"] { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.where { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
+.tiles.lens { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+.tile .tally { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.cnt { font-size: var(--step--1); border-radius: 6px; padding: 1px 8px; font-weight: 600; }
+.cnt.positive { background: var(--good-soft); color: var(--good); }
+.cnt.negative { background: var(--bad-soft); color: var(--bad); }
+.cnt.mixed { background: var(--mixed-soft); color: var(--mixed); }
+.legend-row { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: var(--step--1); color: var(--ink-2); }
+table.lens { border-collapse: separate; border-spacing: 0; width: 100%; font-size: var(--step--1); }
+table.lens th, table.lens td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+table.lens thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); color: var(--ink); font-weight: 600; border-bottom: 1px solid var(--line-strong); width: 22%; }
+table.lens thead th:first-child { width: auto; }
+table.lens thead th .q { display: block; font-weight: 400; color: var(--ink-3); font-size: 0.75rem; margin-top: 2px; }
+table.lens tr.tier th { background: var(--bg); font-family: var(--font-display); font-size: var(--step-0); padding-top: 14px; border-bottom: 1px solid var(--line-strong); }
+table.lens tr.tier th .muted { font-family: var(--font-body); font-weight: 400; font-size: var(--step--1); }
+.law-title { font-weight: 600; color: var(--ink); font-size: var(--step-0); }
+.law-meta { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0; }
+.law-names { margin: 2px 0 0; color: var(--ink-2); }
+.law-names a { color: var(--ink-2); }
+.qual { margin: 4px 0 0; color: var(--ink-2); }
+.why-short { margin: 4px 0 0; color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; max-width: 60ch; }
+details.more > summary { cursor: pointer; color: var(--accent); margin-top: 4px; width: max-content; }
+details.more p { margin: 6px 0 0; color: var(--ink-2); max-width: 70ch; }
+details.more ul { margin: 4px 0 0; padding-left: 18px; color: var(--ink-2); }
+.eff { display: grid; gap: 4px; }
+.pill { display: inline-flex; align-items: center; gap: 5px; width: max-content; max-width: 100%; border-radius: 6px; padding: 2px 9px; font-weight: 600; }
+.pill .sym { font-family: var(--font-mono); }
+.pill.positive.strong { background: var(--good); color: var(--on-solid); }
+.pill.negative.strong { background: var(--bad); color: var(--on-solid); }
+.pill.mixed.strong { background: var(--mixed); color: var(--on-solid); }
+.pill.unclear { background: var(--unclear-soft); color: var(--unclear); }
+.pill.positive.weak { background: var(--good-soft); color: var(--good); }
+.pill.negative.weak { background: var(--bad-soft); color: var(--bad); }
+.pill.mixed.weak { background: var(--mixed-soft); color: var(--mixed); }
+.eff .why { color: var(--ink-2); margin: 0; }
+.eff .ch { color: var(--ink-3); margin: 0; font-size: 0.75rem; }
+td.none { color: var(--ink-3); }
+td.c-positive { background: color-mix(in oklab, var(--good-soft) 55%, transparent); }
+td.c-negative { background: color-mix(in oklab, var(--bad-soft) 55%, transparent); }
+td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent); }
+.empty { padding: 18px; text-align: center; color: var(--ink-2); }
+.more-rows { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+/* Phones: each law becomes a card with its three positions stacked and labelled. */
+@media (max-width: 760px) {
+  table.lens thead { display: none; }
+  table.lens, table.lens tbody, table.lens tr, table.lens td, table.lens th { display: block; width: 100%; }
+  table.lens tr.law { border: 1px solid var(--line); border-radius: 8px; margin-bottom: 10px; background: var(--surface); }
+  table.lens tr.law td { border-bottom: 1px solid var(--line); }
+  table.lens tr.law td:last-child { border-bottom: 0; }
+  table.lens tr.law td[data-label]::before { content: attr(data-label); display: block; font-size: 0.75rem; color: var(--ink-3); font-weight: 600; margin-bottom: 4px; }
+  table.lens tr.tier th { border: 0; padding-left: 0; }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <!--__NAV__-->
+    <p class="kicker">ALICIA · Bottom up</p>
+    <h1>Industry lens <span class="beta">Beta</span></h1>
+    <p class="lede">Pick an industry and a state or territory to see the laws a business in it deals with, and how each affects competition: for businesses entering the market, for small and medium competitors, and for the largest players.</p>
+  </header>
+
+  <p class="notice" id="beta-note"></p>
+
+  <section class="panel pick" aria-label="Choose an industry and a place">
+    <div class="field">
+      <label for="cls-search">Industry (ANZSIC class)</label>
+      <input type="search" id="cls-search" placeholder="Search by name or code, e.g. cafes or 4511" autocomplete="off">
+      <select id="cls-select" aria-label="ANZSIC class"></select>
+      <div class="cls-head" id="cls-head"></div>
+    </div>
+    <div class="map-wrap">
+      <span class="small muted" id="map-label">State or territory</span>
+      <svg id="map" role="group" aria-labelledby="map-label"></svg>
+      <div class="chips state-chips" id="state-chips" role="group" aria-label="State or territory"></div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-table">
+    <div class="block-head">
+      <h2 id="h-table">Laws and their effect on competition</h2>
+      <p class="where" id="where"></p>
+    </div>
+    <div class="tiles lens" id="tiles"></div>
+    <div class="legend-row" id="legend"></div>
+    <div class="toolbar">
+      <label class="check"><input type="checkbox" id="opt-uncoded"> Show laws with no competition effect coded</label>
+      <label class="check"><input type="checkbox" id="opt-indirect" checked> Include register items that affect this industry indirectly</label>
+    </div>
+    <div class="panel tscroll">
+      <table class="lens" id="lens-table">
+        <thead id="lens-head"></thead>
+        <tbody id="lens-body"></tbody>
+      </table>
+    </div>
+    <p class="note" id="coverage"></p>
+  </section>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<script type="application/json" id="page-data">__PAGE_DATA__</script>
+<script>
+(() => {
+  const D = JSON.parse(document.getElementById("page-data").textContent);
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const CL = Object.fromEntries(D.classes.map((c) => [c.code, c]));
+  const STATE = Object.fromEntries(D.states.map((s) => [s.code, s.name]));
+  const POS = D.positions;
+  const EFFECT = { positive: ["+", "Positive"], negative: ["−", "Negative"], mixed: ["±", "Mixed"], unclear: ["?", "Unclear"] };
+  const BASIS = {
+    assessed: ["Assessed", "Coded by hand on the requirement, with its reasons."],
+    register: ["Assessed in the register", "Coded from the register item's competition assessment (its direction and channels)."],
+    rule: ["Coded by rule", "Coded from the requirement's kind and triggers by the lens's rules; not yet assessed by hand."],
+  };
+  const CHANNELS = {
+    "barriers": "Barriers to entry or exit", "number-or-type": "Number or types of businesses that can operate",
+    "ability-incentive": "Ability or incentives to compete", "prices-market-share": "Prices or market share",
+    "consumer-choice": "Consumer choice and information",
+  };
+  const KIND = { reform: "Reform", setting: "Existing setting", barrier: "Non-legislative barrier" };
+  const TIER = { cth: "Commonwealth", state: null, local: "Council" };
+  const LEGAL = { "sole-proprietor": "sole traders", partnership: "partnerships", trust: "trusts", company: "companies", "co-operative": "co-operatives", "incorporated-association": "incorporated associations" };
+  const link = (url, text) => url ? `<a href="${esc(url)}" rel="noopener">${esc(text)}</a>` : esc(text);
+  const repoFile = (f) => D.repo + f;
+
+  // ---- State: from the address (#class=4511&state=NSW), else the default.
+  const fromHash = () => Object.fromEntries(new URLSearchParams(location.hash.slice(1)));
+  let h = fromHash();
+  let cls = CL[h.class] ? h.class : D.default.class;
+  let st = STATE[h.state] ? h.state : D.default.state;
+  const opt = { uncoded: false, indirect: true };
+
+  // ---- Beta note.
+  $("beta-note").innerHTML =
+    `<strong>Prototype.</strong> The register behind this page is still being built: ${D.counts.requirements} requirements and ` +
+    `${D.counts.records} register items so far. Laws that apply to every business are recorded for every industry; laws for particular industries ` +
+    `only for some. Every coding is a draft not yet checked by a person, and shows the effect on competition, not whether a law is worthwhile.`;
+
+  // ---- Industry picker.
+  const sel = $("cls-select");
+  function fillSelect(q) {
+    const s = q.trim().toLowerCase();
+    const groups = {};
+    for (const c of D.classes) {
+      if (s && !(`${c.code} ${c.name}`.toLowerCase().includes(s))) continue;
+      (groups[c.division] ||= []).push(c);
+    }
+    const html = Object.entries(groups).map(([d, cs]) => `<optgroup label="${esc(d + " " + (D.divisions[d] || ""))}">` +
+      cs.map((c) => `<option value="${c.code}"${c.code === cls ? " selected" : ""}>${c.code} ${esc(c.name)}${c.mark ? " (" + esc(c.mark.toLowerCase()) + ")" : ""}</option>`).join("") + "</optgroup>").join("");
+    sel.innerHTML = html || `<option disabled>No industry matches</option>`;
+    if (s && !sel.querySelector(`option[value="${cls}"]`)) { const first = sel.querySelector("option[value]"); if (first) sel.value = first.value; }
+  }
+  $("cls-search").addEventListener("input", (e) => { fillSelect(e.target.value); if (sel.value && CL[sel.value]) { cls = sel.value; update(); } });
+  sel.addEventListener("change", () => { if (CL[sel.value]) { cls = sel.value; update(); } });
+
+  // ---- Map of the states and territories; small ones get a callout so they can be clicked.
+  const svg = $("map");
+  svg.setAttribute("viewBox", D.map.viewBox);
+  const ns = "http://www.w3.org/2000/svg";
+  const mk = (tag, attrs) => { const e = document.createElementNS(ns, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); return e; };
+  const pick = (code) => { st = code; update(); };
+  const keyPick = (code) => (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(code); } };
+  for (const a of D.map.areas) {
+    const small = (a.box[2] - a.box[0]) < 40;
+    const p = mk("path", { d: a.path, class: "st", "data-st": a.abbr, tabindex: small ? "-1" : "0", role: "button", "aria-label": a.name, "aria-pressed": "false" });
+    p.addEventListener("click", () => pick(a.abbr));
+    p.addEventListener("keydown", keyPick(a.abbr));
+    const t = mk("title", {}); t.textContent = a.name; p.appendChild(t);
+    svg.appendChild(p);
+  }
+  for (const a of D.map.areas) {
+    const small = (a.box[2] - a.box[0]) < 40;
+    const [x, y] = a.label;
+    if (!small) {
+      const t = mk("text", { x, y: y + 11, "text-anchor": "middle", class: "st-lab", "data-st": a.abbr }); t.textContent = a.abbr; svg.appendChild(t);
+    } else {
+      const g = mk("g", { class: "callout" });
+      const tx = x + 78, ty = y + 34;
+      g.appendChild(mk("line", { x1: x + 6, y1: y + 4, x2: tx - 18, y2: ty - 6 }));
+      const c = mk("circle", { cx: x, cy: y, r: 9, role: "button", tabindex: "0", "aria-label": a.name, "aria-pressed": "false", "data-st": a.abbr });
+      c.addEventListener("click", () => pick(a.abbr)); c.addEventListener("keydown", keyPick(a.abbr));
+      const t = mk("text", { x: tx - 14, y: ty + 8, "data-st": a.abbr }); t.textContent = a.abbr; t.addEventListener("click", () => pick(a.abbr));
+      g.append(c, t); svg.appendChild(g);
+    }
+  }
+  $("state-chips").innerHTML = D.states.map((s) => `<button type="button" class="chip" data-st="${s.code}" aria-pressed="false" title="${esc(s.name)}">${s.code}</button>`).join("");
+  $("state-chips").addEventListener("click", (e) => { const b = e.target.closest("button[data-st]"); if (b) pick(b.dataset.st); });
+
+  // ---- Which laws apply to a class in a state.
+  const under = (c, code) => code.length === 1 ? c.division === code : c.code.startsWith(code);
+  function applicable(code, state) {
+    const c = CL[code], out = [];
+    for (const r of D.rows) {
+      if (r.type === "requirement") {
+        if (r.tier !== "cth" && r.jurisdiction !== state) continue;
+        const hits = r.reach.filter((x) => (x.classes === "all" || x.classes.includes(code)) && (!x.inStates || x.inStates.includes(state)));
+        if (hits.length) out.push({ r, hits, specific: hits.some((x) => x.classes !== "all") });
+      } else {
+        if (r.jurisdiction !== "CTH" && r.jurisdiction !== state) continue;
+        if (r.industries === "all") { out.push({ r, exposure: "economy-wide" }); continue; }
+        const m = r.industries.filter((i) => under(c, i.code));
+        if (m.length) out.push({ r, exposure: m.some((i) => i.exposure === "direct") ? "direct" : "indirect" });
+      }
+    }
+    // A requirement that takes its coding from a setting stands for it: the setting is not listed twice.
+    const merged = new Set(out.filter((o) => o.r.setting).map((o) => o.r.setting));
+    return out.filter((o) => !(o.r.type === "record" && merged.has(o.r.id)));
+  }
+  const coded = (r) => Object.values(r.effects || {}).some((e) => e.effect !== "unclear");
+
+  // ---- Rendering.
+  function pill(e) {
+    const [sym, word] = EFFECT[e.effect];
+    const minor = e.strength === "weak" && e.effect !== "unclear" ? " (minor)" : "";
+    return `<span class="pill ${e.effect} ${e.strength || "strong"}"><span class="sym" aria-hidden="true">${sym}</span>${word}${minor}</span>`;
+  }
+  function cell(o, p) {
+    const e = (o.r.effects || {})[p.id];
+    if (!e) return `<td class="none" data-label="${esc(p.label)}"><span aria-label="No effect coded">—</span></td>`;
+    const reason = e.reason ? `<p class="why">${esc(e.reason)}</p>` : "";
+    const ch = e.channels ? `<p class="ch">${e.channels.map((x) => esc(CHANNELS[x] || x)).join(" · ")}</p>` : "";
+    return `<td class="c-${e.effect}" data-label="${esc(p.label)}"><div class="eff">${pill(e)}${reason}${ch}</div></td>`;
+  }
+  function lawCell(o) {
+    const r = o.r, tags = [];
+    if (r.type === "requirement") {
+      tags.push(`<span class="tag">${esc(r.kind)}</span>`);
+      if (r.councilsAdminister) tags.push(`<span class="tag">Councils administer</span>`);
+    } else {
+      tags.push(`<span class="tag">${esc(KIND[r.kind] || r.kind)}${r.since && r.kind === "reform" ? " · " + r.since.slice(0, 4) : ""}</span>`);
+      if (o.exposure === "indirect") tags.push(`<span class="tag">Indirect effect</span>`);
+      if (o.exposure === "economy-wide") tags.push(`<span class="tag">Economy-wide</span>`);
+    }
+    const [bl, bt] = BASIS[r.basis];
+    tags.push(`<span class="tag${r.basis === "rule" ? " warn" : ""}" title="${esc(bt)}">${esc(bl)}</span>`);
+    const laws = (r.laws || []).slice(0, 3).map((l) => link(l.url, l.title)).join("; ");
+    const quals = [];
+    if (o.hits) for (const x of o.hits) {
+      if (x.condition) quals.push(`Applies ${esc(x.condition)}.`);
+      if (x.activities) quals.push(`Only for: ${esc(x.activities.join("; "))}.`);
+      if (x.legalForms) quals.push(`Only for ${esc(x.legalForms.map((f) => LEGAL[f] || f).join(", "))}.`);
+    }
+    const more = [];
+    if (r.what) more.push(`<p>${esc(r.what)}</p>`);
+    if (r.why) more.push(`<p><strong>Why it is coded this way:</strong> ${esc(r.why)}</p>`);
+    if (r.triggers) more.push(`<p>When: ${esc(r.triggers.join("; "))}.</p>`);
+    const src = [];
+    if (r.source) src.push(`<li>${link(r.source.url, r.source.title)}${r.source.locator ? ", " + esc(r.source.locator) : ""} (${esc(r.source.publisher)})</li>`);
+    for (const u of (r.sources || []).slice(0, 4)) src.push(`<li>${link(u, u.replace(/^https?:\/\//, "").slice(0, 70))}</li>`);
+    if (src.length) more.push(`<p>Sources:</p><ul>${src.join("")}</ul>`);
+    more.push(`<p>${r.confidence ? `Confidence: ${esc(r.confidence)}. ` : ""}${link(repoFile(r.file), "The record in the register")}.</p>`);
+    return `<td><div class="law-title">${esc(r.title)}</div><div class="law-meta">${tags.join("")}</div>` +
+      (laws ? `<p class="law-names">${laws}</p>` : "") + (quals.length ? `<p class="qual">${quals.join(" ")}</p>` : "") +
+      (r.why ? `<p class="why-short">${esc(r.why)}</p>` : "") +
+      `<details class="more"><summary>Details</summary>${more.join("")}</details></td>`;
+  }
+  function update() {
+    history.replaceState(null, "", `#class=${cls}&state=${st}`);
+    const c = CL[cls];
+    if (sel.value !== cls) { const o = sel.querySelector(`option[value="${cls}"]`); if (o) sel.value = cls; else { $("cls-search").value = ""; fillSelect(""); } }
+    $("cls-head").innerHTML = `<span class="code">${c.code} · Division ${esc(c.division)} ${esc(D.divisions[c.division] || "")}</span>` +
+      `<h2>${esc(c.name)}</h2><p class="crumbs">${esc(c.subdivision)} › ${esc(c.group)}</p>` +
+      (c.mark ? `<p class="small"><span class="tag warn">${esc(c.mark)}</span> Kept and marked: few or none of its units are businesses.</p>` : "") +
+      (c.definition ? `<details class="defn"><summary>ABS definition</summary><p>${esc(c.definition)}</p></details>` : "");
+    for (const e of svg.querySelectorAll("[data-st]")) {
+      const on = e.dataset.st === st;
+      if (e.hasAttribute("aria-pressed")) e.setAttribute("aria-pressed", String(on));
+      e.classList.toggle("on", on);
+    }
+    for (const b of $("state-chips").querySelectorAll("button")) b.setAttribute("aria-pressed", String(b.dataset.st === st));
+
+    const all = applicable(cls, st).filter((o) => opt.indirect || o.exposure !== "indirect");
+    const shown = all.filter((o) => opt.uncoded || coded(o.r));
+    $("where").textContent = `${c.code} ${c.name} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws.`;
+
+    // Tally by position.
+    $("tiles").innerHTML = POS.map((p) => {
+      const n = { positive: 0, negative: 0, mixed: 0 };
+      for (const o of all) { const e = (o.r.effects || {})[p.id]; if (e && n[e.effect] !== undefined) n[e.effect] += 1; }
+      return `<div class="tile"><span class="t-label">${esc(p.label)}</span><span class="t-sub">${esc(p.question)}</span>` +
+        `<div class="tally"><span class="cnt positive">${n.positive} positive</span><span class="cnt negative">${n.negative} negative</span>` +
+        (n.mixed ? `<span class="cnt mixed">${n.mixed} mixed</span>` : "") + `</div></div>`;
+    }).join("");
+
+    $("lens-head").innerHTML = `<tr><th scope="col">Law or requirement</th>` + POS.map((p) => `<th scope="col">${esc(p.label)}<span class="q">${esc(p.question)}</span></th>`).join("") + `</tr>`;
+    const tiers = [["cth", "Commonwealth"], ["state", STATE[st]], ["local", "Council"]];
+    let body = "";
+    for (const [t, name] of tiers) {
+      const rows = shown.filter((o) => o.r.tier === t).sort((a, b) => (coded(b.r) - coded(a.r)) || (a.r.type === b.r.type ? 0 : a.r.type === "requirement" ? -1 : 1) || a.r.title.localeCompare(b.r.title));
+      if (!rows.length) continue;
+      const sub = t === "local" ? ` <span class="muted">· ${esc([...new Set(rows.map((o) => o.r.council))].join(", "))} (capital city councils only, for now)</span>` : "";
+      body += `<tr class="tier"><th colspan="4" scope="colgroup">${esc(name)}${sub}</th></tr>`;
+      body += rows.map((o) => `<tr class="law">${lawCell(o)}${POS.map((p) => cell(o, p)).join("")}</tr>`).join("");
+    }
+    const hidden = all.length - shown.length;
+    $("lens-body").innerHTML = body || `<tr><td colspan="4" class="empty">No coded laws for this industry and place yet.${hidden ? " Tick “Show laws with no competition effect coded” to see the rest." : ""}</td></tr>`;
+
+    const specific = all.filter((o) => o.specific).length;
+    $("coverage").innerHTML = `${shown.length} of ${all.length} laws shown` + (hidden ? ` (${hidden} with no competition effect coded are hidden)` : "") + ". " +
+      (specific ? `${specific} of the ${all.length} are requirements particular to this industry.` :
+        `<strong>No requirements particular to this industry have been recorded yet</strong>: the table shows laws that apply to every business, and register items about the industry.`) +
+      ` The register grows batch by batch (${D.counts.industrySpecific} industry-specific requirements so far).`;
+  }
+
+  $("opt-uncoded").addEventListener("change", (e) => { opt.uncoded = e.target.checked; update(); });
+  $("opt-indirect").addEventListener("change", (e) => { opt.indirect = e.target.checked; update(); });
+  window.addEventListener("hashchange", () => { const x = fromHash(); if (CL[x.class]) cls = x.class; if (STATE[x.state]) st = x.state; update(); });
+
+  $("legend").innerHTML = `<span>Key:</span>` + ["positive", "negative", "mixed"].map((e) => pill({ effect: e, strength: "strong" })).join("") +
+    pill({ effect: "negative", strength: "weak" }) + `<span>Lighter: a minor effect.</span>` +
+    `<span class="tag warn">Coded by rule</span><span>Coded from the requirement's kind and triggers, not yet by hand.</span>`;
+  $("foot").innerHTML =
+    `<p>How the codings work, and their limits: ${link(D.repo + "docs/industry_lens.md", "the Industry lens methods note")}. Requirements: ${link(D.repo + "regulation-register/requirements", "regulation-register/requirements")}; register items: ${link(D.repo + "regulation-register/records", "regulation-register/records")}.</p>` +
+    `<p>Industries: ${link(D.sources.anzsic, "ABS, ANZSIC 2006 (Revision 2.0)")}, CC BY 4.0. Map: ${esc(D.map.source)}, ${esc(D.map.licence)}.</p>` +
+    `<p>Built ${esc(D.built)}. Unofficial research tooling; not an Australian Government product.</p>`;
+
+  fillSelect("");
+  update();
+})();
+</script>

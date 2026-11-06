@@ -183,6 +183,7 @@ def test_build_site_writes_the_linked_pages_and_the_econometric_archive(tmp_path
         "framework.html",
         "growth.html",
         "index.html",
+        "industry-lens.html",
         "menu.html",
     ]
     assert sorted(n for n in names if n.startswith("evaluation-")) == sorted(f"evaluation-{e.id}.html" for e in evals)
@@ -200,9 +201,9 @@ def test_build_site_writes_the_linked_pages_and_the_econometric_archive(tmp_path
     assert '<a href="index.html" aria-current="page">Home</a>' in home and not re.search(r"__[A-Z_]+__", home)
     assert re.findall(r'<h2 id="h-[a-z-]+">([^<]+)</h2>', home) == ["Top down", "Bottom up"]
     links = re.findall(r'<a class="view-link" href="([^"]+)">', home)
-    assert links == ["growth.html", "menu.html"] and all((tmp_path / h).exists() for h in links)
-    assert home.count("Coming soon") == 2  # Industry lens and the regulatory overview are not built yet
-    assert 'href="industry-lens.html"' not in home and 'href="regulatory-overview.html"' not in home
+    assert links == ["growth.html", "menu.html", "industry-lens.html"] and all((tmp_path / h).exists() for h in links)
+    assert home.count("Coming soon") == 1  # the regulatory overview is not built yet
+    assert 'href="regulatory-overview.html"' not in home
     assert 'location.replace("menu.html" + location.hash)' in home  # old index.html#<id> links reach the menu
     for page in ("framework.html", "archive.html", "menu.html"):  # links into the menu skip the redirect
         assert not re.search(r'href="index\.html#', (tmp_path / page).read_text("utf-8")), page

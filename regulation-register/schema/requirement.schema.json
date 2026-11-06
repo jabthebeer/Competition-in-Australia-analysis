@@ -1,5 +1,86 @@
 {
   "$defs": {
+    "Competition": {
+      "additionalProperties": false,
+      "description": "A hand-coded competition assessment; when present it replaces the rule-based coding on the Industry lens.",
+      "properties": {
+        "effects": {
+          "items": {
+            "$ref": "#/$defs/CompetitionEffect"
+          },
+          "minItems": 1,
+          "title": "Effects",
+          "type": "array"
+        },
+        "sources": {
+          "default": [],
+          "description": "Evidence for the assessment, quoted",
+          "items": {
+            "$ref": "#/$defs/Source"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "assessed_on": {
+          "format": "date",
+          "title": "Assessed On",
+          "type": "string"
+        }
+      },
+      "required": [
+        "effects",
+        "assessed_on"
+      ],
+      "title": "Competition",
+      "type": "object"
+    },
+    "CompetitionEffect": {
+      "additionalProperties": false,
+      "description": "One position's effect, coded by hand (register/competition.py explains the positions).",
+      "properties": {
+        "position": {
+          "enum": [
+            "entrants",
+            "smaller",
+            "dominant"
+          ],
+          "title": "Position",
+          "type": "string"
+        },
+        "effect": {
+          "enum": [
+            "positive",
+            "negative",
+            "mixed",
+            "unclear"
+          ],
+          "title": "Effect",
+          "type": "string"
+        },
+        "strength": {
+          "default": "strong",
+          "enum": [
+            "strong",
+            "weak"
+          ],
+          "title": "Strength",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Plain English: why, for this position",
+          "minLength": 10,
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "position",
+        "effect",
+        "reason"
+      ],
+      "title": "CompetitionEffect",
+      "type": "object"
+    },
     "Law": {
       "additionalProperties": false,
       "description": "An Act, regulation, instrument, code, planning scheme or local law, as on its official register.",
@@ -635,6 +716,18 @@
       },
       "title": "Ablis",
       "type": "array"
+    },
+    "competition": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Competition"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Hand-coded effect on competition by market position; without it, rules apply"
     },
     "drafted_on": {
       "format": "date",

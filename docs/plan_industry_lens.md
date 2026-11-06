@@ -1,5 +1,7 @@
 # Plan: the ALICIA Industry lens page
 
+*Prototype built 6 November 2026 (DECISIONS E-122): the owner chose to prototype the page from the register as it stands and widen the legislation later. The page's design changed from the stages below to three market positions (entrants, small and medium competitors, monopoly and oligopoly players), each law coded positive or negative for competition; see [`industry_lens.md`](industry_lens.md). The stage-and-threshold idea survives in the rules for size thresholds.*
+
 *Replanned 6 November 2026 at the owner's request: legislation first. The ABS data side is parked (§6). Framework assessments only, no econometrics (E-87, E-113). Nothing beyond phase 1 is started until the owner confirms.*
 
 ## 1. Aim

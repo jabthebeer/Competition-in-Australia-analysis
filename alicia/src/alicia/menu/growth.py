@@ -45,12 +45,14 @@ REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blo
 HOME_PAGE = ("index.html", "Home")
 MENU_PAGE = ("menu.html", "Legislation menu")
 COMPETITION_PAGE = ("growth.html", "The state of competition in Australia")
+LENS_PAGE = ("industry-lens.html", "Industry lens (beta)")
 PAGES = (
     HOME_PAGE,
     MENU_PAGE,
     ("framework.html", "Framework"),
     COMPETITION_PAGE,
     ("conditions.html", "Economic conditions"),
+    LENS_PAGE,
 )
 # The landing page's two views of the competition landscape. A page that is not part of the build shows as
 # "coming soon" without a link; it becomes a link once the site builds it (it is in the nav or in the output).
@@ -77,8 +79,17 @@ LANDING = (
         "title": "Bottom up",
         "text": "Start from a single industry: its competitive conditions and the regulation that applies to it.",
         "links": (
-            {"href": "industry-lens.html", "name": "Industry lens", "text": "Competition in one industry at a time."},
-            {"href": "regulatory-overview.html", "name": "Regulatory overview by industry", "text": "The regulation that applies to each industry."},
+            {
+                "href": LENS_PAGE[0],
+                "name": LENS_PAGE[1],
+                "text": "The laws a business in one industry deals with, state by state, coded for their effect on "
+                "competition: for entrants, small and medium competitors, and the largest players.",
+            },
+            {
+                "href": "regulatory-overview.html",
+                "name": "Regulatory overview by industry",
+                "text": "The regulation that applies to each industry.",
+            },
         ),
     },
 )
@@ -602,6 +613,7 @@ def build_site(
     from pathlib import Path
 
     from . import framework as framework_page
+    from . import lens
     from .archive import ARCHIVE_PAGE, build_archive
     from .explorer import build_explorer
 
@@ -644,6 +656,12 @@ def build_site(
         path = out / name
         path.write_text(render(name, payload, name, standalone, pages), encoding="utf-8")
         written.append(path)
+    lens_path = out / LENS_PAGE[0]
+    lens_path.write_text(
+        render(LENS_PAGE[0], lens.payload(records, repo_base=data_base), LENS_PAGE[0], standalone, pages),
+        encoding="utf-8",
+    )
+    written.append(lens_path)
     if costing_dist:
         written += build_costing(out, costing_dist, pages)
     built = {href for href, _ in pages} | {p.name for p in written}

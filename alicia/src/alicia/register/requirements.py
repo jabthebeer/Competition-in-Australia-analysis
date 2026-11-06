@@ -200,6 +200,30 @@ class Reach(_Strict):
         return self
 
 
+class CompetitionEffect(_Strict):
+    """One position's effect, coded by hand (register/competition.py explains the positions)."""
+
+    position: Literal["entrants", "smaller", "dominant"]
+    effect: Literal["positive", "negative", "mixed", "unclear"]
+    strength: Literal["strong", "weak"] = "strong"
+    reason: str = Field(min_length=10, description="Plain English: why, for this position")
+
+
+class Competition(_Strict):
+    """A hand-coded competition assessment; when present it replaces the rule-based coding on the Industry lens."""
+
+    effects: tuple[CompetitionEffect, ...] = Field(min_length=1)
+    sources: tuple[Source, ...] = Field(default=(), description="Evidence for the assessment, quoted")
+    assessed_on: dt.date
+
+    @model_validator(mode="after")
+    def _one_per_position(self) -> Competition:
+        positions = [e.position for e in self.effects]
+        if len(positions) != len(set(positions)):
+            raise ValueError("a competition assessment codes each position at most once")
+        return self
+
+
 class Requirement(_Strict):
     id: RecordId
     family: RecordId = Field(description="The same requirement across jurisdictions, e.g. 'food-business-registration'")
@@ -221,6 +245,9 @@ class Requirement(_Strict):
     confidence_note: str | None = None
     records: tuple[RecordId, ...] = Field(default=(), description="Register items about it")
     ablis: tuple[str, ...] = Field(default=(), description="ABLIS service IDs, once checked against ABLIS")
+    competition: Competition | None = Field(
+        default=None, description="Hand-coded effect on competition by market position; without it, rules apply"
+    )
     drafted_on: dt.date
     review: Review = Review()
 
