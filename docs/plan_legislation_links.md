@@ -96,7 +96,7 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 | Phase | Status |
 |---|---|
 | A. Review | **Done 6 November 2026**: [`legislation_inventory.md`](legislation_inventory.md); 16 classes marked (`data/processed/anzsic/class_marks.csv`) |
-| B. Design and calibration | Design done 6 Nov 2026 ([`methods_legislation_links.md`](methods_legislation_links.md), E-119); calibration under way |
+| B. Design and calibration | Design done 6 Nov 2026 ([`methods_legislation_links.md`](methods_legislation_links.md), E-119). Calibration: batch 1 (Commonwealth, every business) done, 11 requirements, 32 of 32 quotes re-checked; batch 2 (states, every business) started with payroll tax |
 | C. Commonwealth | Not started |
 | D. States and territories | Not started (D2 settled: the corpus indexes NSW and SA, E-118) |
 | E. Councils | Not started |
