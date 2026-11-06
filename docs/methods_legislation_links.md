@@ -30,6 +30,7 @@
    - **Whole class:** when the law's scope, read against the ABS class definition, covers every business mainly engaged in the class.
    - **Primary activities:** when it covers only some of the class. The ABS primary activities are quoted exactly as the ABS lists them, and `alicia validate` checks the wording.
    - **Condition:** when it follows an activity that crosses classes, such as selling alcohol. It is linked to the classes whose ABS definition or primary activities include the activity, or that official guidance names.
+   - **Once per family, across all 506 classes** (revised after phase B). The reach is coded for the whole family from a keyword shortlist of ABS class names, definitions and primary activities. Each state's version is then checked for a narrower or wider scope. The calibration coded only its 19 classes; from phase C every requirement is coded across all 506.
 5. **Sources.**
    - Every requirement quotes the obligation from the law, read from the official register.
    - For NSW and SA, the quote may be read from the Open Australian Legal Corpus's copy of the official text (`checked: corpus-copy`, with the corpus document ID), cited by its official register link.
@@ -49,10 +50,19 @@
    - **Low:** inferred from the ABS class definition, with no source naming the industry.
 7. **Tiers.**
    - Council-made instruments (local laws, and planning schemes a council makes) are tier `local`, filed under the ABS LGA code. The code is checked against ASGS 2021 and its state.
-   - State laws that councils administer, such as food business registration, are tier `state` with `administered_by_councils`.
+   - State laws that councils administer, such as food business registration, are tier `state` with `administered_by_councils`. A permit that every council issues under a state Act is one state requirement, not one per council (revised after phase B: 83% of a random sample of ABLIS services were council-administered, most under state Acts). Fees or conditions that differ by council are recorded as values.
    - Classifying classes in each state's planning land-use terms is phase E.
 8. **Dates.** Values are those in force on the date checked (`as_at`). A law repealed since is not recorded.
 9. **Drafts.** Everything is drafted by AI-assisted desk research from the sources cited, and stays `draft` until a person has checked it.
+10. **Screening a register** (added after phase B). Every law in a register's list is screened, and the call is recorded in the catalogue so it can be audited and sampled:
+    - **Y:** it creates one or more requirements;
+    - **L:** it only supports an existing requirement (a standard, rate or form under it); the law is added to that requirement's `laws`;
+    - **P:** a planning instrument, handled in phase E;
+    - **N:** no obligation on businesses, with a one-line reason.
+
+    A title triage first sets aside amending Acts, appropriations, airworthiness directives, tariff concession orders, appointments and similar series; the triage patterns are kept with the catalogue.
+11. **Thresholds in subordinate instruments** (added after phase B). Before a threshold is recorded as not yet quoted, the regulations, determinations and orders made under the law are searched for it. The calibration found the GST threshold in the regulations and the ACT payroll tax threshold in a determination, not in the Acts.
+12. **Gaps are logged** (added after phase B). A family with no requirement found in a state is logged as not found, with what was searched, rather than left blank.
 
 ## Calibration (phase B)
 
@@ -82,3 +92,5 @@
 5. councils.
 
 The time taken, the sources fetched and the sources refused are logged for each requirement (`docs/calibration_legislation_links.csv`). Those logs give the estimate for phases C to F.
+
+**Results.** 159 requirements across all tiers; 376 quotes, all re-found in their sources. Steady-state time was 0.74 active minutes a requirement. Three steps the batches did not exercise were measured in small samples: screening a register, coding reach across all 506 classes, and the mix of ABLIS services. The estimate for phases C to G, and the options for D5, are in [`estimate_legislation_links.md`](estimate_legislation_links.md). The rules revised as a result are 4, 7 and 10 to 12; rule 5a was added during batch 4f. From phase C, each batch runs in a fresh session with a short brief: re-reading a long conversation's context was most of the calibration's token use.

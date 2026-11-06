@@ -1,0 +1,16 @@
+phase,component,unit,qty_low,qty_central,qty_high,min_low,min_central,min_high,hours_low,hours_central,hours_high,basis
+C,Build the Commonwealth catalogue,jurisdiction,1,1,1,30,60,120,0.5,1.0,2.0,assumed
+C,"Screen laws (title triage, then a quick read)",law,10773,10773,10773,0.02,0.02,0.08,3.0,3.0,15.0,measured 1.1 s a law; high assumed
+C,"Draft requirements (law text, quotes, reach)",requirement,300,1017,3012,0.57,0.74,1.31,2.8,12.5,65.7,measured rate; count from the sample (95% interval)
+C,Attach supporting instruments to requirements,law,2327,2327,2327,0.1,0.2,0.5,3.9,7.8,19.4,count measured; time assumed
+C,Code full reach across 506 classes,family,300,1017,3012,0.25,0.25,0.5,1.3,4.2,25.1,measured 15 s a family; high assumed
+D,Build the eight state catalogues,jurisdiction,8,8,8,30,60,120,4.0,8.0,16.0,assumed
+D,Screen laws,law,10874,10874,10874,0.02,0.02,0.08,3.0,3.0,15.1,measured 1.0 s a law; high assumed
+D,Draft requirements,requirement,1284,3021,6218,0.57,0.74,1.31,12.2,37.2,135.6,measured rate; count from the sample (95% interval) x 8/5 states
+D,Attach supporting instruments,law,1708,1708,1708,0.1,0.2,0.5,2.8,5.7,14.2,count measured; time assumed
+D,Code full reach (once per family),family,202,476,979,0.25,0.25,0.5,0.8,2.0,8.2,measured; 6.4 states a family in calibration
+E,Classify classes in planning land-use terms,class x state,4048,4048,4048,0.05,0.15,0.3,3.4,10.1,20.2,assumed
+E,"Local-law requirements, 21 sample councils (D4)",requirement,220,337,485,0.4,0.82,1.31,1.5,4.6,10.6,count from the ABLIS sample (95% interval); rate measured in batch 5
+F,Compare with ABLIS; review mismatches (waits for the key),class x state,405,405,405,1,2,3,6.8,13.5,20.2,"assumed: 10% of 4,048 cells reviewed"
+G,Re-verify a random sample of links,link,400,400,400,0.5,1,1.5,3.3,6.7,10.0,assumed
+all,"Total, phases C to G (sample councils)",,,,,,,,49.3,119.3,377.3,

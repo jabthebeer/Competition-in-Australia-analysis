@@ -77,4 +77,6 @@ Calibration batch 5 found that ABLIS's public website answers two of the open qu
 
   This is a first measure of the size of the licence and obligation layer.
 
-The API remains the right route for bulk use. The public pages carry no ANZSIC codes, and ABLIS's copyright allows only unaltered, non-commercial reproduction. So the calibration read only the pages it needed (19 council pages in batch 5 and 40 state pages in batch 4f) and quotes just the first sentence of each description, with attribution.
+- **What the services are.** A random sample of 60 service pages (phase B wrap-up, [estimate](estimate_legislation_links.md)) found 57 licences, 2 codes of practice and 1 advisory listing. 50 are administered by a council, most under a state Act and repeated for each council, and 17 name a council local law. Every page names an Act. So the 30,663 pages hold far fewer distinct requirements: a permit every council issues under one state Act is one requirement.
+
+The API remains the right route for bulk use. The public pages carry no ANZSIC codes, and ABLIS's copyright allows only unaltered, non-commercial reproduction. So the calibration read only the pages it needed (19 council pages in batch 5, 40 state pages in batch 4f and a random sample of 60) and quotes just the first sentence of each description, with attribution.
