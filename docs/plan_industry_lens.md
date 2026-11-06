@@ -10,8 +10,8 @@ Pick an Australian industry and a state. See, in the first person, what a busine
 
 | Phase | What | Status |
 |---|---|---|
-| 1 | Choose the ABS classification level that legislation is collected against, and list its categories | **Done; awaiting your confirmation** (§3, list in [`anzsic_classes.md`](anzsic_classes.md)) |
-| 2 | Plan how to ingest all the legislation that applies to these businesses: Commonwealth, states and territories, councils | Next, after you confirm phase 1. Not started (§5) |
+| 1 | Choose the ABS classification level that legislation is collected against, and list its categories | **Done; confirmed 6 Nov 2026** (§3, list in [`anzsic_classes.md`](anzsic_classes.md); E-114, E-115) |
+| 2 | Plan how to ingest all the legislation that applies to these businesses: Commonwealth, states and territories, councils | **Plan proposed, awaiting approval**: [`plan_legislation_links.md`](plan_legislation_links.md) |
 | 3 | Ingest, as phase 2 decides | Not started |
 | 4 | Page design from the legislative view: stages, threshold markers, state switch, cross-cutting badges | Not started |
 | 5 | Add the structural (ABS data) view | Parked (§6) |
@@ -55,7 +55,9 @@ Below the class there is no ABS code to collect against, only the descriptive li
 - **Part of a class.** 4271 *Pharmaceutical, Cosmetic and Toiletry Goods Retailing* lists both "Pharmacy, retail, operation" and "Cosmetic retailing". The register's pharmacy regime (ownership, premises and PBS approval) is mapped to the whole class today, so it also lands on cosmetics and perfume retailers. With a qualifier, it is recorded against 4271 for "Pharmacy, retail, operation" and "Prescription, medicine, dispensing" only.
 - **An activity across classes.** A café that also serves alcohol stays in 4511 *Cafes and Restaurants* while that is its main activity. The ABS sends units "selling alcoholic beverages both for consumption on and off the premises" to 4520 *Pubs, Taverns and Bars*. Liquor licensing is mapped to all of 4511 today, but it reaches a café through the activity, not the class. That is what an activity trigger records.
 
-## 4. Questions for you (phase 1)
+## 4. Questions for you (phase 1), answered 6 November 2026
+
+Answers: Q1 yes; Q2 no, occupational licences stay with the classes whose businesses employ the people (may be revisited); Q3 keep all 506 and mark them.
 
 | # | Question | My recommendation |
 |---|---|---|
@@ -64,6 +66,8 @@ Below the class there is no ABS code to collect against, only the descriptive li
 | Q3 | Some classes are mainly government or households (e.g. 7520 *State Government Administration*, 9601–9603 private households). Keep all 506 as you decided, and mark these? | Keep, and mark them |
 
 ## 5. Phase 2: what it will plan (not started)
+
+*Superseded on 6 November 2026 by [`plan_legislation_links.md`](plan_legislation_links.md), which covers each of these headings.*
 
 These are the headings for the next conversation, not decisions:
 
