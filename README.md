@@ -3,9 +3,9 @@ A series of econometric analyses for competition in Australia, aiming to ultimat
 
 ## Browse the ALICIA legislation menu
 
-The menu explorer is one HTML page built from the register. Use it to search the 69 changes, filter for **Evaluated** ones and open the **Results** tab for each evaluation's estimated effects and charts.
+The website opens on a landing page with two views: **Top down** (state of competition, the legislation menu) and **Bottom up** (Industry lens and Regulatory overview by industry, both coming soon). The menu explorer is one HTML page built from the register. Use it to search the 171 changes, filter for **Evaluated** ones and open the **Results** tab for each evaluation's estimated effects and charts.
 
-- **On GitHub Pages:** <https://jabthebeer.github.io/Competition-in-Australia-analysis/>
+- **On GitHub Pages:** <https://jabthebeer.github.io/Competition-in-Australia-analysis/> (the menu is at [`menu.html`](https://jabthebeer.github.io/Competition-in-Australia-analysis/menu.html))
   - It is published by `.github/workflows/menu-explorer-pages.yml` on every push to `main`.
   - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 - **Locally:** `cd alicia && uv run alicia explorer --standalone -o menu.html`, then open `menu.html` in a browser.

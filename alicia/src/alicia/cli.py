@@ -6,7 +6,7 @@ alicia show <id>                     one record in full
 alicia families                      reforms adopted by several jurisdictions, in date order
 alicia dates <id>... | --all         gather effective dates and check them against registers
 alicia explorer [-o file.html]       build the interactive menu explorer (one HTML file)
-alicia site [-o dir]                 build the website: the menu plus the growth and conditions pages
+alicia site [-o dir]                 build the website: landing page, menu, growth and conditions pages
 alicia methods [-o file.md]          key insights and econometric methods of every evaluation, as Markdown
 alicia tables [-o file.md] [--latex file.tex]   every evaluation's regression tables, as Markdown and LaTeX
 alicia pipeline build <source>...    build outcome panels in data/processed (see alicia.pipeline.sources)
@@ -416,7 +416,7 @@ def main(argv: list[str] | None = None) -> int:
 
     si = sub.add_parser("site", help="build the website: legislation menu, growth and conditions pages")
     si.add_argument(
-        "-o", "--output", default="site", help="directory to write index.html, growth.html, conditions.html"
+        "-o", "--output", default="site", help="directory to write index.html (landing page), menu.html, growth.html, conditions.html"
     )
     si.add_argument("--dates", help="a report from 'alicia dates --all --json', to show register checks")
     si.add_argument("--fragment", action="store_true", help="write page fragments instead of full HTML documents")

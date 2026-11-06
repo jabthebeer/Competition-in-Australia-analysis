@@ -63,12 +63,12 @@ def test_render_fills_every_placeholder_and_marks_the_current_page():
 
 
 @needs_panels
-def test_build_site_writes_three_linked_pages(tmp_path):
+def test_build_site_writes_the_landing_page_and_three_linked_pages(tmp_path):
     records = load_records().records
     evals = load_evaluations(records).evaluations
     paths = growth.build_site(tmp_path, records, evals)
     names = sorted(p.name for p in paths)
-    assert [n for n in names if not n.startswith("evaluation-")] == ["conditions.html", "growth.html", "index.html"]
+    assert [n for n in names if not n.startswith("evaluation-")] == ["conditions.html", "growth.html", "index.html", "menu.html"]
     assert sorted(n for n in names if n.startswith("evaluation-")) == sorted(f"evaluation-{e.id}.html" for e in evals)
     one = (tmp_path / "evaluation-childcare-nqf-wa-delay-2012.html").read_text("utf-8")
     payload = json.loads(re.search(r'id="menu-data">(.*?)</script>', one, re.S).group(1))
@@ -76,10 +76,26 @@ def test_build_site_writes_three_linked_pages(tmp_path):
     assert {r["id"] for r in payload["records"]} == {"cth-nqf-childcare-2012", "wa-nqf-childcare-2012"}
     assert set(payload["evaluations"]) == {"childcare-nqf-wa-delay-2012", "childcare-nqf-2012"}  # follows link
     assert "<title>National Quality Framework" in one
-    index = (tmp_path / "index.html").read_text("utf-8")
-    assert '<a href="index.html" aria-current="page">' in index and 'href="conditions.html"' in index
+    menu = (tmp_path / "menu.html").read_text("utf-8")
+    assert '<a href="menu.html" aria-current="page">' in menu and 'href="conditions.html"' in menu
+    assert "index.html#" not in menu and 'href="menu.html#results"' in one  # evaluation pages lead back to the menu
+    home = (tmp_path / "index.html").read_text("utf-8")
+    assert '<a href="index.html" aria-current="page">Home</a>' in home and not re.search(r"__[A-Z_]+__", home)
+    assert re.findall(r'<h2 id="h-[a-z-]+">([^<]+)</h2>', home) == ["Top down", "Bottom up"]
+    links = re.findall(r'<a class="view-link" href="([^"]+)">', home)
+    assert links == ["growth.html", "menu.html"] and all((tmp_path / h).exists() for h in links)
+    assert home.count("Coming soon") == 2  # Industry lens and the regulatory overview are not built yet
+    assert 'href="industry-lens.html"' not in home and 'href="regulatory-overview.html"' not in home
+    assert 'location.replace("menu.html" + location.hash)' in home  # old index.html#<id> links reach the menu
     data = re.search(r'id="page-data">(.*?)</script>', (tmp_path / "growth.html").read_text("utf-8"), re.S)
     assert json.loads(data.group(1))["repo"].startswith("https://github.com/")
+
+
+def test_landing_links_only_pages_that_are_built():
+    html = growth.landing({"growth.html", "menu.html", "industry-lens.html"})
+    assert '<a class="view-link" href="industry-lens.html">' in html  # a new page becomes a link once it is built
+    assert html.count("Coming soon") == 1 and 'href="regulatory-overview.html"' not in html
+    assert html.index("Top down") < html.index("Bottom up")
 
 
 def _costing_dist(tmp_path, html=None):
@@ -122,7 +138,7 @@ def test_build_site_links_the_costing_tab_from_every_page_only_when_built(tmp_pa
     evals = load_evaluations(records).evaluations
     names = {p.name for p in growth.build_site(tmp_path / "with", records, evals, costing_dist=_costing_dist(tmp_path))}
     assert {"costing.html", "index-abc.js"} <= names
-    for page in ("index.html", "growth.html", "conditions.html"):
+    for page in ("index.html", "menu.html", "growth.html", "conditions.html"):
         assert 'href="costing.html"' in (tmp_path / "with" / page).read_text("utf-8"), page
     growth.build_site(tmp_path / "without", records, evals)
     assert not (tmp_path / "without" / "costing.html").exists()

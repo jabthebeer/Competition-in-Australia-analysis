@@ -37,10 +37,43 @@ WINDOWS = (
     {"id": "all", "start": 1989, "end": 2024},
 )
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
+HOME_PAGE = ("index.html", "Home")
+MENU_PAGE = ("menu.html", "Legislation menu")
 PAGES = (
-    ("index.html", "Legislation menu"),
+    HOME_PAGE,
+    MENU_PAGE,
     ("growth.html", "State and industry growth"),
     ("conditions.html", "Economic conditions"),
+)
+# The landing page's two views of the competition landscape. A page that is not part of the build shows as
+# "coming soon" without a link; it becomes a link once the site builds it (it is in the nav or in the output).
+LANDING = (
+    {
+        "id": "top-down",
+        "title": "Top down",
+        "text": "Start from the whole economy: how competition is faring across states and industries, and the legislative changes that shape it.",
+        "links": (
+            {
+                "href": "growth.html",
+                "name": "State of competition",
+                "text": "State and industry growth: output, jobs, and business entry and exit by state and ANZSIC division.",
+            },
+            {
+                "href": MENU_PAGE[0],
+                "name": "Legislation menu",
+                "text": "Commonwealth, state and territory changes that could affect competition, with their dates, expected direction and evaluability, and what the evaluations found.",
+            },
+        ),
+    },
+    {
+        "id": "bottom-up",
+        "title": "Bottom up",
+        "text": "Start from a single industry: its competitive conditions and the regulation that applies to it.",
+        "links": (
+            {"href": "industry-lens.html", "name": "Industry lens", "text": "Competition in one industry at a time."},
+            {"href": "regulatory-overview.html", "name": "Regulatory overview by industry", "text": "The regulation that applies to each industry."},
+        ),
+    },
 )
 # The Policy costing tab is built separately (Vite, `npm run build:site` in regulatory-burden-tool/) and added
 # to the site only when that build is given, so the nav never links to a missing page.
@@ -305,6 +338,34 @@ def nav(current: str, pages: tuple = PAGES) -> str:
     return '<nav class="site-nav" aria-label="ALICIA pages">' + "".join(links) + "</nav>"
 
 
+def landing(built: set[str]) -> str:
+    """The landing page's two views. ``built`` holds the pages this build writes; a link to any other page is shown
+    as coming soon, with no link."""
+    from html import escape
+
+    out = []
+    for view in LANDING:
+        items = []
+        for link in view["links"]:
+            name, text = escape(link["name"]), escape(link["text"])
+            if link["href"] in built:
+                items.append(
+                    f'<li><a class="view-link" href="{escape(link["href"])}"><span class="name">{name}<span class="go" aria-hidden="true">Open →</span></span>'
+                    f'<p class="desc">{text}</p></a></li>'
+                )
+            else:
+                items.append(
+                    f'<li><div class="view-link soon"><span class="name">{name}<span class="badge">Coming soon</span></span>'
+                    f'<p class="desc">{text}</p></div></li>'
+                )
+        out.append(
+            f'<section class="panel view" aria-labelledby="h-{view["id"]}"><div class="view-head"><p class="kicker">View</p>'
+            f'<h2 id="h-{view["id"]}">{escape(view["title"])}</h2><p>{escape(view["text"])}</p></div>'
+            f'<ul class="view-links">{"".join(items)}</ul></section>'
+        )
+    return "\n    ".join(out)
+
+
 def render(template: str, payload: dict, page: str, standalone: bool = False, pages: tuple = PAGES) -> str:
     """Fill a page template: shared styles and chart code, navigation, then the embedded data."""
     blob = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -357,8 +418,8 @@ def build_site(
     repo_base: str | None = None,
     costing_dist=None,
 ) -> list:
-    """Write the legislation menu (index.html), the two summary pages and, given its build, the Policy costing
-    tab into ``out_dir``."""
+    """Write the landing page (index.html), the legislation menu (menu.html), the two summary pages and, given its
+    build, the Policy costing tab into ``out_dir``."""
     from pathlib import Path
 
     from .explorer import build_explorer
@@ -371,12 +432,12 @@ def build_site(
     written = [
         build_explorer(
             records,
-            out / "index.html",
+            out / MENU_PAGE[0],
             dates_report=dates_report,
             standalone=standalone,
             evaluations=evaluations,
             repo_base=explorer_base,
-            nav=nav("index.html", pages),
+            nav=nav(MENU_PAGE[0], pages),
             evaluation_pages=True,
         )
     ]
@@ -391,4 +452,11 @@ def build_site(
         written.append(path)
     if costing_dist:
         written += build_costing(out, costing_dist, pages)
+    built = {href for href, _ in pages} | {p.name for p in written}
+    home = out / HOME_PAGE[0]
+    home.write_text(
+        render("home.html", {}, HOME_PAGE[0], standalone, pages).replace("<!--__LANDING__-->", landing(built)),
+        encoding="utf-8",
+    )
+    written.append(home)
     return written

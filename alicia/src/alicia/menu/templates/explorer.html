@@ -669,7 +669,7 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
   }
   function bindEval(root) {
     root.querySelectorAll(".recbtn, .recbtn-inline").forEach((b) => b.addEventListener("click", () => {
-      if (DATA.single) location.href = `index.html#${encodeURIComponent(b.dataset.id)}`;
+      if (DATA.single) location.href = `menu.html#${encodeURIComponent(b.dataset.id)}`;
       else select(b.dataset.id);
     }));
     root.querySelectorAll(".ev-card[data-ev], .ev-body[data-ev]").forEach((el) => el.addEventListener("dblclick", (e) => openEvalPage(el.dataset.ev, e)));
@@ -1128,7 +1128,7 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
     const head = document.querySelector("header.top");
     head.querySelector("h1").textContent = ev.title;
     const fam = ev.family && DATA.familyLabels[ev.family];
-    head.querySelector(".lede").innerHTML = `<a href="index.html#results">← All evaluations</a>`;
+    head.querySelector(".lede").innerHTML = `<a href="menu.html#results">← All evaluations</a>`;
     const recs = ev.records.map((id) => R.find((r) => r.id === id)).filter(Boolean).sort(byDate);
     $("metaLine").innerHTML = [`Evaluated ${esc(fmtDate(ev.evaluated_on))}`, fam ? esc(fam) : "", `${recs.length} register record${recs.length === 1 ? "" : "s"}`]
       .filter(Boolean).map((x) => `<span>${x}</span>`).join("");
