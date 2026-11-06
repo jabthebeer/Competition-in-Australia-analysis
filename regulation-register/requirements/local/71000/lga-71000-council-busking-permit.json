@@ -1,0 +1,116 @@
+{
+  "id": "lga-71000-council-busking-permit",
+  "family": "council-busking-permit",
+  "jurisdiction": "NT",
+  "tier": "local",
+  "lga": "71000",
+  "lga_name": "Darwin",
+  "regime": null,
+  "title": "Get a permit to busk or perform in public places",
+  "kind": "licence",
+  "what": "Get the council's permit before busking or performing in streets, malls or other public places.",
+  "laws": [
+    {
+      "title": "City of Darwin By-laws 2023",
+      "jurisdiction": "NT",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://ablis.business.gov.au/service/nt/busking-permit-city-of-darwin/3575",
+      "provisions": null,
+      "applied": false
+    },
+    {
+      "title": "Local Government Act 2019 Northern Territory",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://ablis.business.gov.au/service/nt/busking-permit-city-of-darwin/3575",
+      "provisions": null,
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "City of Darwin By-laws 2023",
+      "publisher": "City of Darwin",
+      "url": "https://www.darwin.nt.gov.au/sites/default/files/publications/attachments/By-Laws%202023_high%20res.pdf",
+      "locator": "by-law 95(2)",
+      "quote": "A person must not, without an authorisation, engage in the activities referred to in clause (1)(a) to (f).",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "City of Darwin By-laws 2023",
+      "publisher": "City of Darwin",
+      "url": "https://www.darwin.nt.gov.au/sites/default/files/publications/attachments/By-Laws%202023_high%20res.pdf",
+      "locator": "by-law 95(1)(a)",
+      "quote": "(a) busking, performing or offering entertainment to the public;",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Busking permit city of darwin",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "url": "https://ablis.business.gov.au/service/nt/busking-permit-city-of-darwin/3575",
+      "locator": "Description",
+      "quote": "You will need this permit if you intend to perform music, dance or street theatre in a public place for the purpose of receiving contributions from the public.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "it performs for money in a street or other public place",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9002"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it performs for money in a street or other public place",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Calibration: coded for the calibration class; other classes that use public space follow in phase E.",
+      "sources": [
+        {
+          "title": "City of Darwin By-laws 2023",
+          "publisher": "City of Darwin",
+          "url": "https://www.darwin.nt.gov.au/sites/default/files/publications/attachments/By-Laws%202023_high%20res.pdf",
+          "locator": "by-law 95(2)",
+          "quote": "A person must not, without an authorisation, engage in the activities referred to in clause (1)(a) to (f).",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [
+    "3575"
+  ],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

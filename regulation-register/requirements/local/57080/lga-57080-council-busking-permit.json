@@ -1,0 +1,96 @@
+{
+  "id": "lga-57080-council-busking-permit",
+  "family": "council-busking-permit",
+  "jurisdiction": "WA",
+  "tier": "local",
+  "lga": "57080",
+  "lga_name": "Perth",
+  "regime": null,
+  "title": "Get a permit to busk or perform in public places",
+  "kind": "licence",
+  "what": "Get the council's permit before busking or performing in streets, malls or other public places.",
+  "laws": [
+    {
+      "title": "Public Trading Local Law 2005",
+      "jurisdiction": "WA",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://ablis.business.gov.au/service/wa/street-entertainers-permit-city-of-perth/19846",
+      "provisions": null,
+      "applied": false
+    },
+    {
+      "title": "Local Government Act 1995 Western Australia",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://ablis.business.gov.au/service/wa/street-entertainers-permit-city-of-perth/19846",
+      "provisions": null,
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Street entertainers permit city of perth",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "url": "https://ablis.business.gov.au/service/wa/street-entertainers-permit-city-of-perth/19846",
+      "locator": "Description",
+      "quote": "You will need this permit if you intend to perform street entertainment, including busking, playing musical instruments, singing, acting and reciting poetry.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "it performs for money in a street or other public place",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9002"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it performs for money in a street or other public place",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Calibration: coded for the calibration class; other classes that use public space follow in phase E.",
+      "sources": [
+        {
+          "title": "Street entertainers permit city of perth",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/wa/street-entertainers-permit-city-of-perth/19846",
+          "locator": "Description",
+          "quote": "You will need this permit if you intend to perform street entertainment, including busking, playing musical instruments, singing, acting and reciting poetry.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Linked to the council's local law through its ABLIS listing (council local laws are not on a legislation register); the law's text is not quoted.",
+  "records": [],
+  "ablis": [
+    "19846"
+  ],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

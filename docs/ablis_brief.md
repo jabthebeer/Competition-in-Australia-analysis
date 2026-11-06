@@ -54,3 +54,27 @@ A business case you could paste (about 1,050 characters):
 ## Until the key arrives
 
 Phases A to E go ahead without it, and phase F waits. Phase B designs the schema so ABLIS's activity codes, service IDs, tiers and life stages drop straight in, so nothing has to be redone when the key comes.
+
+## Update, 6 November 2026: what the public site shows
+
+Calibration batch 5 found that ABLIS's public website answers two of the open questions without the API:
+
+- **Councils are covered.** Every capital-city council has outdoor dining, busking and filming permits listed, among them Melbourne, Perth, Adelaide and Hobart, whose own websites refuse automated requests.
+- **Each listing gives the legal basis.** A service page states when the permit is needed, its type, its current fees, the Act and the local law or by-law behind it, and the administering agency. For example, Melbourne's outdoor dining permit is under the "Local Government Act 2020 Victoria" and the "Activities Local Law 2024".
+- **The scale is known.** The site's sitemap (robots.txt allows it) lists 30,663 service pages:
+
+  | Level | Service pages |
+  |---|---|
+  | WA | 8,754 |
+  | NSW | 7,617 |
+  | Victoria | 5,022 |
+  | Queensland | 2,903 |
+  | SA | 2,582 |
+  | Tasmania | 1,846 |
+  | Australian Government | 775 |
+  | NT | 666 |
+  | ACT | 498 |
+
+  This is a first measure of the size of the licence and obligation layer.
+
+The API remains the right route for bulk use. The public pages carry no ANZSIC codes, and ABLIS's copyright allows only unaltered, non-commercial reproduction. So the calibration read only the 19 pages it needed and quotes just the first sentence of each description, with attribution.
