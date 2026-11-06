@@ -65,14 +65,27 @@ def plain(page: str) -> str:
     return "\n".join(" ".join(line.split()) for line in text.splitlines() if line.strip())
 
 
+def get(url: str, timeout: int = 180) -> httpx.Response:
+    """GET with up to four tries, backing off, for registers that drop connections."""
+    for attempt in range(4):
+        try:
+            r = httpx.get(url, headers=HEADERS, timeout=timeout, follow_redirects=True)
+            r.raise_for_status()
+            return r
+        except (httpx.TransportError, httpx.HTTPStatusError) as exc:
+            if attempt == 3 or (isinstance(exc, httpx.HTTPStatusError) and exc.response.status_code < 500):
+                raise
+            time.sleep(2 ** (attempt + 1))
+    raise RuntimeError("unreachable")
+
+
 def fetch(url: str, key: str) -> str:
     CACHE.mkdir(parents=True, exist_ok=True)
     path = CACHE / f"{key}.txt"
     if path.exists():
         return path.read_text("utf-8")
     time.sleep(PAUSE)
-    r = httpx.get(url, headers=HEADERS, timeout=120, follow_redirects=True)
-    r.raise_for_status()
+    r = get(url)
     text = plain(r.text)
     path.write_text(text, "utf-8")
     (CACHE / f"{key}.json").write_text(
@@ -157,8 +170,7 @@ def fetch_doc(url: str, key: str) -> tuple[str, dict]:
     if path.exists() and meta_path.exists():
         return path.read_text("utf-8"), json.loads(meta_path.read_text("utf-8"))
     time.sleep(PAUSE)
-    r = httpx.get(url, headers=HEADERS, timeout=180, follow_redirects=True)
-    r.raise_for_status()
+    r = get(url)
     data = r.content
     if data[:4] == b"%PDF":
         with tempfile.NamedTemporaryFile(suffix=".pdf") as f:

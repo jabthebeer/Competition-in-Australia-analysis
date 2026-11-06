@@ -1,0 +1,86 @@
+{
+  "id": "vic-whs-primary-duty",
+  "family": "whs-primary-duty",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "work-health-and-safety",
+  "title": "Meet the employer's general health and safety duty",
+  "kind": "standard",
+  "what": "Provide and maintain, so far as is reasonably practicable, a working environment that is safe and without risks to health.",
+  "laws": [
+    {
+      "title": "Occupational Health and Safety Act 2004 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/occupational-health-and-safety-act-2004",
+      "provisions": "s 21"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Summary of the OHS Act 2004: General OHS Duties",
+      "publisher": "WorkSafe Victoria",
+      "url": "https://www.worksafe.vic.gov.au/summary-ohs-act-2004-general-ohs-duties",
+      "locator": "Duties of employers to employees and contractors (section 21)",
+      "quote": "The OHS Act requires all employers to provide and maintain a working environment that is safe and without risks to health. This duty is to be met so far as is reasonably practicable.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "vic-worksafe"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Summary of the OHS Act 2004: General OHS Duties",
+          "publisher": "WorkSafe Victoria",
+          "url": "https://www.worksafe.vic.gov.au/summary-ohs-act-2004-general-ohs-duties",
+          "locator": "Duties of employers to employees and contractors (section 21)",
+          "quote": "The OHS Act requires all employers to provide and maintain a working environment that is safe and without risks to health. This duty is to be met so far as is reasonably practicable.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Victoria has not adopted the model WHS law; its Act's text is in documents the register asks automated tools not to fetch, so the duty is quoted from WorkSafe Victoria. Its duty falls on employers, not on every business.",
+  "records": [
+    "vic-ohs-not-harmonised"
+  ],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
