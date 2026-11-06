@@ -160,3 +160,19 @@ def test_a_quantity_threshold_needs_its_unit_and_source():
     assert (
         Requirement.model_validate(req(triggers=[trig | {"sources": [SOURCE]}])).triggers[0].unit.startswith("square")
     )
+
+
+def test_a_state_can_cite_a_national_law_hosted_by_another_state_only_when_applied():
+    qld = {
+        "title": "Health Practitioner Regulation National Law",
+        "jurisdiction": "QLD",
+        "kind": "act",
+        "register_id": "act-2009-045",
+    }
+    base = req(id="sa-example", jurisdiction="SA", tier="state")
+    wrong = Requirement.model_validate(base | {"laws": [qld]})
+    right = Requirement.model_validate(
+        base | {"id": "sa-example-2", "family": "other", "laws": [qld | {"applied": True}]}
+    )
+    problems = check_requirements([wrong, right], bodies={}, regimes=set(), records=set())
+    assert len(problems) == 1 and "is from QLD, not SA" in problems[0]

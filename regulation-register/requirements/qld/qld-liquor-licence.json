@@ -1,0 +1,84 @@
+{
+  "id": "qld-liquor-licence",
+  "family": "liquor-licence",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "liquor-licensing",
+  "title": "Hold a liquor licence to sell alcohol",
+  "kind": "licence",
+  "what": "Hold a liquor licence (or permit) of the right type before selling or supplying alcohol; cafes and restaurants usually need an on-premises or restaurant licence.",
+  "laws": [
+    {
+      "title": "Liquor Act 1992 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1992-021",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-021",
+      "provisions": "s 169"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Liquor Act 1992 (Qld)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-021",
+      "locator": "s 169 (current)",
+      "quote": "A person must not sell liquor unless— (a) if the liquor is wine—the sale is made under the authority of a licence or permit under this Act or the Wine Industry Act 1994 ; or (b) otherwise—the sale is made under the authority of a licence or permit.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Selling or supplying alcohol.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4511"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells or supplies alcohol",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Calibration: cafes and restaurants; pubs, bottle shops and other classes follow in phase D.",
+      "sources": [
+        {
+          "title": "Liquor Act 1992 (Qld)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-021",
+          "locator": "s 169 (current)",
+          "quote": "A person must not sell liquor unless— (a) if the liquor is wine—the sale is made under the authority of a licence or permit under this Act or the Wine Industry Act 1994 ; or (b) otherwise—the sale is made under the authority of a licence or permit.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

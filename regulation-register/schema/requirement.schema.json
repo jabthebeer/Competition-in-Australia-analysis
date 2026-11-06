@@ -77,6 +77,12 @@
           "default": null,
           "description": "e.g. 's 9-5', 'Part 3, Division 2'",
           "title": "Provisions"
+        },
+        "applied": {
+          "default": false,
+          "description": "A national law hosted by another jurisdiction (e.g. the Health Practitioner Regulation National Law in Queensland's Act) that this jurisdiction applies as its own law",
+          "title": "Applied",
+          "type": "boolean"
         }
       },
       "required": [

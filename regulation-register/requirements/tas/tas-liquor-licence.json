@@ -1,0 +1,84 @@
+{
+  "id": "tas-liquor-licence",
+  "family": "liquor-licence",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "liquor-licensing",
+  "title": "Hold a liquor licence to sell alcohol",
+  "kind": "licence",
+  "what": "Hold a liquor licence (or permit) of the right type before selling or supplying alcohol; cafes and restaurants usually need an on-premises or restaurant licence.",
+  "laws": [
+    {
+      "title": "Liquor Licensing Act 1990 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1990-044",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1990-044",
+      "provisions": "s 5"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Liquor Licensing Act 1990 (Tas)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1990-044",
+      "locator": "s 5 (current)",
+      "quote": "A person must not sell liquor except as authorized by– (a) a liquor licence; or (b) a liquor permit; or (c) a general liquor exemption.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Selling or supplying alcohol.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4511"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells or supplies alcohol",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Calibration: cafes and restaurants; pubs, bottle shops and other classes follow in phase D.",
+      "sources": [
+        {
+          "title": "Liquor Licensing Act 1990 (Tas)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1990-044",
+          "locator": "s 5 (current)",
+          "quote": "A person must not sell liquor except as authorized by– (a) a liquor licence; or (b) a liquor permit; or (c) a general liquor exemption.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

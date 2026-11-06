@@ -1,0 +1,84 @@
+{
+  "id": "nt-liquor-licence",
+  "family": "liquor-licence",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "liquor-licensing",
+  "title": "Hold a liquor licence to sell alcohol",
+  "kind": "licence",
+  "what": "Hold a liquor licence (or permit) of the right type before selling or supplying alcohol; cafes and restaurants usually need an on-premises or restaurant licence.",
+  "laws": [
+    {
+      "title": "Liquor Act 2019 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12371",
+      "provisions": "Unauthorised sale of liquor, subs (1)"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Liquor Act 2019 (NT)",
+      "publisher": "Official legislation register",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12371",
+      "locator": "Unauthorised sale of liquor, subs (1) (current reprint)",
+      "quote": "A person commits an offence if: (a) the person intentionally sells liquor; and (b) the sale is not exempted from the requirement for a licence under section 43;",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Selling or supplying alcohol.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4511"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells or supplies alcohol",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Calibration: cafes and restaurants; pubs, bottle shops and other classes follow in phase D.",
+      "sources": [
+        {
+          "title": "Liquor Act 2019 (NT)",
+          "publisher": "Official legislation register",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12371",
+          "locator": "Unauthorised sale of liquor, subs (1) (current reprint)",
+          "quote": "A person commits an offence if: (a) the person intentionally sells liquor; and (b) the sale is not exempted from the requirement for a licence under section 43;",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -129,6 +129,11 @@ class Law(_Strict):
     register_id: str | None = Field(default=None, description="e.g. C2004A00109, or the register's own identifier")
     register_url: HttpUrl | None = None
     provisions: str | None = Field(default=None, description="e.g. 's 9-5', 'Part 3, Division 2'")
+    applied: bool = Field(
+        default=False,
+        description="A national law hosted by another jurisdiction (e.g. the Health Practitioner Regulation "
+        "National Law in Queensland's Act) that this jurisdiction applies as its own law",
+    )
 
     @model_validator(mode="after")
     def _traceable(self) -> Law:
@@ -339,7 +344,7 @@ def check_requirements(reqs: list[Requirement], bodies: dict, regimes: set[str],
         problems += [f"{where}: unknown body '{b}'" for b in q.administered_by if b not in bodies]
         problems += [f"{where}: unknown register record '{r}'" for r in q.records if r not in records]
         for law in q.laws:
-            if q.tier != "cth" and law.jurisdiction not in (q.jurisdiction, "CTH"):
+            if q.tier != "cth" and law.jurisdiction not in (q.jurisdiction, "CTH") and not law.applied:
                 problems.append(f"{where}: law '{law.title}' is from {law.jurisdiction}, not {q.jurisdiction}")
         for i, r in enumerate(q.reach):
             for c in (*r.classes, *r.exclude):
