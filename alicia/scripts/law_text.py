@@ -5,6 +5,7 @@ Usage (in alicia/):
   uv run python scripts/law_text.py frl C2004A00446 "required to be registered"   # passages in the latest text
   uv run python scripts/law_text.py corpus "<version_id>" "food business"          # passages in the corpus copy
   uv run python scripts/law_text.py page "<url>" "<phrase>"                        # passages in any web page
+  uv run python scripts/law_text.py doc "<url>" "<phrase>"                         # a PDF, Word or RTF document
 
 Texts are cached in data/raw/law_text/ (not committed). Requests to the Federal Register are spaced out. Matching is
 case-insensitive on text with whitespace collapsed; each hit prints with context so the exact words can be quoted.
@@ -137,6 +138,52 @@ def frl_latest(title_id: str) -> tuple[str, dict]:
     return text, meta
 
 
+def rtf_text(data: bytes) -> str:
+    """Plain text of an RTF file: control words and groups stripped (enough to search and quote)."""
+    s = data.decode("latin-1")
+    s = re.sub(r"\\'([0-9a-f]{2})", lambda m: bytes.fromhex(m.group(1)).decode("cp1252", "replace"), s)
+    s = re.sub(r"\\(par|line)\b ?", "\n", s)
+    s = re.sub(r"\\[a-z]+-?\d* ?|[{}]", "", s)
+    return s
+
+
+def fetch_doc(url: str, key: str) -> tuple[str, dict]:
+    """A PDF, Word (.docx) or RTF document (or an HTML page), as plain text; cached like the others."""
+    import subprocess
+    import tempfile
+
+    CACHE.mkdir(parents=True, exist_ok=True)
+    path, meta_path = CACHE / f"{key}.txt", CACHE / f"{key}.json"
+    if path.exists() and meta_path.exists():
+        return path.read_text("utf-8"), json.loads(meta_path.read_text("utf-8"))
+    time.sleep(PAUSE)
+    r = httpx.get(url, headers=HEADERS, timeout=180, follow_redirects=True)
+    r.raise_for_status()
+    data = r.content
+    if data[:4] == b"%PDF":
+        with tempfile.NamedTemporaryFile(suffix=".pdf") as f:
+            f.write(data)
+            f.flush()
+            text = subprocess.run(["pdftotext", f.name, "-"], capture_output=True, text=True, check=True).stdout
+        kind = "pdf"
+    elif data[:2] == b"PK":
+        text, kind = docx_text(data), "docx"
+    elif data[:5] == b"{\\rtf":
+        text, kind = rtf_text(data), "rtf"
+    else:
+        text, kind = plain(r.text), "html"
+    meta = {
+        "url": url,
+        "final_url": str(r.url),
+        "kind": kind,
+        "retrieved": time.strftime("%Y-%m-%d"),
+        "sha256": hashlib.sha256(data).hexdigest(),
+    }
+    path.write_text(text, "utf-8")
+    meta_path.write_text(json.dumps(meta), "utf-8")
+    return text, meta
+
+
 def corpus_text(version_id: str) -> str:
     j = version_id.split(":")[0].replace("_legislation", "")
     names = {
@@ -182,6 +229,12 @@ def main(argv: list[str]) -> None:
             find(text, phrase)
     elif cmd == "corpus":
         text = corpus_text(argv[1])
+        for phrase in argv[2:]:
+            find(text, phrase)
+    elif cmd == "doc":
+        key = "doc-" + hashlib.sha256(argv[1].encode()).hexdigest()[:16]
+        text, meta = fetch_doc(argv[1], key)
+        print(f"{len(text):,} characters; {meta}")
         for phrase in argv[2:]:
             find(text, phrase)
     elif cmd == "page":

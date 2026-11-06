@@ -1,0 +1,97 @@
+{
+  "id": "vic-payroll-tax-registration",
+  "family": "payroll-tax-registration",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "payroll-tax",
+  "title": "Register for and pay payroll tax",
+  "kind": "tax-or-levy",
+  "what": "Register with the state revenue office and pay payroll tax once wages paid in Australia pass the state's threshold.",
+  "laws": [
+    {
+      "title": "Payroll Tax Act 2007 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/payroll-tax-act-2007",
+      "provisions": "Part 7 (registration); threshold"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Understanding payroll tax",
+      "publisher": "State Revenue Office Victoria",
+      "url": "https://sro.vic.gov.au/businesses-and-organisations/payroll-tax/understanding-payroll-tax",
+      "locator": "Registration and assessment",
+      "quote": "You must register for payroll tax if your wage bill exceeds the threshold.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "vic-dtf"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "payroll",
+      "test": ">",
+      "value": 1000000.0,
+      "unit": "AUD of taxable wages a financial year (annual threshold)",
+      "as_at": "2026-11-06",
+      "note": "Registration is triggered month by month, when wages pass the monthly or weekly equivalent; groups share one threshold.",
+      "sources": [
+        {
+          "title": "Understanding payroll tax",
+          "publisher": "State Revenue Office Victoria",
+          "url": "https://sro.vic.gov.au/businesses-and-organisations/payroll-tax/understanding-payroll-tax",
+          "locator": "Threshold",
+          "quote": "From 1 July 2025: the annual threshold is $1,000,000 the monthly threshold is $83,333.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer, by taxable wages; exemptions (e.g. some charities) are not yet recorded.",
+      "sources": [
+        {
+          "title": "Understanding payroll tax",
+          "publisher": "State Revenue Office Victoria",
+          "url": "https://sro.vic.gov.au/businesses-and-organisations/payroll-tax/understanding-payroll-tax",
+          "locator": "Registration and assessment",
+          "quote": "You must register for payroll tax if your wage bill exceeds the threshold.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The Act's text is only in documents the Victorian register asks automated tools not to fetch (robots.txt), so the obligation and threshold are quoted from the State Revenue Office.",
+  "records": [
+    "vic-payroll-tax"
+  ],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

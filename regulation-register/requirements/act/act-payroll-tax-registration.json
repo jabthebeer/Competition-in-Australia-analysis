@@ -1,0 +1,105 @@
+{
+  "id": "act-payroll-tax-registration",
+  "family": "payroll-tax-registration",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "payroll-tax",
+  "title": "Register for and pay payroll tax",
+  "kind": "tax-or-levy",
+  "what": "Register with the state revenue office and pay payroll tax once wages paid in Australia pass the state's threshold.",
+  "laws": [
+    {
+      "title": "Payroll Tax Act 2011 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "A2011-18",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2011-18/20250701-88946/PDF/2011-18.PDF",
+      "provisions": "s 86; Sch 1"
+    },
+    {
+      "title": "Taxation Administration (Amounts and Rates—Payroll Tax) Determination 2026",
+      "jurisdiction": "ACT",
+      "kind": "legislative-instrument",
+      "register_id": "DI2026-151",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-151/current/PDF/2026-151.PDF",
+      "provisions": "para (a), (b)"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Payroll Tax Act 2011 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2011-18/20250701-88946/PDF/2011-18.PDF",
+      "locator": "s 86(2), (3) (republication of 1 Jul 2025)",
+      "quote": "(2) The employer must apply for registration as an employer under this Act. (3) The application for registration must be made to the commissioner within 7 days after the end of the month.",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "act-cmtedd"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "payroll",
+      "test": ">",
+      "value": 1750000.0,
+      "unit": "AUD of taxable wages a financial year (annual threshold)",
+      "as_at": "2026-11-06",
+      "note": "Registration is triggered month by month, when wages pass the monthly or weekly equivalent; groups share one threshold.",
+      "sources": [
+        {
+          "title": "Taxation Administration (Amounts and Rates—Payroll Tax) Determination 2026",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-151/current/PDF/2026-151.PDF",
+          "locator": "para (a)",
+          "quote": "(a) The annual threshold amount for the purposes of schedule 1 of the Act is $1 750 000.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer, by taxable wages; exemptions (e.g. some charities) are not yet recorded.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2011 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2011-18/20250701-88946/PDF/2011-18.PDF",
+          "locator": "s 86(2), (3) (republication of 1 Jul 2025)",
+          "quote": "(2) The employer must apply for registration as an employer under this Act. (3) The application for registration must be made to the commissioner within 7 days after the end of the month.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The threshold is set by determination under the Taxation Administration Act 1999 (ACT), s 139; DI2026-151 lowered it from $2 million from 1 July 2026.",
+  "records": [
+    "act-payroll-tax"
+  ],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

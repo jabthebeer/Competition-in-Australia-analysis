@@ -1,0 +1,97 @@
+{
+  "id": "qld-payroll-tax-registration",
+  "family": "payroll-tax-registration",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "payroll-tax",
+  "title": "Register for and pay payroll tax",
+  "kind": "tax-or-levy",
+  "what": "Register with the state revenue office and pay payroll tax once wages paid in Australia pass the state's threshold.",
+  "laws": [
+    {
+      "title": "Payroll Tax Act 1971 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1971-037",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1971-037",
+      "provisions": "ss 29, 53"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Payroll Tax Act 1971 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1971-037",
+      "locator": "s 53(1)",
+      "quote": "An employer who is not already registered as an employer under this division and who meets the criteria for registration must, within 7 days after the end of the month during which the employer meets the criteria, give the commissioner an application for registration as an employer.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "qld-treasury"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "payroll",
+      "test": ">",
+      "value": 1300000.0,
+      "unit": "AUD of taxable wages a financial year (annual threshold)",
+      "as_at": "2026-11-06",
+      "note": "Registration is triggered month by month, when wages pass the monthly or weekly equivalent; groups share one threshold.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 1971 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1971-037",
+          "locator": "s 29, definition of annual deduction",
+          "quote": "IW means the amount of interstate wages paid or payable in the year. K means 1,300,000.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer, by taxable wages; exemptions (e.g. some charities) are not yet recorded.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 1971 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1971-037",
+          "locator": "s 53(1)",
+          "quote": "An employer who is not already registered as an employer under this division and who meets the criteria for registration must, within 7 days after the end of the month during which the employer meets the criteria, give the commissioner an application for registration as an employer.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The $1.3 million works as a deduction (s 29 formula), not a plain threshold; the registration criteria in s 52 are not yet quoted.",
+  "records": [
+    "qld-payroll-tax"
+  ],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

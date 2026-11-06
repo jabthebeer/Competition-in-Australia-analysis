@@ -4,6 +4,8 @@ Usage: uv run python scripts/check_requirement_quotes.py [--refresh]
 
 - ``register-text`` sources on the Federal Register are checked against the law's latest compilation (read through
   ``scripts/law_text.py``, cached in data/raw/law_text/); ``--refresh`` downloads them again first.
+- Other ``register-text`` sources (state and territory registers) and ``document`` sources are checked against the
+  page or document (PDF, Word or RTF) at their URL.
 - ``web-page`` sources are checked against the page as fetched.
 - ``corpus-copy`` sources are checked against the Open Australian Legal Corpus document they name.
 - Other sources are listed as not checked.
@@ -50,6 +52,13 @@ def main(refresh: bool = False) -> int:
                         for ext in ("txt", "json"):
                             (law_text.CACHE / f"{key}.{ext}").unlink(missing_ok=True)
                     texts[key] = norm(law_text.frl_latest(m.group(1))[0])
+            elif s.checked in ("register-text", "document"):
+                key = "doc-" + hashlib.sha256(url.encode()).hexdigest()[:16]
+                if key not in texts:
+                    if refresh:
+                        for ext in ("txt", "json"):
+                            (law_text.CACHE / f"{key}.{ext}").unlink(missing_ok=True)
+                    texts[key] = norm(law_text.fetch_doc(url, key)[0])
             elif s.checked == "web-page":
                 key = "page-" + hashlib.sha256(url.encode()).hexdigest()[:16]
                 if key not in texts:

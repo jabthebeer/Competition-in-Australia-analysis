@@ -1,0 +1,97 @@
+{
+  "id": "nt-payroll-tax-registration",
+  "family": "payroll-tax-registration",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "payroll-tax",
+  "title": "Register for and pay payroll tax",
+  "kind": "tax-or-levy",
+  "what": "Register with the state revenue office and pay payroll tax once wages paid in Australia pass the state's threshold.",
+  "laws": [
+    {
+      "title": "Payroll Tax Act 2009 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "REPP090",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12078",
+      "provisions": "s 86; Sch 1"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Payroll Tax Act 2009 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12078",
+      "locator": "s 86(1) (current reprint)",
+      "quote": "An employer who is not already registered must apply for registration as an employer under this Act if: (a) during a month the employer pays or is liable to pay, anywhere, wages of more than the weekly threshold amount per week that are wholly or partly taxable wages;",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "nt-dtf"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "payroll",
+      "test": ">",
+      "value": 2500000.0,
+      "unit": "AUD of taxable wages a financial year (annual threshold)",
+      "as_at": "2026-11-06",
+      "note": "Registration is triggered month by month, when wages pass the monthly or weekly equivalent; groups share one threshold.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2009 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12078",
+          "locator": "Sch 1, definition of TA",
+          "quote": "TA or threshold amount means $2 500 000.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer, by taxable wages; exemptions (e.g. some charities) are not yet recorded.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2009 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12078",
+          "locator": "s 86(1) (current reprint)",
+          "quote": "An employer who is not already registered must apply for registration as an employer under this Act if: (a) during a month the employer pays or is liable to pay, anywhere, wages of more than the weekly threshold amount per week that are wholly or partly taxable wages;",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [
+    "nt-payroll-tax"
+  ],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

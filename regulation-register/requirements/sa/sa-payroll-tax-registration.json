@@ -1,0 +1,97 @@
+{
+  "id": "sa-payroll-tax-registration",
+  "family": "payroll-tax-registration",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "payroll-tax",
+  "title": "Register for and pay payroll tax",
+  "kind": "tax-or-levy",
+  "what": "Register with the state revenue office and pay payroll tax once wages paid in Australia pass the state's threshold.",
+  "laws": [
+    {
+      "title": "Payroll Tax Act 2009 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "2009.22",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/payroll%20tax%20act%202009/current/2009.22.un.rtf",
+      "provisions": "s 86; Sch 1, cl 1"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Payroll Tax Act 2009 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/payroll%20tax%20act%202009/current/2009.22.un.rtf",
+      "locator": "s 86(1) (version of 1 Jul 2024)",
+      "quote": "An employer who is not already registered must apply for registration as an employer under this Act if— (a) during a month the employer pays or is liable to pay, anywhere, wages of more than the prescribed amount per week that are wholly or partly taxable wages;",
+      "accessed": "2026-11-06",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-07-01/2009.22.un"
+    }
+  ],
+  "administered_by": [
+    "sa-revenuesa"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "payroll",
+      "test": ">",
+      "value": 1500000.0,
+      "unit": "AUD of taxable wages a financial year (annual threshold)",
+      "as_at": "2026-11-06",
+      "note": "Registration is triggered month by month, when wages pass the monthly or weekly equivalent; groups share one threshold.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2009 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/payroll%20tax%20act%202009/current/2009.22.un.rtf",
+          "locator": "Sch 1, cl 1, definition of TA (version of 1 Jul 2024)",
+          "quote": "relevant financial year means the financial year to which the calculation of the relevant payroll tax relates TA or threshold amount is $1 500 000.",
+          "accessed": "2026-11-06",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-07-01/2009.22.un"
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer, by taxable wages; exemptions (e.g. some charities) are not yet recorded.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2009 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/payroll%20tax%20act%202009/current/2009.22.un.rtf",
+          "locator": "s 86(1) (version of 1 Jul 2024)",
+          "quote": "An employer who is not already registered must apply for registration as an employer under this Act if— (a) during a month the employer pays or is liable to pay, anywhere, wages of more than the prescribed amount per week that are wholly or partly taxable wages;",
+          "accessed": "2026-11-06",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-07-01/2009.22.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. SA's official update packages can confirm it (phase D).",
+  "records": [
+    "sa-payroll-tax"
+  ],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

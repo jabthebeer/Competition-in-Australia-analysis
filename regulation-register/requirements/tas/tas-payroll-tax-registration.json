@@ -1,0 +1,97 @@
+{
+  "id": "tas-payroll-tax-registration",
+  "family": "payroll-tax-registration",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "payroll-tax",
+  "title": "Register for and pay payroll tax",
+  "kind": "tax-or-levy",
+  "what": "Register with the state revenue office and pay payroll tax once wages paid in Australia pass the state's threshold.",
+  "laws": [
+    {
+      "title": "Payroll Tax Act 2008 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2008-016",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2008-016",
+      "provisions": "s 86; Sch 1, Part 1"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Payroll Tax Act 2008 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2008-016",
+      "locator": "s 86(1)",
+      "quote": "An employer who is not already registered must apply for registration as an employer under this Act if – (a) [Section 86 Subsection (1) amended by No. 43 of 2016, s. 19, Applied:31 Oct 2016] during a month the employer pays or is liable to pay, anywhere, wages of more than $24 038 per week that are wholly or partly taxable wages;",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "tas-dtf"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "payroll",
+      "test": ">",
+      "value": 1250000.0,
+      "unit": "AUD of taxable wages a financial year (annual threshold)",
+      "as_at": "2026-11-06",
+      "note": "Registration is triggered month by month, when wages pass the monthly or weekly equivalent; groups share one threshold.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2008 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2008-016",
+          "locator": "Sch 1, Part 1, definition of TA",
+          "quote": "TA or threshold amount is $1 250 000 for a financial year commencing on or after 1 July 2018;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer, by taxable wages; exemptions (e.g. some charities) are not yet recorded.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2008 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2008-016",
+          "locator": "s 86(1)",
+          "quote": "An employer who is not already registered must apply for registration as an employer under this Act if – (a) [Section 86 Subsection (1) amended by No. 43 of 2016, s. 19, Applied:31 Oct 2016] during a month the employer pays or is liable to pay, anywhere, wages of more than $24 038 per week that are wholly or partly taxable wages;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [
+    "tas-payroll-tax"
+  ],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

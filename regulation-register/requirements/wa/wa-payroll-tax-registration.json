@@ -1,0 +1,97 @@
+{
+  "id": "wa-payroll-tax-registration",
+  "family": "payroll-tax-registration",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "payroll-tax",
+  "title": "Register for and pay payroll tax",
+  "kind": "tax-or-levy",
+  "what": "Register with the state revenue office and pay payroll tax once wages paid in Australia pass the state's threshold.",
+  "laws": [
+    {
+      "title": "Pay-roll Tax Assessment Act 2002 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a6335",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_42096.docx",
+      "provisions": "ss 8, 24"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Pay-roll Tax Assessment Act 2002 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_42096.docx",
+      "locator": "s 24(1) (version current from 1 Jul 2019)",
+      "quote": "A non-group employer who is not registered must apply to the Commissioner for registration if — (a) the employer pays or is liable to pay any WA taxable wages during a month; and (b) the total amount of the WA taxable wages and any interstate taxable wages that the employer pays or is liable to pay during the month exceeds the monthly threshold amount.",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "wa-dtf"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "payroll",
+      "test": ">",
+      "value": 1000000.0,
+      "unit": "AUD of taxable wages a financial year (annual threshold)",
+      "as_at": "2026-11-06",
+      "note": "Registration is triggered month by month, when wages pass the monthly or weekly equivalent; groups share one threshold.",
+      "sources": [
+        {
+          "title": "Pay-roll Tax Assessment Act 2002 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_42096.docx",
+          "locator": "s 8(1)",
+          "quote": "The annual threshold amount for a financial year beginning on or after 1 July 2020 is $1 000 000.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer, by taxable wages; exemptions (e.g. some charities) are not yet recorded.",
+      "sources": [
+        {
+          "title": "Pay-roll Tax Assessment Act 2002 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_42096.docx",
+          "locator": "s 24(1) (version current from 1 Jul 2019)",
+          "quote": "A non-group employer who is not registered must apply to the Commissioner for registration if — (a) the employer pays or is liable to pay any WA taxable wages during a month; and (b) the total amount of the WA taxable wages and any interstate taxable wages that the employer pays or is liable to pay during the month exceeds the monthly threshold amount.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [
+    "wa-payroll-tax"
+  ],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
