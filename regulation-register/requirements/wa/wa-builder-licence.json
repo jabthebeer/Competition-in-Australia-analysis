@@ -1,0 +1,95 @@
+{
+  "id": "wa-builder-licence",
+  "family": "builder-licence",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Register as a building contractor",
+  "kind": "licence",
+  "what": "Register as a building contractor before carrying out builder work that needs a building permit and is worth $20,000 or more ($50,000 for sheds, garages and similar).",
+  "laws": [
+    {
+      "title": "Building Services (Registration) Act 2011 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a146829",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_a146829.html",
+      "provisions": "registration of building contractors"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Do I need to be a registered building contractor?",
+      "publisher": "Government of Western Australia (Building and Energy)",
+      "url": "https://www.wa.gov.au/government/publications/do-i-need-be-registered-building-contractor",
+      "locator": "Do I need to be registered?",
+      "quote": "registration as a building contractor is required, unless the work is exempt.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "quantity",
+      "test": ">=",
+      "value": 20000.0,
+      "unit": "AUD value of builder work needing a permit ($50,000 for Class 10a buildings)",
+      "as_at": "2026-11-06",
+      "note": null,
+      "sources": [
+        {
+          "title": "Do I need to be a registered building contractor?",
+          "publisher": "Government of Western Australia (Building and Energy)",
+          "url": "https://www.wa.gov.au/government/publications/do-i-need-be-registered-building-contractor",
+          "locator": "What is ‘builder work’?",
+          "quote": "‘Builder work’ is building work: for which a building permit is required; is of a value of either: – $50,000 or more if the work relates to a Class 10a building; or – $20,000 or more for other types of building work;",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Calibration: house construction; applies in the prescribed area of the State.",
+      "sources": [
+        {
+          "title": "Do I need to be a registered building contractor?",
+          "publisher": "Government of Western Australia (Building and Energy)",
+          "url": "https://www.wa.gov.au/government/publications/do-i-need-be-registered-building-contractor",
+          "locator": "Do I need to be registered?",
+          "quote": "registration as a building contractor is required, unless the work is exempt.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The Act's operative provision was not located in time; quoted from WA's guidance (updated 24 Jul 2026).",
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
