@@ -37,7 +37,7 @@ Full results: [`results_phase5.md`](results_phase5.md). Regression tables: [`eco
 | Every output reproduces byte for byte from the raw data and scripts | Done | `alicia spec run <id>`; [`specification_runner.md`](specification_runner.md) |
 | Regression-table estimates re-fitted and matched to the registered run | Done (25 of 25 outcomes) | `alicia/analyses/phase5/*/table_stats.json` |
 | Automated tests | 171 passing | `alicia/tests/` |
-| Laws' dates confirmed against official registers | **7 of 34** | `regulation-register/reports/effective_dates_2026-10-18.json` |
+| Laws' dates confirmed against official registers | **7 of 34** on the registers (18 Oct 2026); the fact-check of 6 Nov 2026 confirmed more from official sources and corrected one (NSW e-conveyancing) | `regulation-register/reports/effective_dates_2026-10-18.json`; [`fact_check_2026-11.md`](fact_check_2026-11.md) |
 | Laws reviewed by a person (dates, states, industries, direction) | **0 of 34** | Every record is `draft` |
 
 ## 3. Open items
@@ -50,7 +50,7 @@ Full results: [`results_phase5.md`](results_phase5.md). Regression tables: [`eco
 | 4 | **No independent verification of the code.** The R cross-check required by CLAUDE.md is deferred; R is not installed in the cloud environment | Catches estimator bugs a single implementation cannot | Claude Code, after the owner adds R to the environment's setup script | fixest and synthdid cross-checks on reference cases; a code review of `evaluate/` and `analyses/phase5/` | Python and R agree within tolerance on each estimator |
 | 5 | **Inference limits.** 40 placebos give coarse p-values (smallest 0.024). Placebo industries may be quieter than the treated ones. Multiple testing is adjusted only within each specification; secondary outcomes are not adjusted | p-values can be too small or too large | Claude Code | Programme-wide false discovery rate; report the own-industry placebo p-value beside every result | **Partly done:** q-values across all 25 Phase 5 outcomes (none below 0.24), and the own-industry p-value in each robustness table. Open: include the two older designs |
 | 6 | **Power.** Most designs detect only 3–7 entries per 100 businesses, or 6–9% on prices; plausible effects are 1–3 | "No detectable effect" is not "no effect" | Claude Code (pooling), owner (data) | Pooled estimates across similar reforms; direct outcome data (station-level fuel prices, PEXA, NCVER, NDIS, AER) | Each family has a pooled estimate or a stated reason |
-| 7 | **One unverified fact in a result.** The January 2015 Melbourne fare changes come from commentary, not Public Transport Victoria | It is the stated cause of the confounded fares result | Cowork | Guide step 5, question 1 | Official source recorded |
+| 7 | ~~One unverified fact in a result.~~ **Resolved (6 Nov 2026).** The January 2015 Melbourne fare changes are confirmed by Public Transport Victoria's 2014–15 annual report (Additional Information, PDF p. 6): Zone 1 fares for travel across Zones 1 + 2 and the Free Tram Zone both from 1 January 2015 | It is the stated cause of the confounded fares result | — | [`fact_check_2026-11.md`](fact_check_2026-11.md) | Done |
 
 ## 4. Known issues by evaluation
 
@@ -58,7 +58,9 @@ Full results: [`results_phase5.md`](results_phase5.md). Regression tables: [`eco
   - NSW's date is the registration deadline, not a confirmed reporting start. Queensland's 2018 scheme may have begun as a trial.
   - Synthetic DiD (+4.8%) and generalised synthetic control (+22%) disagree with the registered estimate (−2.8%).
   - COVID falls in the Tasmanian and SA windows.
-- **E-conveyancing:** conveyancing is a small part of legal services, so any effect is diluted. Synthetic DiD disagrees (−3.0).
+- **E-conveyancing:**
+  - **NSW's date was wrong** (fact-check, 6 Nov 2026): the first mandate began on 1 July 2018 (Registrar General, Conveyancing Rules v4), not 1 May 2018. The registered run treats NSW from 2017-18; it should start in 2018-19. The result needs a registered follow-up re-run.
+  - Conveyancing is a small part of legal services, so any effect is diluted. Synthetic DiD disagrees (−3.0).
 - **Victorian taxi licensing:** only one post-reform year. Unlicensed UberX arrived in 2014. The fares fall dates to 2015-Q1, not the reform (see item 7).
 - **Childcare NQF:**
   - Exits are −1.9 per 100 with two-way fixed effects but +3.2 with saturated fixed effects: the sign depends on the estimator.
