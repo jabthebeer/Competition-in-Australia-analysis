@@ -1,0 +1,84 @@
+{
+  "id": "cth-business-name-registration",
+  "family": "business-name-registration",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "business-and-tax-registration",
+  "title": "Register a business name",
+  "kind": "registration",
+  "what": "Register the name the business trades under, unless it trades under its owner's own name.",
+  "laws": [
+    {
+      "title": "Business Names Registration Act 2011",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2011A00126",
+      "register_url": "https://www.legislation.gov.au/C2011A00126/latest/text",
+      "provisions": "s 18"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Business Names Registration Act 2011",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2011A00126/latest/text",
+      "locator": "s 18(1) (compilation C2026C00334, in force from 2026-07-01)",
+      "quote": "An entity commits an offence if: (a) the entity carries on a business under a name; and (b) the name is not registered to the entity as a business name on the Business Names Register.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-asic"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it trades under a name other than its owner's own name",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Business Names Registration Act 2011",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2011A00126/latest/text",
+          "locator": "s 18(2) (compilation C2026C00334, in force from 2026-07-01)",
+          "quote": "Subsection (1) does not apply if: (a) the entity is an individual and the name is the individual’s name; or (b) the entity is a corporation and the name is the corporation’s name;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

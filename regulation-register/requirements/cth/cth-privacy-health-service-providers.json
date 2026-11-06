@@ -1,0 +1,84 @@
+{
+  "id": "cth-privacy-health-service-providers",
+  "family": "privacy-health-service-providers",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Comply with the Australian Privacy Principles (health services, any size)",
+  "kind": "standard",
+  "what": "A business that provides a health service and holds health information must follow the Australian Privacy Principles whatever its turnover.",
+  "laws": [
+    {
+      "title": "Privacy Act 1988",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03712",
+      "register_url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+      "provisions": "ss 6D(4)(b), 15"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Privacy Act 1988",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+      "locator": "s 15 (compilation C2026C00227, in force from 2026-06-04)",
+      "quote": "An APP entity must not do an act, or engage in a practice, that breaches an Australian Privacy Principle.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Providing a health service and holding health information.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8511"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Calibration: coded for the calibration classes only; other health classes follow in phase C.",
+      "sources": [
+        {
+          "title": "Privacy Act 1988",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+          "locator": "s 6D(4)(b) (compilation C2026C00227, in force from 2026-06-04)",
+          "quote": "(b) provides a health service to another individual and holds any health information except in an employee record;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

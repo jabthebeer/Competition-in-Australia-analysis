@@ -1,0 +1,93 @@
+{
+  "id": "cth-workplace-gender-equality-reporting",
+  "family": "workplace-gender-equality-reporting",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Report to the Workplace Gender Equality Agency",
+  "kind": "reporting",
+  "what": "Lodge a public report on gender equality indicators each year, once the business employs 100 or more people in Australia.",
+  "laws": [
+    {
+      "title": "Workplace Gender Equality Act 2012",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03332",
+      "register_url": "https://www.legislation.gov.au/C2004A03332/latest/text",
+      "provisions": "ss 3 (relevant employer), 13A"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Workplace Gender Equality Act 2012",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03332/latest/text",
+      "locator": "s 13A(1) (compilation C2025C00286, in force from 2025-04-04)",
+      "quote": "A relevant employer must lodge with the Agency public reports in respect of each of the periods set out in this section unless subsection (3) applies to the employer in respect of a reporting period.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "employees",
+      "test": ">=",
+      "value": 100.0,
+      "unit": "employees in Australia",
+      "as_at": "2026-11-06",
+      "note": null,
+      "sources": [
+        {
+          "title": "Workplace Gender Equality Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03332/latest/text",
+          "locator": "s 3 (relevant employer) (compilation C2025C00286, in force from 2025-04-04)",
+          "quote": "(b) a natural person, or a body or association (whether incorporated or not), that is an employer of 100 or more employees in Australia;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Workplace Gender Equality Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03332/latest/text",
+          "locator": "s 3 (relevant employer) (compilation C2025C00286, in force from 2025-04-04)",
+          "quote": "(b) a natural person, or a body or association (whether incorporated or not), that is an employer of 100 or more employees in Australia;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The agency is not yet in bodies.json; no regime covers it yet.",
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "id": "cth-modern-slavery-statement",
+  "family": "modern-slavery-statement",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Give a modern slavery statement",
+  "kind": "reporting",
+  "what": "Give the Minister a modern slavery statement for each reporting period once consolidated revenue reaches $100 million.",
+  "laws": [
+    {
+      "title": "Modern Slavery Act 2018",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2018A00153",
+      "register_url": "https://www.legislation.gov.au/C2018A00153/latest/text",
+      "provisions": "ss 5, 13"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Modern Slavery Act 2018",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2018A00153/latest/text",
+      "locator": "s 13(1) (compilation C2024C00747, in force from 2024-11-07)",
+      "quote": "A reporting entity must give the Minister a modern slavery statement for the entity, for a reporting period, unless a modern slavery statement has been given covering the entity for that period under section 14 (joint modern slavery statements) or 15 (Commonwealth modern slavery statements).",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "revenue",
+      "test": ">=",
+      "value": 100000000.0,
+      "unit": "AUD consolidated revenue in the reporting period",
+      "as_at": "2026-11-06",
+      "note": null,
+      "sources": [
+        {
+          "title": "Modern Slavery Act 2018",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2018A00153/latest/text",
+          "locator": "s 5(1)(a) (compilation C2024C00747, in force from 2024-11-07)",
+          "quote": "(a) an entity which has a consolidated revenue of at least $100 million for the reporting period, if the entity: (i) is an Australian entity at any time in that reporting period;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Modern Slavery Act 2018",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2018A00153/latest/text",
+          "locator": "s 5(1)(a) (compilation C2024C00747, in force from 2024-11-07)",
+          "quote": "(a) an entity which has a consolidated revenue of at least $100 million for the reporting period, if the entity: (i) is an Australian entity at any time in that reporting period;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "No regime covers it yet.",
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

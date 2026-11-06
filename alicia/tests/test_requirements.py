@@ -131,3 +131,17 @@ def test_council_codes_are_abs_lgas_in_the_right_state():
     )
     problems = check_requirements([ok, wrong_state], bodies={}, regimes=set(), records=set())
     assert problems == ["requirements/local/24600/lga-example-2.json: LGA 24600 is not in NSW"]
+
+
+def test_a_commonwealth_reach_can_skip_a_state():
+    q = Requirement.model_validate(
+        req(
+            reach=[
+                {"scope": "all", "legal_forms": ["sole-proprietor"], "in_states": ["NSW", "VIC"], "sources": [SOURCE]}
+            ]
+        )
+    )
+    row = links([q])[0]
+    assert row["applies_in"] == "NSW | VIC" and row["legal_forms"] == "sole-proprietor"
+    with pytest.raises(ValidationError, match="only a Commonwealth requirement"):
+        Requirement.model_validate(req(jurisdiction="NSW", tier="state", reach=q.model_dump()["reach"]))

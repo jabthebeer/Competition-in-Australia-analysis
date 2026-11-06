@@ -1,0 +1,128 @@
+{
+  "id": "cth-fair-work-employment-terms",
+  "family": "fair-work-employment-terms",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Meet the National Employment Standards and award terms",
+  "kind": "standard",
+  "what": "Give employees at least the National Employment Standards and the terms of any modern award that covers them.",
+  "laws": [
+    {
+      "title": "Fair Work Act 2009",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2009A00028",
+      "register_url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+      "provisions": "ss 14, 44, 45"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fair Work Act 2009",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+      "locator": "s 44 (compilation C2026C00355, in force from 2026-07-07)",
+      "quote": "An employer must not contravene a provision of the National Employment Standards.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Fair Work Act 2009",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+      "locator": "s 45 (compilation C2026C00355, in force from 2026-07-07)",
+      "quote": "A person must not contravene a term of a modern award.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [
+        "company"
+      ],
+      "in_states": [],
+      "note": "Companies that are constitutional (trading or financial) corporations, in every state and territory.",
+      "sources": [
+        {
+          "title": "Fair Work Act 2009",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+          "locator": "s 14(1)(a) (compilation C2026C00355, in force from 2026-07-07)",
+          "quote": "A national system employer is: (a) a constitutional corporation, so far as it employs, or usually employs, an individual;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [
+        "sole-proprietor",
+        "partnership",
+        "trust"
+      ],
+      "in_states": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "SA",
+        "TAS",
+        "ACT",
+        "NT"
+      ],
+      "note": "Unincorporated employers are in the national system in the states that referred their powers and in the territories; in WA they are in the state system.",
+      "sources": [
+        {
+          "title": "Which system of employment laws applies",
+          "publisher": "Government of Western Australia (Private Sector Labour Relations)",
+          "url": "https://www.wa.gov.au/organisation/private-sector-labour-relations/which-system-of-employment-laws-applies",
+          "locator": "State system",
+          "quote": "The state system covers: Private sector businesses and their employees that operate as: Sole traders. Partnerships, where none of the partners in the business is a constitutional corporation (trading or financial corporation).",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Which award applies depends on the industry and the work; awards are not yet linked to classes. The Fair Work Ombudsman is not yet in bodies.json.",
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

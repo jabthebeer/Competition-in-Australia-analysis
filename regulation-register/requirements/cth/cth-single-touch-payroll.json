@@ -1,0 +1,84 @@
+{
+  "id": "cth-single-touch-payroll",
+  "family": "single-touch-payroll",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "business-and-tax-registration",
+  "title": "Report payroll to the ATO each payday (Single Touch Payroll)",
+  "kind": "reporting",
+  "what": "Report amounts withheld and wages and other qualifying earnings paid to employees to the ATO, by the day each is paid.",
+  "laws": [
+    {
+      "title": "Taxation Administration Act 1953",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1953A00001",
+      "register_url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+      "provisions": "Schedule 1, s 389-5"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Taxation Administration Act 1953",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+      "locator": "Schedule 1, s 389-5(1) (compilation C2026C00468, in force from 2026-10-01)",
+      "quote": "An entity must notify the Commissioner of an amount of a kind referred to in column 1 of an item in the following table on or before the day referred to in column 2 of that item, if the amount arises as a result of conduct of the entity (such as payment of an amount or provision of a benefit).",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ato"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Exemptions in s 389-10 not yet checked.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Taxation Administration Act 1953",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+          "locator": "Schedule 1, s 389-5 (compilation C2026C00468, in force from 2026-10-01)",
+          "quote": "389-5 Required reporting by employers (1) An entity must notify the Commissioner",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The exemptions in s 389-10 have not been read.",
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

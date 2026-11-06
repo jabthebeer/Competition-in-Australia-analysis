@@ -163,6 +163,9 @@ class Reach(_Strict):
     activities: tuple[str, ...] = ()
     condition: str | None = Field(default=None, description="Plain English: 'if the business sells alcohol'")
     legal_forms: tuple[LegalForm, ...] = Field(default=(), description="Empty means every legal form")
+    in_states: tuple[Jurisdiction, ...] = Field(
+        default=(), description="For a Commonwealth requirement: the states and territories it reaches; empty means all"
+    )
     note: str | None = None
     sources: tuple[Source, ...] = Field(min_length=1, description="Where the reach comes from, quoted")
 
@@ -176,6 +179,8 @@ class Reach(_Strict):
             raise ValueError("activities can only qualify 4-digit classes")
         if self.activities and self.condition:
             raise ValueError("use activities or a condition, not both, in one reach")
+        if "CTH" in self.in_states:
+            raise ValueError("in_states lists states and territories, not CTH")
         return self
 
 
@@ -210,6 +215,8 @@ class Requirement(_Strict):
             raise ValueError(f"tier should be '{expected}' for jurisdiction {self.jurisdiction} (lga: {self.lga})")
         if self.lga and not self.lga_name:
             raise ValueError("a council requirement needs lga_name")
+        if self.jurisdiction != "CTH" and any(r.in_states for r in self.reach):
+            raise ValueError("only a Commonwealth requirement can limit its reach to some states (in_states)")
         return self
 
 
@@ -354,6 +361,7 @@ LINK_FIELDS = (
     "activities",
     "condition",
     "legal_forms",
+    "applies_in",
     "laws",
     "confidence",
     "review",
@@ -381,6 +389,9 @@ def links(reqs: list[Requirement]) -> list[dict]:
                         "activities": " | ".join(r.activities),
                         "condition": r.condition or "",
                         "legal_forms": " | ".join(r.legal_forms),
+                        "applies_in": " | ".join(r.in_states)
+                        if r.in_states
+                        else ("all" if q.jurisdiction == "CTH" else q.jurisdiction),
                         "laws": " | ".join(f"{law.title} ({law.register_id or law.register_url})" for law in q.laws),
                         "confidence": q.confidence,
                         "review": q.review.status,

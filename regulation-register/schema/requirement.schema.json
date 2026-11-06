@@ -153,6 +153,26 @@
           "title": "Legal Forms",
           "type": "array"
         },
+        "in_states": {
+          "default": [],
+          "description": "For a Commonwealth requirement: the states and territories it reaches; empty means all",
+          "items": {
+            "enum": [
+              "CTH",
+              "NSW",
+              "VIC",
+              "QLD",
+              "WA",
+              "SA",
+              "TAS",
+              "ACT",
+              "NT"
+            ],
+            "type": "string"
+          },
+          "title": "In States",
+          "type": "array"
+        },
         "note": {
           "anyOf": [
             {

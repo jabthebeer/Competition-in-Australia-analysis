@@ -1,0 +1,113 @@
+{
+  "id": "cth-gst-registration",
+  "family": "gst-registration",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "business-and-tax-registration",
+  "title": "Register for GST",
+  "kind": "registration",
+  "what": "Register for GST once the business's GST turnover reaches the registration threshold, then charge GST and lodge activity statements.",
+  "laws": [
+    {
+      "title": "A New Tax System (Goods and Services Tax) Act 1999",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00446",
+      "register_url": "https://www.legislation.gov.au/C2004A00446/latest/text",
+      "provisions": "ss 23-5, 23-15"
+    },
+    {
+      "title": "A New Tax System (Goods and Services Tax) Regulations 2019",
+      "jurisdiction": "CTH",
+      "kind": "legislative-instrument",
+      "register_id": "F2019L00417",
+      "register_url": "https://www.legislation.gov.au/F2019L00417/latest/text",
+      "provisions": "s 23-15.01"
+    }
+  ],
+  "sources": [
+    {
+      "title": "A New Tax System (Goods and Services Tax) Act 1999",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00446/latest/text",
+      "locator": "s 23-5 (compilation C2026C00081, in force from 2026-01-01)",
+      "quote": "You are required to be registered under this Act if: (a) you are *carrying on an *enterprise; and (b) your *GST turnover meets the *registration turnover threshold.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ato"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "turnover",
+      "test": ">=",
+      "value": 75000.0,
+      "unit": "AUD of GST turnover a year",
+      "as_at": "2026-11-06",
+      "note": "The Act sets $50,000 or a higher amount set by regulation; the regulations set $75,000. Non-profit bodies have their own threshold (s 23-15(2)).",
+      "sources": [
+        {
+          "title": "A New Tax System (Goods and Services Tax) Act 1999",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00446/latest/text",
+          "locator": "s 23-15(1) (compilation C2026C00081, in force from 2026-01-01)",
+          "quote": "Your registration turnover threshold (unless you are a non-profit body) is: (a) $50,000; or (b) such higher amount as the regulations specify.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "A New Tax System (Goods and Services Tax) Regulations 2019",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2019L00417/latest/text",
+          "locator": "s 23-15.01 (compilation F2025C01015, in force from 2025-11-01)",
+          "quote": "For the purposes of paragraph 23-15(1)(b) of the Act, the amount of $75,000 is specified.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every entity carrying on an enterprise; the threshold decides who must register.",
+      "sources": [
+        {
+          "title": "A New Tax System (Goods and Services Tax) Act 1999",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00446/latest/text",
+          "locator": "s 23-5 (compilation C2026C00081, in force from 2026-01-01)",
+          "quote": "You are required to be registered under this Act if: (a) you are *carrying on an *enterprise; and (b) your *GST turnover meets the *registration turnover threshold.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

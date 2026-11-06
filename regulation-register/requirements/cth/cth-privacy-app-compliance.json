@@ -1,0 +1,93 @@
+{
+  "id": "cth-privacy-app-compliance",
+  "family": "privacy-app-compliance",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Comply with the Australian Privacy Principles",
+  "kind": "standard",
+  "what": "Handle personal information as the Australian Privacy Principles require, once annual turnover passes $3 million.",
+  "laws": [
+    {
+      "title": "Privacy Act 1988",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03712",
+      "register_url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+      "provisions": "ss 6D, 15"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Privacy Act 1988",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+      "locator": "s 15 (compilation C2026C00227, in force from 2026-06-04)",
+      "quote": "An APP entity must not do an act, or engage in a practice, that breaches an Australian Privacy Principle.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "turnover",
+      "test": ">",
+      "value": 3000000.0,
+      "unit": "AUD annual turnover in a financial year",
+      "as_at": "2026-11-06",
+      "note": "Small business operators are exempt; a business with turnover above $3 million in any financial year since it started is not a small business operator.",
+      "sources": [
+        {
+          "title": "Privacy Act 1988",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+          "locator": "s 6D(4)(a) (compilation C2026C00227, in force from 2026-06-04)",
+          "quote": "(a) carries on a business that has had an annual turnover of more than $3,000,000 for a financial year that has ended after the later of the following:",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Privacy Act 1988",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+          "locator": "s 6D(4) (compilation C2026C00227, in force from 2026-06-04)",
+          "quote": "However, an individual, body corporate, partnership, unincorporated association or trust is not a small business operator if he, she or it:",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Other exceptions to the small business exemption (s 6D(4)(c)-(f), s 6E) are not yet recorded. No regime covers privacy yet.",
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

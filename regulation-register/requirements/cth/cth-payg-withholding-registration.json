@@ -1,0 +1,94 @@
+{
+  "id": "cth-payg-withholding-registration",
+  "family": "payg-withholding-registration",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "business-and-tax-registration",
+  "title": "Register for PAYG withholding",
+  "kind": "registration",
+  "what": "Register with the ATO as a withholder by the day the business first has to withhold tax, usually from employees' wages.",
+  "laws": [
+    {
+      "title": "Taxation Administration Act 1953",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1953A00001",
+      "register_url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+      "provisions": "Schedule 1, s 16-140"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Taxation Administration Act 1953",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+      "locator": "Schedule 1, s 16-140(1) (compilation C2026C00468, in force from 2026-10-01)",
+      "quote": "(b) Subdivision 14-A, 14-B, 14-C or 14-D (about payments in respect of non-cash benefits or capital proceeds); must apply to register with the Commissioner.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Taxation Administration Act 1953",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+      "locator": "Schedule 1, s 16-140(2) (compilation C2026C00468, in force from 2026-10-01)",
+      "quote": "The entity must apply in the *approved form by the day on which the entity is first required: (a) to withhold an amount under Division 12;",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ato"
+  ],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Strictly, the day the business is first required to withhold, which for most is the first payment of wages.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Taxation Administration Act 1953",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+          "locator": "Schedule 1, s 16-140(1) (compilation C2026C00468, in force from 2026-10-01)",
+          "quote": "16-140 Withholders must be registered (1) An entity that must pay an amount to the Commissioner under:",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
