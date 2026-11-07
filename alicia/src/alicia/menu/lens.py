@@ -1,5 +1,6 @@
-"""The Industry lens (beta): pick an ANZSIC class and a state, and see the laws that apply to it, coded for their
-effect on competition through entrants, small and medium competitors, and the largest players.
+"""The Industry lens (beta): pick an ANZSIC class and a state, and see the laws that apply to it, marked against the
+productivity impact framework and placed by the market position each effect acts through: entrants, small and medium
+competitors, and the largest players.
 
 The page is built from the register as it stands, so every requirement or register item added later appears on it
 without code changes: requirements (``regulation-register/requirements/``) by their reach, and register items
@@ -16,6 +17,7 @@ from pathlib import Path
 
 from ..register import competition as C
 from ..register.catalogue import default_register_dir
+from ..register.framework import DRIVERS, MARK_LABELS
 from ..register.requirements import KIND_LABELS, TRIGGER_LABELS, Requirement, load_requirements, reach_classes
 from ..register.schema import ChangeRecord
 
@@ -34,7 +36,7 @@ STATES = (
     ("NT", "Northern Territory"),
     ("ACT", "Australian Capital Territory"),
 )
-MARK_LABELS = {
+CLASS_MARKS = {
     "government": "Mainly government",
     "npish": "Mainly non-profit institutions serving households",
     "households": "Households, not businesses",
@@ -57,7 +59,7 @@ def classes() -> list[dict]:
             "group": f"{r['group']} {r['group_name']}",
             "subdivision": f"{r['subdivision']} {r['subdivision_name']}",
             "definition": r["definition"],
-            "mark": MARK_LABELS.get(marks.get(r["class"], ""), ""),
+            "mark": CLASS_MARKS.get(marks.get(r["class"], ""), ""),
         }
         for r in rows
     ]
@@ -66,7 +68,8 @@ def classes() -> list[dict]:
 def _compact(value):
     """Drop empty fields (None, empty lists and strings, False) to keep the embedded data small."""
     if isinstance(value, dict):
-        return {k: _compact(v) for k, v in value.items() if v not in (None, [], "", False)}
+        # Identity and length tests, not ==, so that 0 (a mark total) is kept while False is dropped.
+        return {k: _compact(v) for k, v in value.items() if not (v is None or v is False or v in ([], ""))}
     if isinstance(value, list):
         return [_compact(v) for v in value]
     return value
@@ -85,7 +88,8 @@ def _source(s) -> dict:
 
 
 def requirement_row(q: Requirement, settings: dict[str, ChangeRecord]) -> dict:
-    effects, basis, setting = C.requirement_effects(q, settings)
+    # A requirement that names a setting record (the same law in force) stands for it on the page.
+    setting = next((r for r in q.records if r in settings), None)
     reach = []
     for r in q.reach:
         cls = reach_classes(r)
@@ -112,12 +116,11 @@ def requirement_row(q: Requirement, settings: dict[str, ChangeRecord]) -> dict:
         "laws": [_law(law) for law in q.laws],
         "source": _source(q.sources[0]),
         "reach": reach,
-        "effects": effects,
-        "basis": basis,
+        "marks": C.placed_marks(q.assessment),
+        "framework": C.summary(q.assessment),
         "setting": setting,
-        "why": settings[setting].direction_rationale if setting else None,
         "related": [r for r in q.records if r != setting],
-        "confidence": q.confidence,
+        "reachConfidence": q.confidence,
         "councilsAdminister": q.administered_by_councils,
         "file": f"regulation-register/requirements/{folder}/{q.id}.json",
     }
@@ -141,10 +144,8 @@ def record_row(r: ChangeRecord) -> dict:
             for i in r.instruments
         ],
         "sources": [str(u) for u in r.direction_sources],
-        "effects": C.record_effects(r),
-        "basis": "register",
-        "confidence": r.assessment.confidence if r.assessment else None,
-        "why": r.direction_rationale,
+        "marks": C.placed_marks(r.assessment) if r.assessment else [],
+        "framework": C.summary(r.assessment) if r.assessment else None,
         "file": f"regulation-register/records/{r.id}.json",
     }
 
@@ -161,8 +162,15 @@ def payload(
     return {
         "page": PAGE[1],
         "positions": [
-            {"id": p, "label": C.POSITION_LABELS[p], "question": C.POSITION_QUESTIONS[p]} for p in C.POSITIONS
+            {
+                "id": p,
+                "label": C.POSITION_LABELS[p],
+                "question": C.POSITION_QUESTIONS[p],
+                "drivers": [DRIVERS[d]["short"] for d, ps in C.DRIVER_POSITIONS.items() if p in ps],
+            }
+            for p in C.POSITIONS
         ],
+        "markLabels": {str(k): v for k, v in MARK_LABELS.items()},
         "classes": classes(),
         "divisions": divisions(),
         "states": [{"code": c, "name": n} for c, n in STATES],

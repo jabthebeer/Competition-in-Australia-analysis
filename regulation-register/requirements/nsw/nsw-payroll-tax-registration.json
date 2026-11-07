@@ -16,7 +16,8 @@
       "kind": "act",
       "register_id": "act-2007-021",
       "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2007-021",
-      "provisions": "s 86; Sch 1, cl 1"
+      "provisions": "s 86; Sch 1, cl 1",
+      "applied": false
     }
   ],
   "sources": [
@@ -87,6 +88,34 @@
     "nsw-payroll-tax"
   ],
   "ablis": [],
+  "assessment": {
+    "summary": "A tax on wages above a tax-free threshold. The threshold makes it a tax on growing past a certain size, and exemptions narrow the base; a broad, flat payroll tax would distort less.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "The threshold is a tax on growing past it, which can hold firms below it.",
+        "positions": [
+          "smaller"
+        ]
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Thresholds and exemptions make the tax fall unevenly across employers, distorting hiring and firm size.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "Marks from the register's assessment of the same law (nsw-payroll-tax). Evidence on bunching is mixed: e61 found strong bunching at South Australia's threshold; Treasury found little at most states' thresholds before 2015.",
+    "evidence": [
+      "https://e61.in/wp-content/uploads/2024/08/A_Counterproductive_Tax_Cut_.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
   "drafted_on": "2026-11-06",
   "review": {
     "status": "draft",

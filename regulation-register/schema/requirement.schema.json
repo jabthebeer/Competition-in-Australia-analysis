@@ -1,84 +1,55 @@
 {
   "$defs": {
-    "Competition": {
+    "DriverMark": {
       "additionalProperties": false,
-      "description": "A hand-coded competition assessment; when present it replaces the rule-based coding on the Industry lens.",
+      "description": "One driver's mark: -2 (major harm) to +2 (major gain). Drivers left out are marked 0.",
       "properties": {
-        "effects": {
-          "items": {
-            "$ref": "#/$defs/CompetitionEffect"
-          },
-          "minItems": 1,
-          "title": "Effects",
-          "type": "array"
-        },
-        "sources": {
-          "default": [],
-          "description": "Evidence for the assessment, quoted",
-          "items": {
-            "$ref": "#/$defs/Source"
-          },
-          "title": "Sources",
-          "type": "array"
-        },
-        "assessed_on": {
-          "format": "date",
-          "title": "Assessed On",
-          "type": "string"
-        }
-      },
-      "required": [
-        "effects",
-        "assessed_on"
-      ],
-      "title": "Competition",
-      "type": "object"
-    },
-    "CompetitionEffect": {
-      "additionalProperties": false,
-      "description": "One position's effect, coded by hand (register/competition.py explains the positions).",
-      "properties": {
-        "position": {
+        "driver": {
           "enum": [
-            "entrants",
-            "smaller",
-            "dominant"
+            "entry-exit",
+            "competition",
+            "market-integration",
+            "capital",
+            "labour",
+            "burden",
+            "innovation",
+            "prices-taxes"
           ],
-          "title": "Position",
+          "title": "Driver",
           "type": "string"
         },
-        "effect": {
-          "enum": [
-            "positive",
-            "negative",
-            "mixed",
-            "unclear"
-          ],
-          "title": "Effect",
-          "type": "string"
-        },
-        "strength": {
-          "default": "strong",
-          "enum": [
-            "strong",
-            "weak"
-          ],
-          "title": "Strength",
-          "type": "string"
+        "mark": {
+          "maximum": 2,
+          "minimum": -2,
+          "title": "Mark",
+          "type": "integer"
         },
         "reason": {
-          "description": "Plain English: why, for this position",
-          "minLength": 10,
+          "minLength": 1,
           "title": "Reason",
           "type": "string"
+        },
+        "positions": {
+          "default": [],
+          "description": "Where the effect lands on the Industry lens (entrants, smaller competitors, the largest players) when it differs from the driver's usual place (register/competition.py), e.g. an entry-exit mark about growing past a threshold",
+          "items": {
+            "enum": [
+              "entrants",
+              "smaller",
+              "dominant"
+            ],
+            "type": "string"
+          },
+          "title": "Positions",
+          "type": "array"
         }
       },
       "required": [
-        "position",
-        "effect",
+        "driver",
+        "mark",
         "reason"
       ],
-      "title": "CompetitionEffect",
+      "title": "DriverMark",
       "type": "object"
     },
     "Law": {
@@ -287,6 +258,111 @@
         "sources"
       ],
       "title": "Reach",
+      "type": "object"
+    },
+    "RequirementAssessment": {
+      "additionalProperties": false,
+      "description": "A requirement marked against the productivity impact framework, like a register item. Unlike an item, a small\nobligation may have no material effect on any driver (the framework's mark 0): it then has no marks and no main\ndriver, and the summary says why.",
+      "properties": {
+        "summary": {
+          "description": "Plain English: what it does to productivity and competition",
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        },
+        "marks": {
+          "default": [],
+          "description": "Empty when it has no material effect",
+          "items": {
+            "$ref": "#/$defs/DriverMark"
+          },
+          "title": "Marks",
+          "type": "array"
+        },
+        "main_driver": {
+          "anyOf": [
+            {
+              "enum": [
+                "entry-exit",
+                "competition",
+                "market-integration",
+                "capital",
+                "labour",
+                "burden",
+                "innovation",
+                "prices-taxes"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Main Driver"
+        },
+        "reach": {
+          "enum": [
+            "narrow",
+            "sector",
+            "multi-sector",
+            "economy-wide"
+          ],
+          "title": "Reach",
+          "type": "string"
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "confidence_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence Note"
+        },
+        "evidence": {
+          "default": [],
+          "description": "Sources for the marks beyond the record's own",
+          "items": {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "framework": {
+          "default": "1.0",
+          "description": "Framework version the marks follow",
+          "title": "Framework",
+          "type": "string"
+        },
+        "assessed_on": {
+          "format": "date",
+          "title": "Assessed On",
+          "type": "string"
+        }
+      },
+      "required": [
+        "summary",
+        "reach",
+        "confidence",
+        "assessed_on"
+      ],
+      "title": "RequirementAssessment",
       "type": "object"
     },
     "Review": {
@@ -717,17 +793,9 @@
       "title": "Ablis",
       "type": "array"
     },
-    "competition": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/Competition"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
-      "description": "Hand-coded effect on competition by market position; without it, rules apply"
+    "assessment": {
+      "$ref": "#/$defs/RequirementAssessment",
+      "description": "The requirement marked against the productivity impact framework (register/framework.py), against the same market without it"
     },
     "drafted_on": {
       "format": "date",
@@ -757,6 +825,7 @@
     "triggers",
     "reach",
     "confidence",
+    "assessment",
     "drafted_on"
   ],
   "title": "Requirement: what a law asks of a business, and the ANZSIC classes it reaches",

@@ -47,26 +47,29 @@ The `family` is the same obligation across jurisdictions (e.g. `food-business-re
    - `triggers`: when it applies. A threshold needs `test`, `value`, `unit`, `as_at` and its own quoted source. Look for values in the regulations and determinations, not just the Act (rule 11).
    - `reach`: which ANZSIC classes it covers (rule 4). Code it once per family across all 506 classes, from a keyword shortlist of class names, definitions and primary activities (`data/processed/anzsic/anzsic2006_classes.json`). Limit it with `activities` (the ABS's exact wording), a `condition` (`"if it sells alcohol"`), `legal_forms`, or `in_states` (Commonwealth only). Each reach quotes its basis.
    - `confidence`: high, medium or low (rule 6). A draft taken from an ABLIS listing alone is medium at most (rule 5a).
-   - `competition` (optional): leave it out and the Industry lens codes the requirement by rule. Add it when you have an assessment:
+   - `assessment` (required): the requirement marked against the [productivity impact framework](../../docs/productivity_framework.md), as every register item is. Mark each of the eight drivers from −2 to +2 against the same market without the requirement, with a one-line reason, and leave a driver out when the effect is small. Then name the main driver (the largest mark), the reach and the confidence. Where the register already assesses the same law, use its marks so the two agree. A small obligation with no material effect has no marks and no main driver; its summary says why.
 
      ```json
-     "competition": {
-       "effects": [
-         {"position": "entrants", "effect": "negative", "strength": "strong", "reason": "A licence and a qualification test before trading."},
-         {"position": "dominant", "effect": "negative", "reason": "A cap on licences shelters the firms already holding one."}
+     "assessment": {
+       "summary": "Builders need a licence, with qualifications or experience, before contracting for residential building work.",
+       "marks": [
+         {"driver": "entry-exit", "mark": -1, "reason": "A licence with qualification or experience tests is needed before contracting."},
+         {"driver": "labour", "mark": -1, "reason": "Licensing narrows who may contract for building work."}
        ],
-       "sources": [],
+       "main_driver": "entry-exit",
+       "reach": "sector",
+       "confidence": "low",
        "assessed_on": "2026-11-07"
      }
      ```
 
-     Positions are `entrants`, `smaller` and `dominant`; effects are `positive`, `negative`, `mixed` or `unclear` ([methods](../../docs/industry_lens.md)).
-   - `records`: register items about the same law. A *setting* named here gives the requirement its competition coding on the lens.
+     The Industry lens places each mark in a column by its driver ([methods](../../docs/industry_lens.md)). Where that would mislead, a mark can name its column with `"positions": ["smaller"]` (or `"entrants"`, `"dominant"`). An example is an entry-exit mark about growing past a tax threshold.
+   - `records`: register items about the same law. On the lens, a requirement stands for a *setting* it names, so the two are not listed twice.
 4. **Check.**
 
    ```bash
    cd alicia
-   uv run alicia validate                              # model, codes, ABS activity wording, LGA codes, families
+   uv run alicia validate                              # model and framework assessment, codes, ABS activity wording, LGA codes, families
    uv run python scripts/check_requirement_quotes.py   # every quote re-found in its source
    uv run python scripts/requirement_links.py          # rebuild the class link table
    uv run pytest -q

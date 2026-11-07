@@ -16,7 +16,8 @@
       "kind": "act",
       "register_id": null,
       "register_url": "https://www.legislation.vic.gov.au/in-force/acts/liquor-control-reform-act-1998",
-      "provisions": "Part 2 (licences)"
+      "provisions": "Part 2 (licences)",
+      "applied": false
     }
   ],
   "sources": [
@@ -74,6 +75,30 @@
   "confidence_note": "The guide quoted states the licence's conditions, not the duty to hold one; the Act's text is in documents the Victorian register asks automated tools not to fetch.",
   "records": [],
   "ablis": [],
+  "assessment": {
+    "summary": "Selling alcohol needs a liquor licence, with approvals, fees and conditions on how and when the venue trades.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, approvals and fees are needed before selling alcohol.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Trading hours and licence conditions limit how licensed venues compete.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
   "drafted_on": "2026-11-06",
   "review": {
     "status": "draft",

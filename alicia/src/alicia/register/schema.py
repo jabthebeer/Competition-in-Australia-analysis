@@ -128,12 +128,21 @@ class Review(_Strict):
         return self
 
 
+Position = Literal["entrants", "smaller", "dominant"]
+
+
 class DriverMark(_Strict):
     """One driver's mark: -2 (major harm) to +2 (major gain). Drivers left out are marked 0."""
 
     driver: Driver
     mark: int = Field(ge=-2, le=2)
     reason: str = Field(min_length=1)
+    positions: tuple[Position, ...] = Field(
+        default=(),
+        description="Where the effect lands on the Industry lens (entrants, smaller competitors, the largest players) "
+        "when it differs from the driver's usual place (register/competition.py), e.g. an entry-exit mark about "
+        "growing past a threshold",
+    )
 
     @model_validator(mode="after")
     def _not_zero(self) -> DriverMark:

@@ -16,7 +16,8 @@
       "kind": "act",
       "register_id": "C2004A00446",
       "register_url": "https://www.legislation.gov.au/C2004A00446/latest/text",
-      "provisions": "ss 23-5, 23-15"
+      "provisions": "ss 23-5, 23-15",
+      "applied": false
     },
     {
       "title": "A New Tax System (Goods and Services Tax) Regulations 2019",
@@ -24,7 +25,8 @@
       "kind": "legislative-instrument",
       "register_id": "F2019L00417",
       "register_url": "https://www.legislation.gov.au/F2019L00417/latest/text",
-      "provisions": "s 23-15.01"
+      "provisions": "s 23-15.01",
+      "applied": false
     }
   ],
   "sources": [
@@ -103,6 +105,32 @@
   "confidence_note": null,
   "records": [],
   "ablis": [],
+  "assessment": {
+    "summary": "Businesses with GST turnover of $75,000 or more must register for GST and lodge activity statements.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Registration and activity statements start once turnover reaches $75,000: a step in cost as a business grows.",
+        "positions": [
+          "smaller"
+        ]
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Accounting for GST and lodging activity statements.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
   "drafted_on": "2026-11-06",
   "review": {
     "status": "draft",

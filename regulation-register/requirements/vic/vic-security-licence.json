@@ -16,7 +16,8 @@
       "kind": "act",
       "register_id": null,
       "register_url": "https://www.legislation.vic.gov.au/in-force/acts/private-security-act-2004",
-      "provisions": "Part 2 (licences)"
+      "provisions": "Part 2 (licences)",
+      "applied": false
     }
   ],
   "sources": [
@@ -85,6 +86,32 @@
     "vic-occupational-licensing"
   ],
   "ablis": [],
+  "assessment": {
+    "summary": "A security business licence, with probity checks and training for its people, before trading.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence with probity checks is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Licensing requirements narrow the pool of workers who may do licensed work and the ease of moving into it.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The labour mark is the register's assessment of occupational licensing (vic-occupational-licensing); the entry mark is reasoning only.",
+    "evidence": [
+      "https://assets.pc.gov.au/2025-10/competition-analysis-study-report-plus.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
   "drafted_on": "2026-11-06",
   "review": {
     "status": "draft",

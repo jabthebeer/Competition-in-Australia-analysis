@@ -226,6 +226,20 @@
           "minLength": 1,
           "title": "Reason",
           "type": "string"
+        },
+        "positions": {
+          "default": [],
+          "description": "Where the effect lands on the Industry lens (entrants, smaller competitors, the largest players) when it differs from the driver's usual place (register/competition.py), e.g. an entry-exit mark about growing past a threshold",
+          "items": {
+            "enum": [
+              "entrants",
+              "smaller",
+              "dominant"
+            ],
+            "type": "string"
+          },
+          "title": "Positions",
+          "type": "array"
         }
       },
       "required": [

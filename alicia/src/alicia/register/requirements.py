@@ -31,8 +31,9 @@ from pydantic import Field, HttpUrl, model_validator
 
 from .. import anzsic
 from .catalogue import default_register_dir
+from .framework import Driver
 from .regimes import Tier
-from .schema import JURISDICTIONS, AnzsicCode, Jurisdiction, RecordId, Review, _Strict
+from .schema import JURISDICTIONS, AnzsicCode, Assessment, DriverMark, Jurisdiction, RecordId, Review, _Strict
 
 LawKind = Literal["act", "regulation", "legislative-instrument", "code", "planning-instrument", "local-law", "other"]
 RequirementKind = Literal[
@@ -200,27 +201,26 @@ class Reach(_Strict):
         return self
 
 
-class CompetitionEffect(_Strict):
-    """One position's effect, coded by hand (register/competition.py explains the positions)."""
+class RequirementAssessment(Assessment):
+    """A requirement marked against the productivity impact framework, like a register item. Unlike an item, a small
+    obligation may have no material effect on any driver (the framework's mark 0): it then has no marks and no main
+    driver, and the summary says why."""
 
-    position: Literal["entrants", "smaller", "dominant"]
-    effect: Literal["positive", "negative", "mixed", "unclear"]
-    strength: Literal["strong", "weak"] = "strong"
-    reason: str = Field(min_length=10, description="Plain English: why, for this position")
-
-
-class Competition(_Strict):
-    """A hand-coded competition assessment; when present it replaces the rule-based coding on the Industry lens."""
-
-    effects: tuple[CompetitionEffect, ...] = Field(min_length=1)
-    sources: tuple[Source, ...] = Field(default=(), description="Evidence for the assessment, quoted")
-    assessed_on: dt.date
+    marks: tuple[DriverMark, ...] = Field(default=(), description="Empty when it has no material effect")
+    main_driver: Driver | None = None
 
     @model_validator(mode="after")
-    def _one_per_position(self) -> Competition:
-        positions = [e.position for e in self.effects]
-        if len(positions) != len(set(positions)):
-            raise ValueError("a competition assessment codes each position at most once")
+    def _consistent(self) -> RequirementAssessment:
+        if not self.marks:
+            if self.main_driver is not None:
+                raise ValueError("an assessment with no marks has no main driver")
+            return self
+        drivers = [m.driver for m in self.marks]
+        if len(set(drivers)) != len(drivers):
+            raise ValueError("each driver can be marked once")
+        top = max(abs(m.mark) for m in self.marks)
+        if self.main_driver not in {m.driver for m in self.marks if abs(m.mark) == top}:
+            raise ValueError("main_driver must be a driver with the largest mark (either way)")
         return self
 
 
@@ -245,8 +245,9 @@ class Requirement(_Strict):
     confidence_note: str | None = None
     records: tuple[RecordId, ...] = Field(default=(), description="Register items about it")
     ablis: tuple[str, ...] = Field(default=(), description="ABLIS service IDs, once checked against ABLIS")
-    competition: Competition | None = Field(
-        default=None, description="Hand-coded effect on competition by market position; without it, rules apply"
+    assessment: RequirementAssessment = Field(
+        description="The requirement marked against the productivity impact framework (register/framework.py), "
+        "against the same market without it"
     )
     drafted_on: dt.date
     review: Review = Review()

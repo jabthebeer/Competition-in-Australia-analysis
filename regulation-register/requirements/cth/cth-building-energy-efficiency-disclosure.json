@@ -16,7 +16,8 @@
       "kind": "act",
       "register_id": "C2010A00067",
       "register_url": "https://www.legislation.gov.au/C2010A00067/latest/text",
-      "provisions": "s 11"
+      "provisions": "s 11",
+      "applied": false
     },
     {
       "title": "Building Energy Efficiency Disclosure (Disclosure Affected Buildings) Determination 2016",
@@ -24,7 +25,8 @@
       "kind": "legislative-instrument",
       "register_id": "F2016L01148",
       "register_url": "https://www.legislation.gov.au/F2016L01148/latest/text",
-      "provisions": "s 5"
+      "provisions": "s 5",
+      "applied": false
     }
   ],
   "sources": [
@@ -99,6 +101,32 @@
   "confidence_note": "Leasing obligations (s 12) are not yet quoted; the administering department is inferred.",
   "records": [],
   "ablis": [],
+  "assessment": {
+    "summary": "Sellers and lessors of large office space must commission and disclose an energy efficiency rating.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A rating and certificate must be commissioned before selling or leasing office space of 1,000 square metres or more.",
+        "positions": [
+          "dominant"
+        ]
+      },
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Buyers and tenants can compare buildings' energy performance: better information.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
   "drafted_on": "2026-11-06",
   "review": {
     "status": "draft",

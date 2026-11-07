@@ -16,7 +16,8 @@
       "kind": "act",
       "register_id": null,
       "register_url": "https://www.legislation.vic.gov.au/in-force/acts/workplace-injury-rehabilitation-and-compensation-act-2013",
-      "provisions": "registration of employers"
+      "provisions": "registration of employers",
+      "applied": false
     }
   ],
   "sources": [
@@ -85,6 +86,24 @@
   "confidence_note": "The Act's text is only in documents the Victorian register asks automated tools not to fetch; quoted from WorkSafe Victoria.",
   "records": [],
   "ablis": [],
+  "assessment": {
+    "summary": "Every employer must insure its workers under the state or territory's workers' compensation scheme.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Premiums, wage declarations and claims administration for every employer.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
   "drafted_on": "2026-11-06",
   "review": {
     "status": "draft",

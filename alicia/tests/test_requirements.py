@@ -42,6 +42,12 @@ def req(**over) -> dict:
         "triggers": [{"type": "entry"}],
         "reach": [{"scope": "all", "sources": [SOURCE]}],
         "confidence": "high",
+        "assessment": {
+            "summary": "No material effect.",
+            "reach": "economy-wide",
+            "confidence": "low",
+            "assessed_on": "2026-11-07",
+        },
         "drafted_on": "2026-11-06",
     }
     return base | over
@@ -176,3 +182,23 @@ def test_a_state_can_cite_a_national_law_hosted_by_another_state_only_when_appli
     )
     problems = check_requirements([wrong, right], bodies={}, regimes=set(), records=set())
     assert len(problems) == 1 and "is from QLD, not SA" in problems[0]
+
+
+def test_every_requirement_is_marked_against_the_productivity_framework():
+    marked = req(
+        assessment={
+            "summary": "A licence before trading.",
+            "marks": [{"driver": "entry-exit", "mark": -1, "reason": "A licence is needed before trading."}],
+            "main_driver": "entry-exit",
+            "reach": "narrow",
+            "confidence": "low",
+            "assessed_on": "2026-11-07",
+        }
+    )
+    assert Requirement.model_validate(marked).assessment.total == -1
+    with pytest.raises(ValidationError, match="assessment"):
+        Requirement.model_validate({k: v for k, v in req().items() if k != "assessment"})
+    with pytest.raises(ValidationError, match="no marks has no main driver"):
+        Requirement.model_validate(req(assessment=req()["assessment"] | {"main_driver": "burden"}))
+    with pytest.raises(ValidationError, match="largest mark"):
+        Requirement.model_validate(marked | {"assessment": marked["assessment"] | {"main_driver": "burden"}})

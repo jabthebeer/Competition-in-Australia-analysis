@@ -43,7 +43,6 @@ def main(refresh: bool = False) -> int:
     found = missing = unchecked = 0
     for q in reqs.requirements:
         sources = [*q.sources, *(s for t in q.triggers for s in t.sources), *(s for r in q.reach for s in r.sources)]
-        sources += list(q.competition.sources) if q.competition else []
         for s in sources:
             url = str(s.url)
             if s.checked == "register-text" and (m := FRL.match(url)):

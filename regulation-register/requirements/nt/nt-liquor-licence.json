@@ -16,7 +16,8 @@
       "kind": "act",
       "register_id": null,
       "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12371",
-      "provisions": "Unauthorised sale of liquor, subs (1)"
+      "provisions": "Unauthorised sale of liquor, subs (1)",
+      "applied": false
     }
   ],
   "sources": [
@@ -74,6 +75,30 @@
   "confidence_note": null,
   "records": [],
   "ablis": [],
+  "assessment": {
+    "summary": "Selling alcohol needs a liquor licence, with approvals, fees and conditions on how and when the venue trades.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, approvals and fees are needed before selling alcohol.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Trading hours and licence conditions limit how licensed venues compete.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
   "drafted_on": "2026-11-06",
   "review": {
     "status": "draft",

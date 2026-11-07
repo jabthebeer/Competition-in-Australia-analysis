@@ -86,7 +86,7 @@ details.more ul { margin: 4px 0 0; padding-left: 18px; color: var(--ink-2); }
 .pill.negative.weak { background: var(--bad-soft); color: var(--bad); }
 .pill.mixed.weak { background: var(--mixed-soft); color: var(--mixed); }
 .eff .why { color: var(--ink-2); margin: 0; }
-.eff .ch { color: var(--ink-3); margin: 0; font-size: 0.75rem; }
+.eff .ch { color: var(--ink-3); font-weight: 600; }
 td.none { color: var(--ink-3); }
 td.c-positive { background: color-mix(in oklab, var(--good-soft) 55%, transparent); }
 td.c-negative { background: color-mix(in oklab, var(--bad-soft) 55%, transparent); }
@@ -137,7 +137,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     <div class="tiles lens" id="tiles"></div>
     <div class="legend-row" id="legend"></div>
     <div class="toolbar">
-      <label class="check"><input type="checkbox" id="opt-uncoded"> Show laws with no competition effect coded</label>
+      <label class="check"><input type="checkbox" id="opt-uncoded"> Show laws with no material effect</label>
       <label class="check"><input type="checkbox" id="opt-indirect" checked> Include register items that affect this industry indirectly</label>
     </div>
     <div class="panel tscroll">
@@ -162,16 +162,8 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   const STATE = Object.fromEntries(D.states.map((s) => [s.code, s.name]));
   const POS = D.positions;
   const EFFECT = { positive: ["+", "Positive"], negative: ["−", "Negative"], mixed: ["±", "Mixed"], unclear: ["?", "Unclear"] };
-  const BASIS = {
-    assessed: ["Assessed", "Coded by hand on the requirement, with its reasons."],
-    register: ["Assessed in the register", "Coded from the register item's competition assessment (its direction and channels)."],
-    rule: ["Coded by rule", "Coded from the requirement's kind and triggers by the lens's rules; not yet assessed by hand."],
-  };
-  const CHANNELS = {
-    "barriers": "Barriers to entry or exit", "number-or-type": "Number or types of businesses that can operate",
-    "ability-incentive": "Ability or incentives to compete", "prices-market-share": "Prices or market share",
-    "consumer-choice": "Consumer choice and information",
-  };
+  const REACH = { narrow: "narrow", sector: "one sector", "multi-sector": "several sectors", "economy-wide": "economy-wide" };
+  const signed = (n) => (n > 0 ? "+" : n < 0 ? "−" : "") + Math.abs(n);
   const KIND = { reform: "Reform", setting: "Existing setting", barrier: "Non-legislative barrier" };
   const TIER = { cth: "Commonwealth", state: null, local: "Council" };
   const LEGAL = { "sole-proprietor": "sole traders", partnership: "partnerships", trust: "trusts", company: "companies", "co-operative": "co-operatives", "incorporated-association": "incorporated associations" };
@@ -189,7 +181,8 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   $("beta-note").innerHTML =
     `<strong>Prototype.</strong> The register behind this page is still being built: ${D.counts.requirements} requirements and ` +
     `${D.counts.records} register items so far. Laws that apply to every business are recorded for every industry; laws for particular industries ` +
-    `only for some. Every coding is a draft not yet checked by a person, and shows the effect on competition, not whether a law is worthwhile.`;
+    `only for some. Every law is marked against the ${link(D.repo + "docs/productivity_framework.md", "ALICIA productivity framework")}, and each mark is shown in the column of the ` +
+    `market players it acts through. The marks are drafts not yet checked by a person; they show effects on competition and productivity, not whether a law is worthwhile.`;
 
   // ---- Industry picker.
   const sel = $("cls-select");
@@ -261,20 +254,28 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     const merged = new Set(out.filter((o) => o.r.setting).map((o) => o.r.setting));
     return out.filter((o) => !(o.r.type === "record" && merged.has(o.r.id)));
   }
-  const coded = (r) => Object.values(r.effects || {}).some((e) => e.effect !== "unclear");
+  const coded = (r) => (r.marks || []).length > 0;
+  // A column's cell: the framework marks placed in it, added up (register/competition.py does the same).
+  function effect(r, pos) {
+    const marks = (r.marks || []).filter((m) => m.positions.includes(pos));
+    if (!marks.length) return null;
+    const total = marks.reduce((a, m) => a + m.mark, 0);
+    const both = marks.some((m) => m.mark > 0) && marks.some((m) => m.mark < 0);
+    return { effect: both ? "mixed" : total > 0 ? "positive" : "negative", strength: marks.some((m) => Math.abs(m.mark) === 2) ? "strong" : "weak", total, marks };
+  }
 
   // ---- Rendering.
   function pill(e) {
     const [sym, word] = EFFECT[e.effect];
-    const minor = e.strength === "weak" && e.effect !== "unclear" ? " (minor)" : "";
-    return `<span class="pill ${e.effect} ${e.strength || "strong"}"><span class="sym" aria-hidden="true">${sym}</span>${word}${minor}</span>`;
+    const major = e.strength === "strong" && e.effect !== "mixed" ? "Major " + word.toLowerCase() : word;
+    const n = e.total !== undefined && e.effect !== "mixed" ? ` ${signed(e.total)}` : "";
+    return `<span class="pill ${e.effect} ${e.strength || "strong"}"><span class="sym" aria-hidden="true">${sym}</span>${major}${n}</span>`;
   }
   function cell(o, p) {
-    const e = (o.r.effects || {})[p.id];
-    if (!e) return `<td class="none" data-label="${esc(p.label)}"><span aria-label="No effect coded">—</span></td>`;
-    const reason = e.reason ? `<p class="why">${esc(e.reason)}</p>` : "";
-    const ch = e.channels ? `<p class="ch">${e.channels.map((x) => esc(CHANNELS[x] || x)).join(" · ")}</p>` : "";
-    return `<td class="c-${e.effect}" data-label="${esc(p.label)}"><div class="eff">${pill(e)}${reason}${ch}</div></td>`;
+    const e = effect(o.r, p.id);
+    if (!e) return `<td class="none" data-label="${esc(p.label)}"><span aria-label="No effect">—</span></td>`;
+    const why = e.marks.map((m) => `<p class="why"><span class="ch">${esc(m.driver)} ${signed(m.mark)} (${esc(D.markLabels[m.mark])}):</span> ${esc(m.reason)}</p>`).join("");
+    return `<td class="c-${e.effect}" data-label="${esc(p.label)}"><div class="eff">${pill(e)}${why}</div></td>`;
   }
   function lawCell(o) {
     const r = o.r, tags = [];
@@ -286,27 +287,31 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
       if (o.exposure === "indirect") tags.push(`<span class="tag">Indirect effect</span>`);
       if (o.exposure === "economy-wide") tags.push(`<span class="tag">Economy-wide</span>`);
     }
-    const [bl, bt] = BASIS[r.basis];
-    tags.push(`<span class="tag${r.basis === "rule" ? " warn" : ""}" title="${esc(bt)}">${esc(bl)}</span>`);
+    const fw = r.framework;
+    if (fw) tags.push(`<span class="tag" title="Overall framework mark: the sum of the driver marks">Framework ${coded(r) ? signed(fw.total) + " · " : ""}${esc(fw.rating)}${fw.mixed ? " (mixed)" : ""}</span>`);
     const laws = (r.laws || []).slice(0, 3).map((l) => link(l.url, l.title)).join("; ");
     const quals = [];
-    if (o.hits) for (const x of o.hits) {
-      if (x.condition) quals.push(`Applies ${esc(x.condition)}.`);
-      if (x.activities) quals.push(`Only for: ${esc(x.activities.join("; "))}.`);
-      if (x.legalForms) quals.push(`Only for ${esc(x.legalForms.map((f) => LEGAL[f] || f).join(", "))}.`);
+    if (o.hits) {
+      for (const x of o.hits) {
+        if (x.condition) quals.push(`Applies ${esc(x.condition)}.`);
+        if (x.activities) quals.push(`Only for: ${esc(x.activities.join("; "))}.`);
+      }
+      // Legal forms: say so only when the reaches together leave some forms out.
+      const forms = new Set(o.hits.flatMap((x) => x.legalForms || Object.keys(LEGAL)));
+      if (forms.size < Object.keys(LEGAL).length) quals.push(`Only for ${esc([...forms].map((f) => LEGAL[f] || f).join(", "))}.`);
     }
     const more = [];
     if (r.what) more.push(`<p>${esc(r.what)}</p>`);
-    if (r.why) more.push(`<p><strong>Why it is coded this way:</strong> ${esc(r.why)}</p>`);
+    if (fw) more.push(`<p><strong>Framework assessment:</strong> ${esc(fw.text)}${fw.main ? ` Main driver: ${esc(fw.main)}.` : ""} Reach: ${esc(REACH[fw.reach] || fw.reach)}. Confidence: ${esc(fw.confidence)}.${fw.note ? " " + esc(fw.note) : ""}</p>`);
     if (r.triggers) more.push(`<p>When: ${esc(r.triggers.join("; "))}.</p>`);
     const src = [];
     if (r.source) src.push(`<li>${link(r.source.url, r.source.title)}${r.source.locator ? ", " + esc(r.source.locator) : ""} (${esc(r.source.publisher)})</li>`);
-    for (const u of (r.sources || []).slice(0, 4)) src.push(`<li>${link(u, u.replace(/^https?:\/\//, "").slice(0, 70))}</li>`);
+    for (const u of [...((fw && fw.evidence) || []), ...(r.sources || [])].filter((u, i, a) => a.indexOf(u) === i).slice(0, 5)) src.push(`<li>${link(u, u.replace(/^https?:\/\//, "").slice(0, 70))}</li>`);
     if (src.length) more.push(`<p>Sources:</p><ul>${src.join("")}</ul>`);
-    more.push(`<p>${r.confidence ? `Confidence: ${esc(r.confidence)}. ` : ""}${link(repoFile(r.file), "The record in the register")}.</p>`);
+    more.push(`<p>${r.reachConfidence ? `How sure the industries are: ${esc(r.reachConfidence)}. ` : ""}${link(repoFile(r.file), "The record in the register")}.</p>`);
     return `<td><div class="law-title">${esc(r.title)}</div><div class="law-meta">${tags.join("")}</div>` +
       (laws ? `<p class="law-names">${laws}</p>` : "") + (quals.length ? `<p class="qual">${quals.join(" ")}</p>` : "") +
-      (r.why ? `<p class="why-short">${esc(r.why)}</p>` : "") +
+      (fw && fw.text ? `<p class="why-short">${esc(fw.text)}</p>` : "") +
       `<details class="more"><summary>Details</summary>${more.join("")}</details></td>`;
   }
   function update() {
@@ -331,13 +336,13 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     // Tally by position.
     $("tiles").innerHTML = POS.map((p) => {
       const n = { positive: 0, negative: 0, mixed: 0 };
-      for (const o of all) { const e = (o.r.effects || {})[p.id]; if (e && n[e.effect] !== undefined) n[e.effect] += 1; }
+      for (const o of all) { const e = effect(o.r, p.id); if (e) n[e.effect] += 1; }
       return `<div class="tile"><span class="t-label">${esc(p.label)}</span><span class="t-sub">${esc(p.question)}</span>` +
         `<div class="tally"><span class="cnt positive">${n.positive} positive</span><span class="cnt negative">${n.negative} negative</span>` +
         (n.mixed ? `<span class="cnt mixed">${n.mixed} mixed</span>` : "") + `</div></div>`;
     }).join("");
 
-    $("lens-head").innerHTML = `<tr><th scope="col">Law or requirement</th>` + POS.map((p) => `<th scope="col">${esc(p.label)}<span class="q">${esc(p.question)}</span></th>`).join("") + `</tr>`;
+    $("lens-head").innerHTML = `<tr><th scope="col">Law or requirement</th>` + POS.map((p) => `<th scope="col">${esc(p.label)}<span class="q">${esc(p.question)}</span><span class="q">Drivers: ${esc(p.drivers.join(", "))}${p.id === "dominant" ? ", and bans, caps or exclusive rights (entry marks of ±2)" : ""}</span></th>`).join("") + `</tr>`;
     const tiers = [["cth", "Commonwealth"], ["state", STATE[st]], ["local", "Council"]];
     let body = "";
     for (const [t, name] of tiers) {
@@ -348,10 +353,10 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
       body += rows.map((o) => `<tr class="law">${lawCell(o)}${POS.map((p) => cell(o, p)).join("")}</tr>`).join("");
     }
     const hidden = all.length - shown.length;
-    $("lens-body").innerHTML = body || `<tr><td colspan="4" class="empty">No coded laws for this industry and place yet.${hidden ? " Tick “Show laws with no competition effect coded” to see the rest." : ""}</td></tr>`;
+    $("lens-body").innerHTML = body || `<tr><td colspan="4" class="empty">No laws with a marked effect for this industry and place yet.${hidden ? " Tick “Show laws with no material effect” to see the rest." : ""}</td></tr>`;
 
     const specific = all.filter((o) => o.specific).length;
-    $("coverage").innerHTML = `${shown.length} of ${all.length} laws shown` + (hidden ? ` (${hidden} with no competition effect coded are hidden)` : "") + ". " +
+    $("coverage").innerHTML = `${shown.length} of ${all.length} laws shown` + (hidden ? ` (${hidden} with no material effect are hidden)` : "") + ". " +
       (specific ? `${specific} of the ${all.length} are requirements particular to this industry.` :
         `<strong>No requirements particular to this industry have been recorded yet</strong>: the table shows laws that apply to every business, and register items about the industry.`) +
       ` The register grows batch by batch (${D.counts.industrySpecific} industry-specific requirements so far).`;
@@ -361,11 +366,11 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   $("opt-indirect").addEventListener("change", (e) => { opt.indirect = e.target.checked; update(); });
   window.addEventListener("hashchange", () => { const x = fromHash(); if (CL[x.class]) cls = x.class; if (STATE[x.state]) st = x.state; update(); });
 
-  $("legend").innerHTML = `<span>Key:</span>` + ["positive", "negative", "mixed"].map((e) => pill({ effect: e, strength: "strong" })).join("") +
-    pill({ effect: "negative", strength: "weak" }) + `<span>Lighter: a minor effect.</span>` +
-    `<span class="tag warn">Coded by rule</span><span>Coded from the requirement's kind and triggers, not yet by hand.</span>`;
+  $("legend").innerHTML = `<span>Key:</span>` + pill({ effect: "positive", strength: "weak", total: 1 }) + pill({ effect: "negative", strength: "weak", total: -1 }) +
+    pill({ effect: "negative", strength: "strong", total: -2 }) + pill({ effect: "mixed", strength: "weak" }) +
+    `<span>Numbers are framework marks, −2 (major harm) to +2 (major gain), added up within a column; darker means a mark of ±2.</span>`;
   $("foot").innerHTML =
-    `<p>How the codings work, and their limits: ${link(D.repo + "docs/industry_lens.md", "the Industry lens methods note")}. Requirements: ${link(D.repo + "regulation-register/requirements", "regulation-register/requirements")}; register items: ${link(D.repo + "regulation-register/records", "regulation-register/records")}.</p>` +
+    `<p>How the marks are placed in the columns, and the limits: ${link(D.repo + "docs/industry_lens.md", "the Industry lens methods note")}. The marking guide: ${link(D.repo + "docs/productivity_framework.md", "the productivity framework")}. Requirements: ${link(D.repo + "regulation-register/requirements", "regulation-register/requirements")}; register items: ${link(D.repo + "regulation-register/records", "regulation-register/records")}.</p>` +
     `<p>Industries: ${link(D.sources.anzsic, "ABS, ANZSIC 2006 (Revision 2.0)")}, CC BY 4.0. Map: ${esc(D.map.source)}, ${esc(D.map.licence)}.</p>` +
     `<p>Built ${esc(D.built)}. Unofficial research tooling; not an Australian Government product.</p>`;
 

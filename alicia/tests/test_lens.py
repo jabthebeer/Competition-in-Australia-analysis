@@ -1,120 +1,82 @@
-"""The Industry lens (beta): competition coding by market position, the page's data, and the state map."""
+"""The Industry lens (beta): framework marks placed by market position, the page's data, and the state map."""
 
 from __future__ import annotations
 
 import json
 import re
 
-import pytest
-from pydantic import ValidationError
-
 from alicia.menu import growth, lens
 from alicia.pipeline import boundaries
 from alicia.register import competition as C
 from alicia.register.catalogue import load_records
-from alicia.register.requirements import Requirement
-
-SOURCE = {
-    "title": "Example Act 2000",
-    "publisher": "Federal Register of Legislation",
-    "url": "https://www.legislation.gov.au/C2004A00001/latest/text",
-    "locator": "s 10",
-    "quote": "A person must not carry on a business without a licence.",
-    "accessed": "2026-11-06",
-    "checked": "register-text",
-}
+from alicia.register.requirements import load_requirements
+from alicia.register.schema import Assessment, DriverMark
 
 
-def req(**over) -> Requirement:
-    base = {
-        "id": "cth-example",
-        "family": "example",
-        "jurisdiction": "CTH",
-        "tier": "cth",
-        "title": "Hold a licence",
-        "kind": "licence",
-        "what": "Hold a licence before trading.",
-        "laws": [{"title": "Example Act 2000", "jurisdiction": "CTH", "kind": "act", "register_id": "C2004A00001"}],
-        "sources": [SOURCE],
-        "triggers": [{"type": "entry"}],
-        "reach": [{"scope": "listed", "classes": ["4511"], "sources": [SOURCE]}],
-        "confidence": "high",
-        "drafted_on": "2026-11-06",
-    }
-    return Requirement.model_validate(base | over)
-
-
-def threshold(kind: str, value: float, unit: str = "AUD a year") -> dict:
-    return {"type": kind, "test": ">=", "value": value, "unit": unit, "as_at": "2026-11-06", "sources": [SOURCE]}
-
-
-def test_a_licence_before_trading_is_a_strong_cost_of_entry_and_registration_a_minor_one():
-    assert C.rule_effects(req())["entrants"] | {"reason": ""} == {
-        "effect": "negative",
-        "strength": "strong",
-        "reason": "",
-    }
-    weak = C.rule_effects(req(kind="registration"))
-    assert weak["entrants"]["strength"] == "weak" and set(weak) == {"entrants"}
-
-
-def test_size_thresholds_exempt_entrants_and_add_a_step_for_smaller_firms_unless_tiny_or_only_for_the_largest():
-    gst = C.rule_effects(
-        req(kind="registration", triggers=[threshold("turnover", 75_000, "AUD of GST turnover a year")])
+def assessment(*marks) -> Assessment:
+    ms = [DriverMark.model_validate(m) for m in marks]
+    top = max(ms, key=lambda m: abs(m.mark))
+    return Assessment.model_validate(
+        {
+            "summary": "x",
+            "marks": [m.model_dump() for m in ms],
+            "main_driver": top.driver,
+            "reach": "narrow",
+            "confidence": "low",
+            "assessed_on": "2026-11-07",
+        }
     )
-    assert gst["entrants"]["effect"] == "positive" and gst["smaller"]["effect"] == "negative"
-    assert "$75,000 of GST turnover a year" in gst["smaller"]["reason"]
-    assert C.rule_effects(req(kind="insurance", triggers=[threshold("payroll", 7_500)])) == {}  # applies to almost all
-    big = C.rule_effects(req(kind="reporting", triggers=[threshold("revenue", 100_000_000)]))
-    assert set(big) == {"entrants"}  # only the largest businesses: no step for small and medium ones
-    staff = C.rule_effects(req(kind="reporting", triggers=[threshold("employees", 100, "employees")]))
-    assert "100 employees" in staff["smaller"]["reason"]
 
 
-def test_an_approval_any_business_may_need_for_an_activity_is_not_a_cost_of_entering_this_market():
-    anywhere = req(
-        kind="approval",
-        triggers=[{"type": "activity"}],
-        reach=[{"scope": "all", "condition": "if it clears habitat", "sources": [SOURCE]}],
-    )
-    assert C.rule_effects(anywhere) == {}
-    assert C.rule_effects(req(kind="approval", triggers=[{"type": "activity"}]))["entrants"]["effect"] == "negative"
+def mark(driver, value, **kw):
+    return {"driver": driver, "mark": value, "reason": "because"} | kw
 
 
-def test_duties_every_business_or_employer_meets_alike_are_left_uncoded():
-    assert C.rule_effects(req(kind="standard", triggers=[{"type": "first-employee"}])) == {}
-    assert C.rule_effects(req(kind="standard", triggers=[{"type": "ongoing"}])) == {}
+def test_each_driver_has_a_column_and_bans_or_caps_also_reach_the_largest_players():
+    assert set(C.DRIVER_POSITIONS) == {
+        "entry-exit",
+        "competition",
+        "market-integration",
+        "capital",
+        "labour",
+        "burden",
+        "innovation",
+        "prices-taxes",
+    }
+    dm = DriverMark.model_validate
+    assert C.positions(dm(mark("entry-exit", -1))) == ("entrants",)
+    assert C.positions(dm(mark("entry-exit", -2))) == ("entrants", "dominant")  # an exclusive right shelters incumbents
+    assert C.positions(dm(mark("burden", -1))) == ("smaller",)
+    assert C.positions(dm(mark("competition", 1))) == ("smaller", "dominant")
+    assert C.positions(dm(mark("entry-exit", -1, positions=["smaller"]))) == ("smaller",)  # a growth threshold
 
 
-def test_records_are_coded_from_their_direction_and_channels():
+def test_a_column_adds_up_its_marks_and_flags_mixed_ones():
+    cells = C.effects(assessment(mark("labour", 1), mark("burden", -1), mark("entry-exit", -2)))
+    assert cells["smaller"]["effect"] == "mixed" and len(cells["smaller"]["marks"]) == 2
+    assert cells["entrants"] == cells["dominant"] and cells["entrants"]["effect"] == "negative"
+    assert cells["entrants"]["strength"] == "strong" and cells["smaller"]["strength"] == "weak"
+    placed = C.placed_marks(assessment(mark("competition", 1)))
+    assert placed == [{"driver": "Competition", "mark": 1, "reason": "because", "positions": ["smaller", "dominant"]}]
+
+
+def test_every_requirement_is_assessed_and_agrees_with_the_register_on_the_same_law():
     records = {r.id: r for r in load_records().records}
-    pharmacy = next(
-        r for r in records.values() if r.direction == "weakening" and set(r.channels) == {"barriers", "number-or-type"}
+    reqs = load_requirements().requirements
+    assert len(reqs) >= 159 and all(q.assessment.framework == "1.0" for q in reqs)
+    for q in reqs:
+        for rid in q.records:
+            r = records[rid]
+            if r.kind == "setting" and r.family == "payroll-tax":  # requirements mirror the payroll tax settings
+                assert {(m.driver, m.mark) for m in q.assessment.marks} == {
+                    (m.driver, m.mark) for m in r.assessment.marks
+                }
+                growth_mark = next(m for m in q.assessment.marks if m.driver == "entry-exit")
+                assert growth_mark.positions == ("smaller",)
+    unmarked = [q.id for q in reqs if not q.assessment.marks]
+    assert unmarked and all(
+        q.assessment.main_driver is None and q.assessment.summary for q in reqs if not q.assessment.marks
     )
-    eff = C.record_effects(pharmacy)
-    assert set(eff) == {"entrants", "dominant"} and {e["effect"] for e in eff.values()} == {"negative"}
-    for r in records.values():
-        positions = {p for ch in r.channels for p in C.CHANNEL_POSITIONS[ch]}
-        assert set(C.record_effects(r)) == positions
-        assert {e["effect"] for e in C.record_effects(r).values()} <= {C.DIRECTION_EFFECT[r.direction]}
-
-
-def test_a_hand_coded_assessment_overrides_the_rules_and_a_setting_link_brings_its_coding():
-    own = {
-        "effects": [
-            {"position": "dominant", "effect": "positive", "reason": "Opens the network to rivals on equal terms."}
-        ],
-        "assessed_on": "2026-11-06",
-    }
-    effects, basis, _ = C.requirement_effects(req(competition=own), {})
-    assert basis == "assessed" and set(effects) == {"dominant"}
-    with pytest.raises(ValidationError, match="each position at most once"):
-        req(competition=own | {"effects": own["effects"] * 2})
-    records = load_records().records
-    settings = {r.id: r for r in records if r.kind == "setting"}
-    setting = next(iter(settings.values()))
-    effects, basis, sid = C.requirement_effects(req(records=[setting.id]), settings)
-    assert basis == "register" and sid == setting.id and effects == C.record_effects(setting)
 
 
 def test_the_page_data_covers_every_class_state_and_law_and_points_at_real_files():
@@ -131,16 +93,20 @@ def test_the_page_data_covers_every_class_state_and_law_and_points_at_real_files
         "ACT",
     ]
     assert [x["id"] for x in p["positions"]] == ["entrants", "smaller", "dominant"]
+    assert p["markLabels"]["-2"] == "Major harm" and p["classes"][0]["mark"] == ""
     assert len(p["map"]["areas"]) == 8 and all(a["path"].startswith("M") for a in p["map"]["areas"])
     ids = {r["id"] for r in p["rows"]}
     assert {"nsw-food-business-registration", "cth-gst-registration"} <= ids
     assert not ids & {r.id for r in records if r.ended is not None}  # repealed or replaced items are left out
-    root = lens.ROOT
-    assert all((root / r["file"]).exists() for r in p["rows"])
-    food = next(r for r in p["rows"] if r["id"] == "nsw-food-business-registration")
-    assert "4511" in food["reach"][0]["classes"] and food["effects"]["entrants"]["effect"] == "negative"
+    assert all((lens.ROOT / r["file"]).exists() for r in p["rows"])
+    post = next(r for r in p["rows"] if r["id"] == "cth-postal-reserved-services")
+    assert post["marks"][0]["positions"] == ["entrants", "dominant"] and post["framework"]["total"] == -2
     gst = next(r for r in p["rows"] if r["id"] == "cth-gst-registration")
-    assert gst["reach"][0]["classes"] == "all" and gst["basis"] == "rule"
+    assert gst["reach"][0]["classes"] == "all" and {tuple(m["positions"]) for m in gst["marks"]} == {("smaller",)}
+    mixed = next(
+        r for r in p["rows"] if r["type"] == "requirement" and r["framework"].get("total") == 0 and r.get("marks")
+    )
+    assert "total" in mixed["framework"]  # a total of 0 is kept, not dropped as empty
 
 
 def test_the_page_renders_with_no_placeholders_left_and_is_linked_from_the_landing_page():
@@ -159,13 +125,13 @@ def test_the_state_map_is_projected_into_a_1000_wide_frame():
         boundaries.albers(115.86, -31.95),
     )
     assert perth[0] < canberra[0] < sydney[0] and canberra[1] < sydney[1]  # west to east; Canberra south of Sydney
-    square = {"type": "Polygon", "coordinates": [[[140, -30], [150, -30], [150, -40], [140, -40], [140, -30]]]}
-    island = {"type": "Polygon", "coordinates": [[[145, -42], [145.001, -42], [145.001, -42.001], [145, -42]]]}
+    square = [[[140, -30], [150, -30], [150, -40], [140, -40], [140, -30]]]
+    islet = [[[145, -42], [145.001, -42], [145.001, -42.001], [145, -42]]]
     geo = {
         "features": [
             {
                 "properties": {"state_code_2021": "1", "state_name_2021": "New South Wales"},
-                "geometry": {"type": "MultiPolygon", "coordinates": [square["coordinates"], island["coordinates"]]},
+                "geometry": {"type": "MultiPolygon", "coordinates": [square, islet]},
             }
         ]
     }
@@ -173,6 +139,6 @@ def test_the_state_map_is_projected_into_a_1000_wide_frame():
     area = m["areas"][0]
     assert (
         m["viewBox"].startswith("0 0 1000 ") and area["abbr"] == "NSW" and area["path"].count("M") == 1
-    )  # the islet is dropped
-    stored = json.loads((lens.MAP).read_text("utf-8"))
+    )  # islet dropped
+    stored = json.loads(lens.MAP.read_text("utf-8"))
     assert {a["abbr"] for a in stored["areas"]} == {"NSW", "VIC", "QLD", "SA", "WA", "TAS", "NT", "ACT"}

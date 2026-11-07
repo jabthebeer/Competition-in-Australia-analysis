@@ -16,7 +16,8 @@
       "kind": "act",
       "register_id": "C2004A03332",
       "register_url": "https://www.legislation.gov.au/C2004A03332/latest/text",
-      "provisions": "ss 3 (relevant employer), 13A"
+      "provisions": "ss 3 (relevant employer), 13A",
+      "applied": false
     }
   ],
   "sources": [
@@ -83,6 +84,24 @@
   "confidence_note": "The agency is not yet in bodies.json; no regime covers it yet.",
   "records": [],
   "ablis": [],
+  "assessment": {
+    "summary": "Employers with 100 or more employees must report gender equality indicators to the agency each year.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "An annual report for employers with 100 or more employees.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
   "drafted_on": "2026-11-06",
   "review": {
     "status": "draft",

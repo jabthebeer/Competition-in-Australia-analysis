@@ -16,7 +16,8 @@
       "kind": "regulation",
       "register_id": "F1998B00220",
       "register_url": "https://www.legislation.gov.au/F1998B00220/latest/text",
-      "provisions": "reg 141.050"
+      "provisions": "reg 141.050",
+      "applied": false
     }
   ],
   "sources": [
@@ -76,6 +77,30 @@
   "confidence_note": "CASA is not yet in bodies.json.",
   "records": [],
   "ablis": [],
+  "assessment": {
+    "summary": "A CASA certificate, with approved key personnel, aircraft and an operations manual, before running a flight training school.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A certificate with personnel, aircraft and manual approvals is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Ongoing CASA surveillance and keeping the operations manual and records current.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
   "drafted_on": "2026-11-06",
   "review": {
     "status": "draft",
