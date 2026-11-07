@@ -93,6 +93,23 @@ td.c-negative { background: color-mix(in oklab, var(--bad-soft) 55%, transparent
 td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent); }
 .empty { padding: 18px; text-align: center; color: var(--ink-2); }
 .more-rows { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.mk-stats { display: grid; gap: 3px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.mk-stats .big { font-family: var(--font-display); font-size: var(--step-2); font-weight: 600; line-height: 1.1; color: var(--ink); }
+.mk-stats .line { font-size: var(--step--1); color: var(--ink-2); }
+.lvl { display: inline-block; font-size: 0.7rem; color: var(--ink-3); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; margin-left: 4px; white-space: nowrap; }
+.tile .t-head { font-size: var(--step--1); color: var(--ink-3); font-weight: 600; }
+.sizebars { display: grid; gap: 10px; }
+.sizebar .lab { font-size: var(--step--1); color: var(--ink-2); margin-bottom: 3px; }
+.sizebar .bar { display: flex; height: 26px; border-radius: 5px; overflow: hidden; background: var(--grid); }
+.sizebar .seg { display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 600; color: var(--on-seg, #fff); white-space: nowrap; overflow: hidden; min-width: 0; }
+.seg.b0 { background: color-mix(in oklab, var(--seq) 30%, var(--surface)); color: var(--ink); }
+.seg.b1 { background: color-mix(in oklab, var(--seq) 55%, var(--surface)); color: var(--ink); }
+.seg.b2 { background: color-mix(in oklab, var(--seq) 80%, var(--surface)); color: var(--surface); }
+.seg.b3 { background: var(--seq); color: var(--surface); }
+.mk-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--step--1); color: var(--ink-2); }
+.mk-legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -2px; margin-right: 5px; }
+.mk-legend .ln { display: inline-block; width: 16px; height: 0; border-top: 2px solid; vertical-align: 3px; margin-right: 5px; }
+.mk-legend .ln.dash { border-top-style: dashed; }
 /* Phones: each law becomes a card with its three positions stacked and labelled. */
 @media (max-width: 760px) {
   table.lens thead { display: none; }
@@ -129,6 +146,34 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     </div>
   </section>
 
+  <section class="block" aria-labelledby="h-market">
+    <div class="block-head">
+      <h2 id="h-market">Structural market conditions</h2>
+      <p class="where" id="market-where"></p>
+    </div>
+    <div class="charts-grid">
+      <div class="panel chart-card">
+        <h3>Who the businesses are, and who makes the sales</h3>
+        <p class="unit">Share by employment size, %</p>
+        <div class="sizebars" id="ch-size"></div>
+        <div class="mk-legend" id="lg-size"></div>
+      </div>
+      <div class="panel chart-card">
+        <h3>New businesses and closures</h3>
+        <p class="unit" id="u-entry">Entries and exits in each financial year, % of businesses operating at its start</p>
+        <div class="chart" id="ch-entry"></div>
+        <div class="mk-legend"><span><span class="ln" style="border-color: var(--c-1)"></span>Entry rate</span><span><span class="ln" style="border-color: var(--c-2)"></span>Exit rate</span></div>
+      </div>
+      <div class="panel chart-card">
+        <h3>How concentrated the division's industries are</h3>
+        <p class="unit" id="u-top4">Four largest firms' share of each industry's sales, %</p>
+        <div class="chart" id="ch-top4"></div>
+        <div class="mk-legend"><span><span class="ln" style="border-color: var(--c-3)"></span>Sales-weighted mean</span><span><span class="ln dash" style="border-color: var(--c-3)"></span>Median industry</span></div>
+      </div>
+    </div>
+    <p class="note" id="market-note"></p>
+  </section>
+
   <section class="block" aria-labelledby="h-table">
     <div class="block-head">
       <h2 id="h-table">Laws and their effect on competition</h2>
@@ -153,6 +198,9 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
 </div>
 
 <script type="application/json" id="page-data">__PAGE_DATA__</script>
+<script>
+/*__CHARTS_JS__*/
+</script>
 <script>
 (() => {
   const D = JSON.parse(document.getElementById("page-data").textContent);
@@ -264,6 +312,70 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     return { effect: both ? "mixed" : total > 0 ? "positive" : "negative", strength: marks.some((m) => Math.abs(m.mark) === 2) ? "strong" : "weak", total, marks };
   }
 
+  // ---- Market structure: counts for the class in the state (CABEE); sales by size and concentration for its division
+  // (ABS 8155.0; RBA RDP 2025-05), which are not published for single classes or states.
+  const MK = D.market;
+  const LAST = MK.years[MK.years.length - 1];
+  const FY = (y) => `${y}-${String((y + 1) % 100).padStart(2, "0")}`;
+  const pc = (v, d = 1) => (v == null || !Number.isFinite(v) ? "–" : `${fmt(v, d)}%`);
+  const nn = (v) => (v == null ? "–" : fmt(v, 0));
+  const lvl = (t) => `<span class="lvl">${esc(t)}</span>`;
+  const last = (a) => (a ? a[a.length - 1] : null);
+  function mkt(code, state) {
+    const m = (MK.cabee[state] || {})[code];
+    if (!m) return null;
+    const [entry, exit, sizes, cnt] = m;
+    const total = sizes ? sizes.reduce((a, b) => a + (b || 0), 0) : 0;
+    return { entry, exit, sizes: sizes || [0, 0, 0, 0], total, start: cnt[0], entries: cnt[1], exits: cnt[2] };
+  }
+  function stats(pos, c, state) {
+    const m = mkt(c.code, state), ss = MK.sizeSales[c.division], t4 = MK.top4[c.division];
+    const here = lvl(`${c.code} · ${state} · CABEE`), div = lvl(`Division ${c.division} · Australia · ${MK.sizeSalesYear} · ABS 8155.0`);
+    if (!m) return `<div class="mk-stats"><span class="line">No business counts for this industry in ${esc(STATE[state])}.</span></div>`;
+    const share = (k) => (m.total ? (100 * k) / m.total : null);
+    if (pos === "entrants") {
+      return `<div class="mk-stats"><span class="t-head">Market structure</span><span class="big">${pc(last(m.entry))}</span>` +
+        `<span class="line">of businesses were new in ${FY(LAST)} (${nn(m.entries)} of ${nn(m.start)} operating at its start)${here}</span>` +
+        `<span class="line">Closures: ${pc(last(m.exit))} (${nn(m.exits)}).</span></div>`;
+    }
+    if (pos === "smaller") {
+      const sme = ss && ss.total ? (100 * (ss.under20 + ss["20-199"])) / ss.total : null;
+      return `<div class="mk-stats"><span class="t-head">Market structure</span><span class="big">${pc(share(m.sizes[1] + m.sizes[2]))}</span>` +
+        `<span class="line">of businesses have 1–199 employees, at June ${LAST + 1}; ${pc(share(m.sizes[0]))} have none${here}</span>` +
+        `<span class="line">${sme != null ? `Businesses with fewer than 200 employees make ${pc(sme)} of the division's sales${div}` : "Sales by business size are not published for this division."}</span></div>`;
+    }
+    const big = ss && ss.total ? (100 * ss["200+"]) / ss.total : null;
+    return `<div class="mk-stats"><span class="t-head">Market structure</span><span class="big">${pc(share(m.sizes[3]), 1)}</span>` +
+      `<span class="line">of businesses (${nn(m.sizes[3])}) have 200 or more employees${here}</span>` +
+      `<span class="line">${big != null ? `They make ${pc(big)} of the division's sales${div}` : "Sales by business size are not published for this division."}</span>` +
+      `<span class="line">${t4 ? `The four largest firms hold ${pc(last(t4.weighted))} of sales in a typical industry of the division (${last(t4.years)}, sales-weighted)${lvl(`Division · RBA RDP 2025-05, from BLADE`)}` : "Concentration is not published for this division."}</span></div>`;
+  }
+  function marketView(c, state) {
+    const m = mkt(c.code, state), ss = MK.sizeSales[c.division], t4 = MK.top4[c.division];
+    $("market-where").textContent = `${c.code} ${c.name} in ${STATE[state]}: counts of businesses for the industry in the state; sales by size and ` +
+      `concentration for its division (${c.division} ${D.divisions[c.division] || ""}) across Australia, the finest level they are published at.`;
+    const bar = (label, parts, total) => `<div class="sizebar"><div class="lab">${label}</div><div class="bar" role="img" aria-label="${esc(label)}: ` +
+      parts.map(([n, v]) => `${n} ${pc(total ? (100 * v) / total : null)}`).join(", ") + `">` +
+      parts.map(([n, v], i) => { const w = total ? (100 * v) / total : 0; return `<div class="seg b${i + 1}" style="width:${w}%" title="${esc(n)}: ${pc(w)}">${w >= 9 ? pc(w, 0) : ""}</div>`; }).join("") + `</div></div>`;
+    const names = ["Fewer than 20 employees (including none)", "20–199 employees", "200 or more"];
+    let html = m ? bar(`Businesses · ${c.code} in ${state} · June ${LAST + 1}`, [[names[0], m.sizes[0] + m.sizes[1]], [names[1], m.sizes[2]], [names[2], m.sizes[3]]], m.total) : `<p class="note">No business counts for this industry in this state.</p>`;
+    html += ss ? bar(`Sales · Division ${c.division} · Australia · ${MK.sizeSalesYear}`, [[names[0], ss.under20], [names[1], ss["20-199"]], [names[2], ss["200+"]]], ss.total) : `<p class="note">Sales by business size are not published for this division (finance and insurance is not in the ABS table).</p>`;
+    $("ch-size").innerHTML = html;
+    $("lg-size").innerHTML = names.map((n, i) => `<span><span class="sw seg b${i + 1}"></span>${esc(n)}</span>`).join("");
+    if (m) lineChart($("ch-entry"), { x: MK.years, xKind: "fy", zero: true, height: 220, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`,
+      label: `Entry and exit rates, ${c.name}, ${STATE[state]}`, series: [{ key: "entry", label: "Entry rate", values: m.entry, color: "var(--c-1)" }, { key: "exit", label: "Exit rate", values: m.exit, color: "var(--c-2)" }] });
+    else $("ch-entry").innerHTML = `<p class="note">No business counts for this industry in this state.</p>`;
+    if (t4) lineChart($("ch-top4"), { x: t4.years, xKind: "year", zero: true, height: 220, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`,
+      label: `Four largest firms' share of sales, division ${c.division}`, series: [{ key: "w", label: "Sales-weighted mean", values: t4.weighted, color: "var(--c-3)" }, { key: "m", label: "Median industry", values: t4.median, color: "var(--c-3)", dash: true }] });
+    else $("ch-top4").innerHTML = `<p class="note">Concentration is not published for this division.</p>`;
+    $("u-top4").textContent = `Four largest firms' share of each industry's sales, %, ${t4 ? `${t4.years[0]}–${last(t4.years)}, ${t4.industries} industries in the division` : "not published"}`;
+    const src = MK.sources;
+    $("market-note").innerHTML = `Counts of businesses are not market shares. Shares of sales by size, and concentration, are published only for divisions across Australia, ` +
+      `so they describe the wider industry, not this class in this state. Businesses with 200 or more employees are the largest firms, not necessarily an oligopoly; ` +
+      `the four-firm share is the closer measure, and the RBA's figures stop at 2019. The ABS slightly alters small counts to protect confidentiality, so rates for small industries jump around. ` +
+      `Sources: ${link(src.cabee[1], src.cabee[0])}; ${link(src.australianIndustry[1], src.australianIndustry[0] + ", Table 5")}; ${link(src.rba[1], src.rba[0])}. All CC BY 4.0.`;
+  }
+
   // ---- Rendering.
   function pill(e) {
     const [sym, word] = EFFECT[e.effect];
@@ -329,6 +441,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     }
     for (const b of $("state-chips").querySelectorAll("button")) b.setAttribute("aria-pressed", String(b.dataset.st === st));
 
+    marketView(c, st);
     const all = applicable(cls, st).filter((o) => opt.indirect || o.exposure !== "indirect");
     const shown = all.filter((o) => opt.uncoded || coded(o.r));
     $("where").textContent = `${c.code} ${c.name} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws.`;
@@ -337,7 +450,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     $("tiles").innerHTML = POS.map((p) => {
       const n = { positive: 0, negative: 0, mixed: 0 };
       for (const o of all) { const e = effect(o.r, p.id); if (e) n[e.effect] += 1; }
-      return `<div class="tile"><span class="t-label">${esc(p.label)}</span><span class="t-sub">${esc(p.question)}</span>` +
+      return `<div class="tile"><span class="t-label">${esc(p.label)}</span>${stats(p.id, c, st)}<span class="t-head">The laws</span><span class="t-sub">${esc(p.question)}</span>` +
         `<div class="tally"><span class="cnt positive">${n.positive} positive</span><span class="cnt negative">${n.negative} negative</span>` +
         (n.mixed ? `<span class="cnt mixed">${n.mixed} mixed</span>` : "") + `</div></div>`;
     }).join("");

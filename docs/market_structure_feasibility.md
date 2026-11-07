@@ -1,6 +1,6 @@
 # Market shares on the Industry lens: feasibility and options
 
-*7 November 2026 (DECISIONS E-125, proposed). For the owner's question: can the lens show, above each column, the share of the market held by entrants, by small and medium competitors and by oligopoly players, from ABS data?*
+*7 November 2026 (DECISIONS E-125). Option 1 built the same day; option 4 to follow as a cross-check. For the owner's question: can the lens show, above each column, the share of the market held by entrants, by small and medium competitors and by oligopoly players, from ABS data?*
 
 ## Short answer
 
@@ -17,7 +17,7 @@ What *is* published for every class and state is the **number** of businesses by
 | Column | Measure | Value | Source and level |
 |---|---|---|---|
 | Entrants | New businesses in 2024-25, as a share of those operating at the start of the year | 18.1% (3,481 of 19,205); exits 17.1% | CABEE, class × state |
-| Small and medium competitors | Businesses with 1–199 employees | 75.8% of businesses (1–19: 68.3%; 20–199: 7.5%); non-employing 23.7% | CABEE, class × state, June 2025 |
+| Small and medium competitors | Businesses with 1–199 employees | 75.9% of businesses (1–19: 68.3%; 20–199: 7.5%); non-employing 23.7% | CABEE, class × state, June 2025 |
 | | Share of sales earned by businesses with fewer than 200 employees | 69.1% of Accommodation and food services sales in 2024-25 (0–4: 17.5%; 5–19: 20.9%; 20–199: 30.7%) | ABS 8155.0 Table 5, division, Australia |
 | Largest players | Businesses with 200+ employees | 91, or 0.5% of businesses | CABEE, class × state |
 | | Their share of sales | 30.9% of the division's sales | ABS 8155.0 Table 5, division, Australia |

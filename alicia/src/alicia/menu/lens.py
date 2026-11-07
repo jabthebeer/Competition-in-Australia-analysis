@@ -176,6 +176,7 @@ def payload(
         "states": [{"code": c, "name": n} for c, n in STATES],
         "map": {"viewBox": geo["viewBox"], "areas": geo["areas"], "source": geo["source"], "licence": geo["licence"]},
         "rows": rows,
+        "market": market(),
         "default": {"class": DEFAULT[0], "state": DEFAULT[1]},
         "counts": {
             "requirements": len(reqs),
@@ -188,6 +189,103 @@ def payload(
         "sources": {
             "anzsic": json.loads(CLASSES.read_text("utf-8"))["source"],
             "map": geo["url"],
+        },
+    }
+
+
+CABEE = ROOT / "data" / "processed" / "abs_cabee" / "class_state_fy.parquet"
+AUS_INDUSTRY = ROOT / "data" / "processed" / "costing" / "sources" / "abs_australian_industry.json"
+RBA = ROOT / "data" / "processed" / "costing" / "sources" / "rba_hf2025.json"
+SIZE_BANDS = ("non-employing", "1-19 employees", "20-199 employees", "200+ employees")
+
+
+def _int(v):
+    return None if v is None or v != v else int(v)
+
+
+def _pct(num, den, digits: int = 1):
+    if den is None or den != den or not den or num != num:
+        return None
+    v = round(100 * num / den, digits)
+    return int(v) if v == int(v) else v
+
+
+def market() -> dict:
+    """Market structure for the lens, from three authoritative public sources, each at the finest level published:
+
+    - ``cabee``: for every class and state, entry and exit rates each financial year (entries and exits as a share of
+      businesses operating at the start of the year), the latest year's counts, and businesses by employment size at
+      the end of the latest year (ABS CABEE);
+    - ``sizeSales``: for each division, Australia, sales and service income by employment size in the latest year
+      (ABS Australian Industry, 8155.0, Table 5; finance and insurance is not in the table);
+    - ``top4``: for each division, the four largest firms' share of sales in its industries (sales-weighted mean and
+      median), 2002 to 2019 (RBA RDP 2025-05, from BLADE).
+
+    Counts of businesses are not market shares; the page labels each figure with its level and year."""
+    import pandas as pd
+
+    from .growth import SOURCES
+
+    d = pd.read_parquet(
+        CABEE, columns=["measure", "industry_level", "industry_code", "geo_code", "breakdown", "period", "value"]
+    )
+    d = d[d.industry_level == "class"]
+    periods = sorted(d.period.unique())
+    years = [p.year for p in periods]
+    latest = periods[-1]
+    tot = d[d.breakdown == ""].pivot_table(
+        index=["geo_code", "industry_code", "period"], columns="measure", values="value"
+    )
+    sizes = d[(d.breakdown != "") & (d.measure == "businesses_end") & (d.period == latest)].pivot_table(
+        index=["geo_code", "industry_code"], columns="breakdown", values="value"
+    )
+    states: dict[str, dict] = {}
+    for (geo, cls), g in tot.groupby(level=[0, 1]):
+        g = g.droplevel([0, 1]).reindex(periods)
+        entry = [_pct(e, s) for e, s in zip(g.get("entries", []), g.get("businesses_start", []), strict=True)]
+        exit_ = [_pct(e, s) for e, s in zip(g.get("exits", []), g.get("businesses_start", []), strict=True)]
+        last = g.loc[latest]
+        band = sizes.loc[(geo, cls)] if (geo, cls) in sizes.index else None
+        states.setdefault(geo, {})[cls] = [
+            entry,
+            exit_,
+            [_int(band.get(b)) for b in SIZE_BANDS] if band is not None else None,
+            [_int(last.get(m)) for m in ("businesses_start", "entries", "exits", "businesses_end")],
+        ]
+    ai = json.loads(AUS_INDUSTRY.read_text("utf-8"))
+    rows = ai["tables"]["size_division"]["rows"]
+    fy = max(r["fy"] for r in rows)
+    size_sales: dict[str, dict] = {}
+    for r in rows:
+        if r["fy"] == fy and r["anzsic"] != "TOT" and r.get("sales") is not None:
+            size_sales.setdefault(r["anzsic"], {})[r["size_band"]] = r["sales"]
+    for div, v in size_sales.items():
+        size_sales[div] = {
+            "under20": (v.get("0-4") or 0) + (v.get("5-19") or 0),
+            "20-199": v.get("20-199"),
+            "200+": v.get("200+"),
+            "total": v.get("total"),
+        }
+    rba = json.loads(RBA.read_text("utf-8"))
+    conc = [r for r in rba["tables"]["concentration"]["rows"] if r.get("top4_weighted") is not None]
+    top4: dict[str, dict] = {}
+    for r in sorted(conc, key=lambda r: r["fyear"]):
+        t = top4.setdefault(r["division"], {"years": [], "weighted": [], "median": [], "industries": None})
+        t["years"].append(r["fyear"])
+        t["weighted"].append(round(100 * r["top4_weighted"], 1))
+        t["median"].append(round(100 * r["top4_median"], 1) if r.get("top4_median") is not None else None)
+        t["industries"] = r.get("top4_industries")
+    return {
+        "years": years,
+        "cabee": states,
+        "sizeBands": list(SIZE_BANDS),
+        "sizeSales": size_sales,
+        "sizeSalesYear": fy,
+        "top4": top4,
+        "sources": {
+            "cabee": list(SOURCES["cabee"]),
+            "australianIndustry": [ai["source"]["title"], ai["source"]["url"]],
+            "rba": list(SOURCES["rba_rdp"]),
         },
     }
 

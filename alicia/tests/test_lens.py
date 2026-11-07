@@ -142,3 +142,47 @@ def test_the_state_map_is_projected_into_a_1000_wide_frame():
     )  # islet dropped
     stored = json.loads(lens.MAP.read_text("utf-8"))
     assert {a["abbr"] for a in stored["areas"]} == {"NSW", "VIC", "QLD", "SA", "WA", "TAS", "NT", "ACT"}
+
+
+def test_market_structure_matches_its_sources_recomputed_independently():
+    import pandas as pd
+
+    m = lens.market()
+    assert m["years"][0] == 2007 and len(m["years"]) == len(m["cabee"]["NSW"]["4511"][0])
+    d = pd.read_parquet(lens.CABEE)
+    for state, cls in (("NSW", "4511"), ("QLD", "7712"), ("WA", "0142")):
+        x = d[(d.industry_level == "class") & (d.industry_code == cls) & (d.geo_code == state)]
+        tot = x[(x.breakdown == "") & (x.period == x.period.max())].set_index("measure").value
+        entry, exit_, sizes, counts = m["cabee"][state][cls]
+        assert entry[-1] == round(100 * tot["entries"] / tot["businesses_start"], 1)
+        assert exit_[-1] == round(100 * tot["exits"] / tot["businesses_start"], 1)
+        assert counts == [
+            int(tot["businesses_start"]),
+            int(tot["entries"]),
+            int(tot["exits"]),
+            int(tot["businesses_end"]),
+        ]
+        ends = (
+            x[(x.breakdown != "") & (x.measure == "businesses_end") & (x.period == x.period.max())]
+            .set_index("breakdown")
+            .value
+        )
+        assert sizes == [int(ends[b]) for b in lens.SIZE_BANDS]
+    rates = [v for st in m["cabee"].values() for row in st.values() for v in row[0] + row[1] if v is not None]
+    assert rates and min(rates) >= 0
+    ai = json.loads(lens.AUS_INDUSTRY.read_text("utf-8"))["tables"]["size_division"]["rows"]
+    h = {r["size_band"]: r["sales"] for r in ai if r["anzsic"] == "H" and r["fy"] == m["sizeSalesYear"]}
+    assert m["sizeSales"]["H"] == {
+        "under20": h["0-4"] + h["5-19"],
+        "20-199": h["20-199"],
+        "200+": h["200+"],
+        "total": h["total"],
+    }
+    assert "K" not in m["sizeSales"]  # finance and insurance is not in the ABS size table
+    rba = json.loads(lens.RBA.read_text("utf-8"))["tables"]["concentration"]["rows"]
+    last_h = max(
+        (r for r in rba if r["division"] == "H" and r.get("top4_weighted") is not None), key=lambda r: r["fyear"]
+    )
+    assert m["top4"]["H"]["years"][-1] == last_h["fyear"] and m["top4"]["H"]["weighted"][-1] == round(
+        100 * last_h["top4_weighted"], 1
+    )

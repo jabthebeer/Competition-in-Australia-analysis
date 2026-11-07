@@ -48,6 +48,38 @@ Three refinements:
 
 The columns describe market positions, not firm sizes: "monopoly and oligopoly players" means market power. Public data cannot show which firms in a class hold it (class-level concentration is not published; firm-level data such as BLADE are restricted).
 
+## Market structure (7 November 2026, E-125)
+
+Above the laws, a **Structural market conditions** section, and figures at the top of each column's tile. Each figure carries its level, year and source, because no public source gives market shares for one class in one state ([feasibility note](market_structure_feasibility.md)).
+
+| Column | Figure | Level | Source |
+|---|---|---|---|
+| Entrants | Entries in the latest financial year as a share of businesses operating at its start; closures likewise | Class × state | ABS CABEE |
+| Small and medium competitors | Businesses with 1–199 employees, and with none, at the end of the latest year | Class × state | ABS CABEE |
+| | Share of sales and service income earned by businesses with fewer than 200 employees | Division, Australia | ABS *Australian Industry* (8155.0), Table 5 |
+| Monopoly and oligopoly players | Businesses with 200 or more employees, and their share of sales | Class × state; division, Australia | ABS CABEE; ABS 8155.0 Table 5 |
+| | The four largest firms' share of sales in the division's industries (sales-weighted mean), latest year | Division | RBA RDP 2025-05 (Hambur and Freestone), from BLADE |
+
+The charts:
+
+- **Businesses and sales by size.** Two bars, cut into fewer than 20 employees (including none), 20–199 employees, and 200 or more. One bar is the share of businesses (class × state); the other is the share of sales (division, Australia).
+- **Entry and exit rates.** Each year from 2007-08 (class × state).
+- **The division's four-firm share.** 2002 to 2019, the sales-weighted mean and the median industry.
+
+The page builds these from `data/processed/abs_cabee/class_state_fy.parquet` and the ingested 8155.0 and RBA files (`lens.market()`). `test_lens.py` recomputes them from the same files by a separate route.
+
+**Limits of these figures.**
+
+- Counts of businesses are not market shares.
+- Sales by size and concentration describe the whole division across Australia, not the class in the state.
+- Firms with 200 or more employees are the largest firms, not necessarily an oligopoly.
+- The RBA series stops at 2019.
+- Finance and insurance is not in the ABS size table.
+- The ABS perturbs small counts, so rates for small industries are noisy.
+- CABEE counts each business once, in one state, so a firm trading in several states appears in only one.
+
+Regulators' published market shares (ACCC inquiries, PC reports) are to be added later as a cross-check of these figures (owner, 7 November 2026).
+
 ## Limits
 
 - **Coverage is thin and uneven.**
