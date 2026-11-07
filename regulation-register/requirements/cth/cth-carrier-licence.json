@@ -1,0 +1,110 @@
+{
+  "id": "cth-carrier-licence",
+  "family": "carrier-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a carrier licence to run a telecommunications network",
+  "kind": "licence",
+  "what": "The owner of a network unit (a line link, or a radiocommunications or satellite facility) used to supply carriage services to the public needs a carrier licence from the ACMA, or a nominated carrier declaration.",
+  "laws": [
+    {
+      "title": "Telecommunications Act 1997",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A05145",
+      "register_url": "https://www.legislation.gov.au/C2004A05145/latest/text",
+      "provisions": "42(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Telecommunications Act 1997",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A05145/latest/text",
+      "locator": "s 42(1) (compilation C2026C00487 from 2026-10-27)",
+      "quote": "(1) If there is only one owner of a network unit, the owner of the network unit must not use the unit, either alone or jointly with one or more other persons, to supply a carriage service to the public, unless: (a) the owner holds a carrier licence;",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "5801",
+        "5802"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Telecommunications Act 1997",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A05145/latest/text",
+          "locator": "s 42(1) (compilation C2026C00487 from 2026-10-27)",
+          "quote": "(1) If there is only one owner of a network unit, the owner of the network unit must not use the unit, either alone or jointly with one or more other persons, to supply a carriage service to the public, unless: (a) the owner holds a carrier licence;",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A carrier licence, with conditions and industry charges, before owning network infrastructure that serves the public.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, with conditions, is needed before using network units to supply the public.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Licence conditions, annual charges and industry obligations.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

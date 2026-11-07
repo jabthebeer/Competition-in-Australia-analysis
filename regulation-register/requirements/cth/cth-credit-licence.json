@@ -1,0 +1,113 @@
+{
+  "id": "cth-credit-licence",
+  "family": "credit-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold an Australian credit licence",
+  "kind": "licence",
+  "what": "Lenders, lessors and credit brokers need an Australian credit licence from ASIC before engaging in credit activities.",
+  "laws": [
+    {
+      "title": "National Consumer Credit Protection Act 2009",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2009A00134",
+      "register_url": "https://www.legislation.gov.au/C2009A00134/latest/text",
+      "provisions": "29(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "National Consumer Credit Protection Act 2009",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2009A00134/latest/text",
+      "locator": "s 29(1) (compilation C2026C00340 from 2026-07-01)",
+      "quote": "(1) A person must not engage in a credit activity if the person does not hold a licence authorising the person to engage in the credit activity.",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6221",
+        "6222",
+        "6223",
+        "6229",
+        "6230"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides or arranges consumer credit",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Consumer Credit Protection Act 2009",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2009A00134/latest/text",
+          "locator": "s 29(1) (compilation C2026C00340 from 2026-07-01)",
+          "quote": "(1) A person must not engage in a credit activity if the person does not hold a licence authorising the person to engage in the credit activity.",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A licence with competence, resourcing and responsible lending obligations before lending or broking consumer credit.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, with competence and financial resource conditions, is needed before engaging in credit activities.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Responsible lending, dispute resolution and reporting obligations.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

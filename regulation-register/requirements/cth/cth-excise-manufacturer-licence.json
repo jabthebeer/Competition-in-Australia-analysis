@@ -1,0 +1,112 @@
+{
+  "id": "cth-excise-manufacturer-licence",
+  "family": "excise-manufacturer-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a manufacturer licence to make excisable goods",
+  "kind": "licence",
+  "what": "Making excisable goods (beer, spirits, tobacco and fuel) needs a manufacturer licence from the ATO for the premises, with duty paid or deferred under the Act.",
+  "laws": [
+    {
+      "title": "Excise Act 1901",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1901A00009",
+      "register_url": "https://www.legislation.gov.au/C1901A00009/latest/text",
+      "provisions": "25(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Excise Act 1901",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1901A00009/latest/text",
+      "locator": "s 25(1) (compilation C2026C00380 from 2026-08-27)",
+      "quote": "(1) A person who does not hold a manufacturer licence must not intentionally manufacture excisable goods knowing, or being reckless as to whether, the goods are excisable goods.",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1212",
+        "1213",
+        "1220",
+        "1701"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Excise Act 1901",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1901A00009/latest/text",
+          "locator": "s 25(1) (compilation C2026C00380 from 2026-08-27)",
+          "quote": "(1) A person who does not hold a manufacturer licence must not intentionally manufacture excisable goods knowing, or being reckless as to whether, the goods are excisable goods.",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A licence for the premises, with excise returns and duty, before making beer, spirits, tobacco or fuel.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A manufacturer licence for the premises is needed before manufacturing.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Excise returns, duty payments, records and premises controls.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

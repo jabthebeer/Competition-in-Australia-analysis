@@ -1,0 +1,112 @@
+{
+  "id": "cth-adi-authorisation",
+  "family": "adi-authorisation",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Be authorised by APRA to carry on banking business",
+  "kind": "licence",
+  "what": "Only the Reserve Bank and bodies corporate authorised by APRA as authorised deposit-taking institutions (ADIs) may carry on banking business in Australia; ADIs must meet APRA's prudential standards.",
+  "laws": [
+    {
+      "title": "Banking Act 1959",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1959A00006",
+      "register_url": "https://www.legislation.gov.au/C1959A00006/latest/text",
+      "provisions": "8(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Banking Act 1959",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1959A00006/latest/text",
+      "locator": "s 8(1) (compilation C2026C00104 from 2026-03-31)",
+      "quote": "(1) A body corporate commits an offence if: (a) the body corporate carries on any banking business in Australia; and (b) the body corporate is not the Reserve Bank; and (c) the body corporate is not an ADI;",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6221",
+        "6222",
+        "6223",
+        "6229"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Banking Act 1959",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1959A00006/latest/text",
+          "locator": "s 8(1) (compilation C2026C00104 from 2026-03-31)",
+          "quote": "(1) A body corporate commits an offence if: (a) the body corporate carries on any banking business in Australia; and (b) the body corporate is not the Reserve Bank; and (c) the body corporate is not an ADI;",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "APRA authorisation, with capital, liquidity and governance standards, before taking deposits.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Authorisation, with capital and governance requirements, is needed before carrying on banking business.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Prudential standards, reporting and supervision.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

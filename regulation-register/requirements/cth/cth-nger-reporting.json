@@ -1,0 +1,114 @@
+{
+  "id": "cth-nger-reporting",
+  "family": "nger-reporting",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register and report greenhouse emissions and energy above the NGER thresholds",
+  "kind": "reporting",
+  "what": "A controlling corporation whose group's emissions or energy production or use meets an NGER threshold must register with the Clean Energy Regulator and report each year.",
+  "laws": [
+    {
+      "title": "National Greenhouse and Energy Reporting Act 2007",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2007A00175",
+      "register_url": "https://www.legislation.gov.au/C2007A00175/latest/text",
+      "provisions": "12(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "National Greenhouse and Energy Reporting Act 2007",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2007A00175/latest/text",
+      "locator": "s 12(1) (compilation C2025C00621 from 2025-11-03)",
+      "quote": "(1) A controlling corporation must apply, in accordance with this section, to be registered under Division 3 if the corporation’s group meets one or more of the thresholds under section 13 for a financial year (the trigger year) ending on or after 30 June 2009.",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "quantity",
+      "test": ">=",
+      "value": 50000.0,
+      "unit": "tonnes CO2-e of scope 1 and 2 emissions a year (corporate group)",
+      "as_at": "2026-11-07",
+      "note": "Energy thresholds (200 terajoules for a group) also apply (s 13).",
+      "sources": [
+        {
+          "title": "National Greenhouse and Energy Reporting Act 2007",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2007A00175/latest/text",
+          "locator": "s 13(1)(a)(iii) (compilation C2025C00621 from 2025-11-03)",
+          "quote": "(iii) if the year is a later financial year—50 kilotonnes or more;",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its corporate group meets an NGER threshold (such as 50 kilotonnes of emissions a year)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Greenhouse and Energy Reporting Act 2007",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2007A00175/latest/text",
+          "locator": "s 12(1) (compilation C2025C00621 from 2025-11-03)",
+          "quote": "(1) A controlling corporation must apply, in accordance with this section, to be registered under Division 3 if the corporation’s group meets one or more of the thresholds under section 13 for a financial year (the trigger year) ending on or after 30 June 2009.",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Annual emissions and energy reports, with records and audits, for the largest corporate groups.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Measurement, records and annual reports for corporate groups above the thresholds.",
+        "positions": [
+          "dominant"
+        ]
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

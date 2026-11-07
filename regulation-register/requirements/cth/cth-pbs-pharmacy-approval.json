@@ -1,0 +1,115 @@
+{
+  "id": "cth-pbs-pharmacy-approval",
+  "family": "pbs-pharmacy-approval",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Get approval to supply PBS medicines at the premises",
+  "kind": "approval",
+  "what": "A pharmacist needs the Secretary's approval to supply pharmaceutical benefits at particular premises; approvals are granted under the pharmacy location rules.",
+  "laws": [
+    {
+      "title": "National Health Act 1953",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1953A00095",
+      "register_url": "https://www.legislation.gov.au/C1953A00095/latest/text",
+      "provisions": "90(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "National Health Act 1953",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1953A00095/latest/text",
+      "locator": "s 90(1) (compilation C2026C00410 from 2026-09-19)",
+      "quote": "(1) Subject to this section, the Secretary may, upon application by a pharmacist for approval to supply pharmaceutical benefits at particular premises, approve that pharmacist for the purpose of supplying pharmaceutical benefits at those premises.",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4271"
+      ],
+      "exclude": [],
+      "activities": [
+        "Pharmacy, retail, operation"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Health Act 1953",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1953A00095/latest/text",
+          "locator": "s 90(1) (compilation C2026C00410 from 2026-09-19)",
+          "quote": "(1) Subject to this section, the Secretary may, upon application by a pharmacist for approval to supply pharmaceutical benefits at particular premises, approve that pharmacist for the purpose of supplying pharmaceutical benefits at those premises.",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [
+    "cth-pharmacy-location-rules"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "The location rules ration where new pharmacies may open, keeping new rivals away from existing pharmacies and out of supermarkets. The Harper Review recommended removing them.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "A new pharmacy cannot open within 1.5 km of an existing one in the usual case: a distance-based restriction on entry.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Existing pharmacies are shielded from nearby rivals and from pharmacies inside supermarkets.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "high",
+    "confidence_note": "Marks from the register's assessment of the pharmacy location rules (cth-pharmacy-location-rules).",
+    "evidence": [
+      "https://treasury.gov.au/sites/default/files/2019-03/Competition-policy-review-report_online.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

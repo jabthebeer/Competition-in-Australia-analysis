@@ -1,0 +1,117 @@
+{
+  "id": "cth-tga-artg-inclusion",
+  "family": "tga-artg-inclusion",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Enter therapeutic goods in the ARTG before supplying them",
+  "kind": "approval",
+  "what": "Therapeutic goods for use in humans must be registered, listed or included in the Australian Register of Therapeutic Goods (or exempt or approved) before they are imported, exported, manufactured or supplied.",
+  "laws": [
+    {
+      "title": "Therapeutic Goods Act 1989",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03952",
+      "register_url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+      "provisions": "19B(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Therapeutic Goods Act 1989",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+      "locator": "s 19B(1) (compilation C2025C00525 from 2025-09-05)",
+      "quote": "(1) A person commits an offence if: (a) the person: (i) imports into Australia therapeutic goods for use in humans; or (ii) exports from Australia therapeutic goods for use in humans; or (iii) manufactures in Australia therapeutic goods for use in humans; or (iv) supplies in Australia therapeutic goods for use in humans;",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1841",
+        "2412",
+        "3720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it imports, manufactures or supplies therapeutic goods for use in humans",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Therapeutic Goods Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+          "locator": "s 19B(1) (compilation C2025C00525 from 2025-09-05)",
+          "quote": "(1) A person commits an offence if: (a) the person: (i) imports into Australia therapeutic goods for use in humans; or (ii) exports from Australia therapeutic goods for use in humans; or (iii) manufactures in Australia therapeutic goods for use in humans; or (iv) supplies in Australia therapeutic goods for use in humans;",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Medicines and devices must be assessed and entered in the ARTG, with fees and annual charges, before supply.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A product cannot be imported or supplied until it is in the ARTG, after evaluation and fees.",
+        "positions": []
+      },
+      {
+        "driver": "innovation",
+        "mark": -1,
+        "reason": "Evaluation times and evidence requirements are a hurdle for new products.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Annual charges, adverse event reporting and advertising rules.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

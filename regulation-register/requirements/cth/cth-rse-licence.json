@@ -1,0 +1,109 @@
+{
+  "id": "cth-rse-licence",
+  "family": "rse-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold an RSE licence to act as a super fund trustee",
+  "kind": "licence",
+  "what": "A trustee of a registrable superannuation entity must hold an RSE licence from APRA.",
+  "laws": [
+    {
+      "title": "Superannuation Industry (Supervision) Act 1993",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04633",
+      "register_url": "https://www.legislation.gov.au/C2004A04633/latest/text",
+      "provisions": "29J(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Superannuation Industry (Supervision) Act 1993",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A04633/latest/text",
+      "locator": "s 29J(1) (compilation C2026C00361 from 2026-08-10)",
+      "quote": "(1) A person must not be a trustee, or act as a trustee, of a registrable superannuation entity unless at least one of the following paragraphs apply: (a) the person holds an RSE licence that enables the person to be the trustee of the entity;",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6330"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Superannuation Industry (Supervision) Act 1993",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04633/latest/text",
+          "locator": "s 29J(1) (compilation C2026C00361 from 2026-08-10)",
+          "quote": "(1) A person must not be a trustee, or act as a trustee, of a registrable superannuation entity unless at least one of the following paragraphs apply: (a) the person holds an RSE licence that enables the person to be the trustee of the entity;",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "An RSE licence from APRA, with fit and proper, resourcing and governance requirements, before acting as trustee.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence with fitness, propriety and resourcing tests is needed before acting as trustee.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Prudential standards, performance testing and reporting.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

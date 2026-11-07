@@ -1,0 +1,109 @@
+{
+  "id": "cth-general-insurer-authorisation",
+  "family": "general-insurer-authorisation",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Be authorised by APRA to carry on general insurance",
+  "kind": "licence",
+  "what": "A body corporate must be authorised by APRA as a general insurer (or be a Lloyd's underwriter) to carry on insurance business in Australia, and meet APRA's prudential standards.",
+  "laws": [
+    {
+      "title": "Insurance Act 1973",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1973A00076",
+      "register_url": "https://www.legislation.gov.au/C1973A00076/latest/text",
+      "provisions": "10(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Insurance Act 1973",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1973A00076/latest/text",
+      "locator": "s 10(1) (compilation C2025C00157 from 2025-02-21)",
+      "quote": "(1) A body corporate (other than a Lloyd’s underwriter) commits an offence if: (a) the body corporate carries on insurance business in Australia; and (b) the body corporate is not a general insurer;",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6322"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Insurance Act 1973",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1973A00076/latest/text",
+          "locator": "s 10(1) (compilation C2025C00157 from 2025-02-21)",
+          "quote": "(1) A body corporate (other than a Lloyd’s underwriter) commits an offence if: (a) the body corporate carries on insurance business in Australia; and (b) the body corporate is not a general insurer;",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "APRA authorisation, with capital and governance standards, before carrying on general insurance.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Authorisation, with capital requirements, is needed before carrying on insurance business.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Prudential standards, reporting and supervision.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

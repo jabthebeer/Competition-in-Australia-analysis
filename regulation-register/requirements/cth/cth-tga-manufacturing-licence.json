@@ -1,0 +1,109 @@
+{
+  "id": "cth-tga-manufacturing-licence",
+  "family": "tga-manufacturing-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a TGA licence to manufacture medicines",
+  "kind": "licence",
+  "what": "A business that carries out a step in manufacturing therapeutic goods for use in humans in Australia needs a manufacturing licence and must meet the manufacturing principles (GMP), unless the goods or the business are exempt.",
+  "laws": [
+    {
+      "title": "Therapeutic Goods Act 1989",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03952",
+      "register_url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+      "provisions": "35(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Therapeutic Goods Act 1989",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+      "locator": "s 35(1) (compilation C2025C00525 from 2025-09-05)",
+      "quote": "(1) A person commits an offence if: (a) the person, at premises in Australia, carries out a step in the manufacture of therapeutic goods (other than goods exempt under section 18A or 32CB); and (b) the goods are for supply for use in humans;",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1841"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Therapeutic Goods Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+          "locator": "s 35(1) (compilation C2025C00525 from 2025-09-05)",
+          "quote": "(1) A person commits an offence if: (a) the person, at premises in Australia, carries out a step in the manufacture of therapeutic goods (other than goods exempt under section 18A or 32CB); and (b) the goods are for supply for use in humans;",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A manufacturing licence, granted after a good manufacturing practice inspection, before manufacturing medicines.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence and a GMP inspection are needed before manufacturing.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Ongoing GMP compliance and inspections.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

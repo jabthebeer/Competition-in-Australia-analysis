@@ -1,0 +1,109 @@
+{
+  "id": "cth-private-health-insurer-registration",
+  "family": "private-health-insurer-registration",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Be registered as a private health insurer",
+  "kind": "registration",
+  "what": "Only private health insurers registered by APRA may carry on health insurance business.",
+  "laws": [
+    {
+      "title": "Private Health Insurance (Prudential Supervision) Act 2015",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2015A00085",
+      "register_url": "https://www.legislation.gov.au/C2015A00085/latest/text",
+      "provisions": "10(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Private Health Insurance (Prudential Supervision) Act 2015",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2015A00085/latest/text",
+      "locator": "s 10(1) (compilation C2025C00173 from 2025-02-21)",
+      "quote": "(1) A person commits an offence if: (a) the person carries on health insurance business; and (b) the person is not a private health insurer.",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6321"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Private Health Insurance (Prudential Supervision) Act 2015",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2015A00085/latest/text",
+          "locator": "s 10(1) (compilation C2025C00173 from 2025-02-21)",
+          "quote": "(1) A person commits an offence if: (a) the person carries on health insurance business; and (b) the person is not a private health insurer.",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Registration by APRA, with capital and solvency standards, before carrying on health insurance business.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Registration, with capital requirements, is needed before carrying on health insurance business.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Prudential standards, reporting and supervision.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

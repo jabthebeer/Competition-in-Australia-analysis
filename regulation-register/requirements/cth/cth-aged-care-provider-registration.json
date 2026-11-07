@@ -1,0 +1,137 @@
+{
+  "id": "cth-aged-care-provider-registration",
+  "family": "aged-care-provider-registration",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register with the Aged Care Quality and Safety Commissioner to deliver funded aged care",
+  "kind": "registration",
+  "what": "An entity must be registered as a registered provider, in the registration categories for the services it delivers, before delivering funded aged care services.",
+  "laws": [
+    {
+      "title": "Aged Care Act 2024",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2024A00104",
+      "register_url": "https://www.legislation.gov.au/C2024A00104/latest/text",
+      "provisions": "103 (simplified outline of Chapter 3)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Aged Care Act 2024",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2024A00104/latest/text",
+      "locator": "s 103 (simplified outline of Chapter 3) (compilation C2026C00301 from 2026-07-01)",
+      "quote": "To deliver funded aged care services, an entity must be registered as a registered provider by the Commissioner.",
+      "accessed": "2026-11-07",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8601"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it delivers funded aged care services",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Aged Care Act 2024",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2024A00104/latest/text",
+          "locator": "s 103 (simplified outline of Chapter 3) (compilation C2026C00301 from 2026-07-01)",
+          "quote": "To deliver funded aged care services, an entity must be registered as a registered provider by the Commissioner.",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "8790"
+      ],
+      "exclude": [],
+      "activities": [
+        "Aged care assistance service"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Aged Care Act 2024",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2024A00104/latest/text",
+          "locator": "s 103 (simplified outline of Chapter 3) (compilation C2026C00301 from 2026-07-01)",
+          "quote": "To deliver funded aged care services, an entity must be registered as a registered provider by the Commissioner.",
+          "accessed": "2026-11-07",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [
+    "cth-aged-care-act-2025"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Registration, against eligibility requirements and the Aged Care Quality Standards, before delivering funded aged care.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Registration against eligibility requirements is needed before delivering funded aged care.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Quality standards audits, reporting and the conditions of registration.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-07",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
