@@ -214,6 +214,30 @@ def test_every_requirement_reaches_all_the_classes_its_law_covers():
     assert {"4123", "4520", "4511"} <= classes("vic-liquor-licence")
 
 
+def test_award_coverage_checked_against_the_awards_text_is_sourced_clause_by_clause():
+    reqs = {q.id: q for q in load_requirements().requirements}
+
+    def entry(i, cls):
+        return next(r for r in reqs[i].reach if cls in r.classes)
+
+    def quoted(i, cls, words):
+        return any(words in s.quote for s in entry(i, cls).sources)
+
+    # Mining: exploration is covered only on a lease (cl 4.3(a)(x)); salt and quarrying are excluded (cl 4.3(a))
+    assert entry("cth-award-ma000011", "1012").condition and quoted(
+        "cth-award-ma000011", "1012", "which is not on a mining lease or tenement"
+    )
+    assert entry("cth-award-ma000011", "0990").condition and quoted("cth-award-ma000011", "0990", "(vii) salt;")
+    # Building: landscaping only with building works (cl 4.3(a)(ii)); electrical and plumbing awards excluded (cl 4.4)
+    assert entry("cth-award-ma000020", "3291").condition and quoted("cth-award-ma000020", "3291", "landscaping")
+    assert quoted("cth-award-ma000020", "3011", "Plumbing and Fire Sprinklers Award 2020")
+    # Pastoral: cotton is a broadacre field crop (cl 4.2(e)), not excluded; horticulture is (cl 4.3)
+    assert entry("cth-award-ma000035", "0152").condition and quoted("cth-award-ma000035", "0142", "Wine Industry Award")
+    for q in reqs.values():  # every condition on an award cites the clause it rests on
+        if q.id.startswith("cth-award-"):
+            assert all("cl " in r.condition for r in q.reach if r.condition), q.id
+
+
 def test_items_assessed_as_economy_wide_reach_every_industry_on_the_lens():
     p = lens.payload(load_records().records)
     rows = {r["id"]: r for r in p["rows"]}

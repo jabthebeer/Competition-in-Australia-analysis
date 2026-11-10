@@ -1,6 +1,6 @@
 # Industry lens (beta): methods
 
-*6–7 November 2026 (DECISIONS E-122, E-123). Code: `alicia/src/alicia/register/competition.py` (placing marks in columns) and `alicia/src/alicia/menu/lens.py` (the page's data); template `menu/templates/industry-lens.html`; map `alicia/src/alicia/pipeline/boundaries.py`. Tests: `alicia/tests/test_lens.py`.*
+*6–10 November 2026 (DECISIONS E-122, E-123, E-126 to E-128). Code: `alicia/src/alicia/register/competition.py` (placing marks in columns) and `alicia/src/alicia/menu/lens.py` (the page's data); template `menu/templates/industry-lens.html`; map `alicia/src/alicia/pipeline/boundaries.py`. Tests: `alicia/tests/test_lens.py`.*
 
 ## What the page shows
 
@@ -15,6 +15,11 @@ The address keeps the choice (`#division=H&class=4511&state=NSW`); older `#class
 - **Register items** (`regulation-register/records/`) about the class, at the Commonwealth or in that state, except those repealed or replaced. Items about a division, subdivision or group reach every class in it; economy-wide items with no industries reach every class.
 
 A register item whose framework assessment rates its reach **economy-wide** appears for every industry: directly where it names the industry, and as an indirect effect elsewhere (shown as "Economy-wide, indirect", and hidden with the other indirect items when the user asks). Examples are insurance duty, planning and zoning, and insolvency reforms (10 November 2026, E-127).
+
+**Reading the table** (10 November 2026, E-128). The laws are one list, not grouped under Commonwealth, state and council headings. Each law starts with a tag for its level of government: *Commonwealth*, the state or territory's name, or *Council* and the council's name. Above the table:
+
+- **Level of government** chips show or hide Commonwealth, state or territory, and council laws; at least one stays on. The tallies follow the filter.
+- **Sort by:** level of government (Commonwealth, then state, then council; the default), most negative first or most positive first (by the framework total), or title.
 
 A requirement that names a register *setting* about the same law (payroll tax, occupational licensing, Australia Post's reserved service) stands for it, so the setting is not listed twice. Laws with no material effect are hidden unless the user asks for them.
 
@@ -91,7 +96,7 @@ Regulators' published market shares (ACCC inquiries, PC reports) are to be added
 
 - **Coverage is thin and uneven.**
   - Laws on every business are recorded for every industry.
-  - Industry-specific requirements exist only for the 19 calibration classes, plus a few families with wider reach.
+  - Industry-specific requirements cover the families drafted so far (the calibration's and phase C batch 1). Each reaches every class its law covers (E-127), but many industries have no industry-specific law recorded yet.
   - Councils are the capital cities only.
 
   A short list means *not yet recorded*, not *no regulation*. The page says when no industry-specific requirement has been recorded for the chosen industry.

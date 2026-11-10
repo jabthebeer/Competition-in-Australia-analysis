@@ -32,6 +32,12 @@ h1 .beta { font-family: var(--font-body); font-size: var(--step--1); font-weight
 .field input[type="search"] { font: inherit; font-size: var(--step-0); padding: 6px 10px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; }
 .field select { font-size: var(--step-0); padding: 6px 8px; width: 100%; }
 .field label.second { margin-top: 6px; }
+.tier-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; line-height: 1.5; border-radius: 4px; padding: 0 7px; color: var(--ink); white-space: nowrap; }
+.tier-tag.t-cth { background: color-mix(in oklab, var(--t-cth) 16%, var(--surface)); border: 1px solid var(--t-cth); }
+.tier-tag.t-state { background: color-mix(in oklab, var(--t-state) 16%, var(--surface)); border: 1px solid var(--t-state); }
+.tier-tag.t-local { background: color-mix(in oklab, var(--t-local) 16%, var(--surface)); border: 1px solid var(--t-local); }
+.chip[data-tier][aria-pressed="true"] { font-weight: 600; }
+.chip[data-tier] .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
 .tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0; align-items: center; }
 .cls-tag { font: inherit; font-size: 0.75rem; line-height: 1.5; border: 1px solid var(--accent); color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 0 8px; cursor: pointer; }
 .cls-tag:hover, .cls-tag:focus-visible { background: var(--accent); color: var(--surface); }
@@ -72,8 +78,6 @@ table.lens th, table.lens td { padding: 8px; border-bottom: 1px solid var(--line
 table.lens thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); color: var(--ink); font-weight: 600; border-bottom: 1px solid var(--line-strong); width: 22%; }
 table.lens thead th:first-child { width: auto; }
 table.lens thead th .q { display: block; font-weight: 400; color: var(--ink-3); font-size: 0.75rem; margin-top: 2px; }
-table.lens tr.tier th { background: var(--bg); font-family: var(--font-display); font-size: var(--step-0); padding-top: 14px; border-bottom: 1px solid var(--line-strong); }
-table.lens tr.tier th .muted { font-family: var(--font-body); font-weight: 400; font-size: var(--step--1); }
 .law-title { font-weight: 600; color: var(--ink); font-size: var(--step-0); }
 .law-meta { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0; }
 .law-names { margin: 2px 0 0; color: var(--ink-2); }
@@ -126,7 +130,6 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   table.lens tr.law td { border-bottom: 1px solid var(--line); }
   table.lens tr.law td:last-child { border-bottom: 0; }
   table.lens tr.law td[data-label]::before { content: attr(data-label); display: block; font-size: 0.75rem; color: var(--ink-3); font-weight: 600; margin-bottom: 4px; }
-  table.lens tr.tier th { border: 0; padding-left: 0; }
 }
 </style>
 
@@ -195,6 +198,17 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
       <label class="check"><input type="checkbox" id="opt-uncoded"> Show laws with no material effect</label>
       <label class="check"><input type="checkbox" id="opt-indirect" checked> Include register items that affect this industry indirectly</label>
     </div>
+    <div class="toolbar">
+      <span class="small muted">Level of government</span>
+      <div class="chips" id="tier-filter" role="group" aria-label="Level of government"></div>
+      <label class="check" for="sort-by">Sort by</label>
+      <select id="sort-by">
+        <option value="tier">Level of government</option>
+        <option value="negative">Most negative first</option>
+        <option value="positive">Most positive first</option>
+        <option value="title">Title (A–Z)</option>
+      </select>
+    </div>
     <div class="panel tscroll">
       <table class="lens" id="lens-table">
         <thead id="lens-head"></thead>
@@ -239,7 +253,9 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   let div = cls ? CL[cls].division : (DIVCLS[h.division] ? h.division : D.default.division);
   if (!h.class && !h.division && D.default.class) cls = D.default.class;
   let st = STATE[h.state] ? h.state : D.default.state;
-  const opt = { uncoded: false, indirect: true };
+  const opt = { uncoded: false, indirect: true, tiers: new Set(["cth", "state", "local"]), sort: "tier" };
+  const TIER_ORDER = { cth: 0, state: 1, local: 2 };
+  const tierLabel = (r) => (r.tier === "cth" ? "Commonwealth" : r.tier === "state" ? STATE[r.jurisdiction] : `Council · ${r.council}`);
 
   // ---- Beta note.
   $("beta-note").innerHTML =
@@ -465,6 +481,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     for (const u of [...((fw && fw.evidence) || []), ...(r.sources || [])].filter((u, i, a) => a.indexOf(u) === i).slice(0, 5)) src.push(`<li>${link(u, u.replace(/^https?:\/\//, "").slice(0, 70))}</li>`);
     if (src.length) more.push(`<p>Sources:</p><ul>${src.join("")}</ul>`);
     more.push(`<p>${r.reachConfidence ? `How sure the industries are: ${esc(r.reachConfidence)}. ` : ""}${link(repoFile(r.file), "The record in the register")}.</p>`);
+    tags.unshift(`<span class="tier-tag t-${r.tier}" title="${r.tier === "cth" ? "Commonwealth law" : r.tier === "state" ? "State or territory law" : "Council law (capital city councils only, for now)"}">${esc(tierLabel(r))}</span>`);
     return `<td><div class="law-title">${esc(r.title)}</div><div class="law-meta">${tags.join("")}</div>${classTags(o)}` +
       (laws ? `<p class="law-names">${laws}</p>` : "") + (quals.length ? `<p class="qual">${quals.join(" ")}</p>` : "") +
       (fw && fw.text ? `<p class="why-short">${esc(fw.text)}</p>` : "") +
@@ -495,7 +512,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     for (const b of $("state-chips").querySelectorAll("button")) b.setAttribute("aria-pressed", String(b.dataset.st === st));
 
     marketView(sc, st);
-    const all = applicable(codes, st).filter((o) => opt.indirect || o.exposure !== "indirect");
+    const all = applicable(codes, st).filter((o) => (opt.indirect || o.exposure !== "indirect") && opt.tiers.has(o.r.tier));
     const shown = all.filter((o) => opt.uncoded || coded(o.r));
     $("where").textContent = cls ? `${cls} ${CL[cls].name} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws.`
       : `Division ${div} ${D.divisions[div]} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws for any of its classes, each tagged with the classes it applies to.`;
@@ -510,27 +527,39 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     }).join("");
 
     $("lens-head").innerHTML = `<tr><th scope="col">Law or requirement</th>` + POS.map((p) => `<th scope="col">${esc(p.label)}<span class="q">${esc(p.question)}</span><span class="q">Drivers: ${esc(p.drivers.join(", "))}${p.id === "dominant" ? ", and bans, caps or exclusive rights (entry marks of ±2)" : ""}</span></th>`).join("") + `</tr>`;
-    const tiers = [["cth", "Commonwealth"], ["state", STATE[st]], ["local", "Council"]];
-    let body = "";
-    for (const [t, name] of tiers) {
-      const rows = shown.filter((o) => o.r.tier === t).sort((a, b) => (coded(b.r) - coded(a.r)) || (a.r.type === b.r.type ? 0 : a.r.type === "requirement" ? -1 : 1) || a.r.title.localeCompare(b.r.title));
-      if (!rows.length) continue;
-      const sub = t === "local" ? ` <span class="muted">· ${esc([...new Set(rows.map((o) => o.r.council))].join(", "))} (capital city councils only, for now)</span>` : "";
-      body += `<tr class="tier"><th colspan="4" scope="colgroup">${esc(name)}${sub}</th></tr>`;
-      body += rows.map((o) => `<tr class="law">${lawCell(o)}${POS.map((p) => cell(o, p)).join("")}</tr>`).join("");
-    }
+    const total = (o) => (o.r.framework && o.r.framework.total) || 0;
+    const byTier = (a, b) => (TIER_ORDER[a.r.tier] - TIER_ORDER[b.r.tier]) || (coded(b.r) - coded(a.r)) ||
+      (a.r.type === b.r.type ? 0 : a.r.type === "requirement" ? -1 : 1) || a.r.title.localeCompare(b.r.title);
+    const SORTS = {
+      tier: byTier,
+      negative: (a, b) => (total(a) - total(b)) || byTier(a, b),
+      positive: (a, b) => (total(b) - total(a)) || byTier(a, b),
+      title: (a, b) => a.r.title.localeCompare(b.r.title),
+    };
+    const body = [...shown].sort(SORTS[opt.sort]).map((o) => `<tr class="law">${lawCell(o)}${POS.map((p) => cell(o, p)).join("")}</tr>`).join("");
     const hidden = all.length - shown.length;
-    $("lens-body").innerHTML = body || `<tr><td colspan="4" class="empty">No laws with a marked effect for this industry and place yet.${hidden ? " Tick “Show laws with no material effect” to see the rest." : ""}</td></tr>`;
+    $("lens-body").innerHTML = body || `<tr><td colspan="4" class="empty">No laws with a marked effect for this industry, place and level of government yet.${hidden ? " Tick “Show laws with no material effect” to see the rest." : ""}</td></tr>`;
 
     const specific = all.filter((o) => o.specific).length;
     $("coverage").innerHTML = `${shown.length} of ${all.length} laws shown` + (hidden ? ` (${hidden} with no material effect are hidden)` : "") + ". " +
       (specific ? `${specific} of the ${all.length} are requirements particular to ${cls ? "this industry" : "some of the division's industries"}.` :
         `<strong>No requirements particular to this industry have been recorded yet</strong>: the table shows laws that apply to every business, and register items about the industry.`) +
-      ` The register grows batch by batch (${D.counts.industrySpecific} industry-specific requirements so far).`;
+      ` Council laws are recorded for capital city councils only, for now. The register grows batch by batch (${D.counts.industrySpecific} industry-specific requirements so far).`;
   }
 
   $("opt-uncoded").addEventListener("change", (e) => { opt.uncoded = e.target.checked; update(); });
   $("opt-indirect").addEventListener("change", (e) => { opt.indirect = e.target.checked; update(); });
+  const TIERS = [["cth", "Commonwealth"], ["state", "State or territory"], ["local", "Council"]];
+  $("tier-filter").innerHTML = TIERS.map(([t, n]) => `<button type="button" class="chip" data-tier="${t}" aria-pressed="true"><span class="dot" style="background: var(--t-${t})"></span>${n}</button>`).join("");
+  $("tier-filter").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-tier]");
+    if (!b) return;
+    const t = b.dataset.tier;
+    if (opt.tiers.has(t) && opt.tiers.size > 1) opt.tiers.delete(t); else opt.tiers.add(t);
+    for (const x of $("tier-filter").querySelectorAll("button")) x.setAttribute("aria-pressed", String(opt.tiers.has(x.dataset.tier)));
+    update();
+  });
+  $("sort-by").addEventListener("change", (e) => { opt.sort = e.target.value; update(); });
   window.addEventListener("hashchange", () => {
     const x = fromHash();
     if (CL[x.class]) { cls = x.class; div = CL[cls].division; } else if (DIVCLS[x.division]) { div = x.division; cls = ""; }
