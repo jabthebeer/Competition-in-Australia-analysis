@@ -60,7 +60,14 @@
     {
       "scope": "listed",
       "classes": [
-        "5511"
+        "5511",
+        "5512",
+        "5513",
+        "5514",
+        "5522",
+        "5610",
+        "5621",
+        "5622"
       ],
       "exclude": [],
       "activities": [],
@@ -69,16 +76,16 @@
         "company"
       ],
       "in_states": [],
-      "note": "National system employers that are companies, in every state.",
+      "note": "Production, broadcasting, distribution and showing of audio and audiovisual content, and cinemas (cl 4.2). National system employers that are companies, in every state.",
       "sources": [
         {
           "title": "Broadcasting, Recorded Entertainment and Cinemas Award 2020",
           "publisher": "Fair Work Commission",
           "url": "https://awards.fairwork.gov.au/MA000091.html",
           "locator": "cl 4.2",
-          "quote": "Broadcasting, recorded entertainment and cinema industry means the production (including pre-production and post-production)",
-          "accessed": "2026-11-06",
-          "checked": "register-text",
+          "quote": "4.2 Broadcasting, recorded entertainment and cinema industry means the production (including pre-production and post-production), broadcasting, distribution, showing, making available, and/or sale of audio and audio/visual content including but not limited to feature films, television programs (incl",
+          "accessed": "2026-11-10",
+          "checked": "web-page",
           "corpus_version_id": null
         }
       ]
@@ -86,7 +93,40 @@
     {
       "scope": "listed",
       "classes": [
-        "5511"
+        "5700"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it produces or broadcasts audio or audiovisual content",
+      "legal_forms": [
+        "company"
+      ],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Broadcasting, Recorded Entertainment and Cinemas Award 2020",
+          "publisher": "Fair Work Commission",
+          "url": "https://awards.fairwork.gov.au/MA000091.html",
+          "locator": "cl 4.2",
+          "quote": "4.2 Broadcasting, recorded entertainment and cinema industry means the production (including pre-production and post-production), broadcasting, distribution, showing, making available, and/or sale of audio and audio/visual content including but not limited to feature films, television programs (incl",
+          "accessed": "2026-11-10",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "5511",
+        "5512",
+        "5513",
+        "5514",
+        "5522",
+        "5610",
+        "5621",
+        "5622"
       ],
       "exclude": [],
       "activities": [],
@@ -105,25 +145,51 @@
         "ACT",
         "NT"
       ],
-      "note": "Unincorporated employers outside WA (in WA they are in the state system).",
+      "note": "Production, broadcasting, distribution and showing of audio and audiovisual content, and cinemas (cl 4.2). Unincorporated employers outside WA (in WA they are in the state system).",
       "sources": [
         {
           "title": "Broadcasting, Recorded Entertainment and Cinemas Award 2020",
           "publisher": "Fair Work Commission",
           "url": "https://awards.fairwork.gov.au/MA000091.html",
           "locator": "cl 4.2",
-          "quote": "Broadcasting, recorded entertainment and cinema industry means the production (including pre-production and post-production)",
-          "accessed": "2026-11-06",
-          "checked": "register-text",
+          "quote": "4.2 Broadcasting, recorded entertainment and cinema industry means the production (including pre-production and post-production), broadcasting, distribution, showing, making available, and/or sale of audio and audio/visual content including but not limited to feature films, television programs (incl",
+          "accessed": "2026-11-10",
+          "checked": "web-page",
           "corpus_version_id": null
-        },
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "5700"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it produces or broadcasts audio or audiovisual content",
+      "legal_forms": [
+        "sole-proprietor",
+        "partnership",
+        "trust"
+      ],
+      "in_states": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "SA",
+        "TAS",
+        "ACT",
+        "NT"
+      ],
+      "note": null,
+      "sources": [
         {
-          "title": "Which system of employment laws applies",
-          "publisher": "Government of Western Australia (Private Sector Labour Relations)",
-          "url": "https://www.wa.gov.au/organisation/private-sector-labour-relations/which-system-of-employment-laws-applies",
-          "locator": "State system",
-          "quote": "The state system covers: Private sector businesses and their employees that operate as: Sole traders. Partnerships, where none of the partners in the business is a constitutional corporation (trading or financial corporation).",
-          "accessed": "2026-11-06",
+          "title": "Broadcasting, Recorded Entertainment and Cinemas Award 2020",
+          "publisher": "Fair Work Commission",
+          "url": "https://awards.fairwork.gov.au/MA000091.html",
+          "locator": "cl 4.2",
+          "quote": "4.2 Broadcasting, recorded entertainment and cinema industry means the production (including pre-production and post-production), broadcasting, distribution, showing, making available, and/or sale of audio and audio/visual content including but not limited to feature films, television programs (incl",
+          "accessed": "2026-11-10",
           "checked": "web-page",
           "corpus_version_id": null
         }

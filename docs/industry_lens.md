@@ -14,6 +14,8 @@ The address keeps the choice (`#division=H&class=4511&state=NSW`); older `#class
 - **Requirements** (`regulation-register/requirements/`) whose reach covers the class and that apply in the state: Commonwealth ones (unless limited to other states), the state's own, and its capital city council's, where recorded;
 - **Register items** (`regulation-register/records/`) about the class, at the Commonwealth or in that state, except those repealed or replaced. Items about a division, subdivision or group reach every class in it; economy-wide items with no industries reach every class.
 
+A register item whose framework assessment rates its reach **economy-wide** appears for every industry: directly where it names the industry, and as an indirect effect elsewhere (shown as "Economy-wide, indirect", and hidden with the other indirect items when the user asks). Examples are insurance duty, planning and zoning, and insolvency reforms (10 November 2026, E-127).
+
 A requirement that names a register *setting* about the same law (payroll tax, occupational licensing, Australia Post's reserved service) stands for it, so the setting is not listed twice. Laws with no material effect are hidden unless the user asks for them.
 
 ## Every law is marked against the productivity framework

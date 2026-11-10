@@ -30,7 +30,7 @@
    - **Whole class:** when the law's scope, read against the ABS class definition, covers every business mainly engaged in the class.
    - **Primary activities:** when it covers only some of the class. The ABS primary activities are quoted exactly as the ABS lists them, and `alicia validate` checks the wording.
    - **Condition:** when it follows an activity that crosses classes, such as selling alcohol. It is linked to the classes whose ABS definition or primary activities include the activity, or that official guidance names.
-   - **Once per family, across all 506 classes** (revised after phase B). The reach is coded for the whole family from a keyword shortlist of ABS class names, definitions and primary activities. Each state's version is then checked for a narrower or wider scope. The calibration coded only its 19 classes; from phase C every requirement is coded across all 506.
+   - **Once per family, across all 506 classes** (revised after phase B). The reach is coded for the whole family from a keyword shortlist of ABS class names, definitions and primary activities. Each state's version is then checked for a narrower or wider scope. The calibration coded only its 19 classes; on 10 November 2026 every calibration requirement was recoded across all 506 (E-127), and from phase C every requirement is coded that way from the start.
 5. **Sources.**
    - Every requirement quotes the obligation from the law, read from the official register.
    - For NSW and SA, the quote may be read from the Open Australian Legal Corpus's copy of the official text (`checked: corpus-copy`, with the corpus document ID), cited by its official register link.

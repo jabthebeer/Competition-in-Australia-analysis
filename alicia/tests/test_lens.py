@@ -196,3 +196,26 @@ def test_division_figures_are_the_sum_of_their_classes():
     assert h[3][0] == sum(r[3][0] or 0 for r in rows) and h[3][1] == sum(r[3][1] or 0 for r in rows)
     assert h[2] == [sum((r[2] or [0, 0, 0, 0])[i] or 0 for r in rows) for i in range(4)]
     assert h[0][-1] == round(100 * h[3][1] / h[3][0], 1)
+
+
+def test_every_requirement_reaches_all_the_classes_its_law_covers():
+    reqs = {q.id: q for q in load_requirements().requirements}
+    assert not [q.id for q in reqs.values() if any("Calibration" in (r.note or "") for r in q.reach)]
+    from alicia.register.requirements import reach_classes
+
+    def classes(i):
+        return {c for r in reqs[i].reach for c in reach_classes(r)}
+
+    retail = classes("cth-award-ma000004")
+    assert {"4110", "4251", "4260", "4310", "1174"} <= retail  # the award's own definition of general retail
+    assert not retail & {"3911", "4000", "4511"}  # vehicles, fuel and food services are excluded (cl 4.2)
+    assert {"3011", "3020", "3222"} <= classes("cth-award-ma000020") and "3232" not in classes("cth-award-ma000020")
+    assert "3020" in classes("qld-builder-licence") and "3020" not in classes("nsw-builder-licence")
+    assert {"4123", "4520", "4511"} <= classes("vic-liquor-licence")
+
+
+def test_items_assessed_as_economy_wide_reach_every_industry_on_the_lens():
+    p = lens.payload(load_records().records)
+    rows = {r["id"]: r for r in p["rows"]}
+    assert rows["nsw-insurance-duty"].get("economyWide") and rows["nsw-planning-zoning"].get("economyWide")
+    assert not rows["cth-pharmacy-location-rules"].get("economyWide")

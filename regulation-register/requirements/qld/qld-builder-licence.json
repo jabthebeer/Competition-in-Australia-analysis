@@ -49,14 +49,72 @@
     {
       "scope": "listed",
       "classes": [
-        "3011"
+        "3011",
+        "3019"
       ],
       "exclude": [],
       "activities": [],
       "condition": null,
       "legal_forms": [],
       "in_states": [],
-      "note": "Calibration: house construction; other building classes follow in phase D.",
+      "note": "Residential building contractors.",
+      "sources": [
+        {
+          "title": "Queensland Building and Construction Commission Act 1991 (Qld)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1991-098",
+          "locator": "s 42(1) (current)",
+          "quote": "a person must not carry out, or undertake to carry out, building work unless the person holds a contractor’s licence of the appropriate class under this Act.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3020"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "The state's licence also covers commercial building work.",
+      "sources": [
+        {
+          "title": "Queensland Building and Construction Commission Act 1991 (Qld)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1991-098",
+          "locator": "s 42(1) (current)",
+          "quote": "a person must not carry out, or undertake to carry out, building work unless the person holds a contractor’s licence of the appropriate class under this Act.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3221",
+        "3222",
+        "3223",
+        "3224",
+        "3239",
+        "3241",
+        "3242",
+        "3243",
+        "3244",
+        "3245"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its work needs a contractor's licence in the state (building trades, usually above a value threshold)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
       "sources": [
         {
           "title": "Queensland Building and Construction Commission Act 1991 (Qld)",

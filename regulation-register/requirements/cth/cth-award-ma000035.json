@@ -60,7 +60,21 @@
     {
       "scope": "listed",
       "classes": [
-        "0142"
+        "0141",
+        "0142",
+        "0143",
+        "0144",
+        "0145",
+        "0146",
+        "0149",
+        "0160",
+        "0171",
+        "0172",
+        "0180",
+        "0191",
+        "0192",
+        "0199",
+        "0522"
       ],
       "exclude": [],
       "activities": [],
@@ -69,16 +83,16 @@
         "company"
       ],
       "in_states": [],
-      "note": "National system employers that are companies, in every state.",
+      "note": "Livestock and poultry, dairying, shearing, hatcheries and broadacre crops (cl 4.2); horticulture, sugar cane and cotton are not included here. National system employers that are companies, in every state.",
       "sources": [
         {
           "title": "Pastoral Award 2020",
           "publisher": "Fair Work Commission",
           "url": "https://awards.fairwork.gov.au/MA000035.html",
           "locator": "cl 4.2",
-          "quote": "(a) the management, breeding, rearing or grazing of livestock or poultry;",
-          "accessed": "2026-11-06",
-          "checked": "register-text",
+          "quote": "4.2 Pastoral industry means all employers and employees who are engaged in or in connection with: (a) the management, breeding, rearing or grazing of livestock or poultry; (b) the shearing and crutching of sheep and the classing and pressing of wool on farms; (c) dairying; (d) hatchery work;",
+          "accessed": "2026-11-10",
+          "checked": "web-page",
           "corpus_version_id": null
         }
       ]
@@ -86,7 +100,47 @@
     {
       "scope": "listed",
       "classes": [
-        "0142"
+        "0159"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it grows broadacre crops",
+      "legal_forms": [
+        "company"
+      ],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Pastoral Award 2020",
+          "publisher": "Fair Work Commission",
+          "url": "https://awards.fairwork.gov.au/MA000035.html",
+          "locator": "cl 4.2",
+          "quote": "4.2 Pastoral industry means all employers and employees who are engaged in or in connection with: (a) the management, breeding, rearing or grazing of livestock or poultry; (b) the shearing and crutching of sheep and the classing and pressing of wool on farms; (c) dairying; (d) hatchery work;",
+          "accessed": "2026-11-10",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "0141",
+        "0142",
+        "0143",
+        "0144",
+        "0145",
+        "0146",
+        "0149",
+        "0160",
+        "0171",
+        "0172",
+        "0180",
+        "0191",
+        "0192",
+        "0199",
+        "0522"
       ],
       "exclude": [],
       "activities": [],
@@ -105,25 +159,51 @@
         "ACT",
         "NT"
       ],
-      "note": "Unincorporated employers outside WA (in WA they are in the state system).",
+      "note": "Livestock and poultry, dairying, shearing, hatcheries and broadacre crops (cl 4.2); horticulture, sugar cane and cotton are not included here. Unincorporated employers outside WA (in WA they are in the state system).",
       "sources": [
         {
           "title": "Pastoral Award 2020",
           "publisher": "Fair Work Commission",
           "url": "https://awards.fairwork.gov.au/MA000035.html",
           "locator": "cl 4.2",
-          "quote": "(a) the management, breeding, rearing or grazing of livestock or poultry;",
-          "accessed": "2026-11-06",
-          "checked": "register-text",
+          "quote": "4.2 Pastoral industry means all employers and employees who are engaged in or in connection with: (a) the management, breeding, rearing or grazing of livestock or poultry; (b) the shearing and crutching of sheep and the classing and pressing of wool on farms; (c) dairying; (d) hatchery work;",
+          "accessed": "2026-11-10",
+          "checked": "web-page",
           "corpus_version_id": null
-        },
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "0159"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it grows broadacre crops",
+      "legal_forms": [
+        "sole-proprietor",
+        "partnership",
+        "trust"
+      ],
+      "in_states": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "SA",
+        "TAS",
+        "ACT",
+        "NT"
+      ],
+      "note": null,
+      "sources": [
         {
-          "title": "Which system of employment laws applies",
-          "publisher": "Government of Western Australia (Private Sector Labour Relations)",
-          "url": "https://www.wa.gov.au/organisation/private-sector-labour-relations/which-system-of-employment-laws-applies",
-          "locator": "State system",
-          "quote": "The state system covers: Private sector businesses and their employees that operate as: Sole traders. Partnerships, where none of the partners in the business is a constitutional corporation (trading or financial corporation).",
-          "accessed": "2026-11-06",
+          "title": "Pastoral Award 2020",
+          "publisher": "Fair Work Commission",
+          "url": "https://awards.fairwork.gov.au/MA000035.html",
+          "locator": "cl 4.2",
+          "quote": "4.2 Pastoral industry means all employers and employees who are engaged in or in connection with: (a) the management, breeding, rearing or grazing of livestock or poultry; (b) the shearing and crutching of sheep and the classing and pressing of wool on farms; (c) dairying; (d) hatchery work;",
+          "accessed": "2026-11-10",
           "checked": "web-page",
           "corpus_version_id": null
         }

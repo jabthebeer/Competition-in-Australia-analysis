@@ -51,14 +51,71 @@
     {
       "scope": "listed",
       "classes": [
-        "6240"
+        "6240",
+        "6411",
+        "6420"
       ],
       "exclude": [],
       "activities": [],
-      "condition": "if it provides financial services to others (investing only on its own account needs no licence)",
+      "condition": null,
       "legal_forms": [],
       "in_states": [],
-      "note": "Calibration: coded for the calibration classes; financial services classes follow in phase C.",
+      "note": "Dealing in, issuing or advising on financial products.",
+      "sources": [
+        {
+          "title": "Corporations Act 2001",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00818/latest/text",
+          "locator": "s 911A(1) (compilation C2026C00432, in force from 2026-09-19)",
+          "quote": "Subject to this section, a person who carries on a financial services business in this jurisdiction must hold an Australian financial services licence covering the provision of the financial services.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "6221",
+        "6222",
+        "6223",
+        "6229",
+        "6310",
+        "6322",
+        "6330",
+        "6419"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it issues, deals in or advises on financial products",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Corporations Act 2001",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00818/latest/text",
+          "locator": "s 911A(1) (compilation C2026C00432, in force from 2026-09-19)",
+          "quote": "Subject to this section, a person who carries on a financial services business in this jurisdiction must hold an Australian financial services licence covering the provision of the financial services.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "6932"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it gives financial product advice",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
       "sources": [
         {
           "title": "Corporations Act 2001",

@@ -323,6 +323,8 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
         if (r.industries === "all") { out.push({ r, exposure: "economy-wide", tags: "all" }); continue; }
         const m = r.industries.filter((i) => cs.some((c) => under(c, i.code)));
         if (m.length) out.push({ r, exposure: m.some((i) => i.exposure === "direct") ? "direct" : "indirect", tags: [...new Set(m.map((i) => i.code))].sort() });
+        // An item assessed as economy-wide reaches every industry: indirectly where it does not name the industry.
+        else if (r.economyWide) out.push({ r, exposure: "indirect", economy: true, tags: "all" });
       }
     }
     // A requirement that takes its coding from a setting stands for it: the setting is not listed twice.
@@ -437,7 +439,8 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
       if (r.councilsAdminister) tags.push(`<span class="tag">Councils administer</span>`);
     } else {
       tags.push(`<span class="tag">${esc(KIND[r.kind] || r.kind)}${r.since && r.kind === "reform" ? " · " + r.since.slice(0, 4) : ""}</span>`);
-      if (o.exposure === "indirect") tags.push(`<span class="tag">Indirect effect</span>`);
+      if (o.economy) tags.push(`<span class="tag" title="Assessed as economy-wide; it does not name this industry">Economy-wide, indirect</span>`);
+      else if (o.exposure === "indirect") tags.push(`<span class="tag">Indirect effect</span>`);
       if (o.exposure === "economy-wide") tags.push(`<span class="tag">Economy-wide</span>`);
     }
     const fw = r.framework;

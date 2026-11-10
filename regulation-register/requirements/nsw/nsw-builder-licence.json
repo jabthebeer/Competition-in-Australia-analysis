@@ -49,14 +49,74 @@
     {
       "scope": "listed",
       "classes": [
-        "3011"
+        "3011",
+        "3019"
       ],
       "exclude": [],
       "activities": [],
       "condition": null,
       "legal_forms": [],
       "in_states": [],
-      "note": "Calibration: house construction; other building classes follow in phase D.",
+      "note": "Residential building contractors.",
+      "sources": [
+        {
+          "title": "Home Building Act 1989 (NSW)",
+          "publisher": "Official register text via the Open Australian Legal Corpus",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1989-147",
+          "locator": "s 4(1) (version of 2024-08-20)",
+          "quote": "A person must not contract to do— (a) any residential building work, or (b) any specialist work, except as or on behalf of an individual, partnership or corporation that is the holder of a contractor licence authorising its holder to contract to do that work.",
+          "accessed": "2026-11-06",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-20/act-1989-147"
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3221",
+        "3222",
+        "3223",
+        "3224",
+        "3239",
+        "3241",
+        "3242",
+        "3243",
+        "3244",
+        "3245"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its work needs a contractor's licence in the state (building trades, usually above a value threshold)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Home Building Act 1989 (NSW)",
+          "publisher": "Official register text via the Open Australian Legal Corpus",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1989-147",
+          "locator": "s 4(1) (version of 2024-08-20)",
+          "quote": "A person must not contract to do— (a) any residential building work, or (b) any specialist work, except as or on behalf of an individual, partnership or corporation that is the holder of a contractor licence authorising its holder to contract to do that work.",
+          "accessed": "2026-11-06",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-20/act-1989-147"
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3231",
+        "3232",
+        "3233"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it contracts for specialist (plumbing, gas fitting, electrical or air conditioning) work",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
       "sources": [
         {
           "title": "Home Building Act 1989 (NSW)",

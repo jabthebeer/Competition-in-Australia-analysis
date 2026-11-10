@@ -49,14 +49,48 @@
     {
       "scope": "listed",
       "classes": [
-        "3011"
+        "3011",
+        "3019"
       ],
       "exclude": [],
       "activities": [],
       "condition": null,
       "legal_forms": [],
       "in_states": [],
-      "note": "Calibration: house construction.",
+      "note": "Residential building contractors.",
+      "sources": [
+        {
+          "title": "Home Building Act 1989 (NSW)",
+          "publisher": "Official register text via the Open Australian Legal Corpus",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1989-147",
+          "locator": "s 92(1) (version of 2024-08-20)",
+          "quote": "A person must not do residential building work under a contract unless— (a) a contract of insurance that complies with this Act is in force in relation to that work",
+          "accessed": "2026-11-06",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-20/act-1989-147"
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3221",
+        "3222",
+        "3223",
+        "3224",
+        "3239",
+        "3241",
+        "3242",
+        "3243",
+        "3244",
+        "3245"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it contracts for residential building work above the state's value threshold",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
       "sources": [
         {
           "title": "Home Building Act 1989 (NSW)",

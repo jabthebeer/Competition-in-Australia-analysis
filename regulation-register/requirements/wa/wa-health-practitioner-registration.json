@@ -51,14 +51,75 @@
     {
       "scope": "listed",
       "classes": [
-        "8511"
+        "8401",
+        "8402",
+        "8511",
+        "8512",
+        "8520",
+        "8531",
+        "8532",
+        "8533",
+        "8534",
+        "8539",
+        "8591",
+        "8599"
       ],
       "exclude": [],
       "activities": [],
       "condition": null,
       "legal_forms": [],
       "in_states": [],
-      "note": "Calibration: GP practices; other health classes follow in phase D. Registration attaches to each practitioner.",
+      "note": "Health services using practitioners in the registered professions.",
+      "sources": [
+        {
+          "title": "Health Practitioner Regulation National Law (Western Australia)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49311.docx",
+          "locator": "s 113(1)(a) (version current from )",
+          "quote": "take or use a title in the Table to this section, in a way that could be reasonably expected to induce a belief the person is registered under this Law in the health profession listed beside the title in the Table, unless the person is registered in the profession",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "8601"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it employs registered nurses or other registered practitioners",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Practitioner Regulation National Law (Western Australia)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49311.docx",
+          "locator": "s 113(1)(a) (version current from )",
+          "quote": "take or use a title in the Table to this section, in a way that could be reasonably expected to induce a belief the person is registered under this Law in the health profession listed beside the title in the Table, unless the person is registered in the profession",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4271"
+      ],
+      "exclude": [],
+      "activities": [
+        "Pharmacy, retail, operation"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
       "sources": [
         {
           "title": "Health Practitioner Regulation National Law (Western Australia)",

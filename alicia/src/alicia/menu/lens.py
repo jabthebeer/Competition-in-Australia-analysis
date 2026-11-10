@@ -146,6 +146,8 @@ def record_row(r: ChangeRecord) -> dict:
         "sources": [str(u) for u in r.direction_sources],
         "marks": C.placed_marks(r.assessment) if r.assessment else [],
         "framework": C.summary(r.assessment) if r.assessment else None,
+        # Assessed as economy-wide: it reaches every industry, directly where listed and indirectly elsewhere.
+        "economyWide": bool(r.assessment and r.assessment.reach == "economy-wide"),
         "file": f"regulation-register/records/{r.id}.json",
     }
 

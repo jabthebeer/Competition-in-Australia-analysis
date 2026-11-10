@@ -58,14 +58,72 @@
     {
       "scope": "listed",
       "classes": [
-        "0142"
+        "0141",
+        "0142",
+        "0143",
+        "0144",
+        "0145",
+        "0160",
+        "0180",
+        "0191",
+        "0192",
+        "0199"
       ],
       "exclude": [],
       "activities": [],
       "condition": null,
       "legal_forms": [],
       "in_states": [],
-      "note": "Calibration: coded for the calibration classes.",
+      "note": "Land where livestock are kept.",
+      "sources": [
+        {
+          "title": "Registration of a property identification code pic ",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/act/registration-of-a-property-identification-code-pic-/32538",
+          "locator": "Description",
+          "quote": "You will need this registration if you own a property that runs livestock including sheep, cattle, goats or pigs.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "0171",
+        "0172"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if the state requires a property identification code for poultry",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Registration of a property identification code pic ",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/act/registration-of-a-property-identification-code-pic-/32538",
+          "locator": "Description",
+          "quote": "You will need this registration if you own a property that runs livestock including sheep, cattle, goats or pigs.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "1111"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it runs an abattoir or saleyard that receives livestock",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
       "sources": [
         {
           "title": "Registration of a property identification code pic ",

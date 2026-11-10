@@ -55,10 +55,54 @@
       ],
       "exclude": [],
       "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Couriers and other carriers of letters.",
+      "sources": [
+        {
+          "title": "Australian Postal Corporation Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+          "locator": "s 29(1) (compilation C2025C00040, in force from 2025-01-09)",
+          "quote": "Subject to section 30, Australia Post has the exclusive right to carry letters within Australia, whether the letters originated within or outside Australia.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Australian Postal Corporation Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+          "locator": "s 30(1)(a) (compilation C2025C00040, in force from 2025-01-09)",
+          "quote": "(a) the carriage of a letter weighing more than 250 grams unless the letter consists of an envelope, packet, parcel, container or wrapper containing 2 or more separate letters;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Australian Postal Corporation Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+          "locator": "s 30(1)(e) (compilation C2025C00040, in force from 2025-01-09)",
+          "quote": "(e) the carriage of a letter within Australia for a charge or fee that is at least 4 times the then rate of postage for the carriage within Australia of a standard postal article by ordinary post;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4610"
+      ],
+      "exclude": [],
+      "activities": [],
       "condition": "if it carries letters",
       "legal_forms": [],
       "in_states": [],
-      "note": "Calibration: coded for the calibration classes; other postal and courier classes follow in phase C.",
+      "note": null,
       "sources": [
         {
           "title": "Australian Postal Corporation Act 1989",
