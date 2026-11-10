@@ -101,8 +101,36 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 |---|---|
 | A. Review | **Done 6 November 2026**: [`legislation_inventory.md`](legislation_inventory.md); 16 classes marked (`data/processed/anzsic/class_marks.csv`) |
 | B. Design and calibration | **Done 6 November 2026.** Estimate for phases C to G and the D5 options: [`estimate_legislation_links.md`](estimate_legislation_links.md); rules revised (methods 4, 7, 10–12; 5a added). Design done 6 Nov 2026 ([`methods_legislation_links.md`](methods_legislation_links.md), E-119). Calibration: batch 1 (Commonwealth, every business) done, 11 requirements; batch 2 (states and territories, every business) done, 24 requirements: payroll tax, workers' compensation insurance and the WHS primary duty in all eight; batch 3 (industry-specific Commonwealth) done, 20 requirements: 13 modern awards and 7 Acts or instruments; batch 4 (industry-specific states) done for six families, 42 requirements: food business registration, builder licensing, security, liquor and health practitioner registration in all eight, exploration in two. batch 5 (capital-city councils) done, 20 requirements: outdoor dining, busking and filming permits in the seven capital cities, from ABLIS's public listings (four council sites refuse automated requests) and, where readable, the councils' own documents. Batch 4f (more state families) done, 42 requirements: livestock property identification (7), waste transport (5), construction long service leave (8), cleaning and security long service leave (3), skin penetration (3), driving instructors (7), working with children checks (7), most drafted from ABLIS listings (methods rule 5a, law text still to quote), and home warranty insurance (NSW, SA) from the law. 376 of 376 quotes checked. Class link table: `data/processed/legislation/links.csv.gz` (19,389 links) |
-| C. Commonwealth | **Started 7 November 2026.** Catalogue from the Federal Register API (`alicia/scripts/frl_catalogue.py`, `data/processed/legislation/cth_catalogue.csv`): 1,263 principal Acts and 23,586 principal instruments in force; after title triage, 1,212 Acts and 6,849 instruments to screen. Batch 1: 20 industry-specific requirements from 18 Acts (licences, authorisations and registrations in pharmacy, therapeutic goods, credit, banking, insurance, superannuation, telecommunications, broadcasting, aviation, tax agents, excise, education, industrial chemicals, aged care, appliances and greenhouse reporting), each quoted from the latest compilation, reached across all 506 classes and marked against the productivity framework (E-124). 18 Acts called Y in the catalogue; the rest still to screen. **Reach recoded 10 Nov 2026** (E-127): the 123 requirements drafted during calibration now reach every class their law covers, not only the 19 calibration classes. **Batch 2 (10 Nov 2026, E-130):** VET training organisation registration, agricultural and veterinary chemical registration, domestic commercial vessel certificates and AML/CTF enrolment; 22 Acts now called Y |
-| D. States and territories | **Started 10 Nov 2026** (E-129), on the calibration families: 23 of the 40 ABLIS-first drafts now quote the law; 7 missing states drafted from the law; the other 22 gaps logged in `regulation-register/requirement-gaps.json` (rule 12). Full register screening not started (D2 settled: the corpus indexes NSW and SA, E-118) |
+| C. Commonwealth | **Started 7 November 2026.** Catalogue from the Federal Register API (`alicia/scripts/frl_catalogue.py`, `data/processed/legislation/cth_catalogue.csv`): 1,263 principal Acts and 23,586 principal instruments in force; after title triage, 1,212 Acts and 6,849 instruments to screen. Batch 1: 20 industry-specific requirements from 18 Acts (licences, authorisations and registrations in pharmacy, therapeutic goods, credit, banking, insurance, superannuation, telecommunications, broadcasting, aviation, tax agents, excise, education, industrial chemicals, aged care, appliances and greenhouse reporting), each quoted from the latest compilation, reached across all 506 classes and marked against the productivity framework (E-124). 18 Acts called Y in the catalogue; the rest still to screen. **Reach recoded 10 Nov 2026** (E-127): the 123 requirements drafted during calibration now reach every class their law covers, not only the 19 calibration classes. **Batch 2 (10 Nov 2026, E-130):** VET training organisation registration, agricultural and veterinary chemical registration, domestic commercial vessel certificates and AML/CTF enrolment, and fuel quality standards (E-131); 23 Acts now called Y |
+| D. States and territories | **Started 10 Nov 2026** (E-129), on the calibration families: 24 of the 40 ABLIS-first drafts now quote the law (E-129, E-131); 7 missing states drafted from the law; the other 22 gaps logged in `regulation-register/requirement-gaps.json` (rule 12). Full register screening not started (D2 settled: the corpus indexes NSW and SA, E-118) |
 | E. Councils | Not started |
 | F. Completeness check | Waiting for the ABLIS key |
 | G. Assemble and check | Not started |
+
+## Open items (checklist)
+
+*Started 10 November 2026 (E-131). Tick items off here as they are done.*
+
+**Sources**
+
+- [ ] **Victoria: 16 requirements and gaps do not quote the Victorian Act** (15 Acts). The Victorian register asks automated tools not to fetch its documents, and several regulators' sites refuse automated requests. The owner will supply texts or links, chosen item by item.
+- [ ] **16 requirements still rest on an ABLIS listing alone** (rule 5a). Most of the duties are likely in regulations; phase D's screening of each register, regulations included, should reach them.
+- [ ] **Partial ABLIS reach** (owner, 10 Nov 2026: come back to these). The Queensland livestock duty is the Act's, but which entities must register comes from ABLIS. The same applies to the ACT cleaning and security scheme's coverage and the two Victorian long service schemes (administrators' pages).
+- [ ] **NSW and SA quotes come from the corpus copy as at 10 March 2025.** Re-check them against the current text once a source for later NSW changes is found (D2).
+- [ ] **NT locators use section headings**, because the NT register's PDFs lose section numbers when read as text. Recover the numbers.
+- [ ] **Nothing has been checked by a person.** Phase G's spot-check list covers this.
+
+**Coverage**
+
+- [ ] **22 state gaps** in `regulation-register/requirement-gaps.json`: 10 to draft, 7 not found, 3 blocked (Victoria), 2 not searched.
+- [ ] **Construction long service levies**, a separate obligation on the person for whom building work is done (e.g. NSW s 34). To be recorded as their own family.
+- [ ] **Life insurance registration.** The Life Insurance Act 1995 regulates registered life companies, but the ban on unregistered life insurance business was not found in its text. Find where it sits before drafting.
+- [ ] **Other AML/CTF designated services** (bullion and precious stones dealers, property developers selling real estate). Not yet coded.
+- [ ] **Aged care** keeps the Act's simplified outline as the source. Registration is a condition of funding in the Aged Care Act 2024, not an offence, so there is no operative offence to quote.
+
+**Industry lens (owner's list, 10 Nov 2026)**
+
+- [ ] Regulators' market studies (ACCC, PC) as a cross-check of the market figures (option 4).
+- [ ] A structural economic conditions chart for council areas and regions (when the owner asks).
+- [ ] Council-level features on the map (when the owner asks).
+- [ ] ABLIS API key (owner), then phase F.
