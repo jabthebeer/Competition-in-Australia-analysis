@@ -1,0 +1,141 @@
+{
+  "id": "cth-agvet-product-registration",
+  "family": "agvet-product-registration",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register agricultural and veterinary chemical products before supply",
+  "kind": "approval",
+  "what": "An agricultural or veterinary chemical product must be registered (or reserved, or covered by a permit) before it is held for supply or supplied.",
+  "laws": [
+    {
+      "title": "Agricultural and Veterinary Chemicals Code Act 1994",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04723",
+      "register_url": "https://www.legislation.gov.au/C2004A04723/latest/text",
+      "provisions": "Schedule, s 75(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Agricultural and Veterinary Chemicals Code Act 1994 (Schedule: Agvet Code)",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A04723/latest/text",
+      "locator": "s 75(1) of the Agvet Code (compilation C2024C00508 from 2024-10-14)",
+      "quote": "75 Possession or custody of chemical products, other than registered or reserved products, with the intention of supply (1) A person must not at any time (the relevant time) have in the person’s possession or custody with the intention of supply a chemical product that is not a registered chemical product or a reserved chemical product unless:",
+      "accessed": "2026-11-10",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1832",
+        "1842"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Agricultural and Veterinary Chemicals Code Act 1994 (Schedule: Agvet Code)",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04723/latest/text",
+          "locator": "s 75(1) of the Agvet Code (compilation C2024C00508 from 2024-10-14)",
+          "quote": "75 Possession or custody of chemical products, other than registered or reserved products, with the intention of supply (1) A person must not at any time (the relevant time) have in the person’s possession or custody with the intention of supply a chemical product that is not a registered chemical product or a reserved chemical product unless:",
+          "accessed": "2026-11-10",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3323",
+        "3720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it supplies agricultural or veterinary chemical products",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Agricultural and Veterinary Chemicals Code Act 1994 (Schedule: Agvet Code)",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04723/latest/text",
+          "locator": "s 75(1) of the Agvet Code (compilation C2024C00508 from 2024-10-14)",
+          "quote": "75 Possession or custody of chemical products, other than registered or reserved products, with the intention of supply (1) A person must not at any time (the relevant time) have in the person’s possession or custody with the intention of supply a chemical product that is not a registered chemical product or a reserved chemical product unless:",
+          "accessed": "2026-11-10",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pesticides and veterinary medicines need APVMA registration, after assessment and fees, before supply.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A product cannot be supplied until registered by the APVMA.",
+        "positions": []
+      },
+      {
+        "driver": "innovation",
+        "mark": -1,
+        "reason": "Data requirements and assessment times delay new products.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registration fees, renewals, labelling and record-keeping.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 10 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-10"
+  },
+  "drafted_on": "2026-11-10",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

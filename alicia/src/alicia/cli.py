@@ -37,7 +37,12 @@ from .register.families import check_families, load_families
 from .register.framework import DRIVERS, KINDS
 from .register.recommendations import check_coverage, check_recommendations, load_gaps, load_recommendations
 from .register.regimes import check_regimes, load_regimes
-from .register.requirements import check_requirements, load_requirements
+from .register.requirements import (
+    check_requirement_gaps,
+    check_requirements,
+    load_requirement_gaps,
+    load_requirements,
+)
 from .register.schema import CHANNEL_LABELS, JURISDICTIONS, ChangeRecord
 
 
@@ -81,6 +86,9 @@ def cmd_validate(args) -> int:
     problems.extend(
         check_requirements(reqs.requirements, bodies, {g.id for g in regimes.regimes}, {r.id for r in result.records})
     )
+    req_gaps, gap_problems = load_requirement_gaps()
+    problems.extend(gap_problems)
+    problems.extend(check_requirement_gaps(reqs.requirements, req_gaps))
     families, family_problems = load_families()
     problems.extend(family_problems)
     problems.extend(check_families(families, result.records))

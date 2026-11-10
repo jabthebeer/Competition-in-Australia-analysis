@@ -464,3 +464,76 @@ __all__ = [
     "reach_classes",
     "write_requirement",
 ]
+
+
+# --- Gaps (methods rule 12) -------------------------------------------------------------------------------------
+
+GapStatus = Literal["not-found", "to-draft", "not-applicable", "blocked", "not-searched"]
+
+
+class RequirementGap(_Strict):
+    """A family with no requirement recorded in a state or territory, and what was searched (methods rule 12).
+
+    ``not-found``: the sources searched show no such requirement there. ``to-draft``: the law is identified but the
+    requirement is not yet drafted. ``not-applicable``: a source shows the family cannot apply there. ``blocked``: the
+    sources could not be read (e.g. a register or regulator refusing automated requests). ``not-searched``: not yet
+    looked for, with the reason. A gap says what was searched, not that no law exists, unless its sources say so."""
+
+    family: str = Field(min_length=1)
+    jurisdiction: Literal["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"]
+    status: GapStatus
+    searched: str = Field(min_length=10, description="What was searched, and where")
+    law: str | None = Field(default=None, description="For 'to-draft': the law identified")
+    note: str | None = None
+    checked_on: dt.date
+    sources: tuple[Source, ...] = ()
+
+    @model_validator(mode="after")
+    def _status(self) -> RequirementGap:
+        if self.status == "to-draft" and not self.law:
+            raise ValueError("a 'to-draft' gap names the law identified (law)")
+        if self.status == "not-applicable" and not self.sources:
+            raise ValueError("a 'not-applicable' gap needs a source saying why")
+        return self
+
+
+def default_gaps_path() -> Path:
+    return default_register_dir() / "requirement-gaps.json"
+
+
+def load_requirement_gaps(path: Path | None = None) -> tuple[list[RequirementGap], list[str]]:
+    path = path or default_gaps_path()
+    if not path.exists():
+        return [], []
+    gaps, problems = [], []
+    for i, g in enumerate(json.loads(path.read_text("utf-8"))["gaps"]):
+        try:
+            gaps.append(RequirementGap.model_validate(g))
+        except ValueError as exc:
+            problems.append(f"requirement-gaps.json: gap {i + 1}: {exc}")
+    return gaps, problems
+
+
+def check_requirement_gaps(reqs: list[Requirement], gaps: list[RequirementGap]) -> list[str]:
+    """Every state family is recorded, or logged as a gap, in each of the eight states and territories."""
+    problems: list[str] = []
+    have: dict[str, set[str]] = {}
+    for q in reqs:
+        if q.tier in ("state", "local"):
+            have.setdefault(q.family, set()).add(q.jurisdiction)
+    state_families = {q.family for q in reqs if q.tier == "state"}
+    logged: set[tuple[str, str]] = set()
+    for g in gaps:
+        key = (g.family, g.jurisdiction)
+        if g.family not in have:
+            problems.append(f"requirement-gaps.json: unknown state or council family '{g.family}'")
+        elif g.jurisdiction in have[g.family]:
+            problems.append(f"requirement-gaps.json: {g.family} is recorded in {g.jurisdiction}; remove the gap")
+        if key in logged:
+            problems.append(f"requirement-gaps.json: {g.family} in {g.jurisdiction} is logged twice")
+        logged.add(key)
+    for fam in sorted(state_families):
+        for st in JURISDICTIONS[1:]:
+            if st not in have[fam] and (fam, st) not in logged:
+                problems.append(f"requirement-gaps.json: {fam} has no requirement and no gap logged in {st}")
+    return problems

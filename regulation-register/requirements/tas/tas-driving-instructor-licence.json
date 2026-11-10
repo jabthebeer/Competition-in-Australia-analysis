@@ -1,0 +1,111 @@
+{
+  "id": "tas-driving-instructor-licence",
+  "family": "driving-instructor-licence",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold an ancillary certificate to give driving instruction",
+  "kind": "licence",
+  "what": "Driving instructors need a driver licence for the class and an ancillary certificate to give driving instruction for reward.",
+  "laws": [
+    {
+      "title": "Vehicle and Traffic Act 1999 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1999-070",
+      "register_url": "https://www.legislation.tas.gov.au/view/html/inforce/current/act-1999-070",
+      "provisions": "s 14(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Vehicle and Traffic Act 1999 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1999-070",
+      "locator": "s 14(1) (current)",
+      "quote": "14. Driving instructors (1) Subject to the regulations, a person must not provide driving instruction for reward unless the person – (a) holds an Australian driver licence to drive a motor vehicle of the relevant class; and (b) holds an ancillary certificate authorising the person to provide the driving instruction for reward.",
+      "accessed": "2026-11-10",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8219"
+      ],
+      "exclude": [],
+      "activities": [
+        "Driving school operation"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Vehicle and Traffic Act 1999 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1999-070",
+          "locator": "s 14(1) (current)",
+          "quote": "14. Driving instructors (1) Subject to the regulations, a person must not provide driving instruction for reward unless the person – (a) holds an Australian driver licence to drive a motor vehicle of the relevant class; and (b) holds an ancillary certificate authorising the person to provide the driving instruction for reward.",
+          "accessed": "2026-11-10",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Drafted from the law's current text on 10 Nov 2026 to fill a gap in the family (methods rule 12).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Driving instructors need a licence, with a test and checks, before giving lessons for reward.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "An instructor's licence is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Licensing narrows who may teach driving for reward.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-10"
+  },
+  "drafted_on": "2026-11-10",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

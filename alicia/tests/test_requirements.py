@@ -202,3 +202,42 @@ def test_every_requirement_is_marked_against_the_productivity_framework():
         Requirement.model_validate(req(assessment=req()["assessment"] | {"main_driver": "burden"}))
     with pytest.raises(ValidationError, match="largest mark"):
         Requirement.model_validate(marked | {"assessment": marked["assessment"] | {"main_driver": "burden"}})
+
+
+def test_every_state_family_is_recorded_or_its_gap_logged_with_what_was_searched():
+    from alicia.register.requirements import (
+        RequirementGap,
+        check_requirement_gaps,
+        load_requirement_gaps,
+        load_requirements,
+    )
+
+    reqs = load_requirements().requirements
+    gaps, problems = load_requirement_gaps()
+    assert not problems and gaps and not check_requirement_gaps(reqs, gaps)
+    assert all(g.searched for g in gaps)
+    assert all(g.law for g in gaps if g.status == "to-draft")
+    dropped = [g for g in gaps if not (g.family == "home-warranty-insurance" and g.jurisdiction == "TAS")]
+    assert check_requirement_gaps(reqs, dropped) == [
+        "requirement-gaps.json: home-warranty-insurance has no requirement and no gap logged in TAS"
+    ]
+    nsw = RequirementGap.model_validate(
+        {
+            "family": "food-business-registration",
+            "jurisdiction": "NSW",
+            "status": "not-found",
+            "searched": "a search that should not be needed",
+            "checked_on": "2026-11-10",
+        }
+    )
+    assert "remove the gap" in check_requirement_gaps(reqs, gaps + [nsw])[0]
+    with pytest.raises(ValueError, match="names the law"):
+        RequirementGap.model_validate(
+            {
+                "family": "x",
+                "jurisdiction": "NSW",
+                "status": "to-draft",
+                "searched": "searched somewhere",
+                "checked_on": "2026-11-10",
+            }
+        )

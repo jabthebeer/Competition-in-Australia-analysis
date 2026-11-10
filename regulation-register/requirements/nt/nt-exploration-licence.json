@@ -1,0 +1,141 @@
+{
+  "id": "nt-exploration-licence",
+  "family": "exploration-licence",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "mining-and-petroleum-titles",
+  "title": "Hold an exploration licence",
+  "kind": "licence",
+  "what": "Hold an exploration licence (or other mining authorisation) from the state before prospecting or exploring for minerals.",
+  "laws": [
+    {
+      "title": "Mineral Titles Act 2010 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://legislation.nt.gov.au/Legislation/MINERAL-TITLES-ACT-2010",
+      "provisions": "Pt 9 Div 2 (conducting activities without mineral title)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Mineral Titles Act 2010 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12004",
+      "locator": "Pt 9 Div 2, conducting activities without mineral title, (1)(a) (current reprint)",
+      "quote": "Conducting activities without mineral title (1) A person commits an offence if the person: (a) conducts exploration for, or mining or other extraction of, minerals or extractive minerals on an area of land of the Territory; and",
+      "accessed": "2026-11-10",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1012"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Mineral exploration.",
+      "sources": [
+        {
+          "title": "Mineral Titles Act 2010 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12004",
+          "locator": "Pt 9 Div 2, conducting activities without mineral title, (1)(a) (current reprint)",
+          "quote": "Conducting activities without mineral title (1) A person commits an offence if the person: (a) conducts exploration for, or mining or other extraction of, minerals or extractive minerals on an area of land of the Territory; and",
+          "accessed": "2026-11-10",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "0801",
+        "0802",
+        "0803",
+        "0804",
+        "0805",
+        "0806",
+        "0807",
+        "0809",
+        "0990"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it explores for minerals outside an existing mining lease",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Mineral Titles Act 2010 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12004",
+          "locator": "Pt 9 Div 2, conducting activities without mineral title, (1)(a) (current reprint)",
+          "quote": "Conducting activities without mineral title (1) A person commits an offence if the person: (a) conducts exploration for, or mining or other extraction of, minerals or extractive minerals on an area of land of the Territory; and",
+          "accessed": "2026-11-10",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Drafted from the law's current text on 10 Nov 2026 to fill a gap in the family (methods rule 12).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Exploring for minerals needs an exploration licence over a defined area, with a work program and security.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, work program and security deposit are needed before exploring.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Expenditure commitments, reporting and rehabilitation obligations.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-10"
+  },
+  "drafted_on": "2026-11-10",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

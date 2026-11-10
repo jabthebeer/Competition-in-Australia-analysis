@@ -76,7 +76,7 @@ The `family` is the same obligation across jurisdictions (e.g. `food-business-re
    ```
 
    Then look at the page: `uv run alicia site -o ../site` and open `site/industry-lens.html#class=<code>&state=<STATE>`.
-5. **Commit per batch** (a jurisdiction or a family), and update the progress table in [`docs/plan_legislation_links.md`](../../docs/plan_legislation_links.md). Log any family not found in a state as a gap (rule 12).
+5. **Commit per batch** (a jurisdiction or a family), and update the progress table in [`docs/plan_legislation_links.md`](../../docs/plan_legislation_links.md). Log any family not found in a state as a gap in [`requirement-gaps.json`](../requirement-gaps.json) (rule 12): what was searched, and a status (not found, to draft, not applicable, blocked, not searched). When you draft a requirement for a logged gap, delete the gap; `alicia validate` checks both.
 
 ## Starting a new thread
 

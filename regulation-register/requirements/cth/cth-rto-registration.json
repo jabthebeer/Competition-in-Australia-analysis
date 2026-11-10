@@ -1,0 +1,135 @@
+{
+  "id": "cth-rto-registration",
+  "family": "rto-registration",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register as a training organisation before providing VET courses",
+  "kind": "registration",
+  "what": "A person must be an NVR registered training organisation to provide, or offer to provide, all or part of a VET course in a referring state or a territory.",
+  "laws": [
+    {
+      "title": "National Vocational Education and Training Regulator Act 2011",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2011A00012",
+      "register_url": "https://www.legislation.gov.au/C2011A00012/latest/text",
+      "provisions": "116(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "National Vocational Education and Training Regulator Act 2011",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2011A00012/latest/text",
+      "locator": "s 116(1) (compilation C2024C00461 from 2024-10-14)",
+      "quote": "116 Offence—providing, or offering to provide, all or part of a VET course without registration (1) A person commits an offence if: (a) the person provides, or offers to provide, all or part of a VET course in a referring State or a Territory; and (b) the person is not an NVR registered training organisation.",
+      "accessed": "2026-11-10",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8101"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Vocational Education and Training Regulator Act 2011",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2011A00012/latest/text",
+          "locator": "s 116(1) (compilation C2024C00461 from 2024-10-14)",
+          "quote": "116 Offence—providing, or offering to provide, all or part of a VET course without registration (1) A person commits an offence if: (a) the person provides, or offers to provide, all or part of a VET course in a referring State or a Territory; and (b) the person is not an NVR registered training organisation.",
+          "accessed": "2026-11-10",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "8211",
+        "8212",
+        "8219"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides or offers nationally recognised VET courses (s 116)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Vocational Education and Training Regulator Act 2011",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2011A00012/latest/text",
+          "locator": "s 116(1) (compilation C2024C00461 from 2024-10-14)",
+          "quote": "116 Offence—providing, or offering to provide, all or part of a VET course without registration (1) A person commits an offence if: (a) the person provides, or offers to provide, all or part of a VET course in a referring State or a Territory; and (b) the person is not an NVR registered training organisation.",
+          "accessed": "2026-11-10",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Training providers must be registered with ASQA, and keep meeting its standards, to deliver VET courses.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A provider cannot deliver or offer VET courses until registered.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Ongoing compliance with the standards, audits and fees.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 10 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-10"
+  },
+  "drafted_on": "2026-11-10",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

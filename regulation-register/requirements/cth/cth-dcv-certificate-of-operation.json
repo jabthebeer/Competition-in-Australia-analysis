@@ -1,0 +1,115 @@
+{
+  "id": "cth-dcv-certificate-of-operation",
+  "family": "dcv-certificate-of-operation",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a certificate of operation for a domestic commercial vessel",
+  "kind": "licence",
+  "what": "The owner of a domestic commercial vessel needs a certificate of operation from AMSA to operate it.",
+  "laws": [
+    {
+      "title": "Marine Safety (Domestic Commercial Vessel) National Law Act 2012",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2012A00121",
+      "register_url": "https://www.legislation.gov.au/C2012A00121/latest/text",
+      "provisions": "Sch 1, s 53(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Marine Safety (Domestic Commercial Vessel) National Law Act 2012",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2012A00121/latest/text",
+      "locator": "Sch 1 (Marine Safety (Domestic Commercial Vessel) National Law), s 53(1) (compilation C2024C00559 from 2024-10-14)",
+      "quote": "53 Offence—operating etc. a vessel without a certificate of operation (owner) (1) The owner of a domestic commercial vessel commits an offence if: (a) the owner operates the vessel, or causes or permits the vessel to be operated by another person; and (b) the operation of the vessel is not authorised by a certificate of operation",
+      "accessed": "2026-11-10",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4810",
+        "4820",
+        "0411",
+        "0412",
+        "0413",
+        "0414",
+        "0419"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a domestic commercial vessel",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Marine Safety (Domestic Commercial Vessel) National Law Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2012A00121/latest/text",
+          "locator": "Sch 1 (Marine Safety (Domestic Commercial Vessel) National Law), s 53(1) (compilation C2024C00559 from 2024-10-14)",
+          "quote": "53 Offence—operating etc. a vessel without a certificate of operation (owner) (1) The owner of a domestic commercial vessel commits an offence if: (a) the owner operates the vessel, or causes or permits the vessel to be operated by another person; and (b) the operation of the vessel is not authorised by a certificate of operation",
+          "accessed": "2026-11-10",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Commercial vessels in Australian waters need AMSA's certificate of operation, with a safety management system and survey.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A commercial vessel cannot operate until certified.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Safety management systems, survey and renewal.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 10 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-10"
+  },
+  "drafted_on": "2026-11-10",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

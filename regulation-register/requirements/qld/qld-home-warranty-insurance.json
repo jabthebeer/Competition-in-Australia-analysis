@@ -1,0 +1,143 @@
+{
+  "id": "qld-home-warranty-insurance",
+  "family": "home-warranty-insurance",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "home-warranty-insurance",
+  "title": "Pay the home warranty insurance premium before residential work",
+  "kind": "insurance",
+  "what": "A licensed contractor pays the statutory insurance premium for residential construction work before the work starts (or within 10 business days of the contract).",
+  "laws": [
+    {
+      "title": "Queensland Building and Construction Commission Act 1991 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1991-098",
+      "register_url": "https://www.legislation.qld.gov.au/view/html/inforce/current/act-1991-098",
+      "provisions": "s 68B",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Queensland Building and Construction Commission Act 1991 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1991-098",
+      "locator": "s 68B (current)",
+      "quote": "68B When insurance premium is payable by licensed contractor (1) Subsection (2) applies to a licensed contractor who is to carry out residential construction work under a contract with a consumer unless the work is the subject of a construction management contract. (2) The licensed contractor must collect from the consumer, and pay to the commission, the appropriate insurance premium before the first of the following to happen— (a) 10 business days elapse from the day the contract was entered into; (b) the residential construction work starts.",
+      "accessed": "2026-11-10",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Residential building contractors.",
+      "sources": [
+        {
+          "title": "Queensland Building and Construction Commission Act 1991 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1991-098",
+          "locator": "s 68B (current)",
+          "quote": "68B When insurance premium is payable by licensed contractor (1) Subsection (2) applies to a licensed contractor who is to carry out residential construction work under a contract with a consumer unless the work is the subject of a construction management contract. (2) The licensed contractor must collect from the consumer, and pay to the commission, the appropriate insurance premium before the first of the following to happen— (a) 10 business days elapse from the day the contract was entered into; (b) the residential construction work starts.",
+          "accessed": "2026-11-10",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3221",
+        "3222",
+        "3223",
+        "3224",
+        "3239",
+        "3241",
+        "3242",
+        "3243",
+        "3244",
+        "3245"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it contracts for residential building work above the state's value threshold",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Queensland Building and Construction Commission Act 1991 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1991-098",
+          "locator": "s 68B (current)",
+          "quote": "68B When insurance premium is payable by licensed contractor (1) Subsection (2) applies to a licensed contractor who is to carry out residential construction work under a contract with a consumer unless the work is the subject of a construction management contract. (2) The licensed contractor must collect from the consumer, and pay to the commission, the appropriate insurance premium before the first of the following to happen— (a) 10 business days elapse from the day the contract was entered into; (b) the residential construction work starts.",
+          "accessed": "2026-11-10",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Drafted from the law's current text on 10 Nov 2026 to fill a gap in the family (methods rule 12).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Residential building work over a set value needs home warranty insurance, which builders can buy only once an insurer accepts them.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A new builder needs an insurer's eligibility (often set by net assets and track record) before contracting.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Premiums and a certificate for each job.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-10"
+  },
+  "drafted_on": "2026-11-10",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

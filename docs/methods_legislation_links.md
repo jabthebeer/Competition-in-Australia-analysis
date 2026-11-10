@@ -62,7 +62,14 @@
 
     A title triage first sets aside amending Acts, appropriations, airworthiness directives, tariff concession orders, appointments and similar series; the triage patterns are kept with the catalogue.
 11. **Thresholds in subordinate instruments** (added after phase B). Before a threshold is recorded as not yet quoted, the regulations, determinations and orders made under the law are searched for it. The calibration found the GST threshold in the regulations and the ACT payroll tax threshold in a determination, not in the Acts.
-12. **Gaps are logged** (added after phase B). A family with no requirement found in a state is logged as not found, with what was searched, rather than left blank.
+12. **Gaps are logged** (added after phase B; built 10 November 2026, E-129). A state family with no requirement in a state or territory is logged in `regulation-register/requirement-gaps.json`, saying what was searched, rather than left blank. `alicia validate` fails if a state family has neither a requirement nor a gap in any of the eight. Each gap has a status:
+    - **not found:** the sources searched show no such requirement;
+    - **to draft:** the law is identified (named in `law`) but the requirement is not yet drafted;
+    - **not applicable:** a quoted source shows the family cannot apply there;
+    - **blocked:** the sources could not be read (a register or regulator refusing automated requests);
+    - **not searched:** not yet looked for, with the reason.
+
+    A gap records a search, not that no law exists, unless its sources say so.
 13. **Every requirement is marked against the productivity framework** (added 7 November 2026, DECISIONS E-123). Each requirement carries an `assessment` like a register item's: the eight drivers marked from −2 to +2 against the same market without it, a main driver, reach and confidence. Where the register assesses the same law, the requirement uses its marks. A small obligation may have no material effect. The Industry lens reads these marks ([`industry_lens.md`](industry_lens.md)).
 
 ## Calibration (phase B)

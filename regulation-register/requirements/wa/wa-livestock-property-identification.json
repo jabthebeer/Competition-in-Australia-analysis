@@ -1,0 +1,161 @@
+{
+  "id": "wa-livestock-property-identification",
+  "family": "livestock-property-identification",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "biosecurity",
+  "title": "Register as an owner of stock",
+  "kind": "registration",
+  "what": "Owners and purchasers of stock must be registered owners of stock.",
+  "laws": [
+    {
+      "title": "Biosecurity and Agriculture Management (Identification and Movement of Stock and Apiaries) Regulations 2013 (WA)",
+      "jurisdiction": "WA",
+      "kind": "regulation",
+      "register_id": "law_s43884",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_s43884.html",
+      "provisions": "reg 7(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Biosecurity and Agriculture Management (Identification and Movement of Stock and Apiaries) Regulations 2013 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48723.docx",
+      "locator": "reg 7(1) (current version)",
+      "quote": "7. Owners and purchasers of stock to be registered (1) A person must not own or purchase stock unless the person is a registered owner of stock.",
+      "accessed": "2026-11-10",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0141",
+        "0142",
+        "0143",
+        "0144",
+        "0145",
+        "0160",
+        "0180",
+        "0191",
+        "0192",
+        "0199"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Land where livestock are kept.",
+      "sources": [
+        {
+          "title": "Biosecurity and Agriculture Management (Identification and Movement of Stock and Apiaries) Regulations 2013 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48723.docx",
+          "locator": "reg 7(1) (current version)",
+          "quote": "7. Owners and purchasers of stock to be registered (1) A person must not own or purchase stock unless the person is a registered owner of stock.",
+          "accessed": "2026-11-10",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "0171",
+        "0172"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if the state requires a property identification code for poultry",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Biosecurity and Agriculture Management (Identification and Movement of Stock and Apiaries) Regulations 2013 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48723.docx",
+          "locator": "reg 7(1) (current version)",
+          "quote": "7. Owners and purchasers of stock to be registered (1) A person must not own or purchase stock unless the person is a registered owner of stock.",
+          "accessed": "2026-11-10",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "1111"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it runs an abattoir or saleyard that receives livestock",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Biosecurity and Agriculture Management (Identification and Movement of Stock and Apiaries) Regulations 2013 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48723.docx",
+          "locator": "reg 7(1) (current version)",
+          "quote": "7. Owners and purchasers of stock to be registered (1) A person must not own or purchase stock unless the person is a registered owner of stock.",
+          "accessed": "2026-11-10",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Drafted from the law's current text on 10 Nov 2026 to fill a gap in the family (methods rule 12).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Land where livestock are kept must have a property identification code, and livestock movements are recorded under the national system.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registering the property and recording livestock movements.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-10"
+  },
+  "drafted_on": "2026-11-10",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
