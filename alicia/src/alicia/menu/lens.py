@@ -41,7 +41,7 @@ CLASS_MARKS = {
     "npish": "Mainly non-profit institutions serving households",
     "households": "Households, not businesses",
 }
-DEFAULT = ("4511", "NSW")  # cafes and restaurants: a calibration class with laws at every tier
+DEFAULT = ("H", "", "NSW")  # Accommodation and Food Services, all classes: calibration classes with laws at every tier
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
 
 
@@ -177,7 +177,7 @@ def payload(
         "map": {"viewBox": geo["viewBox"], "areas": geo["areas"], "source": geo["source"], "licence": geo["licence"]},
         "rows": rows,
         "market": market(),
-        "default": {"class": DEFAULT[0], "state": DEFAULT[1]},
+        "default": {"division": DEFAULT[0], "class": DEFAULT[1], "state": DEFAULT[2]},
         "counts": {
             "requirements": len(reqs),
             "records": len(live),
@@ -252,6 +252,27 @@ def market() -> dict:
             [_int(band.get(b)) for b in SIZE_BANDS] if band is not None else None,
             [_int(last.get(m)) for m in ("businesses_start", "entries", "exits", "businesses_end")],
         ]
+    # The same measures for each division in each state, from the sum of its classes (CABEE publishes classes; the
+    # ABS's own division totals can differ slightly, because small counts are perturbed).
+    div_of = {r["class"]: r["division"] for r in json.loads(CLASSES.read_text("utf-8"))["rows"]}
+    d = d.assign(division=d.industry_code.map(div_of))
+    dtot = d[d.breakdown == ""].pivot_table(
+        index=["geo_code", "division", "period"], columns="measure", values="value", aggfunc="sum"
+    )
+    dsizes = d[(d.breakdown != "") & (d.measure == "businesses_end") & (d.period == latest)].pivot_table(
+        index=["geo_code", "division"], columns="breakdown", values="value", aggfunc="sum"
+    )
+    divisions: dict[str, dict] = {}
+    for (geo, div), g in dtot.groupby(level=[0, 1]):
+        g = g.droplevel([0, 1]).reindex(periods)
+        band = dsizes.loc[(geo, div)] if (geo, div) in dsizes.index else None
+        last = g.loc[latest]
+        divisions.setdefault(geo, {})[div] = [
+            [_pct(e, s) for e, s in zip(g["entries"], g["businesses_start"], strict=True)],
+            [_pct(e, s) for e, s in zip(g["exits"], g["businesses_start"], strict=True)],
+            [_int(band.get(b)) for b in SIZE_BANDS] if band is not None else None,
+            [_int(last.get(m)) for m in ("businesses_start", "entries", "exits", "businesses_end")],
+        ]
     ai = json.loads(AUS_INDUSTRY.read_text("utf-8"))
     rows = ai["tables"]["size_division"]["rows"]
     fy = max(r["fy"] for r in rows)
@@ -278,6 +299,7 @@ def market() -> dict:
     return {
         "years": years,
         "cabee": states,
+        "cabeeDivision": divisions,
         "sizeBands": list(SIZE_BANDS),
         "sizeSales": size_sales,
         "sizeSalesYear": fy,

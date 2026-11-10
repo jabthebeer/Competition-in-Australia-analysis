@@ -4,7 +4,12 @@
 
 ## What the page shows
 
-The user picks an ANZSIC class and a state or territory. The page lists:
+The user picks an ANZSIC **division**, then, optionally, one of its **classes**, and a state or territory (10 November 2026, E-126).
+
+- **Division only:** every law that applies to any class in the division. Each is tagged with the classes it applies to; a tag is a button that opens that class alone. A law that reaches every class in the division, or every industry, says so instead of listing them. The market figures are for the whole division in the state (CABEE summed over its classes).
+- **Division and class:** the class's own view, with no tags.
+
+The address keeps the choice (`#division=H&class=4511&state=NSW`); older `#class=` links still work. For the chosen classes, the page lists:
 
 - **Requirements** (`regulation-register/requirements/`) whose reach covers the class and that apply in the state: Commonwealth ones (unless limited to other states), the state's own, and its capital city council's, where recorded;
 - **Register items** (`regulation-register/records/`) about the class, at the Commonwealth or in that state, except those repealed or replaced. Items about a division, subdivision or group reach every class in it; economy-wide items with no industries reach every class.

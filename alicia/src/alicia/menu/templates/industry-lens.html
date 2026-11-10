@@ -31,6 +31,14 @@ h1 .beta { font-family: var(--font-body); font-size: var(--step--1); font-weight
 .field label { font-size: var(--step--1); color: var(--ink-3); font-weight: 500; }
 .field input[type="search"] { font: inherit; font-size: var(--step-0); padding: 6px 10px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; }
 .field select { font-size: var(--step-0); padding: 6px 8px; width: 100%; }
+.field label.second { margin-top: 6px; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0; align-items: center; }
+.cls-tag { font: inherit; font-size: 0.75rem; line-height: 1.5; border: 1px solid var(--accent); color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 0 8px; cursor: pointer; }
+.cls-tag:hover, .cls-tag:focus-visible { background: var(--accent); color: var(--surface); }
+details.more-tags { display: contents; }
+details.more-tags > summary { list-style: none; cursor: pointer; font-size: 0.75rem; color: var(--accent); padding: 0 4px; }
+details.more-tags > summary::-webkit-details-marker { display: none; }
+details.more-tags[open] > summary { display: none; }
 .cls-head { display: grid; gap: 4px; margin-top: 6px; }
 .cls-head .code { font-family: var(--font-mono); color: var(--ink-3); }
 .cls-head h2 { font-size: var(--step-2); }
@@ -134,9 +142,11 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
 
   <section class="panel pick" aria-label="Choose an industry and a place">
     <div class="field">
-      <label for="cls-search">Industry (ANZSIC class)</label>
-      <input type="search" id="cls-search" placeholder="Search by name or code, e.g. cafes or 4511" autocomplete="off">
-      <select id="cls-select" aria-label="ANZSIC class"></select>
+      <label for="div-select">Industry division (ANZSIC)</label>
+      <select id="div-select"></select>
+      <label for="cls-search" class="second">Class within the division (optional)</label>
+      <input type="search" id="cls-search" placeholder="Filter this division's classes, e.g. cafes or 4511" autocomplete="off">
+      <select id="cls-select" aria-label="ANZSIC class within the division"></select>
       <div class="cls-head" id="cls-head"></div>
     </div>
     <div class="map-wrap">
@@ -218,10 +228,16 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   const link = (url, text) => url ? `<a href="${esc(url)}" rel="noopener">${esc(text)}</a>` : esc(text);
   const repoFile = (f) => D.repo + f;
 
-  // ---- State: from the address (#class=4511&state=NSW), else the default.
+  // ---- State: from the address (#division=H&class=4511&state=NSW; the class is optional), else the default.
   const fromHash = () => Object.fromEntries(new URLSearchParams(location.hash.slice(1)));
+  const DIVCLS = {};
+  for (const c of D.classes) (DIVCLS[c.division] ||= []).push(c.code);
+  const LEVEL = {};  // subdivision and group codes to their names, for register items tagged at those levels
+  for (const c of D.classes) for (const lab of [c.subdivision, c.group]) LEVEL[lab.split(" ")[0]] = lab;
   let h = fromHash();
-  let cls = CL[h.class] ? h.class : D.default.class;
+  let cls = CL[h.class] ? h.class : "";
+  let div = cls ? CL[cls].division : (DIVCLS[h.division] ? h.division : D.default.division);
+  if (!h.class && !h.division && D.default.class) cls = D.default.class;
   let st = STATE[h.state] ? h.state : D.default.state;
   const opt = { uncoded: false, indirect: true };
 
@@ -232,22 +248,30 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     `only for some. Every law is marked against the ${link(D.repo + "docs/productivity_framework.md", "ALICIA productivity framework")}, and each mark is shown in the column of the ` +
     `market players it acts through. The marks are drafts not yet checked by a person; they show effects on competition and productivity, not whether a law is worthwhile.`;
 
-  // ---- Industry picker.
-  const sel = $("cls-select");
+  // ---- Industry picker: a division, then (optionally) one of its classes.
+  const dsel = $("div-select"), sel = $("cls-select");
+  dsel.innerHTML = Object.entries(D.divisions).map(([d, n]) => `<option value="${d}">${d} ${esc(n)}</option>`).join("");
+  let filled = null;
   function fillSelect(q) {
     const s = q.trim().toLowerCase();
     const groups = {};
-    for (const c of D.classes) {
+    for (const code of DIVCLS[div]) {
+      const c = CL[code];
       if (s && !(`${c.code} ${c.name}`.toLowerCase().includes(s))) continue;
-      (groups[c.division] ||= []).push(c);
+      (groups[c.subdivision] ||= []).push(c);
     }
-    const html = Object.entries(groups).map(([d, cs]) => `<optgroup label="${esc(d + " " + (D.divisions[d] || ""))}">` +
+    const opts = Object.entries(groups).map(([g, cs]) => `<optgroup label="${esc(g)}">` +
       cs.map((c) => `<option value="${c.code}"${c.code === cls ? " selected" : ""}>${c.code} ${esc(c.name)}${c.mark ? " (" + esc(c.mark.toLowerCase()) + ")" : ""}</option>`).join("") + "</optgroup>").join("");
-    sel.innerHTML = html || `<option disabled>No industry matches</option>`;
-    if (s && !sel.querySelector(`option[value="${cls}"]`)) { const first = sel.querySelector("option[value]"); if (first) sel.value = first.value; }
+    sel.innerHTML = `<option value=""${cls ? "" : " selected"}>All ${DIVCLS[div].length} classes in the division</option>` + (opts || `<option disabled>No class matches</option>`);
+    filled = div;
   }
-  $("cls-search").addEventListener("input", (e) => { fillSelect(e.target.value); if (sel.value && CL[sel.value]) { cls = sel.value; update(); } });
-  sel.addEventListener("change", () => { if (CL[sel.value]) { cls = sel.value; update(); } });
+  $("cls-search").addEventListener("input", (e) => {
+    fillSelect(e.target.value);
+    const first = e.target.value.trim() && sel.querySelector('option[value]:not([value=""])');
+    if (first) { cls = first.value; sel.value = cls; update(); }
+  });
+  sel.addEventListener("change", () => { cls = sel.value; update(); });
+  dsel.addEventListener("change", () => { div = dsel.value; cls = ""; $("cls-search").value = ""; fillSelect(""); update(); });
 
   // ---- Map of the states and territories; small ones get a callout so they can be clicked.
   const svg = $("map");
@@ -282,20 +306,23 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   $("state-chips").innerHTML = D.states.map((s) => `<button type="button" class="chip" data-st="${s.code}" aria-pressed="false" title="${esc(s.name)}">${s.code}</button>`).join("");
   $("state-chips").addEventListener("click", (e) => { const b = e.target.closest("button[data-st]"); if (b) pick(b.dataset.st); });
 
-  // ---- Which laws apply to a class in a state.
+  // ---- Which laws apply to some classes (one class, or every class in a division) in a state, and to which of them.
   const under = (c, code) => code.length === 1 ? c.division === code : c.code.startsWith(code);
-  function applicable(code, state) {
-    const c = CL[code], out = [];
+  function applicable(codes, state) {
+    const set = new Set(codes), cs = codes.map((k) => CL[k]), out = [];
     for (const r of D.rows) {
       if (r.type === "requirement") {
         if (r.tier !== "cth" && r.jurisdiction !== state) continue;
-        const hits = r.reach.filter((x) => (x.classes === "all" || x.classes.includes(code)) && (!x.inStates || x.inStates.includes(state)));
-        if (hits.length) out.push({ r, hits, specific: hits.some((x) => x.classes !== "all") });
+        const hits = r.reach.filter((x) => (x.classes === "all" || x.classes.some((k) => set.has(k))) && (!x.inStates || x.inStates.includes(state)));
+        if (!hits.length) continue;
+        let tags = hits.some((x) => x.classes === "all") ? "all" : [...new Set(hits.flatMap((x) => x.classes.filter((k) => set.has(k))))].sort();
+        if (tags !== "all" && codes.length > 1 && tags.length === codes.length) tags = "all";
+        out.push({ r, hits, specific: hits.some((x) => x.classes !== "all"), tags });
       } else {
         if (r.jurisdiction !== "CTH" && r.jurisdiction !== state) continue;
-        if (r.industries === "all") { out.push({ r, exposure: "economy-wide" }); continue; }
-        const m = r.industries.filter((i) => under(c, i.code));
-        if (m.length) out.push({ r, exposure: m.some((i) => i.exposure === "direct") ? "direct" : "indirect" });
+        if (r.industries === "all") { out.push({ r, exposure: "economy-wide", tags: "all" }); continue; }
+        const m = r.industries.filter((i) => cs.some((c) => under(c, i.code)));
+        if (m.length) out.push({ r, exposure: m.some((i) => i.exposure === "direct") ? "direct" : "indirect", tags: [...new Set(m.map((i) => i.code))].sort() });
       }
     }
     // A requirement that takes its coding from a setting stands for it: the setting is not listed twice.
@@ -321,16 +348,19 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   const nn = (v) => (v == null ? "–" : fmt(v, 0));
   const lvl = (t) => `<span class="lvl">${esc(t)}</span>`;
   const last = (a) => (a ? a[a.length - 1] : null);
-  function mkt(code, state) {
-    const m = (MK.cabee[state] || {})[code];
+  // The scope of the market figures: the class, or the whole division (CABEE summed over its classes).
+  const scope = () => (cls ? { kind: "class", code: cls, division: div, name: CL[cls].name, label: cls } : { kind: "division", code: div, division: div, name: D.divisions[div], label: `Division ${div}` });
+  function mkt(sc, state) {
+    const m = ((sc.kind === "class" ? MK.cabee : MK.cabeeDivision)[state] || {})[sc.code];
     if (!m) return null;
     const [entry, exit, sizes, cnt] = m;
     const total = sizes ? sizes.reduce((a, b) => a + (b || 0), 0) : 0;
     return { entry, exit, sizes: sizes || [0, 0, 0, 0], total, start: cnt[0], entries: cnt[1], exits: cnt[2] };
   }
-  function stats(pos, c, state) {
-    const m = mkt(c.code, state), ss = MK.sizeSales[c.division], t4 = MK.top4[c.division];
-    const here = lvl(`${c.code} · ${state} · CABEE`), div = lvl(`Division ${c.division} · Australia · ${MK.sizeSalesYear} · ABS 8155.0`);
+  function stats(pos, sc, state) {
+    const m = mkt(sc, state), ss = MK.sizeSales[sc.division], t4 = MK.top4[sc.division];
+    const here = lvl(sc.kind === "class" ? `${sc.code} · ${state} · CABEE` : `Division ${sc.code} · ${state} · CABEE, sum of its classes`);
+    const div = lvl(`Division ${sc.division} · Australia · ${MK.sizeSalesYear} · ABS 8155.0`);
     if (!m) return `<div class="mk-stats"><span class="line">No business counts for this industry in ${esc(STATE[state])}.</span></div>`;
     const share = (k) => (m.total ? (100 * k) / m.total : null);
     if (pos === "entrants") {
@@ -350,15 +380,16 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
       `<span class="line">${big != null ? `They make ${pc(big)} of the division's sales${div}` : "Sales by business size are not published for this division."}</span>` +
       `<span class="line">${t4 ? `The four largest firms hold ${pc(last(t4.weighted))} of sales in a typical industry of the division (${last(t4.years)}, sales-weighted)${lvl(`Division · RBA RDP 2025-05, from BLADE`)}` : "Concentration is not published for this division."}</span></div>`;
   }
-  function marketView(c, state) {
-    const m = mkt(c.code, state), ss = MK.sizeSales[c.division], t4 = MK.top4[c.division];
-    $("market-where").textContent = `${c.code} ${c.name} in ${STATE[state]}: counts of businesses for the industry in the state; sales by size and ` +
-      `concentration for its division (${c.division} ${D.divisions[c.division] || ""}) across Australia, the finest level they are published at.`;
+  function marketView(sc, state) {
+    const c = sc, m = mkt(sc, state), ss = MK.sizeSales[sc.division], t4 = MK.top4[sc.division];
+    $("market-where").textContent = sc.kind === "class"
+      ? `${sc.code} ${sc.name} in ${STATE[state]}: counts of businesses for the industry in the state; sales by size and concentration for its division (${sc.division} ${D.divisions[sc.division] || ""}) across Australia, the finest level they are published at.`
+      : `Division ${sc.code} ${sc.name} in ${STATE[state]}: counts of businesses for the whole division in the state (the sum of its classes); sales by size and concentration for the division across Australia.`;
     const bar = (label, parts, total) => `<div class="sizebar"><div class="lab">${label}</div><div class="bar" role="img" aria-label="${esc(label)}: ` +
       parts.map(([n, v]) => `${n} ${pc(total ? (100 * v) / total : null)}`).join(", ") + `">` +
       parts.map(([n, v], i) => { const w = total ? (100 * v) / total : 0; return `<div class="seg b${i + 1}" style="width:${w}%" title="${esc(n)}: ${pc(w)}">${w >= 9 ? pc(w, 0) : ""}</div>`; }).join("") + `</div></div>`;
     const names = ["Fewer than 20 employees (including none)", "20–199 employees", "200 or more"];
-    let html = m ? bar(`Businesses · ${c.code} in ${state} · June ${LAST + 1}`, [[names[0], m.sizes[0] + m.sizes[1]], [names[1], m.sizes[2]], [names[2], m.sizes[3]]], m.total) : `<p class="note">No business counts for this industry in this state.</p>`;
+    let html = m ? bar(`Businesses · ${sc.label} in ${state} · June ${LAST + 1}`, [[names[0], m.sizes[0] + m.sizes[1]], [names[1], m.sizes[2]], [names[2], m.sizes[3]]], m.total) : `<p class="note">No business counts for this industry in this state.</p>`;
     html += ss ? bar(`Sales · Division ${c.division} · Australia · ${MK.sizeSalesYear}`, [[names[0], ss.under20], [names[1], ss["20-199"]], [names[2], ss["200+"]]], ss.total) : `<p class="note">Sales by business size are not published for this division (finance and insurance is not in the ABS table).</p>`;
     $("ch-size").innerHTML = html;
     $("lg-size").innerHTML = names.map((n, i) => `<span><span class="sw seg b${i + 1}"></span>${esc(n)}</span>`).join("");
@@ -371,7 +402,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     $("u-top4").textContent = `Four largest firms' share of each industry's sales, %, ${t4 ? `${t4.years[0]}–${last(t4.years)}, ${t4.industries} industries in the division` : "not published"}`;
     const src = MK.sources;
     $("market-note").innerHTML = `Counts of businesses are not market shares. Shares of sales by size, and concentration, are published only for divisions across Australia, ` +
-      `so they describe the wider industry, not this class in this state. Businesses with 200 or more employees are the largest firms, not necessarily an oligopoly; ` +
+      `${sc.kind === "class" ? "so they describe the wider industry, not this class in this state" : "not for single states"}. Businesses with 200 or more employees are the largest firms, not necessarily an oligopoly; ` +
       `the four-firm share is the closer measure, and the RBA's figures stop at 2019. The ABS slightly alters small counts to protect confidentiality, so rates for small industries jump around. ` +
       `Sources: ${link(src.cabee[1], src.cabee[0])}; ${link(src.australianIndustry[1], src.australianIndustry[0] + ", Table 5")}; ${link(src.rba[1], src.rba[0])}. All CC BY 4.0.`;
   }
@@ -388,6 +419,16 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     if (!e) return `<td class="none" data-label="${esc(p.label)}"><span aria-label="No effect">—</span></td>`;
     const why = e.marks.map((m) => `<p class="why"><span class="ch">${esc(m.driver)} ${signed(m.mark)} (${esc(D.markLabels[m.mark])}):</span> ${esc(m.reason)}</p>`).join("");
     return `<td class="c-${e.effect}" data-label="${esc(p.label)}"><div class="eff">${pill(e)}${why}</div></td>`;
+  }
+  // In the division view, each law is tagged with the classes (or the subdivision or group) it applies to.
+  function classTags(o) {
+    if (cls || !o.tags) return "";
+    if (o.tags === "all") return `<div class="tags"><span class="tag">All industries in the division</span></div>`;
+    const chips = o.tags.map((k) => k.length === 4
+      ? `<button type="button" class="cls-tag" data-cls="${k}" title="Show ${esc(CL[k].name)} alone">${k} ${esc(CL[k].name)}</button>`
+      : `<span class="tag">${k.length === 1 ? "Whole division" : esc(LEVEL[k] || k)}</span>`);
+    const head = chips.slice(0, 8), rest = chips.slice(8);
+    return `<div class="tags">${head.join("")}${rest.length ? `<details class="more-tags"><summary>+${rest.length} more</summary>${rest.join("")}</details>` : ""}</div>`;
   }
   function lawCell(o) {
     const r = o.r, tags = [];
@@ -421,19 +462,28 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     for (const u of [...((fw && fw.evidence) || []), ...(r.sources || [])].filter((u, i, a) => a.indexOf(u) === i).slice(0, 5)) src.push(`<li>${link(u, u.replace(/^https?:\/\//, "").slice(0, 70))}</li>`);
     if (src.length) more.push(`<p>Sources:</p><ul>${src.join("")}</ul>`);
     more.push(`<p>${r.reachConfidence ? `How sure the industries are: ${esc(r.reachConfidence)}. ` : ""}${link(repoFile(r.file), "The record in the register")}.</p>`);
-    return `<td><div class="law-title">${esc(r.title)}</div><div class="law-meta">${tags.join("")}</div>` +
+    return `<td><div class="law-title">${esc(r.title)}</div><div class="law-meta">${tags.join("")}</div>${classTags(o)}` +
       (laws ? `<p class="law-names">${laws}</p>` : "") + (quals.length ? `<p class="qual">${quals.join(" ")}</p>` : "") +
       (fw && fw.text ? `<p class="why-short">${esc(fw.text)}</p>` : "") +
       `<details class="more"><summary>Details</summary>${more.join("")}</details></td>`;
   }
   function update() {
-    history.replaceState(null, "", `#class=${cls}&state=${st}`);
-    const c = CL[cls];
+    history.replaceState(null, "", `#division=${div}${cls ? "&class=" + cls : ""}&state=${st}`);
+    dsel.value = div;
+    if (filled !== div) { $("cls-search").value = ""; fillSelect(""); }
     if (sel.value !== cls) { const o = sel.querySelector(`option[value="${cls}"]`); if (o) sel.value = cls; else { $("cls-search").value = ""; fillSelect(""); } }
-    $("cls-head").innerHTML = `<span class="code">${c.code} · Division ${esc(c.division)} ${esc(D.divisions[c.division] || "")}</span>` +
-      `<h2>${esc(c.name)}</h2><p class="crumbs">${esc(c.subdivision)} › ${esc(c.group)}</p>` +
-      (c.mark ? `<p class="small"><span class="tag warn">${esc(c.mark)}</span> Kept and marked: few or none of its units are businesses.</p>` : "") +
-      (c.definition ? `<details class="defn"><summary>ABS definition</summary><p>${esc(c.definition)}</p></details>` : "");
+    const sc = scope(), codes = cls ? [cls] : DIVCLS[div];
+    if (cls) {
+      const c = CL[cls];
+      $("cls-head").innerHTML = `<span class="code">${c.code} · Division ${esc(c.division)} ${esc(D.divisions[c.division] || "")}</span>` +
+        `<h2>${esc(c.name)}</h2><p class="crumbs">${esc(c.subdivision)} › ${esc(c.group)}</p>` +
+        (c.mark ? `<p class="small"><span class="tag warn">${esc(c.mark)}</span> Kept and marked: few or none of its units are businesses.</p>` : "") +
+        (c.definition ? `<details class="defn"><summary>ABS definition</summary><p>${esc(c.definition)}</p></details>` : "");
+    } else {
+      const subs = new Set(DIVCLS[div].map((k) => CL[k].subdivision));
+      $("cls-head").innerHTML = `<span class="code">Division ${esc(div)}</span><h2>${esc(D.divisions[div])}</h2>` +
+        `<p class="crumbs">${DIVCLS[div].length} classes in ${subs.size} subdivisions. Below, every law that applies to any of them, tagged with the classes it applies to. Pick a class, or click a tag, to see one class alone.</p>`;
+    }
     for (const e of svg.querySelectorAll("[data-st]")) {
       const on = e.dataset.st === st;
       if (e.hasAttribute("aria-pressed")) e.setAttribute("aria-pressed", String(on));
@@ -441,16 +491,17 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     }
     for (const b of $("state-chips").querySelectorAll("button")) b.setAttribute("aria-pressed", String(b.dataset.st === st));
 
-    marketView(c, st);
-    const all = applicable(cls, st).filter((o) => opt.indirect || o.exposure !== "indirect");
+    marketView(sc, st);
+    const all = applicable(codes, st).filter((o) => opt.indirect || o.exposure !== "indirect");
     const shown = all.filter((o) => opt.uncoded || coded(o.r));
-    $("where").textContent = `${c.code} ${c.name} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws.`;
+    $("where").textContent = cls ? `${cls} ${CL[cls].name} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws.`
+      : `Division ${div} ${D.divisions[div]} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws for any of its classes, each tagged with the classes it applies to.`;
 
     // Tally by position.
     $("tiles").innerHTML = POS.map((p) => {
       const n = { positive: 0, negative: 0, mixed: 0 };
       for (const o of all) { const e = effect(o.r, p.id); if (e) n[e.effect] += 1; }
-      return `<div class="tile"><span class="t-label">${esc(p.label)}</span>${stats(p.id, c, st)}<span class="t-head">The laws</span><span class="t-sub">${esc(p.question)}</span>` +
+      return `<div class="tile"><span class="t-label">${esc(p.label)}</span>${stats(p.id, sc, st)}<span class="t-head">The laws</span><span class="t-sub">${esc(p.question)}</span>` +
         `<div class="tally"><span class="cnt positive">${n.positive} positive</span><span class="cnt negative">${n.negative} negative</span>` +
         (n.mixed ? `<span class="cnt mixed">${n.mixed} mixed</span>` : "") + `</div></div>`;
     }).join("");
@@ -470,14 +521,25 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
 
     const specific = all.filter((o) => o.specific).length;
     $("coverage").innerHTML = `${shown.length} of ${all.length} laws shown` + (hidden ? ` (${hidden} with no material effect are hidden)` : "") + ". " +
-      (specific ? `${specific} of the ${all.length} are requirements particular to this industry.` :
+      (specific ? `${specific} of the ${all.length} are requirements particular to ${cls ? "this industry" : "some of the division's industries"}.` :
         `<strong>No requirements particular to this industry have been recorded yet</strong>: the table shows laws that apply to every business, and register items about the industry.`) +
       ` The register grows batch by batch (${D.counts.industrySpecific} industry-specific requirements so far).`;
   }
 
   $("opt-uncoded").addEventListener("change", (e) => { opt.uncoded = e.target.checked; update(); });
   $("opt-indirect").addEventListener("change", (e) => { opt.indirect = e.target.checked; update(); });
-  window.addEventListener("hashchange", () => { const x = fromHash(); if (CL[x.class]) cls = x.class; if (STATE[x.state]) st = x.state; update(); });
+  window.addEventListener("hashchange", () => {
+    const x = fromHash();
+    if (CL[x.class]) { cls = x.class; div = CL[cls].division; } else if (DIVCLS[x.division]) { div = x.division; cls = ""; }
+    if (STATE[x.state]) st = x.state;
+    update();
+  });
+  $("lens-body").addEventListener("click", (e) => {
+    const b = e.target.closest("button.cls-tag");
+    if (!b) return;
+    cls = b.dataset.cls; div = CL[cls].division; update();
+    $("cls-head").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
   $("legend").innerHTML = `<span>Key:</span>` + pill({ effect: "positive", strength: "weak", total: 1 }) + pill({ effect: "negative", strength: "weak", total: -1 }) +
     pill({ effect: "negative", strength: "strong", total: -2 }) + pill({ effect: "mixed", strength: "weak" }) +

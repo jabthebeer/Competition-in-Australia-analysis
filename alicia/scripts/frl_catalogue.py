@@ -30,7 +30,18 @@ HEADERS = {"User-Agent": "alicia-research/0.1 (non-commercial research)"}
 OUT = ROOT / "data" / "processed" / "legislation" / "cth_catalogue.csv"
 MANIFEST = ROOT / "data" / "manifests" / "frl_catalogue.json"
 PAGE, PAUSE = 500, 5.0  # the API caps $top at 500
-FIELDS = ["register_id", "name", "collection", "year", "number", "making_date", "triage", "call", "requirements", "reason"]
+FIELDS = [
+    "register_id",
+    "name",
+    "collection",
+    "year",
+    "number",
+    "making_date",
+    "triage",
+    "call",
+    "requirements",
+    "reason",
+]
 # Title triage (methods rule 10): series that set nothing for businesses to do, or one-off decisions about named
 # parties. Anything not matched goes to screening.
 TRIAGE = [
@@ -39,7 +50,10 @@ TRIAGE = [
     (r"Tariff Concession Order", "tariff concession order (one product)"),
     (r"Appointment|Delegation|Authorisation of (an )?officer", "appointment or delegation"),
     (r"Statement of Principles", "veterans' statement of principles"),
-    (r"Determination of (an )?Australian Standard|Declaration of (a )?(Defence|Prohibited) Area", "declaration about a place"),
+    (
+        r"Determination of (an )?Australian Standard|Declaration of (a )?(Defence|Prohibited) Area",
+        "declaration about a place",
+    ),
     (r"Defence (Determination|\(Defence Area)|Defence Force", "defence personnel or areas"),
     (r"Superannuation \((CSS|PSS)|Commonwealth Superannuation|Military Superannuation", "government superannuation"),
     (r"Remuneration Tribunal|Parliamentary (Entitlements|Business Resources)", "public office pay and entitlements"),
@@ -54,7 +68,14 @@ def fetch(collection: str) -> list[dict]:
     # The API fails when isInForce and isPrincipal are combined in one filter, so principal titles are kept here.
     flt = f"collection eq '{collection}' and isInForce eq true"
     while True:
-        params = {"$filter": flt, "$select": "id,name,collection,year,number,makingDate,isPrincipal", "$orderby": "id", "$top": PAGE, "$skip": skip, "$count": "true"}
+        params = {
+            "$filter": flt,
+            "$select": "id,name,collection,year,number,makingDate,isPrincipal",
+            "$orderby": "id",
+            "$top": PAGE,
+            "$skip": skip,
+            "$count": "true",
+        }
         time.sleep(PAUSE)
         r = httpx.get(f"{API}/Titles", params=params, headers=HEADERS, timeout=120)
         r.raise_for_status()
@@ -110,7 +131,8 @@ def main() -> None:
         json.dumps(
             {
                 "source": "Federal Register of Legislation API (Office of Parliamentary Counsel)",
-                "url": f"{API}/Titles?$filter=collection eq '<Act|LegislativeInstrument>' and isInForce eq true (principal kept)",
+                "url": f"{API}/Titles?$filter=collection eq '<Act|LegislativeInstrument>' and isInForce eq true",
+                "note": "principal titles kept client-side",
                 "retrieved": dt.datetime.now(dt.UTC).isoformat(timespec="seconds"),
                 "licence": "CC BY 4.0 (Federal Register of Legislation content)",
                 "in_force_principal": counts,

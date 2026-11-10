@@ -114,7 +114,7 @@ def test_the_page_renders_with_no_placeholders_left_and_is_linked_from_the_landi
     assert not re.search(r"__[A-Z_]+__", html) and "<title>ALICIA Industry lens (beta)</title>" in html
     assert '<a href="industry-lens.html" aria-current="page">Industry lens (beta)</a>' in html
     data = json.loads(re.search(r'id="page-data">(.*?)</script>', html, re.S).group(1))
-    assert data["default"] == {"class": "4511", "state": "NSW"}
+    assert data["default"] == {"division": "H", "class": "", "state": "NSW"}  # a division first; its classes are tags
     assert '<a class="view-link" href="industry-lens.html">' in growth.landing({"industry-lens.html"})
 
 
@@ -186,3 +186,13 @@ def test_market_structure_matches_its_sources_recomputed_independently():
     assert m["top4"]["H"]["years"][-1] == last_h["fyear"] and m["top4"]["H"]["weighted"][-1] == round(
         100 * last_h["top4_weighted"], 1
     )
+
+
+def test_division_figures_are_the_sum_of_their_classes():
+    m = lens.market()
+    divs = {c["code"]: c["division"] for c in lens.classes()}
+    h = m["cabeeDivision"]["NSW"]["H"]
+    rows = [v for k, v in m["cabee"]["NSW"].items() if divs[k] == "H"]
+    assert h[3][0] == sum(r[3][0] or 0 for r in rows) and h[3][1] == sum(r[3][1] or 0 for r in rows)
+    assert h[2] == [sum((r[2] or [0, 0, 0, 0])[i] or 0 for r in rows) for i in range(4)]
+    assert h[0][-1] == round(100 * h[3][1] / h[3][0], 1)
