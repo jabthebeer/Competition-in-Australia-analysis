@@ -1,0 +1,110 @@
+{
+  "id": "cth-regulated-waste-export",
+  "family": "regulated-waste-export",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Meet export conditions before exporting regulated waste material",
+  "kind": "licence",
+  "what": "Regulated waste material may be exported only if prescribed export conditions are complied with.",
+  "laws": [
+    {
+      "title": "Recycling and Waste Reduction Act 2020",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2020A00119",
+      "register_url": "https://www.legislation.gov.au/C2020A00119/latest/text",
+      "provisions": "20(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Recycling and Waste Reduction Act 2020",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2020A00119/latest/text",
+      "locator": "s 20(1) (compilation C2026C00317 from 2026-07-01)",
+      "quote": "20 Exporting regulated waste material—non-compliance with prescribed export conditions (1) A person contravenes this subsection if: (a) the person exports waste material; and (b) the waste material is regulated waste material; and (c) the export of the waste material is prohibited unless prescribed export conditions are complied with; and (d) prescribed export conditions are not complied with. Fault-based offence",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2922",
+        "2921"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it exports regulated waste material",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Recycling and Waste Reduction Act 2020",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2020A00119/latest/text",
+          "locator": "s 20(1) (compilation C2026C00317 from 2026-07-01)",
+          "quote": "20 Exporting regulated waste material—non-compliance with prescribed export conditions (1) A person contravenes this subsection if: (a) the person exports waste material; and (b) the waste material is regulated waste material; and (c) the export of the waste material is prohibited unless prescribed export conditions are complied with; and (d) prescribed export conditions are not complied with. Fault-based offence",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Regulated waste material may be exported only if prescribed export conditions are complied with.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Exports must meet prescribed conditions before they can go.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Declarations for each consignment.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

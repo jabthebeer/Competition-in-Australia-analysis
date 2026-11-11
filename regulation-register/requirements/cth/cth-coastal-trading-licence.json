@@ -1,0 +1,110 @@
+{
+  "id": "cth-coastal-trading-licence",
+  "family": "coastal-trading-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a licence to carry passengers or cargo between Australian ports",
+  "kind": "licence",
+  "what": "Using a vessel to engage in coastal trading needs a licence (unless an exemption applies).",
+  "laws": [
+    {
+      "title": "Coastal Trading (Revitalising Australian Shipping) Act 2012",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2012A00055",
+      "register_url": "https://www.legislation.gov.au/C2012A00055/latest/text",
+      "provisions": "5 (simplified outline)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Coastal Trading (Revitalising Australian Shipping) Act 2012",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2012A00055/latest/text",
+      "locator": "s 5 (simplified outline) (compilation C2024C00440 from 2024-10-14)",
+      "quote": "Using a vessel to engage in coastal trading without a licence may lead to a pecuniary penalty being imposed for the contravention of a civil penalty provision.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4810",
+        "4820"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries passengers or cargo between Australian ports",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Coastal Trading (Revitalising Australian Shipping) Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2012A00055/latest/text",
+          "locator": "s 5 (simplified outline) (compilation C2024C00440 from 2024-10-14)",
+          "quote": "Using a vessel to engage in coastal trading without a licence may lead to a pecuniary penalty being imposed for the contravention of a civil penalty provision.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quotes the Act's simplified outline; the operative civil penalty provision is still to quote.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Using a vessel to engage in coastal trading needs a licence (unless an exemption applies).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence is needed for coastal trading.",
+        "positions": []
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Foreign-flagged ships need a temporary licence, with conditions, to carry domestic cargo.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

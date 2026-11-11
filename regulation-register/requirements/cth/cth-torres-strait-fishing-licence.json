@@ -1,0 +1,105 @@
+{
+  "id": "cth-torres-strait-fishing-licence",
+  "family": "torres-strait-fishing-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Use only licensed boats to fish in the Torres Strait",
+  "kind": "licence",
+  "what": "A person must not have an unlicensed boat equipped for taking fish in an area of Australian jurisdiction under the Torres Strait Fisheries Act.",
+  "laws": [
+    {
+      "title": "Torres Strait Fisheries Act 1984",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A02887",
+      "register_url": "https://www.legislation.gov.au/C2004A02887/latest/text",
+      "provisions": "51(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Torres Strait Fisheries Act 1984",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A02887/latest/text",
+      "locator": "s 51(1) (compilation C2024C00644 from 2024-10-14)",
+      "quote": "51 Having boat equipped for fishing—general (1) A person shall not, in an area of Australian jurisdiction, have in his or her possession or under his or her control, an unlicensed boat equipped for taking fish.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0411",
+        "0413",
+        "0419"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it fishes commercially in the Torres Strait",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Torres Strait Fisheries Act 1984",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A02887/latest/text",
+          "locator": "s 51(1) (compilation C2024C00644 from 2024-10-14)",
+          "quote": "51 Having boat equipped for fishing—general (1) A person shall not, in an area of Australian jurisdiction, have in his or her possession or under his or her control, an unlicensed boat equipped for taking fish.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A person must not have an unlicensed boat equipped for taking fish in an area of Australian jurisdiction under the Torres Strait Fisheries Act.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence is needed before fishing commercially.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

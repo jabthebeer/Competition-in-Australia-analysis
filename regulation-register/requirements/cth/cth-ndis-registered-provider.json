@@ -1,0 +1,112 @@
+{
+  "id": "cth-ndis-registered-provider",
+  "family": "ndis-registered-provider",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register as an NDIS provider to serve Agency-managed participants",
+  "kind": "registration",
+  "what": "A person who provides supports under a participant's plan where registration is required must be a registered NDIS provider; supports funded through plans the Agency manages must be provided only by registered providers.",
+  "laws": [
+    {
+      "title": "National Disability Insurance Scheme Act 2013",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2013A00020",
+      "register_url": "https://www.legislation.gov.au/C2013A00020/latest/text",
+      "provisions": "73B(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "National Disability Insurance Scheme Act 2013",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2013A00020/latest/text",
+      "locator": "s 73B(2) (compilation C2026C00451 from 2026-10-01)",
+      "quote": "Failing to comply with requirement to be registered (2) A person (the first person) contravenes this subsection if: (a) the first person provides a support to another person; and (b) the support is provided under a participant’s plan; and (c) the National Disability Insurance Scheme rules require the first person to be registered to provide the support under the plan; and (d) the first person is not so registered. Unregistered persons holding themselves out as being registered",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8790",
+        "8533",
+        "8539",
+        "8599"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides supports to NDIS participants where registration is required",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Disability Insurance Scheme Act 2013",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2013A00020/latest/text",
+          "locator": "s 73B(2) (compilation C2026C00451 from 2026-10-01)",
+          "quote": "Failing to comply with requirement to be registered (2) A person (the first person) contravenes this subsection if: (a) the first person provides a support to another person; and (b) the support is provided under a participant’s plan; and (c) the National Disability Insurance Scheme rules require the first person to be registered to provide the support under the plan; and (d) the first person is not so registered. Unregistered persons holding themselves out as being registered",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Participants who self-manage or use a plan manager may use unregistered providers.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A person who provides supports under a participant's plan where registration is required must be a registered NDIS provider; supports funded through plans the Agency manages must be provided only by registered providers.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Registration, with audits against the practice standards, is needed to serve Agency-managed participants.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Audits and the NDIS practice standards.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
