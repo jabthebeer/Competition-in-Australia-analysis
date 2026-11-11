@@ -1,0 +1,109 @@
+{
+  "id": "cth-regional-broadband-scheme-charge",
+  "family": "regional-broadband-scheme-charge",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay the regional broadband scheme charge",
+  "kind": "tax-or-levy",
+  "what": "A charge is imposed on carriers' annual chargeable premises amounts (premises connected to their local access lines).",
+  "laws": [
+    {
+      "title": "Telecommunications (Regional Broadband Scheme) Charge Act 2020",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2020A00048",
+      "register_url": "https://www.legislation.gov.au/C2020A00048/latest/text",
+      "provisions": "6",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Telecommunications (Regional Broadband Scheme) Charge Act 2020",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2020A00048/latest/text",
+      "locator": "s 6 (compilation C2020A00048 from 2020-05-25)",
+      "quote": "6 Imposition of charge If a person has an annual chargeable premises amount for an eligible financial year, charge is imposed on that amount.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "5801"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it has an annual chargeable premises amount (a carrier with local access lines to premises)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Telecommunications (Regional Broadband Scheme) Charge Act 2020",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2020A00048/latest/text",
+          "locator": "s 6 (compilation C2020A00048 from 2020-05-25)",
+          "quote": "6 Imposition of charge If a person has an annual chargeable premises amount for an eligible financial year, charge is imposed on that amount.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A charge is imposed on carriers' annual chargeable premises amounts (premises connected to their local access lines).",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "A per-premises charge on fixed-line networks raises the costs of networks that compete with the NBN.",
+        "positions": []
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Charges are passed into broadband prices.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

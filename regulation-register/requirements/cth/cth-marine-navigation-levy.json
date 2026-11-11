@@ -1,0 +1,104 @@
+{
+  "id": "cth-marine-navigation-levy",
+  "family": "marine-navigation-levy",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay the marine navigation levy on sea-going ships",
+  "kind": "tax-or-levy",
+  "what": "A levy is imposed on sea-going ships, payable under the Marine Navigation Levy Collection Act 1989.",
+  "laws": [
+    {
+      "title": "Marine Navigation Levy Act 1989",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03909",
+      "register_url": "https://www.legislation.gov.au/C2004A03909/latest/text",
+      "provisions": "6",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Marine Navigation Levy Act 1989",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03909/latest/text",
+      "locator": "s 6 (compilation C2018C00231 from 2018-06-19)",
+      "quote": "6 Imposition of levy Levy payable in respect of a sea-going ship in accordance with the Collection Act is imposed.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4810",
+        "4820"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns or operates a sea-going ship on which the levy is payable",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Marine Navigation Levy Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03909/latest/text",
+          "locator": "s 6 (compilation C2018C00231 from 2018-06-19)",
+          "quote": "6 Imposition of levy Levy payable in respect of a sea-going ship in accordance with the Collection Act is imposed.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A levy is imposed on sea-going ships, payable under the Marine Navigation Levy Collection Act 1989.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Per-ship levies add to shipping costs.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

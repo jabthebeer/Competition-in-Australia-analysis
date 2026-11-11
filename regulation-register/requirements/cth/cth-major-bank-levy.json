@@ -1,0 +1,111 @@
+{
+  "id": "cth-major-bank-levy",
+  "family": "major-bank-levy",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay the major bank levy",
+  "kind": "tax-or-levy",
+  "what": "A levy is imposed each quarter on an ADI whose total liabilities exceed the levy threshold.",
+  "laws": [
+    {
+      "title": "Major Bank Levy Act 2017",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2017A00063",
+      "register_url": "https://www.legislation.gov.au/C2017A00063/latest/text",
+      "provisions": "4(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Major Bank Levy Act 2017",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2017A00063/latest/text",
+      "locator": "s 4(1) (compilation C2017A00063 from 2017-06-23)",
+      "quote": "4 Imposition of levy (1) Levy is imposed on an ADI for a quarter starting on or after 1 July 2017 if the total liabilities amount for the quarter in relation to the ADI exceeds the levy threshold for the quarter.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6221"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its total liabilities exceed the levy threshold",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Major Bank Levy Act 2017",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2017A00063/latest/text",
+          "locator": "s 4(1) (compilation C2017A00063 from 2017-06-23)",
+          "quote": "4 Imposition of levy (1) Levy is imposed on an ADI for a quarter starting on or after 1 July 2017 if the total liabilities amount for the quarter in relation to the ADI exceeds the levy threshold for the quarter.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Marks follow the register's assessment of the Major Bank Levy (cth-major-bank-levy-2017); the price mark is placed with the largest players, the only banks that pay it.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A levy is imposed each quarter on an ADI whose total liabilities exceed the levy threshold.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A tax on some banks' liabilities distorts funding costs and can be passed on to all borrowers.",
+        "positions": [
+          "dominant"
+        ]
+      },
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Narrows the major banks' funding cost advantage over smaller rivals.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
