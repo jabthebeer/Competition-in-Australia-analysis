@@ -1,0 +1,101 @@
+{
+  "id": "cth-acl-product-bans",
+  "family": "acl-product-bans",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Do not supply consumer goods covered by a ban",
+  "kind": "standard",
+  "what": "A person must not supply consumer goods of a kind covered by an interim or permanent ban (Australian Consumer Law s 118).",
+  "laws": [
+    {
+      "title": "Competition and Consumer Act 2010",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00109",
+      "register_url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+      "provisions": "Sch 2 (ACL), 118(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Competition and Consumer Act 2010",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+      "locator": "Sch 2 (ACL), s 118(1) (compilation C2026C00405 from 2026-09-16)",
+      "quote": "118 Supplying etc. consumer goods covered by a ban (1) A person must not, in trade or commerce, supply consumer goods of a particular kind if: (a) an interim ban on consumer goods of that kind is in force in the place where the supply occurs; or (b) a permanent ban on consumer goods of that kind is in force.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it supplies consumer goods covered by an interim or permanent ban",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Competition and Consumer Act 2010",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+          "locator": "Sch 2 (ACL), s 118(1) (compilation C2026C00405 from 2026-09-16)",
+          "quote": "118 Supplying etc. consumer goods covered by a ban (1) A person must not, in trade or commerce, supply consumer goods of a particular kind if: (a) an interim ban on consumer goods of that kind is in force in the place where the supply occurs; or (b) a permanent ban on consumer goods of that kind is in force.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A person must not supply consumer goods of a kind covered by an interim or permanent ban (Australian Consumer Law s 118).",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Checking goods against bans.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
