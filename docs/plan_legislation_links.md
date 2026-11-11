@@ -134,6 +134,7 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
     - [ ] Aircraft Noise Levy Act 1995: no instrument names a leviable airport. Next: check whether any airport is still prescribed (the Collection Act and the Department's notices); if none, recall it as N.
 
 - [ ] **Sample the title-only screening calls.** In batch 6, 739 Acts were called N from their titles (and long titles where the corpus has them). Phase G should re-check a random sample of them.
+- [ ] **Sample the rule-based instrument calls.** Instruments batch 1 called 5,359 instruments N or L by parent Act and series rules; phase G should re-check a random sample, especially L calls made only because of the parent Act.
 
 - [ ] **Commonwealth instruments called Y but not yet drafted** (72 after instruments batch 1: industry codes such as Dairy, Unit Pricing and Electricity Retail; product safety and information standards; the Fair Work termination and deactivation codes) Act 2020; Customs Act 1901; Financial Sector (Shareholdings) Act 1998; National Health Security Act 2007; Payment Times Reporting Act 2020; Sea Installations Act 1987; Water Act 2007), listed in `data/processed/legislation/cth_catalogue.csv` with 'to draft' reasons.
 
