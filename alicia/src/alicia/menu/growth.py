@@ -83,7 +83,7 @@ LANDING = (
             {
                 "href": MENU_PAGE[0],
                 "name": MENU_PAGE[1],
-                "text": "Laws, regulatory settings and other barriers that shape competition and productivity, each marked against the ALICIA productivity framework.",
+                "text": "Laws, regulatory settings, the requirements they place on businesses, and other barriers that shape competition and productivity, each marked against the ALICIA productivity framework and tagged with the market position it most affects.",
             },
         ),
     },
@@ -96,7 +96,7 @@ LANDING = (
                 "href": LENS_PAGE[0],
                 "name": LENS_PAGE[1],
                 "text": "The laws a business in one industry deals with, state by state, coded for their effect on "
-                "competition: for entrants, small and medium competitors, and the largest players.",
+                "competition: for entrants, existing competitors, and monopolies and oligopolies.",
             },
             {
                 "href": OVERVIEW_PAGE[0],

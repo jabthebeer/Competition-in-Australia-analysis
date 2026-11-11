@@ -150,15 +150,21 @@ def body(c: dict, repo: str = REPO_MAIN) -> str:
         ),
         "levers": "\n".join(
             [
-                f"    <p>A register of {c['items']} items: {c['reform']} reforms, {c['setting']} existing settings and "
-                f"{c['barrier']} non-legislative barriers. An item that applies in several jurisdictions has one "
-                "record "
-                "for each.</p>",
+                f"    <p>A register of {c['items']} items ({c['reform']} reforms, {c['setting']} existing settings and "
+                f"{c['barrier']} non-legislative barriers) and the {c['requirements']} requirements the Industry lens "
+                "shows. An item that applies in several jurisdictions has one record for each.</p>",
                 _list(
-                    "A <strong>reform</strong> is a change in law, regulation or policy that is in force, passed or "
+                    "Reforms, existing settings and requirements are all <strong>legislative influences</strong>. A "
+                    "<strong>reform</strong> is a change in law, regulation or policy that is in force, passed or "
                     "proposed. A <strong>setting</strong> is a law, regulation or policy already in place. A "
-                    "<strong>barrier</strong> is not a law or policy: it is market structure, conduct or practice that "
-                    "limits competition.",
+                    "<strong>requirement</strong> is one thing a law requires a business to do. A "
+                    "<strong>non-legislative barrier</strong> is not a law or policy: it is market structure, conduct "
+                    "or practice that limits competition. It has its own tag.",
+                    "A requirement that belongs to an item (the same law in force) is shown inside that item. The "
+                    "others are listed beside the items, as laws and policies and requirements.",
+                    "Each item and requirement is tagged with the market position it most affects: entrants, existing "
+                    "competitors, or monopolies and oligopolies. It is the position where its framework marks weigh "
+                    "most, as on the Industry lens.",
                     "Every date has a source. Dates are checked against the legislation registers that can be read "
                     "automatically: the Commonwealth, Queensland, Tasmania, the ACT, Western Australia and the "
                     "Northern "
@@ -221,7 +227,7 @@ def body(c: dict, repo: str = REPO_MAIN) -> str:
                     "official guidance that names the industry. Confidence is high where the law names the activity, "
                     "medium where official guidance does, and low where it is inferred from the ABS class definition.",
                     "Each law is marked against the framework. Each mark is shown under the market players it acts "
-                    "through: businesses entering the market, small and medium competitors, or the largest players.",
+                    "through: entrants, existing competitors, or monopolies and oligopolies.",
                     "The market figures above each column (business counts, entry and exit rates, sales by business "
                     "size and four-firm concentration) come from the ABS and the RBA. Each states its level and year, "
                     "because no public source gives market shares for one industry in one state.",

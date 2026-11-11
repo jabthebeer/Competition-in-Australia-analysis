@@ -52,7 +52,7 @@ def test_every_shared_family_needs_a_group_name():
 def test_the_menu_groups_shared_families_under_their_names():
     recs = [record("nsw-x-2016", "NSW"), record("vic-x-2016", "VIC"), record("qld-y-2016", "QLD", "solo-family")]
     named = {"illustrative-family": Family(id="illustrative-family", title="Illustrative issue", summary="S.")}
-    groups = build_payload(recs, families=named)["groups"]
+    groups = build_payload(recs, families=named, requirements=[])["groups"]  # requirements' groups: test_explorer
     # A family of one item is not a group; each grouped item keeps its own record and assessment.
     assert groups == {
         "illustrative-family": {"title": "Illustrative issue", "summary": "S.", "members": ["nsw-x-2016", "vic-x-2016"]}

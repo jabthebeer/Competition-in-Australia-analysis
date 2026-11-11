@@ -37,6 +37,10 @@
 .tag { display: inline-block; font-size: var(--step--1); padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
 .tag.kind { border-style: dashed; }
 .tag.drv { border-color: var(--accent); color: var(--accent); }
+.tag.pos { border-color: var(--ink-2); color: var(--ink); }
+.tag.req-n { border-style: dashed; }
+/* An effect on one market position: the mark fills, with a sign. */
+.eff { display: inline-block; font-size: var(--step--1); padding: 1px 9px; border-radius: 999px; white-space: nowrap; font-weight: 500; }
 .pill { display: inline-block; font-size: var(--step--1); padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
 .pill.ok { border-color: var(--accent); color: var(--accent); }
 .pill.warn { border-color: var(--warn-ink); color: var(--warn-ink); }
@@ -66,6 +70,24 @@
 .ratings .row { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) 2.5rem; gap: 8px; align-items: center; font-size: var(--step--1); }
 .ratings .bar { height: 14px; border-radius: 2px; }
 .ratings .val { font-family: var(--font-mono); text-align: right; color: var(--ink-2); }
+/* Bars split by type (DECISIONS E-137): laws and policies solid, requirements striped, non-legislative barriers lined,
+   so the split does not rest on colour alone. */
+.dv-neg .dv-bar.seg-wrap, .dv-pos .dv-bar.seg-wrap, .ratings .bar.seg-wrap { display: flex; background: none; overflow: hidden; }
+.dv-neg .dv-bar.seg-wrap { justify-content: flex-end; }
+.seg { display: block; height: 100%; min-width: 0; flex: none; }
+.dv-neg .seg.law { background: var(--neg); }
+.dv-neg .seg.requirement { background: repeating-linear-gradient(135deg, var(--neg) 0 3px, color-mix(in oklab, var(--neg) 30%, var(--surface)) 3px 6px); }
+.dv-neg .seg.barrier { background: repeating-linear-gradient(90deg, var(--neg) 0 2px, color-mix(in oklab, var(--neg) 30%, var(--surface)) 2px 5px); }
+.dv-pos .seg.law { background: var(--pos); }
+.dv-pos .seg.requirement { background: repeating-linear-gradient(135deg, var(--pos) 0 3px, color-mix(in oklab, var(--pos) 30%, var(--surface)) 3px 6px); }
+.dv-pos .seg.barrier { background: repeating-linear-gradient(90deg, var(--pos) 0 2px, color-mix(in oklab, var(--pos) 30%, var(--surface)) 2px 5px); }
+.ratings .seg.law { background: var(--seg-c); }
+.ratings .seg.requirement { background: repeating-linear-gradient(135deg, var(--seg-k) 0 2px, var(--seg-c) 2px 6px); }
+.ratings .seg.barrier { background: repeating-linear-gradient(90deg, var(--seg-k) 0 2px, var(--seg-c) 2px 5px); }
+.glance-key { margin: 0 0 4px; }
+.chip .sw.law { background: var(--ink-2); }
+.chip .sw.requirement { background: repeating-linear-gradient(135deg, var(--ink-2) 0 2px, var(--surface) 2px 4px); }
+.chip .sw.barrier { background: repeating-linear-gradient(90deg, var(--ink-2) 0 2px, var(--surface) 2px 4px); }
 
 /* Filters */
 .filters { display: grid; gap: 10px; }
@@ -96,6 +118,9 @@
 .list tr:last-child td { border-bottom: 0; }
 .list tr.sel td { background: var(--accent-soft); }
 .list tbody tr:hover td { background: color-mix(in oklab, var(--accent-soft) 55%, var(--surface)); }
+/* The market column wraps its tags, so the date and the item keep their room. */
+.list td:first-child { white-space: nowrap; }
+.list td.c-most .tag { white-space: normal; text-align: center; line-height: 1.3; }
 .rowbtn { font: inherit; text-align: left; background: none; border: 0; padding: 0; color: var(--ink); cursor: pointer; font-weight: 500; }
 .rowbtn:hover { color: var(--accent); }
 @media (max-width: 640px) {
@@ -104,6 +129,8 @@
   .list tr { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; padding: 10px; border-bottom: 1px solid var(--line); }
   .list td { border: 0; padding: 0; }
   .list td.c-title { grid-column: 1 / -1; }
+  /* The cards have no column heads: name the market position. */
+  .list td.c-most::before { content: "Most affects: "; color: var(--ink-3); font-size: var(--step--1); }
 }
 
 /* Scorecard */
@@ -184,6 +211,26 @@ table.st tr.grp th { text-align: left; font-size: var(--step--1); color: var(--i
 .d-list { margin: 0; padding-left: 1.1em; font-size: var(--step--1); display: grid; gap: 4px; }
 .d-list li { overflow-wrap: anywhere; }
 .close { justify-self: end; font: inherit; font-size: var(--step--1); background: none; border: 1px solid var(--line-strong); border-radius: 6px; color: var(--ink-2); padding: 2px 8px; cursor: pointer; }
+/* Where an item acts in the market (DECISIONS E-137): the Industry lens's three positions. */
+.pos-most { font-size: var(--step--1); color: var(--ink-2); }
+.pos-most strong { color: var(--ink); }
+.pos-cards { display: grid; gap: 6px; }
+.pos-card { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; display: grid; gap: 2px; font-size: var(--step--1); }
+.pos-card.most { border: 2px solid var(--ink-2); padding: 7px 9px; }
+.pos-card.none { color: var(--ink-3); }
+.pos-card .p-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 8px; }
+.pos-card .p-name { font-weight: 600; font-size: var(--step-0); color: var(--ink); }
+.pos-card .p-why { color: var(--ink-2); overflow-wrap: anywhere; }
+/* A requirement: its facts, the industries it reaches, and the same requirement elsewhere. */
+.req-facts { display: grid; grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr); gap: 4px 10px; margin: 0; font-size: var(--step--1); }
+.req-facts dt { color: var(--ink-2); }
+.req-facts dd { margin: 0; overflow-wrap: anywhere; }
+.reach-grp { display: grid; gap: 2px; font-size: var(--step--1); }
+.reach-grp .r-head { color: var(--ink-2); }
+.reach-grp p { overflow-wrap: anywhere; }
+table.st.across th, table.st.across thead th { text-align: left; }
+table.st tr.cur td { background: var(--accent-soft); }
+.detail .rec.hl { box-shadow: 0 0 0 2px var(--accent); }
 .arch-note { font-size: var(--step--1); color: var(--ink-2); border: 1px dashed var(--line-strong); border-radius: 8px; padding: 8px 10px; margin: 0; }
 
 /* Who is responsible, and what happened to the law since */
@@ -356,7 +403,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     <!--__NAV__-->
     <p class="kicker">ALICIA · Top down</p>
     <h1>Legislative levers influencing competition <!--__BETA__--></h1>
-    <p class="lede">Laws, regulatory settings and other barriers that shape competition and productivity in Australia. Each one is marked against the <a href="framework.html">ALICIA productivity framework</a> and shown with statistics on the industries it affects.</p>
+    <p class="lede">Laws, regulatory settings, the requirements they place on businesses, and other barriers that shape competition and productivity in Australia. Each one is marked against the <a href="framework.html">ALICIA productivity framework</a> and tagged with the market position it most affects, as on the <a href="industry-lens.html">Industry lens</a>.</p>
     <div class="meta-line" id="metaLine"></div>
   </header>
 
@@ -366,6 +413,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
         <div class="block-head">
           <h2 id="h-glance">What weighs on productivity<button type="button" class="term info" data-term="helpGlance" aria-label="About this chart" aria-describedby="def-helpGlance">i</button></h2>
         </div>
+        <div class="chips glance-key" id="glanceKey" role="group" aria-label="Types to show in the chart and list"></div>
         <div class="dv" id="dv" role="group" aria-label="Items by main driver"></div>
       </div>
       <div class="stack">
@@ -383,8 +431,9 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     </div>
     <div class="filter-row"><span class="filter-label">Main driver</span><div class="chips" id="f-driver"></div></div>
     <div class="filter-row"><span class="filter-label">Overall mark</span><div class="chips" id="f-rating"></div></div>
+    <div class="filter-row"><span class="filter-label"><span data-term="mostAffects">Most affects</span></span><div class="chips" id="f-pos"></div></div>
     <details class="more-filters" id="moreFilters"><summary>More filters<span id="moreCount"></span></summary><div class="filters-more">
-    <div class="filter-row"><span class="filter-label">Kind of item</span><div class="chips" id="f-kind"></div></div>
+    <div class="filter-row"><span class="filter-label">Type</span><div class="chips" id="f-type"></div></div>
     <div class="filter-row"><span class="filter-label">Jurisdiction</span><div class="chips" id="f-jur"></div></div>
     <div class="filter-row"><span class="filter-label">Reach</span><div class="chips" id="f-reach"></div></div>
     <div class="filter-row">
@@ -419,7 +468,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       <div class="count-row"><p class="count-line" id="countLine" aria-live="polite"></p><span class="grp-legend" id="grpLegend"><span class="grp-icon" id="grpLegendIcon"></span>A group of related items, often one policy in several states. Click to open.</span><button type="button" class="lnk" id="toggleGroups"></button></div>
       <div id="view-list" role="tabpanel" aria-labelledby="tab-list">
         <table class="list">
-          <thead><tr><th>Effective</th><th>Jur.</th><th>Item</th><th>Main driver</th><th>Overall mark</th><th>Reach</th></tr></thead>
+          <thead><tr><th>Effective</th><th>Jur.</th><th>Item</th><th>Main driver</th><th>Overall mark</th><th>Most affects</th><th>Reach</th></tr></thead>
           <tbody id="rows"></tbody>
         </table>
       </div>
@@ -442,7 +491,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       </div>
     </section>
     <aside class="detail empty" id="detail" aria-live="polite">
-      <p>Select an item to see its productivity assessment, the industries it affects and its sources.</p>
+      <p>Select an item to see its productivity assessment, where it acts in the market, the industries it affects and its sources.</p>
     </aside>
   </div>
 
@@ -481,6 +530,23 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     unconfirmed: { label: "Sourced only", cls: "", help: "No machine-readable register date to check against" },
     "not-commenced": { label: "Not commenced", cls: "", help: "The change has not commenced" },
   };
+  // One vocabulary with the Industry lens (DECISIONS E-137): market positions, and types of influence.
+  const POS = DATA.positions || [];
+  const POSL = Object.fromEntries(POS.map((p) => [p.id, p.label]));
+  const PHRASE = DATA.effectPhrases || {};
+  const IGRP = FW.influenceGroups;
+  const ITAG = FW.influenceTags;
+  const GROUP_ORDER = Object.keys(IGRP);
+  const isReq = (r) => r.type === "requirement";
+  // A requirement carries its industries as ANZSIC codes; their names and divisions are looked up once.
+  const CN = DATA.classNames || {};
+  const expandInd = (q) => {
+    if (isReq(q)) q.industries = q.industryCodes.map((c) => ({ anzsic: c, name: (CN[c] || [c])[0], division: (CN[c] || [c, ""])[1], exposure: "direct" }));
+  };
+  R.forEach((r) => { expandInd(r); (r.requirements || []).forEach(expandInd); });
+  // A requirement shown inside a register item (the same law in force): its address opens that item.
+  const NESTED = {};
+  R.forEach((r) => (r.requirements || []).forEach((q) => { if (!NESTED[q.id]) NESTED[q.id] = r.id; }));
 
   initTerms({
     mainDriver: ["Main driver", "The driver of productivity an item affects most, for better or worse: the one with the largest mark."],
@@ -503,13 +569,17 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     regime: ["Regulatory regime", "A body of regulation a business deals with as one task, such as food safety or liquor licensing, with the tiers of government that set its rules, license, approve, inspect or collect."],
     touchpoints: ["Government parties", "The distinct agencies, by tier, that a business deals with directly under a regime: those that license, approve, inspect, collect or fund. Setting the rules is not counted."],
     ...Object.fromEntries(Object.entries(DATA.issueTags || {}).map(([k, t]) => [`cx-${k}`, [t.label, t.help]])),
-    helpGlance: ["What weighs on productivity", "Items in the register by their main driver (the driver with the largest mark): those marked negative overall to the left, positive to the right. Click a driver to filter. Counts follow the filters below."],
-    helpMarks: ["Overall marks", "Each item's marks on the eight drivers added up. Most reforms in the register were first chosen because they could be evaluated with public data, so the register is not yet a balanced sample of everything that weighs on productivity."],
+    helpGlance: ["What weighs on productivity", "Items by their main driver (the driver with the largest mark): those marked negative overall to the left, positive to the right. Each bar is split into laws and policies (solid), requirements (striped) and non-legislative barriers (lined); a key above the chart shows one type only. Requirements are marked mostly on their compliance cost and the hurdle they put before entry, so they lean negative: the marks show effects on productivity and competition, not whether a law is worthwhile. Click a driver to filter. Counts follow the filters below."],
+    helpMarks: ["Overall marks", "Each item's marks on the eight drivers added up, split by type as in the chart beside it. Most reforms in the register were first chosen because they could be evaluated with public data, so the register is not yet a balanced sample of everything that weighs on productivity."],
+    mostAffects: ["Most affects", "The market position where an item's marks weigh most: entrants (starting up, or entering from other states and countries), existing competitors (their costs, and their ability and incentive to compete), or monopolies and oligopolies (shelter from rivals, or exposure to them). A tie names each. The Industry lens uses the same coding."],
+    legislative: ["Legislative influence", "A law, regulation or government policy, or a requirement a law places on businesses. A non-legislative barrier (market structure, business conduct or practice) has its own tag."],
+    requirement: ["Requirement", "What a law requires a business to do: register, hold a licence, get an approval, pay, report or meet a standard. Each one quotes its law, and is shown inside the item for the same law where there is one."],
+    reachSure: ["How sure the industries are", "High where the law names the activity, medium where official guidance does, and low where it is inferred from the ABS class definition."],
     helpAssess: ["How items are marked", DATA.menuNote],
     helpScorecard: ["Reading the scorecard", "Each row is an item; each column a driver of productivity. A cell shows the item's mark on that driver; the outlined cell is its main driver. Overall is the sum of the marks. Hover a cell for the reason, and click an item to open it."],
     helpVenn: ["Which tier does what", "Each circle is a tier of government: Commonwealth, state or territory, or local council. Each label is something it does under the regime. A label in an overlap is done by more than one tier, shown in bold. Hover a label for the bodies involved."],
     helpClassVenn: ["Reading the diagram", "Each number counts the jobs (licensing, approving, inspecting, collecting, funding, setting rules) that a tier, or several tiers together, perform across this industry's regimes. Numbers in an overlap are jobs done by more than one tier. Hover a number for the list."],
-    helpInd: ["Industries", "Every detailed industry in the ABS classification (ANZSIC classes), with the regulatory regimes it deals with. Every number counts only the regimes specific to the industry, so industries can be compared (the regimes that apply across industries, such as payroll tax, reach them all); hover a number for the total including those. The search box, the industry filter and the complexity tags apply here; the other filters are for register items. Click an industry for its regimes and a diagram of which tiers of government do what."],
+    helpInd: ["Industries", "Every detailed industry in the ABS classification (ANZSIC classes), with the regulatory regimes it deals with. Every number counts only the regimes specific to the industry, so industries can be compared (the regimes that apply across industries, such as payroll tax, reach them all); hover a number for the total including those. The search box, the industry filter and the complexity tags apply here; the other filters are for the list. Click an industry for its regimes and a diagram of which tiers of government do what."],
   });
 
   // Every defined word the page can show (the detail panel adds most of them only when an item is open).
@@ -517,16 +587,27 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   const info = (key, label) => `<button type="button" class="term info" data-term="${esc(key)}" aria-label="${esc(label || "More detail")}" aria-describedby="def-${esc(key)}">i</button>`;
   const GLOSSARY = ["mainDriver", "overall", "mixed", "reach", "confidence", "employing", "entry", "exit", "avgGrowth", "valueAdded",
     "ebitda", "labourProductivity", "mfp", "topShare", "markupRba", "blade", "noCompetition", "regHampered", "capex", "rd",
-    "administers", "regulates", "policy", "complexity", "regime", "touchpoints", ...Object.keys(DATA.issueTags || {}).map((k) => `cx-${k}`)];
+    "administers", "regulates", "policy", "complexity", "regime", "touchpoints", "legislative", "requirement", "mostAffects", "reachSure",
+    ...Object.keys(DATA.issueTags || {}).map((k) => `cx-${k}`)];
 
   // --- Helpers ------------------------------------------------------------------------------------
-  const ratingBadge = (a, big) => a
+  const ratingBadge = (a, big) => a && !a.marks.length
+    ? `<span class="badge m0${big ? " big" : ""}" title="No material effect on any driver"><span class="n">0</span>No material effect</span>`
+    : a
     ? `<span class="badge ${RATING_CLS[a.rating]}${big ? " big" : ""}" title="${esc(`Overall mark ${signed(a.total)}: ${RATING_LABEL[a.rating]}${a.mixed ? ". Mixed: some drivers are marked up and some down" : ""}`)}"><span class="n">${esc(signed(a.total))}</span>${esc(RATING_LABEL[a.rating])}</span>`
     : `<span class="muted small">Not assessed</span>`;
   const drvTag = (d) => `<span class="tag drv">${esc(DRV[d].short)}</span>`;
-  const kindTag = (k) => (k === "reform" ? "" : `<span class="tag kind" title="${esc(FW.kinds[k].help)}">${esc(FW.kinds[k].label)}</span>`);
+  // Every entry is a legislative influence except a non-legislative barrier, which keeps its own tag (E-137). The list
+  // tags only barriers; an item's detail names the type of every entry.
+  const typeTag = (r, always) => {
+    const t = r.group === "barrier" ? "barrier" : "legislative";
+    return t === "barrier" || always ? `<span class="tag kind" title="${esc(ITAG[t].help)}">${esc(ITAG[t].label)}</span>` : "";
+  };
+  const mostTags = (r) => (!r.most || !r.most.length ? "–"
+    : r.most.length === POS.length ? `<span class="tag pos" title="Its marks weigh equally on all three market positions">All three equally</span>`
+    : r.most.map((p) => `<span class="tag pos">${esc(POSL[p])}</span>`).join(" "));
   const reachLabel = (k) => (FW.reach[k] ? FW.reach[k].label : "");
-  const effLabel = (r) => (r.kind === "barrier" ? "–" : r.effective ? (r.kind === "setting" ? `since ${r.effective.slice(0, 4)}` : fmtDate(r.effective)) : (r.kind === "setting" ? "in place" : "not yet"));
+  const effLabel = (r) => (isReq(r) ? "in place" : r.kind === "barrier" ? "–" : r.effective ? (r.kind === "setting" ? `since ${r.effective.slice(0, 4)}` : fmtDate(r.effective)) : (r.kind === "setting" ? "in place" : "not yet"));
   const inForce = (r) => !r.ended && (r.kind !== "reform" || !!r.effective);
   const B = DATA.bodies;
   const deptOf = (id) => (B[id] && B[id].type !== "department" && B[id].parent ? B[id].parent : id);
@@ -541,7 +622,8 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   // The control that opens a group: stack icon, group name, and a count badge ("8 jurisdictions ▾").
   const grpButton = (g, items, open) => {
     const all = GROUPS[g].members.length, jurs = new Set(items.map((r) => r.jurisdiction)).size;
-    const noun = jurs === items.length && items.length === all ? `${all} jurisdiction${all === 1 ? "" : "s"}` : items.length === all ? `${all} items` : `${items.length} of ${all}`;
+    const unit = GROUPS[g].unit === "council" ? "council" : "jurisdiction";
+    const noun = jurs === items.length && items.length === all ? `${all} ${unit}${all === 1 ? "" : "s"}` : items.length === all ? `${all} items` : `${items.length} of ${all}`;
     return `<button type="button" class="grpbtn" data-group="${esc(g)}" aria-expanded="${open}" aria-label="${esc(`${GROUPS[g].title}: group of ${all} items, ${open ? "open" : "closed"}`)}"><span class="grp-icon">${STACK}</span><span class="grp-name">${esc(GROUPS[g].title)}</span><span class="grp-count">${esc(noun)}</span></button>`;
   };
   const groupOf = (r) => (r.family && GROUPS[r.family] ? r.family : null);
@@ -576,13 +658,14 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   }
 
   // --- State --------------------------------------------------------------------------------------
-  const state = { q: "", driver: new Set(), rating: new Set(), kind: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", cx: new Set(), regime: "", indSort: "parties", open: new Set(), selected: null, tab: "list", sort: "new" };
+  const state = { q: "", driver: new Set(), rating: new Set(), type: new Set(), pos: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", cx: new Set(), regime: "", indSort: "parties", open: new Set(), selected: null, tab: "list", sort: "new" };
 
   function matches(r, skip) {
     const a = A(r);
     if (skip !== "driver" && state.driver.size && !(a && state.driver.has(a.main_driver))) return false;
     if (skip !== "rating" && state.rating.size && !(a && state.rating.has(a.rating))) return false;
-    if (state.kind.size && !state.kind.has(r.kind)) return false;
+    if (state.type.size && !state.type.has(r.group)) return false;
+    if (state.pos.size && !r.most.some((p) => state.pos.has(p))) return false;
     if (state.jur.size && !state.jur.has(r.jurisdiction)) return false;
     if (state.reach.size && !(a && state.reach.has(a.reach))) return false;
     if (state.status === "in-force" && !inForce(r)) return false;
@@ -590,13 +673,14 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     if (state.status === "ended" && !r.ended) return false;
     if (state.body && !bodyMatch(r, state.body)) return false;
     if (state.cx.size && !r.complexity.some((t) => state.cx.has(t))) return false;
-    if (state.div && !(r.industries.some((i) => i.division === state.div) || (a && a.reach === "economy-wide" && !r.industries.length))) return false;
+    if (state.div && !(r.allIndustries || r.industries.some((i) => i.division === state.div) || (a && a.reach === "economy-wide" && !r.industries.length))) return false;
     if (state.q) {
-      const hay = [r.id, r.title, r.summary, r.family, DATA.familyLabels[r.family], r.jurisdiction, FW.kinds[r.kind].label,
+      const hay = [r.id, r.title, r.summary, r.family, DATA.familyLabels[r.family], r.jurisdiction, IGRP[r.group].label,
+        r.obligation || "", r.council || "", ...(r.laws || []).map((l) => l.title), ...(r.requirements || []).map((q) => q.title),
         ...r.responsible.flatMap((x) => [x.body, bodyName(x.body), B[x.body] ? B[x.body].short : ""]),
         ...r.recs.map((id) => (RECS[id] ? RECS[id].title : "")), ...r.regimes.map((id) => (REG[id] ? REG[id].name : "")),
         ...(groupOf(r) ? [GROUPS[r.family].title] : []),
-        ...r.industries.map((i) => `${i.anzsic} ${i.name}`), ...(a ? [a.summary, DRV[a.main_driver].label, ...a.marks.map((m) => m.reason)] : [])].join(" ").toLowerCase();
+        ...r.industries.map((i) => `${i.anzsic} ${i.name}`), ...(a ? [a.summary, a.main_driver ? DRV[a.main_driver].label : "", ...a.marks.map((m) => m.reason)] : [])].join(" ").toLowerCase();
       if (!state.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
     }
     return true;
@@ -618,7 +702,11 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   }
   chipGroup($("f-driver"), "driver", DRV_KEYS.map((d) => ({ value: d, label: DRV[d].short, title: DRV[d].question, n: count((r) => A(r) && A(r).main_driver === d) })));
   chipGroup($("f-rating"), "rating", RATING_ORDER.map((k) => ({ value: k, label: RATING_LABEL[k], icon: `<i class="sw ${RATING_CLS[k]}" aria-hidden="true"></i>`, n: count((r) => A(r) && A(r).rating === k) })));
-  chipGroup($("f-kind"), "kind", Object.keys(FW.kinds).map((k) => ({ value: k, label: FW.kinds[k].label, title: FW.kinds[k].help, n: count((r) => r.kind === k) })));
+  const typeChips = (withN) => GROUP_ORDER.map((g) => ({ value: g, label: withN ? `${IGRP[g].label} ${count((r) => r.group === g)}` : IGRP[g].label, title: IGRP[g].help,
+    icon: `<i class="sw ${g}" aria-hidden="true"></i>`, n: count((r) => r.group === g) }));
+  chipGroup($("f-type"), "type", typeChips(false));
+  chipGroup($("glanceKey"), "type", typeChips(true));
+  chipGroup($("f-pos"), "pos", POS.map((p) => ({ value: p.id, label: p.label, title: p.question, n: count((r) => r.most.includes(p.id)) })));
   chipGroup($("f-jur"), "jur", JURS.map((j) => ({ value: j, label: j, n: count((r) => r.jurisdiction === j) })));
   chipGroup($("f-reach"), "reach", Object.keys(FW.reach).map((k) => ({ value: k, label: FW.reach[k].label, title: FW.reach[k].help, n: count((r) => A(r) && A(r).reach === k) })));
   chipGroup($("f-cx"), "cx", Object.keys(TAGS).map((t) => ({ value: t, label: TAGS[t].label, title: TAGS[t].help, n: count((r) => r.complexity.includes(t)) })));
@@ -661,7 +749,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   });
   $("reset").addEventListener("click", () => {
     state.q = ""; state.status = ""; state.div = ""; state.body = "";
-    ["driver", "rating", "kind", "jur", "reach", "cx"].forEach((k) => state[k].clear());
+    ["driver", "rating", "type", "pos", "jur", "reach", "cx"].forEach((k) => state[k].clear());
     state.regime = "";
     $("q").value = ""; $("f-status").value = ""; $("f-div").value = ""; $("f-body").value = "";
     syncChips();
@@ -681,17 +769,23 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   function renderGlance() {
     // Counts follow every filter except the main-driver and overall-mark ones, so the bars stay a guide to them.
     const rows = R.filter((r) => matches(r, "driver") && matches(r, "rating"));
+    // Each count is split by type: laws and policies, requirements, non-legislative barriers (DECISIONS E-137).
+    const split = (xs) => Object.fromEntries(GROUP_ORDER.map((g) => [g, xs.filter((r) => r.group === g).length]));
+    const sum = (o) => Object.values(o).reduce((t, n) => t + n, 0);
+    const parts = (o) => GROUP_ORDER.filter((g) => o[g]).map((g) => `${o[g]} ${IGRP[g].label.toLowerCase()}`).join(", ");
+    const segs = (o, n, order) => order.filter((g) => o[g]).map((g) => `<i class="seg ${g}" style="width:${(o[g] / n) * 100}%"></i>`).join("");
     const by = DRV_KEYS.map((d) => {
       const items = rows.filter((r) => A(r) && A(r).main_driver === d);
-      return { d, neg: items.filter((r) => A(r).total < 0).length, pos: items.filter((r) => A(r).total > 0).length, zero: items.filter((r) => A(r).total === 0).length };
+      const negBy = split(items.filter((r) => A(r).total < 0)), posBy = split(items.filter((r) => A(r).total > 0));
+      return { d, negBy, posBy, neg: sum(negBy), pos: sum(posBy), zero: items.filter((r) => A(r).total === 0).length };
     });
     const max = Math.max(1, ...by.map((x) => Math.max(x.neg, x.pos)));
     $("dv").innerHTML = `<div class="dv-head" aria-hidden="true"><span></span><span>Negative overall</span><span>Positive overall</span></div>` + by.map((x) => {
-      const label = `${DRV[x.d].label}: ${x.neg} negative, ${x.pos} positive${x.zero ? `, ${x.zero} neutral` : ""}`;
+      const label = `${DRV[x.d].label}: ${x.neg} negative${x.neg ? ` (${parts(x.negBy)})` : ""}, ${x.pos} positive${x.pos ? ` (${parts(x.posBy)})` : ""}${x.zero ? `, ${x.zero} neutral` : ""}`;
       return `<button type="button" class="dv-row" data-d="${esc(x.d)}" aria-pressed="${state.driver.has(x.d)}" aria-label="${esc(label)}" title="${esc(label)}">
         <span class="dv-lab">${esc(DRV[x.d].label)}</span>
-        <span class="dv-neg"><span class="dv-n">${x.neg || ""}</span><span class="dv-bar" style="width:${(x.neg / max) * 82}%"></span></span>
-        <span class="dv-pos"><span class="dv-bar" style="width:${(x.pos / max) * 82}%"></span><span class="dv-n">${x.pos || ""}</span></span></button>`;
+        <span class="dv-neg"><span class="dv-n">${x.neg || ""}</span><span class="dv-bar seg-wrap" style="width:${(x.neg / max) * 82}%">${segs(x.negBy, x.neg, [...GROUP_ORDER].reverse())}</span></span>
+        <span class="dv-pos"><span class="dv-bar seg-wrap" style="width:${(x.pos / max) * 82}%">${segs(x.posBy, x.pos, GROUP_ORDER)}</span><span class="dv-n">${x.pos || ""}</span></span></button>`;
     }).join("");
     $("dv").querySelectorAll(".dv-row").forEach((b) => b.addEventListener("click", () => {
       const d = b.dataset.d;
@@ -699,9 +793,12 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       syncChips();
       render();
     }));
-    const rc = RATING_ORDER.map((k) => ({ k, n: rows.filter((r) => A(r) && A(r).rating === k).length }));
+    // Each rating's fill, and a darker partner for the stripes of requirements and barriers.
+    const SEGC = { "strongly-positive": ["--mk-p2", "--mk-p2-ink"], positive: ["--mk-p1", "--mk-p2"], neutral: ["--mk-0", "--ink-3"],
+      negative: ["--mk-n1", "--mk-n2"], "strongly-negative": ["--mk-n2", "--mk-n2-ink"] };
+    const rc = RATING_ORDER.map((k) => { const b = split(rows.filter((r) => A(r) && A(r).rating === k)); return { k, by: b, n: sum(b) }; });
     const rmax = Math.max(1, ...rc.map((x) => x.n));
-    $("ratingBars").innerHTML = rc.map((x) => `<div class="row"><span>${esc(RATING_LABEL[x.k])}</span><span class="bar ${RATING_CLS[x.k]}" style="width:${(x.n / rmax) * 100}%"></span><span class="val">${x.n}</span></div>`).join("");
+    $("ratingBars").innerHTML = rc.map((x) => `<div class="row" title="${esc(`${RATING_LABEL[x.k]}: ${x.n}${x.n ? ` (${parts(x.by)})` : ""}`)}"><span>${esc(RATING_LABEL[x.k])}</span><span class="bar seg-wrap" style="width:${(x.n / rmax) * 100}%;--seg-c:var(${SEGC[x.k][0]});--seg-k:var(${SEGC[x.k][1]})">${segs(x.by, x.n, GROUP_ORDER)}</span><span class="val">${x.n}</span></div>`).join("");
   }
 
   // --- List ---------------------------------------------------------------------------------------
@@ -721,24 +818,30 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   function groupCells(u) {
     const items = u.items, all = GROUPS[u.g].members.length, as = items.map(A).filter(Boolean);
     const years = items.filter((r) => r.kind !== "barrier" && r.effective && r.kind === "reform").map((r) => +r.effective.slice(0, 4));
-    const eff = years.length ? (Math.min(...years) === Math.max(...years) ? `${years[0]}` : `${Math.min(...years)}–${Math.max(...years)}`) : items.some((r) => r.kind === "setting") ? "in place" : "–";
+    const eff = years.length ? (Math.min(...years) === Math.max(...years) ? `${years[0]}` : `${Math.min(...years)}–${Math.max(...years)}`) : items.some((r) => r.kind === "setting" || isReq(r)) ? "in place" : "–";
     const jurs = [...new Set(items.map((r) => r.jurisdiction))];
     const totals = as.map((a) => a.total), lo = Math.min(...totals), hi = Math.max(...totals);
     const loA = as.find((a) => a.total === lo), hiA = as.find((a) => a.total === hi);
     const mini = (a) => `<span class="badge ${RATING_CLS[a.rating]}" title="${esc(RATING_LABEL[a.rating])}"><span class="n">${esc(signed(a.total))}</span></span>`;
     const mark = !as.length ? "" : lo === hi ? ratingBadge(as[0]) : `<span class="mark-range" title="${esc(`Overall marks range from ${signed(lo)} to ${signed(hi)}; open the row to see each jurisdiction`)}">${mini(loA)}<span class="to">to</span>${mini(hiA)}</span>`;
-    const drv = same(as.map((a) => a.main_driver)) && as.length ? drvTag(as[0].main_driver) : "Varies";
+    const drv = same(as.map((a) => a.main_driver)) && as.length ? (as[0].main_driver ? drvTag(as[0].main_driver) : "") : "Varies";
     const reach = same(as.map((a) => a.reach)) && as.length ? esc(reachLabel(as[0].reach)) : "Varies";
-    return { eff, jur: items.length === all ? `${jurs.length}` : `${items.length} of ${all}`, jurTitle: jurs.join(", "), mark, drv, reach };
+    const most = same(items.map((r) => (r.most || []).join(" "))) ? mostTags(items[0]) : "Varies";
+    return { eff, jur: items.length === all ? `${jurs.length}` : `${items.length} of ${all}`, jurTitle: jurs.join(", "), mark, drv, reach, most };
   }
+  const reqCount = (r) => {
+    const n = (r.requirements || []).length;
+    return n ? ` <span class="tag req-n" title="${esc(r.requirements.map((q) => q.title).join("; "))}">${n} requirement${n === 1 ? "" : "s"} inside</span>` : "";
+  };
   function itemRow(r, member) {
     const a = A(r);
     return `<tr class="${member ? `member ${member === "last" ? "last " : ""}` : ""}${state.selected === r.id ? "sel" : ""}">
         <td class="mono">${esc(effLabel(r))}</td>
         <td class="mono">${esc(r.jurisdiction)}</td>
-        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}" title="${esc([r.responsible.length ? `Responsible: ${whoShort(r)}` : "", r.complexity.length ? `Complexity: ${r.complexity.map((t) => (TAGS[t] ? TAGS[t].label : t)).join(", ")}` : ""].filter(Boolean).join(" · "))}">${esc(r.title)}</button> ${kindTag(r.kind)} ${endTag(r)}</td>
-        <td>${a ? drvTag(a.main_driver) : ""}</td>
+        <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}" title="${esc([r.responsible.length ? `Responsible: ${whoShort(r)}` : "", r.complexity.length ? `Complexity: ${r.complexity.map((t) => (TAGS[t] ? TAGS[t].label : t)).join(", ")}` : ""].filter(Boolean).join(" · "))}">${esc(r.title)}</button>${r.council ? ` <span class="tag">Council: ${esc(r.council)}</span>` : ""} ${typeTag(r)} ${endTag(r)}${reqCount(r)}</td>
+        <td>${a && a.main_driver ? drvTag(a.main_driver) : ""}</td>
         <td>${ratingBadge(a)}</td>
+        <td class="c-most">${mostTags(r)}</td>
         <td>${a ? esc(reachLabel(a.reach)) : ""}</td>
       </tr>`;
   }
@@ -750,9 +853,9 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
         <td class="mono">${esc(c.eff)}</td>
         <td class="mono" title="${esc(c.jurTitle)}"></td>
         <td class="c-title">${grpButton(u.g, u.items, open)}</td>
-        <td>${c.drv}</td><td>${c.mark}</td><td>${c.reach}</td></tr>`;
+        <td>${c.drv}</td><td>${c.mark}</td><td class="c-most">${c.most}</td><td>${c.reach}</td></tr>`;
       if (!open) return head;
-      return head + (G.summary ? `<tr class="grp-sum"><td colspan="6">${esc(G.summary)}</td></tr>` : "") + u.items.map((r, k) => itemRow(r, k === u.items.length - 1 ? "last" : true)).join("");
+      return head + (G.summary ? `<tr class="grp-sum"><td colspan="7">${esc(G.summary)}</td></tr>` : "") + u.items.map((r, k) => itemRow(r, k === u.items.length - 1 ? "last" : true)).join("");
     }).join("");
     $("rows").querySelectorAll(".rowbtn").forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
     $("rows").querySelectorAll("tr.grp-row").forEach((tr) => tr.addEventListener("click", () => toggleGroup(tr.dataset.group)));
@@ -862,7 +965,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     $("tlLegend").innerHTML = RATING_ORDER.map((k) => `<span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5" fill="${fill[k]}" stroke="var(--ink-3)"/></svg>${esc(RATING_LABEL[k])}</span>`).join("") +
       `<span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><line x1="6" x2="6" y1="0" y2="12" stroke="var(--accent)" stroke-width="2"/></svg>Later change</span>` +
       `<span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 2L10 10M2 10L10 2" stroke="var(--ink)" stroke-width="1.6"/></svg>Repealed or replaced</span>` +
-      (undated ? `<span>${undated} not shown: not yet in force, existing settings or barriers</span>` : "");
+      (undated ? `<span>${undated} not shown: not yet in force, laws already in place, requirements or barriers</span>` : "");
   }
 
   // --- Detail -------------------------------------------------------------------------------------
@@ -870,6 +973,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   // A collapsible section: the heading and a short summary show; the body opens on request.
   const fold = (title, body, note = "", open = false) => (body ? `<details class="d-sec fold"${open ? " open" : ""}><summary><span class="fold-t">${esc(title)}</span>${note ? `<span class="fold-n">${esc(note)}</span>` : ""}</summary><div class="fold-body">${body}</div></details>` : "");
   function marksHtml(a) {
+    if (!a.marks.length) return `<p class="zero-note">No material effect on any driver.</p>`;
     const scale = (v) => [-2, -1, 1, 2].map((x) => `<i class="${v !== 0 && Math.sign(x) === Math.sign(v) && Math.abs(x) <= Math.abs(v) ? markCls(v) : ""}"></i>`).join("");
     const marked = DRV_KEYS.map((d) => a.marks.find((x) => x.driver === d)).filter(Boolean);
     const rows = marked.map((m) => `<details class="mrow${a.main_driver === m.driver ? " main" : ""}"><summary>
@@ -879,6 +983,127 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     const rest = DRV_KEYS.filter((d) => !a.marks.some((x) => x.driver === d)).map((d) => DRV[d].label);
     return `<div class="marks">${rows}</div>${rest.length ? `<p class="zero-note" title="${esc(rest.join(", "))}">No material effect on the other ${rest.length} driver${rest.length === 1 ? "" : "s"}.</p>` : ""}`;
   }
+  // --- Where an item acts in the market (DECISIONS E-137): the Industry lens's three positions --------------------
+  const EFFECT_CLS = { positive: { strong: "m2", weak: "m1" }, negative: { strong: "mn2", weak: "mn1" }, mixed: { strong: "m0", weak: "m0" } };
+  const EFFECT_SIGN = { positive: "+", negative: "−", mixed: "±" };
+  function marketHtml(r) {
+    const a = A(r);
+    if (!a) return "";
+    const cards = POS.map((p) => {
+      const e = r.effects[p.id];
+      if (!e) return `<div class="pos-card none"><div class="p-head"><span class="p-name">${esc(p.label)}</span><span>No effect recorded</span></div></div>`;
+      const why = e.marks.map((i) => a.marks[i]).map((m) => `<span class="p-why">${esc(DRV[m.driver].short)} ${esc(signed(m.mark))}: ${esc(m.reason)}</span>`).join("");
+      const most = r.most.includes(p.id) && r.most.length < POS.length;
+      const strength = e.strength === "strong" ? "Strong" : "Weak";
+      return `<div class="pos-card${most ? " most" : ""}"><div class="p-head"><span class="p-name">${esc(p.label)}</span>` +
+        `<span class="eff ${EFFECT_CLS[e.effect][e.strength]}" title="${esc(`${e.effect[0].toUpperCase()}${e.effect.slice(1)}, ${strength.toLowerCase()}`)}">${EFFECT_SIGN[e.effect]} ${strength}</span></div>` +
+        `<span>${esc(PHRASE[p.id][e.effect])}</span>${why}</div>`;
+    }).join("");
+    const most = !r.most.length ? "no market position" : r.most.length === POS.length ? "all three equally" : r.most.map((p) => POSL[p]).join(" and ");
+    return `<section class="d-sec"><h3>Where it acts in the market${info("mostAffects", "About market positions")}</h3>
+      <p class="pos-most">Most affects: <strong>${esc(most)}</strong></p>
+      <div class="pos-cards">${cards}</div>
+      <p class="zero-note">The sign is the effect on productivity and competition: − means less competition, not harm to these firms.</p></section>`;
+  }
+
+  // --- Requirements: what a law requires a business to do ------------------------------------------------
+  const CHECKED = { "register-text": "quoted from the official register", document: "quoted from the official document",
+    "web-page": "quote read from a web page", "corpus-copy": "quoted from the Open Australian Legal Corpus copy of the official text, which is not itself official" };
+  const quoteList = (sources) => `<ul class="ev">${sources.map((x) => `<li><blockquote>${esc(x.quote)}</blockquote><span class="src">${link(x.url, x.title)}, ${esc(x.publisher)}${x.locator ? `, ${esc(x.locator)}` : ""}; ${esc(CHECKED[x.checked] || x.checked)}, read ${esc(fmtDate(x.accessed))}</span></li>`).join("")}</ul>`;
+  const lawsLine = (q) => q.laws.map((l) => `${link(l.url, l.title)}${l.provisions ? `, ${esc(l.provisions)}` : ""}${l.applied ? " (applied as this jurisdiction's own law)" : ""}`).join("; ");
+  const codeName = (c) => `<span class="mono">${esc(c)}</span> ${esc((CN[c] || [c])[0])}`;
+  const reachShort = (q) => (q.allIndustries ? "Every industry" : q.industries.length <= 3 ? q.industries.map((i) => codeName(i.anzsic)).join("; ")
+    : `<span title="${esc(q.industries.map((i) => `${i.anzsic} ${i.name}`).join("; "))}">${q.industries.length} industries</span>`);
+  const draftLine = (q) => `${q.review.status === "draft" ? "Draft: drafted" : "Drafted"} from the law's text on ${fmtDate(q.drafted)}${q.assessment ? ` and marked on ${fmtDate(q.assessment.assessed_on)}` : ""}${q.review.status === "draft" ? "; not yet checked by a person" : ""}.`;
+  function nestedHtml(r) {
+    const qs = r.requirements || [];
+    if (!qs.length) return "";
+    return `<div class="recs">${qs.map((q) => `<article class="rec req" id="req-${esc(q.id)}">
+      <h4>${esc(q.title)}</h4>
+      <p class="rec-meta"><span class="mono">${esc(q.jurisdiction)}</span>${q.council ? `<span>Council: ${esc(q.council)}</span>` : ""}<span>${esc(q.obligation)}</span></p>
+      <p>${esc(q.summary)}</p>
+      <dl class="req-facts"><dt>The law</dt><dd>${lawsLine(q)}</dd><dt>When it applies</dt><dd>${esc(q.triggers.map((t) => t.label).join("; "))}</dd>
+        <dt>Who it reaches</dt><dd>${reachShort(q)}</dd><dt>Marks</dt><dd>${q.sameMarks ? "The same as this item's" : ratingBadge(q.assessment)}</dd></dl>
+      <details class="sub"><summary>The law's words and sources</summary><div class="sub-body">${quoteList(q.sources)}<p>${esc(draftLine(q))}</p></div></details>
+    </article>`).join("")}</div>`;
+  }
+  const TEST = { ">=": "at or above", ">": "above", "<=": "at or below", "<": "below" };
+  const fmtNum = (v) => v.toLocaleString("en-AU", { maximumFractionDigits: 2 });
+  const triggersHtml = (q) => li(q.triggers.map((t) => `<li><strong>${esc(t.label)}</strong>${t.value != null ? `: ${esc(TEST[t.test] || t.test)} ${esc(fmtNum(t.value))} ${esc(t.unit)}${t.asAt ? ` (as at ${esc(fmtDate(t.asAt))})` : ""}` : ""}${t.note ? `. ${esc(t.note)}` : ""}${t.sources.length ? ` ${t.sources.map((x) => link(x.url, "Source")).join(" ")}` : ""}</li>`));
+  const LEGAL = { "sole-proprietor": "sole traders", partnership: "partnerships", trust: "trusts", company: "companies", "co-operative": "co-operatives", "incorporated-association": "incorporated associations" };
+  const cap = (t) => (t ? t[0].toUpperCase() + t.slice(1) : "");
+  function reachHtml(q) {
+    const groups = q.reachGroups.map((g) => {
+      const head = g.all ? `Every industry${g.exclude.length ? `, except ${g.exclude.map(codeName).join("; ")}` : ""}` : esc(cap(g.condition || g.note || "These industries"));
+      const list = g.all ? "" : `<p>${g.classes.map(codeName).join(" · ")}${g.classes.some((c) => c.length < 4) ? ` (${g.n} classes)` : ""}</p>`;
+      const quals = [g.activities.length ? `Only for these ABS primary activities: ${g.activities.join("; ")}.` : "", g.legalForms.length ? `Only ${g.legalForms.map((f) => LEGAL[f] || f).join(", ")}.` : "",
+        g.inStates.length ? `Only in ${g.inStates.join(", ")}.` : "", g.note && g.condition ? g.note : ""].filter(Boolean);
+      return `<div class="reach-grp"><p class="r-head">${head}</p>${list}${quals.map((x) => `<p>${esc(x)}</p>`).join("")}</div>`;
+    }).join("");
+    const first = q.industries[0], state = q.jurisdiction !== "CTH" ? `state=${q.jurisdiction}` : "";
+    const lens = `industry-lens.html#${[first ? `class=${first.anzsic}` : "", state].filter(Boolean).join("&")}`;
+    return `${groups}<p class="small">${term("reachSure", "How sure the industries are")}: <strong>${esc(FW.confidence[q.reachConfidence].label)}</strong>${q.reachNote ? `. ${esc(q.reachNote)}` : ""}</p>
+      <p class="small"><a href="${esc(lens)}">See it on the Industry lens</a></p>`;
+  }
+  function acrossHtml(q) {
+    const g = groupOf(q);
+    if (!g) return "";
+    const rows = GROUPS[g].members.map((id) => RBY[id]).filter(Boolean)
+      .sort((a, b) => JURS.indexOf(a.jurisdiction) - JURS.indexOf(b.jurisdiction) || (a.council || "").localeCompare(b.council || ""));
+    const body = rows.map((x) => `<tr${x.id === q.id ? ' class="cur"' : ""}><td>${x.id === q.id ? `<strong>${esc(x.jurisdiction)}</strong>` : `<button type="button" class="lnk" data-id="${esc(x.id)}">${esc(x.jurisdiction)}</button>`}${x.council ? ` ${esc(x.council)}` : ""}</td>
+      <td>${esc(x.laws.map((l) => `${l.title}${l.provisions ? `, ${l.provisions}` : ""}`).join("; "))}</td><td>${esc(FW.confidence[x.reachConfidence].label)}</td></tr>`).join("");
+    const marks = same(rows.map((x) => JSON.stringify(A(x) ? A(x).marks : [])));
+    return `<div class="tscroll"><table class="st across"><thead><tr><th>Where</th><th>Law and provision</th><th>How sure the industries are</th></tr></thead><tbody>${body}</tbody></table></div>
+      <p class="small">${marks ? `All ${rows.length} carry the same marks.` : "Their marks differ: open each to compare."}</p>`;
+  }
+  function respHtml(q) {
+    const items = q.responsible.map((x) => {
+      const b = B[x.body], d = b && b.type !== "department" && b.parent && B[b.parent] ? B[b.parent] : null;
+      return `<li><span>${b ? link(b.url, b.name) : esc(x.body)}${d ? ` <span class="in">· in ${esc(d.name)}</span>` : ""}</span></li>`;
+    });
+    const councils = q.councilsAdminister ? `<p class="small">Councils administer it.</p>` : "";
+    return items.length || councils ? `${items.length ? `<ul class="resp">${items.join("")}</ul>` : ""}${councils}` : `<p class="small">Not yet recorded.</p>`;
+  }
+  function selectReq(r) {
+    const el = $("detail"), a = A(r), g = groupOf(r);
+    const councils = g && GROUPS[g].unit === "council";
+    const nRegs = r.regimes.length, nTags = r.complexity.length;
+    el.className = "detail";
+    el.innerHTML = `
+      <button type="button" class="close" id="closeDetail">Close</button>
+      <div class="d-head">
+        <h2>${esc(r.title)}</h2>
+        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${r.council ? `<span>Council: ${esc(r.council)}</span>` : ""}<span>In place</span>${typeTag(r, true)}</div>
+        ${g ? `<p class="grp-of">One of ${GROUPS[g].members.length} ${councils ? "councils" : "jurisdictions"} with this requirement: <button type="button" class="lnk" data-show-group="${esc(g)}">${esc(GROUPS[g].title)}</button></p>` : ""}
+        <p>${esc(r.summary)}</p>
+        <p class="small">${term("requirement", "Requirement")}: ${esc(r.obligation)}.</p>
+      </div>
+      ${marketHtml(r)}
+      ${assessHtml(a)}
+      ${fold("The law", `<p class="small">${lawsLine(r)}</p>${quoteList(r.sources)}`, "", true)}
+      ${fold("When it applies", triggersHtml(r), "", true)}
+      ${fold("Who it reaches", reachHtml(r), r.allIndustries ? "every industry" : `${r.industries.length} industr${r.industries.length === 1 ? "y" : "ies"}`, true)}
+      ${g ? fold(councils ? "Across councils" : "Across states and territories", acrossHtml(r), `${GROUPS[g].members.length}`) : ""}
+      ${fold("Regulatory complexity", complexityHtml(r), nRegs ? `${nRegs} regime${nRegs === 1 ? "" : "s"}${nTags ? ` · ${nTags} issue tag${nTags === 1 ? "" : "s"}` : ""}` : "")}
+      ${fold("Who is responsible", respHtml(r), whoShort(r) || "not yet recorded")}
+      ${fold("Sources and checks", `<p>${esc(draftLine(r))}</p><p>The law's own words are under The law, above. The record: <code>${esc(r.file)}</code></p>`)}
+      <p class="notice">${esc(draftLine(r))}</p>`;
+    bindDetail(el);
+    render();
+  }
+  function assessHtml(a) {
+    return a ? `<section class="d-sec"><h3>Productivity assessment${info("helpAssess", "How items are marked")}</h3><div class="assess">
+        <div class="assess-top">${ratingBadge(a, true)} ${a.main_driver ? drvTag(a.main_driver) : ""}</div>
+        <p class="assess-sum">${esc(a.summary)}</p>
+        ${marksHtml(a)}
+        <div class="facts-row"><span>${term("reach", "Reach")}: <strong>${esc(reachLabel(a.reach))}</strong></span><span>${term("confidence", "Confidence")}: <strong>${esc(FW.confidence[a.confidence].label)}</strong></span></div>
+        <details class="sub"><summary>About this assessment</summary><div class="sub-body">
+          ${a.confidence_note ? `<p>${esc(a.confidence_note)}</p>` : ""}
+          ${a.evidence.length ? `<p>Evidence: ${a.evidence.map((u) => link(u)).join(" · ")}</p>` : ""}
+          <p>Assessed ${esc(fmtDate(a.assessed_on))} against <a href="framework.html">framework</a> version ${esc(a.framework)}. A judgement, not an estimate.</p></div></details>
+      </div></section>` : `<p class="notice">This item has not been assessed yet.</p>`;
+  }
+
   function statsHtml(r) {
     const s = r.stats;
     if (!s || !s.rows.length) return `<p class="muted small">No statistics available for these industries.</p>`;
@@ -1032,7 +1257,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     const items = R.filter((r) => r.regimes.includes(id));
     openAside(`regime:${id}`, `<div class="d-head"><h2>${esc(g.name)}</h2><div class="d-meta"><span>${term("regime", "Regulatory regime")}</span>${g.tags.map(cxTag).join("")}</div></div>
       <section class="d-sec">${regimeCard(g, true)}</section>
-      ${fold("Register items in this regime", items.length ? li(items.map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`)) : "<p>None yet.</p>", String(items.length))}
+      ${fold("Items in this regime", items.length ? li(items.map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`)) : "<p>None yet.</p>", String(items.length))}
       ${fold("Industries it applies to", `<p><button type="button" class="lnk" data-show-ind="${esc(g.id)}">Show the ${g.classes} industries in the Industries view</button></p>`, `${g.classes} of ${IND.length}`)}`, fromHash ? null : `regime=${id}`);
   }
   function selectClass(code, fromHash) {
@@ -1050,28 +1275,21 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
         <p class="venn-key">Numbers count jobs (licensing, inspecting, collecting) done by each tier across these regimes.${info("helpClassVenn", "Reading the diagram")}</p></section>
       ${fold("Industry-specific regimes", sector.length ? `<ul class="reg-rows">${sector.map(row).join("")}</ul>` : "<p>None mapped: only the regimes that apply across industries.</p>", String(sector.length), true)}
       ${fold("Regimes that apply across industries", `<ul class="reg-rows">${cross.map(row).join("")}</ul>`, String(cross.length))}
-      ${items.length ? fold("Register items in these regimes", `${li(items.slice(0, 40).map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`))}${items.length > 40 ? `<p>and ${items.length - 40} more.</p>` : ""}`, String(items.length)) : ""}`, fromHash ? null : `class=${code}`);
+      ${items.length ? fold("Items in these regimes", `${li(items.slice(0, 40).map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`))}${items.length > 40 ? `<p>and ${items.length - 40} more.</p>` : ""}`, String(items.length)) : ""}`, fromHash ? null : `class=${code}`);
   }
 
   function select(id, fromHash) {
     state.selected = id;
     const r = R.find((x) => x.id === id);
     const el = $("detail");
-    if (!r) { el.className = "detail empty"; el.innerHTML = "<p>Select an item to see its productivity assessment, the industries it affects and its sources.</p>"; render(); return; }
+    if (!r) { el.className = "detail empty"; el.innerHTML = "<p>Select an item to see its productivity assessment, where it acts in the market, the industries it affects and its sources.</p>"; render(); return; }
     if (!fromHash) { try { history.replaceState(null, "", `#${id}`); } catch (e) { /* ignore */ } }
     if (groupOf(r)) state.open.add(r.family);
+    if (isReq(r)) { selectReq(r); return; }
     el.className = "detail";
     const a = A(r);
-    const assess = a ? `<section class="d-sec"><h3>Productivity assessment${info("helpAssess", "How items are marked")}</h3><div class="assess">
-        <div class="assess-top">${ratingBadge(a, true)} ${drvTag(a.main_driver)}</div>
-        <p class="assess-sum">${esc(a.summary)}</p>
-        ${marksHtml(a)}
-        <div class="facts-row"><span>${term("reach", "Reach")}: <strong>${esc(reachLabel(a.reach))}</strong></span><span>${term("confidence", "Confidence")}: <strong>${esc(FW.confidence[a.confidence].label)}</strong></span></div>
-        <details class="sub"><summary>About this assessment</summary><div class="sub-body">
-          ${a.confidence_note ? `<p>${esc(a.confidence_note)}</p>` : ""}
-          ${a.evidence.length ? `<p>Evidence: ${a.evidence.map((u) => link(u)).join(" · ")}</p>` : ""}
-          <p>Assessed ${esc(fmtDate(a.assessed_on))} against <a href="framework.html">framework</a> version ${esc(a.framework)}. A judgement, not an estimate.</p></div></details>
-      </div></section>` : `<p class="notice">This item has not been assessed yet.</p>`;
+    const assess = assessHtml(a);
+    const nReq = (r.requirements || []).length;
     const nRegs = r.regimes.length, nTags = r.complexity.length;
     const recsN = r.recs.filter((x) => RECS[x]).length;
     const later = r.timeline.filter((e) => !e.own).length;
@@ -1085,12 +1303,14 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       <button type="button" class="close" id="closeDetail">Close</button>
       <div class="d-head">
         <h2>${esc(r.title)}</h2>
-        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${eff ? `<span>${esc(eff)}</span>` : ""}${kindTag(r.kind)}${endTag(r)}</div>
+        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${eff ? `<span>${esc(eff)}</span>` : ""}${typeTag(r, true)}${endTag(r)}</div>
         ${groupOf(r) ? `<p class="grp-of">One of ${GROUPS[r.family].members.length} items in <button type="button" class="lnk" data-show-group="${esc(r.family)}">${esc(GROUPS[r.family].title)}</button></p>` : ""}
         <p>${esc(r.summary)}</p>
         ${r.ended ? `<p class="ended-note"><strong>No longer in force: ${esc(r.ended.label.toLowerCase())} ${esc(fmtDate(r.ended.date))}.</strong> ${esc(r.ended.what)} The assessment below is of the item while it applied.</p>` : ""}
       </div>
+      ${marketHtml(r)}
       ${assess}
+      ${fold("Requirements under this item", nestedHtml(r), `${nReq}`, true)}
       ${fold("Regulatory complexity", complexityHtml(r), nRegs ? `${nRegs} regime${nRegs === 1 ? "" : "s"}${nTags ? ` · ${nTags} issue tag${nTags === 1 ? "" : "s"}` : ""}` : "")}
       ${fold("What government could do", recsHtml(r), recsN ? `${recsN} recommendation${recsN === 1 ? "" : "s"}` : "none yet")}
       ${fold("Who is responsible", whoHtml(r), whoShort(r))}
@@ -1142,7 +1362,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   function render() {
     const rows = R.filter((r) => matches(r)).sort(SORTS[state.sort]);
     $("countLine").textContent = `${rows.length} of ${R.length} items shown`;
-    const more = state.kind.size + state.jur.size + state.reach.size + state.cx.size + (state.status ? 1 : 0) + (state.div ? 1 : 0) + (state.body ? 1 : 0);
+    const more = state.type.size + state.jur.size + state.reach.size + state.cx.size + (state.status ? 1 : 0) + (state.div ? 1 : 0) + (state.body ? 1 : 0);
     $("moreCount").textContent = more ? ` (${more} on)` : "";
     const shownGroups = [...new Set(rows.map(groupOf).filter(Boolean))];
     const grouped = state.tab === "list" || state.tab === "scorecard";
@@ -1158,9 +1378,10 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     if (state.tab === "ind") renderInd();
   }
 
-  const kinds = Object.fromEntries(Object.keys(FW.kinds).map((k) => [k, count((r) => r.kind === k)]));
-  // One short line; the breakdown is on hover.
-  $("metaLine").innerHTML = `<span title="${esc(`${[[kinds.reform, "reform"], [kinds.setting, "existing setting"], [kinds.barrier, "non-legislative barrier"]].map(([n, w]) => `${n} ${w}${n === 1 ? "" : "s"}`).join(", ")}; ${new Set(R.map((r) => r.jurisdiction)).size} jurisdictions; framework version ${FW.version}`)}">${R.length} items · updated ${esc(fmtDate(DATA.generated))}</span>`;
+  // One short line: the items by type, and the date (DECISIONS E-137).
+  const inside = Object.keys(NESTED).length;
+  const byType = GROUP_ORDER.map((g) => `${count((r) => r.group === g)} ${IGRP[g].label.toLowerCase()}`).join(", ");
+  $("metaLine").innerHTML = `<span title="${esc(`${inside} more requirements are shown inside the items they belong to; ${new Set(R.map((r) => r.jurisdiction)).size} jurisdictions; framework version ${FW.version}`)}">${R.length} items: ${esc(byType)} · updated ${esc(fmtDate(DATA.generated))}</span>`;
   const drafts = count((r) => r.review.status === "draft");
   // The draft notice sits at the foot of the page (owner request, 29 October 2026).
   const draftNotice = drafts
@@ -1170,6 +1391,9 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   $("foot").innerHTML = `
     <details class="about"><summary>About this page: method and sources</summary>
     <p><strong>How items are marked.</strong> ${esc(DATA.menuNote)} The full method, with its evidence, is on the <a href="framework.html">Framework</a> page.</p>
+    <p><strong>Types of item.</strong> Reforms, existing settings and the requirements laws place on businesses are all legislative influences; the page splits them into laws and policies (the register's items) and requirements. A non-legislative barrier (market structure, business conduct or practice) keeps its own tag.</p>
+    <p><strong>Requirements.</strong> A requirement is one thing a law requires a business to do, in one jurisdiction: register, hold a licence, get an approval, pay, report or meet a standard. Each one quotes its law from the official register (for NSW and SA, sometimes from the Open Australian Legal Corpus copy of the official text, which is not itself official) and lists the industries (ANZSIC classes) it reaches. A requirement that belongs to an item on this page (the same law in force) is shown inside that item, not as a row of its own. The same requirements appear on the <a href="industry-lens.html">Industry lens</a>, by industry and state. They are drafts from AI-assisted desk research and have not yet been checked by a person. Method: <code>docs/methods_legislation_links.md</code>.</p>
+    <p><strong>Where an item acts in the market.</strong> Each mark is placed with the market players it acts through, as on the Industry lens: entrants, existing competitors, or monopolies and oligopolies. An item most affects the position whose marks weigh most; a tie names each. Method: <code>docs/industry_lens.md</code>.</p>
     <p><strong>Industry statistics.</strong> ${esc(DATA.statsNote)} Sources: ${fsrc || "not available in this build"}.</p>
     <p><strong>Who is responsible.</strong> Each item names the department that administers the law (or leads policy on it) and the bodies that regulate under it. Commonwealth, Queensland, Tasmanian, Victorian and ACT departments come from each government's administrative arrangements; other states' from their legislation sites and portfolio lists. Each tag links to its source, and notes say where an allocation was inferred rather than read from an order. Choosing a department in the filter includes the agencies in it.</p>
     <p><strong>Timeline.</strong> Each item's own dates, then later changes to the law or setting (amendments, easings, repeals), each with its source. A repealed or replaced item stays in the register, marked as no longer in force, so its assessment can still be read.</p>
@@ -1187,7 +1411,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   // #<record id> opens an item; #driver=<driver> filters by main driver (links from the Framework page); #body=<id>
   // filters by department or agency (ids in regulation-register/bodies.json); #rec=<id> opens a recommendation;
   // #complexity=<tag> filters by complexity tag; #industries opens the Industries view; #regime=<id> opens a
-  // regulatory regime and #class=<ANZSIC class> an industry.
+  // regulatory regime and #class=<ANZSIC class> an industry; #<requirement id> opens a requirement, or the item it sits in.
   const fromHash = decodeURIComponent((location.hash || "").slice(1));
   if (fromHash.startsWith("driver=") && DRV[fromHash.slice(7)]) { state.driver.add(fromHash.slice(7)); syncChips(); render(); }
   else if (fromHash.startsWith("body=") && B[fromHash.slice(5)]) { state.body = fromHash.slice(5); $("f-body").value = state.body; $("moreFilters").open = true; render(); }
@@ -1201,5 +1425,11 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     if (card) { card.classList.add("hl"); card.scrollIntoView({ block: "center" }); }
   }
   else if (fromHash && R.some((r) => r.id === fromHash)) { select(fromHash, true); $("detail").scrollIntoView({ block: "start" }); }
+  else if (fromHash && NESTED[fromHash]) {
+    // A requirement shown inside an item: open the item at that requirement.
+    select(NESTED[fromHash], true);
+    const card = $(`req-${fromHash}`);
+    if (card) { card.classList.add("hl"); card.scrollIntoView({ block: "center" }); } else $("detail").scrollIntoView({ block: "start" });
+  }
 })();
 </script>

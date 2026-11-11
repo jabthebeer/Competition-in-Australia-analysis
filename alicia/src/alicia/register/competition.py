@@ -1,18 +1,21 @@
-"""The Industry lens's columns: where each productivity framework mark lands among market players.
+"""Where each productivity framework mark lands among market players, for the Industry lens's columns and the
+"Most affects" tags on Legislative levers influencing competition (one vocabulary for both pages, DECISIONS E-137).
 
-Every law on the lens (a requirement or a register item) is marked against the ALICIA productivity impact
-framework (``register/framework.py``): each of eight drivers from -2 to +2, with a reason. The lens reads those
-marks and places each one in a column, by the market position it acts through:
+Every law on either page (a requirement, or a register item) is marked against the ALICIA productivity impact
+framework (``register/framework.py``): each of eight drivers from -2 to +2, with a reason. Each mark is placed by the
+market position it acts through:
 
-- **Entrants into the market** (``entrants``): starting up, and rivals entering from other states and countries;
-- **Small and medium competitors** (``smaller``): existing firms' costs and their ability and incentive to compete,
-  invest and grow (fixed costs weigh most on smaller firms);
-- **Monopoly and oligopoly players** (``dominant``): the pressure on the largest players, or their shelter from it.
+- **Entrants** (``entrants``): starting up, and rivals entering from other states and countries;
+- **Existing competitors** (``smaller``): existing firms' costs and their ability and incentive to compete, invest
+  and grow (fixed costs weigh most on smaller firms);
+- **Monopolies and oligopolies** (``dominant``): the pressure on the largest players, or their shelter from it.
 
 ``DRIVER_POSITIONS`` gives each driver's usual place. An entry-exit mark of +2 or -2 (a ban, cap or exclusive right,
-or its removal, in the framework's marking guide) also lands with the largest players, whom it shelters or exposes.
-A mark can name its own place (``DriverMark.positions``), as the entry-exit marks about growing past a tax
-threshold do. A column's cell is the sum of its marks: positive, negative, or mixed when marks of both signs meet.
+or its removal, in the framework's marking guide) also lands with monopolies and oligopolies, whom it shelters or
+exposes. A mark can name its own place (``DriverMark.positions``), as the entry-exit marks about growing past a tax
+threshold do. A position's cell is the sum of its marks: positive, negative, or mixed when marks of both signs meet.
+The position an item **most affects** is the one whose marks weigh most (the largest sum of absolute marks); a tie
+names each.
 
 Methods note: ``docs/industry_lens.md``.
 """
@@ -23,14 +26,33 @@ from .framework import DRIVERS, MARK_LABELS, RATING_LABELS
 
 POSITIONS: tuple[str, ...] = ("entrants", "smaller", "dominant")
 POSITION_LABELS = {
-    "entrants": "Entrants into the market",
-    "smaller": "Small and medium competitors",
-    "dominant": "Monopoly and oligopoly players",
+    "entrants": "Entrants",
+    "smaller": "Existing competitors",
+    "dominant": "Monopolies and oligopolies",
 }
 POSITION_QUESTIONS = {
     "entrants": "Does it change how easily new businesses can start up, or enter from other states and countries?",
-    "smaller": "Does it change smaller businesses' costs, or their ability and incentive to compete, invest and grow?",
-    "dominant": "Does it shelter the largest players from rivals, or expose them to more competition?",
+    "smaller": "Does it change existing businesses' costs, or their ability and incentive to compete, invest and grow?",
+    "dominant": "Does it shelter monopolies and oligopolies from rivals, or expose them to more competition?",
+}
+# What a position's effect means, in plain words. The sign is the effect on productivity and competition, not on the
+# firms themselves: a law that shelters monopolies and oligopolies is negative.
+EFFECT_PHRASES: dict[str, dict[str, str]] = {
+    "entrants": {
+        "positive": "Easier to start up or enter",
+        "negative": "Harder to start up or enter",
+        "mixed": "Easier in some ways, harder in others",
+    },
+    "smaller": {
+        "positive": "Lower costs or more pressure to compete",
+        "negative": "Higher costs or less pressure to compete",
+        "mixed": "Effects in both directions",
+    },
+    "dominant": {
+        "positive": "Exposes monopolies and oligopolies to rivals",
+        "negative": "Shelters monopolies and oligopolies from rivals",
+        "mixed": "Effects in both directions",
+    },
 }
 DRIVER_POSITIONS: dict[str, tuple[str, ...]] = {
     "entry-exit": ("entrants",),
@@ -66,6 +88,7 @@ def effects(assessment) -> dict[str, dict]:
         effect = "mixed" if len(signs) == 2 else ("positive" if total > 0 else "negative")
         out[pos] = {
             "effect": effect,
+            "phrase": EFFECT_PHRASES[pos][effect],
             "strength": "strong" if any(abs(m.mark) == 2 for m in marks) else "weak",
             "marks": [
                 {"driver": DRIVERS[m.driver]["short"], "mark": m.mark, "label": MARK_LABELS[m.mark], "reason": m.reason}
@@ -73,6 +96,17 @@ def effects(assessment) -> dict[str, dict]:
             ],
         }
     return out
+
+
+def most_affected(assessment) -> list[str]:
+    """The positions whose marks weigh most (the largest sum of absolute marks), in ``POSITIONS`` order; a tie names
+    each, and an assessment with no marks names none."""
+    weight = dict.fromkeys(POSITIONS, 0)
+    for m in assessment.marks:
+        for pos in positions(m):
+            weight[pos] += abs(m.mark)
+    top = max(weight.values())
+    return [p for p in POSITIONS if top and weight[p] == top]
 
 
 def placed_marks(assessment) -> list[dict]:
@@ -100,10 +134,12 @@ def summary(assessment) -> dict:
 
 __all__ = [
     "DRIVER_POSITIONS",
+    "EFFECT_PHRASES",
     "POSITIONS",
     "POSITION_LABELS",
     "POSITION_QUESTIONS",
     "effects",
+    "most_affected",
     "placed_marks",
     "positions",
     "summary",

@@ -363,6 +363,40 @@ KINDS: dict[str, dict] = {
     },
 }
 
+# How the website names what it lists (DECISIONS E-137). Reforms, existing settings and the requirements a law places
+# on businesses are all "legislative influences"; a non-legislative barrier keeps its own tag. ``group`` splits the
+# legislative influences for the summary charts: laws and policies (register items) and requirements.
+INFLUENCE_TAGS: dict[str, dict] = {
+    "legislative": {
+        "label": "Legislative influence",
+        "help": "A law, regulation or government policy, or a requirement a law places on businesses",
+    },
+    "barrier": {
+        "label": "Non-legislative barrier",
+        "help": "Not a law or policy: market structure, business conduct or practice that limits competition",
+    },
+}
+INFLUENCE_GROUPS: dict[str, dict] = {
+    "law": {
+        "label": "Laws and policies",
+        "tag": "legislative",
+        "help": "Changes to laws, regulation or policy (in force, passed or proposed) and settings already in place",
+    },
+    "requirement": {
+        "label": "Requirements",
+        "tag": "legislative",
+        "help": "What a law requires a business to do: register, hold a licence, get an approval, pay, report or meet "
+        "a standard",
+    },
+    "barrier": {"label": "Non-legislative barriers", "tag": "barrier", "help": KINDS["barrier"]["help"]},
+}
+
+
+def influence_group(kind: str) -> str:
+    """A register item's group on the website: its kind, with reforms and settings together as laws and policies."""
+    return "barrier" if kind == "barrier" else "law"
+
+
 STEPS: tuple[str, ...] = (
     "Describe the item and what it changes, with its sources.",
     "Mark each of the eight drivers from −2 to +2, with a one-line reason for every mark that is not zero. Leave a "
@@ -684,6 +718,8 @@ def as_dict() -> dict:
         "reach": REACH,
         "confidence": CONFIDENCE,
         "kinds": KINDS,
+        "influenceTags": INFLUENCE_TAGS,
+        "influenceGroups": INFLUENCE_GROUPS,
         "steps": list(STEPS),
         "counterfactual": COUNTERFACTUAL,
         "overlap": list(OVERLAP_RULES),

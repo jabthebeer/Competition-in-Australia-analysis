@@ -54,7 +54,14 @@ def test_each_driver_has_a_column_and_bans_or_caps_also_reach_the_largest_player
 def test_a_column_adds_up_its_marks_and_flags_mixed_ones():
     cells = C.effects(assessment(mark("labour", 1), mark("burden", -1), mark("entry-exit", -2)))
     assert cells["smaller"]["effect"] == "mixed" and len(cells["smaller"]["marks"]) == 2
-    assert cells["entrants"] == cells["dominant"] and cells["entrants"]["effect"] == "negative"
+    # The same ±2 entry mark lands with entrants and with monopolies and oligopolies; each cell words it for its own
+    # position (DECISIONS E-137).
+    same = ("effect", "strength", "marks")
+    assert [cells["entrants"][k] for k in same] == [cells["dominant"][k] for k in same]
+    assert cells["entrants"]["effect"] == "negative"
+    assert cells["entrants"]["phrase"] == "Harder to start up or enter"
+    assert cells["dominant"]["phrase"] == "Shelters monopolies and oligopolies from rivals"
+    assert cells["smaller"]["phrase"] == C.EFFECT_PHRASES["smaller"]["mixed"]
     assert cells["entrants"]["strength"] == "strong" and cells["smaller"]["strength"] == "weak"
     placed = C.placed_marks(assessment(mark("competition", 1)))
     assert placed == [{"driver": "Competition", "mark": 1, "reason": "because", "positions": ["smaller", "dominant"]}]

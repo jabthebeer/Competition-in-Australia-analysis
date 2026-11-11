@@ -56,3 +56,29 @@ These changes reach `main` when the owner merges PR #28.
 
 - Methods notes in `docs/` follow the Australian Government Style Manual (`CLAUDE.md`).
 - Website text follows the house-style skill in `.claude/skills/alicia-house-style/`, which loads for any website change.
+
+## Requirements on Legislative levers influencing competition (DECISIONS E-137)
+
+*11 November 2026. From the branch `claude/sharp-bell-4dsvcz`, in a pull request for the owner to merge.*
+
+### Decision numbers
+
+- **E-137 is taken** by this change. Use **E-138 onwards** for your next entries.
+- If your branch has already used E-137, renumber your entry when you merge, and keep the rows in number order.
+
+### What changed for legislative-side work
+
+- **Requirements now appear on the levers page too** (`menu.html`), read from `regulation-register/requirements/` at each build. A new requirement needs no code change.
+  - A requirement whose `records` names a register item (the same law in force) is shown **inside that item**, not as a row of its own.
+  - The others are rows, grouped by `family` into one expandable row when two or more places have the same requirement.
+- **One vocabulary for both pages** (`alicia/src/alicia/register/competition.py`):
+  - the market positions are **Entrants**, **Existing competitors**, and **Monopolies and oligopolies**;
+  - `EFFECT_PHRASES` words each position's effect, such as "Harder to start up or enter";
+  - `most_affected()` gives the position whose marks weigh most.
+
+  Use these names in site text and methods notes, not "small and medium competitors" or "the largest players".
+- **Types of item** (`INFLUENCE_TAGS` and `INFLUENCE_GROUPS` in `register/framework.py`):
+  - reforms, existing settings and requirements are all **legislative influences**;
+  - a non-legislative barrier keeps its own tag;
+  - the Industry lens no longer shows "Reform" or "Existing setting" tags.
+- **Tests:** `tests/test_explorer.py` checks that every requirement is a row or sits inside its item, never both, and that neither page uses the old labels.

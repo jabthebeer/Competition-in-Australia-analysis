@@ -96,6 +96,7 @@ details.more ul { margin: 4px 0 0; padding-left: 18px; color: var(--ink-2); }
 .pill.positive.weak { background: var(--good-soft); color: var(--good); }
 .pill.negative.weak { background: var(--bad-soft); color: var(--bad); }
 .pill.mixed.weak { background: var(--mixed-soft); color: var(--mixed); }
+.eff .phrase { margin: 0; color: var(--ink); }
 .eff .why { color: var(--ink-2); margin: 0; }
 .eff .ch { color: var(--ink-3); font-weight: 600; }
 td.none { color: var(--ink-3); }
@@ -137,7 +138,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     <!--__NAV__-->
     <p class="kicker">ALICIA · Bottom up</p>
     <h1>Industry lens <!--__BETA__--></h1>
-    <p class="lede">Pick an industry and a state or territory to see the laws a business in it deals with, and how each affects competition: for businesses entering the market, for small and medium competitors, and for the largest players.</p>
+    <p class="lede">Pick an industry and a state or territory to see the laws a business in it deals with, and how each affects competition: for entrants, for existing competitors, and for monopolies and oligopolies.</p>
   </header>
 
   <p class="notice" id="beta-note"></p>
@@ -235,7 +236,9 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   const EFFECT = { positive: ["+", "Positive"], negative: ["−", "Negative"], mixed: ["±", "Mixed"], unclear: ["?", "Unclear"] };
   const REACH = { narrow: "narrow", sector: "one sector", "multi-sector": "several sectors", "economy-wide": "economy-wide" };
   const signed = (n) => (n > 0 ? "+" : n < 0 ? "−" : "") + Math.abs(n);
-  const KIND = { reform: "Reform", setting: "Existing setting", barrier: "Non-legislative barrier" };
+  // One vocabulary with Legislative levers influencing competition (DECISIONS E-137): every law here is a legislative
+  // influence; only a non-legislative barrier is tagged as such.
+  const PHRASE = D.effectPhrases || {};
   const TIER = { cth: "Commonwealth", state: null, local: "Council" };
   const LEGAL = { "sole-proprietor": "sole traders", partnership: "partnerships", trust: "trusts", company: "companies", "co-operative": "co-operatives", "incorporated-association": "incorporated associations" };
   const link = (url, text) => url ? `<a href="${esc(url)}" rel="noopener">${esc(text)}</a>` : esc(text);
@@ -258,8 +261,8 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
 
   // ---- Beta note.
   $("beta-note").innerHTML =
-    `<strong>Prototype.</strong> The register behind this page is still being built: ${D.counts.requirements} requirements and ` +
-    `${D.counts.records} register items so far. Laws that apply to every business are recorded for every industry; laws for particular industries ` +
+    `<strong>Prototype.</strong> The register behind this page is still being built: ${D.counts.requirements} requirements, ` +
+    `${D.counts.laws} laws and policies and ${D.counts.barriers} non-legislative barriers so far. Laws that apply to every business are recorded for every industry; laws for particular industries ` +
     `only for some. Every law is marked against the ${link(D.repo + "docs/productivity_framework.md", "ALICIA productivity framework")}, and each mark is shown in the column of the ` +
     `market players it acts through. The marks are drafts not yet checked by a person; they show effects on competition and productivity, not whether a law is worthwhile.`;
 
@@ -435,7 +438,8 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     const e = effect(o.r, p.id);
     if (!e) return `<td class="none" data-label="${esc(p.label)}"><span aria-label="No effect">—</span></td>`;
     const why = e.marks.map((m) => `<p class="why"><span class="ch">${esc(m.driver)} ${signed(m.mark)} (${esc(D.markLabels[m.mark])}):</span> ${esc(m.reason)}</p>`).join("");
-    return `<td class="c-${e.effect}" data-label="${esc(p.label)}"><div class="eff">${pill(e)}${why}</div></td>`;
+    const phrase = PHRASE[p.id] && PHRASE[p.id][e.effect] ? `<p class="phrase">${esc(PHRASE[p.id][e.effect])}</p>` : "";
+    return `<td class="c-${e.effect}" data-label="${esc(p.label)}"><div class="eff">${pill(e)}${phrase}${why}</div></td>`;
   }
   // In the division view, each law is tagged with the classes (or the subdivision or group) it applies to.
   function classTags(o) {
@@ -453,7 +457,8 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
       tags.push(`<span class="tag">${esc(r.kind)}</span>`);
       if (r.councilsAdminister) tags.push(`<span class="tag">Councils administer</span>`);
     } else {
-      tags.push(`<span class="tag">${esc(KIND[r.kind] || r.kind)}${r.since && r.kind === "reform" ? " · " + r.since.slice(0, 4) : ""}</span>`);
+      if (r.kind === "barrier") tags.push(`<span class="tag">Non-legislative barrier</span>`);
+      else if (r.since && r.kind === "reform") tags.push(`<span class="tag">Since ${esc(r.since.slice(0, 4))}</span>`);
       if (o.economy) tags.push(`<span class="tag" title="Assessed as economy-wide; it does not name this industry">Economy-wide, indirect</span>`);
       else if (o.exposure === "indirect") tags.push(`<span class="tag">Indirect effect</span>`);
       if (o.exposure === "economy-wide") tags.push(`<span class="tag">Economy-wide</span>`);

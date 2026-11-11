@@ -1,6 +1,6 @@
 # Industry lens (beta): methods
 
-*6–10 November 2026 (DECISIONS E-122, E-123, E-126 to E-128). Code: `alicia/src/alicia/register/competition.py` (placing marks in columns) and `alicia/src/alicia/menu/lens.py` (the page's data); template `menu/templates/industry-lens.html`; map `alicia/src/alicia/pipeline/boundaries.py`. Tests: `alicia/tests/test_lens.py`.*
+*6–11 November 2026 (DECISIONS E-122, E-123, E-126 to E-128, E-137). Code: `alicia/src/alicia/register/competition.py` (placing marks in columns) and `alicia/src/alicia/menu/lens.py` (the page's data); template `menu/templates/industry-lens.html`; map `alicia/src/alicia/pipeline/boundaries.py`. Tests: `alicia/tests/test_lens.py`.*
 
 ## What the page shows
 
@@ -42,23 +42,27 @@ The marks come from the ALICIA productivity impact framework (v1.0, [`productivi
 
 ## Placing marks in the three columns
 
-Each mark goes in the column of the market players it acts through:
+Each mark goes in the column of the market players it acts through. The labels and the plain-words effects are shared with Legislative levers influencing competition, which tags each item with the position it most affects (11 November 2026, E-137):
 
 | Column | Question | Drivers placed there |
 |---|---|---|
-| Entrants into the market | Does it change how easily new businesses can start up, or enter from other states and countries? | Entry, exit and scale-up; Trade and market integration |
-| Small and medium competitors | Does it change smaller businesses' costs, or their ability and incentive to compete, invest and grow? | Competitive pressure; Regulatory burden; Labour mobility and skills; Capital deepening; Innovation; Price and tax signals |
-| Monopoly and oligopoly players | Does it shelter the largest players from rivals, or expose them to more competition? | Competitive pressure; and entry marks of ±2 |
+| Entrants | Does it change how easily new businesses can start up, or enter from other states and countries? | Entry, exit and scale-up; Trade and market integration |
+| Existing competitors | Does it change existing businesses' costs, or their ability and incentive to compete, invest and grow? | Competitive pressure; Regulatory burden; Labour mobility and skills; Capital deepening; Innovation; Price and tax signals |
+| Monopolies and oligopolies | Does it shelter monopolies and oligopolies from rivals, or expose them to more competition? | Competitive pressure; and entry marks of ±2 |
+
+Each cell also says what its effect means in plain words, for example "Harder to start up or enter" or "Shelters monopolies and oligopolies from rivals". The sign is the effect on productivity and competition, not on the firms: sheltering the largest players is negative.
+
+**Most affects** (Legislative levers influencing competition): the position whose marks weigh most, that is, with the largest sum of absolute marks placed there. A tie names each. Because the regulatory burden, labour, capital, innovation and price marks all go to existing competitors, that position is the one most often named; the tag tells most about entry barriers and the shelter of the largest players.
 
 Three refinements:
 
-- **Bans, caps and exclusive rights.** An entry-exit mark of −2 or +2 is a ban, cap or exclusive right on entry, or its removal (the framework's marking guide). It shelters or exposes the incumbents, so it also lands with the largest players. An example is Australia Post's reserved letter service.
+- **Bans, caps and exclusive rights.** An entry-exit mark of −2 or +2 is a ban, cap or exclusive right on entry, or its removal (the framework's marking guide). It shelters or exposes the incumbents, so it also lands with monopolies and oligopolies. An example is Australia Post's reserved letter service.
 - **A mark can name its column** (`positions` on the mark) where the usual place would mislead:
-  - the entry-exit marks about growing past a payroll or GST threshold go to small and medium competitors (14 register marks and the requirements that mirror them);
-  - a cost only the largest firms bear, such as the $100 million modern slavery threshold, goes to the largest players.
+  - the entry-exit marks about growing past a payroll or GST threshold go to existing competitors (14 register marks and the requirements that mirror them);
+  - a cost only the largest firms bear, such as the $100 million modern slavery threshold, goes to monopolies and oligopolies.
 - **A cell adds up its marks.** It is positive or negative by the total, and mixed when marks of both signs meet. It is shown darker when any mark is ±2, and lists each mark with its driver and reason. The overall framework mark (the sum of all marks), its band and the main driver are shown with the law.
 
-The columns describe market positions, not firm sizes: "monopoly and oligopoly players" means market power. Public data cannot show which firms in a class hold it (class-level concentration is not published; firm-level data such as BLADE are restricted).
+The columns describe market positions, not firm sizes: "monopolies and oligopolies" means market power, and "existing competitors" means the firms already in the market, among which fixed costs weigh most on the smaller ones. Public data cannot show which firms in a class hold it (class-level concentration is not published; firm-level data such as BLADE are restricted).
 
 ## Market structure (7 November 2026, E-125)
 
@@ -67,9 +71,9 @@ Above the laws, a **Structural market conditions** section, and figures at the t
 | Column | Figure | Level | Source |
 |---|---|---|---|
 | Entrants | Entries in the latest financial year as a share of businesses operating at its start; closures likewise | Class × state | ABS CABEE |
-| Small and medium competitors | Businesses with 1–199 employees, and with none, at the end of the latest year | Class × state | ABS CABEE |
+| Existing competitors | Businesses with 1–199 employees, and with none, at the end of the latest year | Class × state | ABS CABEE |
 | | Share of sales and service income earned by businesses with fewer than 200 employees | Division, Australia | ABS *Australian Industry* (8155.0), Table 5 |
-| Monopoly and oligopoly players | Businesses with 200 or more employees, and their share of sales | Class × state; division, Australia | ABS CABEE; ABS 8155.0 Table 5 |
+| Monopolies and oligopolies | Businesses with 200 or more employees, and their share of sales | Class × state; division, Australia | ABS CABEE; ABS 8155.0 Table 5 |
 | | The four largest firms' share of sales in the division's industries (sales-weighted mean), latest year | Division | RBA RDP 2025-05 (Hambur and Freestone), from BLADE |
 
 The charts:
