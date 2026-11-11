@@ -12,6 +12,7 @@ Research project on weak competition and constrained business dynamism in Austra
 - Prefer Quarto (`.qmd`) or plain `.R` scripts in `analysis/`; keep scripts runnable top to bottom.
 - Never edit files in `data/raw/`. Cleaning goes in scripts that write to `data/processed/`. Every analysis must be reproducible from raw data via scripts.
 - Record every dataset in `data/SOURCES.md`: publisher, URL, date accessed, licence/access limits, coverage, variables of interest.
+- Write methods notes in `docs/` to the Australian Government Style Manual (stylemanual.gov.au), the writing standard for the Australian Public Service, as the website's text is (`.claude/skills/alicia-house-style/`).
 - Do not fabricate data, citations, or statistics. If a source can't be reached or a figure can't be verified, say so.
 - State identification assumptions, sample, and limitations for every estimate; flag when public data is too aggregated to support a claim (e.g. firm-level markups).
 - Large or restricted data (e.g. BLADE) must not be committed.

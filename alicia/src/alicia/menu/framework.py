@@ -365,8 +365,7 @@ def _driver_details(records: list[ChangeRecord]) -> str:
       <div><h4>Full marking guide</h4><table class="mk-table"><tbody>{marks}</tbody></table></div>
     </div>
     <p class="small muted"><a href="menu.html#driver={escape(k)}">{_items(total)} in the register</a> have this as
-    their main driver ({c["neg"]} negative overall, {c["pos"]} positive). Policy costing channels:
-    {", ".join(d["channels"])}.</p>
+    their main driver ({c["neg"]} negative overall, {c["pos"]} positive).</p>
   </div>
 </details>""")
     return "".join(out)
@@ -716,7 +715,8 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes:
   <h2>Sources</h2>
   <ul>{sources}</ul>
   <p>The same framework, as a methods note, is in <code>docs/productivity_framework.md</code> (written by
-  <code>alicia framework</code>). The <a href="menu.html">legislation menu</a> shows every item's marks; the
+  <code>alicia framework</code>). <a href="menu.html">Legislative levers influencing competition</a> shows every
+  item's marks; the
   econometric evaluations the site used to show are in the <a href="archive.html">econometric archive</a>.
   Unofficial research, not an Australian Government product.</p>
 </footer>
@@ -729,7 +729,9 @@ def render(
     standalone: bool = True,
     generated: dt.date | None = None,
     regimes: list[Regime] | None = None,
+    beta: str = "",
 ) -> str:
+    """The Framework page. ``beta`` is the "(beta)" marker after its heading (``growth.beta()``)."""
     from .growth import _asset
 
     template = resources.files("alicia.menu").joinpath("templates/framework.html").read_text("utf-8")
@@ -737,6 +739,7 @@ def render(
         template.replace("/*__SITE_CSS__*/", _asset("site.css"))
         .replace("/*__CHARTS_JS__*/", _asset("charts.js"))
         .replace("<!--__NAV__-->", nav)
+        .replace("<!--__BETA__-->", beta)
         .replace("<!--__BODY__-->", body(records, generated, regimes))
     )
     if standalone:

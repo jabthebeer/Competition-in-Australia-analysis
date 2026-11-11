@@ -690,14 +690,17 @@ function showTipAt(html, target) {
   TIP.style.top = `${Math.max(8, y)}px`;
 }
 const termText = (t) => `${t[1]}${t[2] ? ` For example: ${t[2]}.` : ""}`;
+let TERMS_BOX = null;
 function initTerms(extra = {}) {
   Object.assign(TERMS, extra);
   // Static markup marks a defined word as <span data-term="key">word</span>.
   document.querySelectorAll("span[data-term]").forEach((s) => { s.outerHTML = term(s.dataset.term, s.textContent); });
-  const box = document.createElement("div");
-  box.hidden = true;
-  box.innerHTML = Object.entries(TERMS).map(([k, t]) => `<span id="def-${esc(k)}">${esc(termText(t))}</span>`).join("");
-  document.body.appendChild(box);
+  // A page with two parts (the competition page and its economic conditions) calls this twice: the second call only
+  // adds the definitions it brings; the listeners below are set once.
+  const fresh = !TERMS_BOX;
+  if (fresh) { TERMS_BOX = document.createElement("div"); TERMS_BOX.hidden = true; document.body.appendChild(TERMS_BOX); }
+  TERMS_BOX.innerHTML = Object.entries(TERMS).map(([k, t]) => `<span id="def-${esc(k)}">${esc(termText(t))}</span>`).join("");
+  if (!fresh) return;
   let pinned = null, pointer = "mouse";
   const show = (b) => {
     // An "i" beside a title shows the description it points to (kept hidden on the page).

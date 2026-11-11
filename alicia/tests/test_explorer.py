@@ -93,7 +93,8 @@ def test_the_menu_has_driver_tags_and_no_evaluated_tag():
     html = growth.render("explorer.html", build_payload([illustrative()]), "menu.html", standalone=True)
     assert 'id="f-driver"' in html and 'id="f-rating"' in html and 'id="f-kind"' in html
     assert 'id="f-eval"' not in html and "Evaluated" not in html
-    assert '<a href="menu.html" aria-current="page">' in html and 'href="framework.html"' in html
+    assert '<a href="menu.html" aria-current="page"' in html and 'href="framework.html"' in html
+    assert '<h1>Legislative levers influencing competition <span class="beta">' in html
 
 
 def test_the_real_register_links_archived_evaluations_without_tagging_them():

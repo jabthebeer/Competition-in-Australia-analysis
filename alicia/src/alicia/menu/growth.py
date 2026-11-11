@@ -1,17 +1,18 @@
-"""Summary-statistics pages for the website: state and industry growth, and economic conditions.
+"""Summary-statistics page for the website: Structural competitive conditions (``growth.html``), with the economic
+conditions at its end; also the site's nav, landing page and build.
 
-Both pages are built from processed panels in ``data/processed`` (committed, so the Pages workflow
-can rebuild them) and use the explorer's design. Growth rates, shares and indexes are computed in
-the page from the levels embedded here, so every number shown can be traced to a panel.
+The page is built from processed panels in ``data/processed`` (committed, so the Pages workflow can rebuild it) and
+uses the explorer's design. Growth rates, shares and indexes are computed in the page from the levels embedded here,
+so every number shown can be traced to a panel.
 
-- ``growth.html``: gross state product; gross value added, employment and business entry and exit
-  by ANZSIC division and state (State Accounts, Labour Force EQ06, CABEE); barriers to entry and
-  business dynamism (``alicia.menu.competition``). A slider picks any span of financial years.
-- ``conditions.html``: the macroeconomic control series (``alicia.pipeline.controls``): state final
-  demand, household consumption, unemployment, population, wages, dwelling approvals, commodity
-  prices and national industry output; company profitability and market power by barriers to entry
-  (``alicia.menu.competition``). Optional markers show when the register's major reforms started (an overall
-  framework mark of +3 or more, or -3 or less).
+- Structural competitive conditions: gross state product; gross value added, employment and business entry and exit
+  by ANZSIC division and state (State Accounts, Labour Force EQ06, CABEE); barriers to entry and business dynamism
+  (``alicia.menu.competition``). A slider picks any span of financial years.
+- Economic conditions, at the end of the same page (its own page, ``conditions.html``, until 11 Nov 2026; that
+  address now forwards there): the macroeconomic control series (``alicia.pipeline.controls``): state final demand,
+  household consumption, unemployment, population, wages, dwelling approvals, commodity prices and national industry
+  output; company profitability and market power by barriers to entry (``alicia.menu.competition``). Optional markers
+  show when the register's major reforms started (an overall framework mark of +3 or more, or -3 or less).
 """
 
 from __future__ import annotations
@@ -43,17 +44,29 @@ WINDOWS = (
 )
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
 HOME_PAGE = ("index.html", "Home")
-MENU_PAGE = ("menu.html", "Legislation menu")
-COMPETITION_PAGE = ("growth.html", "The state of competition in Australia")
-LENS_PAGE = ("industry-lens.html", "Industry lens (beta)")
-PAGES = (
-    HOME_PAGE,
-    MENU_PAGE,
-    ("framework.html", "Framework"),
-    COMPETITION_PAGE,
-    ("conditions.html", "Economic conditions"),
-    LENS_PAGE,
+COMPETITION_PAGE = ("growth.html", "Structural competitive conditions")
+MENU_PAGE = ("menu.html", "Legislative levers influencing competition")
+LENS_PAGE = ("industry-lens.html", "Industry lens")
+OVERVIEW_PAGE = ("regulatory-overview.html", "Regulatory overview by industry")
+FRAMEWORK_PAGE = ("framework.html", "Framework")
+METHODOLOGY_PAGE = ("methodology.html", "Methodology")
+# Every page the site builds, in nav order (owner decision, 11 Nov 2026, DECISIONS E-134). Pages keep their addresses
+# when renamed, so links made before still work.
+PAGES = (HOME_PAGE, COMPETITION_PAGE, MENU_PAGE, LENS_PAGE, FRAMEWORK_PAGE, METHODOLOGY_PAGE)
+# The nav groups the pages by what they are for: the landing page's two views, then how the site is made. A page
+# the build does not write (the regulatory overview, for now) shows as coming soon, without a link.
+NAV_GROUPS = (
+    ("Top down", (COMPETITION_PAGE, MENU_PAGE)),
+    ("Bottom up", (LENS_PAGE, OVERVIEW_PAGE)),
+    ("About", (FRAMEWORK_PAGE, METHODOLOGY_PAGE)),
 )
+# Every page but the archive is a work in progress: its heading, nav link and landing card say "(beta)", and the
+# heading's marker explains it on hover, focus or tap.
+BETA_TIP = "Work in progress: this page is still being built and checked, so its content may change."
+# Economic conditions was its own page until 11 Nov 2026; it is now the end of Structural competitive conditions,
+# and its old address forwards there.
+CONDITIONS_PAGE = "conditions.html"
+CONDITIONS_ANCHOR = "economic-conditions"
 # The landing page's two views of the competition landscape. A page that is not part of the build shows as
 # "coming soon" without a link; it becomes a link once the site builds it (it is in the nav or in the output).
 LANDING = (
@@ -65,7 +78,7 @@ LANDING = (
             {
                 "href": COMPETITION_PAGE[0],
                 "name": COMPETITION_PAGE[1],
-                "text": "How each state's industries are growing and how productive they are, set against similar economies; how concentrated industries are; and how often new businesses start up.",
+                "text": "How each state's industries are growing and how productive they are, set against similar economies; how concentrated industries are; how often new businesses start up; and the economic conditions each state has faced.",
             },
             {
                 "href": MENU_PAGE[0],
@@ -86,15 +99,16 @@ LANDING = (
                 "competition: for entrants, small and medium competitors, and the largest players.",
             },
             {
-                "href": "regulatory-overview.html",
-                "name": "Regulatory overview by industry",
+                "href": OVERVIEW_PAGE[0],
+                "name": OVERVIEW_PAGE[1],
                 "text": "The regulation that applies to each industry.",
             },
         ),
     },
 )
-# The Policy costing tab is built separately (Vite, `npm run build:site` in regulatory-burden-tool/) and added
-# to the site only when that build is given, so the nav never links to a missing page.
+# The Policy costing tab (regulatory-burden-tool/) is archived and not part of the live site (owner decision,
+# 11 Nov 2026, DECISIONS E-134). The code stays: given its build (`npm run build:site`), `alicia site --costing`
+# still adds it, after the grouped nav.
 COSTING_PAGE = ("costing.html", "Policy costing")
 COSTING_ASSETS = "costing-assets"
 GROWTH_NOTES = {
@@ -520,12 +534,53 @@ def _asset(name: str) -> str:
     return resources.files("alicia.menu").joinpath(f"templates/{name}").read_text("utf-8")
 
 
+def beta_tag() -> str:
+    """The small "(beta)" after a page's name in the nav and on the landing page."""
+    return ' <span class="beta-tag">(beta)</span>'
+
+
+def beta(tip_id: str = "beta-tip") -> str:
+    """The "(beta)" after a page's heading, with a tip on hover, keyboard focus or tap: the page is a work in
+    progress."""
+    from html import escape
+
+    return (
+        f'<span class="beta"><button type="button" class="beta-btn" aria-describedby="{tip_id}">(beta)</button>'
+        f'<span role="tooltip" class="beta-tip" id="{tip_id}">{escape(BETA_TIP)}</span></span>'
+    )
+
+
 def nav(current: str, pages: tuple = PAGES) -> str:
-    links = []
-    for href, label in pages:
+    """The site nav: Home, then the pages grouped as in ``NAV_GROUPS``. ``pages`` holds the pages this build writes;
+    a grouped page that is not among them shows as coming soon, without a link, and a built page outside the groups
+    (the archived Policy costing tab, when built) follows the groups as a plain link."""
+    from html import escape
+
+    built = {href for href, _ in pages}
+    grouped = {href for _, group in NAV_GROUPS for href, _ in group}
+
+    def link(href: str, label: str, tag: str = "") -> str:
         attr = ' aria-current="page"' if href == current else ""
-        links.append(f'<a href="{href}"{attr}>{label}</a>')
-    return '<nav class="site-nav" aria-label="ALICIA pages">' + "".join(links) + "</nav>"
+        if tag:
+            attr += f' title="{escape(BETA_TIP)}"'
+        return f'<a href="{href}"{attr}>{escape(label)}{tag}</a>'
+
+    parts = [link(*HOME_PAGE)] if HOME_PAGE[0] in built else []
+    for title, group in NAV_GROUPS:
+        gid = "nav-" + title.lower().replace(" ", "-")
+        items = []
+        for href, label in group:
+            if href in built:
+                items.append(f"<li>{link(href, label, beta_tag())}</li>")
+            else:
+                soon = '<span class="beta-tag">(coming soon)</span>'
+                items.append(f'<li><span class="nav-soon">{escape(label)} {soon}</span></li>')
+        parts.append(
+            f'<div class="nav-group"><p class="nav-label" id="{gid}">{escape(title)}</p>'
+            f'<ul aria-labelledby="{gid}">{"".join(items)}</ul></div>'
+        )
+    parts += [link(href, label) for href, label in pages if href not in grouped and href != HOME_PAGE[0]]
+    return '<nav class="site-nav" aria-label="ALICIA pages">' + "".join(parts) + "</nav>"
 
 
 def landing(built: set[str]) -> str:
@@ -540,7 +595,8 @@ def landing(built: set[str]) -> str:
             name, text = escape(link["name"]), escape(link["text"])
             if link["href"] in built:
                 items.append(
-                    f'<li><a class="view-link" href="{escape(link["href"])}"><span class="name">{name}<span class="go" aria-hidden="true">Open →</span></span>'
+                    f'<li><a class="view-link" href="{escape(link["href"])}" title="{escape(BETA_TIP)}">'
+                    f'<span class="name"><span>{name}{beta_tag()}</span><span class="go" aria-hidden="true">Open →</span></span>'
                     f'<p class="desc">{text}</p></a></li>'
                 )
             else:
@@ -564,6 +620,7 @@ def render(template: str, payload: dict, page: str, standalone: bool = False, pa
         .replace("/*__SITE_CSS__*/", _asset("site.css"))
         .replace("/*__CHARTS_JS__*/", _asset("charts.js") + "\n" + _asset("xlsx.js"))
         .replace("<!--__NAV__-->", nav(page, pages))
+        .replace("<!--__BETA__-->", beta())
         .replace("__PAGE_DATA__", blob)
     )
     if standalone:
@@ -573,6 +630,23 @@ def render(template: str, payload: dict, page: str, standalone: bool = False, pa
             "</head>\n<body>\n" + html + "\n</body>\n</html>\n"
         )
     return html
+
+
+def conditions_forward() -> str:
+    """``conditions.html``: Economic conditions moved to the end of Structural competitive conditions (11 Nov 2026), so
+    its old address forwards there and links made before the move still work. Nothing on the site links to it."""
+    target = f"{COMPETITION_PAGE[0]}#{CONDITIONS_ANCHOR}"
+    return (
+        '<!doctype html>\n<html lang="en-AU">\n<head>\n<meta charset="utf-8">\n'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        f"<title>ALICIA: Economic conditions has moved</title>\n"
+        f'<meta http-equiv="refresh" content="0; url={target}">\n'
+        f'<link rel="canonical" href="{target}">\n'
+        f'<script>location.replace("{target}");</script>\n'
+        "</head>\n<body>\n"
+        f'<p>Economic conditions is now part of <a href="{target}">{COMPETITION_PAGE[1]}</a>.</p>\n'
+        "</body>\n</html>\n"
+    )
 
 
 def build_costing(out_dir, dist, pages: tuple) -> list:
@@ -608,12 +682,14 @@ def build_site(
     repo_base: str | None = None,
     costing_dist=None,
 ) -> list:
-    """Write the landing page (index.html), the legislation menu (menu.html), the Framework page, the econometric archive (archive.html and one
-    page per evaluation), the two summary pages and, given its build, the Policy costing tab into ``out_dir``."""
+    """Write the landing page (index.html), Legislative levers influencing competition (menu.html), the Framework and
+    Methodology pages, the econometric archive (archive.html and one page per evaluation), Structural competitive
+    conditions (growth.html, with the economic conditions at its end, and conditions.html forwarding there), the
+    Industry lens and, given its build, the archived Policy costing tab into ``out_dir``."""
     from pathlib import Path
 
     from . import framework as framework_page
-    from . import lens
+    from . import lens, methodology
     from .archive import ARCHIVE_PAGE, build_archive
     from .explorer import build_explorer
 
@@ -633,7 +709,8 @@ def build_site(
         )
     ]
     fw_path = out / "framework.html"
-    fw_path.write_text(framework_page.render(records, nav("framework.html", pages), standalone), encoding="utf-8")
+    fw_html = framework_page.render(records, nav(FRAMEWORK_PAGE[0], pages), standalone, beta=beta())
+    fw_path.write_text(fw_html, encoding="utf-8")
     written.append(fw_path)
     written.append(
         build_archive(
@@ -648,14 +725,17 @@ def build_site(
         )
     )
     written += sorted(out.glob("evaluation-*.html"))
-    summaries = (
-        ("growth.html", growth_payload(data_base)),
-        ("conditions.html", conditions_payload(records, data_base)),
-    )
-    for name, payload in summaries:
-        path = out / name
-        path.write_text(render(name, payload, name, standalone, pages), encoding="utf-8")
-        written.append(path)
+    # Structural competitive conditions, with the economic conditions (once their own page) at its end.
+    payload = growth_payload(data_base) | {"conditions": conditions_payload(records, data_base)}
+    path = out / COMPETITION_PAGE[0]
+    path.write_text(render(COMPETITION_PAGE[0], payload, COMPETITION_PAGE[0], standalone, pages), encoding="utf-8")
+    written.append(path)
+    path = out / CONDITIONS_PAGE
+    path.write_text(conditions_forward(), encoding="utf-8")
+    written.append(path)
+    path = out / METHODOLOGY_PAGE[0]
+    path.write_text(methodology.page(records, standalone, pages, repo=data_base), encoding="utf-8")
+    written.append(path)
     lens_path = out / LENS_PAGE[0]
     lens_path.write_text(
         render(LENS_PAGE[0], lens.payload(records, repo_base=data_base), LENS_PAGE[0], standalone, pages),

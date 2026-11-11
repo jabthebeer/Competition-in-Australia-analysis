@@ -394,7 +394,7 @@ CAVEATS: tuple[str, ...] = (
     "and those benefits are not weighed here. A negative mark is not a finding that a rule should go: it is a "
     "productivity cost to weigh against its benefits, as the Office of Impact Analysis's competition tests ask.",
     "Marks are ordinal judgements, not estimates. Adding them is a summary device: a +2 is not exactly twice a +1. "
-    "Use the Policy costing tab for dollar figures.",
+    "They do not give dollar figures.",
     "Assessments were drafted by AI-assisted desk research from each record's sources and have not yet been "
     "checked by a person.",
     "Reach describes how much of the economy an item touches, not the size of its effect there; a state law reaches "
@@ -476,7 +476,8 @@ SOURCES: dict[str, dict] = {
 
 INTRO = (
     "A short, consistent way to judge how a law, a regulatory setting or another barrier is likely to affect "
-    "productivity and competition in Australia. Every item in the legislation menu is marked against it."
+    "productivity and competition in Australia. Every item in Legislative levers influencing competition, on the "
+    "ALICIA website, is marked against it."
 )
 LOGIC: tuple[str, ...] = (
     "Output per hour worked grows in two ways: workers get more and better capital to work with (capital deepening), "

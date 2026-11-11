@@ -661,7 +661,12 @@ function excelButton(card, cfg = {}) {
   b.innerHTML = `${XL_ICON}Excel`;
   b.title = "Download this chart as an Excel workbook: the chart, its numbers, and where the data come from";
   b.setAttribute("aria-label", "Download as an Excel workbook");
+  // The page settings (sources, releases, links) as they were when the button was made: one page can hold parts
+  // that each call excelSetup with their own sources, such as the economic conditions on the competition page.
+  const page = XL_PAGE;
   b.addEventListener("click", () => {
+    const current = XL_PAGE;
+    XL_PAGE = page;
     try {
       const book = xlCardBook(card, cfg);
       xlDownload(xlsxWorkbook(book), book.file);
@@ -669,6 +674,8 @@ function excelButton(card, cfg = {}) {
       console.error(err);
       b.textContent = "Export failed";
       setTimeout(() => { b.innerHTML = `${XL_ICON}Excel`; }, 4000);
+    } finally {
+      XL_PAGE = current;
     }
   });
   if (cfg.anchor) cfg.anchor.appendChild(b);

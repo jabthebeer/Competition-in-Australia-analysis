@@ -2,9 +2,8 @@
 name: alicia-house-style
 description: >-
   House style for the ALICIA website: the pages built by `alicia site` from
-  alicia/src/alicia/menu/templates/ (landing page, legislation menu, Framework, The state of
-  competition in Australia, Economic conditions, Industry lens, econometric archive) and the
-  Policy costing tab's place in the nav. Use it whenever you restyle, reorder, add, archive,
+  alicia/src/alicia/menu/templates/ (landing page, Structural competitive conditions, Legislative
+  levers influencing competition, Industry lens, Framework, Methodology, econometric archive). Use it whenever you restyle, reorder, add, archive,
   delete or review an ALICIA page, chart, table, the nav or the landing page, when you write or
   edit any of the site's text (to the Australian Government Style Manual), and before any UX or
   UI change to the site.
@@ -29,15 +28,19 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   | Template | Page |
   |---|---|
   | `home.html` | `index.html`, the landing page |
-  | `explorer.html` | `menu.html`, the legislation menu |
-  | `framework.html` | Framework |
-  | `growth.html` | The state of competition in Australia |
-  | `conditions.html` | Economic conditions |
+  | `growth.html` | Structural competitive conditions, with the economic conditions at its end |
+  | `explorer.html` | `menu.html`, Legislative levers influencing competition |
   | `industry-lens.html` | Industry lens |
+  | `framework.html` | Framework |
+  | `methodology.html` | Methodology (text in `menu/methodology.py`) |
   | `archive.html` | The archive and the `evaluation-<id>.html` pages |
-- **Nav, page names and landing cards:** `PAGES`, `LANDING` and `COSTING_PAGE` in
-  `alicia/src/alicia/menu/growth.py`. The Policy costing tab is a separate Vite build in
-  `regulatory-burden-tool/`. It joins the nav only when `alicia site` is given `--costing`.
+- **Nav, page names and landing cards:** `PAGES`, `NAV_GROUPS` and `LANDING` in
+  `alicia/src/alicia/menu/growth.py`. The nav groups pages as Top down, Bottom up and About.
+  `conditions.html` is only a forward to the economic conditions; nothing links to it.
+- **Beta:** every page but the archive ends its h1 with `<!--__BETA__-->` (`growth.beta()`): "(beta)"
+  with a work-in-progress tip. A new page gets it too.
+- **Archived, not on the live site:** the Policy costing tab (`regulatory-burden-tool/`). Don't
+  link to it from any page (DECISIONS E-134).
 - **Build:**
 
   ```bash
@@ -185,8 +188,8 @@ Also:
 
 ## 7. Reordering, archiving and deleting pages
 
-- **Reorder** the nav with `PAGES` and the landing page with `LANDING`, both in `growth.py`. They
-  are set separately: when you change one, check the other still makes sense.
+- **Reorder** the nav with `PAGES` and `NAV_GROUPS`, and the landing page with `LANDING`, all in
+  `growth.py`. They are set separately: when you change one, check the others still make sense.
 - **Old URLs keep working.** People link to the site. `home.html` already forwards old
   `index.html#<id>` links to `menu.html`, and a moved page needs the same treatment.
 - **Archive** a page by keeping it built and its URL working, with a dated "Archived" notice
