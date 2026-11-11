@@ -5,8 +5,9 @@ description: >-
   alicia/src/alicia/menu/templates/ (landing page, legislation menu, Framework, The state of
   competition in Australia, Economic conditions, Industry lens, econometric archive) and the
   Policy costing tab's place in the nav. Use it whenever you restyle, reorder, add, archive,
-  delete or review an ALICIA page, chart, table, the nav or the landing page, and before any
-  UX or UI change to the site.
+  delete or review an ALICIA page, chart, table, the nav or the landing page, when you write or
+  edit any of the site's text (to the Australian Government Style Manual), and before any UX or
+  UI change to the site.
 ---
 
 # ALICIA house style
@@ -48,18 +49,28 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
 
 ## 1. Words
 
+- **Write all text to the Australian Government Style Manual** (stylemanual.gov.au), the
+  writing standard for the Australian Public Service.
+  - This covers every word on the site and in its downloads: headings, labels, buttons, notes,
+    sources, notices and Excel sheets.
+  - The rules below add what is specific to ALICIA. Where one of them differs from the Style
+    Manual on how to write, follow the Style Manual and tell the owner, so this file can be
+    fixed.
 - Write in Australian English and plain words, in short sentences, as the site already does.
-- **Use sentence case for every heading, nav label and button.** Capitalise only the first word
-  and proper nouns, as in "Economic conditions" (not "Economic Conditions"). This follows the
-  Australian Government Style Manual.
+- **Use sentence case for every heading, nav label and button,** as the Style Manual requires.
+  Capitalise only the first word and proper nouns: "Economic conditions", not "Economic
+  Conditions".
 - **A nav label matches its page's h1,** or is a clear short form of it.
 - **Headings name the thing or state the finding** [ts], for example "Fewer new firms start up
   where regulation is heavy". A heading never claims more than its chart shows.
 - **Buttons are a verb and an object:** "Clear all filters", "Download as Excel" [ts].
 - **Numbers:**
   - put the unit in the label;
-  - write financial years as 2014-15;
-  - write dates as 11 Nov 2026;
+  - write financial years with an unspaced en dash, as in 2014–15 (Style Manual). The site
+    uses a hyphen (2014-15) on its pages and in its data labels today. That is known drift, to
+    fix only when the owner asks;
+  - write dates as 11 November 2026 in running text. Where space is tight, as in tables and
+    status lines, the site uses 11 Nov 2026;
   - give changes a sign (+1.3);
   - set figures in tabular numerals (`.num`, `.mono`).
 - **Never invent, round for looks or "illustrate" a figure.** Every number on a page comes from
