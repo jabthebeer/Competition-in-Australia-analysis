@@ -1,0 +1,110 @@
+{
+  "id": "cth-interactive-gambling-prohibition",
+  "family": "interactive-gambling-prohibition",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Do not provide prohibited interactive gambling services to Australians",
+  "kind": "standard",
+  "what": "Prohibited interactive gambling services, such as online casino-style games, must not be provided to customers in Australia.",
+  "laws": [
+    {
+      "title": "Interactive Gambling Act 2001",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00851",
+      "register_url": "https://www.legislation.gov.au/C2004A00851/latest/text",
+      "provisions": "15(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Interactive Gambling Act 2001",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00851/latest/text",
+      "locator": "s 15(1) (compilation C2024C00646 from 2024-10-14)",
+      "quote": "15 Prohibited interactive gambling services not to be provided to customers in Australia (1) A person commits an offence if: (a) the person intentionally provides a prohibited interactive gambling service; and (b) the service has an Australian-customer link (see section 8).",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9209",
+        "9201"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides interactive gambling services",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Interactive Gambling Act 2001",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00851/latest/text",
+          "locator": "s 15(1) (compilation C2024C00646 from 2024-10-14)",
+          "quote": "15 Prohibited interactive gambling services not to be provided to customers in Australia (1) A person commits an offence if: (a) the person intentionally provides a prohibited interactive gambling service; and (b) the service has an Australian-customer link (see section 8).",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Prohibited interactive gambling services may not be offered to Australian customers.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "A ban on a whole category of online gambling services, which shelters providers of the permitted forms from that competition.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Permitted gambling providers face no competition from the banned online services.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

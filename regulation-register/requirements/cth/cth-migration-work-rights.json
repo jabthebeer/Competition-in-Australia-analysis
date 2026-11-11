@@ -1,0 +1,101 @@
+{
+  "id": "cth-migration-work-rights",
+  "family": "migration-work-rights",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Employ only people allowed to work in Australia",
+  "kind": "standard",
+  "what": "An employer must not allow an unlawful non-citizen to work, so it checks workers' right to work (s 245AB; taking reasonable steps to verify is a defence, s 245AB(2)).",
+  "laws": [
+    {
+      "title": "Migration Act 1958",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1958A00062",
+      "register_url": "https://www.legislation.gov.au/C1958A00062/latest/text",
+      "provisions": "245AB(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Migration Act 1958",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1958A00062/latest/text",
+      "locator": "s 245AB(1) (compilation C2026C00461 from 2026-10-08)",
+      "quote": "245AB Allowing an unlawful non-citizen to work (1) A person (the first person) contravenes this subsection if: (a) the first person allows, or continues to allow, another person (the worker) to work; and (b) the worker is an unlawful non-citizen.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Migration Act 1958",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1958A00062/latest/text",
+          "locator": "s 245AB(1) (compilation C2026C00461 from 2026-10-08)",
+          "quote": "245AB Allowing an unlawful non-citizen to work (1) A person (the first person) contravenes this subsection if: (a) the first person allows, or continues to allow, another person (the worker) to work; and (b) the worker is an unlawful non-citizen.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Employers check that workers have the right to work in Australia.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Checks of each worker's visa status and work rights.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

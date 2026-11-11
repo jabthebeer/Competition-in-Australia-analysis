@@ -1,0 +1,110 @@
+{
+  "id": "cth-gmo-dealing-licence",
+  "family": "gmo-dealing-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a licence to deal with genetically modified organisms",
+  "kind": "licence",
+  "what": "Dealing with a GMO needs a licence from the Gene Technology Regulator unless the dealing is exempt, notifiable or on the GMO Register.",
+  "laws": [
+    {
+      "title": "Gene Technology Act 2000",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00762",
+      "register_url": "https://www.legislation.gov.au/C2004A00762/latest/text",
+      "provisions": "32(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gene Technology Act 2000",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00762/latest/text",
+      "locator": "s 32(1) (compilation C2024C00451 from 2024-10-14)",
+      "quote": "32 Person not to deal with a GMO without a licence (1) A person commits an offence if: (a) the person deals with a GMO, knowing that it is a GMO; and (b) the dealing with the GMO by the person is not authorised by a GMO licence",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6910",
+        "1841"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it deals with genetically modified organisms",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gene Technology Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00762/latest/text",
+          "locator": "s 32(1) (compilation C2024C00451 from 2024-10-14)",
+          "quote": "32 Person not to deal with a GMO without a licence (1) A person commits an offence if: (a) the person deals with a GMO, knowing that it is a GMO; and (b) the dealing with the GMO by the person is not authorised by a GMO licence",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Research and commercial work with GMOs needs the Regulator's licence, after risk assessment.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, after risk assessment, is needed before dealing with a GMO.",
+        "positions": []
+      },
+      {
+        "driver": "innovation",
+        "mark": -1,
+        "reason": "Licensing time and data requirements slow new gene technology products.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
