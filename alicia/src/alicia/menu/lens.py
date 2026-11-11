@@ -1,6 +1,7 @@
 """The Industry lens (beta): pick an ANZSIC class and a state, and see the laws that apply to it, marked against the
-productivity impact framework and placed by the market position each effect acts through: entrants, small and medium
-competitors, and the largest players.
+productivity impact framework and placed by the market position each effect acts through: entrants, existing
+competitors, and monopolies and oligopolies. The wording is shared with Legislative levers influencing competition
+(``register/competition.py``; DECISIONS E-137).
 
 The page is built from the register as it stands, so every requirement or register item added later appears on it
 without code changes: requirements (``regulation-register/requirements/``) by their reach, and register items
@@ -172,6 +173,7 @@ def payload(
             }
             for p in C.POSITIONS
         ],
+        "effectPhrases": C.EFFECT_PHRASES,
         "markLabels": {str(k): v for k, v in MARK_LABELS.items()},
         "classes": classes(),
         "divisions": divisions(),
@@ -183,6 +185,8 @@ def payload(
         "counts": {
             "requirements": len(reqs),
             "records": len(live),
+            "laws": sum(1 for r in live if r.kind != "barrier"),
+            "barriers": sum(1 for r in live if r.kind == "barrier"),
             "ended": len(records) - len(live),
             "industrySpecific": sum(1 for q in reqs if not any(r.scope == "all" for r in q.reach)),
         },

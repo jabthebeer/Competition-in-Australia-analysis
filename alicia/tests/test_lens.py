@@ -54,7 +54,14 @@ def test_each_driver_has_a_column_and_bans_or_caps_also_reach_the_largest_player
 def test_a_column_adds_up_its_marks_and_flags_mixed_ones():
     cells = C.effects(assessment(mark("labour", 1), mark("burden", -1), mark("entry-exit", -2)))
     assert cells["smaller"]["effect"] == "mixed" and len(cells["smaller"]["marks"]) == 2
-    assert cells["entrants"] == cells["dominant"] and cells["entrants"]["effect"] == "negative"
+    # The same ±2 entry mark lands with entrants and with monopolies and oligopolies; each cell words it for its own
+    # position (DECISIONS E-137).
+    same = ("effect", "strength", "marks")
+    assert [cells["entrants"][k] for k in same] == [cells["dominant"][k] for k in same]
+    assert cells["entrants"]["effect"] == "negative"
+    assert cells["entrants"]["phrase"] == "Harder to start up or enter"
+    assert cells["dominant"]["phrase"] == "Shelters monopolies and oligopolies from rivals"
+    assert cells["smaller"]["phrase"] == C.EFFECT_PHRASES["smaller"]["mixed"]
     assert cells["entrants"]["strength"] == "strong" and cells["smaller"]["strength"] == "weak"
     placed = C.placed_marks(assessment(mark("competition", 1)))
     assert placed == [{"driver": "Competition", "mark": 1, "reason": "because", "positions": ["smaller", "dominant"]}]
@@ -112,10 +119,15 @@ def test_the_page_data_covers_every_class_state_and_law_and_points_at_real_files
 def test_the_page_renders_with_no_placeholders_left_and_is_linked_from_the_landing_page():
     html = growth.render(lens.PAGE[0], lens.payload(load_records().records), lens.PAGE[0], standalone=True)
     assert not re.search(r"__[A-Z_]+__", html) and "<title>ALICIA Industry lens (beta)</title>" in html
-    assert '<a href="industry-lens.html" aria-current="page">Industry lens (beta)</a>' in html
+    link = (
+        r'<a href="industry-lens.html" aria-current="page"[^>]*>'
+        r'Industry lens <span class="beta-tag">\(beta\)</span></a>'
+    )
+    assert re.search(link, html)
+    assert '<h1>Industry lens <span class="beta">' in html and 'class="beta-tip"' in html
     data = json.loads(re.search(r'id="page-data">(.*?)</script>', html, re.S).group(1))
     assert data["default"] == {"division": "H", "class": "", "state": "NSW"}  # a division first; its classes are tags
-    assert '<a class="view-link" href="industry-lens.html">' in growth.landing({"industry-lens.html"})
+    assert '<a class="view-link" href="industry-lens.html"' in growth.landing({"industry-lens.html"})
 
 
 def test_the_state_map_is_projected_into_a_1000_wide_frame():

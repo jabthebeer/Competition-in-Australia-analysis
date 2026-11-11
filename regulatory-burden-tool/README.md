@@ -6,6 +6,8 @@ An **unofficial** aid for estimating the regulatory burden of policy proposals u
 
 ## Status
 
+> **Archived (11 November 2026).** The Policy costing tab is no longer part of the ALICIA website, and no page links to it (owner decision, `alicia/DECISIONS.md` E-135). The code, tests and data stay in this folder; `npm run build:site` and `alicia site --costing` still build it.
+
 **Resumed on 22 October 2026** (owner decision; DECISIONS #80). After its pause on 14 October 2026, the calculator will be folded into the ALICIA website as the **Policy costing** tab, with a new productivity and competition engine beside the RBM engine (#81). The RBE itself is unchanged. Plan: [`docs/forward_plan_policy_costing.md`](../docs/forward_plan_policy_costing.md) (phases P0–P7).
 
 | Phase | Scope | Status |

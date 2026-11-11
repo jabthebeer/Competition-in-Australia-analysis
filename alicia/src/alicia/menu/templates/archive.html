@@ -73,10 +73,21 @@ header.top { display: grid; gap: 8px; }
 .notice { background: var(--warn-soft); color: var(--ink); border-left: 3px solid var(--warn-ink); padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: var(--step--1); max-width: 100ch; }
 .notice strong { color: var(--warn-ink); }
 .archived-banner { margin: 0 0 4px; }
-.site-nav { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
-.site-nav a { padding: 8px 12px; color: var(--ink-2); text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-.site-nav a:hover { color: var(--ink); }
-.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+/* The nav: Home, then the pages grouped by what they are for (Top down, Bottom up, About), each group under its label. */
+.site-nav { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px 28px; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 4px; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.nav-group { display: grid; gap: 2px; min-width: 0; }
+.nav-label { margin: 0; padding: 0 10px; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.site-nav a, .nav-soon { display: block; padding: 5px 10px; color: var(--ink-2); text-decoration: none; border-radius: 6px; }
+.site-nav a:hover { color: var(--ink); background: var(--accent-soft); }
+.site-nav a[aria-current="page"] { color: var(--ink); font-weight: 600; box-shadow: inset 3px 0 0 var(--accent); }
+.nav-soon { color: var(--ink-3); cursor: default; }
+.beta-tag { font-size: var(--step--1); font-weight: 400; color: var(--ink-3); }
+@media (max-width: 640px) {
+  .site-nav { gap: 6px 16px; }
+  .site-nav ul { display: flex; flex-wrap: wrap; }
+  .site-nav a, .nav-soon { padding: 10px 10px; }
+}
 
 /* Filters */
 .filters { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
@@ -308,8 +319,8 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
   <header class="top">
     <!--__NAV__-->
     <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
-    <h1>Econometric Archive</h1>
-    <p class="notice archived-banner"><strong>Archived 28 October 2026.</strong> The retrospective econometric evaluations were paused on 22 October 2026, and the <a href="menu.html">legislation menu</a> now marks every item against the <a href="framework.html">productivity framework</a>. This page keeps the evaluations, and the evaluability screen and data coverage of the register's reforms, as they were, for the record. The results are provisional: the laws behind them have not been checked by a person.</p>
+    <h1>Econometric archive</h1>
+    <p class="notice archived-banner"><strong>Archived 28 October 2026.</strong> The retrospective econometric evaluations were paused on 22 October 2026, and <a href="menu.html">Legislative levers influencing competition</a> (formerly the legislation menu) now marks every item against the <a href="framework.html">productivity framework</a>. This page keeps the evaluations, and the evaluability screen and data coverage of the register's reforms, as they were, for the record. The results are provisional: the laws behind them have not been checked by a person.</p>
     <p class="lede">Commonwealth, state and territory reforms that could be evaluated for their effects on competition (business entry and exit, prices and productivity) with public data. Each change carries a hypothesised direction, its effective date and an evaluability screen. Evaluated changes show what the data found.</p>
     <div class="meta-line" id="metaLine"></div>
     <p class="notice" id="draftNotice"></p>

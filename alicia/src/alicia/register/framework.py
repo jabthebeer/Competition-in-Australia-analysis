@@ -363,6 +363,40 @@ KINDS: dict[str, dict] = {
     },
 }
 
+# How the website names what it lists (DECISIONS E-137). Reforms, existing settings and the requirements a law places
+# on businesses are all "legislative influences"; a non-legislative barrier keeps its own tag. ``group`` splits the
+# legislative influences for the summary charts: laws and policies (register items) and requirements.
+INFLUENCE_TAGS: dict[str, dict] = {
+    "legislative": {
+        "label": "Legislative influence",
+        "help": "A law, regulation or government policy, or a requirement a law places on businesses",
+    },
+    "barrier": {
+        "label": "Non-legislative barrier",
+        "help": "Not a law or policy: market structure, business conduct or practice that limits competition",
+    },
+}
+INFLUENCE_GROUPS: dict[str, dict] = {
+    "law": {
+        "label": "Laws and policies",
+        "tag": "legislative",
+        "help": "Changes to laws, regulation or policy (in force, passed or proposed) and settings already in place",
+    },
+    "requirement": {
+        "label": "Requirements",
+        "tag": "legislative",
+        "help": "What a law requires a business to do: register, hold a licence, get an approval, pay, report or meet "
+        "a standard",
+    },
+    "barrier": {"label": "Non-legislative barriers", "tag": "barrier", "help": KINDS["barrier"]["help"]},
+}
+
+
+def influence_group(kind: str) -> str:
+    """A register item's group on the website: its kind, with reforms and settings together as laws and policies."""
+    return "barrier" if kind == "barrier" else "law"
+
+
 STEPS: tuple[str, ...] = (
     "Describe the item and what it changes, with its sources.",
     "Mark each of the eight drivers from −2 to +2, with a one-line reason for every mark that is not zero. Leave a "
@@ -394,7 +428,7 @@ CAVEATS: tuple[str, ...] = (
     "and those benefits are not weighed here. A negative mark is not a finding that a rule should go: it is a "
     "productivity cost to weigh against its benefits, as the Office of Impact Analysis's competition tests ask.",
     "Marks are ordinal judgements, not estimates. Adding them is a summary device: a +2 is not exactly twice a +1. "
-    "Use the Policy costing tab for dollar figures.",
+    "They do not give dollar figures.",
     "Assessments were drafted by AI-assisted desk research from each record's sources and have not yet been "
     "checked by a person.",
     "Reach describes how much of the economy an item touches, not the size of its effect there; a state law reaches "
@@ -476,7 +510,8 @@ SOURCES: dict[str, dict] = {
 
 INTRO = (
     "A short, consistent way to judge how a law, a regulatory setting or another barrier is likely to affect "
-    "productivity and competition in Australia. Every item in the legislation menu is marked against it."
+    "productivity and competition in Australia. Every item in Legislative levers influencing competition, on the "
+    "ALICIA website, is marked against it."
 )
 LOGIC: tuple[str, ...] = (
     "Output per hour worked grows in two ways: workers get more and better capital to work with (capital deepening), "
@@ -683,6 +718,8 @@ def as_dict() -> dict:
         "reach": REACH,
         "confidence": CONFIDENCE,
         "kinds": KINDS,
+        "influenceTags": INFLUENCE_TAGS,
+        "influenceGroups": INFLUENCE_GROUPS,
         "steps": list(STEPS),
         "counterfactual": COUNTERFACTUAL,
         "overlap": list(OVERLAP_RULES),

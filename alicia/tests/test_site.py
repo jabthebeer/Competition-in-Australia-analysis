@@ -121,16 +121,17 @@ def test_comparison_row_scales_are_rounded_and_never_end_on_a_figure():
         assert all(abs(v * 100 - round(v * 100)) < 1e-6 for v in (lo, hi))  # and round numbers
 
 
-@pytest.mark.parametrize("template", ["growth.html", "conditions.html"])
+@pytest.mark.parametrize("template", ["growth.html"])
 def test_page_scripts_parse(template, tmp_path):
-    """A syntax error (such as a name declared twice) stops the whole page drawing, so check every script parses."""
+    """A syntax error (such as a name declared twice) stops the whole page drawing, so check every script parses.
+    Structural competitive conditions carries three: the shared chart code, its own, and the economic conditions'."""
     import shutil
     import subprocess
 
     if shutil.which("node") is None:
         pytest.skip("Node.js not installed")
     scripts = re.findall(r"<script>(.*?)</script>", growth.render(template, {}, template), re.S)
-    assert len(scripts) >= 2
+    assert len(scripts) >= 3
     for i, code in enumerate(scripts):
         (tmp_path / f"{i}.js").write_text(code, "utf-8")
         r = subprocess.run(["node", "--check", str(tmp_path / f"{i}.js")], capture_output=True, text=True)
@@ -166,26 +167,78 @@ def test_conditions_payload_series_match_periods_and_mark_major_reforms():
 def test_render_fills_every_placeholder_and_marks_the_current_page():
     html = growth.render("growth.html", {"x": "</script>"}, "growth.html", standalone=True)
     assert not re.search(r"__[A-Z_]+__", html)
-    assert '<a href="growth.html" aria-current="page">' in html
+    assert '<a href="growth.html" aria-current="page"' in html and 'class="beta-tip"' in html
     assert "<\\/script>" in html  # embedded data cannot close the script element
     assert html.startswith("<!doctype html>")
 
 
 @needs_panels
-def test_build_site_writes_the_linked_pages_and_the_econometric_archive(tmp_path):
+def test_build_site_writes_the_linked_pages_and_nothing_archived(tmp_path):
     records = load_records().records
     evals = load_evaluations(records).evaluations
     paths = growth.build_site(tmp_path, records, evals)
     names = sorted(p.name for p in paths)
-    assert [n for n in names if not n.startswith("evaluation-")] == [
-        "archive.html",
+    # The live site: no econometric archive and no Policy costing tab (both archived, DECISIONS E-135, E-136).
+    assert names == [
         "conditions.html",
         "framework.html",
         "growth.html",
         "index.html",
         "industry-lens.html",
         "menu.html",
+        "methodology.html",
     ]
+    pages = [n for n in names if n != "conditions.html"]
+    index = (tmp_path / "menu.html").read_text("utf-8")
+    assert '<a href="menu.html" aria-current="page"' in index and 'href="methodology.html"' in index
+    assert 'href="framework.html"' in index
+    # Nothing links to the archived pages, or to the old Economic conditions page, which forwards to its place on the
+    # competition page.
+    for page in pages:
+        html = (tmp_path / page).read_text("utf-8")
+        assert 'href="conditions.html' not in html and "costing.html" not in html, page
+        assert "archive.html" not in html and not re.search(r'href="evaluation-', html), page
+        assert "Econometric archive" not in html and "econometric archive" not in html, page
+    menu_data = json.loads(re.search(r'id="page-data">(.*?)</script>', index, re.S).group(1))
+    assert "archivedEvaluations" not in menu_data and all("archivedEvaluation" not in r for r in menu_data["records"])
+    forward = (tmp_path / "conditions.html").read_text("utf-8")
+    assert 'location.replace("growth.html#economic-conditions")' in forward and "<nav" not in forward
+    # The nav groups the pages by what they are for; the regulatory overview is coming soon, with no link.
+    labels = re.findall(r'<p class="nav-label" id="[^"]+">([^<]+)</p>', index)
+    assert labels == ["Top down", "Bottom up", "About"]
+    hrefs = re.findall(r'<a href="([^"#]+)"', index[index.index('<nav class="site-nav"') : index.index("</nav>")])
+    built = ["index.html", "growth.html", "menu.html", "industry-lens.html", "framework.html", "methodology.html"]
+    assert hrefs == built
+    assert 'Regulatory overview by industry <span class="beta-tag">(coming soon)</span>' in index
+    home = (tmp_path / "index.html").read_text("utf-8")
+    assert '<a href="index.html" aria-current="page">Home</a>' in home and not re.search(r"__[A-Z_]+__", home)
+    assert re.findall(r'<h2 id="h-[a-z-]+">([^<]+)</h2>', home) == ["Top down", "Bottom up"]
+    links = re.findall(r'<a class="view-link" href="([^"]+)"', home)
+    assert links == ["growth.html", "menu.html", "industry-lens.html"] and all((tmp_path / h).exists() for h in links)
+    assert home.count("Coming soon") == 1  # the regulatory overview is not built yet
+    assert 'href="regulatory-overview.html"' not in home
+    assert 'location.replace("menu.html" + location.hash)' in home  # old index.html#<id> links reach the menu
+    for page in ("framework.html", "menu.html"):  # links into the menu skip the redirect
+        assert not re.search(r'href="index\.html#', (tmp_path / page).read_text("utf-8")), page
+    fw = (tmp_path / "framework.html").read_text("utf-8")
+    assert '<a href="framework.html" aria-current="page"' in fw and not re.search(r"__[A-Z_]+__", fw)
+    # Every page's heading ends with "(beta)", with a tip that says it is a work in progress.
+    for page in pages:
+        html = (tmp_path / page).read_text("utf-8")
+        h1 = re.search(r"<h1>(.*?)</h1>", html, re.S).group(1)
+        assert h1.rstrip().endswith("</span>") and ">(beta)</button>" in h1 and growth.BETA_TIP in h1, page
+    data = re.search(r'id="page-data">(.*?)</script>', (tmp_path / "growth.html").read_text("utf-8"), re.S)
+    assert json.loads(data.group(1))["repo"].startswith("https://github.com/")
+
+
+@needs_panels
+def test_the_archived_econometric_pages_are_built_only_when_asked(tmp_path):
+    """Archived, not deleted: ``archive=True`` (``alicia site --archive``) still builds the econometric archive and one
+    page per evaluation, unchanged; the live site is built without them."""
+    records = load_records().records
+    evals = load_evaluations(records).evaluations
+    names = sorted(p.name for p in growth.build_site(tmp_path, records, evals, archive=True))
+    assert "archive.html" in names
     assert sorted(n for n in names if n.startswith("evaluation-")) == sorted(f"evaluation-{e.id}.html" for e in evals)
     one = (tmp_path / "evaluation-childcare-nqf-wa-delay-2012.html").read_text("utf-8")
     payload = json.loads(re.search(r'id="menu-data">(.*?)</script>', one, re.S).group(1))
@@ -194,30 +247,17 @@ def test_build_site_writes_the_linked_pages_and_the_econometric_archive(tmp_path
     assert set(payload["evaluations"]) == {"childcare-nqf-wa-delay-2012", "childcare-nqf-2012"}  # follows link
     assert "<title>National Quality Framework" in one
     assert "archive.html#results" in one  # evaluation pages lead back to the archive, not the menu
-    index = (tmp_path / "menu.html").read_text("utf-8")
-    assert '<a href="menu.html" aria-current="page">' in index and 'href="conditions.html"' in index
-    assert 'href="framework.html"' in index and 'href="archive.html"' in index
-    home = (tmp_path / "index.html").read_text("utf-8")
-    assert '<a href="index.html" aria-current="page">Home</a>' in home and not re.search(r"__[A-Z_]+__", home)
-    assert re.findall(r'<h2 id="h-[a-z-]+">([^<]+)</h2>', home) == ["Top down", "Bottom up"]
-    links = re.findall(r'<a class="view-link" href="([^"]+)">', home)
-    assert links == ["growth.html", "menu.html", "industry-lens.html"] and all((tmp_path / h).exists() for h in links)
-    assert home.count("Coming soon") == 1  # the regulatory overview is not built yet
-    assert 'href="regulatory-overview.html"' not in home
-    assert 'location.replace("menu.html" + location.hash)' in home  # old index.html#<id> links reach the menu
-    for page in ("framework.html", "archive.html", "menu.html"):  # links into the menu skip the redirect
-        assert not re.search(r'href="index\.html#', (tmp_path / page).read_text("utf-8")), page
     archive = (tmp_path / "archive.html").read_text("utf-8")
-    assert "Archived 28 October 2026" in archive and '<a href="framework.html">Framework</a>' in archive
-    fw = (tmp_path / "framework.html").read_text("utf-8")
-    assert '<a href="framework.html" aria-current="page">' in fw and not re.search(r"__[A-Z_]+__", fw)
-    data = re.search(r'id="page-data">(.*?)</script>', (tmp_path / "growth.html").read_text("utf-8"), re.S)
-    assert json.loads(data.group(1))["repo"].startswith("https://github.com/")
+    assert "Archived 28 October 2026" in archive and re.search(r'<a href="framework.html"[^>]*>Framework <', archive)
+    assert '<span class="beta">' not in archive  # the archive is finished, not a work in progress
+    assert not re.search(r'href="index\.html#', archive)
+    # Even built, the live pages don't link to it.
+    assert "archive.html" not in (tmp_path / "menu.html").read_text("utf-8")
 
 
 def test_landing_links_only_pages_that_are_built():
     html = growth.landing({"growth.html", "menu.html", "industry-lens.html"})
-    assert '<a class="view-link" href="industry-lens.html">' in html  # a new page becomes a link once it is built
+    assert '<a class="view-link" href="industry-lens.html"' in html  # a new page becomes a link once it is built
     assert html.count("Coming soon") == 1 and 'href="regulatory-overview.html"' not in html
     assert html.index("Top down") < html.index("Bottom up")
 
@@ -262,7 +302,8 @@ def test_build_site_links_the_costing_tab_from_every_page_only_when_built(tmp_pa
     evals = load_evaluations(records).evaluations
     names = {p.name for p in growth.build_site(tmp_path / "with", records, evals, costing_dist=_costing_dist(tmp_path))}
     assert {"costing.html", "index-abc.js"} <= names
-    for page in ("index.html", "menu.html", "framework.html", "archive.html", "growth.html", "conditions.html"):
+    # Archived: the live site is built without it (the Pages workflow passes no --costing), but the code still works.
+    for page in ("index.html", "menu.html", "framework.html", "growth.html", "methodology.html"):
         assert 'href="costing.html"' in (tmp_path / "with" / page).read_text("utf-8"), page
     growth.build_site(tmp_path / "without", records, evals)
     assert not (tmp_path / "without" / "costing.html").exists()
@@ -290,7 +331,7 @@ def test_summary_pages_use_period_sliders_and_carry_the_competition_data(tmp_pat
     evals = load_evaluations(records).evaluations
     growth.build_site(tmp_path, records, evals)
     g = (tmp_path / "growth.html").read_text("utf-8")
-    c = (tmp_path / "conditions.html").read_text("utf-8")
+    c = g  # the economic conditions are at the end of the same page
     # Each section has its own slider, spanning the years its data cover; there is no page-wide period any more.
     for i in ("conRange", "entRange", "whereRange", "retRange", "indRange", "gspRange"):
         assert f'<div id="{i}"></div>' in g and f'periodSlider("{i}"' in g, i
@@ -298,7 +339,7 @@ def test_summary_pages_use_period_sliders_and_carry_the_competition_data(tmp_pat
     for i in ("range", "comRange", "pRange"):
         assert f'<div id="{i}"></div>' in c, i
     gd = json.loads(re.search(r'id="page-data">(.*?)</script>', g, re.S).group(1))
-    cd = json.loads(re.search(r'id="page-data">(.*?)</script>', c, re.S).group(1))
+    cd = gd["conditions"]
     assert {"groups", "sectors", "bizGroup", "concentration"} <= set(gd["barriers"])
     assert {"groups", "sectors", "series", "yields", "markups"} <= set(cd["profit"])
     assert all(w["label"] for w in gd["windows"])
@@ -309,13 +350,15 @@ def test_every_page_source_has_a_link_and_the_concentration_chart_compares_all_i
     records = load_records().records
     evals = load_evaluations(records).evaluations
     growth.build_site(tmp_path, records, evals)
-    for page in ("growth.html", "conditions.html"):
-        html = (tmp_path / page).read_text("utf-8")
-        data = json.loads(re.search(r'id="page-data">(.*?)</script>', html, re.S).group(1))
+    html = (tmp_path / "growth.html").read_text("utf-8")
+    page = json.loads(re.search(r'id="page-data">(.*?)</script>', html, re.S).group(1))
+    # The page's two parts (structural conditions, then economic conditions) each carry their own sources.
+    split = html.index('const D = JSON.parse(document.getElementById("page-data").textContent).conditions')
+    for data, part in ((page, html[:split]), (page["conditions"], html[split:])):
         assert data["sources"] and all(s["url"].startswith("https://") and s["label"] for s in data["sources"].values())
-        for key in set(re.findall(r"SRC\(\[([^\]]*)\]\)", html)):
+        for key in set(re.findall(r"SRC\(\[([^\]]*)\]\)", part)):
             for k in re.findall(r'"([a-z_]+)"', key):
-                assert k in data["sources"], (page, k)
+                assert k in data["sources"], k
     assert 'class="dumbbell" id="conRows"' in (tmp_path / "growth.html").read_text("utf-8")
 
 
@@ -324,20 +367,20 @@ def test_every_chart_that_follows_a_control_can_be_exported_to_excel(tmp_path):
     records = load_records().records
     evals = load_evaluations(records).evaluations
     growth.build_site(tmp_path, records, evals)
-    exported = {
-        "growth.html": ["gspChart", "heat", "dRank", "shares", "grpChart", "dynChart", "scChart", "conRows"],
-        "conditions.html": ["comChart", "roeChart", "sumTable", "mkChart", "muChart", "tsChart", "rbaChart"],
-    }
-    for page, ids in exported.items():
-        html = (tmp_path / page).read_text("utf-8")
-        assert "function xlsxWorkbook(" in html and "excelSetup(" in html
-        for i in ids:
-            assert f'excelButton(cardOf("{i}")' in html, (page, i)
-        data = json.loads(re.search(r'id="page-data">(.*?)</script>', html, re.S).group(1))
+    ids = [
+        *("gspChart", "heat", "dRank", "shares", "grpChart", "dynChart", "scChart", "conRows"),
+        *("comChart", "roeChart", "sumTable", "mkChart", "muChart", "tsChart", "rbaChart"),  # economic conditions
+    ]
+    html = (tmp_path / "growth.html").read_text("utf-8")
+    # Each part sets up its own sources; each Excel button keeps the settings it was made with.
+    assert "function xlsxWorkbook(" in html and html.count("excelSetup({") == 2 and "const page = XL_PAGE;" in html
+    for i in ids:
+        assert f'excelButton(cardOf("{i}")' in html, i
+    page = json.loads(re.search(r'id="page-data">(.*?)</script>', html, re.S).group(1))
+    for data in (page, page["conditions"]):
         assert all("licence" in s for s in data["sources"].values())
         assert data["sources"]["ato"]["licence"] == "CC BY 2.5 AU"
-    g = (tmp_path / "growth.html").read_text("utf-8")
-    c = (tmp_path / "conditions.html").read_text("utf-8")
+    g = c = html
     assert (
         '[["dGva", "Output", "gva"], ["dEmp", "Jobs", "emp"], ["dBiz", "Businesses starting and closing"]].forEach' in g
     )
@@ -349,10 +392,30 @@ def test_competition_page_tells_its_story_in_order(tmp_path):
     records = load_records().records
     evals = load_evaluations(records).evaluations
     growth.build_site(tmp_path, records, evals)
-    g = (tmp_path / "growth.html").read_text("utf-8")
-    assert "<h1>The state of competition in Australia</h1>" in g
-    c = (tmp_path / "conditions.html").read_text("utf-8")
-    assert '<a href="growth.html">The state of competition in Australia</a>' in c
+    whole = (tmp_path / "growth.html").read_text("utf-8")
+    assert '<h1>Structural competitive conditions <span class="beta">' in whole
+    # The economic conditions come last, after every structural section, then each part's sources.
+    order = [
+        'id="shares"',
+        'id="economic-conditions"',
+        'id="h-latest"',
+        'id="comChart"',
+        'id="rbaChart"',
+        'id="foot"',
+        'id="foot-econ"',
+    ]
+    at = [whole.index(i) for i in order]
+    assert at == sorted(at)
+    assert '<a href="#economic-conditions">Economic conditions</a>' in whole  # "On this page" links to it
+    assert '<a href="growth.html#economic-conditions">Structural competitive conditions</a>' in (
+        tmp_path / "conditions.html"
+    ).read_text("utf-8")
+    # The structural part alone: its markup and its own script, not the economic conditions'.
+    econ_js = whole.rindex("<script>", 0, whole.index(".textContent).conditions"))
+    g = (
+        whole[: whole.index('id="economic-conditions"')]
+        + whole[whole.index('<script type="application/json"') : econ_js]
+    )
     # Industries by state first (with similar economies, then the selected industry, productivity first), then
     # concentration, business entry, returns, state economies, and folded away at the end, where the barriers to entry
     # are.
