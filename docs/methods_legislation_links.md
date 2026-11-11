@@ -60,6 +60,8 @@
     - **P:** a planning instrument, handled in phase E;
     - **N:** no obligation on businesses, with a one-line reason.
 
+    Instruments are screened by parent Act (added 11 Nov 2026, E-141). An instrument made under an Act called N is called N. An instrument under an Act that creates requirements is called L to them, unless it is administrative (an appointment, delegation, exemption or amendment), when it is N, or it creates a new obligation of its own (an industry code, a product safety or information standard), when it is Y. Instruments with no parent Act in their name are screened by series (accounting standards, Australian Design Rules, Marine Orders and so on) or one by one.
+
     A title triage first sets aside amending Acts, appropriations, airworthiness directives, tariff concession orders, appointments and similar series; the triage patterns are kept with the catalogue.
 11. **Thresholds in subordinate instruments** (added after phase B). Before a threshold is recorded as not yet quoted, the regulations, determinations and orders made under the law are searched for it. The calibration found the GST threshold in the regulations and the ACT payroll tax threshold in a determination, not in the Acts.
 12. **Gaps are logged** (added after phase B; built 10 November 2026, E-129). A state family with no requirement in a state or territory is logged in `regulation-register/requirement-gaps.json`, saying what was searched, rather than left blank. `alicia validate` fails if a state family has neither a requirement nor a gap in any of the eight. Each gap has a status:
