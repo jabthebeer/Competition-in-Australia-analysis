@@ -1,0 +1,104 @@
+{
+  "id": "cth-seafarers-compensation-levy",
+  "family": "seafarers-compensation-levy",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay the seafarers compensation levy when it is declared",
+  "kind": "tax-or-levy",
+  "what": "When the Minister has declared it, a levy is imposed on seafarer berths on prescribed ships to fund the Seacare scheme.",
+  "laws": [
+    {
+      "title": "Seafarers Rehabilitation and Compensation Levy Act 1992",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04522",
+      "register_url": "https://www.legislation.gov.au/C2004A04522/latest/text",
+      "provisions": "4",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Seafarers Rehabilitation and Compensation Levy Act 1992",
+      "publisher": "Federal Register of Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.gov.au/C2004A04522/1994-01-18/1994-01-18/text/original/epub/OEBPS/document_1/document_1.html",
+      "locator": "s 4 (version of C2004C00281)",
+      "quote": "4 Imposition of levy If the Minister has made a declaration under section 100 of the Seafarers Rehabilitation and Compensation Act 1992, levy is imposed on seafarer berths on prescribed ships.",
+      "accessed": "2026-11-11",
+      "checked": "corpus-copy",
+      "corpus_version_id": "federal_register_of_legislation:C2004C00281"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4810",
+        "4820"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates prescribed ships while a declaration under s 100 of the Seafarers Rehabilitation and Compensation Act 1992 is in force",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Seafarers Rehabilitation and Compensation Levy Act 1992",
+          "publisher": "Federal Register of Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.gov.au/C2004A04522/1994-01-18/1994-01-18/text/original/epub/OEBPS/document_1/document_1.html",
+          "locator": "s 4 (version of C2004C00281)",
+          "quote": "4 Imposition of levy If the Minister has made a declaration under section 100 of the Seafarers Rehabilitation and Compensation Act 1992, levy is imposed on seafarer berths on prescribed ships.",
+          "accessed": "2026-11-11",
+          "checked": "corpus-copy",
+          "corpus_version_id": "federal_register_of_legislation:C2004C00281"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the corpus copy (as at March 2025); whether a declaration is in force is not yet checked.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A conditional levy on ships' seafarer berths funds the Seacare scheme.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A per-berth levy when declared.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

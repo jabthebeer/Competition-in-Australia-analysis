@@ -241,3 +241,22 @@ def test_every_state_family_is_recorded_or_its_gap_logged_with_what_was_searched
                 "checked_on": "2026-11-10",
             }
         )
+
+
+def test_the_commonwealth_catalogue_and_the_requirements_agree():
+    import csv
+
+    from alicia.register.catalogue import default_register_dir
+    from alicia.register.requirements import load_requirements
+
+    path = default_register_dir().parent / "data" / "processed" / "legislation" / "cth_catalogue.csv"
+    rows = list(csv.DictReader(path.open(encoding="utf-8")))
+    ids = {q.id for q in load_requirements().requirements}
+    assert {r["call"] for r in rows} <= {"", "Y", "L", "N", "P"}
+    assert all(r["reason"] for r in rows if r["call"])  # every call has a reason (methods rule 10)
+    cited = {x for r in rows for x in r["requirements"].split()}
+    assert cited <= ids, sorted(cited - ids)  # every requirement the catalogue names exists
+    called = {r["register_id"] for r in rows if r["call"] == "Y"}
+    cth = [q for q in load_requirements().requirements if q.jurisdiction == "CTH" and q.laws[0].register_id]
+    in_catalogue = {r["register_id"] for r in rows}
+    assert all(q.laws[0].register_id in called for q in cth if q.laws[0].register_id in in_catalogue)

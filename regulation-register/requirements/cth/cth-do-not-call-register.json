@@ -1,0 +1,127 @@
+{
+  "id": "cth-do-not-call-register",
+  "family": "do-not-call-register",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Do not make telemarketing calls to numbers on the Do Not Call Register",
+  "kind": "standard",
+  "what": "A person must not make, or cause to be made, a telemarketing call to a number on the Do Not Call Register (subject to exceptions).",
+  "laws": [
+    {
+      "title": "Do Not Call Register Act 2006",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2006A00088",
+      "register_url": "https://www.legislation.gov.au/C2006A00088/latest/text",
+      "provisions": "11(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Do Not Call Register Act 2006",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2006A00088/latest/text",
+      "locator": "s 11(1) (compilation C2021C00356 from 2021-09-01)",
+      "quote": "11 Unsolicited telemarketing calls must not be made to a number registered on the Do Not Call Register (1) A person must not make, or cause to be made, a telemarketing call to an Australian number if: (a) the number is registered on the Do Not Call Register; and (b) the call is not a designated telemarketing call.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7294"
+      ],
+      "exclude": [],
+      "activities": [
+        "Telemarketing service"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Do Not Call Register Act 2006",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2006A00088/latest/text",
+          "locator": "s 11(1) (compilation C2021C00356 from 2021-09-01)",
+          "quote": "11 Unsolicited telemarketing calls must not be made to a number registered on the Do Not Call Register (1) A person must not make, or cause to be made, a telemarketing call to an Australian number if: (a) the number is registered on the Do Not Call Register; and (b) the call is not a designated telemarketing call.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it makes or arranges telemarketing calls itself",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Do Not Call Register Act 2006",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2006A00088/latest/text",
+          "locator": "s 11(1) (compilation C2021C00356 from 2021-09-01)",
+          "quote": "11 Unsolicited telemarketing calls must not be made to a number registered on the Do Not Call Register (1) A person must not make, or cause to be made, a telemarketing call to an Australian number if: (a) the number is registered on the Do Not Call Register; and (b) the call is not a designated telemarketing call.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A person must not make, or cause to be made, a telemarketing call to a number on the Do Not Call Register (subject to exceptions).",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Washing call lists against the register before calling.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

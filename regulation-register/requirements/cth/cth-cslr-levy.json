@@ -1,0 +1,112 @@
+{
+  "id": "cth-cslr-levy",
+  "family": "cslr-levy",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay the compensation scheme of last resort levy",
+  "kind": "tax-or-levy",
+  "what": "Licensees in the subsectors the Act covers pay an annual levy that funds the compensation scheme of last resort.",
+  "laws": [
+    {
+      "title": "Financial Services Compensation Scheme of Last Resort Levy Act 2023",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2023A00044",
+      "register_url": "https://www.legislation.gov.au/C2023A00044/latest/text",
+      "provisions": "8",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Financial Services Compensation Scheme of Last Resort Levy Act 2023",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2023A00044/latest/text",
+      "locator": "s 8 (compilation C2023C00413 from 2023-10-20)",
+      "quote": "8 Imposition of levy—main cases Annual levy (1) Levy is imposed on a person for the second levy period or a later levy period if, at any time during the qualifying period for the levy period: (a) the person is a member of a sub-sector of a kind prescribed by the regulations for the purposes of this paragraph; and (b) the general conditions (if any) prescribed by the regulations for the purposes of this paragraph are met for the person and the levy period.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6419",
+        "6411",
+        "6230",
+        "6420"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it holds an AFS or credit licence in a subsector the levy covers",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Financial Services Compensation Scheme of Last Resort Levy Act 2023",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2023A00044/latest/text",
+          "locator": "s 8 (compilation C2023C00413 from 2023-10-20)",
+          "quote": "8 Imposition of levy—main cases Annual levy (1) Levy is imposed on a person for the second levy period or a later levy period if, at any time during the qualifying period for the levy period: (a) the person is a member of a sub-sector of a kind prescribed by the regulations for the purposes of this paragraph; and (b) the general conditions (if any) prescribed by the regulations for the purposes of this paragraph are met for the person and the levy period.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Which subsectors pay is set by the Act's definitions and the rules, not yet quoted.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Licensees in the subsectors the Act covers pay an annual levy that funds the compensation scheme of last resort.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A levy on licensees funds compensation for other firms' failures.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Levy assessments and reporting.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

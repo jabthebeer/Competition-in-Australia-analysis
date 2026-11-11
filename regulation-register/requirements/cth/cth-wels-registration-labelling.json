@@ -1,0 +1,110 @@
+{
+  "id": "cth-wels-registration-labelling",
+  "family": "wels-registration-labelling",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register and label water-using products before supply",
+  "kind": "standard",
+  "what": "Products covered by the WELS standard (such as taps, showers and toilets) must be registered and labelled before they are supplied.",
+  "laws": [
+    {
+      "title": "Water Efficiency Labelling and Standards Act 2005",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2005A00004",
+      "register_url": "https://www.legislation.gov.au/C2005A00004/latest/text",
+      "provisions": "34(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Water Efficiency Labelling and Standards Act 2005",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2005A00004/latest/text",
+      "locator": "s 34(1) (compilation C2024C00548 from 2024-10-14)",
+      "quote": "34 Supply of WELS products that are not WELS-labelled (1) A person contravenes this subsection if: (a) the person supplies a WELS product; and (b) the applicable WELS standard requires the WELS product to be WELS-labelled for the purposes of the supply; and (c) the product is not WELS-labelled.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3332",
+        "4231"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it supplies products covered by the WELS standard",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Water Efficiency Labelling and Standards Act 2005",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2005A00004/latest/text",
+          "locator": "s 34(1) (compilation C2024C00548 from 2024-10-14)",
+          "quote": "34 Supply of WELS products that are not WELS-labelled (1) A person contravenes this subsection if: (a) the person supplies a WELS product; and (b) the applicable WELS standard requires the WELS product to be WELS-labelled for the purposes of the supply; and (c) the product is not WELS-labelled.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Products covered by the WELS standard (such as taps, showers and toilets) must be registered and labelled before they are supplied.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Testing, registration fees and labels for each model.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Labels let buyers compare water efficiency.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
