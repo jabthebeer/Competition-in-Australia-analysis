@@ -1,0 +1,105 @@
+{
+  "id": "cth-immunisation-register-reporting",
+  "family": "immunisation-register-reporting",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Report vaccinations to the Australian Immunisation Register",
+  "kind": "reporting",
+  "what": "Vaccination providers report information about the vaccinations they give to the register.",
+  "laws": [
+    {
+      "title": "Australian Immunisation Register Act 2015",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2015A00138",
+      "register_url": "https://www.legislation.gov.au/C2015A00138/latest/text",
+      "provisions": "10A",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Australian Immunisation Register Act 2015",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2015A00138/latest/text",
+      "locator": "s 10A (compilation C2026C00485 from 2026-11-04)",
+      "quote": "10A Requirement to report information relating to certain relevant vaccinations Relevant vaccination administered in Australia (1) If: (a) a recognised vaccination provider administers a relevant vaccination in Australia; and (b) the relevant vaccination: (i) is of a kind prescribed by the rules; and (ii) is administered in the circumstances prescribed by the rules; the provider must report, within the period prescribed by the rules and in the manner prescribed by the rules, the information prescribed by the rules for that vaccination for inclusion in the AI Register.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8511",
+        "4271",
+        "8599"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it administers vaccinations",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Australian Immunisation Register Act 2015",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2015A00138/latest/text",
+          "locator": "s 10A (compilation C2026C00485 from 2026-11-04)",
+          "quote": "10A Requirement to report information relating to certain relevant vaccinations Relevant vaccination administered in Australia (1) If: (a) a recognised vaccination provider administers a relevant vaccination in Australia; and (b) the relevant vaccination: (i) is of a kind prescribed by the rules; and (ii) is administered in the circumstances prescribed by the rules; the provider must report, within the period prescribed by the rules and in the manner prescribed by the rules, the information prescribed by the rules for that vaccination for inclusion in the AI Register.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Vaccination providers report information about the vaccinations they give to the register.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Reporting each vaccination given.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

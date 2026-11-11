@@ -1,0 +1,104 @@
+{
+  "id": "cth-seacare-employer-compensation",
+  "family": "seacare-employer-compensation",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay workers' compensation to injured seafarers (Seacare)",
+  "kind": "insurance",
+  "what": "An employer is liable to pay compensation for an injury suffered by an employee covered by the Seacare scheme.",
+  "laws": [
+    {
+      "title": "Seafarers Rehabilitation and Compensation Act 1992",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04525",
+      "register_url": "https://www.legislation.gov.au/C2004A04525/latest/text",
+      "provisions": "24",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Seafarers Rehabilitation and Compensation Act 1992",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A04525/latest/text",
+      "locator": "s 24 (compilation C2025C00116 from 2025-02-21)",
+      "quote": "24 Liability to pay compensation The liability of an employer to pay compensation to a person under this Act is the liability of the employer to pay the amount or amounts that the employer determines, in accordance with this Act, to be payable to the person.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4810",
+        "4820"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it employs seafarers covered by the Seacare scheme",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Seafarers Rehabilitation and Compensation Act 1992",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04525/latest/text",
+          "locator": "s 24 (compilation C2025C00116 from 2025-02-21)",
+          "quote": "24 Liability to pay compensation The liability of an employer to pay compensation to a person under this Act is the liability of the employer to pay the amount or amounts that the employer determines, in accordance with this Act, to be payable to the person.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "An employer is liable to pay compensation for an injury suffered by an employee covered by the Seacare scheme.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Compensation liabilities and insurance.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

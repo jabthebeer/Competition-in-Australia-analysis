@@ -1,0 +1,109 @@
+{
+  "id": "cth-international-airline-licence",
+  "family": "international-airline-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold an international airline licence",
+  "kind": "licence",
+  "what": "An airline operating scheduled international air services to or from Australia needs an international airline licence.",
+  "laws": [
+    {
+      "title": "Air Navigation Act 1920",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1920A00050",
+      "register_url": "https://www.legislation.gov.au/C1920A00050/latest/text",
+      "provisions": "12",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Air Navigation Act 1920",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1920A00050/latest/text",
+      "locator": "s 12 (compilation C2024C00427 from 2024-10-14)",
+      "quote": "12 Requirement to hold international airline licence (1) Subject to subsections (2) and (3), an international airline must not operate a scheduled international air service over, into or out of Australian territory except in accordance with an international airline licence granted by the Secretary in accordance with the regulations.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4900"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates scheduled international air services",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Air Navigation Act 1920",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1920A00050/latest/text",
+          "locator": "s 12 (compilation C2024C00427 from 2024-10-14)",
+          "quote": "12 Requirement to hold international airline licence (1) Subject to subsections (2) and (3), an international airline must not operate a scheduled international air service over, into or out of Australian territory except in accordance with an international airline licence granted by the Secretary in accordance with the regulations.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "An airline operating scheduled international air services to or from Australia needs an international airline licence.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, tied to bilateral air services arrangements, is needed before flying international services.",
+        "positions": []
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Capacity under bilateral arrangements limits foreign airlines' entry.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

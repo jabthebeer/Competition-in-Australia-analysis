@@ -1,0 +1,105 @@
+{
+  "id": "cth-nuclear-material-permit",
+  "family": "nuclear-material-permit",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a permit to possess nuclear material",
+  "kind": "licence",
+  "what": "Possessing nuclear material or an associated item needs a permit under the Act.",
+  "laws": [
+    {
+      "title": "Nuclear Non-Proliferation (Safeguards) Act 1987",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03417",
+      "register_url": "https://www.legislation.gov.au/C2004A03417/latest/text",
+      "provisions": "23",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Nuclear Non-Proliferation (Safeguards) Act 1987",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03417/latest/text",
+      "locator": "s 23 (compilation C2026C00177 from 2026-03-27)",
+      "quote": "23 Possession of nuclear material or associated item without permit (1) Subject to section 24, a person who, without reasonable excuse: (a) possesses nuclear material, or an associated item, to which Part II applies; and (b) does not, at the time of the possession, hold a permit under section 13 or 16 that authorises the person to possess the material or item, as the case may be; commits an offence against this subsection punishable, upon conviction, by imprisonment for not more than 10 years.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0809",
+        "6910",
+        "8520"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it possesses nuclear material or associated items",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Nuclear Non-Proliferation (Safeguards) Act 1987",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03417/latest/text",
+          "locator": "s 23 (compilation C2026C00177 from 2026-03-27)",
+          "quote": "23 Possession of nuclear material or associated item without permit (1) Subject to section 24, a person who, without reasonable excuse: (a) possesses nuclear material, or an associated item, to which Part II applies; and (b) does not, at the time of the possession, hold a permit under section 13 or 16 that authorises the person to possess the material or item, as the case may be; commits an offence against this subsection punishable, upon conviction, by imprisonment for not more than 10 years.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Possessing nuclear material or an associated item needs a permit under the Act.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A permit is needed before possessing nuclear material.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

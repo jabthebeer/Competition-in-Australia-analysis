@@ -1,0 +1,103 @@
+{
+  "id": "cth-petroleum-resource-rent-tax",
+  "family": "petroleum-resource-rent-tax",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay petroleum resource rent tax by instalments",
+  "kind": "tax-or-levy",
+  "what": "A person liable to PRRT instalments for a petroleum project gives the Commissioner an instalment statement and pays each instalment.",
+  "laws": [
+    {
+      "title": "Petroleum Resource Rent Tax Assessment Act 1987",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03551",
+      "register_url": "https://www.legislation.gov.au/C2004A03551/latest/text",
+      "provisions": "98(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Petroleum Resource Rent Tax Assessment Act 1987",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03551/latest/text",
+      "locator": "s 98(1) (compilation C2024C00818 from 2024-12-11)",
+      "quote": "98 Instalment statement (1) Where a person is liable to pay an instalment of tax in respect of an instalment period, the person shall, not later than the date on which the instalment is due and payable or such later date as the Commissioner allows, furnish, in accordance with the approved form, such information relating to the basis of the calculation of that instalment as is required by the form.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0700"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it has an interest in a petroleum project liable to PRRT",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Petroleum Resource Rent Tax Assessment Act 1987",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03551/latest/text",
+          "locator": "s 98(1) (compilation C2024C00818 from 2024-12-11)",
+          "quote": "98 Instalment statement (1) Where a person is liable to pay an instalment of tax in respect of an instalment period, the person shall, not later than the date on which the instalment is due and payable or such later date as the Commissioner allows, furnish, in accordance with the approved form, such information relating to the basis of the calculation of that instalment as is required by the form.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The general liability to PRRT is not yet quoted; the quote is the instalment duty.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A person liable to PRRT instalments for a petroleum project gives the Commissioner an instalment statement and pays each instalment.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A tax on resource rents from petroleum projects.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

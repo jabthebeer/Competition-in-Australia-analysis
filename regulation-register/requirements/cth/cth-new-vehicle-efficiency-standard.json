@@ -1,0 +1,111 @@
+{
+  "id": "cth-new-vehicle-efficiency-standard",
+  "family": "new-vehicle-efficiency-standard",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Keep new vehicles' fleet emissions within the New Vehicle Efficiency Standard",
+  "kind": "standard",
+  "what": "A person who supplies new covered vehicles must ensure that its final emissions value for a year is zero or less.",
+  "laws": [
+    {
+      "title": "New Vehicle Efficiency Standard Act 2024",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2024A00034",
+      "register_url": "https://www.legislation.gov.au/C2024A00034/latest/text",
+      "provisions": "17",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "New Vehicle Efficiency Standard Act 2024",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2024A00034/latest/text",
+      "locator": "s 17 (compilation C2025C00178 from 2025-02-21)",
+      "quote": "17 Duty to ensure that final emissions value is zero or less (1) If there is a covered vehicle for a person for a year beginning on or after 1 January 2025, the person must ensure that, at the start of the final reconciliation day for the year, the person’s final emissions value for the year is zero or less.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3501",
+        "3502",
+        "2311"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it supplies new covered vehicles in Australia",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "New Vehicle Efficiency Standard Act 2024",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2024A00034/latest/text",
+          "locator": "s 17 (compilation C2025C00178 from 2025-02-21)",
+          "quote": "17 Duty to ensure that final emissions value is zero or less (1) If there is a covered vehicle for a person for a year beginning on or after 1 January 2025, the person must ensure that, at the start of the final reconciliation day for the year, the person’s final emissions value for the year is zero or less.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A person who supplies new covered vehicles must ensure that its final emissions value for a year is zero or less.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Fleet emissions accounting and buying units for any shortfall.",
+        "positions": []
+      },
+      {
+        "driver": "innovation",
+        "mark": 1,
+        "reason": "Rewards supplying lower-emission vehicles.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

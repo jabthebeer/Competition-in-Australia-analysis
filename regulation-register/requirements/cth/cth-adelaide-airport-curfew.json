@@ -1,0 +1,103 @@
+{
+  "id": "cth-adelaide-airport-curfew",
+  "family": "adelaide-airport-curfew",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Do not take off or land at Adelaide Airport during the curfew",
+  "kind": "standard",
+  "what": "Aircraft operators must not take off or land at Adelaide Airport during curfew periods, unless the Act permits it.",
+  "laws": [
+    {
+      "title": "Adelaide Airport Curfew Act 2000",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00621",
+      "register_url": "https://www.legislation.gov.au/C2004A00621/latest/text",
+      "provisions": "6(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Adelaide Airport Curfew Act 2000",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00621/latest/text",
+      "locator": "s 6(1) (compilation C2024C00472 from 2024-10-14)",
+      "quote": "6 Prohibition on taking off or landing during curfew periods (1) The operator of an aircraft commits an offence if: (a) the operator engages in conduct; and (b) the conduct results in an aircraft taking off or landing at Adelaide Airport during a curfew period",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4900"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates aircraft at Adelaide Airport",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Adelaide Airport Curfew Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00621/latest/text",
+          "locator": "s 6(1) (compilation C2024C00472 from 2024-10-14)",
+          "quote": "6 Prohibition on taking off or landing during curfew periods (1) The operator of an aircraft commits an offence if: (a) the operator engages in conduct; and (b) the conduct results in an aircraft taking off or landing at Adelaide Airport during a curfew period",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Aircraft operators must not take off or land at Adelaide Airport during curfew periods, unless the Act permits it.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Fewer usable hours limit the capacity available for new or extra services.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
