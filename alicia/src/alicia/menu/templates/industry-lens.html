@@ -138,7 +138,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     <!--__NAV__-->
     <p class="kicker">ALICIA · Bottom up</p>
     <h1>Industry lens <!--__BETA__--></h1>
-    <p class="lede">Pick an industry and a state or territory to see the laws a business in it deals with, and how each affects competition: for entrants, for existing competitors, and for monopolies and oligopolies.</p>
+    <p class="lede">Choose an industry and a state or territory to see the laws a business there faces, and how each affects competition.</p>
   </header>
 
   <p class="notice" id="beta-note"></p>
@@ -403,8 +403,8 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   function marketView(sc, state) {
     const c = sc, m = mkt(sc, state), ss = MK.sizeSales[sc.division], t4 = MK.top4[sc.division];
     $("market-where").textContent = sc.kind === "class"
-      ? `${sc.code} ${sc.name} in ${STATE[state]}: counts of businesses for the industry in the state; sales by size and concentration for its division (${sc.division} ${D.divisions[sc.division] || ""}) across Australia, the finest level they are published at.`
-      : `Division ${sc.code} ${sc.name} in ${STATE[state]}: counts of businesses for the whole division in the state (the sum of its classes); sales by size and concentration for the division across Australia.`;
+      ? `Business counts: ${sc.code} ${sc.name} in ${STATE[state]}. Sales by business size and concentration: division ${sc.division} ${D.divisions[sc.division] || ""} across Australia, the finest level published.`
+      : `Business counts: division ${sc.code} ${sc.name} in ${STATE[state]}, the sum of its classes. Sales by business size and concentration: the division across Australia.`;
     const bar = (label, parts, total) => `<div class="sizebar"><div class="lab">${label}</div><div class="bar" role="img" aria-label="${esc(label)}: ` +
       parts.map(([n, v]) => `${n} ${pc(total ? (100 * v) / total : null)}`).join(", ") + `">` +
       parts.map(([n, v], i) => { const w = total ? (100 * v) / total : 0; return `<div class="seg b${i + 1}" style="width:${w}%" title="${esc(n)}: ${pc(w)}">${w >= 9 ? pc(w, 0) : ""}</div>`; }).join("") + `</div></div>`;
@@ -506,7 +506,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     } else {
       const subs = new Set(DIVCLS[div].map((k) => CL[k].subdivision));
       $("cls-head").innerHTML = `<span class="code">Division ${esc(div)}</span><h2>${esc(D.divisions[div])}</h2>` +
-        `<p class="crumbs">${DIVCLS[div].length} classes in ${subs.size} subdivisions. Below, every law that applies to any of them, tagged with the classes it applies to. Pick a class, or click a tag, to see one class alone.</p>`;
+        `<p class="crumbs">${DIVCLS[div].length} classes in ${subs.size} subdivisions. Each law below is tagged with the classes it applies to. Select a class or a tag to see one class.</p>`;
     }
     for (const e of svg.querySelectorAll("[data-st]")) {
       const on = e.dataset.st === st;
@@ -519,7 +519,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     const all = applicable(codes, st).filter((o) => (opt.indirect || o.exposure !== "indirect") && opt.tiers.has(o.r.tier));
     const shown = all.filter((o) => opt.uncoded || coded(o.r));
     $("where").textContent = cls ? `${cls} ${CL[cls].name} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws.`
-      : `Division ${div} ${D.divisions[div]} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws for any of its classes, each tagged with the classes it applies to.`;
+      : `Division ${div} ${D.divisions[div]} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws, each tagged with the classes it applies to.`;
 
     // Tally by position.
     $("tiles").innerHTML = POS.map((p) => {
