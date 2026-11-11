@@ -97,15 +97,15 @@ def test_the_menu_has_driver_tags_and_no_evaluated_tag():
     assert '<h1>Legislative levers influencing competition <span class="beta">' in html
 
 
-def test_the_real_register_links_archived_evaluations_without_tagging_them():
+def test_the_menu_shows_no_econometric_evaluations():
+    """The econometric archive is off the site (DECISIONS E-136): the menu neither shows nor links evaluations."""
     records = load_records().records
     evals = load_evaluations(records).evaluations
     data = build_payload(records, evaluations=evals)
-    by_id = {r["id"]: r for r in data["records"]}
     assert all(r["assessment"] for r in data["records"])
-    assert by_id["wa-trading-hours-weeknight-2010"]["archivedEvaluation"]["id"] == "wa-trading-hours-2010-2012-phase5"
-    assert by_id["cth-pharmacy-location-rules-2018"]["archivedEvaluation"] is None
-    assert data["archivedEvaluations"] == len(evals)
+    assert "archivedEvaluations" not in data and all("archivedEvaluation" not in r for r in data["records"])
+    html = growth.render("explorer.html", data, "menu.html", standalone=True)
+    assert "archive.html" not in html and "evaluation-" not in html and "econometric archive" not in html.lower()
 
 
 def test_the_menu_keeps_text_readable_and_folds_secondary_detail():

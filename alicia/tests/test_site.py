@@ -173,13 +173,13 @@ def test_render_fills_every_placeholder_and_marks_the_current_page():
 
 
 @needs_panels
-def test_build_site_writes_the_linked_pages_and_the_econometric_archive(tmp_path):
+def test_build_site_writes_the_linked_pages_and_nothing_archived(tmp_path):
     records = load_records().records
     evals = load_evaluations(records).evaluations
     paths = growth.build_site(tmp_path, records, evals)
     names = sorted(p.name for p in paths)
-    assert [n for n in names if not n.startswith("evaluation-")] == [
-        "archive.html",
+    # The live site: no econometric archive and no Policy costing tab (both archived, DECISIONS E-135, E-136).
+    assert names == [
         "conditions.html",
         "framework.html",
         "growth.html",
@@ -188,30 +188,19 @@ def test_build_site_writes_the_linked_pages_and_the_econometric_archive(tmp_path
         "menu.html",
         "methodology.html",
     ]
-    assert sorted(n for n in names if n.startswith("evaluation-")) == sorted(f"evaluation-{e.id}.html" for e in evals)
-    one = (tmp_path / "evaluation-childcare-nqf-wa-delay-2012.html").read_text("utf-8")
-    payload = json.loads(re.search(r'id="menu-data">(.*?)</script>', one, re.S).group(1))
-    assert payload["single"] == "childcare-nqf-wa-delay-2012" and payload["evalPages"]
-    assert {r["id"] for r in payload["records"]} == {"cth-nqf-childcare-2012", "wa-nqf-childcare-2012"}
-    assert set(payload["evaluations"]) == {"childcare-nqf-wa-delay-2012", "childcare-nqf-2012"}  # follows link
-    assert "<title>National Quality Framework" in one
-    assert "archive.html#results" in one  # evaluation pages lead back to the archive, not the menu
+    pages = [n for n in names if n != "conditions.html"]
     index = (tmp_path / "menu.html").read_text("utf-8")
     assert '<a href="menu.html" aria-current="page"' in index and 'href="methodology.html"' in index
-    assert 'href="framework.html"' in index and 'href="archive.html"' in index
-    # Nothing links to the old Economic conditions page, which forwards to its place on the competition page, or to
-    # the archived Policy costing tab.
-    for page in (
-        "index.html",
-        "menu.html",
-        "framework.html",
-        "archive.html",
-        "growth.html",
-        "industry-lens.html",
-        "methodology.html",
-    ):
+    assert 'href="framework.html"' in index
+    # Nothing links to the archived pages, or to the old Economic conditions page, which forwards to its place on the
+    # competition page.
+    for page in pages:
         html = (tmp_path / page).read_text("utf-8")
         assert 'href="conditions.html' not in html and "costing.html" not in html, page
+        assert "archive.html" not in html and not re.search(r'href="evaluation-', html), page
+        assert "Econometric archive" not in html and "econometric archive" not in html, page
+    menu_data = json.loads(re.search(r'id="page-data">(.*?)</script>', index, re.S).group(1))
+    assert "archivedEvaluations" not in menu_data and all("archivedEvaluation" not in r for r in menu_data["records"])
     forward = (tmp_path / "conditions.html").read_text("utf-8")
     assert 'location.replace("growth.html#economic-conditions")' in forward and "<nav" not in forward
     # The nav groups the pages by what they are for; the regulatory overview is coming soon, with no link.
@@ -229,20 +218,41 @@ def test_build_site_writes_the_linked_pages_and_the_econometric_archive(tmp_path
     assert home.count("Coming soon") == 1  # the regulatory overview is not built yet
     assert 'href="regulatory-overview.html"' not in home
     assert 'location.replace("menu.html" + location.hash)' in home  # old index.html#<id> links reach the menu
-    for page in ("framework.html", "archive.html", "menu.html"):  # links into the menu skip the redirect
+    for page in ("framework.html", "menu.html"):  # links into the menu skip the redirect
         assert not re.search(r'href="index\.html#', (tmp_path / page).read_text("utf-8")), page
-    archive = (tmp_path / "archive.html").read_text("utf-8")
-    assert "Archived 28 October 2026" in archive and re.search(r'<a href="framework.html"[^>]*>Framework <', archive)
-    assert '<span class="beta">' not in archive  # the archive is finished, not a work in progress
     fw = (tmp_path / "framework.html").read_text("utf-8")
     assert '<a href="framework.html" aria-current="page"' in fw and not re.search(r"__[A-Z_]+__", fw)
-    # Every other page's heading ends with "(beta)", with a tip that says it is a work in progress.
-    for page in ("index.html", "growth.html", "menu.html", "industry-lens.html", "framework.html", "methodology.html"):
+    # Every page's heading ends with "(beta)", with a tip that says it is a work in progress.
+    for page in pages:
         html = (tmp_path / page).read_text("utf-8")
         h1 = re.search(r"<h1>(.*?)</h1>", html, re.S).group(1)
         assert h1.rstrip().endswith("</span>") and ">(beta)</button>" in h1 and growth.BETA_TIP in h1, page
     data = re.search(r'id="page-data">(.*?)</script>', (tmp_path / "growth.html").read_text("utf-8"), re.S)
     assert json.loads(data.group(1))["repo"].startswith("https://github.com/")
+
+
+@needs_panels
+def test_the_archived_econometric_pages_are_built_only_when_asked(tmp_path):
+    """Archived, not deleted: ``archive=True`` (``alicia site --archive``) still builds the econometric archive and one
+    page per evaluation, unchanged; the live site is built without them."""
+    records = load_records().records
+    evals = load_evaluations(records).evaluations
+    names = sorted(p.name for p in growth.build_site(tmp_path, records, evals, archive=True))
+    assert "archive.html" in names
+    assert sorted(n for n in names if n.startswith("evaluation-")) == sorted(f"evaluation-{e.id}.html" for e in evals)
+    one = (tmp_path / "evaluation-childcare-nqf-wa-delay-2012.html").read_text("utf-8")
+    payload = json.loads(re.search(r'id="menu-data">(.*?)</script>', one, re.S).group(1))
+    assert payload["single"] == "childcare-nqf-wa-delay-2012" and payload["evalPages"]
+    assert {r["id"] for r in payload["records"]} == {"cth-nqf-childcare-2012", "wa-nqf-childcare-2012"}
+    assert set(payload["evaluations"]) == {"childcare-nqf-wa-delay-2012", "childcare-nqf-2012"}  # follows link
+    assert "<title>National Quality Framework" in one
+    assert "archive.html#results" in one  # evaluation pages lead back to the archive, not the menu
+    archive = (tmp_path / "archive.html").read_text("utf-8")
+    assert "Archived 28 October 2026" in archive and re.search(r'<a href="framework.html"[^>]*>Framework <', archive)
+    assert '<span class="beta">' not in archive  # the archive is finished, not a work in progress
+    assert not re.search(r'href="index\.html#', archive)
+    # Even built, the live pages don't link to it.
+    assert "archive.html" not in (tmp_path / "menu.html").read_text("utf-8")
 
 
 def test_landing_links_only_pages_that_are_built():
@@ -293,7 +303,7 @@ def test_build_site_links_the_costing_tab_from_every_page_only_when_built(tmp_pa
     names = {p.name for p in growth.build_site(tmp_path / "with", records, evals, costing_dist=_costing_dist(tmp_path))}
     assert {"costing.html", "index-abc.js"} <= names
     # Archived: the live site is built without it (the Pages workflow passes no --costing), but the code still works.
-    for page in ("index.html", "menu.html", "framework.html", "archive.html", "growth.html", "methodology.html"):
+    for page in ("index.html", "menu.html", "framework.html", "growth.html", "methodology.html"):
         assert 'href="costing.html"' in (tmp_path / "with" / page).read_text("utf-8"), page
     growth.build_site(tmp_path / "without", records, evals)
     assert not (tmp_path / "without" / "costing.html").exists()

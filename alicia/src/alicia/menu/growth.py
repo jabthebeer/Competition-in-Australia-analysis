@@ -50,7 +50,7 @@ LENS_PAGE = ("industry-lens.html", "Industry lens")
 OVERVIEW_PAGE = ("regulatory-overview.html", "Regulatory overview by industry")
 FRAMEWORK_PAGE = ("framework.html", "Framework")
 METHODOLOGY_PAGE = ("methodology.html", "Methodology")
-# Every page the site builds, in nav order (owner decision, 11 Nov 2026, DECISIONS E-134). Pages keep their addresses
+# Every page the site builds, in nav order (owner decision, 11 Nov 2026, DECISIONS E-135). Pages keep their addresses
 # when renamed, so links made before still work.
 PAGES = (HOME_PAGE, COMPETITION_PAGE, MENU_PAGE, LENS_PAGE, FRAMEWORK_PAGE, METHODOLOGY_PAGE)
 # The nav groups the pages by what they are for: the landing page's two views, then how the site is made. A page
@@ -60,8 +60,8 @@ NAV_GROUPS = (
     ("Bottom up", (LENS_PAGE, OVERVIEW_PAGE)),
     ("About", (FRAMEWORK_PAGE, METHODOLOGY_PAGE)),
 )
-# Every page but the archive is a work in progress: its heading, nav link and landing card say "(beta)", and the
-# heading's marker explains it on hover, focus or tap.
+# Every page on the site is a work in progress: its heading, nav link and landing card say "(beta)", and the
+# heading's marker explains it on hover, focus or tap. (The archived econometric pages carry no marker.)
 BETA_TIP = "Work in progress: this page is still being built and checked, so its content may change."
 # Economic conditions was its own page until 11 Nov 2026; it is now the end of Structural competitive conditions,
 # and its old address forwards there.
@@ -107,7 +107,7 @@ LANDING = (
     },
 )
 # The Policy costing tab (regulatory-burden-tool/) is archived and not part of the live site (owner decision,
-# 11 Nov 2026, DECISIONS E-134). The code stays: given its build (`npm run build:site`), `alicia site --costing`
+# 11 Nov 2026, DECISIONS E-135). The code stays: given its build (`npm run build:site`), `alicia site --costing`
 # still adds it, after the grouped nav.
 COSTING_PAGE = ("costing.html", "Policy costing")
 COSTING_ASSETS = "costing-assets"
@@ -681,11 +681,15 @@ def build_site(
     standalone: bool = True,
     repo_base: str | None = None,
     costing_dist=None,
+    archive: bool = False,
 ) -> list:
     """Write the landing page (index.html), Legislative levers influencing competition (menu.html), the Framework and
-    Methodology pages, the econometric archive (archive.html and one page per evaluation), Structural competitive
-    conditions (growth.html, with the economic conditions at its end, and conditions.html forwarding there), the
-    Industry lens and, given its build, the archived Policy costing tab into ``out_dir``."""
+    Methodology pages, Structural competitive conditions (growth.html, with the economic conditions at its end, and
+    conditions.html forwarding there) and the Industry lens into ``out_dir``.
+
+    Two archived parts are not on the live site and nothing there links to them (owner decisions, 11 Nov 2026,
+    DECISIONS E-135 and E-136); their code stays. ``archive=True`` adds the econometric archive (archive.html and one
+    page per evaluation); ``costing_dist`` adds the Policy costing tab from its build."""
     from pathlib import Path
 
     from . import framework as framework_page
@@ -712,19 +716,20 @@ def build_site(
     fw_html = framework_page.render(records, nav(FRAMEWORK_PAGE[0], pages), standalone, beta=beta())
     fw_path.write_text(fw_html, encoding="utf-8")
     written.append(fw_path)
-    written.append(
-        build_archive(
-            records,
-            out / ARCHIVE_PAGE,
-            dates_report=dates_report,
-            standalone=standalone,
-            evaluations=evaluations,
-            repo_base=explorer_base,
-            nav=nav(ARCHIVE_PAGE, pages),
-            evaluation_pages=True,
+    if archive:
+        written.append(
+            build_archive(
+                records,
+                out / ARCHIVE_PAGE,
+                dates_report=dates_report,
+                standalone=standalone,
+                evaluations=evaluations,
+                repo_base=explorer_base,
+                nav=nav(ARCHIVE_PAGE, pages),
+                evaluation_pages=True,
+            )
         )
-    )
-    written += sorted(out.glob("evaluation-*.html"))
+        written += sorted(out.glob("evaluation-*.html"))
     # Structural competitive conditions, with the economic conditions (once their own page) at its end.
     payload = growth_payload(data_base) | {"conditions": conditions_payload(records, data_base)}
     path = out / COMPETITION_PAGE[0]

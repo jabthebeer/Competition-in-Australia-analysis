@@ -3,7 +3,7 @@ name: alicia-house-style
 description: >-
   House style for the ALICIA website: the pages built by `alicia site` from
   alicia/src/alicia/menu/templates/ (landing page, Structural competitive conditions, Legislative
-  levers influencing competition, Industry lens, Framework, Methodology, econometric archive). Use it whenever you restyle, reorder, add, archive,
+  levers influencing competition, Industry lens, Framework, Methodology). Use it whenever you restyle, reorder, add, archive,
   delete or review an ALICIA page, chart, table, the nav or the landing page, when you write or
   edit any of the site's text (to the Australian Government Style Manual), and before any UX or
   UI change to the site.
@@ -33,14 +33,15 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   | `industry-lens.html` | Industry lens |
   | `framework.html` | Framework |
   | `methodology.html` | Methodology (text in `menu/methodology.py`) |
-  | `archive.html` | The archive and the `evaluation-<id>.html` pages |
+  | `archive.html` | The econometric archive and `evaluation-<id>.html` pages: archived, not built for the live site |
 - **Nav, page names and landing cards:** `PAGES`, `NAV_GROUPS` and `LANDING` in
   `alicia/src/alicia/menu/growth.py`. The nav groups pages as Top down, Bottom up and About.
   `conditions.html` is only a forward to the economic conditions; nothing links to it.
-- **Beta:** every page but the archive ends its h1 with `<!--__BETA__-->` (`growth.beta()`): "(beta)"
-  with a work-in-progress tip. A new page gets it too.
-- **Archived, not on the live site:** the Policy costing tab (`regulatory-burden-tool/`). Don't
-  link to it from any page (DECISIONS E-134).
+- **Beta:** every page on the live site ends its h1 with `<!--__BETA__-->` (`growth.beta()`):
+  "(beta)" with a work-in-progress tip. A new page gets it too.
+- **Archived, not on the live site:** the Policy costing tab (`regulatory-burden-tool/`; built only
+  with `--costing`) and the econometric archive (`archive.html`, `evaluation-<id>.html`; built only
+  with `--archive`). Don't link to either from any page (DECISIONS E-135, E-136).
 - **Build:**
 
   ```bash

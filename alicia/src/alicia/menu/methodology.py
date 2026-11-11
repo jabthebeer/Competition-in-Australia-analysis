@@ -1,6 +1,6 @@
 """The Methodology page (``methodology.html``): how the site is made, in short, from the methods notes in ``docs/``.
 
-Owner request, 11 November 2026 (DECISIONS E-134): a concise account of the site's methodology, drawn only from the
+Owner request, 11 November 2026 (DECISIONS E-135): a concise account of the site's methodology, drawn only from the
 existing documentation and written to the Australian Government Style Manual. Every count on the page is read from
 the register when the site is built, so it can't drift from the data; the methods behind each statement are in the
 notes linked at the end.
@@ -249,8 +249,8 @@ def body(c: dict, repo: str = REPO_MAIN) -> str:
             "<strong>Public data only.</strong> The site uses no firm-level data, such as the ABS's restricted "
             "Business Longitudinal Analysis Data Environment (BLADE).",
             "<strong>Econometric evaluations.</strong> The evaluations the site used to show were paused on "
-            '22 October 2026. They stay, unchanged and provisional, in the <a href="archive.html">econometric '
-            "archive</a>.",
+            "22 October 2026 and are no longer on the site. Their files stay, unchanged and provisional, in the "
+            "project's repository.",
         ),
         "detail": _list(
             *(f'<a href="{escape(repo)}{escape(path)}">{escape(label)}</a>' for path, label in NOTES),

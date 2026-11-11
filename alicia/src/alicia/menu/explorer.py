@@ -15,8 +15,8 @@ timeline of its changes, its industries' statistics, and its sources. Secondary 
 method notes sit behind a "More filters" dropdown, "i" buttons and folds, and no text is set below 13px (owner request,
 29 October 2026, DECISIONS E-98).
 
-The econometric evaluations that the menu used to show are kept, unchanged, in the econometric archive
-(``menu/archive.py``; DECISIONS E-75, E-87).
+The econometric evaluations that the menu used to show are archived (DECISIONS E-75, E-87) and, since
+11 November 2026, off the website altogether (E-136): the menu neither shows nor links them.
 """
 
 from __future__ import annotations
@@ -28,7 +28,7 @@ from pathlib import Path
 from .. import anzsic
 from ..register import framework
 from ..register.bodies import BODY_TYPE_LABELS, Body, load_bodies
-from ..register.evaluation import Evaluation, current_evaluation
+from ..register.evaluation import Evaluation
 from ..register.families import Family, load_families
 from ..register.recommendations import KIND_LABELS as REC_KIND_LABELS
 from ..register.recommendations import Recommendation, actors_of, by_record, gap_for, load_gaps, load_recommendations
@@ -182,8 +182,6 @@ def build_payload(
     rec_index = by_record(recs)
     rec_dicts = [recommendation_dict(x, by_id) for x in recs]
     checks = {d["record_id"]: d for d in dates_report or []}
-    evals = {e.id: e for e in evaluations or []}
-    archived = current_evaluation(evaluations or [])
     regimes = load_regimes().regimes if regimes is None else regimes
     families = load_families()[0] if families is None else families
     reg_index = regimes_by_record(regimes)
@@ -191,7 +189,6 @@ def build_payload(
     for r in records:
         eff = r.effective_commencement
         check = checks.get(r.id)
-        ev = evals.get(archived.get(r.id, ""))
         # The timeline carries the dates and the history.
         data = r.model_dump(
             mode="json", exclude={"comparison", "confounders", "price_series", "assessment", "dates", "history"}
@@ -206,7 +203,6 @@ def build_payload(
                 "check": {"status": check["status"], "issues": check["issues"]} if check else None,
                 "assessment": assessment_dict(r),
                 "stats": stats.snapshot(r) if stats else None,
-                "archivedEvaluation": {"id": ev.id, "title": ev.title, "finding": ev.finding_label} if ev else None,
                 "ended": ended_dict(r),
                 "timeline": timeline(r, titles, generated),
                 "changes": changes_list(changed.get(r.id, [])),
@@ -245,7 +241,6 @@ def build_payload(
         "statsTiles": list(TILES),
         "places": STATE_NAMES,
         "checkNote": CHECK_NOTE,
-        "archivedEvaluations": len(evaluations or []),
     }
 
 

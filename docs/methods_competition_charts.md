@@ -2,7 +2,7 @@
 
 25 October 2026. The charts recreate, from public data, the barriers-to-entry and profitability analysis in Grattan Institute's *Competition in Australia: too little of a good thing?* (Minifie, Chisholm and Percival, December 2017). Grattan used IBISWorld industry data and Morningstar firm data, which are proprietary. These charts are on the ALICIA website (`alicia site`):
 - **Structural competitive conditions** (formerly The state of competition in Australia, and before that State and industry growth) has concentration, business entry and barriers to entry. It reads as a story: each section's heading states what the data show for the settings chosen, and is worked out from the same numbers as the chart.
-- **Economic conditions**, at the end of the same page since 11 November 2026 (it was its own page; DECISIONS E-134), has profitability and market power.
+- **Economic conditions**, at the end of the same page since 11 November 2026 (it was its own page; DECISIONS E-135), has profitability and market power.
 
 Each section has its own period slider, spanning only the years its data cover, so a slider never offers years its charts can't show:
 - **Concentration:** 2002 to 2019 (the RBA figures).

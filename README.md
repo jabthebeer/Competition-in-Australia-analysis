@@ -9,7 +9,7 @@ Legislative levers influencing competition (formerly the legislation menu) is a 
   - **Top down:** *Structural competitive conditions* (`growth.html`, with the economic conditions at its end; the old `conditions.html` forwards there) and *Legislative levers influencing competition* ([`menu.html`](https://jabthebeer.github.io/Competition-in-Australia-analysis/menu.html)).
   - **Bottom up:** the *Industry lens*, and *Regulatory overview by industry* (coming soon).
   - **About:** the *Framework* page and the *Methodology* page.
-  - The econometric archive (`archive.html`) is not in the nav; the Framework, Methodology and Legislative levers pages link to it. The Policy costing tab is archived and not on the site (11 Nov 2026, `alicia/DECISIONS.md` E-134).
+  - Two archived parts are not on the site, and no page links to them (11 Nov 2026, `alicia/DECISIONS.md` E-135 and E-136): the Policy costing tab and the econometric archive. Their code stays; `alicia site --archive` still builds the archive.
   - It is published by `.github/workflows/menu-explorer-pages.yml` on every push to `main`.
   - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 - **Locally:** `cd alicia && uv run alicia explorer --standalone -o menu.html`, then open `menu.html` in a browser; `uv run alicia site -o ../site` builds every page.
@@ -19,11 +19,11 @@ Legislative levers influencing competition (formerly the legislation menu) is a 
 **A productivity framework applied to legislation, settings and barriers** (owner decision, `alicia/DECISIONS.md` E-87 to E-90 and E-92):
 
 1. **Framework** (done): eight drivers of productivity, each marked from −2 to +2 ([methods note](docs/productivity_framework.md); the website's Framework page).
-2. **Assessment of the register** (done): all records assessed; the menu's econometric sections are replaced by the assessments and industry statistics. The econometric evaluations are archived on the site, unchanged.
+2. **Assessment of the register** (done): all records assessed; the menu's econometric sections are replaced by the assessments and industry statistics. The econometric evaluations are archived, unchanged, and are no longer on the site (E-136).
 3. **Review of the register** (done): [`docs/register_review_framework.md`](docs/register_review_framework.md). The reforms were chosen for evaluability and are a skewed sample.
 4. **Additions** (two tranches done, 63 items: stamp duty, payroll tax, trade and foreign investment settings and concentrated markets, then planning and zoning, occupational licensing, pharmacy ownership and location rules, mandatory standards, insurance duty and other settings); the review lists the remaining candidates.
 
-Every assessment is a draft until checked by a person: the review sheet is [`docs/review/framework_assessments_review.csv`](docs/review/framework_assessments_review.csv). The Policy costing tab ([plan](docs/forward_plan_policy_costing.md)) is archived (E-134). The retrospective evaluations were paused on 22 October 2026 (E-75); parked items are in [`docs/parked_items.md`](docs/parked_items.md).
+Every assessment is a draft until checked by a person: the review sheet is [`docs/review/framework_assessments_review.csv`](docs/review/framework_assessments_review.csv). The Policy costing tab ([plan](docs/forward_plan_policy_costing.md)) is archived (E-135). The retrospective evaluations were paused on 22 October 2026 (E-75); parked items are in [`docs/parked_items.md`](docs/parked_items.md).
 
 ## Projects
 
@@ -40,7 +40,7 @@ Every assessment is a draft until checked by a person: the review sheet is [`doc
 - [`docs/responsibility_and_history.md`](docs/responsibility_and_history.md): who is responsible for each register item (departments, agencies, regulators) and the later changes recorded against them, with sources and open checks (29 October 2026).
 - [`docs/register_review_framework.md`](docs/register_review_framework.md): the register reviewed under the framework, the items added, and candidates to add next (28 October 2026).
 
-Archived econometric work (paused 22 October 2026; the results stay published in the site's econometric archive):
+Archived econometric work (paused 22 October 2026; off the website since 11 November 2026, E-136; `alicia site --archive` still builds its pages):
 
 - [`docs/econometric_foundation_scoping.md`](docs/econometric_foundation_scoping.md): scoping note (14 October 2026) for an econometric foundation that links regulatory changes and their compliance costs to competition, business dynamism and innovation outcomes. Decisions taken 14 October 2026 (`alicia/DECISIONS.md`, E-01 to E-07).
 - [`docs/impact_evaluation_design.md`](docs/impact_evaluation_design.md): how each change will be evaluated against entry and exit, productivity, real prices and wages (draft, 15 October 2026).

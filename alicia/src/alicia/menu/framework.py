@@ -716,8 +716,7 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes:
   <ul>{sources}</ul>
   <p>The same framework, as a methods note, is in <code>docs/productivity_framework.md</code> (written by
   <code>alicia framework</code>). <a href="menu.html">Legislative levers influencing competition</a> shows every
-  item's marks; the
-  econometric evaluations the site used to show are in the <a href="archive.html">econometric archive</a>.
+  item's marks.
   Unofficial research, not an Australian Government product.</p>
 </footer>
 {tips.html()}"""
