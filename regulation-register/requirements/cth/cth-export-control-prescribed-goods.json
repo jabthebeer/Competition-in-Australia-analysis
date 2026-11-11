@@ -1,0 +1,123 @@
+{
+  "id": "cth-export-control-prescribed-goods",
+  "family": "export-control-prescribed-goods",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Meet export conditions before exporting prescribed goods",
+  "kind": "approval",
+  "what": "Goods prescribed by the export control rules may be exported only if the rules' conditions are met (such as a registered establishment, an approved arrangement or an export permit).",
+  "laws": [
+    {
+      "title": "Export Control Act 2020",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2020A00012",
+      "register_url": "https://www.legislation.gov.au/C2020A00012/latest/text",
+      "provisions": "28, 38(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Export Control Act 2020",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2020A00012/latest/text",
+      "locator": "s 38(1) (compilation C2026C00221 from 2026-05-21)",
+      "quote": "38 Exporting prescribed goods—non-compliance with prescribed export conditions—basic contravention (1) A person contravenes this subsection if: (a) the person exports goods; and (b) the goods are prescribed goods; and (c) the export of the goods is prohibited unless prescribed export conditions are complied with; and (d) prescribed export conditions were not complied with.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1111",
+        "1112",
+        "1120",
+        "1131",
+        "1133"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it exports goods prescribed by the export control rules (s 28)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Export Control Act 2020",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2020A00012/latest/text",
+          "locator": "s 38(1) (compilation C2026C00221 from 2026-05-21)",
+          "quote": "38 Exporting prescribed goods—non-compliance with prescribed export conditions—basic contravention (1) A person contravenes this subsection if: (a) the person exports goods; and (b) the goods are prescribed goods; and (c) the export of the goods is prohibited unless prescribed export conditions are complied with; and (d) prescribed export conditions were not complied with.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Export Control Act 2020",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2020A00012/latest/text",
+          "locator": "s 28(1) (compilation C2026C00221 from 2026-05-21)",
+          "quote": "28 Rules may prescribe goods for the purposes of this Act (1) The rules may prescribe kinds of goods (prescribed goods) for the purposes of this Act.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Exporters of prescribed food and agricultural goods work through registered establishments and permits.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Export of prescribed goods needs registration, an approved arrangement or a permit first.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Audits, inspection fees and certificates for each consignment.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

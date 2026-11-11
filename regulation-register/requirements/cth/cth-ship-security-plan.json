@@ -1,0 +1,104 @@
+{
+  "id": "cth-ship-security-plan",
+  "family": "ship-security-plan",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Operate regulated ships only with a ship security plan",
+  "kind": "standard",
+  "what": "A regulated Australian ship must have a ship security plan in force before it operates.",
+  "laws": [
+    {
+      "title": "Maritime Transport and Offshore Facilities Security Act 2003",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A01216",
+      "register_url": "https://www.legislation.gov.au/C2004A01216/latest/text",
+      "provisions": "62(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Maritime Transport and Offshore Facilities Security Act 2003",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A01216/latest/text",
+      "locator": "s 62(1) (compilation C2026C00106 from 2026-03-27)",
+      "quote": "62 Offence—operating without a ship security plan (1) The ship operator for a regulated Australian ship commits an offence if: (a) the ship is being used for maritime transport; and (b) there is no ship security plan in force for the ship. Penalty: 200 penalty units.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4810",
+        "4820"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a regulated Australian ship",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Maritime Transport and Offshore Facilities Security Act 2003",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01216/latest/text",
+          "locator": "s 62(1) (compilation C2026C00106 from 2026-03-27)",
+          "quote": "62 Offence—operating without a ship security plan (1) The ship operator for a regulated Australian ship commits an offence if: (a) the ship is being used for maritime transport; and (b) there is no ship security plan in force for the ship. Penalty: 200 penalty units.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A regulated Australian ship must have a ship security plan in force before it operates.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Preparing, approving and following a ship security plan.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

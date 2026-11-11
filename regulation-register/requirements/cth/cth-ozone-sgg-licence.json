@@ -1,0 +1,112 @@
+{
+  "id": "cth-ozone-sgg-licence",
+  "family": "ozone-sgg-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a licence to import, export or manufacture ozone-depleting substances or SGGs",
+  "kind": "licence",
+  "what": "Manufacturing, importing or exporting scheduled substances (ozone-depleting substances and synthetic greenhouse gases), or equipment that contains or uses them, needs a licence (subject to exceptions).",
+  "laws": [
+    {
+      "title": "Ozone Protection and Synthetic Greenhouse Gas Management Act 1989",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03755",
+      "register_url": "https://www.legislation.gov.au/C2004A03755/latest/text",
+      "provisions": "Part III (s 12A outline)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Ozone Protection and Synthetic Greenhouse Gas Management Act 1989",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03755/latest/text",
+      "locator": "s 12A (simplified outline of Part III) (compilation C2026C00241 from 2026-07-01)",
+      "quote": "12A Simplified outline of this Part A person must not carry out any of the following activities unless the person holds a licence that allows the activity (subject to certain exceptions): (a) manufacturing, importing or exporting a scheduled substance; (b) manufacturing, importing or exporting equipment that contains a scheduled substance, or uses a scheduled substance in its operation.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1811",
+        "1812",
+        "3323",
+        "3494"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it manufactures, imports or exports scheduled substances or equipment containing them",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Ozone Protection and Synthetic Greenhouse Gas Management Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03755/latest/text",
+          "locator": "s 12A (simplified outline of Part III) (compilation C2026C00241 from 2026-07-01)",
+          "quote": "12A Simplified outline of this Part A person must not carry out any of the following activities unless the person holds a licence that allows the activity (subject to certain exceptions): (a) manufacturing, importing or exporting a scheduled substance; (b) manufacturing, importing or exporting equipment that contains a scheduled substance, or uses a scheduled substance in its operation.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quotes the Act's simplified outline; the operative sections are still to quote (11 Nov 2026).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Importers and makers of refrigerant gases and equipment containing them need a licence.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence is needed before manufacturing, importing or exporting scheduled substances.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Licence fees and reporting.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

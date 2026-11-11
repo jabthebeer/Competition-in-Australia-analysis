@@ -1,0 +1,101 @@
+{
+  "id": "cth-income-tax",
+  "family": "income-tax",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay income tax",
+  "kind": "tax-or-levy",
+  "what": "Income tax is payable by individuals, companies and some other entities on their taxable income.",
+  "laws": [
+    {
+      "title": "Income Tax Assessment Act 1997",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A05138",
+      "register_url": "https://www.legislation.gov.au/C2004A05138/latest/text",
+      "provisions": "4-1",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Income Tax Assessment Act 1997",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A05138/latest/text",
+      "locator": "s 4-1 (compilation C2026C00471 from 2026-10-01)",
+      "quote": "4-1 Who must pay income tax Income tax is payable by each individual and company, and by some other entities.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Income Tax Assessment Act 1997",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A05138/latest/text",
+          "locator": "s 4-1 (compilation C2026C00471 from 2026-10-01)",
+          "quote": "4-1 Who must pay income tax Income tax is payable by each individual and company, and by some other entities.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Income tax is payable by individuals, companies and some other entities on their taxable income.",
+    "marks": [
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Tax on business profits lowers the after-tax return on investment.",
+        "positions": []
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "id": "cth-trade-measurement-verified-instruments",
+  "family": "trade-measurement-verified-instruments",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Use only verified measuring instruments for trade",
+  "kind": "standard",
+  "what": "A measuring instrument used for trade (such as scales or fuel dispensers) must be verified.",
+  "laws": [
+    {
+      "title": "National Measurement Act 1960",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1960A00064",
+      "register_url": "https://www.legislation.gov.au/C1960A00064/latest/text",
+      "provisions": "18GA",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "National Measurement Act 1960",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1960A00064/latest/text",
+      "locator": "s 18GA (compilation C2024C00648 from 2024-10-14)",
+      "quote": "18GA Measuring instruments used for trade to be verified Offence requiring fault element (1) A person commits an offence if: (a) the person uses a measuring instrument for trade; and (b) the measuring instrument is not verified.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4000",
+        "4110",
+        "4121",
+        "4122",
+        "4129",
+        "3605"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it uses measuring instruments for trade",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Measurement Act 1960",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1960A00064/latest/text",
+          "locator": "s 18GA (compilation C2024C00648 from 2024-10-14)",
+          "quote": "18GA Measuring instruments used for trade to be verified Offence requiring fault element (1) A person commits an offence if: (a) the person uses a measuring instrument for trade; and (b) the measuring instrument is not verified.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A measuring instrument used for trade (such as scales or fuel dispensers) must be verified.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Verification and servicing of instruments used for trade.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Buyers can rely on measured quantities, which supports comparing prices.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "id": "cth-medicare-billing-restriction",
+  "family": "medicare-billing-restriction",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Bill Medicare only if s 19AA allows it (doctors first registered after a set date)",
+  "kind": "approval",
+  "what": "Medicare benefits are not payable for services by medical practitioners who first became registered after a set date unless an exception in s 19AA applies, such as recognised specialist or general practice qualifications.",
+  "laws": [
+    {
+      "title": "Health Insurance Act 1973",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00101",
+      "register_url": "https://www.legislation.gov.au/C2004A00101/latest/text",
+      "provisions": "19AA(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Health Insurance Act 1973",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00101/latest/text",
+      "locator": "s 19AA(1) (compilation C2026C00480 from 2026-10-17)",
+      "quote": "19AA Medicare benefits not payable in respect of services rendered by certain medical practitioners (1) A medicare benefit is not payable in respect of a professional service, rendered after the commencement of this section, if the person who rendered the service: (a) first became a registered medical practitioner on or after 1 November 1996;",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8511",
+        "8512"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its doctors render services that would attract Medicare benefits",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Insurance Act 1973",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00101/latest/text",
+          "locator": "s 19AA(1) (compilation C2026C00480 from 2026-10-17)",
+          "quote": "19AA Medicare benefits not payable in respect of services rendered by certain medical practitioners (1) A medicare benefit is not payable in respect of a professional service, rendered after the commencement of this section, if the person who rendered the service: (a) first became a registered medical practitioner on or after 1 November 1996;",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The exceptions in s 19AA are not yet quoted; the quote shows the restriction.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Medicare benefits are not payable for services by medical practitioners who first became registered after a set date unless an exception in s 19AA applies, such as recognised specialist or general practice qualifications.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Doctors registered after the set date cannot bill Medicare until they meet s 19AA, which shapes where and how new practitioners can start.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Restricts where newer doctors can practise with Medicare billing.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

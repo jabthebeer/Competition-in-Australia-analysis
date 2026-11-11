@@ -1,0 +1,136 @@
+{
+  "id": "cth-road-vehicle-rav-entry",
+  "family": "road-vehicle-rav-entry",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Have road vehicles on the RAV before first supply in Australia",
+  "kind": "approval",
+  "what": "A road vehicle must be entered on the Register of Approved Vehicles, after type approval or a concessional approval, before it is provided to anyone in Australia for the first time.",
+  "laws": [
+    {
+      "title": "Road Vehicle Standards Act 2018",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2018A00163",
+      "register_url": "https://www.legislation.gov.au/C2018A00163/latest/text",
+      "provisions": "24(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Road Vehicle Standards Act 2018",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2018A00163/latest/text",
+      "locator": "s 24(1) (compilation C2025C00016 from 2025-01-01)",
+      "quote": "24 Providing road vehicle for the first time in Australia—vehicle not on RAV Basic rule (1) A person contravenes this subsection if: (a) the person provides a road vehicle to another person in Australia; and (b) the vehicle is provided for the first time in Australia; and (c) the vehicle is not on the RAV.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2311",
+        "2312"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Road Vehicle Standards Act 2018",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2018A00163/latest/text",
+          "locator": "s 24(1) (compilation C2025C00016 from 2025-01-01)",
+          "quote": "24 Providing road vehicle for the first time in Australia—vehicle not on RAV Basic rule (1) A person contravenes this subsection if: (a) the person provides a road vehicle to another person in Australia; and (b) the vehicle is provided for the first time in Australia; and (c) the vehicle is not on the RAV.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3501",
+        "3502",
+        "3911"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it imports vehicles and provides them for the first time in Australia",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Road Vehicle Standards Act 2018",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2018A00163/latest/text",
+          "locator": "s 24(1) (compilation C2025C00016 from 2025-01-01)",
+          "quote": "24 Providing road vehicle for the first time in Australia—vehicle not on RAV Basic rule (1) A person contravenes this subsection if: (a) the person provides a road vehicle to another person in Australia; and (b) the vehicle is provided for the first time in Australia; and (c) the vehicle is not on the RAV.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "New and imported road vehicles need approval and entry on the RAV before first supply.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Type or concessional approval and RAV entry are needed before a vehicle can be supplied.",
+        "positions": []
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Australia-specific approval adds cost to importing vehicle models.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
