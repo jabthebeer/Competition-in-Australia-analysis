@@ -393,6 +393,7 @@ def cmd_site(args) -> int:
         standalone=not args.fragment,
         repo_base=args.repo_base,
         costing_dist=Path(args.costing) if args.costing else None,
+        archive=args.archive,
     )
     for p in paths:
         print(f"Wrote {p}")
@@ -618,12 +619,12 @@ def main(argv: list[str] | None = None) -> int:
     fr.add_argument("-o", "--output", help="file to write (default: print)")
     fr.set_defaults(func=cmd_framework)
 
-    si = sub.add_parser("site", help="build the website: legislation menu, framework, archive, growth and conditions")
+    si = sub.add_parser("site", help="build the website: every page on the live site")
     si.add_argument(
         "-o",
         "--output",
         default="site",
-        help="directory to write index.html (landing page), menu.html, framework.html, archive.html, growth.html, conditions.html",
+        help="directory to write index.html, growth.html, menu.html, industry-lens.html, framework.html and so on",
     )
     si.add_argument("--dates", help="a report from 'alicia dates --all --json', to show register checks")
     si.add_argument("--fragment", action="store_true", help="write page fragments instead of full HTML documents")
@@ -631,7 +632,12 @@ def main(argv: list[str] | None = None) -> int:
     si.add_argument(
         "--costing",
         default=None,
-        help="the Policy costing build to add (regulatory-burden-tool/dist-site, from 'npm run build:site')",
+        help="add the archived Policy costing tab from its build (regulatory-burden-tool/dist-site, 'npm run build:site')",
+    )
+    si.add_argument(
+        "--archive",
+        action="store_true",
+        help="add the archived econometric archive (archive.html and the evaluation pages); not on the live site",
     )
     si.set_defaults(func=cmd_site)
 

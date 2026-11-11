@@ -103,12 +103,35 @@ a:hover { text-decoration-thickness: 2px; }
 header.top { display: grid; gap: 8px; }
 .kicker { margin: 0; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
 .lede { max-width: 72ch; color: var(--ink-2); margin: 0; }
-.site-nav { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
-.site-nav a { padding: 8px 12px; color: var(--ink-2); text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-.site-nav a:hover { color: var(--ink); }
-.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+/* The nav: Home, then the pages grouped by what they are for (Top down, Bottom up, About), each group under its label. */
+.site-nav { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px 28px; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 4px; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.nav-group { display: grid; gap: 2px; min-width: 0; }
+.nav-label { margin: 0; padding: 0 10px; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.site-nav a, .nav-soon { display: block; padding: 5px 10px; color: var(--ink-2); text-decoration: none; border-radius: 6px; }
+.site-nav a:hover { color: var(--ink); background: var(--accent-soft); }
+.site-nav a[aria-current="page"] { color: var(--ink); font-weight: 600; box-shadow: inset 3px 0 0 var(--accent); }
+.nav-soon { color: var(--ink-3); cursor: default; }
+.beta-tag { font-size: var(--step--1); font-weight: 400; color: var(--ink-3); }
+@media (max-width: 640px) {
+  .site-nav { gap: 6px 16px; }
+  .site-nav ul { display: flex; flex-wrap: wrap; }
+  .site-nav a, .nav-soon { padding: 10px 10px; }
+}
+/* "(beta)" after a page heading: a tip on hover, focus or tap says the page is a work in progress. */
+header.top h1 { position: relative; }
+.beta-btn { font: 400 var(--step-1)/1 var(--font-body); color: var(--ink-3); background: none; border: 0; padding: 0; margin: 0; cursor: help; text-decoration: underline dotted; text-underline-offset: 5px; vertical-align: 0.15em; }
+.beta-btn:hover, .beta-btn:focus-visible { color: var(--accent); }
+.beta-tip { display: none; position: absolute; left: 0; top: calc(100% + 6px); z-index: 20; max-width: min(40ch, 100%); padding: 8px 10px; border-radius: 6px; background: var(--ink); color: var(--bg); font: 400 var(--step--1)/1.45 var(--font-body); letter-spacing: 0; text-wrap: pretty; }
+.beta:hover .beta-tip, .beta:focus-within .beta-tip { display: block; }
+/* "On this page": links to a long page's sections. */
+.toc { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; font-size: var(--step--1); }
+.toc-label { color: var(--ink-3); font-weight: 600; }
+/* A part of a page that once was its own page, such as the economic conditions. */
+.part-head { display: grid; gap: 4px; padding-top: 22px; border-top: 2px solid var(--line-strong); }
+.part-head p { margin: 0; max-width: 72ch; color: var(--ink-2); }
 
-section.block { display: grid; gap: 14px; }
+section.block { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
 .block-head { display: grid; gap: 4px; }
 .block-head p { margin: 0; max-width: 80ch; color: var(--ink-2); }
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; min-width: 0; }

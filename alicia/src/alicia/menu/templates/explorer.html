@@ -1,4 +1,4 @@
-<title>ALICIA Legislation Menu</title>
+<title>ALICIA Legislative levers influencing competition (beta)</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -354,8 +354,8 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
 <div class="wrap">
   <header class="top">
     <!--__NAV__-->
-    <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
-    <h1>Legislation Menu</h1>
+    <p class="kicker">ALICIA · Top down</p>
+    <h1>Legislative levers influencing competition <!--__BETA__--></h1>
     <p class="lede">Laws, regulatory settings and other barriers that shape competition and productivity in Australia. Each one is marked against the <a href="framework.html">ALICIA productivity framework</a> and shown with statistics on the industries it affects.</p>
     <div class="meta-line" id="metaLine"></div>
   </header>
@@ -1079,8 +1079,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     const sources = `${li(r.instruments.map((x) => `<li>${link(x.register_url, x.title)}${x.provisions ? ` (${esc(x.provisions)})` : ""}</li>`))}
       ${r.notes ? `<p>${esc(r.notes)}</p>` : ""}
       <p>${r.verified.dates ? "Dates checked against official sources." : "Dates not fully checked."} ${esc(r.verified.notes || "")}</p>
-      <p>Review: ${esc(r.review.status)}. ${esc(r.review.notes || "")}</p>
-      ${r.archivedEvaluation ? `<p>An econometric evaluation of this change is kept in the <a href="evaluation-${encodeURIComponent(r.archivedEvaluation.id)}.html">econometric archive</a>: ${esc(r.archivedEvaluation.finding.toLowerCase())}. It is provisional.</p>` : ""}`;
+      <p>Review: ${esc(r.review.status)}. ${esc(r.review.notes || "")}</p>`;
     const industries = `${r.industries.length ? li(r.industries.map((x) => `<li><span class="mono">${esc(x.anzsic)}</span> ${esc(x.name)}${x.exposure !== "direct" ? ` (${esc(x.exposure)})` : ""}</li>`)) : ""}${statsHtml(r)}`;
     el.innerHTML = `
       <button type="button" class="close" id="closeDetail">Close</button>
@@ -1177,7 +1176,6 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     <p><strong>What government could do.</strong> Recommendations come from Australian and international reviews and research: the Productivity Commission, the Harper and Henry reviews, state productivity commissions, Treasury reviews and overseas regulators. Each one quotes the exact words of its sources; quotes were checked against the full text of each document, except where marked as read from a web page. They are drafts compiled by AI-assisted desk research and have not yet been checked by a person. Where no recommendation is given, the item says why.</p>
     <p><strong>Regulatory complexity.</strong> ${esc(DATA.complexityNote || "")} ${REGS.length} regimes are mapped to all ${IND.length} detailed industries (ANZSIC classes) in the Industries view. Sources: Productivity Commission inquiries and benchmarking studies, national and state reviews, business.gov.au and regulator pages; drafts compiled by AI-assisted desk research, not yet checked by a person. Method: <code>docs/industry_regulation.md</code>.</p>
     <p><strong>Register check.</strong> ${esc(DATA.checkNote)}</p>
-    <p><strong>Econometric archive.</strong> The ${DATA.archivedEvaluations} econometric evaluations this page used to show, with the evaluability screen and data coverage, are kept unchanged in the <a href="archive.html">econometric archive</a> (paused 22 October 2026).</p>
     <p><strong>Sources.</strong> Industry codes: ABS ANZSIC 2006. Every date in a record links to its source. Unofficial research, not an Australian Government product.</p>
     </details>
     <details class="about"><summary>Words used on this page</summary>
