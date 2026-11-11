@@ -124,9 +124,9 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 
 - [ ] **22 state gaps** in `regulation-register/requirement-gaps.json`: 10 to draft, 7 not found, 3 blocked (Victoria), 2 not searched.
 - [ ] **Construction long service levies**, a separate obligation on the person for whom building work is done (e.g. NSW s 34). To be recorded as their own family.
-- [ ] **Life insurance registration.** The Life Insurance Act 1995 regulates registered life companies, but the ban on unregistered life insurance business was not found in its text. Find where it sits before drafting.
+- [ ] **Come back to (owner, 11 Nov 2026): life insurance registration.** The Life Insurance Act 1995 regulates registered life companies, but the ban on unregistered life insurance business was not found in its text. Find where it sits before drafting; it may surface when later batches screen the financial services laws.
 - [ ] **Other AML/CTF designated services** (bullion and precious stones dealers, property developers selling real estate). Not yet coded.
-- [ ] **Aged care** keeps the Act's simplified outline as the source. Registration is a condition of funding in the Aged Care Act 2024, not an offence, so there is no operative offence to quote.
+- [ ] **Come back to (owner, 11 Nov 2026): aged care.** It keeps the Act's simplified outline as the source. Registration is a condition of funding in the Aged Care Act 2024, not an offence, so there is no operative offence to quote. Revisit if a later batch finds the registration duty in the Rules or another Act.
 
 **Industry lens (owner's list, 10 Nov 2026)**
 
