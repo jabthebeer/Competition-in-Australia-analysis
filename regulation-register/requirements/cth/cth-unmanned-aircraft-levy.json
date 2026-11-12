@@ -1,0 +1,156 @@
+{
+  "id": "cth-unmanned-aircraft-levy",
+  "family": "unmanned-aircraft-levy",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "aviation",
+  "title": "Pay the unmanned aircraft levy",
+  "kind": "tax-or-levy",
+  "what": "An unmanned aircraft levy is imposed; the regulations set it at $40 for a remotely piloted aircraft over 500 grams and nil for lighter ones.",
+  "laws": [
+    {
+      "title": "Civil Aviation (Unmanned Aircraft Levy) Act 2020",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2020A00142",
+      "register_url": "https://www.legislation.gov.au/C2020A00142/latest/text",
+      "provisions": "5",
+      "applied": false
+    },
+    {
+      "title": "Civil Aviation (Unmanned Aircraft Levy) Regulations 2021",
+      "jurisdiction": "CTH",
+      "kind": "legislative-instrument",
+      "register_id": "F2021L01028",
+      "register_url": "https://www.legislation.gov.au/F2021L01028/latest/text",
+      "provisions": "5",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Civil Aviation (Unmanned Aircraft Levy) Act 2020",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2020A00142/latest/text",
+      "locator": "s 5 (compilation C2020A00142 from 2020-12-17)",
+      "quote": "5 Imposition of levy Unmanned aircraft levy is imposed.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Civil Aviation (Unmanned Aircraft Levy) Regulations 2021",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/F2021L01028/latest/text",
+      "locator": "s 5 (compilation F2023C00472 from 2023-05-26)",
+      "quote": "5 Amount of unmanned aircraft levy For the purposes of subsection 6(1) of the Act, the amount prescribed is: (a) for levy payable in relation to an RPA that weighs more than 500 grams—$40; and (b) for levy payable in relation to an RPA that weighs 500 gram or less—nil.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 12 (Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Civil Aviation (Unmanned Aircraft Levy) Act 2020",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates remotely piloted aircraft on which the levy is payable",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Civil Aviation (Unmanned Aircraft Levy) Act 2020",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2020A00142/latest/text",
+          "locator": "s 5 (compilation C2020A00142 from 2020-12-17)",
+          "quote": "5 Imposition of levy Unmanned aircraft levy is imposed.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Civil Aviation (Unmanned Aircraft Levy) Regulations 2021",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2021L01028/latest/text",
+          "locator": "s 5 (compilation F2023C00472 from 2023-05-26)",
+          "quote": "5 Amount of unmanned aircraft levy For the purposes of subsection 6(1) of the Act, the amount prescribed is: (a) for levy payable in relation to an RPA that weighs more than 500 grams—$40; and (b) for levy payable in relation to an RPA that weighs 500 gram or less—nil.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Who pays is set by the civil aviation regulations, not yet quoted.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "An unmanned aircraft levy is imposed; the regulations set it at $40 for a remotely piloted aircraft over 500 grams and nil for lighter ones.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A small annual levy per drone.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

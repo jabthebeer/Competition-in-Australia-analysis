@@ -1,0 +1,161 @@
+{
+  "id": "cth-gas-market-code",
+  "family": "gas-market-code",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "energy-markets",
+  "title": "Sell regulated gas at or below the reasonable price (Gas Market Code)",
+  "kind": "standard",
+  "what": "Covered gas suppliers must not supply regulated gas under agreements at prices above the Gas Market Code's reasonable price.",
+  "laws": [
+    {
+      "title": "Competition and Consumer (Gas Market Code) Regulations 2023",
+      "jurisdiction": "CTH",
+      "kind": "legislative-instrument",
+      "register_id": "F2023L00994",
+      "register_url": "https://www.legislation.gov.au/F2023L00994/latest/text",
+      "provisions": "27",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Competition and Consumer (Gas Market Code) Regulations 2023",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/F2023L00994/latest/text",
+      "locator": "s 27 (compilation F2023L00994 from 2023-07-10)",
+      "quote": "27 Agreement for supply of regulated gas—price for supplied gas exceeds reasonable price (1) A person (the supplier) contravenes this subsection if: (a) the supplier is a covered supplier; and (b) the supplier entered into an agreement for the supply of regulated gas; and (c) the supplier supplies regulated gas under the agreement; and (d) the price payable under the agreement, for that regulated gas, exceeds a reasonable price.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-accc",
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Competition and Consumer Commission",
+      "bodies": [
+        "cth-accc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Competition and Consumer Act 2010",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+          "locator": "s 51ACA (compilation C2026C00405 from 2026-09-16)",
+          "quote": "Division 2—Contravention of industry codes 51ACB Contravention of industry codes A corporation must not, in trade or commerce, contravene an applicable industry code.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Competition and Consumer Act 2010, except to the extent administered by the",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0700",
+        "2700"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it supplies regulated gas",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Competition and Consumer (Gas Market Code) Regulations 2023",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2023L00994/latest/text",
+          "locator": "s 27 (compilation F2023L00994 from 2023-07-10)",
+          "quote": "27 Agreement for supply of regulated gas—price for supplied gas exceeds reasonable price (1) A person (the supplier) contravenes this subsection if: (a) the supplier is a covered supplier; and (b) the supplier entered into an agreement for the supply of regulated gas; and (c) the supplier supplies regulated gas under the agreement; and (d) the price payable under the agreement, for that regulated gas, exceeds a reasonable price.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Marks follow the register's assessment (cth-gas-market-code-2023).",
+  "records": [
+    "cth-gas-market-code-2023"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Gas producers must not supply regulated gas under agreements at prices above the Code's reasonable price, and must negotiate in good faith.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "A binding price control in a major input market keeps prices from signalling scarcity.",
+        "positions": []
+      },
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Price controls and exemptions negotiated case by case add regulatory risk to gas supply investment.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

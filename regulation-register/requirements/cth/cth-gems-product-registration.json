@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "product-standards",
   "title": "Register and label appliances under the energy efficiency (GEMS) scheme",
   "kind": "registration",
   "what": "Products in a class covered by a GEMS determination (such as refrigerators, air conditioners and lighting) may be supplied only if they meet its energy performance and labelling requirements and are registered.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dcceew"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Greenhouse and Energy Minimum Standards Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2012A00132/latest/text",
+          "locator": "(compilation C2025C00666 from 2025-12-05)",
+          "quote": "(2B) The GEMS Regulator may, by legislative instrument, prescribe: (a) GEMS determinations for the purposes of paragraph (2A)(b);",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -121,7 +147,7 @@
     "main_driver": "burden",
     "reach": "multi-sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-07"

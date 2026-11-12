@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "maritime-and-ports",
   "title": "Hold a certificate of operation for a domestic commercial vessel",
   "kind": "licence",
   "what": "The owner of a domestic commercial vessel needs a certificate of operation from AMSA to operate it.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-amsa",
+    "cth-ditrdcsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Maritime Safety Authority",
+      "bodies": [
+        "cth-amsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Marine Safety (Domestic Commercial Vessel) National Law Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2012A00121/latest/text",
+          "locator": "s 31 (compilation C2024C00559 from 2024-10-14)",
+          "quote": "31 Issue of unique identifier (1) The National Regulator must, by written instrument, issue a unique identifier for a domestic commercial vessel if: (a) an application for the unique identifier has been made under section 30;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 12 (Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Marine Safety (Domestic Commercial Vessel) National Law Act 2012",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -100,7 +149,7 @@
     "main_driver": "entry-exit",
     "reach": "sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 10 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 10 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-10"

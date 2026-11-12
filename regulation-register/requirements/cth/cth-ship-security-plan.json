@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "maritime-and-ports",
   "title": "Operate regulated ships only with a ship security plan",
   "kind": "standard",
   "what": "A regulated Australian ship must have a ship security plan in force before it operates.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-home-affairs"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Department of Home Affairs",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Maritime Transport and Offshore Facilities Security Act 2003",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01216/latest/text",
+          "locator": "s 51 (compilation C2026C00106 from 2026-03-27)",
+          "quote": "51 Approval of maritime security plans (1) If the Secretary is satisfied that the plan adequately addresses the relevant requirements under Division 4, the Secretary must: (a) approve the plan;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -89,7 +115,7 @@
     "main_driver": "burden",
     "reach": "sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-11"

@@ -241,3 +241,45 @@ def test_every_state_family_is_recorded_or_its_gap_logged_with_what_was_searched
                 "checked_on": "2026-11-10",
             }
         )
+
+
+def test_the_commonwealth_catalogue_and_the_requirements_agree():
+    import csv
+
+    from alicia.register.catalogue import default_register_dir
+    from alicia.register.requirements import load_requirements
+
+    path = default_register_dir().parent / "data" / "processed" / "legislation" / "cth_catalogue.csv"
+    rows = list(csv.DictReader(path.open(encoding="utf-8")))
+    ids = {q.id for q in load_requirements().requirements}
+    assert {r["call"] for r in rows} <= {"", "Y", "L", "N", "P"}
+    assert all(r["reason"] for r in rows if r["call"])  # every call has a reason (methods rule 10)
+    cited = {x for r in rows for x in r["requirements"].split()}
+    assert cited <= ids, sorted(cited - ids)  # every requirement the catalogue names exists
+    called = {r["register_id"] for r in rows if r["call"] == "Y"}
+    cth = [q for q in load_requirements().requirements if q.jurisdiction == "CTH" and q.laws[0].register_id]
+    in_catalogue = {r["register_id"] for r in rows}
+    assert all(q.laws[0].register_id in called for q in cth if q.laws[0].register_id in in_catalogue)
+
+
+def test_administration_records_who_administers_and_where_it_overlaps():
+    from alicia.register.requirements import load_requirements
+
+    reqs = {q.id: q for q in load_requirements().requirements}
+    cth = [q for q in reqs.values() if q.jurisdiction == "CTH"]
+    assert sum(1 for q in cth if q.administration) >= 300  # E-148: nearly every Commonwealth requirement
+    for q in reqs.values():  # administered_by lists exactly the bodies named in administration, each sourced
+        if q.administration:
+            assert {b for a in q.administration for b in a.bodies} == set(q.administered_by), q.id
+            assert all(a.sources for a in q.administration), q.id
+    # The ACL is enforced by the ACCC and by the state and territory agencies: an overlap across tiers
+    acl = reqs["cth-acl-safety-standards"]
+    assert len(acl.overlaps()["Inspects and enforces"]) == 2
+    assert {a.tier for a in acl.administration} >= {"cth", "state"}
+    # Awards: the Commission makes them, the Ombudsman enforces them, the department administers the Act
+    award = reqs["cth-award-ma000004"]
+    assert {"cth-fwc", "cth-fwo", "cth-dewr"} <= set(award.administered_by) and not award.overlaps()
+    assert award.overlaps(business_facing=False)  # two bodies set the rules
+    # The Biosecurity Act is split between two departments in the Administrative Arrangements Order
+    bio = reqs["cth-biosecurity-import-conditions"]
+    assert {"cth-daff", "cth-dhda"} <= set(bio.administered_by)

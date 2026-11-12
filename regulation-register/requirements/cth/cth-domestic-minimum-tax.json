@@ -1,0 +1,150 @@
+{
+  "id": "cth-domestic-minimum-tax",
+  "family": "domestic-minimum-tax",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "business-and-tax-registration",
+  "title": "Pay domestic minimum tax (large multinational groups)",
+  "kind": "tax-or-levy",
+  "what": "An entity with a Domestic Top-up Tax Amount for a fiscal year pays domestic minimum tax.",
+  "laws": [
+    {
+      "title": "Taxation (Multinational—Global and Domestic Minimum Tax) Act 2024",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2024A00132",
+      "register_url": "https://www.legislation.gov.au/C2024A00132/latest/text",
+      "provisions": "8(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Taxation (Multinational—Global and Domestic Minimum Tax) Act 2024",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2024A00132/latest/text",
+      "locator": "s 8(1) (compilation C2024A00132 from 2024-12-10)",
+      "quote": "8 Liability to tax—Australian DMT tax (1) Tax is payable by an Entity for a Fiscal Year if it has one or more Domestic Top-up Tax Amounts for the Fiscal Year.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ato",
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Taxation (Multinational—Global and Domestic Minimum Tax) Act 2024",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2024A00132/latest/text",
+          "locator": "s 1 (compilation C2024A00132 from 2024-12-10)",
+          "quote": "Note: Under section 356-20 in Schedule 1 to the Taxation Administration Act 1953, the Commissioner of Taxation has the general administration of this Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Taxation (Multinational—Global and Domestic Minimum Tax) Act 2024",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Taxation (Multinational—Global and Domestic Minimum Tax) Act 2024",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2024A00132/latest/text",
+          "locator": "s 8(1) (compilation C2024A00132 from 2024-12-10)",
+          "quote": "8 Liability to tax—Australian DMT tax (1) Tax is payable by an Entity for a Fiscal Year if it has one or more Domestic Top-up Tax Amounts for the Fiscal Year.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Only members of groups within the global minimum tax rules can have a Domestic Top-up Tax Amount.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "An entity with a Domestic Top-up Tax Amount for a fiscal year pays domestic minimum tax.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Tops up the tax of large multinational groups to the minimum rate.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

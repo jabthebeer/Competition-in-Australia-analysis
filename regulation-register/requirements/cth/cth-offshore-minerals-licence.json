@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "mining-and-petroleum-titles",
   "title": "Hold a licence to explore for or recover minerals offshore",
   "kind": "licence",
   "what": "Exploring for or recovering minerals in a Commonwealth offshore area needs a licence or special purpose consent.",
@@ -32,8 +32,54 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-disr"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Joint Authority (the Commonwealth Minister and the responsible state or territory Minister)",
+      "bodies": [],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Offshore Minerals Act 1994",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04704/latest/text",
+          "locator": "s 2024 (compilation C2024C00638 from 2024-10-14)",
+          "quote": "The body that represents the Commonwealth and State Governments acting together is called the Joint Authority.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Industry, Science and Resources",
+      "bodies": [
+        "cth-disr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 11 (Department of Industry, Science and Resources), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Offshore Minerals Act 1994 Offshore Minerals (Exploration Licence Fees) Act 1981",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -89,7 +135,7 @@
     "main_driver": "entry-exit",
     "reach": "sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-11"

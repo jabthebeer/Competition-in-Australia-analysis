@@ -1,0 +1,133 @@
+{
+  "id": "act-long-service-leave",
+  "family": "long-service-leave",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Give employees long service leave",
+  "kind": "standard",
+  "what": "Give each employee long service leave (or payment in lieu) once they reach the qualifying period of service, and keep long service leave records.",
+  "laws": [
+    {
+      "title": "Long Service Leave Act 1976 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "A1976-27",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/1976-27/current/PDF/1976-27.PDF",
+      "provisions": "s 3; records duty",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Long Service Leave Act 1976 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/1976-27/current/PDF/1976-27.PDF",
+      "locator": "s 3(1) (current republication (R29, from 19 November 2025; Long Service Leave Act 1976 | Acts))",
+      "quote": "(1) An employee who has completed 7 years service with a single employer is entitled to long service leave for the period of the service.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Long Service Leave Act 1976 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/1976-27/current/PDF/1976-27.PDF",
+      "locator": "employee records, s (2) (section number to confirm) (current republication (R29, from 19 November 2025; Long Service Leave Act 1976 | Acts))",
+      "quote": "(2) An employer must keep a record made under subsection (1) for an employee—",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Registrar of long service leave (ACT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Long Service Leave Act 1976 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/1976-27/current/PDF/1976-27.PDF",
+          "locator": "s 13(1) (current republication (R29, from 19 November 2025; Long Service Leave Act 1976 | Acts))",
+          "quote": "(1) The director-general must appoint a public servant as the registrar of long service leave.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer of employees in the ACT covered by the Act.",
+      "sources": [
+        {
+          "title": "Long Service Leave Act 1976 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/1976-27/current/PDF/1976-27.PDF",
+          "locator": "s 3(1) (current republication (R29, from 19 November 2025; Long Service Leave Act 1976 | Acts))",
+          "quote": "(1) An employee who has completed 7 years service with a single employer is entitled to long service leave for the period of the service.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Entitlement after 7 years' service. The records section's number is to be confirmed.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Employers must give long service leave after a long period of service with them. The entitlement builds up with one employer and is mostly lost on moving, which ties workers to employers; it also adds record keeping.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Leave builds up with one employer and is mostly lost on moving, which discourages job changes (unlike portable schemes).",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Marked from the law's design against the framework's guide; no evaluation of state long service leave and job mobility was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

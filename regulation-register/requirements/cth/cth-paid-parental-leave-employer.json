@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "employment-law",
   "title": "Pay government-funded parental leave to eligible employees",
   "kind": "standard",
   "what": "Where an employer determination is in force, the employer receives Paid Parental Leave funds from Services Australia and pays them to the employee through its payroll.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dss",
+    "cth-fwo"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Fair Work Ombudsman",
+      "bodies": [
+        "cth-fwo"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Paid Parental Leave Act 2010",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2010A00104/latest/text",
+          "locator": "s 4 (compilation C2026C00425 from 2026-09-19)",
+          "quote": "It allows the Secretary to refer matters to the Fair Work Ombudsman for investigation if the Secretary has reason to believe that an employer has not complied with certain obligations under this Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Social Services",
+      "bodies": [
+        "cth-dss"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 14 (Department of Social Services), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Paid Parental Leave Act 2010 Paid Parental Leave Amendment (Adding Superannuation for a More Secure Retirement) Act 2024",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "first-employee",
@@ -86,7 +135,7 @@
     "main_driver": "burden",
     "reach": "economy-wide",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-11"

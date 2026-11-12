@@ -1,0 +1,127 @@
+{
+  "id": "vic-high-risk-work-licence",
+  "family": "high-risk-work-licence",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "work-health-and-safety",
+  "title": "Allow only licensed employees to do high-risk work",
+  "kind": "licence",
+  "what": "Not allow an employee to do high-risk work (such as crane or forklift operation, scaffolding, or dogging and rigging) unless the employee holds the right high-risk work licence.",
+  "laws": [
+    {
+      "title": "Occupational Health and Safety Regulations 2017 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "S.R. No. 22/2017",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/occupational-health-and-safety-regulations-2017",
+      "provisions": "r 129",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Occupational Health and Safety Regulations 2017 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/occupational-health-and-safety-regulations-2017",
+      "locator": "r 129 (S.R. No. 22/2017, authorised version 018, saved by the owner)",
+      "quote": "An employer must not allow an employee to perform high risk work unless the employee holds an appropriate high risk work licence in relation to the work.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "vic-worksafe"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "WorkSafe Victoria",
+      "bodies": [
+        "vic-worksafe"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues the high-risk work licences and enforces the duty.",
+      "sources": [
+        {
+          "title": "Summary of the OHS Act 2004: General OHS Duties",
+          "publisher": "WorkSafe Victoria",
+          "url": "https://www.worksafe.vic.gov.au/summary-ohs-act-2004-general-ohs-duties",
+          "locator": "Duties of employers to employees and contractors (section 21)",
+          "quote": "The OHS Act requires all employers to provide and maintain a working environment that is safe and without risks to health. This duty is to be met so far as is reasonably practicable.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When a worker is to do a class of high-risk work listed in the regulation's Schedule 3.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its workers do high-risk work that needs a licence (such as operating cranes or forklifts, scaffolding, or dogging and rigging)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business whose workers do licensed high-risk work, in any industry; most often construction, manufacturing, mining, transport and warehousing.",
+      "sources": [
+        {
+          "title": "Occupational Health and Safety Regulations 2017 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/occupational-health-and-safety-regulations-2017",
+          "locator": "r 129 (S.R. No. 22/2017, authorised version 018, saved by the owner)",
+          "quote": "An employer must not allow an employee to perform high risk work unless the employee holds an appropriate high risk work licence in relation to the work.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. Victoria's duty falls on employers (Victoria has not adopted the model WHS law).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A business must not let a worker do high-risk work (such as operating cranes or forklifts, scaffolding, or dogging and rigging) without seeing the worker's licence. Only licensed workers can be hired for that work.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Only licensed workers may do high-risk work, which narrows who can be hired for it.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the duty's design against the framework's guide; the safety benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

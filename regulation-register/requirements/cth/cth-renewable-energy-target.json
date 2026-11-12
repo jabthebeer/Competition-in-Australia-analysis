@@ -1,0 +1,135 @@
+{
+  "id": "cth-renewable-energy-target",
+  "family": "renewable-energy-target",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "energy-markets",
+  "title": "Surrender large-scale generation certificates or pay the shortfall charge",
+  "kind": "tax-or-levy",
+  "what": "A liable entity (mainly electricity retailers) that has a large-scale generation shortfall for a year pays the shortfall charge.",
+  "laws": [
+    {
+      "title": "Renewable Energy (Electricity) Act 2000",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00767",
+      "register_url": "https://www.legislation.gov.au/C2004A00767/latest/text",
+      "provisions": "36",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Renewable Energy (Electricity) Act 2000",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00767/latest/text",
+      "locator": "s 36 (compilation C2026C00019 from 2026-01-01)",
+      "quote": "36 Large-scale generation shortfall charge payable by liable entity (1) Subject to subsection (2), if a liable entity has a large-scale generation shortfall for a year, large-scale generation shortfall charge is payable in respect of the shortfall.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-cer"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Clean Energy Regulator",
+      "bodies": [
+        "cth-cer"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Renewable Energy (Electricity) Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00767/latest/text",
+          "locator": "s 12 (compilation C2026C00019 from 2026-01-01)",
+          "quote": "Regulator means the Clean Energy Regulator.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2640"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is a liable entity under the Act",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Renewable Energy (Electricity) Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00767/latest/text",
+          "locator": "s 36 (compilation C2026C00019 from 2026-01-01)",
+          "quote": "36 Large-scale generation shortfall charge payable by liable entity (1) Subject to subsection (2), if a liable entity has a large-scale generation shortfall for a year, large-scale generation shortfall charge is payable in respect of the shortfall.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A liable entity (mainly electricity retailers) that has a large-scale generation shortfall for a year pays the shortfall charge.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Certificate costs and shortfall charges flow into retail electricity prices.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Annual statements and certificate surrenders.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

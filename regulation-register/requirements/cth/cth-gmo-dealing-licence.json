@@ -8,7 +8,7 @@
   "regime": null,
   "title": "Hold a licence to deal with genetically modified organisms",
   "kind": "licence",
-  "what": "Dealing with a GMO needs a licence from the Gene Technology Regulator unless the dealing is exempt, notifiable or on the GMO Register.",
+  "what": "Dealing with a GMO needs a GMO licence from the Gene Technology Regulator, unless the dealing is otherwise authorised under the Act.",
   "laws": [
     {
       "title": "Gene Technology Act 2000",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dhda",
+    "cth-ogtr"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Gene Technology Regulator",
+      "bodies": [
+        "cth-ogtr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gene Technology Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00762/latest/text",
+          "locator": "s 21 (compilation C2024C00451 from 2024-10-14)",
+          "quote": "Note 1: Section 57 provides that the Regulator must not issue a licence if to do so would be inconsistent with a policy principle.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 9 (Department of Health, Disability and Ageing), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Gene Technology Act 2000 Gene Technology (Licence Charges) Act 2000",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -95,7 +144,7 @@
     "main_driver": "entry-exit",
     "reach": "multi-sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-11"

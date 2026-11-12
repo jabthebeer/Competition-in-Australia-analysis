@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "vic-lcv"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Liquor Control Victoria",
+      "bodies": [
+        "vic-lcv"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Self-paced guide: Restaurant and cafe licence",
+          "publisher": "Liquor Control Victoria",
+          "url": "https://www.vic.gov.au/sites/default/files/2026-02/restaurant-and-cafe-self-paced-guide.pdf",
+          "locator": "Restaurant and cafe licence conditions",
+          "quote": "A restaurant and cafe licence requires that the main activity of the restaurant or cafe is the preparation and serving of meals consumed on premises.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -156,7 +182,7 @@
     "main_driver": "entry-exit",
     "reach": "multi-sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-07"

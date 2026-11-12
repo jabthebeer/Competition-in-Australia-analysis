@@ -1,0 +1,133 @@
+{
+  "id": "vic-long-service-leave",
+  "family": "long-service-leave",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Give employees long service leave",
+  "kind": "standard",
+  "what": "Give each employee long service leave (or payment in lieu) once they reach the qualifying period of service, and keep long service leave records.",
+  "laws": [
+    {
+      "title": "Long Service Leave Act 2018 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "12/2018",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/long-service-leave-act-2018",
+      "provisions": "s 6; s 37",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Long Service Leave Act 2018 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/long-service-leave-act-2018",
+      "locator": "s 6 (authorised version 006, saved by the owner)",
+      "quote": "At any time after completing 7 years of continuous employment with one employer, an employee is entitled to an amount of long service leave on ordinary pay equal to 1/60th of the employee's total period of continuous employment less any period of long service leave taken during that period.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Long Service Leave Act 2018 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/long-service-leave-act-2018",
+      "locator": "s 37(2) (authorised version 006, saved by the owner)",
+      "quote": "(2) An employer must keep a long service leave record relating to an employee during the employee's period of continuous employment by the employer.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Workforce Inspectorate Victoria",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Long Service Leave Act 2018 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/long-service-leave-act-2018",
+          "locator": "s 29(1) (authorised version 006, saved by the owner)",
+          "quote": "(1) The Workforce Inspectorate Victoria may, by instrument, appoint a person employed under Part 3 of the Public Administration Act 2004 as an authorised officer for the purposes of this Act.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer of employees in Victoria covered by the Act.",
+      "sources": [
+        {
+          "title": "Long Service Leave Act 2018 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/long-service-leave-act-2018",
+          "locator": "s 6 (authorised version 006, saved by the owner)",
+          "quote": "At any time after completing 7 years of continuous employment with one employer, an employee is entitled to an amount of long service leave on ordinary pay equal to 1/60th of the employee's total period of continuous employment less any period of long service leave taken during that period.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. Entitlement after 7 years' continuous employment.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Employers must give long service leave after a long period of service with them. The entitlement builds up with one employer and is mostly lost on moving, which ties workers to employers; it also adds record keeping.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Leave builds up with one employer and is mostly lost on moving, which discourages job changes (unlike portable schemes).",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Marked from the law's design against the framework's guide; no evaluation of state long service leave and job mobility was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

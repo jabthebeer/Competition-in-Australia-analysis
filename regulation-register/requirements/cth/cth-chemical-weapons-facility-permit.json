@@ -1,0 +1,155 @@
+{
+  "id": "cth-chemical-weapons-facility-permit",
+  "family": "chemical-weapons-facility-permit",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "hazardous-chemicals-and-dangerous-goods",
+  "title": "Hold a permit for facilities producing scheduled chemicals",
+  "kind": "licence",
+  "what": "Operating a facility that produces, processes or uses certain scheduled chemicals needs a permit.",
+  "laws": [
+    {
+      "title": "Chemical Weapons (Prohibition) Act 1994",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04702",
+      "register_url": "https://www.legislation.gov.au/C2004A04702/latest/text",
+      "provisions": "16",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Chemical Weapons (Prohibition) Act 1994",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A04702/latest/text",
+      "locator": "s 16 (compilation C2024C00434 from 2024-10-14)",
+      "quote": "16 When is a permit required? (1) The operator of a facility requires a permit under this subsection to operate the facility during a particular year if Schedule 1 chemicals (other than excluded Schedule 1 chemicals) are likely to be produced, acquired, retained or used at, or transferred from, the facility during the year.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-asno",
+    "cth-dfat"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Safeguards and Non-Proliferation Office",
+      "bodies": [
+        "cth-asno"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Chemical Weapons (Prohibition) Act 1994",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04702/latest/text",
+          "locator": "s 8A (compilation C2024C00434 from 2024-10-14)",
+          "quote": "8A Electronic lodgment The Director may require or permit an application, notice or report that is to be given to the Controller or Director for the purposes of this Act to be given, in accordance with specified software requirements and specified authentication requirements: (a) on a specified kind of data storage device;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Foreign Affairs and Trade",
+      "bodies": [
+        "cth-dfat"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 8 (Department of Foreign Affairs and Trade), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Chemical Weapons (Prohibition) Act 1994 Civil Nuclear Transfers to India Act 2016",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1812",
+        "1813",
+        "1841",
+        "1891"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a facility that needs a permit under s 16",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Chemical Weapons (Prohibition) Act 1994",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04702/latest/text",
+          "locator": "s 16 (compilation C2024C00434 from 2024-10-14)",
+          "quote": "16 When is a permit required? (1) The operator of a facility requires a permit under this subsection to operate the facility during a particular year if Schedule 1 chemicals (other than excluded Schedule 1 chemicals) are likely to be produced, acquired, retained or used at, or transferred from, the facility during the year.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Operating a facility that produces, processes or uses certain scheduled chemicals needs a permit.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A permit is needed to operate the facility.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

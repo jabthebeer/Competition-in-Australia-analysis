@@ -1,0 +1,129 @@
+{
+  "id": "cth-pathology-collection-centre-tax",
+  "family": "pathology-collection-centre-tax",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "health-practitioners-and-facilities",
+  "title": "Pay the tax on approval of a pathology specimen collection centre",
+  "kind": "tax-or-levy",
+  "what": "A tax is imposed on the grant of an approval for a pathology specimen collection centre.",
+  "laws": [
+    {
+      "title": "Health Insurance (Approved Pathology Specimen Collection Centres) Tax Act 2000",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00727",
+      "register_url": "https://www.legislation.gov.au/C2004A00727/latest/text",
+      "provisions": "5(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Health Insurance (Approved Pathology Specimen Collection Centres) Tax Act 2000",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00727/latest/text",
+      "locator": "s 5(1) (compilation C2018C00480 from 2018-12-01)",
+      "quote": "5 Imposition of tax (1) A tax is imposed on the grant of an approval.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-dhda"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 9 (Department of Health, Disability and Ageing), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Health Insurance (Approved Pathology Specimen Collection Centres) Tax Act 2000",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8520"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates approved pathology specimen collection centres",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Insurance (Approved Pathology Specimen Collection Centres) Tax Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00727/latest/text",
+          "locator": "s 5(1) (compilation C2018C00480 from 2018-12-01)",
+          "quote": "5 Imposition of tax (1) A tax is imposed on the grant of an approval.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A tax is imposed on the grant of an approval for a pathology specimen collection centre.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A tax on each collection centre approval.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "aviation",
   "title": "Hold an air operator's certificate (AOC)",
   "kind": "licence",
   "what": "Aircraft may fly into, out of or within Australian territory in commercial operations only as authorised by an AOC from CASA (or a New Zealand AOC with ANZA privileges, or a CASA permission).",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-casa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Civil Aviation Safety Authority",
+      "bodies": [
+        "cth-casa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Civil Aviation Act 1988",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03656/latest/text",
+          "locator": "s 25 (compilation C2024C00556 from 2024-10-14)",
+          "quote": "(4) If a person applies to CASA for a permission under subsection (2) or (3), CASA must grant the permission if CASA is satisfied that the person has complied with, or is capable of complying with: (a) if the person does not have a commercial presence in Australia—the condition referred to in paragraph (5)(a) (if applicable);",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",
@@ -94,7 +120,7 @@
     "main_driver": "entry-exit",
     "reach": "narrow",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 7 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-07"

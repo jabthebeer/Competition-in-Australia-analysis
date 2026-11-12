@@ -1,5 +1,96 @@
 {
   "$defs": {
+    "Administration": {
+      "additionalProperties": false,
+      "description": "One body's part in administering a requirement: it sets the rules, licenses, approves, inspects and enforces,\ncollects, or funds. A requirement with several entries is administered by several bodies; two or more bodies\nwith the same function is an overlap (``Requirement.overlaps``), the measure of regulatory complexity the\nregister records (DECISIONS E-148).",
+      "properties": {
+        "function": {
+          "enum": [
+            "sets-rules",
+            "licenses",
+            "approves",
+            "inspects",
+            "collects",
+            "funds"
+          ],
+          "title": "Function",
+          "type": "string"
+        },
+        "who": {
+          "description": "Plain English: which body, e.g. 'State and territory fair trading agencies'",
+          "minLength": 1,
+          "title": "Who",
+          "type": "string"
+        },
+        "bodies": {
+          "default": [],
+          "description": "Bodies in bodies.json; empty for a class of bodies not listed one by one",
+          "items": {
+            "type": "string"
+          },
+          "title": "Bodies",
+          "type": "array"
+        },
+        "tier": {
+          "enum": [
+            "cth",
+            "state",
+            "local"
+          ],
+          "title": "Tier",
+          "type": "string"
+        },
+        "jurisdictions": {
+          "default": [],
+          "description": "Where it acts; empty means everywhere the requirement applies",
+          "items": {
+            "enum": [
+              "CTH",
+              "NSW",
+              "VIC",
+              "QLD",
+              "WA",
+              "SA",
+              "TAS",
+              "ACT",
+              "NT"
+            ],
+            "type": "string"
+          },
+          "title": "Jurisdictions",
+          "type": "array"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "sources": {
+          "description": "Where the body's part comes from, quoted",
+          "items": {
+            "$ref": "#/$defs/Source"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        }
+      },
+      "required": [
+        "function",
+        "who",
+        "tier",
+        "sources"
+      ],
+      "title": "Administration",
+      "type": "object"
+    },
     "DriverMark": {
       "additionalProperties": false,
       "description": "One driver's mark: -2 (major harm) to +2 (major gain). Drivers left out are marked 0.",
@@ -737,6 +828,15 @@
       "default": false,
       "title": "Administered By Councils",
       "type": "boolean"
+    },
+    "administration": {
+      "default": [],
+      "description": "Each body's part, with its source; several entries record shared or overlapping administration",
+      "items": {
+        "$ref": "#/$defs/Administration"
+      },
+      "title": "Administration",
+      "type": "array"
     },
     "triggers": {
       "items": {

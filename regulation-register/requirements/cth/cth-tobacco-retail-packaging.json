@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "tobacco-and-vapes",
   "title": "Sell tobacco products only in compliant retail packaging",
   "kind": "standard",
   "what": "Tobacco products held or sold in retail packaging must meet the tobacco product requirements (plain packaging and health warnings).",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dhda"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health (Tobacco and Other Products) Act 2023",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2023A00118/latest/text",
+          "locator": "s 4 (compilation C2025C00521 from 2025-09-05)",
+          "quote": "Certain persons are subject to obligations under this Act to report to the Secretary on a variety of matters including the ingredients used in tobacco products, volumes of sales and imports and marketing and promotional expenditure.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -116,7 +142,7 @@
     "main_driver": "competition",
     "reach": "multi-sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-11"

@@ -1,0 +1,136 @@
+{
+  "id": "nsw-land-tax",
+  "family": "land-tax",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay land tax",
+  "kind": "tax-or-levy",
+  "what": "Pay land tax each year on taxable land the business owns in the state, above any tax-free threshold.",
+  "laws": [
+    {
+      "title": "Land Tax Management Act 1956 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1956-026",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-1956-026",
+      "provisions": "s 9",
+      "applied": false
+    },
+    {
+      "title": "Land Tax Act 1956 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1956-027",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-1956-027",
+      "provisions": "s 3A (rates)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Land Tax Management Act 1956 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-1956-026",
+      "locator": "s 9(1) (version of 2024-12-02)",
+      "quote": "(1) Land tax is payable by the owner of land on the taxable value of all the land owned by that owner which is not exempt from taxation under this Act.",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-12-02/act-1956-026"
+    }
+  ],
+  "administered_by": [
+    "nsw-revenue"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Revenue NSW (Chief Commissioner of State Revenue)",
+      "bodies": [
+        "nsw-revenue"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Land Tax Management Act 1956 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-1956-026",
+          "locator": "s 3(1), definition of Chief Commissioner (version of 2024-12-02)",
+          "quote": "Chief Commissioner means the Chief Commissioner of State Revenue referred to in section 60 of the Taxation Administration Act 1996.",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-02/act-1956-026"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Each year, on land owned at the date set by the law. Most owners pay only above a tax-free threshold, which differs by state and by owner (individual, company or trust); thresholds are not yet quoted.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns land in NSW that is not exempt",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business that owns taxable land in the state; exemptions (such as a home or primary production land) are not yet recorded.",
+      "sources": [
+        {
+          "title": "Land Tax Management Act 1956 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-1956-026",
+          "locator": "s 9(1) (version of 2024-12-02)",
+          "quote": "(1) Land tax is payable by the owner of land on the taxable value of all the land owned by that owner which is not exempt from taxation under this Act.",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-02/act-1956-026"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "An annual tax on the value of land owned, with exemptions and a tax-free threshold. A tax on land value distorts little in principle, but thresholds, exemptions and rates that rise with total holdings narrow the base and change who holds land and how.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Exemptions, thresholds and rates that rise with total holdings narrow the base and tax owners unevenly, so land use and ownership respond to the tax.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Marked from the tax's design against the framework's guide; the size of the effect varies by state and was not measured.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

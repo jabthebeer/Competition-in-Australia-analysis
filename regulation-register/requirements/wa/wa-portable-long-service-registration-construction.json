@@ -8,7 +8,7 @@
   "regime": null,
   "title": "Register with the construction industry long service scheme",
   "kind": "registration",
-  "what": "Register with the state's portable long service leave scheme and report eligible construction workers' service.",
+  "what": "Register with the scheme as an employer of workers covered by the state or territory's portable long service leave scheme.",
   "laws": [
     {
       "title": "Construction Industry Portable Paid Long Service Leave Act 1985 (WA)",
@@ -34,6 +34,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "MyLeave (Construction Industry Long Service Leave Payments Board)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Construction Industry Portable Paid Long Service Leave Act 1985 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49165.docx",
+          "locator": "s 7, words naming the body (found 12 Nov 2026)",
+          "quote": "Board means the Construction Industry Long Service Leave Payments Board established under section 5;",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "first-employee",
@@ -90,7 +112,7 @@
     "33246"
   ],
   "assessment": {
-    "summary": "Employers must register with the industry's portable long service leave scheme, report workers' service and pay a levy.",
+    "summary": "Employers in a covered industry must register with its portable long service leave scheme.",
     "marks": [
       {
         "driver": "labour",
@@ -108,7 +130,7 @@
     "main_driver": "labour",
     "reach": "narrow",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-07"

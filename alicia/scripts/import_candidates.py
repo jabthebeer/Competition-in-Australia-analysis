@@ -18,7 +18,7 @@ from alicia.register.schema import ChangeRecord
 
 NOTE = (
     "Drafted by AI-assisted desk research on 14-15 October 2026 from the sources cited. "
-    "Not yet checked by a person: verify dates, industries and the direction hypothesis before use."
+    "Not yet checked: verify dates, industries and the direction hypothesis before use."
 )
 
 

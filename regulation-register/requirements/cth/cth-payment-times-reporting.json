@@ -1,0 +1,158 @@
+{
+  "id": "cth-payment-times-reporting",
+  "family": "payment-times-reporting",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Report payment times to small business suppliers",
+  "kind": "reporting",
+  "what": "A reporting entity (a large business under the Act) must give the Regulator a payment times report for each reporting period.",
+  "laws": [
+    {
+      "title": "Payment Times Reporting Act 2020",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2020A00091",
+      "register_url": "https://www.legislation.gov.au/C2020A00091/latest/text",
+      "provisions": "12(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Payment Times Reporting Act 2020",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2020A00091/latest/text",
+      "locator": "s 12(1) (compilation C2025C00133 from 2025-02-21)",
+      "quote": "A reporting entity must give the Regulator a payment times report for each reporting period for the entity.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ptrr",
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Payment Times Reporting Regulator",
+      "bodies": [
+        "cth-ptrr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Payment Times Reporting Act 2020",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2020A00091/latest/text",
+          "locator": "s 4 (compilation C2025C00133 from 2025-02-21)",
+          "quote": "A reporting entity or reporting nominee must give regular reports to the Payment Times Reporting Regulator.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Payment Times Reporting Act 2020 Personal Property Securities Act 2009",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Payment Times Reporting Act 2020",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2020A00091/latest/text",
+          "locator": "s 12(1) (compilation C2025C00133 from 2025-02-21)",
+          "quote": "A reporting entity must give the Regulator a payment times report for each reporting period for the entity.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Which businesses are reporting entities is set by the Act's definitions, not yet quoted.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A reporting entity (a large business under the Act) must give the Regulator a payment times report for each reporting period.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Six-monthly reports for large businesses.",
+        "positions": [
+          "dominant"
+        ]
+      },
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Public payment times help small suppliers choose and pressure slow payers.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

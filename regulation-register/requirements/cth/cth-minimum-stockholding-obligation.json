@@ -1,0 +1,136 @@
+{
+  "id": "cth-minimum-stockholding-obligation",
+  "family": "minimum-stockholding-obligation",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "fuel-retailing",
+  "title": "Hold minimum fuel stocks",
+  "kind": "standard",
+  "what": "Entities subject to the minimum stockholding obligation must hold the required stocks of key fuels in Australia.",
+  "laws": [
+    {
+      "title": "Fuel Security Act 2021",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2021A00065",
+      "register_url": "https://www.legislation.gov.au/C2021A00065/latest/text",
+      "provisions": "7",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fuel Security Act 2021",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2021A00065/latest/text",
+      "locator": "s 7 (compilation C2025C00689 from 2025-12-05)",
+      "quote": "7 Minimum stockholding obligation An entity that is subject to the minimum stockholding obligation in relation to an MSO product on an obligation day must hold at least the quantity of stocks of the product designated for the entity on that day.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-dcceew"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fuel Security Act 2021",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2021A00065/latest/text",
+          "locator": "s 6 (compilation C2025C00689 from 2025-12-05)",
+          "quote": "In deciding the target, the Minister must have regard to the emergency reserve commitment within the meaning of Article 2 of the International Energy Agreement (among other matters).",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1701",
+        "3321"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is subject to the minimum stockholding obligation",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fuel Security Act 2021",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2021A00065/latest/text",
+          "locator": "s 7 (compilation C2025C00689 from 2025-12-05)",
+          "quote": "7 Minimum stockholding obligation An entity that is subject to the minimum stockholding obligation in relation to an MSO product on an obligation day must hold at least the quantity of stocks of the product designated for the entity on that day.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Entities subject to the minimum stockholding obligation must hold the required stocks of key fuels in Australia.",
+    "marks": [
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Capital tied up in fuel stocks.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Reporting and compliance plans.",
+        "positions": []
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "id": "vic-hazardous-chemicals-manifest",
+  "family": "hazardous-chemicals-manifest",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "hazardous-chemicals-and-dangerous-goods",
+  "title": "Notify WorkSafe of dangerous goods above notifiable quantities",
+  "kind": "notification",
+  "what": "Make sure WorkSafe Victoria is notified when dangerous goods above the notifiable quantities in Schedule 2 are stored or handled at the premises.",
+  "laws": [
+    {
+      "title": "Dangerous Goods (Storage and Handling) Regulations 2022 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "S.R. No. 115/2022",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/dangerous-goods-storage-and-handling-regulations-2022",
+      "provisions": "r 64",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dangerous Goods (Storage and Handling) Regulations 2022 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/dangerous-goods-storage-and-handling-regulations-2022",
+      "locator": "r 64(1) (S.R. No. 115/2022, authorised version unnumbered, saved by the owner)",
+      "quote": "(1) An occupier of premises where notifiable goods are present must ensure that the Authority is provided with a notification of the presence of those goods that complies with subregulation (2).",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Dangerous Goods (Storage and Handling) Regulations 2022 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/dangerous-goods-storage-and-handling-regulations-2022",
+      "locator": "r 5, definition of notifiable goods (S.R. No. 115/2022, authorised version unnumbered, saved by the owner)",
+      "quote": "notifiable goods means dangerous goods that are stored and handled in quantities that exceed the relevant quantities specified in column 5 in the table in Schedule 2",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "vic-worksafe"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "WorkSafe Victoria",
+      "bodies": [
+        "vic-worksafe"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Receives the notification and enforces the duty.",
+      "sources": [
+        {
+          "title": "Summary of the OHS Act 2004: General OHS Duties",
+          "publisher": "WorkSafe Victoria",
+          "url": "https://www.worksafe.vic.gov.au/summary-ohs-act-2004-general-ohs-duties",
+          "locator": "Duties of employers to employees and contractors (section 21)",
+          "quote": "The OHS Act requires all employers to provide and maintain a working environment that is safe and without risks to health. This duty is to be met so far as is reasonably practicable.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When dangerous goods stored and handled at the premises exceed the notifiable quantities (Schedule 2, column 5).",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it stores or handles dangerous goods above the notifiable quantities",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business that holds hazardous chemicals above the manifest quantities, in any industry; most often chemical manufacturing, fuel, mining, agriculture and warehousing.",
+      "sources": [
+        {
+          "title": "Dangerous Goods (Storage and Handling) Regulations 2022 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/dangerous-goods-storage-and-handling-regulations-2022",
+          "locator": "r 64(1) (S.R. No. 115/2022, authorised version unnumbered, saved by the owner)",
+          "quote": "(1) An occupier of premises where notifiable goods are present must ensure that the Authority is provided with a notification of the presence of those goods that complies with subregulation (2).",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. Victoria regulates these under its Dangerous Goods Act 1985 and its own regulations, not the model WHS law; the copy the owner saved carries no version number.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A business storing or handling hazardous chemicals above set (manifest) quantities must tell the work safety regulator, or in WA license the site. It adds paperwork, and in WA a licence and fee, for larger stores.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Notice to the regulator (in WA, a site licence) adds paperwork and cost for sites holding large quantities.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the duty's design against the framework's guide; the safety benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

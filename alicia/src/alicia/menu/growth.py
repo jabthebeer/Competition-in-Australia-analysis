@@ -97,7 +97,8 @@ LANDING = (
             {
                 "href": LENS_PAGE[0],
                 "name": LENS_PAGE[1],
-                "text": "The laws a business in one industry faces in each state, and how each affects competition.",
+                "text": "One industry's regulatory pain points, overlapping rules and laws in each state, and how each "
+                "affects competition.",
             },
             {
                 "href": OVERVIEW_PAGE[0],

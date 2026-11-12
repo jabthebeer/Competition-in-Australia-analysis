@@ -33,9 +33,86 @@
     }
   ],
   "administered_by": [
-    "cth-accc"
+    "cth-accc",
+    "cth-treasury"
   ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Competition and Consumer Commission",
+      "bodies": [
+        "cth-accc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Competition and Consumer Act 2010",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+          "locator": "s 51ACD (compilation C2026C00405 from 2026-09-16)",
+          "quote": "(2) The Commission must not issue more than one infringement notice to the person for the same alleged contravention of the civil penalty provision of the industry code.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "inspects",
+      "who": "State and territory consumer protection agencies (fair trading offices)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Competition and Consumer Act 2010",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+          "locator": "s 139G (compilation C2026C00405 from 2026-09-16)",
+          "quote": "Part XIAA—Application of the Australian Consumer Law as a law of a State or Territory 140 Definitions In this Part: application law means: (a) a law of a participating jurisdiction that applies the applied Australian Consumer Law, either with or without modifications, as a law of the participating jurisdiction;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Where to go for consumer help",
+          "publisher": "Australian Competition and Consumer Commission",
+          "url": "https://www.accc.gov.au/consumers/problem-with-a-product-or-service-you-bought/where-to-go-for-consumer-help",
+          "locator": "Local consumer protection agencies",
+          "quote": "Local consumer protection agencies You can speak with your local state and territory consumer protection agency.",
+          "accessed": "2026-11-12",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Competition and Consumer Act 2010, except to the extent administered by the",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -88,7 +165,7 @@
     "main_driver": "burden",
     "reach": "narrow",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-07"

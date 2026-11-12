@@ -36,6 +36,30 @@
     "vic-worksafe"
   ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "WorkSafe Victoria",
+      "bodies": [
+        "vic-worksafe"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Do I need to register for WorkCover insurance?",
+          "publisher": "WorkSafe Victoria",
+          "url": "https://www.worksafe.vic.gov.au/do-i-need-register-workcover-insurance",
+          "locator": "When you must register",
+          "quote": "Generally, you must register for WorkCover insurance if you or your company employs any workers in Victoria.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "payroll",
@@ -99,7 +123,7 @@
     "main_driver": "burden",
     "reach": "economy-wide",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-07"

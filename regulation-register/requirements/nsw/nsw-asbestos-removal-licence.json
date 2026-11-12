@@ -1,0 +1,137 @@
+{
+  "id": "nsw-asbestos-removal-licence",
+  "family": "asbestos-removal-licence",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "work-health-and-safety",
+  "title": "Hold an asbestos removal licence",
+  "kind": "licence",
+  "what": "Hold a class A licence to remove friable asbestos, and a class A or B licence to remove more than 10 square metres of non-friable asbestos.",
+  "laws": [
+    {
+      "title": "Work Health and Safety Regulation 2017 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "sl-2017-0404",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-03-01/sl-2017-0404",
+      "provisions": "rr 485, 487",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Work Health and Safety Regulation 2017 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-03-01/sl-2017-0404",
+      "locator": "cl 485(1) (version of 2025-03-01)",
+      "quote": "(1) A person must not carry out the removal of the following at a workplace unless the person, or the person on whose behalf the work is carried out, holds a Class A asbestos removal licence— (a) friable asbestos,",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2025-03-01/sl-2017-0404"
+    },
+    {
+      "title": "Work Health and Safety Regulation 2017 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-03-01/sl-2017-0404",
+      "locator": "cl 487(1) (version of 2025-03-01)",
+      "quote": "(1) A person must not carry out the removal of the following at a workplace unless the person, or the person on whose behalf the work is carried out, holds a Class B asbestos removal licence or a Class A asbestos removal licence— (a) more than 10 square metres of non-friable asbestos or ACM,",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2025-03-01/sl-2017-0404"
+    }
+  ],
+  "administered_by": [
+    "nsw-safework"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "SafeWork NSW",
+      "bodies": [
+        "nsw-safework"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues asbestos removal licences and enforces the duty.",
+      "sources": [
+        {
+          "title": "Work Health and Safety Act 2011 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-03-02/act-2011-010",
+          "locator": "s 4, words naming the body (found 12 Nov 2026)",
+          "quote": "regulator means— (a) in the case of SafeWork NSW—a person employed in the Department of Customer Service, or (b) in the case of the Secretary of the Department of Regional NSW—a person employed in that Department.",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2025-03-02/act-2011-010"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the business removes friable asbestos, or more than 10 square metres of non-friable asbestos.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it removes asbestos (friable, or more than 10 square metres of non-friable)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business that removes asbestos; mostly demolition, construction trades and specialist asbestos removalists.",
+      "sources": [
+        {
+          "title": "Work Health and Safety Regulation 2017 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-03-01/sl-2017-0404",
+          "locator": "cl 485(1) (version of 2025-03-01)",
+          "quote": "(1) A person must not carry out the removal of the following at a workplace unless the person, or the person on whose behalf the work is carried out, holds a Class A asbestos removal licence— (a) friable asbestos,",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2025-03-01/sl-2017-0404"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Removing friable asbestos, or more than 10 square metres of non-friable asbestos, needs a class A or class B asbestos removal licence held by the business doing it.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, with qualified supervisors and set procedures, is needed before a business can take on asbestos removal work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; the health benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

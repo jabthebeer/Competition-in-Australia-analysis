@@ -15,8 +15,10 @@ Matching ignores differences in whitespace only. Exit status 1 if any quote is n
 
 from __future__ import annotations
 
+import csv
 import hashlib
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -28,6 +30,27 @@ import law_text  # noqa: E402
 from alicia.register.requirements import load_requirements  # noqa: E402
 
 FRL = re.compile(r"^https://www\.legislation\.gov\.au/([CF]\d{4}[A-Z]\d{5})/")
+
+
+VIC = re.compile(r"https://www\.legislation\.vic\.gov\.au/in-force/(acts|statutory-rules)/")
+VIC_DIR = Path(__file__).resolve().parents[2] / "data" / "raw" / "vic_legislation"
+VIC_CATALOGUE = Path(__file__).resolve().parents[2] / "data" / "processed" / "legislation" / "vic_catalogue.csv"
+
+
+def vic_pdf(url: str, locator: str) -> Path | None:
+    """The authorised PDF the owner saved for a Victorian Act or statutory rule (data/raw/vic_legislation/), by its
+    number and the authorised version named in the locator; Victoria's register disallows fetching its documents."""
+    with VIC_CATALOGUE.open(encoding="utf-8", newline="") as fh:
+        rid = next((r["register_id"] for r in csv.DictReader(fh) if r["url"] == url), "")
+    v = re.search(r"authorised version (\d+|unnumbered)", locator)
+    if not v:
+        return None
+    ver = "" if v.group(1) == "unnumbered" else v.group(1)
+    if m := re.match(r"(\d+)/(\d{4})$", rid):
+        return next(VIC_DIR.glob(f"{m.group(2)[2:]}-{m.group(1)}aa{ver}*.pdf"), None)
+    if m := re.search(r"S\.R\. No\. (\d+)/(\d{4})", locator):
+        return next(VIC_DIR.glob(f"{m.group(2)[2:]}-{m.group(1)}sra{ver}*.pdf"), None)
+    return None
 
 
 def norm(s: str) -> str:
@@ -42,7 +65,12 @@ def main(refresh: bool = False) -> int:
     texts: dict[str, str] = {}
     found = missing = unchecked = 0
     for q in reqs.requirements:
-        sources = [*q.sources, *(s for t in q.triggers for s in t.sources), *(s for r in q.reach for s in r.sources)]
+        sources = [
+            *q.sources,
+            *(s for t in q.triggers for s in t.sources),
+            *(s for r in q.reach for s in r.sources),
+            *(s for a in q.administration for s in a.sources),
+        ]
         for s in sources:
             url = str(s.url)
             if s.checked == "register-text" and (m := FRL.match(url)):
@@ -52,6 +80,16 @@ def main(refresh: bool = False) -> int:
                         for ext in ("txt", "json"):
                             (law_text.CACHE / f"{key}.{ext}").unlink(missing_ok=True)
                     texts[key] = norm(law_text.frl_latest(m.group(1))[0])
+            elif s.checked == "document" and VIC.match(url):
+                pdf = vic_pdf(url, s.locator or "")
+                if pdf is None:  # the owner's saved PDFs are not committed; another machine may not have them
+                    unchecked += 1
+                    print(f"not checked: {q.id}: Victorian PDF not found locally for {url}")
+                    continue
+                key = f"vic-{pdf.name}"
+                if key not in texts:
+                    out = subprocess.run(["pdftotext", str(pdf), "-"], capture_output=True, text=True, check=True)
+                    texts[key] = norm(out.stdout)
             elif s.checked in ("register-text", "document"):
                 key = "doc-" + hashlib.sha256(url.encode()).hexdigest()[:16]
                 if key not in texts:

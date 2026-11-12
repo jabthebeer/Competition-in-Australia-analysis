@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-oric",
+    "cth-pmc"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Office of the Registrar of Indigenous Corporations",
+      "bodies": [
+        "cth-oric"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Corporations (Aboriginal and Torres Strait Islander) Act 2006",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2006A00124/latest/text",
+          "locator": "s 6-5 (compilation C2025C00681 from 2025-12-05)",
+          "quote": "(2) There are a number of registration requirements that must be met before the Registrar may register an Aboriginal and Torres Strait Islander corporation.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Prime Minister and Cabinet",
+      "bodies": [
+        "cth-pmc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 13 (Department of the Prime Minister and Cabinet), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Corporations (Aboriginal and Torres Strait Islander) Act 2006",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",
@@ -86,7 +135,7 @@
     "main_driver": "burden",
     "reach": "multi-sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-11"

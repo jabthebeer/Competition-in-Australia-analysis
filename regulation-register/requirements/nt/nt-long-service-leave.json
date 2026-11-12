@@ -1,0 +1,102 @@
+{
+  "id": "nt-long-service-leave",
+  "family": "long-service-leave",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Give employees long service leave",
+  "kind": "standard",
+  "what": "Give each employee long service leave (or payment in lieu) once they reach the qualifying period of service, and keep long service leave records.",
+  "laws": [
+    {
+      "title": "Long Service Leave Act 1981 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11975",
+      "provisions": "Long service leave entitlement",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Long Service Leave Act 1981 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11975",
+      "locator": "Long service leave entitlement, subs (1) (current reprint)",
+      "quote": "(1) Subject to this Act, where an employee has been employed by an employer for not less than 10 years continuous service, the employee is entitled to long service leave, on pay calculated under section 11, for a period of 1.3 weeks for each completed year of continuous service with the employer.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer of employees in the NT covered by the Act.",
+      "sources": [
+        {
+          "title": "Long Service Leave Act 1981 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11975",
+          "locator": "Long service leave entitlement, subs (1) (current reprint)",
+          "quote": "(1) Subject to this Act, where an employee has been employed by an employer for not less than 10 years continuous service, the employee is entitled to long service leave, on pay calculated under section 11, for a period of 1.3 weeks for each completed year of continuous service with the employer.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Section numbers are lost in the register PDF's text, so the locator uses the heading. The Act names no regulator; its offences are prosecuted in the courts. Record-keeping duties not found.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Employers must give long service leave after a long period of service with them. The entitlement builds up with one employer and is mostly lost on moving, which ties workers to employers; it also adds record keeping.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Leave builds up with one employer and is mostly lost on moving, which discourages job changes (unlike portable schemes).",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Marked from the law's design against the framework's guide; no evaluation of state long service leave and job mobility was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "pharmacy",
   "title": "Get approval to supply PBS medicines at the premises",
   "kind": "approval",
   "what": "A pharmacist needs the Secretary's approval to supply pharmaceutical benefits at particular premises; approvals are granted under the pharmacy location rules.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dhda"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Health Act 1953",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1953A00095/latest/text",
+          "locator": "s 90 (compilation C2026C00410 from 2026-09-19)",
+          "quote": "(3) Subject to this section, where an approved pharmacist desires to supply pharmaceutical benefits at premises other than premises in respect of which approval has been granted, the Secretary may on application by the approved pharmacist, grant approval in respect of those other premises.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

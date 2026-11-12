@@ -255,3 +255,26 @@ def test_items_assessed_as_economy_wide_reach_every_industry_on_the_lens():
     rows = {r["id"]: r for r in p["rows"]}
     assert rows["nsw-insurance-duty"].get("economyWide") and rows["nsw-planning-zoning"].get("economyWide")
     assert not rows["cth-pharmacy-location-rules"].get("economyWide")
+
+
+def test_the_page_leads_with_pain_points_and_overlap_and_names_who_administers_each_law():
+    # Owner, 12 November 2026 (DECISIONS E-150): no lede; pain points, regulatory overlap, the industry's own laws and
+    # the across-states view come before the framework table and the market figures.
+    html = growth.render(lens.PAGE[0], lens.payload(load_records().records), lens.PAGE[0], standalone=True)
+    assert 'class="lede"' not in html and 'class="toc"' in html
+    order = ["h-pain", "h-overlap", "h-laws", "h-states", "h-table", "h-market"]
+    at = [html.index(f'<h2 id="{i}">') for i in order]
+    assert at == sorted(at)
+    p = lens.payload(load_records().records)
+    rows = {r["id"]: r for r in p["rows"]}
+    food = rows["nsw-food-business-registration"]
+    assert food["family"] == "food-business-registration" and food["regime"] == "food-safety"
+    assert {a["who"] for a in food["admin"]} == {"NSW Food Authority", "Local councils"}
+    assert food["overlap"] == {"Licenses, registers or accredits": ["NSW Food Authority", "Local councils"]}
+    assert food["stages"] == ["start"]
+    assert "overlap" not in rows["cth-gst-registration"]  # no overlap is dropped, not kept as an empty object
+    regimes = {g["id"]: g for g in p["regimes"]}
+    assert regimes["food-safety"]["issues"] and all(i["pub"] and i["quote"] for i in regimes["food-safety"]["issues"])
+    assert all(i["status"] != "addressed" for g in p["regimes"] for i in g.get("issues", []))
+    assert p["gaps"]["home-warranty-insurance"]["VIC"] == "blocked"
+    assert set(p["businessFacing"]) < set(p["functions"])

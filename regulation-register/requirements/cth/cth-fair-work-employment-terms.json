@@ -42,8 +42,80 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dewr",
+    "cth-fwc",
+    "cth-fwo"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Fair Work Ombudsman",
+      "bodies": [
+        "cth-fwo"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Work Act 2009",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+          "locator": "s 682 (compilation C2026C00355 from 2026-07-07)",
+          "quote": "682 Functions of the Fair Work Ombudsman (1) The Fair Work Ombudsman has the following functions: (a) to promote: (i) harmonious, productive and cooperative workplace relations; and (ii) compliance with this Act and fair work instruments;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Fair Work Commission",
+      "bodies": [
+        "cth-fwc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Work Act 2009",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+          "locator": "s 134 (compilation C2026C00355 from 2026-07-07)",
+          "quote": "Division 2—Overarching provisions 134 The modern awards objective What is the modern awards objective? (1) The FWC must ensure that modern awards, together with the National Employment Standards, provide a fair and relevant minimum safety net of terms and conditions, taking into account: (a) relative living standards and the needs of the low paid;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Employment and Workplace Relations",
+      "bodies": [
+        "cth-dewr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 6 (Department of Employment and Workplace Relations), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Fair Work Act 2009, except to the extent administered by the",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "first-employee",
@@ -132,7 +204,7 @@
     "main_driver": "burden",
     "reach": "economy-wide",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-07"

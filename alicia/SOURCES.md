@@ -43,7 +43,7 @@ The WA trading-hours dates were checked against the WA register's *Retail Tradin
 
 ## Register records
 
-Every date in `regulation-register/records/*.json` carries its own source URL. The records were drafted by AI-assisted desk research on 14–15 October 2026 from official registers, gazettes, government and regulator pages, and published research. They have not yet been reviewed by a person (`review.status = "draft"`).
+Every date in `regulation-register/records/*.json` carries its own source URL. The records were drafted by AI-assisted desk research on 14–15 October 2026 from official registers, gazettes, government and regulator pages, and published research. They have not yet been checked (`review.status = "draft"`).
 
 ## Research behind the design documents
 

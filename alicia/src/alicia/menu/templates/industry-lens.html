@@ -122,6 +122,66 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
 .mk-legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -2px; margin-right: 5px; }
 .mk-legend .ln { display: inline-block; width: 16px; height: 0; border-top: 2px solid; vertical-align: 3px; margin-right: 5px; }
 .mk-legend .ln.dash { border-top-style: dashed; }
+/* Summary strip: reuses .tiles; the first tile leads. */
+.tiles.summary { grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); margin: 0; }
+.tiles.summary .tile { background: var(--surface); }
+.tiles.summary .tile.lead { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.tierbar { display: flex; height: 8px; border-radius: 999px; overflow: hidden; margin: 6px 0 2px; background: var(--line); }
+.tierbar span { display: block; height: 100%; }
+/* Flags: the kind of pain point. Colour is backed by the word. */
+.flag { display: inline-block; font-size: var(--step--1); font-weight: 600; line-height: 1.4; border-radius: 999px; padding: 0 9px; border: 1px solid var(--line-strong); color: var(--ink-2); background: var(--surface); white-space: nowrap; }
+.flag.dup { border-color: var(--bad); color: var(--bad); background: var(--bad-soft); }
+.flag.var { border-color: var(--warn-ink); color: var(--warn-ink); background: var(--warn-soft); }
+.flag.multi { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+/* Pain-point cards: one per problem, ranked. */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 12px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.card h3 { font-size: var(--step-0); font-family: var(--font-body); font-weight: 600; }
+.card .rank { font-family: var(--font-mono); font-size: var(--step--1); color: var(--ink-3); }
+.card dl.who { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 2px 10px; font-size: var(--step--1); }
+.card dl.who dt { color: var(--ink-3); font-weight: 600; }
+.card dl.who dd { margin: 0; color: var(--ink); }
+.card .who-head { font-size: var(--step--1); color: var(--ink-3); font-weight: 600; margin: 0; }
+.card .basis { font-size: var(--step--1); color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 8px; display: grid; gap: 4px; }
+.card blockquote { margin: 0; padding-left: 10px; border-left: 2px solid var(--line-strong); color: var(--ink-2); }
+.card .remedy strong, .card .basis strong { color: var(--ink); }
+/* Regulatory overlap: regimes by level of government, and who does what. */
+.venn-wrap { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 820px) { .venn-wrap { grid-template-columns: minmax(0, 1fr); } }
+svg.venn { width: 100%; max-width: 320px; height: auto; display: block; }
+svg.venn circle { fill-opacity: 0.14; stroke-width: 2; }
+svg.venn text { fill: var(--ink); font-family: var(--font-body); }
+svg.venn text.n { font-family: var(--font-mono); font-size: 20px; }
+svg.venn text.lab { font-size: 13px; font-weight: 600; }
+.regions { display: grid; gap: 12px; }
+.regions h4 { margin: 0 0 6px; font-size: var(--step--1); color: var(--ink-3); font-weight: 600; }
+.chip .iss { color: var(--bad); font-weight: 600; }
+.reg-detail { display: grid; gap: 8px; align-content: start; }
+.reg-detail > h4, .reg-detail > p { margin: 0; }
+.reg-detail ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: var(--step--1); color: var(--ink-2); }
+table.data.grid th, table.data.grid td { text-align: left; white-space: normal; vertical-align: top; }
+table.data.grid thead th { color: var(--ink-2); font-weight: 600; }
+table.data.grid tbody th { font-weight: 600; color: var(--ink); min-width: 9rem; }
+table.data.grid td.hot { background: var(--bad-soft); box-shadow: inset 3px 0 0 var(--bad); }
+table.data.grid .who { display: block; }
+table.data.grid .n { color: var(--ink-3); font-family: var(--font-mono); }
+table.data.grid td.here, table.data.grid th.here { background: var(--accent-soft); }
+table.data.grid tr.group th { color: var(--ink-3); font-weight: 600; background: var(--bg); }
+.colhead { display: inline-flex; align-items: center; gap: 6px; }
+.colhead .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+/* Laws for the industry: a list, or the business's journey. */
+.laws { display: grid; gap: 8px; }
+.law-row { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; display: grid; gap: 4px; min-width: 0; }
+.law-row .meta { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
+.law-row .cls-tag, .law-row .tag, details.base .tag, .card .flag { max-width: 100%; white-space: normal; text-align: left; }
+details.base { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+details.base > summary { cursor: pointer; font-weight: 600; }
+.journey { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 10px; }
+.stage { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.stage .sh { display: grid; gap: 2px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.stage .step { font-family: var(--font-mono); font-size: var(--step--1); color: var(--accent); }
+.stage .item { border: 1px solid var(--accent); border-radius: 6px; padding: 8px; display: grid; gap: 4px; font-size: var(--step--1); }
+@media (max-width: 760px) { .chip, .chips .chip { min-height: 44px; padding-inline: 14px; } }
 /* Phones: each law becomes a card with its three positions stacked and labelled. */
 @media (max-width: 760px) {
   table.lens thead { display: none; }
@@ -138,7 +198,16 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     <!--__NAV__-->
     <p class="kicker">ALICIA · Bottom up</p>
     <h1>Industry lens <!--__BETA__--></h1>
-    <p class="lede">Choose an industry and a state or territory to see the laws a business there faces, and how each affects competition.</p>
+    <nav class="toc" aria-label="On this page">
+      <span class="toc-label">On this page</span>
+      <a href="#h-pain">Pain points</a>
+      <a href="#h-overlap">Regulatory overlap</a>
+      <a href="#h-laws">Laws for this industry</a>
+      <a href="#h-states">Across states</a>
+      <a href="#h-table">Effect on competition</a>
+      <a href="#h-market">Market conditions</a>
+      <a href="#foot">Sources</a>
+    </nav>
   </header>
 
   <p class="notice" id="beta-note"></p>
@@ -157,6 +226,86 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
       <svg id="map" role="group" aria-labelledby="map-label"></svg>
       <div class="chips state-chips" id="state-chips" role="group" aria-label="State or territory"></div>
     </div>
+  </section>
+
+  <section class="tiles summary" id="summary" aria-label="Summary for this industry and place"></section>
+
+  <section class="block" aria-labelledby="h-pain">
+    <div class="block-head">
+      <h2 id="h-pain">Pain points</h2>
+      <p class="where" id="pain-where"></p>
+    </div>
+    <div class="cards" id="pain-cards"></div>
+    <div class="more-rows" id="pain-more"></div>
+  </section>
+
+  <section class="block" aria-labelledby="h-overlap">
+    <div class="block-head">
+      <h2 id="h-overlap">Regulatory overlap</h2>
+      <p class="where" id="overlap-where"></p>
+    </div>
+    <h3 id="h-venn">Levels of government in each regime</h3>
+    <div class="venn-wrap" id="venn"></div>
+    <div class="panel reg-detail" id="reg-detail" aria-live="polite"></div>
+    <h3 id="h-grid">Who does what</h3>
+    <div class="chips" id="grid-scope" role="group" aria-label="Laws in the grid">
+      <button type="button" class="chip" data-scope="industry" aria-pressed="true">This industry's laws</button>
+      <button type="button" class="chip" data-scope="all" aria-pressed="false">All laws, with the baseline</button>
+    </div>
+    <div class="panel tscroll"><table class="data grid" id="who-grid"></table></div>
+    <p class="note">Each cell lists the bodies doing that job, with the number of laws. A red cell has two or more bodies doing the same job for the same law. Bodies are as named in the register.</p>
+  </section>
+
+  <section class="block" aria-labelledby="h-laws">
+    <div class="block-head">
+      <h2 id="h-laws">Laws for this industry</h2>
+      <p class="where" id="laws-where"></p>
+    </div>
+    <div class="chips" id="law-view" role="group" aria-label="View">
+      <button type="button" class="chip" data-view="list" aria-pressed="true">List</button>
+      <button type="button" class="chip" data-view="journey" aria-pressed="false">Business journey</button>
+    </div>
+    <div id="laws"></div>
+  </section>
+
+  <section class="block" aria-labelledby="h-states">
+    <div class="block-head">
+      <h2 id="h-states">Across states</h2>
+      <p class="where" id="states-where"></p>
+    </div>
+    <p class="notice">Early view. It shows where each state's version is recorded. After the state batches (D-3 to D-10) it will compare the versions: fees, thresholds, terms and the regulator.</p>
+    <div class="panel tscroll"><table class="data grid" id="states-table"></table></div>
+  </section>
+
+  <section class="block" aria-labelledby="h-table">
+    <div class="block-head">
+      <h2 id="h-table">Effect of each law on competition</h2>
+      <p class="where" id="where"></p>
+    </div>
+    <div class="tiles lens" id="tiles"></div>
+    <div class="legend-row" id="legend"></div>
+    <div class="toolbar">
+      <label class="check"><input type="checkbox" id="opt-uncoded"> Show laws with no material effect</label>
+      <label class="check"><input type="checkbox" id="opt-indirect" checked> Include register items with an indirect effect</label>
+    </div>
+    <div class="toolbar">
+      <span class="small muted">Level of government</span>
+      <div class="chips" id="tier-filter" role="group" aria-label="Level of government"></div>
+      <label class="check" for="sort-by">Sort by</label>
+      <select id="sort-by">
+        <option value="tier">Level of government</option>
+        <option value="negative">Most negative first</option>
+        <option value="positive">Most positive first</option>
+        <option value="title">Title (A–Z)</option>
+      </select>
+    </div>
+    <div class="panel tscroll">
+      <table class="lens" id="lens-table">
+        <thead id="lens-head"></thead>
+        <tbody id="lens-body"></tbody>
+      </table>
+    </div>
+    <p class="note" id="coverage"></p>
   </section>
 
   <section class="block" aria-labelledby="h-market">
@@ -185,37 +334,6 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
       </div>
     </div>
     <p class="note" id="market-note"></p>
-  </section>
-
-  <section class="block" aria-labelledby="h-table">
-    <div class="block-head">
-      <h2 id="h-table">Laws and their effect on competition</h2>
-      <p class="where" id="where"></p>
-    </div>
-    <div class="tiles lens" id="tiles"></div>
-    <div class="legend-row" id="legend"></div>
-    <div class="toolbar">
-      <label class="check"><input type="checkbox" id="opt-uncoded"> Show laws with no material effect</label>
-      <label class="check"><input type="checkbox" id="opt-indirect" checked> Include register items that affect this industry indirectly</label>
-    </div>
-    <div class="toolbar">
-      <span class="small muted">Level of government</span>
-      <div class="chips" id="tier-filter" role="group" aria-label="Level of government"></div>
-      <label class="check" for="sort-by">Sort by</label>
-      <select id="sort-by">
-        <option value="tier">Level of government</option>
-        <option value="negative">Most negative first</option>
-        <option value="positive">Most positive first</option>
-        <option value="title">Title (A–Z)</option>
-      </select>
-    </div>
-    <div class="panel tscroll">
-      <table class="lens" id="lens-table">
-        <thead id="lens-head"></thead>
-        <tbody id="lens-body"></tbody>
-      </table>
-    </div>
-    <p class="note" id="coverage"></p>
   </section>
 
   <footer class="foot" id="foot"></footer>
@@ -261,10 +379,10 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
 
   // ---- Beta note.
   $("beta-note").innerHTML =
-    `<strong>Prototype.</strong> The register behind this page is still being built: ${D.counts.requirements} requirements, ` +
-    `${D.counts.laws} laws and policies and ${D.counts.barriers} non-legislative barriers so far. Laws that apply to every business are recorded for every industry; laws for particular industries ` +
-    `only for some. Every law is marked against the ${link(D.repo + "docs/productivity_framework.md", "ALICIA productivity framework")}, and each mark is shown in the column of the ` +
-    `market players it acts through. The marks are drafts not yet checked by a person; they show effects on competition and productivity, not whether a law is worthwhile.`;
+    `<strong>Prototype.</strong> The register is still being built: ${D.counts.requirements} requirements, ${D.counts.laws} laws and policies, ` +
+    `and ${D.counts.barriers} non-legislative barriers so far. Most industry-specific state laws are still to come, and councils are capital cities only. ` +
+    `Links, flags and marks are drafts, not yet checked. Flags show what the register's links point to, not that a law is excessive. ` +
+    `Marks follow the ${link(D.repo + "docs/productivity_framework.md", "ALICIA productivity framework")}: they show effects on competition and productivity, not whether a law is worthwhile.`;
 
   // ---- Industry picker: a division, then (optionally) one of its classes.
   const dsel = $("div-select"), sel = $("cls-select");
@@ -359,6 +477,236 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     return { effect: both ? "mixed" : total > 0 ? "positive" : "negative", strength: marks.some((m) => Math.abs(m.mark) === 2) ? "strong" : "weak", total, marks };
   }
 
+
+  // ---- Regulatory overlap and pain points (DECISIONS E-150): who administers each requirement, the regimes that
+  // cover the industry, and the problems reviews have documented in them.
+  const FNL = D.functions, FN = Object.keys(FNL);
+  const FN_VERB = { "sets-rules": "sets the rules", licenses: "licenses", approves: "approves", inspects: "inspects", collects: "collects", funds: "funds" };
+  const TIERS3 = ["cth", "state", "local"];
+  const TYPE = {
+    duplicative: ["Duplication", "dup", "Merge the inspections or registrations, or let one body act for both."],
+    "cth-state-overlap": ["Commonwealth–state overlap", "dup", "Give the job to one level of government, or let one act for the other."],
+    "multi-agency": ["Several agencies", "multi", "One point of contact, or one licence for the activity."],
+    inconsistent: ["Differs between states", "var", "Harmonise the rules, or recognise other states' licences."],
+    "local-variation": ["Differs between councils", "var", "A state-wide standard, or model conditions for councils."],
+    complex: ["Complex rules", "multi", "Simplify the rules, and publish plain guidance."],
+    "unclear-guidance": ["Unclear guidance", "multi", "One interpretation, published by the regulator."],
+    overlap: ["Same job, two bodies", "dup", "Merge the role, or let one body act for both."],
+    tiers: ["Several levels of government", "multi", "One point of contact across the levels."],
+    varies: ["Differs between states", "var", "Harmonise the rules, or recognise other states' licences."],
+  };
+  const DUPS = new Set(["duplicative", "cth-state-overlap", "multi-agency"]);
+  const flag = (k) => `<span class="flag ${TYPE[k][1]}">${esc(TYPE[k][0])}</span>`;
+  const tierName = (t, short) => (t === "cth" ? "Commonwealth" : t === "state" ? (short ? st : STATE[st]) : "Council");
+  const tierTag = (t, text) => `<span class="tier-tag t-${t}">${esc(text || tierName(t))}</span>`;
+  const count = (n, one, many) => `${n} ${n === 1 ? one : many || one + "s"}`;
+  const clip = (t, n) => (t.length > n ? t.slice(0, t.lastIndexOf(" ", n)) + " …" : t);
+  const names = (r) => (r.admin || []).map((a) => a.who + (a.fn ? ` (${FN_VERB[a.fn]})` : "")).join("; ");
+  // State and council requirements by family and jurisdiction, for the across-states view and the "differs" flags.
+  const FAM = {}, FAMTITLE = {};
+  for (const r of D.rows) if (r.type === "requirement" && r.tier !== "cth") ((FAM[r.family] ||= {})[r.jurisdiction] ||= []).push(r);
+  for (const [f, by] of Object.entries(FAM)) {
+    const n = {};
+    for (const r of Object.values(by).flat()) n[r.title] = (n[r.title] || 0) + 1;
+    FAMTITLE[f] = Object.entries(n).sort((a, b) => b[1] - a[1])[0][0];
+  }
+  const covers = (g, codes) => codes.some((k) => g.anzsic.some((a) => under(CL[k], a)) && !(g.exclude || []).some((a) => under(CL[k], a)));
+  const here = (x) => !x.jur || x.jur.includes(st);
+  // The regimes for these classes in this state: those whose coverage includes them, and those of their requirements.
+  function regimesFor(codes, reqs) {
+    const ids = new Set(reqs.map((o) => o.r.regime).filter(Boolean));
+    return D.regimes.filter((g) => ids.has(g.id) || covers(g, codes))
+      .map((g) => ({ ...g, covers: covers(g, codes), layers: g.layers.filter(here), issues: (g.issues || []).filter(here), recs: g.recs || [] }));
+  }
+  function byTier(rows) {
+    const out = { cth: new Set(), state: new Set(), local: new Set() };
+    for (const r of rows) for (const a of r.admin || []) out[a.tier].add(a.who);
+    return out;
+  }
+  // Flags on a requirement, from its administration and its family.
+  function lawFlags(r) {
+    const out = [];
+    if (r.overlap) out.push("overlap");
+    if (new Set((r.admin || []).map((a) => a.tier)).size > 1) out.push("tiers");
+    if (r.tier !== "cth" && Object.keys(FAM[r.family] || {}).length >= 2) out.push(r.tier === "local" ? "local-variation" : "varies");
+    return out;
+  }
+  function summaryView(reqs, regs) {
+    const ind = reqs.filter((o) => o.specific).length, bt = byTier(reqs.map((o) => o.r));
+    const n = TIERS3.reduce((a, t) => a + bt[t].size, 0), ov = reqs.filter((o) => o.r.overlap).length;
+    const cov = regs.filter((g) => g.covers), issues = cov.reduce((a, g) => a + g.issues.length, 0), withIssues = cov.filter((g) => g.issues.length).length;
+    const tile = (lead, label, v, sub) => `<div class="tile${lead ? " lead" : ""}"><span class="t-label">${label}</span><span class="t-value num">${v}</span><span class="t-sub">${sub}</span></div>`;
+    $("summary").innerHTML = tile(true, "Laws for this industry", ind, "Requirements particular to it") +
+      tile(false, "Laws for every business", reqs.length - ind, "The same in every industry") +
+      `<div class="tile"><span class="t-label">Bodies involved</span><span class="t-value num">${n}</span>` +
+      `<div class="tierbar" aria-hidden="true">${TIERS3.map((t) => `<span style="width:${n ? (100 * bt[t].size) / n : 0}%;background:var(--t-${t})"></span>`).join("")}</div>` +
+      `<span class="t-sub">${TIERS3.map((t) => `${tierName(t, true)} ${bt[t].size}`).join(" · ")}</span></div>` +
+      tile(false, "Same job, two bodies", ov, ov === 1 ? "Law where two bodies share a job" : "Laws where two bodies share a job") +
+      tile(false, "Problems found by reviews", issues, `In ${withIssues} of the ${count(cov.length, "regime")} covering it`);
+  }
+  // Pain points, ranked (owner, 12 November 2026): problems reviews found in the industry's own regimes, then flags
+  // on its own laws, then problems in regimes every business deals with.
+  function painPoints(reqs, regs) {
+    // Review problems come from the regimes whose coverage includes the industry; its own are the sector regimes.
+    const out = [];
+    for (const g of regs.filter((x) => x.covers)) {
+      const laws = reqs.filter((o) => o.r.regime === g.id).map((o) => o.r), bt = byTier(laws);
+      const who = TIERS3.map((t) => [t, bt[t].size ? [...bt[t]] : [...new Set(g.layers.filter((l) => l.tier === t).map((l) => l.who))]]).filter(([, v]) => v.length);
+      for (const i of g.issues) out.push({ score: (g.scope === "sector" ? 30 : 10) + (DUPS.has(i.tag) ? 5 : 0), type: i.tag, title: i.what, regime: g.name, laws, who, ev: i, recs: g.recs });
+    }
+    for (const o of reqs) {
+      const r = o.r, flags = lawFlags(r);
+      if (!o.specific || !flags.length) continue;
+      const bt = byTier([r]), who = TIERS3.filter((t) => bt[t].size).map((t) => [t, [...bt[t]]]);
+      const lead = r.overlap ? Object.entries(r.overlap).map(([fn, ws]) => `${ws.join(" and ")} both do one job: ${fn.toLowerCase()}.`).join(" ")
+        : flags[0] === "tiers" ? `Administered at ${new Set((r.admin || []).map((a) => a.tier)).size} levels of government.`
+        : r.tier === "local" ? `${Object.keys(FAM[r.family]).length} capital city councils have their own version.`
+        : `${Object.keys(FAM[r.family]).length} states and territories have their own version.`;
+      const versions = Object.entries(FAM[r.family] || {}).sort();
+      out.push({ score: 20 + (r.overlap ? 5 : 0), type: flags[0], flags, title: r.title, lead, regime: (D.regimes.find((g) => g.id === r.regime) || {}).name, laws: [r], who, recs: [],
+        versions: versions.length > 1 ? versions.map(([s, rs]) => [s, [...new Set(rs.flatMap((x) => (x.admin || []).map((a) => a.who)))]]) : null });
+    }
+    return out.sort((a, b) => b.score - a.score || a.title.localeCompare(b.title));
+  }
+  function card(p, i) {
+    const remedy = TYPE[p.type][2];
+    const basis = p.ev
+      ? `<span><strong>Source:</strong> ${link(p.ev.url, `${p.ev.pub}${p.ev.year ? ", " + p.ev.year : ""}`)}${p.ev.title ? `, <cite>${esc(p.ev.title)}</cite>` : ""}</span>` +
+        (p.ev.quote ? `<blockquote>“${esc(clip(p.ev.quote, 280))}”</blockquote>` : "")
+      : `<span><strong>Source:</strong> the register's links to the law. No review found yet.</span>`;
+    const act = p.recs.length ? `<strong>Register recommendations:</strong> ${p.recs.slice(0, 3).map((r) => esc(r.title)).join("; ")}` : `<strong>Usual remedy:</strong> ${esc(remedy)}`;
+    const who = p.who.length ? `<dl class="who">${p.who.map(([t, v]) => `<dt>${tierTag(t, tierName(t, true))}</dt><dd>${esc(v.slice(0, 6).join("; "))}${v.length > 6 ? `; and ${v.length - 6} more` : ""}</dd>`).join("")}</dl>` : `<p class="small muted">No body linked yet.</p>`;
+    const versions = p.versions ? `<details class="more"><summary>Bodies in each state</summary><ul>${p.versions.map(([s, ws]) => `<li>${esc(s)}: ${esc(ws.join("; ") || "none linked yet")}</li>`).join("")}</ul></details>` : "";
+    return `<article class="card"><div class="tags"><span class="rank">#${i + 1}</span>${[p.type, ...(p.flags || []).slice(1)].map(flag).join("")}</div>` +
+      `<h3>${esc(p.title)}</h3>${p.lead ? `<p class="small">${esc(p.lead)}</p>` : ""}` +
+      `<p class="small muted">${esc(p.regime || "No regime yet")} · ${count(p.laws.length, "law")} in the register</p>` +
+      `<p class="who-head">Responsible bodies</p>${who}${versions}<div class="basis">${basis}<span class="remedy">${act}</span></div></article>`;
+  }
+  let painAll = false;
+  function painView() {
+    const pp = painPoints(ctx.reqs, ctx.regs), n = painAll ? pp.length : 9;
+    $("pain-where").textContent = pp.length
+      ? `${count(pp.length, "pain point")}, ranked: problems reviews found in this industry's own regimes, then overlaps in its laws, then problems in regimes every business deals with.`
+      : "No pain points recorded for this industry and place yet.";
+    $("pain-cards").innerHTML = pp.slice(0, n).map(card).join("");
+    $("pain-more").innerHTML = pp.length > 9 ? `<button type="button" class="chip" id="pain-toggle" aria-expanded="${painAll}">${painAll ? "Show the top 9" : `Show all ${pp.length} pain points`}</button>` : "";
+  }
+  // Regimes by the levels of government with a part in each: its layers here, and the bodies of its requirements.
+  const REGIONS = [["cth,state,local", "All three levels"], ["cth,state", "Commonwealth and state"], ["state,local", "State and council"], ["cth,local", "Commonwealth and council"],
+    ["cth", "Commonwealth only"], ["state", "State only"], ["local", "Council only"]];
+  let regPick = null;
+  function vennView() {
+    const { reqs, regs } = ctx, lv = {};
+    for (const g of regs) {
+      const t = new Set(g.layers.map((l) => l.tier));
+      for (const o of reqs) if (o.r.regime === g.id) for (const a of o.r.admin || []) t.add(a.tier);
+      lv[g.id] = TIERS3.filter((x) => t.has(x)).join(",");
+    }
+    const n = (k) => regs.filter((g) => lv[g.id] === k).length;
+    $("overlap-where").textContent = `The ${count(regs.length, "regime")} a business in ${cls ? "this industry" : "this division"} deals with in ${STATE[st]}, and the bodies that run them.`;
+    const at = { cth: [70, 100], state: [250, 100], "cth,state": [160, 72], "cth,state,local": [160, 142], "cth,local": [104, 182], "state,local": [216, 182], local: [160, 250] };
+    const svgEl = `<svg class="venn" viewBox="0 0 320 312" role="img" aria-label="Regimes by level of government: ${REGIONS.map(([k, l]) => `${l} ${n(k)}`).join(", ")}">` +
+      `<circle cx="110" cy="112" r="92" fill="var(--t-cth)" stroke="var(--t-cth)"></circle><circle cx="210" cy="112" r="92" fill="var(--t-state)" stroke="var(--t-state)"></circle>` +
+      `<circle cx="160" cy="198" r="92" fill="var(--t-local)" stroke="var(--t-local)"></circle>` +
+      `<text class="lab" x="80" y="14" text-anchor="middle">Commonwealth</text><text class="lab" x="240" y="14" text-anchor="middle">State</text><text class="lab" x="160" y="308" text-anchor="middle">Council</text>` +
+      REGIONS.map(([k]) => `<text class="n" x="${at[k][0]}" y="${at[k][1]}" text-anchor="middle">${n(k)}</text>`).join("") + `</svg>`;
+    if (!regs.some((g) => g.id === regPick)) regPick = ([...regs].sort((a, b) => b.covers - a.covers || (b.scope === "sector") - (a.scope === "sector") || b.issues.length - a.issues.length)[0] || {}).id || null;
+    const list = REGIONS.filter(([k]) => n(k)).map(([k, l]) => `<div><h4>${l} (${n(k)})</h4><div class="chips">` +
+      regs.filter((g) => lv[g.id] === k).map((g) => `<button type="button" class="chip" data-reg="${esc(g.id)}" aria-pressed="${g.id === regPick}">${esc(g.name)}${g.issues.length ? ` <span class="iss">${count(g.issues.length, "problem")}</span>` : ""}</button>`).join("") +
+      `</div></div>`).join("");
+    $("venn").innerHTML = svgEl + `<div class="regions">${list || `<p class="note">No regime covers this industry yet.</p>`}</div>`;
+    const g = regs.find((x) => x.id === regPick);
+    if (!g) { $("reg-detail").innerHTML = `<p class="note">No regime to show.</p>`; return; }
+    const laws = reqs.filter((o) => o.r.regime === g.id).map((o) => o.r);
+    $("reg-detail").innerHTML = `<h4>${esc(g.name)}</h4><p class="small muted">${esc(D.consistencyLabels[g.consistency] || "")} · ${count(laws.length, "law")} for this industry in the register</p>` +
+      `<div class="tscroll"><table class="data grid"><thead><tr><th scope="col">Level</th><th scope="col">What it does</th><th scope="col">Who</th></tr></thead><tbody>` +
+      g.layers.map((l) => `<tr><td>${tierTag(l.tier, tierName(l.tier, true))}</td><td>${esc(FNL[l.fn])}</td><td>${esc(l.who)}</td></tr>`).join("") + `</tbody></table></div>` +
+      (laws.length ? `<p class="small"><strong>Bodies named in its laws:</strong> ${esc([...new Set(laws.flatMap((r) => (r.admin || []).map((a) => a.who)))].join("; ") || "none linked yet")}</p>` : "") +
+      (g.issues.length ? `<p class="small"><strong>Problems found by reviews</strong></p><ul>${g.issues.map((i) => `<li>${flag(i.tag)} ${esc(i.what)} (${link(i.url, `${i.pub}${i.year ? ", " + i.year : ""}`)})</li>`).join("")}</ul>` : `<p class="small muted">No problems documented by reviews yet.</p>`) +
+      (g.recs.length ? `<p class="small"><strong>Register recommendations:</strong> ${g.recs.map((r) => esc(r.title)).join("; ")}</p>` : "");
+  }
+  let gridAll = false;
+  function gridView() {
+    const rows = (gridAll ? ctx.reqs : ctx.reqs.filter((o) => o.specific)).map((o) => o.r), cellMap = {}, hot = {};
+    let unknown = 0;
+    for (const r of rows) {
+      if ((r.admin || []).some((a) => !a.fn)) unknown += 1;
+      for (const a of r.admin || []) {
+        if (!a.fn) continue;
+        const k = a.fn + "|" + a.tier;
+        ((cellMap[k] ||= {})[a.who] ||= new Set()).add(r.id);
+        if (r.overlap && r.overlap[FNL[a.fn]] && r.overlap[FNL[a.fn]].includes(a.who)) (hot[k] ||= new Set()).add(r.id);
+      }
+    }
+    const td = (k) => {
+      const m = cellMap[k];
+      if (!m) return `<td class="muted">–</td>`;
+      const ws = Object.entries(m).sort((a, b) => b[1].size - a[1].size || a[0].localeCompare(b[0]));
+      const show = (w) => w.map(([who, ids]) => `<span class="who">${esc(who)} <span class="n">(${ids.size})</span></span>`).join("");
+      return `<td${hot[k] ? ' class="hot"' : ""}>${show(ws.slice(0, 6))}${ws.length > 6 ? `<details class="more"><summary>${ws.length - 6} more</summary>${show(ws.slice(6))}</details>` : ""}` +
+        `${hot[k] ? `<span class="flag dup">Same job, same law: ${count(hot[k].size, "law")}</span>` : ""}</td>`;
+    };
+    $("who-grid").innerHTML = (unknown ? `<caption class="note">${count(unknown, "law")} name a body but not its job, so they are not in the grid.</caption>` : "") + `<thead><tr><th scope="col">What the body does</th>${TIERS3.map((t) => `<th scope="col"><span class="colhead"><span class="dot" style="background:var(--t-${t})"></span>${esc(tierName(t))}</span></th>`).join("")}</tr></thead>` +
+      `<tbody>${rows.length ? FN.map((f) => `<tr><th scope="row">${esc(FNL[f])}</th>${TIERS3.map((t) => td(f + "|" + t)).join("")}</tr>`).join("") : `<tr><td colspan="4" class="empty">No laws particular to this industry are recorded yet. Choose “All laws, with the baseline”.</td></tr>`}</tbody>`;
+    for (const b of $("grid-scope").querySelectorAll("button")) b.setAttribute("aria-pressed", String((b.dataset.scope === "all") === gridAll));
+  }
+  const STAGE = [["start", "Start", "Before trading"], ["hire", "Hire", "Taking on staff"], ["operate", "Operate", "While trading"], ["grow", "Grow", "Past a size threshold"], ["exit", "Exit", "Closing or selling"]];
+  const placeTag = (r) => tierTag(r.tier, r.tier === "local" ? `Council · ${r.council}` : r.tier === "state" ? r.jurisdiction : "Commonwealth");
+  let lawView = "list";
+  function lawsView() {
+    const reqs = ctx.reqs, ind = reqs.filter((o) => o.specific), base = reqs.filter((o) => !o.specific);
+    $("laws-where").textContent = `${count(ind.length, "requirement")} particular to ${cls ? "this industry" : "the division's industries"}, and ${base.length} for every business.`;
+    for (const b of $("law-view").querySelectorAll("button")) b.setAttribute("aria-pressed", String(b.dataset.view === lawView));
+    if (lawView === "journey") {
+      $("laws").innerHTML = `<div class="journey">${STAGE.map(([k, name, sub], i) => {
+        const at = reqs.filter((o) => (o.r.stages || []).includes(k)), own = at.filter((o) => o.specific);
+        const bodies = new Set(at.flatMap((o) => (o.r.admin || []).map((a) => a.who)));
+        return `<div class="stage"><div class="sh"><span class="step">${i + 1}</span><h3>${name}</h3><span class="small muted">${sub}</span>` +
+          `<span class="small"><strong class="num">${at.length}</strong> laws · <strong class="num">${bodies.size}</strong> bodies</span></div>` +
+          own.map((o) => `<div class="item"><strong>${esc(o.r.title)}</strong><span class="tags">${placeTag(o.r)}${lawFlags(o.r).map(flag).join("")}</span><span class="muted">${esc(names(o.r) || "No body linked yet")}</span></div>`).join("") +
+          `<span class="small muted">${at.length - own.length ? `And ${at.length - own.length} for every business` : "None for every business"}</span></div>`;
+      }).join("")}</div>`;
+      return;
+    }
+    const order = (a, b) => lawFlags(b.r).length - lawFlags(a.r).length || TIER_ORDER[a.r.tier] - TIER_ORDER[b.r.tier] || a.r.title.localeCompare(b.r.title);
+    const row = (o) => `<div class="law-row"><div class="law-title">${esc(o.r.title)}</div><div class="law-meta">${placeTag(o.r)}<span class="tag">${esc(o.r.kind)}</span>${lawFlags(o.r).map(flag).join("")}</div>` +
+      classTags(o) + `<p class="meta">${esc(names(o.r) || "No body linked yet")}</p>` +
+      `<p class="meta">${esc((D.regimes.find((g) => g.id === o.r.regime) || {}).name || "No regime yet")} · ${link(repoFile(o.r.file), "the record")}</p></div>`;
+    const byReg = {};
+    for (const o of base) { const n = (D.regimes.find((g) => g.id === o.r.regime) || {}).name || "No regime yet"; byReg[n] = (byReg[n] || 0) + 1; }
+    $("laws").innerHTML = `<div class="laws">${[...ind].sort(order).map(row).join("") || `<p class="note">None recorded yet. Most industry-specific state laws come in the state batches.</p>`}</div>` +
+      `<details class="base"><summary>For every business: ${count(base.length, "law")}, by regime</summary>` +
+      `<p class="small muted">The same in every industry. Each is listed, with its marks, under Effect of each law on competition.</p>` +
+      `<div class="chips">${Object.entries(byReg).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([g, n]) => `<span class="tag">${esc(g)} <span class="num">${n}</span></span>`).join("")}</div></details>`;
+  }
+  const GAP = { "to-draft": "Gap: to draft", "not-found": "Gap: not found", blocked: "Gap: blocked", "not-searched": "Gap: not searched" };
+  function statesView(codes) {
+    const set = new Set(codes);
+    const reaches = (r, s) => r.reach.some((x) => (x.classes === "all" || x.classes.some((k) => set.has(k))) && (!x.inStates || x.inStates.includes(s)));
+    const fams = Object.entries(FAM).filter(([, by]) => Object.entries(by).some(([s, rs]) => rs.some((r) => reaches(r, s))));
+    const specific = ([, by]) => Object.values(by).flat().some((r) => r.reach.some((x) => x.classes !== "all"));
+    const cellFor = (f, by, s) => {
+      const on = s === st ? ' class="here"' : "", rs = by[s];
+      if (rs && rs.some((r) => reaches(r, s))) return `<td${on}><span aria-hidden="true">✓</span> Applies</td>`;
+      if (rs) return `<td${on}><span class="muted">Other industries</span></td>`;
+      const g = (D.gaps[f] || {})[s];
+      return `<td${on}><span class="muted">${g ? GAP[g] : "Not recorded"}</span></td>`;
+    };
+    const rowsOf = (list) => list.map(([f, by]) => {
+      const n = D.states.filter((s) => (by[s.code] || []).some((r) => reaches(r, s.code))).length;
+      const local = Object.values(by).flat().some((r) => r.tier === "local");
+      return `<tr><th scope="row">${esc(FAMTITLE[f])}<span class="small muted" style="display:block">${local ? "Capital city council · " : ""}applies in ${n} of 8</span></th>${D.states.map((s) => cellFor(f, by, s.code)).join("")}</tr>`;
+    }).join("");
+    const ind = fams.filter(specific), base = fams.filter((x) => !specific(x));
+    $("states-where").textContent = fams.length ? `${count(fams.length, "state or council requirement")} for ${cls ? "this industry" : "this division"}, in each state and territory. ${STATE[st]} is highlighted.` : "";
+    $("states-table").innerHTML = fams.length
+      ? `<thead><tr><th scope="col">Requirement</th>${D.states.map((s) => `<th scope="col"${s.code === st ? ' class="here"' : ""}><abbr title="${esc(s.name)}">${s.code}</abbr></th>`).join("")}</tr></thead><tbody>` +
+        (ind.length ? `<tr class="group"><th colspan="9" scope="colgroup">For this industry</th></tr>${rowsOf(ind)}` : "") +
+        (base.length ? `<tr class="group"><th colspan="9" scope="colgroup">For every business</th></tr>${rowsOf(base)}` : "") + `</tbody>`
+      : `<tbody><tr><td class="empty">No state or council requirement reaches this industry yet.</td></tr></tbody>`;
+  }
+  let ctx = { reqs: [], regs: [] };
+
   // ---- Market structure: counts for the class in the state (CABEE); sales by size and concentration for its division
   // (ABS 8155.0; RBA RDP 2025-05), which are not published for single classes or states.
   const MK = D.market;
@@ -403,8 +751,8 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
   function marketView(sc, state) {
     const c = sc, m = mkt(sc, state), ss = MK.sizeSales[sc.division], t4 = MK.top4[sc.division];
     $("market-where").textContent = sc.kind === "class"
-      ? `Business counts: ${sc.code} ${sc.name} in ${STATE[state]}. Sales by business size and concentration: division ${sc.division} ${D.divisions[sc.division] || ""} across Australia, the finest level published.`
-      : `Business counts: division ${sc.code} ${sc.name} in ${STATE[state]}, the sum of its classes. Sales by business size and concentration: the division across Australia.`;
+      ? `${sc.code} ${sc.name} in ${STATE[state]}. Business counts are for the class in the state. Sales by size and concentration are for its division (${sc.division} ${D.divisions[sc.division] || ""}) across Australia, the finest level published.`
+      : `Division ${sc.code} ${sc.name} in ${STATE[state]}. Business counts are for the division in the state (the sum of its classes). Sales by size and concentration are for the division across Australia.`;
     const bar = (label, parts, total) => `<div class="sizebar"><div class="lab">${label}</div><div class="bar" role="img" aria-label="${esc(label)}: ` +
       parts.map(([n, v]) => `${n} ${pc(total ? (100 * v) / total : null)}`).join(", ") + `">` +
       parts.map(([n, v], i) => { const w = total ? (100 * v) / total : 0; return `<div class="seg b${i + 1}" style="width:${w}%" title="${esc(n)}: ${pc(w)}">${w >= 9 ? pc(w, 0) : ""}</div>`; }).join("") + `</div></div>`;
@@ -421,9 +769,9 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     else $("ch-top4").innerHTML = `<p class="note">Concentration is not published for this division.</p>`;
     $("u-top4").textContent = `Four largest firms' share of each industry's sales, %, ${t4 ? `${t4.years[0]}–${last(t4.years)}, ${t4.industries} industries in the division` : "not published"}`;
     const src = MK.sources;
-    $("market-note").innerHTML = `Counts of businesses are not market shares. Shares of sales by size, and concentration, are published only for divisions across Australia, ` +
-      `${sc.kind === "class" ? "so they describe the wider industry, not this class in this state" : "not for single states"}. Businesses with 200 or more employees are the largest firms, not necessarily an oligopoly; ` +
-      `the four-firm share is the closer measure, and the RBA's figures stop at 2019. The ABS slightly alters small counts to protect confidentiality, so rates for small industries jump around. ` +
+    $("market-note").innerHTML = `Counts of businesses are not market shares. Sales by size and concentration are published only for divisions across Australia` +
+      `${sc.kind === "class" ? ", so they describe the wider industry, not this class in this state" : ""}. Businesses with 200 or more employees are the largest firms, not necessarily an oligopoly; ` +
+      `the four-firm share is the closer measure. The RBA's figures stop at 2019. The ABS alters small counts slightly to protect confidentiality, so rates for small industries jump around. ` +
       `Sources: ${link(src.cabee[1], src.cabee[0])}; ${link(src.australianIndustry[1], src.australianIndustry[0] + ", Table 5")}; ${link(src.rba[1], src.rba[0])}. All CC BY 4.0.`;
   }
 
@@ -506,7 +854,7 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     } else {
       const subs = new Set(DIVCLS[div].map((k) => CL[k].subdivision));
       $("cls-head").innerHTML = `<span class="code">Division ${esc(div)}</span><h2>${esc(D.divisions[div])}</h2>` +
-        `<p class="crumbs">${DIVCLS[div].length} classes in ${subs.size} subdivisions. Each law below is tagged with the classes it applies to. Select a class or a tag to see one class.</p>`;
+        `<p class="crumbs">${DIVCLS[div].length} classes in ${subs.size} subdivisions. Pick a class, or a class tag below, to see one class alone.</p>`;
     }
     for (const e of svg.querySelectorAll("[data-st]")) {
       const on = e.dataset.st === st;
@@ -516,10 +864,19 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     for (const b of $("state-chips").querySelectorAll("button")) b.setAttribute("aria-pressed", String(b.dataset.st === st));
 
     marketView(sc, st);
-    const all = applicable(codes, st).filter((o) => (opt.indirect || o.exposure !== "indirect") && opt.tiers.has(o.r.tier));
+    const found = applicable(codes, st);
+    ctx = { reqs: found.filter((o) => o.r.type === "requirement") };
+    ctx.regs = regimesFor(codes, ctx.reqs);
+    summaryView(ctx.reqs, ctx.regs);
+    painView();
+    vennView();
+    gridView();
+    lawsView();
+    statesView(codes);
+    const all = found.filter((o) => (opt.indirect || o.exposure !== "indirect") && opt.tiers.has(o.r.tier));
     const shown = all.filter((o) => opt.uncoded || coded(o.r));
-    $("where").textContent = cls ? `${cls} ${CL[cls].name} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws.`
-      : `Division ${div} ${D.divisions[div]} in ${STATE[st]}: Commonwealth, ${STATE[st]} and council laws, each tagged with the classes it applies to.`;
+    $("where").textContent = cls ? `Every law for ${cls} ${CL[cls].name} in ${STATE[st]}, marked against the framework in the column of the market players it acts through.`
+      : `Every law for any class in division ${div} ${D.divisions[div]} in ${STATE[st]}, tagged with the classes it applies to.`;
 
     // Tally by position.
     $("tiles").innerHTML = POS.map((p) => {
@@ -545,10 +902,10 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     $("lens-body").innerHTML = body || `<tr><td colspan="4" class="empty">No laws with a marked effect for this industry, place and level of government yet.${hidden ? " Tick “Show laws with no material effect” to see the rest." : ""}</td></tr>`;
 
     const specific = all.filter((o) => o.specific).length;
-    $("coverage").innerHTML = `${shown.length} of ${all.length} laws shown` + (hidden ? ` (${hidden} with no material effect are hidden)` : "") + ". " +
-      (specific ? `${specific} of the ${all.length} are requirements particular to ${cls ? "this industry" : "some of the division's industries"}.` :
-        `<strong>No requirements particular to this industry have been recorded yet</strong>: the table shows laws that apply to every business, and register items about the industry.`) +
-      ` Council laws are recorded for capital city councils only, for now. The register grows batch by batch (${D.counts.industrySpecific} industry-specific requirements so far).`;
+    $("coverage").innerHTML = `${shown.length} of ${all.length} laws shown` + (hidden ? ` (${hidden} with no material effect hidden)` : "") + ". " +
+      (specific ? `${specific} are particular to ${cls ? "this industry" : "some of the division's industries"}.` :
+        `<strong>No requirements particular to this industry are recorded yet.</strong> The table shows laws for every business, and register items about the industry.`) +
+      ` Councils are capital cities only, for now. ${D.counts.industrySpecific} industry-specific requirements so far.`;
   }
 
   $("opt-uncoded").addEventListener("change", (e) => { opt.uncoded = e.target.checked; update(); });
@@ -570,16 +927,20 @@ td.c-mixed { background: color-mix(in oklab, var(--mixed-soft) 55%, transparent)
     if (STATE[x.state]) st = x.state;
     update();
   });
-  $("lens-body").addEventListener("click", (e) => {
+  for (const id of ["lens-body", "laws"]) $(id).addEventListener("click", (e) => {
     const b = e.target.closest("button.cls-tag");
     if (!b) return;
     cls = b.dataset.cls; div = CL[cls].division; update();
-    $("cls-head").scrollIntoView({ behavior: "smooth", block: "start" });
+    $("cls-head").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   });
+  $("pain-more").addEventListener("click", (e) => { if (e.target.closest("#pain-toggle")) { painAll = !painAll; painView(); } });
+  $("venn").addEventListener("click", (e) => { const b = e.target.closest("button[data-reg]"); if (b) { regPick = b.dataset.reg; vennView(); } });
+  $("grid-scope").addEventListener("click", (e) => { const b = e.target.closest("button[data-scope]"); if (b) { gridAll = b.dataset.scope === "all"; gridView(); } });
+  $("law-view").addEventListener("click", (e) => { const b = e.target.closest("button[data-view]"); if (b) { lawView = b.dataset.view; lawsView(); } });
 
   $("legend").innerHTML = `<span>Key:</span>` + pill({ effect: "positive", strength: "weak", total: 1 }) + pill({ effect: "negative", strength: "weak", total: -1 }) +
     pill({ effect: "negative", strength: "strong", total: -2 }) + pill({ effect: "mixed", strength: "weak" }) +
-    `<span>Numbers are framework marks, −2 (major harm) to +2 (major gain), added up within a column; darker means a mark of ±2.</span>`;
+    `<span>Framework marks run from −2 (major harm) to +2 (major gain), added up in each column. Darker means a mark of ±2.</span>`;
   $("foot").innerHTML =
     `<p>How the marks are placed in the columns, and the limits: ${link(D.repo + "docs/industry_lens.md", "the Industry lens methods note")}. The marking guide: ${link(D.repo + "docs/productivity_framework.md", "the productivity framework")}. Requirements: ${link(D.repo + "regulation-register/requirements", "regulation-register/requirements")}; register items: ${link(D.repo + "regulation-register/records", "regulation-register/records")}.</p>` +
     `<p>Industries: ${link(D.sources.anzsic, "ABS, ANZSIC 2006 (Revision 2.0)")}, CC BY 4.0. Map: ${esc(D.map.source)}, ${esc(D.map.licence)}.</p>` +

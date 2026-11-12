@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "product-standards",
   "title": "Use only verified measuring instruments for trade",
   "kind": "standard",
   "what": "A measuring instrument used for trade (such as scales or fuel dispensers) must be verified.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-disr"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Department of Industry, Science and Resources",
+      "bodies": [
+        "cth-disr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Measurement Act 1960",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1960A00064/latest/text",
+          "locator": "s 14 (compilation C2024C00648 from 2024-10-14)",
+          "quote": "Part III—National Measurement Institute and Chief Metrologist 16 Overview of Part Overview of Part (1) A National Measurement Institute is established within the Department.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -99,7 +125,7 @@
     "main_driver": "burden",
     "reach": "multi-sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-11"

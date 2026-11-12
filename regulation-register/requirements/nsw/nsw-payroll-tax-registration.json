@@ -36,6 +36,30 @@
     "nsw-revenue"
   ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Revenue NSW (Chief Commissioner of State Revenue)",
+      "bodies": [
+        "nsw-revenue"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2007 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2007-021",
+          "locator": "s 86, words naming the body (found 12 Nov 2026)",
+          "quote": "Chief Commissioner may cancel the registration of a person as an employer if satisfied that the person has ceased to pay or to have a liability to pay wages as described in subsection (1).",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-02/act-2007-021"
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "payroll",

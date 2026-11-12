@@ -3,6 +3,10 @@ productivity impact framework and placed by the market position each effect acts
 competitors, and monopolies and oligopolies. The wording is shared with Legislative levers influencing competition
 (``register/competition.py``; DECISIONS E-137).
 
+Since 12 November 2026 (DECISIONS E-150) the page leads with regulatory pain points and overlap: who administers each
+requirement (``administration``, methods rule 13), the regimes it belongs to with their layers and documented issues,
+and each state family's presence across the eight states, including the gaps logged for it.
+
 The page is built from the register as it stands, so every requirement or register item added later appears on it
 without code changes: requirements (``regulation-register/requirements/``) by their reach, and register items
 (``regulation-register/records/``) by their industries. How each is coded is in ``register/competition.py``; the
@@ -19,6 +23,8 @@ from pathlib import Path
 from ..register import competition as C
 from ..register.catalogue import default_register_dir
 from ..register.framework import DRIVERS, MARK_LABELS
+from ..register.recommendations import load_recommendations
+from ..register.regimes import BUSINESS_FACING, CONSISTENCY_LABELS, FUNCTION_LABELS, ISSUE_LABELS, load_regimes
 from ..register.requirements import KIND_LABELS, TRIGGER_LABELS, Requirement, load_requirements, reach_classes
 from ..register.schema import ChangeRecord
 
@@ -44,6 +50,21 @@ CLASS_MARKS = {
 }
 DEFAULT = ("H", "", "NSW")  # Accommodation and Food Services, all classes: calibration classes with laws at every tier
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
+# The stage of a business's life at which each trigger bites, for the journey view.
+STAGES = ("start", "hire", "operate", "grow", "exit")
+TRIGGER_STAGE = {
+    "entry": "start",
+    "first-employee": "hire",
+    "employees": "grow",
+    "payroll": "grow",
+    "turnover": "grow",
+    "revenue": "grow",
+    "assets": "grow",
+    "quantity": "grow",
+    "activity": "operate",
+    "ongoing": "operate",
+    "exit": "exit",
+}
 
 
 def classes() -> list[dict]:
@@ -88,7 +109,16 @@ def _source(s) -> dict:
     return {"title": s.title, "publisher": s.publisher, "url": str(s.url), "locator": s.locator}
 
 
-def requirement_row(q: Requirement, settings: dict[str, ChangeRecord]) -> dict:
+def administration(q: Requirement, bodies: dict[str, dict] | None = None) -> list[dict]:
+    """Who administers the requirement and what each does; without administration entries, the bodies named in
+    administered_by, with the function unknown."""
+    if q.administration:
+        return [{"who": a.who, "fn": a.function, "tier": a.tier} for a in q.administration]
+    names = bodies or {}
+    return [{"who": names.get(b, {}).get("name", b), "tier": q.tier} for b in q.administered_by]
+
+
+def requirement_row(q: Requirement, settings: dict[str, ChangeRecord], bodies: dict[str, dict] | None = None) -> dict:
     # A requirement that names a setting record (the same law in force) stands for it on the page.
     setting = next((r for r in q.records if r in settings), None)
     reach = []
@@ -123,6 +153,12 @@ def requirement_row(q: Requirement, settings: dict[str, ChangeRecord]) -> dict:
         "related": [r for r in q.records if r != setting],
         "reachConfidence": q.confidence,
         "councilsAdminister": q.administered_by_councils,
+        "family": q.family,
+        "regime": q.regime,
+        "admin": administration(q, bodies),
+        # Business-facing functions done by more than one body for this requirement (methods rule 13).
+        "overlap": q.overlaps() or None,
+        "stages": sorted({TRIGGER_STAGE[t.type] for t in q.triggers}, key=STAGES.index),
         "file": f"regulation-register/requirements/{folder}/{q.id}.json",
     }
 
@@ -153,6 +189,62 @@ def record_row(r: ChangeRecord) -> dict:
     }
 
 
+def regimes(reqs: list[Requirement]) -> list[dict]:
+    """Each regime with the ANZSIC codes it covers, its layers (who does what, at which tier and where), the issues
+    reviews have documented (with the first piece of evidence), and the register's recommendations about it: those
+    that apply to the regime's register items or to the items its requirements cite."""
+    recs = load_recommendations().recommendations
+    cited: dict[str, set[str]] = {}
+    for q in reqs:
+        if q.regime:
+            cited.setdefault(q.regime, set()).update(q.records)
+    out = []
+    for g in load_regimes().regimes:
+        items = set(g.records) | cited.get(g.id, set())
+        out.append(
+            _compact(
+                {
+                    "id": g.id,
+                    "name": g.name,
+                    "scope": g.scope,
+                    "consistency": g.consistency,
+                    "anzsic": list(g.coverage.anzsic),
+                    "exclude": list(g.coverage.exclude),
+                    "layers": [
+                        {"tier": x.tier, "fn": x.function, "who": x.who, "jur": list(x.jurisdictions)}
+                        for x in g.layers
+                    ],
+                    "issues": [
+                        {
+                            "tag": i.tag,
+                            "what": i.what,
+                            "jur": list(i.jurisdictions),
+                            "status": i.status,
+                            "pub": i.evidence[0].publisher,
+                            "year": i.evidence[0].year,
+                            "title": i.evidence[0].source,
+                            "url": str(i.evidence[0].url) if i.evidence[0].url else None,
+                            "quote": i.evidence[0].quote,
+                        }
+                        for i in g.issues
+                        if i.status != "addressed"
+                    ],
+                    "recs": [{"id": r.id, "title": r.title} for r in recs if items & set(r.applies_to)],
+                }
+            )
+        )
+    return out
+
+
+def gaps() -> dict[str, dict[str, str]]:
+    """Logged gaps in the state families (methods rule 12): family, then jurisdiction, then status."""
+    path = default_register_dir() / "requirement-gaps.json"
+    out: dict[str, dict[str, str]] = {}
+    for g in json.loads(path.read_text("utf-8"))["gaps"] if path.exists() else []:
+        out.setdefault(g["family"], {})[g["jurisdiction"]] = g["status"]
+    return out
+
+
 def payload(
     records: list[ChangeRecord], requirements: list[Requirement] | None = None, repo_base: str | None = None
 ) -> dict:
@@ -160,7 +252,10 @@ def payload(
     reqs = requirements if requirements is not None else load_requirements().requirements
     settings = {r.id: r for r in records if r.kind == "setting"}
     live = [r for r in records if r.ended is None]
-    rows = [_compact(row) for row in [requirement_row(q, settings) for q in reqs] + [record_row(r) for r in live]]
+    bodies = {b["id"]: b for b in json.loads((default_register_dir() / "bodies.json").read_text("utf-8"))}
+    rows = [
+        _compact(row) for row in [requirement_row(q, settings, bodies) for q in reqs] + [record_row(r) for r in live]
+    ]
     geo = json.loads(MAP.read_text("utf-8"))
     return {
         "page": PAGE[1],
@@ -180,6 +275,12 @@ def payload(
         "states": [{"code": c, "name": n} for c, n in STATES],
         "map": {"viewBox": geo["viewBox"], "areas": geo["areas"], "source": geo["source"], "licence": geo["licence"]},
         "rows": rows,
+        "regimes": regimes(reqs),
+        "gaps": gaps(),
+        "functions": FUNCTION_LABELS,
+        "businessFacing": list(BUSINESS_FACING),
+        "issueLabels": ISSUE_LABELS,
+        "consistencyLabels": CONSISTENCY_LABELS,
         "market": market(),
         "default": {"division": DEFAULT[0], "class": DEFAULT[1], "state": DEFAULT[2]},
         "counts": {

@@ -10,6 +10,9 @@ A source is named by a short spec:
   wa:<law_aNNN>             WA register, the current Word document                          -> document
   act:<A id>                ACT register, latest republication PDF, e.g. act:2001-66        -> document
   nt:<NAME>                 NT register PDF, by the name in its URL                         -> document
+  vic:<yy-numaaver>         Victoria, an authorised PDF the owner saved (data/raw/vic_legislation/): an Act,
+                            e.g. vic:17-51aa023, or a statutory rule, e.g. vic:17-22sra018
+                            -> document (cited by the register's in-force page)
   page:<url>                any web page (e.g. a Victorian regulator; the Vic register's documents are disallowed)
 
 Usage (in alicia/):
@@ -33,6 +36,7 @@ import datetime as dt
 import gzip
 import hashlib
 import re
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -42,6 +46,8 @@ import law_text as L  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 INDEX = ROOT / "data" / "processed" / "legislation" / "oalc_laws.csv.gz"
+VIC_DIR = ROOT / "data" / "raw" / "vic_legislation"
+VIC_CATALOGUE = ROOT / "data" / "processed" / "legislation" / "vic_catalogue.csv"
 _INDEX: list[dict] | None = None
 
 
@@ -79,11 +85,20 @@ def wa_current(law: str) -> tuple[str, str]:
 
 
 def act_latest(aid: str) -> tuple[str, str, str]:
-    page = _page(f"https://www.legislation.act.gov.au/a/{aid}/", delay=10.0)  # the ACT register's crawl delay
-    versions = sorted(set(re.findall(rf"/DownloadFile/a/{aid}/(\d{{8}}-\d+)/PDF/{aid}\.PDF", page)))
+    """The ACT register's latest republication of an Act (``2001-66``) or a subordinate law (``sl/2011-36``). The
+    newest republication is often offered only as ``current`` (no dated link yet), so that is preferred; the version
+    returned is then ``current`` and the label names its republication number and date."""
+    kind, num = ("sl", aid[3:]) if aid.startswith("sl/") else ("a", aid)
+    page = _page(f"https://www.legislation.act.gov.au/{kind}/{num}/", delay=10.0)  # the ACT register's crawl delay
     title = re.search(r"<title>([^<]+)</title>", page)
-    url = f"https://www.legislation.act.gov.au/DownloadFile/a/{aid}/{versions[-1]}/PDF/{aid}.PDF"
-    return url, versions[-1][:8], (title.group(1).strip() if title else "")
+    label = title.group(1).strip() if title else ""
+    if f"/DownloadFile/{kind}/{num}/current/PDF/{num}.PDF" in page:
+        cur = re.search(r"R(\d+) \(current\) (\d{1,2} \w+ \d{4})", re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", page)))
+        url = f"https://www.legislation.act.gov.au/DownloadFile/{kind}/{num}/current/PDF/{num}.PDF"
+        return url, "current", (f"R{cur.group(1)}, from {cur.group(2)}; " if cur else "") + label
+    versions = sorted(set(re.findall(rf"/DownloadFile/{kind}/{num}/(\d{{8}}-\d+)/PDF/{num}\.PDF", page)))
+    url = f"https://www.legislation.act.gov.au/DownloadFile/{kind}/{num}/{versions[-1]}/PDF/{num}.PDF"
+    return url, versions[-1][:8], label
 
 
 def nt_pdf(name: str) -> str | None:
@@ -121,18 +136,40 @@ def src(spec: str) -> tuple[str, str, str, str | None, str]:
         return url, flat(L.fetch_doc(url, _key(url))[0]), "document", None, f"version current from {cur}"
     if kind == "act":
         url, v, title = act_latest(arg)
-        return (
-            url,
-            flat(L.fetch_doc(url, _key(url))[0]),
-            "document",
-            None,
-            f"republication of {v[6:8]}/{v[4:6]}/{v[:4]} ({title})",
+        note = (
+            f"current republication ({title})"
+            if v == "current"
+            else f"republication of {v[6:8]}/{v[4:6]}/{v[:4]} ({title})"
         )
+        return url, flat(L.fetch_doc(url, _key(url))[0]), "document", None, note
     if kind == "nt":
         url = nt_pdf(arg)
         if not url:
             raise SystemExit(f"no NT PDF for {arg}")
         return url, flat(L.fetch_doc(url, _key(url))[0]), "document", None, "current reprint"
+    if kind == "vic":
+        # Victoria: an authorised PDF the owner saved from the register (data/raw/vic_legislation/, not committed),
+        # named like 17-51aa023 (Act 51 of 2017, authorised version 023) or 17-22sra018 (Statutory Rule 22 of 2017).
+        # The register's documents disallow automated fetching, so the quote cites the register's in-force page.
+        yy, num, kind_, ver = re.match(r"(\d\d)-(\d+)(aa|sra)(\d*)", arg).groups()
+        pdf = next(VIC_DIR.glob(f"{arg}*.pdf"))
+        out = flat(subprocess.run(["pdftotext", str(pdf), "-"], capture_output=True, text=True, check=True).stdout)
+        year = ("19" if int(yy) > 30 else "20") + yy
+        with VIC_CATALOGUE.open(encoding="utf-8", newline="") as fh:
+            rows = list(csv.DictReader(fh))
+        if kind_ == "aa":
+            url = next(r["url"] for r in rows if r["register_id"] == f"{num}/{year}")
+            return url, out, "document", None, f"authorised version {ver}, saved by the owner"
+        # A statutory rule: the catalogue lists it by name, which the PDF's first lines give.
+        title = re.match(r"Authorised Version(?: No\. \d+)? (.+?) S\.R\. No\. \d+/\d{4}", out).group(1)
+        url = next(r["url"] for r in rows if r["name"] == title)
+        return (
+            url,
+            out,
+            "document",
+            None,
+            f"S.R. No. {num}/{year}, authorised version {ver or 'unnumbered'}, saved by the owner",
+        )
     if kind == "page":
         return arg, flat(L.fetch_doc(arg, _key(arg))[0]), "web-page", None, ""
     raise ValueError(f"unknown source spec {spec!r}")

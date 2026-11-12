@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "primary-production-food-and-export",
   "title": "Meet export conditions before exporting prescribed goods",
   "kind": "approval",
   "what": "Goods prescribed by the export control rules may be exported only if the rules' conditions are met (such as a registered establishment, an approved arrangement or an export permit).",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-daff"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Agriculture, Fisheries and Forestry",
+      "bodies": [
+        "cth-daff"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Export Control Act 2020",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2020A00012/latest/text",
+          "locator": "s 189 (compilation C2026C00221 from 2026-05-21)",
+          "quote": "Chapter 6—Export licences Part 1—Introduction 189 Simplified outline of this Chapter The Secretary may, on application by a person, grant the person an export licence to carry out a kind of export operations in relation to a kind of prescribed goods.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -108,7 +134,7 @@
     "main_driver": "entry-exit",
     "reach": "multi-sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-11"

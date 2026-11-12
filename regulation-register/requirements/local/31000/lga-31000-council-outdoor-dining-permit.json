@@ -53,6 +53,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Brisbane",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Outdoor dining footpath trading permit brisbane city council",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/qld/outdoor-dining-footpath-trading-permit-brisbane-city-council/6484",
+          "locator": "Description",
+          "quote": "You will need this permit to use the public footpath for outdoor dining or to sell goods or services.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -92,8 +114,8 @@
       ]
     }
   ],
-  "confidence": "high",
-  "confidence_note": null,
+  "confidence": "medium",
+  "confidence_note": "Quoted from ABLIS and the council's web page; the local law's own words are not yet quoted (QA, 12 Nov 2026).",
   "records": [],
   "ablis": [
     "6484"
@@ -111,7 +133,7 @@
     "main_driver": "burden",
     "reach": "narrow",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-07"

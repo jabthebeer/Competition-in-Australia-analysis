@@ -32,7 +32,8 @@ The `family` is the same obligation across jurisdictions (e.g. `food-business-re
    | WA | `wa:<law_aNNN>` | `document` |
    | ACT | `act:<A id>` (e.g. `act:2001-66`) | `document` |
    | NT | `nt:<NAME-IN-URL>` | `document` |
-   | Victoria and any web page | `page:<url>` (the Victorian register disallows its documents; use the regulator) | `web-page` |
+   | Victoria, from an authorised PDF the owner saved in `data/raw/vic_legislation/` | `vic:<yy>-<number>aa<version>` (e.g. `vic:17-51aa023`) | `document` (cites the register's in-force page) |
+   | Any web page (e.g. a Victorian regulator, where no saved PDF exists) | `page:<url>` | `web-page` |
 
    ```bash
    cd alicia

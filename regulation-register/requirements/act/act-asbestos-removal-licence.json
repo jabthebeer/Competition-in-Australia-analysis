@@ -1,0 +1,137 @@
+{
+  "id": "act-asbestos-removal-licence",
+  "family": "asbestos-removal-licence",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "work-health-and-safety",
+  "title": "Hold an asbestos removal licence",
+  "kind": "licence",
+  "what": "Hold a class A licence to remove friable asbestos, and a class A or B licence to remove non-friable asbestos.",
+  "laws": [
+    {
+      "title": "Work Health and Safety Regulation 2011 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "SL2011-36",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/sl/2011-36/current/PDF/2011-36.PDF",
+      "provisions": "rr 485, 487",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Work Health and Safety Regulation 2011 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/sl/2011-36/current/PDF/2011-36.PDF",
+      "locator": "s 485(1) (current republication (R47, from 29 November 2025; Work Health and Safety Regulation 2011 | Subordinate laws))",
+      "quote": "(1) A person must not carry out the removal of the following at a workplace unless the person, or the person on whose behalf the work is carried out, holds a Class A asbestos removal licence: (a) friable asbestos;",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Work Health and Safety Regulation 2011 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/sl/2011-36/current/PDF/2011-36.PDF",
+      "locator": "s 487(1) (current republication (R47, from 29 November 2025; Work Health and Safety Regulation 2011 | Subordinate laws))",
+      "quote": "(1) A person must not carry out the removal of the following at a workplace unless the person, or the person on whose behalf the work is carried out, holds a Class B asbestos removal licence or a Class A asbestos removal licence: (a) non-friable asbestos or ACM;",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "act-cmtedd"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "WorkSafe ACT (Work Health and Safety Commissioner)",
+      "bodies": [
+        "act-cmtedd"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues asbestos removal licences and enforces the duty.",
+      "sources": [
+        {
+          "title": "Work Health and Safety Act 2011 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2011-35/20251119-88641/PDF/2011-35.PDF",
+          "locator": "s 251, words naming the body (found 12 Nov 2026)",
+          "quote": "regulator means the WHS Commissioner.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the business removes friable asbestos, or any non-friable asbestos.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it removes asbestos",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business that removes asbestos; mostly demolition, construction trades and specialist asbestos removalists.",
+      "sources": [
+        {
+          "title": "Work Health and Safety Regulation 2011 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/sl/2011-36/current/PDF/2011-36.PDF",
+          "locator": "s 485(1) (current republication (R47, from 29 November 2025; Work Health and Safety Regulation 2011 | Subordinate laws))",
+          "quote": "(1) A person must not carry out the removal of the following at a workplace unless the person, or the person on whose behalf the work is carried out, holds a Class A asbestos removal licence: (a) friable asbestos;",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "In the ACT the class B licence covers removing any non-friable asbestos or ACM (s 487(1)(a)), without the 10 square metre allowance in the other states' regulations.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Removing friable asbestos, or more than 10 square metres of non-friable asbestos, needs a class A or class B asbestos removal licence held by the business doing it.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, with qualified supervisors and set procedures, is needed before a business can take on asbestos removal work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; the health benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

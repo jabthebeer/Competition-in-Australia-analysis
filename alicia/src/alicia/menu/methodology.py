@@ -86,9 +86,9 @@ def _list(*items: str) -> str:
 def body(c: dict, repo: str = REPO_MAIN) -> str:
     """The page's sections as HTML. ``c`` is ``counts()``; ``repo`` is where the methods notes are linked."""
     reviewed = (
-        "None has yet been checked by a person."
+        "None has been checked yet."
         if not c["reviewed"]
-        else f"{c['reviewed']} of them have been checked by a person so far."
+        else f"{c['reviewed']} of them have been checked so far."
     )
     sections = {
         "what": "\n".join(
@@ -226,6 +226,15 @@ def body(c: dict, repo: str = REPO_MAIN) -> str:
                     "Each requirement reaches the industry classes its law covers, read from the law's scope or from "
                     "official guidance that names the industry. Confidence is high where the law names the activity, "
                     "medium where official guidance does, and low where it is inferred from the ABS class definition.",
+                    "Each requirement names the bodies that administer it: the department that sets the rules, and "
+                    "the regulators and councils that license, inspect or collect. Each is quoted from the law or from "
+                    "the government's administrative arrangements. Where two or more bodies do the same job, the "
+                    "overlap is recorded: for example, the ACCC and the state fair trading offices both enforce the "
+                    "Australian Consumer Law.",
+                    "The page leads with pain points. They are problems published reviews have found in the regimes "
+                    "covering the industry, and the register's own flags: two bodies doing the same job, several "
+                    "levels of government, or versions that differ between states or councils. Flags describe the "
+                    "register's links. They are not findings that a law is excessive.",
                     "Each law is marked against the framework. Each mark is shown under the market players it acts "
                     "through: entrants, existing competitors, or monopolies and oligopolies.",
                     "The market figures above each column (business counts, entry and exit rates, sales by business "

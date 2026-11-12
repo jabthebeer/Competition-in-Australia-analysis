@@ -95,8 +95,8 @@ This section overrides tasteSkill's "no caption" rule. Every chart and table has
 
 Also:
 
-- Keep draft and beta status visible. Register items stay drafts until a person checks them;
-  don't remove a `.notice` that says so.
+- Keep draft and beta status visible. Register items stay drafts until the AI checking process
+  checks them (DECISIONS E-145); don't remove a `.notice` that says so.
 - Colour is never the only signal: positive and negative also show a sign or an arrow.
 
 ## 3. One system [ts]

@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "vocational-and-higher-education",
   "title": "Register as a training organisation before providing VET courses",
   "kind": "registration",
   "what": "A person must be an NVR registered training organisation to provide, or offer to provide, all or part of a VET course in a referring state or a territory.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-asqa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Skills Quality Authority",
+      "bodies": [
+        "cth-asqa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Vocational Education and Training Regulator Act 2011",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2011A00012/latest/text",
+          "locator": "s 17 (compilation C2024C00461 from 2024-10-14)",
+          "quote": "17 Registration Grant of application for registration (1) The National VET Regulator may grant an application for registration.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "licenses",
+      "who": "State VET regulators in Victoria and Western Australia (non-referring states)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [
+        "VIC",
+        "WA"
+      ],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Vocational Education and Training Regulator Act 2011",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2011A00012/latest/text",
+          "locator": "s 7 (compilation C2024C00461 from 2024-10-14)",
+          "quote": "7 Meaning of non-referring State (1) A State is a non-referring State if the State is not a referring State.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",
@@ -120,7 +169,7 @@
     "main_driver": "entry-exit",
     "reach": "sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 10 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 10 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-10"

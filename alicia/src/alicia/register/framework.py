@@ -430,7 +430,7 @@ CAVEATS: tuple[str, ...] = (
     "Marks are ordinal judgements, not estimates. Adding them is a summary device: a +2 is not exactly twice a +1. "
     "They do not give dollar figures.",
     "Assessments were drafted by AI-assisted desk research from each record's sources and have not yet been "
-    "checked by a person.",
+    "checked.",
     "Reach describes how much of the economy an item touches, not the size of its effect there; a state law reaches "
     "only that state.",
 )

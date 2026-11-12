@@ -1,0 +1,150 @@
+{
+  "id": "cth-fringe-benefits-tax",
+  "family": "fringe-benefits-tax",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "business-and-tax-registration",
+  "title": "Pay fringe benefits tax on benefits given to employees",
+  "kind": "tax-or-levy",
+  "what": "Tax is imposed on an employer's fringe benefits taxable amount each FBT year.",
+  "laws": [
+    {
+      "title": "Fringe Benefits Tax Act 1986",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03281",
+      "register_url": "https://www.legislation.gov.au/C2004A03281/latest/text",
+      "provisions": "5",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fringe Benefits Tax Act 1986",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03281/latest/text",
+      "locator": "s 5 (compilation C2018C00240 from 2018-06-19)",
+      "quote": "5 Imposition of tax Tax is imposed in respect of the fringe benefits taxable amount of an employer of a year of tax.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ato",
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fringe Benefits Tax Assessment Act 1986",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03280/latest/text",
+          "locator": "s 3 (compilation C2026C00332 from 2026-07-01)",
+          "quote": "Part II—Administration 3 General administration of Act The Commissioner has the general administration of this Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Fringe Benefits Tax Assessment Act 1986 Fuel Indexation (Road Funding) Special Account Act 2015",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fringe Benefits Tax Act 1986",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03281/latest/text",
+          "locator": "s 5 (compilation C2018C00240 from 2018-06-19)",
+          "quote": "5 Imposition of tax Tax is imposed in respect of the fringe benefits taxable amount of an employer of a year of tax.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Tax is imposed on an employer's fringe benefits taxable amount each FBT year.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Valuing benefits and lodging FBT returns.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

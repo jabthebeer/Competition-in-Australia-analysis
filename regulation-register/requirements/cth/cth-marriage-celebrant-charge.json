@@ -1,0 +1,140 @@
+{
+  "id": "cth-marriage-celebrant-charge",
+  "family": "marriage-celebrant-charge",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "personal-services",
+  "title": "Pay the annual celebrant registration charge",
+  "kind": "tax-or-levy",
+  "what": "Commonwealth-registered marriage celebrants pay an annual registration charge (s 39FA of the Marriage Act 1961).",
+  "laws": [
+    {
+      "title": "Marriage (Celebrant Registration Charge) Act 2014",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2014A00024",
+      "register_url": "https://www.legislation.gov.au/C2014A00024/latest/text",
+      "provisions": "6",
+      "applied": false
+    },
+    {
+      "title": "Marriage Act 1961",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1961A00012",
+      "register_url": "https://www.legislation.gov.au/C1961A00012/latest/text",
+      "provisions": "s 39FA",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Marriage (Celebrant Registration Charge) Act 2014",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2014A00024/latest/text",
+      "locator": "s 6 (compilation C2014A00024 from 2014-04-09)",
+      "quote": "6 Imposition of celebrant registration charge Celebrant registration charge that a person is liable to pay in respect of a financial year in accordance with section 39FA of the Marriage Act 1961 is imposed.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-agd"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Attorney-General's Department",
+      "bodies": [
+        "cth-agd"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Marriage Act 1961",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1961A00012/latest/text",
+          "locator": "s 39DE (compilation C2026C00129 from 2026-03-28)",
+          "quote": "Notice of charge (2) The Registrar of Marriage Celebrants must, in respect of a financial year, send each person who is liable to pay the celebrant registration charge in respect of the financial year a written notice that: (a) specifies: (i) the amount of celebrant registration charge that is payable by the person (unless the person is granted an exemption);",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9539"
+      ],
+      "exclude": [],
+      "activities": [
+        "Marriage celebrant service"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Marriage (Celebrant Registration Charge) Act 2014",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2014A00024/latest/text",
+          "locator": "s 6 (compilation C2014A00024 from 2014-04-09)",
+          "quote": "6 Imposition of celebrant registration charge Celebrant registration charge that a person is liable to pay in respect of a financial year in accordance with section 39FA of the Marriage Act 1961 is imposed.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Commonwealth-registered marriage celebrants pay an annual registration charge (s 39FA of the Marriage Act 1961).",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "An annual charge to stay registered.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

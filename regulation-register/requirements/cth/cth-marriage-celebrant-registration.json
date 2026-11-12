@@ -1,0 +1,143 @@
+{
+  "id": "cth-marriage-celebrant-registration",
+  "family": "marriage-celebrant-registration",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "personal-services",
+  "title": "Register as a marriage celebrant",
+  "kind": "registration",
+  "what": "Only a person authorised under the Marriage Act may solemnise a marriage. To be registered as a marriage celebrant, the Registrar must be satisfied the person has the qualifications or skills the Registrar has determined and is a fit and proper person.",
+  "laws": [
+    {
+      "title": "Marriage Act 1961",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1961A00012",
+      "register_url": "https://www.legislation.gov.au/C1961A00012/latest/text",
+      "provisions": "ss 39C, 101",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Marriage Act 1961",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1961A00012/latest/text",
+      "locator": "s 101 (compilation C2026C00129 from 2026-03-28)",
+      "quote": "101 Solemnisation of marriage by unauthorised person A person shall not solemnise a marriage, or purport to solemnise a marriage, at a place in Australia or under Part V unless the person is authorised by or under this Act to solemnise marriages at that place or under that Part, as the case may be.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Marriage Act 1961",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1961A00012/latest/text",
+      "locator": "s 39C(1) (compilation C2026C00129 from 2026-03-28)",
+      "quote": "39C Entitlement to be registered as a marriage celebrant (1) A person is only entitled to be registered as a marriage celebrant if the person is an individual and the Registrar of Marriage Celebrants is satisfied that the person: (a) is aged 18 years or over; and (b) has all the qualifications, and/or skills, determined in writing to be necessary by the Registrar in accordance with regulations made for the purposes of this paragraph; and (c) is a fit and proper person to be a marriage celebrant;",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-agd"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Attorney-General's Department",
+      "bodies": [
+        "cth-agd"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Marriage Act 1961",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1961A00012/latest/text",
+          "locator": "s 39K (compilation C2026C00129 from 2026-03-28)",
+          "quote": "39K Additional functions of the Registrar The Registrar of Marriage Celebrants must: (a) amend the register of marriage celebrants in accordance with regulations made for the purposes of this paragraph;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9539"
+      ],
+      "exclude": [],
+      "activities": [
+        "Marriage celebrant service"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Marriage (Celebrant Registration Charge) Act 2014",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2014A00024/latest/text",
+          "locator": "s 6 (compilation C2014A00024 from 2014-04-09)",
+          "quote": "6 Imposition of celebrant registration charge Celebrant registration charge that a person is liable to pay in respect of a financial year in accordance with section 39FA of the Marriage Act 1961 is imposed.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Found by the 12 Nov 2026 quality check: batch 6 had called the Act N from its title; the annual charge was already drafted (cth-marriage-celebrant-charge).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A celebrant must hold set qualifications or skills and pass a fit and proper test before solemnising marriages.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Registration needs the Registrar's qualifications or skills and a fit and proper test before a celebrant can trade.",
+        "positions": [
+          "entrants"
+        ]
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 12 Nov 2026 (quality check), not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

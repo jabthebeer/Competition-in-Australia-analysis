@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "vic-dtp"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "VicRoads (Department of Transport and Planning)",
+      "bodies": [
+        "vic-dtp"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Driving instructor authority",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/driving-instructor-authority/24371",
+          "locator": "Description",
+          "quote": "You will need this authority of you are a professional driving instructor and intend to teach an unlicensed person to drive a car on a public or open road.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",
@@ -98,7 +124,7 @@
     "main_driver": "entry-exit",
     "reach": "narrow",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-07"

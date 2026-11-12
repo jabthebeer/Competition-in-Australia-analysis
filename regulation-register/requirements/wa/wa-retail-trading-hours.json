@@ -1,0 +1,105 @@
+{
+  "id": "wa-retail-trading-hours",
+  "family": "retail-trading-hours",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "retail-trading-hours",
+  "title": "Close the shop outside permitted trading hours",
+  "kind": "standard",
+  "what": "Close a general retail shop outside the permitted trading hours (set for the Perth metropolitan area and elsewhere).",
+  "laws": [
+    {
+      "title": "Retail Trading Hours Act 1987 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a696",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45886.docx",
+      "provisions": "s 12",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Retail Trading Hours Act 1987 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45886.docx",
+      "locator": "s 12(3) (version current from )",
+      "quote": "a general retail shop in the metropolitan area shall be closed — (a) on Monday, Tuesday, Wednesday, Thursday and Friday in each week, until 8 a.m. and from and after 9 p.m.;",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "41",
+        "42"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Shops selling goods by retail (store-based retailing); the Acts' exemptions for small shops, some goods and some areas are not yet coded.",
+      "sources": [
+        {
+          "title": "Retail Trading Hours Act 1987 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45886.docx",
+          "locator": "s 12(3) (version current from )",
+          "quote": "a general retail shop in the metropolitan area shall be closed — (a) on Monday, Tuesday, Wednesday, Thursday and Friday in each week, until 8 a.m. and from and after 9 p.m.;",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Shops must close outside the hours or on the days the state sets. Limits on opening protect existing traders from rivals that would open longer, and the rules differ widely between states.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Limits on opening hours restrict how shops compete on convenience and shield incumbents from rivals that would open longer.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the restriction's design against the framework's guide. The restrictions range from a few public holidays (NSW, Tasmania) to set weekly hours (WA, SA, Queensland); this one mark does not yet tell them apart.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

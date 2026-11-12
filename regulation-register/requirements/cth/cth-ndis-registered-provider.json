@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "disability-services",
   "title": "Register as an NDIS provider to serve Agency-managed participants",
   "kind": "registration",
   "what": "A person who provides supports under a participant's plan where registration is required must be a registered NDIS provider; supports funded through plans the Agency manages must be provided only by registered providers.",
@@ -32,8 +32,77 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dhda",
+    "cth-ndis-commission"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "NDIS Quality and Safeguards Commission",
+      "bodies": [
+        "cth-ndis-commission"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Disability Insurance Scheme Act 2013",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2013A00020/latest/text",
+          "locator": "s 73C (compilation C2026C00451 from 2026-10-01)",
+          "quote": "(4) The Commissioner may, by written notice, require an applicant for registration to give the Commissioner such further information or documents in relation to the application as the Commissioner reasonably requires.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "funds",
+      "who": "National Disability Insurance Agency",
+      "bodies": [],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Disability Insurance Scheme Act 2013",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2013A00020/latest/text",
+          "locator": "s 6 (compilation C2026C00451 from 2026-10-01)",
+          "quote": "6 Agency may provide support and assistance To support people with disability to exercise choice and control in the pursuit of their goals, the Agency may provide support and assistance (including financial assistance) to prospective participants and participants in relation to doing things or meeting obligations under, or for the purposes of, this Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 9 (Department of Health, Disability and Ageing), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "National Disability Insurance Scheme Act 2013, except to the extent administered by the",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -97,7 +166,7 @@
     "main_driver": "entry-exit",
     "reach": "sector",
     "confidence": "low",
-    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
     "evidence": [],
     "framework": "1.0",
     "assessed_on": "2026-11-11"

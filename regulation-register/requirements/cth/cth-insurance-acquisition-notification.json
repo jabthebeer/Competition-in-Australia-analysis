@@ -1,0 +1,136 @@
+{
+  "id": "cth-insurance-acquisition-notification",
+  "family": "insurance-acquisition-notification",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "financial-services",
+  "title": "Notify the Treasurer before acquiring a large stake in an insurer",
+  "kind": "approval",
+  "what": "A person proposing a trigger proposal (a stake or control above the Act's thresholds) in an insurer must notify the Treasurer and wait for a go-ahead.",
+  "laws": [
+    {
+      "title": "Insurance Acquisitions and Takeovers Act 1991",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04297",
+      "register_url": "https://www.legislation.gov.au/C2004A04297/latest/text",
+      "provisions": "38",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Insurance Acquisitions and Takeovers Act 1991",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A04297/latest/text",
+      "locator": "s 38 (compilation C2025C00115 from 2025-02-21)",
+      "quote": "38 Compulsory notification of trigger proposal If: (a) a person carries out a trigger proposal; and (b) the person did not, before the acquisition or before entering into the arrangement, as the case may be, give to the Minister a notice in accordance with section 17A stating the person’s intention to acquire the assets, interests, rights or benefits or to enter into the arrangement, as the case requires; and (c) either: (i) the person knew that the proposal concerned was a trigger proposal; or (ii) the person had reasonable grounds to suspect that the proposal concerned was a trigger proposal but did not make all reasonable efforts to ascertain whether it was a trigger proposal; the person commits an offence punishable on conviction by imprisonment for a period not exceeding 2 years.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Insurance Acquisitions and Takeovers Act 1991",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04297/latest/text",
+          "locator": "s 5 (compilation C2025C00115 from 2025-02-21)",
+          "quote": "(2) The Minister may, by legislative instrument, determine circumstances in which a person is taken, for the purposes of paragraph (1)(b), to be in a position of influence over an Australian-registered insurance company.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6310",
+        "6322"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it proposes to acquire a stake or control above the Act's thresholds",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Insurance Acquisitions and Takeovers Act 1991",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04297/latest/text",
+          "locator": "s 38 (compilation C2025C00115 from 2025-02-21)",
+          "quote": "38 Compulsory notification of trigger proposal If: (a) a person carries out a trigger proposal; and (b) the person did not, before the acquisition or before entering into the arrangement, as the case may be, give to the Minister a notice in accordance with section 17A stating the person’s intention to acquire the assets, interests, rights or benefits or to enter into the arrangement, as the case requires; and (c) either: (i) the person knew that the proposal concerned was a trigger proposal; or (ii) the person had reasonable grounds to suspect that the proposal concerned was a trigger proposal but did not make all reasonable efforts to ascertain whether it was a trigger proposal; the person commits an offence punishable on conviction by imprisonment for a period not exceeding 2 years.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A person proposing a trigger proposal (a stake or control above the Act's thresholds) in an insurer must notify the Treasurer and wait for a go-ahead.",
+    "marks": [
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Approval adds cost and delay to investing in insurers.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Ownership controls can shelter incumbents from takeover.",
+        "positions": []
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

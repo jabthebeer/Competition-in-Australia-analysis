@@ -1,0 +1,156 @@
+{
+  "id": "cth-foreign-investment-notification",
+  "family": "foreign-investment-notification",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Notify the Treasurer before notifiable foreign investment actions",
+  "kind": "approval",
+  "what": "A foreign person must give the Treasurer notice before taking a notifiable action, and must not take it before the decision period ends.",
+  "laws": [
+    {
+      "title": "Foreign Acquisitions and Takeovers Act 1975",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A01402",
+      "register_url": "https://www.legislation.gov.au/C2004A01402/latest/text",
+      "provisions": "81(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Foreign Acquisitions and Takeovers Act 1975",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A01402/latest/text",
+      "locator": "s 81(1) (compilation C2025C00672 from 2025-12-05)",
+      "quote": "81 Compulsory notice of notifiable actions and notifiable national security actions (1) A foreign person who proposes to take a notifiable action or notifiable national security action (other than because of the operation of section 18A (increasing percentage of interests without acquiring additional interests in securities)) must give a notice to the Treasurer before taking the action.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ato",
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Foreign Acquisitions and Takeovers Act 1975",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01402/latest/text",
+          "locator": "s 56 (compilation C2025C00672 from 2025-12-05)",
+          "quote": "The Treasurer must generally make a decision on an application within the period prescribed by the regulations.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Foreign Acquisitions and Takeovers Act 1975",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01402/latest/text",
+          "locator": "s 99 (compilation C2025C00672 from 2025-12-05)",
+          "quote": "Authorised applicant (2) For the purposes of Part 4 of the Regulatory Powers Act: (a) each of the Treasurer and the Commissioner of Taxation is an authorised applicant in relation to the civil penalty provisions of this Act (other than section 130ZV);",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Foreign Acquisitions and Takeovers Act 1975",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01402/latest/text",
+          "locator": "s 81(1) (compilation C2025C00672 from 2025-12-05)",
+          "quote": "81 Compulsory notice of notifiable actions and notifiable national security actions (1) A foreign person who proposes to take a notifiable action or notifiable national security action (other than because of the operation of section 18A (increasing percentage of interests without acquiring additional interests in securities)) must give a notice to the Treasurer before taking the action.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Applies to foreign persons; the thresholds are in the regulations, not yet quoted.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A foreign person must give the Treasurer notice before taking a notifiable action, and must not take it before the decision period ends.",
+    "marks": [
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Approval delays and conditions add to the cost of foreign investment.",
+        "positions": []
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Screening raises the cost of investing in Australia from overseas.",
+        "positions": []
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

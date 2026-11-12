@@ -60,7 +60,11 @@
     - **P:** a planning instrument, handled in phase E;
     - **N:** no obligation on businesses, with a one-line reason.
 
+    Instruments are screened by parent Act (added 11 Nov 2026, E-141). An instrument made under an Act called N is called N. An instrument under an Act that creates requirements is called L to them, unless it is administrative (an appointment, delegation, exemption or amendment), when it is N, or it creates a new obligation of its own (an industry code, a product safety or information standard), when it is Y. Instruments with no parent Act in their name are screened by series (accounting standards, Australian Design Rules, Marine Orders and so on) or one by one.
+
     A title triage first sets aside amending Acts, appropriations, airworthiness directives, tariff concession orders, appointments and similar series; the triage patterns are kept with the catalogue.
+
+    **States (added 12 November 2026, E-151).** Each state's catalogue (`<state>_catalogue.csv`) adds where its list came from (`listed_from`, `as_at`) and a **signal** score, `high`, `medium` or `low`, that orders the screening; it is not a call. For the corpus states the score reads the law's text for licensing offences ("must not … unless … licensed"), licences, registration, levies and duties, penalties and business words; for Victoria, the ACT and the NT it reads the title only. The ACT's lists come from pages the owner saved, because its register's lists are disallowed to automated tools. The state triage also sets aside commencement orders and proclamations, naming, validations, parliamentary and judicial office, public sector superannuation, private Acts about named property, old Acts cited by regnal year, and Commonwealth Acts listed by a state register. Laws already cited by a requirement are called Y.
 11. **Thresholds in subordinate instruments** (added after phase B). Before a threshold is recorded as not yet quoted, the regulations, determinations and orders made under the law are searched for it. The calibration found the GST threshold in the regulations and the ACT payroll tax threshold in a determination, not in the Acts.
 12. **Gaps are logged** (added after phase B; built 10 November 2026, E-129). A state family with no requirement in a state or territory is logged in `regulation-register/requirement-gaps.json`, saying what was searched, rather than left blank. `alicia validate` fails if a state family has neither a requirement nor a gap in any of the eight. Each gap has a status:
     - **not found:** the sources searched show no such requirement;
@@ -71,6 +75,25 @@
 
     A gap records a search, not that no law exists, unless its sources say so.
 13. **Every requirement is marked against the productivity framework** (added 7 November 2026, DECISIONS E-123). Each requirement carries an `assessment` like a register item's: the eight drivers marked from −2 to +2 against the same market without it, a main driver, reach and confidence. Where the register assesses the same law, the requirement uses its marks. A small obligation may have no material effect. The Industry lens reads these marks ([`industry_lens.md`](industry_lens.md)).
+
+13. **Who administers a requirement, and where administration overlaps** (added 12 November 2026, E-148). Each requirement records every body with a part in it, in `administration`. Each entry gives:
+    - the body's function, in the regime model's terms: sets the rules, licenses, approves, inspects and enforces, collects, or funds;
+    - the body (from `bodies.json`), or a class of bodies such as "state and territory consumer protection agencies";
+    - the tier and any states it acts in;
+    - a quoted source.
+
+    The sources are:
+    - **the law's own words** naming the body and its part (for example, "ASIC must grant an applicant an Australian financial services licence"), or the law's definition of the body it names;
+    - **the Administrative Arrangements Order** for the department that administers the Act. The Order's entry for the Act is quoted. Where it splits an Act between departments ("except to the extent administered by…"), each department is recorded;
+    - **official guidance** where the law does not name a body, such as the ACCC's advice that state agencies also enforce the Australian Consumer Law.
+
+    `administered_by` lists the same bodies, and `alicia validate` checks that they match. A role whose source could not be found is left out rather than guessed.
+
+    Two measures of complexity follow (`scripts/agency_overlap.py`):
+    - **an overlap:** two or more bodies doing the same business-facing function for one requirement (licensing, approving, inspecting and enforcing, collecting or funding). An example is the ACL, which the ACCC and the state agencies both enforce. Rules set by more than one body (a department and a regulator, or two departments) are counted separately;
+    - **agencies per class:** the distinct bodies behind the requirements that reach each class and state (`data/processed/legislation/agencies_by_class.csv`), with how many of those requirements involve several bodies, overlap, or span the Commonwealth and the states.
+
+    **Limits.** The counts cover bodies the register names, not every agency a business may meet. So far they are almost all Commonwealth: state and council requirements are linked to their regulators in phase D.
 
 ## Calibration (phase B)
 

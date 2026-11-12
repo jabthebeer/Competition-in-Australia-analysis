@@ -1,0 +1,135 @@
+{
+  "id": "cth-coal-long-service-payroll-levy",
+  "family": "coal-long-service-payroll-levy",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Pay the coal mining long service leave payroll levy",
+  "kind": "tax-or-levy",
+  "what": "Employers of eligible black coal mining employees pay a payroll levy that funds portable long service leave.",
+  "laws": [
+    {
+      "title": "Coal Mining Industry (Long Service Leave) Payroll Levy Act 1992",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04353",
+      "register_url": "https://www.legislation.gov.au/C2004A04353/latest/text",
+      "provisions": "4",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Coal Mining Industry (Long Service Leave) Payroll Levy Act 1992",
+      "publisher": "Federal Register of Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.gov.au/C2004A04353/2012-01-01/2012-01-01/text/original/epub/OEBPS/document_1/document_1.html",
+      "locator": "s 4 (version of C2012C00097)",
+      "quote": "4 Imposition of levy Levy is imposed on eligible wages paid to eligible employees after the commencement of this Act.",
+      "accessed": "2026-11-11",
+      "checked": "corpus-copy",
+      "corpus_version_id": "federal_register_of_legislation:C2012C00097"
+    }
+  ],
+  "administered_by": [
+    "cth-dewr"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Employment and Workplace Relations",
+      "bodies": [
+        "cth-dewr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 6 (Department of Employment and Workplace Relations), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Coal Mining Industry (Long Service Leave) Administration Act 1992",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0600"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it employs eligible black coal mining employees",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Coal Mining Industry (Long Service Leave) Payroll Levy Act 1992",
+          "publisher": "Federal Register of Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.gov.au/C2004A04353/2012-01-01/2012-01-01/text/original/epub/OEBPS/document_1/document_1.html",
+          "locator": "s 4 (version of C2012C00097)",
+          "quote": "4 Imposition of levy Levy is imposed on eligible wages paid to eligible employees after the commencement of this Act.",
+          "accessed": "2026-11-11",
+          "checked": "corpus-copy",
+          "corpus_version_id": "federal_register_of_legislation:C2012C00097"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the corpus copy (as at March 2025); the Federal Register's current document could not be read as text.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A payroll levy funds portable long service leave for coal miners.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": 1,
+        "reason": "Long service entitlements move with the worker between employers.",
+        "positions": []
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A levy on payroll.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
