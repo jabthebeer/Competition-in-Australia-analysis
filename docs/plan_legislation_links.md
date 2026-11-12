@@ -168,6 +168,11 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 
 **Industry lens (owner's list, 10 Nov 2026)**
 
+- [x] **Lens rebuilt around pain points and regulatory overlap** (E-150, 12 Nov 2026): pain points, the overlap map, the industry's own laws (list or journey) and an across-states view lead; the framework table and market figures follow.
+- [ ] **The register becomes the source of truth for the pain points** (owner, 12 Nov 2026). Once all the data is in, published reviews are secondary evidence: rank first what the register itself shows (overlaps, levels of government, differences between states), and use reviews to support it.
+- [ ] **Register sources on the pain-point cards** (owner, 12 Nov 2026: later, once all the legislation is in). Each card would quote and link the law behind its flag.
+- [ ] **Fill the across-states view** after the state batches (D-3 to D-10). It now shows where each state's version is recorded; it is to compare fees, thresholds, terms and regulators.
+- [ ] **Compliance costs: shelved, to scope** (owner, 12 Nov 2026). An estimate per requirement (time, fees) would let the lens rank burdens by size and set costs against outcomes, to find regulation whose cost outweighs what it delivers.
 - [ ] Regulators' market studies (ACCC, PC) as a cross-check of the market figures (option 4).
 - [ ] A structural economic conditions chart for council areas and regions (when the owner asks).
 - [ ] Council-level features on the map (when the owner asks).

@@ -1,6 +1,6 @@
 # Industry lens (beta): methods
 
-*6–11 November 2026 (DECISIONS E-122, E-123, E-126 to E-128, E-137). Code: `alicia/src/alicia/register/competition.py` (placing marks in columns) and `alicia/src/alicia/menu/lens.py` (the page's data); template `menu/templates/industry-lens.html`; map `alicia/src/alicia/pipeline/boundaries.py`. Tests: `alicia/tests/test_lens.py`.*
+*6–12 November 2026 (DECISIONS E-122, E-123, E-126 to E-128, E-137, E-150). Code: `alicia/src/alicia/register/competition.py` (placing marks in columns) and `alicia/src/alicia/menu/lens.py` (the page's data); template `menu/templates/industry-lens.html`; map `alicia/src/alicia/pipeline/boundaries.py`. Tests: `alicia/tests/test_lens.py`.*
 
 ## What the page shows
 
@@ -22,6 +22,28 @@ A register item whose framework assessment rates its reach **economy-wide** appe
 - **Sort by:** level of government (Commonwealth, then state, then council; the default), most negative first or most positive first (by the framework total), or title.
 
 A requirement that names a register *setting* about the same law (payroll tax, occupational licensing, Australia Post's reserved service) stands for it, so the setting is not listed twice. Laws with no material effect are hidden unless the user asks for them.
+
+## Pain points and regulatory overlap (12 November 2026, E-150)
+
+The page's aim is to give governments regulatory pain points they can act on: duplicated or overlapping administration, and laws that differ between states or councils. It leads with them. In order, after the picker:
+
+1. **Summary.** Laws particular to the industry; laws for every business (the baseline); the bodies involved, by level of government; laws where two bodies share a job; and problems reviews have found in the regimes covering the industry.
+2. **Pain points.** One card per problem, ranked (owner, 12 November 2026):
+   - 30 points: a problem documented by a review in a sector regime whose coverage includes the industry;
+   - 20 points: a flag on one of the industry's own requirements (two bodies doing the same job, several levels of government, or differing between states or councils);
+   - 10 points: a problem documented in a cross-cutting regime, such as employment law;
+   - 5 more for duplication, Commonwealth–state overlap, several agencies, or two bodies doing the same job.
+
+   Every card names the responsible bodies by level of government: for a requirement, from its `administration` entries (methods rule 13); for a regime, from the bodies in its requirements for the industry, or else from the regime's layers. A card for a review problem quotes its source; a card for a register flag says it rests on the register's links. Each gives the register's recommendations about the regime, or else the usual remedy for that kind of problem.
+3. **Regulatory overlap.**
+   - **Levels of government in each regime:** the regimes covering the industry (and any its requirements belong to), placed by the levels with a part in each, from the regime's layers in the chosen state and the bodies in its requirements. Choosing a regime shows who does what in it, the problems reviews found and the register's recommendations.
+   - **Who does what:** functions (sets the rules, licenses, approves, inspects and enforces, collects, funds) by level of government, with the bodies doing each and the number of laws. A cell is marked where two or more bodies do the same business-facing job for the same law. The grid shows the industry's own laws, or all laws with the baseline.
+4. **Laws for this industry.** The requirements particular to the industry, with their bodies and flags. The baseline is collapsed and counted by regime. A **business journey** view sorts the same laws by when they bite: start (before trading), hire, operate, grow (past a threshold) and exit, from each requirement's triggers.
+5. **Across states.** Each state and council family reaching the industry, with its status in each state or territory: applies, recorded for other industries only, a logged gap (methods rule 12), or not recorded. It is a shell for now: after the state batches it is to compare the versions (fees, thresholds, terms and regulators).
+
+The framework table ("Effect of each law on competition") and the market figures follow, unchanged.
+
+**Rules for the flags.** A requirement is flagged *same job, two bodies* where two or more bodies do the same business-facing function for it (`overlaps()`); *several levels of government* where its bodies sit at more than one level; and *differs between states* (or councils) where its family has a version in two or more jurisdictions. Flags describe the register's links. They are not findings that a law is excessive or that an overlap is unjustified.
 
 ## Every law is marked against the productivity framework
 
@@ -108,6 +130,8 @@ Regulators' published market shares (ACCC inquiries, PC reports) are to be added
 - **The framework weighs productivity and competition only.** It does not count a law's benefits to safety, consumers or the environment. A red cell says a law adds cost or shelters incumbents, not that it should go.
 - **Placing marks is mechanical.** The driver-to-column table is a convention. A mark that acts through more than one group needs its own `positions`.
 - **Requirement marks are rough.** Most requirements carry one or two −1 marks (an entry condition, compliance burden). Differences in how hard a licence is to get, or how large the burden is, are not yet captured.
+- **Pain points rest partly on published reviews.** Until the register is complete, many cards come from reviews (often Productivity Commission benchmarking), some years old. Once all the data is in, the register is to be the source of truth and reviews secondary evidence (owner, 12 November 2026).
+- **No compliance costs yet.** The page cannot rank burdens by size or set costs against outcomes. Scoping this is shelved (owner, 12 November 2026).
 - **Indirect effects.** Register items marked as affecting an industry indirectly are included by default; the page can hide them.
 
 ## Later features (owner, 6 November 2026)
