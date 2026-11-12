@@ -95,7 +95,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 ## Progress
 
 - **D-1, done 12 Nov 2026 (E-149):** 5 family gaps drafted, 6 searched again, 2 moved to D-2; 138 of 140 state and council requirements linked to their regulator or council, with 3 new overlaps recorded.
-- **D-2, catalogues built 12 Nov 2026 (E-151):** all eight, the ACT's from the lists the owner saved. Victoria's titles are still being read; state departments are still to do. Details below.
+- **D-2, catalogues built 12 Nov 2026 (E-151):** all eight, the ACT's from the lists the owner saved. State departments are still to do. Details below.
 
 ### D-2: the catalogues and the new estimate
 
@@ -103,26 +103,27 @@ All eight catalogues are built (`data/processed/legislation/<state>_catalogue.cs
 
 | | Listed | Set aside by title triage | To screen | High signal | Source of the list |
 |---|---:|---:|---:|---:|---|
-| NSW | 2,217 | 612 | 1,605 | 283 | Corpus (March 2025) |
-| Victoria | 1,297 | 100 | 1,197 | 19 | Register sitemap and pages |
-| Queensland | 1,000 | 59 | 941 | 234 | Corpus |
-| WA | 1,565 | 89 | 1,476 | 201 | Corpus |
-| SA | 1,068 | 61 | 1,007 | 189 | Corpus |
-| Tasmania | 2,385 | 1,178 | 1,207 | 121 | Corpus |
-| ACT | 561 | 57 | 504 | 4 | Register lists saved by the owner |
-| NT | 691 | 31 | 660 | 7 | Register lists |
+| NSW | 2,217 | 606 | 1,611 | 285 | Corpus (March 2025) |
+| Victoria | 1,297 | 97 | 1,200 | 22 | Register sitemap and pages |
+| Queensland | 1,000 | 55 | 945 | 234 | Corpus |
+| WA | 1,565 | 85 | 1,480 | 202 | Corpus |
+| SA | 1,068 | 57 | 1,011 | 189 | Corpus |
+| Tasmania | 2,385 | 1,175 | 1,210 | 121 | Corpus |
+| ACT | 561 | 55 | 506 | 4 | Register lists saved by the owner |
+| NT | 691 | 30 | 661 | 7 | Register lists |
+| **All** | **10,784** | **2,160** | **8,624** | **1,064** | |
 
-- **Triage** sets aside 2,187 of 10,784 laws: appropriations, amending and commencement laws (most of Tasmania's set-asides are proclamations and amending Acts), appointments, naming, validations, parliamentary and judicial office, public sector superannuation, private Acts about named property or churches, old Acts cited by regnal year (such as Magna Carta in the ACT), and Commonwealth Acts the ACT register lists. No law set aside had a high signal.
+- **Triage** sets aside 2,160 of 10,784 laws: appropriations, amending and commencement laws (most of Tasmania's set-asides are proclamations and amending Acts), appointments, naming, validations, parliamentary and judicial office, public sector superannuation, private Acts about named property or churches, old Acts cited by regnal year (such as Magna Carta in the ACT), and Commonwealth Acts the ACT register lists. The rules were checked against every high-signal law they set aside, which found and fixed three wrong ones (NSW's Electricity Supply and Gas Supply Acts had been caught as appropriations, and WA's Health (Miscellaneous Provisions) Act as an amending law). The 10 high-signal laws still set aside are 5 Electoral Acts (the Commonwealth Electoral Act was called N: its duties fall on political participants), 2 parliamentary bodies, 1 amending Act and 2 public sector superannuation schemes.
 - **The signal score works as a guide.** For the five corpus states it reads each law's text for licensing offences, licences, registration, levies and duties, penalties and business words. The high band is 16% of the laws to screen but holds 84% (68 of 81) of the laws the register's requirements already cite; the low band is 53% of laws and holds 1 of 81. For Victoria, the ACT and the NT the score reads the title only, so it is weaker.
-- **Victoria's titles** are still being read from the register's pages (about 10 a minute, at the 2-second delay). Until each page is read, its law is named from its address.
+- **Victoria's titles** were all read from the register's pages (1,296, at the 2-second delay). The 470 statutory rules use their page address as their ID, because the number was not captured (the pages word it "Statutory rule number"; the script now reads it).
 
 **The new estimate** (`data/processed/legislation/state_catalogue_estimate.csv`):
 
 | Basis | New state requirements | Hours in session |
 |---|---:|---:|
-| Commonwealth outcome (low) | 592 | 11 |
-| **Planning** | **946** | **20** |
-| Phase B's sample, upper bound (high) | 4,697 | 133 |
+| Commonwealth outcome (low) | 594 | 11 |
+| **Planning** | **950** | **20** |
+| Phase B's sample, upper bound (high) | 4,711 | 134 |
 
 - Phase B estimated about 3,000 state requirements (1,300 to 6,200) and 56 hours (23 to 189).
 - The Commonwealth phase showed why to revise it. Phase B's sample rate for Acts was close: it implied about 145 Y Acts, and 150 were found. Its rate for instruments was about 20 times too high (27 of 6,846 Commonwealth instruments were Y; 39% were L), and each Y law gave 1.04 requirements, not 2.

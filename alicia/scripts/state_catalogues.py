@@ -83,9 +83,9 @@ FIELDS = [
 # Title triage (methods rule 10), for state titles. Anything not matched goes to screening.
 TRIAGE = [
     (r"\(Cwlth\)", "a Commonwealth Act (screened in the Commonwealth catalogue)"),
-    (r"\bAppropriation\b|Supply Act", "appropriation"),
+    (r"\bAppropriation\b|^Supply Act", "appropriation"),
     (
-        r"\bAmendment\b|\bAmending\b|\(Amendment|Statute Law|Miscellaneous (Acts|Provisions)|"
+        r"\bAmendment\b|\bAmending\b|\(Amendment|Statute Law|Miscellaneous (Acts|Amendments?)\b|"
         r"\bRepeal\b|Consequential|Savings and Transitional|Transitional (Provisions|Arrangements)",
         "amending, repealing or transitional law",
     ),
@@ -94,7 +94,8 @@ TRIAGE = [
     (r"\bNaming\b|Place Names?|Geographical Names|Name of", "naming"),
     (r"Validation|Validating", "validation of past acts"),
     (
-        r"Parliament|Electoral|Constitution\b|Governor|Ministers? of the Crown|Judges|Judicial|Remuneration Tribunal|"
+        r"Parliament|Electoral|Constitution\b|Governor|Ministers? of the Crown|Judges|Remuneration Tribunal|"
+        r"Judicial (College|Commission|Entitlements|Registrars?|Officers|Salaries)|"
         r"Members of Parliament|Legislative (Council|Assembly)",
         "parliament, elections or public office",
     ),
@@ -102,7 +103,7 @@ TRIAGE = [
     (r"\bGrant\b.*\bLand\b|Land Grant|Vesting|Revocation of Dedication|Trust Deed|Private Act", "a grant or vesting"),
     (r"\b\d+ (Vic|Will|Geo|Edw)\b", "an old Act cited by its regnal year (Imperial, private or local)"),
     (
-        r"(?<!Real )Estate (Act|Leasing)|Church|Cathedral|Chapel|Trust Estate|Land Sale Act",
+        r"(?<!Real )Estate (Act|Leasing)|\bChurch(es)?\b|Cathedral|Chapel|Trust Estate|Land Sale Act",
         "a private Act about named property or a named body",
     ),
 ]
@@ -163,7 +164,7 @@ def fetch_vic() -> None:
                 r = get(client, u)
                 s = r.text
                 title = re.search(r"<title>(.*?) \| legislation\.vic\.gov\.au</title>", s)
-                number = re.search(r"(Act|SR) number ([0-9A-Za-z/.-]+)", s)
+                number = re.search(r"(Act|Statutory rule) number ([0-9A-Za-z/.-]+)", s)
                 latest = re.search(r'"(\d{4}-\d{2}-\d{2})","[0-9A-Z]+","In force"', s)
                 rec = {
                     "url": u,

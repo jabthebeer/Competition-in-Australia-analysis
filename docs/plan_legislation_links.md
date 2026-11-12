@@ -165,7 +165,8 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 - [ ] **Left from D-1:** the Queensland and Tasmanian WHS regulators (defined outside the text held); 54 state bodies named in `administration` but not yet in `bodies.json`; state departments (from each state's administrative arrangements), not yet added in D-2.
 - [ ] **17 state gaps** in `regulation-register/requirement-gaps.json` (after D-2): 5 to draft, 9 not found, 3 blocked (Victoria). D-2 found no NT portable long service scheme for cleaning or security, and no ACT law on mining or exploration in the ACT's list of laws in force.
 - [x] **The ACT catalogue:** built from the two lists the owner saved on 12 Nov 2026 (the register's `/results` pages are disallowed by robots.txt). A refresh needs the owner to save them again.
-- [ ] **Victorian catalogue titles:** the register's pages are being read at the 2-second delay; rebuild the catalogue when the fetch finishes (`state_catalogues.py fetch-vic`, then `build`). Until then, unread laws are named from their address.
+- [x] **Victorian catalogue titles:** all 1,296 in-force pages read (12 Nov 2026).
+- [ ] **Victorian statutory rule numbers:** the 470 rules use their page address as their ID; the number was not captured on the first read. Re-read the rule pages (`state_catalogues.py fetch-vic` after clearing their rows) when convenient (about 40 minutes).
 - [ ] **Queensland's list is the corpus's (March 2025):** the register's lists load by script. Laws made since then are not in the catalogue.
 - [ ] **Construction long service levies**, a separate obligation on the person for whom building work is done (e.g. NSW s 34). To be recorded as their own family.
 
