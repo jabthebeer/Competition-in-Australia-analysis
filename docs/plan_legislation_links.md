@@ -162,8 +162,11 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 **States and councils: coverage**
 
 - [x] **State and council requirements' regulators** (D-1, E-149): 138 of 140 linked, with sources.
-- [ ] **Left from D-1:** the Queensland and Tasmanian WHS regulators (defined outside the text held); 54 state bodies named in `administration` but not yet in `bodies.json`; state departments (from each state's administrative arrangements) to add with the D-2 catalogues.
-- [ ] **17 state gaps** in `regulation-register/requirement-gaps.json` (after D-1): 5 to draft, 7 not found, 3 blocked (Victoria), 2 not searched (moved to D-2).
+- [ ] **Left from D-1:** the Queensland and Tasmanian WHS regulators (defined outside the text held); 54 state bodies named in `administration` but not yet in `bodies.json`; state departments (from each state's administrative arrangements), not yet added in D-2.
+- [ ] **17 state gaps** in `regulation-register/requirement-gaps.json` (after D-2): 5 to draft, 8 not found, 3 blocked (Victoria), 1 not searched (the ACT exploration licence, which waits for the ACT list). D-2 found no NT portable long service scheme for cleaning or security.
+- [ ] **The ACT catalogue (owner):** the ACT register's lists of laws in force are under `/results`, which its robots.txt disallows. Please save the two lists (Acts in force; subordinate laws in force) as web pages to `data/raw/state_registers/act_acts.html` and `act_subordinate.html`, and the catalogue will be built from them (D-2, E-151).
+- [ ] **Victorian catalogue titles:** the register's pages are being read at the 2-second delay; rebuild the catalogue when the fetch finishes (`state_catalogues.py fetch-vic`, then `build`). Until then, unread laws are named from their address.
+- [ ] **Queensland's list is the corpus's (March 2025):** the register's lists load by script. Laws made since then are not in the catalogue.
 - [ ] **Construction long service levies**, a separate obligation on the person for whom building work is done (e.g. NSW s 34). To be recorded as their own family.
 
 **Industry lens (owner's list, 10 Nov 2026)**

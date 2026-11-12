@@ -15,7 +15,7 @@
       "family": "exploration-licence",
       "jurisdiction": "ACT",
       "status": "not-searched",
-      "searched": "Not searched: the ACT register has no offline title index. Deferred to batch D-2, which builds the ACT catalogue from the register's lists (12 Nov 2026).",
+      "searched": "Not searched: the ACT register's lists of laws in force are under /results, which its robots.txt disallows, so batch D-2 could not build the ACT catalogue. Waits for the owner's saved copy of the lists (12 Nov 2026).",
       "law": null,
       "note": null,
       "checked_on": "2026-11-12",
@@ -94,12 +94,22 @@
     {
       "family": "portable-long-service-registration-cleaning-security",
       "jurisdiction": "NT",
-      "status": "not-searched",
-      "searched": "Not searched: NT laws are not in the corpus. Deferred to batch D-2, which builds the NT catalogue from the register's lists; the ABLIS listing for NT portable long service (3483) covers construction only (12 Nov 2026).",
+      "status": "not-found",
+      "searched": "The NT register's list of Acts in force (read 12 Nov 2026, batch D-2) has one portable long service law, for the construction industry, and the general Long Service Leave Act 1981; no scheme for cleaning or security workers. The ABLIS listing for NT portable long service (3483) also covers construction only.",
       "law": null,
       "note": null,
       "checked_on": "2026-11-12",
-      "sources": []
+      "sources": [
+        {
+          "title": "Acts in force, by title",
+          "publisher": "NT Legislation (Office of the Parliamentary Counsel)",
+          "url": "https://legislation.nt.gov.au/en/LegislationPortal/Acts/By-Title?status=inforce",
+          "locator": "C and L",
+          "quote": "CONSTRUCTION INDUSTRY LONG SERVICE LEAVE AND BENEFITS ACT 2005",
+          "accessed": "2026-11-12",
+          "checked": "web-page"
+        }
+      ]
     },
     {
       "family": "portable-long-service-registration-cleaning-security",
