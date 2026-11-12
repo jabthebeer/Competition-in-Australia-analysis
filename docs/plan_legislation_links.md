@@ -168,6 +168,10 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 - [x] **Victorian catalogue titles:** all 1,296 in-force pages read (12 Nov 2026).
 - [ ] **Victorian statutory rule numbers:** the 470 rules use their page address as their ID; the number was not captured on the first read. Re-read the rule pages (`state_catalogues.py fetch-vic` after clearing their rows) when convenient (about 40 minutes).
 - [ ] **Queensland's list is the corpus's (March 2025):** the register's lists load by script. Laws made since then are not in the catalogue.
+- [ ] **Victorian laws for D-3 (owner to upload):** the Long Service Leave Act 2018, the Land Tax Act 2005, the Occupational Health and Safety Regulations 2017 and the Dangerous Goods (Storage and Handling) Regulations 2022. Five Victorian D-3 requirements wait for them (blocked gaps).
+- [ ] **Land tax thresholds are not yet quoted** (D-3, E-152). They differ by state and by owner (individual, company or trust), and some are indexed each year. Land tax also has no regime yet.
+- [ ] **ACT sources quoted before 12 Nov 2026 may be from superseded republications.** The ACT reader took the newest dated PDF, but the register often offers its newest republication only as "current" (fixed in D-3). Re-check the earlier ACT quotes against the current republications.
+- [ ] **Smaller D-3 items:** SA's Dangerous Substances Act 1979 not searched for a duty on large stores; the ACT long service leave records section number; Queensland's long service leave record-keeping duty (in the Act's general records provisions) not quoted; the NT Long Service Leave Act names no regulator.
 - [ ] **Construction long service levies**, a separate obligation on the person for whom building work is done (e.g. NSW s 34). To be recorded as their own family.
 
 **Industry lens (owner's list, 10 Nov 2026)**

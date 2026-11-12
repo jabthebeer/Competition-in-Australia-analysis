@@ -1,0 +1,127 @@
+{
+  "id": "nt-hazardous-chemicals-manifest",
+  "family": "hazardous-chemicals-manifest",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "hazardous-chemicals-and-dangerous-goods",
+  "title": "Notify the regulator of hazardous chemicals above manifest quantities",
+  "kind": "notification",
+  "what": "Give the work safety regulator written notice before (or as soon as) hazardous chemicals above the manifest quantities are used, handled or stored at the workplace.",
+  "laws": [
+    {
+      "title": "Work Health and Safety (National Uniform Legislation) Regulations 2011 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12283",
+      "provisions": "r 348",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Work Health and Safety (National Uniform Legislation) Regulations 2011 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12283",
+      "locator": "Regulator must be notified if manifest quantities to be exceeded, subreg (1) (current reprint)",
+      "quote": "(1) A person conducting a business or undertaking at a workplace must ensure that the regulator is given written notice if a quantity of a Schedule 11 hazardous chemical or group of Schedule 11 hazardous chemicals that exceeds the manifest quantity is used, handled or stored, or is to be used, handled or stored, at the workplace.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "nt-agd"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "NT WorkSafe (Work Health Authority)",
+      "bodies": [
+        "nt-agd"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Receives the notice and enforces the duty.",
+      "sources": [
+        {
+          "title": "Work Health and Safety (National Uniform Legislation) Act 2011 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12282",
+          "locator": "s 1, words naming the body (found 12 Nov 2026)",
+          "quote": "regulator means the Work Health Authority.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the quantity of a Schedule 11 hazardous chemical (or group) exceeds its manifest quantity in Schedule 11.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it uses, handles or stores hazardous chemicals above the manifest quantities",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business that holds hazardous chemicals above the manifest quantities, in any industry; most often chemical manufacturing, fuel, mining, agriculture and warehousing.",
+      "sources": [
+        {
+          "title": "Work Health and Safety (National Uniform Legislation) Regulations 2011 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12283",
+          "locator": "Regulator must be notified if manifest quantities to be exceeded, subreg (1) (current reprint)",
+          "quote": "(1) A person conducting a business or undertaking at a workplace must ensure that the regulator is given written notice if a quantity of a Schedule 11 hazardous chemical or group of Schedule 11 hazardous chemicals that exceeds the manifest quantity is used, handled or stored, or is to be used, handled or stored, at the workplace.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Regulation numbers are lost in the register PDF's text, so the locator uses the heading.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A business storing or handling hazardous chemicals above set (manifest) quantities must tell the work safety regulator, or in WA license the site. It adds paperwork, and in WA a licence and fee, for larger stores.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Notice to the regulator (in WA, a site licence) adds paperwork and cost for sites holding large quantities.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the duty's design against the framework's guide; the safety benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

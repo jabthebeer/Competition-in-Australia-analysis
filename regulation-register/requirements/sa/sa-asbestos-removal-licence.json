@@ -1,0 +1,137 @@
+{
+  "id": "sa-asbestos-removal-licence",
+  "family": "asbestos-removal-licence",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "work-health-and-safety",
+  "title": "Hold an asbestos removal licence",
+  "kind": "licence",
+  "what": "Hold a class A licence to remove friable asbestos, and a class A or B licence to remove more than 10 square metres of non-friable asbestos.",
+  "laws": [
+    {
+      "title": "Work Health and Safety Regulations 2012 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "2012.268",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/r/work%20health%20and%20safety%20regulations%202012/current/2012.268.un.rtf",
+      "provisions": "rr 485, 487",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Work Health and Safety Regulations 2012 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/r/work%20health%20and%20safety%20regulations%202012/current/2012.268.un.rtf",
+      "locator": "r 485(1) (version of 2024-09-01)",
+      "quote": "(1) A person must not carry out the removal of the following at a workplace unless the person, or the person on whose behalf the work is carried out, holds a Class A asbestos removal licence: (a) friable asbestos;",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-09-01/2012.268.un"
+    },
+    {
+      "title": "Work Health and Safety Regulations 2012 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/r/work%20health%20and%20safety%20regulations%202012/current/2012.268.un.rtf",
+      "locator": "r 487(1) (version of 2024-09-01)",
+      "quote": "(1) A person must not carry out the removal of the following at a workplace unless the person, or the person on whose behalf the work is carried out, holds a Class B asbestos removal licence or a Class A asbestos removal licence: (a) more than 10 square metres of non‑friable asbestos or ACM;",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-09-01/2012.268.un"
+    }
+  ],
+  "administered_by": [
+    "sa-safework"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "SafeWork SA",
+      "bodies": [
+        "sa-safework"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues asbestos removal licences and enforces the duty.",
+      "sources": [
+        {
+          "title": "Work Health and Safety Act 2012 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/work%20health%20and%20safety%20act%202012/current/2012.40.un.rtf",
+          "locator": "words naming the body (found 12 Nov 2026)",
+          "quote": "regulator means the Executive Director;",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-12-01/2012.40.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the business removes friable asbestos, or more than 10 square metres of non-friable asbestos.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it removes asbestos (friable, or more than 10 square metres of non-friable)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business that removes asbestos; mostly demolition, construction trades and specialist asbestos removalists.",
+      "sources": [
+        {
+          "title": "Work Health and Safety Regulations 2012 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/r/work%20health%20and%20safety%20regulations%202012/current/2012.268.un.rtf",
+          "locator": "r 485(1) (version of 2024-09-01)",
+          "quote": "(1) A person must not carry out the removal of the following at a workplace unless the person, or the person on whose behalf the work is carried out, holds a Class A asbestos removal licence: (a) friable asbestos;",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-09-01/2012.268.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Removing friable asbestos, or more than 10 square metres of non-friable asbestos, needs a class A or class B asbestos removal licence held by the business doing it.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, with qualified supervisors and set procedures, is needed before a business can take on asbestos removal work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; the health benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
