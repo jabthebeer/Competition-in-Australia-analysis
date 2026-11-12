@@ -4,7 +4,7 @@
     "corpus": "Open Australian Legal Corpus v7.1.0 (Isaacus), CC BY 4.0: NSW, Qld, WA, SA, Tas",
     "VIC": "https://www.legislation.vic.gov.au/sitemap.xml and each in-force page (robots.txt crawl-delay 2)",
     "NT": "https://legislation.nt.gov.au/en/LegislationPortal/Acts/By-Title?status=inforce and Subordinate-Legislation",
-    "ACT": "not fetched: the in-force lists are under /results, disallowed by robots.txt"
+    "ACT": "the register's in-force lists, saved from a browser by the owner (12 Nov 2026); not fetched, as /results is disallowed by robots.txt"
   },
   "summary": {
     "NSW": {
@@ -29,11 +29,11 @@
       "listed": 1297,
       "acts": 826,
       "instruments": 471,
-      "set_aside_by_triage": 101,
-      "to_screen": 1196,
+      "set_aside_by_triage": 100,
+      "to_screen": 1197,
       "signal": {
-        "low": 1120,
-        "medium": 56,
+        "low": 1122,
+        "medium": 55,
         "high": 19,
         "none": 1
       },
@@ -115,19 +115,22 @@
       "source": "Open Australian Legal Corpus v7.1.0"
     },
     "ACT": {
-      "listed": 15,
-      "acts": 13,
-      "instruments": 2,
-      "set_aside_by_triage": 0,
-      "to_screen": 15,
+      "listed": 561,
+      "acts": 334,
+      "instruments": 227,
+      "set_aside_by_triage": 57,
+      "to_screen": 504,
       "signal": {
-        "none": 15
+        "low": 480,
+        "medium": 18,
+        "high": 4,
+        "none": 2
       },
       "called": {
         "Y": 15
       },
-      "cited_not_listed": 15,
-      "source": ""
+      "cited_not_listed": 2,
+      "source": "ACT Legislation Register (lists saved by the owner)"
     },
     "NT": {
       "listed": 691,

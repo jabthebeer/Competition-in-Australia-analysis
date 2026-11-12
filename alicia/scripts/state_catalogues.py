@@ -13,9 +13,10 @@ the Commonwealth catalogue's columns plus where each row was listed from and a s
 - **Northern Territory:** the register's in-force lists by title, Acts and subordinate legislation (``fetch-nt``).
   The score reads the title only.
 - **ACT:** not fetched. The register's in-force lists are under ``/results``, which its robots.txt disallows, and
-  AustLII's robots.txt bars Anthropic's agents. The catalogue waits for the owner's saved copy of the two lists
-  (``data/raw/state_registers/act_acts.html`` and ``act_subordinate.html``); until then it holds only the laws the
-  register's requirements already cite.
+  AustLII's robots.txt bars Anthropic's agents. The owner saved the two lists from a browser on 12 November 2026
+  (Acts in force, 348 entries; subordinate laws in force, 227), kept as ``data/raw/state_registers/act_acts.html`` and
+  ``act_subordinate.html`` (not committed). Entries for a former name ("See ...") are skipped; Commonwealth Acts
+  listed by the ACT register are set aside, as the Commonwealth catalogue holds them. The score reads the title only.
 
 Then, for every jurisdiction:
 
@@ -81,6 +82,7 @@ FIELDS = [
 ]
 # Title triage (methods rule 10), for state titles. Anything not matched goes to screening.
 TRIAGE = [
+    (r"\(Cwlth\)", "a Commonwealth Act (screened in the Commonwealth catalogue)"),
     (r"\bAppropriation\b|Supply Act", "appropriation"),
     (
         r"\bAmendment\b|\bAmending\b|\(Amendment|Statute Law|Miscellaneous (Acts|Provisions)|"
@@ -98,8 +100,9 @@ TRIAGE = [
     ),
     (r"Superannuation \(|Superannuation Act|Pension", "public sector superannuation or pensions"),
     (r"\bGrant\b.*\bLand\b|Land Grant|Vesting|Revocation of Dedication|Trust Deed|Private Act", "a grant or vesting"),
+    (r"\b\d+ (Vic|Will|Geo|Edw)\b", "an old Act cited by its regnal year (Imperial, private or local)"),
     (
-        r"\b\d+ (Vic|Will|Geo|Edw)\b|(?<!Real )Estate (Act|Leasing)|Church|Cathedral|Chapel|Trust Estate|Land Sale Act",
+        r"(?<!Real )Estate (Act|Leasing)|Church|Cathedral|Chapel|Trust Estate|Land Sale Act",
         "a private Act about named property or a named body",
     ),
 ]
@@ -273,9 +276,44 @@ def titlecase(text: str) -> str:
     return "".join(out) if text.isupper() else " ".join(out)
 
 
+ACT_PAGES = {"Act": RAW / "act_acts.html", "Subordinate law": RAW / "act_subordinate.html"}
+
+
+def act_records() -> list[dict]:
+    """The ACT's lists of laws in force, from the pages the owner saved. A row for a former name ("See ...") points
+    to the current name's own row, so it is skipped."""
+    import html
+
+    recs, seen = [], set()
+    for coll, path in ACT_PAGES.items():
+        if not path.exists():
+            continue
+        saved = dt.date.fromtimestamp(path.stat().st_mtime).isoformat()
+        for row in re.findall(r"<tr[^>]*>(.*?)</tr>", path.read_text("utf-8", errors="replace"), re.S):
+            if 'class="previous-name"' in row:
+                continue
+            link = re.search(r'<a href="(https://www\.legislation\.act\.gov\.au/(?:a|sl)/[^"]+)">([^<]+)</a>', row)
+            if not link or link.group(1) in seen:
+                continue
+            seen.add(link.group(1))
+            number = re.search(r'<td data-order="\d+">\s*([A-Z]+\d{4}-\d+)\s*</td>', row)
+            recs.append(
+                {
+                    "url": link.group(1),
+                    "title": html.unescape(link.group(2)).strip(),
+                    "number": number.group(1) if number else None,
+                    "collection": "Act" if coll == "Act" else coll,
+                    "fetched": saved,
+                }
+            )
+    return recs
+
+
 def index_rows(state: str) -> list[dict]:
     path = RAW / f"{state.lower()}_index.jsonl"
     recs = [json.loads(x) for x in path.read_text("utf-8").splitlines()] if path.exists() else []
+    if state == "ACT":
+        recs = act_records()
     if state == "VIC":  # every in-force title in the sitemap; a page not yet read is named from its address
         have = {d["url"] for d in recs if d.get("title")}
         site = RAW / "vic_sitemap.txt"
@@ -297,7 +335,11 @@ def index_rows(state: str) -> list[dict]:
             continue
         name = titlecase(d["title"]) if d["title"].isupper() else d["title"]
         points, hits = score(name, TITLE_SIGNALS)
-        source = {"VIC": "Victorian Legislation register", "NT": "NT Legislation register"}[state]
+        source = {
+            "VIC": "Victorian Legislation register",
+            "NT": "NT Legislation register",
+            "ACT": "ACT Legislation Register (lists saved by the owner)",
+        }[state]
         rows.append(
             {
                 "register_id": d.get("number") or d["url"].rstrip("/").split("/")[-1],
@@ -421,7 +463,8 @@ def build() -> None:
                     "corpus": "Open Australian Legal Corpus v7.1.0 (Isaacus), CC BY 4.0: NSW, Qld, WA, SA, Tas",
                     "VIC": f"{VIC}/sitemap.xml and each in-force page (robots.txt crawl-delay 2)",
                     "NT": f"{NT}/en/LegislationPortal/Acts/By-Title?status=inforce and Subordinate-Legislation",
-                    "ACT": "not fetched: the in-force lists are under /results, disallowed by robots.txt",
+                    "ACT": "the register's in-force lists, saved from a browser by the owner (12 Nov 2026); "
+                    "not fetched, as /results is disallowed by robots.txt",
                 },
                 "summary": summary,
             },
@@ -455,8 +498,8 @@ def estimate() -> None:
     - **planning:** Acts at the state sample's Y rate (state Acts license more than Commonwealth ones), with the
       Commonwealth's yield of requirements per Y law and its instrument rate.
 
-    Laws already called (cited by a requirement) are left out of the count to screen. The ACT has no list yet; it is
-    estimated from the NT's numbers, the closest in size. Hours are on phase B's terms (estimate_legislation_links):
+    Laws already called (cited by a requirement) are left out of the count to screen.
+    Hours are on phase B's terms (estimate_legislation_links):
     screening 1 to 5 seconds a law, drafting at the calibration's minutes a requirement, 0.1 to 0.5 minutes to attach
     a supporting instrument, and reach coded once a family (6.4 states a family) at 0.25 to 0.5 minutes.
     """
@@ -484,7 +527,7 @@ def estimate() -> None:
 
     out = []
     for state in STATES:
-        n = to_screen("NT" if state == "ACT" else state)  # no ACT list yet: the NT's counts
+        n = to_screen(state)
         a = [sum(n[c] * rates[c][0][i] * rates[c][1] for c in ("Act", "Instrument")) for i in range(3)]
         b = sum(n[c] * cth_y[c] / cth_n[c] for c in ("Act", "Instrument")) * per_y
         plan = (n["Act"] * rates["Act"][0][1] + n["Instrument"] * cth_y["Instrument"] / cth_n["Instrument"]) * per_y
@@ -493,14 +536,14 @@ def estimate() -> None:
                 "state": state,
                 "acts_to_screen": n["Act"],
                 "instruments_to_screen": n["Instrument"],
-                "high_signal": 0 if state == "ACT" else n["high"],
+                "high_signal": n["high"],
                 "requirements_cth_outcome": round(b),
                 "requirements_planning": round(plan),
                 "requirements_sample_low": round(a[0]),
                 "requirements_sample_central": round(a[1]),
                 "requirements_sample_high": round(a[2]),
                 "supporting_instruments": round(n["Instrument"] * cth_l),
-                "basis": "NT's counts (no ACT list yet)" if state == "ACT" else "measured catalogue",
+                "basis": "measured catalogue",
             }
         )
     tot = {k: sum(r[k] for r in out) for k in out[0] if k not in ("state", "basis")}

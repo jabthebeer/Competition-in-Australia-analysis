@@ -40,7 +40,7 @@ Councils' own local laws are phase E.
 | WA | Corpus: 816 Acts, 748 instruments | Register Word documents (current) | None found |
 | SA | Corpus: 572 Acts, 495 instruments | Corpus copy, updated from SA's fortnightly XML packages where they cover a law | The register refuses automated requests |
 | Tasmania | Corpus: 862 Acts, 1,690 instruments | Register (current), corpus as fallback | None found |
-| ACT | Not yet: the register's lists are under `/results`, which its robots.txt disallows. Waits for the owner's saved copy | Register PDFs | The lists cannot be fetched automatically |
+| ACT | The register's in-force lists, saved from a browser by the owner (12 Nov 2026), because they are under `/results`, which robots.txt disallows | Register PDFs | The lists cannot be fetched automatically; a later refresh needs the owner to save them again |
 | NT | Register lists | Register PDFs | Section numbers are lost when the PDFs are read as text, so locators use section headings |
 
 The legal corpus is the Open Australian Legal Corpus (CC BY 4.0). Every quote cites the official register link, whatever copy it was read from.
@@ -95,38 +95,38 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 ## Progress
 
 - **D-1, done 12 Nov 2026 (E-149):** 5 family gaps drafted, 6 searched again, 2 moved to D-2; 138 of 140 state and council requirements linked to their regulator or council, with 3 new overlaps recorded.
-- **D-2, catalogues built 12 Nov 2026 (E-151);** the ACT list and state departments are still to do. Details below.
+- **D-2, catalogues built 12 Nov 2026 (E-151):** all eight, the ACT's from the lists the owner saved. Victoria's titles are still being read; state departments are still to do. Details below.
 
 ### D-2: the catalogues and the new estimate
 
-Seven catalogues are built (`data/processed/legislation/<state>_catalogue.csv`, by `alicia/scripts/state_catalogues.py`):
+All eight catalogues are built (`data/processed/legislation/<state>_catalogue.csv`, by `alicia/scripts/state_catalogues.py`):
 
 | | Listed | Set aside by title triage | To screen | High signal | Source of the list |
 |---|---:|---:|---:|---:|---|
 | NSW | 2,217 | 612 | 1,605 | 283 | Corpus (March 2025) |
-| Victoria | 1,297 | 101 | 1,196 | 19 | Register sitemap and pages |
+| Victoria | 1,297 | 100 | 1,197 | 19 | Register sitemap and pages |
 | Queensland | 1,000 | 59 | 941 | 234 | Corpus |
 | WA | 1,565 | 89 | 1,476 | 201 | Corpus |
 | SA | 1,068 | 61 | 1,007 | 189 | Corpus |
 | Tasmania | 2,385 | 1,178 | 1,207 | 121 | Corpus |
-| ACT | 15 | 0 | 15 | – | Only the laws its requirements cite |
+| ACT | 561 | 57 | 504 | 4 | Register lists saved by the owner |
 | NT | 691 | 31 | 660 | 7 | Register lists |
 
-- **Triage** sets aside appropriations, amending and commencement laws (most of Tasmania's set-asides are proclamations and amending Acts), appointments, naming, validations, parliamentary and judicial office, public sector superannuation, and private Acts about named property or churches. No law set aside had a high signal.
-- **The signal score works as a guide.** For the five corpus states it reads each law's text for licensing offences, licences, registration, levies and duties, penalties and business words. The high band is 16% of the laws to screen but holds 84% (68 of 81) of the laws the register's requirements already cite; the low band is 53% of laws and holds 1 of 81. For Victoria and the NT the score reads the title only, so it is weaker.
+- **Triage** sets aside 2,187 of 10,784 laws: appropriations, amending and commencement laws (most of Tasmania's set-asides are proclamations and amending Acts), appointments, naming, validations, parliamentary and judicial office, public sector superannuation, private Acts about named property or churches, old Acts cited by regnal year (such as Magna Carta in the ACT), and Commonwealth Acts the ACT register lists. No law set aside had a high signal.
+- **The signal score works as a guide.** For the five corpus states it reads each law's text for licensing offences, licences, registration, levies and duties, penalties and business words. The high band is 16% of the laws to screen but holds 84% (68 of 81) of the laws the register's requirements already cite; the low band is 53% of laws and holds 1 of 81. For Victoria, the ACT and the NT the score reads the title only, so it is weaker.
 - **Victoria's titles** are still being read from the register's pages (about 10 a minute, at the 2-second delay). Until each page is read, its law is named from its address.
 
 **The new estimate** (`data/processed/legislation/state_catalogue_estimate.csv`):
 
 | Basis | New state requirements | Hours in session |
 |---|---:|---:|
-| Commonwealth outcome (low) | 601 | 11 |
-| **Planning** | **960** | **20** |
-| Phase B's sample, upper bound (high) | 4,775 | 136 |
+| Commonwealth outcome (low) | 592 | 11 |
+| **Planning** | **946** | **20** |
+| Phase B's sample, upper bound (high) | 4,697 | 133 |
 
 - Phase B estimated about 3,000 state requirements (1,300 to 6,200) and 56 hours (23 to 189).
 - The Commonwealth phase showed why to revise it. Phase B's sample rate for Acts was close: it implied about 145 Y Acts, and 150 were found. Its rate for instruments was about 20 times too high (27 of 6,846 Commonwealth instruments were Y; 39% were L), and each Y law gave 1.04 requirements, not 2.
-- The planning basis takes Acts at the state sample's Y rate (20%; state Acts license more than Commonwealth ones), with the Commonwealth's yield per Y law and its instrument rate. The ACT is counted as the NT.
+- The planning basis takes Acts at the state sample's Y rate (20%; state Acts license more than Commonwealth ones), with the Commonwealth's yield per Y law and its instrument rate.
 - Hours are on phase B's terms (screening a few seconds a law, drafting at the calibration's minutes a requirement), so they compare with phase B, not with elapsed time.
 
 ## What this plan does not cover
