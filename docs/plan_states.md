@@ -110,6 +110,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
   | Retail trading hours | NSW, Vic, Qld, WA, SA, Tas | the ACT and NT have no such law |
 
   Victoria's eight are quoted from the authorised versions the owner saved and uploaded on 12 Nov 2026 (`data/raw/vic_legislation/`).
+- **D-4 started 12 Nov 2026 (E-156).** NSW's 157 high-signal Acts were scanned for business licensing offences ("a person must not carry on … unless licensed"); 50 have one. 13 NSW requirements are drafted (D-4a): conveyancers, motor dealers, motor vehicle repairers, tow truck operators, scrap metal dealers, tattooists, private health facilities, plumbers, taxi and booking services, bus operators, commercial fishers, veterinary hospitals and education and care services. 38 more Acts have screening calls in the NSW catalogue (35 Y to draft, 1 L, 2 N). Each new family is logged as not yet searched in the other seven jurisdictions; D-4b searches them. The 107 high-signal Acts with no business licensing offence, and the medium and low bands, are still to screen.
 
 ### D-2: the catalogues and the new estimate
 
