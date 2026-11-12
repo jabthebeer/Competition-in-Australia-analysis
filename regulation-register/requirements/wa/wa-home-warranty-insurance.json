@@ -1,0 +1,169 @@
+{
+  "id": "wa-home-warranty-insurance",
+  "family": "home-warranty-insurance",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "home-warranty-insurance",
+  "title": "Insure residential building work (home warranty)",
+  "kind": "insurance",
+  "what": "Take out home warranty (home building compensation) insurance for residential building work before starting, and give the owner the certificate.",
+  "laws": [
+    {
+      "title": "Home Building Contracts Act 1991 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a352",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_a352.html",
+      "provisions": "s 25C",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Home Building Contracts Act 1991 (WA)",
+      "publisher": "Western Australian Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45904.docx",
+      "locator": "s 25C(1) (version current from )",
+      "quote": "25C. Builder doing residential building work without insurance or corresponding cover, offence (1) A builder must not perform residential building work to which this Division applies unless — (a) a policy of insurance that complies with this Division is in force in relation to the residential building work; or (b) corresponding cover is provided by an approved fund in relation to the residential building work.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "wa-lgirs"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Building and Energy (Building Commissioner)",
+      "bodies": [
+        "wa-lgirs"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Home Building Contracts Act 1991 (WA)",
+          "publisher": "Western Australian Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45904.docx",
+          "locator": "s 25GD, words naming the body (found 12 Nov 2026)",
+          "quote": "Review of this Part by Minister 35 Division 5 — Provisions about non-application of sections 25C(1) and (2) and 25F(1) 25I.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Above a contract value set by regulation (not yet quoted).",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Residential building contractors.",
+      "sources": [
+        {
+          "title": "Home Building Contracts Act 1991 (WA)",
+          "publisher": "Western Australian Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45904.docx",
+          "locator": "s 25C(1) (version current from )",
+          "quote": "25C. Builder doing residential building work without insurance or corresponding cover, offence (1) A builder must not perform residential building work to which this Division applies unless — (a) a policy of insurance that complies with this Division is in force in relation to the residential building work; or (b) corresponding cover is provided by an approved fund in relation to the residential building work.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3221",
+        "3222",
+        "3223",
+        "3224",
+        "3239",
+        "3241",
+        "3242",
+        "3243",
+        "3244",
+        "3245"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it contracts for residential building work above the state's value threshold",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Home Building Contracts Act 1991 (WA)",
+          "publisher": "Western Australian Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45904.docx",
+          "locator": "s 25C(1) (version current from )",
+          "quote": "25C. Builder doing residential building work without insurance or corresponding cover, offence (1) A builder must not perform residential building work to which this Division applies unless — (a) a policy of insurance that complies with this Division is in force in relation to the residential building work; or (b) corresponding cover is provided by an approved fund in relation to the residential building work.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The value threshold and the work the Division applies to are in s 25B and the regulations, not yet quoted.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Residential building work over a set value needs home warranty insurance, which builders can buy only once an insurer accepts them.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A new builder needs an insurer's eligibility (often set by net assets and track record) before contracting.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Premiums and a certificate for each job.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; marks follow the family's other states. Drafted 12 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

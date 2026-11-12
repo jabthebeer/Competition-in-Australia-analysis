@@ -1,0 +1,167 @@
+{
+  "id": "qld-exploration-licence",
+  "family": "exploration-licence",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "mining-and-petroleum-titles",
+  "title": "Hold an exploration licence",
+  "kind": "licence",
+  "what": "Hold an exploration licence (or other mining authorisation) from the state before prospecting or exploring for minerals.",
+  "laws": [
+    {
+      "title": "Mineral Resources Act 1989 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1989-110",
+      "register_url": "https://www.legislation.qld.gov.au/view/html/inforce/current/act-1989-110",
+      "provisions": "s 402",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Mineral Resources Act 1989 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1989-110",
+      "locator": "s 402(1)(a) (current)",
+      "quote": "402 Offences with respect to unauthorised mining etc. (1) A person shall not— (a) enter or be upon land to carry on prospecting, exploration or mining unless the person is the holder of the relevant authority granted pursuant to this Act or is otherwise duly authorised under this Act or any other Act relating to mining;",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "qld-dnrmmrrd"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Queensland Department of Natural Resources and Mines (Minister)",
+      "bodies": [
+        "qld-dnrmmrrd"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Mineral Resources Act 1989 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1989-110",
+          "locator": "s 136, words naming the body (found 12 Nov 2026)",
+          "quote": "Minister may, for an application for an exploration permit under this part— (a) grant an exploration permit, with or without conditions;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1012"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Mineral exploration.",
+      "sources": [
+        {
+          "title": "Mineral Resources Act 1989 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1989-110",
+          "locator": "s 402(1)(a) (current)",
+          "quote": "402 Offences with respect to unauthorised mining etc. (1) A person shall not— (a) enter or be upon land to carry on prospecting, exploration or mining unless the person is the holder of the relevant authority granted pursuant to this Act or is otherwise duly authorised under this Act or any other Act relating to mining;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "0801",
+        "0802",
+        "0803",
+        "0804",
+        "0805",
+        "0806",
+        "0807",
+        "0809",
+        "0990"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it explores for minerals outside an existing mining lease",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Mineral Resources Act 1989 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1989-110",
+          "locator": "s 402(1)(a) (current)",
+          "quote": "402 Offences with respect to unauthorised mining etc. (1) A person shall not— (a) enter or be upon land to carry on prospecting, exploration or mining unless the person is the holder of the relevant authority granted pursuant to this Act or is otherwise duly authorised under this Act or any other Act relating to mining;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Exploring for minerals needs an exploration licence over a defined area, with a work program and security.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, work program and security deposit are needed before exploring.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Expenditure commitments, reporting and rehabilitation obligations.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; marks follow the family's other states. Drafted 12 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

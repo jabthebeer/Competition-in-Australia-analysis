@@ -90,6 +90,12 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 | S3 | NSW text is the corpus copy as at 10 March 2025. Accept it, flagged, and check key figures (such as payroll tax thresholds) against the regulator's current guidance? | Yes, until an open source for later NSW changes is found |
 | S4 | Include regulations, rules and orders, not only Acts? | Yes: many duties sit in regulations, as the calibration found |
 
+**Answers (owner, 12 November 2026):** S1 to S4 accepted as recommended. Victoria's saved Acts will be uploaded when they are requested for the Victorian batch (E-149).
+
+## Progress
+
+- **D-1, done 12 Nov 2026 (E-149):** 5 family gaps drafted, 6 searched again, 2 moved to D-2; 138 of 140 state and council requirements linked to their regulator or council, with 3 new overlaps recorded.
+
 ## What this plan does not cover
 
 - Councils' own local laws and planning schemes (phase E).
