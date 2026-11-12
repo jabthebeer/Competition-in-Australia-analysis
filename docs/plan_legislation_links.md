@@ -140,7 +140,7 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 
 - [x] **Commonwealth Y calls not yet drafted.** The last 4 were drafted on 12 Nov 2026 (E-146): ASIC's continuing credit contracts order (with its extension), the Disability Standards for Accessible Public Transport, and the Movable Cultural Heritage Act's export permit. No Commonwealth Y call is left to draft.
 
-- [ ] **Modern awards: 13 of the Fair Work Commission's 121 industry and occupational awards are drafted** (the calibration's; the count is from the Commission's [modern awards pay database guide](https://www.fwc.gov.au/documents/awards/pay-database/modern-awards-pay-database-guide.pdf), 26 September 2025). Awards are made by the Commission, not registered on the Federal Register, so the catalogue does not list them. The other 108 are still to draft.
+- [x] **Modern awards.** All 122 on the Fair Work Ombudsman's list are drafted (E-147; 13 in calibration, 109 on 12 Nov 2026), from the Fair Work Commission's award text. Still open: which governments are in the national system, for the 3 public sector awards.
 - [ ] **Commonwealth requirements not yet linked to their regulator or regime:** 174 of 197 (`administered_by` and `regime` are empty; several regulators are not yet in `bodies.json`).
 - [ ] **21 Commonwealth requirements are medium confidence with no note saying why.** Add the reason, or raise them to high once checked.
 - [ ] **Refresh the Commonwealth catalogue.** It was read from the Federal Register API on 7 Nov 2026; laws made since then are not screened. Re-run `alicia/scripts/frl_catalogue.py` (it keeps the calls already made) and screen the new rows.
