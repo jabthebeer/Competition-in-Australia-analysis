@@ -14,13 +14,23 @@
       "title": "Payroll Tax Act 2007 (Vic)",
       "jurisdiction": "VIC",
       "kind": "act",
-      "register_id": null,
+      "register_id": "26/2007",
       "register_url": "https://www.legislation.vic.gov.au/in-force/acts/payroll-tax-act-2007",
-      "provisions": "Part 7 (registration); threshold",
+      "provisions": "s 86",
       "applied": false
     }
   ],
   "sources": [
+    {
+      "title": "Payroll Tax Act 2007 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/payroll-tax-act-2007",
+      "locator": "s 86(1) (authorised version 041, saved by the owner)",
+      "quote": "(1) An employer who is not already registered must apply for registration as an employer under this Act if— (a) during a month the employer pays or is liable to pay, anywhere, wages of more than the weekly threshold amount that are wholly or partly taxable wages; or",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
     {
       "title": "Understanding payroll tax",
       "publisher": "State Revenue Office Victoria",
@@ -106,8 +116,8 @@
       ]
     }
   ],
-  "confidence": "medium",
-  "confidence_note": "The Act's text is only in documents the Victorian register asks automated tools not to fetch (robots.txt), so the obligation and threshold are quoted from the State Revenue Office.",
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. The regulator's guidance quoted before is kept as a second source.",
   "records": [
     "vic-payroll-tax"
   ],
