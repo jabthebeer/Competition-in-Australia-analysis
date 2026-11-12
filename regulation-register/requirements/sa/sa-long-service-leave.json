@@ -1,0 +1,133 @@
+{
+  "id": "sa-long-service-leave",
+  "family": "long-service-leave",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Give employees long service leave",
+  "kind": "standard",
+  "what": "Give each employee long service leave (or payment in lieu) once they reach the qualifying period of service, and keep long service leave records.",
+  "laws": [
+    {
+      "title": "Long Service Leave Act 1987 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1987.73",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/long%20service%20leave%20act%201987/current/1987.73.un.rtf",
+      "provisions": "s 5; s 10",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Long Service Leave Act 1987 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/long%20service%20leave%20act%201987/current/1987.73.un.rtf",
+      "locator": "s 5(1) (version of 2017-07-01)",
+      "quote": "(1) Subject to this Act, a worker who has 10 years or more service is entitled to the following long service leave— (a) 13 weeks leave in respect of the first 10 years of service;",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2017-07-01/1987.73.un"
+    },
+    {
+      "title": "Long Service Leave Act 1987 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/long%20service%20leave%20act%201987/current/1987.73.un.rtf",
+      "locator": "s 10(1) (version of 2017-07-01)",
+      "quote": "(1) An employer must, in respect of each worker, keep a record of—",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2017-07-01/1987.73.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Inspectors under the Fair Work Act 1994 (SA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Long Service Leave Act 1987 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/long%20service%20leave%20act%201987/current/1987.73.un.rtf",
+          "locator": "s 3, definition of inspector (version of 2017-07-01)",
+          "quote": "inspector means an inspector under the Fair Work Act 1994;",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2017-07-01/1987.73.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer of workers in SA covered by the Act.",
+      "sources": [
+        {
+          "title": "Long Service Leave Act 1987 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/long%20service%20leave%20act%201987/current/1987.73.un.rtf",
+          "locator": "s 5(1) (version of 2017-07-01)",
+          "quote": "(1) Subject to this Act, a worker who has 10 years or more service is entitled to the following long service leave— (a) 13 weeks leave in respect of the first 10 years of service;",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2017-07-01/1987.73.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. The corpus copy is of the version of 1 July 2017.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Employers must give long service leave after a long period of service with them. The entitlement builds up with one employer and is mostly lost on moving, which ties workers to employers; it also adds record keeping.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Leave builds up with one employer and is mostly lost on moving, which discourages job changes (unlike portable schemes).",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Marked from the law's design against the framework's guide; no evaluation of state long service leave and job mobility was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

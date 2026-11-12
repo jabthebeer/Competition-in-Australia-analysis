@@ -1,0 +1,127 @@
+{
+  "id": "wa-land-tax",
+  "family": "land-tax",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay land tax",
+  "kind": "tax-or-levy",
+  "what": "Pay land tax each year on taxable land the business owns in the state, above any tax-free threshold.",
+  "laws": [
+    {
+      "title": "Land Tax Assessment Act 2002 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a6341",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49123.docx",
+      "provisions": "s 5",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Land Tax Assessment Act 2002 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49123.docx",
+      "locator": "s 5 (version current from )",
+      "quote": "Land tax is payable, in accordance with the land tax Acts, for each financial year for all land in the State except land that is exempt under section 17.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "wa-dtf"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "RevenueWA (Commissioner of State Revenue)",
+      "bodies": [
+        "wa-dtf"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Land Tax Assessment Act 2002 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49123.docx",
+          "locator": "s 16(1) (version current from )",
+          "quote": "The Commissioner may assess the amount of land tax payable on land on which a building containing non-strata home units is situated",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Each year, on land owned at the date set by the law. Most owners pay only above a tax-free threshold, which differs by state and by owner (individual, company or trust); thresholds are not yet quoted.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns land in WA that is not exempt",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business that owns taxable land in the state; exemptions (such as a home or primary production land) are not yet recorded.",
+      "sources": [
+        {
+          "title": "Land Tax Assessment Act 2002 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49123.docx",
+          "locator": "s 5 (version current from )",
+          "quote": "Land tax is payable, in accordance with the land tax Acts, for each financial year for all land in the State except land that is exempt under section 17.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The rates are in the Land Tax Act 2002 (WA), not yet quoted.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "An annual tax on the value of land owned, with exemptions and a tax-free threshold. A tax on land value distorts little in principle, but thresholds, exemptions and rates that rise with total holdings narrow the base and change who holds land and how.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Exemptions, thresholds and rates that rise with total holdings narrow the base and tax owners unevenly, so land use and ownership respond to the tax.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Marked from the tax's design against the framework's guide; the size of the effect varies by state and was not measured.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

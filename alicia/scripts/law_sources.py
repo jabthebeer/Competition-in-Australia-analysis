@@ -79,11 +79,20 @@ def wa_current(law: str) -> tuple[str, str]:
 
 
 def act_latest(aid: str) -> tuple[str, str, str]:
-    page = _page(f"https://www.legislation.act.gov.au/a/{aid}/", delay=10.0)  # the ACT register's crawl delay
-    versions = sorted(set(re.findall(rf"/DownloadFile/a/{aid}/(\d{{8}}-\d+)/PDF/{aid}\.PDF", page)))
+    """The ACT register's latest republication of an Act (``2001-66``) or a subordinate law (``sl/2011-36``). The
+    newest republication is often offered only as ``current`` (no dated link yet), so that is preferred; the version
+    returned is then ``current`` and the label names its republication number and date."""
+    kind, num = ("sl", aid[3:]) if aid.startswith("sl/") else ("a", aid)
+    page = _page(f"https://www.legislation.act.gov.au/{kind}/{num}/", delay=10.0)  # the ACT register's crawl delay
     title = re.search(r"<title>([^<]+)</title>", page)
-    url = f"https://www.legislation.act.gov.au/DownloadFile/a/{aid}/{versions[-1]}/PDF/{aid}.PDF"
-    return url, versions[-1][:8], (title.group(1).strip() if title else "")
+    label = title.group(1).strip() if title else ""
+    if f"/DownloadFile/{kind}/{num}/current/PDF/{num}.PDF" in page:
+        cur = re.search(r"R(\d+) \(current\) (\d{1,2} \w+ \d{4})", re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", page)))
+        url = f"https://www.legislation.act.gov.au/DownloadFile/{kind}/{num}/current/PDF/{num}.PDF"
+        return url, "current", (f"R{cur.group(1)}, from {cur.group(2)}; " if cur else "") + label
+    versions = sorted(set(re.findall(rf"/DownloadFile/{kind}/{num}/(\d{{8}}-\d+)/PDF/{num}\.PDF", page)))
+    url = f"https://www.legislation.act.gov.au/DownloadFile/{kind}/{num}/{versions[-1]}/PDF/{num}.PDF"
+    return url, versions[-1][:8], label
 
 
 def nt_pdf(name: str) -> str | None:
@@ -121,13 +130,12 @@ def src(spec: str) -> tuple[str, str, str, str | None, str]:
         return url, flat(L.fetch_doc(url, _key(url))[0]), "document", None, f"version current from {cur}"
     if kind == "act":
         url, v, title = act_latest(arg)
-        return (
-            url,
-            flat(L.fetch_doc(url, _key(url))[0]),
-            "document",
-            None,
-            f"republication of {v[6:8]}/{v[4:6]}/{v[:4]} ({title})",
+        note = (
+            f"current republication ({title})"
+            if v == "current"
+            else f"republication of {v[6:8]}/{v[4:6]}/{v[:4]} ({title})"
         )
+        return url, flat(L.fetch_doc(url, _key(url))[0]), "document", None, note
     if kind == "nt":
         url = nt_pdf(arg)
         if not url:
