@@ -1,0 +1,101 @@
+{
+  "id": "cth-acl-compulsory-recall",
+  "family": "acl-compulsory-recall",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Carry out compulsory recalls of consumer goods",
+  "kind": "standard",
+  "what": "When the Minister issues a compulsory recall notice, the suppliers it names must take the actions it requires, such as recalling the goods.",
+  "laws": [
+    {
+      "title": "Competition and Consumer Act 2010",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00109",
+      "register_url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+      "provisions": "Sch 2 (ACL), 123(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Competition and Consumer Act 2010",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+      "locator": "Sch 2 (ACL), s 123(1) (compilation C2026C00405 from 2026-09-16)",
+      "quote": "123 Contents of a recall notice (1) A recall notice for the consumer goods may require one or more suppliers of the goods, or (if no such supplier is known to the responsible Minister who issued the notice) the regulator, to take one or more of the following actions: (a) recall the goods;",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it supplies consumer goods named in a compulsory recall notice",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Competition and Consumer Act 2010",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+          "locator": "Sch 2 (ACL), s 123(1) (compilation C2026C00405 from 2026-09-16)",
+          "quote": "123 Contents of a recall notice (1) A recall notice for the consumer goods may require one or more suppliers of the goods, or (if no such supplier is known to the responsible Minister who issued the notice) the regulator, to take one or more of the following actions: (a) recall the goods;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The duty to comply with a notice (s 127) is not yet quoted; the quote is what a notice may require.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "When the Minister issues a compulsory recall notice, the suppliers it names must take the actions it requires, such as recalling the goods.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "The costs of a recall when one is ordered.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

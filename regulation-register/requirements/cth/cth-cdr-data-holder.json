@@ -1,0 +1,118 @@
+{
+  "id": "cth-cdr-data-holder",
+  "family": "cdr-data-holder",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Share data on request under the Consumer Data Right (data holders)",
+  "kind": "standard",
+  "what": "Data holders in designated sectors (banking, energy, non-bank lending, telecommunications) must provide online services to share product and consumer data on request under the Consumer Data Right Rules.",
+  "laws": [
+    {
+      "title": "Competition and Consumer (Consumer Data Right) Rules 2020",
+      "jurisdiction": "CTH",
+      "kind": "legislative-instrument",
+      "register_id": "F2020L00094",
+      "register_url": "https://www.legislation.gov.au/F2020L00094/latest/text",
+      "provisions": "r 1.12(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Competition and Consumer (Consumer Data Right) Rules 2020",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/F2020L00094/latest/text",
+      "locator": "r 1.12(1) (compilation F2025C00572 from 2025-03-04)",
+      "quote": "1.12 Product data request service (1) A data holder must provide an online service that: (a) can be used to make product data requests in relation to data that it holds; and (b) enables requested data to be disclosed in machine-readable form; and (c) conforms with the data standards.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6221",
+        "6222",
+        "6223",
+        "6229",
+        "6230",
+        "6419",
+        "2640",
+        "5801",
+        "5802",
+        "5809"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is a data holder in a sector designated for the Consumer Data Right",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Competition and Consumer (Consumer Data Right) Rules 2020",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2020L00094/latest/text",
+          "locator": "r 1.12(1) (compilation F2025C00572 from 2025-03-04)",
+          "quote": "1.12 Product data request service (1) A data holder must provide an online service that: (a) can be used to make product data requests in relation to data that it holds; and (b) enables requested data to be disclosed in machine-readable form; and (c) conforms with the data standards.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Which entities are data holders is set by the sector designations, which are L to this requirement.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Data holders in designated sectors (banking, energy, non-bank lending, telecommunications) must provide online services to share product and consumer data on request under the Consumer Data Right Rules.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Customers can share their data with rivals, making switching easier.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Building and running data sharing services to the data standards.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

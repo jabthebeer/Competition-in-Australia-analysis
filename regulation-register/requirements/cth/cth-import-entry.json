@@ -1,0 +1,101 @@
+{
+  "id": "cth-import-entry",
+  "family": "import-entry",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Lodge an import declaration for imports over $1,000",
+  "kind": "notification",
+  "what": "Imported goods with a combined value over $1,000 cleared for home consumption need an import declaration (lower-value cargo needs a self-assessed clearance declaration).",
+  "laws": [
+    {
+      "title": "Customs Act 1901",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1901A00006",
+      "register_url": "https://www.legislation.gov.au/C1901A00006/latest/text",
+      "provisions": "68, 71A",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Import declarations",
+      "publisher": "Australian Border Force",
+      "url": "https://www.abf.gov.au/imports/Pages/How-to-import/Import-declarations.aspx",
+      "locator": "Import Declaration (N10)",
+      "quote": "You must complete an Import Declaration when imported goods ( a consignment ): have a combined value of over AUD1,000; and are being cleared into home consumption",
+      "accessed": "2026-11-12",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it imports goods",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Import declarations",
+          "publisher": "Australian Border Force",
+          "url": "https://www.abf.gov.au/imports/Pages/How-to-import/Import-declarations.aspx",
+          "locator": "Import Declaration (N10)",
+          "quote": "You must complete an Import Declaration when imported goods ( a consignment ): have a combined value of over AUD1,000; and are being cleared into home consumption",
+          "accessed": "2026-11-12",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the ABF's guidance; the Act's own text (s 68(2) says the owner 'may enter' goods) was not found to state the duty in plain words.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Importers declare goods and pay duty and charges.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Declarations, duty and charges add cost to imported goods.",
+        "positions": []
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
