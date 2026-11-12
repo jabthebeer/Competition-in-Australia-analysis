@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "vocational-and-higher-education",
   "title": "Register on CRICOS to teach overseas students",
   "kind": "registration",
   "what": "A provider must be registered on the Commonwealth Register of Institutions and Courses for Overseas Students (CRICOS), for each course and location, to provide or promote courses to overseas students.",
@@ -32,8 +32,80 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-asqa",
+    "cth-education",
+    "cth-teqsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Education",
+      "bodies": [
+        "cth-education"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Education Services for Overseas Students Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00757/latest/text",
+          "locator": "s 8A (compilation C2026C00474 from 2026-10-17)",
+          "quote": "• Division 4 requires the Secretary to cause a Register to be kept that contains specified information about the registration of all registered providers.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "inspects",
+      "who": "Tertiary Education Quality and Standards Agency",
+      "bodies": [
+        "cth-teqsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Education Services for Overseas Students Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00757/latest/text",
+          "locator": "(compilation C2026C00474 from 2026-10-17)",
+          "quote": "registered higher education provider has the same meaning as in the TEQSA Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "inspects",
+      "who": "Australian Skills Quality Authority",
+      "bodies": [
+        "cth-asqa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Education Services for Overseas Students Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00757/latest/text",
+          "locator": "s 5 (compilation C2026C00474 from 2026-10-17)",
+          "quote": "National VET Regulator has the same meaning as in the National Vocational Education and Training Regulator Act 2011.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

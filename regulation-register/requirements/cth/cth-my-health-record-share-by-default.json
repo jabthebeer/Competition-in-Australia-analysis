@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "health-practitioners-and-facilities",
   "title": "Upload pathology and diagnostic imaging results to My Health Record",
   "kind": "reporting",
   "what": "Specified pathology and diagnostic imaging information must be shared with the My Health Record system within 24 hours.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-adha",
+    "cth-dhda"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Digital Health Agency",
+      "bodies": [
+        "cth-adha"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "My Health Records Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2012A00063/latest/text",
+          "locator": "s 4 (compilation C2026C00277 from 2026-07-01)",
+          "quote": "The My Health Record system is operated by the System Operator.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 9 (Department of Health, Disability and Ageing), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "My Health Records Act 2012 Narcotic Drugs Act 1967",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

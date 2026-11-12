@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "agvet-chemicals",
   "title": "Register agricultural and veterinary chemical products before supply",
   "kind": "approval",
   "what": "An agricultural or veterinary chemical product must be registered (or reserved, or covered by a permit) before it is held for supply or supplied.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-apvma",
+    "cth-daff"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Pesticides and Veterinary Medicines Authority",
+      "bodies": [
+        "cth-apvma"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Agricultural and Veterinary Chemicals Code Act 1994",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04723/latest/text",
+          "locator": "s 5C (compilation C2024C00508 from 2024-10-14)",
+          "quote": "(2) For the purposes of being satisfied as to whether a chemical product meets the trade criteria, the APVMA must have regard to the following: (a) any conditions to which its registration is, or would be, subject;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Agriculture, Fisheries and Forestry",
+      "bodies": [
+        "cth-daff"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 1 (Department of Agriculture, Fisheries and Forestry), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Agricultural and Veterinary Chemicals Code Act 1994",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

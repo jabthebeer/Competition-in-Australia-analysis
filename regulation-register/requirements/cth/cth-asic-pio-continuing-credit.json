@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Provide continuing credit only under ASIC's fee condition",
   "kind": "standard",
   "what": "A continuing credit provider must not provide credit to a retail client under a continuing credit contract unless the total fees and charges, including those under collateral contracts, stay within the maximum charge permitted under s 6(5) of the National Credit Code. The order stays in force until revoked.",
@@ -61,8 +61,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-asic",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Australian Securities and Investments Commission",
+      "bodies": [
+        "cth-asic"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "ASIC Corporations (Product Intervention Order—Continuing Credit Contracts) Instrument 2022/648",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2022L00976/latest/text",
+          "locator": "(compilation F2022L00976 from 2022-07-13)",
+          "quote": "delegate of the Australian Securities and Investments Commission, make the following legislative instrument.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Corporations Act 2001, except to the extent administered by the",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

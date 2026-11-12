@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "environment-protection",
   "title": "Keep new vehicles' fleet emissions within the New Vehicle Efficiency Standard",
   "kind": "standard",
   "what": "A person who supplies new covered vehicles must ensure that its final emissions value for a year is zero or less.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "New Vehicle Efficiency Standard Act 2024",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2024A00034/latest/text",
+          "locator": "s 4 (compilation C2025C00178 from 2025-02-21)",
+          "quote": "If a person has a negative interim emissions value for a year, the Secretary must issue units to the person.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

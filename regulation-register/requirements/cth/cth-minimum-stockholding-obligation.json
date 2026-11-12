@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "fuel-retailing",
   "title": "Hold minimum fuel stocks",
   "kind": "standard",
   "what": "Entities subject to the minimum stockholding obligation must hold the required stocks of key fuels in Australia.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dcceew"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fuel Security Act 2021",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2021A00065/latest/text",
+          "locator": "s 6 (compilation C2025C00689 from 2025-12-05)",
+          "quote": "In deciding the target, the Minister must have regard to the emergency reserve commitment within the meaning of Article 2 of the International Energy Agreement (among other matters).",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

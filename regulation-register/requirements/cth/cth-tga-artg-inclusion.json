@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "therapeutic-goods-and-poisons",
   "title": "Enter therapeutic goods in the ARTG before supplying them",
   "kind": "approval",
   "what": "Therapeutic goods for use in humans must be registered, listed or included in the Australian Register of Therapeutic Goods (or exempt or approved) before they are imported, exported, manufactured or supplied.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dhda",
+    "cth-tga"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Therapeutic Goods Administration",
+      "bodies": [
+        "cth-tga"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Therapeutic Goods Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+          "locator": "(compilation C2025C00525 from 2025-09-05)",
+          "quote": "(4) If the applicant gives the Secretary the certificate referred to in subparagraph (3)(c)(i) or the notice referred to in subparagraph (3)(c)(ii), the Secretary must: (a) include the goods in the Register;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 9 (Department of Health, Disability and Ageing), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Therapeutic Goods Act 1989 Therapeutic Goods (Charges) Act 1989",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "personal-services",
   "title": "Pay the annual celebrant registration charge",
   "kind": "tax-or-levy",
   "what": "Commonwealth-registered marriage celebrants pay an annual registration charge (s 39FA of the Marriage Act 1961).",
@@ -41,8 +41,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-agd"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Attorney-General's Department",
+      "bodies": [
+        "cth-agd"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Marriage Act 1961",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1961A00012/latest/text",
+          "locator": "s 39DE (compilation C2026C00129 from 2026-03-28)",
+          "quote": "Notice of charge (2) The Registrar of Marriage Celebrants must, in respect of a financial year, send each person who is liable to pay the celebrant registration charge in respect of the financial year a written notice that: (a) specifies: (i) the amount of celebrant registration charge that is payable by the person (unless the person is granted an exemption);",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

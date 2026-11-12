@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "energy-markets",
   "title": "Surrender large-scale generation certificates or pay the shortfall charge",
   "kind": "tax-or-levy",
   "what": "A liable entity (mainly electricity retailers) that has a large-scale generation shortfall for a year pays the shortfall charge.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-cer"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Clean Energy Regulator",
+      "bodies": [
+        "cth-cer"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Renewable Energy (Electricity) Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00767/latest/text",
+          "locator": "s 12 (compilation C2026C00019 from 2026-01-01)",
+          "quote": "Regulator means the Clean Energy Regulator.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

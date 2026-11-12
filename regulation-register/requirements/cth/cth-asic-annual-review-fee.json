@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Pay ASIC's annual review fee",
   "kind": "tax-or-levy",
   "what": "Companies (and some schemes and other bodies) pay a review fee to ASIC on each review date; the amounts are set by regulation.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Corporations (Review Fees) Act 2003 Crimes (Taxation Offences) Act 1980",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

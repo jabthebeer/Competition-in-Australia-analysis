@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "aviation",
   "title": "Have a transport security program (airports and air services)",
   "kind": "standard",
   "what": "Operators of security controlled airports and prescribed air services, and other listed participants, must have a transport security program.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-home-affairs"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Department of Home Affairs",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Aviation Transport Security Act 2004",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01242/latest/text",
+          "locator": "s 19 (compilation C2026C00102 from 2026-03-27)",
+          "quote": "19 Approval (1) If the Secretary is satisfied that the program adequately addresses the relevant requirements under Division 4, the Secretary must: (a) approve the program;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

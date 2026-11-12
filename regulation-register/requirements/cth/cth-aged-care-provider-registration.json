@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "aged-care",
   "title": "Register with the Aged Care Quality and Safety Commissioner to deliver funded aged care",
   "kind": "registration",
   "what": "An entity must be registered as a registered provider, in the registration categories for the services it delivers, before delivering funded aged care services.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-acqsc",
+    "cth-dhda"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Aged Care Quality and Safety Commission",
+      "bodies": [
+        "cth-acqsc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Aged Care Act 2024",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2024A00104/latest/text",
+          "locator": "s 103 (compilation C2026C00301 from 2026-07-01)",
+          "quote": "The Commissioner must consider whether an entity meets key eligibility requirements before deciding to register an entity.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 9 (Department of Health, Disability and Ageing), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Aged Care Act 2024 Aged Care (Consequential and Transitional Provisions) Act 2024",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

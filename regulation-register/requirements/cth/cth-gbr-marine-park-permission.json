@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "environment-protection",
   "title": "Get permission for activities in the Great Barrier Reef Marine Park",
   "kind": "approval",
   "what": "Conduct in a Marine Park zone that the zoning plan says requires permission may be done only with permission.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dcceew",
+    "cth-gbrmpa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Great Barrier Reef Marine Park Authority",
+      "bodies": [
+        "cth-gbrmpa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Great Barrier Reef Marine Park Act 1975",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01395/latest/text",
+          "locator": "s 38AA (compilation C2025C00131 from 2025-02-21)",
+          "quote": "(3) The Authority must not grant a person permission to engage in conduct for the purposes of this section unless the Authority is satisfied that the conduct is for the purpose of research or investigations relevant to the conservation of the Marine Park.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 3 (Department of Climate Change, Energy, the Environment and Water), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Great Barrier Reef Marine Park Act 1975 Great Barrier Reef Marine Park (Environmental Management Charge—Excise) Act 1993",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

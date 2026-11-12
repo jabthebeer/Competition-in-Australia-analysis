@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Be authorised by APRA to carry on banking business",
   "kind": "licence",
   "what": "Only the Reserve Bank and bodies corporate authorised by APRA as authorised deposit-taking institutions (ADIs) may carry on banking business in Australia.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-apra",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Prudential Regulation Authority",
+      "bodies": [
+        "cth-apra"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Banking Act 1959",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1959A00006/latest/text",
+          "locator": "s 8 (compilation C2026C00104 from 2026-03-31)",
+          "quote": "(2A) APRA may, by legislative instrument, set criteria for the granting of an authority to carry on banking business in Australia.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Banking Act 1959 Banking (State Bank of South Australia and Other Matters) Act 1994",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "therapeutic-goods-and-poisons",
   "title": "Cultivate and produce cannabis only as a medicinal cannabis licence authorises",
   "kind": "licence",
   "what": "Cultivating cannabis plants for producing cannabis or cannabis resin must be authorised by a medicinal cannabis licence.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dhda"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Narcotic Drugs Act 1967",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1967A00053/latest/text",
+          "locator": "s 8 (compilation C2024C00536 from 2024-10-14)",
+          "quote": "Secretary may have regard in deciding whether a natural person is a fit and proper person to hold a licence, or to be associated with the holder of a licence, the Secretary may have regard to the following: (a) any conviction of the person for an offence against a law of the Commonwealth, a State or a Territory;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

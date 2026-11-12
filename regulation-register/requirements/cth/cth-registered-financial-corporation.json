@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Give APRA the documents to register as a registered financial corporation",
   "kind": "registration",
   "what": "A registrable corporation that is not yet registered must give APRA the documents the Act requires (s 9).",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-apra",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Prudential Regulation Authority",
+      "bodies": [
+        "cth-apra"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Financial Sector (Collection of Data) Act 2001",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00871/latest/text",
+          "locator": "s 10 (compilation C2025C00113 from 2025-02-21)",
+          "quote": "10 Matters to be included in Register of Entities APRA must: (a) cause to be entered in the Register of Entities the name, the address of the registered office, and any other particulars that it considers appropriate to be entered, of every corporation that gives to APRA the documents mentioned in subsection 9(5);",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Financial Sector (Collection of Data) Act 2001",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

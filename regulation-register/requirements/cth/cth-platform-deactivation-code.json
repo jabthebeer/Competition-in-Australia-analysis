@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "employment-law",
   "title": "Follow the Digital Labour Platform Deactivation Code before deactivating workers",
   "kind": "standard",
   "what": "A digital labour platform operator must follow the Code's process, including written communications, before deactivating an employee-like worker.",
@@ -32,8 +32,80 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dewr",
+    "cth-fwc",
+    "cth-fwo"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Fair Work Commission",
+      "bodies": [
+        "cth-fwc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Work (Digital Labour Platform Deactivation Code) Instrument 2024",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2024L01573/latest/text",
+          "locator": "s 4 (compilation F2026C00472 from 2026-06-12)",
+          "quote": "An employee-like worker may be found to be unfairly deactivated from a digital labour platform if the Fair Work Commission is satisfied that the deactivation is not consistent with this Code (see paragraph 536LF(c) of the Act).",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "inspects",
+      "who": "Fair Work Ombudsman",
+      "bodies": [
+        "cth-fwo"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Work Act 2009",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+          "locator": "s 682 (compilation C2026C00355 from 2026-07-07)",
+          "quote": "682 Functions of the Fair Work Ombudsman (1) The Fair Work Ombudsman has the following functions: (a) to promote: (i) harmonious, productive and cooperative workplace relations; and (ii) compliance with this Act and fair work instruments;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Employment and Workplace Relations",
+      "bodies": [
+        "cth-dewr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 6 (Department of Employment and Workplace Relations), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Fair Work Act 2009, except to the extent administered by the",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

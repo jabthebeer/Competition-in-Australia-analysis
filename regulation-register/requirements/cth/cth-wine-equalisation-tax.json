@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "business-and-tax-registration",
   "title": "Pay wine equalisation tax",
   "kind": "tax-or-levy",
   "what": "Wine tax applies to the assessable dealings with wine set out in the Act's Assessable Dealings Table.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ato",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "A New Tax System (Wine Equalisation Tax) Act 1999",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00452/latest/text",
+          "locator": "s 9-10 (compilation C2026C00149 from 2026-04-01)",
+          "quote": "9-10 Agreement with Commissioner regarding calculation of taxable value (1) The Commissioner may enter into an agreement with you about calculating the *taxable values of particular *taxable dealings for which you are liable for the wine tax.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "A New Tax System (Wine Equalisation Tax) Act 1999",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

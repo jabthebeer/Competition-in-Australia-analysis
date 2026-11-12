@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "employment-law",
   "title": "Pay the coal mining long service leave payroll levy",
   "kind": "tax-or-levy",
   "what": "Employers of eligible black coal mining employees pay a payroll levy that funds portable long service leave.",
@@ -32,8 +32,34 @@
       "corpus_version_id": "federal_register_of_legislation:C2012C00097"
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dewr"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Employment and Workplace Relations",
+      "bodies": [
+        "cth-dewr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 6 (Department of Employment and Workplace Relations), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Coal Mining Industry (Long Service Leave) Administration Act 1992",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "first-employee",

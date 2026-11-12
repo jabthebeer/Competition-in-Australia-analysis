@@ -42,7 +42,12 @@ def main(refresh: bool = False) -> int:
     texts: dict[str, str] = {}
     found = missing = unchecked = 0
     for q in reqs.requirements:
-        sources = [*q.sources, *(s for t in q.triggers for s in t.sources), *(s for r in q.reach for s in r.sources)]
+        sources = [
+            *q.sources,
+            *(s for t in q.triggers for s in t.sources),
+            *(s for r in q.reach for s in r.sources),
+            *(s for a in q.administration for s in a.sources),
+        ]
         for s in sources:
             url = str(s.url)
             if s.checked == "register-text" and (m := FRL.match(url)):

@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "aviation",
   "title": "Operate at Sydney Airport within the curfew and the movement cap",
   "kind": "standard",
   "what": "Aircraft must not take off or land at Sydney Airport during curfew periods, and gate movements are allocated as slots under a scheme that must keep within the maximum movement limit.",
@@ -51,8 +51,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Sydney Airport Curfew Act 1995",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04984/latest/text",
+          "locator": "s 14 (compilation C2024C00497 from 2024-10-14)",
+          "quote": "(2) Subject to subsections (5) and (6), the Minister may, by legislative instrument, specify a type of jet aircraft that: (a) has a maximum take-off weight of 34,000 kilograms or less;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

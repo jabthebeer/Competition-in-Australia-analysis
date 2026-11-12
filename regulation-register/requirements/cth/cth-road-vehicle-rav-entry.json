@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "product-standards",
   "title": "Have road vehicles on the RAV before first supply in Australia",
   "kind": "approval",
   "what": "A road vehicle must be entered on the Register of Approved Vehicles, after type approval or a concessional approval, before it is provided to anyone in Australia for the first time.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 12 (Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Road Vehicle Standards Act 2018 Road Vehicle Standards Charges (Imposition–General) Act 2018",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

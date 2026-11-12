@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Notify the Treasurer before acquiring a large stake in an insurer",
   "kind": "approval",
   "what": "A person proposing a trigger proposal (a stake or control above the Act's thresholds) in an insurer must notify the Treasurer and wait for a go-ahead.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Insurance Acquisitions and Takeovers Act 1991",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04297/latest/text",
+          "locator": "s 5 (compilation C2025C00115 from 2025-02-21)",
+          "quote": "(2) The Minister may, by legislative instrument, determine circumstances in which a person is taken, for the purposes of paragraph (1)(b), to be in a position of influence over an Australian-registered insurance company.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

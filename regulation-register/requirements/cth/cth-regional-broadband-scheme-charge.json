@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "telecommunications-and-media",
   "title": "Pay the regional broadband scheme charge",
   "kind": "tax-or-levy",
   "what": "A charge is imposed on carriers' annual chargeable premises amounts (premises connected to their local access lines).",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-acma",
+    "cth-ditrdcsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Communications and Media Authority",
+      "bodies": [
+        "cth-acma"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Telecommunications (Consumer Protection and Service Standards) Act 1999",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00441/latest/text",
+          "locator": "s 47 (compilation C2026C00488 from 2026-10-27)",
+          "quote": "47 ACMA to assess eligible revenue (1) The ACMA must make a written assessment of each participating person’s eligible revenue for an eligible revenue period (other than the first eligible revenue period).",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 12 (Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Telecommunications (Regional Broadband Scheme) Charge Act 2020",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

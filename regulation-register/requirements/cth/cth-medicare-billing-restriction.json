@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "health-practitioners-and-facilities",
   "title": "Bill Medicare only if s 19AA allows it (doctors first registered after a set date)",
   "kind": "approval",
   "what": "Medicare benefits are not payable for services by medical practitioners who first became registered after a set date unless an exception in s 19AA applies, such as recognised specialist or general practice qualifications.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dhda"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 9 (Department of Health, Disability and Ageing), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Health Insurance Act 1973 Health Insurance Amendment (Professional Services Review) Act 2012",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

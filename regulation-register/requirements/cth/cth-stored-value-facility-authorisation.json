@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Be authorised to hold the stored value of a purchased payment facility",
   "kind": "licence",
   "what": "A constitutional corporation holding the stored value of a purchased payment facility must be an ADI, or authorised or exempt under the Act.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-rba",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Reserve Bank of Australia (Payments System Board)",
+      "bodies": [
+        "cth-rba"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Payment Systems (Regulation) Act 1998",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00318/latest/text",
+          "locator": "s 10 (compilation C2025C00677 from 2025-12-19)",
+          "quote": "Division 2—Designated payment systems 11 Reserve Bank may designate payment systems (1) The Reserve Bank may, by legislative instrument, designate a payment system, or each payment system in a class of payment systems, if it considers that designating the payment system, or each payment system in the class, is in the public interest.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Payment Systems (Regulation) Act 1998 Payment Times Reporting Act 2020",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

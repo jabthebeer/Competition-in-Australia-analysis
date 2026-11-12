@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "vocational-and-higher-education",
   "title": "Pay the up-front payments tuition protection levy",
   "kind": "tax-or-levy",
   "what": "A levy is imposed each year on a body that is a leviable provider under the Act at any time during the year.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-education"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Education",
+      "bodies": [
+        "cth-education"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 5 (Department of Education), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Higher Education (Up-front Payments Tuition Protection Levy) Act 2020",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

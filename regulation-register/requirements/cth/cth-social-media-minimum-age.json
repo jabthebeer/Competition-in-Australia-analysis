@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "telecommunications-and-media",
   "title": "Prevent under-age users having social media accounts",
   "kind": "standard",
   "what": "Providers of age-restricted social media platforms must take reasonable steps to prevent age-restricted users having accounts.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ditrdcsa",
+    "cth-esafety"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "eSafety Commissioner",
+      "bodies": [
+        "cth-esafety"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Online Safety Act 2021",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2021A00076/latest/text",
+          "locator": "s 4 (compilation C2026C00396 from 2026-09-12)",
+          "quote": "(f) the Commissioner may make an industry standard;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 12 (Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Online Safety Act 2021 Online Safety (Transitional Provisions and Consequential Amendments) Act 2021",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

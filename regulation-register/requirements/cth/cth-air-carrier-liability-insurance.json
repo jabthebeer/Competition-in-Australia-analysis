@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "aviation",
   "title": "Hold passenger liability insurance (air carriers)",
   "kind": "insurance",
   "what": "Air carriers must be covered by acceptable insurance, or adequate financial arrangements, for their liability to passengers.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-casa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Civil Aviation Safety Authority",
+      "bodies": [
+        "cth-casa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Civil Aviation (Carriers' Liability) Act 1959",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1959A00002/latest/text",
+          "locator": "s 41B (compilation C2021C00236 from 2021-06-17)",
+          "quote": "CASA means the Civil Aviation Safety Authority.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

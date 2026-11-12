@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "maritime-and-ports",
   "title": "Pay the marine navigation levy on sea-going ships",
   "kind": "tax-or-levy",
   "what": "A levy is imposed on sea-going ships, payable under the Marine Navigation Levy Collection Act 1989.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 12 (Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Marine Navigation Levy Act 1989 Marine Navigation Levy Collection Act 1989",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

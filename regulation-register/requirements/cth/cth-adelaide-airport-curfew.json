@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "aviation",
   "title": "Do not take off or land at Adelaide Airport during the curfew",
   "kind": "standard",
   "what": "Aircraft operators must not take off or land at Adelaide Airport during curfew periods, unless the Act permits it.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Adelaide Airport Curfew Act 2000",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00621/latest/text",
+          "locator": "s 9 (compilation C2024C00472 from 2024-10-14)",
+          "quote": "(3) The Minister may request further information from the applicant that is, in the Minister’s opinion, relevant to making a decision whether or not to grant a permission.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

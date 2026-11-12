@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Keep card interchange fees within the RBA's caps",
   "kind": "standard",
   "what": "Interchange fees in designated credit card schemes must not exceed the RBA's caps (0.300 per cent of the value of a consumer credit card transaction).",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-rba",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Reserve Bank of Australia (Payments System Board)",
+      "bodies": [
+        "cth-rba"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Standard No. 1 of 2016 The Setting of Interchange Fees in the Designated Credit Card Schemes and Net Payments to Issuers",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2016L00836/latest/text",
+          "locator": "s 1 (compilation F2026C00916 from 2026-10-01)",
+          "quote": "or allocating or apportioning Benefits for the purpose of paragraph (c), (d) or (e), must, unless the Reserve Bank of Australia otherwise agrees in writing, continue to use the same method consistently from one Reporting Period to the next;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Payment Systems (Regulation) Act 1998 Payment Times Reporting Act 2020",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

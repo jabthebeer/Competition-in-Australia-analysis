@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "fuel-retailing",
   "title": "Supply low aromatic fuel instead of regular unleaded petrol in designated areas",
   "kind": "standard",
   "what": "Regular unleaded petrol must not be supplied in designated low aromatic fuel areas.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dcceew",
+    "cth-pmc"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Low Aromatic Fuel Act 2013",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2013A00001/latest/text",
+          "locator": "s 3 (compilation C2016C00163 from 2016-03-05)",
+          "quote": "Before making a determination for the purposes of Division 2 or 3 of Part 2, the Minister must be satisfied that making the determination will further the object of this Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Prime Minister and Cabinet",
+      "bodies": [
+        "cth-pmc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 13 (Department of the Prime Minister and Cabinet), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Low Aromatic Fuel Act 2013 Maternity Leave (Commonwealth Employees) Act 1973",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

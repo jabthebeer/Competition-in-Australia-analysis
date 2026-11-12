@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "telecommunications-and-media",
   "title": "Operate radiocommunications devices only under a licence",
   "kind": "licence",
   "what": "Operating a radiocommunications device needs an apparatus, spectrum or class licence.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-acma"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Communications and Media Authority",
+      "bodies": [
+        "cth-acma"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Radiocommunications Act 1992",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04465/latest/text",
+          "locator": "s 62 (compilation C2025C00412 from 2025-07-01)",
+          "quote": "(3) If the issue of the licence is covered by section 153L (which deals with re-allocation of spectrum), the ACMA may defer the issue of the licence until the relevant frequencies become available as a result of the expiry, surrender or cancellation of one or more apparatus licences that, under section 153D, are affected by the spectrum re-allocation declaration concerned.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

@@ -42,9 +42,56 @@
     }
   ],
   "administered_by": [
-    "cth-ato"
+    "cth-ato",
+    "cth-treasury"
   ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "A New Tax System (Goods and Services Tax) Act 1999",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00446/latest/text",
+          "locator": "s 25-5 (compilation C2026C00081 from 2026-01-01)",
+          "quote": "25-5 When the Commissioner must register you (1) The Commissioner must *register you if: (a) you have applied for registration in an *approved form;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "A New Tax System (Goods and Services Tax) Act 1999",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "turnover",

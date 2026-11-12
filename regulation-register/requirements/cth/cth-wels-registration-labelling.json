@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "product-standards",
   "title": "Register and label water-using products before supply",
   "kind": "standard",
   "what": "Products covered by the WELS standard (such as taps, showers and toilets) must be registered and labelled before they are supplied.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dcceew"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 3 (Department of Climate Change, Energy, the Environment and Water), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Water Efficiency Labelling and Standards Act 2005",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

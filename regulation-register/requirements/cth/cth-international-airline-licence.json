@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "aviation",
   "title": "Hold an international airline licence",
   "kind": "licence",
   "what": "An airline operating scheduled international air services to or from Australia needs an international airline licence.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Air Navigation Act 1920",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1920A00050/latest/text",
+          "locator": "s 12 (compilation C2024C00427 from 2024-10-14)",
+          "quote": "(3) The Secretary may, by legislative instrument, determine that subsection (1) does not apply in relation to a category of scheduled international air services.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

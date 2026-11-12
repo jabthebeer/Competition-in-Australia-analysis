@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "business-and-tax-registration",
   "title": "Pay superannuation for employees",
   "kind": "other",
   "what": "Make superannuation contributions for each employee when qualifying earnings are paid, or pay the superannuation guarantee charge on any shortfall.",
@@ -43,9 +43,56 @@
     }
   ],
   "administered_by": [
-    "cth-ato"
+    "cth-ato",
+    "cth-treasury"
   ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Superannuation Guarantee (Administration) Act 1992",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04402/latest/text",
+          "locator": "s 43 (compilation C2026C00272 from 2026-07-01)",
+          "quote": "Part 5—Administration 43 General administration of Act The Commissioner has the general administration of this Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Superannuation Guarantee (Administration) Act 1992",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "first-employee",

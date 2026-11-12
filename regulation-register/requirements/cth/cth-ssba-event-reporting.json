@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "health-practitioners-and-facilities",
   "title": "Report security-sensitive biological agent events within set times",
   "kind": "reporting",
   "what": "A registered entity handling security-sensitive biological agents must report reportable events within the times the Regulations set.",
@@ -41,8 +41,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dhda"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Health Security Regulations 2018",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2018L01247/latest/text",
+          "locator": "s 7 (compilation F2024C00295 from 2024-03-20)",
+          "quote": "(e) if the Secretary decides under section 49 of the Act to vary the National Register to take account of a reportable event in relation to the entity—details of the reportable event;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

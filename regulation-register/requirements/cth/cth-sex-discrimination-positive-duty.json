@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "employment-law",
   "title": "Take measures to eliminate sex discrimination and sexual harassment at work",
   "kind": "standard",
   "what": "Employers and persons conducting a business or undertaking must take reasonable and proportionate measures to eliminate, as far as possible, unlawful sex discrimination at work and sexual harassment.",
@@ -52,8 +52,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-agd",
+    "cth-ahrc"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Human Rights Commission",
+      "bodies": [
+        "cth-ahrc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Sex Discrimination Act 1984",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A02868/latest/text",
+          "locator": "s 47B (compilation C2025C00597 from 2025-11-01)",
+          "quote": "Division 4A of Part II of the Australian Human Rights Commission Act 1986 confers functions on the President in relation to this duty, including inquiring into compliance, giving compliance notices and accepting undertakings.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Attorney-General's Department",
+      "bodies": [
+        "cth-agd"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 2 (Attorney-General's Department), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Sex Discrimination Act 1984 Special Prosecutors Act 1982",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

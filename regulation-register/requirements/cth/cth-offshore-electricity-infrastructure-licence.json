@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "energy-markets",
   "title": "Hold a licence for offshore renewable energy or transmission infrastructure",
   "kind": "licence",
   "what": "Building, operating or decommissioning offshore renewable energy or electricity transmission infrastructure in a Commonwealth offshore area needs a licence under the Act.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dcceew",
+    "cth-nopsema"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Offshore Electricity Infrastructure Act 2021",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2021A00120/latest/text",
+          "locator": "s 24 (compilation C2025C00179 from 2025-02-20)",
+          "quote": "(2) The Minister must give a copy of the notice to the holder of any licence (other than a transmission and infrastructure licence) that has a licence area that covers any part of the declared area.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "inspects",
+      "who": "National Offshore Petroleum Safety and Environmental Management Authority",
+      "bodies": [
+        "cth-nopsema"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Offshore Electricity Infrastructure Act 2021",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2021A00120/latest/text",
+          "locator": "s 8 (compilation C2025C00179 from 2025-02-20)",
+          "quote": "CEO means the Chief Executive Officer of NOPSEMA.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

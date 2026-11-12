@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "telecommunications-and-media",
   "title": "Keep telecommunications data as the data retention scheme requires",
   "kind": "record-keeping",
   "what": "Providers of services to which Part 5-1A applies must keep prescribed information and documents about communications for the specified period.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-acma",
+    "cth-home-affairs"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Communications and Media Authority",
+      "bodies": [
+        "cth-acma"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Telecommunications (Interception and Access) Act 1979",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A02124/latest/text",
+          "locator": "s 5 (compilation C2026C00372 from 2026-08-27)",
+          "quote": "ACMA means the Australian Communications and Media Authority.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Home Affairs",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 10 (Department of Home Affairs), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Telecommunications (Interception and Access) Act 1979",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

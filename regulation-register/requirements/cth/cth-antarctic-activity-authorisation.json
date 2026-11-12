@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "environment-protection",
   "title": "Be authorised before carrying on activities in the Antarctic",
   "kind": "approval",
   "what": "A person must be authorised by the Minister under Part 3 before carrying on an activity to which Part 3 applies in the Antarctic.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dcceew"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Antarctic Treaty (Environment Protection) Act 1980",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A02304/latest/text",
+          "locator": "s 7A (compilation C2024C00551 from 2024-10-14)",
+          "quote": "7A Necessity to act in accordance with basic environmental principles In exercising powers and performing duties under this Act, the Minister must act in a manner that is consistent with the basic environmental principles.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

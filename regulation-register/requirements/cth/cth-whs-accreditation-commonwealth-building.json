@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "work-health-and-safety",
   "title": "Hold WHS accreditation to build for the Commonwealth",
   "kind": "approval",
   "what": "The rules set up a WHS Accreditation Scheme for builders who wish to carry out building work funded by the Commonwealth.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dewr",
+    "cth-fsc"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Federal Safety Commissioner",
+      "bodies": [
+        "cth-fsc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Federal Safety Commissioner Act 2022",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2016A00087/latest/text",
+          "locator": "s 38 (compilation C2023C00358 from 2023-10-18)",
+          "quote": "38 Functions of Federal Safety Commissioner The Federal Safety Commissioner has the following functions: (aa) promoting the object of this Act (see section 3);",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Employment and Workplace Relations",
+      "bodies": [
+        "cth-dewr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 6 (Department of Employment and Workplace Relations), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Federal Safety Commissioner Act 2022 Free TAFE Act 2025",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

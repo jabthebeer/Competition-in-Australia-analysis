@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "maritime-and-ports",
   "title": "Hold a licence to carry passengers or cargo between Australian ports",
   "kind": "licence",
   "what": "Using a vessel to engage in coastal trading needs a licence (unless an exemption applies).",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Coastal Trading (Revitalising Australian Shipping) Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2012A00055/latest/text",
+          "locator": "s 16 (compilation C2024C00440 from 2024-10-14)",
+          "quote": "16 Grant of general licence (1) If the Minister grants an application, the Minister must also determine the period for which the general licence is granted or renewed.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

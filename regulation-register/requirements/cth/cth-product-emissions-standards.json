@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "environment-protection",
   "title": "Mark imported emissions-controlled products as the rules require",
   "kind": "standard",
   "what": "An imported emissions-controlled product that is certified must be marked as the rules require.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dcceew"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Product Emissions Standards Act 2017",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2017A00104/latest/text",
+          "locator": "s 51 (compilation C2026C00251 from 2026-07-01)",
+          "quote": "51 Rules (1) The Minister may, by legislative instrument, make rules prescribing matters: (a) required or permitted by this Act to be prescribed by the rules;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

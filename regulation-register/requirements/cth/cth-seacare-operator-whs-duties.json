@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "work-health-and-safety",
   "title": "Meet work health and safety duties to employees (Seacare operators)",
   "kind": "standard",
   "what": "Operators of prescribed ships and units must take all reasonable steps to protect the health and safety at work of their employees.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dewr",
+    "cth-seacare"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Seafarers Safety, Rehabilitation and Compensation Authority (Seacare Authority)",
+      "bodies": [
+        "cth-seacare"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Occupational Health and Safety (Maritime Industry) Act 1993",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04686/latest/text",
+          "locator": "s 4 (compilation C2025C00382 from 2025-06-11)",
+          "quote": "Authority means the Seafarers Safety, Rehabilitation and Compensation Authority established by the Seafarers Rehabilitation and Compensation Act 1992.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Employment and Workplace Relations",
+      "bodies": [
+        "cth-dewr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 6 (Department of Employment and Workplace Relations), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Occupational Health and Safety (Maritime Industry) Act 1993",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

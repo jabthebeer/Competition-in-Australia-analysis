@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "business-and-tax-registration",
   "title": "Pay luxury car tax on taxable supplies of luxury cars",
   "kind": "tax-or-levy",
   "what": "A dealer or importer making a taxable supply or importation of a luxury car pays luxury car tax.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ato",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "A New Tax System (Luxury Car Tax) Act 1999",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00463/latest/text",
+          "locator": "s 7-15 (compilation C2025C00298 from 2025-04-01)",
+          "quote": "(2) The Commissioner may, in writing: (a) determine the way in which the amount paid or payable for a specified kind of transport or insurance is to be worked out for the purposes of paragraph (b) of the definition of luxury car tax value in subsection (1);",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "A New Tax System (Luxury Car Tax) Act 1999",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

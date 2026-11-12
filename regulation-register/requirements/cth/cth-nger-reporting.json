@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "environment-protection",
   "title": "Register and report greenhouse emissions and energy above the NGER thresholds",
   "kind": "reporting",
   "what": "A controlling corporation whose group's emissions or energy production or use meets an NGER threshold must register with the Clean Energy Regulator and report each year.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-cer",
+    "cth-dcceew"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Clean Energy Regulator",
+      "bodies": [
+        "cth-cer"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Greenhouse and Energy Reporting Act 2007",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2007A00175/latest/text",
+          "locator": "s 12 (compilation C2025C00621 from 2025-11-03)",
+          "quote": "Regulator means the Clean Energy Regulator.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 3 (Department of Climate Change, Energy, the Environment and Water), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "National Greenhouse and Energy Reporting Act 2007",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "quantity",

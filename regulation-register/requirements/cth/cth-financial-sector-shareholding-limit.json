@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Do not acquire an unacceptable stake in a financial sector company without approval",
   "kind": "approval",
   "what": "Acquiring shares that create, or increase, an unacceptable shareholding situation in a financial sector company (a stake above the Act's limit without the Treasurer's approval) is an offence.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Financial Sector (Shareholdings) Act 1998",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00315/latest/text",
+          "locator": "s 14 (compilation C2020C00315 from 2020-10-01)",
+          "quote": "14 Approval of application (1) The Treasurer may, by notifiable instrument, grant the application if: (a) the applicant satisfies the Treasurer that it is in the national interest to approve the applicant holding a stake in the company of more than 20%;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

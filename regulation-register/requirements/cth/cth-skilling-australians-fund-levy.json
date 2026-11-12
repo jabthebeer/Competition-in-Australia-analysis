@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "employment-law",
   "title": "Pay the Skilling Australians Fund levy when nominating a skilled visa worker",
   "kind": "tax-or-levy",
   "what": "An employer nominating a worker for a skilled visa pays the nomination training contribution charge (s 140ZM of the Migration Act).",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-home-affairs"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Home Affairs",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 10 (Department of Home Affairs), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Migration (Skilling Australians Fund) Charges Act 2018",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

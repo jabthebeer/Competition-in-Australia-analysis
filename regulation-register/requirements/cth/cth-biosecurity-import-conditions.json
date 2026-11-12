@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "biosecurity",
   "title": "Meet biosecurity conditions when importing conditionally non-prohibited goods",
   "kind": "approval",
   "what": "Goods that may be brought into Australia only subject to conditions must meet those conditions on import.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-daff",
+    "cth-dhda"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Agriculture, Fisheries and Forestry",
+      "bodies": [
+        "cth-daff"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Biosecurity Act 2015",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2015A00061/latest/text",
+          "locator": "s 136 (compilation C2026C00403 from 2026-09-16)",
+          "quote": "Note 1: Before giving approval under this subsection, the Director of Biosecurity must be satisfied of the matters referred to in section 32 (the principles).",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 9 (Department of Health, Disability and Ageing), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Biosecurity Act 2015, except to the extent administered by the Minister responsible for",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

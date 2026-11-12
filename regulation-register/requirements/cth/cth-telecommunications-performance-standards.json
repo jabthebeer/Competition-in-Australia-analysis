@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "telecommunications-and-media",
   "title": "Meet the Minister's standards for mobile telecommunications services",
   "kind": "standard",
   "what": "Carriers and carriage service providers must comply with standards the Minister determines for mobile services, on matters such as reliability, voice call quality and the time to fix faults.",
@@ -42,8 +42,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-acma",
+    "cth-ditrdcsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Telecommunications (Consumer Protection and Service Standards) Act 1999",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00441/latest/text",
+          "locator": "s 4 (compilation C2026C00488 from 2026-10-27)",
+          "quote": "• The Minister may make standards to be complied with by carriers and carriage service providers in relation to mobile telecommunications services.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "inspects",
+      "who": "Australian Communications and Media Authority",
+      "bodies": [
+        "cth-acma"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Telecommunications (Consumer Protection and Service Standards) Act 1999",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00441/latest/text",
+          "locator": "s 4 (compilation C2026C00488 from 2026-10-27)",
+          "quote": "• The ACMA may make performance standards to be complied with by carriage service providers in relation to customer service.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

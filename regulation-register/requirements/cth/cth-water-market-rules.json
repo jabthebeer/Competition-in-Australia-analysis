@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "water-access",
   "title": "Let irrigators transform and trade their water rights (irrigation infrastructure operators)",
   "kind": "standard",
   "what": "Irrigation infrastructure operators in the Murray–Darling Basin must set clear procedures for irrigators to transform their irrigation rights, under the Water Market Rules.",
@@ -41,8 +41,57 @@
       "corpus_version_id": "federal_register_of_legislation:F2013C00159"
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-accc",
+    "cth-dcceew"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Australian Competition and Consumer Commission",
+      "bodies": [
+        "cth-accc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Water Act 2007",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2007A00137/latest/text",
+          "locator": "s 98 (compilation C2026C00398 from 2026-09-05)",
+          "quote": "98 Process for making water market rules (1) The Minister must ask the ACCC for advice about water market rules the Minister proposes to make, or about proposed amendments or revocations of rules.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 3 (Department of Climate Change, Energy, the Environment and Water), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Water Act 2007 Water Efficiency Labelling and Standards Act 2005",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

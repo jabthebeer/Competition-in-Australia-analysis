@@ -32,7 +32,7 @@ from pydantic import Field, HttpUrl, model_validator
 from .. import anzsic
 from .catalogue import default_register_dir
 from .framework import Driver
-from .regimes import Tier
+from .regimes import BUSINESS_FACING, FUNCTION_LABELS, Function, Tier
 from .schema import JURISDICTIONS, AnzsicCode, Assessment, DriverMark, Jurisdiction, RecordId, Review, _Strict
 
 LawKind = Literal["act", "regulation", "legislative-instrument", "code", "planning-instrument", "local-law", "other"]
@@ -201,6 +201,27 @@ class Reach(_Strict):
         return self
 
 
+class Administration(_Strict):
+    """One body's part in administering a requirement: it sets the rules, licenses, approves, inspects and enforces,
+    collects, or funds. A requirement with several entries is administered by several bodies; two or more bodies
+    with the same function is an overlap (``Requirement.overlaps``), the measure of regulatory complexity the
+    register records (DECISIONS E-148)."""
+
+    function: Function
+    who: str = Field(
+        min_length=1, description="Plain English: which body, e.g. 'State and territory fair trading agencies'"
+    )
+    bodies: tuple[RecordId, ...] = Field(
+        default=(), description="Bodies in bodies.json; empty for a class of bodies not listed one by one"
+    )
+    tier: Tier
+    jurisdictions: tuple[Jurisdiction, ...] = Field(
+        default=(), description="Where it acts; empty means everywhere the requirement applies"
+    )
+    note: str | None = None
+    sources: tuple[Source, ...] = Field(min_length=1, description="Where the body's part comes from, quoted")
+
+
 class RequirementAssessment(Assessment):
     """A requirement marked against the productivity impact framework, like a register item. Unlike an item, a small
     obligation may have no material effect on any driver (the framework's mark 0): it then has no marks and no main
@@ -239,6 +260,10 @@ class Requirement(_Strict):
     sources: tuple[Source, ...] = Field(min_length=1, description="The obligation in the law's own words")
     administered_by: tuple[RecordId, ...] = Field(default=(), description="Bodies in bodies.json")
     administered_by_councils: bool = False
+    administration: tuple[Administration, ...] = Field(
+        default=(),
+        description="Each body's part, with its source; several entries record shared or overlapping administration",
+    )
     triggers: tuple[Trigger, ...] = Field(min_length=1)
     reach: tuple[Reach, ...] = Field(min_length=1)
     confidence: Confidence
@@ -261,7 +286,27 @@ class Requirement(_Strict):
             raise ValueError("a council requirement needs lga_name")
         if self.jurisdiction != "CTH" and any(r.in_states for r in self.reach):
             raise ValueError("only a Commonwealth requirement can limit its reach to some states (in_states)")
+        named = {b for x in self.administration for b in x.bodies}
+        if self.administration and named != set(self.administered_by):
+            raise ValueError(f"administered_by should list exactly the bodies in administration: {sorted(named)}")
         return self
+
+    def overlaps(self, business_facing: bool = True) -> dict[str, list[str]]:
+        """Functions carried out by more than one body (or class of bodies): where administration overlaps. By default
+        only the functions a business deals with directly (licensing, approvals, inspection and enforcement,
+        collection, funding); with ``business_facing=False``, setting the rules too (e.g. a department and a
+        regulator that both make rules)."""
+        by: dict[str, list[str]] = {}
+        for x in self.administration:
+            if business_facing and x.function not in BUSINESS_FACING:
+                continue
+            by.setdefault(x.function, []).append(x.who)
+        return {FUNCTION_LABELS[f]: w for f, w in by.items() if len(w) > 1}
+
+    @property
+    def agencies(self) -> int:
+        """Distinct bodies (or classes of bodies) with a part in the requirement."""
+        return len({x.who for x in self.administration})
 
 
 def default_requirements_dir() -> Path:

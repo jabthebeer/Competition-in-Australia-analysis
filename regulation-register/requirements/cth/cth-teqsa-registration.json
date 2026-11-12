@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "vocational-and-higher-education",
   "title": "Register with TEQSA to offer higher education awards",
   "kind": "registration",
   "what": "An entity must be registered by TEQSA as a higher education provider before it can offer or confer Australian higher education awards.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-teqsa"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Tertiary Education Quality and Standards Agency",
+      "bodies": [
+        "cth-teqsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Tertiary Education Quality and Standards Agency Act 2011",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2011A00073/latest/text",
+          "locator": "s 19 (compilation C2026C00476 from 2026-10-17)",
+          "quote": "19 Preliminary assessment of application (1) TEQSA must, within 30 days after an application is made, advise the applicant: (a) whether its application for registration in a particular provider category is appropriate, and if it is not, what provider category would be appropriate (if any);",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

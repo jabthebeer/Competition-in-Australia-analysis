@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "mining-and-petroleum-titles",
   "title": "Hold a petroleum title to explore for or recover petroleum offshore",
   "kind": "licence",
   "what": "Exploring for petroleum in a Commonwealth offshore area needs a petroleum exploration permit or other authority under the Act.",
@@ -32,8 +32,100 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-disr",
+    "cth-nopsema",
+    "cth-nopta"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Joint Authority (the Commonwealth Minister and the responsible state or territory Minister)",
+      "bodies": [],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Offshore Petroleum and Greenhouse Gas Storage Act 2006",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2006A00014/latest/text",
+          "locator": "s 4 (compilation C2026C00394 from 2026-08-24)",
+          "quote": "• Generally, the administration of this Act in relation to an offshore area of a State is the responsibility of the Joint Authority for the State.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "licenses",
+      "who": "National Offshore Petroleum Titles Administrator",
+      "bodies": [
+        "cth-nopta"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Offshore Petroleum and Greenhouse Gas Storage Act 2006",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2006A00014/latest/text",
+          "locator": "s 4 (compilation C2026C00394 from 2026-08-24)",
+          "quote": "• The National Offshore Petroleum Titles Administrator is responsible for: (a) assisting and advising the Joint Authority and the responsible Commonwealth Minister;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "inspects",
+      "who": "National Offshore Petroleum Safety and Environmental Management Authority",
+      "bodies": [
+        "cth-nopsema"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Offshore Petroleum and Greenhouse Gas Storage Act 2006",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2006A00014/latest/text",
+          "locator": "s 33A (compilation C2026C00394 from 2026-08-24)",
+          "quote": "Other matters (9) NOPSEMA must publish on NOPSEMA’s website a copy of a notice under paragraph (1)(a) or (3)(a).",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Industry, Science and Resources",
+      "bodies": [
+        "cth-disr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 11 (Department of Industry, Science and Resources), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Offshore Petroleum and Greenhouse Gas Storage Act 2006",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

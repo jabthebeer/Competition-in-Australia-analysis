@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "employment-law",
   "title": "Deduct child support from an employee's pay when notified",
   "kind": "tax-or-levy",
   "what": "When the Child Support Registrar gives an employer a notice about an employee, the employer must deduct child support from that employee's salary or wages each time it pays them, at the rate in the notice.",
@@ -34,6 +34,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Child Support Registrar (Services Australia)",
+      "bodies": [],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Child Support (Registration and Collection) Act 1988",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03596/latest/text",
+          "locator": "s 45 (compilation C2026C00287 from 2026-07-01)",
+          "quote": "Registrar must immediately give a written notice to the employer to whom the notice was given varying the notice accordingly.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "first-employee",

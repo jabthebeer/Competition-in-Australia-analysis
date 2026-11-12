@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ato",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Foreign Acquisitions and Takeovers Act 1975",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01402/latest/text",
+          "locator": "s 56 (compilation C2025C00672 from 2025-12-05)",
+          "quote": "The Treasurer must generally make a decision on an application within the period prescribed by the regulations.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Foreign Acquisitions and Takeovers Act 1975",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01402/latest/text",
+          "locator": "s 99 (compilation C2025C00672 from 2025-12-05)",
+          "quote": "Authorised applicant (2) For the purposes of Part 4 of the Regulatory Powers Act: (a) each of the Treasurer and the Commissioner of Taxation is an authorised applicant in relation to the civil penalty provisions of this Act (other than section 130ZV);",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

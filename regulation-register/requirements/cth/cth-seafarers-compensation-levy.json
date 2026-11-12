@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "workers-compensation",
   "title": "Pay the seafarers compensation levy when it is declared",
   "kind": "tax-or-levy",
   "what": "When the Minister has declared it, a levy is imposed on seafarer berths on prescribed ships to fund the Seacare scheme.",
@@ -32,8 +32,34 @@
       "corpus_version_id": "federal_register_of_legislation:C2004C00281"
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dewr"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Employment and Workplace Relations",
+      "bodies": [
+        "cth-dewr"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 6 (Department of Employment and Workplace Relations), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Seafarers Rehabilitation and Compensation Act 1992",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

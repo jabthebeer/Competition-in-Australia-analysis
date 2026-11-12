@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "fisheries",
   "title": "Hold a permit to harvest Antarctic marine living resources",
   "kind": "licence",
   "what": "Harvesting marine organisms in the Antarctic area is prohibited except under a permit.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-dcceew"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Antarctic Marine Living Resources Conservation Act 1981",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A02408/latest/text",
+          "locator": "s 9 (compilation C2024C00429 from 2024-10-14)",
+          "quote": "Minister may, in his or her discretion, grant to a person a permit in writing authorizing the person, in, or in a specified part of, the Convention area, to do either or both of the following: (a) harvest marine organisms of a specified kind or kinds;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

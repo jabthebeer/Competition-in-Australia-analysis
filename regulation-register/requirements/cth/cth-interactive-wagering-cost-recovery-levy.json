@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "gambling",
   "title": "Pay the interactive wagering cost recovery levy",
   "kind": "tax-or-levy",
   "what": "A levy is imposed for each levy period on a person that provided licensed interactive wagering services during it.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-acma"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Communications and Media Authority",
+      "bodies": [
+        "cth-acma"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Interactive Gambling (Cost Recovery Levy) Act 2026",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2026A00073/latest/text",
+          "locator": "s 6 (compilation C2026A00073 from 2026-08-26)",
+          "quote": "6 Definitions In this Act: ACMA means the Australian Communications and Media Authority.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

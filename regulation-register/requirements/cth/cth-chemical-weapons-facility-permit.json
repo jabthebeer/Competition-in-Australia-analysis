@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "hazardous-chemicals-and-dangerous-goods",
   "title": "Hold a permit for facilities producing scheduled chemicals",
   "kind": "licence",
   "what": "Operating a facility that produces, processes or uses certain scheduled chemicals needs a permit.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-asno",
+    "cth-dfat"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Safeguards and Non-Proliferation Office",
+      "bodies": [
+        "cth-asno"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Chemical Weapons (Prohibition) Act 1994",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04702/latest/text",
+          "locator": "s 8A (compilation C2024C00434 from 2024-10-14)",
+          "quote": "8A Electronic lodgment The Director may require or permit an application, notice or report that is to be given to the Controller or Director for the purposes of this Act to be given, in accordance with specified software requirements and specified authentication requirements: (a) on a specified kind of data storage device;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Foreign Affairs and Trade",
+      "bodies": [
+        "cth-dfat"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 8 (Department of Foreign Affairs and Trade), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Chemical Weapons (Prohibition) Act 1994 Civil Nuclear Transfers to India Act 2016",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

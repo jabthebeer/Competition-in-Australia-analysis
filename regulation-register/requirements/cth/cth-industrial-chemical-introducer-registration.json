@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "hazardous-chemicals-and-dangerous-goods",
   "title": "Register with AICIS before importing or making industrial chemicals",
   "kind": "registration",
   "what": "A business that introduces (imports or manufactures) industrial chemicals, including those in cosmetics, must be registered with the Australian Industrial Chemicals Introduction Scheme for the year, and categorise each introduction.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-aicis"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Industrial Chemicals Introduction Scheme",
+      "bodies": [
+        "cth-aicis"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Industrial Chemicals Act 2019",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2019A00012/latest/text",
+          "locator": "s 8 (compilation C2024C00495 from 2024-10-14)",
+          "quote": "The Executive Director may initiate evaluations of industrial chemicals, or matters relating to industrial chemicals.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

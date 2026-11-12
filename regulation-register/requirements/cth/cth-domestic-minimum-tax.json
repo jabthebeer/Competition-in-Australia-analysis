@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "business-and-tax-registration",
   "title": "Pay domestic minimum tax (large multinational groups)",
   "kind": "tax-or-levy",
   "what": "An entity with a Domestic Top-up Tax Amount for a fiscal year pays domestic minimum tax.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-ato",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Taxation (Multinational—Global and Domestic Minimum Tax) Act 2024",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2024A00132/latest/text",
+          "locator": "s 1 (compilation C2024A00132 from 2024-12-10)",
+          "quote": "Note: Under section 356-20 in Schedule 1 to the Taxation Administration Act 1953, the Commissioner of Taxation has the general administration of this Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Taxation (Multinational—Global and Domestic Minimum Tax) Act 2024",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

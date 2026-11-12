@@ -226,6 +226,11 @@ def body(c: dict, repo: str = REPO_MAIN) -> str:
                     "Each requirement reaches the industry classes its law covers, read from the law's scope or from "
                     "official guidance that names the industry. Confidence is high where the law names the activity, "
                     "medium where official guidance does, and low where it is inferred from the ABS class definition.",
+                    "Each Commonwealth requirement names the bodies that administer it: the department that sets the "
+                    "rules, and the regulators that license, inspect or collect. Each is quoted from the law or the "
+                    "Administrative Arrangements Order. Where two or more bodies do the same job, the overlap is "
+                    "recorded: for example, the ACCC and the state fair trading offices both enforce the Australian "
+                    "Consumer Law.",
                     "Each law is marked against the framework. Each mark is shown under the market players it acts "
                     "through: entrants, existing competitors, or monopolies and oligopolies.",
                     "The market figures above each column (business counts, entry and exit rates, sales by business "

@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Report to the ACCC as a designated cash distribution entity",
   "kind": "reporting",
   "what": "An entity designated under the cash distribution framework must give the ACCC a report on its service and access agreements when its designation comes into force.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-rba"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Reserve Bank of Australia (Payments System Board)",
+      "bodies": [
+        "cth-rba"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Cash Distribution Framework Act 2026",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2026A00068/latest/text",
+          "locator": "s 4 (compilation C2026A00068 from 2026-08-26)",
+          "quote": "The Reserve Bank has the role of designating entities considered to have a significant role in the cash distribution system.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

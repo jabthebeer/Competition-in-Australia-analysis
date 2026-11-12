@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Enrol with AUSTRAC before providing a designated service",
   "kind": "registration",
   "what": "A person who starts to provide a designated service must apply to be entered on the Reporting Entities Roll within 28 days, and then meets the Act's program and reporting obligations.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-austrac",
+    "cth-home-affairs"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Transaction Reports and Analysis Centre",
+      "bodies": [
+        "cth-austrac"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Anti-Money Laundering and Counter-Terrorism Financing Act 2006",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2006A00169/latest/text",
+          "locator": "s 51G (compilation C2026C00447 from 2026-10-01)",
+          "quote": "(3) The AUSTRAC CEO must consider the request and remove the person’s name and enrolment details from the Reporting Entities Roll if the AUSTRAC CEO is satisfied that it is appropriate to do so, having regard to: (a) whether the person has ceased to provide designated services;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Home Affairs",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 10 (Department of Home Affairs), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Anti-Money Laundering and Counter-Terrorism Financing Act 2006",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

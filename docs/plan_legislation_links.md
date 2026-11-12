@@ -141,7 +141,9 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 - [x] **Commonwealth Y calls not yet drafted.** The last 4 were drafted on 12 Nov 2026 (E-146): ASIC's continuing credit contracts order (with its extension), the Disability Standards for Accessible Public Transport, and the Movable Cultural Heritage Act's export permit. No Commonwealth Y call is left to draft.
 
 - [x] **Modern awards.** All 122 on the Fair Work Ombudsman's list are drafted (E-147; 13 in calibration, 109 on 12 Nov 2026), from the Fair Work Commission's award text. Still open: which governments are in the national system, for the 3 public sector awards.
-- [ ] **Commonwealth requirements not yet linked to their regulator or regime:** 174 of 197 (`administered_by` and `regime` are empty; several regulators are not yet in `bodies.json`).
+- [x] **Commonwealth requirements linked to their regulators and regimes** (E-148): 304 of 306 have sourced `administration` entries, with overlaps recorded (methods rule 13); 287 have a regime.
+- [ ] **Left from the regulator links:** 19 Commonwealth requirements fit none of the 61 regimes (privacy, foreign investment, modern slavery, sustainability reporting, critical infrastructure, space and others); 14 roles had no source naming the body (mostly levies collected under separate collection Acts, and some DCCEEW licences); 2 requirements have no administration yet.
+- [ ] **State and council requirements' regulators** (phase D): only 25 of 135 name a body, so the agencies-per-class counts are mostly Commonwealth for now.
 - [ ] **21 Commonwealth requirements are medium confidence with no note saying why.** Add the reason, or raise them to high once checked.
 - [ ] **Refresh the Commonwealth catalogue.** It was read from the Federal Register API on 7 Nov 2026; laws made since then are not screened. Re-run `alicia/scripts/frl_catalogue.py` (it keeps the calls already made) and screen the new rows.
 - [ ] **22 state gaps** in `regulation-register/requirement-gaps.json`: 10 to draft, 7 not found, 3 blocked (Victoria), 2 not searched.

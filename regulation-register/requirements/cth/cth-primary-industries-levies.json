@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "primary-production-food-and-export",
   "title": "Pay primary industries levies on prescribed products",
   "kind": "tax-or-levy",
   "what": "Levies set by regulation are imposed on specified agricultural products in prescribed circumstances.",
@@ -32,8 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-daff"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Agriculture, Fisheries and Forestry",
+      "bodies": [
+        "cth-daff"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 1 (Department of Agriculture, Fisheries and Forestry), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Primary Industries (Excise) Levies Act 2024",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

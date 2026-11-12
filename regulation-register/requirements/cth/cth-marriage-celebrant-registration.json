@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "personal-services",
   "title": "Register as a marriage celebrant",
   "kind": "registration",
   "what": "Only a person authorised under the Marriage Act may solemnise a marriage. To be registered as a marriage celebrant, the Registrar must be satisfied the person has the qualifications or skills the Registrar has determined and is a fit and proper person.",
@@ -42,8 +42,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-agd"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Attorney-General's Department",
+      "bodies": [
+        "cth-agd"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Marriage Act 1961",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1961A00012/latest/text",
+          "locator": "s 39K (compilation C2026C00129 from 2026-03-28)",
+          "quote": "39K Additional functions of the Registrar The Registrar of Marriage Celebrants must: (a) amend the register of marriage celebrants in accordance with regulations made for the purposes of this paragraph;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

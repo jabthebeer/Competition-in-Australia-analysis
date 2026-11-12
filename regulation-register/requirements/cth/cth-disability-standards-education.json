@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "vocational-and-higher-education",
   "title": "Make reasonable adjustments for students with disability (education providers)",
   "kind": "standard",
   "what": "Education providers must comply with the Disability Standards for Education 2005.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-agd",
+    "cth-ahrc"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Human Rights Commission",
+      "bodies": [
+        "cth-ahrc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Disability Discrimination Act 1992",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04426/latest/text",
+          "locator": "s 4 (compilation C2026C00456 from 2026-10-08)",
+          "quote": "Commission means the Australian Human Rights Commission.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Attorney-General's Department",
+      "bodies": [
+        "cth-agd"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 2 (Attorney-General's Department), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Disability Discrimination Act 1992 Domicile Act 1982",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

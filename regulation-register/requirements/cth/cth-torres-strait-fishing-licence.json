@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "fisheries",
   "title": "Use only licensed boats to fish in the Torres Strait",
   "kind": "licence",
   "what": "A person must not have an unlicensed boat equipped for taking fish in an area of Australian jurisdiction under the Torres Strait Fisheries Act.",
@@ -32,8 +32,77 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-afma",
+    "cth-daff"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Protected Zone Joint Authority (Commonwealth and Queensland Ministers)",
+      "bodies": [],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Torres Strait Fisheries Act 1984",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A02887/latest/text",
+          "locator": "s 30 (compilation C2024C00644 from 2024-10-14)",
+          "quote": "(2) The Protected Zone Joint Authority consists of: (a) the Commonwealth Minister;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "licenses",
+      "who": "Australian Fisheries Management Authority",
+      "bodies": [
+        "cth-afma"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Torres Strait Fisheries Act 1984",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A02887/latest/text",
+          "locator": "s 3 (compilation C2024C00644 from 2024-10-14)",
+          "quote": "3 Interpretation (1) In this Act, unless the contrary intention appears: AFMA means the Australian Fisheries Management Authority.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Agriculture, Fisheries and Forestry",
+      "bodies": [
+        "cth-daff"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 1 (Department of Agriculture, Fisheries and Forestry), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Torres Strait Fisheries Act 1984 United Nations Food and Agriculture Organization Act 1944",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

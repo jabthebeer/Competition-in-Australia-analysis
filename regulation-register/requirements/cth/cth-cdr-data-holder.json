@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "financial-services",
   "title": "Share data on request under the Consumer Data Right (data holders)",
   "kind": "standard",
   "what": "Data holders in designated sectors (banking, energy, non-bank lending, telecommunications) must provide online services to share product and consumer data on request under the Consumer Data Right Rules.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-oaic",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Competition and Consumer Act 2010",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+          "locator": "s 56BA (compilation C2026C00405 from 2026-09-16)",
+          "quote": "56BA Minister may make consumer data rules (1) The Minister may, by legislative instrument, make rules (the consumer data rules) for designated sectors, or types of CDR actions, in accordance with this Division.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "inspects",
+      "who": "Office of the Australian Information Commissioner",
+      "bodies": [
+        "cth-oaic"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Competition and Consumer Act 2010",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00109/latest/text",
+          "locator": "s 56EQ (compilation C2026C00405 from 2026-09-16)",
+          "quote": "(1) The Information Commissioner has the following functions: (a) making guidelines for the avoidance of acts or practices that may breach the privacy safeguards;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

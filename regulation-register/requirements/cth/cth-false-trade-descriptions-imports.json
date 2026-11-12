@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "customs-and-excise",
   "title": "Do not import goods with a false trade description",
   "kind": "standard",
   "what": "A person must not import goods that carry a false trade description, such as a false country of origin.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-abf",
+    "cth-home-affairs"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Border Force",
+      "bodies": [
+        "cth-abf"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Commerce (Trade Descriptions) Act 1905",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1905A00016/latest/text",
+          "locator": "s 1A (compilation C2024C00554 from 2024-10-14)",
+          "quote": "1A General administration of Act in relation to imports The Comptroller-General of Customs has the general administration of this Act in so far as it relates to imports.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Home Affairs",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 10 (Department of Home Affairs), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Commerce (Trade Descriptions) Act 1905 Counter-Terrorism (Temporary Exclusion Orders) Act 2019",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

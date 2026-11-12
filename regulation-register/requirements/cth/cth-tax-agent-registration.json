@@ -5,7 +5,7 @@
   "tier": "cth",
   "lga": null,
   "lga_name": null,
-  "regime": null,
+  "regime": "accounting-and-tax-agents",
   "title": "Register with the Tax Practitioners Board to give tax agent services for a fee",
   "kind": "registration",
   "what": "Tax agent services for a fee may be provided only by registered tax agents, who must meet qualification, experience and fit and proper requirements and the Code of Professional Conduct.",
@@ -32,8 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-tpb",
+    "cth-treasury"
+  ],
   "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Tax Practitioners Board",
+      "bodies": [
+        "cth-tpb"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Tax Agent Services Act 2009",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2009A00013/latest/text",
+          "locator": "s 20-25 (compilation C2026C00441 from 2026-10-01)",
+          "quote": "20-25 Registration Grant of application for registration (1) If you have applied to the Board for a type of registration, the Board must grant your application if you are eligible for registration of that type.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Tax Agent Services Act 2009 Tax Laws Amendment (Cross-Border Transfer Pricing) Act (No. 1) 2012",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

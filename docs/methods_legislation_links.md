@@ -74,6 +74,25 @@
     A gap records a search, not that no law exists, unless its sources say so.
 13. **Every requirement is marked against the productivity framework** (added 7 November 2026, DECISIONS E-123). Each requirement carries an `assessment` like a register item's: the eight drivers marked from −2 to +2 against the same market without it, a main driver, reach and confidence. Where the register assesses the same law, the requirement uses its marks. A small obligation may have no material effect. The Industry lens reads these marks ([`industry_lens.md`](industry_lens.md)).
 
+13. **Who administers a requirement, and where administration overlaps** (added 12 November 2026, E-148). Each requirement records every body with a part in it, in `administration`. Each entry gives:
+    - the body's function, in the regime model's terms: sets the rules, licenses, approves, inspects and enforces, collects, or funds;
+    - the body (from `bodies.json`), or a class of bodies such as "state and territory consumer protection agencies";
+    - the tier and any states it acts in;
+    - a quoted source.
+
+    The sources are:
+    - **the law's own words** naming the body and its part (for example, "ASIC must grant an applicant an Australian financial services licence"), or the law's definition of the body it names;
+    - **the Administrative Arrangements Order** for the department that administers the Act. The Order's entry for the Act is quoted. Where it splits an Act between departments ("except to the extent administered by…"), each department is recorded;
+    - **official guidance** where the law does not name a body, such as the ACCC's advice that state agencies also enforce the Australian Consumer Law.
+
+    `administered_by` lists the same bodies, and `alicia validate` checks that they match. A role whose source could not be found is left out rather than guessed.
+
+    Two measures of complexity follow (`scripts/agency_overlap.py`):
+    - **an overlap:** two or more bodies doing the same business-facing function for one requirement (licensing, approving, inspecting and enforcing, collecting or funding). An example is the ACL, which the ACCC and the state agencies both enforce. Rules set by more than one body (a department and a regulator, or two departments) are counted separately;
+    - **agencies per class:** the distinct bodies behind the requirements that reach each class and state (`data/processed/legislation/agencies_by_class.csv`), with how many of those requirements involve several bodies, overlap, or span the Commonwealth and the states.
+
+    **Limits.** The counts cover bodies the register names, not every agency a business may meet. So far they are almost all Commonwealth: state and council requirements are linked to their regulators in phase D.
+
 ## Calibration (phase B)
 
 **Classes:** the class with the most businesses in each division (ABS CABEE, June 2025, Australia), leaving out the marked classes:
