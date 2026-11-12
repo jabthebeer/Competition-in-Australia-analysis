@@ -96,7 +96,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 
 - **D-1, done 12 Nov 2026 (E-149):** 5 family gaps drafted, 6 searched again, 2 moved to D-2; 138 of 140 state and council requirements linked to their regulator or council, with 3 new overlaps recorded.
 - **D-2, catalogues built 12 Nov 2026 (E-151):** all eight, the ACT's from the lists the owner saved. State departments are still to do. Details below.
-- **D-3, first part done 12 Nov 2026 (E-152):** 33 requirements in five families every business can meet, each quoted from the law of seven jurisdictions:
+- **D-3 done 12 Nov 2026 (E-152, E-153):** 52 requirements in eight families, each quoted from the law of each jurisdiction:
 
   | Family | Drafted | Not drafted |
   |---|---|---|
@@ -105,8 +105,11 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
   | High-risk work licences (the business sees the worker's licence) | NSW, Qld, WA, SA, Tas, ACT, NT | Victoria (blocked) |
   | Hazardous chemicals above manifest quantities (notify the regulator; WA licenses the site) | NSW, Qld, WA, Tas, ACT, NT | Victoria (blocked); SA (its r 348 was deleted) |
   | Asbestos removal licences | NSW, Qld, WA, SA, Tas, ACT, NT | Victoria (blocked) |
+  | Environment protection licences for listed activities | NSW, Victoria, Qld, SA, Tas, ACT, NT | WA (to draft: the operating offence not yet located) |
+  | Retail lease disclosure statements (landlords) | NSW, Qld, WA, SA, Tas, ACT, NT | Victoria (blocked) |
+  | Retail trading hours | NSW, Qld, WA, SA, Tas | Victoria (blocked); the ACT and NT have no such law |
 
-  Victoria waits for the owner's upload of four laws: the Long Service Leave Act 2018, the Land Tax Act 2005, the Occupational Health and Safety Regulations 2017 and the Dangerous Goods (Storage and Handling) Regulations 2022. Still to do in D-3: environment protection licences, retail leases and retail trading hours.
+  Victoria's environment licence is quoted from the Environment Protection Act 2017 the owner uploaded. The owner's upload of 12 Nov 2026 held the 14 Acts saved for the earlier Victorian requirements, not the six D-3 needs: the Long Service Leave Act 2018, the Land Tax Act 2005, the Retail Leases Act 2003, the Shop Trading Reform Act 1996, the Occupational Health and Safety Regulations 2017 and the Dangerous Goods (Storage and Handling) Regulations 2022.
 
 ### D-2: the catalogues and the new estimate
 

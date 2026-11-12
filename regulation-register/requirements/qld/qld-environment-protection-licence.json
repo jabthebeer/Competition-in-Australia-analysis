@@ -1,0 +1,129 @@
+{
+  "id": "qld-environment-protection-licence",
+  "family": "environment-protection-licence",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Hold an environment protection licence for listed activities",
+  "kind": "licence",
+  "what": "Hold an environment protection licence (or authorisation) before carrying on an activity the state lists, such as large manufacturing, waste, extractive or energy activities, and meet its conditions.",
+  "laws": [
+    {
+      "title": "Environmental Protection Act 1994 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1994-062",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+      "provisions": "s 426",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environmental Protection Act 1994 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+      "locator": "s 426(1) (current)",
+      "quote": "(1) A person must not carry out an environmentally relevant activity unless the person holds, or is acting under, an environmental authority for the activity.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Administering authority (Queensland's environment department, or a council for devolved activities)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues the licences and enforces them.",
+      "sources": [
+        {
+          "title": "Environmental Protection Act 1994 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+          "locator": "sch 4, definition of administering authority (current)",
+          "quote": "administering authority means— (a) for a matter, the administration and enforcement of which has been devolved to a local government under section 514 —the local government",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the business carries on an activity in the state's list (a schedule to the Act or regulations).",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries on an activity the state lists as needing an environment protection licence",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business carrying on a listed activity (such as large manufacturing, waste, extractive, energy and intensive agriculture activities); the lists differ by state and are not yet coded class by class.",
+      "sources": [
+        {
+          "title": "Environmental Protection Act 1994 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+          "locator": "s 426(1) (current)",
+          "quote": "(1) A person must not carry out an environmentally relevant activity unless the person holds, or is acting under, an environmental authority for the activity.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Businesses carrying on the activities a state lists (large manufacturing, waste, extractive, energy and similar) need an environment protection licence, with conditions, monitoring and fees, before and while operating.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence is needed before the listed activities can start.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Licence conditions, monitoring, reporting and annual fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; the environmental benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

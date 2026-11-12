@@ -1,0 +1,129 @@
+{
+  "id": "act-environment-protection-licence",
+  "family": "environment-protection-licence",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Hold an environment protection licence for listed activities",
+  "kind": "licence",
+  "what": "Hold an environment protection licence (or authorisation) before carrying on an activity the state lists, such as large manufacturing, waste, extractive or energy activities, and meet its conditions.",
+  "laws": [
+    {
+      "title": "Environment Protection Act 1997 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "A1997-92",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/1997-92/current/PDF/1997-92.PDF",
+      "provisions": "s 42",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environment Protection Act 1997 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/1997-92/current/PDF/1997-92.PDF",
+      "locator": "s 42(1) (current republication (R70, from 16 November 2025; Environment Protection Act 1997 | Acts))",
+      "quote": "(1) A person must not conduct an activity listed in schedule 1 as a class A activity unless the person holds an environmental authorisation in relation to that activity.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Environment Protection Authority (ACT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues the licences and enforces them.",
+      "sources": [
+        {
+          "title": "Environment Protection Act 1997 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/1997-92/current/PDF/1997-92.PDF",
+          "locator": "dictionary, definition of authority (current republication (R70, from 16 November 2025; Environment Protection Act 1997 | Acts))",
+          "quote": "authority means the Environment Protection Authority under section 11",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the business carries on an activity in the state's list (a schedule to the Act or regulations).",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries on an activity the state lists as needing an environment protection licence",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business carrying on a listed activity (such as large manufacturing, waste, extractive, energy and intensive agriculture activities); the lists differ by state and are not yet coded class by class.",
+      "sources": [
+        {
+          "title": "Environment Protection Act 1997 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/1997-92/current/PDF/1997-92.PDF",
+          "locator": "s 42(1) (current republication (R70, from 16 November 2025; Environment Protection Act 1997 | Acts))",
+          "quote": "(1) A person must not conduct an activity listed in schedule 1 as a class A activity unless the person holds an environmental authorisation in relation to that activity.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Businesses carrying on the activities a state lists (large manufacturing, waste, extractive, energy and similar) need an environment protection licence, with conditions, monitoring and fees, before and while operating.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence is needed before the listed activities can start.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Licence conditions, monitoring, reporting and annual fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; the environmental benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

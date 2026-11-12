@@ -1,0 +1,105 @@
+{
+  "id": "qld-retail-trading-hours",
+  "family": "retail-trading-hours",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "retail-trading-hours",
+  "title": "Close the shop outside permitted trading hours",
+  "kind": "standard",
+  "what": "Close a non-exempt shop outside its permitted core or extended trading hours.",
+  "laws": [
+    {
+      "title": "Trading (Allowable Hours) Act 1990 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1990-034",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1990-034",
+      "provisions": "s 16B",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Trading (Allowable Hours) Act 1990 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1990-034",
+      "locator": "s 16B(1)–(2) (current)",
+      "quote": "(1) A non-exempt shop must be closed on a particular day other than during the shop’s core trading hours under subdivision 2 for the day or, if relevant, the extended trading hours under subdivision 3 . (2) The occupier of a non-exempt shop must ensure subsection (1) is complied with for the shop.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "41",
+        "42"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Shops selling goods by retail (store-based retailing); the Acts' exemptions for small shops, some goods and some areas are not yet coded.",
+      "sources": [
+        {
+          "title": "Trading (Allowable Hours) Act 1990 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1990-034",
+          "locator": "s 16B(1)–(2) (current)",
+          "quote": "(1) A non-exempt shop must be closed on a particular day other than during the shop’s core trading hours under subdivision 2 for the day or, if relevant, the extended trading hours under subdivision 3 . (2) The occupier of a non-exempt shop must ensure subsection (1) is complied with for the shop.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Shops must close outside the hours or on the days the state sets. Limits on opening protect existing traders from rivals that would open longer, and the rules differ widely between states.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Limits on opening hours restrict how shops compete on convenience and shield incumbents from rivals that would open longer.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the restriction's design against the framework's guide. The restrictions range from a few public holidays (NSW, Tasmania) to set weekly hours (WA, SA, Queensland); this one mark does not yet tell them apart.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

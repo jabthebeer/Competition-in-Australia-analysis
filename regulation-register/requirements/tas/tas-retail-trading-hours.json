@@ -1,0 +1,105 @@
+{
+  "id": "tas-retail-trading-hours",
+  "family": "retail-trading-hours",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "retail-trading-hours",
+  "title": "Close the shop on restricted trading days",
+  "kind": "standard",
+  "what": "Keep a shop to which the Act applies closed on Christmas Day and Good Friday (and Anzac Day morning), unless exempt.",
+  "laws": [
+    {
+      "title": "Shop Trading Hours Act 1984 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1984-061",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1984-061",
+      "provisions": "s 5",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Shop Trading Hours Act 1984 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1984-061",
+      "locator": "s 5(1) (current)",
+      "quote": "(1) Subject to the provisions of this Act, a shop to which this section applies must not be kept open at any time – (a) on Christmas Day; or (b) [Section 5 Subsection (1) amended by No. 45 of 2011, s. 18, Applied:07 Dec 2011] on Good Friday.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "41",
+        "42"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Shops selling goods by retail (store-based retailing); the Acts' exemptions for small shops, some goods and some areas are not yet coded.",
+      "sources": [
+        {
+          "title": "Shop Trading Hours Act 1984 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1984-061",
+          "locator": "s 5(1) (current)",
+          "quote": "(1) Subject to the provisions of this Act, a shop to which this section applies must not be kept open at any time – (a) on Christmas Day; or (b) [Section 5 Subsection (1) amended by No. 45 of 2011, s. 18, Applied:07 Dec 2011] on Good Friday.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Shops must close outside the hours or on the days the state sets. Limits on opening protect existing traders from rivals that would open longer, and the rules differ widely between states.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Limits on opening hours restrict how shops compete on convenience and shield incumbents from rivals that would open longer.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the restriction's design against the framework's guide. The restrictions range from a few public holidays (NSW, Tasmania) to set weekly hours (WA, SA, Queensland); this one mark does not yet tell them apart.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
