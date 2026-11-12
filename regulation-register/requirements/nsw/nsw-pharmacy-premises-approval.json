@@ -1,0 +1,131 @@
+{
+  "id": "nsw-pharmacy-premises-approval",
+  "family": "pharmacy-premises-approval",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "pharmacy",
+  "title": "Have pharmacy premises approved",
+  "kind": "approval",
+  "what": "Carry on a pharmacy business only on premises approved by the Pharmacy Council, with holders of financial interests registered.",
+  "laws": [
+    {
+      "title": "Health Practitioner Regulation (Adoption of National Law) Act 2009 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2009-086",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-07-01/act-2009-086",
+      "provisions": "Health Practitioner Regulation National Law (NSW), Sch 5F cl 3(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Health Practitioner Regulation (Adoption of National Law) Act 2009 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-07-01/act-2009-086",
+      "locator": "Health Practitioner Regulation National Law (NSW), Sch 5F cl 3(1) (version of 2024-07-01)",
+      "quote": "A person must not carry on a pharmacy business unless— (a) the premises on which the pharmacy business is carried on are the subject of a current approval of the Council;",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-07-01/act-2009-086"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Pharmacy Council of NSW",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Practitioner Regulation (Adoption of National Law) Act 2009 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-07-01/act-2009-086",
+          "locator": "definitions (version of 2024-07-01)",
+          "quote": "Council means the Pharmacy Council of New South Wales",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-07-01/act-2009-086"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4271"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries on a pharmacy business",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Practitioner Regulation (Adoption of National Law) Act 2009 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-07-01/act-2009-086",
+          "locator": "Health Practitioner Regulation National Law (NSW), Sch 5F cl 3(1) (version of 2024-07-01)",
+          "quote": "A person must not carry on a pharmacy business unless— (a) the premises on which the pharmacy business is carried on are the subject of a current approval of the Council;",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-07-01/act-2009-086"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Carry on a pharmacy business only on premises approved by the Pharmacy Council, with holders of financial interests registered.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration, accreditation or approval is needed before the business can trade.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Applications, conditions, records and fees add cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

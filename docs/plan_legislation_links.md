@@ -173,8 +173,9 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 - [ ] **Land tax thresholds are not yet quoted** (D-3, E-152). They differ by state and by owner (individual, company or trust), and some are indexed each year. Land tax also has no regime yet.
 - [ ] **ACT sources quoted before 12 Nov 2026 may be from superseded republications.** The ACT reader took the newest dated PDF, but the register often offers its newest republication only as "current" (fixed in D-3). Re-check the earlier ACT quotes against the current republications.
 - [ ] **Smaller D-3 items:** SA's Dangerous Substances Act 1979 not searched for a duty on large stores; the ACT long service leave records section number; Queensland's long service leave record-keeping duty (in the Act's general records provisions) not quoted; the NT Long Service Leave Act names no regulator.
-- [ ] **D-4b: search the 13 D-4a families in the other seven jurisdictions** (91 gaps logged as not searched), then draft the 35 NSW Acts called Y in the D-4 screening, and screen the 107 high-signal NSW Acts with no business licensing offence.
-- [ ] **D-4a administering bodies:** 9 of the 13 NSW requirements have no administering body linked yet (their Acts do not name it in a definition).
+- [ ] **Search the 29 D-4 families in the other seven jurisdictions** (203 gaps logged as not searched).
+- [ ] **NSW Acts still called Y but not drafted** (D-4): the casino licence, gaming machine authorisations, property and stock agents, water access licences, firearms and weapons dealers, combat sports promoters, bore drillers, the Anatomy Act, mine subsidence approvals, Heavy Vehicle National Law duties, Hunter Water and Sydney Water connections, marine pilots, medicines and poisons supply, pesticide licences, radiation licences and registered clubs. Then screen the 107 high-signal NSW Acts with no business licensing offence, the high-signal NSW regulations (including animal trades) and the medium band.
+- [ ] **D-4 administering bodies:** 18 of the 29 NSW D-4 requirements have no administering body linked yet (their Acts do not name it in a definition).
 - [ ] **Construction long service levies**, a separate obligation on the person for whom building work is done (e.g. NSW s 34). To be recorded as their own family.
 
 **Industry lens (owner's list, 10 Nov 2026)**
