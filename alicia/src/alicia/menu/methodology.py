@@ -86,9 +86,9 @@ def _list(*items: str) -> str:
 def body(c: dict, repo: str = REPO_MAIN) -> str:
     """The page's sections as HTML. ``c`` is ``counts()``; ``repo`` is where the methods notes are linked."""
     reviewed = (
-        "None has yet been checked by a person."
+        "None has been checked yet."
         if not c["reviewed"]
-        else f"{c['reviewed']} of them have been checked by a person so far."
+        else f"{c['reviewed']} of them have been checked so far."
     )
     sections = {
         "what": "\n".join(

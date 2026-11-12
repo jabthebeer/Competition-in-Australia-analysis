@@ -104,7 +104,7 @@ Regulators' published market shares (ACCC inquiries, PC reports) are to be added
   - Councils are the capital cities only.
 
   A short list means *not yet recorded*, not *no regulation*. The page says when no industry-specific requirement has been recorded for the chosen industry.
-- **Drafts.** Every requirement, register item and mark was drafted by AI-assisted desk research and is not yet checked by a person.
+- **Drafts.** Every requirement, register item and mark was drafted by AI-assisted desk research and is not yet checked.
 - **The framework weighs productivity and competition only.** It does not count a law's benefits to safety, consumers or the environment. A red cell says a law adds cost or shelters incumbents, not that it should go.
 - **Placing marks is mechanical.** The driver-to-column table is a convention. A mark that acts through more than one group needs its own `positions`.
 - **Requirement marks are rough.** Most requirements carry one or two −1 marks (an entry condition, compliance burden). Differences in how hard a licence is to get, or how large the burden is, are not yet captured.

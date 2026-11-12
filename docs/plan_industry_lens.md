@@ -33,7 +33,7 @@ Pick an Australian industry and a state. See, in the first person, what a busine
 
 The ABS assigns each business to one category at each level, by its predominant activity, and codes it at the finest level: *"The ABS and Statistics NZ classify each unit at the finest level of the classification"* ([ABS, Methods of classification](https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0/methods-classification)). So the class is the lowest level at which a business has an official ABS category.
 
-Coarser levels mix businesses that face different laws. I tested this on the register's own mapping of 54 industry-specific regimes to classes (`regulation-register/regimes/`, a draft not yet checked by a person). The table counts how often a regime would cover only part of a unit at each level:
+Coarser levels mix businesses that face different laws. I tested this on the register's own mapping of 54 industry-specific regimes to classes (`regulation-register/regimes/`, a draft not yet checked). The table counts how often a regime would cover only part of a unit at each level:
 
 | Level | Units | Regime–unit pairs where the regime covers only part of the unit | Regimes affected (of 54) |
 |---|---|---|---|

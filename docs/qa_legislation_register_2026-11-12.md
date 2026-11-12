@@ -7,7 +7,7 @@
 
 **When:** after the final Commonwealth batch (DECISIONS E-143), before phase D (states and territories).
 
-**Who:** the same drafting process that wrote the register. This is not an independent review. Every requirement is still a `draft`, and none has been checked by a person (phase G).
+**Who:** the same drafting process that wrote the register. This is not an independent review. Every requirement is still a `draft` until the AI checking process the owner is setting up checks it (DECISIONS E-145).
 
 ## Summary
 
@@ -100,11 +100,11 @@ The child support deduction has no framework marks, so it shows only when 'Show 
 ## Limits
 
 - The samples are small: 30 of 329 requirements (9%) and 40 of 5,046 N calls.
-- The checks were run by the process that drafted the register, so they share its blind spots. A person still needs to check the register (phase G).
+- The checks were run by the process that drafted the register, so they share its blind spots. The register still has to go through the AI checking process (DECISIONS E-145).
 - The re-scan searched for duty wording only. A duty worded another way, or one in an instrument with no corpus copy, would be missed.
 
 ## Follow-up
 
-- Draft the 4 Commonwealth Y calls still to draft: the 2 ASIC continuing credit orders, the Disability Standards for Accessible Public Transport, and the Movable Cultural Heritage export permit.
+- Draft the 4 Commonwealth Y calls still to draft: the 2 ASIC continuing credit orders, the Disability Standards for Accessible Public Transport, and the Movable Cultural Heritage export permit. *Done 12 November 2026 (DECISIONS E-146).*
 - Quote s 7 of the ASIC review fee law and the Brisbane local law, so their confidence can return to high.
 - Quotes from the calibration that are still weak: superannuation guarantee, ACT workers' compensation, and privacy for health service providers.

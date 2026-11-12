@@ -234,7 +234,7 @@ Policy costing channels: C11.
 
 - Marks cover productivity and competition only. Many rules protect health, safety, the environment or fairness, and those benefits are not weighed here. A negative mark is not a finding that a rule should go: it is a productivity cost to weigh against its benefits, as the Office of Impact Analysis's competition tests ask.
 - Marks are ordinal judgements, not estimates. Adding them is a summary device: a +2 is not exactly twice a +1. They do not give dollar figures.
-- Assessments were drafted by AI-assisted desk research from each record's sources and have not yet been checked by a person.
+- Assessments were drafted by AI-assisted desk research from each record's sources and have not yet been checked.
 - Reach describes how much of the economy an item touches, not the size of its effect there; a state law reaches only that state.
 
 ## Sources

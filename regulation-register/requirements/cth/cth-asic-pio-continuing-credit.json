@@ -1,0 +1,132 @@
+{
+  "id": "cth-asic-pio-continuing-credit",
+  "family": "asic-pio-continuing-credit",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Provide continuing credit only under ASIC's fee condition",
+  "kind": "standard",
+  "what": "A continuing credit provider must not provide credit to a retail client under a continuing credit contract unless the total fees and charges, including those under collateral contracts, stay within the maximum charge permitted under s 6(5) of the National Credit Code. The order stays in force until revoked.",
+  "laws": [
+    {
+      "title": "ASIC Corporations (Product Intervention Order—Continuing Credit Contracts) Instrument 2022/648",
+      "jurisdiction": "CTH",
+      "kind": "legislative-instrument",
+      "register_id": "F2022L00976",
+      "register_url": "https://www.legislation.gov.au/F2022L00976/latest/text",
+      "provisions": "s 5",
+      "applied": false
+    },
+    {
+      "title": "ASIC Corporations (Product Intervention Order Extension—Continuing Credit Contracts) Instrument 2023/957",
+      "jurisdiction": "CTH",
+      "kind": "legislative-instrument",
+      "register_id": "F2024L00022",
+      "register_url": "https://www.legislation.gov.au/F2024L00022/latest/text",
+      "provisions": "s 4",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "ASIC Corporations (Product Intervention Order—Continuing Credit Contracts) Instrument 2022/648",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/F2022L00976/latest/text",
+      "locator": "s 5(1) (compilation F2022L00976 from 2022-07-13)",
+      "quote": "Continuing credit contracts (1) A continuing credit provider must not provide credit to a retail client under a continuing credit contract except in accordance with the condition in subsection (5).",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "ASIC Corporations (Product Intervention Order—Continuing Credit Contracts) Instrument 2022/648",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/F2022L00976/latest/text",
+      "locator": "s 5(5) (compilation F2022L00976 from 2022-07-13)",
+      "quote": "Condition (5) The total of: (a) the amount of fees and charges that may be imposed or provided for under the continuing credit contract; and (b) the amount of fees and charges that: (i) may be imposed or provided for under: (A) a collateral contract (other than a collateral non-cash payment facility); or (B) a contract, arrangement or understanding that belongs to a series or combination that constitutes the continuing credit contract (except for a fee or charge already counted under paragraph (a)); and (ii) are paid or payable by a retail client; must not exceed the maximum charge permitted under subsection 6(5) of the National Credit Code or regulations made for the purposes of that subsection.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "ASIC Corporations (Product Intervention Order Extension—Continuing Credit Contracts) Instrument 2023/957",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/F2024L00022/latest/text",
+      "locator": "s 4 (compilation F2024L00022 from 2024-01-05)",
+      "quote": "4 Terms of declaration ASIC Corporations (Product Intervention Order—Continuing Credit Contracts) Instrument 2022/648 remains in force until it is revoked.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6230"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides credit under a continuing credit contract",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "ASIC Corporations (Product Intervention Order—Continuing Credit Contracts) Instrument 2022/648",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2022L00976/latest/text",
+          "locator": "s 4 (compilation F2022L00976 from 2022-07-13)",
+          "quote": "continuing credit provider means a person who is purporting to rely on subsection 6(5) of the National Credit Code in relation to a continuing credit contract",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "ASIC's product intervention order caps the total fees and charges on continuing credit contracts, including fees under collateral contracts.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A cap on the total fees and charges that can be imposed, including under collateral contracts.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 12 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

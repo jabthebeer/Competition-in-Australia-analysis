@@ -23,7 +23,7 @@ Legislative levers influencing competition (formerly the legislation menu) is a 
 3. **Review of the register** (done): [`docs/register_review_framework.md`](docs/register_review_framework.md). The reforms were chosen for evaluability and are a skewed sample.
 4. **Additions** (two tranches done, 63 items: stamp duty, payroll tax, trade and foreign investment settings and concentrated markets, then planning and zoning, occupational licensing, pharmacy ownership and location rules, mandatory standards, insurance duty and other settings); the review lists the remaining candidates.
 
-Every assessment is a draft until checked by a person: the review sheet is [`docs/review/framework_assessments_review.csv`](docs/review/framework_assessments_review.csv). The Policy costing tab ([plan](docs/forward_plan_policy_costing.md)) is archived (E-135). The retrospective evaluations were paused on 22 October 2026 (E-75); parked items are in [`docs/parked_items.md`](docs/parked_items.md).
+Every assessment is a draft until it has been through the AI checking process (DECISIONS E-145). The review sheet is [`docs/review/framework_assessments_review.csv`](docs/review/framework_assessments_review.csv). The Policy costing tab ([plan](docs/forward_plan_policy_costing.md)) is archived (E-135). The retrospective evaluations were paused on 22 October 2026 (E-75); parked items are in [`docs/parked_items.md`](docs/parked_items.md).
 
 ## Projects
 

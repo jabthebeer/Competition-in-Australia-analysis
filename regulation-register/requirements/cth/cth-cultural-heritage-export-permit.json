@@ -1,0 +1,129 @@
+{
+  "id": "cth-cultural-heritage-export-permit",
+  "family": "cultural-heritage-export-permit",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Get a permit to export an Australian protected object",
+  "kind": "licence",
+  "what": "A person must not export, or attempt to export, an Australian protected object (cultural heritage material on the National Cultural Heritage Control List) except under a permit or certificate under the Act.",
+  "laws": [
+    {
+      "title": "Protection of Movable Cultural Heritage Act 1986",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03252",
+      "register_url": "https://www.legislation.gov.au/C2004A03252/latest/text",
+      "provisions": "s 9",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Protection of Movable Cultural Heritage Act 1986",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03252/latest/text",
+      "locator": "s 9(3) (compilation C2024C00629 from 2024-10-14)",
+      "quote": "(3) A person commits an offence if: (a) the person exports, or attempts to export, an object; and (b) the object is an Australian protected object; and (c) the person’s conduct referred to in paragraph (a) is otherwise than in accordance with a permit or certificate.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4273",
+        "4279",
+        "3800"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it exports Australian protected objects",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Antique and art dealers and auction houses: the department's examples of protected material (Indigenous art, furniture, stamps and so on) are what these classes trade.",
+      "sources": [
+        {
+          "title": "Exporting cultural property from Australia",
+          "publisher": "Office for the Arts",
+          "url": "https://www.arts.gov.au/what-we-do/cultural-heritage/movable-cultural-heritage/exporting-cultural-property-australia",
+          "locator": "Introduction",
+          "quote": "Cultural material may be considered significant for ethnological, historical, literary, artistic, scientific or technological reasons. Examples include Indigenous art, heritage machinery, precious stones, historical documents, furniture, and stamps.",
+          "accessed": "2026-11-12",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "5292"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it ships Australian protected objects abroad",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "The department names freight companies.",
+      "sources": [
+        {
+          "title": "Exporting cultural property from Australia",
+          "publisher": "Office for the Arts",
+          "url": "https://www.arts.gov.au/what-we-do/cultural-heritage/movable-cultural-heritage/exporting-cultural-property-australia",
+          "locator": "Australian protected objects",
+          "quote": "Freight companies could also be prosecuted if they export an Australian protected object even if their only role is transporting the material. Freight companies should confirm that the owner either has a permit or is satisfied that they do not need one.",
+          "accessed": "2026-11-12",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The duty is quoted from the Act. Which classes trade protected objects is judged from the department's examples; only freight companies are named in official guidance.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Exporting an Australian protected cultural object needs a permit or certificate under the Act.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "A permit is needed before protected objects can be sold to buyers overseas.",
+        "positions": []
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 12 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
