@@ -1,0 +1,94 @@
+{
+  "id": "cth-child-support-employer-deductions",
+  "family": "child-support-employer-deductions",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Deduct child support from an employee's pay when notified",
+  "kind": "tax-or-levy",
+  "what": "When the Child Support Registrar gives an employer a notice about an employee, the employer must deduct child support from that employee's salary or wages each time it pays them, at the rate in the notice.",
+  "laws": [
+    {
+      "title": "Child Support (Registration and Collection) Act 1988",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03596",
+      "register_url": "https://www.legislation.gov.au/C2004A03596/latest/text",
+      "provisions": "ss 45, 46",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Child Support (Registration and Collection) Act 1988",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03596/latest/text",
+      "locator": "s 46(1)–(2) (compilation C2026C00287 from 2026-07-01)",
+      "quote": "46 Duty of employer to make deductions from salary or wages (1) Subject to this section, where an employer pays salary or wages to an employee in relation to whom a notice given to the employer under subsection 45(1) is in force, the employer shall, at the time of paying the salary or wages, make a deduction from the salary or wages in accordance with this section. (2) Subject to subsection (4), the amount of the deduction is the amount ascertained by applying the weekly deduction rate specified in the notice to the period in relation to which the salary or wages are paid.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Only once the Registrar has given the employer a notice under s 45(1) for an employee.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any employer that pays salary or wages to an employee named in a Registrar's notice.",
+      "sources": [
+        {
+          "title": "Child Support (Registration and Collection) Act 1988",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03596/latest/text",
+          "locator": "s 46(1)–(2) (compilation C2026C00287 from 2026-07-01)",
+          "quote": "46 Duty of employer to make deductions from salary or wages (1) Subject to this section, where an employer pays salary or wages to an employee in relation to whom a notice given to the employer under subsection 45(1) is in force, the employer shall, at the time of paying the salary or wages, make a deduction from the salary or wages in accordance with this section. (2) Subject to subsection (4), the amount of the deduction is the amount ascertained by applying the weekly deduction rate specified in the notice to the period in relation to which the salary or wages are paid.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Found by the 12 Nov 2026 quality check: batch 6 had called the Act N under 'social security, family'. The duty arises only on notice, like the Census direction.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A payroll deduction made only on notice, which payroll software handles: no material effect.",
+    "marks": [],
+    "main_driver": null,
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 12 Nov 2026 (quality check), not yet checked by a person.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
