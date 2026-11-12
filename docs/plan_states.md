@@ -96,20 +96,20 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 
 - **D-1, done 12 Nov 2026 (E-149):** 5 family gaps drafted, 6 searched again, 2 moved to D-2; 138 of 140 state and council requirements linked to their regulator or council, with 3 new overlaps recorded.
 - **D-2, catalogues built 12 Nov 2026 (E-151):** all eight, the ACT's from the lists the owner saved. State departments are still to do. Details below.
-- **D-3 done 12 Nov 2026 (E-152, E-153):** 52 requirements in eight families, each quoted from the law of each jurisdiction:
+- **D-3 done 12 Nov 2026 (E-152 to E-154):** 59 requirements in eight families, each quoted from the law of each jurisdiction:
 
   | Family | Drafted | Not drafted |
   |---|---|---|
-  | Long service leave | NSW, Qld, WA, SA, Tas, ACT, NT | Victoria (blocked) |
-  | Land tax | NSW, Qld, WA, SA, Tas, ACT (residential land only) | Victoria (blocked); NT (no land tax Act) |
-  | High-risk work licences (the business sees the worker's licence) | NSW, Qld, WA, SA, Tas, ACT, NT | Victoria (blocked) |
-  | Hazardous chemicals above manifest quantities (notify the regulator; WA licenses the site) | NSW, Qld, WA, Tas, ACT, NT | Victoria (blocked); SA (its r 348 was deleted) |
-  | Asbestos removal licences | NSW, Qld, WA, SA, Tas, ACT, NT | Victoria (blocked) |
+  | Long service leave | all eight | |
+  | Land tax | NSW, Vic, Qld, WA, SA, Tas, ACT (residential land only) | NT (no land tax Act) |
+  | High-risk work licences (the business sees the worker's licence; in Victoria, the employer) | all eight | |
+  | Hazardous chemicals above manifest quantities (notify the regulator; WA licenses the site; Victoria uses notifiable quantities) | NSW, Vic, Qld, WA, Tas, ACT, NT | SA (its r 348 was deleted) |
+  | Asbestos removal licences | all eight | |
   | Environment protection licences for listed activities | NSW, Victoria, Qld, SA, Tas, ACT, NT | WA (to draft: the operating offence not yet located) |
-  | Retail lease disclosure statements (landlords) | NSW, Qld, WA, SA, Tas, ACT, NT | Victoria (blocked) |
-  | Retail trading hours | NSW, Qld, WA, SA, Tas | Victoria (blocked); the ACT and NT have no such law |
+  | Retail lease disclosure statements (landlords) | all eight | |
+  | Retail trading hours | NSW, Vic, Qld, WA, SA, Tas | the ACT and NT have no such law |
 
-  Victoria's environment licence is quoted from the Environment Protection Act 2017 the owner uploaded. The owner's upload of 12 Nov 2026 held the 14 Acts saved for the earlier Victorian requirements, not the six D-3 needs: the Long Service Leave Act 2018, the Land Tax Act 2005, the Retail Leases Act 2003, the Shop Trading Reform Act 1996, the Occupational Health and Safety Regulations 2017 and the Dangerous Goods (Storage and Handling) Regulations 2022.
+  Victoria's eight are quoted from the authorised versions the owner saved and uploaded on 12 Nov 2026 (`data/raw/vic_legislation/`).
 
 ### D-2: the catalogues and the new estimate
 

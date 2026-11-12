@@ -10,7 +10,8 @@ A source is named by a short spec:
   wa:<law_aNNN>             WA register, the current Word document                          -> document
   act:<A id>                ACT register, latest republication PDF, e.g. act:2001-66        -> document
   nt:<NAME>                 NT register PDF, by the name in its URL                         -> document
-  vic:<yy-numaaver>         Victoria, an authorised PDF the owner saved (data/raw/vic_legislation/), e.g. vic:17-51aa023
+  vic:<yy-numaaver>         Victoria, an authorised PDF the owner saved (data/raw/vic_legislation/): an Act,
+                            e.g. vic:17-51aa023, or a statutory rule, e.g. vic:17-22sra018
                             -> document (cited by the register's in-force page)
   page:<url>                any web page (e.g. a Victorian regulator; the Vic register's documents are disallowed)
 
@@ -148,15 +149,27 @@ def src(spec: str) -> tuple[str, str, str, str | None, str]:
         return url, flat(L.fetch_doc(url, _key(url))[0]), "document", None, "current reprint"
     if kind == "vic":
         # Victoria: an authorised PDF the owner saved from the register (data/raw/vic_legislation/, not committed),
-        # named like 17-51aa023 (Act 51 of 2017, authorised version 023). The register's documents disallow automated
-        # fetching, so the quote cites the register's in-force page for the Act.
-        yy, num, ver = re.match(r"(\d\d)-(\d+)aa(\d+)", arg).groups()
+        # named like 17-51aa023 (Act 51 of 2017, authorised version 023) or 17-22sra018 (Statutory Rule 22 of 2017).
+        # The register's documents disallow automated fetching, so the quote cites the register's in-force page.
+        yy, num, kind_, ver = re.match(r"(\d\d)-(\d+)(aa|sra)(\d*)", arg).groups()
         pdf = next(VIC_DIR.glob(f"{arg}*.pdf"))
-        out = subprocess.run(["pdftotext", str(pdf), "-"], capture_output=True, text=True, check=True).stdout
+        out = flat(subprocess.run(["pdftotext", str(pdf), "-"], capture_output=True, text=True, check=True).stdout)
         year = ("19" if int(yy) > 30 else "20") + yy
         with VIC_CATALOGUE.open(encoding="utf-8", newline="") as fh:
-            url = next(r["url"] for r in csv.DictReader(fh) if r["register_id"] == f"{num}/{year}")
-        return url, flat(out), "document", None, f"authorised version {ver}, saved by the owner"
+            rows = list(csv.DictReader(fh))
+        if kind_ == "aa":
+            url = next(r["url"] for r in rows if r["register_id"] == f"{num}/{year}")
+            return url, out, "document", None, f"authorised version {ver}, saved by the owner"
+        # A statutory rule: the catalogue lists it by name, which the PDF's first lines give.
+        title = re.match(r"Authorised Version(?: No\. \d+)? (.+?) S\.R\. No\. \d+/\d{4}", out).group(1)
+        url = next(r["url"] for r in rows if r["name"] == title)
+        return (
+            url,
+            out,
+            "document",
+            None,
+            f"S.R. No. {num}/{year}, authorised version {ver or 'unnumbered'}, saved by the owner",
+        )
     if kind == "page":
         return arg, flat(L.fetch_doc(arg, _key(arg))[0]), "web-page", None, ""
     raise ValueError(f"unknown source spec {spec!r}")

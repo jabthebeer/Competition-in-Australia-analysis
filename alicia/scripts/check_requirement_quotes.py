@@ -38,14 +38,19 @@ VIC_CATALOGUE = Path(__file__).resolve().parents[2] / "data" / "processed" / "le
 
 
 def vic_pdf(url: str, locator: str) -> Path | None:
-    """The authorised PDF the owner saved for a Victorian Act (data/raw/vic_legislation/), by its number and the
-    authorised version named in the locator; Victoria's register disallows fetching its documents."""
+    """The authorised PDF the owner saved for a Victorian Act or statutory rule (data/raw/vic_legislation/), by its
+    number and the authorised version named in the locator; Victoria's register disallows fetching its documents."""
     with VIC_CATALOGUE.open(encoding="utf-8", newline="") as fh:
         rid = next((r["register_id"] for r in csv.DictReader(fh) if r["url"] == url), "")
-    m, v = re.match(r"(\d+)/(\d{4})$", rid), re.search(r"authorised version (\d+)", locator)
-    if not (m and v):
+    v = re.search(r"authorised version (\d+|unnumbered)", locator)
+    if not v:
         return None
-    return next(VIC_DIR.glob(f"{m.group(2)[2:]}-{m.group(1)}aa{v.group(1)}*.pdf"), None)
+    ver = "" if v.group(1) == "unnumbered" else v.group(1)
+    if m := re.match(r"(\d+)/(\d{4})$", rid):
+        return next(VIC_DIR.glob(f"{m.group(2)[2:]}-{m.group(1)}aa{ver}*.pdf"), None)
+    if m := re.search(r"S\.R\. No\. (\d+)/(\d{4})", locator):
+        return next(VIC_DIR.glob(f"{m.group(2)[2:]}-{m.group(1)}sra{ver}*.pdf"), None)
+    return None
 
 
 def norm(s: str) -> str:

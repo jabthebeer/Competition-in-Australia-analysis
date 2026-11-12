@@ -1,0 +1,115 @@
+{
+  "id": "vic-retail-trading-hours",
+  "family": "retail-trading-hours",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "retail-trading-hours",
+  "title": "Close the shop on restricted trading days",
+  "kind": "standard",
+  "what": "Keep a shop (other than an exempt shop) closed on Good Friday, Christmas Day and the morning of ANZAC Day.",
+  "laws": [
+    {
+      "title": "Shop Trading Reform Act 1996 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "38/1996",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/shop-trading-reform-act-1996",
+      "provisions": "ss 3, 5",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Shop Trading Reform Act 1996 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/shop-trading-reform-act-1996",
+      "locator": "s 5(2) (authorised version 045, saved by the owner)",
+      "quote": "(2) The occupier of a shop, other than an exempt shop, must not fail to close the shop and keep it closed during ordinary shop closing times.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Shop Trading Reform Act 1996 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/shop-trading-reform-act-1996",
+      "locator": "s 3(1), definition of ordinary shop closing times (authorised version 045, saved by the owner)",
+      "quote": "ordinary shop closing times means— (a) all times on Good Friday and Christmas Day; (b) between the hours of 12:01 am and 1:00 pm on ANZAC Day;",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "41",
+        "42"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Shops selling goods by retail (store-based retailing); the Acts' exemptions for small shops, some goods and some areas are not yet coded.",
+      "sources": [
+        {
+          "title": "Shop Trading Reform Act 1996 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/shop-trading-reform-act-1996",
+          "locator": "s 5(2) (authorised version 045, saved by the owner)",
+          "quote": "(2) The occupier of a shop, other than an exempt shop, must not fail to close the shop and keep it closed during ordinary shop closing times.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Shops must close outside the hours or on the days the state sets. Limits on opening protect existing traders from rivals that would open longer, and the rules differ widely between states.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Limits on opening hours restrict how shops compete on convenience and shield incumbents from rivals that would open longer.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the restriction's design against the framework's guide. The restrictions range from a few public holidays (NSW, Tasmania) to set weekly hours (WA, SA, Queensland); this one mark does not yet tell them apart.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
