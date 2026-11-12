@@ -578,11 +578,9 @@ def _complexity(records: list[ChangeRecord], regimes: list[Regime]) -> str:
     return f"""
 <section class="block" aria-labelledby="h-complexity">
   <div class="block-head"><h2 id="h-complexity">Regulatory complexity</h2>
-  <p>A rule can be light on its own and still costly when a business must deal with several agencies or tiers of
-  government for one activity, meet different rules in each state, or follow guidance that is vague or keeps
-  changing. The framework counts these costs under <strong>regulatory burden</strong>, whose checklist already looks
-  for &ldquo;the same thing regulated by several governments&rdquo; and &ldquo;complexity, and frequent changes to the
-  rules&rdquo;. The menu now shows where they arise, industry by industry.</p></div>
+  <p>A light rule can still be costly when a business deals with several agencies or tiers of government, different
+  rules in each state, or unclear or changing guidance. The framework counts these costs under <strong>regulatory
+  burden</strong>. Legislative levers influencing competition shows where they arise in each industry.</p></div>
   <div class="cx-grid">
     <figure class="panel cx-quote"><blockquote>{escape(COMPLEXITY_QUOTE)}</blockquote>
     <figcaption>What success would look like: <a href="{escape(src["url"])}" target="_blank"
@@ -666,8 +664,8 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes:
 
 <section class="block" aria-labelledby="h-fit">
   <div class="block-head"><h2 id="h-fit">The idea in one picture</h2>
-  <p>Eight drivers, in three groups. Competition and dynamism push firms to invest, to use people well and to work
-  efficiently, and that is what lifts productivity.</p></div>
+  <p>Eight drivers in three groups. Competition pushes firms to invest, use people well and work efficiently, and that
+  lifts productivity.</p></div>
   {flow}
 </section>
 
@@ -685,8 +683,8 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes:
 
 <section class="block" aria-labelledby="h-rubric">
   <div class="block-head"><h2 id="h-rubric">The rubric</h2>
-  <p>Every item gets a mark from −2 to +2 on each driver. Each cell says what that mark means, and how many items in
-  the register have it.</p></div>
+  <p>Each item is marked from −2 to +2 on each driver. Each cell says what the mark means and how many items have
+  it.</p></div>
   {rubric}
   <details class="more-drivers"><summary>Evidence, checklists and the full marking guide for each driver</summary>
   <div class="ddets">{_driver_details(records)}</div></details>

@@ -22,7 +22,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     <!--__NAV__-->
     <p class="kicker">ALICIA · Top down</p>
     <h1>Structural competitive conditions <!--__BETA__--></h1>
-    <p class="lede">How each state's industries are growing and how productive they are, set against similar economies; how concentrated industries are; how often new businesses start up; and the economic conditions each state has faced.</p>
+    <p class="lede">Growth, productivity, concentration and business entry by state and industry, compared with similar economies.</p>
     <nav class="toc" aria-label="On this page">
       <span class="toc-label">On this page</span>
       <a href="#h-ind">Industries in each state</a>
@@ -38,7 +38,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   <section class="block" aria-labelledby="h-ind">
     <div class="block-head">
       <h2 id="h-ind">Industries in each state</h2>
-      <p>Click a cell to see that industry's productivity and history below.</p>
+      <p>Select a cell to see that industry's productivity and history.</p>
     </div>
     <div class="toolbar"><label for="metric">Show</label><select id="metric"></select></div>
     <div class="toolbar" role="group" aria-label="Years for industries in each state"><div id="indRange"></div></div>
@@ -207,7 +207,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   <section class="block" aria-labelledby="h-gsp">
     <div class="block-head">
       <h2 id="h-gsp">State economies</h2>
-      <p>Each state's <span data-term="gsp">economy</span> in the last year of the period, and how fast it grew.</p>
+      <p>The size of each state's <span data-term="gsp">economy</span> in the last year, and how fast it grew.</p>
     </div>
     <div class="toolbar" role="group" aria-label="Years for state economies"><div id="gspRange"></div></div>
     <div class="stack">
@@ -252,13 +252,13 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
 
   <div class="part-head" id="economic-conditions">
     <h2 id="h-econ">Economic conditions</h2>
-    <p>The economic conditions each state has faced (spending, jobs, population, wages, housing and commodity prices), and how profitable companies are where <span data-term="barriers">barriers to entry</span> are high.</p>
+    <p>Spending, jobs, wages, population, housing and commodity prices in each state, and company profits where <span data-term="barriers">barriers to entry</span> are high.</p>
   </div>
 
   <section class="block" aria-labelledby="h-latest">
     <div class="block-head">
       <h2 id="h-latest">Latest figures</h2>
-      <p>The latest figure for each measure, with the change from a year earlier in brackets.</p>
+      <p>The latest figure for each measure, with the change over the year in brackets.</p>
     </div>
     <div class="panel stack"><div class="tscroll"><table class="data sticky" id="latest"></table></div><p class="source" id="latestSrc"></p></div>
   </section>
@@ -266,7 +266,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   <section class="block" aria-labelledby="h-state">
     <div class="block-head">
       <h2 id="h-state">By state over time</h2>
-      <p>Hover over or tap a chart to read the values for each state shown.</p>
+      <p>Hover over or tap a chart to see each state's figures.</p>
     </div>
     <div class="sticky-key toolbar">
       <div id="range"></div>
@@ -279,7 +279,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   <section class="block" aria-labelledby="h-com">
     <div class="block-head">
       <h2 id="h-com">Commodity prices</h2>
-      <p>Prices of Australia's main commodity exports. Booms and busts hit the mining states hardest.</p>
+      <p>Prices of Australia's main commodity exports.</p>
     </div>
     <div class="toolbar" role="group" aria-label="Years for commodity prices"><div id="comRange"></div></div>
     <div class="panel chart-card">
@@ -1833,7 +1833,7 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     const k = coe();
     return P.sectors.map((s) => ({ s, st: sectorStats(s, PY, pw.from, pw.to, k, P.taxRate) }));
   };
-  document.getElementById("profitLede").innerHTML = `Are companies more profitable where barriers to entry are high? <a href="${esc(D.sources.grattan.url)}" target="_blank" rel="noopener">Grattan Institute's 2017 report</a> found they were. These charts repeat its analysis with ATO company tax statistics. Choose the ${term("incomeYear", "income years")} to average and the ${term("coe", "cost of equity")}; every chart below follows them.`;
+  document.getElementById("profitLede").innerHTML = `<a href="${esc(D.sources.grattan.url)}" target="_blank" rel="noopener">Grattan Institute's 2017 report</a> found companies are more profitable where barriers to entry are high. These charts repeat its analysis with ATO company tax statistics. Every chart below uses the ${term("incomeYear", "income years")} and ${term("coe", "cost of equity")} you choose.`;
   document.getElementById("coeLabel").innerHTML = `${term("coe", "Cost of equity")}, %`;
   const coeInput = document.getElementById("coe"), coeBtn = document.getElementById("coeAuto");
   function paintCoe() {

@@ -73,30 +73,32 @@ LANDING = (
     {
         "id": "top-down",
         "title": "Top down",
-        "text": "Start from the whole economy: how competition is faring across states and industries, and the laws and regulatory settings that shape it.",
+        "text": "Competition across states and industries, and the laws that shape it.",
         "links": (
             {
                 "href": COMPETITION_PAGE[0],
                 "name": COMPETITION_PAGE[1],
-                "text": "How each state's industries are growing and how productive they are, set against similar economies; how concentrated industries are; how often new businesses start up; and the economic conditions each state has faced.",
+                "text": "Growth, productivity, concentration and business entry by state and industry, compared with similar "
+                "economies.",
             },
             {
                 "href": MENU_PAGE[0],
                 "name": MENU_PAGE[1],
-                "text": "Laws, regulatory settings, the requirements they place on businesses, and other barriers that shape competition and productivity, each marked against the ALICIA productivity framework and tagged with the market position it most affects.",
+                "text": "Laws, business requirements and other barriers that affect competition, each marked against the "
+                "productivity framework.",
             },
         ),
     },
     {
         "id": "bottom-up",
         "title": "Bottom up",
-        "text": "Start from a single industry: its competitive conditions and the regulation that applies to it.",
+        "text": "One industry's market, and the laws that apply to it.",
         "links": (
             {
                 "href": LENS_PAGE[0],
                 "name": LENS_PAGE[1],
-                "text": "The laws a business in one industry deals with, state by state, coded for their effect on "
-                "competition: for entrants, existing competitors, and monopolies and oligopolies.",
+                "text": "One industry's regulatory pain points, overlapping rules and laws in each state, and how each "
+                "affects competition.",
             },
             {
                 "href": OVERVIEW_PAGE[0],
