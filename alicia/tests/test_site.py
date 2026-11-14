@@ -187,6 +187,7 @@ def test_build_site_writes_the_linked_pages_and_nothing_archived(tmp_path):
         "industry-lens.html",
         "menu.html",
         "methodology.html",
+        "regulatory-overview.html",
     ]
     pages = [n for n in names if n != "conditions.html"]
     index = (tmp_path / "menu.html").read_text("utf-8")
@@ -204,16 +205,18 @@ def test_build_site_writes_the_linked_pages_and_nothing_archived(tmp_path):
     forward = (tmp_path / "conditions.html").read_text("utf-8")
     assert 'location.replace("growth.html#economic-conditions")' in forward and "<nav" not in forward
     # The nav, on one line: the site's name (the link home) with one Beta badge, then the pages grouped by what
-    # they are for, under short labels. The regulatory overview is coming soon, with no link.
+    # they are for, under short labels. The regulatory overview is built (overhaul phase 5), so it is a link.
     nav = index[index.index('<nav class="site-nav"') : index.index("</nav>")]
     assert re.findall(r'<p class="nav-label" id="[^"]+">([^<]+)</p>', nav) == ["Top down", "Bottom up", "About"]
-    built = ["index.html", "growth.html", "menu.html", "industry-lens.html", "framework.html", "methodology.html"]
+    built = ["index.html", "growth.html", "menu.html", "industry-lens.html", "regulatory-overview.html"]
+    built += ["framework.html", "methodology.html"]
     assert re.findall(r'<a (?:class="brand" )?href="([^"#]+)"', nav) == built
-    short = ["Competitive conditions", "Legislative levers", "Industry lens", "Framework", "Methodology"]
+    short = ["Competitive conditions", "Legislative levers", "Industry lens", "Regulatory overview"]
+    short += ["Framework", "Methodology"]
     assert re.findall(r'<a href="[^"]+"[^>]*>([^<]+)</a>', nav) == short
     assert 'title="Structural competitive conditions"' in nav  # a short label carries the page's full name
     assert nav.count(">Beta</span>") == 1 and "(beta)</" not in nav  # one badge, not one on every link
-    assert 'Regulatory overview <span class="nav-note">(coming soon)</span>' in nav
+    assert "(coming soon)" not in nav and 'title="Regulatory overview by industry"' in nav
     assert '<details class="nav-menu" open><summary>Menu</summary>' in nav  # folds behind a Menu button on a phone
     # Every page is the same width: none sets its own.
     for page in pages:
@@ -228,8 +231,7 @@ def test_build_site_writes_the_linked_pages_and_nothing_archived(tmp_path):
     assert routes == ["growth.html", "menu.html", "industry-lens.html"]
     assert all((tmp_path / h).exists() for h in routes)
     assert index_html.count('<a class="tile" href=') == 4 and 'class="site-foot"' in index_html
-    assert index_html.count("Coming soon") == 1  # the regulatory overview is not built yet
-    assert 'href="regulatory-overview.html"' not in index_html
+    assert "Coming soon" not in index_html and 'href="regulatory-overview.html"' in index_html  # built in phase 5
     assert 'location.replace("menu.html" + location.hash)' in index_html  # old index.html#<id> links reach the menu
     for page in ("framework.html", "menu.html"):  # links into the menu skip the redirect
         assert not re.search(r'href="index\.html#', (tmp_path / page).read_text("utf-8")), page

@@ -52,7 +52,7 @@ FRAMEWORK_PAGE = ("framework.html", "Framework")
 METHODOLOGY_PAGE = ("methodology.html", "Methodology")
 # Every page the site builds, in nav order (owner decision, 11 Nov 2026, DECISIONS E-135). Pages keep their addresses
 # when renamed, so links made before still work.
-PAGES = (HOME_PAGE, COMPETITION_PAGE, MENU_PAGE, LENS_PAGE, FRAMEWORK_PAGE, METHODOLOGY_PAGE)
+PAGES = (HOME_PAGE, COMPETITION_PAGE, MENU_PAGE, LENS_PAGE, OVERVIEW_PAGE, FRAMEWORK_PAGE, METHODOLOGY_PAGE)
 # The nav groups the pages by what they are for: the two views, then how the site is made. A page the build does
 # not write (the regulatory overview, until it is built) shows as coming soon, without a link.
 NAV_GROUPS = (
@@ -684,7 +684,7 @@ def build_site(
     from pathlib import Path
 
     from . import framework as framework_page
-    from . import home, lens, methodology
+    from . import home, lens, methodology, overview
     from .archive import ARCHIVE_PAGE, build_archive
     from .explorer import build_explorer, menu_payload
 
@@ -730,6 +730,11 @@ def build_site(
         encoding="utf-8",
     )
     written.append(lens_path)
+    # Regulatory overview by industry: the divisions and detailed industries compared, from the levers page's rows.
+    path = out / OVERVIEW_PAGE[0]
+    html = render(OVERVIEW_PAGE[0], overview.payload(menu, records), OVERVIEW_PAGE[0], standalone, pages)
+    path.write_text(html.replace("<!--__FOOT__-->", site_foot()), encoding="utf-8")
+    written.append(path)
     if costing_dist:
         written += build_costing(out, costing_dist, pages)
     # Home: its figures come from the competition and levers pages' own data.
