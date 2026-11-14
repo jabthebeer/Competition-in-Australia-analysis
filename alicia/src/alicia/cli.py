@@ -632,7 +632,7 @@ def main(argv: list[str] | None = None) -> int:
     si.add_argument(
         "--costing",
         default=None,
-        help="add the archived Policy costing tab from its build (regulatory-burden-tool/dist-site, 'npm run build:site')",
+        help="add the archived Policy costing tab from its build (regulatory-burden-tool/dist-site)",
     )
     si.add_argument(
         "--archive",

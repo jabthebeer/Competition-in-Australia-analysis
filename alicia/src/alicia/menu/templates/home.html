@@ -5,39 +5,75 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
 <style>
 /*__SITE_CSS__*/
-/* Layout: the landing page. Two views of the competition landscape side by side (stacked on phones), each with its pages. */
-.views { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 20px; align-items: start; }
-.view { display: grid; gap: 14px; align-content: start; }
-.view-head { display: grid; gap: 4px; }
-.view-head .kicker { color: var(--ink-3); }
-.view-head p { margin: 0; color: var(--ink-2); max-width: 60ch; }
-.view-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.view-link { display: grid; gap: 4px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); text-decoration: none; }
-.view-link .name { font-family: var(--font-display); font-weight: 600; font-size: var(--step-1); display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.view-link .desc { color: var(--ink-2); font-size: var(--step--1); margin: 0; }
-a.view-link:hover, a.view-link:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
-a.view-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-a.view-link .go { color: var(--accent); font-family: var(--font-body); font-size: var(--step--1); font-weight: 600; white-space: nowrap; }
-.view-link.soon { border-style: dashed; background: transparent; }
-.view-link.soon .name { color: var(--ink-2); }
-.view-link.soon .badge { font-family: var(--font-body); font-size: var(--step--1); font-weight: 500; color: var(--ink-3); border: 1px solid var(--line-strong); border-radius: 999px; padding: 1px 9px; white-space: nowrap; }
+/* Layout: the Home page. What the site is; the state of play in a few figures, each a link to the page that shows
+   it; then three questions to start from, each with the page that answers it (the third picks an industry and a
+   state for the Industry lens); then the other pages. */
+.home { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 16px; }
+.route { display: flex; flex-direction: column; gap: 10px; padding: 18px; }
+.route-view { margin: 0; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.route p { margin: 0; color: var(--ink-2); }
+.route .btn { margin-top: auto; padding-block: 8px; text-align: center; }
+.route-pick { display: grid; grid-template-columns: minmax(0, 1fr) 6rem; gap: 10px; align-items: end; }
+.field { display: grid; gap: 4px; align-content: start; }
+.field label { font-size: var(--step--1); color: var(--ink-2); }
+.field select { min-height: 44px; width: 100%; }
+.more { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 12px; }
+.more-link { display: grid; gap: 2px; align-content: start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); text-decoration: none; }
+a.more-link:hover, a.more-link:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+.more-link .name { font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.more-link .desc { font-size: var(--step--1); color: var(--ink-2); }
+.more-link.soon { border-style: dashed; }
+.more-link.soon .name { color: var(--ink-2); }
+.more-link .badge { font-size: var(--step--1); font-weight: 500; color: var(--ink-3); border: 1px solid var(--line-strong); border-radius: 999px; padding: 0 9px; white-space: nowrap; }
 </style>
 
 <div class="wrap">
   <header class="top">
     <!--__NAV__-->
-    <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
+    <p class="kicker">Australian Legislation Impact on Competition Industry Analysis</p>
     <h1>Competition across Australian industries <!--__BETA__--></h1>
-    <p class="lede">Explore competition in Australia from the whole economy down, or from a single industry up.</p>
+    <p class="lede">Where competition is weak in Australia, which laws and barriers hold it back, and what governments could change.</p>
   </header>
 
-  <main class="views">
-    <!--__LANDING__-->
+  <main class="home">
+    <section class="block" aria-labelledby="h-glance">
+      <h2 id="h-glance">Competition at a glance</h2>
+      <div class="tiles">
+      <!--__FIGURES__-->
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="h-start">
+      <h2 id="h-start">Start with a question</h2>
+      <div class="routes">
+      <!--__ROUTES__-->
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="h-more">
+      <h2 id="h-more">More</h2>
+      <div class="more">
+      <!--__MORE__-->
+      </div>
+    </section>
   </main>
+
+  <!--__FOOT__-->
 </div>
 
 <script>
-// Links made before the legislation menu (now Legislative levers influencing competition) moved to menu.html pointed to a change or evaluation on the home page
-// (index.html#<id>, index.html#results): send them on to the menu.
+// Links made before the legislation menu (now Legislative levers influencing competition) moved to menu.html
+// pointed to a change on the home page (index.html#<id>): send them on to the menu.
 if (location.hash.length > 1) location.replace("menu.html" + location.hash);
+// "See this industry" opens the Industry lens on the industry and state chosen.
+(() => {
+  const ind = document.getElementById("pickInd"), st = document.getElementById("pickState"), go = document.getElementById("pickGo");
+  if (!ind || !st || !go) return;
+  const base = go.getAttribute("href").split("#")[0];
+  const set = () => { go.href = `${base}#division=${encodeURIComponent(ind.value)}&state=${encodeURIComponent(st.value)}`; };
+  ind.addEventListener("change", set);
+  st.addEventListener("change", set);
+  set();
+})();
 </script>

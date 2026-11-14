@@ -420,6 +420,14 @@ def build_payload(
     }
 
 
+def menu_payload(
+    records: list[ChangeRecord], dates_report: Path | None = None, evaluations: list[Evaluation] | None = None
+) -> dict:
+    """The page's data, given the path of a dates report (``alicia dates --all --json``), if there is one."""
+    report = json.loads(dates_report.read_text("utf-8")) if dates_report and dates_report.exists() else None
+    return build_payload(records, report, evaluations=evaluations)
+
+
 def build_explorer(
     records: list[ChangeRecord],
     out: Path,
@@ -427,12 +435,14 @@ def build_explorer(
     standalone: bool = False,
     evaluations: list[Evaluation] | None = None,
     pages: tuple | None = None,
+    payload: dict | None = None,
 ) -> Path:
     """Write the menu to ``out``. ``pages`` is the site navigation (``growth.PAGES`` and the costing tab, when
-    built); left out, the page is written with the navigation of a full site build."""
+    built); left out, the page is written with the navigation of a full site build. ``payload`` is the page's data
+    when the caller has already built it (``menu_payload``), as the site build does to share it with Home."""
     from .growth import MENU_PAGE, PAGES, render
 
-    report = json.loads(dates_report.read_text("utf-8")) if dates_report and dates_report.exists() else None
-    payload = build_payload(records, report, evaluations=evaluations)
+    if payload is None:
+        payload = menu_payload(records, dates_report, evaluations)
     out.write_text(render("explorer.html", payload, MENU_PAGE[0], standalone, pages or PAGES), encoding="utf-8")
     return out

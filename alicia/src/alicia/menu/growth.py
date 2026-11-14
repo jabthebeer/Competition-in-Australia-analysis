@@ -53,61 +53,36 @@ METHODOLOGY_PAGE = ("methodology.html", "Methodology")
 # Every page the site builds, in nav order (owner decision, 11 Nov 2026, DECISIONS E-135). Pages keep their addresses
 # when renamed, so links made before still work.
 PAGES = (HOME_PAGE, COMPETITION_PAGE, MENU_PAGE, LENS_PAGE, FRAMEWORK_PAGE, METHODOLOGY_PAGE)
-# The nav groups the pages by what they are for: the landing page's two views, then how the site is made. A page
-# the build does not write (the regulatory overview, for now) shows as coming soon, without a link.
+# The nav groups the pages by what they are for: the two views, then how the site is made. A page the build does
+# not write (the regulatory overview, until it is built) shows as coming soon, without a link.
 NAV_GROUPS = (
     ("Top down", (COMPETITION_PAGE, MENU_PAGE)),
     ("Bottom up", (LENS_PAGE, OVERVIEW_PAGE)),
     ("About", (FRAMEWORK_PAGE, METHODOLOGY_PAGE)),
 )
-# Every page on the site is a work in progress: its heading, nav link and landing card say "(beta)", and the
-# heading's marker explains it on hover, focus or tap. (The archived econometric pages carry no marker.)
+# Short labels for the nav, so it fits on one line; each page's heading keeps its full name (owner decision,
+# 14 Nov 2026, DECISIONS E-159).
+NAV_LABELS = {
+    COMPETITION_PAGE[0]: "Competitive conditions",
+    MENU_PAGE[0]: "Legislative levers",
+    OVERVIEW_PAGE[0]: "Regulatory overview",
+}
+# The nav's groups sit in a <details> that is open in the markup, so they show without scripts. This keeps it open
+# on wide screens, where its Menu button is hidden, and closed on a phone until the reader opens it.
+NAV_SCRIPT = (
+    '(()=>{const d=document.currentScript.previousElementSibling,m=matchMedia("(max-width: 640px)"),'
+    's=()=>{d.open=!m.matches;};s();m.addEventListener("change",s);})();'
+)
+# Short forms of the states and territories, for places where space is tight (Style Manual).
+STATE_SHORT = {"NSW": "NSW", "VIC": "Vic", "QLD": "Qld", "SA": "SA", "WA": "WA", "TAS": "Tas", "NT": "NT", "ACT": "ACT"}
+# Every page on the site is a work in progress. One "Beta" badge sits beside the site's name in the nav, and each
+# page's heading ends with "(beta)", whose marker explains it on hover, focus or tap. (The archived econometric
+# pages carry no marker.)
 BETA_TIP = "Work in progress: this page is still being built and checked, so its content may change."
 # Economic conditions was its own page until 11 Nov 2026; it is now the end of Structural competitive conditions,
 # and its old address forwards there.
 CONDITIONS_PAGE = "conditions.html"
 CONDITIONS_ANCHOR = "economic-conditions"
-# The landing page's two views of the competition landscape. A page that is not part of the build shows as
-# "coming soon" without a link; it becomes a link once the site builds it (it is in the nav or in the output).
-LANDING = (
-    {
-        "id": "top-down",
-        "title": "Top down",
-        "text": "Competition across states and industries, and the laws that shape it.",
-        "links": (
-            {
-                "href": COMPETITION_PAGE[0],
-                "name": COMPETITION_PAGE[1],
-                "text": "Growth, productivity, concentration and business entry by state and industry, compared with similar "
-                "economies.",
-            },
-            {
-                "href": MENU_PAGE[0],
-                "name": MENU_PAGE[1],
-                "text": "Laws, business requirements and other barriers that affect competition, each marked against the "
-                "productivity framework.",
-            },
-        ),
-    },
-    {
-        "id": "bottom-up",
-        "title": "Bottom up",
-        "text": "One industry's market, and the laws that apply to it.",
-        "links": (
-            {
-                "href": LENS_PAGE[0],
-                "name": LENS_PAGE[1],
-                "text": "One industry's regulatory pain points, overlapping rules and laws in each state, and how each "
-                "affects competition.",
-            },
-            {
-                "href": OVERVIEW_PAGE[0],
-                "name": OVERVIEW_PAGE[1],
-                "text": "The regulation that applies to each industry.",
-            },
-        ),
-    },
-)
 # The Policy costing tab (regulatory-burden-tool/) is archived and not part of the live site (owner decision,
 # 11 Nov 2026, DECISIONS E-135). The code stays: given its build (`npm run build:site`), `alicia site --costing`
 # still adds it, after the grouped nav.
@@ -536,11 +511,6 @@ def _asset(name: str) -> str:
     return resources.files("alicia.menu").joinpath(f"templates/{name}").read_text("utf-8")
 
 
-def beta_tag() -> str:
-    """The small "(beta)" after a page's name in the nav and on the landing page."""
-    return ' <span class="beta-tag">(beta)</span>'
-
-
 def beta(tip_id: str = "beta-tip") -> str:
     """The "(beta)" after a page's heading, with a tip on hover, keyboard focus or tap: the page is a work in
     progress."""
@@ -553,65 +523,66 @@ def beta(tip_id: str = "beta-tip") -> str:
 
 
 def nav(current: str, pages: tuple = PAGES) -> str:
-    """The site nav: Home, then the pages grouped as in ``NAV_GROUPS``. ``pages`` holds the pages this build writes;
-    a grouped page that is not among them shows as coming soon, without a link, and a built page outside the groups
-    (the archived Policy costing tab, when built) follows the groups as a plain link."""
+    """The site nav, on one line: the site's name (the link home) with its Beta badge, then the pages grouped as in
+    ``NAV_GROUPS`` under short labels. On a phone the groups fold behind a Menu button (``NAV_SCRIPT``). ``pages``
+    holds the pages this build writes; a grouped page that is not among them shows as coming soon, without a link,
+    and a built page outside the groups (the archived Policy costing tab, when built) follows the groups as a plain
+    link."""
     from html import escape
 
     built = {href for href, _ in pages}
     grouped = {href for _, group in NAV_GROUPS for href, _ in group}
 
-    def link(href: str, label: str, tag: str = "") -> str:
+    def link(href: str, label: str) -> str:
         attr = ' aria-current="page"' if href == current else ""
-        if tag:
-            attr += f' title="{escape(BETA_TIP)}"'
-        return f'<a href="{href}"{attr}>{escape(label)}{tag}</a>'
+        short = NAV_LABELS.get(href, label)
+        if short != label:
+            attr += f' title="{escape(label)}"'
+        return f'<a href="{href}"{attr}>{escape(short)}</a>'
 
-    parts = [link(*HOME_PAGE)] if HOME_PAGE[0] in built else []
+    home = ' aria-current="page"' if current == HOME_PAGE[0] else ""
+    brand = (
+        f'<a class="brand" href="{HOME_PAGE[0]}"{home} aria-label="ALICIA (beta): home">'
+        f'<span class="brand-name">ALICIA</span><span class="brand-beta" title="{escape(BETA_TIP)}">Beta</span></a>'
+    )
+    groups = []
     for title, group in NAV_GROUPS:
         gid = "nav-" + title.lower().replace(" ", "-")
         items = []
         for href, label in group:
             if href in built:
-                items.append(f"<li>{link(href, label, beta_tag())}</li>")
+                items.append(f"<li>{link(href, label)}</li>")
             else:
-                soon = '<span class="beta-tag">(coming soon)</span>'
-                items.append(f'<li><span class="nav-soon">{escape(label)} {soon}</span></li>')
-        parts.append(
+                short = escape(NAV_LABELS.get(href, label))
+                soon = '<span class="nav-note">(coming soon)</span>'
+                items.append(f'<li><span class="nav-soon">{short} {soon}</span></li>')
+        groups.append(
             f'<div class="nav-group"><p class="nav-label" id="{gid}">{escape(title)}</p>'
             f'<ul aria-labelledby="{gid}">{"".join(items)}</ul></div>'
         )
-    parts += [link(href, label) for href, label in pages if href not in grouped and href != HOME_PAGE[0]]
-    return '<nav class="site-nav" aria-label="ALICIA pages">' + "".join(parts) + "</nav>"
+    groups += [link(href, label) for href, label in pages if href not in grouped and href != HOME_PAGE[0]]
+    return (
+        f'<nav class="site-nav" aria-label="ALICIA pages">{brand}'
+        f'<details class="nav-menu" open><summary>Menu</summary><div class="nav-groups">{"".join(groups)}</div>'
+        f"</details><script>{NAV_SCRIPT}</script></nav>"
+    )
 
 
-def landing(built: set[str]) -> str:
-    """The landing page's two views. ``built`` holds the pages this build writes; a link to any other page is shown
-    as coming soon, with no link."""
-    from html import escape
+def long_date(d: dt.date) -> str:
+    """A date as running text has it (Style Manual): 14 November 2026."""
+    return f"{d.day} {d:%B %Y}"
 
-    out = []
-    for view in LANDING:
-        items = []
-        for link in view["links"]:
-            name, text = escape(link["name"]), escape(link["text"])
-            if link["href"] in built:
-                items.append(
-                    f'<li><a class="view-link" href="{escape(link["href"])}" title="{escape(BETA_TIP)}">'
-                    f'<span class="name"><span>{name}{beta_tag()}</span><span class="go" aria-hidden="true">Open →</span></span>'
-                    f'<p class="desc">{text}</p></a></li>'
-                )
-            else:
-                items.append(
-                    f'<li><div class="view-link soon"><span class="name">{name}<span class="badge">Coming soon</span></span>'
-                    f'<p class="desc">{text}</p></div></li>'
-                )
-        out.append(
-            f'<section class="panel view" aria-labelledby="h-{view["id"]}"><div class="view-head"><p class="kicker">View</p>'
-            f'<h2 id="h-{view["id"]}">{escape(view["title"])}</h2><p>{escape(view["text"])}</p></div>'
-            f'<ul class="view-links">{"".join(items)}</ul></section>'
-        )
-    return "\n    ".join(out)
+
+def site_foot(generated: dt.date | None = None) -> str:
+    """A page's closing lines: the register's draft status, that the site is unofficial, and when it was built."""
+    return (
+        '<footer class="site-foot">'
+        "<p><strong>Draft.</strong> Register items and marks come from AI-assisted desk research and stay drafts "
+        "until a person has checked them. Statistics come from official sources: the ABS, the ATO, the RBA and the "
+        "OECD.</p>"
+        "<p>Unofficial research, not an Australian Government product. "
+        f"Updated {long_date(generated or dt.date.today())}.</p></footer>"
+    )
 
 
 def render(template: str, payload: dict, page: str, standalone: bool = False, pages: tuple = PAGES) -> str:
@@ -695,25 +666,17 @@ def build_site(
     from pathlib import Path
 
     from . import framework as framework_page
-    from . import lens, methodology
+    from . import home, lens, methodology
     from .archive import ARCHIVE_PAGE, build_archive
-    from .explorer import build_explorer
+    from .explorer import build_explorer, menu_payload
 
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     pages = PAGES + ((COSTING_PAGE,) if costing_dist else ())
     explorer_base = repo_base or None
     data_base = repo_base or REPO_MAIN
-    written = [
-        build_explorer(
-            records,
-            out / MENU_PAGE[0],
-            dates_report=dates_report,
-            standalone=standalone,
-            evaluations=evaluations,
-            pages=pages,
-        )
-    ]
+    menu = menu_payload(records, dates_report, evaluations)
+    written = [build_explorer(records, out / MENU_PAGE[0], standalone=standalone, pages=pages, payload=menu)]
     fw_path = out / "framework.html"
     fw_html = framework_page.render(records, nav(FRAMEWORK_PAGE[0], pages), standalone, beta=beta())
     fw_path.write_text(fw_html, encoding="utf-8")
@@ -751,11 +714,9 @@ def build_site(
     written.append(lens_path)
     if costing_dist:
         written += build_costing(out, costing_dist, pages)
+    # Home: its figures come from the competition and levers pages' own data.
     built = {href for href, _ in pages} | {p.name for p in written}
-    home = out / HOME_PAGE[0]
-    home.write_text(
-        render("home.html", {}, HOME_PAGE[0], standalone, pages).replace("<!--__LANDING__-->", landing(built)),
-        encoding="utf-8",
-    )
-    written.append(home)
+    home_path = out / HOME_PAGE[0]
+    home_path.write_text(home.page(payload, menu, built, standalone, pages), encoding="utf-8")
+    written.append(home_path)
     return written
