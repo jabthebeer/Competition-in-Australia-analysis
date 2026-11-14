@@ -18,14 +18,6 @@
 .field { display: grid; gap: 4px; align-content: start; }
 .field label { font-size: var(--step--1); color: var(--ink-2); }
 .field select { min-height: 44px; width: 100%; }
-.more { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 12px; }
-.more-link { display: grid; gap: 2px; align-content: start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); text-decoration: none; }
-a.more-link:hover, a.more-link:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
-.more-link .name { font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-.more-link .desc { font-size: var(--step--1); color: var(--ink-2); }
-.more-link.soon { border-style: dashed; }
-.more-link.soon .name { color: var(--ink-2); }
-.more-link .badge { font-size: var(--step--1); font-weight: 500; color: var(--ink-3); border: 1px solid var(--line-strong); border-radius: 999px; padding: 0 9px; white-space: nowrap; }
 </style>
 
 <div class="wrap">
@@ -39,7 +31,7 @@ a.more-link:hover, a.more-link:focus-visible { border-color: var(--accent); back
   <main class="home">
     <section class="block" aria-labelledby="h-glance">
       <h2 id="h-glance">Competition at a glance</h2>
-      <div class="tiles">
+      <div class="tiles key">
       <!--__FIGURES__-->
       </div>
     </section>

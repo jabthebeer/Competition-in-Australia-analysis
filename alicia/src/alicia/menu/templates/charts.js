@@ -63,6 +63,72 @@ function showTip(html, ev) {
 }
 const hideTip = () => { TIP.hidden = true; };
 
+/* Tabs: a row of buttons, each showing one panel of a long page.
+ *   <div class="tabs" role="tablist" aria-label="…"><button type="button" role="tab" id="tab-x" aria-controls="panel-x">…</button>…</div>
+ *   <section class="tab-panel" role="tabpanel" id="panel-x" aria-labelledby="tab-x" hidden>…</section>
+ * The address keeps the tab (#x), so a tab can be linked to, and a link on the page to #x opens it. An address that
+ * names something inside a panel (#economic-conditions) opens that panel and scrolls to it. Arrow keys, Home and End
+ * move between tabs. onShow(key) runs when a tab opens. */
+function initTabs(list, opts = {}) {
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  const panelOf = (t) => document.getElementById(t.getAttribute("aria-controls"));
+  const keyOf = (t) => t.id.replace(/^tab-/, "");
+  let current = null;
+  const show = (t, focus) => {
+    const changed = t !== current;
+    current = t;
+    for (const x of tabs) {
+      const on = x === t;
+      x.setAttribute("aria-selected", on ? "true" : "false");
+      x.tabIndex = on ? 0 : -1;
+      panelOf(x).hidden = !on;
+    }
+    if (focus) t.focus();
+    if (changed && opts.onShow) opts.onShow(keyOf(t));
+    return changed;
+  };
+  const fromHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return { tab: current || tabs[0] };
+    const named = tabs.find((t) => keyOf(t) === id);
+    if (named) return { tab: named };
+    const target = document.getElementById(id), panel = target && target.closest('[role="tabpanel"]');
+    const tab = panel && tabs.find((t) => panelOf(t) === panel);
+    return tab ? { tab, target } : { tab: current || tabs[0] };
+  };
+  const pick = (t, focus) => { history.replaceState(null, "", `#${keyOf(t)}`); show(t, focus); };
+  list.addEventListener("click", (e) => { const t = e.target.closest('[role="tab"]'); if (t) pick(t); });
+  list.addEventListener("keydown", (e) => {
+    const i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    const j = { ArrowRight: (i + 1) % tabs.length, ArrowLeft: (i - 1 + tabs.length) % tabs.length, Home: 0, End: tabs.length - 1 }[e.key];
+    if (j === undefined) return;
+    e.preventDefault();
+    pick(tabs[j], true);
+  });
+  // A link on the page to a tab, or to something inside one: open it, then bring it into view.
+  window.addEventListener("hashchange", () => {
+    const { tab, target } = fromHash();
+    show(tab);
+    (target || list).scrollIntoView({ block: "start" });
+  });
+  const { tab, target } = fromHash();
+  show(tab);
+  if (target) target.scrollIntoView({ block: "start" });
+}
+
+/* A few horizontal bars with their values, for a finding card. rows: [{label, value, color, ref (true: a dashed
+ * outline, for a benchmark such as the cost of equity)}]; opts: max (the value a full bar stands for), fmt. */
+function miniBars(container, rows, opts = {}) {
+  const shown = rows.filter((r) => isNum(r.value));
+  const max = opts.max || Math.max(1e-9, ...shown.map((r) => r.value));
+  const f = opts.fmt || ((v) => fmt(v, 1));
+  container.innerHTML = shown.map((r) => {
+    const w = Math.max(0, Math.min(100, (100 * r.value) / max));
+    return `<div class="mb-row"><span>${esc(r.label)}</span><span class="mb-track"><span class="mb-bar${r.ref ? " ref" : ""}" style="width:${w.toFixed(1)}%${r.color && !r.ref ? `;background:${r.color}` : ""}"></span></span><span class="mb-val">${esc(f(r.value))}</span></div>`;
+  }).join("");
+}
+
 /* Charts redraw at their container's width, so text stays legible on phones. */
 const CHARTS = new Map();
 const RO = typeof ResizeObserver !== "undefined"

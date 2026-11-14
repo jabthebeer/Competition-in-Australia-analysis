@@ -13,6 +13,7 @@ import datetime as dt
 from html import escape
 
 from ..pipeline import schema
+from .figures import business_rates, concentration, fy, markups
 from .growth import (
     COMPETITION_PAGE,
     FRAMEWORK_PAGE,
@@ -32,31 +33,6 @@ from .growth import (
 PICK_DIVISION, PICK_STATE = "H", "NSW"
 
 
-def fy(year: int) -> str:
-    """A financial year by the year it starts in, with an en dash (Style Manual): 2024 is 2024–25."""
-    return f"{year}–{(year + 1) % 100:02d}"
-
-
-def _first_last(years: list, values: list) -> tuple | None:
-    """The first and last years with a figure, each with its value."""
-    pairs = [(y, v) for y, v in zip(years, values, strict=True) if v is not None]
-    return (pairs[0], pairs[-1]) if len(pairs) >= 2 else None
-
-
-def entry_rates(growth: dict) -> tuple | None:
-    """New businesses with employees in Australia for every 100 operating at the start of the year, for the first
-    and the last year of the business counts: ``((year, rate), (year, rate))``."""
-    groups = growth["barriers"]["bizGroup"].get("employing", {}).get("AUS")
-    if not groups:
-        return None
-    years = growth["barriers"]["bizYears"]
-    rates = []
-    for i in range(len(years)):
-        start = sum(g["start"][i] or 0 for g in groups.values())
-        rates.append(100 * sum(g["entries"][i] or 0 for g in groups.values()) / start if start else None)
-    return _first_last(years, rates)
-
-
 def _figure(label: str, value: str, what: str, source: str, href: str) -> dict:
     return {"label": label, "value": value, "what": what, "source": source, "href": href}
 
@@ -66,7 +42,7 @@ def figures(growth: dict, menu: dict) -> list[dict]:
     whose data is missing is left out."""
     out = []
     rba = "RBA, Research Discussion Paper 2025-05"
-    entry = entry_rates(growth)
+    entry = business_rates(growth, "entries")
     if entry:
         (y0, v0), (y1, v1) = entry
         what = (
@@ -76,14 +52,12 @@ def figures(growth: dict, menu: dict) -> list[dict]:
         out.append(
             _figure("New businesses", f"{v1:.1f}%", what, "ABS, Counts of Australian Businesses", COMPETITION_PAGE[0])
         )
-    conc = growth["barriers"].get("concentration") or {}
-    top4 = _first_last(conc.get("years", []), conc.get("values", {}).get("TOT", {}).get("top4_weighted", []))
+    top4 = concentration(growth)
     if top4:
         (y0, v0), (y1, v1) = top4
         what = f"The 4 largest firms' share of sales in the average industry in {y1}. The share was {v0:.1f}% in {y0}."
         out.append(_figure("Concentration", f"{v1:.1f}%", what, rba, COMPETITION_PAGE[0]))
-    mark = (growth.get("conditions") or {}).get("profit", {}).get("markups") or {}
-    ups = _first_last(mark.get("years", []), mark.get("values", {}).get("TOT", []))
+    ups = markups(growth)
     if ups:
         (y0, v0), (y1, v1) = ups
         what = f"The average ratio of price to marginal cost in {y1}. It was {v0:.2f} in {y0}."
@@ -101,9 +75,9 @@ def figures(growth: dict, menu: dict) -> list[dict]:
 
 def figures_html(figs: list[dict]) -> str:
     return "\n      ".join(
-        f'<a class="tile" href="{escape(f["href"])}"><span class="tile-label">{escape(f["label"])}</span>'
-        f'<span class="tile-value">{escape(f["value"])}</span><span class="tile-what">{escape(f["what"])}</span>'
-        f'<span class="tile-src">{escape(f["source"])}</span></a>'
+        f'<a class="tile" href="{escape(f["href"])}"><span class="t-label">{escape(f["label"])}</span>'
+        f'<span class="t-value">{escape(f["value"])}</span><span class="t-sub">{escape(f["what"])}</span>'
+        f'<span class="t-src">{escape(f["source"])}</span></a>'
         for f in figs
     )
 
