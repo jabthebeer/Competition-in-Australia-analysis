@@ -15,6 +15,11 @@ table.data td.gsp-best { color: var(--ink-2); text-align: left; }
 table.data tr.sub td { color: var(--ink-3); }
 table.data tr.subtotal td { font-weight: 600; }
 table.data td .key { margin-right: 6px; vertical-align: middle; }
+/* Overview: the scorecard's earlier or comparison figure, and the caption under a finding's bars. */
+.tiles.headline .t-was { font-size: var(--step--1); font-weight: 600; }
+.finding .cap { color: var(--ink-3); }
+/* The two source lists, folded at the foot of the page. */
+details.shelf > footer + footer { margin-top: 18px; }
 </style>
 
 <div class="wrap">
@@ -22,19 +27,253 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     <!--__NAV__-->
     <p class="kicker">ALICIA · Top down</p>
     <h1>Structural competitive conditions <!--__BETA__--></h1>
-    <p class="lede">Growth, productivity, concentration and business entry by state and industry, compared with similar economies.</p>
-    <nav class="toc" aria-label="On this page">
-      <span class="toc-label">On this page</span>
-      <a href="#h-ind">Industries in each state</a>
-      <a href="#h-con">Concentration</a>
-      <a href="#h-entry">Business entry</a>
-      <a href="#h-ret">Entry and returns</a>
-      <a href="#h-gsp">State economies</a>
-      <a href="#economic-conditions">Economic conditions</a>
-      <a href="#foot">Data sources</a>
-    </nav>
+    <p class="lede">The state of competition in Australia: how often businesses start up, how concentrated markets are, and how much firms earn above their costs.</p>
   </header>
 
+  <div class="tabs" role="tablist" aria-label="Sections of this page">
+    <button type="button" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">Overview</button>
+    <button type="button" role="tab" id="tab-entry" aria-controls="panel-entry" aria-selected="false" tabindex="-1">Business entry</button>
+    <button type="button" role="tab" id="tab-concentration" aria-controls="panel-concentration" aria-selected="false" tabindex="-1">Concentration</button>
+    <button type="button" role="tab" id="tab-profits" aria-controls="panel-profits" aria-selected="false" tabindex="-1">Profits and mark-ups</button>
+    <button type="button" role="tab" id="tab-industries" aria-controls="panel-industries" aria-selected="false" tabindex="-1">Industries by state</button>
+    <button type="button" role="tab" id="tab-backdrop" aria-controls="panel-backdrop" aria-selected="false" tabindex="-1">Economic backdrop</button>
+  </div>
+
+  <div class="tab-panel" role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
+  <section class="block" aria-labelledby="h-glance">
+    <div class="block-head">
+      <h2 id="h-glance">Australia at a glance</h2>
+    </div>
+    <div class="tiles headline">
+      <!--__SCORECARD__-->
+    </div>
+    <p class="source" id="glanceSrc"></p>
+  </section>
+
+  <section class="block" aria-labelledby="h-find">
+    <div class="block-head">
+      <h2 id="h-find">What the data show</h2>
+      <p>Each finding follows the years and settings chosen in its tab.</p>
+    </div>
+    <div class="findings">
+      <div class="panel finding">
+        <h3 data-mirror="h-entry"></h3>
+        <p data-mirror="entryLede"></p>
+        <div class="minibars" id="ovEntry"></div>
+        <p class="cap" id="ovEntryCap"></p>
+        <a class="go" href="#entry">See business entry</a>
+      </div>
+      <div class="panel finding">
+        <h3 data-mirror="h-con"></h3>
+        <p data-mirror="conLede"></p>
+        <div class="minibars" id="ovCon"></div>
+        <p class="cap" id="ovConCap"></p>
+        <a class="go" href="#concentration">See concentration</a>
+      </div>
+      <div class="panel finding">
+        <h3 data-mirror="h-ret"></h3>
+        <p data-mirror="retLede"></p>
+        <div class="minibars" id="ovRet"></div>
+        <p class="cap" id="ovRetCap"></p>
+        <a class="go" href="#profits">See profits and mark-ups</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-more">
+    <h2 id="h-more">More on this page</h2>
+    <div class="more">
+      <a class="more-link" href="#industries"><span class="name">Industries by state</span><span class="desc">Output, jobs, productivity and business entry for each industry in each state, compared with similar economies.</span></a>
+      <a class="more-link" href="#backdrop"><span class="name">Economic backdrop</span><span class="desc">Spending, jobs, wages, population, housing and commodity prices in each state.</span></a>
+    </div>
+  </section>
+  </div>
+
+  <div class="tab-panel" role="tabpanel" id="panel-entry" aria-labelledby="tab-entry" hidden>
+  <section class="block" aria-labelledby="h-entry">
+    <div class="block-head">
+      <h2 id="h-entry">Business entry</h2>
+      <p id="entryLede"></p>
+    </div>
+    <div class="toolbar" role="group" aria-label="Years for business entry"><div id="entRange"></div></div>
+    <div class="toolbar">
+      <label for="bScope">Businesses counted</label>
+      <select id="bScope"><option value="employing">Businesses with employees</option><option value="all">All businesses</option></select><button type="button" class="info" data-for="scopeNote" aria-describedby="scopeNote" aria-label="About the businesses counted">i</button>
+      <label for="bState">State</label>
+      <select id="bState"></select>
+      <label for="bMeasure">Measure</label>
+      <select id="bMeasure"></select>
+    </div>
+    <p id="scopeNote" hidden></p>
+    <div class="charts-grid">
+      <div class="panel chart-card">
+        <h3 id="grpTitle"></h3><button type="button" class="info" data-for="grpUnit" aria-describedby="grpUnit" aria-label="About this chart">i</button>
+        <div class="toolbar"><label for="grpBreak">Show</label><select id="grpBreak"></select></div>
+        <p class="unit" id="grpUnit" hidden></p>
+        <div class="chips" id="grpChips"></div>
+        <div class="bars pick" id="grpBars" hidden></div>
+        <h3 id="grpLineTitle" hidden></h3>
+        <div class="legend" id="grpLineKey" hidden></div>
+        <div class="chart" id="grpChart"></div>
+        <details class="more"><summary>About this chart</summary><p id="grpNote"></p><p class="source" id="grpSrc"></p><div class="tscroll" id="grpTable"></div></details>
+      </div>
+      <div class="panel chart-card">
+        <h3 id="dynTitle"></h3><button type="button" class="info" data-for="dynUnit" aria-describedby="dynUnit" aria-label="About this chart">i</button>
+        <div class="toolbar">
+          <label for="dynInd">Industries</label><select id="dynInd"></select>
+          <label for="dynSec" id="dynSecLabel">Sector</label><select id="dynSec"></select>
+        </div>
+        <p class="unit" id="dynUnit" hidden></p>
+        <div class="legend" id="dynKey"></div>
+        <div class="chart" id="dynChart"></div>
+        <div class="title-row"><h3>Net change in the number of businesses</h3><button type="button" class="info" data-for="netUnit" aria-describedby="netUnit" aria-label="About this chart">i</button></div>
+        <p class="unit" id="netUnit" hidden></p>
+        <div class="chart" id="netChart"></div>
+        <details class="more"><summary>About this chart</summary><p class="source" id="dynSrc"></p><div class="tscroll" id="dynTable"></div></details>
+      </div>
+    </div>
+  </section>
+
+  <details class="shelf">
+    <summary>Where the barriers to entry are</summary>
+    <section class="block" aria-labelledby="h-where">
+      <div class="block-head">
+        <h2 id="h-where">Where the barriers to entry are</h2>
+        <p id="whereLede"></p>
+      </div>
+      <div class="toolbar" role="group" aria-label="Years for where the barriers to entry are"><div id="whereRange"></div></div>
+      <div class="panel chart-card">
+        <h3>Where the barriers to entry are</h3><button type="button" class="info" data-for="shareUnit" aria-describedby="shareUnit" aria-label="About this chart">i</button>
+        <p class="unit" id="shareUnit" hidden></p>
+        <div class="tscroll bt-wrap" id="shares"></div>
+        <details class="more"><summary>About this chart</summary><ul class="method" id="shareMethod"></ul><p id="shareNote"></p><p class="source" id="shareSrc"></p><div class="tscroll" id="shareTable"></div></details>
+      </div>
+      <div class="panel chart-card">
+        <h3>Sectors in each group</h3><button type="button" class="info" data-for="secUnit" aria-describedby="secUnit" aria-label="About this chart">i</button>
+        <div class="toolbar"><label for="secGroup">Group</label><select id="secGroup"></select></div>
+        <p class="unit" id="secUnit" hidden></p>
+        <div class="tscroll bt-wrap" id="secTable"></div>
+        <details class="more"><summary>About this chart</summary><p id="secNote"></p><p class="source" id="secSrc"></p><div class="tscroll" id="secNums"></div></details>
+      </div>
+    </section>
+  </details>
+  </div>
+
+  <div class="tab-panel" role="tabpanel" id="panel-concentration" aria-labelledby="tab-concentration" hidden>
+  <section class="block" aria-labelledby="h-con">
+    <div class="block-head">
+      <h2 id="h-con">Concentration</h2>
+      <p id="conLede"></p>
+    </div>
+    <div class="toolbar" role="group" aria-label="Years for concentration"><div id="conRange"></div></div>
+    <div class="panel chart-card">
+      <h3>Concentration by industry</h3><button type="button" class="info" data-for="conUnit" aria-describedby="conUnit" aria-label="About this chart">i</button>
+      <p class="unit" id="conUnit" hidden></p>
+      <div class="toolbar">
+        <label for="conMeasure">Share of sales made by the</label>
+        <select id="conMeasure"></select>
+        <span class="legend" id="conKey"></span>
+      </div>
+      <div class="dumbbell" id="conRows"></div>
+      <h3 id="conLineTitle"></h3>
+      <div class="legend" id="conLineKey"></div>
+      <div class="chart" id="conChart"></div>
+      <details class="more"><summary>About this chart</summary><p class="hint" id="conHint"></p><p id="conNote"></p><p class="source" id="conSrc"></p></details>
+    </div>
+  </section>
+  </div>
+
+  <div class="tab-panel" role="tabpanel" id="panel-profits" aria-labelledby="tab-profits" hidden>
+  <section class="block" aria-labelledby="h-profit">
+    <div class="block-head">
+      <h2 id="h-profit">Company profits and market power</h2>
+      <p id="profitLede"></p>
+    </div>
+    <div class="sticky-key toolbar">
+      <div id="pRange"></div>
+      <div class="toolbar">
+        <span class="small" id="coeLabel"></span>
+        <input type="number" id="coe" min="0" max="30" step="0.1" inputmode="decimal" aria-label="Cost of equity, per cent">
+        <button type="button" class="linkish" id="coeAuto"></button>
+      </div>
+    </div>
+    <p class="hint" id="coeNote"></p>
+
+    <div class="charts-grid">
+      <div class="panel chart-card">
+        <h3>Return on equity by barrier group</h3>
+        <p class="unit" id="roeUnit"></p>
+        <div class="legend" id="roeKey"></div>
+        <div class="chart" id="roeChart"></div>
+        <p class="hint" id="roeNote"></p>
+        <p class="source" id="roeSrc"></p>
+        <details class="more"><summary>About these figures</summary><p id="roeMore"></p></details>
+      </div>
+      <div class="panel chart-card">
+        <h3>Profit above what investors need</h3>
+        <p class="unit" id="sumUnit"></p>
+        <div class="tscroll" id="sumTable"></div>
+        <p class="source" id="sumSrc"></p>
+      </div>
+    </div>
+
+    <div class="panel chart-card">
+      <h3>Profit by sector</h3>
+      <p class="hint" id="mkHow"></p>
+      <div class="toolbar"><span class="small muted">Group</span><div class="chips" id="mkTabs" role="group" aria-label="Barrier group"></div></div>
+      <p class="unit" id="mkUnit"></p>
+      <div class="legend" id="mkKey"></div>
+      <div class="chart" id="mkChart"></div>
+      <p class="source" id="mkSrc"></p>
+      <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="mkTable"></div><p id="mkNote"></p></details>
+    </div>
+
+    <div class="panel chart-card">
+      <h3>Mark-ups by sector</h3>
+      <p class="unit" id="muUnit"></p>
+      <div class="legend" id="muKey"></div>
+      <div class="bars" id="muChart"></div>
+      <p class="source" id="muSrc"></p>
+      <details class="more"><summary>About these figures</summary><p id="muNote"></p></details>
+    </div>
+
+    <div class="charts-grid">
+      <div class="panel chart-card">
+        <h3>Has profitability changed?</h3>
+        <p class="unit" id="tsUnit"></p>
+        <div class="chips" id="tsChips"></div>
+        <div class="chart" id="tsChart"></div>
+        <p class="source" id="tsSrc"></p>
+        <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="tsTable"></div><p id="tsNote"></p></details>
+      </div>
+      <div class="panel chart-card">
+        <h3>Have mark-ups risen?</h3>
+        <p class="unit" id="rbaUnit"></p>
+        <div class="toolbar"><label for="muDiv">Industry</label><select id="muDiv"></select></div>
+        <div class="chart" id="rbaChart"></div>
+        <p class="source" id="rbaSrc"></p>
+        <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="rbaTable"></div><p id="rbaNote"></p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-ret">
+    <div class="block-head">
+      <h2 id="h-ret">Business entry and returns</h2>
+      <p id="retLede"></p>
+    </div>
+    <div class="toolbar" role="group" aria-label="Years for business entry and returns"><div id="retRange"></div></div>
+    <div class="panel chart-card">
+      <h3>Business entry and company returns, by sector</h3><button type="button" class="info" data-for="scUnit" aria-describedby="scUnit" aria-label="About this chart">i</button>
+      <p class="unit" id="scUnit" hidden></p>
+      <div class="legend" id="scKey"></div>
+      <div class="chart" id="scChart"></div>
+      <details class="more"><summary>About this chart</summary><p id="scFit"></p><p id="scMethod"></p><p class="source" id="scSrc"></p><div class="tscroll" id="scTable"></div></details>
+    </div>
+  </section>
+  </div>
+
+  <div class="tab-panel" role="tabpanel" id="panel-industries" aria-labelledby="tab-industries" hidden>
   <section class="block" aria-labelledby="h-ind">
     <div class="block-head">
       <h2 id="h-ind">Industries in each state</h2>
@@ -123,87 +362,6 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     </div>
   </section>
 
-  <section class="block" aria-labelledby="h-con">
-    <div class="block-head">
-      <h2 id="h-con">Concentration</h2>
-      <p id="conLede"></p>
-    </div>
-    <div class="toolbar" role="group" aria-label="Years for concentration"><div id="conRange"></div></div>
-    <div class="panel chart-card">
-      <h3>Concentration by industry</h3><button type="button" class="info" data-for="conUnit" aria-describedby="conUnit" aria-label="About this chart">i</button>
-      <p class="unit" id="conUnit" hidden></p>
-      <div class="toolbar">
-        <label for="conMeasure">Share of sales made by the</label>
-        <select id="conMeasure"></select>
-        <span class="legend" id="conKey"></span>
-      </div>
-      <div class="dumbbell" id="conRows"></div>
-      <h3 id="conLineTitle"></h3>
-      <div class="legend" id="conLineKey"></div>
-      <div class="chart" id="conChart"></div>
-      <details class="more"><summary>About this chart</summary><p class="hint" id="conHint"></p><p id="conNote"></p><p class="source" id="conSrc"></p></details>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-entry">
-    <div class="block-head">
-      <h2 id="h-entry">Business entry</h2>
-      <p id="entryLede"></p>
-    </div>
-    <div class="toolbar" role="group" aria-label="Years for business entry"><div id="entRange"></div></div>
-    <div class="toolbar">
-      <label for="bScope">Businesses counted</label>
-      <select id="bScope"><option value="employing">Businesses with employees</option><option value="all">All businesses</option></select><button type="button" class="info" data-for="scopeNote" aria-describedby="scopeNote" aria-label="About the businesses counted">i</button>
-      <label for="bState">State</label>
-      <select id="bState"></select>
-      <label for="bMeasure">Measure</label>
-      <select id="bMeasure"></select>
-    </div>
-    <p id="scopeNote" hidden></p>
-    <div class="charts-grid">
-      <div class="panel chart-card">
-        <h3 id="grpTitle"></h3><button type="button" class="info" data-for="grpUnit" aria-describedby="grpUnit" aria-label="About this chart">i</button>
-        <div class="toolbar"><label for="grpBreak">Show</label><select id="grpBreak"></select></div>
-        <p class="unit" id="grpUnit" hidden></p>
-        <div class="chips" id="grpChips"></div>
-        <div class="bars pick" id="grpBars" hidden></div>
-        <h3 id="grpLineTitle" hidden></h3>
-        <div class="legend" id="grpLineKey" hidden></div>
-        <div class="chart" id="grpChart"></div>
-        <details class="more"><summary>About this chart</summary><p id="grpNote"></p><p class="source" id="grpSrc"></p><div class="tscroll" id="grpTable"></div></details>
-      </div>
-      <div class="panel chart-card">
-        <h3 id="dynTitle"></h3><button type="button" class="info" data-for="dynUnit" aria-describedby="dynUnit" aria-label="About this chart">i</button>
-        <div class="toolbar">
-          <label for="dynInd">Industries</label><select id="dynInd"></select>
-          <label for="dynSec" id="dynSecLabel">Sector</label><select id="dynSec"></select>
-        </div>
-        <p class="unit" id="dynUnit" hidden></p>
-        <div class="legend" id="dynKey"></div>
-        <div class="chart" id="dynChart"></div>
-        <div class="title-row"><h3>Net change in the number of businesses</h3><button type="button" class="info" data-for="netUnit" aria-describedby="netUnit" aria-label="About this chart">i</button></div>
-        <p class="unit" id="netUnit" hidden></p>
-        <div class="chart" id="netChart"></div>
-        <details class="more"><summary>About this chart</summary><p class="source" id="dynSrc"></p><div class="tscroll" id="dynTable"></div></details>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-ret">
-    <div class="block-head">
-      <h2 id="h-ret">Business entry and returns</h2>
-      <p id="retLede"></p>
-    </div>
-    <div class="toolbar" role="group" aria-label="Years for business entry and returns"><div id="retRange"></div></div>
-    <div class="panel chart-card">
-      <h3>Business entry and company returns, by sector</h3><button type="button" class="info" data-for="scUnit" aria-describedby="scUnit" aria-label="About this chart">i</button>
-      <p class="unit" id="scUnit" hidden></p>
-      <div class="legend" id="scKey"></div>
-      <div class="chart" id="scChart"></div>
-      <details class="more"><summary>About this chart</summary><p id="scFit"></p><p id="scMethod"></p><p class="source" id="scSrc"></p><div class="tscroll" id="scTable"></div></details>
-    </div>
-  </section>
-
   <section class="block" aria-labelledby="h-gsp">
     <div class="block-head">
       <h2 id="h-gsp">State economies</h2>
@@ -224,35 +382,12 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
       </div>
     </div>
   </section>
+  </div>
 
-  <details class="shelf">
-    <summary>Where the barriers to entry are</summary>
-    <section class="block" aria-labelledby="h-where">
-      <div class="block-head">
-        <h2 id="h-where">Where the barriers to entry are</h2>
-        <p id="whereLede"></p>
-      </div>
-      <div class="toolbar" role="group" aria-label="Years for where the barriers to entry are"><div id="whereRange"></div></div>
-      <div class="panel chart-card">
-        <h3>Where the barriers to entry are</h3><button type="button" class="info" data-for="shareUnit" aria-describedby="shareUnit" aria-label="About this chart">i</button>
-        <p class="unit" id="shareUnit" hidden></p>
-        <div class="tscroll bt-wrap" id="shares"></div>
-        <details class="more"><summary>About this chart</summary><ul class="method" id="shareMethod"></ul><p id="shareNote"></p><p class="source" id="shareSrc"></p><div class="tscroll" id="shareTable"></div></details>
-      </div>
-      <div class="panel chart-card">
-        <h3>Sectors in each group</h3><button type="button" class="info" data-for="secUnit" aria-describedby="secUnit" aria-label="About this chart">i</button>
-        <div class="toolbar"><label for="secGroup">Group</label><select id="secGroup"></select></div>
-        <p class="unit" id="secUnit" hidden></p>
-        <div class="tscroll bt-wrap" id="secTable"></div>
-        <details class="more"><summary>About this chart</summary><p id="secNote"></p><p class="source" id="secSrc"></p><div class="tscroll" id="secNums"></div></details>
-      </div>
-    </section>
-  </details>
-
-
-  <div class="part-head" id="economic-conditions">
-    <h2 id="h-econ">Economic conditions</h2>
-    <p>Spending, jobs, wages, population, housing and commodity prices in each state, and company profits where <span data-term="barriers">barriers to entry</span> are high.</p>
+  <div class="tab-panel" role="tabpanel" id="panel-backdrop" aria-labelledby="tab-backdrop" hidden>
+  <div class="block-head" id="economic-conditions">
+    <h2 id="h-econ">Economic backdrop</h2>
+    <p>Spending, jobs, wages, population, housing and commodity prices in each state.</p>
   </div>
 
   <section class="block" aria-labelledby="h-latest">
@@ -297,90 +432,25 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     </div>
     <div class="panel stack"><div class="tscroll"><table class="data" id="natTable"></table></div><p class="hint" id="natHint"></p><p class="source" id="natSrc"></p></div>
   </section>
+  </div>
 
-  <section class="block" aria-labelledby="h-profit">
-    <div class="block-head">
-      <h2 id="h-profit">Company profits and market power</h2>
-      <p id="profitLede"></p>
-    </div>
-    <div class="sticky-key toolbar">
-      <div id="pRange"></div>
-      <div class="toolbar">
-        <span class="small" id="coeLabel"></span>
-        <input type="number" id="coe" min="0" max="30" step="0.1" inputmode="decimal" aria-label="Cost of equity, per cent">
-        <button type="button" class="linkish" id="coeAuto"></button>
-      </div>
-    </div>
-    <p class="hint" id="coeNote"></p>
-
-    <div class="charts-grid">
-      <div class="panel chart-card">
-        <h3>Return on equity by barrier group</h3>
-        <p class="unit" id="roeUnit"></p>
-        <div class="legend" id="roeKey"></div>
-        <div class="chart" id="roeChart"></div>
-        <p class="hint" id="roeNote"></p>
-        <p class="source" id="roeSrc"></p>
-        <details class="more"><summary>About these figures</summary><p id="roeMore"></p></details>
-      </div>
-      <div class="panel chart-card">
-        <h3>Profit above what investors need</h3>
-        <p class="unit" id="sumUnit"></p>
-        <div class="tscroll" id="sumTable"></div>
-        <p class="source" id="sumSrc"></p>
-      </div>
-    </div>
-
-    <div class="panel chart-card">
-      <h3>Profit by sector</h3>
-      <p class="hint" id="mkHow"></p>
-      <div class="toolbar"><span class="small muted">Group</span><div class="chips" id="mkTabs" role="group" aria-label="Barrier group"></div></div>
-      <p class="unit" id="mkUnit"></p>
-      <div class="legend" id="mkKey"></div>
-      <div class="chart" id="mkChart"></div>
-      <p class="source" id="mkSrc"></p>
-      <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="mkTable"></div><p id="mkNote"></p></details>
-    </div>
-
-    <div class="panel chart-card">
-      <h3>Mark-ups by sector</h3>
-      <p class="unit" id="muUnit"></p>
-      <div class="legend" id="muKey"></div>
-      <div class="bars" id="muChart"></div>
-      <p class="source" id="muSrc"></p>
-      <details class="more"><summary>About these figures</summary><p id="muNote"></p></details>
-    </div>
-
-    <div class="charts-grid">
-      <div class="panel chart-card">
-        <h3>Has profitability changed?</h3>
-        <p class="unit" id="tsUnit"></p>
-        <div class="chips" id="tsChips"></div>
-        <div class="chart" id="tsChart"></div>
-        <p class="source" id="tsSrc"></p>
-        <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="tsTable"></div><p id="tsNote"></p></details>
-      </div>
-      <div class="panel chart-card">
-        <h3>Have mark-ups risen?</h3>
-        <p class="unit" id="rbaUnit"></p>
-        <div class="toolbar"><label for="muDiv">Industry</label><select id="muDiv"></select></div>
-        <div class="chart" id="rbaChart"></div>
-        <p class="source" id="rbaSrc"></p>
-        <details class="more"><summary>Numbers and notes</summary><div class="tscroll" id="rbaTable"></div><p id="rbaNote"></p></details>
-      </div>
-    </div>
-  </section>
-
-  <footer class="foot" id="foot"></footer>
-  <footer class="foot" id="foot-econ"></footer>
+  <details class="shelf" id="sources">
+    <summary>Data sources and notes</summary>
+    <footer class="foot" id="foot"></footer>
+    <footer class="foot" id="foot-econ"></footer>
+  </details>
 </div>
 
+<noscript><style>.tab-panel[hidden] { display: grid !important; } .tabs { display: none; }</style></noscript>
 <script type="application/json" id="page-data">__PAGE_DATA__</script>
 <script>
 /*__CHARTS_JS__*/
 </script>
 <script>
 (() => {
+  // The page's sections sit in tabs. They start before anything is drawn; a chart in a closed tab redraws at its
+  // real width when the tab opens (charts.js mounts each one on a resize observer).
+  initTabs(document.querySelector('.tabs[role="tablist"]'));
   const D = JSON.parse(document.getElementById("page-data").textContent);
   const B = D.barriers;
   const STATES = D.states, NAMES = D.stateNames;
@@ -1281,6 +1351,9 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     setHead("h-entry", least && isNum(low) && least.v < low ? ENTRY[least.g][0] : "Entry is no lower behind barriers to entry");
     document.getElementById("entryLede").innerHTML = least && isNum(low)
       ? `In ${esc(["ACT", "NT"].includes(bState) ? `the ${NAMES[bState]}` : NAMES[bState])}, ${term(least.g, ENTRY[least.g][1])} saw ${esc(fmt(least.v, 1))} new businesses a year for every 100, against ${esc(fmt(low, 1))} ${term("low_barriers", "where barriers are low")}.` : "";
+    // Overview: the same rates as a few bars.
+    miniBars(document.getElementById("ovEntry"), [...BARRIER, "low_barriers"].map((g) => ({ label: GM[g].label, value: avgEntry(g), color: gColor(g) })));
+    document.getElementById("ovEntryCap").textContent = `New ${scopeWord()} a year for every 100, ${NAMES[bState]}, ${winLabel(entWin)}.`;
     renderGroupChart(ys, idx, M);
     renderStartClose(ys, idx);
     document.getElementById("scopeNote").textContent = bScope === "employing" ? B.notes.employing
@@ -1477,6 +1550,9 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     setHead("h-con", !isNum(d) ? "Concentration" : d >= 1 ? "Big firms' share of sales has risen overall" : d <= -1 ? "Big firms' share of sales has fallen overall" : "Big firms' share of sales has barely changed overall");
     const others = rows.filter((r) => !r.total), item = (r) => `${r.label.toLowerCase()} (${fmtSigned(r.b - r.a, 1)} points)`;
     const up = others.filter((r) => r.b - r.a >= 1)[0], down = others.filter((r) => r.b - r.a <= -1).slice(-1)[0];
+    // Overview: all industries in the first and last years.
+    miniBars(document.getElementById("ovCon"), tot ? [{ label: String(ya), value: tot.a[1], color: "var(--ink-3)" }, { label: String(yb), value: tot.b[1] }] : [], { max: 100 });
+    document.getElementById("ovConCap").textContent = tot ? `Share of sales made by each industry's ${CONMEAS[conMeasure]}, all industries, %.` : "";
     document.getElementById("conLede").textContent = tot ? `All industries: ${fmt(tot.a[1], 1)}% in ${ya}, ${fmt(tot.b[1], 1)}% in ${yb}.${up ? ` Biggest rise: ${item(up)}.` : ""}${down ? ` Biggest fall: ${item(down)}.` : ""}` : "";
     document.getElementById("conUnit").innerHTML = `${term("topShare", "Share of sales")} made by each industry's ${esc(CONMEAS[conMeasure])}, %, ${ya} compared with ${yb}, from the biggest rise to the biggest fall. Change is in percentage points. Click an industry to see it over time.`;
     document.getElementById("conKey").innerHTML = `<span><span class="db-key a"></span>${ya}</span><span><span class="db-key b"></span>${yb}</span>`;
@@ -1529,6 +1605,15 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
   document.getElementById("gspSrc").innerHTML = SRC(["state_accounts"]);
   document.getElementById("gspSrc2").innerHTML = SRC(["state_accounts"]);
   renderAll();
+
+  // Overview: each finding repeats its section's heading and first sentence, and follows them as settings change.
+  for (const node of document.querySelectorAll("[data-mirror]")) {
+    const src = document.getElementById(node.dataset.mirror);
+    const copy = () => { node.innerHTML = src.innerHTML; };
+    copy();
+    new MutationObserver(copy).observe(src, { childList: true, characterData: true, subtree: true });
+  }
+  document.getElementById("glanceSrc").innerHTML = SRC(["cabee", "rba_rdp", "ato"]);
   renderFoot();
 
   // ---- Excel export: each chart that follows the slider or a drop-down list ------------------------------------------
@@ -1868,6 +1953,13 @@ table.data td .key { margin-right: 6px; vertical-align: middle; }
     const priv = groupStats(rows.filter((r) => PRIVATE.includes(r.s.group) && r.st.n).map((r) => r.st), P.taxRate);
     const barr = groupStats(rows.filter((r) => BARRIER.includes(r.s.group) && r.st.n).map((r) => r.st), P.taxRate);
     const span = yearsLabel();
+    // Overview: returns behind barriers to entry, where barriers are low, and the cost of equity.
+    miniBars(document.getElementById("ovRet"), [
+      { label: "Barriers to entry", value: barr.roe, color: "var(--neg)" },
+      { label: GM.low_barriers.label, value: byGroup.low_barriers.roe, color: gColor("low_barriers") },
+      { label: "Cost of equity", value: k, ref: true },
+    ]);
+    document.getElementById("ovRetCap").textContent = `Company return on equity after tax, % a year, ${span}.`;
 
     // Grattan Figure 4.1: return on equity by group.
     document.getElementById("roeUnit").innerHTML = `${term("roe", "Return on equity")} after tax, % (${term("weighted", "weighted by equity")}), yearly average ${esc(span)}.`;

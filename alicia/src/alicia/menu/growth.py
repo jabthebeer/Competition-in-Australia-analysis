@@ -585,6 +585,23 @@ def site_foot(generated: dt.date | None = None) -> str:
     )
 
 
+def scorecard_html(payload: dict) -> str:
+    """Australia at a glance, on Structural competitive conditions: the page's headline figures as tiles, each a
+    link to the tab that shows it (``figures.scorecard``). Empty for a page without the competition data."""
+    from html import escape
+
+    from .figures import scorecard
+
+    if "barriers" not in payload:
+        return ""
+    return "\n      ".join(
+        f'<a class="tile" href="#{f["tab"]}"><span class="t-label">{escape(f["label"])}</span>'
+        f'<span class="t-value">{escape(f["value"])}</span><span class="t-sub">{escape(f["what"])}</span>'
+        f'<span class="t-was">{escape(f["was"])}</span></a>'
+        for f in scorecard(payload)
+    )
+
+
 def render(template: str, payload: dict, page: str, standalone: bool = False, pages: tuple = PAGES) -> str:
     """Fill a page template: shared styles, chart code and Excel export, navigation, then the embedded data."""
     blob = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -594,6 +611,7 @@ def render(template: str, payload: dict, page: str, standalone: bool = False, pa
         .replace("/*__CHARTS_JS__*/", _asset("charts.js") + "\n" + _asset("xlsx.js"))
         .replace("<!--__NAV__-->", nav(page, pages))
         .replace("<!--__BETA__-->", beta())
+        .replace("<!--__SCORECARD__-->", scorecard_html(payload))
         .replace("__PAGE_DATA__", blob)
     )
     if standalone:

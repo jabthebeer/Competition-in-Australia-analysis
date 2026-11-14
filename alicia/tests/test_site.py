@@ -404,71 +404,120 @@ def test_every_chart_that_follows_a_control_can_be_exported_to_excel(tmp_path):
 
 
 @needs_panels
-def test_competition_page_tells_its_story_in_order(tmp_path):
+def test_competition_page_puts_each_section_in_its_tab(tmp_path):
     records = load_records().records
     evals = load_evaluations(records).evaluations
     growth.build_site(tmp_path, records, evals)
     whole = (tmp_path / "growth.html").read_text("utf-8")
     assert '<h1>Structural competitive conditions <span class="beta">' in whole
-    # The economic conditions come last, after every structural section, then each part's sources.
-    order = [
-        'id="shares"',
-        'id="economic-conditions"',
-        'id="h-latest"',
-        'id="comChart"',
-        'id="rbaChart"',
-        'id="foot"',
-        'id="foot-econ"',
+    # Six tabs. Every panel but the Overview starts closed; without scripts they all show.
+    tabs = [
+        ("overview", "Overview"),
+        ("entry", "Business entry"),
+        ("concentration", "Concentration"),
+        ("profits", "Profits and mark-ups"),
+        ("industries", "Industries by state"),
+        ("backdrop", "Economic backdrop"),
     ]
-    at = [whole.index(i) for i in order]
-    assert at == sorted(at)
-    assert '<a href="#economic-conditions">Economic conditions</a>' in whole  # "On this page" links to it
+    markup = whole[: whole.index('<script type="application/json"')]  # the page itself, not its scripts
+    found = re.findall(
+        r'<button type="button" role="tab" id="tab-(\w+)" aria-controls="panel-\1"[^>]*>([^<]+)<', markup
+    )
+    assert found == tabs
+    panels = re.findall(
+        r'<div class="tab-panel" role="tabpanel" id="panel-(\w+)" aria-labelledby="tab-\1"( hidden)?>', whole
+    )
+    assert panels == [(k, "" if k == "overview" else " hidden") for k, _ in tabs]
+    assert "<noscript><style>.tab-panel[hidden] { display: grid !important; }" in whole
+    assert "initTabs(document.querySelector('.tabs[role=\"tablist\"]'));" in whole
+    sources = whole.index('<details class="shelf" id="sources">')
+
+    def panel(key: str) -> str:
+        start = whole.index(f'id="panel-{key}"')
+        end = whole.find('<div class="tab-panel"', start)
+        return whole[start : end if end > 0 else sources]
+
+    # Each section sits in its tab, in this order. (An id missing from its panel raises.)
+    where = {
+        "overview": ["h-glance", "h-find", "ovEntry", "ovCon", "ovRet", "h-more"],
+        "entry": ["h-entry", "grpChart", "dynChart", "netChart", "h-where", "shares", "secTable"],
+        "concentration": ["h-con", "conRows", "conChart"],
+        "profits": [
+            "h-profit",
+            "roeChart",
+            "sumTable",
+            "mkChart",
+            "muChart",
+            "tsChart",
+            "rbaChart",
+            "h-ret",
+            "scChart",
+        ],
+        "industries": [
+            "h-ind",
+            "heat",
+            "peerChart",
+            "detailTitle",
+            "prodChart",
+            "cmpChart",
+            "dGva",
+            "h-gsp",
+            "gspTable",
+        ],
+        "backdrop": ["economic-conditions", "h-latest", "h-state", "comChart", "h-nat"],
+    }
+    for key, ids in where.items():
+        at = [panel(key).index(f'id="{i}"') for i in ids]
+        assert at == sorted(at), key
+    # The old Economic conditions address opens its tab: the forward lands on something inside the panel.
     assert '<a href="growth.html#economic-conditions">Structural competitive conditions</a>' in (
         tmp_path / "conditions.html"
     ).read_text("utf-8")
-    # The structural part alone: its markup and its own script, not the economic conditions'.
-    econ_js = whole.rindex("<script>", 0, whole.index(".textContent).conditions"))
-    g = (
-        whole[: whole.index('id="economic-conditions"')]
-        + whole[whole.index('<script type="application/json"') : econ_js]
-    )
-    # Industries by state first (with similar economies, then the selected industry, productivity first), then
-    # concentration, business entry, returns, state economies, and folded away at the end, where the barriers to entry
-    # are.
-    ids = [
-        "heat",
-        "peerChart",
-        "detailTitle",
-        "prodChart",
-        "cmpChart",
-        "dGva",
-        "conRows",
-        "grpChart",
-        "dynChart",
-        "scChart",
-        "gspTable",
-        "shares",
+    # Overview: the scorecard's tiles link to the tabs that show them; each finding repeats its section's heading
+    # and first sentence; two cards lead to the other tabs.
+    over = panel("overview")
+    tiles = re.findall(r'<a class="tile" href="#(\w+)"><span class="t-label">([^<]+)</span>', over)
+    assert tiles == [
+        ("entry", "Business entry"),
+        ("entry", "Business exit"),
+        ("concentration", "Concentration"),
+        ("profits", "Mark-ups"),
+        ("profits", "Returns behind barriers"),
     ]
-    at = [g.index(f'id="{i}"') for i in ids]
-    assert at == sorted(at)
+    mirrors = ["h-entry", "entryLede", "h-con", "conLede", "h-ret", "retLede"]
+    assert re.findall(r'data-mirror="([\w-]+)"', over) == mirrors
+    assert re.findall(r'<a class="more-link" href="#(\w+)"', over) == ["industries", "backdrop"]
+    assert re.findall(r'<a class="go" href="#(\w+)"', over) == ["entry", "concentration", "profits"]
+    # The two source lists are folded at the foot of the page.
+    assert sources < whole.index('id="foot"') < whole.index('id="foot-econ"')
+    # The structural part's own script, not the economic conditions'.
+    econ_js = whole.rindex("<script>", 0, whole.index(".textContent).conditions"))
+    g = whole[whole.index('<script type="application/json"') : econ_js]
     # Each section's heading is filled in from the data shown.
-    assert g.index('<details class="shelf">') < g.index('id="h-where"')
+    assert panel("entry").index('<details class="shelf">') < panel("entry").index('id="h-where"')
     for h in ("h-con", "h-entry", "h-where", "h-ret"):
         assert f'setHead("{h}"' in g
     # A card's column never grows past the card, so an opened table scrolls inside it.
-    assert re.search(r"\.chart-card \{[^}]*grid-template-columns: minmax\(0, 1fr\)", g)
+    assert re.search(r"\.chart-card \{[^}]*grid-template-columns: minmax\(0, 1fr\)", whole)
     data = json.loads(re.search(r'id="page-data">(.*?)</script>', g, re.S).group(1))
     assert all(grp["definition"] and grp["examples"] for grp in data["barriers"]["groups"])
     # Each group breaks into its sectors: on the entry chart, the starting-and-closing chart and the sectors card.
     for i in ("grpBreak", "grpBars", "dynInd", "dynSec", "secGroup", "secTable"):
-        assert f'id="{i}"' in g, i
-    assert g.index('id="shares"') < g.index('id="secTable"')
-    # Chart descriptions sit behind an "i" beside the title; every chart's sources are in a dropdown.
-    for u in re.findall(r'<p class="unit" id="(\w+)"', g):
-        assert f'<p class="unit" id="{u}" hidden>' in g and f'data-for="{u}"' in g, u
-    assert '<p class="source"' not in re.sub(r"<details.*?</details>", "", g, flags=re.S)
+        assert f'id="{i}"' in panel("entry"), i
+    # In the structural sections, chart descriptions sit behind an "i" beside the title, and every chart's sources
+    # are in a dropdown.
+    profits = panel("profits")
+    structural = (
+        panel("entry")
+        + panel("concentration")
+        + panel("industries")
+        + profits[profits.index('aria-labelledby="h-ret"') :]
+    )
+    for u in re.findall(r'<p class="unit" id="(\w+)"', structural):
+        assert f'<p class="unit" id="{u}" hidden>' in structural and f'data-for="{u}"' in structural, u
+    assert '<p class="source"' not in re.sub(r"<details.*?</details>", "", structural, flags=re.S)
     # Productivity: in the heatmap's menu, and the official ABS series by industry for the selected industry's card.
-    assert '"Productivity growth (output per worker, % a year)"' in g and 'id="pickDiv"' in g
+    assert '"Productivity growth (output per worker, % a year)"' in g and 'id="pickDiv"' in panel("industries")
     p = data["productivity"]
     assert p["years"][0] == 2005 and {"G", "B", "MKT16"} <= set(p["lp"]) and "Q" not in p["lp"]
     assert data["sources"]["abs_mfp"]["url"].startswith("https://www.abs.gov.au/")

@@ -266,12 +266,12 @@ svg .cross { stroke: var(--ink-3); }
 .tile .t-sub { font-size: var(--step--1); color: var(--ink-2); }
 /* Key figures: the few numbers that answer a page's question. The same tiles, larger, on the page's surface; a tile
    may be a link to where its figure is shown. */
-.tiles.key { grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr)); gap: 12px; margin: 0; }
-.tiles.key .tile { gap: 4px; padding: 14px; border-radius: 10px; background: var(--surface); color: var(--ink); text-decoration: none; min-width: 0; }
-.tiles.key a.tile:hover, .tiles.key a.tile:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
-.tiles.key .t-label { font-weight: 600; color: var(--ink-2); }
-.tiles.key .t-value { font-size: var(--step-3); font-variant-numeric: tabular-nums; }
-.tiles.key .t-src { font-size: var(--step--1); color: var(--ink-3); }
+.tiles.headline { grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr)); gap: 12px; margin: 0; }
+.tiles.headline .tile { gap: 4px; padding: 14px; border-radius: 10px; background: var(--surface); color: var(--ink); text-decoration: none; min-width: 0; }
+.tiles.headline a.tile:hover, .tiles.headline a.tile:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+.tiles.headline .t-label { font-weight: 600; color: var(--ink-2); }
+.tiles.headline .t-value { font-size: var(--step-3); font-variant-numeric: tabular-nums; }
+.tiles.headline .t-src { font-size: var(--step--1); color: var(--ink-3); }
 /* A section folded away at the end of the page. */
 details.shelf { border-top: 1px solid var(--line); padding-top: 14px; }
 details.shelf > summary { cursor: pointer; font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; color: var(--ink-2); width: max-content; max-width: 100%; }
