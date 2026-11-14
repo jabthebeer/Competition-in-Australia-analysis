@@ -1,0 +1,152 @@
+<title>ALICIA (beta): Register data</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
+<style>
+/*__SITE_CSS__*/
+/* Layout: Register data. A working table: one row for each item, every coded field a column. It scrolls inside its
+   panel in both directions, with the header and the first column kept in view. */
+.rd { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.rd-tools { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.rd-tools input, .rd-tools select { min-height: 36px; }
+.rd-tools input { min-width: min(100%, 18rem); }
+.rd-scroll { max-height: 72vh; overflow: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table.rdt { border-collapse: separate; border-spacing: 0; font-size: var(--step--1); }
+table.rdt th, table.rdt td { padding: 5px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; white-space: nowrap; max-width: 22rem; overflow: hidden; text-overflow: ellipsis; }
+table.rdt td.wrap, table.rdt th.wrap { white-space: normal; min-width: 16rem; }
+table.rdt td.num, table.rdt th.num { text-align: right; font-family: var(--font-mono); }
+table.rdt thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); color: var(--ink-2); font-weight: 600; border-bottom: 1px solid var(--line-strong); }
+table.rdt thead tr.grp th { top: 0; font-weight: 500; color: var(--ink-3); border-bottom: 0; }
+table.rdt thead tr.cols th { top: 27px; }
+table.rdt th:first-child, table.rdt td:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface); min-width: 15rem; white-space: normal; }
+table.rdt thead th:first-child { z-index: 3; }
+table.rdt th button.sort { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+table.rdt th[aria-sort="ascending"] button.sort::after { content: " ↑"; }
+table.rdt th[aria-sort="descending"] button.sort::after { content: " ↓"; }
+table.rdt .id { display: block; font-family: var(--font-mono); color: var(--ink-3); }
+table.rdt td.neg { color: var(--mk-n2-ink); } table.rdt td.pos { color: var(--mk-p2-ink); }
+table.rdt tr.ended td { color: var(--ink-3); }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <!--__NAV__-->
+    <p class="kicker">ALICIA · About</p>
+    <h1>Register data <!--__BETA__--></h1>
+    <p class="lede">How every law, requirement and barrier in the register is coded: its marks, the businesses it reaches, its sources and who administers it.</p>
+    <div class="meta-line" id="metaLine"></div>
+  </header>
+
+  <main class="rd">
+    <p class="notice"><strong>A working table.</strong> It shows the register as it is held, for checking. Every item is a draft from AI-assisted desk research until a person has checked it. To read about an item, open it on <a href="menu.html">Legislative levers</a>.</p>
+    <div class="rd-tools">
+      <label for="q">Search</label>
+      <input id="q" type="search" placeholder="Title, id, law, regulator or ANZSIC code" autocomplete="off">
+      <label for="f-type">Type</label>
+      <select id="f-type"><option value="">All</option></select>
+      <label for="f-class">Impact class</label>
+      <select id="f-class"><option value="">All</option></select>
+      <button type="button" class="btn" id="csv">Download as CSV</button>
+    </div>
+    <p class="count-line" id="count" aria-live="polite"></p>
+    <div class="rd-scroll" tabindex="0" role="region" aria-label="Register data table"><table class="rdt" id="rdt"></table></div>
+    <details class="more" open><summary>About the columns</summary><p id="note"></p>
+      <p>Marks: each of the 8 drivers from −2 to +2; the total is their sum. Severity: a draft score for requirements only. Businesses: an upper bound where the row says “up to”. Sources: the number of distinct links the item cites; “How checked” says what each quote was checked against. A row in grey is no longer in force.</p></details>
+    <!--__FOOT__-->
+  </main>
+</div>
+
+<script type="application/json" id="page-data">__PAGE_DATA__</script>
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById("page-data").textContent);
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const nf = (v) => (v === null || v === undefined || v === "" ? "" : typeof v === "number" ? Math.round(v).toLocaleString("en-AU") : String(v));
+  const signed = (n) => (n === null || n === undefined ? "" : n > 0 ? `+${n}` : n < 0 ? `−${Math.abs(n)}` : "0");
+  const cls = (r) => DATA.classes[r.impactClass] || "";
+  const yr = DATA.exposureYear ? `, June ${DATA.exposureYear}` : "";
+  // Each column: key, heading, group, how to show it, and how to write it to the CSV.
+  const COLS = [
+    { k: "title", h: "Item", g: "Item", show: (r) => `${esc(r.title)}<span class="id">${esc(r.id)}</span>`, csv: (r) => r.title },
+    { k: "id", h: "Id", g: "Item", hide: true, csv: (r) => r.id },
+    { k: "setBy", h: "Set by", g: "Item" },
+    { k: "type", h: "Type", g: "Item" },
+    { k: "standing", h: "Applies today", g: "Item", show: (r) => (r.ended ? "No longer in force" : r.standing ? "Yes" : "A change, not a rule"), csv: (r) => (r.ended ? "no longer in force" : r.standing ? "yes" : "a change") },
+    { k: "effective", h: "Effective", g: "Item" },
+    { k: "kind", h: "Kind of obligation", g: "Coded attributes" },
+    { k: "when", h: "When it bites", g: "Coded attributes" },
+    { k: "bound", h: "Who it binds", g: "Coded attributes" },
+    { k: "thresholds", h: "Thresholds coded", g: "Coded attributes", num: true },
+    { k: "severity", h: "Severity (draft)", g: "Coded attributes", num: true, show: (r) => (r.severity === null || r.severity === undefined ? "" : `${r.severity} ${esc(r.severityBand)}`), csv: (r) => r.severity ?? "" },
+    ...DATA.drivers.map((d, i) => ({ k: `m${i}`, h: d.short, title: d.label, g: "Framework marks", num: true, val: (r) => r.marks[i], show: (r) => (r.marks[i] ? signed(r.marks[i]) : "·"), tone: (r) => r.marks[i], csv: (r) => r.marks[i] })),
+    { k: "total", h: "Total", g: "Framework marks", num: true, show: (r) => signed(r.total), tone: (r) => r.total },
+    { k: "mainDriver", h: "Main driver", g: "Framework marks" },
+    { k: "confidence", h: "Confidence", g: "Framework marks" },
+    { k: "impactClass", h: "Impact class", g: "Exposure", show: (r) => esc(cls(r)), csv: (r) => cls(r) },
+    { k: "businesses", h: `Businesses reached${yr}`, g: "Exposure", num: true, show: (r) => (r.businesses === null ? "" : `${r.upTo ? "up to " : ""}${nf(r.businesses)}`), csv: (r) => r.businesses ?? "" },
+    { k: "upTo", h: "Upper bound", g: "Exposure", hide: true, csv: (r) => (r.upTo ? "yes" : "no") },
+    { k: "share", h: "Share of its jurisdiction, %", g: "Exposure", num: true, show: (r) => (r.share === null || r.share === undefined ? "" : r.share.toFixed(1)) },
+    { k: "classes", h: "Industries reached", g: "Exposure", num: true },
+    { k: "industries", h: "ANZSIC codes", g: "Exposure" },
+    { k: "laws", h: "Law", g: "Sources", wrap: true },
+    { k: "sources", h: "Sources", g: "Sources", num: true, show: (r) => (r.sourceUrls.length ? `<a href="${esc(r.sourceUrls[0])}" target="_blank" rel="noopener">${r.sources}</a>` : "0"), csv: (r) => r.sourceUrls.join(" ") },
+    { k: "checked", h: "How checked", g: "Sources" },
+    { k: "review", h: "Review", g: "Sources" },
+    { k: "bodies", h: "Administered by", g: "Links", wrap: true },
+    { k: "family", h: "Family", g: "Links" },
+    { k: "regimes", h: "Regimes", g: "Links" },
+    { k: "inside", h: "Shown inside", g: "Links" },
+    { k: "file", h: "Record", g: "Links", show: (r) => `<a href="${esc((DATA.repo || "") + r.file)}" target="_blank" rel="noopener">${esc(r.file.split("/").pop())}</a>` },
+  ];
+  const SHOWN = COLS.filter((c) => !c.hide);
+  const val = (c, r) => (c.val ? c.val(r) : r[c.k]);
+  const state = { q: "", type: "", cls: "", sort: "", dir: 1 };
+  $("f-type").innerHTML += DATA.types.map((t) => `<option>${esc(t)}</option>`).join("");
+  $("f-class").innerHTML += Object.entries(DATA.classes).map(([k, v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join("") + `<option value="none">Not classed</option>`;
+  const hay = new Map(DATA.rows.map((r) => [r, [r.id, r.title, r.setBy, r.laws, r.bodies, r.industries, r.family, r.regimes, r.kind].join(" ").toLowerCase()]));
+  function rows() {
+    const words = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+    let out = DATA.rows.filter((r) => (!state.type || r.type === state.type) && (!state.cls || (state.cls === "none" ? !r.impactClass : r.impactClass === state.cls)) && words.every((w) => hay.get(r).includes(w)));
+    const c = COLS.find((x) => x.k === state.sort);
+    if (c) out = [...out].sort((a, b) => {
+      const x = val(c, a), y = val(c, b);
+      const blank = (v) => v === null || v === undefined || v === "";
+      if (blank(x) || blank(y)) return blank(x) - blank(y);  // blanks last, either way
+      return state.dir * (typeof x === "number" && typeof y === "number" ? x - y : String(x).localeCompare(String(y)));
+    });
+    return out;
+  }
+  function render() {
+    const rs = rows();
+    const groups = [];
+    SHOWN.forEach((c) => { const g = groups[groups.length - 1]; if (g && g.g === c.g) g.n += 1; else groups.push({ g: c.g, n: 1 }); });
+    const head = `<thead><tr class="grp">${groups.map((g) => `<th colspan="${g.n}" scope="colgroup">${esc(g.g)}</th>`).join("")}</tr>
+      <tr class="cols">${SHOWN.map((c) => `<th scope="col" class="${c.num ? "num" : ""}${c.wrap ? " wrap" : ""}"${c.title ? ` title="${esc(c.title)}"` : ""}${state.sort === c.k ? ` aria-sort="${state.dir > 0 ? "ascending" : "descending"}"` : ""}><button type="button" class="sort" data-k="${esc(c.k)}">${esc(c.h)}</button></th>`).join("")}</tr></thead>`;
+    const tone = (c, r) => { if (!c.tone) return ""; const v = c.tone(r); return v < 0 ? " neg" : v > 0 ? " pos" : ""; };
+    const body = rs.map((r) => `<tr${r.ended ? ' class="ended"' : ""}>${SHOWN.map((c) => { const v = c.show ? c.show(r) : esc(nf(r[c.k])); return `<td class="${c.num ? "num" : ""}${c.wrap ? " wrap" : ""}${tone(c, r)}"${!c.show && !c.num && r[c.k] ? ` title="${esc(r[c.k])}"` : ""}>${v}</td>`; }).join("")}</tr>`).join("");
+    $("rdt").innerHTML = head + `<tbody>${body || `<tr><td colspan="${SHOWN.length}">Nothing matches.</td></tr>`}</tbody>`;
+    $("rdt").querySelectorAll("button.sort").forEach((b) => b.addEventListener("click", () => {
+      if (state.sort === b.dataset.k) state.dir = -state.dir; else { state.sort = b.dataset.k; state.dir = 1; }
+      render();
+    }));
+    $("count").textContent = `${rs.length.toLocaleString("en-AU")} of ${DATA.rows.length.toLocaleString("en-AU")} items shown, ${SHOWN.length} columns`;
+  }
+  $("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
+  $("f-type").addEventListener("change", (e) => { state.type = e.target.value; render(); });
+  $("f-class").addEventListener("change", (e) => { state.cls = e.target.value; render(); });
+  // The download holds every column, including those the table folds into another, for the rows shown.
+  $("csv").addEventListener("click", () => {
+    const cell = (v) => { const s = String(v ?? ""); return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+    const lines = [COLS.map((c) => cell(c.h)).join(",")].concat(rows().map((r) => COLS.map((c) => cell(c.csv ? c.csv(r) : val(c, r))).join(",")));
+    const url = URL.createObjectURL(new Blob(["﻿" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" }));
+    const a = document.createElement("a");
+    a.href = url; a.download = `ALICIA register data ${DATA.generated || ""}.csv`.replace(/\s+\./, ".");
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+  $("metaLine").textContent = `${DATA.rows.length.toLocaleString("en-AU")} items${DATA.generated ? ` · updated ${new Date(DATA.generated + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" })}` : ""}`;
+  $("note").textContent = DATA.note;
+  render();
+})();
+</script>

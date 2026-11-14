@@ -38,6 +38,7 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   | `regulatory-overview.html` | Regulatory overview by industry (data in `menu/overview.py`) |
   | `framework.html` | Framework (body in `menu/framework.py`); opens with a worked example |
   | `methodology.html` | Methodology (text in `menu/methodology.py`); opens with how far to rely on each part (`RELIANCE`): add a row when a page gains a new kind of figure |
+  | `register-data.html` | Register data: how every item is coded, in one working table (data in `menu/registerdata.py`). It may be plainer than the other pages; add a column there when an item gains a coded field |
   | `archive.html` | The econometric archive and `evaluation-<id>.html` pages: archived, not built for the live site |
 - **Nav and page names:** `PAGES`, `NAV_GROUPS` and `NAV_LABELS` in
   `alicia/src/alicia/menu/growth.py`. The nav is one line: the site's name (the link home), then
@@ -64,7 +65,7 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   ```bash
   cd alicia && uv run alicia site -o <scratchpad>/site --dates "$(ls ../regulation-register/reports/effective_dates_*.json | sort | tail -n 1)"
   ```
-- **Tests that pin page structure:** `tests/test_site.py`, `test_home.py`, `test_scorecard.py`, `test_exposure.py`, `test_overview.py`, `test_explorer.py`,
+- **Tests that pin page structure:** `tests/test_site.py`, `test_home.py`, `test_scorecard.py`, `test_exposure.py`, `test_overview.py`, `test_registerdata.py`, `test_explorer.py`,
   `test_lens.py`, `test_framework_page.py` and `test_archive.py`. When a change is deliberate, update the test
   and say so in the PR. Never weaken a test only to get it to pass.
 

@@ -37,6 +37,11 @@ If you need a change on the right-hand side (a new field, a new kind of requirem
 - Don't add fields the schema does not have. `uv run alicia validate` rejects them.
 - Keep marking each item on the 8 drivers as now. The marks stay, as the judgement layer.
 - Wherever the law states them, record thresholds with their value, unit and date, and the trigger (before trading starts, first employee, a size threshold). Version 2 scores rules from these.
+- **Three fields now drive a requirement's severity score** (`alicia/src/alicia/register/severity.py`, E-184), so code them with care:
+  - `kind`: a licence or approval scores above a registration, and that above a notification;
+  - `triggers`: use `entry` only where the law must be met before trading starts;
+  - each part of `reach`: give a `condition` or `activities` where the law binds only businesses doing something, and leave them empty only where it binds every business in the industries listed.
+- Check your new rows on **Register data** (`register-data.html`) after a build: it shows how each item is coded, the businesses it reaches and its sources.
 
 ### 4. Generated files: rebuild, never merge by hand
 
@@ -55,7 +60,7 @@ Check each script's own header for its arguments before you run it. `links.csv.g
 ### 5. `alicia/DECISIONS.md`
 
 - Rows are added at the end, so two branches always conflict there. Keep both sets of rows, in number order.
-- **E-161 is taken. Use E-162 to E-179.** The website session uses **E-180 onwards** (E-180 to E-183 are taken), so the numbers can't collide.
+- **E-161 is taken. Use E-162 to E-179.** The website session uses **E-180 onwards** (E-180 to E-184 are taken), so the numbers can't collide.
 - One row for each batch, as now.
 
 ### 6. Check before you push
@@ -82,7 +87,7 @@ Never push to `main`. Say in the pull request which batch it is, how many requir
 
 ### What the website shows from your data, with no code change
 
-New requirements and register items appear on Legislative levers and the Industry lens as soon as they are merged (and on Register data, once it is built). The headline counts, the impact classes and the exposure figures are worked out when the site is built.
+New requirements and register items appear on Legislative levers and the Industry lens as soon as they are merged (and on Register data). The headline counts, the impact classes and the exposure figures are worked out when the site is built.
 
 ## Website overhaul in progress (DECISIONS E-159)
 

@@ -79,4 +79,5 @@ Each phase is a pull request for the owner to merge. The site works after each, 
 - Exposure (the businesses a rule reaches) and the impact classes are worked out in `alicia/src/alicia/menu/exposure.py` when the site is built, and added to every row of the levers page's data (`exposure`, `standing`, `impactClass`). Tests: `alicia/tests/test_exposure.py`. The rule and its stopgap are in [`plan_policy_tool.md`](plan_policy_tool.md).
 - Regulatory overview by industry is `alicia/src/alicia/menu/overview.py` and `templates/regulatory-overview.html`; its tests are `alicia/tests/test_overview.py`.
 - A page whose address holds its own state (the Industry lens: `#division=H&class=4511&state=NSW`) calls `initTabs(list, { hash: false })`, so the tabs leave the address alone.
+- Register data is `alicia/src/alicia/menu/registerdata.py` and `templates/register-data.html`; its tests are `alicia/tests/test_registerdata.py`.
 - Headline figures are worked out in `alicia/src/alicia/menu/figures.py` when the site is built. Home and the scorecard both use it. Tests: `alicia/tests/test_home.py` and `alicia/tests/test_scorecard.py`.

@@ -187,6 +187,7 @@ def test_build_site_writes_the_linked_pages_and_nothing_archived(tmp_path):
         "industry-lens.html",
         "menu.html",
         "methodology.html",
+        "register-data.html",
         "regulatory-overview.html",
     ]
     pages = [n for n in names if n != "conditions.html"]
@@ -209,10 +210,10 @@ def test_build_site_writes_the_linked_pages_and_nothing_archived(tmp_path):
     nav = index[index.index('<nav class="site-nav"') : index.index("</nav>")]
     assert re.findall(r'<p class="nav-label" id="[^"]+">([^<]+)</p>', nav) == ["Top down", "Bottom up", "About"]
     built = ["index.html", "growth.html", "menu.html", "industry-lens.html", "regulatory-overview.html"]
-    built += ["framework.html", "methodology.html"]
+    built += ["framework.html", "methodology.html", "register-data.html"]
     assert re.findall(r'<a (?:class="brand" )?href="([^"#]+)"', nav) == built
     short = ["Competitive conditions", "Legislative levers", "Industry lens", "Regulatory overview"]
-    short += ["Framework", "Methodology"]
+    short += ["Framework", "Methodology", "Register data"]
     assert re.findall(r'<a href="[^"]+"[^>]*>([^<]+)</a>', nav) == short
     assert 'title="Structural competitive conditions"' in nav  # a short label carries the page's full name
     assert nav.count(">Beta</span>") == 1 and "(beta)</" not in nav  # one badge, not one on every link

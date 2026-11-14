@@ -58,6 +58,7 @@ from ..register.regimes import (
 from ..register.requirements import KIND_LABELS as OBLIGATION_LABELS
 from ..register.requirements import TRIGGER_LABELS, Requirement, load_requirements, reach_classes
 from ..register.schema import CHANNEL_LABELS, ROLE_LABELS, ChangeRecord
+from ..register.severity import severity
 from ..register.timeline import changed_by_index, changes_list, ended_dict, timeline
 from ..timing import timing
 from . import exposure as X
@@ -370,6 +371,7 @@ def build_payload(
             )
         )
         d["exposure"]["beyond"] = X.beyond(q)
+        d["severity"] = severity(q)
         for x in homes:
             nested.setdefault(x, []).append(d)
         if not homes:

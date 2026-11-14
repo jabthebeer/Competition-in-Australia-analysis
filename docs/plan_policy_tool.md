@@ -70,6 +70,16 @@
 
 Until the attributes are coded, severity is taken from the marks already drafted: a rule with a total of −2 or lower counts as a large effect. This is a stopgap, and the site says so.
 
+**First step, built on 14 November 2026 (E-184).** `alicia/src/alicia/register/severity.py` scores each requirement from 3 attributes it already records. The weights are a draft for the owner to settle.
+
+| Attribute | Points |
+|---|---|
+| Kind | Licence or approval 4; registration, insurance, tax or levy, or standard 2; reporting, notification, record-keeping or other 1 |
+| When it bites | Before trading starts 2; at the first employee or a size threshold 1; while operating or on an activity 0 |
+| Who is bound | Every business in its industries 1; only those doing a named activity 0 |
+
+The score runs from 1 to 7: 5 or more is high, 3 or 4 medium, and less is low. Across the 537 requirements it takes every value from 1 to 7, where the marks take 4 values and 336 requirements share one of them. Of the 120 requirements that score high, 96 also have marks that add to −2 or lower. Fees, waiting times, renewal and penalties are not yet coded and add nothing. The score is shown on Register data beside the marks; the impact classes still come from the marks until the weights are settled.
+
 ### Exposure and the three classes
 
 For each rule the tool computes, from its own data:
@@ -178,8 +188,8 @@ Limits: both are national by industry; state by industry is not published in the
 
 | # | Work | Status |
 |---|---|---|
-| 1 | Site overhaul phases 4 to 7 ([plan](plan_site_overhaul.md)), with biggest barriers and exposure in phase 4 | Next |
-| 2 | Framework version 2: schema, coded attributes, impact class, evidence, purpose; the Framework page; Register data | After 1 |
+| 1 | Site overhaul phases 4 to 7 ([plan](plan_site_overhaul.md)), with biggest barriers and exposure in phase 4 | Done (14 November 2026, E-180 to E-183) |
+| 2 | Framework version 2: schema, coded attributes, impact class, evidence, purpose; the Framework page; Register data | Started (E-184): Register data is built, with a draft severity score for requirements from the attributes already coded. Still to do: settle the weights with the owner; move the impact classes from the marks to the score; code the standing rules among the register items; add the evidence and purpose fields; rewrite the Framework page |
 | 3 | "What others found" panel | With 2 |
 | 4 | Inputs 1 to 7 in section 5, one at a time | After 2 |
 | 5 | Fees and waiting times | When ABLIS arrives |
