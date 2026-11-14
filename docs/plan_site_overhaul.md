@@ -55,8 +55,8 @@ Each phase is a pull request for the owner to merge. The site works after each, 
 | 3. Structural competitive conditions | An Overview tab with a scorecard of 5 figures and 3 findings; 5 tabs for the detail; the sources folded at the foot (the tabs component is built here) | Done (14 November 2026, E-160) |
 | 4. Legislative levers | An Overview tab: biggest barriers by impact class with the businesses each reaches, how barriers act, who sets the rules. The register (list, scorecard, timeline, what others recommend, industries) in its own tab | Done (14 November 2026, E-180) |
 | 5. Industry lens and Regulatory overview by industry | The lens in 4 tabs, the business's view first (its market, its requirements, who it answers to, pain points). Regulatory overview by industry built: the 19 divisions and 506 detailed industries compared | Done (14 November 2026, E-181) |
-| 6. Framework and Methodology | Framework leads with a worked example; Methodology leads with a reliance table | Next |
-| 7. Finish | Phone and accessibility pass; Style Manual pass on all text, including en dashes in financial years and short forms of the states; a check of every headline figure; docs updated | To do |
+| 6. Framework and Methodology | Framework leads with a worked example, and says version 2 is being built; Methodology leads with a table of how far to rely on each part | Done (14 November 2026, E-182) |
+| 7. Finish (next) | Phone and accessibility pass; Style Manual pass on all text, including en dashes in financial years and short forms of the states; a check of every headline figure; docs updated | To do |
 
 ## Changes from the mock-ups
 

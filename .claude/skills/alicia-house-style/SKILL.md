@@ -36,8 +36,8 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   | `explorer.html` | `menu.html`, Legislative levers influencing competition, in two tabs: an Overview (biggest barriers, how they act, who sets them) and the register |
   | `industry-lens.html` | Industry lens, in four tabs: its market, its requirements, who it answers to, pain points |
   | `regulatory-overview.html` | Regulatory overview by industry (data in `menu/overview.py`) |
-  | `framework.html` | Framework |
-  | `methodology.html` | Methodology (text in `menu/methodology.py`) |
+  | `framework.html` | Framework (body in `menu/framework.py`); opens with a worked example |
+  | `methodology.html` | Methodology (text in `menu/methodology.py`); opens with how far to rely on each part (`RELIANCE`): add a row when a page gains a new kind of figure |
   | `archive.html` | The econometric archive and `evaluation-<id>.html` pages: archived, not built for the live site |
 - **Nav and page names:** `PAGES`, `NAV_GROUPS` and `NAV_LABELS` in
   `alicia/src/alicia/menu/growth.py`. The nav is one line: the site's name (the link home), then
