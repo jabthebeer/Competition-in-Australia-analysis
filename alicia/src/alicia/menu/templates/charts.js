@@ -83,6 +83,8 @@ function initTabs(list, opts = {}) {
       x.tabIndex = on ? 0 : -1;
       panelOf(x).hidden = !on;
     }
+    // Where the tabs scroll sideways (a phone), bring the open one into view.
+    if (list.scrollWidth > list.clientWidth) list.scrollLeft = Math.max(0, t.offsetLeft - list.offsetLeft - 16);
     if (focus) t.focus();
     if (changed && opts.onShow) opts.onShow(keyOf(t));
     return changed;
@@ -94,7 +96,7 @@ function initTabs(list, opts = {}) {
     if (named) return { tab: named };
     const target = document.getElementById(id), panel = target && target.closest('[role="tabpanel"]');
     const tab = panel && tabs.find((t) => panelOf(t) === panel);
-    return tab ? { tab, target } : { tab: current || tabs[0] };
+    return tab ? { tab, target } : { tab: current || tabs[0], elsewhere: !!target };
   };
   const pick = (t, focus) => { history.replaceState(null, "", `#${keyOf(t)}`); show(t, focus); };
   list.addEventListener("click", (e) => { const t = e.target.closest('[role="tab"]'); if (t) pick(t); });
@@ -107,10 +109,11 @@ function initTabs(list, opts = {}) {
     pick(tabs[j], true);
   });
   // A link on the page to a tab, or to something inside one: open it, then bring it into view.
+  // (Something outside the tabs, such as the sources at the foot, is left to the browser.)
   window.addEventListener("hashchange", () => {
-    const { tab, target } = fromHash();
+    const { tab, target, elsewhere } = fromHash();
     show(tab);
-    (target || list).scrollIntoView({ block: "start" });
+    if (!elsewhere) (target || list).scrollIntoView({ block: "start" });
   });
   const { tab, target } = fromHash();
   show(tab);

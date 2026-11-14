@@ -150,6 +150,11 @@ header.top h1 { position: relative; }
 .tabs [role="tab"] { font: inherit; min-height: 44px; padding: 0 14px; color: var(--ink-2); background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -1px; cursor: pointer; }
 .tabs [role="tab"]:hover { color: var(--ink); border-bottom-color: var(--line-strong); }
 .tabs [role="tab"][aria-selected="true"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent); }
+/* On a narrow screen the tabs stay on one line and scroll sideways; the open tab is brought into view. */
+@media (max-width: 760px) {
+  .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; }
+  .tabs [role="tab"] { flex: none; white-space: nowrap; }
+}
 .tab-panel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
 .tab-panel > * { min-width: 0; }
 /* Link cards: a short list of places to go next, each a name and a line on what is there. */
@@ -486,7 +491,6 @@ ul.method strong { color: var(--ink); font-weight: 600; }
 details.tview { font-size: var(--step--1); }
 details.tview summary { cursor: pointer; color: var(--accent); width: max-content; }
 details.tview .tscroll { margin-top: 8px; max-height: 26rem; overflow: auto; }
-.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
 .sub { font-size: var(--step--1); color: var(--ink-3); margin: 0; max-width: 100ch; }
 .subhead { font-family: var(--font-display); font-size: var(--step-1); margin: 8px 0 0; }
 
