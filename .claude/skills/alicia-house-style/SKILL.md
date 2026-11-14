@@ -15,6 +15,10 @@ ALICIA is a public research site full of data, read by people working on policy.
 when a reader can find the figure they came for, understand it, and trace it to its source. It is
 not a marketing site: no hero photographs, no animated "moments", no decorative effects.
 
+The site is being overhauled in phases (owner decision, 14 November 2026, DECISIONS E-159). Each
+page's end goal, the design rules and the phases are in `docs/plan_site_overhaul.md`: read it
+before changing a page.
+
 Some rules below are adapted from tasteSkill (github.com/Leonxlnx/taste-skill, v2.5.1, MIT
 licence, copyright 2026 Leonxlnx); they are marked [ts]. Where its rules conflict with this file,
 this file wins, above all on captions: ALICIA's charts keep their notes and sources.
@@ -27,18 +31,21 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
 
   | Template | Page |
   |---|---|
-  | `home.html` | `index.html`, the landing page |
+  | `home.html` | `index.html`, Home (built by `menu/home.py`; its figures come from the other pages' data) |
   | `growth.html` | Structural competitive conditions, with the economic conditions at its end |
   | `explorer.html` | `menu.html`, Legislative levers influencing competition |
   | `industry-lens.html` | Industry lens |
   | `framework.html` | Framework |
   | `methodology.html` | Methodology (text in `menu/methodology.py`) |
   | `archive.html` | The econometric archive and `evaluation-<id>.html` pages: archived, not built for the live site |
-- **Nav, page names and landing cards:** `PAGES`, `NAV_GROUPS` and `LANDING` in
-  `alicia/src/alicia/menu/growth.py`. The nav groups pages as Top down, Bottom up and About.
-  `conditions.html` is only a forward to the economic conditions; nothing links to it.
-- **Beta:** every page on the live site ends its h1 with `<!--__BETA__-->` (`growth.beta()`):
-  "(beta)" with a work-in-progress tip. A new page gets it too.
+- **Nav and page names:** `PAGES`, `NAV_GROUPS` and `NAV_LABELS` in
+  `alicia/src/alicia/menu/growth.py`. The nav is one line: the site's name (the link home), then
+  the pages grouped as Top down, Bottom up and About under short labels (`NAV_LABELS`). On a
+  phone the groups fold behind a Menu button. `conditions.html` is only a forward to the economic
+  conditions; nothing links to it.
+- **Beta:** one "Beta" badge sits beside the site's name in the nav. Every page on the live site
+  also ends its h1 with `<!--__BETA__-->` (`growth.beta()`): "(beta)" with a work-in-progress
+  tip. A new page gets it too. Nav links carry no "(beta)".
 - **Archived, not on the live site:** the Policy costing tab (`regulatory-burden-tool/`; built only
   with `--costing`) and the econometric archive (`archive.html`, `evaluation-<id>.html`; built only
   with `--archive`). Don't link to either from any page (DECISIONS E-135, E-136).
@@ -47,8 +54,8 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   ```bash
   cd alicia && uv run alicia site -o <scratchpad>/site --dates "$(ls ../regulation-register/reports/effective_dates_*.json | sort | tail -n 1)"
   ```
-- **Tests that pin page structure:** `tests/test_site.py`, `test_explorer.py`, `test_lens.py`,
-  `test_framework_page.py` and `test_archive.py`. When a change is deliberate, update the test
+- **Tests that pin page structure:** `tests/test_site.py`, `test_home.py`, `test_explorer.py`,
+  `test_lens.py`, `test_framework_page.py` and `test_archive.py`. When a change is deliberate, update the test
   and say so in the PR. Never weaken a test only to get it to pass.
 
 ## 1. Words
@@ -150,7 +157,10 @@ Also:
   - `.note` and `.notice`;
   - `table.data` inside `.tscroll`;
   - `table.heat`;
-  - `.site-nav`.
+  - `.site-nav`;
+  - `.tiles` with `.tile` for a page's key figures (label, value, what it is, source);
+  - `.btn`, and `.btn.primary` for a page's main action;
+  - `.site-foot` (`growth.site_foot()`) for a page's closing lines.
 
   A new component needs a reason, given in the PR.
 - **At most two boxes deep:** a panel inside a panel, and no deeper [ts]. One style each for
@@ -189,8 +199,8 @@ Also:
 
 ## 7. Reordering, archiving and deleting pages
 
-- **Reorder** the nav with `PAGES` and `NAV_GROUPS`, and the landing page with `LANDING`, all in
-  `growth.py`. They are set separately: when you change one, check the others still make sense.
+- **Reorder** the nav with `PAGES` and `NAV_GROUPS` in `growth.py`, and Home's cards in
+  `home.py`. They are set separately: when you change one, check the other still makes sense.
 - **Old URLs keep working.** People link to the site. `home.html` already forwards old
   `index.html#<id>` links to `menu.html`, and a moved page needs the same treatment.
 - **Archive** a page by keeping it built and its URL working, with a dated "Archived" notice

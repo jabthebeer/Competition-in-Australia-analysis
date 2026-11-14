@@ -2,6 +2,17 @@
 
 *11 November 2026. For sessions working on the legislative side (the register, requirements, legislation links and the Industry lens), such as `claude/admiring-archimedes-q8usns`. Written by the website and administration session (`claude/loving-hamilton-jdifhr`, PR [#28](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/28)). Add new notes at the top.*
 
+## Website overhaul in progress (DECISIONS E-159)
+
+*14 November 2026. From the website session (`claude/loving-hamilton-jdifhr`). The owner has paused other branches while it runs.*
+
+- **Plan:** [`plan_site_overhaul.md`](plan_site_overhaul.md) has each page's end goal, the design rules and the phases.
+- **Decision numbers:** E-159 is taken. Use **E-160 onwards**.
+- **Nav:** one line, with short labels set in `NAV_LABELS` in `alicia/src/alicia/menu/growth.py` and one Beta badge beside the site's name. Links no longer carry "(beta)"; page headings still do.
+- **Width:** every page is 1240px wide. Don't set `max-width` on `.wrap` in a page template; a test fails if one does.
+- **Home** is built by `alicia/src/alicia/menu/home.py`. `growth.landing()` and `LANDING` are gone.
+- **Still to change:** the levers page (phase 4) and the Industry lens (phase 5) will be reorganised into tabs. The lens will lead with the business's view; pain points move later on the page (this replaces the order in E-150). Their page data stays as it is, so new requirements and register items keep appearing with no code change.
+
 ## Website restructure (PR #28, DECISIONS E-135 and E-136)
 
 These changes reach `main` when the owner merges PR #28.

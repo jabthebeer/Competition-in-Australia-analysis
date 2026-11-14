@@ -8,7 +8,7 @@ from importlib import resources
 
 import pytest
 
-from alicia.menu import growth
+from alicia.menu import growth, home
 from alicia.pipeline import store
 from alicia.register.catalogue import load_records
 from alicia.register.evaluation import load_evaluations
@@ -203,21 +203,34 @@ def test_build_site_writes_the_linked_pages_and_nothing_archived(tmp_path):
     assert "archivedEvaluations" not in menu_data and all("archivedEvaluation" not in r for r in menu_data["records"])
     forward = (tmp_path / "conditions.html").read_text("utf-8")
     assert 'location.replace("growth.html#economic-conditions")' in forward and "<nav" not in forward
-    # The nav groups the pages by what they are for; the regulatory overview is coming soon, with no link.
-    labels = re.findall(r'<p class="nav-label" id="[^"]+">([^<]+)</p>', index)
-    assert labels == ["Top down", "Bottom up", "About"]
-    hrefs = re.findall(r'<a href="([^"#]+)"', index[index.index('<nav class="site-nav"') : index.index("</nav>")])
+    # The nav, on one line: the site's name (the link home) with one Beta badge, then the pages grouped by what
+    # they are for, under short labels. The regulatory overview is coming soon, with no link.
+    nav = index[index.index('<nav class="site-nav"') : index.index("</nav>")]
+    assert re.findall(r'<p class="nav-label" id="[^"]+">([^<]+)</p>', nav) == ["Top down", "Bottom up", "About"]
     built = ["index.html", "growth.html", "menu.html", "industry-lens.html", "framework.html", "methodology.html"]
-    assert hrefs == built
-    assert 'Regulatory overview by industry <span class="beta-tag">(coming soon)</span>' in index
-    home = (tmp_path / "index.html").read_text("utf-8")
-    assert '<a href="index.html" aria-current="page">Home</a>' in home and not re.search(r"__[A-Z_]+__", home)
-    assert re.findall(r'<h2 id="h-[a-z-]+">([^<]+)</h2>', home) == ["Top down", "Bottom up"]
-    links = re.findall(r'<a class="view-link" href="([^"]+)"', home)
-    assert links == ["growth.html", "menu.html", "industry-lens.html"] and all((tmp_path / h).exists() for h in links)
-    assert home.count("Coming soon") == 1  # the regulatory overview is not built yet
-    assert 'href="regulatory-overview.html"' not in home
-    assert 'location.replace("menu.html" + location.hash)' in home  # old index.html#<id> links reach the menu
+    assert re.findall(r'<a (?:class="brand" )?href="([^"#]+)"', nav) == built
+    short = ["Competitive conditions", "Legislative levers", "Industry lens", "Framework", "Methodology"]
+    assert re.findall(r'<a href="[^"]+"[^>]*>([^<]+)</a>', nav) == short
+    assert 'title="Structural competitive conditions"' in nav  # a short label carries the page's full name
+    assert nav.count(">Beta</span>") == 1 and "(beta)</" not in nav  # one badge, not one on every link
+    assert 'Regulatory overview <span class="nav-note">(coming soon)</span>' in nav
+    assert '<details class="nav-menu" open><summary>Menu</summary>' in nav  # folds behind a Menu button on a phone
+    # Every page is the same width: none sets its own.
+    for page in pages:
+        assert not re.search(r"\.wrap \{[^}]*max-width: (?!1240px)", (tmp_path / page).read_text("utf-8")), page
+    # Home: the figures, three questions to start from, then the other pages.
+    index_html = (tmp_path / "index.html").read_text("utf-8")
+    assert '<a class="brand" href="index.html" aria-current="page"' in index_html
+    assert not re.search(r"__[A-Z_]+__", index_html)
+    heads = re.findall(r'<h2 id="h-[a-z-]+">([^<]+)</h2>', index_html)
+    assert heads == ["Competition at a glance", "Start with a question", "More"]
+    routes = re.findall(r'<a class="btn primary"(?: id="pickGo")? href="([^"#]+)', index_html)
+    assert routes == ["growth.html", "menu.html", "industry-lens.html"]
+    assert all((tmp_path / h).exists() for h in routes)
+    assert index_html.count('<a class="tile" href=') == 4 and 'class="site-foot"' in index_html
+    assert index_html.count("Coming soon") == 1  # the regulatory overview is not built yet
+    assert 'href="regulatory-overview.html"' not in index_html
+    assert 'location.replace("menu.html" + location.hash)' in index_html  # old index.html#<id> links reach the menu
     for page in ("framework.html", "menu.html"):  # links into the menu skip the redirect
         assert not re.search(r'href="index\.html#', (tmp_path / page).read_text("utf-8")), page
     fw = (tmp_path / "framework.html").read_text("utf-8")
@@ -248,18 +261,21 @@ def test_the_archived_econometric_pages_are_built_only_when_asked(tmp_path):
     assert "<title>National Quality Framework" in one
     assert "archive.html#results" in one  # evaluation pages lead back to the archive, not the menu
     archive = (tmp_path / "archive.html").read_text("utf-8")
-    assert "Archived 28 October 2026" in archive and re.search(r'<a href="framework.html"[^>]*>Framework <', archive)
+    assert "Archived 28 October 2026" in archive and '<a href="framework.html">Framework</a>' in archive
     assert '<span class="beta">' not in archive  # the archive is finished, not a work in progress
     assert not re.search(r'href="index\.html#', archive)
     # Even built, the live pages don't link to it.
     assert "archive.html" not in (tmp_path / "menu.html").read_text("utf-8")
 
 
-def test_landing_links_only_pages_that_are_built():
-    html = growth.landing({"growth.html", "menu.html", "industry-lens.html"})
-    assert '<a class="view-link" href="industry-lens.html"' in html  # a new page becomes a link once it is built
-    assert html.count("Coming soon") == 1 and 'href="regulatory-overview.html"' not in html
-    assert html.index("Top down") < html.index("Bottom up")
+def test_home_links_only_pages_that_are_built():
+    built = {"growth.html", "menu.html", "industry-lens.html", "framework.html", "methodology.html"}
+    routes, more = home.routes_html(built), home.more_html(built)
+    assert routes.index("growth.html") < routes.index("menu.html") < routes.index("industry-lens.html")
+    assert more.count("Coming soon") == 1 and 'href="regulatory-overview.html"' not in more
+    # A new page becomes a link once it is built, and a page that is not built gets no card.
+    assert 'href="regulatory-overview.html"' in home.more_html(built | {"regulatory-overview.html"})
+    assert home.routes_html({"menu.html"}).count('class="panel route"') == 1
 
 
 def _costing_dist(tmp_path, html=None):

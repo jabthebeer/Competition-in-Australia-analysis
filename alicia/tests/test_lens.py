@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import re
 
-from alicia.menu import growth, lens
+from alicia.menu import growth, home, lens
 from alicia.pipeline import boundaries
 from alicia.register import competition as C
 from alicia.register.catalogue import load_records
@@ -116,18 +116,15 @@ def test_the_page_data_covers_every_class_state_and_law_and_points_at_real_files
     assert "total" in mixed["framework"]  # a total of 0 is kept, not dropped as empty
 
 
-def test_the_page_renders_with_no_placeholders_left_and_is_linked_from_the_landing_page():
+def test_the_page_renders_with_no_placeholders_left_and_is_linked_from_the_home_page():
     html = growth.render(lens.PAGE[0], lens.payload(load_records().records), lens.PAGE[0], standalone=True)
     assert not re.search(r"__[A-Z_]+__", html) and "<title>ALICIA Industry lens (beta)</title>" in html
-    link = (
-        r'<a href="industry-lens.html" aria-current="page"[^>]*>'
-        r'Industry lens <span class="beta-tag">\(beta\)</span></a>'
-    )
-    assert re.search(link, html)
+    assert '<a href="industry-lens.html" aria-current="page">Industry lens</a>' in html
     assert '<h1>Industry lens <span class="beta">' in html and 'class="beta-tip"' in html
     data = json.loads(re.search(r'id="page-data">(.*?)</script>', html, re.S).group(1))
     assert data["default"] == {"division": "H", "class": "", "state": "NSW"}  # a division first; its classes are tags
-    assert '<a class="view-link" href="industry-lens.html"' in growth.landing({"industry-lens.html"})
+    # Home's picker opens the lens on its default industry and state until the reader chooses others.
+    assert 'id="pickGo" href="industry-lens.html#division=H&amp;state=NSW"' in home.routes_html({"industry-lens.html"})
 
 
 def test_the_state_map_is_projected_into_a_1000_wide_frame():
