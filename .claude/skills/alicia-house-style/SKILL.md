@@ -33,7 +33,7 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   |---|---|
   | `home.html` | `index.html`, Home (built by `menu/home.py`; its figures come from the other pages' data) |
   | `growth.html` | Structural competitive conditions, in six tabs: an Overview, four on competition, and the Economic backdrop (the former economic conditions) |
-  | `explorer.html` | `menu.html`, Legislative levers influencing competition |
+  | `explorer.html` | `menu.html`, Legislative levers influencing competition, in two tabs: an Overview (biggest barriers, how they act, who sets them) and the register |
   | `industry-lens.html` | Industry lens |
   | `framework.html` | Framework |
   | `methodology.html` | Methodology (text in `menu/methodology.py`) |
@@ -43,6 +43,12 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   the pages grouped as Top down, Bottom up and About under short labels (`NAV_LABELS`). On a
   phone the groups fold behind a Menu button. `conditions.html` is only a forward to the Economic
   backdrop tab; nothing links to it.
+- **Exposure and impact classes:** `alicia/src/alicia/menu/exposure.py` counts the businesses each rule reaches
+  and classes it Major, wide; Major, narrow; or Minor (DECISIONS E-161, E-180). Show the figures with the class,
+  and state the coverage with any list of rules. Don't rank states.
+- **Own evidence first** (DECISIONS E-161; `docs/plan_policy_tool.md`): a page's headline findings come from the law
+  and data the tool ingests. What reviews found or recommend is labelled "What others recommend" or "What others
+  found", and comes second.
 - **Headline figures:** `alicia/src/alicia/menu/figures.py` works out Home's figures and the
   competition page's scorecard from the page data when the site is built. Don't type a headline
   figure into a template.
@@ -57,7 +63,7 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   ```bash
   cd alicia && uv run alicia site -o <scratchpad>/site --dates "$(ls ../regulation-register/reports/effective_dates_*.json | sort | tail -n 1)"
   ```
-- **Tests that pin page structure:** `tests/test_site.py`, `test_home.py`, `test_scorecard.py`, `test_explorer.py`,
+- **Tests that pin page structure:** `tests/test_site.py`, `test_home.py`, `test_scorecard.py`, `test_exposure.py`, `test_explorer.py`,
   `test_lens.py`, `test_framework_page.py` and `test_archive.py`. When a change is deliberate, update the test
   and say so in the PR. Never weaken a test only to get it to pass.
 
@@ -166,7 +172,7 @@ Also:
   - `.tabs` with `.tab-panel` for a long page's sections (see section 4);
   - `.findings` with `.finding` for a finding, its small chart (`.minibars`, `miniBars()` in
     `charts.js`) and a link to the detail;
-  - `.more` with `.more-link` for cards that link to other pages or tabs;
+  - `.more-links` with `.more-link` for cards that link to other pages or tabs;
   - `.btn`, and `.btn.primary` for a page's main action;
   - `.site-foot` (`growth.site_foot()`) for a page's closing lines.
 

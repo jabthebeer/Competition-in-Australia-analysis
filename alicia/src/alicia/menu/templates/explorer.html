@@ -39,6 +39,26 @@
 .tag.drv { border-color: var(--accent); color: var(--accent); }
 .tag.pos { border-color: var(--ink-2); color: var(--ink); }
 .tag.req-n { border-style: dashed; }
+/* Impact classes (DECISIONS E-161): the label is the signal; the fill only groups. */
+.tag.cls { border-color: var(--ink-2); color: var(--ink); font-weight: 500; }
+.tag.cls.major-wide { background: var(--mk-n2); border-color: var(--mk-n2-ink); color: var(--mk-n2-ink); }
+.tag.cls.major-narrow { background: var(--mk-n1); border-color: var(--mk-n2); }
+.tag.cls.minor { background: var(--surface); }
+.tiles.headline button.tile { font: inherit; text-align: left; cursor: pointer; }
+.tiles.headline button.tile:hover, .tiles.headline button.tile:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+table.big-table { width: 100%; }
+table.big-table th, table.big-table td { text-align: left; white-space: normal; font-family: var(--font-body); }
+table.big-table td.num, table.big-table th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; font-family: var(--font-mono); }
+table.big-table td:first-child { min-width: 14rem; }
+table.big-table th.num { font-family: var(--font-body); white-space: normal; }
+table.big-table .rowbtn { font: inherit; background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; text-align: left; }
+.big-foot { margin: 8px 0 0; }
+.panel.big, .panel.who { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+.panel.who .minibars { max-width: 40rem; }
+button.more-link { font: inherit; text-align: left; background: var(--surface); cursor: pointer; }
+button.more-link:hover, button.more-link:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+dl.expo { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; font-size: var(--step--1); }
+dl.expo dt { color: var(--ink-2); } dl.expo dd { margin: 0; font-variant-numeric: tabular-nums; }
 /* An effect on one market position: the mark fills, with a sign. */
 .eff { display: inline-block; font-size: var(--step--1); padding: 1px 9px; border-radius: 999px; white-space: nowrap; font-weight: 500; }
 .pill { display: inline-block; font-size: var(--step--1); padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
@@ -403,26 +423,60 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     <!--__NAV__-->
     <p class="kicker">ALICIA · Top down</p>
     <h1>Legislative levers influencing competition <!--__BETA__--></h1>
-    <p class="lede">Laws, business requirements and other barriers that affect competition in Australia. Each is marked against the <a href="framework.html">productivity framework</a> and tagged with the market position it affects most, as on the <a href="industry-lens.html">Industry lens</a>.</p>
+    <p class="lede">The laws, business requirements and other barriers that affect competition in Australia: which matter most, how they act and who sets them.</p>
     <div class="meta-line" id="metaLine"></div>
   </header>
 
+  <div class="tabs" role="tablist" aria-label="Sections of this page">
+    <button type="button" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">Overview</button>
+    <button type="button" role="tab" id="tab-browse" aria-controls="panel-browse" aria-selected="false" tabindex="-1">Browse the register</button>
+  </div>
+
+  <div class="tab-panel" role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
+  <section class="block" aria-labelledby="h-big">
+    <div class="block-head">
+      <h2 id="h-big">Biggest barriers<button type="button" class="term info" data-term="helpBig" aria-label="About the impact classes" aria-describedby="def-helpBig">i</button></h2>
+      <p class="sub" id="bigLede"></p>
+    </div>
+    <div class="tiles headline" id="bigTiles"></div>
+    <div class="panel big">
+      <div class="chips" id="bigKey" role="group" aria-label="Impact class to list"></div>
+      <div class="tscroll"><table class="data big-table" id="bigTable"></table></div>
+      <p class="big-foot"><button type="button" class="lnk" id="bigMore"></button></p>
+      <p class="source" id="bigSrc"></p>
+      <details class="more"><summary>About these figures</summary><p id="bigNote"></p><p id="bigCover"></p></details>
+    </div>
+  </section>
+
   <section class="block" aria-labelledby="h-glance">
+    <div class="block-head"><h2 id="h-how">How barriers act</h2><p class="sub">Each item's main driver of productivity, and its overall mark. Choose a bar to list its items.</p></div>
     <div class="panel glance">
       <div class="stack">
         <div class="block-head">
-          <h2 id="h-glance">What weighs on productivity<button type="button" class="term info" data-term="helpGlance" aria-label="About this chart" aria-describedby="def-helpGlance">i</button></h2>
+          <h3 id="h-glance">What weighs on productivity<button type="button" class="term info" data-term="helpGlance" aria-label="About this chart" aria-describedby="def-helpGlance">i</button></h3>
         </div>
         <div class="chips glance-key" id="glanceKey" role="group" aria-label="Types to show in the chart and list"></div>
         <div class="dv" id="dv" role="group" aria-label="Items by main driver"></div>
       </div>
       <div class="stack">
-        <h2>Overall marks<button type="button" class="term info" data-term="helpMarks" aria-label="About the overall marks" aria-describedby="def-helpMarks">i</button></h2>
+        <h3>Overall marks<button type="button" class="term info" data-term="helpMarks" aria-label="About the overall marks" aria-describedby="def-helpMarks">i</button></h3>
         <div class="ratings" id="ratingBars"></div>
       </div>
     </div>
   </section>
 
+  <section class="block" aria-labelledby="h-who">
+    <div class="block-head"><h2 id="h-who">Who sets the rules</h2><p class="sub" id="whoLede"></p></div>
+    <div class="panel who"><div class="minibars" id="whoBars"></div><p class="note" id="whoNote"></p></div>
+  </section>
+
+  <section class="block" aria-labelledby="h-more">
+    <div class="block-head"><h2 id="h-more">More in the register</h2></div>
+    <div class="more-links" id="moreLinks"></div>
+  </section>
+  </div>
+
+  <div class="tab-panel" role="tabpanel" id="panel-browse" aria-labelledby="tab-browse" hidden>
   <section class="panel filters" aria-label="Filters">
     <div class="filter-row">
       <label class="filter-label" for="q">Search</label>
@@ -430,6 +484,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       <button class="reset" id="reset" type="button">Clear all filters</button>
     </div>
     <div class="filter-row"><span class="filter-label">Main driver</span><div class="chips" id="f-driver"></div></div>
+    <div class="filter-row"><span class="filter-label"><span data-term="helpBig">Impact class</span></span><div class="chips" id="f-impact"></div></div>
     <div class="filter-row"><span class="filter-label">Overall mark</span><div class="chips" id="f-rating"></div></div>
     <div class="filter-row"><span class="filter-label"><span data-term="mostAffects">Most affects</span></span><div class="chips" id="f-pos"></div></div>
     <details class="more-filters" id="moreFilters"><summary>More filters<span id="moreCount"></span></summary><div class="filters-more">
@@ -457,20 +512,21 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
           <button class="tab" role="tab" id="tab-list" aria-selected="true" aria-controls="view-list">List</button>
           <button class="tab" role="tab" id="tab-scorecard" aria-selected="false" aria-controls="view-scorecard">Scorecard</button>
           <button class="tab" role="tab" id="tab-timeline" aria-selected="false" aria-controls="view-timeline">Timeline</button>
-          <button class="tab" role="tab" id="tab-recs" aria-selected="false" aria-controls="view-recs">Recommendations</button>
+          <button class="tab" role="tab" id="tab-recs" aria-selected="false" aria-controls="view-recs">What others recommend</button>
           <button class="tab" role="tab" id="tab-ind" aria-selected="false" aria-controls="view-ind">Industries</button>
         </div>
         <label class="sortbox">Sort <select id="sort">
-          <option value="new">Newest first</option><option value="old">Oldest first</option>
+          <option value="new">Newest first</option><option value="old">Oldest first</option><option value="big">Biggest barriers first</option>
           <option value="neg">Most negative first</option><option value="pos">Most positive first</option><option value="title">Title</option>
         </select></label>
       </div>
       <div class="count-row"><p class="count-line" id="countLine" aria-live="polite"></p><span class="grp-legend" id="grpLegend"><span class="grp-icon" id="grpLegendIcon"></span>A group of related items, often one policy in several states. Click to open.</span><button type="button" class="lnk" id="toggleGroups"></button></div>
       <div id="view-list" role="tabpanel" aria-labelledby="tab-list">
         <table class="list">
-          <thead><tr><th>Effective</th><th>Jur.</th><th>Item</th><th>Main driver</th><th>Overall mark</th><th>Most affects</th><th>Reach</th></tr></thead>
+          <thead><tr><th>Effective</th><th>Jur.</th><th>Item</th><th>Main driver</th><th>Overall mark</th><th>Most affects</th><th>Impact class</th></tr></thead>
           <tbody id="rows"></tbody>
         </table>
+        <p class="big-foot"><button type="button" class="lnk" id="listMore" hidden></button></p>
       </div>
       <div id="view-scorecard" role="tabpanel" aria-labelledby="tab-scorecard" hidden>
         <div class="sc-wrap"><table class="sc" id="sc"></table></div>
@@ -494,9 +550,11 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       <p>Select an item to see its productivity assessment, where it acts in the market, the industries it affects and its sources.</p>
     </aside>
   </div>
+  </div>
 
   <footer class="foot" id="foot"></footer>
 </div>
+<noscript><style>.tab-panel[hidden] { display: grid !important; } .tabs { display: none; }</style></noscript>
 
 <script type="application/json" id="page-data">__PAGE_DATA__</script>
 <script>
@@ -570,6 +628,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     touchpoints: ["Government parties", "The distinct agencies, by tier, that a business deals with directly under a regime: those that license, approve, inspect, collect or fund. Setting the rules is not counted."],
     ...Object.fromEntries(Object.entries(DATA.issueTags || {}).map(([k, t]) => [`cx-${k}`, [t.label, t.help]])),
     helpGlance: ["What weighs on productivity", "Items by their main driver (the driver with the largest mark): those marked negative overall to the left, positive to the right. Each bar is split into laws and policies (solid), requirements (striped) and non-legislative barriers (lined); a key above the chart shows one type only. Requirements are marked mostly on their compliance cost and the hurdle they put before entry, so they lean negative: the marks show effects on productivity and competition, not whether a law is worthwhile. Click a driver to filter. Counts follow the filters below."],
+    helpBig: ["Impact classes", `${(DATA.impactClasses || []).map((c) => `${c.label}: ${c.help.charAt(0).toLowerCase()}${c.help.slice(1)}`).join(" ")} Only rules that apply today and have a negative overall mark are classed. ${DATA.exposureNote || ""}`],
     helpMarks: ["Overall marks", "Each item's marks on the eight drivers added up, split by type as in the chart beside it. Most reforms in the register were first chosen because they could be evaluated with public data, so the register is not yet a balanced sample of everything that weighs on productivity."],
     mostAffects: ["Most affects", "The market position where an item's marks weigh most: entrants (starting up, or entering from other states and countries), existing competitors (their costs, and their ability and incentive to compete), or monopolies and oligopolies (shelter from rivals, or exposure to them). A tie names each. The Industry lens uses the same coding."],
     legislative: ["Legislative influence", "A law, regulation or government policy, or a requirement a law places on businesses. A non-legislative barrier (market structure, business conduct or practice) has its own tag."],
@@ -658,12 +717,24 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   }
 
   // --- State --------------------------------------------------------------------------------------
-  const state = { q: "", driver: new Set(), rating: new Set(), type: new Set(), pos: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", cx: new Set(), regime: "", indSort: "parties", open: new Set(), selected: null, tab: "list", sort: "new" };
+  const state = { q: "", driver: new Set(), rating: new Set(), type: new Set(), pos: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", cx: new Set(), regime: "", indSort: "parties", open: new Set(), selected: null, tab: "list", sort: "new", impact: new Set(), big: "major-wide", bigAll: false, listAll: false };
+  // The page's two tabs (Overview; Browse the register). The views inside Browse keep their own switcher, below.
+  const pageTabs = initTabs(document.querySelector('.tabs[role="tablist"]'));
+  const LIST_FIRST = 60, BIG_FIRST = 10;
+  const ICLS = Object.fromEntries((DATA.impactClasses || []).map((c) => [c.id, c]));
+  const ICLS_ORDER = Object.keys(ICLS);
+  const clsRank = (r) => { const i = ICLS_ORDER.indexOf(r.impactClass); return i < 0 ? ICLS_ORDER.length : i; };
+  const bizOf = (r) => (r.exposure && r.exposure.businesses) || 0;
+  // Biggest first: by impact class, then the size of the effect on each business (the overall mark), then the
+  // businesses reached.
+  const byImpact = (a, b) => clsRank(a) - clsRank(b) || ((A(a) ? A(a).total : 0) - (A(b) ? A(b).total : 0)) || bizOf(b) - bizOf(a) || a.title.localeCompare(b.title);
+  const clsTag = (r) => (r.impactClass ? `<span class="tag cls ${esc(r.impactClass)}" title="${esc(ICLS[r.impactClass].help)}">${esc(ICLS[r.impactClass].label)}</span>` : `<span class="muted" title="${esc(r.standing ? "No negative mark, or its businesses can't be counted" : "A change to the rules, not a rule that applies today")}">–</span>`);
 
   function matches(r, skip) {
     const a = A(r);
     if (skip !== "driver" && state.driver.size && !(a && state.driver.has(a.main_driver))) return false;
     if (skip !== "rating" && state.rating.size && !(a && state.rating.has(a.rating))) return false;
+    if (state.impact.size && !state.impact.has(r.impactClass)) return false;
     if (state.type.size && !state.type.has(r.group)) return false;
     if (state.pos.size && !r.most.some((p) => state.pos.has(p))) return false;
     if (state.jur.size && !state.jur.has(r.jurisdiction)) return false;
@@ -693,6 +764,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     neg: (a, b) => ((A(a) ? A(a).total : 0) - (A(b) ? A(b).total : 0)) || byDate(b, a),
     pos: (a, b) => ((A(b) ? A(b).total : 0) - (A(a) ? A(a).total : 0)) || byDate(b, a),
     title: (a, b) => a.title.localeCompare(b.title),
+    big: (a, b) => byImpact(a, b),
   };
 
   // --- Filters ------------------------------------------------------------------------------------
@@ -701,6 +773,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     el.innerHTML = options.map((o) => `<button type="button" class="chip" data-key="${key}" data-val="${esc(o.value)}" aria-pressed="false" title="${esc(`${o.title ? `${o.title} ` : ""}(${o.n} item${o.n === 1 ? "" : "s"})`)}">${o.icon || ""}${esc(o.label)}</button>`).join("");
   }
   chipGroup($("f-driver"), "driver", DRV_KEYS.map((d) => ({ value: d, label: DRV[d].short, title: DRV[d].question, n: count((r) => A(r) && A(r).main_driver === d) })));
+  chipGroup($("f-impact"), "impact", ICLS_ORDER.map((k) => ({ value: k, label: ICLS[k].label, title: ICLS[k].help, n: count((r) => r.impactClass === k) })));
   chipGroup($("f-rating"), "rating", RATING_ORDER.map((k) => ({ value: k, label: RATING_LABEL[k], icon: `<i class="sw ${RATING_CLS[k]}" aria-hidden="true"></i>`, n: count((r) => A(r) && A(r).rating === k) })));
   const typeChips = (withN) => GROUP_ORDER.map((g) => ({ value: g, label: withN ? `${IGRP[g].label} ${count((r) => r.group === g)}` : IGRP[g].label, title: IGRP[g].help,
     icon: `<i class="sw ${g}" aria-hidden="true"></i>`, n: count((r) => r.group === g) }));
@@ -749,7 +822,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   });
   $("reset").addEventListener("click", () => {
     state.q = ""; state.status = ""; state.div = ""; state.body = "";
-    ["driver", "rating", "type", "pos", "jur", "reach", "cx"].forEach((k) => state[k].clear());
+    ["driver", "rating", "type", "pos", "jur", "reach", "cx", "impact"].forEach((k) => state[k].clear());
     state.regime = "";
     $("q").value = ""; $("f-status").value = ""; $("f-div").value = ""; $("f-body").value = "";
     syncChips();
@@ -792,6 +865,8 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       state.driver.has(d) ? state.driver.delete(d) : state.driver.add(d);
       syncChips();
       render();
+      // The bars sit on the Overview: choosing one opens the list it filters.
+      if (state.driver.has(d) && pageTabs.current() === "overview") { if (state.tab !== "list") setTab("list"); pageTabs.open("browse"); $("panel-browse").scrollIntoView({ block: "start" }); }
     }));
     // Each rating's fill, and a darker partner for the stripes of requirements and barriers.
     const SEGC = { "strongly-positive": ["--mk-p2", "--mk-p2-ink"], positive: ["--mk-p1", "--mk-p2"], neutral: ["--mk-0", "--ink-3"],
@@ -825,7 +900,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     const mini = (a) => `<span class="badge ${RATING_CLS[a.rating]}" title="${esc(RATING_LABEL[a.rating])}"><span class="n">${esc(signed(a.total))}</span></span>`;
     const mark = !as.length ? "" : lo === hi ? ratingBadge(as[0]) : `<span class="mark-range" title="${esc(`Overall marks range from ${signed(lo)} to ${signed(hi)}; open the row to see each jurisdiction`)}">${mini(loA)}<span class="to">to</span>${mini(hiA)}</span>`;
     const drv = same(as.map((a) => a.main_driver)) && as.length ? (as[0].main_driver ? drvTag(as[0].main_driver) : "") : "Varies";
-    const reach = same(as.map((a) => a.reach)) && as.length ? esc(reachLabel(as[0].reach)) : "Varies";
+    const reach = same(items.map((r) => r.impactClass)) ? clsTag(items[0]) : "Varies";
     const most = same(items.map((r) => (r.most || []).join(" "))) ? mostTags(items[0]) : "Varies";
     return { eff, jur: items.length === all ? `${jurs.length}` : `${items.length} of ${all}`, jurTitle: jurs.join(", "), mark, drv, reach, most };
   }
@@ -842,11 +917,15 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
         <td>${a && a.main_driver ? drvTag(a.main_driver) : ""}</td>
         <td>${ratingBadge(a)}</td>
         <td class="c-most">${mostTags(r)}</td>
-        <td>${a ? esc(reachLabel(a.reach)) : ""}</td>
+        <td>${clsTag(r)}</td>
       </tr>`;
   }
   function renderList(rows) {
-    $("rows").innerHTML = units(rows).map((u) => {
+    // A long list opens on its first rows; the rest are one click away.
+    const us = units(rows), cut = !state.listAll && us.length > LIST_FIRST;
+    $("listMore").hidden = !cut;
+    $("listMore").textContent = cut ? `Show all ${us.length} rows` : "";
+    $("rows").innerHTML = (cut ? us.slice(0, LIST_FIRST) : us).map((u) => {
       if (u.r) return itemRow(u.r, false);
       const c = groupCells(u), open = state.open.has(u.g), G = GROUPS[u.g];
       const head = `<tr class="grp-row${open ? " open" : ""}" id="grp-${esc(u.g)}" data-group="${esc(u.g)}">
@@ -1080,6 +1159,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       </div>
       ${marketHtml(r)}
       ${assessHtml(a)}
+      ${fold("Businesses it reaches", exposureHtml(r), exposureShort(r), true)}
       ${fold("The law", `<p class="small">${lawsLine(r)}</p>${quoteList(r.sources)}`, "", true)}
       ${fold("When it applies", triggersHtml(r), "", true)}
       ${fold("Who it reaches", reachHtml(r), r.allIndustries ? "every industry" : `${r.industries.length} industr${r.industries.length === 1 ? "y" : "ies"}`, true)}
@@ -1310,9 +1390,10 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       </div>
       ${marketHtml(r)}
       ${assess}
+      ${fold("Businesses it reaches", exposureHtml(r), exposureShort(r), true)}
       ${fold("Requirements under this item", nestedHtml(r), `${nReq}`, true)}
       ${fold("Regulatory complexity", complexityHtml(r), nRegs ? `${nRegs} regime${nRegs === 1 ? "" : "s"}${nTags ? ` · ${nTags} issue tag${nTags === 1 ? "" : "s"}` : ""}` : "")}
-      ${fold("What government could do", recsHtml(r), recsN ? `${recsN} recommendation${recsN === 1 ? "" : "s"}` : "none yet")}
+      ${fold("What others recommend", recsHtml(r), recsN ? `${recsN} recommendation${recsN === 1 ? "" : "s"}` : "none yet")}
       ${fold("Who is responsible", whoHtml(r), whoShort(r))}
       ${fold("Timeline", timelineHtml(r), later ? `${later} later change${later === 1 ? "" : "s"}` : "")}
       ${fold("The industries affected", industries, r.industries.length ? `${r.industries.length} industr${r.industries.length === 1 ? "y" : "ies"}` : "economy-wide")}
@@ -1394,10 +1475,11 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     <p><strong>Types of item.</strong> Reforms, existing settings and the requirements laws place on businesses are all legislative influences; the page splits them into laws and policies (the register's items) and requirements. A non-legislative barrier (market structure, business conduct or practice) keeps its own tag.</p>
     <p><strong>Requirements.</strong> A requirement is one thing a law requires a business to do, in one jurisdiction: register, hold a licence, get an approval, pay, report or meet a standard. Each one quotes its law from the official register (for NSW and SA, sometimes from the Open Australian Legal Corpus copy of the official text, which is not itself official) and lists the industries (ANZSIC classes) it reaches. A requirement that belongs to an item on this page (the same law in force) is shown inside that item, not as a row of its own. The same requirements appear on the <a href="industry-lens.html">Industry lens</a>, by industry and state. They are drafts from AI-assisted desk research and have not yet been checked. Method: <code>docs/methods_legislation_links.md</code>.</p>
     <p><strong>Where an item acts in the market.</strong> Each mark is placed with the market players it acts through, as on the Industry lens: entrants, existing competitors, or monopolies and oligopolies. An item most affects the position whose marks weigh most; a tie names each. Method: <code>docs/industry_lens.md</code>.</p>
+    <p><strong>Impact classes and businesses reached.</strong> ${esc(DATA.exposureNote || "")} Method: <code>docs/plan_policy_tool.md</code>.</p>
     <p><strong>Industry statistics.</strong> ${esc(DATA.statsNote)} Sources: ${fsrc || "not available in this build"}.</p>
     <p><strong>Who is responsible.</strong> Each item names the department that administers the law (or leads policy on it) and the bodies that regulate under it. Commonwealth, Queensland, Tasmanian, Victorian and ACT departments come from each government's administrative arrangements; other states' from their legislation sites and portfolio lists. Each tag links to its source, and notes say where an allocation was inferred rather than read from an order. Choosing a department in the filter includes the agencies in it.</p>
     <p><strong>Timeline.</strong> Each item's own dates, then later changes to the law or setting (amendments, easings, repeals), each with its source. A repealed or replaced item stays in the register, marked as no longer in force, so its assessment can still be read.</p>
-    <p><strong>What government could do.</strong> Recommendations come from Australian and international reviews and research: the Productivity Commission, the Harper and Henry reviews, state productivity commissions, Treasury reviews and overseas regulators. Each one quotes the exact words of its sources; quotes were checked against the full text of each document, except where marked as read from a web page. They are drafts compiled by AI-assisted desk research and have not yet been checked. Where no recommendation is given, the item says why.</p>
+    <p><strong>What others recommend.</strong> Recommendations come from Australian and international reviews and research: the Productivity Commission, the Harper and Henry reviews, state productivity commissions, Treasury reviews and overseas regulators. Each one quotes the exact words of its sources; quotes were checked against the full text of each document, except where marked as read from a web page. They are drafts compiled by AI-assisted desk research and have not yet been checked. Where no recommendation is given, the item says why.</p>
     <p><strong>Regulatory complexity.</strong> ${esc(DATA.complexityNote || "")} ${REGS.length} regimes are mapped to all ${IND.length} detailed industries (ANZSIC classes) in the Industries view. Sources: Productivity Commission inquiries and benchmarking studies, national and state reviews, business.gov.au and regulator pages; drafts compiled by AI-assisted desk research, not yet checked. Method: <code>docs/industry_regulation.md</code>.</p>
     <p><strong>Register check.</strong> ${esc(DATA.checkNote)}</p>
     <p><strong>Sources.</strong> Industry codes: ABS ANZSIC 2006. Every date in a record links to its source. Unofficial research, not an Australian Government product.</p>
@@ -1407,12 +1489,108 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     </details>
     <p class="notice" id="draftNotice">${draftNotice}</p>`;
 
+  // --- Overview -----------------------------------------------------------------------------------
+  // Rules that apply today, by impact class, with the businesses each reaches (DECISIONS E-161). The figures do not
+  // follow the filters: they describe the whole register.
+  const nf = (v) => (v === null || v === undefined ? "–" : Math.round(v).toLocaleString("en-AU"));
+  const pct = (v) => (v === null || v === undefined ? "–" : `${v < 0.05 && v > 0 ? "<0.1" : v.toFixed(1)}%`);
+  const expoYear = DATA.exposureYear ? `June ${DATA.exposureYear}` : "";
+  function exposureShort(r) {
+    const e = r.exposure;
+    return e && e.businesses !== null ? `${nf(e.businesses)} businesses` : "";
+  }
+  function exposureHtml(r) {
+    const e = r.exposure;
+    if (!e || e.businesses === null) return `<p class="muted small">Business counts are not available in this build.</p>`;
+    const where = r.jurisdiction === "CTH" ? "Australia" : (DATA.places[r.jurisdiction] || r.jurisdiction);
+    const cls = r.impactClass ? `${clsTag(r)} <span class="small">${esc(ICLS[r.impactClass].help)}</span>` : `<span class="small">${esc(r.standing ? "Not classed: it has no negative overall mark." : "Not classed: this is a change to the rules, not a rule that applies today.")}</span>`;
+    return `<dl class="expo">
+      <dt>Impact class</dt><dd>${cls}</dd>
+      <dt>Businesses in the industries it reaches</dt><dd>${e.partial ? "up to " : ""}${nf(e.businesses)} (${esc(expoYear)})</dd>
+      <dt>Of which, with employees</dt><dd>${nf(e.employing)}</dd>
+      <dt>Share of businesses in ${esc(where)}</dt><dd>${pct(e.share)}</dd>
+      ${r.jurisdiction === "CTH" ? "" : `<dt>Share of businesses in Australia</dt><dd>${pct(e.shareAus)}</dd>`}
+      <dt>Detailed industries reached</dt><dd>${e.allIndustries ? "All" : `${e.classes} of ${IND.length || 506}`}</dd>
+    </dl>
+    <p class="small muted">${e.council ? "Counted for the whole state: business counts by council are not held. " : e.partial ? "This rule binds only the businesses doing the activity it names, so the count is an upper bound and the rule is not classed as wide. " : e.beyond ? "It also binds some businesses in other industries, where they do the activity it names; they are not counted. " : "An upper bound where the rule binds only some businesses in an industry. "}Source: ABS, Counts of Australian Businesses.</p>`;
+  }
+  const BIG = R.filter((r) => r.impactClass);
+  const kindOf = (r) => (isReq(r) ? r.obligation : r.group === "barrier" ? ITAG.barrier.label : "Law or policy");
+  // One policy in several states is one line: the family's name, the governments that have it and their businesses
+  // added up.
+  function bigUnits(rows) {
+    const out = [], seen = new Map();
+    rows.forEach((r) => {
+      const g = groupOf(r);
+      if (!g) { out.push({ items: [r] }); return; }
+      if (!seen.has(g)) { const u = { g, items: [] }; seen.set(g, u); out.push(u); }
+      seen.get(g).items.push(r);
+    });
+    return out;
+  }
+  function renderBig() {
+    const rows = BIG.filter((r) => r.impactClass === state.big).sort(byImpact);
+    const us = bigUnits(rows), shown = state.bigAll ? us : us.slice(0, BIG_FIRST);
+    $("bigKey").innerHTML = ICLS_ORDER.map((k) => `<button type="button" class="chip" data-class="${esc(k)}" aria-pressed="${state.big === k}" title="${esc(ICLS[k].help)}">${esc(ICLS[k].label)} ${BIG.filter((r) => r.impactClass === k).length}</button>`).join("");
+    $("bigKey").querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => { state.big = b.dataset.class; state.bigAll = false; renderBig(); }));
+    const setBy = (r) => (r.jurisdiction === "CTH" ? "Commonwealth" : r.council ? `${r.council} (${r.jurisdiction})` : r.jurisdiction);
+    const line = (u) => {
+      const r = u.items[0], many = u.items.length > 1;
+      const biz = u.items.reduce((s, x) => s + x.exposure.businesses, 0);
+      // The share of the businesses in the jurisdictions that have the rule.
+      const base = u.items.reduce((s, x) => s + (x.exposure.share ? x.exposure.businesses / x.exposure.share * 100 : 0), 0);
+      const totals = u.items.map((x) => A(x).total), lo = Math.min(...totals), hi = Math.max(...totals);
+      const partial = u.items.some((x) => x.exposure.partial);
+      const classes = Math.max(...u.items.map((x) => x.exposure.classes));
+      return `<tr><td><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(many ? GROUPS[u.g].title : r.title)}</button></td>
+        <td${many ? ` title="${esc(u.items.map((x) => x.jurisdiction).join(", "))}"` : ""}>${many ? `${u.items.length} governments` : esc(setBy(r))}</td><td>${esc(kindOf(r))}</td>
+        <td class="num">${esc(lo === hi ? signed(lo) : `${signed(lo)} to ${signed(hi)}`)}</td><td class="num">${partial ? `<span class="muted">up to</span> ` : ""}${nf(biz)}</td><td class="num">${pct(base ? biz / base * 100 : null)}</td>
+        <td class="num">${u.items.every((x) => x.exposure.allIndustries) ? "All" : classes}</td></tr>`;
+    };
+    $("bigTable").innerHTML = `<thead><tr><th scope="col">Rule</th><th scope="col">Set by</th><th scope="col">Kind</th><th scope="col" class="num">Overall mark</th><th scope="col" class="num">Businesses reached</th><th scope="col" class="num">Share of jurisdiction</th><th scope="col" class="num">Industries</th></tr></thead>
+      <tbody>${shown.map(line).join("") || `<tr><td colspan="7">None recorded.</td></tr>`}</tbody>`;
+    $("bigTable").querySelectorAll(".rowbtn").forEach((b) => b.addEventListener("click", () => { select(b.dataset.id); pageTabs.open("browse"); $("detail").scrollIntoView({ block: "start" }); }));
+    $("bigMore").hidden = us.length <= BIG_FIRST;
+    $("bigMore").textContent = state.bigAll ? `Show the first ${BIG_FIRST}` : `Show all ${us.length}`;
+  }
+  $("bigMore").addEventListener("click", () => { state.bigAll = !state.bigAll; renderBig(); });
+  $("listMore").addEventListener("click", () => { state.listAll = true; render(); });
+  (function renderOverview() {
+    const standing = R.filter((r) => r.standing), n = (k) => BIG.filter((r) => r.impactClass === k).length;
+    $("bigLede").textContent = `${BIG.length} of the ${standing.length} rules that apply today are marked as weighing on productivity. They are ranked by how many businesses they reach and how large their effect is on each.`;
+    const tile = (k, what) => `<button type="button" class="tile" data-class="${esc(k)}"><span class="t-label">${esc(ICLS[k].label)}</span><span class="t-value">${n(k)}</span><span class="t-sub">${esc(what)}</span></button>`;
+    $("bigTiles").innerHTML = ICLS[ICLS_ORDER[0]] ? [tile("major-wide", "rules that reach a quarter or more of the businesses in their jurisdiction"),
+      tile("major-narrow", "rules with a large effect on a small set of industries"), tile("minor", "rules with a small effect on a small set of industries")].join("") : "";
+    $("bigTiles").querySelectorAll(".tile").forEach((b) => b.addEventListener("click", () => { state.big = b.dataset.class; state.bigAll = false; renderBig(); $("bigKey").scrollIntoView({ block: "nearest" }); }));
+    $("bigSrc").innerHTML = `Source: ALICIA register (draft); ${link("https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/latest-release", "ABS, Counts of Australian Businesses, including Entries and Exits")}${expoYear ? `, ${esc(expoYear)}` : ""}.`;
+    $("bigNote").textContent = DATA.exposureNote || "";
+    // Coverage, stated with the finding (the owner's rule: no ranking of states until coverage is even).
+    const reqs = R.filter(isReq).concat(Object.keys(NESTED).length ? R.flatMap((r) => r.requirements || []) : []);
+    const byJ = (j) => reqs.filter((q) => q.jurisdiction === j && q.tier !== "local").length;
+    const states = JURS.filter((j) => j !== "CTH").map(byJ);
+    $("bigCover").textContent = `Coverage: the register holds ${byJ("CTH")} Commonwealth requirements, between ${Math.min(...states)} and ${Math.max(...states)} for each state and territory, and ${reqs.filter((q) => q.tier === "local").length} council requirements. State and council law is far from fully recorded, so the list is not a ranking of states.`;
+    // Who sets the rules: by level of government.
+    const lvl = (r) => (r.tier === "local" ? "council" : r.jurisdiction === "CTH" ? "cth" : "state");
+    const levels = [["cth", "Commonwealth"], ["state", "States and territories"], ["council", "Councils"]].map(([k, label]) => ({ label, value: BIG.filter((r) => lvl(r) === k).length, color: "var(--mk-n2)" }));
+    miniBars($("whoBars"), levels, { fmt: (v) => `${v}` });
+    $("whoLede").textContent = `The ${BIG.length} rules marked as weighing on productivity, by the level of government that sets them.`;
+    $("whoNote").textContent = "Commonwealth law has been screened most fully. State and council counts will rise as more of their law is recorded.";
+    const nRecs = Object.keys(RECS).length;
+    const card = (go, name, desc) => `<button type="button" class="more-link" data-go="${go}"><span class="name">${esc(name)}</span><span class="desc">${esc(desc)}</span></button>`;
+    $("moreLinks").innerHTML = card("list", "Every item", `${R.length} laws, requirements and barriers, with filters, a scorecard and a timeline.`)
+      + card("recs", "What others recommend", `${nRecs} recommendations from published reviews, each quoted from its source.`)
+      + card("ind", "Regulation by industry", `The regimes each of the ${IND.length} detailed industries deals with.`);
+    $("moreLinks").querySelectorAll("[data-go]").forEach((b) => b.addEventListener("click", () => { setTab(b.dataset.go); pageTabs.open("browse"); $("panel-browse").scrollIntoView({ block: "start" }); }));
+    renderBig();
+  })();
+
   render();
   // #<record id> opens an item; #driver=<driver> filters by main driver (links from the Framework page); #body=<id>
   // filters by department or agency (ids in regulation-register/bodies.json); #rec=<id> opens a recommendation;
   // #complexity=<tag> filters by complexity tag; #industries opens the Industries view; #regime=<id> opens a
   // regulatory regime and #class=<ANZSIC class> an industry; #<requirement id> opens a requirement, or the item it sits in.
   const fromHash = decodeURIComponent((location.hash || "").slice(1));
+  let deep = true;
   if (fromHash.startsWith("driver=") && DRV[fromHash.slice(7)]) { state.driver.add(fromHash.slice(7)); syncChips(); render(); }
   else if (fromHash.startsWith("body=") && B[fromHash.slice(5)]) { state.body = fromHash.slice(5); $("f-body").value = state.body; $("moreFilters").open = true; render(); }
   else if (fromHash.startsWith("complexity=") && TAGS[fromHash.slice(11)]) { state.cx.add(fromHash.slice(11)); syncChips(); $("moreFilters").open = true; render(); }
@@ -1430,6 +1608,14 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     select(NESTED[fromHash], true);
     const card = $(`req-${fromHash}`);
     if (card) { card.classList.add("hl"); card.scrollIntoView({ block: "center" }); } else $("detail").scrollIntoView({ block: "start" });
+  }
+  else deep = false;
+  // A link to an item, a filter or a view opens the register, where it shows.
+  if (deep) {
+    pageTabs.open("browse");
+    // The panel was closed while the item was opened, so bring it into view now.
+    const hl = document.querySelector("#panel-browse .hl");
+    if (hl) hl.scrollIntoView({ block: "center" }); else if (state.selected) $("detail").scrollIntoView({ block: "start" });
   }
 })();
 </script>

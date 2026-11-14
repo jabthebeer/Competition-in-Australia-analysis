@@ -158,7 +158,8 @@ header.top h1 { position: relative; }
 .tab-panel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
 .tab-panel > * { min-width: 0; }
 /* Link cards: a short list of places to go next, each a name and a line on what is there. */
-.more { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 12px; }
+/* (Not .more: that is the class of the "About this chart" drop-downs.) */
+.more-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 12px; }
 .more-link { display: grid; gap: 2px; align-content: start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); text-decoration: none; }
 a.more-link:hover, a.more-link:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
 .more-link .name { font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }

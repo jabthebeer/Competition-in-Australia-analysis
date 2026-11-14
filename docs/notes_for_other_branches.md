@@ -55,7 +55,7 @@ Check each script's own header for its arguments before you run it. `links.csv.g
 ### 5. `alicia/DECISIONS.md`
 
 - Rows are added at the end, so two branches always conflict there. Keep both sets of rows, in number order.
-- **E-161 is taken. Use E-162 to E-179.** The website session will use **E-180 onwards**, so the numbers can't collide.
+- **E-161 is taken. Use E-162 to E-179.** The website session uses **E-180 onwards** (E-180 is taken), so the numbers can't collide.
 - One row for each batch, as now.
 
 ### 6. Check before you push
@@ -82,7 +82,7 @@ Never push to `main`. Say in the pull request which batch it is, how many requir
 
 ### What the website shows from your data, with no code change
 
-New requirements and register items appear on Legislative levers, the Industry lens and Register data as soon as they are merged. The headline counts, the impact classes and the exposure figures are worked out when the site is built.
+New requirements and register items appear on Legislative levers and the Industry lens as soon as they are merged (and on Register data, once it is built). The headline counts, the impact classes and the exposure figures are worked out when the site is built.
 
 ## Website overhaul in progress (DECISIONS E-159)
 

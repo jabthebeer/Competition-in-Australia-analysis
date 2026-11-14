@@ -118,6 +118,8 @@ function initTabs(list, opts = {}) {
   const { tab, target } = fromHash();
   show(tab);
   if (target) target.scrollIntoView({ block: "start" });
+  // For the page's own code: open a tab by its key without changing the address.
+  return { open: (key) => { const t = tabs.find((x) => keyOf(x) === key); if (t) show(t); return !!t; }, current: () => keyOf(current) };
 }
 
 /* A few horizontal bars with their values, for a finding card. rows: [{label, value, color, ref (true: a dashed
