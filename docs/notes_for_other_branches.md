@@ -1,13 +1,95 @@
 # Notes for other branches
 
-*11 November 2026. For sessions working on the legislative side (the register, requirements, legislation links and the Industry lens), such as `claude/admiring-archimedes-q8usns`. Written by the website and administration session (`claude/loving-hamilton-jdifhr`, PR [#28](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/28)). Add new notes at the top.*
+*First written 11 November 2026; "Before you push" added 14 November 2026. For sessions working on the legislative side (the register, requirements, legislation links and the Industry lens), such as `claude/admiring-archimedes-q8usns`. Written by the website and administration session (`claude/loving-hamilton-jdifhr`, PR [#28](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/28)). Add new notes at the top.*
+
+## Before you push (every session adding legislation)
+
+*14 November 2026. From the website session (`claude/loving-hamilton-jdifhr`). The owner has asked for these steps so that legislation work and the website work merge cleanly (DECISIONS E-161).*
+
+The website and the framework are being rebuilt while you add legislation. The two kinds of work touch different files, with a few shared ones. Follow these steps and your branch will merge.
+
+### 1. Start from, and return to, `main`
+
+```bash
+git fetch origin main
+```
+
+```bash
+git merge origin/main
+```
+
+Merge `main` into your branch before each push, not only at the start. Don't rebase a branch that is already pushed.
+
+### 2. What is yours, and what to leave alone
+
+| Yours to change | Leave alone (the website session's) |
+|---|---|
+| `regulation-register/requirements/`, `records/`, `regimes/`, `requirement-gaps.json`, `families.json`, `bodies.json` | `alicia/src/alicia/menu/` (every page, template, `site.css`, `charts.js`) |
+| `data/processed/legislation/` | `alicia/src/alicia/register/framework.py` and `docs/productivity_framework.md` |
+| `docs/plan_legislation_links.md`, `docs/plan_states.md`, `docs/methods_legislation_links.md` | `regulation-register/schema/` and the models in `alicia/src/alicia/register/` |
+| Your own row in `alicia/DECISIONS.md` | `docs/plan_site_overhaul.md`, `docs/plan_policy_tool.md`, `.claude/skills/` |
+
+If you need a change on the right-hand side (a new field, a new kind of requirement, a fix to a page), don't make it. Write what you need at the top of this file and tell the owner.
+
+### 3. Keep to the current schema
+
+- Draft requirements and register items exactly as now. Framework version 2 ([plan](plan_policy_tool.md)) will add optional fields (fee, waiting time, renewal, purpose). It will not rename or remove a field you use.
+- Don't add fields the schema does not have. `uv run alicia validate` rejects them.
+- Keep marking each item on the 8 drivers as now. The marks stay, as the judgement layer.
+- Wherever the law states them, record thresholds with their value, unit and date, and the trigger (before trading starts, first employee, a size threshold). Version 2 scores rules from these.
+
+### 4. Generated files: rebuild, never merge by hand
+
+These files are written by scripts. If `git merge` reports a conflict in one, take either side and rebuild it. Never edit it by hand.
+
+| File | Rebuild with (from `alicia/`) |
+|---|---|
+| `data/processed/legislation/links.csv.gz`, `links_summary.csv` | `uv run python scripts/requirement_links.py` |
+| `data/processed/legislation/agencies_by_class.csv`, `requirement_agencies.csv` | `uv run python scripts/agency_overlap.py` |
+| `data/processed/legislation/*_catalogue.csv`, `state_catalogue_estimate.csv` | the script that wrote them (`state_catalogues.py`, `frl_catalogue.py`, `legislation_estimate.py`) |
+| `data/processed/industry_regulation/` and `docs/industry_regulation.md` | `uv run python scripts/industry_regulation.py` |
+| `docs/productivity_framework.md` | `uv run alicia framework -o ../docs/productivity_framework.md` (website session only) |
+
+Check each script's own header for its arguments before you run it. `links.csv.gz` is a compressed file, so git cannot merge it: after any merge that touches requirements, rebuild it and commit the result.
+
+### 5. `alicia/DECISIONS.md`
+
+- Rows are added at the end, so two branches always conflict there. Keep both sets of rows, in number order.
+- **E-161 is taken. Use E-162 to E-179.** The website session will use **E-180 onwards**, so the numbers can't collide.
+- One row for each batch, as now.
+
+### 6. Check before you push
+
+From `alicia/`:
+
+```bash
+uv run alicia validate
+```
+
+```bash
+uv run pytest -q
+```
+
+```bash
+uv run ruff check src tests
+```
+
+All 3 must pass after the merge from `main`, not only before it. If a website test fails because of your data (for example, a test that recomputes a page's figure), don't change the test: tell the owner, and note it at the top of this file.
+
+### 7. Open a pull request for the owner
+
+Never push to `main`. Say in the pull request which batch it is, how many requirements it adds, and that the 3 checks pass.
+
+### What the website shows from your data, with no code change
+
+New requirements and register items appear on Legislative levers, the Industry lens and Register data as soon as they are merged. The headline counts, the impact classes and the exposure figures are worked out when the site is built.
 
 ## Website overhaul in progress (DECISIONS E-159)
 
 *14 November 2026. From the website session (`claude/loving-hamilton-jdifhr`). The owner has paused other branches while it runs.*
 
 - **Plan:** [`plan_site_overhaul.md`](plan_site_overhaul.md) has each page's end goal, the design rules and the phases.
-- **Decision numbers:** E-159 and E-160 are taken. Use **E-161 onwards**.
+- **Decision numbers:** see "Before you push" above: use **E-162 to E-179**.
 - **Nav:** one line, with short labels set in `NAV_LABELS` in `alicia/src/alicia/menu/growth.py` and one Beta badge beside the site's name. Links no longer carry "(beta)"; page headings still do.
 - **Width:** every page is 1240px wide. Don't set `max-width` on `.wrap` in a page template; a test fails if one does.
 - **Home** is built by `alicia/src/alicia/menu/home.py`. `growth.landing()` and `LANDING` are gone.
