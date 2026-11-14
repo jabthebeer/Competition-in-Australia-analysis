@@ -14,6 +14,7 @@ from __future__ import annotations
 from ..register import severity as S
 from .growth import STATE_SHORT
 
+ROLE_LABELS = {"rule": "Rule", "change": "Change", "ended": "No longer in force"}
 TYPE_LABELS = {
     "requirement": "Requirement",
     "reform": "Reform",
@@ -28,8 +29,9 @@ CHECKED_LABELS = {
 }
 NOTE = (
     "One row for each item in the register: the requirements laws place on businesses, and the register's laws, "
-    "policies and barriers. Marks are draft judgements against the productivity framework. Impact class and "
-    "businesses reached are worked out from the marks and the ABS business counts. "
+    "policies and barriers. Marks are draft judgements against the productivity framework: they say whether an "
+    "item weighs on productivity. Severity is scored from coded attributes, businesses reached from the ABS business "
+    "counts, and the impact class from the two (framework version 2). "
 )
 
 
@@ -40,6 +42,7 @@ def _set_by(r: dict) -> str:
 
 def _row(r: dict, menu: dict, inside: str | None = None) -> dict:
     is_req = r["type"] == "requirement"
+    sev = r.get("severity") or {}
     a = r.get("assessment") or {}
     marks = {m["driver"]: m["mark"] for m in a.get("marks", [])}
     e = r.get("exposure") or {}
@@ -49,14 +52,12 @@ def _row(r: dict, menu: dict, inside: str | None = None) -> dict:
         sources = r["sources"]
         checked = sorted({CHECKED_LABELS.get(s.get("checked"), s.get("checked") or "not stated") for s in sources})
         urls = sorted({s["url"] for s in sources if s.get("url")})
-        sev = r.get("severity") or {}
         file = r["file"]
         industries = "All" if r["allIndustries"] else " ".join(r["industryCodes"])
     else:
         laws = [(x["title"], x.get("register_id"), x.get("provisions")) for x in r["instruments"]]
         urls = sorted({str(u) for u in (r.get("direction_sources") or [])} | {str(u) for u in a.get("evidence", [])})
         checked = ["dates checked against official sources"] if (r.get("verified") or {}).get("dates") else []
-        sev = {}
         file = f"regulation-register/records/{r['id']}.json"
         industries = " ".join(i["anzsic"] for i in r["industries"]) or "All"
     return {
@@ -64,7 +65,7 @@ def _row(r: dict, menu: dict, inside: str | None = None) -> dict:
         "title": r["title"],
         "setBy": _set_by(r),
         "type": TYPE_LABELS["requirement" if is_req else r["kind"]],
-        "kind": r.get("obligation") if is_req else "",
+        "kind": r.get("obligation") if is_req else S.KIND_LABELS[sev["kind"]] if sev else "",
         "when": S.WHEN_LABELS[sev["when"]] if sev else "",
         "bound": S.BOUND_LABELS[sev["bound"]] if sev else "",
         "severity": sev.get("score"),
@@ -74,6 +75,13 @@ def _row(r: dict, menu: dict, inside: str | None = None) -> dict:
         "total": a.get("total"),
         "mainDriver": a.get("main_driver") or "",
         "impactClass": r.get("impactClass") or "",
+        "classFrom": r.get("classFrom") or "",
+        "role": ROLE_LABELS.get(r.get("role"), ""),
+        "changedBy": " ".join(r.get("changedBy", [])),
+        "changesRules": " ".join(r.get("changesRules", [])),
+        "evidence": [k for k in S.EVIDENCE_STEPS if k in (r.get("evidence") or [])],
+        "purpose": "; ".join(r.get("purpose") or []),
+        "codingNote": sev.get("note") or "",
         "standing": bool(r.get("standing")),
         "businesses": e.get("businesses"),
         "upTo": bool(e.get("partial")),
@@ -114,6 +122,8 @@ def payload(menu: dict) -> dict:
         ],
         "classes": {c["id"]: c["label"] for c in menu.get("impactClasses", [])},
         "types": list(TYPE_LABELS.values()),
+        "roles": list(ROLE_LABELS.values()),
+        "evidenceSteps": {k: v.split(":")[0] for k, v in S.EVIDENCE_STEPS.items()},
         "note": NOTE + (menu.get("exposureNote") or "") + " " + S.NOTE,
         "exposureYear": menu.get("exposureYear"),
         "generated": menu.get("generated"),

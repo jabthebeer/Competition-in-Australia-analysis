@@ -707,7 +707,13 @@ def build_site(
     menu = menu_payload(records, dates_report, evaluations)
     written = [build_explorer(records, out / MENU_PAGE[0], standalone=standalone, pages=pages, payload=menu)]
     fw_path = out / "framework.html"
-    fw_html = framework_page.render(records, nav(FRAMEWORK_PAGE[0], pages), standalone, beta=beta())
+    # The Framework page shows how many rules are in each impact class, counted as the levers page counts them: its
+    # rows, without the requirements shown inside another item (the same law).
+    classed: dict[str, int] = {}
+    for row in menu["records"]:
+        if row.get("impactClass"):
+            classed[row["impactClass"]] = classed.get(row["impactClass"], 0) + 1
+    fw_html = framework_page.render(records, nav(FRAMEWORK_PAGE[0], pages), standalone, beta=beta(), classes=classed)
     fw_path.write_text(fw_html, encoding="utf-8")
     written.append(fw_path)
     if archive:

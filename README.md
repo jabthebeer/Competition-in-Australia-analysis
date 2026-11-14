@@ -18,7 +18,7 @@ Legislative levers influencing competition (formerly the legislation menu) is a 
 
 **A productivity framework applied to legislation, settings and barriers** (owner decision, `alicia/DECISIONS.md` E-87 to E-90 and E-92):
 
-1. **Framework** (done): eight drivers of productivity, each marked from −2 to +2 ([methods note](docs/productivity_framework.md); the website's Framework page).
+1. **Framework** (done; version 2.0 since 14 November 2026, E-185): eight drivers of productivity, each marked from −2 to +2, judge whether a rule weighs on productivity; each rule's severity is scored from coded facts and the businesses it reaches are counted, giving four impact classes ([methods note](docs/productivity_framework.md); the website's Framework page).
 2. **Assessment of the register** (done): all records assessed; the menu's econometric sections are replaced by the assessments and industry statistics. The econometric evaluations are archived, unchanged, and are no longer on the site (E-136).
 3. **Review of the register** (done): [`docs/register_review_framework.md`](docs/register_review_framework.md). The reforms were chosen for evaluability and are a skewed sample.
 4. **Additions** (two tranches done, 63 items: stamp duty, payroll tax, trade and foreign investment settings and concentrated markets, then planning and zoning, occupational licensing, pharmacy ownership and location rules, mandatory standards, insurance duty and other settings); the review lists the remaining candidates.
@@ -34,7 +34,7 @@ Every assessment is a draft until it has been through the AI checking process (D
 
 ## Planning
 
-- [`docs/productivity_framework.md`](docs/productivity_framework.md): the productivity impact framework (version 1.0, 28 October 2026), written by `alicia framework` from the same definition the website uses.
+- [`docs/productivity_framework.md`](docs/productivity_framework.md): the productivity impact framework (version 2.0, 14 November 2026; version 1.0 was 28 October 2026), written by `alicia framework` from the same definition the website uses.
 - [`docs/recommendations.md`](docs/recommendations.md): what government could do about each register item: 65 recommendations from Australian and international reviews, each with quoted sources, and why some items have none (29 October 2026).
 - [`docs/industry_regulation.md`](docs/industry_regulation.md): regulatory complexity by industry: the regimes each of the 506 ANZSIC classes deals with, how many government parties, where tiers overlap, where rules vary by state, and evidenced duplication, inconsistency and complexity (29 October 2026).
 - [`docs/responsibility_and_history.md`](docs/responsibility_and_history.md): who is responsible for each register item (departments, agencies, regulators) and the later changes recorded against them, with sources and open checks (29 October 2026).

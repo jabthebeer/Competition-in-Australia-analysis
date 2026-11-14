@@ -46,7 +46,8 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   phone the groups fold behind a Menu button. `conditions.html` is only a forward to the Economic
   backdrop tab; nothing links to it.
 - **Exposure and impact classes:** `alicia/src/alicia/menu/exposure.py` counts the businesses each rule reaches
-  and classes it Major, wide; Major, narrow; or Minor (DECISIONS E-161, E-180). Show the figures with the class,
+  and classes it Severe; Major, wide; Major, narrow; or Minor, from its severity (`register/severity.py`) and the
+  businesses it reaches (DECISIONS E-161, E-180, E-185). Show the figures with the class,
   and state the coverage with any list of rules. Don't rank states.
 - **Own evidence first** (DECISIONS E-161; `docs/plan_policy_tool.md`): a page's headline findings come from the law
   and data the tool ingests. What reviews found or recommend is labelled "What others recommend" or "What others

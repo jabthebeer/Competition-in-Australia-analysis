@@ -44,6 +44,12 @@ RELIANCE = (
         "A count. An upper bound where a rule binds only some businesses in an industry",
     ),
     (
+        "Severity and impact classes",
+        "Scored from coded facts about each rule (its kind, when it bites, whom it binds) and the ABS business counts",
+        "Tests check every score and class against the rule",
+        "A ranking anyone can check. The coding is a draft, and fees and waiting times are not yet coded",
+    ),
+    (
         "The words of each requirement",
         "Quoted from the official legislation registers",
         "Each quote is checked against the text it was read from",
@@ -74,10 +80,10 @@ RELIANCE = (
         "Drafts",
     ),
     (
-        "Marks on the 8 drivers, and impact classes",
+        "Marks on the 8 drivers",
         "Judgement against the framework, drafted with AI assistance",
-        "Not yet checked. Being replaced by scores from coded facts (framework version 2)",
-        "Draft judgements about likely effects. Not estimates",
+        "Not yet checked by a person",
+        "Draft judgements of whether a rule weighs on productivity. Not estimates",
     ),
     (
         "What others recommend",

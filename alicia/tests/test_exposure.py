@@ -82,11 +82,15 @@ def test_every_class_follows_the_rule(page):
     for r in rows:
         e, total = r["exposure"], (r["assessment"] or {}).get("total")
         if not r["standing"] or total is None or total >= 0:
-            assert r["impactClass"] is None, r["id"]
-        elif e["share"] >= X.WIDE_SHARE and not e["partial"]:
-            assert r["impactClass"] == "major-wide", r["id"]
-        else:
-            assert r["impactClass"] == ("major-narrow" if total <= X.DEEP_TOTAL else "minor"), r["id"]
+            assert r["impactClass"] is None and r["classFrom"] is None, r["id"]
+            continue
+        # Framework version 2 (E-185): the size of effect comes from severity where the rule is coded, else the marks.
+        sev = r.get("severity")
+        big = sev["band"] == "high" if sev else total <= X.DEEP_TOTAL
+        wide = e["share"] >= X.WIDE_SHARE and not e["partial"]
+        want = {(True, True): "severe", (False, True): "major-wide", (True, False): "major-narrow"}
+        assert r["impactClass"] == want.get((big, wide), "minor"), r["id"]
+        assert r["classFrom"] == ("severity" if sev else "marks"), r["id"]
     # A reform is a change, not a rule, unless it is in force and added a restriction.
     for r in page["records"]:
         if r.get("kind") == "reform" and (r["ended"] or r["assessment"]["total"] >= 0):
@@ -109,11 +113,20 @@ def test_an_award_counts_its_own_industry_not_every_employer_of_the_occupation()
 def test_the_class_rule_on_its_own():
     wide = {"share": 100.0, "partial": False}
     narrow = {"share": 3.0, "partial": False}
-    assert X.impact_class(-1, wide) == "major-wide" and X.impact_class(-4, wide) == "major-wide"
-    assert X.impact_class(-2, narrow) == "major-narrow" and X.impact_class(-1, narrow) == "minor"
-    assert X.impact_class(-3, {"share": 100.0, "partial": True}) == "major-narrow"
-    assert X.impact_class(0, wide) is None and X.impact_class(2, wide) is None and X.impact_class(None, wide) is None
-    assert X.impact_class(-2, {"share": None}) is None  # no business counts in this build
+    high, medium = {"band": "high"}, {"band": "medium"}
+    # With coded attributes, severity decides the size of effect, whatever the marks.
+    assert X.impact_class(-1, wide, high) == ("severe", "severity")
+    assert X.impact_class(-4, wide, medium) == ("major-wide", "severity")
+    assert X.impact_class(-1, narrow, high) == ("major-narrow", "severity")
+    assert X.impact_class(-4, narrow, medium) == ("minor", "severity")
+    # Without them, the marks do: −2 or lower is large.
+    assert X.impact_class(-2, wide) == ("severe", "marks") and X.impact_class(-1, wide) == ("major-wide", "marks")
+    assert X.impact_class(-2, narrow) == ("major-narrow", "marks") and X.impact_class(-1, narrow) == ("minor", "marks")
+    # A rule that binds only businesses doing an activity is never wide.
+    assert X.impact_class(-3, {"share": 100.0, "partial": True}, high) == ("major-narrow", "severity")
+    for total in (0, 2, None):
+        assert X.impact_class(total, wide, high) == (None, None)
+    assert X.impact_class(-2, {"share": None}) == (None, None)  # no business counts in this build
     assert X.is_standing("requirement", -1, False, True) and X.is_standing("setting", 1, False, True)
     assert X.is_standing("reform", -1, False, True) and not X.is_standing("reform", 2, False, True)
     assert not X.is_standing("reform", -1, False, False) and not X.is_standing("setting", -2, True, True)

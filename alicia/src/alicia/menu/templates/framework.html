@@ -213,6 +213,20 @@ table.data.ex tfoot th, table.data.ex tfoot td { border-top: 1px solid var(--lin
 table.data.overlap th, table.data.overlap td { text-align: left; white-space: normal; vertical-align: top; }
 table.data.overlap td .small { display: block; margin-top: 4px; }
 table.data.overlap tr.grp td { border-top: 1px solid var(--line-strong); }
+/* How much a rule matters (version 2): three questions, then the four classes as a 2 x 2 grid. */
+.qs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 12px; }
+.panel.q { display: flex; gap: 12px; align-items: flex-start; }
+.panel.q h3 { margin: 0 0 4px; font-size: var(--step-0); }
+.panel.q p { margin: 0; font-size: var(--step--1); color: var(--ink-2); }
+.q-n { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.grid2 { display: grid; gap: 8px; }
+.grid2 > [role="row"] { display: grid; grid-template-columns: 11rem minmax(0, 1fr) minmax(0, 1fr); gap: 8px; align-items: stretch; }
+.grid2 .g-head span { font-size: var(--step--1); color: var(--ink-3); font-weight: 600; align-self: end; }
+.grid2 .g-row { font-size: var(--step--1); color: var(--ink-2); font-weight: 600; align-self: center; }
+.grid2 .tiles.headline { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 640px) { .grid2 > [role="row"] { grid-template-columns: 6.5rem minmax(0, 1fr) minmax(0, 1fr); } }
+table.pts { width: auto; } table.pts td { white-space: normal; }
+h2.part { margin: 12px 0 0; padding-top: 18px; border-top: 1px solid var(--line-strong); }
 .limits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 @media (max-width: 760px) { .limits { grid-template-columns: minmax(0, 1fr); } }
 .limit { display: flex; gap: 12px; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }

@@ -33,7 +33,7 @@
 1. **Own evidence first.** Every headline finding is computed from law or data the tool ingests. What reviews found and recommend sits in a separate panel, labelled "What others found".
 2. **Rules and changes are different things, shown simply.** A standing rule is what applies today. A reform is a change to a rule. The site shows one list of rules; a rule's changes hang under it. Readers never have to learn a model to use the page.
 3. **Coded facts before judgement.** A rule is scored from things anyone can check in its text: its kind, when it bites, who it covers, its fee, its threshold.
-4. **Three plain classes.** Each rule is **Major, narrow** (a large effect on a small set of industries), **Major, wide** (a small effect on a large set of industries) or **Minor** (a small effect on a small set). The class comes from the coded severity and from measured exposure. The figures behind it are shown.
+4. **Four plain classes.** Each rule is **Severe** (a large effect on a large set of industries), **Major, wide** (a smaller effect on a large set), **Major, narrow** (a large effect on a small set of industries) or **Minor** (a small effect on a small set). The class comes from the coded severity and from measured exposure. The figures behind it are shown. (Severe added by the owner, 14 November 2026, E-185.)
 5. **Join the law to the data.** A rule shows the industries it reaches and their size. An industry shows its rules.
 6. **Describe; do not estimate.** No econometric studies and no comparisons between states at this stage. State economies differ too much for a simple comparison to be fair. This is shelved, not ruled out.
 7. **Declare coverage.** Each finding says how much of the law has been screened. No ranking of states until coverage is even.
@@ -51,7 +51,7 @@
 | Eight marks added into one total | The total is no longer used to rank. The profile across the 8 drivers stays, as the judgement layer |
 | Marks from −2 to +2 | A **severity score** from coded attributes (below) |
 | Reach as a label | **Exposure**, measured: businesses, and jobs and output where the data allow |
-| Bands (strongly negative to strongly positive) | **Impact class:** Major, narrow; Major, wide; Minor |
+| Bands (strongly negative to strongly positive) | **Impact class:** Severe; Major, wide; Major, narrow; Minor |
 | Reforms and settings in one list, one scale | Rules, with their changes under them |
 | Confidence follows the literature | **Evidence:** quoted from the law; coded; described in the tool's data. Reviews are listed beside it |
 | Benefits out of scope | A secondary **purpose** field. Not used in any ranking |
@@ -80,7 +80,9 @@ Until the attributes are coded, severity is taken from the marks already drafted
 
 The score runs from 1 to 7: 5 or more is high, 3 or 4 medium, and less is low. Across the 537 requirements it takes every value from 1 to 7, where the marks take 4 values and 336 requirements share one of them. Of the 120 requirements that score high, 96 also have marks that add to −2 or lower. Fees, waiting times, renewal and penalties are not yet coded and add nothing. The score is shown on Register data beside the marks; the impact classes still come from the marks until the weights are settled.
 
-### Exposure and the three classes
+**Version 2.0, adopted on 14 November 2026 (E-185).** The owner said to go ahead with version 2 and did not change the draft weights, so they are adopted, with two kinds added for the register's laws and policies: a cap on numbers, an exclusive right, a ban or an ownership limit (5 points), and a control on prices (4). The most is now 8. The 102 laws and policies that apply today and weigh on productivity are coded in `regulation-register/rule-coding.json`. The impact classes now come from severity: a high score (5 or more) is a large effect. The 7 non-legislative barriers have no law to code, so they keep the marks, and say so. A requirement that reaches every industry but bites only on an activity (a notifiable foreign investment, a product recall) now counts as binding only some businesses, so it is never wide.
+
+### Exposure and the four classes
 
 For each rule the tool computes, from its own data:
 
@@ -90,7 +92,7 @@ For each rule the tool computes, from its own data:
 
 | | Small set of industries | Large set of industries |
 |---|---|---|
-| **Large effect on each business** | Major, narrow | Major, wide (listed first) |
+| **Large effect on each business** | Major, narrow | Severe |
 | **Small effect on each business** | Minor | Major, wide |
 
 "Large set" is a share of the businesses in the rule's own jurisdiction, so a state rule is judged within its state. The cut-off is set from the data when the class is built, and published.
@@ -189,8 +191,8 @@ Limits: both are national by industry; state by industry is not published in the
 | # | Work | Status |
 |---|---|---|
 | 1 | Site overhaul phases 4 to 7 ([plan](plan_site_overhaul.md)), with biggest barriers and exposure in phase 4 | Done (14 November 2026, E-180 to E-183) |
-| 2 | Framework version 2: schema, coded attributes, impact class, evidence, purpose; the Framework page; Register data | Started (E-184): Register data is built, with a draft severity score for requirements from the attributes already coded. Still to do: settle the weights with the owner; move the impact classes from the marks to the score; code the standing rules among the register items; add the evidence and purpose fields; rewrite the Framework page |
-| 3 | "What others found" panel | With 2 |
+| 2 | Framework version 2: schema, coded attributes, impact class, evidence, purpose; the Framework page; Register data | Done (14 November 2026, E-184, E-185). Left for later: fees, waiting times, renewal and penalties (with ABLIS); jobs and output in exposure (with the input–output tables and Labour Account) |
+| 3 | "What others found" panel | Done (E-185): each item's detail has "What others found and recommend", apart from the site's own evidence |
 | 4 | Inputs 1 to 7 in section 5, one at a time | After 2 |
 | 5 | Fees and waiting times | When ABLIS arrives |
 | 6 | Even coverage of state law | Other branches, alongside |

@@ -128,7 +128,8 @@ def test_kinds_of_item_need_what_they_should():
 def test_every_register_item_is_assessed_against_the_current_framework():
     records = load_records().records
     assert records and all(r.assessment for r in records)
-    assert {r.assessment.framework for r in records} == {fw.VERSION}
+    # Version 2.0 kept the marks of 1.0 (DECISIONS E-185), so assessments against 1.0 are current.
+    assert {r.assessment.framework for r in records} == {fw.MARKS_VERSION} and fw.VERSION == "2.0"
     # The marks use the whole scale and every driver is someone's main driver or at least marked.
     marked = {m.driver for r in records for m in r.assessment.marks}
     assert marked == set(fw.DRIVERS)
