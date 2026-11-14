@@ -1,0 +1,120 @@
+{
+  "id": "sa-pharmacy-premises-approval",
+  "family": "pharmacy-premises-approval",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "pharmacy",
+  "title": "Carry on a pharmacy business only at registered premises",
+  "kind": "approval",
+  "what": "Provide restricted pharmacy services, and own a pharmacy business, only at premises registered as a pharmacy.",
+  "laws": [
+    {
+      "title": "Health Practitioner Regulation National Law (South Australia) Act 2010 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "2010.5.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/health%20practitioner%20regulation%20national%20law%20(south%20australia)%20act%202010/current/2010.5.un.rtf",
+      "provisions": "s 41(1), (1a)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Health Practitioner Regulation National Law (South Australia) Act 2010 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/health%20practitioner%20regulation%20national%20law%20(south%20australia)%20act%202010/current/2010.5.un.rtf",
+      "locator": "s 41(1) (version of 2024-07-01)",
+      "quote": "A person must not provide restricted pharmacy services except at premises registered as a pharmacy under this section.",
+      "accessed": "2026-11-14",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-07-01/2010.5.un"
+    },
+    {
+      "title": "Health Practitioner Regulation National Law (South Australia) Act 2010 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/health%20practitioner%20regulation%20national%20law%20(south%20australia)%20act%202010/current/2010.5.un.rtf",
+      "locator": "s 41(1a) (version of 2024-07-01)",
+      "quote": "A person must not own, or hold a proprietary interest in, a pharmacy business unless the business is carried on at premises registered as a pharmacy under this section.",
+      "accessed": "2026-11-14",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-07-01/2010.5.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4271"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries on a pharmacy business",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Practitioner Regulation National Law (South Australia) Act 2010 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/health%20practitioner%20regulation%20national%20law%20(south%20australia)%20act%202010/current/2010.5.un.rtf",
+          "locator": "s 41(1) (version of 2024-07-01)",
+          "quote": "A person must not provide restricted pharmacy services except at premises registered as a pharmacy under this section.",
+          "accessed": "2026-11-14",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-07-01/2010.5.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Provide restricted pharmacy services, and own a pharmacy business, only at premises registered as a pharmacy.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration, accreditation or approval is needed before the business can trade.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Applications, conditions, records and fees add cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-14"
+  },
+  "drafted_on": "2026-11-14",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

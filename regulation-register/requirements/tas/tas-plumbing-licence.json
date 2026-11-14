@@ -1,0 +1,129 @@
+{
+  "id": "tas-plumbing-licence",
+  "family": "plumbing-licence",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "electrical-plumbing-gas-licensing",
+  "title": "Hold a plumbing licence",
+  "kind": "licence",
+  "what": "Carry out prescribed plumbing work only under a practitioner's licence of the relevant class, or as a supervised trainee.",
+  "laws": [
+    {
+      "title": "Occupational Licensing Act 2005 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2005-047",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2005-047",
+      "provisions": "s 22(1)",
+      "applied": false
+    },
+    {
+      "title": "Occupational Licensing (Plumbing Work) Regulations 2021 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "regulation",
+      "register_id": "sr-2021-114",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2021-114",
+      "provisions": "reg 4(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Occupational Licensing Act 2005 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2005-047",
+      "locator": "s 22(1) (current)",
+      "quote": "A person must not carry out any prescribed work, other than building services work, unless – (a) the person holds a practitioner's licence of the relevant occupation and class;",
+      "accessed": "2026-11-14",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Occupational Licensing (Plumbing Work) Regulations 2021 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2021-114",
+      "locator": "reg 4(1) (current)",
+      "quote": "the following work is determined to be prescribed work, unless exempted under section 99(1)(b) of the Act: (a) work carried out on, or as part of, the design, construction, installation, replacement, repair, alteration, maintenance, servicing, testing, commissioning, decommissioning or removal of any part of the following plumbing installations or systems: (i) sanitary;",
+      "accessed": "2026-11-14",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3231"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Occupational Licensing Act 2005 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2005-047",
+          "locator": "s 22(1) (current)",
+          "quote": "A person must not carry out any prescribed work, other than building services work, unless – (a) the person holds a practitioner's licence of the relevant occupation and class;",
+          "accessed": "2026-11-14",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 14 Nov 2026. Plumbing work is prescribed work under reg 4(1) of the Occupational Licensing (Plumbing Work) Regulations 2021 (Tas), quoted as the second source. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Carry out prescribed plumbing work only under a practitioner's licence of the relevant class, or as a supervised trainee.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can trade.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Qualification or experience tests narrow who may do the work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-14"
+  },
+  "drafted_on": "2026-11-14",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

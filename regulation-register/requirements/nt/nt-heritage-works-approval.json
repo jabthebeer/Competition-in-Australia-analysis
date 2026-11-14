@@ -1,0 +1,112 @@
+{
+  "id": "nt-heritage-works-approval",
+  "family": "heritage-works-approval",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "planning-and-development",
+  "title": "Get approval for works to a State heritage item",
+  "kind": "approval",
+  "what": "Do work that damages a heritage place only in accordance with a work approval, heritage agreement or other listed exception.",
+  "laws": [
+    {
+      "title": "Heritage Act 2011 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "HERITAGE-ACT-2011",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11853",
+      "provisions": "s 111(2), (5)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Heritage Act 2011 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11853",
+      "locator": "s 111(2) (current reprint)",
+      "quote": "A person commits an offence if the person engages in conduct that results in damage to a heritage place or object.",
+      "accessed": "2026-11-14",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Heritage Act 2011 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11853",
+      "locator": "s 111(5) (current reprint)",
+      "quote": "In addition, subsections (1) and (2) do not apply if the person: (a) engages in conduct in accordance with: (i) a heritage agreement; or (ii) a work approval;",
+      "accessed": "2026-11-14",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns or works on an item on the State Heritage Register or under an interim heritage order",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Heritage Act 2011 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11853",
+          "locator": "s 111(2) (current reprint)",
+          "quote": "A person commits an offence if the person engages in conduct that results in damage to a heritage place or object.",
+          "accessed": "2026-11-14",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 14 Nov 2026. Section numbers are read from the reprint's layout; to confirm. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Do work that damages a heritage place only in accordance with a work approval, heritage agreement or other listed exception.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Applications, conditions, records and fees add cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-14"
+  },
+  "drafted_on": "2026-11-14",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

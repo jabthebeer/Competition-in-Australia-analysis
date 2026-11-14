@@ -1,0 +1,110 @@
+{
+  "id": "wa-pharmacy-premises-approval",
+  "family": "pharmacy-premises-approval",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "pharmacy",
+  "title": "Carry on a pharmacy business only at registered premises",
+  "kind": "approval",
+  "what": "Own or hold a proprietary interest in a pharmacy business only if it is carried on at premises registered as a pharmacy.",
+  "laws": [
+    {
+      "title": "Pharmacy Act 2010 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a146779",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48837.docx",
+      "provisions": "s 53",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Pharmacy Act 2010 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48837.docx",
+      "locator": "s 53 (current version)",
+      "quote": "A person must not own, or hold a proprietary interest in, a pharmacy business unless the business is carried on at premises that are registered as a pharmacy.",
+      "accessed": "2026-11-14",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4271"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries on a pharmacy business",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Pharmacy Act 2010 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48837.docx",
+          "locator": "s 53 (current version)",
+          "quote": "A person must not own, or hold a proprietary interest in, a pharmacy business unless the business is carried on at premises that are registered as a pharmacy.",
+          "accessed": "2026-11-14",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 14 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Own or hold a proprietary interest in a pharmacy business only if it is carried on at premises registered as a pharmacy.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration, accreditation or approval is needed before the business can trade.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Applications, conditions, records and fees add cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-14"
+  },
+  "drafted_on": "2026-11-14",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

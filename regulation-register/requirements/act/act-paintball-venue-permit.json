@@ -1,0 +1,110 @@
+{
+  "id": "act-paintball-venue-permit",
+  "family": "paintball-venue-permit",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Operate only an approved paintball range",
+  "kind": "licence",
+  "what": "Operate a paintball range only if it is an approved paintball range.",
+  "laws": [
+    {
+      "title": "Firearms Act 1996 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "1996-74",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/1996-74/current/PDF/1996-74.PDF",
+      "provisions": "s 225(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Firearms Act 1996 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/1996-74/current/PDF/1996-74.PDF",
+      "locator": "s 225(1) (current republication (R64, from 16 November 2025; Firearms Act 1996 | Acts))",
+      "quote": "A person commits an offence if the person operates a paintball range other than an approved paintball range.",
+      "accessed": "2026-11-14",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9139"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a paintball venue",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Firearms Act 1996 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/1996-74/current/PDF/1996-74.PDF",
+          "locator": "s 225(1) (current republication (R64, from 16 November 2025; Firearms Act 1996 | Acts))",
+          "quote": "A person commits an offence if the person operates a paintball range other than an approved paintball range.",
+          "accessed": "2026-11-14",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 14 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Operate a paintball range only if it is an approved paintball range.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration, accreditation or approval is needed before the business can trade.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Applications, conditions, records and fees add cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-14"
+  },
+  "drafted_on": "2026-11-14",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

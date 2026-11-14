@@ -1,0 +1,114 @@
+{
+  "id": "nt-bookmaker-licence",
+  "family": "bookmaker-licence",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "gambling",
+  "title": "Hold a wagering (bookmaker) licence",
+  "kind": "licence",
+  "what": "Hold a wagering licence (such as a bookmaker licence) before conducting the business of wagering.",
+  "laws": [
+    {
+      "title": "Racing and Wagering Act 2024 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "RACING-AND-WAGERING-ACT-2024",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12421",
+      "provisions": "Pt 4, Div 1 (offence of wagering without licence)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Racing and Wagering Act 2024 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12421",
+      "locator": "Pt 4, Div 1 (current reprint)",
+      "quote": "A person commits an offence if the person: (a) intentionally conducts the business of wagering; and",
+      "accessed": "2026-11-14",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Racing and Wagering Act 2024 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12421",
+      "locator": "Pt 4, Div 1 (current reprint)",
+      "quote": "(b) does not hold a licence authorising that conduct. Maximum penalty: 500 penalty units.",
+      "accessed": "2026-11-14",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9209"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Racing and Wagering Act 2024 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12421",
+          "locator": "Pt 4, Div 1 (current reprint)",
+          "quote": "A person commits an offence if the person: (a) intentionally conducts the business of wagering; and",
+          "accessed": "2026-11-14",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 14 Nov 2026. A page header falls inside the offence in the reprint's text, so the provision is quoted in two parts; the section number could not be read reliably. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Hold a wagering licence (such as a bookmaker licence) before conducting the business of wagering.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration, accreditation or approval is needed before the business can trade.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-14"
+  },
+  "drafted_on": "2026-11-14",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

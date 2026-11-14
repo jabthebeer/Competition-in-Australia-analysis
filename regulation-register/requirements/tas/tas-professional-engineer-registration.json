@@ -1,0 +1,129 @@
+{
+  "id": "tas-professional-engineer-registration",
+  "family": "professional-engineer-registration",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Hold a building services licence (engineering design)",
+  "kind": "registration",
+  "what": "Hold a building services licence of the relevant class before doing engineering design work for buildings.",
+  "laws": [
+    {
+      "title": "Occupational Licensing Act 2005 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2005-047",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2005-047",
+      "provisions": "s 22A(1)",
+      "applied": false
+    },
+    {
+      "title": "Occupational Licensing (Building Services Work) Regulations 2016 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "regulation",
+      "register_id": "sr-2016-112",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2016-112",
+      "provisions": "Sch 1, Pt 1, item 2(b)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Occupational Licensing Act 2005 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2005-047",
+      "locator": "s 22A(1) (current)",
+      "quote": "A person must not manage, carry out, or enter into a contract to manage or carry out, any building services work unless the person holds – (a) a building services licence of the occupation and class relevant to the building services work;",
+      "accessed": "2026-11-14",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Occupational Licensing (Building Services Work) Regulations 2016 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2016-112",
+      "locator": "Sch 1, Pt 1, item 2(b) (current)",
+      "quote": "(b) engineering analysis, design and documentation of any premises, building or temporary structure, or of building components and structural systems, including research, analysing criteria, and finding and analysing solutions;",
+      "accessed": "2026-11-14",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6923"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Occupational Licensing Act 2005 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2005-047",
+          "locator": "s 22A(1) (current)",
+          "quote": "A person must not manage, carry out, or enter into a contract to manage or carry out, any building services work unless the person holds – (a) a building services licence of the occupation and class relevant to the building services work;",
+          "accessed": "2026-11-14",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 14 Nov 2026. Engineering analysis, design and documentation of buildings is building services work under Sch 1, Pt 1, item 2(b) of the Occupational Licensing (Building Services Work) Regulations 2016 (Tas), quoted as the second source. Engineering outside building work is not covered. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Hold a building services licence of the relevant class before doing engineering design work for buildings.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration, accreditation or approval is needed before the business can trade.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Qualification or experience tests narrow who may do the work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-14"
+  },
+  "drafted_on": "2026-11-14",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
