@@ -30,7 +30,7 @@ The three main pages are too long to read. At desktop width on 14 November 2026:
 
 - **Answer first.** Each page opens with the few figures that answer its question.
 - **Tabs, not one long scroll.** An Overview tab summarises; the other tabs hold the detail.
-- **One set of controls for each page:** place, industry and years.
+- **Controls sit with their charts.** Each tab keeps its own place, industry and years controls. The mock-ups showed one set for each page; that was dropped in phase 3 because the datasets cover different years and places (see "Changes from the mock-ups").
 - **Short lists:** the top few, with "see all".
 - **One layout on every page:** one width (1240px), a one-line nav, the same header and closing lines.
 - **Real figures only.** Every headline figure is worked out from the page data at build time, and a test recomputes it from the source files by a separate route.
@@ -50,15 +50,28 @@ Each phase is a pull request for the owner to merge. The site works after each, 
 |---|---|---|
 | 1. Foundations | The shared layout: one-line nav with a Menu button on phones, one page width, figure tiles, buttons, closing lines | Done (14 November 2026) |
 | 2. Home | Headline figures from the data, 3 questions to start from, an industry and state picker for the lens | Done (14 November 2026) |
-| 3. Structural competitive conditions | Scorecard, one control bar, tabs (the tabs component is built here) | Next |
-| 4. Legislative levers | Overview tab (drivers, governments, biggest barriers, recommendations); the full list in its own tab | To do |
+| 3. Structural competitive conditions | An Overview tab with a scorecard of 5 figures and 3 findings; 5 tabs for the detail; the sources folded at the foot (the tabs component is built here) | Done (14 November 2026, E-160) |
+| 4. Legislative levers | Overview tab (drivers, governments, biggest barriers, recommendations); the full list in its own tab | Next |
 | 5. Industry lens and Regulatory overview by industry | The lens reordered around the business; the overview page built | To do |
 | 6. Framework and Methodology | Framework leads with a worked example; Methodology leads with a reliance table | To do |
 | 7. Finish | Phone and accessibility pass; Style Manual pass on all text, including en dashes in financial years and short forms of the states; a check of every headline figure; docs updated | To do |
+
+## Changes from the mock-ups
+
+- **No single control bar on Structural competitive conditions (phase 3).** The mock-up showed one Place, Industry and Years bar for the whole page. The data can't support it:
+  - concentration and mark-ups are for Australia only, 2002 to 2019 and 2004 to 2017;
+  - company returns cover 2018–19 to 2022–23;
+  - business entry covers 2007–08 to 2024–25, by state.
+
+  One bar would offer choices that most charts could not follow. Each tab keeps the controls its data support.
+- **The scorecard sits in the Overview tab,** not above the tabs. Placed above, it would repeat on every tab and push each tab's charts down the page.
+- **The Overview findings follow the settings chosen in their tabs.** The scorecard does not: it always shows Australia, businesses with employees, and each series' first and last years.
 
 ## Notes for whoever builds a phase
 
 - The house style is in `.claude/skills/alicia-house-style/SKILL.md`.
 - The nav, page list and short labels are in `alicia/src/alicia/menu/growth.py` (`PAGES`, `NAV_GROUPS`, `NAV_LABELS`, `nav()`).
 - Home is `alicia/src/alicia/menu/home.py`; its tests are `alicia/tests/test_home.py`.
-- Shared components are in `alicia/src/alicia/menu/templates/site.css`: `.tiles` and `.tile`, `.btn` and `.btn.primary`, `.site-foot`.
+- Shared components are in `alicia/src/alicia/menu/templates/site.css`: `.tiles.headline` and `.tile`, `.btn` and `.btn.primary`, `.site-foot`, `.tabs` and `.tab-panel`, `.findings` and `.finding`, `.more` and `.more-link`, `.minibars`.
+- Tabs: mark up a `.tabs[role="tablist"]` row and `.tab-panel[role="tabpanel"]` panels as `growth.html` does, then call `initTabs()` (in `charts.js`). The address follows the open tab (`growth.html#concentration`), and a link to any id inside a panel opens that panel. Without scripts, every panel shows.
+- Headline figures are worked out in `alicia/src/alicia/menu/figures.py` when the site is built. Home and the scorecard both use it. Tests: `alicia/tests/test_home.py` and `alicia/tests/test_scorecard.py`.

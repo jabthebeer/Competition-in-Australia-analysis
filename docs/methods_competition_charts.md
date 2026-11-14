@@ -2,7 +2,8 @@
 
 25 October 2026. The charts recreate, from public data, the barriers-to-entry and profitability analysis in Grattan Institute's *Competition in Australia: too little of a good thing?* (Minifie, Chisholm and Percival, December 2017). Grattan used IBISWorld industry data and Morningstar firm data, which are proprietary. These charts are on the ALICIA website (`alicia site`):
 - **Structural competitive conditions** (formerly The state of competition in Australia, and before that State and industry growth) has concentration, business entry and barriers to entry. It reads as a story: each section's heading states what the data show for the settings chosen, and is worked out from the same numbers as the chart.
-- **Economic conditions**, at the end of the same page since 11 November 2026 (it was its own page; DECISIONS E-135), has profitability and market power.
+- **Economic conditions**, on the same page since 11 November 2026 (it was its own page; DECISIONS E-135), has profitability and market power.
+- Since 14 November 2026 the page is in six tabs (DECISIONS E-160): Overview, Business entry, Concentration, Profits and mark-ups, Industries by state, and Economic backdrop. "Competition" and "Conditions" in the table below name the 2 sets of charts, not pages.
 
 Each section has its own period slider, spanning only the years its data cover, so a slider never offers years its charts can't show:
 - **Concentration:** 2002 to 2019 (the RBA figures).
@@ -44,7 +45,39 @@ Not recreated, because public data cannot support them:
 
 ## The story on the page
 
-The page runs: industries in each state, compared with similar economies, with the selected industry's productivity and its comparison (moved to the top at the owner's request, 4 November 2026); then concentration; business entry by barrier group and for all industries; whether low entry goes with high returns; and state economies. "Where the barriers to entry are" is shelved (owner's request, 29 October 2026): it is folded away at the end of the page, unchanged. Each chart's description sits behind an "i" beside its title, and its notes and sources in one "About this chart" dropdown. The narrative headings follow the data shown, so they change with the period, state, measure and businesses counted:
+Since 14 November 2026 each part below is in its own tab:
+
+| Tab | Holds |
+|---|---|
+| Overview | Australia at a glance (5 figures), 3 findings, and links to the other tabs |
+| Business entry | Entry by barrier group and for all industries; "Where the barriers to entry are", folded |
+| Concentration | The largest firms' share of sales |
+| Profits and mark-ups | Company profits and market power (return on equity, super-normal profit, mark-ups); business entry and returns |
+| Industries by state | Industries in each state and the selected industry; state economies |
+| Economic backdrop | The control series: latest figures, by state over time, commodity prices, growth by industry |
+
+### Australia at a glance
+
+The Overview opens with 5 figures. They are worked out when the site is built (`alicia/src/alicia/menu/figures.py`) from the data the charts use, and `alicia/tests/test_scorecard.py` recomputes each one from the source files by a second route.
+
+| Figure | Definition | Sample | Compared with |
+|---|---|---|---|
+| Business entry | Businesses with employees that started in the year, for every 100 operating at its start | Australia, latest year of the ABS counts | The first year of the counts (2007–08) |
+| Business exit | Businesses with employees that closed in the year, for every 100 operating at its start | As above | As above |
+| Concentration | The 4 largest firms' share of sales in the average industry, weighted by sales | All industries, latest year of the RBA figures (2019) | The first year (2002) |
+| Mark-ups | The average ratio of price to marginal cost | All industries, latest year of the RBA figures (2017) | The first year (2004) |
+| Returns behind barriers | Company return on equity after tax: profit ÷ equity, added up over the sectors in the 3 barrier groups | Every income year the ATO publishes (2018–19 to 2022–23), under the data rules below | The same figure for low-barrier sectors |
+
+Limits:
+- The figures are for different years, because each source ends in a different year. Each tile states its year.
+- They do not follow the controls in the tabs. They are always for Australia and businesses with employees.
+- Each is a description of the published data, not an estimate of an effect. The gap in returns is not evidence that barriers to entry lower returns: it comes from a few large sectors, and the low-barrier figure partly double counts (see "What the public data show" and "Limitations").
+
+The 3 findings under the scorecard repeat the heading and summary of the Business entry, Concentration, and Business entry and returns sections, so they change with the settings chosen in those tabs.
+
+### The sections
+
+The sections run: industries in each state, compared with similar economies, with the selected industry's productivity and its comparison (moved to the top at the owner's request, 4 November 2026); then concentration; business entry by barrier group and for all industries; whether low entry goes with high returns; and state economies. "Where the barriers to entry are" is shelved (owner's request, 29 October 2026): it is folded away at the end of the page, unchanged. Each chart's description sits behind an "i" beside its title, and its notes and sources in one "About this chart" dropdown. The narrative headings follow the data shown, so they change with the period, state, measure and businesses counted:
 - **Concentration**: the all-industries change between the first and last years: risen (+1 point or more), fallen (−1 point or more), or barely changed. The summary names the industries where the share rose and fell most.
 - **Business entry**: the barrier group with the lowest average entry rate, against low barriers. Fewer new firms start up there when its rate is below the low-barriers rate; otherwise "Entry is no lower behind barriers to entry". With businesses with employees, heavily regulated industries have a lower entry rate than low-barrier industries in every state and in every period checked (2015-16 to 2024-25, 2008-09 to 2024-25, 2020-21 to 2024-25). Counting all businesses, it is mixed, because of rideshare and delivery sole traders.
 - **Where the barriers are**: the barrier groups' share of businesses and of company income. By default (2018-19 to 2022-23): 3.7% of businesses with employees (June 2019 to June 2023, averaged), but 19.6% of company income, 22.2% of company equity and 12.4% of company profit.

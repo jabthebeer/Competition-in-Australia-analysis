@@ -32,7 +32,7 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   | Template | Page |
   |---|---|
   | `home.html` | `index.html`, Home (built by `menu/home.py`; its figures come from the other pages' data) |
-  | `growth.html` | Structural competitive conditions, with the economic conditions at its end |
+  | `growth.html` | Structural competitive conditions, in six tabs: an Overview, four on competition, and the Economic backdrop (the former economic conditions) |
   | `explorer.html` | `menu.html`, Legislative levers influencing competition |
   | `industry-lens.html` | Industry lens |
   | `framework.html` | Framework |
@@ -41,8 +41,11 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
 - **Nav and page names:** `PAGES`, `NAV_GROUPS` and `NAV_LABELS` in
   `alicia/src/alicia/menu/growth.py`. The nav is one line: the site's name (the link home), then
   the pages grouped as Top down, Bottom up and About under short labels (`NAV_LABELS`). On a
-  phone the groups fold behind a Menu button. `conditions.html` is only a forward to the economic
-  conditions; nothing links to it.
+  phone the groups fold behind a Menu button. `conditions.html` is only a forward to the Economic
+  backdrop tab; nothing links to it.
+- **Headline figures:** `alicia/src/alicia/menu/figures.py` works out Home's figures and the
+  competition page's scorecard from the page data when the site is built. Don't type a headline
+  figure into a template.
 - **Beta:** one "Beta" badge sits beside the site's name in the nav. Every page on the live site
   also ends its h1 with `<!--__BETA__-->` (`growth.beta()`): "(beta)" with a work-in-progress
   tip. A new page gets it too. Nav links carry no "(beta)".
@@ -54,7 +57,7 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   ```bash
   cd alicia && uv run alicia site -o <scratchpad>/site --dates "$(ls ../regulation-register/reports/effective_dates_*.json | sort | tail -n 1)"
   ```
-- **Tests that pin page structure:** `tests/test_site.py`, `test_home.py`, `test_explorer.py`,
+- **Tests that pin page structure:** `tests/test_site.py`, `test_home.py`, `test_scorecard.py`, `test_explorer.py`,
   `test_lens.py`, `test_framework_page.py` and `test_archive.py`. When a change is deliberate, update the test
   and say so in the PR. Never weaken a test only to get it to pass.
 
@@ -158,7 +161,12 @@ Also:
   - `table.data` inside `.tscroll`;
   - `table.heat`;
   - `.site-nav`;
-  - `.tiles` with `.tile` for a page's key figures (label, value, what it is, source);
+  - `.tiles.headline` with `.tile` for a page's key figures (label, value, what it is, then its
+    source or an earlier figure);
+  - `.tabs` with `.tab-panel` for a long page's sections (see section 4);
+  - `.findings` with `.finding` for a finding, its small chart (`.minibars`, `miniBars()` in
+    `charts.js`) and a link to the detail;
+  - `.more` with `.more-link` for cards that link to other pages or tabs;
   - `.btn`, and `.btn.primary` for a page's main action;
   - `.site-foot` (`growth.site_foot()`) for a page's closing lines.
 
@@ -171,8 +179,15 @@ Also:
 - **Equal left and right edges:** every block lines up on the `.wrap` edges [ts].
 - **What the reader came for comes first.** Methods, caveats and sources go lower or behind
   `details`.
-- **A page with more than about five sections gets a row of in-page links** to them under its
-  header.
+- **A long page puts its sections in tabs** (DECISIONS E-159, E-160), as `growth.html` does:
+  - the first tab is an Overview that answers the page's question; the others hold the detail;
+  - mark up `.tabs[role="tablist"]` and `.tab-panel[role="tabpanel"]`, and call `initTabs()`
+    (`charts.js`);
+  - keep section ids when moving a section into a tab: a link to an id inside a tab opens it;
+  - controls sit in the tab whose charts they change;
+  - without scripts every panel must show (a `<noscript>` style).
+- **A shorter page with more than about five sections gets a row of in-page links** to them
+  under its header.
 - **Line lengths:** prose at most 72–80ch, notes at most 100ch.
 - **A table wider than the screen scrolls inside `.tscroll`,** never the page.
 - **Anything shown on hover can also be reached by keyboard focus and by tap,** as `.info`
@@ -220,6 +235,8 @@ Also:
    options):
    - at 1440x900 and 390x844;
    - with `colorScheme` light and dark.
+
+   On a page with tabs, open every tab.
 
    On each page, check:
    - that `document.documentElement.scrollWidth` equals the viewport width at 390 and 320;
