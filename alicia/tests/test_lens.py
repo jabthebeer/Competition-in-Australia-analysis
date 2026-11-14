@@ -276,5 +276,6 @@ def test_the_page_leads_with_pain_points_and_overlap_and_names_who_administers_e
     regimes = {g["id"]: g for g in p["regimes"]}
     assert regimes["food-safety"]["issues"] and all(i["pub"] and i["quote"] for i in regimes["food-safety"]["issues"])
     assert all(i["status"] != "addressed" for g in p["regimes"] for i in g.get("issues", []))
-    assert p["gaps"]["home-warranty-insurance"]["VIC"] == "blocked"
+    logged = json.loads((lens.default_register_dir() / "requirement-gaps.json").read_text("utf-8"))["gaps"]
+    assert p["gaps"] and all(p["gaps"][g["family"]][g["jurisdiction"]] == g["status"] for g in logged)
     assert set(p["businessFacing"]) < set(p["functions"])
