@@ -42,6 +42,11 @@ If you need a change on the right-hand side (a new field, a new kind of requirem
   - `triggers`: use `entry` only where the law must be met before trading starts;
   - each part of `reach`: give a `condition` or `activities` where the law binds only businesses doing something, and leave them empty only where it binds every business in the industries listed.
 - Check your new rows on **Register data** (`register-data.html`) after a build: it shows how each item is coded, the businesses it reaches and its sources.
+- **Framework version 2 (E-185)** adds two files in `regulation-register/`, both owned by the website session:
+  - `rule-coding.json`: the coded attributes (kind, when, bound, note) of the register's laws and policies that apply today. If you add an existing setting that weighs on productivity, `alicia validate` warns that it has no coding. That is not a failure: its class comes from its marks until the website session codes it. Say so in your PR, or add an entry yourself in the same form;
+  - `regime-purposes.json`: each regime's purpose. If you add a regime, `alicia validate` warns until it has one. Add an entry if you can.
+  Both are plain JSON objects keyed by id, so an entry you add merges cleanly unless the same id was changed on both branches.
+- **Assessments stay at framework version 1.0.** Version 2.0 did not change the marks, so keep `"framework": "1.0"` in new assessments.
 
 ### 4. Generated files: rebuild, never merge by hand
 
@@ -60,7 +65,7 @@ Check each script's own header for its arguments before you run it. `links.csv.g
 ### 5. `alicia/DECISIONS.md`
 
 - Rows are added at the end, so two branches always conflict there. Keep both sets of rows, in number order.
-- **E-161 is taken. Use E-162 to E-179.** The website session uses **E-180 onwards** (E-180 to E-184 are taken), so the numbers can't collide.
+- **E-161 is taken. Use E-162 to E-179.** The website session uses **E-180 onwards** (E-180 to E-185 are taken), so the numbers can't collide.
 - One row for each batch, as now.
 
 ### 6. Check before you push

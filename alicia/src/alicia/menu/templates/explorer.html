@@ -57,6 +57,11 @@ button.more-link { font: inherit; text-align: left; background: var(--surface); 
 button.more-link:hover, button.more-link:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
 dl.expo { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; font-size: var(--step--1); }
 dl.expo dt { color: var(--ink-2); } dl.expo dd { margin: 0; font-variant-numeric: tabular-nums; }
+dl.expo + dl.expo { margin-top: 10px; }
+.sub-h { font-size: var(--step--1); font-weight: 600; margin: 12px 0 4px; color: var(--ink-2); }
+ul.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: var(--step--1); }
+ul.steps li.off { color: var(--ink-3); }
+ul.chg { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: var(--step--1); }
 /* An effect on one market position: the mark fills, with a sign. */
 .eff { display: inline-block; font-size: var(--step--1); padding: 1px 9px; border-radius: 999px; white-space: nowrap; font-weight: 500; }
 .pill { display: inline-block; font-size: var(--step--1); padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
@@ -481,6 +486,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       <button class="reset" id="reset" type="button">Clear all filters</button>
     </div>
     <div class="filter-row"><span class="filter-label">Main driver</span><div class="chips" id="f-driver"></div></div>
+    <div class="filter-row"><span class="filter-label"><span data-term="helpRole">Show</span></span><div class="chips" id="f-role"></div></div>
     <div class="filter-row"><span class="filter-label"><span data-term="helpBig">Impact class</span></span><div class="chips" id="f-impact"></div></div>
     <div class="filter-row"><span class="filter-label">Overall mark</span><div class="chips" id="f-rating"></div></div>
     <div class="filter-row"><span class="filter-label"><span data-term="mostAffects">Most affects</span></span><div class="chips" id="f-pos"></div></div>
@@ -628,6 +634,9 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     touchpoints: ["Government parties", "The distinct agencies, by tier, that a business deals with directly under a regime: those that license, approve, inspect, collect or fund. Setting the rules is not counted."],
     ...Object.fromEntries(Object.entries(DATA.issueTags || {}).map(([k, t]) => [`cx-${k}`, [t.label, t.help]])),
     helpGlance: ["What weighs on productivity", "Items by their main driver (the driver with the largest mark): those marked negative overall to the left, positive to the right. Each bar is split into laws and policies (solid), requirements (striped) and non-legislative barriers (lined); a key above the chart shows one type only. Requirements are marked mostly on their compliance cost and the hurdle they put before entry, so they lean negative: the marks show effects on productivity and competition, not whether a law is worthwhile. Click a driver to filter. Counts follow the filters below."],
+    helpRole: ["Rules and changes", "A rule applies today: a requirement a law places on businesses, a law or policy in place, or a non-legislative barrier. A change is a reform to the rules: in force, passed or proposed. A reform in force that added a restriction counts as a rule, because the restriction applies today. A rule lists the changes made to it, and a change the rule it changes, where the register links them."],
+    helpSev: ["Severity", DATA.severityNote || ""],
+    helpEvidence: ["Evidence", "What the site itself holds about an item, as facts anyone can check: whether its law is named with a link to the official register, whether the obligation is quoted word for word, whether its attributes are coded, and whether the businesses it reaches are counted. What reviews and other studies found is listed separately, under What others found."],
     helpBig: ["Impact classes", `${(DATA.impactClasses || []).map((c) => `${c.label}: ${c.help.charAt(0).toLowerCase()}${c.help.slice(1)}`).join(" ")} Only rules that apply today and have a negative overall mark are classed. ${DATA.exposureNote || ""}`],
     helpMarks: ["Overall marks", "Each item's marks on the eight drivers added up, split by type as in the chart beside it. Most reforms in the register were first chosen because they could be evaluated with public data, so the register is not yet a balanced sample of everything that weighs on productivity."],
     mostAffects: ["Most affects", "The market position where an item's marks weigh most: entrants (starting up, or entering from other states and countries), existing competitors (their costs, and their ability and incentive to compete), or monopolies and oligopolies (shelter from rivals, or exposure to them). A tie names each. The Industry lens uses the same coding."],
@@ -717,7 +726,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   }
 
   // --- State --------------------------------------------------------------------------------------
-  const state = { q: "", driver: new Set(), rating: new Set(), type: new Set(), pos: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", cx: new Set(), regime: "", indSort: "parties", open: new Set(), selected: null, tab: "list", sort: "new", impact: new Set(), big: "major-wide", bigAll: false, listAll: false };
+  const state = { q: "", driver: new Set(), rating: new Set(), type: new Set(), pos: new Set(), jur: new Set(), reach: new Set(), status: "", div: "", body: "", cx: new Set(), regime: "", indSort: "parties", open: new Set(), selected: null, tab: "list", sort: "new", impact: new Set(), role: new Set(), big: "", bigAll: false, listAll: false };
   // The page's two tabs (Overview; Browse the register). The views inside Browse keep their own switcher, below.
   const pageTabs = initTabs(document.querySelector('.tabs[role="tablist"]'));
   const LIST_FIRST = 60, BIG_FIRST = 10;
@@ -727,7 +736,10 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   const bizOf = (r) => (r.exposure && r.exposure.businesses) || 0;
   // Biggest first: by impact class, then the size of the effect on each business (the overall mark), then the
   // businesses reached.
-  const byImpact = (a, b) => clsRank(a) - clsRank(b) || ((A(a) ? A(a).total : 0) - (A(b) ? A(b).total : 0)) || bizOf(b) - bizOf(a) || a.title.localeCompare(b.title);
+  const sevOf = (r) => (r.severity ? r.severity.score : -1);
+  // Biggest first: by impact class, then severity (how hard it bites on each business), then the businesses
+  // reached, then the marks (framework version 2: the total no longer ranks on its own).
+  const byImpact = (a, b) => clsRank(a) - clsRank(b) || sevOf(b) - sevOf(a) || bizOf(b) - bizOf(a) || ((A(a) ? A(a).total : 0) - (A(b) ? A(b).total : 0)) || a.title.localeCompare(b.title);
   const clsTag = (r) => (r.impactClass ? `<span class="tag cls ${esc(r.impactClass)}" title="${esc(ICLS[r.impactClass].help)}">${esc(ICLS[r.impactClass].label)}</span>` : `<span class="muted" title="${esc(r.standing ? "No negative mark, or its businesses can't be counted" : "A change to the rules, not a rule that applies today")}">–</span>`);
 
   function matches(r, skip) {
@@ -735,6 +747,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     if (skip !== "driver" && state.driver.size && !(a && state.driver.has(a.main_driver))) return false;
     if (skip !== "rating" && state.rating.size && !(a && state.rating.has(a.rating))) return false;
     if (state.impact.size && !state.impact.has(r.impactClass)) return false;
+    if (state.role.size && !state.role.has(r.role)) return false;
     if (state.type.size && !state.type.has(r.group)) return false;
     if (state.pos.size && !r.most.some((p) => state.pos.has(p))) return false;
     if (state.jur.size && !state.jur.has(r.jurisdiction)) return false;
@@ -773,6 +786,9 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     el.innerHTML = options.map((o) => `<button type="button" class="chip" data-key="${key}" data-val="${esc(o.value)}" aria-pressed="false" title="${esc(`${o.title ? `${o.title} ` : ""}(${o.n} item${o.n === 1 ? "" : "s"})`)}">${o.icon || ""}${esc(o.label)}</button>`).join("");
   }
   chipGroup($("f-driver"), "driver", DRV_KEYS.map((d) => ({ value: d, label: DRV[d].short, title: DRV[d].question, n: count((r) => A(r) && A(r).main_driver === d) })));
+  // Rules and changes (framework version 2, DECISIONS E-185): a rule applies today; a change is a reform to one.
+  const ROLES = { rule: ["Rules that apply today", "Requirements, laws and policies in place, and barriers"], change: ["Changes to the rules", "Reforms: in force, passed or proposed"], ended: ["No longer in force", "Repealed or replaced"] };
+  chipGroup($("f-role"), "role", Object.keys(ROLES).filter((k) => count((r) => r.role === k)).map((k) => ({ value: k, label: ROLES[k][0], title: ROLES[k][1], n: count((r) => r.role === k) })));
   chipGroup($("f-impact"), "impact", ICLS_ORDER.map((k) => ({ value: k, label: ICLS[k].label, title: ICLS[k].help, n: count((r) => r.impactClass === k) })));
   chipGroup($("f-rating"), "rating", RATING_ORDER.map((k) => ({ value: k, label: RATING_LABEL[k], icon: `<i class="sw ${RATING_CLS[k]}" aria-hidden="true"></i>`, n: count((r) => A(r) && A(r).rating === k) })));
   const typeChips = (withN) => GROUP_ORDER.map((g) => ({ value: g, label: withN ? `${IGRP[g].label} ${count((r) => r.group === g)}` : IGRP[g].label, title: IGRP[g].help,
@@ -822,7 +838,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   });
   $("reset").addEventListener("click", () => {
     state.q = ""; state.status = ""; state.div = ""; state.body = "";
-    ["driver", "rating", "type", "pos", "jur", "reach", "cx", "impact"].forEach((k) => state[k].clear());
+    ["driver", "rating", "type", "pos", "jur", "reach", "cx", "impact", "role"].forEach((k) => state[k].clear());
     state.regime = "";
     $("q").value = ""; $("f-status").value = ""; $("f-div").value = ""; $("f-body").value = "";
     syncChips();
@@ -1159,7 +1175,8 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       </div>
       ${marketHtml(r)}
       ${assessHtml(a)}
-      ${fold("Businesses it reaches", exposureHtml(r), exposureShort(r), true)}
+      ${fold("Impact: severity and businesses reached", impactHtml(r), exposureShort(r), true)}
+      ${fold("Changes to this rule", changesHtml(r), `${(r.changedBy || []).length || ""}`)}
       ${fold("The law", `<p class="small">${lawsLine(r)}</p>${quoteList(r.sources)}`, "", true)}
       ${fold("When it applies", triggersHtml(r), "", true)}
       ${fold("Who it reaches", reachHtml(r), r.allIndustries ? "every industry" : `${r.industries.length} industr${r.industries.length === 1 ? "y" : "ies"}`, true)}
@@ -1231,6 +1248,11 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
         <p class="r-sub">${facts}</p>
         <ul class="ev">${ev}</ul></div></details>
     </article>`;
+  }
+  // What reviews and other studies found, and what they recommend: shown apart from the site's own evidence.
+  function othersHtml(r) {
+    const a = A(r), ev = a && a.evidence.length ? `<p class="small">Reviews and studies cited in its assessment: ${a.evidence.map((u) => link(u)).join(" · ")}</p>` : "";
+    return ev + recsHtml(r);
   }
   function recsHtml(r) {
     const xs = r.recs.map((id) => RECS[id]).filter(Boolean);
@@ -1390,10 +1412,11 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       </div>
       ${marketHtml(r)}
       ${assess}
-      ${fold("Businesses it reaches", exposureHtml(r), exposureShort(r), true)}
+      ${fold("Impact: severity and businesses reached", impactHtml(r), exposureShort(r), true)}
+      ${fold(r.role === "change" ? "The rule it changes" : "Changes to this rule", changesHtml(r), `${(r.changedBy || r.changesRules || []).length || ""}`)}
       ${fold("Requirements under this item", nestedHtml(r), `${nReq}`, true)}
       ${fold("Regulatory complexity", complexityHtml(r), nRegs ? `${nRegs} regime${nRegs === 1 ? "" : "s"}${nTags ? ` · ${nTags} issue tag${nTags === 1 ? "" : "s"}` : ""}` : "")}
-      ${fold("What others recommend", recsHtml(r), recsN ? `${recsN} recommendation${recsN === 1 ? "" : "s"}` : "none yet")}
+      ${fold("What others found and recommend", othersHtml(r), recsN ? `${recsN} recommendation${recsN === 1 ? "" : "s"}` : "none yet")}
       ${fold("Who is responsible", whoHtml(r), whoShort(r))}
       ${fold("Timeline", timelineHtml(r), later ? `${later} later change${later === 1 ? "" : "s"}` : "")}
       ${fold("The industries affected", industries, r.industries.length ? `${r.industries.length} industr${r.industries.length === 1 ? "y" : "ies"}` : "economy-wide")}
@@ -1499,13 +1522,11 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     const e = r.exposure;
     return e && e.businesses !== null ? `${nf(e.businesses)} businesses` : "";
   }
-  function exposureHtml(r) {
+  function exposureRows(r) {
     const e = r.exposure;
     if (!e || e.businesses === null) return `<p class="muted small">Business counts are not available in this build.</p>`;
     const where = r.jurisdiction === "CTH" ? "Australia" : (DATA.places[r.jurisdiction] || r.jurisdiction);
-    const cls = r.impactClass ? `${clsTag(r)} <span class="small">${esc(ICLS[r.impactClass].help)}</span>` : `<span class="small">${esc(r.standing ? "Not classed: it has no negative overall mark." : "Not classed: this is a change to the rules, not a rule that applies today.")}</span>`;
     return `<dl class="expo">
-      <dt>Impact class</dt><dd>${cls}</dd>
       <dt>Businesses in the industries it reaches</dt><dd>${e.partial ? "up to " : ""}${nf(e.businesses)} (${esc(expoYear)})</dd>
       <dt>Of which, with employees</dt><dd>${nf(e.employing)}</dd>
       <dt>Share of businesses in ${esc(where)}</dt><dd>${pct(e.share)}</dd>
@@ -1514,8 +1535,38 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     </dl>
     <p class="small muted">${e.council ? "Counted for the whole state: business counts by council are not held. " : e.partial ? "This rule binds only the businesses doing the activity it names, so the count is an upper bound and the rule is not classed as wide. " : e.beyond ? "It also binds some businesses in other industries, where they do the activity it names; they are not counted. " : "An upper bound where the rule binds only some businesses in an industry. "}Source: ABS, Counts of Australian Businesses.</p>`;
   }
+  // How much an item matters (framework version 2, DECISIONS E-185): its class, from severity and the businesses it
+  // reaches; then the evidence the site holds, and the purpose of its regime (a secondary field).
+  function impactHtml(r) {
+    const s = r.severity, steps = DATA.evidenceSteps || {};
+    const cls = r.impactClass
+      ? `${clsTag(r)} <span class="small">${esc(ICLS[r.impactClass].help)}${r.classFrom === "marks" ? " Read from its marks: it has no coded attributes." : ""}</span>`
+      : `<span class="small">${esc(r.role === "change" ? "Not classed: this is a change to the rules, not a rule that applies today." : r.role === "ended" ? "Not classed: no longer in force." : "Not classed: its marks do not judge it to weigh on productivity.")}</span>`;
+    const sev = s ? `<dl class="expo">
+      <dt>${term("helpSev", "Severity")}</dt><dd><strong>${s.score} of ${s.max}</strong> (${esc(s.band)})</dd>
+      <dt>Kind of obligation</dt><dd>${esc((DATA.severityKinds || {})[s.kind] || s.kind)} (${s.parts.kind})</dd>
+      <dt>When it bites</dt><dd>${esc({ entry: "Before trading starts", growth: "As the business grows", operating: "While operating, or on an activity" }[s.when])} (${s.parts.when})</dd>
+      <dt>Whom it binds</dt><dd>${esc(s.bound === "all" ? "Every business in its industries" : "Only businesses doing a named activity")} (${s.parts.bound})</dd>
+      ${s.thresholds ? `<dt>Thresholds coded</dt><dd>${s.thresholds}</dd>` : ""}
+    </dl>${s.note ? `<p class="small">${esc(s.note)}</p>` : ""}<p class="small muted">Not yet coded: ${esc(s.notCoded.join(", "))}.</p>`
+      : `<p class="small muted">${isReq(r) ? "" : "Its attributes are not coded yet, so it has no severity score."}</p>`;
+    const ev = r.evidence ? `<ul class="steps">${Object.entries(steps).map(([k, v]) => `<li class="${r.evidence.includes(k) ? "on" : "off"}"><span aria-hidden="true">${r.evidence.includes(k) ? "✓" : "–"}</span> ${esc(v)}${r.evidence.includes(k) ? "" : '<span class="sr-only"> (not yet)</span>'}</li>`).join("")}</ul>` : "";
+    return `<dl class="expo"><dt>Impact class</dt><dd>${cls}</dd></dl>${sev}${exposureRows(r)}
+      <h4 class="sub-h">${term("helpEvidence", "Evidence the site holds")}</h4>${ev}
+      ${r.purpose && r.purpose.length ? `<p class="small muted">Purpose of its regime: ${esc(r.purpose.join("; "))}. Weigh it against the costs above; the law itself is linked under ${isReq(r) ? "The law" : "Sources and checks"}.</p>` : ""}`;
+  }
+  const byIdAll = Object.fromEntries([...R, ...R.flatMap((x) => x.requirements || [])].map((x) => [x.id, x]));
+  function changesHtml(r) {
+    // A requirement shown inside another item opens that item.
+    const line = (id) => { const x = byIdAll[id]; return x ? `<li><span class="mono">${esc(x.effective ? fmtDate(x.effective) : "No date")}</span> <button type="button" class="lnk" data-id="${esc(R.some((y) => y.id === id) ? id : NESTED[id] || id)}">${esc(x.title)}</button> ${A(x) ? `<span class="small muted">overall mark ${esc(signed(A(x).total))}</span>` : ""}</li>` : ""; };
+    if ((r.changedBy || []).length) return `<p class="small">Reforms the register records to this rule, oldest first.</p><ul class="chg">${r.changedBy.map(line).join("")}</ul>`;
+    if ((r.changesRules || []).length) return `<p class="small">This reform changed:</p><ul class="chg">${r.changesRules.map(line).join("")}</ul>`;
+    return "";
+  }
   const BIG = R.filter((r) => r.impactClass);
-  const kindOf = (r) => (isReq(r) ? r.obligation : r.group === "barrier" ? ITAG.barrier.label : "Law or policy");
+  // The kind of obligation: coded for requirements and for the laws and policies that apply today.
+  const kindOf = (r) => (isReq(r) ? r.obligation : r.severity ? (DATA.severityKinds || {})[r.severity.kind] || r.severity.kind : r.group === "barrier" ? ITAG.barrier.label : "Law or policy");
+  const sevText = (r) => (r.severity ? `${r.severity.score} of ${r.severity.max}` : "–");
   // One policy in several states is one line: the family's name, the governments that have it and their businesses
   // added up.
   function bigUnits(rows) {
@@ -1538,17 +1589,19 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       const r = u.items[0], many = u.items.length > 1;
       const biz = u.items.reduce((s, x) => s + x.exposure.businesses, 0);
       // The share of the businesses in the jurisdictions that have the rule.
-      const base = u.items.reduce((s, x) => s + (x.exposure.share ? x.exposure.businesses / x.exposure.share * 100 : 0), 0);
+      const base = u.items.reduce((s, x) => s + (x.exposure.base || 0), 0);
       const totals = u.items.map((x) => A(x).total), lo = Math.min(...totals), hi = Math.max(...totals);
+      const sevs = u.items.map(sevOf), slo = Math.min(...sevs), shi = Math.max(...sevs), smax = r.severity ? r.severity.max : 0;
+      const sev = slo < 0 ? `<span class="muted" title="${esc("Not coded: the class comes from the marks")}">–</span>` : esc(slo === shi ? `${slo} of ${smax}` : `${slo} to ${shi} of ${smax}`);
       const partial = u.items.some((x) => x.exposure.partial);
       const classes = Math.max(...u.items.map((x) => x.exposure.classes));
       return `<tr><td><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(many ? GROUPS[u.g].title : r.title)}</button></td>
         <td${many ? ` title="${esc(u.items.map((x) => jl(x.jurisdiction)).join(", "))}"` : ""}>${many ? `${u.items.length} governments` : esc(setBy(r))}</td><td>${esc(kindOf(r))}</td>
-        <td class="num">${esc(lo === hi ? signed(lo) : `${signed(lo)} to ${signed(hi)}`)}</td><td class="num">${partial ? `<span class="muted">up to</span> ` : ""}${nf(biz)}</td><td class="num">${pct(base ? biz / base * 100 : null)}</td>
-        <td class="num">${u.items.every((x) => x.exposure.allIndustries) ? "All" : classes}</td></tr>`;
+        <td class="num">${sev}</td><td class="num">${partial ? `<span class="muted">up to</span> ` : ""}${nf(biz)}</td><td class="num">${pct(base ? biz / base * 100 : null)}</td>
+        <td class="num">${u.items.every((x) => x.exposure.allIndustries) ? "All" : classes}</td><td class="num">${esc(lo === hi ? signed(lo) : `${signed(lo)} to ${signed(hi)}`)}</td></tr>`;
     };
-    $("bigTable").innerHTML = `<thead><tr><th scope="col">Rule</th><th scope="col">Set by</th><th scope="col">Kind</th><th scope="col" class="num">Overall mark</th><th scope="col" class="num">Businesses reached</th><th scope="col" class="num">Share of jurisdiction</th><th scope="col" class="num">Industries</th></tr></thead>
-      <tbody>${shown.map(line).join("") || `<tr><td colspan="7">None recorded.</td></tr>`}</tbody>`;
+    $("bigTable").innerHTML = `<thead><tr><th scope="col">Rule</th><th scope="col">Set by</th><th scope="col">Kind</th><th scope="col" class="num">${term("helpSev", "Severity")}</th><th scope="col" class="num">Businesses reached</th><th scope="col" class="num">Share of jurisdiction</th><th scope="col" class="num">Industries</th><th scope="col" class="num">Overall mark</th></tr></thead>
+      <tbody>${shown.map(line).join("") || `<tr><td colspan="8">None recorded.</td></tr>`}</tbody>`;
     $("bigTable").querySelectorAll(".rowbtn").forEach((b) => b.addEventListener("click", () => { select(b.dataset.id); pageTabs.open("browse"); $("detail").scrollIntoView({ block: "start" }); }));
     $("bigMore").hidden = us.length <= BIG_FIRST;
     $("bigMore").textContent = state.bigAll ? `Show the first ${BIG_FIRST}` : `Show all ${us.length}`;
@@ -1557,9 +1610,11 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   $("listMore").addEventListener("click", () => { state.listAll = true; render(); });
   (function renderOverview() {
     const standing = R.filter((r) => r.standing), n = (k) => BIG.filter((r) => r.impactClass === k).length;
-    $("bigLede").textContent = `${BIG.length} of the ${standing.length} rules that apply today are marked as weighing on productivity. They are ranked by how many businesses they reach and how large their effect is on each.`;
+    state.big = ICLS_ORDER.find((k) => n(k)) || ICLS_ORDER[0];
+    $("bigLede").textContent = `${BIG.length} of the ${standing.length} rules that apply today are marked as weighing on productivity. They are ranked by how hard each bites on the businesses it binds (its severity, from coded facts) and how many businesses it reaches.`;
     const tile = (k, what) => `<button type="button" class="tile" data-class="${esc(k)}"><span class="t-label">${esc(ICLS[k].label)}</span><span class="t-value">${n(k)}</span><span class="t-sub">${esc(what)}</span></button>`;
-    $("bigTiles").innerHTML = ICLS[ICLS_ORDER[0]] ? [tile("major-wide", "rules that reach a quarter or more of the businesses in their jurisdiction"),
+    $("bigTiles").innerHTML = ICLS.severe ? [tile("severe", "rules with a large effect on each business that reach a quarter or more of the businesses in their jurisdiction"),
+      tile("major-wide", "rules with a smaller effect that reach a quarter or more of the businesses in their jurisdiction"),
       tile("major-narrow", "rules with a large effect on a small set of industries"), tile("minor", "rules with a small effect on a small set of industries")].join("") : "";
     $("bigTiles").querySelectorAll(".tile").forEach((b) => b.addEventListener("click", () => { state.big = b.dataset.class; state.bigAll = false; renderBig(); $("bigKey").scrollIntoView({ block: "nearest" }); }));
     $("bigSrc").innerHTML = `Source: ALICIA register (draft); ${link("https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/latest-release", "ABS, Counts of Australian Businesses, including Entries and Exits")}${expoYear ? `, ${esc(expoYear)}` : ""}.`;

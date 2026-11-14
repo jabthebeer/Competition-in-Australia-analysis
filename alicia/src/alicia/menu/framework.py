@@ -107,7 +107,7 @@ CONCEPT_ICONS = {
 }
 SIGN_ICONS = {"entry": "entry-exit", "jobs": "labour", "markups": "prices-taxes", "investment": "capital"}
 STEP_ICONS = ("describe", "mark", "add", "star", "reach")
-LIMIT_ICONS = ("scales", "approx", "review", "reach")
+LIMIT_ICONS = ("scales", "approx", "review", "reach", "approx")
 BANDS = (
     ("−3 or less", "strongly-negative", "mn2"),
     ("−1 to −2", "negative", "mn1"),
@@ -636,8 +636,88 @@ def _limits() -> str:
     return f'<div class="limits">{cards}</div>'
 
 
-def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes: list[Regime] | None = None) -> str:
-    """``regimes`` defaults to the committed regulatory regimes (``load_regimes``)."""
+def version_two(classes: dict[str, int] | None = None) -> str:
+    """How much a rule matters (framework version 2, DECISIONS E-185): three questions, the four impact classes with
+    the number of rules in each (``classes``, from the levers page's data, when the site build passes it), and the
+    severity points."""
+    from ..register import severity as S
+
+    def count(k: str) -> str:
+        if classes is None:
+            return ""
+        n = classes.get(k, 0)
+        return f'<span class="t-value">{n}</span>'
+
+    qs = "".join(
+        f'<div class="panel q"><span class="q-n">{i}</span><div><h3>{escape(q["question"])}</h3>'
+        f"<p>{escape(q['how'])}</p></div></div>"
+        for i, q in enumerate(fw.QUESTIONS, 1)
+    )
+    ids = dict(
+        zip(
+            ("Severe", "Major, wide", "Major, narrow", "Minor"),
+            ("severe", "major-wide", "major-narrow", "minor"),
+            strict=True,
+        )
+    )
+    cell = {
+        label: f'<a class="tile" href="menu.html"><span class="t-label">{escape(label)}</span>{count(ids[label])}'
+        f'<span class="t-sub">{escape(text)}</span></a>'
+        for label, text in fw.CLASSES_TEXT
+    }
+    when = {"entry": "before trading starts", "growth": "at the first employee or a size threshold"}
+    when["operating"] = "while operating, or on an activity"
+    rows = (
+        [(f"Kind: {S.KIND_LABELS[k][0].lower()}{S.KIND_LABELS[k][1:]}", v) for k, v in S.KIND_POINTS.items()]
+        + [(f"When it bites: {when[k]}", v) for k, v in S.WHEN_POINTS.items()]
+        + [
+            ("Whom it binds: every business in its industries", 1),
+            ("Whom it binds: only those doing a named activity", 0),
+        ]
+    )
+    points = "".join(f'<tr><td>{escape(a)}</td><td class="num">{v}</td></tr>' for a, v in rows)
+    versions = " ".join(f"{escape(v)} ({escape(d)}): {escape(w)}" for v, d, w in fw.HISTORY)
+    return f"""
+<section class="block" aria-labelledby="h-v2">
+  <div class="block-head"><h2 id="h-v2">How much a rule matters</h2>
+  <p>Version {escape(fw.VERSION)} asks three questions about each rule. Only the first is a judgement.</p></div>
+  <div class="qs">{qs}</div>
+  <h3 class="sub" id="h-classes">Four impact classes</h3>
+  <div class="grid2" role="table" aria-label="Impact classes by size of effect and number of businesses reached">
+    <div role="row" class="g-head"><span role="columnheader"></span>
+    <span role="columnheader">Small set of industries</span>
+    <span role="columnheader">Wide: a quarter or more of businesses</span></div>
+    <div role="row"><span role="rowheader" class="g-row">Large effect on each business</span>
+    <div role="cell" class="tiles headline">{cell["Major, narrow"]}</div>
+    <div role="cell" class="tiles headline">{cell["Severe"]}</div></div>
+    <div role="row"><span role="rowheader" class="g-row">Smaller effect</span>
+    <div role="cell" class="tiles headline">{cell["Minor"]}</div>
+    <div role="cell" class="tiles headline">{cell["Major, wide"]}</div></div>
+  </div>
+  <p class="small">Only rules that apply today and that the marks judge to weigh on productivity are classed. Each class
+  opens on <a href="menu.html">Legislative levers</a>, under Biggest barriers.</p>
+  <details class="more"><summary>Severity: the points for each coded attribute</summary>
+  <div class="tscroll"><table class="data pts"><thead><tr><th scope="col">Attribute</th>
+  <th scope="col" class="num">Points</th></tr></thead>
+  <tbody>{points}</tbody></table></div>
+  <p>{escape(S.NOTE)}</p></details>
+  <details class="more"><summary>Rules and changes, evidence and purpose</summary>
+  <p><strong>Rules and changes.</strong> {escape(fw.RULES_AND_CHANGES)}</p>
+  <p><strong>Evidence.</strong> {escape(fw.EVIDENCE_TEXT)}</p>
+  <p><strong>Purpose.</strong> {escape(fw.PURPOSE_TEXT)}</p>
+  <p><strong>Versions.</strong> {versions}</p></details>
+</section>
+"""
+
+
+def body(
+    records: list[ChangeRecord],
+    generated: dt.date | None = None,
+    regimes: list[Regime] | None = None,
+    classes: dict[str, int] | None = None,
+) -> str:
+    """``regimes`` defaults to the committed regulatory regimes (``load_regimes``); ``classes`` is the number of rules
+    in each impact class, when the site build has them."""
     regimes = load_regimes().regimes if regimes is None else regimes
     tips = _Tips()
     flow = _flow(tips)
@@ -662,10 +742,9 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes:
   <p class="hint">{icon("info")} Hover over, or tap, any box, row or cell for more detail.</p>
 </header>
 
-<p class="notice"><strong>Version {escape(fw.VERSION)} is being revised.</strong> In version 2, a rule will be
-scored from facts anyone can check in its text (its kind, when it bites, who it binds, its fee), and classed by how
-many businesses it reaches. The marks below stay, as a judgement shown beside that score. The first step is on
-<a href="menu.html">Legislative levers</a>, under Biggest barriers.</p>
+{version_two(classes)}
+
+<h2 class="part" id="h-judgement">The judgement: eight drivers of productivity</h2>
 
 {example}
 
@@ -732,8 +811,10 @@ def render(
     generated: dt.date | None = None,
     regimes: list[Regime] | None = None,
     beta: str = "",
+    classes: dict[str, int] | None = None,
 ) -> str:
-    """The Framework page. ``beta`` is the "(beta)" marker after its heading (``growth.beta()``)."""
+    """The Framework page. ``beta`` is the "(beta)" marker after its heading (``growth.beta()``); ``classes`` the
+    number of rules in each impact class."""
     from .growth import _asset
 
     template = resources.files("alicia.menu").joinpath("templates/framework.html").read_text("utf-8")
@@ -742,7 +823,7 @@ def render(
         .replace("/*__CHARTS_JS__*/", _asset("charts.js"))
         .replace("<!--__NAV__-->", nav)
         .replace("<!--__BETA__-->", beta)
-        .replace("<!--__BODY__-->", body(records, generated, regimes))
+        .replace("<!--__BODY__-->", body(records, generated, regimes, classes))
     )
     if standalone:
         page = (

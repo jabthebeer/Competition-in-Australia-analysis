@@ -37,6 +37,7 @@ from pathlib import Path
 from .. import anzsic
 from ..register import competition as C
 from ..register import framework
+from ..register import severity as S
 from ..register.bodies import BODY_TYPE_LABELS, Body, load_bodies
 from ..register.evaluation import Evaluation
 from ..register.families import Family, load_families
@@ -58,7 +59,7 @@ from ..register.regimes import (
 from ..register.requirements import KIND_LABELS as OBLIGATION_LABELS
 from ..register.requirements import TRIGGER_LABELS, Requirement, load_requirements, reach_classes
 from ..register.schema import CHANNEL_LABELS, ROLE_LABELS, ChangeRecord
-from ..register.severity import severity
+from ..register.severity import record_severity, requirement_evidence, severity
 from ..register.timeline import changed_by_index, changes_list, ended_dict, timeline
 from ..timing import timing
 from . import exposure as X
@@ -329,12 +330,22 @@ def build_payload(
         in_force: bool,
         council: bool = False,
         partial: bool = False,
+        sev: dict | None = None,
     ) -> dict:
-        """A row's exposure, whether it is a rule that applies today, and its impact class."""
+        """A row's exposure, whether it is a rule that applies today or a change to one, and its impact class with
+        what its size of effect was read from (framework version 2, DECISIONS E-185)."""
         total = assessment["total"] if assessment else None
         exp = X.measure(pairs, jurisdiction, counts, council, partial)
         standing = X.is_standing(kind, total, ended, in_force)
-        return {"exposure": exp, "standing": standing, "impactClass": X.impact_class(total, exp) if standing else None}
+        cls, source = X.impact_class(total, exp, sev) if standing else (None, None)
+        role = "rule" if standing else "ended" if ended else "change"
+        return {"exposure": exp, "standing": standing, "role": role, "impactClass": cls, "classFrom": source}
+
+    purposes, purpose_labels = S.load_purposes()
+
+    def purpose(regime_ids) -> list[str]:
+        """The purposes of the regimes an item belongs to (a secondary field: readers judge from the law)."""
+        return sorted({purpose_labels[purposes[g]] for g in regime_ids if g in purposes})
 
     bodies = load_bodies()[0] if bodies is None else bodies
     titles = {r.id: r.title for r in records}
@@ -358,6 +369,7 @@ def build_payload(
     for q in reqs:
         homes = [x for x in q.records if x in by_id]
         d = requirement_dict(q, reg_by_id, {x: record_marks.get(x) for x in homes})
+        d["severity"] = severity(q)
         d.update(
             impact(
                 "requirement",
@@ -367,11 +379,13 @@ def build_payload(
                 False,
                 True,
                 q.tier == "local",
-                X.conditional(q),
+                X.conditional(q) or d["severity"]["bound"] == "some",
+                d["severity"],
             )
         )
         d["exposure"]["beyond"] = X.beyond(q)
-        d["severity"] = severity(q)
+        d["evidence"] = requirement_evidence(q, d["exposure"]["businesses"] is not None)
+        d["purpose"] = purpose([q.regime] if q.regime else [])
         for x in homes:
             nested.setdefault(x, []).append(d)
         if not homes:
@@ -408,6 +422,8 @@ def build_payload(
             }
         )
         data["industries"] = [{**i, "division": anzsic.division(i["anzsic"])} for i in data["industries"]]
+        sev = record_severity(r.id)
+        data["severity"] = sev
         data.update(
             impact(
                 r.kind,
@@ -416,10 +432,21 @@ def build_payload(
                 r.jurisdiction,
                 bool(data["ended"]),
                 bool(eff and eff.date <= today),
+                partial=bool(sev and sev["bound"] == "some"),
+                sev=sev,
             )
         )
+        data["evidence"] = S.evidence(
+            law=any(i.register_url for i in r.instruments),
+            quoted=False,
+            coded=sev is not None,
+            counted=data["exposure"]["businesses"] is not None,
+        )
+        data["purpose"] = purpose(data["regimes"])
+        data["othersFound"] = len(r.assessment.evidence) if r.assessment else 0
         out.append(data)
     out += rows_req
+    link_changes(out, reqs)
     # Every ANZSIC code the requirements name: the classes they reach, and the codes at any level their reach lists.
     every_req = rows_req + [q for qs in nested.values() for q in qs]
     used_classes = sorted(
@@ -464,9 +491,48 @@ def build_payload(
         "places": STATE_NAMES,
         "checkNote": CHECK_NOTE,
         "impactClasses": [{"id": k, "label": v, "help": X.CLASS_HELP[k]} for k, v in X.CLASSES.items()],
+        "severityNote": S.NOTE,
+        "severityKinds": S.KIND_LABELS,
+        "evidenceSteps": S.EVIDENCE_STEPS,
         "exposureNote": X.NOTE,
         "exposureYear": counts.year if counts else None,
     }
+
+
+def link_changes(rows: list[dict], requirements: list[Requirement]) -> None:
+    """Join each change (a reform that is not itself a rule) to the rules it changes, and each rule to its changes
+    (framework version 2, DECISIONS E-185). Two links are used, both recorded in the register:
+
+    - a reform in the same family as a rule (one policy across governments) changes that rule in its own
+      jurisdiction, or the Commonwealth's where the family has no rule there;
+    - a requirement that names a reform (the same law) is a rule that reform made or changed.
+
+    Adds ``changesRules`` to each change and ``changedBy`` to each rule, as lists of ids, oldest change first."""
+    every = rows + [q for r in rows for q in r.get("requirements", [])]
+    by_id = {r["id"]: r for r in every}
+    for r in every:
+        r.setdefault("changesRules", [])
+        r.setdefault("changedBy", [])
+    rules = [r for r in rows if r.get("role") == "rule" and r.get("family") and r["type"] == "record"]
+    by_family: dict[str, dict[str, list[str]]] = {}
+    for r in rules:
+        by_family.setdefault(r["family"], {}).setdefault(r["jurisdiction"], []).append(r["id"])
+    links: set[tuple[str, str]] = set()
+    for c in rows:
+        if c.get("role") != "change" or c["type"] != "record" or c.get("family") not in by_family:
+            continue
+        where = by_family[c["family"]]
+        for rid in where.get(c["jurisdiction"]) or where.get("CTH") or []:
+            links.add((c["id"], rid))
+    for q in requirements:
+        for x in q.records:
+            if x in by_id and by_id[x].get("role") == "change" and q.id in by_id:
+                links.add((x, q.id))
+    for cid, rid in sorted(links):
+        by_id[cid]["changesRules"].append(rid)
+        by_id[rid]["changedBy"].append(cid)
+    for r in every:
+        r["changedBy"].sort(key=lambda x: by_id[x].get("effective") or "")
 
 
 def menu_payload(

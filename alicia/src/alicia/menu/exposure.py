@@ -1,22 +1,24 @@
 """Exposure: how many businesses a rule reaches, and the impact class that follows from it.
 
-Owner decision, 14 November 2026 (DECISIONS E-161; plan in ``docs/plan_policy_tool.md``). A rule's importance is
-read from two things: how large its effect is on each business it binds, and how many businesses it binds. The
-second is measured here from the ABS business counts (CABEE, by detailed industry and state, latest June), for the
-industries and states the rule reaches. The first is, for now, the framework marks already drafted: a rule whose
-marks add to −2 or lower counts as a large effect. Framework version 2 replaces that stopgap with a severity score
-from coded attributes.
+Owner decisions, 14 November 2026 (DECISIONS E-161, E-180, E-185; plan in ``docs/plan_policy_tool.md``). A rule's
+importance is read from two things: how large its effect is on each business it binds, and how many businesses it
+binds. The second is measured here from the ABS business counts (CABEE, by detailed industry and state, latest June),
+for the industries and states the rule reaches. The first is its severity, scored from coded attributes
+(``register/severity.py``): a high score is a large effect. A rule with no coded attributes (a non-legislative
+barrier, or a new item not yet coded) falls back to its framework marks, where marks that add to −2 or lower count
+as a large effect, and says so.
 
-Three classes (the owner's):
+Four classes (the owner's):
 
-- **Major, wide:** it reaches a large share of the businesses in its jurisdiction, whatever the size of its effect
-  on each. A rule that binds only the businesses doing some activity (its reach carries a condition or lists
-  activities) is never wide, however many industries it could reach: the count is then an upper bound;
+- **Severe:** a large effect on each business, and it reaches a large share of the businesses in its jurisdiction;
+- **Major, wide:** a smaller effect, on a large share of businesses;
 - **Major, narrow:** a large effect on a small set of industries;
 - **Minor:** a small effect on a small set of industries.
 
-A state's rule is judged within its state, and a council's within its state too (business counts by council are not
-in the panel), so a council rule's figures are an upper bound and it is never classed as wide.
+A rule that binds only the businesses doing some activity is never wide, however many industries it could reach:
+the count is then an upper bound. A state's rule is judged within its state, and a council's within its state too
+(business counts by council are not in the panel), so a council rule's figures are an upper bound and it is never
+classed as wide. Only rules that apply today and that the marks judge to weigh on productivity are classed.
 """
 
 from __future__ import annotations
@@ -28,19 +30,22 @@ from .. import anzsic
 from ..pipeline import schema, store
 from ..register.requirements import Requirement, reach_classes
 from ..register.schema import ChangeRecord
+from ..register.severity import WIDE_SHARE  # a quarter or more of the businesses in a rule's jurisdiction is wide
 
-# A rule is wide when it reaches at least this share of the businesses in its jurisdiction.
-WIDE_SHARE = 25.0
-# A rule has a large effect when its framework marks add to this or lower (the stopgap for version 2's severity).
+# Without coded attributes, a rule has a large effect when its framework marks add to this or lower.
 DEEP_TOTAL = -2
 
+# In order, biggest first.
 CLASSES = {
+    "severe": "Severe",
     "major-wide": "Major, wide",
     "major-narrow": "Major, narrow",
     "minor": "Minor",
 }
 CLASS_HELP = {
-    "major-wide": f"Reaches at least {WIDE_SHARE:.0f}% of the businesses in its jurisdiction.",
+    "severe": f"A large effect on each business, reaching at least {WIDE_SHARE:.0f}% of the businesses in its "
+    "jurisdiction.",
+    "major-wide": f"A smaller effect, reaching at least {WIDE_SHARE:.0f}% of the businesses in its jurisdiction.",
     "major-narrow": "A large effect on a small set of industries.",
     "minor": "A small effect on a small set of industries.",
 }
@@ -52,9 +57,9 @@ NOTE = (
     "that follows an activity is never classed as wide. Where a rule binds some whole industries and, elsewhere, "
     "only businesses doing an activity, the whole industries are counted. "
     f"A rule is wide when it reaches at least {WIDE_SHARE:.0f}% of the businesses in its jurisdiction; a state's "
-    "rule is judged within its state. The size of a rule's effect is, for now, read from its framework marks: marks "
-    f"that add to {DEEP_TOTAL} or lower count as a large effect. The marks are drafts and are being replaced by a "
-    "score from coded attributes."
+    "rule is judged within its state. The size of a rule's effect on each business is its severity, scored from "
+    "coded attributes: a high score is a large effect. A rule with no coded attributes, such as a non-legislative "
+    f"barrier, uses its framework marks instead: marks that add to {DEEP_TOTAL} or lower count as a large effect."
 )
 
 
@@ -176,6 +181,7 @@ def measure(
         "employing": None,
         "share": None,
         "shareAus": None,
+        "base": None,
         "year": counts.year if counts else None,
     }
     if not counts or not pairs:
@@ -188,19 +194,29 @@ def measure(
         businesses=round(n),
         employing=round(emp),
         share=round(100 * n / base, 1) if base else None,
+        base=round(base),
         shareAus=round(100 * n / aus, 1) if aus else None,
     )
     return out
 
 
-def impact_class(total: int | None, exposure: dict) -> str | None:
-    """The impact class of a standing rule with a negative overall mark; ``None`` for anything else, or when the
-    businesses it reaches can't be counted."""
+def large(total: int, severity: dict | None) -> tuple[bool, str]:
+    """Whether a rule's effect on each business it binds is large, and what that was read from: its severity
+    (``severity``) or, without coded attributes, its framework marks (``marks``)."""
+    if severity:
+        return severity["band"] == "high", "severity"
+    return total <= DEEP_TOTAL, "marks"
+
+
+def impact_class(total: int | None, exposure: dict, severity: dict | None = None) -> tuple[str | None, str | None]:
+    """The impact class of a standing rule with a negative overall mark, and what its size of effect was read from;
+    ``(None, None)`` for anything else, or when the businesses it reaches can't be counted."""
     if total is None or total >= 0 or exposure.get("share") is None:
-        return None
+        return None, None
+    big, source = large(total, severity)
     if exposure["share"] >= WIDE_SHARE and not exposure.get("partial"):
-        return "major-wide"
-    return "major-narrow" if total <= DEEP_TOTAL else "minor"
+        return ("severe" if big else "major-wide"), source
+    return ("major-narrow" if big else "minor"), source
 
 
 def is_standing(kind: str, total: int | None, ended: bool, in_force: bool) -> bool:

@@ -28,18 +28,25 @@ def test_severity_follows_the_coded_attributes():
         s = S.severity(q)
         types = {t.type for t in q.triggers}
         when = "entry" if "entry" in types else "growth" if types & set(S.GROWTH) else "operating"
-        bound = "all" if any(not (r.condition or r.activities) for r in q.reach) else "some"
+        # Binds every business in its industries unless every part of its reach follows an activity, or it reaches
+        # every industry but bites only on an activity.
+        firm = any(not (r.condition or r.activities) for r in q.reach)
+        only_activity = types == {"activity"} and all(r.scope == "all" for r in q.reach)
+        bound = "all" if firm and not only_activity else "some"
         assert (s["when"], s["bound"]) == (when, bound), q.id
         assert s["score"] == S.KIND_POINTS[q.kind] + S.WHEN_POINTS[when] + S.BOUND_POINTS[bound], q.id
-        assert 1 <= s["score"] <= S.MAX_SCORE == 7 and s["notCoded"] == list(S.NOT_CODED), q.id
+        assert 1 <= s["score"] <= 7 < S.MAX_SCORE == 8 and s["notCoded"] == list(S.NOT_CODED), q.id
         assert s["band"] == ("high" if s["score"] >= 5 else "medium" if s["score"] >= 3 else "low"), q.id
     # A licence needed before trading, binding every builder, is the top score; GST registration bites at a
     # turnover threshold.
     assert S.severity(reqs["nsw-builder-licence"])["score"] == 7
     gst = S.severity(reqs["cth-gst-registration"])
     assert (gst["when"], gst["score"], gst["band"], gst["thresholds"]) == ("growth", 4, "medium", 1)
-    # The score tells requirements apart where the marks do not: it takes every value from 1 to 7.
+    # The score tells requirements apart where the marks do not: it takes every value from 1 to 7. (8 needs a cap,
+    # which no requirement is yet.)
     assert {S.severity(q)["score"] for q in reqs.values()} == set(range(1, 8))
+    # An economy-wide requirement that bites only on an activity binds some businesses.
+    assert S.severity(reqs["cth-foreign-investment-notification"])["bound"] == "some"
 
 
 def test_every_item_has_one_row_with_its_coding(data):
@@ -59,12 +66,19 @@ def test_every_item_has_one_row_with_its_coding(data):
         assert row["marks"] == [marks.get(d, 0) for d in drivers] and row["total"] == sum(marks.values()), rid
         assert row["impactClass"] == (src["impactClass"] or "") and row["businesses"] == src["exposure"]["businesses"]
         assert row["review"] == "draft" and row["file"].endswith(f"{rid}.json"), rid
+    assert row["role"] in ("Rule", "Change", "No longer in force")
     gst = by_id["cth-gst-registration"]
     assert gst["type"] == "Requirement" and gst["severity"] == 4 and gst["setBy"] == "Cth" and gst["classes"] == "All"
     assert "C2004A00446" in gst["laws"] and gst["checked"] == "official register text" and gst["sources"] == 1
     assert "Australian Taxation Office" in gst["bodies"]
     amr = by_id["act-amr-2021"]
     assert amr["type"] == "Reform" and not amr["standing"] and amr["severity"] is None and amr["setBy"] == "ACT"
+    assert (
+        amr["role"] == "Change" and gst["role"] == "Rule" and gst["evidence"] == ["law", "quoted", "coded", "counted"]
+    )
+    # A coded law or policy carries its severity and the basis of its coding.
+    zoning = by_id["nsw-planning-zoning"]
+    assert zoning["severity"] == 7 and zoning["codingNote"] and zoning["classFrom"] == "severity"
     # A requirement shown inside a register item on the levers page has its own row here, naming the item.
     inside = [r for r in page["rows"] if r["inside"]]
     assert inside and all(r["type"] == "Requirement" and r["inside"] in by_id for r in inside)
@@ -78,4 +92,4 @@ def test_the_page_is_built_and_linked_from_the_nav(data):
     assert re.findall(r'href="(register-data\.html)"', nav) == ["register-data.html"]
     embedded = json.loads(re.search(r'id="page-data">(.*?)</script>', html, re.S).group(1))
     assert len(embedded["rows"]) == len(page["rows"]) and len(embedded["drivers"]) == 8
-    assert "have not been settled" in embedded["note"]  # the severity weights are a draft
+    assert "coded attributes" in embedded["note"] and "Fees, waiting times" in embedded["note"]

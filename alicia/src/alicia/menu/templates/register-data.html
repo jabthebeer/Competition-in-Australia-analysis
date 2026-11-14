@@ -45,6 +45,8 @@ table.rdt tr.ended td { color: var(--ink-3); }
       <input id="q" type="search" placeholder="Title, id, law, regulator or ANZSIC code" autocomplete="off">
       <label for="f-type">Type</label>
       <select id="f-type"><option value="">All</option></select>
+      <label for="f-role">Rule or change</label>
+      <select id="f-role"><option value="">All</option></select>
       <label for="f-class">Impact class</label>
       <select id="f-class"><option value="">All</option></select>
       <button type="button" class="btn" id="csv">Download as CSV</button>
@@ -52,7 +54,7 @@ table.rdt tr.ended td { color: var(--ink-3); }
     <p class="count-line" id="count" aria-live="polite"></p>
     <div class="rd-scroll" tabindex="0" role="region" aria-label="Register data table"><table class="rdt" id="rdt"></table></div>
     <details class="more" open><summary>About the columns</summary><p id="note"></p>
-      <p>Marks: each of the 8 drivers from −2 to +2; the total is their sum. Severity: a draft score for requirements only. Businesses: an upper bound where the row says “up to”. Sources: the number of distinct links the item cites; “How checked” says what each quote was checked against. A row in grey is no longer in force.</p></details>
+      <p>Marks: each of the 8 drivers from −2 to +2; the total is their sum. Severity: a score from the coded attributes, for requirements and for the laws and policies that apply today. Class read from: severity, or the marks where an item has no coded attributes. Evidence steps: law named, law quoted, coded, counted. Businesses: an upper bound where the row says “up to”. Sources: the number of distinct links the item cites; “How checked” says what each quote was checked against. A row in grey is no longer in force.</p></details>
     <!--__FOOT__-->
   </main>
 </div>
@@ -73,18 +75,20 @@ table.rdt tr.ended td { color: var(--ink-3); }
     { k: "id", h: "Id", g: "Item", hide: true, csv: (r) => r.id },
     { k: "setBy", h: "Set by", g: "Item" },
     { k: "type", h: "Type", g: "Item" },
-    { k: "standing", h: "Applies today", g: "Item", show: (r) => (r.ended ? "No longer in force" : r.standing ? "Yes" : "A change, not a rule"), csv: (r) => (r.ended ? "no longer in force" : r.standing ? "yes" : "a change") },
+    { k: "role", h: "Rule or change", g: "Item" },
     { k: "effective", h: "Effective", g: "Item" },
     { k: "kind", h: "Kind of obligation", g: "Coded attributes" },
     { k: "when", h: "When it bites", g: "Coded attributes" },
     { k: "bound", h: "Who it binds", g: "Coded attributes" },
     { k: "thresholds", h: "Thresholds coded", g: "Coded attributes", num: true },
-    { k: "severity", h: "Severity (draft)", g: "Coded attributes", num: true, show: (r) => (r.severity === null || r.severity === undefined ? "" : `${r.severity} ${esc(r.severityBand)}`), csv: (r) => r.severity ?? "" },
+    { k: "severity", h: "Severity", g: "Coded attributes", num: true, show: (r) => (r.severity === null || r.severity === undefined ? "" : `${r.severity} ${esc(r.severityBand)}`), csv: (r) => r.severity ?? "" },
+    { k: "codingNote", h: "Basis of coding", g: "Coded attributes", wrap: true },
     ...DATA.drivers.map((d, i) => ({ k: `m${i}`, h: d.short, title: d.label, g: "Framework marks", num: true, val: (r) => r.marks[i], show: (r) => (r.marks[i] ? signed(r.marks[i]) : "·"), tone: (r) => r.marks[i], csv: (r) => r.marks[i] })),
     { k: "total", h: "Total", g: "Framework marks", num: true, show: (r) => signed(r.total), tone: (r) => r.total },
     { k: "mainDriver", h: "Main driver", g: "Framework marks" },
     { k: "confidence", h: "Confidence", g: "Framework marks" },
     { k: "impactClass", h: "Impact class", g: "Exposure", show: (r) => esc(cls(r)), csv: (r) => cls(r) },
+    { k: "classFrom", h: "Class read from", g: "Exposure" },
     { k: "businesses", h: `Businesses reached${yr}`, g: "Exposure", num: true, show: (r) => (r.businesses === null ? "" : `${r.upTo ? "up to " : ""}${nf(r.businesses)}`), csv: (r) => r.businesses ?? "" },
     { k: "upTo", h: "Upper bound", g: "Exposure", hide: true, csv: (r) => (r.upTo ? "yes" : "no") },
     { k: "share", h: "Share of its jurisdiction, %", g: "Exposure", num: true, show: (r) => (r.share === null || r.share === undefined ? "" : r.share.toFixed(1)) },
@@ -93,22 +97,28 @@ table.rdt tr.ended td { color: var(--ink-3); }
     { k: "laws", h: "Law", g: "Sources", wrap: true },
     { k: "sources", h: "Sources", g: "Sources", num: true, show: (r) => (r.sourceUrls.length ? `<a href="${esc(r.sourceUrls[0])}" target="_blank" rel="noopener">${r.sources}</a>` : "0"), csv: (r) => r.sourceUrls.join(" ") },
     { k: "checked", h: "How checked", g: "Sources" },
+    { k: "evidence", h: "Evidence steps", g: "Sources", val: (r) => r.evidence.length, show: (r) => `${r.evidence.length} of 4<span class="id">${esc(r.evidence.map((k) => DATA.evidenceSteps[k]).join(", "))}</span>`, csv: (r) => r.evidence.map((k) => DATA.evidenceSteps[k]).join("; ") },
+    { k: "purpose", h: "Purpose of its regime", g: "Sources" },
     { k: "review", h: "Review", g: "Sources" },
     { k: "bodies", h: "Administered by", g: "Links", wrap: true },
     { k: "family", h: "Family", g: "Links" },
     { k: "regimes", h: "Regimes", g: "Links" },
     { k: "inside", h: "Shown inside", g: "Links" },
+    { k: "changedBy", h: "Changed by", g: "Links" },
+    { k: "changesRules", h: "Changes the rule", g: "Links" },
     { k: "file", h: "Record", g: "Links", show: (r) => `<a href="${esc((DATA.repo || "") + r.file)}" target="_blank" rel="noopener">${esc(r.file.split("/").pop())}</a>` },
   ];
   const SHOWN = COLS.filter((c) => !c.hide);
   const val = (c, r) => (c.val ? c.val(r) : r[c.k]);
-  const state = { q: "", type: "", cls: "", sort: "", dir: 1 };
+  const state = { q: "", type: "", role: "", cls: "", sort: "", dir: 1 };
+  $("f-role").innerHTML += DATA.roles.map((t) => `<option>${esc(t)}</option>`).join("");
+  $("f-role").addEventListener("change", (e) => { state.role = e.target.value; render(); });
   $("f-type").innerHTML += DATA.types.map((t) => `<option>${esc(t)}</option>`).join("");
   $("f-class").innerHTML += Object.entries(DATA.classes).map(([k, v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join("") + `<option value="none">Not classed</option>`;
   const hay = new Map(DATA.rows.map((r) => [r, [r.id, r.title, r.setBy, r.laws, r.bodies, r.industries, r.family, r.regimes, r.kind].join(" ").toLowerCase()]));
   function rows() {
     const words = state.q.toLowerCase().split(/\s+/).filter(Boolean);
-    let out = DATA.rows.filter((r) => (!state.type || r.type === state.type) && (!state.cls || (state.cls === "none" ? !r.impactClass : r.impactClass === state.cls)) && words.every((w) => hay.get(r).includes(w)));
+    let out = DATA.rows.filter((r) => (!state.type || r.type === state.type) && (!state.role || r.role === state.role) && (!state.cls || (state.cls === "none" ? !r.impactClass : r.impactClass === state.cls)) && words.every((w) => hay.get(r).includes(w)));
     const c = COLS.find((x) => x.k === state.sort);
     if (c) out = [...out].sort((a, b) => {
       const x = val(c, a), y = val(c, b);

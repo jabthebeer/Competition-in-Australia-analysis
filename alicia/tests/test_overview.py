@@ -76,7 +76,7 @@ def test_rules_are_commonwealth_rules_particular_to_the_industry(data):
         if "4511" in {c for r in firm for c in reach_classes(r)} and rows[q.id]["impactClass"] in want:
             want[rows[q.id]["impactClass"]].add(q.id)
     got = overview.commonwealth_rules(menu, [], load_requirements().requirements)["4511"]
-    assert got == want and all(want.values())
+    assert got == want and want["minor"]  # (none is severe enough for Major, narrow: framework version 2)
     cafe = next(c for c in page["classes"] if c["code"] == "4511")
     assert cafe["major"] >= len(want["major-narrow"]) and cafe["minor"] >= len(want["minor"])  # plus register items
     assert all(rows[i]["jurisdiction"] == "CTH" for ids in got.values() for i in ids)

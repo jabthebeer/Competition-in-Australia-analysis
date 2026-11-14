@@ -15,8 +15,22 @@ from __future__ import annotations
 
 from typing import Literal
 
-VERSION = "1.0"
-ADOPTED = "2026-10-28"
+VERSION = "2.0"
+ADOPTED = "2026-11-14"
+# The eight-driver marks have not changed since version 1.0, so an assessment made against 1.0 is current.
+MARKS_VERSION = "1.0"
+# Version 1.0 (28 October 2026, DECISIONS E-87) marked each item on the eight drivers. Version 2.0 (14 November 2026,
+# DECISIONS E-161, E-185) keeps those marks as the judgement of whether an item weighs on productivity, and adds how
+# much a rule matters: its severity, scored from coded attributes, and the businesses it reaches, counted from ABS data.
+HISTORY: tuple[tuple[str, str, str], ...] = (
+    ("1.0", "2026-10-28", "Eight drivers, each marked from −2 to +2, added into an overall mark."),
+    (
+        "2.0",
+        "2026-11-14",
+        "Adds severity from coded attributes, the businesses each rule reaches, four impact classes, evidence steps, "
+        "rules and changes, and the purpose of each regime. The marks stay as the judgement.",
+    ),
+)
 
 Driver = Literal[
     "entry-exit",
@@ -429,10 +443,12 @@ CAVEATS: tuple[str, ...] = (
     "productivity cost to weigh against its benefits, as the Office of Impact Analysis's competition tests ask.",
     "Marks are ordinal judgements, not estimates. Adding them is a summary device: a +2 is not exactly twice a +1. "
     "They do not give dollar figures.",
-    "Assessments were drafted by AI-assisted desk research from each record's sources and have not yet been "
-    "checked.",
+    "Assessments were drafted by AI-assisted desk research from each record's sources and have not yet been checked.",
     "Reach describes how much of the economy an item touches, not the size of its effect there; a state law reaches "
     "only that state.",
+    "Severity counts what a rule asks of the businesses it binds. It does not count fees, waiting times or penalties "
+    "yet, and a tax whose cost falls mostly on households, such as stamp duty, scores low even where the marks judge "
+    "its cost to productivity high.",
 )
 
 SOURCES: dict[str, dict] = {
@@ -512,6 +528,52 @@ INTRO = (
     "A short, consistent way to judge how a law, a regulatory setting or another barrier is likely to affect "
     "productivity and competition in Australia. Every item in Legislative levers influencing competition, on the "
     "ALICIA website, is marked against it."
+)
+
+# Version 2: how much a rule matters. Three questions, each answered a different way; the first by judgement, the
+# other two from facts. The points and thresholds are in ``register/severity.py`` and ``menu/exposure.py``.
+QUESTIONS: tuple[dict, ...] = (
+    {
+        "id": "weighs",
+        "question": "Does it weigh on productivity?",
+        "how": "Judged: the marks on the eight drivers, below. A rule whose marks add to less than zero weighs on "
+        "productivity.",
+    },
+    {
+        "id": "severity",
+        "question": "How hard does it bite on each business it binds?",
+        "how": "Scored from facts in its text: the kind of obligation, when it bites and whom it binds. This is its "
+        "severity; a high score is a large effect.",
+    },
+    {
+        "id": "reach",
+        "question": "How many businesses does it bind?",
+        "how": "Counted: the businesses in the industries and states it reaches, from the ABS business counts. A "
+        "quarter or more of the businesses in its jurisdiction is wide.",
+    },
+)
+CLASSES_TEXT: tuple[tuple[str, str], ...] = (
+    ("Severe", "A large effect on each business, and wide."),
+    ("Major, wide", "A smaller effect, but wide."),
+    ("Major, narrow", "A large effect on a small set of industries."),
+    ("Minor", "A small effect on a small set of industries."),
+)
+RULES_AND_CHANGES = (
+    "A rule applies today: a requirement a law places on businesses, a law or policy in place, or a non-legislative "
+    "barrier. A change is a reform to the rules: in force, passed or proposed. A reform in force that added a "
+    "restriction counts as a rule, because the restriction applies today. Rules are classed; changes are not. A rule "
+    "lists the changes the register links to it, and a change the rule it changes."
+)
+EVIDENCE_TEXT = (
+    "The site records what it holds about each item as four facts: whether its law is named with a link to the "
+    "official register; whether the obligation is quoted word for word from the official text; whether its "
+    "attributes are coded; and whether the businesses it reaches are counted. What reviews and other studies found "
+    "is listed beside these, under What others found, and sets the confidence of the marks."
+)
+PURPOSE_TEXT = (
+    "Each regime has a main purpose, such as health and safety, consumer protection or revenue. A rule shows the "
+    "purpose of its regime as a secondary fact. The framework does not weigh a rule's benefits: readers judge them "
+    "from the law, which every rule links to."
 )
 LOGIC: tuple[str, ...] = (
     "Output per hour worked grows in two ways: workers get more and better capital to work with (capital deepening), "
@@ -657,6 +719,7 @@ CAVEAT_TITLES: tuple[str, ...] = (
     "Judgements, not estimates",
     "Drafts, not yet reviewed",
     "Reach is breadth, not size",
+    "Severity is what a rule asks",
 )
 
 # The double-counting rules (OVERLAP_RULES) as a lookup: what the item involves, and where to mark it. Rows in one
@@ -725,7 +788,70 @@ def as_dict() -> dict:
         "overlap": list(OVERLAP_RULES),
         "caveats": list(CAVEATS),
         "sources": SOURCES,
+        "history": [{"version": v, "adopted": d, "what": w} for v, d, w in HISTORY],
+        "questions": list(QUESTIONS),
     }
+
+
+def _version_two() -> list[str]:
+    """The methods note's section on how much a rule matters (version 2)."""
+    from . import severity as S
+
+    when = {"entry": "Before trading starts", "growth": "At the first employee, or a size threshold"}
+    when["operating"] = "While operating, or on an activity"
+    return [
+        "## How much a rule matters (version 2)",
+        "",
+        "Three questions, each answered a different way:",
+        "",
+        "| Question | How it is answered |",
+        "|---|---|",
+        *[f"| {q['question']} | {q['how']} |" for q in QUESTIONS],
+        "",
+        "### Severity",
+        "",
+        "| Attribute | Points |",
+        "|---|---|",
+        *[f"| Kind: {S.KIND_LABELS[k].lower()} | {v} |" for k, v in S.KIND_POINTS.items()],
+        *[f"| When it bites: {when[k].lower()} | {v} |" for k, v in S.WHEN_POINTS.items()],
+        "| Whom it binds: every business in its industries | 1 |",
+        "| Whom it binds: only businesses doing a named activity | 0 |",
+        "",
+        f"The most is {S.MAX_SCORE}. {S.HIGH} or more is high (a large effect on each business), {S.MEDIUM} or "
+        f"{S.MEDIUM + 1} medium, and less is low. Fees, waiting times, renewal periods and penalties are not yet "
+        "coded. Requirements are coded in their own files; the register's laws and policies that apply today are "
+        "coded in `regulation-register/rule-coding.json`. A rule with no coded attributes, such as a non-legislative "
+        "barrier, takes its size of effect from its marks: marks that add to −2 or lower count as large.",
+        "",
+        "### Impact classes",
+        "",
+        f"A rule is wide when it reaches {S.WIDE_SHARE:.0f}% or more of the businesses in its jurisdiction. A rule "
+        "that binds only businesses doing a named activity is never wide.",
+        "",
+        "| | Small set of industries | Wide |",
+        "|---|---|---|",
+        "| **Large effect on each business** | Major, narrow | Severe |",
+        "| **Smaller effect** | Minor | Major, wide |",
+        "",
+        "### Rules and changes",
+        "",
+        RULES_AND_CHANGES,
+        "",
+        "### Evidence",
+        "",
+        EVIDENCE_TEXT,
+        "",
+        "### Purpose",
+        "",
+        PURPOSE_TEXT,
+        "",
+        "### Versions",
+        "",
+        "| Version | Adopted | What it does |",
+        "|---|---|---|",
+        *[f"| {v} | {d} | {w} |" for v, d, w in HISTORY],
+        "",
+    ]
 
 
 def _cite(keys) -> str:
@@ -742,6 +868,7 @@ def markdown() -> str:
         "",
         INTRO,
         "",
+        *_version_two(),
         "## Key ideas",
         "",
         "| Idea | In plain words |",
