@@ -17,10 +17,93 @@ from ..register.recommendations import load_recommendations
 from ..register.regimes import load_regimes
 from ..register.requirements import load_requirements
 from ..register.schema import ChangeRecord
-from .growth import COMPETITION_PAGE, FRAMEWORK_PAGE, LENS_PAGE, MENU_PAGE, METHODOLOGY_PAGE, REPO_MAIN, render
+from .growth import (
+    COMPETITION_PAGE,
+    FRAMEWORK_PAGE,
+    LENS_PAGE,
+    MENU_PAGE,
+    METHODOLOGY_PAGE,
+    OVERVIEW_PAGE,
+    REPO_MAIN,
+    render,
+)
+
+# How far to rely on each part of the site (the page opens with this; owner decision, 14 November 2026, DECISIONS
+# E-159): the part, where it comes from, how it is checked, and what to take it as. The strongest parts come first.
+RELIANCE = (
+    (
+        "Business counts, entry and exit; output and jobs",
+        "ABS: Counts of Australian Businesses, State Accounts, Labour Force",
+        "Tests recompute each headline figure from the source files by a separate route",
+        "Official statistics. They describe; they do not explain",
+    ),
+    (
+        "Businesses each rule reaches",
+        "ABS business counts, for the industries and states each rule names",
+        "Tests recount them from the ABS file",
+        "A count. An upper bound where a rule binds only some businesses in an industry",
+    ),
+    (
+        "The words of each requirement",
+        "Quoted from the official legislation registers",
+        "Each quote is checked against the text it was read from",
+        "What the law says. Which industries it reaches is a draft judgement",
+    ),
+    (
+        "Company returns by barrier group",
+        "ATO company tax statistics; the grouping of industries follows Grattan Institute (2017)",
+        "Tests recompute the figures",
+        "Descriptive. Companies only, and the grouping is a judgement",
+    ),
+    (
+        "Concentration and mark-ups",
+        "Reserve Bank of Australia, Research Discussion Paper 2025-05, from firm data that are not public",
+        "Copied from the published tables. They cannot be recomputed here",
+        "Another study's results, ending in 2019 and 2017",
+    ),
+    (
+        "Comparisons with similar economies",
+        "OECD and other countries' statistical agencies",
+        "Industries are matched by a published concordance",
+        "Indicative. Classifications differ between countries",
+    ),
+    (
+        "Register items, regimes and responsible bodies",
+        "AI-assisted desk research from the sources each cites",
+        "Checked against a schema, and dates against the registers. Not yet checked by a person",
+        "Drafts",
+    ),
+    (
+        "Marks on the 8 drivers, and impact classes",
+        "Judgement against the framework, drafted with AI assistance",
+        "Not yet checked. Being replaced by scores from coded facts (framework version 2)",
+        "Draft judgements about likely effects. Not estimates",
+    ),
+    (
+        "What others recommend",
+        "Quoted from published reviews",
+        "Quotes are checked against each document",
+        "What reviews have said. Not this site's findings",
+    ),
+)
+
+
+def reliance_table() -> str:
+    head = "".join(
+        f'<th scope="col">{h}</th>' for h in ("Part of the site", "Comes from", "How it is checked", "Take it as")
+    )
+    rows = "".join("<tr>" + "".join(f"<td>{escape(x)}</td>" for x in r) + "</tr>" for r in RELIANCE)
+    return (
+        "    <p>The site mixes official statistics with draft judgements. This table says which is which, the most "
+        "reliable first.</p>\n"
+        '    <div class="panel tscroll"><table class="data rely">'
+        f"<thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table></div>"
+    )
+
 
 # The page's sections, in order: (anchor, heading). The "On this page" row links to each.
 SECTIONS = (
+    ("rely", "How far to rely on each part"),
     ("what", "What the site does"),
     ("conditions", COMPETITION_PAGE[1]),
     ("levers", MENU_PAGE[1]),
@@ -86,11 +169,10 @@ def _list(*items: str) -> str:
 def body(c: dict, repo: str = REPO_MAIN) -> str:
     """The page's sections as HTML. ``c`` is ``counts()``; ``repo`` is where the methods notes are linked."""
     reviewed = (
-        "None has been checked yet."
-        if not c["reviewed"]
-        else f"{c['reviewed']} of them have been checked so far."
+        "None has been checked yet." if not c["reviewed"] else f"{c['reviewed']} of them have been checked so far."
     )
     sections = {
+        "rely": reliance_table(),
         "what": "\n".join(
             [
                 "    <p>ALICIA (Australian Legislation Impact on Competition Industry Analysis) shows where "
@@ -103,7 +185,9 @@ def body(c: dict, repo: str = REPO_MAIN) -> str:
                     f'the economy by state and industry. <a href="{MENU_PAGE[0]}">{MENU_PAGE[1]}</a> lists the laws, '
                     "settings and barriers that shape it.",
                     f'<strong>Bottom up.</strong> The <a href="{LENS_PAGE[0]}">{LENS_PAGE[1]}</a> starts from one '
-                    "industry in one state and lists the laws a business in it deals with.",
+                    "industry in one state and lists the laws a business in it deals with. "
+                    f'<a href="{OVERVIEW_PAGE[0]}">{OVERVIEW_PAGE[1]}</a> compares industries by the regulation '
+                    "they face.",
                     f'<strong>About.</strong> The <a href="{FRAMEWORK_PAGE[0]}">productivity framework</a> sets out '
                     "how "
                     "every law, setting and barrier is marked. This page explains the rest.",

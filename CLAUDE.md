@@ -17,3 +17,4 @@ Research project on weak competition and constrained business dynamism in Austra
 - State identification assumptions, sample, and limitations for every estimate; flag when public data is too aggregated to support a claim (e.g. firm-level markups).
 - Large or restricted data (e.g. BLADE) must not be committed.
 - Develop on the designated feature branch; commit with clear messages.
+- Before you push, follow "Before you push" in `docs/notes_for_other_branches.md`: merge `main`, rebuild generated files, keep to your decision numbers, and run the 3 checks.

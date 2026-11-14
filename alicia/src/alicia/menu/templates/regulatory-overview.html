@@ -1,0 +1,134 @@
+<title>ALICIA (beta): Regulatory overview by industry</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
+<style>
+/*__SITE_CSS__*/
+/* Layout: Regulatory overview by industry. The 19 divisions in one table, each opening to its detailed industries;
+   every row opens the Industry lens. */
+.ov { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+table.ovt { width: 100%; }
+table.ovt th, table.ovt td { white-space: normal; font-family: var(--font-body); }
+table.ovt td.num { font-family: var(--font-mono); white-space: nowrap; }
+table.ovt thead th { position: sticky; top: 0; background: var(--surface); }
+table.ovt th button.sort { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: inherit; }
+table.ovt th button.sort:hover, table.ovt th button.sort:focus-visible { color: var(--ink); text-decoration: underline; }
+table.ovt th[aria-sort="ascending"] button.sort::after { content: " ↑"; }
+table.ovt th[aria-sort="descending"] button.sort::after { content: " ↓"; }
+table.ovt td:first-child { min-width: 15rem; }
+table.ovt tr.div td { font-weight: 500; }
+table.ovt tr.cls td:first-child { padding-left: 34px; }
+table.ovt tr.cls td { color: var(--ink-2); }
+table.ovt .open { font: inherit; background: none; border: 0; padding: 0 6px 0 0; cursor: pointer; color: var(--accent); min-width: 22px; text-align: left; }
+table.ovt .code { font-family: var(--font-mono); color: var(--ink-3); margin-right: 6px; }
+table.ovt a.go { white-space: nowrap; }
+.ov-tools { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.ov-tools input { min-height: 36px; min-width: min(100%, 18rem); }
+@media (max-width: 760px) { table.ovt td:first-child { min-width: 11rem; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <!--__NAV__-->
+    <p class="kicker">ALICIA · Bottom up</p>
+    <h1>Regulatory overview by industry <!--__BETA__--></h1>
+    <p class="lede">Compare industries by the regulation they face: how many regimes and government bodies a business deals with, and the Commonwealth rules particular to its industry.</p>
+    <div class="meta-line" id="metaLine"></div>
+  </header>
+
+  <main class="ov">
+    <section class="block" aria-labelledby="h-glance">
+      <h2 id="h-glance">At a glance</h2>
+      <div class="tiles headline" id="tiles"></div>
+    </section>
+
+    <section class="block" aria-labelledby="h-table">
+      <div class="block-head">
+        <h2 id="h-table">Industries compared</h2>
+        <p class="sub">Choose a column heading to sort. Open a division to see its detailed industries. Each row opens the Industry lens for that industry.</p>
+      </div>
+      <div class="panel">
+        <div class="ov-tools">
+          <label for="q">Find an industry</label>
+          <input id="q" type="search" placeholder="Name or ANZSIC code" autocomplete="off">
+          <button type="button" class="lnk" id="toggleAll">Open every division</button>
+        </div>
+        <div class="tscroll"><table class="data ovt" id="ovt"></table></div>
+        <p class="source" id="src"></p>
+        <details class="more"><summary>About these figures</summary><p id="note"></p><p id="note2"></p></details>
+      </div>
+    </section>
+    <!--__FOOT__-->
+  </main>
+</div>
+
+<script type="application/json" id="page-data">__PAGE_DATA__</script>
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById("page-data").textContent);
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const nf = (v) => (v === null || v === undefined ? "–" : Math.round(v).toLocaleString("en-AU"));
+  const one = (v) => (v === null || v === undefined ? "–" : v.toFixed(1));
+  const med = (v) => (v === null || v === undefined ? "–" : Number.isInteger(v) ? `${v}` : v.toFixed(1));
+  const fy = (y) => `${y}–${String((y + 1) % 100).padStart(2, "0")}`;
+  const COLS = [
+    { k: "name", label: "Industry", text: true },
+    { k: "businesses", label: `Businesses${DATA.year ? `, June ${DATA.year}` : ""}`, fmt: nf },
+    { k: "entry", label: `New businesses for every 100${DATA.entryYear ? `, ${fy(DATA.entryYear)}` : ""}`, fmt: one },
+    { k: "regimes", label: "Regimes particular to it", fmt: med },
+    { k: "bodies", label: "Government bodies it deals with", fmt: med },
+    { k: "varying", label: "Regimes that differ between states", fmt: med },
+    { k: "major", label: "Major Commonwealth rules", fmt: nf },
+    { k: "minor", label: "Minor Commonwealth rules", fmt: nf },
+  ];
+  const state = { sort: "major", dir: -1, open: new Set(), q: "" };
+  const byDiv = {};
+  DATA.classes.forEach((c) => (byDiv[c.division] = byDiv[c.division] || []).push(c));
+  const cmp = (a, b) => {
+    const k = state.sort, x = a[k], y = b[k];
+    if (k === "name") return state.dir * String(x).localeCompare(String(y));
+    return state.dir * ((x ?? -Infinity) - (y ?? -Infinity)) || String(a.name).localeCompare(String(b.name));
+  };
+  const lens = (d, c) => `${DATA.lens}#division=${encodeURIComponent(d)}${c ? `&class=${encodeURIComponent(c)}` : ""}`;
+  const cells = (r) => COLS.slice(1).map((c) => `<td class="num">${c.fmt(r[c.k])}</td>`).join("");
+  function render() {
+    const q = state.q.toLowerCase();
+    const hit = (c) => !q || `${c.code} ${c.name}`.toLowerCase().includes(q);
+    const head = `<thead><tr>${COLS.map((c) => `<th scope="col"${state.sort === c.k ? ` aria-sort="${state.dir > 0 ? "ascending" : "descending"}"` : ""}><button type="button" class="sort" data-k="${c.k}">${esc(c.label)}</button></th>`).join("")}<th scope="col"><span class="sr-only">Industry lens</span></th></tr></thead>`;
+    const body = [...DATA.divisions].sort(cmp).map((d) => {
+      const kids = (byDiv[d.code] || []).filter(hit);
+      if (q && !hit(d) && !kids.length) return "";
+      const open = state.open.has(d.code) || (!!q && kids.length > 0);
+      const row = `<tr class="div"><td><button type="button" class="open" data-d="${esc(d.code)}" aria-expanded="${open}" aria-label="${esc(`${open ? "Close" : "Open"} ${d.name}: ${d.classes} detailed industries`)}">${open ? "▾" : "▸"}</button><span class="code">${esc(d.code)}</span>${esc(d.name)}</td>${cells(d)}<td><a class="go" href="${lens(d.code)}">Open in the lens</a></td></tr>`;
+      if (!open) return row;
+      return row + [...(q ? kids : byDiv[d.code])].sort(cmp).map((c) => `<tr class="cls"><td><span class="code">${esc(c.code)}</span>${esc(c.name)}</td>${cells(c)}<td><a class="go" href="${lens(d.code, c.code)}">Open in the lens</a></td></tr>`).join("");
+    }).join("");
+    $("ovt").innerHTML = head + `<tbody>${body || `<tr><td colspan="${COLS.length + 1}">No industry matches.</td></tr>`}</tbody>`;
+    $("ovt").querySelectorAll("button.sort").forEach((b) => b.addEventListener("click", () => {
+      if (state.sort === b.dataset.k) state.dir = -state.dir; else { state.sort = b.dataset.k; state.dir = b.dataset.k === "name" ? 1 : -1; }
+      render();
+    }));
+    $("ovt").querySelectorAll("button.open").forEach((b) => b.addEventListener("click", () => { state.open.has(b.dataset.d) ? state.open.delete(b.dataset.d) : state.open.add(b.dataset.d); render(); }));
+    $("toggleAll").textContent = state.open.size === DATA.divisions.length ? "Close every division" : "Open every division";
+  }
+  $("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
+  $("toggleAll").addEventListener("click", () => { if (state.open.size === DATA.divisions.length) state.open.clear(); else DATA.divisions.forEach((d) => state.open.add(d.code)); render(); });
+
+  // At a glance: the divisions at the top of three columns. Ties are all named.
+  const top = (k) => { const m = Math.max(...DATA.divisions.map((d) => d[k] ?? -Infinity)); return { m, ds: DATA.divisions.filter((d) => d[k] === m) }; };
+  const names = (ds) => ds.map((d) => d.name).join("; ");
+  const tile = (label, value, what, k) => `<button type="button" class="tile" data-k="${k}"><span class="t-label">${esc(label)}</span><span class="t-value">${esc(value)}</span><span class="t-sub">${esc(what)}</span></button>`;
+  const a = top("major"), b = top("bodies"), c = top("varying");
+  $("tiles").innerHTML = tile("Most major Commonwealth rules", nf(a.m), names(a.ds), "major")
+    + tile("Most government bodies", med(b.m), `${names(b.ds)} (a typical business)`, "bodies")
+    + tile("Most regimes that differ between states", med(c.m), `${names(c.ds)} (a typical business)`, "varying");
+  $("tiles").querySelectorAll(".tile").forEach((t) => t.addEventListener("click", () => { state.sort = t.dataset.k; state.dir = -1; render(); $("h-table").scrollIntoView({ block: "start" }); }));
+  $("metaLine").textContent = `${DATA.divisions.length} divisions and ${DATA.classes.length} detailed industries${DATA.generated ? ` · updated ${new Date(DATA.generated + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" })}` : ""}`;
+  $("src").innerHTML = `Sources: <a href="https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/latest-release" target="_blank" rel="noopener">ABS, Counts of Australian Businesses, including Entries and Exits</a>; ALICIA register and regulatory regimes (drafts). The rules are listed on <a href="${esc(DATA.levers)}">Legislative levers</a>.`;
+  $("note").textContent = DATA.note;
+  $("note2").textContent = "For a division, the regime figures are the median of its detailed industries, and its rules are those that reach any of them. The entry rate is for businesses with employees. Major and Minor are the impact classes used on Legislative levers.";
+  render();
+})();
+</script>

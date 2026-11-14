@@ -58,8 +58,10 @@ from ..register.regimes import (
 from ..register.requirements import KIND_LABELS as OBLIGATION_LABELS
 from ..register.requirements import TRIGGER_LABELS, Requirement, load_requirements, reach_classes
 from ..register.schema import CHANNEL_LABELS, ROLE_LABELS, ChangeRecord
+from ..register.severity import severity
 from ..register.timeline import changed_by_index, changes_list, ended_dict, timeline
 from ..timing import timing
+from . import exposure as X
 from .archive import CHECK_NOTE, FAMILY_LABELS, _humanise, _short
 from .industry import NOTE as STATS_NOTE
 from .industry import STATE_NAMES, TILES, IndustryStats, measures_dict
@@ -309,11 +311,31 @@ def build_payload(
     regimes: list[Regime] | None = None,
     families: dict[str, Family] | None = None,
     requirements: list[Requirement] | None = None,
+    counts: X.Counts | None = None,
 ) -> dict:
     """``stats`` defaults to the committed panels (``IndustryStats.load``), ``bodies`` to the committed registry
     (``load_bodies``) and ``recommendations``, ``gaps``, ``regimes`` and ``requirements`` to the committed ones; pass
-    fixtures in tests."""
+    fixtures in tests. ``counts`` are the business counts behind each rule's exposure (``exposure.load_counts``)."""
     stats = IndustryStats.load() if stats is None else stats
+    counts = X.load_counts() if counts is None else counts
+    today = generated or dt.date.today()
+
+    def impact(
+        kind: str,
+        assessment: dict | None,
+        pairs: set,
+        jurisdiction: str,
+        ended: bool,
+        in_force: bool,
+        council: bool = False,
+        partial: bool = False,
+    ) -> dict:
+        """A row's exposure, whether it is a rule that applies today, and its impact class."""
+        total = assessment["total"] if assessment else None
+        exp = X.measure(pairs, jurisdiction, counts, council, partial)
+        standing = X.is_standing(kind, total, ended, in_force)
+        return {"exposure": exp, "standing": standing, "impactClass": X.impact_class(total, exp) if standing else None}
+
     bodies = load_bodies()[0] if bodies is None else bodies
     titles = {r.id: r.title for r in records}
     changed = changed_by_index(records)
@@ -336,6 +358,20 @@ def build_payload(
     for q in reqs:
         homes = [x for x in q.records if x in by_id]
         d = requirement_dict(q, reg_by_id, {x: record_marks.get(x) for x in homes})
+        d.update(
+            impact(
+                "requirement",
+                d["assessment"],
+                X.requirement_pairs(q),
+                q.jurisdiction,
+                False,
+                True,
+                q.tier == "local",
+                X.conditional(q),
+            )
+        )
+        d["exposure"]["beyond"] = X.beyond(q)
+        d["severity"] = severity(q)
         for x in homes:
             nested.setdefault(x, []).append(d)
         if not homes:
@@ -372,6 +408,16 @@ def build_payload(
             }
         )
         data["industries"] = [{**i, "division": anzsic.division(i["anzsic"])} for i in data["industries"]]
+        data.update(
+            impact(
+                r.kind,
+                data["assessment"],
+                X.record_pairs(r),
+                r.jurisdiction,
+                bool(data["ended"]),
+                bool(eff and eff.date <= today),
+            )
+        )
         out.append(data)
     out += rows_req
     # Every ANZSIC code the requirements name: the classes they reach, and the codes at any level their reach lists.
@@ -417,6 +463,9 @@ def build_payload(
         "statsTiles": list(TILES),
         "places": STATE_NAMES,
         "checkNote": CHECK_NOTE,
+        "impactClasses": [{"id": k, "label": v, "help": X.CLASS_HELP[k]} for k, v in X.CLASSES.items()],
+        "exposureNote": X.NOTE,
+        "exposureYear": counts.year if counts else None,
     }
 
 
