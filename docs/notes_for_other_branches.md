@@ -55,7 +55,7 @@ Check each script's own header for its arguments before you run it. `links.csv.g
 ### 5. `alicia/DECISIONS.md`
 
 - Rows are added at the end, so two branches always conflict there. Keep both sets of rows, in number order.
-- **E-161 is taken. Use E-162 to E-179.** The website session uses **E-180 onwards** (E-180 to E-182 are taken), so the numbers can't collide.
+- **E-161 is taken. Use E-162 to E-179.** The website session uses **E-180 onwards** (E-180 to E-183 are taken), so the numbers can't collide.
 - One row for each batch, as now.
 
 ### 6. Check before you push

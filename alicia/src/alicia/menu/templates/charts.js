@@ -2,7 +2,8 @@
  * from in container._xl, for the Excel export (xlsx.js). */
 const SVGNS = "http://www.w3.org/2000/svg";
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-const fyLabel = (y) => `${y}-${String((y + 1) % 100).padStart(2, "0")}`;
+// A financial year by the year it starts in, with an en dash (Style Manual): 2014 is 2014–15.
+const fyLabel = (y) => `${y}–${String((y + 1) % 100).padStart(2, "0")}`;
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const monthLabel = (t) => { const d = new Date(t); return `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
 const quarterLabel = (t) => { const d = new Date(t); return `${MONTHS[d.getUTCMonth()]}–${MONTHS[d.getUTCMonth() + 2]} ${d.getUTCFullYear()}`; };
@@ -708,7 +709,7 @@ const TERMS = {
   output: ["Output", "The value an industry creates: its sales less what it buys from other businesses to make them (gross value added)."],
   industry: ["Industry", "One of the 19 broad industries the ABS uses, such as Retail Trade or Mining (ANZSIC divisions)."],
   sector: ["Sector", "A narrower part of an industry, such as supermarkets or banks (an ANZSIC class, or a group of classes)."],
-  fy: ["Financial year", "1 July to 30 June. 2014-15 runs from July 2014 to June 2015."],
+  fy: ["Financial year", "1 July to 30 June. 2014–15 runs from July 2014 to June 2015."],
   avgGrowth: ["Average annual growth", "The steady yearly rate that would take the first year's value to the last year's."],
   index100: ["Index", "Each line starts at 100 in the first year, so it shows growth from there: 120 means 20% higher."],
   pp: ["Percentage points", "The difference between two percentages: going from 10% to 12% is a rise of 2 percentage points."],

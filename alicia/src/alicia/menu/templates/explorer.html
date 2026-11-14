@@ -570,6 +570,9 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     return `${d} ${MONTHS3[m - 1]} ${y}`;
   };
   const JURS = ["CTH", "NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"];
+  // Shortened forms for display (Style Manual): Vic, Qld and Tas take lower case; the codes stay in the data.
+  const JL = { CTH: "Cth", VIC: "Vic", QLD: "Qld", TAS: "Tas" };
+  const jl = (j) => JL[j] || j;
   const DRV = FW.drivers;
   const DRV_KEYS = Object.keys(DRV);
   const RATING_ORDER = FW.ratings.map((r) => r.id);
@@ -613,8 +616,8 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     ebitda: ["Profit margin (EBITDA)", "Earnings before interest, tax, depreciation and amortisation, as a share of sales."],
     labourProductivity: ["Labour productivity growth", "Average yearly growth in output per hour worked, adjusted for inflation (ABS, market-sector industries only)."],
     mfp: ["Multifactor productivity growth", "Average yearly growth in output beyond what extra labour and capital explain: better methods, technology and use of resources (ABS, market-sector industries only)."],
-    noCompetition: ["No effective competition", "Share of businesses telling the ABS they face no effective competition (a captive market), in the 2024-25 Business Characteristics Survey."],
-    regHampered: ["Hampered by regulation", "Share of businesses telling the ABS that government regulation or compliance hampered their activities or performance in 2024-25."],
+    noCompetition: ["No effective competition", "Share of businesses telling the ABS they face no effective competition (a captive market), in the 2024–25 Business Characteristics Survey."],
+    regHampered: ["Hampered by regulation", "Share of businesses telling the ABS that government regulation or compliance hampered their activities or performance in 2024–25."],
     capex: ["Capital spending", "Private new capital expenditure (buildings, structures, equipment) as a share of value added. The ABS survey leaves out some industries, such as farming."],
     rd: ["Business R&D", "Spending by businesses on research and experimental development, as a share of the value they add."],
     administers: ["Administers", "The department whose minister is responsible for the law or program under the government's administrative arrangements, or the agency in it that runs the scheme day to day."],
@@ -777,7 +780,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   chipGroup($("f-type"), "type", typeChips(false));
   chipGroup($("glanceKey"), "type", typeChips(true));
   chipGroup($("f-pos"), "pos", POS.map((p) => ({ value: p.id, label: p.label, title: p.question, n: count((r) => r.most.includes(p.id)) })));
-  chipGroup($("f-jur"), "jur", JURS.map((j) => ({ value: j, label: j, n: count((r) => r.jurisdiction === j) })));
+  chipGroup($("f-jur"), "jur", JURS.map((j) => ({ value: j, label: jl(j), n: count((r) => r.jurisdiction === j) })));
   chipGroup($("f-reach"), "reach", Object.keys(FW.reach).map((k) => ({ value: k, label: FW.reach[k].label, title: FW.reach[k].help, n: count((r) => A(r) && A(r).reach === k) })));
   chipGroup($("f-cx"), "cx", Object.keys(TAGS).map((t) => ({ value: t, label: TAGS[t].label, title: TAGS[t].help, n: count((r) => r.complexity.includes(t)) })));
   // Every division, so the Industries view can show any of them; items outside the register's industries count 0.
@@ -909,7 +912,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     const a = A(r);
     return `<tr class="${member ? `member ${member === "last" ? "last " : ""}` : ""}${state.selected === r.id ? "sel" : ""}">
         <td class="mono">${esc(effLabel(r))}</td>
-        <td class="mono">${esc(r.jurisdiction)}</td>
+        <td class="mono">${esc(jl(r.jurisdiction))}</td>
         <td class="c-title"><button type="button" class="rowbtn" data-id="${esc(r.id)}" title="${esc([r.responsible.length ? `Responsible: ${whoShort(r)}` : "", r.complexity.length ? `Complexity: ${r.complexity.map((t) => (TAGS[t] ? TAGS[t].label : t)).join(", ")}` : ""].filter(Boolean).join(" · "))}">${esc(r.title)}</button>${r.council ? ` <span class="tag">Council: ${esc(r.council)}</span>` : ""} ${typeTag(r)} ${endTag(r)}${reqCount(r)}</td>
         <td>${a && a.main_driver ? drvTag(a.main_driver) : ""}</td>
         <td>${ratingBadge(a)}</td>
@@ -957,7 +960,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
         return `<td class="cell${a && a.main_driver === d ? " is-main" : ""}" title="${esc(tip)}"><span class="${markCls(m)}">${m ? esc(signed(m)) : "·"}</span></td>`;
       }).join("");
       const tot = a ? `<span class="${RATING_CLS[a.rating]}" title="${esc(`${RATING_LABEL[a.rating]}${a.mixed ? ", mixed" : ""}`)}">${esc(signed(a.total))}</span>` : "";
-      return `<tr class="${member ? "sc-member " : ""}${state.selected === r.id ? "sel" : ""}"><th class="item" scope="row"><button type="button" data-id="${esc(r.id)}" title="${esc(r.title)}"><span class="j">${esc(r.jurisdiction)}</span>${esc(r.short)}</button></th>${cells}<td class="tot">${tot}</td></tr>`;
+      return `<tr class="${member ? "sc-member " : ""}${state.selected === r.id ? "sel" : ""}"><th class="item" scope="row"><button type="button" data-id="${esc(r.id)}" title="${esc(r.title)}"><span class="j">${esc(jl(r.jurisdiction))}</span>${esc(r.short)}</button></th>${cells}<td class="tot">${tot}</td></tr>`;
     };
     const body = units(rows).map((u) => {
       if (u.r) return itemRow(u.r, false);
@@ -1029,7 +1032,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     svg.innerHTML = parts.join("");
     svg.querySelectorAll(".tl-mark").forEach((g) => {
       const r = R.find((q) => q.id === g.dataset.id), a = A(r);
-      const html = `<strong>${esc(r.title)}</strong><br>${esc(r.jurisdiction)} · ${esc(fmtDate(r.effective))}${a ? `<br>Overall mark ${esc(signed(a.total))} (${esc(RATING_LABEL[a.rating].toLowerCase())}); main driver: ${esc(DRV[a.main_driver].label.toLowerCase())}` : ""}`;
+      const html = `<strong>${esc(r.title)}</strong><br>${esc(jl(r.jurisdiction))} · ${esc(fmtDate(r.effective))}${a ? `<br>Overall mark ${esc(signed(a.total))} (${esc(RATING_LABEL[a.rating].toLowerCase())}); main driver: ${esc(DRV[a.main_driver].label.toLowerCase())}` : ""}`;
       g.addEventListener("mousemove", (e) => showTip(html, e));
       g.addEventListener("focus", () => showTipAt(html, g));
       g.addEventListener("mouseleave", hideTip);
@@ -1096,7 +1099,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     if (!qs.length) return "";
     return `<div class="recs">${qs.map((q) => `<article class="rec req" id="req-${esc(q.id)}">
       <h4>${esc(q.title)}</h4>
-      <p class="rec-meta"><span class="mono">${esc(q.jurisdiction)}</span>${q.council ? `<span>Council: ${esc(q.council)}</span>` : ""}<span>${esc(q.obligation)}</span></p>
+      <p class="rec-meta"><span class="mono">${esc(jl(q.jurisdiction))}</span>${q.council ? `<span>Council: ${esc(q.council)}</span>` : ""}<span>${esc(q.obligation)}</span></p>
       <p>${esc(q.summary)}</p>
       <dl class="req-facts"><dt>The law</dt><dd>${lawsLine(q)}</dd><dt>When it applies</dt><dd>${esc(q.triggers.map((t) => t.label).join("; "))}</dd>
         <dt>Who it reaches</dt><dd>${reachShort(q)}</dd><dt>Marks</dt><dd>${q.sameMarks ? "The same as this item's" : ratingBadge(q.assessment)}</dd></dl>
@@ -1126,7 +1129,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     if (!g) return "";
     const rows = GROUPS[g].members.map((id) => RBY[id]).filter(Boolean)
       .sort((a, b) => JURS.indexOf(a.jurisdiction) - JURS.indexOf(b.jurisdiction) || (a.council || "").localeCompare(b.council || ""));
-    const body = rows.map((x) => `<tr${x.id === q.id ? ' class="cur"' : ""}><td>${x.id === q.id ? `<strong>${esc(x.jurisdiction)}</strong>` : `<button type="button" class="lnk" data-id="${esc(x.id)}">${esc(x.jurisdiction)}</button>`}${x.council ? ` ${esc(x.council)}` : ""}</td>
+    const body = rows.map((x) => `<tr${x.id === q.id ? ' class="cur"' : ""}><td>${x.id === q.id ? `<strong>${esc(jl(x.jurisdiction))}</strong>` : `<button type="button" class="lnk" data-id="${esc(x.id)}">${esc(x.jurisdiction)}</button>`}${x.council ? ` ${esc(x.council)}` : ""}</td>
       <td>${esc(x.laws.map((l) => `${l.title}${l.provisions ? `, ${l.provisions}` : ""}`).join("; "))}</td><td>${esc(FW.confidence[x.reachConfidence].label)}</td></tr>`).join("");
     const marks = same(rows.map((x) => JSON.stringify(A(x) ? A(x).marks : [])));
     return `<div class="tscroll"><table class="st across"><thead><tr><th>Where</th><th>Law and provision</th><th>How sure the industries are</th></tr></thead><tbody>${body}</tbody></table></div>
@@ -1149,7 +1152,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       <button type="button" class="close" id="closeDetail">Close</button>
       <div class="d-head">
         <h2>${esc(r.title)}</h2>
-        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${r.council ? `<span>Council: ${esc(r.council)}</span>` : ""}<span>In place</span>${typeTag(r, true)}</div>
+        <div class="d-meta"><span class="mono">${esc(jl(r.jurisdiction))}</span>${r.council ? `<span>Council: ${esc(r.council)}</span>` : ""}<span>In place</span>${typeTag(r, true)}</div>
         ${g ? `<p class="grp-of">One of ${GROUPS[g].members.length} ${councils ? "councils" : "jurisdictions"} with this requirement: <button type="button" class="lnk" data-show-group="${esc(g)}">${esc(GROUPS[g].title)}</button></p>` : ""}
         <p>${esc(r.summary)}</p>
         <p class="small">${term("requirement", "Requirement")}: ${esc(r.obligation)}.</p>
@@ -1334,7 +1337,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     const items = R.filter((r) => r.regimes.includes(id));
     openAside(`regime:${id}`, `<div class="d-head"><h2>${esc(g.name)}</h2><div class="d-meta"><span>${term("regime", "Regulatory regime")}</span>${g.tags.map(cxTag).join("")}</div></div>
       <section class="d-sec">${regimeCard(g, true)}</section>
-      ${fold("Items in this regime", items.length ? li(items.map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`)) : "<p>None yet.</p>", String(items.length))}
+      ${fold("Items in this regime", items.length ? li(items.map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(jl(r.jurisdiction))} · ${esc(r.title)}</button></li>`)) : "<p>None yet.</p>", String(items.length))}
       ${fold("Industries it applies to", `<p><button type="button" class="lnk" data-show-ind="${esc(g.id)}">Show the ${g.classes} industries in the Industries view</button></p>`, `${g.classes} of ${IND.length}`)}`, fromHash ? null : `regime=${id}`);
   }
   function selectClass(code, fromHash) {
@@ -1352,7 +1355,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
         <p class="venn-key">Numbers count jobs (licensing, inspecting, collecting) done by each tier across these regimes.${info("helpClassVenn", "Reading the diagram")}</p></section>
       ${fold("Industry-specific regimes", sector.length ? `<ul class="reg-rows">${sector.map(row).join("")}</ul>` : "<p>None mapped: only the regimes that apply across industries.</p>", String(sector.length), true)}
       ${fold("Regimes that apply across industries", `<ul class="reg-rows">${cross.map(row).join("")}</ul>`, String(cross.length))}
-      ${items.length ? fold("Items in these regimes", `${li(items.slice(0, 40).map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(r.jurisdiction)} · ${esc(r.title)}</button></li>`))}${items.length > 40 ? `<p>and ${items.length - 40} more.</p>` : ""}`, String(items.length)) : ""}`, fromHash ? null : `class=${code}`);
+      ${items.length ? fold("Items in these regimes", `${li(items.slice(0, 40).map((r) => `<li><button type="button" class="lnk" data-id="${esc(r.id)}">${esc(jl(r.jurisdiction))} · ${esc(r.title)}</button></li>`))}${items.length > 40 ? `<p>and ${items.length - 40} more.</p>` : ""}`, String(items.length)) : ""}`, fromHash ? null : `class=${code}`);
   }
 
   function select(id, fromHash) {
@@ -1380,7 +1383,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       <button type="button" class="close" id="closeDetail">Close</button>
       <div class="d-head">
         <h2>${esc(r.title)}</h2>
-        <div class="d-meta"><span class="mono">${esc(r.jurisdiction)}</span>${eff ? `<span>${esc(eff)}</span>` : ""}${typeTag(r, true)}${endTag(r)}</div>
+        <div class="d-meta"><span class="mono">${esc(jl(r.jurisdiction))}</span>${eff ? `<span>${esc(eff)}</span>` : ""}${typeTag(r, true)}${endTag(r)}</div>
         ${groupOf(r) ? `<p class="grp-of">One of ${GROUPS[r.family].members.length} items in <button type="button" class="lnk" data-show-group="${esc(r.family)}">${esc(GROUPS[r.family].title)}</button></p>` : ""}
         <p>${esc(r.summary)}</p>
         ${r.ended ? `<p class="ended-note"><strong>No longer in force: ${esc(r.ended.label.toLowerCase())} ${esc(fmtDate(r.ended.date))}.</strong> ${esc(r.ended.what)} The assessment below is of the item while it applied.</p>` : ""}
@@ -1530,7 +1533,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     const us = bigUnits(rows), shown = state.bigAll ? us : us.slice(0, BIG_FIRST);
     $("bigKey").innerHTML = ICLS_ORDER.map((k) => `<button type="button" class="chip" data-class="${esc(k)}" aria-pressed="${state.big === k}" title="${esc(ICLS[k].help)}">${esc(ICLS[k].label)} ${BIG.filter((r) => r.impactClass === k).length}</button>`).join("");
     $("bigKey").querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => { state.big = b.dataset.class; state.bigAll = false; renderBig(); }));
-    const setBy = (r) => (r.jurisdiction === "CTH" ? "Commonwealth" : r.council ? `${r.council} (${r.jurisdiction})` : r.jurisdiction);
+    const setBy = (r) => (r.jurisdiction === "CTH" ? "Commonwealth" : r.council ? `${r.council} (${jl(r.jurisdiction)})` : jl(r.jurisdiction));
     const line = (u) => {
       const r = u.items[0], many = u.items.length > 1;
       const biz = u.items.reduce((s, x) => s + x.exposure.businesses, 0);
@@ -1540,7 +1543,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       const partial = u.items.some((x) => x.exposure.partial);
       const classes = Math.max(...u.items.map((x) => x.exposure.classes));
       return `<tr><td><button type="button" class="rowbtn" data-id="${esc(r.id)}">${esc(many ? GROUPS[u.g].title : r.title)}</button></td>
-        <td${many ? ` title="${esc(u.items.map((x) => x.jurisdiction).join(", "))}"` : ""}>${many ? `${u.items.length} governments` : esc(setBy(r))}</td><td>${esc(kindOf(r))}</td>
+        <td${many ? ` title="${esc(u.items.map((x) => jl(x.jurisdiction)).join(", "))}"` : ""}>${many ? `${u.items.length} governments` : esc(setBy(r))}</td><td>${esc(kindOf(r))}</td>
         <td class="num">${esc(lo === hi ? signed(lo) : `${signed(lo)} to ${signed(hi)}`)}</td><td class="num">${partial ? `<span class="muted">up to</span> ` : ""}${nf(biz)}</td><td class="num">${pct(base ? biz / base * 100 : null)}</td>
         <td class="num">${u.items.every((x) => x.exposure.allIndustries) ? "All" : classes}</td></tr>`;
     };

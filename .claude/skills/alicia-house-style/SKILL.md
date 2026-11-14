@@ -87,9 +87,11 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
 - **Buttons are a verb and an object:** "Clear all filters", "Download as Excel" [ts].
 - **Numbers:**
   - put the unit in the label;
-  - write financial years with an unspaced en dash, as in 2014–15 (Style Manual). The site
-    uses a hyphen (2014-15) on its pages and in its data labels today. That is known drift, to
-    fix only when the owner asks;
+  - write financial years with an unspaced en dash, as in 2014–15 (Style Manual). In page scripts use
+    `fyLabel()` (`charts.js`); in Python, `figures.fy()`. Excel file names keep a hyphen. Data keys, such
+    as `"2024-25"` in `industry.py`, keep a hyphen too: change them only where they are shown;
+  - write states in tables and chips as NSW, Vic, Qld, SA, WA, Tas, NT and ACT (`STATE_SHORT` in
+    `growth.py`; `jl()` on the levers page). The codes in the data stay in capitals;
   - write dates as 11 November 2026 in running text. Where space is tight, as in tables and
     status lines, the site uses 11 Nov 2026;
   - give changes a sign (+1.3);

@@ -454,7 +454,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
       g.append(c, t); svg.appendChild(g);
     }
   }
-  $("state-chips").innerHTML = D.states.map((s) => `<button type="button" class="chip" data-st="${s.code}" aria-pressed="false" title="${esc(s.name)}">${s.code}</button>`).join("");
+  $("state-chips").innerHTML = D.states.map((s) => `<button type="button" class="chip" data-st="${s.code}" aria-pressed="false" title="${esc(s.name)}">${({ VIC: "Vic", QLD: "Qld", TAS: "Tas" })[s.code] || s.code}</button>`).join("");
   $("state-chips").addEventListener("click", (e) => { const b = e.target.closest("button[data-st]"); if (b) pick(b.dataset.st); });
 
   // ---- Which laws apply to some classes (one class, or every class in a division) in a state, and to which of them.
@@ -730,7 +730,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   // (ABS 8155.0; RBA RDP 2025-05), which are not published for single classes or states.
   const MK = D.market;
   const LAST = MK.years[MK.years.length - 1];
-  const FY = (y) => `${y}-${String((y + 1) % 100).padStart(2, "0")}`;
+  const FY = (y) => `${y}–${String((y + 1) % 100).padStart(2, "0")}`;
   const pc = (v, d = 1) => (v == null || !Number.isFinite(v) ? "–" : `${fmt(v, d)}%`);
   const nn = (v) => (v == null ? "–" : fmt(v, 0));
   const lvl = (t) => `<span class="lvl">${esc(t)}</span>`;
@@ -747,7 +747,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   function stats(pos, sc, state) {
     const m = mkt(sc, state), ss = MK.sizeSales[sc.division], t4 = MK.top4[sc.division];
     const here = lvl(sc.kind === "class" ? `${sc.code} · ${state} · CABEE` : `Division ${sc.code} · ${state} · CABEE, sum of its classes`);
-    const div = lvl(`Division ${sc.division} · Australia · ${MK.sizeSalesYear} · ABS 8155.0`);
+    const div = lvl(`Division ${sc.division} · Australia · ${String(MK.sizeSalesYear).replace("-", "–")} · ABS 8155.0`);
     if (!m) return `<div class="mk-stats"><span class="line">No business counts for this industry in ${esc(STATE[state])}.</span></div>`;
     const share = (k) => (m.total ? (100 * k) / m.total : null);
     if (pos === "entrants") {
@@ -777,7 +777,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
       parts.map(([n, v], i) => { const w = total ? (100 * v) / total : 0; return `<div class="seg b${i + 1}" style="width:${w}%" title="${esc(n)}: ${pc(w)}">${w >= 9 ? pc(w, 0) : ""}</div>`; }).join("") + `</div></div>`;
     const names = ["Fewer than 20 employees (including none)", "20–199 employees", "200 or more"];
     let html = m ? bar(`Businesses · ${sc.label} in ${state} · June ${LAST + 1}`, [[names[0], m.sizes[0] + m.sizes[1]], [names[1], m.sizes[2]], [names[2], m.sizes[3]]], m.total) : `<p class="note">No business counts for this industry in this state.</p>`;
-    html += ss ? bar(`Sales · Division ${c.division} · Australia · ${MK.sizeSalesYear}`, [[names[0], ss.under20], [names[1], ss["20-199"]], [names[2], ss["200+"]]], ss.total) : `<p class="note">Sales by business size are not published for this division (finance and insurance is not in the ABS table).</p>`;
+    html += ss ? bar(`Sales · Division ${c.division} · Australia · ${String(MK.sizeSalesYear).replace("-", "–")}`, [[names[0], ss.under20], [names[1], ss["20-199"]], [names[2], ss["200+"]]], ss.total) : `<p class="note">Sales by business size are not published for this division (finance and insurance is not in the ABS table).</p>`;
     $("ch-size").innerHTML = html;
     $("lg-size").innerHTML = names.map((n, i) => `<span><span class="sw seg b${i + 1}"></span>${esc(n)}</span>`).join("");
     if (m) lineChart($("ch-entry"), { x: MK.years, xKind: "fy", zero: true, height: 220, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`,
@@ -967,7 +967,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   $("foot").innerHTML =
     `<p>How the marks are placed in the columns, and the limits: ${link(D.repo + "docs/industry_lens.md", "the Industry lens methods note")}. The marking guide: ${link(D.repo + "docs/productivity_framework.md", "the productivity framework")}. Requirements: ${link(D.repo + "regulation-register/requirements", "regulation-register/requirements")}; register items: ${link(D.repo + "regulation-register/records", "regulation-register/records")}.</p>` +
     `<p>Industries: ${link(D.sources.anzsic, "ABS, ANZSIC 2006 (Revision 2.0)")}, CC BY 4.0. Map: ${esc(D.map.source)}, ${esc(D.map.licence)}.</p>` +
-    `<p>Built ${esc(D.built)}. Unofficial research tooling; not an Australian Government product.</p>`;
+    `<p>Built ${esc(new Date(D.built + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" }))}. Unofficial research, not an Australian Government product.</p>`;
 
   fillSelect("");
   update();

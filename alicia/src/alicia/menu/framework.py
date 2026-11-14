@@ -361,8 +361,8 @@ def _driver_details(records: list[ChangeRecord]) -> str:
   <div class="ddet-body">
     <p>{escape(d["why"])} <span class="cite">{_cite(d["why_sources"])}</span></p>
     <div class="two">
-      <div><h4>Look for</h4><ul>{look}</ul></div>
-      <div><h4>Full marking guide</h4><table class="mk-table"><tbody>{marks}</tbody></table></div>
+      <div><h3>Look for</h3><ul>{look}</ul></div>
+      <div><h3>Full marking guide</h3><table class="mk-table"><tbody>{marks}</tbody></table></div>
     </div>
     <p class="small muted"><a href="menu.html#driver={escape(k)}">{_items(total)} in the register</a> have this as
     their main driver ({c["neg"]} negative overall, {c["pos"]} positive).</p>

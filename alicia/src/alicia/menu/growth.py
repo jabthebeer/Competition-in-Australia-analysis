@@ -34,12 +34,12 @@ STATES = (*schema.STATES, "AUS")
 STATE_NAMES = {v: k for k, v in schema.STATE_NAMES.items()} | {"AUS": "Australia"}
 DIVISIONS = tuple("ABCDEFGHIJKLMNOPQRS")
 TOTAL = "TOT"
-# Preset periods for the slider. Financial years, named by the year in which they start (2014 = 2014-15).
+# Preset periods for the slider. Financial years, named by the year in which they start (2014 = 2014–15).
 WINDOWS = (
     {"id": "10y", "label": "Last 10 years", "start": 2014, "end": 2024},
     {"id": "5y", "label": "Last 5 years", "start": 2019, "end": 2024},
-    {"id": "0414", "label": "2004-05 to 2014-15", "start": 2004, "end": 2014},
-    {"id": "9404", "label": "1994-95 to 2004-05", "start": 1994, "end": 2004},
+    {"id": "0414", "label": "2004–05 to 2014–15", "start": 2004, "end": 2014},
+    {"id": "9404", "label": "1994–95 to 2004–05", "start": 1994, "end": 2004},
     {"id": "all", "label": "All years", "start": 1989, "end": 2024},
 )
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
@@ -108,7 +108,7 @@ GROWTH_NOTES = {
         "high."
     ),
     "biz": (
-        "Business counts come from the ABS business register, from 2007-08 on. Rates are averages of the yearly "
+        "Business counts come from the ABS business register, from 2007–08 on. Rates are averages of the yearly "
         "rates over the period. The ABS slightly alters small counts to protect confidentiality, and counts shift "
         "between releases, so rates are more reliable than changes in counts."
     ),
@@ -123,7 +123,7 @@ CONDITIONS_NOTES = {
     "pop": "Estimated resident population at the end of each quarter.",
     "wpi": "Hourly pay rates excluding bonuses, all sectors, not seasonally adjusted.",
     "dwell": "Homes approved over the previous 12 months, per 1,000 residents.",
-    "commodity": "Index, 2024-25 = 100, in Australian dollars.",
+    "commodity": "Index, 2024–25 = 100, in Australian dollars.",
     "natgva": "Output adjusted for inflation and seasonal patterns. Growth over 5 and 10 years is the average yearly "
     "rate from the same quarter.",
 }
