@@ -34,12 +34,12 @@ STATES = (*schema.STATES, "AUS")
 STATE_NAMES = {v: k for k, v in schema.STATE_NAMES.items()} | {"AUS": "Australia"}
 DIVISIONS = tuple("ABCDEFGHIJKLMNOPQRS")
 TOTAL = "TOT"
-# Preset periods for the slider. Financial years, named by the year in which they start (2014 = 2014-15).
+# Preset periods for the slider. Financial years, named by the year in which they start (2014 = 2014–15).
 WINDOWS = (
     {"id": "10y", "label": "Last 10 years", "start": 2014, "end": 2024},
     {"id": "5y", "label": "Last 5 years", "start": 2019, "end": 2024},
-    {"id": "0414", "label": "2004-05 to 2014-15", "start": 2004, "end": 2014},
-    {"id": "9404", "label": "1994-95 to 2004-05", "start": 1994, "end": 2004},
+    {"id": "0414", "label": "2004–05 to 2014–15", "start": 2004, "end": 2014},
+    {"id": "9404", "label": "1994–95 to 2004–05", "start": 1994, "end": 2004},
     {"id": "all", "label": "All years", "start": 1989, "end": 2024},
 )
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
@@ -50,15 +50,26 @@ LENS_PAGE = ("industry-lens.html", "Industry lens")
 OVERVIEW_PAGE = ("regulatory-overview.html", "Regulatory overview by industry")
 FRAMEWORK_PAGE = ("framework.html", "Framework")
 METHODOLOGY_PAGE = ("methodology.html", "Methodology")
+# How every rule is coded, in one plain table (owner decision, 14 Nov 2026, DECISIONS E-161).
+REGISTER_PAGE = ("register-data.html", "Register data")
 # Every page the site builds, in nav order (owner decision, 11 Nov 2026, DECISIONS E-135). Pages keep their addresses
 # when renamed, so links made before still work.
-PAGES = (HOME_PAGE, COMPETITION_PAGE, MENU_PAGE, LENS_PAGE, FRAMEWORK_PAGE, METHODOLOGY_PAGE)
+PAGES = (
+    HOME_PAGE,
+    COMPETITION_PAGE,
+    MENU_PAGE,
+    LENS_PAGE,
+    OVERVIEW_PAGE,
+    FRAMEWORK_PAGE,
+    METHODOLOGY_PAGE,
+    REGISTER_PAGE,
+)
 # The nav groups the pages by what they are for: the two views, then how the site is made. A page the build does
 # not write (the regulatory overview, until it is built) shows as coming soon, without a link.
 NAV_GROUPS = (
     ("Top down", (COMPETITION_PAGE, MENU_PAGE)),
     ("Bottom up", (LENS_PAGE, OVERVIEW_PAGE)),
-    ("About", (FRAMEWORK_PAGE, METHODOLOGY_PAGE)),
+    ("About", (FRAMEWORK_PAGE, METHODOLOGY_PAGE, REGISTER_PAGE)),
 )
 # Short labels for the nav, so it fits on one line; each page's heading keeps its full name (owner decision,
 # 14 Nov 2026, DECISIONS E-159).
@@ -108,7 +119,7 @@ GROWTH_NOTES = {
         "high."
     ),
     "biz": (
-        "Business counts come from the ABS business register, from 2007-08 on. Rates are averages of the yearly "
+        "Business counts come from the ABS business register, from 2007–08 on. Rates are averages of the yearly "
         "rates over the period. The ABS slightly alters small counts to protect confidentiality, and counts shift "
         "between releases, so rates are more reliable than changes in counts."
     ),
@@ -123,7 +134,7 @@ CONDITIONS_NOTES = {
     "pop": "Estimated resident population at the end of each quarter.",
     "wpi": "Hourly pay rates excluding bonuses, all sectors, not seasonally adjusted.",
     "dwell": "Homes approved over the previous 12 months, per 1,000 residents.",
-    "commodity": "Index, 2024-25 = 100, in Australian dollars.",
+    "commodity": "Index, 2024–25 = 100, in Australian dollars.",
     "natgva": "Output adjusted for inflation and seasonal patterns. Growth over 5 and 10 years is the average yearly "
     "rate from the same quarter.",
 }
@@ -585,6 +596,23 @@ def site_foot(generated: dt.date | None = None) -> str:
     )
 
 
+def scorecard_html(payload: dict) -> str:
+    """Australia at a glance, on Structural competitive conditions: the page's headline figures as tiles, each a
+    link to the tab that shows it (``figures.scorecard``). Empty for a page without the competition data."""
+    from html import escape
+
+    from .figures import scorecard
+
+    if "barriers" not in payload:
+        return ""
+    return "\n      ".join(
+        f'<a class="tile" href="#{f["tab"]}"><span class="t-label">{escape(f["label"])}</span>'
+        f'<span class="t-value">{escape(f["value"])}</span><span class="t-sub">{escape(f["what"])}</span>'
+        f'<span class="t-was">{escape(f["was"])}</span></a>'
+        for f in scorecard(payload)
+    )
+
+
 def render(template: str, payload: dict, page: str, standalone: bool = False, pages: tuple = PAGES) -> str:
     """Fill a page template: shared styles, chart code and Excel export, navigation, then the embedded data."""
     blob = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -594,6 +622,7 @@ def render(template: str, payload: dict, page: str, standalone: bool = False, pa
         .replace("/*__CHARTS_JS__*/", _asset("charts.js") + "\n" + _asset("xlsx.js"))
         .replace("<!--__NAV__-->", nav(page, pages))
         .replace("<!--__BETA__-->", beta())
+        .replace("<!--__SCORECARD__-->", scorecard_html(payload))
         .replace("__PAGE_DATA__", blob)
     )
     if standalone:
@@ -666,7 +695,7 @@ def build_site(
     from pathlib import Path
 
     from . import framework as framework_page
-    from . import home, lens, methodology
+    from . import home, lens, methodology, overview, registerdata
     from .archive import ARCHIVE_PAGE, build_archive
     from .explorer import build_explorer, menu_payload
 
@@ -712,6 +741,17 @@ def build_site(
         encoding="utf-8",
     )
     written.append(lens_path)
+    # Regulatory overview by industry: the divisions and detailed industries compared, from the levers page's rows.
+    path = out / OVERVIEW_PAGE[0]
+    html = render(OVERVIEW_PAGE[0], overview.payload(menu, records), OVERVIEW_PAGE[0], standalone, pages)
+    path.write_text(html.replace("<!--__FOOT__-->", site_foot()), encoding="utf-8")
+    written.append(path)
+    # Register data: how every rule is coded, from the levers page's rows.
+    path = out / REGISTER_PAGE[0]
+    data = registerdata.payload(menu) | {"repo": data_base}
+    html = render(REGISTER_PAGE[0], data, REGISTER_PAGE[0], standalone, pages)
+    path.write_text(html.replace("<!--__FOOT__-->", site_foot()), encoding="utf-8")
+    written.append(path)
     if costing_dist:
         written += build_costing(out, costing_dist, pages)
     # Home: its figures come from the competition and levers pages' own data.

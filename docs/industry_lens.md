@@ -2,6 +2,19 @@
 
 *6–12 November 2026 (DECISIONS E-122, E-123, E-126 to E-128, E-137, E-150). Code: `alicia/src/alicia/register/competition.py` (placing marks in columns) and `alicia/src/alicia/menu/lens.py` (the page's data); template `menu/templates/industry-lens.html`; map `alicia/src/alicia/pipeline/boundaries.py`. Tests: `alicia/tests/test_lens.py`.*
 
+## Layout (14 November 2026, DECISIONS E-181)
+
+The picker and a summary sit at the top. The summary opens with the industry's businesses and entry rate in the state. Below are 4 tabs, the business's own view first:
+
+| Tab | Holds |
+|---|---|
+| Its market | Structural market conditions |
+| Its requirements | Laws for this industry (list or business journey); the effect of each law on competition, opening on the laws particular to the industry |
+| Who it answers to | Regulatory overlap: levels of government in each regime, and who does what |
+| Pain points | Pain points; the view across states, folded away while comparisons between states are shelved (E-161) |
+
+This replaces the order set in E-150, described under "Pain points and regulatory overlap" below. The sections themselves are unchanged.
+
 ## What the page shows
 
 The user picks an ANZSIC **division**, then, optionally, one of its **classes**, and a state or territory (10 November 2026, E-126).

@@ -361,8 +361,8 @@ def _driver_details(records: list[ChangeRecord]) -> str:
   <div class="ddet-body">
     <p>{escape(d["why"])} <span class="cite">{_cite(d["why_sources"])}</span></p>
     <div class="two">
-      <div><h4>Look for</h4><ul>{look}</ul></div>
-      <div><h4>Full marking guide</h4><table class="mk-table"><tbody>{marks}</tbody></table></div>
+      <div><h3>Look for</h3><ul>{look}</ul></div>
+      <div><h3>Full marking guide</h3><table class="mk-table"><tbody>{marks}</tbody></table></div>
     </div>
     <p class="small muted"><a href="menu.html#driver={escape(k)}">{_items(total)} in the register</a> have this as
     their main driver ({c["neg"]} negative overall, {c["pos"]} positive).</p>
@@ -480,7 +480,7 @@ def _example(record: ChangeRecord | None, tips: _Tips) -> str:
     total = f'<span class="mk {MARK_CLS[max(-2, min(2, a.total))]}">{_signed(a.total)}</span>'
     scale = "".join(f"<span>{_signed(v)}</span>" for v in MARK_ORDER)
     return f"""<section class="block" aria-labelledby="h-example">
-  <div class="block-head"><h2 id="h-example">A worked example on the rubric</h2>
+  <div class="block-head"><h2 id="h-example">How to read a mark: a worked example</h2>
   <p>{title}. {escape(a.summary)}</p></div>
   <div class="panel tscroll"><table class="data ex">
   <thead><tr><th scope="col">Driver</th><th scope="col"><span class="strip-scale">{scale}</span></th>
@@ -662,23 +662,18 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes:
   <p class="hint">{icon("info")} Hover over, or tap, any box, row or cell for more detail.</p>
 </header>
 
+<p class="notice"><strong>Version {escape(fw.VERSION)} is being revised.</strong> In version 2, a rule will be
+scored from facts anyone can check in its text (its kind, when it bites, who it binds, its fee), and classed by how
+many businesses it reaches. The marks below stay, as a judgement shown beside that score. The first step is on
+<a href="menu.html">Legislative levers</a>, under Biggest barriers.</p>
+
+{example}
+
 <section class="block" aria-labelledby="h-fit">
   <div class="block-head"><h2 id="h-fit">The idea in one picture</h2>
   <p>Eight drivers in three groups. Competition pushes firms to invest, use people well and work efficiently, and that
   lifts productivity.</p></div>
   {flow}
-</section>
-
-<section class="block" aria-labelledby="h-ideas">
-  <div class="block-head"><h2 id="h-ideas">Key ideas in plain words</h2></div>
-  <div class="ideas">
-    {concepts}
-    <div class="stack">
-      <h3 class="sub">Warning signs in Australia</h3>
-      {signs}
-      <p class="source">Sources: {_cite_short(idea_sources)}. Full references are at the foot of the page.</p>
-    </div>
-  </div>
 </section>
 
 <section class="block" aria-labelledby="h-rubric">
@@ -695,14 +690,24 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes:
   {marking}
 </section>
 
-{example}
-
 <section class="block" aria-labelledby="h-overlap">
   <div class="block-head"><h2 id="h-overlap">Avoiding double counting</h2>
   <p>Each effect is marked once, under the driver it acts through.</p></div>
   {overlap}
 </section>
 {_complexity(records, regimes)}
+
+<section class="block" aria-labelledby="h-ideas">
+  <div class="block-head"><h2 id="h-ideas">Key ideas in plain words</h2></div>
+  <div class="ideas">
+    {concepts}
+    <div class="stack">
+      <h3 class="sub">Warning signs in Australia</h3>
+      {signs}
+      <p class="source">Sources: {_cite_short(idea_sources)}. Full references are at the foot of the page.</p>
+    </div>
+  </div>
+</section>
 
 <section class="block" aria-labelledby="h-limits">
   <div class="block-head"><h2 id="h-limits">Limits</h2></div>

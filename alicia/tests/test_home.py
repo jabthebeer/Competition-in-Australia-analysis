@@ -93,7 +93,7 @@ def test_the_page_shows_each_figure_once_with_its_source_and_a_link(data):
     built = {href for href, _ in growth.PAGES}
     html = home.page(*data, built, generated=dt.date(2026, 11, 14))
     assert not re.search(r"__[A-Z_]+__", html)
-    tiles = re.findall(r'<a class="tile" href="([^"]+)">.*?<span class="tile-src">([^<]+)</span></a>', html, re.S)
+    tiles = re.findall(r'<a class="tile" href="([^"]+)">.*?<span class="t-src">([^<]+)</span></a>', html, re.S)
     assert [t[0] for t in tiles] == ["growth.html", "growth.html", "growth.html", "menu.html"]
     assert all(src for _, src in tiles)
     assert "Updated 14 November 2026." in html and "not an Australian Government product" in html

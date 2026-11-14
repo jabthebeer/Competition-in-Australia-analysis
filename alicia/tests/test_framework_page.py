@@ -49,3 +49,27 @@ def test_render_includes_the_tooltip_code_and_fills_every_placeholder():
     html = page.render(records, "<nav></nav>")
     assert "function showTipAt" in html and "data-tip" in html
     assert not re.search(r"__[A-Z_]+__", html)
+
+
+def test_the_page_leads_with_the_worked_example():
+    """Owner, 14 November 2026 (DECISIONS E-159, E-182): the Framework page opens with how to read a mark, on one
+    worked example, and says that version 2 is being built."""
+    html = page.body(load_records().records)
+    order = ["h-example", "h-fit", "h-rubric", "h-how", "h-overlap", "h-ideas", "h-limits"]
+    at = [html.index(f'id="{i}"') for i in order]
+    assert at == sorted(at)
+    assert "How to read a mark: a worked example" in html
+    assert html.index("is being revised") < html.index('id="h-example"') and "Biggest barriers" in html
+
+
+def test_the_methodology_page_leads_with_how_far_to_rely_on_each_part():
+    from alicia.menu import growth, methodology
+
+    html = methodology.page(load_records().records, True, growth.PAGES)
+    heads = re.findall(r'<h2 id="h-(\w+)">', html)
+    assert heads[0] == "rely" and heads == [a for a, _ in methodology.SECTIONS]
+    rows = re.findall(r"(?s)<tr><td>(.*?)</td><td>(.*?)</td><td>(.*?)</td><td>(.*?)</td></tr>", html)
+    assert len(rows) == len(methodology.RELIANCE) and all(all(cell for cell in r) for r in rows)
+    # Official statistics come first; the draft judgements and what others recommend come last.
+    assert rows[0][0].startswith("Business counts") and rows[-1][0] == "What others recommend"
+    assert "regulatory-overview.html" in html
