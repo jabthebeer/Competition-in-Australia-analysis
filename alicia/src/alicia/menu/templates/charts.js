@@ -98,7 +98,9 @@ function initTabs(list, opts = {}) {
     const tab = panel && tabs.find((t) => panelOf(t) === panel);
     return tab ? { tab, target } : { tab: current || tabs[0], elsewhere: !!target };
   };
-  const pick = (t, focus) => { history.replaceState(null, "", `#${keyOf(t)}`); show(t, focus); };
+  // opts.hash false: the page's address holds its own state (the Industry lens), so the tabs leave it alone.
+  const useHash = opts.hash !== false;
+  const pick = (t, focus) => { if (useHash) history.replaceState(null, "", `#${keyOf(t)}`); show(t, focus); };
   list.addEventListener("click", (e) => { const t = e.target.closest('[role="tab"]'); if (t) pick(t); });
   list.addEventListener("keydown", (e) => {
     const i = tabs.indexOf(document.activeElement);
@@ -110,12 +112,12 @@ function initTabs(list, opts = {}) {
   });
   // A link on the page to a tab, or to something inside one: open it, then bring it into view.
   // (Something outside the tabs, such as the sources at the foot, is left to the browser.)
-  window.addEventListener("hashchange", () => {
+  if (useHash) window.addEventListener("hashchange", () => {
     const { tab, target, elsewhere } = fromHash();
     show(tab);
     if (!elsewhere) (target || list).scrollIntoView({ block: "start" });
   });
-  const { tab, target } = fromHash();
+  const { tab, target } = useHash ? fromHash() : { tab: tabs.find((x) => x.getAttribute("aria-selected") === "true") || tabs[0] };
   show(tab);
   if (target) target.scrollIntoView({ block: "start" });
   // For the page's own code: open a tab by its key without changing the address.

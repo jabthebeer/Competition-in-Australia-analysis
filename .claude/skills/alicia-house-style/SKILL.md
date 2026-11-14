@@ -34,7 +34,8 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   | `home.html` | `index.html`, Home (built by `menu/home.py`; its figures come from the other pages' data) |
   | `growth.html` | Structural competitive conditions, in six tabs: an Overview, four on competition, and the Economic backdrop (the former economic conditions) |
   | `explorer.html` | `menu.html`, Legislative levers influencing competition, in two tabs: an Overview (biggest barriers, how they act, who sets them) and the register |
-  | `industry-lens.html` | Industry lens |
+  | `industry-lens.html` | Industry lens, in four tabs: its market, its requirements, who it answers to, pain points |
+  | `regulatory-overview.html` | Regulatory overview by industry (data in `menu/overview.py`) |
   | `framework.html` | Framework |
   | `methodology.html` | Methodology (text in `menu/methodology.py`) |
   | `archive.html` | The econometric archive and `evaluation-<id>.html` pages: archived, not built for the live site |
@@ -63,7 +64,7 @@ this file wins, above all on captions: ALICIA's charts keep their notes and sour
   ```bash
   cd alicia && uv run alicia site -o <scratchpad>/site --dates "$(ls ../regulation-register/reports/effective_dates_*.json | sort | tail -n 1)"
   ```
-- **Tests that pin page structure:** `tests/test_site.py`, `test_home.py`, `test_scorecard.py`, `test_exposure.py`, `test_explorer.py`,
+- **Tests that pin page structure:** `tests/test_site.py`, `test_home.py`, `test_scorecard.py`, `test_exposure.py`, `test_overview.py`, `test_explorer.py`,
   `test_lens.py`, `test_framework_page.py` and `test_archive.py`. When a change is deliberate, update the test
   and say so in the PR. Never weaken a test only to get it to pass.
 

@@ -1576,7 +1576,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     const card = (go, name, desc) => `<button type="button" class="more-link" data-go="${go}"><span class="name">${esc(name)}</span><span class="desc">${esc(desc)}</span></button>`;
     $("moreLinks").innerHTML = card("list", "Every item", `${R.length} laws, requirements and barriers, with filters, a scorecard and a timeline.`)
       + card("recs", "What others recommend", `${nRecs} recommendations from published reviews, each quoted from its source.`)
-      + card("ind", "Regulation by industry", `The regimes each of the ${IND.length} detailed industries deals with.`);
+      + `<a class="more-link" href="regulatory-overview.html"><span class="name">Regulatory overview by industry</span><span class="desc">Compare the ${IND.length} detailed industries by the regulation they face.</span></a>`;
     $("moreLinks").querySelectorAll("[data-go]").forEach((b) => b.addEventListener("click", () => { setTab(b.dataset.go); pageTabs.open("browse"); $("panel-browse").scrollIntoView({ block: "start" }); }));
     renderBig();
   })();

@@ -55,7 +55,7 @@ Check each script's own header for its arguments before you run it. `links.csv.g
 ### 5. `alicia/DECISIONS.md`
 
 - Rows are added at the end, so two branches always conflict there. Keep both sets of rows, in number order.
-- **E-161 is taken. Use E-162 to E-179.** The website session uses **E-180 onwards** (E-180 is taken), so the numbers can't collide.
+- **E-161 is taken. Use E-162 to E-179.** The website session uses **E-180 onwards** (E-180 and E-181 are taken), so the numbers can't collide.
 - One row for each batch, as now.
 
 ### 6. Check before you push
@@ -94,7 +94,8 @@ New requirements and register items appear on Legislative levers and the Industr
 - **Width:** every page is 1240px wide. Don't set `max-width` on `.wrap` in a page template; a test fails if one does.
 - **Home** is built by `alicia/src/alicia/menu/home.py`. `growth.landing()` and `LANDING` are gone.
 - **Structural competitive conditions is in tabs (E-160).** Section ids are unchanged, and a link to any of them opens the right tab (`growth.html#economic-conditions` still works). In `site.css`, `.tabs` now means a row of tabs (`initTabs()` in `charts.js`). Headline figures come from `alicia/src/alicia/menu/figures.py`.
-- **Still to change:** the levers page (phase 4) and the Industry lens (phase 5) will be reorganised into tabs. The lens will lead with the business's view; pain points move later on the page (this replaces the order in E-150). Their page data stays as it is, so new requirements and register items keep appearing with no code change.
+- **Levers and lens are in tabs (E-180, E-181).** The lens leads with the business's view (its market, its requirements, who it answers to); pain points are the last tab (this replaces the order in E-150). Their page data is as it was, with 3 fields added to each row of the levers data (`exposure`, `standing`, `impactClass`), so new requirements and register items keep appearing with no code change.
+- **Regulatory overview by industry** is now a page (`regulatory-overview.html`), built from the regimes, the requirements and the ABS counts.
 
 ## Website restructure (PR #28, DECISIONS E-135 and E-136)
 

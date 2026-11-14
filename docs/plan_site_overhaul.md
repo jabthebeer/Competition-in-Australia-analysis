@@ -54,8 +54,8 @@ Each phase is a pull request for the owner to merge. The site works after each, 
 | 2. Home | Headline figures from the data, 3 questions to start from, an industry and state picker for the lens | Done (14 November 2026) |
 | 3. Structural competitive conditions | An Overview tab with a scorecard of 5 figures and 3 findings; 5 tabs for the detail; the sources folded at the foot (the tabs component is built here) | Done (14 November 2026, E-160) |
 | 4. Legislative levers | An Overview tab: biggest barriers by impact class with the businesses each reaches, how barriers act, who sets the rules. The register (list, scorecard, timeline, what others recommend, industries) in its own tab | Done (14 November 2026, E-180) |
-| 5. Industry lens and Regulatory overview by industry | The lens reordered around the business; the overview page built | Next |
-| 6. Framework and Methodology | Framework leads with a worked example; Methodology leads with a reliance table | To do |
+| 5. Industry lens and Regulatory overview by industry | The lens in 4 tabs, the business's view first (its market, its requirements, who it answers to, pain points). Regulatory overview by industry built: the 19 divisions and 506 detailed industries compared | Done (14 November 2026, E-181) |
+| 6. Framework and Methodology | Framework leads with a worked example; Methodology leads with a reliance table | Next |
 | 7. Finish | Phone and accessibility pass; Style Manual pass on all text, including en dashes in financial years and short forms of the states; a check of every headline figure; docs updated | To do |
 
 ## Changes from the mock-ups
@@ -77,4 +77,6 @@ Each phase is a pull request for the owner to merge. The site works after each, 
 - Shared components are in `alicia/src/alicia/menu/templates/site.css`: `.tiles.headline` and `.tile`, `.btn` and `.btn.primary`, `.site-foot`, `.tabs` and `.tab-panel`, `.findings` and `.finding`, `.more-links` and `.more-link`, `.minibars`.
 - Tabs: mark up a `.tabs[role="tablist"]` row and `.tab-panel[role="tabpanel"]` panels as `growth.html` does, then call `initTabs()` (in `charts.js`). The address follows the open tab (`growth.html#concentration`), and a link to any id inside a panel opens that panel. Without scripts, every panel shows.
 - Exposure (the businesses a rule reaches) and the impact classes are worked out in `alicia/src/alicia/menu/exposure.py` when the site is built, and added to every row of the levers page's data (`exposure`, `standing`, `impactClass`). Tests: `alicia/tests/test_exposure.py`. The rule and its stopgap are in [`plan_policy_tool.md`](plan_policy_tool.md).
+- Regulatory overview by industry is `alicia/src/alicia/menu/overview.py` and `templates/regulatory-overview.html`; its tests are `alicia/tests/test_overview.py`.
+- A page whose address holds its own state (the Industry lens: `#division=H&class=4511&state=NSW`) calls `initTabs(list, { hash: false })`, so the tabs leave the address alone.
 - Headline figures are worked out in `alicia/src/alicia/menu/figures.py` when the site is built. Home and the scorecard both use it. Tests: `alicia/tests/test_home.py` and `alicia/tests/test_scorecard.py`.
