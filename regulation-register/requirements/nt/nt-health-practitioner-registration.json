@@ -1,0 +1,199 @@
+{
+  "id": "nt-health-practitioner-registration",
+  "family": "health-practitioner-registration",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "health-practitioners-and-facilities",
+  "title": "Use only registered health practitioners",
+  "kind": "licence",
+  "what": "Doctors (and other registered health professionals) working in the practice must be registered under the Health Practitioner Regulation National Law, through Ahpra and the Medical Board of Australia.",
+  "laws": [
+    {
+      "title": "Health Practitioner Regulation (National Uniform Legislation) Act 2010 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://legislation.nt.gov.au/Legislation/HEALTH-PRACTITIONER-REGULATION-NATIONAL-UNIFORM-LEGISLATION-ACT-2010",
+      "provisions": "application of the National Law",
+      "applied": false
+    },
+    {
+      "title": "Health Practitioner Regulation National Law (Queensland)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2009-hprnlq",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2009-hprnlq",
+      "provisions": "s 113",
+      "applied": true
+    }
+  ],
+  "sources": [
+    {
+      "title": "Health Practitioner Regulation National Law (Queensland)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2009-hprnlq",
+      "locator": "s 113(1)(a) (current)",
+      "quote": "(1) A person must not knowingly or recklessly— (a) take or use a title in the Table to this section, in a way that could be reasonably expected to induce a belief the person is registered under this Law in the health profession listed beside the title in the Table, unless the person is registered in the profession",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "nat-ahpra"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Health Practitioner Regulation Agency and the National Boards",
+      "bodies": [
+        "nat-ahpra"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Practitioner Regulation National Law (Queensland)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2009-hprnlq",
+          "locator": "words naming the body (found 12 Nov 2026)",
+          "quote": "Agency means the Australian Health Practitioner Regulation Agency established by section 23 .",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8401",
+        "8402",
+        "8511",
+        "8512",
+        "8520",
+        "8531",
+        "8532",
+        "8533",
+        "8534",
+        "8539",
+        "8591",
+        "8599"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Health services using practitioners in the registered professions.",
+      "sources": [
+        {
+          "title": "Health Practitioner Regulation National Law (Queensland)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2009-hprnlq",
+          "locator": "s 113(1)(a) (current)",
+          "quote": "take or use a title in the Table to this section, in a way that could be reasonably expected to induce a belief the person is registered under this Law in the health profession listed beside the title in the Table, unless the person is registered in the profession",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "8601"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it employs registered nurses or other registered practitioners",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Practitioner Regulation National Law (Queensland)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2009-hprnlq",
+          "locator": "s 113(1)(a) (current)",
+          "quote": "take or use a title in the Table to this section, in a way that could be reasonably expected to induce a belief the person is registered under this Law in the health profession listed beside the title in the Table, unless the person is registered in the profession",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4271"
+      ],
+      "exclude": [],
+      "activities": [
+        "Pharmacy, retail, operation"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Practitioner Regulation National Law (Queensland)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2009-hprnlq",
+          "locator": "s 113(1)(a) (current)",
+          "quote": "take or use a title in the Table to this section, in a way that could be reasonably expected to induce a belief the person is registered under this Law in the health profession listed beside the title in the Table, unless the person is registered in the profession",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "This jurisdiction applies the National Law set out in Queensland's Act as its own law; the quote is from the Queensland text.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Health services may use only practitioners registered under the national law to practise and use protected titles.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Only registered practitioners may practise and use protected titles, narrowing the pool of practitioners a practice can hire; registration is national, so it carries across states.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

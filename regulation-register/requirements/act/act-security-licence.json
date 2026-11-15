@@ -1,0 +1,168 @@
+{
+  "id": "act-security-licence",
+  "family": "security-licence",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "security-industry",
+  "title": "Hold a security business licence",
+  "kind": "licence",
+  "what": "Hold the state's security business (or agent) licence before providing security services, and use only licensed staff.",
+  "laws": [
+    {
+      "title": "Security Industry Act 2003 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "A2003-4",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2003-4/20250609-87335/PDF/2003-4.PDF",
+      "provisions": "s 10(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Security Industry Act 2003 (ACT)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2003-4/20250609-87335/PDF/2003-4.PDF",
+      "locator": "s 10(1) (republication of 09/06/2025 (Security Industry Act 2003 | Acts))",
+      "quote": "A person commits an offence if the person— (a) carries on a security activity; and (b) does not hold a licence authorising the person to carry on the activity.",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Access Canberra (Commissioner for Fair Trading)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Security Industry Act 2003 (ACT)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2003-4/20250609-87335/PDF/2003-4.PDF",
+          "locator": "s 18, words naming the body (found 12 Nov 2026)",
+          "quote": "commissioner may require the applicant to give the commissioner a certified copy of the applicant’s criminal history record from that country.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7712"
+      ],
+      "exclude": [],
+      "activities": [
+        "Alarm monitoring service",
+        "Armoured car service",
+        "Bodyguard service",
+        "Burglary protection service",
+        "Night watchman service",
+        "Protection service",
+        "Security alarm monitoring service",
+        "Security guard service"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "The ABS's security activities in class 7712.",
+      "sources": [
+        {
+          "title": "Security Industry Act 2003 (ACT)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2003-4/20250609-87335/PDF/2003-4.PDF",
+          "locator": "s 10(1) (republication of 09/06/2025 (Security Industry Act 2003 | Acts))",
+          "quote": "A person commits an offence if the person— (a) carries on a security activity; and (b) does not hold a licence authorising the person to carry on the activity.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3234"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it installs or services security equipment, where the state licenses that work",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Security Industry Act 2003 (ACT)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2003-4/20250609-87335/PDF/2003-4.PDF",
+          "locator": "s 10(1) (republication of 09/06/2025 (Security Industry Act 2003 | Acts))",
+          "quote": "A person commits an offence if the person— (a) carries on a security activity; and (b) does not hold a licence authorising the person to carry on the activity.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [
+    "act-occupational-licensing"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A security business licence, with probity checks and training for its people, before trading.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence with probity checks is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Licensing requirements narrow the pool of workers who may do licensed work and the ease of moving into it.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The labour mark is the register's assessment of occupational licensing (act-occupational-licensing); the entry mark is reasoning only.",
+    "evidence": [
+      "https://assets.pc.gov.au/2025-10/competition-analysis-study-report-plus.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

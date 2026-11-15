@@ -1,0 +1,195 @@
+{
+  "id": "cth-postal-reserved-services",
+  "family": "postal-reserved-services",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "telecommunications-and-media",
+  "title": "Do not carry letters reserved to Australia Post",
+  "kind": "other",
+  "what": "Do not collect, carry or deliver letters within Australia, which Australia Post has the exclusive right to carry, unless an exception applies (such as letters over 250 grams, or a charge of at least 4 times the standard postage rate).",
+  "laws": [
+    {
+      "title": "Australian Postal Corporation Act 1989",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03812",
+      "register_url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+      "provisions": "ss 29, 30",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Australian Postal Corporation Act 1989",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+      "locator": "s 29(1) (compilation C2025C00040, in force from 2025-01-09)",
+      "quote": "Subject to section 30, Australia Post has the exclusive right to carry letters within Australia, whether the letters originated within or outside Australia.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 12 (Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Australian Postal Corporation Act 1989 Australian Sports Anti-Doping Authority (Consequential and Transitional Provisions) Act 2006",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Carrying letters.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "5102"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Couriers and other carriers of letters.",
+      "sources": [
+        {
+          "title": "Australian Postal Corporation Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+          "locator": "s 29(1) (compilation C2025C00040, in force from 2025-01-09)",
+          "quote": "Subject to section 30, Australia Post has the exclusive right to carry letters within Australia, whether the letters originated within or outside Australia.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Australian Postal Corporation Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+          "locator": "s 30(1)(a) (compilation C2025C00040, in force from 2025-01-09)",
+          "quote": "(a) the carriage of a letter weighing more than 250 grams unless the letter consists of an envelope, packet, parcel, container or wrapper containing 2 or more separate letters;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Australian Postal Corporation Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+          "locator": "s 30(1)(e) (compilation C2025C00040, in force from 2025-01-09)",
+          "quote": "(e) the carriage of a letter within Australia for a charge or fee that is at least 4 times the then rate of postage for the carriage within Australia of a standard postal article by ordinary post;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4610"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries letters",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Australian Postal Corporation Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+          "locator": "s 29(1) (compilation C2025C00040, in force from 2025-01-09)",
+          "quote": "Subject to section 30, Australia Post has the exclusive right to carry letters within Australia, whether the letters originated within or outside Australia.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Australian Postal Corporation Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+          "locator": "s 30(1)(a) (compilation C2025C00040, in force from 2025-01-09)",
+          "quote": "(a) the carriage of a letter weighing more than 250 grams unless the letter consists of an envelope, packet, parcel, container or wrapper containing 2 or more separate letters;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Australian Postal Corporation Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+          "locator": "s 30(1)(e) (compilation C2025C00040, in force from 2025-01-09)",
+          "quote": "(e) the carriage of a letter within Australia for a charge or fee that is at least 4 times the then rate of postage for the carriage within Australia of a standard postal article by ordinary post;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [
+    "cth-australia-post-reserved-services"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A legal monopoly on carrying ordinary letters. It shuts out rivals in a market that is now small and shrinking, so its cost to productivity is limited.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "Rivals are barred by law from carrying ordinary letters: an exclusive right.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "Marks from the register's assessment of the same law (cth-australia-post-reserved-services). The restriction is explicit; letter volumes have fallen, so the market it closes is small.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

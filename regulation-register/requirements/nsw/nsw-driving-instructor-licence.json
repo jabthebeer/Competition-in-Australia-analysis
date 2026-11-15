@@ -1,0 +1,149 @@
+{
+  "id": "nsw-driving-instructor-licence",
+  "family": "driving-instructor-licence",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a driving instructor licence",
+  "kind": "licence",
+  "what": "Hold the state's driving instructor licence, authority or accreditation before giving driving lessons for reward.",
+  "laws": [
+    {
+      "title": "Driving Instructors Act 1992 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1992-003",
+      "register_url": "https://legislation.nsw.gov.au/view/html/inforce/current/act-1992-003",
+      "provisions": "s 6",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Driving Instructors Act 1992 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-01-22/act-1992-003",
+      "locator": "s 6 (version of 2021-01-22)",
+      "quote": "6 Unlicensed driving instruction A person must not act as a driving instructor unless the person is the holder of a licence.",
+      "accessed": "2026-11-10",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2021-01-22/act-1992-003"
+    }
+  ],
+  "administered_by": [
+    "nsw-transport"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Transport for NSW",
+      "bodies": [
+        "nsw-transport"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Driving Instructors Act 1992 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-01-22/act-1992-003",
+          "locator": "s 3, words naming the body (found 12 Nov 2026)",
+          "quote": "rson authorised in writing by Transport for NSW for the purposes of the provision of this Act in which the expression is used.",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2021-01-22/act-1992-003"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8219"
+      ],
+      "exclude": [],
+      "activities": [
+        "Driving school operation"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Driving Instructors Act 1992 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-01-22/act-1992-003",
+          "locator": "s 6 (version of 2021-01-22)",
+          "quote": "6 Unlicensed driving instruction A person must not act as a driving instructor unless the person is the holder of a licence.",
+          "accessed": "2026-11-10",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2021-01-22/act-1992-003"
+        },
+        {
+          "title": "Driving instructor licence",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/nsw/driving-instructor-licence/16597",
+          "locator": "Description",
+          "quote": "You will need this licence if you intend to act as a driving instructor.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the law's current text on 10 Nov 2026, replacing the ABLIS-first draft (methods rule 5a); the ABLIS listing stays as a reach source.",
+  "records": [],
+  "ablis": [
+    "16597"
+  ],
+  "assessment": {
+    "summary": "Driving instructors need a licence, with a test and checks, before giving lessons for reward.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "An instructor's licence is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Licensing narrows who may teach driving for reward.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

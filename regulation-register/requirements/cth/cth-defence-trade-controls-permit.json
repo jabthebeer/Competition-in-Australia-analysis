@@ -1,0 +1,132 @@
+{
+  "id": "cth-defence-trade-controls-permit",
+  "family": "defence-trade-controls-permit",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a permit to supply defence and dual-use technology to foreign persons",
+  "kind": "licence",
+  "what": "Supplying Defence and Strategic Goods List technology to a foreign person in Australia needs a permit unless an exception applies.",
+  "laws": [
+    {
+      "title": "Defence Trade Controls Act 2012",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2012A00153",
+      "register_url": "https://www.legislation.gov.au/C2012A00153/latest/text",
+      "provisions": "10A",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Defence Trade Controls Act 2012",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2012A00153/latest/text",
+      "locator": "s 10A (compilation C2024C00463 from 2024-10-14)",
+      "quote": "10A Offence—supply of DSGL technology in Australia to foreign person (1) A person (the supplier) commits an offence if: (a) the supplier supplies DSGL technology to another person; and (b) the other person is a foreign person; and (c) the supply is a constitutional supply; and (d) the supply is a relevant supply; and (e) any of the following applies: (i) the place from which the supply is made and the place to which the supply is made are both in Australia; (ii) the supply occurs wholly at a place in Australia; (iii) if the supply is the provision of access to DSGL technology—at the time of the provision of access, both the supplier and the other person are in Australia; and (f) either: (i) the supplier does not hold a permit under section 11 authorising the supply; or (ii) the supply contravenes a condition of a permit that the supplier holds under section 11; and (g) there is no notice in force under subsection 14(1) in relation to the supplier and the supply.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-defence"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Defence",
+      "bodies": [
+        "cth-defence"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Defence Trade Controls Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2012A00153/latest/text",
+          "locator": "s 11 (compilation C2024C00463 from 2024-10-14)",
+          "quote": "Minister’s decision (3) If a person makes an application under subsection (1) in accordance with section 66: (a) the Minister must decide whether or not to give the person a permit for each activity, by the person, covered by the application;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2394",
+        "2399",
+        "6910",
+        "7000"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it supplies Defence and Strategic Goods List technology",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Defence Trade Controls Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2012A00153/latest/text",
+          "locator": "s 10A (compilation C2024C00463 from 2024-10-14)",
+          "quote": "10A Offence—supply of DSGL technology in Australia to foreign person (1) A person (the supplier) commits an offence if: (a) the supplier supplies DSGL technology to another person; and (b) the other person is a foreign person; and (c) the supply is a constitutional supply; and (d) the supply is a relevant supply; and (e) any of the following applies: (i) the place from which the supply is made and the place to which the supply is made are both in Australia; (ii) the supply occurs wholly at a place in Australia; (iii) if the supply is the provision of access to DSGL technology—at the time of the provision of access, both the supplier and the other person are in Australia; and (f) either: (i) the supplier does not hold a permit under section 11 authorising the supply; or (ii) the supply contravenes a condition of a permit that the supplier holds under section 11; and (g) there is no notice in force under subsection 14(1) in relation to the supplier and the supply.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Supplying Defence and Strategic Goods List technology to a foreign person in Australia needs a permit unless an exception applies.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A permit is needed before supplying controlled technology.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

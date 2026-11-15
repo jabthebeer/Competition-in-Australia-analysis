@@ -1,0 +1,160 @@
+{
+  "id": "cth-sydney-airport-curfew-and-cap",
+  "family": "sydney-airport-curfew-and-cap",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "aviation",
+  "title": "Operate at Sydney Airport within the curfew and the movement cap",
+  "kind": "standard",
+  "what": "Aircraft must not take off or land at Sydney Airport during curfew periods, and gate movements are allocated as slots under a scheme that must keep within the maximum movement limit.",
+  "laws": [
+    {
+      "title": "Sydney Airport Curfew Act 1995",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04984",
+      "register_url": "https://www.legislation.gov.au/C2004A04984/latest/text",
+      "provisions": "7(1)",
+      "applied": false
+    },
+    {
+      "title": "Sydney Airport Demand Management Act 1997",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A05267",
+      "register_url": "https://www.legislation.gov.au/C2004A05267/latest/text",
+      "provisions": "37(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Sydney Airport Curfew Act 1995",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A04984/latest/text",
+      "locator": "s 7(1) (compilation C2024C00497 from 2024-10-14)",
+      "quote": "7 Prohibition on taking off or landing during curfew periods (1) An aircraft must not take off from, or land at, Sydney Airport during a curfew period, unless the take off or landing is permitted under Part 3.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Sydney Airport Demand Management Act 1997",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A05267/latest/text",
+      "locator": "s 37(1) (compilation C2025C00585 from 2025-10-26)",
+      "quote": "37 Restrictions on Slot Management Scheme (1) The *Slot Management Scheme must be consistent with the *maximum movement limit for *aircraft movements at Sydney Airport.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Sydney Airport Curfew Act 1995",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04984/latest/text",
+          "locator": "s 14 (compilation C2024C00497 from 2024-10-14)",
+          "quote": "(2) Subject to subsections (5) and (6), the Minister may, by legislative instrument, specify a type of jet aircraft that: (a) has a maximum take-off weight of 34,000 kilograms or less;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4900"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates aircraft at Sydney Airport",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Sydney Airport Curfew Act 1995",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04984/latest/text",
+          "locator": "s 7(1) (compilation C2024C00497 from 2024-10-14)",
+          "quote": "7 Prohibition on taking off or landing during curfew periods (1) An aircraft must not take off from, or land at, Sydney Airport during a curfew period, unless the take off or landing is permitted under Part 3.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Sydney Airport Demand Management Act 1997",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A05267/latest/text",
+          "locator": "s 37(1) (compilation C2025C00585 from 2025-10-26)",
+          "quote": "37 Restrictions on Slot Management Scheme (1) The *Slot Management Scheme must be consistent with the *maximum movement limit for *aircraft movements at Sydney Airport.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Marks follow the register's assessment of the Sydney Airport curfew and movement cap (cth-sydney-airport-curfew-cap).",
+  "records": [
+    "cth-sydney-airport-curfew-cap"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Aircraft must not take off or land at Sydney Airport during curfew periods, and gate movements are allocated as slots under a scheme that must keep within the maximum movement limit.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Scarce peak slots, kept by the airlines that use them, make entry to Sydney routes harder.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

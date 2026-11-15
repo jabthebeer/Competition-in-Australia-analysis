@@ -1,0 +1,130 @@
+{
+  "id": "cth-hazardous-waste-permit",
+  "family": "hazardous-waste-permit",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "waste-management",
+  "title": "Hold a permit to export or import hazardous waste",
+  "kind": "licence",
+  "what": "Exporting hazardous waste needs an export permit (and importing it an import permit) under the Act.",
+  "laws": [
+    {
+      "title": "Hazardous Waste (Regulation of Exports and Imports) Act 1989",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03937",
+      "register_url": "https://www.legislation.gov.au/C2004A03937/latest/text",
+      "provisions": "33C(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Hazardous Waste (Regulation of Exports and Imports) Act 1989",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03937/latest/text",
+      "locator": "s 33C(1) (compilation C2026C00305 from 2026-07-01)",
+      "quote": "33C Export of hazardous waste—basic contravention Prohibition of exports (1) A person contravenes this subsection if: (a) the person exports waste; and (b) the waste is hazardous waste; and (c) the person is not the holder of an export permit authorising the person to export the hazardous waste;",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-dcceew"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 3 (Department of Climate Change, Energy, the Environment and Water), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Hazardous Waste (Regulation of Exports and Imports) Act 1989",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2921",
+        "2922"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it exports or imports hazardous waste",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Hazardous Waste (Regulation of Exports and Imports) Act 1989",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03937/latest/text",
+          "locator": "s 33C(1) (compilation C2026C00305 from 2026-07-01)",
+          "quote": "33C Export of hazardous waste—basic contravention Prohibition of exports (1) A person contravenes this subsection if: (a) the person exports waste; and (b) the waste is hazardous waste; and (c) the person is not the holder of an export permit authorising the person to export the hazardous waste;",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Exporting hazardous waste needs an export permit (and importing it an import permit) under the Act.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A permit is needed before each export or import of hazardous waste.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

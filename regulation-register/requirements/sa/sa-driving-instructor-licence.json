@@ -1,0 +1,149 @@
+{
+  "id": "sa-driving-instructor-licence",
+  "family": "driving-instructor-licence",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a driving instructor licence",
+  "kind": "licence",
+  "what": "Hold the state's driving instructor licence, authority or accreditation before giving driving lessons for reward.",
+  "laws": [
+    {
+      "title": "Motor Vehicles Act 1959 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1959.53",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/motor%20vehicles%20act%201959/current/1959.53.un.rtf",
+      "provisions": "s 98A(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Motor Vehicles Act 1959 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/motor%20vehicles%20act%201959/current/1959.53.un.rtf",
+      "locator": "s 98A(1) (version of 2024-11-07)",
+      "quote": "98A—Instructors' licences (1) A person who is not the holder of a current motor driving instructor's licence must not, for fee, reward, salary, wages or other remuneration or for any other consideration paid or payable by any person, teach any other person to drive a motor vehicle.",
+      "accessed": "2026-11-10",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-11-07/1959.53.un"
+    }
+  ],
+  "administered_by": [
+    "sa-dit"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department for Infrastructure and Transport (Registrar of Motor Vehicles)",
+      "bodies": [
+        "sa-dit"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Motor Vehicles Act 1959 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/motor%20vehicles%20act%201959/current/1959.53.un.rtf",
+          "locator": "words naming the body (found 12 Nov 2026)",
+          "quote": "Registrar means the Registrar of Motor Vehicles and includes any person acting on behalf of the Registrar in accordance with this Act;",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-11-07/1959.53.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8219"
+      ],
+      "exclude": [],
+      "activities": [
+        "Driving school operation"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Motor Vehicles Act 1959 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/motor%20vehicles%20act%201959/current/1959.53.un.rtf",
+          "locator": "s 98A(1) (version of 2024-11-07)",
+          "quote": "98A—Instructors' licences (1) A person who is not the holder of a current motor driving instructor's licence must not, for fee, reward, salary, wages or other remuneration or for any other consideration paid or payable by any person, teach any other person to drive a motor vehicle.",
+          "accessed": "2026-11-10",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-11-07/1959.53.un"
+        },
+        {
+          "title": "Motor driving instructors licence",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/sa/motor-driving-instructors-licence/591",
+          "locator": "Description",
+          "quote": "You will need this licence if you intend to conduct work as a motor vehicle driving instructor for fee or reward.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the law's current text on 10 Nov 2026, replacing the ABLIS-first draft (methods rule 5a); the ABLIS listing stays as a reach source.",
+  "records": [],
+  "ablis": [
+    "591"
+  ],
+  "assessment": {
+    "summary": "Driving instructors need a licence, with a test and checks, before giving lessons for reward.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "An instructor's licence is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Licensing narrows who may teach driving for reward.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

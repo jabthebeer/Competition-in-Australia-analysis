@@ -73,10 +73,32 @@ header.top { display: grid; gap: 8px; }
 .notice { background: var(--warn-soft); color: var(--ink); border-left: 3px solid var(--warn-ink); padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: var(--step--1); max-width: 100ch; }
 .notice strong { color: var(--warn-ink); }
 .archived-banner { margin: 0 0 4px; }
-.site-nav { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
-.site-nav a { padding: 8px 12px; color: var(--ink-2); text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-.site-nav a:hover { color: var(--ink); }
-.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+/* The nav, on one line: the site's name (the link home) with its Beta badge, then the pages grouped by what they
+   are for (Top down, Bottom up, About), each group under its label. On a phone the groups fold behind a Menu
+   button: they sit in a <details> that a short script keeps open on wide screens and closed on a phone. */
+.site-nav { position: relative; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 40px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 4px; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 20px; }
+.brand { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--ink); text-decoration: none; }
+.brand-name { font: 600 var(--step-2)/1 var(--font-display); letter-spacing: -0.01em; }
+.brand-beta { font-size: var(--step--1); font-weight: 600; line-height: 1.5; color: var(--warn-ink); background: var(--warn-soft); border-radius: 999px; padding: 0 9px; }
+.brand:hover .brand-name, .brand:focus-visible .brand-name { color: var(--accent); }
+.nav-menu { flex: 1 1 auto; min-width: 0; }
+.nav-menu > summary { display: none; }
+.nav-groups { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 40px; }
+.nav-group { display: grid; gap: 0; min-width: 0; }
+.nav-label { margin: 0; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.nav-groups a, .nav-soon { display: block; padding: 10px 0; color: var(--ink-2); text-decoration: none; }
+.nav-groups a:hover { color: var(--ink); box-shadow: inset 0 -2px 0 var(--line-strong); }
+.nav-groups a[aria-current="page"] { color: var(--ink); font-weight: 600; box-shadow: inset 0 -2px 0 var(--accent); }
+.nav-soon { color: var(--ink-3); cursor: default; }
+.nav-note { font-size: var(--step--1); }
+@media (max-width: 640px) {
+  .nav-menu { flex: 1 1 100%; }
+  .nav-menu > summary { position: absolute; top: 0; right: 0; display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; font-weight: 600; color: var(--accent); background: var(--surface); border: 1px solid var(--accent); border-radius: 6px; cursor: pointer; list-style: none; }
+  .nav-menu > summary::-webkit-details-marker { display: none; }
+  .nav-menu[open] > summary { background: var(--accent-soft); }
+  .nav-groups { gap: 2px 24px; padding-top: 4px; }
+}
 
 /* Filters */
 .filters { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
@@ -308,8 +330,8 @@ details.ev-deep[open] > summary { margin-bottom: 4px; }
   <header class="top">
     <!--__NAV__-->
     <p class="kicker">ALICIA · Australian Legislation Impact on Competition Industry Analysis</p>
-    <h1>Econometric Archive</h1>
-    <p class="notice archived-banner"><strong>Archived 28 October 2026.</strong> The retrospective econometric evaluations were paused on 22 October 2026, and the <a href="index.html">legislation menu</a> now marks every item against the <a href="framework.html">productivity framework</a>. This page keeps the evaluations, and the evaluability screen and data coverage of the register's reforms, as they were, for the record. The results are provisional: the laws behind them have not been checked by a person.</p>
+    <h1>Econometric archive</h1>
+    <p class="notice archived-banner"><strong>Archived 28 October 2026.</strong> The retrospective econometric evaluations were paused on 22 October 2026, and <a href="menu.html">Legislative levers influencing competition</a> (formerly the legislation menu) now marks every item against the <a href="framework.html">productivity framework</a>. This page keeps the evaluations, and the evaluability screen and data coverage of the register's reforms, as they were, for the record. The results are provisional: the laws behind them have not been checked by a person.</p>
     <p class="lede">Commonwealth, state and territory reforms that could be evaluated for their effects on competition (business entry and exit, prices and productivity) with public data. Each change carries a hypothesised direction, its effective date and an evaluability screen. Evaluated changes show what the data found.</p>
     <div class="meta-line" id="metaLine"></div>
     <p class="notice" id="draftNotice"></p>

@@ -1,0 +1,204 @@
+{
+  "id": "act-food-business-registration",
+  "family": "food-business-registration",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "food-safety",
+  "title": "Register or notify the food business",
+  "kind": "registration",
+  "what": "Notify, register or license the food business with the enforcement agency (usually the local council) before trading, and meet the Food Standards Code.",
+  "laws": [
+    {
+      "title": "Food Act 2001 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "A2001-66",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2001-66/20240327-83429/PDF/2001-66.PDF",
+      "provisions": "s 89",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Food Act 2001 (ACT)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2001-66/20240327-83429/PDF/2001-66.PDF",
+      "locator": "s 89 (republication of 27/03/2024 (Food Act 2001 | Acts))",
+      "quote": "A person commits an offence if— (a) the person conducts a food business; and (b) the food business is— (i) not registered under this part; and (ii) not exempt from registration under section 90.",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "act-hcsd"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "ACT Health (Chief Health Officer) and Access Canberra",
+      "bodies": [
+        "act-hcsd"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2001 (ACT)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2001-66/20240327-83429/PDF/2001-66.PDF",
+          "locator": "s 62, words naming the body (found 12 Nov 2026)",
+          "quote": "chief health officer must, as soon as practicable, return the thing to the person from whom it was seized or someone else who appears to the chief health officer to be entitled to it.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1111",
+        "1112",
+        "1113",
+        "1120",
+        "1131",
+        "1132",
+        "1133",
+        "1140",
+        "1150",
+        "1161",
+        "1162",
+        "1171",
+        "1172",
+        "1173",
+        "1174",
+        "1181",
+        "1182",
+        "1191",
+        "1199",
+        "1211",
+        "1212",
+        "1213",
+        "1214",
+        "3601",
+        "3602",
+        "3603",
+        "3604",
+        "3605",
+        "3609",
+        "4110",
+        "4121",
+        "4122",
+        "4129",
+        "4511",
+        "4512",
+        "4513",
+        "4520",
+        "4530"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Businesses that make, sell or serve food (the Act's food business).",
+      "sources": [
+        {
+          "title": "Food Act 2001 (ACT)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2001-66/20240327-83429/PDF/2001-66.PDF",
+          "locator": "s 89 (republication of 27/03/2024 (Food Act 2001 | Acts))",
+          "quote": "A person commits an offence if— (a) the person conducts a food business; and (b) the food business is— (i) not registered under this part; and (ii) not exempt from registration under section 90.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4123",
+        "4310",
+        "4400",
+        "8401",
+        "8601",
+        "8710",
+        "9003",
+        "9112",
+        "9113"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells or serves food",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2001 (ACT)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2001-66/20240327-83429/PDF/2001-66.PDF",
+          "locator": "s 89 (republication of 27/03/2024 (Food Act 2001 | Acts))",
+          "quote": "A person commits an offence if— (a) the person conducts a food business; and (b) the food business is— (i) not registered under this part; and (ii) not exempt from registration under section 90.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Food businesses must register with, or be licensed by, the enforcement agency before trading.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Registration or a licence, with fees and an inspection, is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Renewals, inspections and food safety requirements.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "id": "act-builder-licence",
+  "family": "builder-licence",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Hold a builder's licence",
+  "kind": "licence",
+  "what": "Hold the state's builder (or building contractor) licence or registration before contracting for or carrying out building work.",
+  "laws": [
+    {
+      "title": "Construction Occupations (Licensing) Act 2004 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "A2004-12",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-12/20251116-88609/PDF/2004-12.PDF",
+      "provisions": "s 84(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Construction Occupations (Licensing) Act 2004 (ACT)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-12/20251116-88609/PDF/2004-12.PDF",
+      "locator": "s 84(1) (republication of 16/11/2025 (Construction Occupations (Licensing) Act 2004 | Acts))",
+      "quote": "A person commits an offence if the person— (a) provides a service (whether as an employee or otherwise) in a construction occupation or occupation class; and (b) either— (i) is not licensed in the occupation or class;",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Access Canberra (Construction Occupations Registrar)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Construction Occupations (Licensing) Act 2004 (ACT)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-12/20251116-88609/PDF/2004-12.PDF",
+          "locator": "s 19, words naming the body (found 12 Nov 2026)",
+          "quote": "registrar must issue, or refuse to issue, the licence.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Residential building contractors.",
+      "sources": [
+        {
+          "title": "Construction Occupations (Licensing) Act 2004 (ACT)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-12/20251116-88609/PDF/2004-12.PDF",
+          "locator": "s 84(1) (republication of 16/11/2025 (Construction Occupations (Licensing) Act 2004 | Acts))",
+          "quote": "A person commits an offence if the person— (a) provides a service (whether as an employee or otherwise) in a construction occupation or occupation class; and (b) either— (i) is not licensed in the occupation or class;",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3020"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "The quoted provision covers building work generally, not only residential.",
+      "sources": [
+        {
+          "title": "Construction Occupations (Licensing) Act 2004 (ACT)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-12/20251116-88609/PDF/2004-12.PDF",
+          "locator": "s 84(1) (republication of 16/11/2025 (Construction Occupations (Licensing) Act 2004 | Acts))",
+          "quote": "A person commits an offence if the person— (a) provides a service (whether as an employee or otherwise) in a construction occupation or occupation class; and (b) either— (i) is not licensed in the occupation or class;",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Builders need a licence, with qualifications or experience, before contracting for residential building work.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence with qualification or experience tests is needed before contracting.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Licensing narrows who may contract for building work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

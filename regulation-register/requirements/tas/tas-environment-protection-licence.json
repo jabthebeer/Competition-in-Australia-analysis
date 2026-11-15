@@ -1,0 +1,129 @@
+{
+  "id": "tas-environment-protection-licence",
+  "family": "environment-protection-licence",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Hold an environment protection licence for listed activities",
+  "kind": "licence",
+  "what": "Hold an environment protection licence (or authorisation) before carrying on an activity the state lists, such as large manufacturing, waste, extractive or energy activities, and meet its conditions.",
+  "laws": [
+    {
+      "title": "Environmental Management and Pollution Control Act 1994 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1994-044",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1994-044",
+      "provisions": "s 42C",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environmental Management and Pollution Control Act 1994 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1994-044",
+      "locator": "s 42C(1) (current)",
+      "quote": "(1) A person must not carry out an EL activity unless the person is authorised under an environmental licence to do so.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Environment Protection Authority Tasmania",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues the licences and enforces them.",
+      "sources": [
+        {
+          "title": "Environmental Management and Pollution Control Act 1994 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1994-044",
+          "locator": "s 3, definition of Director (current)",
+          "quote": "Director means the Director, Environment Protection Authority appointed under section 18",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the business carries on an activity in the state's list (a schedule to the Act or regulations).",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries on an activity the state lists as needing an environment protection licence",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business carrying on a listed activity (such as large manufacturing, waste, extractive, energy and intensive agriculture activities); the lists differ by state and are not yet coded class by class.",
+      "sources": [
+        {
+          "title": "Environmental Management and Pollution Control Act 1994 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1994-044",
+          "locator": "s 42C(1) (current)",
+          "quote": "(1) A person must not carry out an EL activity unless the person is authorised under an environmental licence to do so.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Businesses carrying on the activities a state lists (large manufacturing, waste, extractive, energy and similar) need an environment protection licence, with conditions, monitoring and fees, before and while operating.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence is needed before the listed activities can start.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Licence conditions, monitoring, reporting and annual fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; the environmental benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

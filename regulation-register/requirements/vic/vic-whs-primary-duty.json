@@ -1,0 +1,145 @@
+{
+  "id": "vic-whs-primary-duty",
+  "family": "whs-primary-duty",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "work-health-and-safety",
+  "title": "Meet the employer's general health and safety duty",
+  "kind": "standard",
+  "what": "Provide and maintain, so far as is reasonably practicable, a working environment that is safe and without risks to health.",
+  "laws": [
+    {
+      "title": "Occupational Health and Safety Act 2004 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "107/2004",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/occupational-health-and-safety-act-2004",
+      "provisions": "s 21",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Occupational Health and Safety Act 2004 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/occupational-health-and-safety-act-2004",
+      "locator": "s 21(1) (authorised version 045, saved by the owner)",
+      "quote": "(1) An employer must, so far as is reasonably practicable, provide and maintain for employees of the employer a working environment that is safe and without risks to health.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Summary of the OHS Act 2004: General OHS Duties",
+      "publisher": "WorkSafe Victoria",
+      "url": "https://www.worksafe.vic.gov.au/summary-ohs-act-2004-general-ohs-duties",
+      "locator": "Duties of employers to employees and contractors (section 21)",
+      "quote": "The OHS Act requires all employers to provide and maintain a working environment that is safe and without risks to health. This duty is to be met so far as is reasonably practicable.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "vic-worksafe"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "WorkSafe Victoria",
+      "bodies": [
+        "vic-worksafe"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Summary of the OHS Act 2004: General OHS Duties",
+          "publisher": "WorkSafe Victoria",
+          "url": "https://www.worksafe.vic.gov.au/summary-ohs-act-2004-general-ohs-duties",
+          "locator": "Duties of employers to employees and contractors (section 21)",
+          "quote": "The OHS Act requires all employers to provide and maintain a working environment that is safe and without risks to health. This duty is to be met so far as is reasonably practicable.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Summary of the OHS Act 2004: General OHS Duties",
+          "publisher": "WorkSafe Victoria",
+          "url": "https://www.worksafe.vic.gov.au/summary-ohs-act-2004-general-ohs-duties",
+          "locator": "Duties of employers to employees and contractors (section 21)",
+          "quote": "The OHS Act requires all employers to provide and maintain a working environment that is safe and without risks to health. This duty is to be met so far as is reasonably practicable.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. The regulator's guidance quoted before is kept as a second source.",
+  "records": [
+    "vic-ohs-not-harmonised"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Every business must ensure, so far as reasonably practicable, the health and safety of its workers and others affected by its work.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Safety systems, consultation and records that every business must keep up.",
+        "positions": []
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "A different safety law in the second-largest state raises the cost of operating nationally.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

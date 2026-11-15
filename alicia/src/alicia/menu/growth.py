@@ -1,17 +1,18 @@
-"""Summary-statistics pages for the website: state and industry growth, and economic conditions.
+"""Summary-statistics page for the website: Structural competitive conditions (``growth.html``), with the economic
+conditions at its end; also the site's nav, landing page and build.
 
-Both pages are built from processed panels in ``data/processed`` (committed, so the Pages workflow
-can rebuild them) and use the explorer's design. Growth rates, shares and indexes are computed in
-the page from the levels embedded here, so every number shown can be traced to a panel.
+The page is built from processed panels in ``data/processed`` (committed, so the Pages workflow can rebuild it) and
+uses the explorer's design. Growth rates, shares and indexes are computed in the page from the levels embedded here,
+so every number shown can be traced to a panel.
 
-- ``growth.html``: gross state product; gross value added, employment and business entry and exit
-  by ANZSIC division and state (State Accounts, Labour Force EQ06, CABEE); barriers to entry and
-  business dynamism (``alicia.menu.competition``). A slider picks any span of financial years.
-- ``conditions.html``: the macroeconomic control series (``alicia.pipeline.controls``): state final
-  demand, household consumption, unemployment, population, wages, dwelling approvals, commodity
-  prices and national industry output; company profitability and market power by barriers to entry
-  (``alicia.menu.competition``). Optional markers show when the register's major reforms started (an overall
-  framework mark of +3 or more, or -3 or less).
+- Structural competitive conditions: gross state product; gross value added, employment and business entry and exit
+  by ANZSIC division and state (State Accounts, Labour Force EQ06, CABEE); barriers to entry and business dynamism
+  (``alicia.menu.competition``). A slider picks any span of financial years.
+- Economic conditions, at the end of the same page (its own page, ``conditions.html``, until 11 Nov 2026; that
+  address now forwards there): the macroeconomic control series (``alicia.pipeline.controls``): state final demand,
+  household consumption, unemployment, population, wages, dwelling approvals, commodity prices and national industry
+  output; company profitability and market power by barriers to entry (``alicia.menu.competition``). Optional markers
+  show when the register's major reforms started (an overall framework mark of +3 or more, or -3 or less).
 """
 
 from __future__ import annotations
@@ -23,6 +24,7 @@ from importlib import resources
 import pandas as pd
 
 from .. import anzsic
+from ..international import concordance, site
 from ..pipeline import controls, schema, store
 from ..register.evaluation import Evaluation
 from ..register.schema import ChangeRecord
@@ -32,23 +34,69 @@ STATES = (*schema.STATES, "AUS")
 STATE_NAMES = {v: k for k, v in schema.STATE_NAMES.items()} | {"AUS": "Australia"}
 DIVISIONS = tuple("ABCDEFGHIJKLMNOPQRS")
 TOTAL = "TOT"
-# Preset periods for the slider. Financial years, named by the year in which they start (2014 = 2014-15).
+# Preset periods for the slider. Financial years, named by the year in which they start (2014 = 2014–15).
 WINDOWS = (
     {"id": "10y", "label": "Last 10 years", "start": 2014, "end": 2024},
     {"id": "5y", "label": "Last 5 years", "start": 2019, "end": 2024},
-    {"id": "0414", "label": "2004-05 to 2014-15", "start": 2004, "end": 2014},
-    {"id": "9404", "label": "1994-95 to 2004-05", "start": 1994, "end": 2004},
+    {"id": "0414", "label": "2004–05 to 2014–15", "start": 2004, "end": 2014},
+    {"id": "9404", "label": "1994–95 to 2004–05", "start": 1994, "end": 2004},
     {"id": "all", "label": "All years", "start": 1989, "end": 2024},
 )
 REPO_MAIN = "https://github.com/jabthebeer/Competition-in-Australia-analysis/blob/main/"
+HOME_PAGE = ("index.html", "Home")
+COMPETITION_PAGE = ("growth.html", "Structural competitive conditions")
+MENU_PAGE = ("menu.html", "Legislative levers influencing competition")
+LENS_PAGE = ("industry-lens.html", "Industry lens")
+OVERVIEW_PAGE = ("regulatory-overview.html", "Regulatory overview by industry")
+FRAMEWORK_PAGE = ("framework.html", "Framework")
+METHODOLOGY_PAGE = ("methodology.html", "Methodology")
+# How every rule is coded, in one plain table (owner decision, 14 Nov 2026, DECISIONS E-161).
+REGISTER_PAGE = ("register-data.html", "Register data")
+# Every page the site builds, in nav order (owner decision, 11 Nov 2026, DECISIONS E-135). Pages keep their addresses
+# when renamed, so links made before still work.
 PAGES = (
-    ("index.html", "Legislation menu"),
-    ("framework.html", "Framework"),
-    ("growth.html", "The state of competition in Australia"),
-    ("conditions.html", "Economic conditions"),
+    HOME_PAGE,
+    COMPETITION_PAGE,
+    MENU_PAGE,
+    LENS_PAGE,
+    OVERVIEW_PAGE,
+    FRAMEWORK_PAGE,
+    METHODOLOGY_PAGE,
+    REGISTER_PAGE,
 )
-# The Policy costing tab is built separately (Vite, `npm run build:site` in regulatory-burden-tool/) and added
-# to the site only when that build is given, so the nav never links to a missing page.
+# The nav groups the pages by what they are for: the two views, then how the site is made. A page the build does
+# not write (the regulatory overview, until it is built) shows as coming soon, without a link.
+NAV_GROUPS = (
+    ("Top down", (COMPETITION_PAGE, MENU_PAGE)),
+    ("Bottom up", (LENS_PAGE, OVERVIEW_PAGE)),
+    ("About", (FRAMEWORK_PAGE, METHODOLOGY_PAGE, REGISTER_PAGE)),
+)
+# Short labels for the nav, so it fits on one line; each page's heading keeps its full name (owner decision,
+# 14 Nov 2026, DECISIONS E-159).
+NAV_LABELS = {
+    COMPETITION_PAGE[0]: "Competitive conditions",
+    MENU_PAGE[0]: "Legislative levers",
+    OVERVIEW_PAGE[0]: "Regulatory overview",
+}
+# The nav's groups sit in a <details> that is open in the markup, so they show without scripts. This keeps it open
+# on wide screens, where its Menu button is hidden, and closed on a phone until the reader opens it.
+NAV_SCRIPT = (
+    '(()=>{const d=document.currentScript.previousElementSibling,m=matchMedia("(max-width: 640px)"),'
+    's=()=>{d.open=!m.matches;};s();m.addEventListener("change",s);})();'
+)
+# Short forms of the states and territories, for places where space is tight (Style Manual).
+STATE_SHORT = {"NSW": "NSW", "VIC": "Vic", "QLD": "Qld", "SA": "SA", "WA": "WA", "TAS": "Tas", "NT": "NT", "ACT": "ACT"}
+# Every page on the site is a work in progress. One "Beta" badge sits beside the site's name in the nav, and each
+# page's heading ends with "(beta)", whose marker explains it on hover, focus or tap. (The archived econometric
+# pages carry no marker.)
+BETA_TIP = "Work in progress: this page is still being built and checked, so its content may change."
+# Economic conditions was its own page until 11 Nov 2026; it is now the end of Structural competitive conditions,
+# and its old address forwards there.
+CONDITIONS_PAGE = "conditions.html"
+CONDITIONS_ANCHOR = "economic-conditions"
+# The Policy costing tab (regulatory-burden-tool/) is archived and not part of the live site (owner decision,
+# 11 Nov 2026, DECISIONS E-135). The code stays: given its build (`npm run build:site`), `alicia site --costing`
+# still adds it, after the grouped nav.
 COSTING_PAGE = ("costing.html", "Policy costing")
 COSTING_ASSETS = "costing-assets"
 GROWTH_NOTES = {
@@ -71,7 +119,7 @@ GROWTH_NOTES = {
         "high."
     ),
     "biz": (
-        "Business counts come from the ABS business register, from 2007-08 on. Rates are averages of the yearly "
+        "Business counts come from the ABS business register, from 2007–08 on. Rates are averages of the yearly "
         "rates over the period. The ABS slightly alters small counts to protect confidentiality, and counts shift "
         "between releases, so rates are more reliable than changes in counts."
     ),
@@ -86,7 +134,7 @@ CONDITIONS_NOTES = {
     "pop": "Estimated resident population at the end of each quarter.",
     "wpi": "Hourly pay rates excluding bonuses, all sectors, not seasonally adjusted.",
     "dwell": "Homes approved over the previous 12 months, per 1,000 residents.",
-    "commodity": "Index, 2024-25 = 100, in Australian dollars.",
+    "commodity": "Index, 2024–25 = 100, in Australian dollars.",
     "natgva": "Output adjusted for inflation and seasonal patterns. Growth over 5 and 10 years is the average yearly "
     "rate from the same quarter.",
 }
@@ -153,12 +201,41 @@ SOURCES = {
         "ABS, Australian and New Zealand Standard Industrial Classification (ANZSIC) 2006",
         "https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0",
     ),
+    "oecd_sdbs": (
+        "OECD, Structural and Demographic Business Statistics: employer business demography",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.SDD.TPS/DSD_SDBSBD_ISIC4@DF_BD_EMP_B_D/latest",
+    ),
+    "oecd_stan": (
+        "OECD, STAN Database for Structural Analysis (2025 edition)",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.STI.PIE/DSD_STAN@DF_STAN_2025/latest",
+    ),
+    "oecd_pmr": (
+        "OECD, Product Market Regulation indicators",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.ECO.GCRD/DSD_PMR@DF_PMR/latest",
+    ),
+    "oecd_stri": (
+        "OECD, Services Trade Restrictiveness Index",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.TAD.TPD/DSD_STRI@DF_STRI_MAIN/latest",
+    ),
+    "oecd_fdi": (
+        "OECD, FDI Regulatory Restrictiveness Index",
+        "https://sdmx.oecd.org/public/rest/dataflow/OECD.DAF.INV/DSD_FDIRRI_SCORES@DF_FDIRRI_SCORES/latest",
+    ),
+    "abs_isic": (
+        "ABS, correspondence between ANZSIC 2006 and ISIC Rev. 4",
+        "https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-industrial-classification-anzsic/2006-revision-2-0/correspondences/anzsic-2006-isic-rev-4",
+    ),
 }
 
 
 # Each source's licence, as recorded in data/SOURCES.md (the Excel exports list it). Grattan's report is cited, not
 # used as data.
-LICENCES = {k: "CC BY 4.0" for k in SOURCES} | {"ato": "CC BY 2.5 AU", "grattan": ""}
+OECD_LICENCE = "CC BY 4.0 is the OECD default for data from 1 July 2024 (not verified: oecd.org refused requests)"
+LICENCES = (
+    {k: "CC BY 4.0" for k in SOURCES}
+    | {"ato": "CC BY 2.5 AU", "grattan": ""}
+    | {k: OECD_LICENCE for k in ("oecd_sdbs", "oecd_stan", "oecd_pmr", "oecd_stri", "oecd_fdi")}
+)
 
 
 def abs_productivity() -> dict:
@@ -200,6 +277,16 @@ def _division_list() -> list[dict]:
     return [{"code": c, "name": anzsic.name(c) or c} for c in DIVISIONS] + [{"code": TOTAL, "name": "All industries"}]
 
 
+def _cvm_reference_year(sa: pd.DataFrame) -> int | None:
+    """The reference year of the chain volume series (the financial year, by its first year, in which they equal
+    current prices for every division of Australia), so levels can say whose prices they are in."""
+    a = sa[(sa["geo_code"] == "AUS") & sa["measure"].isin(("gva_volume", "gva_current")) & (sa["div"] != TOTAL)]
+    w = a.pivot_table(index=["div", "year"], columns="measure", values="value")
+    same = w[(w["gva_volume"] - w["gva_current"]).abs() < 0.5].reset_index().groupby("year")["div"].nunique()
+    full = same[same == w.index.get_level_values("div").nunique()]
+    return int(full.index[-1]) if len(full) else None
+
+
 def growth_payload(repo_base: str = REPO_MAIN) -> dict:
     sa = store.read_panel("abs_state_accounts", "industry_state_fy")
     sa = sa.assign(year=_fy_year(sa["period"]), div=sa["industry_code"].replace("", TOTAL))
@@ -231,7 +318,9 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         range(int(counts.index.get_level_values("year").min()), int(counts.index.get_level_values("year").max()) + 1)
     )
     emp = {
-        s: {c: _series(counts.loc[(s, c)], emp_years, 3) for c in (*DIVISIONS, TOTAL) if (s, c) in counts.index}
+        # Five decimals keep the four-quarter mean of figures published to three decimals exact: rounding it to three
+        # put two heatmap cells on the wrong side of their display rounding.
+        s: {c: _series(counts.loc[(s, c)], emp_years, 5) for c in (*DIVISIONS, TOTAL) if (s, c) in counts.index}
         for s in STATES
     }
 
@@ -267,6 +356,7 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         "years": years,
         "gsp": {"volume": gsp("gsp_volume"), "current": gsp("gsp_current"), "perCapita": gsp("gsp_per_capita")},
         "gva": {"volume": gva("gva_volume"), "current": gva("gva_current")},
+        "cvmRef": _cvm_reference_year(sa),
         "empYears": emp_years,
         "emp": emp,
         "bizYears": biz_years,
@@ -279,8 +369,24 @@ def growth_payload(repo_base: str = REPO_MAIN) -> dict:
         "notes": GROWTH_NOTES,
         "barriers": competition.barriers_payload(),
         "productivity": abs_productivity(),
+        # Industries classified differently in other countries' statistics (ISIC): a † and hover note on the page
+        # and the comparisons with similar economies (phase P4, E-107)
+        "intl": {"title": concordance.NOTE_TITLE, "notes": concordance.division_notes(), **site.payload()},
         "sources": _sources(
-            "state_accounts", "lfs_detailed", "cabee", "abs_mfp", "ato", "rba_rdp", "grattan", "anzsic"
+            "state_accounts",
+            "lfs_detailed",
+            "cabee",
+            "abs_mfp",
+            "ato",
+            "rba_rdp",
+            "grattan",
+            "anzsic",
+            "abs_isic",
+            "oecd_sdbs",
+            "oecd_stan",
+            "oecd_pmr",
+            "oecd_stri",
+            "oecd_fdi",
         ),
     }
 
@@ -416,12 +522,95 @@ def _asset(name: str) -> str:
     return resources.files("alicia.menu").joinpath(f"templates/{name}").read_text("utf-8")
 
 
+def beta(tip_id: str = "beta-tip") -> str:
+    """The "(beta)" after a page's heading, with a tip on hover, keyboard focus or tap: the page is a work in
+    progress."""
+    from html import escape
+
+    return (
+        f'<span class="beta"><button type="button" class="beta-btn" aria-describedby="{tip_id}">(beta)</button>'
+        f'<span role="tooltip" class="beta-tip" id="{tip_id}">{escape(BETA_TIP)}</span></span>'
+    )
+
+
 def nav(current: str, pages: tuple = PAGES) -> str:
-    links = []
-    for href, label in pages:
+    """The site nav, on one line: the site's name (the link home) with its Beta badge, then the pages grouped as in
+    ``NAV_GROUPS`` under short labels. On a phone the groups fold behind a Menu button (``NAV_SCRIPT``). ``pages``
+    holds the pages this build writes; a grouped page that is not among them shows as coming soon, without a link,
+    and a built page outside the groups (the archived Policy costing tab, when built) follows the groups as a plain
+    link."""
+    from html import escape
+
+    built = {href for href, _ in pages}
+    grouped = {href for _, group in NAV_GROUPS for href, _ in group}
+
+    def link(href: str, label: str) -> str:
         attr = ' aria-current="page"' if href == current else ""
-        links.append(f'<a href="{href}"{attr}>{label}</a>')
-    return '<nav class="site-nav" aria-label="ALICIA pages">' + "".join(links) + "</nav>"
+        short = NAV_LABELS.get(href, label)
+        if short != label:
+            attr += f' title="{escape(label)}"'
+        return f'<a href="{href}"{attr}>{escape(short)}</a>'
+
+    home = ' aria-current="page"' if current == HOME_PAGE[0] else ""
+    brand = (
+        f'<a class="brand" href="{HOME_PAGE[0]}"{home} aria-label="ALICIA (beta): home">'
+        f'<span class="brand-name">ALICIA</span><span class="brand-beta" title="{escape(BETA_TIP)}">Beta</span></a>'
+    )
+    groups = []
+    for title, group in NAV_GROUPS:
+        gid = "nav-" + title.lower().replace(" ", "-")
+        items = []
+        for href, label in group:
+            if href in built:
+                items.append(f"<li>{link(href, label)}</li>")
+            else:
+                short = escape(NAV_LABELS.get(href, label))
+                soon = '<span class="nav-note">(coming soon)</span>'
+                items.append(f'<li><span class="nav-soon">{short} {soon}</span></li>')
+        groups.append(
+            f'<div class="nav-group"><p class="nav-label" id="{gid}">{escape(title)}</p>'
+            f'<ul aria-labelledby="{gid}">{"".join(items)}</ul></div>'
+        )
+    groups += [link(href, label) for href, label in pages if href not in grouped and href != HOME_PAGE[0]]
+    return (
+        f'<nav class="site-nav" aria-label="ALICIA pages">{brand}'
+        f'<details class="nav-menu" open><summary>Menu</summary><div class="nav-groups">{"".join(groups)}</div>'
+        f"</details><script>{NAV_SCRIPT}</script></nav>"
+    )
+
+
+def long_date(d: dt.date) -> str:
+    """A date as running text has it (Style Manual): 14 November 2026."""
+    return f"{d.day} {d:%B %Y}"
+
+
+def site_foot(generated: dt.date | None = None) -> str:
+    """A page's closing lines: the register's draft status, that the site is unofficial, and when it was built."""
+    return (
+        '<footer class="site-foot">'
+        "<p><strong>Draft.</strong> Register items and marks come from AI-assisted desk research and stay drafts "
+        "until a person has checked them. Statistics come from official sources: the ABS, the ATO, the RBA and the "
+        "OECD.</p>"
+        "<p>Unofficial research, not an Australian Government product. "
+        f"Updated {long_date(generated or dt.date.today())}.</p></footer>"
+    )
+
+
+def scorecard_html(payload: dict) -> str:
+    """Australia at a glance, on Structural competitive conditions: the page's headline figures as tiles, each a
+    link to the tab that shows it (``figures.scorecard``). Empty for a page without the competition data."""
+    from html import escape
+
+    from .figures import scorecard
+
+    if "barriers" not in payload:
+        return ""
+    return "\n      ".join(
+        f'<a class="tile" href="#{f["tab"]}"><span class="t-label">{escape(f["label"])}</span>'
+        f'<span class="t-value">{escape(f["value"])}</span><span class="t-sub">{escape(f["what"])}</span>'
+        f'<span class="t-was">{escape(f["was"])}</span></a>'
+        for f in scorecard(payload)
+    )
 
 
 def render(template: str, payload: dict, page: str, standalone: bool = False, pages: tuple = PAGES) -> str:
@@ -432,6 +621,8 @@ def render(template: str, payload: dict, page: str, standalone: bool = False, pa
         .replace("/*__SITE_CSS__*/", _asset("site.css"))
         .replace("/*__CHARTS_JS__*/", _asset("charts.js") + "\n" + _asset("xlsx.js"))
         .replace("<!--__NAV__-->", nav(page, pages))
+        .replace("<!--__BETA__-->", beta())
+        .replace("<!--__SCORECARD__-->", scorecard_html(payload))
         .replace("__PAGE_DATA__", blob)
     )
     if standalone:
@@ -441,6 +632,23 @@ def render(template: str, payload: dict, page: str, standalone: bool = False, pa
             "</head>\n<body>\n" + html + "\n</body>\n</html>\n"
         )
     return html
+
+
+def conditions_forward() -> str:
+    """``conditions.html``: Economic conditions moved to the end of Structural competitive conditions (11 Nov 2026), so
+    its old address forwards there and links made before the move still work. Nothing on the site links to it."""
+    target = f"{COMPETITION_PAGE[0]}#{CONDITIONS_ANCHOR}"
+    return (
+        '<!doctype html>\n<html lang="en-AU">\n<head>\n<meta charset="utf-8">\n'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        f"<title>ALICIA: Economic conditions has moved</title>\n"
+        f'<meta http-equiv="refresh" content="0; url={target}">\n'
+        f'<link rel="canonical" href="{target}">\n'
+        f'<script>location.replace("{target}");</script>\n'
+        "</head>\n<body>\n"
+        f'<p>Economic conditions is now part of <a href="{target}">{COMPETITION_PAGE[1]}</a>.</p>\n'
+        "</body>\n</html>\n"
+    )
 
 
 def build_costing(out_dir, dist, pages: tuple) -> list:
@@ -475,54 +683,86 @@ def build_site(
     standalone: bool = True,
     repo_base: str | None = None,
     costing_dist=None,
+    archive: bool = False,
 ) -> list:
-    """Write the legislation menu (index.html), the Framework page, the econometric archive (archive.html and one
-    page per evaluation), the two summary pages and, given its build, the Policy costing tab into ``out_dir``."""
+    """Write the landing page (index.html), Legislative levers influencing competition (menu.html), the Framework and
+    Methodology pages, Structural competitive conditions (growth.html, with the economic conditions at its end, and
+    conditions.html forwarding there) and the Industry lens into ``out_dir``.
+
+    Two archived parts are not on the live site and nothing there links to them (owner decisions, 11 Nov 2026,
+    DECISIONS E-135 and E-136); their code stays. ``archive=True`` adds the econometric archive (archive.html and one
+    page per evaluation); ``costing_dist`` adds the Policy costing tab from its build."""
     from pathlib import Path
 
     from . import framework as framework_page
+    from . import home, lens, methodology, overview, registerdata
     from .archive import ARCHIVE_PAGE, build_archive
-    from .explorer import build_explorer
+    from .explorer import build_explorer, menu_payload
 
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     pages = PAGES + ((COSTING_PAGE,) if costing_dist else ())
     explorer_base = repo_base or None
     data_base = repo_base or REPO_MAIN
-    written = [
-        build_explorer(
-            records,
-            out / "index.html",
-            dates_report=dates_report,
-            standalone=standalone,
-            evaluations=evaluations,
-            pages=pages,
-        )
-    ]
+    menu = menu_payload(records, dates_report, evaluations)
+    written = [build_explorer(records, out / MENU_PAGE[0], standalone=standalone, pages=pages, payload=menu)]
     fw_path = out / "framework.html"
-    fw_path.write_text(framework_page.render(records, nav("framework.html", pages), standalone), encoding="utf-8")
+    # The Framework page shows how many rules are in each impact class, counted as the levers page counts them: its
+    # rows, without the requirements shown inside another item (the same law).
+    classed: dict[str, int] = {}
+    for row in menu["records"]:
+        if row.get("impactClass"):
+            classed[row["impactClass"]] = classed.get(row["impactClass"], 0) + 1
+    fw_html = framework_page.render(records, nav(FRAMEWORK_PAGE[0], pages), standalone, beta=beta(), classes=classed)
+    fw_path.write_text(fw_html, encoding="utf-8")
     written.append(fw_path)
-    written.append(
-        build_archive(
-            records,
-            out / ARCHIVE_PAGE,
-            dates_report=dates_report,
-            standalone=standalone,
-            evaluations=evaluations,
-            repo_base=explorer_base,
-            nav=nav(ARCHIVE_PAGE, pages),
-            evaluation_pages=True,
+    if archive:
+        written.append(
+            build_archive(
+                records,
+                out / ARCHIVE_PAGE,
+                dates_report=dates_report,
+                standalone=standalone,
+                evaluations=evaluations,
+                repo_base=explorer_base,
+                nav=nav(ARCHIVE_PAGE, pages),
+                evaluation_pages=True,
+            )
         )
+        written += sorted(out.glob("evaluation-*.html"))
+    # Structural competitive conditions, with the economic conditions (once their own page) at its end.
+    payload = growth_payload(data_base) | {"conditions": conditions_payload(records, data_base)}
+    path = out / COMPETITION_PAGE[0]
+    path.write_text(render(COMPETITION_PAGE[0], payload, COMPETITION_PAGE[0], standalone, pages), encoding="utf-8")
+    written.append(path)
+    path = out / CONDITIONS_PAGE
+    path.write_text(conditions_forward(), encoding="utf-8")
+    written.append(path)
+    path = out / METHODOLOGY_PAGE[0]
+    path.write_text(methodology.page(records, standalone, pages, repo=data_base), encoding="utf-8")
+    written.append(path)
+    lens_path = out / LENS_PAGE[0]
+    lens_path.write_text(
+        render(LENS_PAGE[0], lens.payload(records, repo_base=data_base), LENS_PAGE[0], standalone, pages),
+        encoding="utf-8",
     )
-    written += sorted(out.glob("evaluation-*.html"))
-    summaries = (
-        ("growth.html", growth_payload(data_base)),
-        ("conditions.html", conditions_payload(records, data_base)),
-    )
-    for name, payload in summaries:
-        path = out / name
-        path.write_text(render(name, payload, name, standalone, pages), encoding="utf-8")
-        written.append(path)
+    written.append(lens_path)
+    # Regulatory overview by industry: the divisions and detailed industries compared, from the levers page's rows.
+    path = out / OVERVIEW_PAGE[0]
+    html = render(OVERVIEW_PAGE[0], overview.payload(menu, records), OVERVIEW_PAGE[0], standalone, pages)
+    path.write_text(html.replace("<!--__FOOT__-->", site_foot()), encoding="utf-8")
+    written.append(path)
+    # Register data: how every rule is coded, from the levers page's rows.
+    path = out / REGISTER_PAGE[0]
+    data = registerdata.payload(menu) | {"repo": data_base}
+    html = render(REGISTER_PAGE[0], data, REGISTER_PAGE[0], standalone, pages)
+    path.write_text(html.replace("<!--__FOOT__-->", site_foot()), encoding="utf-8")
+    written.append(path)
     if costing_dist:
         written += build_costing(out, costing_dist, pages)
+    # Home: its figures come from the competition and levers pages' own data.
+    built = {href for href, _ in pages} | {p.name for p in written}
+    home_path = out / HOME_PAGE[0]
+    home_path.write_text(home.page(payload, menu, built, standalone, pages), encoding="utf-8")
+    written.append(home_path)
     return written

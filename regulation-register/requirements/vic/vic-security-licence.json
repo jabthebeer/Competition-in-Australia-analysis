@@ -1,0 +1,178 @@
+{
+  "id": "vic-security-licence",
+  "family": "security-licence",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "security-industry",
+  "title": "Hold a private security business licence",
+  "kind": "licence",
+  "what": "Hold a Private Security Business Licence (and individual operator licences) endorsed for each security activity provided.",
+  "laws": [
+    {
+      "title": "Private Security Act 2004 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "33/2004",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/private-security-act-2004",
+      "provisions": "s 5",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Private Security Act 2004 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/private-security-act-2004",
+      "locator": "s 5(1) (authorised version 027, saved by the owner)",
+      "quote": "(1) A person must not carry on the business of providing the services of other persons to carry on a security activity (other than a specified security guard activity) unless the person is the holder of a private security business licence that authorises that person to carry on the business of providing the services of other persons to carry on that security activity.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Changes to private security licences and registrations",
+      "publisher": "Victoria Police (Licensing and Regulation Division)",
+      "url": "https://www.police.vic.gov.au/changes-private-security-licences-and-registrations",
+      "locator": "Information for current private security registration holders",
+      "quote": "As of 19 June 2025, all private security activities are now licensed activities. Current private security registration holders who want to continue working in the private security industry must transition to: a Private Security Individual Operator Licence, or a Private Security Business Licence, or both.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Victoria Police (Licensing and Regulation Division)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Changes to private security licences and registrations",
+          "publisher": "Victoria Police (Licensing and Regulation Division)",
+          "url": "https://www.police.vic.gov.au/changes-private-security-licences-and-registrations",
+          "locator": "Information for current private security registration holders",
+          "quote": "As of 19 June 2025, all private security activities are now licensed activities. Current private security registration holders who want to continue working in the private security industry must transition to: a Private Security Individual Operator Licence, or a Private Security Business Licence, or both.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7712"
+      ],
+      "exclude": [],
+      "activities": [
+        "Alarm monitoring service",
+        "Armoured car service",
+        "Bodyguard service",
+        "Burglary protection service",
+        "Night watchman service",
+        "Protection service",
+        "Security alarm monitoring service",
+        "Security guard service"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "The ABS's security activities in class 7712.",
+      "sources": [
+        {
+          "title": "Changes to private security licences and registrations",
+          "publisher": "Victoria Police (Licensing and Regulation Division)",
+          "url": "https://www.police.vic.gov.au/changes-private-security-licences-and-registrations",
+          "locator": "Information for current private security registration holders",
+          "quote": "As of 19 June 2025, all private security activities are now licensed activities. Current private security registration holders who want to continue working in the private security industry must transition to: a Private Security Individual Operator Licence, or a Private Security Business Licence, or both.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3234"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it installs or services security equipment, where the state licenses that work",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Changes to private security licences and registrations",
+          "publisher": "Victoria Police (Licensing and Regulation Division)",
+          "url": "https://www.police.vic.gov.au/changes-private-security-licences-and-registrations",
+          "locator": "Information for current private security registration holders",
+          "quote": "As of 19 June 2025, all private security activities are now licensed activities. Current private security registration holders who want to continue working in the private security industry must transition to: a Private Security Individual Operator Licence, or a Private Security Business Licence, or both.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. The regulator's guidance quoted before is kept as a second source.",
+  "records": [
+    "vic-occupational-licensing"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A security business licence, with probity checks and training for its people, before trading.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence with probity checks is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Licensing requirements narrow the pool of workers who may do licensed work and the ease of moving into it.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The labour mark is the register's assessment of occupational licensing (vic-occupational-licensing); the entry mark is reasoning only.",
+    "evidence": [
+      "https://assets.pc.gov.au/2025-10/competition-analysis-study-report-plus.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

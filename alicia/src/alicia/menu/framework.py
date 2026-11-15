@@ -107,7 +107,7 @@ CONCEPT_ICONS = {
 }
 SIGN_ICONS = {"entry": "entry-exit", "jobs": "labour", "markups": "prices-taxes", "investment": "capital"}
 STEP_ICONS = ("describe", "mark", "add", "star", "reach")
-LIMIT_ICONS = ("scales", "approx", "review", "reach")
+LIMIT_ICONS = ("scales", "approx", "review", "reach", "approx")
 BANDS = (
     ("−3 or less", "strongly-negative", "mn2"),
     ("−1 to −2", "negative", "mn1"),
@@ -361,12 +361,11 @@ def _driver_details(records: list[ChangeRecord]) -> str:
   <div class="ddet-body">
     <p>{escape(d["why"])} <span class="cite">{_cite(d["why_sources"])}</span></p>
     <div class="two">
-      <div><h4>Look for</h4><ul>{look}</ul></div>
-      <div><h4>Full marking guide</h4><table class="mk-table"><tbody>{marks}</tbody></table></div>
+      <div><h3>Look for</h3><ul>{look}</ul></div>
+      <div><h3>Full marking guide</h3><table class="mk-table"><tbody>{marks}</tbody></table></div>
     </div>
-    <p class="small muted"><a href="index.html#driver={escape(k)}">{_items(total)} in the register</a> have this as
-    their main driver ({c["neg"]} negative overall, {c["pos"]} positive). Policy costing channels:
-    {", ".join(d["channels"])}.</p>
+    <p class="small muted"><a href="menu.html#driver={escape(k)}">{_items(total)} in the register</a> have this as
+    their main driver ({c["neg"]} negative overall, {c["pos"]} positive).</p>
   </div>
 </details>""")
     return "".join(out)
@@ -477,11 +476,11 @@ def _example(record: ChangeRecord | None, tips: _Tips) -> str:
     label = fw.RATING_LABELS[a.rating]
     reach, conf = fw.REACH[a.reach]["label"].lower(), fw.CONFIDENCE[a.confidence]["label"].lower()
     where = "" if f"({record.jurisdiction})" in record.title else f" ({escape(record.jurisdiction)})"
-    title = f'<a href="index.html#{escape(record.id)}">{escape(record.title)}</a>{where}'
+    title = f'<a href="menu.html#{escape(record.id)}">{escape(record.title)}</a>{where}'
     total = f'<span class="mk {MARK_CLS[max(-2, min(2, a.total))]}">{_signed(a.total)}</span>'
     scale = "".join(f"<span>{_signed(v)}</span>" for v in MARK_ORDER)
     return f"""<section class="block" aria-labelledby="h-example">
-  <div class="block-head"><h2 id="h-example">A worked example on the rubric</h2>
+  <div class="block-head"><h2 id="h-example">How to read a mark: a worked example</h2>
   <p>{title}. {escape(a.summary)}</p></div>
   <div class="panel tscroll"><table class="data ex">
   <thead><tr><th scope="col">Driver</th><th scope="col"><span class="strip-scale">{scale}</span></th>
@@ -549,7 +548,7 @@ def _complexity(records: list[ChangeRecord], regimes: list[Regime]) -> str:
         for t in {i.tag for g in by_record.get(r.id, []) for i in g.issues if i.status != "addressed"}
     )
     rows = "".join(
-        f'<tr><td><a href="index.html#complexity={t}">{escape(label)}</a>'
+        f'<tr><td><a href="menu.html#complexity={t}">{escape(label)}</a>'
         f'<span class="cx-help">{escape(ISSUE_HELP[t])}</span></td>'
         f'<td class="num">{counts[t]}</td><td class="num">{items[t]}</td></tr>'
         for t, label in ISSUE_LABELS.items()
@@ -557,7 +556,7 @@ def _complexity(records: list[ChangeRecord], regimes: list[Regime]) -> str:
     profiles = industry_profiles(regimes)
     top = sorted(profiles, key=lambda p: (-p["sector_touchpoints"], -p["sector_regimes"], p["anzsic"]))[:8]
     top_rows = "".join(
-        f'<tr><td><a href="index.html#class={p["anzsic"]}"><span class="mono">{p["anzsic"]}</span> '
+        f'<tr><td><a href="menu.html#class={p["anzsic"]}"><span class="mono">{p["anzsic"]}</span> '
         f'{escape(p["name"])}</a></td><td class="num">{p["sector_regimes"]}</td>'
         f'<td class="num">{p["sector_touchpoints"]}</td><td class="num">{p["sector_varying"]}</td></tr>'
         for p in top
@@ -579,11 +578,9 @@ def _complexity(records: list[ChangeRecord], regimes: list[Regime]) -> str:
     return f"""
 <section class="block" aria-labelledby="h-complexity">
   <div class="block-head"><h2 id="h-complexity">Regulatory complexity</h2>
-  <p>A rule can be light on its own and still costly when a business must deal with several agencies or tiers of
-  government for one activity, meet different rules in each state, or follow guidance that is vague or keeps
-  changing. The framework counts these costs under <strong>regulatory burden</strong>, whose checklist already looks
-  for &ldquo;the same thing regulated by several governments&rdquo; and &ldquo;complexity, and frequent changes to the
-  rules&rdquo;. The menu now shows where they arise, industry by industry.</p></div>
+  <p>A light rule can still be costly when a business deals with several agencies or tiers of government, different
+  rules in each state, or unclear or changing guidance. The framework counts these costs under <strong>regulatory
+  burden</strong>. Legislative levers influencing competition shows where they arise in each industry.</p></div>
   <div class="cx-grid">
     <figure class="panel cx-quote"><blockquote>{escape(COMPLEXITY_QUOTE)}</blockquote>
     <figcaption>What success would look like: <a href="{escape(src["url"])}" target="_blank"
@@ -605,7 +602,7 @@ def _complexity(records: list[ChangeRecord], regimes: list[Regime]) -> str:
       <div class="venn-wrap" data-venn="{venn}"></div>
       <p class="small muted">Each circle is a tier of government; each label is something it does. A label in an overlap
       is done by more than one tier (shown in bold): here councils and state agencies both license and inspect food
-      businesses. Every item in the <a href="index.html">menu</a> shows this diagram for its regimes, and each industry
+      businesses. Every item in the <a href="menu.html">menu</a> shows this diagram for its regimes, and each industry
       shows one for all of its regimes together.</p></div>
     <div class="panel tscroll"><h3 class="sub">The tags</h3>
       <table class="data cx-tags"><thead><tr><th scope="col">Tag and meaning</th><th scope="col">Issues</th>
@@ -624,7 +621,7 @@ def _complexity(records: list[ChangeRecord], regimes: list[Regime]) -> str:
       <table class="data"><thead><tr><th scope="col">Industry</th><th scope="col">Regimes</th>
       <th scope="col">Parties</th><th scope="col">Differ by state</th></tr></thead><tbody>{top_rows}</tbody></table>
       <p class="small muted">Industry-specific regimes only; every industry also deals with about
-      {len(regimes) - sector} that apply across industries. The <a href="index.html#industries">Industries view</a>
+      {len(regimes) - sector} that apply across industries. The <a href="menu.html#industries">Industries view</a>
       lists all {len(profiles)}. Method and limits: <code>docs/industry_regulation.md</code>.</p></div>
   </div>
 </section>"""
@@ -639,8 +636,88 @@ def _limits() -> str:
     return f'<div class="limits">{cards}</div>'
 
 
-def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes: list[Regime] | None = None) -> str:
-    """``regimes`` defaults to the committed regulatory regimes (``load_regimes``)."""
+def version_two(classes: dict[str, int] | None = None) -> str:
+    """How much a rule matters (framework version 2, DECISIONS E-185): three questions, the four impact classes with
+    the number of rules in each (``classes``, from the levers page's data, when the site build passes it), and the
+    severity points."""
+    from ..register import severity as S
+
+    def count(k: str) -> str:
+        if classes is None:
+            return ""
+        n = classes.get(k, 0)
+        return f'<span class="t-value">{n}</span>'
+
+    qs = "".join(
+        f'<div class="panel q"><span class="q-n">{i}</span><div><h3>{escape(q["question"])}</h3>'
+        f"<p>{escape(q['how'])}</p></div></div>"
+        for i, q in enumerate(fw.QUESTIONS, 1)
+    )
+    ids = dict(
+        zip(
+            ("Severe", "Major, wide", "Major, narrow", "Minor"),
+            ("severe", "major-wide", "major-narrow", "minor"),
+            strict=True,
+        )
+    )
+    cell = {
+        label: f'<a class="tile" href="menu.html"><span class="t-label">{escape(label)}</span>{count(ids[label])}'
+        f'<span class="t-sub">{escape(text)}</span></a>'
+        for label, text in fw.CLASSES_TEXT
+    }
+    when = {"entry": "before trading starts", "growth": "at the first employee or a size threshold"}
+    when["operating"] = "while operating, or on an activity"
+    rows = (
+        [(f"Kind: {S.KIND_LABELS[k][0].lower()}{S.KIND_LABELS[k][1:]}", v) for k, v in S.KIND_POINTS.items()]
+        + [(f"When it bites: {when[k]}", v) for k, v in S.WHEN_POINTS.items()]
+        + [
+            ("Whom it binds: every business in its industries", 1),
+            ("Whom it binds: only those doing a named activity", 0),
+        ]
+    )
+    points = "".join(f'<tr><td>{escape(a)}</td><td class="num">{v}</td></tr>' for a, v in rows)
+    versions = " ".join(f"{escape(v)} ({escape(d)}): {escape(w)}" for v, d, w in fw.HISTORY)
+    return f"""
+<section class="block" aria-labelledby="h-v2">
+  <div class="block-head"><h2 id="h-v2">How much a rule matters</h2>
+  <p>Version {escape(fw.VERSION)} asks three questions about each rule. Only the first is a judgement.</p></div>
+  <div class="qs">{qs}</div>
+  <h3 class="sub" id="h-classes">Four impact classes</h3>
+  <div class="grid2" role="table" aria-label="Impact classes by size of effect and number of businesses reached">
+    <div role="row" class="g-head"><span role="columnheader"></span>
+    <span role="columnheader">Small set of industries</span>
+    <span role="columnheader">Wide: a quarter or more of businesses</span></div>
+    <div role="row"><span role="rowheader" class="g-row">Large effect on each business</span>
+    <div role="cell" class="tiles headline">{cell["Major, narrow"]}</div>
+    <div role="cell" class="tiles headline">{cell["Severe"]}</div></div>
+    <div role="row"><span role="rowheader" class="g-row">Smaller effect</span>
+    <div role="cell" class="tiles headline">{cell["Minor"]}</div>
+    <div role="cell" class="tiles headline">{cell["Major, wide"]}</div></div>
+  </div>
+  <p class="small">Only rules that apply today and that the marks judge to weigh on productivity are classed. Each class
+  opens on <a href="menu.html">Legislative levers</a>, under Biggest barriers.</p>
+  <details class="more"><summary>Severity: the points for each coded attribute</summary>
+  <div class="tscroll"><table class="data pts"><thead><tr><th scope="col">Attribute</th>
+  <th scope="col" class="num">Points</th></tr></thead>
+  <tbody>{points}</tbody></table></div>
+  <p>{escape(S.NOTE)}</p></details>
+  <details class="more"><summary>Rules and changes, evidence and purpose</summary>
+  <p><strong>Rules and changes.</strong> {escape(fw.RULES_AND_CHANGES)}</p>
+  <p><strong>Evidence.</strong> {escape(fw.EVIDENCE_TEXT)}</p>
+  <p><strong>Purpose.</strong> {escape(fw.PURPOSE_TEXT)}</p>
+  <p><strong>Versions.</strong> {versions}</p></details>
+</section>
+"""
+
+
+def body(
+    records: list[ChangeRecord],
+    generated: dt.date | None = None,
+    regimes: list[Regime] | None = None,
+    classes: dict[str, int] | None = None,
+) -> str:
+    """``regimes`` defaults to the committed regulatory regimes (``load_regimes``); ``classes`` is the number of rules
+    in each impact class, when the site build has them."""
     regimes = load_regimes().regimes if regimes is None else regimes
     tips = _Tips()
     flow = _flow(tips)
@@ -665,12 +742,39 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes:
   <p class="hint">{icon("info")} Hover over, or tap, any box, row or cell for more detail.</p>
 </header>
 
+{version_two(classes)}
+
+<h2 class="part" id="h-judgement">The judgement: eight drivers of productivity</h2>
+
+{example}
+
 <section class="block" aria-labelledby="h-fit">
   <div class="block-head"><h2 id="h-fit">The idea in one picture</h2>
-  <p>Eight drivers, in three groups. Competition and dynamism push firms to invest, to use people well and to work
-  efficiently, and that is what lifts productivity.</p></div>
+  <p>Eight drivers in three groups. Competition pushes firms to invest, use people well and work efficiently, and that
+  lifts productivity.</p></div>
   {flow}
 </section>
+
+<section class="block" aria-labelledby="h-rubric">
+  <div class="block-head"><h2 id="h-rubric">The rubric</h2>
+  <p>Each item is marked from −2 to +2 on each driver. Each cell says what the mark means and how many items have
+  it.</p></div>
+  {rubric}
+  <details class="more-drivers"><summary>Evidence, checklists and the full marking guide for each driver</summary>
+  <div class="ddets">{_driver_details(records)}</div></details>
+</section>
+
+<section class="block" aria-labelledby="h-how">
+  <div class="block-head"><h2 id="h-how">How an item is marked</h2></div>
+  {marking}
+</section>
+
+<section class="block" aria-labelledby="h-overlap">
+  <div class="block-head"><h2 id="h-overlap">Avoiding double counting</h2>
+  <p>Each effect is marked once, under the driver it acts through.</p></div>
+  {overlap}
+</section>
+{_complexity(records, regimes)}
 
 <section class="block" aria-labelledby="h-ideas">
   <div class="block-head"><h2 id="h-ideas">Key ideas in plain words</h2></div>
@@ -684,29 +788,6 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes:
   </div>
 </section>
 
-<section class="block" aria-labelledby="h-rubric">
-  <div class="block-head"><h2 id="h-rubric">The rubric</h2>
-  <p>Every item gets a mark from −2 to +2 on each driver. Each cell says what that mark means, and how many items in
-  the register have it.</p></div>
-  {rubric}
-  <details class="more-drivers"><summary>Evidence, checklists and the full marking guide for each driver</summary>
-  <div class="ddets">{_driver_details(records)}</div></details>
-</section>
-
-<section class="block" aria-labelledby="h-how">
-  <div class="block-head"><h2 id="h-how">How an item is marked</h2></div>
-  {marking}
-</section>
-
-{example}
-
-<section class="block" aria-labelledby="h-overlap">
-  <div class="block-head"><h2 id="h-overlap">Avoiding double counting</h2>
-  <p>Each effect is marked once, under the driver it acts through.</p></div>
-  {overlap}
-</section>
-{_complexity(records, regimes)}
-
 <section class="block" aria-labelledby="h-limits">
   <div class="block-head"><h2 id="h-limits">Limits</h2></div>
   {_limits()}
@@ -716,8 +797,8 @@ def body(records: list[ChangeRecord], generated: dt.date | None = None, regimes:
   <h2>Sources</h2>
   <ul>{sources}</ul>
   <p>The same framework, as a methods note, is in <code>docs/productivity_framework.md</code> (written by
-  <code>alicia framework</code>). The <a href="index.html">legislation menu</a> shows every item's marks; the
-  econometric evaluations the site used to show are in the <a href="archive.html">econometric archive</a>.
+  <code>alicia framework</code>). <a href="menu.html">Legislative levers influencing competition</a> shows every
+  item's marks.
   Unofficial research, not an Australian Government product.</p>
 </footer>
 {tips.html()}"""
@@ -729,7 +810,11 @@ def render(
     standalone: bool = True,
     generated: dt.date | None = None,
     regimes: list[Regime] | None = None,
+    beta: str = "",
+    classes: dict[str, int] | None = None,
 ) -> str:
+    """The Framework page. ``beta`` is the "(beta)" marker after its heading (``growth.beta()``); ``classes`` the
+    number of rules in each impact class."""
     from .growth import _asset
 
     template = resources.files("alicia.menu").joinpath("templates/framework.html").read_text("utf-8")
@@ -737,7 +822,8 @@ def render(
         template.replace("/*__SITE_CSS__*/", _asset("site.css"))
         .replace("/*__CHARTS_JS__*/", _asset("charts.js"))
         .replace("<!--__NAV__-->", nav)
-        .replace("<!--__BODY__-->", body(records, generated, regimes))
+        .replace("<!--__BETA__-->", beta)
+        .replace("<!--__BODY__-->", body(records, generated, regimes, classes))
     )
     if standalone:
         page = (

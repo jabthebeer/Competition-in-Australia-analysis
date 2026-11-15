@@ -1,0 +1,133 @@
+{
+  "id": "wa-long-service-leave",
+  "family": "long-service-leave",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Give employees long service leave",
+  "kind": "standard",
+  "what": "Give each employee long service leave (or payment in lieu) once they reach the qualifying period of service, and keep long service leave records.",
+  "laws": [
+    {
+      "title": "Long Service Leave Act 1958 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a468",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48247.docx",
+      "provisions": "s 8; s 26",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Long Service Leave Act 1958 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48247.docx",
+      "locator": "s 8(2) (version current from )",
+      "quote": "(2) An employee who has completed at least 10 years of continuous employment is entitled to an amount of long service leave as follows — (a) in respect of 10 years so completed, 8 2/3 weeks;",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Long Service Leave Act 1958 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48247.docx",
+      "locator": "s 26(1) (version current from )",
+      "quote": "(1) An employer must ensure that the following employment records are kept —",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Industrial inspectors under the Industrial Relations Act 1979 (WA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Long Service Leave Act 1958 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48247.docx",
+          "locator": "s 12 (version current from )",
+          "quote": "An industrial inspector may institute proceedings under section 11 in the inspector’s own name, whether or not an employee is to be a party to the proceedings.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer of employees in WA covered by the Act.",
+      "sources": [
+        {
+          "title": "Long Service Leave Act 1958 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48247.docx",
+          "locator": "s 8(2) (version current from )",
+          "quote": "(2) An employee who has completed at least 10 years of continuous employment is entitled to an amount of long service leave as follows — (a) in respect of 10 years so completed, 8 2/3 weeks;",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Employers must give long service leave after a long period of service with them. The entitlement builds up with one employer and is mostly lost on moving, which ties workers to employers; it also adds record keeping.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Leave builds up with one employer and is mostly lost on moving, which discourages job changes (unlike portable schemes).",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Marked from the law's design against the framework's guide; no evaluation of state long service leave and job mobility was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

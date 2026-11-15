@@ -1,0 +1,150 @@
+{
+  "id": "cth-customs-duty",
+  "family": "customs-duty",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "customs-and-excise",
+  "title": "Pay customs duty on imported goods",
+  "kind": "tax-or-levy",
+  "what": "Customs duty is imposed on goods imported into Australia at the rates in the tariff.",
+  "laws": [
+    {
+      "title": "Customs Tariff Act 1995",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04997",
+      "register_url": "https://www.legislation.gov.au/C2004A04997/latest/text",
+      "provisions": "15",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Customs Tariff Act 1995",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A04997/latest/text",
+      "locator": "s 15 (compilation C2026C00399 from 2026-07-04)",
+      "quote": "15 Imposition of duties Duties of Customs are imposed by this Act on: (a) goods imported into Australia on or after 1 July 1996; and (b) goods: (i) imported into Australia before 1 July 1996; and (ii) entered, or again entered, for home consumption on or after that day.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-abf",
+    "cth-home-affairs"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Border Force",
+      "bodies": [
+        "cth-abf"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Customs Act 1901",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1901A00006/latest/text",
+          "locator": "(compilation C2026C00484 from 2026-10-27)",
+          "quote": "Comptroller-General of Customs means the person who is the Comptroller-General of Customs in accordance with subsection 11(3) or 14(2) of the Australian Border Force Act 2015.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Home Affairs",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 10 (Department of Home Affairs), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Customs Act 1901, other than Part XVB and Part XVC",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it imports goods",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Customs Tariff Act 1995",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04997/latest/text",
+          "locator": "s 15 (compilation C2026C00399 from 2026-07-04)",
+          "quote": "15 Imposition of duties Duties of Customs are imposed by this Act on: (a) goods imported into Australia on or after 1 July 1996; and (b) goods: (i) imported into Australia before 1 July 1996; and (ii) entered, or again entered, for home consumption on or after that day.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Customs duty is imposed on goods imported into Australia at the rates in the tariff.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Tariffs raise the price of imported goods.",
+        "positions": []
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

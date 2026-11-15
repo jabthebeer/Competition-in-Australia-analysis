@@ -438,8 +438,18 @@ function xlLine(o) {
   const fmts = [date ? "mmm yyyy" : "text", ...series.map(() => o.xlFmt || "0.0")];
   const chart = { type: "line", cat: 0, catKind: date ? "date" : "str", series: series.map((s, i) => ({ col: i + 1, color: xlColor(s.color), width: (s.width || 1.8) * 0.75, dash: xlDash(s.dash) })) };
   const notes = [];
+  // A shaded range (such as the peers' middle half) becomes its two edges, as thin dotted lines.
+  for (const a of (o.areas || []).filter((a) => a.lo.some(xlNum) && a.hi.some(xlNum))) {
+    for (const [edge, vals] of [["25th percentile", a.lo], ["75th percentile", a.hi]]) {
+      head.push(`${a.xlLabel || a.label}, ${edge}`);
+      fmts.push(o.xlFmt || "0.0");
+      rows.forEach((row, i) => row.push(xlNum(vals[i]) ? vals[i] : null));
+      chart.series.push({ col: head.length - 1, color: xlColor(a.xlColor || "var(--ink-3)"), width: 0.75, dash: "sysDot" });
+    }
+    notes.push(["In this workbook", `On the page, ${a.label.toLowerCase()} is a shaded band; here its edges are dotted lines.`]);
+  }
   // The page's axis range, so Excel's matches it (and the shading below can fill it).
-  const vals = series.flatMap((s) => s.values.filter(xlNum));
+  const vals = [...series.flatMap((s) => s.values.filter(xlNum)), ...(o.areas || []).flatMap((a) => [...a.lo, ...a.hi].filter(xlNum))];
   if (vals.length) {
     let lo = Math.min(...vals), hi = Math.max(...vals);
     if (xlNum(o.ref)) { lo = Math.min(lo, o.ref); hi = Math.max(hi, o.ref); }
@@ -551,12 +561,17 @@ function xlRanked(rows, o) {
   };
 }
 function xlDumbbell(rows, o) {
+  // Rows can carry their own years (r.aLabel, r.bLabel); when any differs, the columns say so and list each row's years.
+  const A = String(o.aLabel), B = String(o.bLabel);
+  const own = rows.some((r) => (r.aLabel && r.aLabel !== A) || (r.bLabel && r.bLabel !== B));
   return {
-    head: [o.xlCat || "Item", String(o.aLabel), String(o.bLabel), "Change, percentage points"],
-    rows: rows.map((r) => [r.label, xlNum(r.a) ? r.a : null, xlNum(r.b) ? r.b : null, xlNum(r.a) && xlNum(r.b) ? r.b - r.a : null]), fmts: ["text", "0.0", "0.0", "+0.0;-0.0;0.0"],
+    head: [o.xlCat || "Item", own ? `First year (${A} unless shown)` : A, own ? `Last year (${B} unless shown)` : B, "Change, percentage points", ...(own ? ["First year", "Last year"] : [])],
+    rows: rows.map((r) => [r.label, xlNum(r.a) ? r.a : null, xlNum(r.b) ? r.b : null, xlNum(r.a) && xlNum(r.b) ? r.b - r.a : null, ...(own ? [r.aLabel || A, r.bLabel || B] : [])]),
+    fmts: ["text", "0.0", "0.0", "+0.0;-0.0;0.0", ...(own ? ["text", "text"] : [])],
     chart: { type: "bar", dir: "bar", grouping: "clustered", gap: 50, cat: 0, reverse: true, yMin: o.domain[0], legend: true,
       series: [{ col: 1, color: "#D3D2CA" }, { col: 2, color: xlColor("var(--accent)") }] },
-    notes: [["In this workbook", "On the page each row is a pair of dots joined by a line; Excel shows the two years as a pair of bars."]],
+    notes: [["In this workbook", "On the page each row is a pair of dots joined by a line; Excel shows the two years as a pair of bars."],
+      ...(own ? [["Years", `Most rows compare ${A} with ${B}; rows with fewer years use their own first and last years, in the last two columns.`]] : [])],
   };
 }
 function xlFromChart(x) {
@@ -578,7 +593,8 @@ function xlFromChart(x) {
 let XL_PAGE = { sources: {}, release: {}, links: [] };
 function excelSetup(cfg) { XL_PAGE = { ...XL_PAGE, ...cfg }; }
 const xlText = (n) => (n ? n.textContent.replace(/\s+/g, " ").trim() : "");
-const xlFile = (s) => s.replace(/\s*:\s*/g, " - ").replace(/[\\/]+/g, "-").replace(/[*?"<>|]+/g, "").replace(/\s+/g, " ").trim().slice(0, 140);
+// (An en dash in a financial year becomes a hyphen in the file name, which some systems handle better.)
+const xlFile = (s) => s.replace(/–/g, "-").replace(/\s*:\s*/g, " - ").replace(/[\\/]+/g, "-").replace(/[*?"<>|]+/g, "").replace(/\s+/g, " ").trim().slice(0, 140);
 
 /* The workbook for a card: a sheet for each chart in it (in page order, each titled by the heading above it), any
  * extra tables, and the About sheet. cfg: {title (), settings () -> [[name, value]], tables () -> [sheet spec],
@@ -646,7 +662,12 @@ function excelButton(card, cfg = {}) {
   b.innerHTML = `${XL_ICON}Excel`;
   b.title = "Download this chart as an Excel workbook: the chart, its numbers, and where the data come from";
   b.setAttribute("aria-label", "Download as an Excel workbook");
+  // The page settings (sources, releases, links) as they were when the button was made: one page can hold parts
+  // that each call excelSetup with their own sources, such as the economic conditions on the competition page.
+  const page = XL_PAGE;
   b.addEventListener("click", () => {
+    const current = XL_PAGE;
+    XL_PAGE = page;
     try {
       const book = xlCardBook(card, cfg);
       xlDownload(xlsxWorkbook(book), book.file);
@@ -654,6 +675,8 @@ function excelButton(card, cfg = {}) {
       console.error(err);
       b.textContent = "Export failed";
       setTimeout(() => { b.innerHTML = `${XL_ICON}Excel`; }, 4000);
+    } finally {
+      XL_PAGE = current;
     }
   });
   if (cfg.anchor) cfg.anchor.appendChild(b);

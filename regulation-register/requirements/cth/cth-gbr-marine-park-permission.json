@@ -1,0 +1,156 @@
+{
+  "id": "cth-gbr-marine-park-permission",
+  "family": "gbr-marine-park-permission",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Get permission for activities in the Great Barrier Reef Marine Park",
+  "kind": "approval",
+  "what": "Conduct in a Marine Park zone that the zoning plan says requires permission may be done only with permission.",
+  "laws": [
+    {
+      "title": "Great Barrier Reef Marine Park Act 1975",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A01395",
+      "register_url": "https://www.legislation.gov.au/C2004A01395/latest/text",
+      "provisions": "38BA",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Great Barrier Reef Marine Park Act 1975",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A01395/latest/text",
+      "locator": "s 38BA (compilation C2025C00131 from 2025-02-21)",
+      "quote": "38BA Conduct in zone: offence Conduct prohibited or done without required permission (1) A person commits an offence if: (a) the person engages in conduct; and (b) the conduct is engaged in in a zone; and (c) under the zoning plan for the zone, the conduct: (i) is prohibited; or (ii) requires permission;",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-dcceew",
+    "cth-gbrmpa"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Great Barrier Reef Marine Park Authority",
+      "bodies": [
+        "cth-gbrmpa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Great Barrier Reef Marine Park Act 1975",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01395/latest/text",
+          "locator": "s 38AA (compilation C2025C00131 from 2025-02-21)",
+          "quote": "(3) The Authority must not grant a person permission to engage in conduct for the purposes of this section unless the Authority is satisfied that the conduct is for the purpose of research or investigations relevant to the conservation of the Marine Park.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Climate Change, Energy, the Environment and Water",
+      "bodies": [
+        "cth-dcceew"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 3 (Department of Climate Change, Energy, the Environment and Water), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Great Barrier Reef Marine Park Act 1975 Great Barrier Reef Marine Park (Environmental Management Charge—Excise) Act 1993",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4820",
+        "7220",
+        "9139",
+        "0413",
+        "0414"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries out activities in the Great Barrier Reef Marine Park that need permission under the zoning plan",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Great Barrier Reef Marine Park Act 1975",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01395/latest/text",
+          "locator": "s 38BA (compilation C2025C00131 from 2025-02-21)",
+          "quote": "38BA Conduct in zone: offence Conduct prohibited or done without required permission (1) A person commits an offence if: (a) the person engages in conduct; and (b) the conduct is engaged in in a zone; and (c) under the zoning plan for the zone, the conduct: (i) is prohibited; or (ii) requires permission;",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Conduct in a Marine Park zone that the zoning plan says requires permission may be done only with permission.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Permission is needed before activities in zones that require it.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

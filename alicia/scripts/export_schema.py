@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 
-from alicia.register import evaluation, recommendations, regimes
+from alicia.register import evaluation, recommendations, regimes, requirements
 from alicia.register.catalogue import default_register_dir
 from alicia.register.schema import json_schema
 
@@ -25,6 +25,9 @@ def main() -> None:
     print(f"Wrote {out}")
     out = default_register_dir() / "schema" / "regime.schema.json"
     out.write_text(json.dumps(regimes.json_schema(), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"Wrote {out}")
+    out = default_register_dir() / "schema" / "requirement.schema.json"
+    out.write_text(json.dumps(requirements.json_schema(), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Wrote {out}")
 
 

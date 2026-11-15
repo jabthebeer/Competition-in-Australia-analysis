@@ -173,7 +173,7 @@ def test_the_framework_page_explains_complexity_with_a_diagram():
 
     regimes = load_regimes().regimes
     html = page.body(load_records().records, regimes=regimes)
-    assert 'id="h-complexity"' in html and "data-venn=" in html and "index.html#complexity=duplicative" in html
+    assert 'id="h-complexity"' in html and "data-venn=" in html and "menu.html#complexity=duplicative" in html
     # The page's worked example says councils and state agencies both license and inspect food businesses.
     food = page.venn_regions(next(r for r in regimes if r.id == page.COMPLEXITY_EXAMPLE))
     assert {"Licenses", "Inspects"} <= {x["label"] for x in food["state+local"]}

@@ -1,0 +1,130 @@
+{
+  "id": "cth-shipping-registration",
+  "family": "shipping-registration",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "maritime-and-ports",
+  "title": "Register Australian-owned ships",
+  "kind": "registration",
+  "what": "Australian-owned ships (other than exempt ships) must be registered.",
+  "laws": [
+    {
+      "title": "Shipping Registration Act 1981",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A02386",
+      "register_url": "https://www.legislation.gov.au/C2004A02386/latest/text",
+      "provisions": "12(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Shipping Registration Act 1981",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A02386/latest/text",
+      "locator": "s 12(1) (compilation C2024C00673 from 2024-10-14)",
+      "quote": "12 Obligation to register Australian-owned ships (1) Subject to this Part, every Australian-owned ship shall be registered under this Act.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 12 (Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Shipping Registration Act 1981 Spam Act 2003",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4810",
+        "4820"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns an Australian ship that must be registered",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Shipping Registration Act 1981",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A02386/latest/text",
+          "locator": "s 12(1) (compilation C2024C00673 from 2024-10-14)",
+          "quote": "12 Obligation to register Australian-owned ships (1) Subject to this Part, every Australian-owned ship shall be registered under this Act.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Australian-owned ships (other than exempt ships) must be registered.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registration of each ship.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

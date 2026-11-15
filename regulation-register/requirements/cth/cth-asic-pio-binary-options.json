@@ -1,0 +1,130 @@
+{
+  "id": "cth-asic-pio-binary-options",
+  "family": "asic-pio-binary-options",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "financial-services",
+  "title": "Do not issue binary options to retail clients",
+  "kind": "standard",
+  "what": "ASIC's product intervention order bans issuing binary options to retail clients.",
+  "laws": [
+    {
+      "title": "ASIC Corporations (Product Intervention Order—Binary Options) Instrument 2021/240",
+      "jurisdiction": "CTH",
+      "kind": "legislative-instrument",
+      "register_id": "F2021L00421",
+      "register_url": "https://www.legislation.gov.au/F2021L00421/latest/text",
+      "provisions": "6(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "ASIC Corporations (Product Intervention Order—Binary Options) Instrument 2021/240",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/F2021L00421/latest/text",
+      "locator": "s 6(1) (compilation F2021L00421 from 2021-04-06)",
+      "quote": "(1) A binary option provider must not issue a binary option to a retail client.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Corporations Act 2001, except to the extent administered by the",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6411",
+        "6419"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it issues or arranges binary options",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "ASIC Corporations (Product Intervention Order—Binary Options) Instrument 2021/240",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2021L00421/latest/text",
+          "locator": "s 6(1) (compilation F2021L00421 from 2021-04-06)",
+          "quote": "(1) A binary option provider must not issue a binary option to a retail client.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The section number is not yet checked against the instrument.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "ASIC's product intervention order bans issuing binary options to retail clients.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "A ban on offering the product to retail clients.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

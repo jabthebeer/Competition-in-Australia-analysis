@@ -1,0 +1,160 @@
+{
+  "id": "cth-superannuation-guarantee",
+  "family": "superannuation-guarantee",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "business-and-tax-registration",
+  "title": "Pay superannuation for employees",
+  "kind": "other",
+  "what": "Make superannuation contributions for each employee when qualifying earnings are paid, or pay the superannuation guarantee charge on any shortfall.",
+  "laws": [
+    {
+      "title": "Superannuation Guarantee (Administration) Act 1992",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04402",
+      "register_url": "https://www.legislation.gov.au/C2004A04402/latest/text",
+      "provisions": "ss 16A, 17A",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Superannuation Guarantee (Administration) Act 1992",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A04402/latest/text",
+      "locator": "s 16A (compilation C2026C00272, in force from 2026-07-01)",
+      "quote": "Superannuation guarantee charge imposed on an employer’s superannuation guarantee shortfall for a QE day is payable by the employer.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Superannuation Guarantee (Administration) Act 1992",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A04402/latest/text",
+      "locator": "s 17A(1) (compilation C2026C00272, in force from 2026-07-01)",
+      "quote": "This Subdivision applies if an employer makes a payment of qualifying earnings to or for an employee on a particular day (the QE day).",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ato",
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Superannuation Guarantee (Administration) Act 1992",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04402/latest/text",
+          "locator": "s 43 (compilation C2026C00272 from 2026-07-01)",
+          "quote": "Part 5—Administration 43 General administration of Act The Commissioner has the general administration of this Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Superannuation Guarantee (Administration) Act 1992",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Superannuation Guarantee (Administration) Act 1992",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A04402/latest/text",
+          "locator": "s 16A (compilation C2026C00272, in force from 2026-07-01)",
+          "quote": "Superannuation guarantee charge imposed on an employer’s superannuation guarantee shortfall for a QE day is payable by the employer.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "No regime covers superannuation yet.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Employers must pay a set share of each employee's ordinary earnings into a super fund each quarter.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Calculating, paying and reporting contributions for each employee every quarter.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

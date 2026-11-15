@@ -1,0 +1,129 @@
+{
+  "id": "vic-environment-protection-licence",
+  "family": "environment-protection-licence",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Hold an environment protection licence for listed activities",
+  "kind": "licence",
+  "what": "Hold an environment protection licence (or authorisation) before carrying on an activity the state lists, such as large manufacturing, waste, extractive or energy activities, and meet its conditions.",
+  "laws": [
+    {
+      "title": "Environment Protection Act 2017 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "51/2017",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/environment-protection-act-2017",
+      "provisions": "s 45",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environment Protection Act 2017 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/environment-protection-act-2017",
+      "locator": "s 45(1) (authorised version 023, saved by the owner)",
+      "quote": "(1) A person must not engage in a prescribed operating activity except as authorised by an operating licence in respect of the activity.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "EPA Victoria (Environment Protection Authority)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues the licences and enforces them.",
+      "sources": [
+        {
+          "title": "Environment Protection Act 2017 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/environment-protection-act-2017",
+          "locator": "s 3, definition of Authority (authorised version 023, saved by the owner)",
+          "quote": "Authority means the Environment Protection Authority continued under section 356",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the business carries on an activity in the state's list (a schedule to the Act or regulations).",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries on an activity the state lists as needing an environment protection licence",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business carrying on a listed activity (such as large manufacturing, waste, extractive, energy and intensive agriculture activities); the lists differ by state and are not yet coded class by class.",
+      "sources": [
+        {
+          "title": "Environment Protection Act 2017 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/environment-protection-act-2017",
+          "locator": "s 45(1) (authorised version 023, saved by the owner)",
+          "quote": "(1) A person must not engage in a prescribed operating activity except as authorised by an operating licence in respect of the activity.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Businesses carrying on the activities a state lists (large manufacturing, waste, extractive, energy and similar) need an environment protection licence, with conditions, monitoring and fees, before and while operating.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence is needed before the listed activities can start.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Licence conditions, monitoring, reporting and annual fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; the environmental benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

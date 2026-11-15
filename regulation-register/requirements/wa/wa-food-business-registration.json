@@ -1,0 +1,194 @@
+{
+  "id": "wa-food-business-registration",
+  "family": "food-business-registration",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "food-safety",
+  "title": "Register or notify the food business",
+  "kind": "notification",
+  "what": "Notify, register or license the food business with the enforcement agency (usually the local council) before trading, and meet the Food Standards Code.",
+  "laws": [
+    {
+      "title": "Food Act 2008 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a146689",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45866.docx",
+      "provisions": "s 107",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Food Act 2008 (WA)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45866.docx",
+      "locator": "s 107 (current version)",
+      "quote": "The proprietor of a food business must not conduct the food business at any premises unless the proprietor has given written notification in respect of those premises to the appropriate enforcement agency, in the approved form, of the specified information.",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": true,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Local councils",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2008 (WA)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45866.docx",
+          "locator": "s 8, words naming the body (found 12 Nov 2026)",
+          "quote": "or (b) a person designated by a local government as an authorised officer under the Public Health Act 2016 section 24(1) for the purposes of this Act;",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1111",
+        "1112",
+        "1113",
+        "1120",
+        "1131",
+        "1132",
+        "1133",
+        "1140",
+        "1150",
+        "1161",
+        "1162",
+        "1171",
+        "1172",
+        "1173",
+        "1174",
+        "1181",
+        "1182",
+        "1191",
+        "1199",
+        "1211",
+        "1212",
+        "1213",
+        "1214",
+        "3601",
+        "3602",
+        "3603",
+        "3604",
+        "3605",
+        "3609",
+        "4110",
+        "4121",
+        "4122",
+        "4129",
+        "4511",
+        "4512",
+        "4513",
+        "4520",
+        "4530"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Businesses that make, sell or serve food (the Act's food business).",
+      "sources": [
+        {
+          "title": "Food Act 2008 (WA)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45866.docx",
+          "locator": "s 107 (current version)",
+          "quote": "The proprietor of a food business must not conduct the food business at any premises unless the proprietor has given written notification in respect of those premises to the appropriate enforcement agency, in the approved form, of the specified information.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4123",
+        "4310",
+        "4400",
+        "8401",
+        "8601",
+        "8710",
+        "9003",
+        "9112",
+        "9113"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells or serves food",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2008 (WA)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45866.docx",
+          "locator": "s 107 (current version)",
+          "quote": "The proprietor of a food business must not conduct the food business at any premises unless the proprietor has given written notification in respect of those premises to the appropriate enforcement agency, in the approved form, of the specified information.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Food businesses must notify the enforcement agency before trading and meet the Food Standards Code.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Notification, inspections and food safety requirements.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

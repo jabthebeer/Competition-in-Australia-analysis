@@ -1,0 +1,127 @@
+{
+  "id": "wa-high-risk-work-licence",
+  "family": "high-risk-work-licence",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "work-health-and-safety",
+  "title": "See workers' licences for high-risk work",
+  "kind": "licence",
+  "what": "Not direct or allow a worker to do high-risk work that needs a licence (such as crane or forklift operation, scaffolding, or dogging and rigging) without seeing written evidence of the worker's licence.",
+  "laws": [
+    {
+      "title": "Work Health and Safety (General) Regulations 2022 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_s53267",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49982.docx",
+      "provisions": "r 85",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Work Health and Safety (General) Regulations 2022 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49982.docx",
+      "locator": "r 85(1) (version current from )",
+      "quote": "(1) A person conducting a business or undertaking at a workplace must not direct or allow a worker to carry out high risk work for which a high risk work licence is required unless the person sees written evidence provided by the worker that the worker has the relevant high risk work licence for that work.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "wa-lgirs"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "WorkSafe Western Australia (WorkSafe Commissioner)",
+      "bodies": [
+        "wa-lgirs"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues the high-risk work licences the business must check, and enforces the duty.",
+      "sources": [
+        {
+          "title": "Work Health and Safety Act 2020 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49498.docx",
+          "locator": "words naming the body (found 12 Nov 2026)",
+          "quote": "regulator means the WorkSafe Commissioner — see Schedule 1 Division 1;",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When a worker is to do a class of high-risk work listed in the regulation's Schedule 3.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its workers do high-risk work that needs a licence (such as operating cranes or forklifts, scaffolding, or dogging and rigging)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business whose workers do licensed high-risk work, in any industry; most often construction, manufacturing, mining, transport and warehousing.",
+      "sources": [
+        {
+          "title": "Work Health and Safety (General) Regulations 2022 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49982.docx",
+          "locator": "r 85(1) (version current from )",
+          "quote": "(1) A person conducting a business or undertaking at a workplace must not direct or allow a worker to carry out high risk work for which a high risk work licence is required unless the person sees written evidence provided by the worker that the worker has the relevant high risk work licence for that work.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A business must not let a worker do high-risk work (such as operating cranes or forklifts, scaffolding, or dogging and rigging) without seeing the worker's licence. Only licensed workers can be hired for that work.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Only licensed workers may do high-risk work, which narrows who can be hired for it.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the duty's design against the framework's guide; the safety benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

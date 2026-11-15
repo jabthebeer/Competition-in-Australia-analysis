@@ -1,0 +1,148 @@
+{
+  "id": "vic-workers-compensation-insurance",
+  "family": "workers-compensation-insurance",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "workers-compensation",
+  "title": "Register for WorkCover insurance",
+  "kind": "insurance",
+  "what": "Register for WorkCover insurance with WorkSafe Victoria when employing workers in Victoria.",
+  "laws": [
+    {
+      "title": "Workplace Injury Rehabilitation and Compensation Act 2013 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "67/2013",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/workplace-injury-rehabilitation-and-compensation-act-2013",
+      "provisions": "s 434",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Workplace Injury Rehabilitation and Compensation Act 2013 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/workplace-injury-rehabilitation-and-compensation-act-2013",
+      "locator": "s 434(3) (authorised version 054, saved by the owner)",
+      "quote": "(3) An employer to which section 430(1) applies which is not registered, and is not taken to be registered by reason of subsection (2), must apply for registration as an employer under this Act to the Authority in a form and manner approved by the Authority within 60 days after the employer becomes aware, or reasonably ought to have become aware, that section 430(1) applies to the employer.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Do I need to register for WorkCover insurance?",
+      "publisher": "WorkSafe Victoria",
+      "url": "https://www.worksafe.vic.gov.au/do-i-need-register-workcover-insurance",
+      "locator": "When you must register",
+      "quote": "Generally, you must register for WorkCover insurance if you or your company employs any workers in Victoria.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "vic-worksafe"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "WorkSafe Victoria",
+      "bodies": [
+        "vic-worksafe"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Do I need to register for WorkCover insurance?",
+          "publisher": "WorkSafe Victoria",
+          "url": "https://www.worksafe.vic.gov.au/do-i-need-register-workcover-insurance",
+          "locator": "When you must register",
+          "quote": "Generally, you must register for WorkCover insurance if you or your company employs any workers in Victoria.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "payroll",
+      "test": ">",
+      "value": 7500.0,
+      "unit": "AUD of remuneration a financial year",
+      "as_at": "2026-11-06",
+      "note": "Any apprentice or trainee also triggers registration, whatever the remuneration.",
+      "sources": [
+        {
+          "title": "Do I need to register for WorkCover insurance?",
+          "publisher": "WorkSafe Victoria",
+          "url": "https://www.worksafe.vic.gov.au/do-i-need-register-workcover-insurance",
+          "locator": "Exemptions",
+          "quote": "You don't need to register if you or your company has no apprentices, and does not or is not liable to pay more than $7,500 in a financial year in remuneration.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Do I need to register for WorkCover insurance?",
+          "publisher": "WorkSafe Victoria",
+          "url": "https://www.worksafe.vic.gov.au/do-i-need-register-workcover-insurance",
+          "locator": "When you must register",
+          "quote": "Generally, you must register for WorkCover insurance if you or your company employs any workers in Victoria.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. The regulator's guidance quoted before is kept as a second source.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Every employer must insure its workers under the state or territory's workers' compensation scheme.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Premiums, wage declarations and claims administration for every employer.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

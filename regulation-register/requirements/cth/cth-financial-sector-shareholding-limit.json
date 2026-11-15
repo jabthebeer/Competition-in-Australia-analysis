@@ -1,0 +1,139 @@
+{
+  "id": "cth-financial-sector-shareholding-limit",
+  "family": "financial-sector-shareholding-limit",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "financial-services",
+  "title": "Do not acquire an unacceptable stake in a financial sector company without approval",
+  "kind": "approval",
+  "what": "Acquiring shares that create, or increase, an unacceptable shareholding situation in a financial sector company (a stake above the Act's limit without the Treasurer's approval) is an offence.",
+  "laws": [
+    {
+      "title": "Financial Sector (Shareholdings) Act 1998",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A00315",
+      "register_url": "https://www.legislation.gov.au/C2004A00315/latest/text",
+      "provisions": "11",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Financial Sector (Shareholdings) Act 1998",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A00315/latest/text",
+      "locator": "s 11 (compilation C2020C00315 from 2020-10-01)",
+      "quote": "11 Acquisitions of shares If: (a) a person, or 2 or more persons under an arrangement, acquire shares in a company; and (b) the acquisition has the result, in relation to a financial sector company, that: (i) an unacceptable shareholding situation comes into existence in relation to the company and in relation to a person; or (ii) if an unacceptable shareholding situation already exists in relation to the company and in relation to a person—there is an increase in the stake held by the person in the company;",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Financial Sector (Shareholdings) Act 1998",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00315/latest/text",
+          "locator": "s 14 (compilation C2020C00315 from 2020-10-01)",
+          "quote": "14 Approval of application (1) The Treasurer may, by notifiable instrument, grant the application if: (a) the applicant satisfies the Treasurer that it is in the national interest to approve the applicant holding a stake in the company of more than 20%;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6221",
+        "6222",
+        "6223",
+        "6310",
+        "6322"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it proposes to acquire a stake above the limit in a financial sector company",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Financial Sector (Shareholdings) Act 1998",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A00315/latest/text",
+          "locator": "s 11 (compilation C2020C00315 from 2020-10-01)",
+          "quote": "11 Acquisitions of shares If: (a) a person, or 2 or more persons under an arrangement, acquire shares in a company; and (b) the acquisition has the result, in relation to a financial sector company, that: (i) an unacceptable shareholding situation comes into existence in relation to the company and in relation to a person; or (ii) if an unacceptable shareholding situation already exists in relation to the company and in relation to a person—there is an increase in the stake held by the person in the company;",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The 20% limit is in the Act's definitions (s 10 and the Schedule), not yet quoted.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Acquiring shares that create, or increase, an unacceptable shareholding situation in a financial sector company (a stake above the Act's limit without the Treasurer's approval) is an offence.",
+    "marks": [
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Ownership limits narrow who can invest in banks and insurers.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Limits on takeovers can shelter incumbents.",
+        "positions": []
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

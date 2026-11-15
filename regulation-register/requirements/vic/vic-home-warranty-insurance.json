@@ -1,0 +1,175 @@
+{
+  "id": "vic-home-warranty-insurance",
+  "family": "home-warranty-insurance",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "home-warranty-insurance",
+  "title": "Pay the statutory domestic building insurance premium",
+  "kind": "insurance",
+  "what": "Pay the domestic building insurance premium to the Authority (the state's statutory insurance scheme) before starting work under an insurable domestic building contract.",
+  "laws": [
+    {
+      "title": "Building Act 1993 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "126/1993",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+      "provisions": "Part 9A, s 137O",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Act 1993 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+      "locator": "s 137O(1) (authorised version 152, saved by the owner)",
+      "quote": "(1) A builder who enters into an insurable domestic building contract (other than a prescribed insurable domestic building contract) must pay the applicable insurance premium to the Authority before the first of the following to happen— (a) 10 business days elapse after the day on which the contract is entered into; (b) the domestic building work starts.",
+      "accessed": "2026-11-14",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Act 1993 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+      "locator": "s 137AAB(1) (authorised version 152, saved by the owner)",
+      "quote": "(1) Insurance obtained on and after the commencement day for the purposes of an order under section 135 relating to domestic building work must be obtained solely from the Authority.",
+      "accessed": "2026-11-14",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Victorian Building Authority (the Authority)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Runs the statutory insurance scheme and collects the premium.",
+      "sources": [
+        {
+          "title": "Building Act 1993 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+          "locator": "s 3(1), definition of Authority (authorised version 152, saved by the owner)",
+          "quote": "Authority means the Victorian Building Authority established under section 193",
+          "accessed": "2026-11-14",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Above a contract value set by regulation (not yet quoted).",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Residential building contractors.",
+      "sources": [
+        {
+          "title": "Building Act 1993 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+          "locator": "s 137O(1) (authorised version 152, saved by the owner)",
+          "quote": "(1) A builder who enters into an insurable domestic building contract (other than a prescribed insurable domestic building contract) must pay the applicable insurance premium to the Authority before the first of the following to happen— (a) 10 business days elapse after the day on which the contract is entered into; (b) the domestic building work starts.",
+          "accessed": "2026-11-14",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3221",
+        "3222",
+        "3223",
+        "3224",
+        "3239",
+        "3241",
+        "3242",
+        "3243",
+        "3244",
+        "3245"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it contracts for residential building work above the state's value threshold",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Act 1993 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+          "locator": "s 137O(1) (authorised version 152, saved by the owner)",
+          "quote": "(1) A builder who enters into an insurable domestic building contract (other than a prescribed insurable domestic building contract) must pay the applicable insurance premium to the Authority before the first of the following to happen— (a) 10 business days elapse after the day on which the contract is entered into; (b) the domestic building work starts.",
+          "accessed": "2026-11-14",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. Victoria replaced private domestic building insurance with a statutory scheme run by the Authority (Building Legislation Amendment (Buyer Protections) Act 2025).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Residential building work over a set value needs home warranty insurance, which builders can buy only once an insurer accepts them.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A new builder needs an insurer's eligibility (often set by net assets and track record) before contracting.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Premiums and a certificate for each job.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked. In Victoria the insurer is the state (the statutory insurance scheme from 2025), not a private insurer.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-14"
+  },
+  "drafted_on": "2026-11-14",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

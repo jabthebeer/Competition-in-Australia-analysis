@@ -1,0 +1,152 @@
+{
+  "id": "cth-my-health-record-share-by-default",
+  "family": "my-health-record-share-by-default",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "health-practitioners-and-facilities",
+  "title": "Upload pathology and diagnostic imaging results to My Health Record",
+  "kind": "reporting",
+  "what": "Specified pathology and diagnostic imaging information must be shared with the My Health Record system within 24 hours.",
+  "laws": [
+    {
+      "title": "My Health Record (Share by Default) Rules 2025",
+      "jurisdiction": "CTH",
+      "kind": "legislative-instrument",
+      "register_id": "F2025L01569",
+      "register_url": "https://www.legislation.gov.au/F2025L01569/latest/text",
+      "provisions": "13(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "My Health Record (Share by Default) Rules 2025",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/F2025L01569/latest/text",
+      "locator": "s 13(1)–(2) (compilation F2026C00702 from 2026-07-01)",
+      "quote": "13 Pathology services—period for sharing information with the My Health Record system (1) For the purposes of subsection 78A(1) of the Act, this section specifies the period within which information specified in section 12 of this instrument must be shared with the My Health Record system. (2) The specified period is the period of 24 hours",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-adha",
+    "cth-dhda"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Digital Health Agency",
+      "bodies": [
+        "cth-adha"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "My Health Records Act 2012",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2012A00063/latest/text",
+          "locator": "s 4 (compilation C2026C00277 from 2026-07-01)",
+          "quote": "The My Health Record system is operated by the System Operator.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 9 (Department of Health, Disability and Ageing), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "My Health Records Act 2012 Narcotic Drugs Act 1967",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8520"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides pathology or diagnostic imaging services",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "My Health Record (Share by Default) Rules 2025",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2025L01569/latest/text",
+          "locator": "s 13(1)–(2) (compilation F2026C00702 from 2026-07-01)",
+          "quote": "13 Pathology services—period for sharing information with the My Health Record system (1) For the purposes of subsection 78A(1) of the Act, this section specifies the period within which information specified in section 12 of this instrument must be shared with the My Health Record system. (2) The specified period is the period of 24 hours",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Specified pathology and diagnostic imaging information must be shared with the My Health Record system within 24 hours.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Systems to upload results within 24 hours.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "id": "wa-hazardous-chemicals-manifest",
+  "family": "hazardous-chemicals-manifest",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "hazardous-chemicals-and-dangerous-goods",
+  "title": "License a dangerous goods site above manifest quantities",
+  "kind": "licence",
+  "what": "Hold a dangerous goods site licence where dangerous goods are stored or handled above the manifest quantities (WA licenses the site rather than taking a notice).",
+  "laws": [
+    {
+      "title": "Dangerous Goods Safety (Storage and Handling of Non-explosives) Regulations 2007 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_s37950",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49628.docx",
+      "provisions": "r 25",
+      "applied": false
+    },
+    {
+      "title": "Dangerous Goods Safety Act 2004 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a7019",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47130.docx",
+      "provisions": "s 13",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dangerous Goods Safety (Storage and Handling of Non-explosives) Regulations 2007 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49628.docx",
+      "locator": "r 25(1) (version current from )",
+      "quote": "(1) For the purposes of the Act section 13, a dangerous goods site is required to be licensed if dangerous goods are stored or handled at the site in quantities that exceed the manifest quantities.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Work Health and Safety (General) Regulations 2022 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49982.docx",
+      "locator": "rr 347–348 (Subdivision 2, not used) (version current from )",
+      "quote": "Subdivision 2 — Not used 347. Not used 348. Not used",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Chief Officer (dangerous goods), WA",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Dangerous Goods Safety (Storage and Handling of Non-explosives) Regulations 2007 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49628.docx",
+          "locator": "r 47(1) (version current from )",
+          "quote": "(1) The Chief Officer must keep a register of all licences.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When dangerous goods stored or handled at the site exceed the manifest quantities in Schedule 1; r 25(2) exempts some sites.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it stores or handles dangerous goods above the manifest quantities",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business with a dangerous goods site above the manifest quantities, in any industry.",
+      "sources": [
+        {
+          "title": "Dangerous Goods Safety (Storage and Handling of Non-explosives) Regulations 2007 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49628.docx",
+          "locator": "r 25(1) (version current from )",
+          "quote": "(1) For the purposes of the Act section 13, a dangerous goods site is required to be licensed if dangerous goods are stored or handled at the site in quantities that exceed the manifest quantities.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "WA's WHS regulation leaves r 348 unused; the duty is a site licence under its dangerous goods law.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A business storing or handling hazardous chemicals above set (manifest) quantities must tell the work safety regulator, or in WA license the site. It adds paperwork, and in WA a licence and fee, for larger stores.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Notice to the regulator (in WA, a site licence) adds paperwork and cost for sites holding large quantities.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the duty's design against the framework's guide; the safety benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -8,7 +8,7 @@ alicia show <id>                     one record in full
 alicia families                      reforms adopted by several jurisdictions, in date order
 alicia dates <id>... | --all         gather effective dates and check them against registers
 alicia explorer [-o file.html]       build the legislation menu (one HTML file)
-alicia site [-o dir]                 build the website: the menu, framework, archive, growth and conditions pages
+alicia site [-o dir]                 build the website: landing page, menu, framework, archive, growth, conditions
 alicia framework [-o file.md]        the productivity impact framework as a methods note
 alicia methods [-o file.md]          key insights and econometric methods of every evaluation, as Markdown
 alicia tables [-o file.md] [--latex file.tex]   every evaluation's regression tables, as Markdown and LaTeX
@@ -37,6 +37,12 @@ from .register.families import check_families, load_families
 from .register.framework import DRIVERS, KINDS
 from .register.recommendations import check_coverage, check_recommendations, load_gaps, load_recommendations
 from .register.regimes import check_regimes, load_regimes
+from .register.requirements import (
+    check_requirement_gaps,
+    check_requirements,
+    load_requirement_gaps,
+    load_requirements,
+)
 from .register.schema import CHANNEL_LABELS, JURISDICTIONS, ChangeRecord
 
 
@@ -75,10 +81,33 @@ def cmd_validate(args) -> int:
     regimes = load_regimes()
     problems.extend(regimes.problems)
     problems.extend(check_regimes(regimes.regimes, result.records, bodies))
+    reqs = load_requirements()
+    problems.extend(reqs.problems)
+    problems.extend(
+        check_requirements(reqs.requirements, bodies, {g.id for g in regimes.regimes}, {r.id for r in result.records})
+    )
+    req_gaps, gap_problems = load_requirement_gaps()
+    problems.extend(gap_problems)
+    problems.extend(check_requirement_gaps(reqs.requirements, req_gaps))
     families, family_problems = load_families()
     problems.extend(family_problems)
     problems.extend(check_families(families, result.records))
     ids = {r.id for r in result.records}
+    # Framework version 2 (DECISIONS E-185): the coded attributes of register items, and each regime's purpose. A
+    # standing item that weighs on productivity but is not coded is a warning: its class then comes from its marks.
+    from .register import severity
+
+    problems.extend(severity.check_coding(severity.load_coding(), ids))
+    purposes, purpose_labels = severity.load_purposes()
+    problems.extend(severity.check_purposes(purposes, purpose_labels, {g.id for g in regimes.regimes}))
+    warnings.extend(
+        f"regime-purposes.json: regime '{g.id}' has no purpose" for g in regimes.regimes if g.id not in purposes
+    )
+    warnings.extend(
+        f"rule-coding.json: '{r.id}' is a {r.kind} that weighs on productivity but has no coded attributes"
+        for r in result.records
+        if r.kind == "setting" and r.assessment and r.assessment.total < 0 and r.id not in severity.load_coding()
+    )
     problems.extend(
         f"{r.id}.json: history: unknown record '{h.record}'"
         for r in result.records
@@ -92,7 +121,8 @@ def cmd_validate(args) -> int:
     drafts = sum(r.review.status == "draft" for r in result.records)
     print(
         f"{len(result.records)} record(s), {len(evals.evaluations)} evaluation(s), "
-        f"{len(recs.recommendations)} recommendation(s) and {len(regimes.regimes)} regime(s) loaded; {len(problems)} "
+        f"{len(recs.recommendations)} recommendation(s), {len(regimes.regimes)} regime(s) and "
+        f"{len(reqs.requirements)} requirement(s) loaded; {len(problems)} "
         f"problem(s); {len(warnings)} warning(s); {drafts} record(s) awaiting review."
     )
     return 1 if problems else 0
@@ -378,6 +408,7 @@ def cmd_site(args) -> int:
         standalone=not args.fragment,
         repo_base=args.repo_base,
         costing_dist=Path(args.costing) if args.costing else None,
+        archive=args.archive,
     )
     for p in paths:
         print(f"Wrote {p}")
@@ -506,6 +537,42 @@ def cmd_costing_register(args) -> int:
     return 0
 
 
+def cmd_international(args) -> int:
+    from .international import bds, benchmark, concordance, coverage, harmonise, oecd, peers, stan, wdi
+
+    steps = {
+        "concordance": concordance.build,
+        "stan": stan.build,
+        "wdi": wdi.build,
+        "oecd": oecd.build,
+        "bds": bds.build,
+        "peers": peers.build,  # after oecd: its demography flags use the downloaded births
+        "coverage": coverage.build,
+        "harmonise": harmonise.build,
+        "benchmark": benchmark.build,
+    }
+    for name in steps if args.step == "all" else [args.step]:
+        result = steps[name](refresh=args.refresh)
+        if name == "concordance":
+            print(f"concordance: {len(result['classes'])} ANZSIC classes in {len(result['groups'])} groups")
+        elif name == "peers":
+            print(f"peers: core {', '.join(result['core'])} (ranking proposed {', '.join(result['proposed_core'])})")
+        elif name == "oecd":
+            print("oecd: " + ", ".join(f"{t} {n:,}" for t, n in result.items()))
+        elif name == "coverage":
+            print("coverage: docs/international_data_coverage.md")
+        elif name == "harmonise":
+            print(f"harmonise: {len(result):,} rows; docs/methods_international_benchmarks.md")
+        elif name == "benchmark":
+            print(
+                f"benchmark: {len(result)} comparisons, {int(result['flag'].sum())} flagged; "
+                "docs/international_benchmarks.md"
+            )
+        else:
+            print(f"{name}: {len(result):,} rows")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(
         prog="alicia", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -567,12 +634,12 @@ def main(argv: list[str] | None = None) -> int:
     fr.add_argument("-o", "--output", help="file to write (default: print)")
     fr.set_defaults(func=cmd_framework)
 
-    si = sub.add_parser("site", help="build the website: legislation menu, framework, archive, growth and conditions")
+    si = sub.add_parser("site", help="build the website: every page on the live site")
     si.add_argument(
         "-o",
         "--output",
         default="site",
-        help="directory to write index.html, framework.html, archive.html, growth.html, conditions.html",
+        help="directory to write index.html, growth.html, menu.html, industry-lens.html, framework.html and so on",
     )
     si.add_argument("--dates", help="a report from 'alicia dates --all --json', to show register checks")
     si.add_argument("--fragment", action="store_true", help="write page fragments instead of full HTML documents")
@@ -580,7 +647,12 @@ def main(argv: list[str] | None = None) -> int:
     si.add_argument(
         "--costing",
         default=None,
-        help="the Policy costing build to add (regulatory-burden-tool/dist-site, from 'npm run build:site')",
+        help="add the archived Policy costing tab from its build (regulatory-burden-tool/dist-site)",
+    )
+    si.add_argument(
+        "--archive",
+        action="store_true",
+        help="add the archived econometric archive (archive.html and the evaluation pages); not on the live site",
     )
     si.set_defaults(func=cmd_site)
 
@@ -624,6 +696,14 @@ def main(argv: list[str] | None = None) -> int:
     cr = sub.add_parser("costing-register", help="export the register for the Policy costing tab")
     cr.add_argument("-o", "--output", help="file to write (default: data/processed/costing/register.json)")
     cr.set_defaults(func=cmd_costing_register)
+
+    it = sub.add_parser("international", help="data for comparing Australia with similar economies")
+    it.add_argument(
+        "step",
+        choices=["concordance", "stan", "wdi", "peers", "oecd", "bds", "coverage", "harmonise", "benchmark", "all"],
+    )
+    it.add_argument("--refresh", action="store_true", help="download the raw files again")
+    it.set_defaults(func=cmd_international)
 
     args = p.parse_args(argv)
     return args.func(args)

@@ -1,0 +1,199 @@
+{
+  "id": "vic-livestock-property-identification",
+  "family": "livestock-property-identification",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "biosecurity",
+  "title": "Register the property for livestock (PIC)",
+  "kind": "registration",
+  "what": "Register for a property identification code (PIC) for land where livestock are kept, and identify and record livestock movements under the NLIS.",
+  "laws": [
+    {
+      "title": "Livestock Disease Control Act 1994 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "115/1994",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/livestock-disease-control-act-1994",
+      "provisions": "s 9B",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Livestock Disease Control Act 1994 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/livestock-disease-control-act-1994",
+      "locator": "s 9B(1) (authorised version 086, saved by the owner)",
+      "quote": "(1) A person who owns any cattle or prescribed livestock or any livestock of a prescribed species or class must apply to the Secretary for the allocation of a code that identifies the property at which the cattle or livestock is to be kept",
+      "accessed": "2026-11-14",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Property identification code",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "url": "https://ablis.business.gov.au/service/vic/property-identification-code/39377",
+      "locator": "Description",
+      "quote": "You will be required to have a Property Identification Code (PIC) if you graze livestock on your property or have a livestock business such as a sale yard, abattoir or stock agent.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "vic-deeca"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Agriculture Victoria",
+      "bodies": [
+        "vic-deeca"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Property identification code",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/property-identification-code/39377",
+          "locator": "Description",
+          "quote": "You will be required to have a Property Identification Code (PIC) if you graze livestock on your property or have a livestock business such as a sale yard, abattoir or stock agent.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0141",
+        "0142",
+        "0143",
+        "0144",
+        "0145",
+        "0160",
+        "0180",
+        "0191",
+        "0192",
+        "0199"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Land where livestock are kept.",
+      "sources": [
+        {
+          "title": "Property identification code",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/property-identification-code/39377",
+          "locator": "Description",
+          "quote": "You will be required to have a Property Identification Code (PIC) if you graze livestock on your property or have a livestock business such as a sale yard, abattoir or stock agent.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "0171",
+        "0172"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if the state requires a property identification code for poultry",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Property identification code",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/property-identification-code/39377",
+          "locator": "Description",
+          "quote": "You will be required to have a Property Identification Code (PIC) if you graze livestock on your property or have a livestock business such as a sale yard, abattoir or stock agent.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "1111"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it runs an abattoir or saleyard that receives livestock",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Property identification code",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/property-identification-code/39377",
+          "locator": "Description",
+          "quote": "You will be required to have a Property Identification Code (PIC) if you graze livestock on your property or have a livestock business such as a sale yard, abattoir or stock agent.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. The ABLIS listing quoted before is kept as a second source; the NLIS tagging and movement rules are in the Livestock Disease Control Regulations 2017.",
+  "records": [],
+  "ablis": [
+    "39377"
+  ],
+  "assessment": {
+    "summary": "Land where livestock are kept must have a property identification code, and livestock movements are recorded under the national system.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registering the property and recording livestock movements.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

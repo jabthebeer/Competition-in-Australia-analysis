@@ -1,0 +1,137 @@
+{
+  "id": "vic-asbestos-removal-licence",
+  "family": "asbestos-removal-licence",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "work-health-and-safety",
+  "title": "Hold an asbestos removal licence",
+  "kind": "licence",
+  "what": "Hold (or work for a holder of) a Class A licence to do Class A asbestos removal work, and a Class A or B licence to do Class B work.",
+  "laws": [
+    {
+      "title": "Occupational Health and Safety Regulations 2017 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "S.R. No. 22/2017",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/occupational-health-and-safety-regulations-2017",
+      "provisions": "rr 264, 265",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Occupational Health and Safety Regulations 2017 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/occupational-health-and-safety-regulations-2017",
+      "locator": "r 264 (S.R. No. 22/2017, authorised version 018, saved by the owner)",
+      "quote": "A person must not perform Class A asbestos removal work unless that person— (a) holds a Class A asbestos removal licence;",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Occupational Health and Safety Regulations 2017 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/occupational-health-and-safety-regulations-2017",
+      "locator": "r 265 (S.R. No. 22/2017, authorised version 018, saved by the owner)",
+      "quote": "A person must not perform Class B asbestos removal work unless that person— (a) holds a Class A asbestos removal licence or a Class B asbestos removal licence;",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "vic-worksafe"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "WorkSafe Victoria",
+      "bodies": [
+        "vic-worksafe"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues asbestos removal licences and enforces the duty.",
+      "sources": [
+        {
+          "title": "Summary of the OHS Act 2004: General OHS Duties",
+          "publisher": "WorkSafe Victoria",
+          "url": "https://www.worksafe.vic.gov.au/summary-ohs-act-2004-general-ohs-duties",
+          "locator": "Duties of employers to employees and contractors (section 21)",
+          "quote": "The OHS Act requires all employers to provide and maintain a working environment that is safe and without risks to health. This duty is to be met so far as is reasonably practicable.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the business removes friable asbestos, or more than 10 square metres of non-friable asbestos.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it removes asbestos",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business that removes asbestos; mostly demolition, construction trades and specialist asbestos removalists.",
+      "sources": [
+        {
+          "title": "Occupational Health and Safety Regulations 2017 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/statutory-rules/occupational-health-and-safety-regulations-2017",
+          "locator": "r 264 (S.R. No. 22/2017, authorised version 018, saved by the owner)",
+          "quote": "A person must not perform Class A asbestos removal work unless that person— (a) holds a Class A asbestos removal licence;",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. Victoria defines Class A and Class B asbestos removal work in its own regulations.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Removing friable asbestos, or more than 10 square metres of non-friable asbestos, needs a class A or class B asbestos removal licence held by the business doing it.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, with qualified supervisors and set procedures, is needed before a business can take on asbestos removal work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; the health benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

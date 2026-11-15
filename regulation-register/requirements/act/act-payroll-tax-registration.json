@@ -1,0 +1,159 @@
+{
+  "id": "act-payroll-tax-registration",
+  "family": "payroll-tax-registration",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "payroll-tax",
+  "title": "Register for and pay payroll tax",
+  "kind": "tax-or-levy",
+  "what": "Register with the state revenue office and pay payroll tax once wages paid in Australia pass the state's threshold.",
+  "laws": [
+    {
+      "title": "Payroll Tax Act 2011 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "A2011-18",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2011-18/20250701-88946/PDF/2011-18.PDF",
+      "provisions": "s 86; Sch 1",
+      "applied": false
+    },
+    {
+      "title": "Taxation Administration (Amounts and Rates—Payroll Tax) Determination 2026",
+      "jurisdiction": "ACT",
+      "kind": "legislative-instrument",
+      "register_id": "DI2026-151",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-151/current/PDF/2026-151.PDF",
+      "provisions": "para (a), (b)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Payroll Tax Act 2011 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2011-18/20250701-88946/PDF/2011-18.PDF",
+      "locator": "s 86(2), (3) (republication of 1 Jul 2025)",
+      "quote": "(2) The employer must apply for registration as an employer under this Act. (3) The application for registration must be made to the commissioner within 7 days after the end of the month.",
+      "accessed": "2026-11-06",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "act-cmtedd"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "ACT Revenue Office (Commissioner for ACT Revenue)",
+      "bodies": [
+        "act-cmtedd"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2011 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2011-18/20250701-88946/PDF/2011-18.PDF",
+          "locator": "s 4, words naming the body (found 12 Nov 2026)",
+          "quote": "commissioner believes on reasonable grounds that a person may leave Australia before any payroll tax becomes payable by the person, the tax is payable on the day fixed by the commissioner by notice served on the person.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "payroll",
+      "test": ">",
+      "value": 1750000.0,
+      "unit": "AUD of taxable wages a financial year (annual threshold)",
+      "as_at": "2026-11-06",
+      "note": "Registration is triggered month by month, when wages pass the monthly or weekly equivalent; groups share one threshold.",
+      "sources": [
+        {
+          "title": "Taxation Administration (Amounts and Rates—Payroll Tax) Determination 2026",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-151/current/PDF/2026-151.PDF",
+          "locator": "para (a)",
+          "quote": "(a) The annual threshold amount for the purposes of schedule 1 of the Act is $1 750 000.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer, by taxable wages; the Act's exemptions are not yet recorded.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2011 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2011-18/20250701-88946/PDF/2011-18.PDF",
+          "locator": "s 86(2), (3) (republication of 1 Jul 2025)",
+          "quote": "(2) The employer must apply for registration as an employer under this Act. (3) The application for registration must be made to the commissioner within 7 days after the end of the month.",
+          "accessed": "2026-11-06",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The threshold is set by determination under the Taxation Administration Act 1999 (ACT), s 139; DI2026-151 lowered it from $2 million from 1 July 2026.",
+  "records": [
+    "act-payroll-tax"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A tax on wages above a tax-free threshold. The threshold makes it a tax on growing past a certain size, and exemptions narrow the base; a broad, flat payroll tax would distort less.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "The threshold is a tax on growing past it, which can hold firms below it.",
+        "positions": [
+          "smaller"
+        ]
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Thresholds and exemptions make the tax fall unevenly across employers, distorting hiring and firm size.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "Marks from the register's assessment of the same law (act-payroll-tax). Evidence on bunching is mixed: e61 found strong bunching at South Australia's threshold; Treasury found little at most states' thresholds before 2015.",
+    "evidence": [
+      "https://e61.in/wp-content/uploads/2024/08/A_Counterproductive_Tax_Cut_.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

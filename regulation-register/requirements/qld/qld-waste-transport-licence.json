@@ -1,0 +1,225 @@
+{
+  "id": "qld-waste-transport-licence",
+  "family": "waste-transport-licence",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "waste-management",
+  "title": "Hold a licence or registration to transport waste",
+  "kind": "licence",
+  "what": "Hold the environment regulator's licence, registration or permit before transporting controlled or regulated waste.",
+  "laws": [
+    {
+      "title": "Environmental Protection Act 1994 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1994-062",
+      "register_url": "https://www.legislation.qld.gov.au/view/html/inforce/current/act-1994-062",
+      "provisions": "s 426; Environmental Protection Regulation 2019 sch 2 s 57",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environmental Protection Act 1994 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+      "locator": "s 426(1) (current)",
+      "quote": "426 Environmental authority required for particular environmentally relevant activities (1) A person must not carry out an environmentally relevant activity unless the person holds, or is acting under, an environmental authority for the activity.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Environmental Protection Regulation 2019 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2019-0155",
+      "locator": "sch 2 s 57(1) (current)",
+      "quote": "57 Regulated waste transport (1) Regulated waste transport (the relevant activity ) consists of transporting regulated waste in a vehicle.",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "qld-detsi"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of the Environment, Tourism, Science and Innovation (administering authority)",
+      "bodies": [
+        "qld-detsi"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environmental Protection Act 1994 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+          "locator": "s 70, words naming the body (found 12 Nov 2026)",
+          "quote": "administering authority means— (a) for a matter, the administration and enforcement of which has been devolved to a local government under section 514 —the local government;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2919"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Liquid, hazardous and industrial waste collection.",
+      "sources": [
+        {
+          "title": "Environmental Protection Act 1994 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+          "locator": "s 426(1) (current)",
+          "quote": "426 Environmental authority required for particular environmentally relevant activities (1) A person must not carry out an environmentally relevant activity unless the person holds, or is acting under, an environmental authority for the activity.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Environmental Protection Regulation 2019 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2019-0155",
+          "locator": "sch 2 s 57(1) (current)",
+          "quote": "57 Regulated waste transport (1) Regulated waste transport (the relevant activity ) consists of transporting regulated waste in a vehicle.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "2911"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environmental Protection Act 1994 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+          "locator": "s 426(1) (current)",
+          "quote": "426 Environmental authority required for particular environmentally relevant activities (1) A person must not carry out an environmentally relevant activity unless the person holds, or is acting under, an environmental authority for the activity.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Environmental Protection Regulation 2019 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2019-0155",
+          "locator": "sch 2 s 57(1) (current)",
+          "quote": "57 Regulated waste transport (1) Regulated waste transport (the relevant activity ) consists of transporting regulated waste in a vehicle.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "2921",
+        "2922",
+        "4610"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it transports controlled or regulated waste",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environmental Protection Act 1994 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-062",
+          "locator": "s 426(1) (current)",
+          "quote": "426 Environmental authority required for particular environmentally relevant activities (1) A person must not carry out an environmentally relevant activity unless the person holds, or is acting under, an environmental authority for the activity.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Environmental Protection Regulation 2019 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2019-0155",
+          "locator": "sch 2 s 57(1) (current)",
+          "quote": "57 Regulated waste transport (1) Regulated waste transport (the relevant activity ) consists of transporting regulated waste in a vehicle.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Transporting regulated waste needs an environmental licence, registration or permit, and each load is tracked.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence or registration is needed before transporting regulated waste.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Load tracking, vehicle conditions and reporting.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; marks follow the family's other states. Drafted 12 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

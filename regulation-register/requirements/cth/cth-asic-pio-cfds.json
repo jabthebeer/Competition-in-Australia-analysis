@@ -1,0 +1,130 @@
+{
+  "id": "cth-asic-pio-cfds",
+  "family": "asic-pio-cfds",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "financial-services",
+  "title": "Issue contracts for difference to retail clients only under ASIC's conditions",
+  "kind": "standard",
+  "what": "ASIC's product intervention order lets CFDs be issued to retail clients only under its conditions (such as leverage limits).",
+  "laws": [
+    {
+      "title": "ASIC Corporations (Product Intervention Order—Contracts for Difference) Instrument 2020/986",
+      "jurisdiction": "CTH",
+      "kind": "legislative-instrument",
+      "register_id": "F2020L01338",
+      "register_url": "https://www.legislation.gov.au/F2020L01338/latest/text",
+      "provisions": "7(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "ASIC Corporations (Product Intervention Order—Contracts for Difference) Instrument 2020/986",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/F2020L01338/latest/text",
+      "locator": "s 7(1) (compilation F2020L01338 from 2020-10-23)",
+      "quote": "(1) A CFD issuer must not issue a CFD to a retail client except in accordance with the conditions specified in subsections 7(2) to (5).",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Corporations Act 2001, except to the extent administered by the",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6411",
+        "6419"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it issues or arranges CFDs for retail clients",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "ASIC Corporations (Product Intervention Order—Contracts for Difference) Instrument 2020/986",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/F2020L01338/latest/text",
+          "locator": "s 7(1) (compilation F2020L01338 from 2020-10-23)",
+          "quote": "(1) A CFD issuer must not issue a CFD to a retail client except in accordance with the conditions specified in subsections 7(2) to (5).",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "ASIC's product intervention order lets CFDs be issued to retail clients only under its conditions (such as leverage limits).",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Leverage, margin and disclosure conditions.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

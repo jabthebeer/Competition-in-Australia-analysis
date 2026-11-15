@@ -1,0 +1,149 @@
+{
+  "id": "wa-driving-instructor-licence",
+  "family": "driving-instructor-licence",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a driving instructor licence",
+  "kind": "licence",
+  "what": "Hold the state's driving instructor licence, authority or accreditation before giving driving lessons for reward.",
+  "laws": [
+    {
+      "title": "Motor Vehicle Drivers Instructors Act 1963 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a526",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_a526.html",
+      "provisions": "s 5(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Motor Vehicle Drivers Instructors Act 1963 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_27614.docx",
+      "locator": "s 5(1)(a) (current version)",
+      "quote": "5. Driving instructors required to have licence or permit (1) After the expiration of 3 months from the coming into operation of this Act, a person shall not — (a) act as a driving instructor in respect of a motor vehicle, unless authorised to do so by a licence or permit held by the person;",
+      "accessed": "2026-11-10",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "wa-dtmi"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Department of Transport (WA)",
+      "bodies": [
+        "wa-dtmi"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Motor Vehicle Drivers Instructors Act 1963 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_27614.docx",
+          "locator": "s 2, words naming the body (found 12 Nov 2026)",
+          "quote": "tation In this Act, unless the contrary intention appears — Director General means the chief executive officer of the department of the Public Service principally assisting the Minister in the administration of this Act;",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8219"
+      ],
+      "exclude": [],
+      "activities": [
+        "Driving school operation"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Motor Vehicle Drivers Instructors Act 1963 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_27614.docx",
+          "locator": "s 5(1)(a) (current version)",
+          "quote": "5. Driving instructors required to have licence or permit (1) After the expiration of 3 months from the coming into operation of this Act, a person shall not — (a) act as a driving instructor in respect of a motor vehicle, unless authorised to do so by a licence or permit held by the person;",
+          "accessed": "2026-11-10",
+          "checked": "document",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Driving instructors licence",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/wa/driving-instructors-licence/16993",
+          "locator": "Description",
+          "quote": "You will need this licence if you intend to teach a person to drive a motor vehicle for reward or other payment.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the law's current text on 10 Nov 2026, replacing the ABLIS-first draft (methods rule 5a); the ABLIS listing stays as a reach source.",
+  "records": [],
+  "ablis": [
+    "16993"
+  ],
+  "assessment": {
+    "summary": "Driving instructors need a licence, with a test and checks, before giving lessons for reward.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "An instructor's licence is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Licensing narrows who may teach driving for reward.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

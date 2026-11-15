@@ -1,0 +1,71 @@
+<title>ALICIA (beta)</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
+<style>
+/*__SITE_CSS__*/
+/* Layout: the Home page. What the site is; the state of play in a few figures, each a link to the page that shows
+   it; then three questions to start from, each with the page that answers it (the third picks an industry and a
+   state for the Industry lens); then the other pages. */
+.home { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 16px; }
+.route { display: flex; flex-direction: column; gap: 10px; padding: 18px; }
+.route-view { margin: 0; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.route p { margin: 0; color: var(--ink-2); }
+.route .btn { margin-top: auto; padding-block: 8px; text-align: center; }
+.route-pick { display: grid; grid-template-columns: minmax(0, 1fr) 6rem; gap: 10px; align-items: end; }
+.field { display: grid; gap: 4px; align-content: start; }
+.field label { font-size: var(--step--1); color: var(--ink-2); }
+.field select { min-height: 44px; width: 100%; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <!--__NAV__-->
+    <p class="kicker">Australian Legislation Impact on Competition Industry Analysis</p>
+    <h1>Competition across Australian industries <!--__BETA__--></h1>
+    <p class="lede">Where competition is weak in Australia, which laws and barriers hold it back, and what governments could change.</p>
+  </header>
+
+  <main class="home">
+    <section class="block" aria-labelledby="h-glance">
+      <h2 id="h-glance">Competition at a glance</h2>
+      <div class="tiles headline">
+      <!--__FIGURES__-->
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="h-start">
+      <h2 id="h-start">Start with a question</h2>
+      <div class="routes">
+      <!--__ROUTES__-->
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="h-more">
+      <h2 id="h-more">More</h2>
+      <div class="more-links">
+      <!--__MORE__-->
+      </div>
+    </section>
+  </main>
+
+  <!--__FOOT__-->
+</div>
+
+<script>
+// Links made before the legislation menu (now Legislative levers influencing competition) moved to menu.html
+// pointed to a change on the home page (index.html#<id>): send them on to the menu.
+if (location.hash.length > 1) location.replace("menu.html" + location.hash);
+// "See this industry" opens the Industry lens on the industry and state chosen.
+(() => {
+  const ind = document.getElementById("pickInd"), st = document.getElementById("pickState"), go = document.getElementById("pickGo");
+  if (!ind || !st || !go) return;
+  const base = go.getAttribute("href").split("#")[0];
+  const set = () => { go.href = `${base}#division=${encodeURIComponent(ind.value)}&state=${encodeURIComponent(st.value)}`; };
+  ind.addEventListener("change", set);
+  st.addEventListener("change", set);
+  set();
+})();
+</script>

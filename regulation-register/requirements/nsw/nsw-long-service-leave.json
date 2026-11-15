@@ -1,0 +1,133 @@
+{
+  "id": "nsw-long-service-leave",
+  "family": "long-service-leave",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Give employees long service leave",
+  "kind": "standard",
+  "what": "Give each employee long service leave (or payment in lieu) once they reach the qualifying period of service, and keep long service leave records.",
+  "laws": [
+    {
+      "title": "Long Service Leave Act 1955 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1955-038",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-07-01/act-1955-038",
+      "provisions": "s 4; s 8",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Long Service Leave Act 1955 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-07-01/act-1955-038",
+      "locator": "s 4(1) (version of 2024-07-01)",
+      "quote": "(1) Except as otherwise provided in this Act, every worker shall be entitled to long service leave on ordinary pay in respect of the service of the worker with an employer.",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-07-01/act-1955-038"
+    },
+    {
+      "title": "Long Service Leave Act 1955 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-07-01/act-1955-038",
+      "locator": "s 8(1) (version of 2024-07-01)",
+      "quote": "(1) An employer must ensure a long service leave record is kept in relation to each worker employed by the employer.",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-07-01/act-1955-038"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Inspectors under the Industrial Relations Act 1996 (NSW Industrial Relations)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Long Service Leave Act 1955 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-07-01/act-1955-038",
+          "locator": "s 3(1), definition of Inspector (version of 2024-07-01)",
+          "quote": "Inspector means an inspector appointed under the Industrial Relations Act 1996.",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-07-01/act-1955-038"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer of workers in NSW, except where the Act's exemptions apply (for example, an approved scheme).",
+      "sources": [
+        {
+          "title": "Long Service Leave Act 1955 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-07-01/act-1955-038",
+          "locator": "s 4(1) (version of 2024-07-01)",
+          "quote": "(1) Except as otherwise provided in this Act, every worker shall be entitled to long service leave on ordinary pay in respect of the service of the worker with an employer.",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-07-01/act-1955-038"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Employers must give long service leave after a long period of service with them. The entitlement builds up with one employer and is mostly lost on moving, which ties workers to employers; it also adds record keeping.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Leave builds up with one employer and is mostly lost on moving, which discourages job changes (unlike portable schemes).",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Marked from the law's design against the framework's guide; no evaluation of state long service leave and job mobility was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

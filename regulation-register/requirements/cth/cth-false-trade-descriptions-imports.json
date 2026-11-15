@@ -1,0 +1,156 @@
+{
+  "id": "cth-false-trade-descriptions-imports",
+  "family": "false-trade-descriptions-imports",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "customs-and-excise",
+  "title": "Do not import goods with a false trade description",
+  "kind": "standard",
+  "what": "A person must not import goods that carry a false trade description, such as a false country of origin.",
+  "laws": [
+    {
+      "title": "Commerce (Trade Descriptions) Act 1905",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1905A00016",
+      "register_url": "https://www.legislation.gov.au/C1905A00016/latest/text",
+      "provisions": "9(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Commerce (Trade Descriptions) Act 1905",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1905A00016/latest/text",
+      "locator": "s 9(1) (compilation C2024C00554 from 2024-10-14)",
+      "quote": "9 Importation of falsely marked goods (1) A person shall not import any goods to which a false trade description is applied",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-abf",
+    "cth-home-affairs"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Border Force",
+      "bodies": [
+        "cth-abf"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Commerce (Trade Descriptions) Act 1905",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1905A00016/latest/text",
+          "locator": "s 1A (compilation C2024C00554 from 2024-10-14)",
+          "quote": "1A General administration of Act in relation to imports The Comptroller-General of Customs has the general administration of this Act in so far as it relates to imports.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Home Affairs",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 10 (Department of Home Affairs), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Commerce (Trade Descriptions) Act 1905 Counter-Terrorism (Temporary Exclusion Orders) Act 2019",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it imports goods",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Commerce (Trade Descriptions) Act 1905",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1905A00016/latest/text",
+          "locator": "s 9(1) (compilation C2024C00554 from 2024-10-14)",
+          "quote": "9 Importation of falsely marked goods (1) A person shall not import any goods to which a false trade description is applied",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A person must not import goods that carry a false trade description, such as a false country of origin.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Accurate descriptions of imported goods help buyers compare products.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Checks that imported goods are correctly described.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

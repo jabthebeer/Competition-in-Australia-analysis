@@ -1,0 +1,145 @@
+{
+  "id": "nt-portable-long-service-registration-construction",
+  "family": "portable-long-service-registration-construction",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register with the construction industry long service scheme",
+  "kind": "registration",
+  "what": "Register with the scheme as an employer of workers covered by the state or territory's portable long service leave scheme.",
+  "laws": [
+    {
+      "title": "Construction Industry Long Service Leave and Benefits Act 2005 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://legislation.nt.gov.au/Legislation/CONSTRUCTION-INDUSTRY-LONG-SERVICE-LEAVE-AND-BENEFITS-ACT-2005",
+      "provisions": "registration",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Construction Industry Long Service Leave and Benefits Act 2005 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11705",
+      "locator": "section headed 'Registration', (1)(a) (current reprint)",
+      "quote": "Registration (1) A person must apply to be registered as an employer within the time mentioned in subsection (3) if the person: (a) employs one or more registered employees to carry out construction work in the Territory",
+      "accessed": "2026-11-10",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "NT Build (Construction Industry Long Service Leave and Benefits Board)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Construction Industry Long Service Leave and Benefits Act 2005 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11705",
+          "locator": "s 6, words naming the body (found 12 Nov 2026)",
+          "quote": "Board means the Board established by section 53.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "E"
+      ],
+      "exclude": [
+        "3211"
+      ],
+      "activities": [],
+      "condition": "if it employs workers in the building and construction industry as the state scheme defines it",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Construction Industry Long Service Leave and Benefits Act 2005 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11705",
+          "locator": "section headed 'Registration', (1)(a) (current reprint)",
+          "quote": "Registration (1) A person must apply to be registered as an employer within the time mentioned in subsection (3) if the person: (a) employs one or more registered employees to carry out construction work in the Territory",
+          "accessed": "2026-11-10",
+          "checked": "document",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Portable long service leave employer registration",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/nt/portable-long-service-leave-employer-registration/3483",
+          "locator": "Description",
+          "quote": "You will need to register with NT Build if you are an employer who employs construction workers that are registered for the portable long service leave scheme.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the law's current text on 10 Nov 2026, replacing the ABLIS-first draft (methods rule 5a); the ABLIS listing stays as a reach source.",
+  "records": [],
+  "ablis": [
+    "3483"
+  ],
+  "assessment": {
+    "summary": "Employers in a covered industry must register with its portable long service leave scheme.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": 1,
+        "reason": "Workers keep their long service entitlement when they move between employers in the industry.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registration, quarterly service returns and the levy.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

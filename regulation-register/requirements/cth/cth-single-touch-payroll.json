@@ -1,0 +1,143 @@
+{
+  "id": "cth-single-touch-payroll",
+  "family": "single-touch-payroll",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "business-and-tax-registration",
+  "title": "Report payroll to the ATO each payday (Single Touch Payroll)",
+  "kind": "reporting",
+  "what": "Report amounts withheld and wages and other qualifying earnings paid to employees to the ATO, by the day each is paid.",
+  "laws": [
+    {
+      "title": "Taxation Administration Act 1953",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1953A00001",
+      "register_url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+      "provisions": "Schedule 1, s 389-5",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Taxation Administration Act 1953",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+      "locator": "Schedule 1, s 389-5(1) (compilation C2026C00468, in force from 2026-10-01)",
+      "quote": "An entity must notify the Commissioner of an amount of a kind referred to in column 1 of an item in the following table on or before the day referred to in column 2 of that item, if the amount arises as a result of conduct of the entity (such as payment of an amount or provision of a benefit).",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ato",
+    "cth-treasury"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Australian Taxation Office",
+      "bodies": [
+        "cth-ato"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Taxation Administration Act 1953",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+          "locator": "s 3A (compilation C2026C00468 from 2026-10-01)",
+          "quote": "Part IA—Administration 3A General administration of Act The Commissioner has the general administration of this Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of the Treasury",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 15 (Department of the Treasury), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Taxation Administration Act 1953 Taxation (Interest on Non-resident Trust Distributions) Act 1990",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Exemptions in s 389-10 not yet checked.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Taxation Administration Act 1953",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1953A00001/latest/text",
+          "locator": "Schedule 1, s 389-5 (compilation C2026C00468, in force from 2026-10-01)",
+          "quote": "389-5 Required reporting by employers (1) An entity must notify the Commissioner",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "The exemptions in s 389-10 have not been read.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay details are reported through payroll software each payday; this replaced annual payment summaries, so the change in work is small: no material effect.",
+    "marks": [],
+    "main_driver": null,
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

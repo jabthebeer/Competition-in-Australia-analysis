@@ -1,0 +1,129 @@
+{
+  "id": "sa-environment-protection-licence",
+  "family": "environment-protection-licence",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Hold an environment protection licence for listed activities",
+  "kind": "licence",
+  "what": "Hold an environment protection licence (or authorisation) before carrying on an activity the state lists, such as large manufacturing, waste, extractive or energy activities, and meet its conditions.",
+  "laws": [
+    {
+      "title": "Environment Protection Act 1993 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1993.76",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+      "provisions": "s 36",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environment Protection Act 1993 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+      "locator": "s 36(1) (version of 2024-03-01)",
+      "quote": "(1) A person must not undertake a prescribed activity of environmental significance except as authorised by an environmental authorisation in the form of a licence under this Part.",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-03-01/1993.76.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Environment Protection Authority (SA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Issues the licences and enforces them.",
+      "sources": [
+        {
+          "title": "Environment Protection Act 1993 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+          "locator": "s 3, definition of Authority (version of 2024-03-01)",
+          "quote": "Authority means the Environment Protection Authority established under Division 1 of Part 3",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-03-01/1993.76.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the business carries on an activity in the state's list (a schedule to the Act or regulations).",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries on an activity the state lists as needing an environment protection licence",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business carrying on a listed activity (such as large manufacturing, waste, extractive, energy and intensive agriculture activities); the lists differ by state and are not yet coded class by class.",
+      "sources": [
+        {
+          "title": "Environment Protection Act 1993 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+          "locator": "s 36(1) (version of 2024-03-01)",
+          "quote": "(1) A person must not undertake a prescribed activity of environmental significance except as authorised by an environmental authorisation in the form of a licence under this Part.",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-03-01/1993.76.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Businesses carrying on the activities a state lists (large manufacturing, waste, extractive, energy and similar) need an environment protection licence, with conditions, monitoring and fees, before and while operating.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence is needed before the listed activities can start.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Licence conditions, monitoring, reporting and annual fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; the environmental benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

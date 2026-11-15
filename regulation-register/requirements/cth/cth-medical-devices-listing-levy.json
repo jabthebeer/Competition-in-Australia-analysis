@@ -1,0 +1,131 @@
+{
+  "id": "cth-medical-devices-listing-levy",
+  "family": "medical-devices-listing-levy",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "therapeutic-goods-and-poisons",
+  "title": "Pay the levy on listed medical devices and human tissue products",
+  "kind": "tax-or-levy",
+  "what": "A levy is imposed each financial year for the ongoing listing of each listed item.",
+  "laws": [
+    {
+      "title": "Private Health Insurance (Medical Devices and Human Tissue Products Levy) Act 2007",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2007A00033",
+      "register_url": "https://www.legislation.gov.au/C2007A00033/latest/text",
+      "provisions": "4(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Private Health Insurance (Medical Devices and Human Tissue Products Levy) Act 2007",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2007A00033/latest/text",
+      "locator": "s 4(1) (compilation C2023C00167 from 2023-07-01)",
+      "quote": "4 Imposition of levy (1) Levy is imposed for a financial year in respect of the ongoing listing of each listed item.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-dhda"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Health, Disability and Ageing",
+      "bodies": [
+        "cth-dhda"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 9 (Department of Health, Disability and Ageing), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Private Health Insurance (Medical Devices and Human Tissue Products Levy) Act 2007",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2412",
+        "3720",
+        "3739"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sponsors a listed medical device or human tissue product",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Private Health Insurance (Medical Devices and Human Tissue Products Levy) Act 2007",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2007A00033/latest/text",
+          "locator": "s 4(1) (compilation C2023C00167 from 2023-07-01)",
+          "quote": "4 Imposition of levy (1) Levy is imposed for a financial year in respect of the ongoing listing of each listed item.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "A levy is imposed each financial year for the ongoing listing of each listed item.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "An annual levy for each listed item.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

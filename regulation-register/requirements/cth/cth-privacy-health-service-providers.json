@@ -1,0 +1,190 @@
+{
+  "id": "cth-privacy-health-service-providers",
+  "family": "privacy-health-service-providers",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Comply with the Australian Privacy Principles (health services, any size)",
+  "kind": "standard",
+  "what": "A business that provides a health service and holds health information must follow the Australian Privacy Principles whatever its turnover.",
+  "laws": [
+    {
+      "title": "Privacy Act 1988",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03712",
+      "register_url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+      "provisions": "ss 6D(4)(b), 15",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Privacy Act 1988",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+      "locator": "s 15 (compilation C2026C00227, in force from 2026-06-04)",
+      "quote": "An APP entity must not do an act, or engage in a practice, that breaches an Australian Privacy Principle.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-agd"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Attorney-General's Department",
+      "bodies": [
+        "cth-agd"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 2 (Attorney-General's Department), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Privacy Act 1988, except to the extent administered by the",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Providing a health service and holding health information.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8401",
+        "8402",
+        "8511",
+        "8512",
+        "8520",
+        "8531",
+        "8532",
+        "8533",
+        "8534",
+        "8539",
+        "8591",
+        "8599"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every provider of a health service, whatever its turnover.",
+      "sources": [
+        {
+          "title": "Privacy Act 1988",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+          "locator": "s 6D(4)(b) (compilation C2026C00227, in force from 2026-06-04)",
+          "quote": "(b) provides a health service to another individual and holds any health information except in an employee record;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "8601"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides health services",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Privacy Act 1988",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+          "locator": "s 6D(4)(b) (compilation C2026C00227, in force from 2026-06-04)",
+          "quote": "(b) provides a health service to another individual and holds any health information except in an employee record;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4271"
+      ],
+      "exclude": [],
+      "activities": [
+        "Pharmacy, retail, operation"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Privacy Act 1988",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+          "locator": "s 6D(4)(b) (compilation C2026C00227, in force from 2026-06-04)",
+          "quote": "(b) provides a health service to another individual and holds any health information except in an employee record;",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Health service providers must meet the Australian Privacy Principles whatever their turnover.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Privacy policies, handling rules and breach notification, including for small practices.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

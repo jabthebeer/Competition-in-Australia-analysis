@@ -1,0 +1,173 @@
+{
+  "id": "vic-exploration-licence",
+  "family": "exploration-licence",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "mining-and-petroleum-titles",
+  "title": "Hold an exploration licence",
+  "kind": "licence",
+  "what": "Hold an exploration licence (or other mining authorisation) from the state before prospecting or exploring for minerals.",
+  "laws": [
+    {
+      "title": "Mineral Resources (Sustainable Development) Act 1990 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "92/1990",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/mineral-resources-sustainable-development-act-1990",
+      "provisions": "s 8",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Mineral Resources (Sustainable Development) Act 1990 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/mineral-resources-sustainable-development-act-1990",
+      "locator": "s 8(1) (authorised version 134, saved by the owner)",
+      "quote": "(1) A person, other than the Crown, must not prospect, fossick or otherwise search for minerals, or carry out any exploration or mining, on any land unless—",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Mineral Resources (Sustainable Development) Act 1990 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/mineral-resources-sustainable-development-act-1990",
+      "locator": "s 8(1)(a) (authorised version 134, saved by the owner)",
+      "quote": "(a) the person does so in accordance with a licence, a miner's right or tourist fossicking authority; or",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "The Minister (Earth Resources Regulation)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Grants and cancels licences.",
+      "sources": [
+        {
+          "title": "Mineral Resources (Sustainable Development) Act 1990 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/mineral-resources-sustainable-development-act-1990",
+          "locator": "s 38(1) (authorised version 134, saved by the owner)",
+          "quote": "(1) The Minister may cancel a licence, by instrument served on the licensee, if—",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1012"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Mineral exploration.",
+      "sources": [
+        {
+          "title": "Mineral Resources (Sustainable Development) Act 1990 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/mineral-resources-sustainable-development-act-1990",
+          "locator": "s 8(1) (authorised version 134, saved by the owner)",
+          "quote": "(1) A person, other than the Crown, must not prospect, fossick or otherwise search for minerals, or carry out any exploration or mining, on any land unless—",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "0801",
+        "0802",
+        "0803",
+        "0804",
+        "0805",
+        "0806",
+        "0807",
+        "0809",
+        "0990"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it explores for minerals outside an existing mining lease",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Mineral Resources (Sustainable Development) Act 1990 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/mineral-resources-sustainable-development-act-1990",
+          "locator": "s 8(1) (authorised version 134, saved by the owner)",
+          "quote": "(1) A person, other than the Crown, must not prospect, fossick or otherwise search for minerals, or carry out any exploration or mining, on any land unless—",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. Section 8 covers exploration, prospecting and mining; the licence types are in Part 2.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Exploring for minerals needs an exploration licence over a defined area, with a work program and security.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, work program and security deposit are needed before exploring.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Expenditure commitments, reporting and rehabilitation obligations.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

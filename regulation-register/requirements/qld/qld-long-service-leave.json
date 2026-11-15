@@ -1,0 +1,123 @@
+{
+  "id": "qld-long-service-leave",
+  "family": "long-service-leave",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Give employees long service leave",
+  "kind": "standard",
+  "what": "Give each employee long service leave (or payment in lieu) once they reach the qualifying period of service, and keep long service leave records.",
+  "laws": [
+    {
+      "title": "Industrial Relations Act 2016 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2016-063",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2016-063",
+      "provisions": "ch 2, pt 3, div 9 (ss 95–111)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Industrial Relations Act 2016 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2016-063",
+      "locator": "s 95(2) (current)",
+      "quote": "(2) The employee is entitled to long service leave, on full pay, of— (a) if the employee has completed 10 years continuous service—8.6667 weeks;",
+      "accessed": "2026-11-12",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Inspectors under the Industrial Relations Act 2016 (Office of Industrial Relations)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Industrial Relations Act 2016 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2016-063",
+          "locator": "s 111(3) (current)",
+          "quote": "the employee’s legal personal representative or an inspector may recover the amount as unpaid wages.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer of employees in Queensland covered by the Act's long service leave division.",
+      "sources": [
+        {
+          "title": "Industrial Relations Act 2016 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2016-063",
+          "locator": "s 95(2) (current)",
+          "quote": "(2) The employee is entitled to long service leave, on full pay, of— (a) if the employee has completed 10 years continuous service—8.6667 weeks;",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Record-keeping duties for long service leave are in the Act's general time and wages record provisions, not yet quoted.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Employers must give long service leave after a long period of service with them. The entitlement builds up with one employer and is mostly lost on moving, which ties workers to employers; it also adds record keeping.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Leave builds up with one employer and is mostly lost on moving, which discourages job changes (unlike portable schemes).",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Marked from the law's design against the framework's guide; no evaluation of state long service leave and job mobility was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

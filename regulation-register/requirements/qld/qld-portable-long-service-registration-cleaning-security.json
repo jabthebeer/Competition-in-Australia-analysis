@@ -1,0 +1,143 @@
+{
+  "id": "qld-portable-long-service-registration-cleaning-security",
+  "family": "portable-long-service-registration-cleaning-security",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register with the portable long service scheme (cleaning, security)",
+  "kind": "registration",
+  "what": "Register with the scheme as an employer of workers covered by the state or territory's portable long service leave scheme.",
+  "laws": [
+    {
+      "title": "Contract Cleaning Industry (Portable Long Service Leave) Act 2005 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2005-021",
+      "register_url": "https://www.legislation.qld.gov.au/view/html/inforce/current/act-2005-021",
+      "provisions": "s 53(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Contract Cleaning Industry (Portable Long Service Leave) Act 2005 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2005-021",
+      "locator": "s 53(1) (current)",
+      "quote": "53 Application for registration as a registered employer (1) A person must apply to become a registered employer within 7 days after becoming an employer.",
+      "accessed": "2026-11-10",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "QLeave (Contract Cleaning Industry (Portable Long Service Leave) Authority)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Contract Cleaning Industry (Portable Long Service Leave) Act 2005 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2005-021",
+          "locator": "s 2, words naming the body (found 12 Nov 2026)",
+          "quote": "authority means the Contract Cleaning Industry (Portable Long Service Leave) Authority established under section 13 .",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7311"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Contract Cleaning Industry (Portable Long Service Leave) Act 2005 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2005-021",
+          "locator": "s 53(1) (current)",
+          "quote": "53 Application for registration as a registered employer (1) A person must apply to become a registered employer within 7 days after becoming an employer.",
+          "accessed": "2026-11-10",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Contract cleaning industry portable long service leave employer registration",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/qld/contract-cleaning-industry-portable-long-service-leave-employer-registration/4112",
+          "locator": "Description",
+          "quote": "If you are an employer in the contract cleaning industry in Queensland you must register with QLeave.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the law's current text on 10 Nov 2026, replacing the ABLIS-first draft (methods rule 5a); the ABLIS listing stays as a reach source.",
+  "records": [],
+  "ablis": [
+    "4112"
+  ],
+  "assessment": {
+    "summary": "Employers in a covered industry must register with its portable long service leave scheme.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": 1,
+        "reason": "Workers keep their long service entitlement when they move between employers in the industry.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registration, quarterly service returns and the levy.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

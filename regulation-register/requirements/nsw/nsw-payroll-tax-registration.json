@@ -1,0 +1,150 @@
+{
+  "id": "nsw-payroll-tax-registration",
+  "family": "payroll-tax-registration",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "payroll-tax",
+  "title": "Register for and pay payroll tax",
+  "kind": "tax-or-levy",
+  "what": "Register with the state revenue office and pay payroll tax once wages paid in Australia pass the state's threshold.",
+  "laws": [
+    {
+      "title": "Payroll Tax Act 2007 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2007-021",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2007-021",
+      "provisions": "s 86; Sch 1, cl 1",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Payroll Tax Act 2007 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2007-021",
+      "locator": "s 86(1) (version of 2 Dec 2024)",
+      "quote": "An employer who is not already registered must apply for registration as an employer under this Act if— (a) during a month in a financial year the employer pays or is liable to pay, anywhere, wages of more than the weekly threshold amount per week that are wholly or partly taxable wages,",
+      "accessed": "2026-11-06",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-12-02/act-2007-021"
+    }
+  ],
+  "administered_by": [
+    "nsw-revenue"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Revenue NSW (Chief Commissioner of State Revenue)",
+      "bodies": [
+        "nsw-revenue"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2007 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2007-021",
+          "locator": "s 86, words naming the body (found 12 Nov 2026)",
+          "quote": "Chief Commissioner may cancel the registration of a person as an employer if satisfied that the person has ceased to pay or to have a liability to pay wages as described in subsection (1).",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-02/act-2007-021"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "payroll",
+      "test": ">",
+      "value": 1200000.0,
+      "unit": "AUD of taxable wages a financial year (annual threshold)",
+      "as_at": "2026-11-06",
+      "note": "Registration is triggered month by month, when wages pass the monthly or weekly equivalent; groups share one threshold.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2007 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2007-021",
+          "locator": "Sch 1, cl 1, definition of TA (version of 2 Dec 2024)",
+          "quote": "(f) for the financial year commencing on 1 July 2020 and subsequent financial years—$1,200,000.",
+          "accessed": "2026-11-06",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-02/act-2007-021"
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Every employer, by taxable wages; the Act's exemptions are not yet recorded.",
+      "sources": [
+        {
+          "title": "Payroll Tax Act 2007 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2007-021",
+          "locator": "s 86(1) (version of 2 Dec 2024)",
+          "quote": "An employer who is not already registered must apply for registration as an employer under this Act if— (a) during a month in a financial year the employer pays or is liable to pay, anywhere, wages of more than the weekly threshold amount per week that are wholly or partly taxable wages,",
+          "accessed": "2026-11-06",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-02/act-2007-021"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked.",
+  "records": [
+    "nsw-payroll-tax"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A tax on wages above a tax-free threshold. The threshold makes it a tax on growing past a certain size, and exemptions narrow the base; a broad, flat payroll tax would distort less.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "The threshold is a tax on growing past it, which can hold firms below it.",
+        "positions": [
+          "smaller"
+        ]
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Thresholds and exemptions make the tax fall unevenly across employers, distorting hiring and firm size.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "Marks from the register's assessment of the same law (nsw-payroll-tax). Evidence on bunching is mixed: e61 found strong bunching at South Australia's threshold; Treasury found little at most states' thresholds before 2015.",
+    "evidence": [
+      "https://e61.in/wp-content/uploads/2024/08/A_Counterproductive_Tax_Cut_.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

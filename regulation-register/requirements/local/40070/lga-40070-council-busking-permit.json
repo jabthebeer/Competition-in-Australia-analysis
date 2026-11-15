@@ -1,0 +1,136 @@
+{
+  "id": "lga-40070-council-busking-permit",
+  "family": "council-busking-permit",
+  "jurisdiction": "SA",
+  "tier": "local",
+  "lga": "40070",
+  "lga_name": "Adelaide",
+  "regime": null,
+  "title": "Get a permit to busk or perform in public places",
+  "kind": "licence",
+  "what": "Get the council's permit before busking or performing in streets, malls or other public places.",
+  "laws": [
+    {
+      "title": "Local Government Land By-Law 2024",
+      "jurisdiction": "SA",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://ablis.business.gov.au/service/sa/busking-permit-city-of-adelaide-council/3023",
+      "provisions": null,
+      "applied": false
+    },
+    {
+      "title": "Local Government Act 1999 South Australia",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://ablis.business.gov.au/service/sa/busking-permit-city-of-adelaide-council/3023",
+      "provisions": null,
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Busking permit city of adelaide council",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "url": "https://ablis.business.gov.au/service/sa/busking-permit-city-of-adelaide-council/3023",
+      "locator": "Description",
+      "quote": "You need a busking permit if you are a musician, artist, performer or small group and want to entertain in public places for donations.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Adelaide",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Busking permit city of adelaide council",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/sa/busking-permit-city-of-adelaide-council/3023",
+          "locator": "Description",
+          "quote": "You need a busking permit if you are a musician, artist, performer or small group and want to entertain in public places for donations.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "it performs for money in a street or other public place",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9002"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it performs in public places",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Busking permit city of adelaide council",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/sa/busking-permit-city-of-adelaide-council/3023",
+          "locator": "Description",
+          "quote": "You need a busking permit if you are a musician, artist, performer or small group and want to entertain in public places for donations.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Linked to the council's local law through its ABLIS listing (council local laws are not on a legislation register); the law's text is not quoted.",
+  "records": [],
+  "ablis": [
+    "3023"
+  ],
+  "assessment": {
+    "summary": "Busking or performing in public places needs the council's permit, with conditions on where and when.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A permit, and conditions on sites and times.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

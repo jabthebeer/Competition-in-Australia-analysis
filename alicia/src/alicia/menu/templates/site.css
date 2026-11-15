@@ -99,16 +99,94 @@ a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
 .mono, .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.92em; }
 .muted { color: var(--ink-2); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .small { font-size: var(--step--1); }
 header.top { display: grid; gap: 8px; }
 .kicker { margin: 0; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
 .lede { max-width: 72ch; color: var(--ink-2); margin: 0; }
-.site-nav { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
-.site-nav a { padding: 8px 12px; color: var(--ink-2); text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-.site-nav a:hover { color: var(--ink); }
-.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+/* The nav, on one line: the site's name (the link home) with its Beta badge, then the pages grouped by what they
+   are for (Top down, Bottom up, About), each group under its label. On a phone the groups fold behind a Menu
+   button: they sit in a <details> that a short script keeps open on wide screens and closed on a phone. */
+.site-nav { position: relative; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 40px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 4px; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 20px; }
+.brand { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--ink); text-decoration: none; }
+.brand-name { font: 600 var(--step-2)/1 var(--font-display); letter-spacing: -0.01em; }
+.brand-beta { font-size: var(--step--1); font-weight: 600; line-height: 1.5; color: var(--warn-ink); background: var(--warn-soft); border-radius: 999px; padding: 0 9px; }
+.brand:hover .brand-name, .brand:focus-visible .brand-name { color: var(--accent); }
+.nav-menu { flex: 1 1 auto; min-width: 0; }
+.nav-menu > summary { display: none; }
+.nav-groups { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 40px; }
+.nav-group { display: grid; gap: 0; min-width: 0; }
+.nav-label { margin: 0; font-size: var(--step--1); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.nav-groups a, .nav-soon { display: block; padding: 10px 0; color: var(--ink-2); text-decoration: none; }
+.nav-groups a:hover { color: var(--ink); box-shadow: inset 0 -2px 0 var(--line-strong); }
+.nav-groups a[aria-current="page"] { color: var(--ink); font-weight: 600; box-shadow: inset 0 -2px 0 var(--accent); }
+.nav-soon { color: var(--ink-3); cursor: default; }
+.nav-note { font-size: var(--step--1); }
+@media (max-width: 640px) {
+  .nav-menu { flex: 1 1 100%; }
+  .nav-menu > summary { position: absolute; top: 0; right: 0; display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; font-weight: 600; color: var(--accent); background: var(--surface); border: 1px solid var(--accent); border-radius: 6px; cursor: pointer; list-style: none; }
+  .nav-menu > summary::-webkit-details-marker { display: none; }
+  .nav-menu[open] > summary { background: var(--accent-soft); }
+  .nav-groups { gap: 2px 24px; padding-top: 4px; }
+}
+/* "(beta)" after a page heading: a tip on hover, focus or tap says the page is a work in progress. */
+header.top h1 { position: relative; }
+.beta-btn { font: 400 var(--step-1)/1 var(--font-body); color: var(--ink-3); background: none; border: 0; padding: 0; margin: 0; cursor: help; text-decoration: underline dotted; text-underline-offset: 5px; vertical-align: 0.15em; }
+.beta-btn:hover, .beta-btn:focus-visible { color: var(--accent); }
+.beta-tip { display: none; position: absolute; left: 0; top: calc(100% + 6px); z-index: 20; max-width: min(40ch, 100%); padding: 8px 10px; border-radius: 6px; background: var(--ink); color: var(--bg); font: 400 var(--step--1)/1.45 var(--font-body); letter-spacing: 0; text-wrap: pretty; }
+.beta:hover .beta-tip, .beta:focus-within .beta-tip { display: block; }
+/* Buttons, and links that act as buttons. One pair: the plain one, and the primary one for a page's main action. */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; font: 600 var(--step-0)/1.2 var(--font-body); color: var(--accent); background: var(--surface); border: 1px solid var(--accent); border-radius: 6px; text-decoration: none; cursor: pointer; }
+.btn:hover { background: var(--accent-soft); }
+.btn.primary { color: var(--surface); background: var(--accent); }
+.btn.primary:hover { background: var(--ink); border-color: var(--ink); }
+/* The page's closing lines: its draft status, that the site is unofficial, and when it was built. */
+.site-foot { display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 14px; font-size: var(--step--1); color: var(--ink-2); }
+.site-foot p { margin: 0; max-width: 100ch; }
+.site-foot strong { color: var(--warn-ink); }
+/* Tabs: a row of buttons, each showing one panel of a long page (initTabs in charts.js). Without scripts every
+   panel shows, one after another. */
+.tabs { display: flex; flex-wrap: wrap; gap: 0 2px; border-bottom: 1px solid var(--line-strong); }
+.tabs [role="tab"] { font: inherit; min-height: 44px; padding: 0 14px; color: var(--ink-2); background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -1px; cursor: pointer; }
+.tabs [role="tab"]:hover { color: var(--ink); border-bottom-color: var(--line-strong); }
+.tabs [role="tab"][aria-selected="true"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent); }
+/* On a narrow screen the tabs stay on one line and scroll sideways; the open tab is brought into view. */
+@media (max-width: 760px) {
+  .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; }
+  .tabs [role="tab"] { flex: none; white-space: nowrap; }
+}
+.tab-panel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.tab-panel > * { min-width: 0; }
+/* Link cards: a short list of places to go next, each a name and a line on what is there. */
+/* (Not .more: that is the class of the "About this chart" drop-downs.) */
+.more-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 12px; }
+.more-link { display: grid; gap: 2px; align-content: start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); text-decoration: none; }
+a.more-link:hover, a.more-link:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+.more-link .name { font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.more-link .desc { font-size: var(--step--1); color: var(--ink-2); }
+.more-link.soon { border-style: dashed; }
+.more-link.soon .name { color: var(--ink-2); }
+.more-link .badge { font-size: var(--step--1); font-weight: 500; color: var(--ink-3); border: 1px solid var(--line-strong); border-radius: 999px; padding: 0 9px; white-space: nowrap; }
+/* Findings: what a section's data show, in a heading, a sentence and a few bars, with a link to the section. */
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 16px; }
+.finding { display: flex; flex-direction: column; gap: 10px; }
+.finding p { margin: 0; font-size: var(--step--1); color: var(--ink-2); }
+.finding .go { margin-top: auto; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; align-self: flex-start; }
+.minibars { display: grid; gap: 6px; font-size: var(--step--1); }
+.minibars .mb-row { display: grid; grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr) 3.2rem; gap: 8px; align-items: center; }
+.minibars .mb-track { display: block; height: 12px; background: var(--grid); border-radius: 2px; }
+.minibars .mb-bar { display: block; height: 12px; border-radius: 2px; background: var(--seq); }
+.minibars .mb-bar.ref { background: none; border: 1px dashed var(--ink-3); box-sizing: border-box; }
+.minibars .mb-val { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+/* "On this page": links to a long page's sections. */
+.toc { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; font-size: var(--step--1); }
+.toc-label { color: var(--ink-3); font-weight: 600; }
+/* A part of a page that once was its own page, such as the economic conditions. */
+.part-head { display: grid; gap: 4px; padding-top: 22px; border-top: 2px solid var(--line-strong); }
+.part-head p { margin: 0; max-width: 72ch; color: var(--ink-2); }
 
-section.block { display: grid; gap: 14px; }
+section.block { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
 .block-head { display: grid; gap: 4px; }
 .block-head p { margin: 0; max-width: 80ch; color: var(--ink-2); }
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; min-width: 0; }
@@ -160,6 +238,7 @@ svg text { font-family: var(--font-body); fill: var(--ink-3); font-size: 11px; }
 svg .axis line, svg .axis path { stroke: var(--line-strong); }
 svg .gridline { stroke: var(--grid); }
 svg .refline { stroke: var(--ink-3); stroke-dasharray: 3 3; }
+svg text.end-label { fill: var(--ink-2); font-family: var(--font-mono); font-size: 10px; }
 svg .marker line { stroke: var(--warn-ink); stroke-dasharray: 2 3; }
 svg .marker text { fill: var(--warn-ink); font-size: 10px; }
 svg .cross { stroke: var(--ink-3); }
@@ -192,6 +271,19 @@ svg .cross { stroke: var(--ink-3); }
 .tile .t-label { font-size: var(--step--1); color: var(--ink-3); }
 .tile .t-value { font-family: var(--font-display); font-size: var(--step-2); font-weight: 600; color: var(--ink); line-height: 1.15; }
 .tile .t-sub { font-size: var(--step--1); color: var(--ink-2); }
+/* Key figures: the few numbers that answer a page's question. The same tiles, larger, on the page's surface; a tile
+   may be a link to where its figure is shown. */
+.tiles.headline { grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr)); gap: 12px; margin: 0; }
+.tiles.headline .tile { gap: 4px; padding: 14px; border-radius: 10px; background: var(--surface); color: var(--ink); text-decoration: none; min-width: 0; }
+.tiles.headline a.tile:hover, .tiles.headline a.tile:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+.tiles.headline .t-label { font-weight: 600; color: var(--ink-2); }
+.tiles.headline .t-value { font-size: var(--step-3); font-variant-numeric: tabular-nums; }
+.tiles.headline .t-src { font-size: var(--step--1); color: var(--ink-3); }
+/* A tile that acts on the page (it sorts or filters) is a button. */
+.tiles.headline button.tile { font: inherit; text-align: left; cursor: pointer; }
+.tiles.headline button.tile:hover, .tiles.headline button.tile:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+/* A button that reads as a link. */
+.lnk { font: inherit; background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; text-align: left; }
 /* A section folded away at the end of the page. */
 details.shelf { border-top: 1px solid var(--line); padding-top: 14px; }
 details.shelf > summary { cursor: pointer; font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; color: var(--ink-2); width: max-content; max-width: 100%; }
@@ -224,6 +316,94 @@ details.shelf[open] > summary { margin-bottom: 14px; }
 .bars button.row[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
 .bars.pick { max-height: 27rem; overflow-y: auto; padding-right: 4px; }
 @media (max-width: 640px) { .bars .row { grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) 3.6rem; } }
+
+/* Range rows: Australia against similar economies (rangeChart). Shapes carry the meaning as well as colour: band =
+   the peers' middle half, tick = their median, small hollow dots = each peer, diamond = OECD median, large dot =
+   Australia (hollow when its comparability is low), and the position is written at the end of the row. */
+.rangeplot { display: grid; gap: 2px; font-size: var(--step--1); }
+.rg-row, .rg-head { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr) 8.4rem; gap: 10px; align-items: center; }
+.rg-row { font: inherit; color: var(--ink); background: none; border: 1px solid transparent; border-radius: 6px; padding: 4px 6px; text-align: left; width: 100%; }
+button.rg-row { cursor: pointer; }
+.rg-row:hover, .rg-row:focus-visible { background: var(--accent-soft); }
+button.rg-row[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.rg-row.total { font-weight: 600; border-bottom: 1px solid var(--line-strong); border-radius: 6px 6px 0 0; }
+.rg-lab { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rg-dagger { color: var(--accent); font-weight: 600; }
+.rg-flag { color: var(--accent); font-weight: 700; }
+.rg-track { position: relative; height: 18px; border-radius: 3px; background: color-mix(in oklab, var(--line) 35%, transparent); }
+.rg-zero { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--line-strong); }
+.rg-band { position: absolute; top: 3px; bottom: 3px; border-radius: 3px; background: color-mix(in oklab, var(--ink-3) 30%, var(--surface)); }
+.rg-med { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--ink-2); }
+.rg-peer { position: absolute; top: 50%; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; border: 1.5px solid var(--ink-3); background: var(--surface); }
+.rg-oecd { position: absolute; top: 50%; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; transform: rotate(45deg); border: 1.5px solid var(--ink-2); background: transparent; }
+.rg-au { position: absolute; top: 50%; width: 13px; height: 13px; margin: -6.5px 0 0 -6.5px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--accent); }
+.rg-au.low { background: var(--surface); border: 2.5px solid var(--accent); box-shadow: none; }
+/* Australia, beside a state's own figure: a small triangle on the top edge of the track */
+.rg-ref { position: absolute; top: -3px; width: 0; height: 0; margin-left: -5px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid var(--ink); }
+.rg-wide { color: var(--ink-3); font-weight: 400; font-size: 0.85em; }
+/* An economy chosen in the Compare with menu: a small dot, labelled below the track (two lines where labels meet) */
+.rg-cty { position: absolute; top: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: var(--ink-2); box-shadow: 0 0 0 2px var(--surface); }
+.rg-cty-lab { position: absolute; top: calc(100% + 2px); transform: translateX(-50%); font-family: var(--font-mono); font-size: 0.64rem; line-height: 1; color: var(--ink-2); white-space: nowrap; }
+.rg-cty-lab.lv2 { top: calc(100% + 13px); }
+.rg-row.lab1 { padding-bottom: 16px; }
+.rg-row.lab2 { padding-bottom: 27px; }
+/* A row's own scale: its two ends, printed faintly inside the track */
+.rg-end { position: absolute; top: 50%; transform: translateY(-50%); font-family: var(--font-mono); font-size: 0.62rem; line-height: 1; color: var(--ink-3); pointer-events: none; }
+.rg-end.lo { left: 4px; }
+.rg-end.hi { right: 4px; }
+/* The Compare with menu */
+.cmp-menu { position: relative; max-width: 100%; }
+.cmp-menu > summary { list-style: none; display: inline-flex; align-items: center; gap: 6px; max-width: 100%; font-size: var(--step--1); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 8px; padding: 4px 10px; background: var(--surface); cursor: pointer; }
+.cmp-menu > summary::-webkit-details-marker { display: none; }
+.cmp-menu > summary:hover, .cmp-menu[open] > summary { border-color: var(--accent); }
+.cmp-menu > summary .cmp-k { color: var(--ink-3); flex: none; }
+.cmp-menu > summary .cmp-sum { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; max-width: min(30rem, 56vw); }
+.cmp-menu > summary svg { width: 12px; height: 12px; flex: none; color: var(--ink-3); }
+.cmp-body { position: absolute; z-index: 7; top: calc(100% + 6px); left: 0; display: grid; gap: 7px; padding: 12px 14px; min-width: min(19rem, 86vw); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; box-shadow: 0 6px 18px rgb(0 0 0 / 0.14); font-size: var(--step--1); }
+.toolbar .cmp-body label, .cmp-body label { display: flex; gap: 8px; align-items: center; color: var(--ink); cursor: pointer; }
+.cmp-body input { accent-color: var(--accent); margin: 0; }
+.cmp-body fieldset { border: 0; border-top: 1px solid var(--line); margin: 3px 0 0; padding: 8px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 14px; }
+.cmp-body legend { color: var(--ink-3); padding: 0 0 4px; float: left; width: 100%; grid-column: 1 / -1; }
+.cmp-body .cmp-foot { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--line); padding-top: 8px; color: var(--ink-3); }
+.cmp-body button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.rg-peer.clipped, .rg-oecd.clipped, .rg-ref.clipped { opacity: 0.45; }
+.rg-val { display: flex; gap: 6px; justify-content: flex-end; align-items: baseline; white-space: nowrap; }
+.rg-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 600; }
+.rg-pos { font-size: 0.78rem; color: var(--ink-2); min-width: 4.2rem; }
+.rg-pos.below, .rg-pos.above { color: var(--ink); font-weight: 600; }
+.rg-row.low .rg-pos { font-weight: 400; font-style: italic; color: var(--ink-3); }
+.rg-head { padding: 0 7px; color: var(--ink-3); font-size: 0.74rem; }
+.rg-axis { position: relative; height: 1.1em; }
+.rg-axis span { position: absolute; transform: translateX(-50%); font-family: var(--font-mono); }
+.rg-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--step--1); color: var(--ink-2); }
+.rg-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.rg-legend .rg-au, .rg-legend .rg-peer, .rg-legend .rg-oecd, .rg-legend .rg-med, .rg-legend .rg-ref, .rg-legend .rg-cty { position: relative; top: auto; margin: 0; flex: none; }
+.rg-legend .rg-med { width: 2px; height: 13px; }
+.rg-legend .rg-band { position: relative; top: auto; bottom: auto; display: inline-block; width: 22px; height: 10px; }
+.tip .rg-k-au { background: var(--accent); border-radius: 50%; }
+.tip .rg-k-med { background: var(--ink-2); width: 3px; }
+.tip .rg-k-band { background: color-mix(in oklab, var(--ink-3) 30%, var(--surface)); }
+.tip .rg-k-oecd { border: 1.5px solid var(--ink-2); background: transparent; transform: rotate(45deg); }
+.tip .k.rg-k-ref { width: 0; height: 0; background: none; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid var(--ink); border-radius: 0; }
+.tip .area-key { opacity: 0.6; }
+.legend .key.area-key, .chip .key.area-key { width: 16px; height: 10px; border-radius: 2px; opacity: 0.4; }
+svg path.area { opacity: 0.22; stroke: none; }
+/* The heatmap's "Similar economies" column: the peers' median, and Australia's position as a shape */
+table.heat th.peer-th { border-left: 2px solid var(--line-strong); padding-left: 8px; white-space: normal; min-width: 5.6rem; }
+table.heat td.peer-td { border-left: 2px solid var(--line-strong); padding-left: 4px; }
+table.heat td button.peer-cell { display: inline-flex; gap: 4px; justify-content: center; align-items: baseline; background: var(--surface); border: 1px dashed var(--line-strong); color: var(--ink-2); cursor: help; }
+table.heat td button.peer-cell:hover, table.heat td button.peer-cell:focus-visible { border-style: solid; border-color: var(--accent); }
+.peer-cell.na { display: block; text-align: center; color: var(--ink-3); font-family: var(--font-mono); font-size: 0.78rem; }
+.peer-cell .pm { font-weight: 600; color: var(--ink); }
+.peer-cell .ps { font-size: 0.7rem; color: var(--ink-3); }
+.peer-cell .ps.below, .peer-cell .ps.above { color: var(--accent); }
+.peer-cell.low .ps { opacity: 0.55; }
+@media (max-width: 640px) {
+  .rg-row, .rg-head { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "lab val" "track track"; row-gap: 3px; }
+  .rg-row .rg-lab, .rg-head > span:first-child { grid-area: lab; }
+  .rg-row .rg-track, .rg-head .rg-axis { grid-area: track; }
+  .rg-row .rg-val, .rg-head .rg-val { grid-area: val; }
+}
 
 .stack { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); align-content: start; }
 .split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
@@ -318,7 +498,6 @@ ul.method strong { color: var(--ink); font-weight: 600; }
 details.tview { font-size: var(--step--1); }
 details.tview summary { cursor: pointer; color: var(--accent); width: max-content; }
 details.tview .tscroll { margin-top: 8px; max-height: 26rem; overflow: auto; }
-.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
 .sub { font-size: var(--step--1); color: var(--ink-3); margin: 0; max-width: 100ch; }
 .subhead { font-family: var(--font-display); font-size: var(--step-1); margin: 8px 0 0; }
 
@@ -326,6 +505,10 @@ details.tview .tscroll { margin-top: 8px; max-height: 26rem; overflow: auto; }
 .term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; display: inline; text-align: inherit; cursor: help;
   text-decoration: underline dotted; text-decoration-color: var(--ink-3); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .term:hover, .term:focus-visible { color: var(--accent); text-decoration-color: var(--accent); }
+/* A † beside an industry classified differently in other countries' statistics (hover, focus or tap for the note) */
+.flag { font: inherit; font-weight: 600; line-height: 1; color: var(--accent); background: none; border: 0; padding: 0 2px; margin: 0 4px 0 -2px; cursor: help; vertical-align: baseline; }
+.flag:hover, .flag:focus-visible { color: var(--ink); outline-offset: 1px; }
+.title-row .flag { font-size: var(--step-1); margin: 0; }
 .source { font-size: var(--step--1); color: var(--ink-3); margin: 0; }
 .source a { color: var(--ink-2); }
 details.more { font-size: var(--step--1); color: var(--ink-2); }

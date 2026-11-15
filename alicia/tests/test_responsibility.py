@@ -187,7 +187,7 @@ def test_the_menu_payload_carries_bodies_ended_and_timeline(tmp_path):
     assert [x["body"] for x in p["responsible"]] == ["nsw-regulator", "nsw-dept"]
     # The timeline carries the dates and the history, so the raw fields are left out.
     assert "dates" not in p and "history" not in p
-    html = growth.render("explorer.html", data, "index.html", standalone=True)
+    html = growth.render("explorer.html", data, "menu.html", standalone=True)
     assert _page_data(html)["records"][0]["ended"]["date"] == "2021-03-08"
     for hook in ('id="f-body"', 'value="ended"', "Who is responsible", '"Timeline"', "body="):
         assert hook in html

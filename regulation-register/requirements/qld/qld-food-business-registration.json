@@ -1,0 +1,200 @@
+{
+  "id": "qld-food-business-registration",
+  "family": "food-business-registration",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "food-safety",
+  "title": "Hold a food business licence",
+  "kind": "licence",
+  "what": "Notify, register or license the food business with the enforcement agency (usually the local council) before trading, and meet the Food Standards Code.",
+  "laws": [
+    {
+      "title": "Food Act 2006 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2006-003",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2006-003",
+      "provisions": "s 49",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Food Act 2006 (Qld)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2006-003",
+      "locator": "s 49 (current)",
+      "quote": "A person must not carry on a licensable food business unless the person holds a licence to carry on the business.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": true,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Local councils",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2006 (Qld)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2006-003",
+          "locator": "s 2, words naming the body (found 12 Nov 2026)",
+          "quote": "n application (1) If the local government decides to grant the application, the local government must issue the licence to the applicant.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1111",
+        "1112",
+        "1113",
+        "1120",
+        "1131",
+        "1132",
+        "1133",
+        "1140",
+        "1150",
+        "1161",
+        "1162",
+        "1171",
+        "1172",
+        "1173",
+        "1174",
+        "1181",
+        "1182",
+        "1191",
+        "1199",
+        "1211",
+        "1212",
+        "1213",
+        "1214",
+        "3601",
+        "3602",
+        "3603",
+        "3604",
+        "3605",
+        "3609",
+        "4110",
+        "4121",
+        "4122",
+        "4129",
+        "4511",
+        "4512",
+        "4513",
+        "4520",
+        "4530"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Businesses that make, sell or serve food (the Act's food business).",
+      "sources": [
+        {
+          "title": "Food Act 2006 (Qld)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2006-003",
+          "locator": "s 49 (current)",
+          "quote": "A person must not carry on a licensable food business unless the person holds a licence to carry on the business.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4123",
+        "4310",
+        "4400",
+        "8401",
+        "8601",
+        "8710",
+        "9003",
+        "9112",
+        "9113"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells or serves food",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2006 (Qld)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2006-003",
+          "locator": "s 49 (current)",
+          "quote": "A person must not carry on a licensable food business unless the person holds a licence to carry on the business.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Food businesses must register with, or be licensed by, the enforcement agency before trading.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Registration or a licence, with fees and an inspection, is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Renewals, inspections and food safety requirements.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

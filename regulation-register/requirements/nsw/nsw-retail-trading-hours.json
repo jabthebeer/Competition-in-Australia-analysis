@@ -1,0 +1,130 @@
+{
+  "id": "nsw-retail-trading-hours",
+  "family": "retail-trading-hours",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "retail-trading-hours",
+  "title": "Close the shop on restricted trading days",
+  "kind": "standard",
+  "what": "Keep the shop closed on restricted trading days (Good Friday, Easter Sunday, Anzac Day morning, Christmas Day and Boxing Day), unless exempt.",
+  "laws": [
+    {
+      "title": "Retail Trading Act 2008 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2008-049",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-2008-049",
+      "provisions": "ss 4, 5",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Retail Trading Act 2008 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-2008-049",
+      "locator": "s 5(1) (version of 2024-08-20)",
+      "quote": "(1) An occupier of a shop must keep the shop closed on a restricted trading day in accordance with section 4.",
+      "accessed": "2026-11-12",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-08-20/act-2008-049"
+    }
+  ],
+  "administered_by": [
+    "nsw-dcs"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "NSW Department of Customer Service (the Secretary)",
+      "bodies": [
+        "nsw-dcs"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Grants exemptions and enforces the Act.",
+      "sources": [
+        {
+          "title": "Retail Trading Act 2008 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-2008-049",
+          "locator": "s 3(1), definition of Secretary (version of 2024-08-20)",
+          "quote": "Secretary means the Secretary of the Department of Customer Service.",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-20/act-2008-049"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "41",
+        "42"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Shops selling goods by retail (store-based retailing); the Acts' exemptions for small shops, some goods and some areas are not yet coded.",
+      "sources": [
+        {
+          "title": "Retail Trading Act 2008 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-2008-049",
+          "locator": "s 5(1) (version of 2024-08-20)",
+          "quote": "(1) An occupier of a shop must keep the shop closed on a restricted trading day in accordance with section 4.",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-20/act-2008-049"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Shops must close outside the hours or on the days the state sets. Limits on opening protect existing traders from rivals that would open longer, and the rules differ widely between states.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Limits on opening hours restrict how shops compete on convenience and shield incumbents from rivals that would open longer.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the restriction's design against the framework's guide. The restrictions range from a few public holidays (NSW, Tasmania) to set weekly hours (WA, SA, Queensland); this one mark does not yet tell them apart.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

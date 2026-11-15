@@ -1,0 +1,148 @@
+{
+  "id": "lga-31000-council-outdoor-dining-permit",
+  "family": "council-outdoor-dining-permit",
+  "jurisdiction": "QLD",
+  "tier": "local",
+  "lga": "31000",
+  "lga_name": "Brisbane",
+  "regime": null,
+  "title": "Get a permit for outdoor dining on the footpath",
+  "kind": "licence",
+  "what": "Get the council's permit before placing tables, chairs or other furniture on a footpath, road or other public land for outdoor dining.",
+  "laws": [
+    {
+      "title": "Footpath Dining Local Law 2011",
+      "jurisdiction": "QLD",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://ablis.business.gov.au/service/qld/outdoor-dining-footpath-trading-permit-brisbane-city-council/6484",
+      "provisions": null,
+      "applied": false
+    },
+    {
+      "title": "City of Brisbane Act 2010 Queensland",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": null,
+      "register_url": "https://ablis.business.gov.au/service/qld/outdoor-dining-footpath-trading-permit-brisbane-city-council/6484",
+      "provisions": null,
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Outdoor dining footpath trading permit brisbane city council",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "url": "https://ablis.business.gov.au/service/qld/outdoor-dining-footpath-trading-permit-brisbane-city-council/6484",
+      "locator": "Description",
+      "quote": "You will need this permit to use the public footpath for outdoor dining or to sell goods or services.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Footpath and outdoor dining permits",
+      "publisher": "Brisbane City Council",
+      "url": "https://www.brisbane.qld.gov.au/laws-and-permits/food-business-licences/footpath-and-outdoor-dining-permits",
+      "locator": "About footpath and outdoor dining",
+      "quote": "The local law regulates the placement of tables and chairs on the footpath for dining purposes through a permit.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Brisbane",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Outdoor dining footpath trading permit brisbane city council",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/qld/outdoor-dining-footpath-trading-permit-brisbane-city-council/6484",
+          "locator": "Description",
+          "quote": "You will need this permit to use the public footpath for outdoor dining or to sell goods or services.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "it places tables and chairs on a footpath or other public land",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4511",
+        "4512",
+        "4520"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it puts tables and chairs on the footpath",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Outdoor dining footpath trading permit brisbane city council",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/qld/outdoor-dining-footpath-trading-permit-brisbane-city-council/6484",
+          "locator": "Description",
+          "quote": "You will need this permit to use the public footpath for outdoor dining or to sell goods or services.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from ABLIS and the council's web page; the local law's own words are not yet quoted (QA, 12 Nov 2026).",
+  "records": [],
+  "ablis": [
+    "6484"
+  ],
+  "assessment": {
+    "summary": "Using the footpath for outdoor dining needs the council's permit, with fees and conditions.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A permit, fees and conditions to trade on the footpath.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

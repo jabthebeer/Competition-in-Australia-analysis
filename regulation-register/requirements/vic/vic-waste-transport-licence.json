@@ -1,0 +1,193 @@
+{
+  "id": "vic-waste-transport-licence",
+  "family": "waste-transport-licence",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "waste-management",
+  "title": "Hold a licence or registration to transport waste",
+  "kind": "licence",
+  "what": "Hold the environment regulator's licence, registration or permit before transporting controlled or regulated waste.",
+  "laws": [
+    {
+      "title": "Environment Protection Act 2017 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "51/2017",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/environment-protection-act-2017",
+      "provisions": "s 46",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environment Protection Act 2017 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/environment-protection-act-2017",
+      "locator": "s 46(1) (authorised version 023, saved by the owner)",
+      "quote": "(1) A person must not engage in a prescribed permit activity except as authorised by a permit in respect of the activity.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Permit to transport waste into victoria",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "url": "https://ablis.business.gov.au/service/vic/permit-to-transport-waste-into-victoria/46154",
+      "locator": "Description",
+      "quote": "You will need this permit to transport waste into the state of Victoria.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "EPA Victoria",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Permit to transport waste into victoria",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/permit-to-transport-waste-into-victoria/46154",
+          "locator": "Description",
+          "quote": "You will need this permit to transport waste into the state of Victoria.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2919"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Liquid, hazardous and industrial waste collection.",
+      "sources": [
+        {
+          "title": "Permit to transport waste into victoria",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/permit-to-transport-waste-into-victoria/46154",
+          "locator": "Description",
+          "quote": "You will need this permit to transport waste into the state of Victoria.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "2911"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it transports controlled waste into Victoria",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Permit to transport waste into victoria",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/permit-to-transport-waste-into-victoria/46154",
+          "locator": "Description",
+          "quote": "You will need this permit to transport waste into the state of Victoria.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "2921",
+        "2922",
+        "4610"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it transports controlled or regulated waste",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Permit to transport waste into victoria",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/permit-to-transport-waste-into-victoria/46154",
+          "locator": "Description",
+          "quote": "You will need this permit to transport waste into the state of Victoria.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. The regulator's guidance quoted before is kept as a second source. Section 46(1) is the general duty to hold a permit for a prescribed permit activity; which waste transport the regulations prescribe is not yet quoted.",
+  "records": [],
+  "ablis": [
+    "46154"
+  ],
+  "assessment": {
+    "summary": "Transporting regulated waste needs an environmental licence, registration or permit, and each load is tracked.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence or registration is needed before transporting regulated waste.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Load tracking, vehicle conditions and reporting.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

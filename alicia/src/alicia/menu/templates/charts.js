@@ -2,7 +2,8 @@
  * from in container._xl, for the Excel export (xlsx.js). */
 const SVGNS = "http://www.w3.org/2000/svg";
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-const fyLabel = (y) => `${y}-${String((y + 1) % 100).padStart(2, "0")}`;
+// A financial year by the year it starts in, with an en dash (Style Manual): 2014 is 2014–15.
+const fyLabel = (y) => `${y}–${String((y + 1) % 100).padStart(2, "0")}`;
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const monthLabel = (t) => { const d = new Date(t); return `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
 const quarterLabel = (t) => { const d = new Date(t); return `${MONTHS[d.getUTCMonth()]}–${MONTHS[d.getUTCMonth() + 2]} ${d.getUTCFullYear()}`; };
@@ -63,6 +64,79 @@ function showTip(html, ev) {
 }
 const hideTip = () => { TIP.hidden = true; };
 
+/* Tabs: a row of buttons, each showing one panel of a long page.
+ *   <div class="tabs" role="tablist" aria-label="…"><button type="button" role="tab" id="tab-x" aria-controls="panel-x">…</button>…</div>
+ *   <section class="tab-panel" role="tabpanel" id="panel-x" aria-labelledby="tab-x" hidden>…</section>
+ * The address keeps the tab (#x), so a tab can be linked to, and a link on the page to #x opens it. An address that
+ * names something inside a panel (#economic-conditions) opens that panel and scrolls to it. Arrow keys, Home and End
+ * move between tabs. onShow(key) runs when a tab opens. */
+function initTabs(list, opts = {}) {
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  const panelOf = (t) => document.getElementById(t.getAttribute("aria-controls"));
+  const keyOf = (t) => t.id.replace(/^tab-/, "");
+  let current = null;
+  const show = (t, focus) => {
+    const changed = t !== current;
+    current = t;
+    for (const x of tabs) {
+      const on = x === t;
+      x.setAttribute("aria-selected", on ? "true" : "false");
+      x.tabIndex = on ? 0 : -1;
+      panelOf(x).hidden = !on;
+    }
+    // Where the tabs scroll sideways (a phone), bring the open one into view.
+    if (list.scrollWidth > list.clientWidth) list.scrollLeft = Math.max(0, t.offsetLeft - list.offsetLeft - 16);
+    if (focus) t.focus();
+    if (changed && opts.onShow) opts.onShow(keyOf(t));
+    return changed;
+  };
+  const fromHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return { tab: current || tabs[0] };
+    const named = tabs.find((t) => keyOf(t) === id);
+    if (named) return { tab: named };
+    const target = document.getElementById(id), panel = target && target.closest('[role="tabpanel"]');
+    const tab = panel && tabs.find((t) => panelOf(t) === panel);
+    return tab ? { tab, target } : { tab: current || tabs[0], elsewhere: !!target };
+  };
+  // opts.hash false: the page's address holds its own state (the Industry lens), so the tabs leave it alone.
+  const useHash = opts.hash !== false;
+  const pick = (t, focus) => { if (useHash) history.replaceState(null, "", `#${keyOf(t)}`); show(t, focus); };
+  list.addEventListener("click", (e) => { const t = e.target.closest('[role="tab"]'); if (t) pick(t); });
+  list.addEventListener("keydown", (e) => {
+    const i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    const j = { ArrowRight: (i + 1) % tabs.length, ArrowLeft: (i - 1 + tabs.length) % tabs.length, Home: 0, End: tabs.length - 1 }[e.key];
+    if (j === undefined) return;
+    e.preventDefault();
+    pick(tabs[j], true);
+  });
+  // A link on the page to a tab, or to something inside one: open it, then bring it into view.
+  // (Something outside the tabs, such as the sources at the foot, is left to the browser.)
+  if (useHash) window.addEventListener("hashchange", () => {
+    const { tab, target, elsewhere } = fromHash();
+    show(tab);
+    if (!elsewhere) (target || list).scrollIntoView({ block: "start" });
+  });
+  const { tab, target } = useHash ? fromHash() : { tab: tabs.find((x) => x.getAttribute("aria-selected") === "true") || tabs[0] };
+  show(tab);
+  if (target) target.scrollIntoView({ block: "start" });
+  // For the page's own code: open a tab by its key without changing the address.
+  return { open: (key) => { const t = tabs.find((x) => keyOf(x) === key); if (t) show(t); return !!t; }, current: () => keyOf(current) };
+}
+
+/* A few horizontal bars with their values, for a finding card. rows: [{label, value, color, ref (true: a dashed
+ * outline, for a benchmark such as the cost of equity)}]; opts: max (the value a full bar stands for), fmt. */
+function miniBars(container, rows, opts = {}) {
+  const shown = rows.filter((r) => isNum(r.value));
+  const max = opts.max || Math.max(1e-9, ...shown.map((r) => r.value));
+  const f = opts.fmt || ((v) => fmt(v, 1));
+  container.innerHTML = shown.map((r) => {
+    const w = Math.max(0, Math.min(100, (100 * r.value) / max));
+    return `<div class="mb-row"><span>${esc(r.label)}</span><span class="mb-track"><span class="mb-bar${r.ref ? " ref" : ""}" style="width:${w.toFixed(1)}%${r.color && !r.ref ? `;background:${r.color}` : ""}"></span></span><span class="mb-val">${esc(f(r.value))}</span></div>`;
+  }).join("");
+}
+
 /* Charts redraw at their container's width, so text stays legible on phones. */
 const CHARTS = new Map();
 const RO = typeof ResizeObserver !== "undefined"
@@ -80,8 +154,8 @@ function mount(container, draw) {
  * opts: x (numbers: years, or UTC ms), xKind ("fy" | "year" | "month" | "quarter"),
  * series [{key, label, values, color, dash (true or a dash pattern), width}], yFmt (value -> text),
  * ref (y value for a dashed reference line), zero (true: the y axis includes 0), markers [{x, label}],
- * band ({from, to, label}: a shaded span of x),
- * height, yLabel, tipDigits.
+ * band ({from, to, label}: a shaded span of x), areas ([{key, label, lo, hi, color}]: a shaded range of y in each
+ * year, drawn behind the lines, such as the peers' middle half), height, yLabel, tipDigits.
  */
 function lineChart(container, opts) {
   container._xl = { kind: "line", opts };
@@ -91,6 +165,8 @@ function lineChart(container, opts) {
     const m = { t: 14 + (opts.markers && opts.markers.length ? 14 : 0), r: 14, b: 26, l: 46 };
     const xs = opts.x;
     const series = opts.series.filter((s) => s.values.some(isNum));
+    const areas = (opts.areas || []).filter((a) => a.lo.some(isNum) && a.hi.some(isNum));
+    if (series.some((s) => s.endLabel)) m.r = 40;  // room for short labels at the line ends
     container.innerHTML = "";
     const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img", "aria-label": opts.label || "" });
     container.appendChild(svg);
@@ -100,6 +176,7 @@ function lineChart(container, opts) {
     }
     let lo = Infinity, hi = -Infinity;
     for (const s of series) for (const v of s.values) if (isNum(v)) { lo = Math.min(lo, v); hi = Math.max(hi, v); }
+    for (const a of areas) for (const v of [...a.lo, ...a.hi]) if (isNum(v)) { lo = Math.min(lo, v); hi = Math.max(hi, v); }
     if (isNum(opts.ref)) { lo = Math.min(lo, opts.ref); hi = Math.max(hi, opts.ref); }
     if (opts.zero) { lo = Math.min(lo, 0); hi = Math.max(hi, 0); }
     const ticks = niceTicks(lo, hi, H > 240 ? 5 : 4);
@@ -125,6 +202,20 @@ function lineChart(container, opts) {
       tx.textContent = yFmt(t);
     }
     if (isNum(opts.ref)) el("line", { class: "refline", x1: m.l, x2: W - m.r, y1: sy(opts.ref), y2: sy(opts.ref) }, svg);
+    // Shaded ranges, broken where either edge is missing.
+    for (const a of areas) {
+      let run = [];
+      const flush = () => {
+        if (run.length > 1) {
+          const top = run.map((i) => `${sx(xs[i]).toFixed(1)},${sy(a.hi[i]).toFixed(1)}`);
+          const bot = run.slice().reverse().map((i) => `${sx(xs[i]).toFixed(1)},${sy(a.lo[i]).toFixed(1)}`);
+          el("path", { class: "area", d: `M${top.join("L")}L${bot.join("L")}Z`, style: `fill:${a.color}` }, svg);
+        }
+        run = [];
+      };
+      xs.forEach((_, i) => (isNum(a.lo[i]) && isNum(a.hi[i]) ? run.push(i) : flush()));
+      flush();
+    }
 
     // x ticks: years for financial years, calendar years for monthly and quarterly data.
     const axis = el("g", { class: "axis" }, svg);
@@ -172,6 +263,14 @@ function lineChart(container, opts) {
       }, svg);
     }
 
+    // Short labels at the ends of the lines that carry one (s.endLabel), nudged apart vertically.
+    const ends = series.filter((s) => s.endLabel).map((s) => {
+      const i = s.values.map((v, k) => (isNum(v) ? k : -1)).filter((k) => k >= 0).pop();
+      return { s, x: sx(xs[i]), y: sy(s.values[i]) };
+    }).sort((a, b) => a.y - b.y);
+    ends.forEach((e, k) => { if (k && e.y - ends[k - 1].y < 11) e.y = ends[k - 1].y + 11; });
+    for (const e of ends) el("text", { class: "end-label", x: e.x + 4, y: e.y + 3.5 }, svg).textContent = e.s.endLabel;
+
     // Hover readout.
     const cross = el("line", { class: "cross", y1: m.t, y2: H - m.b, visibility: "hidden" }, svg);
     const hit = el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }, svg);
@@ -185,8 +284,10 @@ function lineChart(container, opts) {
       cross.setAttribute("visibility", "visible");
       const rows = series.map((s) => ({ s, v: s.values[best] })).filter((r) => isNum(r.v)).sort((a, b) => b.v - a.v);
       const tipFmt = opts.tipFmt || yFmt;
+      const ranges = areas.filter((a) => isNum(a.lo[best]) && isNum(a.hi[best])).map((a) =>
+        `<tr><td><span class="k area-key" style="background:${a.color}"></span>${esc(a.label)}</td><td class="v">${esc(tipFmt(a.lo[best]))} to ${esc(tipFmt(a.hi[best]))}</td></tr>`).join("");
       showTip(`<strong>${esc(xLabel(xs[best]))}</strong><table>${rows.map((r) =>
-        `<tr><td><span class="k" style="background:${r.s.color}"></span>${esc(r.s.label)}</td><td class="v">${esc(tipFmt(r.v))}</td></tr>`).join("")}</table>`, ev);
+        `<tr><td><span class="k" style="background:${r.s.color}"></span>${esc(r.s.label)}</td><td class="v">${esc(tipFmt(r.v))}</td></tr>`).join("")}${ranges}</table>`, ev);
     };
     hit.addEventListener("pointermove", move);
     hit.addEventListener("pointerdown", move);
@@ -608,7 +709,7 @@ const TERMS = {
   output: ["Output", "The value an industry creates: its sales less what it buys from other businesses to make them (gross value added)."],
   industry: ["Industry", "One of the 19 broad industries the ABS uses, such as Retail Trade or Mining (ANZSIC divisions)."],
   sector: ["Sector", "A narrower part of an industry, such as supermarkets or banks (an ANZSIC class, or a group of classes)."],
-  fy: ["Financial year", "1 July to 30 June. 2014-15 runs from July 2014 to June 2015."],
+  fy: ["Financial year", "1 July to 30 June. 2014–15 runs from July 2014 to June 2015."],
   avgGrowth: ["Average annual growth", "The steady yearly rate that would take the first year's value to the last year's."],
   index100: ["Index", "Each line starts at 100 in the first year, so it shows growth from there: 120 means 20% higher."],
   pp: ["Percentage points", "The difference between two percentages: going from 10% to 12% is a rise of 2 percentage points."],
@@ -663,14 +764,17 @@ function showTipAt(html, target) {
   TIP.style.top = `${Math.max(8, y)}px`;
 }
 const termText = (t) => `${t[1]}${t[2] ? ` For example: ${t[2]}.` : ""}`;
+let TERMS_BOX = null;
 function initTerms(extra = {}) {
   Object.assign(TERMS, extra);
   // Static markup marks a defined word as <span data-term="key">word</span>.
   document.querySelectorAll("span[data-term]").forEach((s) => { s.outerHTML = term(s.dataset.term, s.textContent); });
-  const box = document.createElement("div");
-  box.hidden = true;
-  box.innerHTML = Object.entries(TERMS).map(([k, t]) => `<span id="def-${esc(k)}">${esc(termText(t))}</span>`).join("");
-  document.body.appendChild(box);
+  // A page with two parts (the competition page and its economic conditions) calls this twice: the second call only
+  // adds the definitions it brings; the listeners below are set once.
+  const fresh = !TERMS_BOX;
+  if (fresh) { TERMS_BOX = document.createElement("div"); TERMS_BOX.hidden = true; document.body.appendChild(TERMS_BOX); }
+  TERMS_BOX.innerHTML = Object.entries(TERMS).map(([k, t]) => `<span id="def-${esc(k)}">${esc(termText(t))}</span>`).join("");
+  if (!fresh) return;
   let pinned = null, pointer = "mouse";
   const show = (b) => {
     // An "i" beside a title shows the description it points to (kept hidden on the page).
@@ -679,7 +783,8 @@ function initTerms(extra = {}) {
     showTipAt(`<strong>${esc(t[0])}</strong><br>${esc(t[1])}${t[2] ? `<br><span class="tip-ex">For example: ${esc(t[2])}.</span>` : ""}`, b);
   };
   // Defined words, legend chips whose series has a definition, and "i" buttons.
-  const termOf = (e) => (e.target instanceof Element ? e.target.closest(".term, .chip[data-term], .info[data-for]") : null);
+  // A † flag (class "flag") works like a defined word but stays out of the glossary.
+  const termOf = (e) => (e.target instanceof Element ? e.target.closest(".term, .chip[data-term], .info[data-for], .flag[data-term]") : null);
   document.addEventListener("pointerdown", (e) => { pointer = e.pointerType; }, true);
   document.addEventListener("pointerover", (e) => { const b = termOf(e); if (b && e.pointerType === "mouse") show(b); });
   document.addEventListener("pointerout", (e) => { const b = termOf(e); if (b && b !== pinned && e.pointerType === "mouse") hideTip(); });
@@ -708,7 +813,8 @@ function sourceHtml(sources, keys) {
 
 /* Dumbbell rows: one row per item, a hollow dot for the first value and a filled dot for the last, joined by a
  * line, with the change written at the end. Rows are buttons (select one with onSelect).
- * rows [{key, label, a, b, total}], opts: {domain: [lo, hi], fmt, fmtChange, selected, onSelect, aLabel, bLabel}. */
+ * rows [{key, label, a, b, total, aLabel, bLabel}] (a row's own labels, when its years differ from the chart's), opts:
+ * {domain: [lo, hi], fmt, fmtChange, selected, onSelect, aLabel, bLabel}. */
 function dumbbellChart(container, rows, opts) {
   container._xl = { kind: "dumbbell", rows, opts };
   const [lo, hi] = opts.domain;
@@ -720,7 +826,8 @@ function dumbbellChart(container, rows, opts) {
   container.innerHTML = head + rows.map((r) => {
     const ok = isNum(r.a) && isNum(r.b);
     const a = ok ? pos(r.a) : 0, b = ok ? pos(r.b) : 0;
-    const label = `${r.label}: ${ok ? `${fmtV(r.a)} in ${opts.aLabel}, ${fmtV(r.b)} in ${opts.bLabel}, change ${fmtC(r.b - r.a)}` : "no data"}`;
+    const aL = r.aLabel || opts.aLabel, bL = r.bLabel || opts.bLabel;
+    const label = `${r.label}: ${ok ? `${fmtV(r.a)} in ${aL}, ${fmtV(r.b)} in ${bL}, change ${fmtC(r.b - r.a)}` : "no data"}`;
     return `<button type="button" class="db-row${r.total ? " total" : ""}" data-key="${esc(r.key)}" aria-pressed="${r.key === opts.selected}" aria-label="${esc(label)}">
       <span class="db-lab">${esc(r.label)}</span>
       <span class="db-track">${grid}${ok ? `<span class="db-seg" style="left:${Math.min(a, b)}%;width:${Math.abs(b - a)}%"></span><span class="db-dot a" style="left:${a}%"></span><span class="db-dot b" style="left:${b}%"></span>` : ""}</span>
@@ -729,9 +836,142 @@ function dumbbellChart(container, rows, opts) {
   container.querySelectorAll(".db-row").forEach((btn) => {
     const r = rows.find((x) => x.key === btn.dataset.key);
     btn.addEventListener("click", () => opts.onSelect && opts.onSelect(btn.dataset.key));
-    const tip = (ev) => showTip(`<strong>${esc(r.label)}</strong><table><tr><td>${esc(opts.aLabel)}</td><td class="v">${esc(fmtV(r.a))}</td></tr><tr><td>${esc(opts.bLabel)}</td><td class="v">${esc(fmtV(r.b))}</td></tr><tr><td>Change</td><td class="v">${esc(fmtC(r.b - r.a))}</td></tr></table>`, ev);
+    const tip = (ev) => showTip(`<strong>${esc(r.label)}</strong><table><tr><td>${esc(r.aLabel || opts.aLabel)}</td><td class="v">${esc(fmtV(r.a))}</td></tr><tr><td>${esc(r.bLabel || opts.bLabel)}</td><td class="v">${esc(fmtV(r.b))}</td></tr><tr><td>Change</td><td class="v">${esc(fmtC(r.b - r.a))}</td></tr></table>`, ev);
     btn.addEventListener("pointermove", tip);
     btn.addEventListener("pointerleave", hideTip);
+  });
+}
+
+/* The q-quantile by linear interpolation between order statistics (R's type 7), as the benchmark engine uses. */
+function quantile7(xs, q) {
+  const v = xs.filter(isNum).sort((a, b) => a - b);
+  if (!v.length) return null;
+  const h = (v.length - 1) * q, lo = Math.floor(h);
+  return v[lo] + (h - lo) * (v[Math.min(lo + 1, v.length - 1)] - v[lo]);
+}
+
+/* Range rows: Australia against a group of peers, one row per item. Each row shows the peers' middle half (25th to
+ * 75th percentile) as a band, their median as a tick, each peer as a small hollow dot and Australia as a large filled
+ * dot, and writes Australia's figure and position at the end, so nothing rests on colour alone. Hover, focus or tap
+ * shows every figure.
+ * rows [{key, label, title, au, peers: [{code, name, v}], q1, med, q3, oecd, position ("below" | "within" | "above" |
+ * ""), rating ("h" | "m" | "l"), ratingWhy, flag (text), dagger (text), extra (html), fmt (this row's number format)}].
+ * opts: {domain ([lo, hi]: one axis for all rows; without it each row is scaled to its own figures), fmt, onSelect,
+ * selected, unit}. */
+/* The figures behind one range row, for its tooltip (also used by the heatmap's "Similar economies" cells). */
+// r.subject names the large dot (default Australia: a state's own figures say its name; r.subjectSay is the name
+// mid-sentence, "the Northern Territory"); r.ref is Australia's figure on the state's basis, drawn as a small triangle;
+// r.wide marks Australia's figure in a state's view where there is no state figure, drawn as the triangle alone.
+const rgCap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+function rangeTip(r, fmtV) {
+  fmtV = r.fmt || fmtV;
+  const who = r.subject || "Australia", whoSay = r.subjectSay || who;
+  const peerRows = (r.peers || []).filter((p) => isNum(p.v)).sort((a, b) => b.v - a.v)
+    .map((p) => `<tr><td>${esc(p.name)}</td><td class="v">${esc(fmtV(p.v))}</td></tr>`).join("");
+  return `<strong>${esc(r.title || r.label)}</strong><table>
+    <tr><td><span class="k ${r.wide ? "rg-k-ref" : "rg-k-au"}"></span>${esc(who)}</td><td class="v">${esc(isNum(r.au) ? fmtV(r.au) : "–")}</td></tr>
+    ${isNum(r.ref) ? `<tr><td><span class="k rg-k-ref"></span>Australia</td><td class="v">${esc(fmtV(r.ref))}</td></tr>` : ""}
+    <tr><td><span class="k rg-k-med"></span>Median of similar economies</td><td class="v">${esc(isNum(r.med) ? fmtV(r.med) : "–")}</td></tr>
+    <tr><td><span class="k rg-k-band"></span>Their middle half</td><td class="v">${isNum(r.q1) ? `${esc(fmtV(r.q1))} to ${esc(fmtV(r.q3))}` : "–"}</td></tr>
+    ${peerRows}${isNum(r.oecd) ? `<tr><td><span class="k rg-k-oecd"></span>OECD median</td><td class="v">${esc(fmtV(r.oecd))}</td></tr>` : ""}</table>
+    ${r.position ? `<div>${esc(rgCap(whoSay))} is <b>${esc(RANGE_POS[r.position].toLowerCase())}</b> the middle half.</div>` : ""}
+    ${r.wide ? `<div class="tip-ex">${esc(r.wide)}</div>` : ""}
+    ${r.rating ? `<div class="tip-ex">How comparable ${esc(whoSay)}'s figure is: ${esc(RANGE_RATING[r.rating])}${r.ratingWhy ? ` (${esc(r.ratingWhy)})` : ""}.</div>` : ""}
+    ${r.flag ? `<div>${esc(r.flag)}</div>` : ""}${r.dagger ? `<div class="tip-ex">† ${esc(r.dagger)}</div>` : ""}${r.extra || ""}`;
+}
+
+const RANGE_POS = { below: "Below", within: "Within", above: "Above", "": "–" };
+const RANGE_RATING = { h: "high", m: "medium", l: "low" };
+/* opts.show sets what is drawn besides the large dot: {band (middle half and median), oecd, ref (the Australia
+ * triangle), peers: [codes] (each economy, a small labelled dot; null for all, unlabelled)}; the tooltip always has
+ * every figure. Without a shared opts.domain each row gets its own scale, rounded and padded so that no mark sits
+ * on its ends, which are printed faintly. */
+const rangeShown = (r, show) => [r.au, show.ref ? r.ref : null, ...(show.band ? [r.q1, r.q3, r.med] : []), show.oecd ? r.oecd : null,
+  ...(r.peers || []).filter((p) => !show.peers || show.peers.includes(p.code)).map((p) => p.v)].filter(isNum);
+function rangeDomain(vs, pad = 0.15) {
+  if (!vs.length) return [0, 1];
+  let lo = Math.min(...vs), hi = Math.max(...vs);
+  if (hi - lo < 1e-9) { const d = Math.max(1, Math.abs(hi) * 0.2); lo -= d; hi += d; }
+  const p = (hi - lo) * pad;
+  const step = niceStep(hi - lo + 2 * p, 4);
+  return [Math.floor((lo - p) / step) * step, Math.ceil((hi + p) / step) * step].map((v) => +v.toPrecision(12));
+}
+function rangeChart(container, rows, opts = {}) {
+  container._range = { rows, opts };
+  const fmtV = opts.fmt || ((v) => fmt(v, 1));
+  const show = opts.show || { band: true, oecd: true, ref: true, peers: null };
+  const domainOf = (r) => rangeDomain(rangeShown(r, show));
+  const short = (s) => String(s).replace(/(\.\d*?[1-9])0+$/, "$1").replace(/\.0+$/, "");
+  const shared = opts.domain;
+  const axis = (dom) => {
+    const [lo, hi] = dom;
+    return (v) => (Math.min(hi, Math.max(lo, v)) - lo) / Math.max(1e-9, hi - lo) * 100;
+  };
+  let head = "";
+  if (shared) {
+    const pos = axis(shared);
+    const ticks = niceTicks(shared[0], shared[1], 5).filter((t) => t >= shared[0] && t <= shared[1]);
+    head = `<div class="rg-head" aria-hidden="true"><span></span><span class="rg-axis">${ticks.map((t) => `<span style="left:${pos(t)}%">${esc(fmtV(t).replace(/\.0$/, ""))}</span>`).join("")}</span><span class="rg-val">${esc(opts.subject || "Australia")}</span></div>`;
+  }
+  const tipHtml = (r) => rangeTip(r, fmtV);
+  const say = (r, f = r.fmt || fmtV) => [
+    `${r.title || r.label}. `,
+    isNum(r.au) ? `${r.subject || "Australia"} ${f(r.au)}` : `No figure for ${r.subject || "Australia"}`,
+    isNum(r.ref) ? `; Australia ${f(r.ref)}` : "",
+    isNum(r.med) ? `; similar economies' median ${f(r.med)}, middle half ${f(r.q1)} to ${f(r.q3)}` : "; too few similar economies",
+    r.position ? `; ${RANGE_POS[r.position].toLowerCase()} the middle half` : "",
+    r.rating ? `; comparability ${RANGE_RATING[r.rating]}` : "",
+    r.flag ? `; ${r.flag}` : "",
+    r.wide ? `; ${r.wide}` : "",
+    show.oecd && isNum(r.oecd) ? `; OECD median ${f(r.oecd)}` : "",
+    ...(show.peers ? (r.peers || []).filter((p) => show.peers.includes(p.code) && isNum(p.v)).map((p) => `; ${p.name} ${f(p.v)}`) : []),
+    ".",
+  ].join("");
+  container.innerHTML = head + rows.map((r) => {
+    const pos = axis(shared || domainOf(r));
+    const ok = isNum(r.au) || isNum(r.med);
+    const [dlo, dhi] = shared || domainOf(r);
+    const zero = dlo < 0 && dhi > 0 ? `<span class="rg-zero" style="left:${pos(0)}%"></span>` : "";
+    const out = (v) => (v < dlo || v > dhi ? " clipped" : "");
+    // Each economy shown: a small dot labelled below the track, on a second line where two labels would touch
+    let level = 0;
+    const named = (r.peers || []).filter((p) => isNum(p.v) && show.peers && show.peers.includes(p.code)).sort((a, b) => a.v - b.v);
+    const placed = [];
+    const peerMarks = named.map((p) => {
+      const x = pos(p.v), lv = placed.some((q) => q.lv === 0 && Math.abs(q.x - x) < 7) ? 1 : 0;
+      placed.push({ x, lv }); level = Math.max(level, lv + 1);
+      return `<span class="rg-cty${out(p.v)}" style="left:${x}%"></span><span class="rg-cty-lab${lv ? " lv2" : ""}" style="left:${x}%" aria-hidden="true">${esc(p.short || p.code)}</span>`;
+    });
+    const ends = shared ? "" : `<span class="rg-end lo" aria-hidden="true">${esc(short((r.fmt || fmtV)(dlo)))}</span><span class="rg-end hi" aria-hidden="true">${esc(short((r.fmt || fmtV)(dhi)))}</span>`;
+    const marks = !ok ? "" : [
+      ends,
+      zero,
+      show.band && isNum(r.q1) ? `<span class="rg-band" style="left:${pos(r.q1)}%;width:${Math.max(0.6, pos(r.q3) - pos(r.q1))}%"></span>` : "",
+      show.band && isNum(r.med) ? `<span class="rg-med" style="left:${pos(r.med)}%"></span>` : "",
+      ...(show.peers ? peerMarks : (r.peers || []).filter((p) => isNum(p.v)).map((p) => `<span class="rg-peer${out(p.v)}" style="left:${pos(p.v)}%"></span>`)),
+      show.oecd && isNum(r.oecd) ? `<span class="rg-oecd${out(r.oecd)}" style="left:${pos(r.oecd)}%"></span>` : "",
+      show.ref && isNum(r.ref) ? `<span class="rg-ref${out(r.ref)}" style="left:${pos(r.ref)}%"></span>` : "",
+      isNum(r.au) && r.wide ? `<span class="rg-ref${out(r.au)}" style="left:${pos(r.au)}%"></span>` : "",
+      isNum(r.au) && !r.wide ? `<span class="rg-au${r.rating === "l" ? " low" : ""}${out(r.au)}" style="left:${pos(r.au)}%"></span>` : "",
+    ].join("");
+    const flagMark = r.flag ? '<span class="rg-flag" title="Gap flagged by the formal test" aria-hidden="true">⚑</span>' : "";
+    const val = isNum(r.au)
+      ? `${flagMark}${r.wide ? '<span class="rg-wide">Aus.</span>' : ""}<span class="rg-num">${esc((r.fmt || fmtV)(r.au))}</span><span class="rg-pos ${r.position || "none"}">${r.position === "below" ? "▼ " : r.position === "above" ? "▲ " : ""}${esc(RANGE_POS[r.position || ""])}</span>`
+      : `<span class="rg-num">–</span>`;
+    const lab = `<span class="rg-lab">${esc(r.label)}${r.dagger ? ' <span class="rg-dagger" aria-hidden="true">†</span>' : ""}</span>`;
+    const inner = `${lab}<span class="rg-track">${marks}</span><span class="rg-val">${val}</span>`;
+    const cls = `rg-row${r.rating === "l" ? " low" : ""}${r.total ? " total" : ""}${level ? ` lab${level}` : ""}`;
+    return opts.onSelect
+      ? `<button type="button" class="${cls}" data-key="${esc(r.key)}" aria-pressed="${r.key === opts.selected}" aria-label="${esc(say(r))}">${inner}</button>`
+      : `<div class="${cls}" data-key="${esc(r.key)}" tabindex="0" role="img" aria-label="${esc(say(r))}">${inner}</div>`;
+  }).join("");
+  container.querySelectorAll(".rg-row").forEach((node) => {
+    const r = rows.find((x) => x.key === node.dataset.key);
+    node.addEventListener("pointermove", (ev) => showTip(tipHtml(r), ev));
+    node.addEventListener("pointerleave", hideTip);
+    node.addEventListener("focus", () => showTipAt(tipHtml(r), node));
+    node.addEventListener("blur", hideTip);
+    if (opts.onSelect) node.addEventListener("click", () => opts.onSelect(node.dataset.key));
   });
 }
 

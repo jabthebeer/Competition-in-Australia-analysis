@@ -1,0 +1,155 @@
+{
+  "id": "vic-portable-long-service-registration-construction",
+  "family": "portable-long-service-registration-construction",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register with the construction industry long service scheme",
+  "kind": "registration",
+  "what": "Register with the scheme as an employer of workers covered by the state or territory's portable long service leave scheme.",
+  "laws": [
+    {
+      "title": "Construction Industry Long Service Leave Act 1997 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "53/1997",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/construction-industry-long-service-leave-act-1997",
+      "provisions": "s 4",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Construction Industry Long Service Leave Act 1997 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/construction-industry-long-service-leave-act-1997",
+      "locator": "s 4(1) (authorised version 014, saved by the owner)",
+      "quote": "(1) An employer must pay to the trustee a long service leave charge in respect of every worker employed by the employer to perform construction work in the construction industry.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Employers",
+      "publisher": "CoINVEST (LeavePlus)",
+      "url": "https://www.coinvest.com.au/employers/",
+      "locator": null,
+      "quote": "Employers and workers in Victoria’s construction industry are required to be part of the LeavePlus portable long service leave scheme — supporting workers to take a well-earned break when they need it most.",
+      "accessed": "2026-11-10",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "CoINVEST",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Employers",
+          "publisher": "CoINVEST (LeavePlus)",
+          "url": "https://www.coinvest.com.au/employers/",
+          "locator": null,
+          "quote": "Employers and workers in Victoria’s construction industry are required to be part of the LeavePlus portable long service leave scheme — supporting workers to take a well-earned break when they need it most.",
+          "accessed": "2026-11-10",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "E"
+      ],
+      "exclude": [
+        "3211"
+      ],
+      "activities": [],
+      "condition": "if it employs workers in the building and construction industry as the state scheme defines it",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Employers",
+          "publisher": "CoINVEST (LeavePlus)",
+          "url": "https://www.coinvest.com.au/employers/",
+          "locator": null,
+          "quote": "Employers and workers in Victoria’s construction industry are required to be part of the LeavePlus portable long service leave scheme — supporting workers to take a well-earned break when they need it most.",
+          "accessed": "2026-11-10",
+          "checked": "web-page",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Certificate of registration construction industry long service leave",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/certificate-of-registration-construction-industry-long-service-leave/24215",
+          "locator": "Description",
+          "quote": "You will need this registration to employ workers from within the construction industry.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. The regulator's guidance quoted before is kept as a second source. The Act's duty is to pay the long service leave charge for each construction worker; registration with the scheme (CoINVEST) follows from its trust deed, quoted from the scheme's page.",
+  "records": [],
+  "ablis": [
+    "24215"
+  ],
+  "assessment": {
+    "summary": "Employers in a covered industry must register with its portable long service leave scheme.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": 1,
+        "reason": "Workers keep their long service entitlement when they move between employers in the industry.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registration, quarterly service returns and the levy.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

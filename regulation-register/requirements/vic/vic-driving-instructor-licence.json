@@ -1,0 +1,149 @@
+{
+  "id": "vic-driving-instructor-licence",
+  "family": "driving-instructor-licence",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a driving instructor licence",
+  "kind": "licence",
+  "what": "Hold the state's driving instructor licence, authority or accreditation before giving driving lessons for reward.",
+  "laws": [
+    {
+      "title": "Road Safety Act 1986 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "127/1986",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/road-safety-act-1986",
+      "provisions": "s 33A",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Road Safety Act 1986 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/road-safety-act-1986",
+      "locator": "s 33A(1) (authorised version 238, saved by the owner)",
+      "quote": "(1) A person who for financial gain, or in the course of any trade or business, teaches another person to drive a motor vehicle of a kind described in section 33(3) on a highway— (a) without holding a driving instructor authority; or",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Driving instructor authority",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "url": "https://ablis.business.gov.au/service/vic/driving-instructor-authority/24371",
+      "locator": "Description",
+      "quote": "You will need this authority of you are a professional driving instructor and intend to teach an unlicensed person to drive a car on a public or open road.",
+      "accessed": "2026-11-06",
+      "checked": "web-page",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "vic-dtp"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "VicRoads (Department of Transport and Planning)",
+      "bodies": [
+        "vic-dtp"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Driving instructor authority",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/driving-instructor-authority/24371",
+          "locator": "Description",
+          "quote": "You will need this authority of you are a professional driving instructor and intend to teach an unlicensed person to drive a car on a public or open road.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8219"
+      ],
+      "exclude": [],
+      "activities": [
+        "Driving school operation"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Driving instructor authority",
+          "publisher": "Australian Business Licence and Information Service (ABLIS)",
+          "url": "https://ablis.business.gov.au/service/vic/driving-instructor-authority/24371",
+          "locator": "Description",
+          "quote": "You will need this authority of you are a professional driving instructor and intend to teach an unlicensed person to drive a car on a public or open road.",
+          "accessed": "2026-11-06",
+          "checked": "web-page",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. The regulator's guidance quoted before is kept as a second source.",
+  "records": [],
+  "ablis": [
+    "24371"
+  ],
+  "assessment": {
+    "summary": "Driving instructors need a licence, with a test and checks, before giving lessons for reward.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "An instructor's licence is needed before trading.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Licensing narrows who may teach driving for reward.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

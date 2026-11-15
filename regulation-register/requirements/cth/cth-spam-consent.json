@@ -1,0 +1,143 @@
+{
+  "id": "cth-spam-consent",
+  "family": "spam-consent",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "telecommunications-and-media",
+  "title": "Send marketing emails and texts only with consent",
+  "kind": "standard",
+  "what": "Send commercial emails, texts and other electronic messages only with the recipient's consent (and with sender details and an unsubscribe facility).",
+  "laws": [
+    {
+      "title": "Spam Act 2003",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A01214",
+      "register_url": "https://www.legislation.gov.au/C2004A01214/latest/text",
+      "provisions": "ss 16-18",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Spam Act 2003",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C2004A01214/latest/text",
+      "locator": "s 16(1) (compilation C2016C00614, in force from 2016-03-10)",
+      "quote": "A person must not send, or cause to be sent, a commercial electronic message that: (a) has an Australian link; and (b) is not a designated commercial electronic message.",
+      "accessed": "2026-11-06",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-acma",
+    "cth-ditrdcsa"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Communications and Media Authority",
+      "bodies": [
+        "cth-acma"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Spam Act 2003",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01214/latest/text",
+          "locator": "s 26 (compilation C2016C00614 from 2016-03-10)",
+          "quote": "26 Civil action for recovery of pecuniary penalties (1) The ACMA may institute a proceeding in the Federal Court for the recovery on behalf of the Commonwealth of a pecuniary penalty referred to in section 24.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 12 (Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Spam Act 2003 Special Broadcasting Service Act 1991",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Sending commercial electronic messages with an Australian link.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sends commercial emails, texts or other electronic messages",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Spam Act 2003",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2004A01214/latest/text",
+          "locator": "s 16(1) (compilation C2016C00614, in force from 2016-03-10)",
+          "quote": "A person must not send, or cause to be sent, a commercial electronic message that: (a) has an Australian link; and (b) is not a designated commercial electronic message.",
+          "accessed": "2026-11-06",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The regulator (ACMA) is not yet in bodies.json; no regime covers it yet.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Consent, identification and unsubscribe rules for commercial emails and texts, which legitimate senders largely meet anyway: no material effect.",
+    "marks": [],
+    "main_driver": null,
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-07"
+  },
+  "drafted_on": "2026-11-06",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

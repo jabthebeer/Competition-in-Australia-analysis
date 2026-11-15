@@ -1,0 +1,150 @@
+{
+  "id": "cth-migration-work-rights",
+  "family": "migration-work-rights",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Employ only people allowed to work in Australia",
+  "kind": "standard",
+  "what": "An employer must not allow an unlawful non-citizen to work, so it checks workers' right to work (s 245AB; taking reasonable steps to verify is a defence, s 245AB(2)).",
+  "laws": [
+    {
+      "title": "Migration Act 1958",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1958A00062",
+      "register_url": "https://www.legislation.gov.au/C1958A00062/latest/text",
+      "provisions": "245AB(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Migration Act 1958",
+      "publisher": "Federal Register of Legislation",
+      "url": "https://www.legislation.gov.au/C1958A00062/latest/text",
+      "locator": "s 245AB(1) (compilation C2026C00461 from 2026-10-08)",
+      "quote": "245AB Allowing an unlawful non-citizen to work (1) A person (the first person) contravenes this subsection if: (a) the first person allows, or continues to allow, another person (the worker) to work; and (b) the worker is an unlawful non-citizen.",
+      "accessed": "2026-11-11",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-abf",
+    "cth-home-affairs"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Australian Border Force",
+      "bodies": [
+        "cth-abf"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Migration Act 1958",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1958A00062/latest/text",
+          "locator": "s 5 (compilation C2026C00461 from 2026-10-08)",
+          "quote": "Australian Border Force Commissioner has the same meaning as in the Australian Border Force Act 2015.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "sets-rules",
+      "who": "Department of Home Affairs",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 10 (Department of Home Affairs), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Migration Act 1958 Migration Agents Registration Application Charge Act 1997",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Migration Act 1958",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1958A00062/latest/text",
+          "locator": "s 245AB(1) (compilation C2026C00461 from 2026-10-08)",
+          "quote": "245AB Allowing an unlawful non-citizen to work (1) A person (the first person) contravenes this subsection if: (a) the first person allows, or continues to allow, another person (the worker) to work; and (b) the worker is an unlawful non-citizen.",
+          "accessed": "2026-11-11",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Employers check that workers have the right to work in Australia.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Checks of each worker's visa status and work rights.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; drafted 11 Nov 2026 from the law's text, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-11"
+  },
+  "drafted_on": "2026-11-11",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

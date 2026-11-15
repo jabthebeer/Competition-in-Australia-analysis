@@ -1,0 +1,137 @@
+{
+  "id": "vic-land-tax",
+  "family": "land-tax",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay land tax",
+  "kind": "tax-or-levy",
+  "what": "Pay land tax each year on taxable land the business owns in the state, above any tax-free threshold.",
+  "laws": [
+    {
+      "title": "Land Tax Act 2005 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "88/2005",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/land-tax-act-2005",
+      "provisions": "ss 7–8",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Land Tax Act 2005 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/land-tax-act-2005",
+      "locator": "s 7 (authorised version 086, saved by the owner)",
+      "quote": "Land tax is imposed in respect of each year on all taxable land in Victoria.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Land Tax Act 2005 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/land-tax-act-2005",
+      "locator": "s 8 (authorised version 086, saved by the owner)",
+      "quote": "The owner of taxable land is liable to pay land tax on the land.",
+      "accessed": "2026-11-12",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "vic-dtf"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "State Revenue Office Victoria (Commissioner of State Revenue)",
+      "bodies": [
+        "vic-dtf"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Land Tax Act 2005 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/land-tax-act-2005",
+          "locator": "s 50(2)(a) (authorised version 086, saved by the owner)",
+          "quote": "the Commissioner must assess the related corporations jointly for land tax (other than vacant residential land tax)",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Each year, on land owned at the date set by the law. Most owners pay only above a tax-free threshold, which differs by state and by owner (individual, company or trust); thresholds are not yet quoted.",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns taxable land in Victoria",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business that owns taxable land in the state; exemptions (such as a home or primary production land) are not yet recorded.",
+      "sources": [
+        {
+          "title": "Land Tax Act 2005 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/land-tax-act-2005",
+          "locator": "s 8 (authorised version 086, saved by the owner)",
+          "quote": "The owner of taxable land is liable to pay land tax on the land.",
+          "accessed": "2026-11-12",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "An annual tax on the value of land owned, with exemptions and a tax-free threshold. A tax on land value distorts little in principle, but thresholds, exemptions and rates that rise with total holdings narrow the base and change who holds land and how.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Exemptions, thresholds and rates that rise with total holdings narrow the base and tax owners unevenly, so land use and ownership respond to the tax.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "Marked from the tax's design against the framework's guide; the size of the effect varies by state and was not measured.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-12"
+  },
+  "drafted_on": "2026-11-12",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
