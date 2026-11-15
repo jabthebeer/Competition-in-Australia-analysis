@@ -1,6 +1,6 @@
 # Plan: re-evaluating Legislative levers under framework version 2.0
 
-*15 November 2026. Drafted by Claude Code on the legislation branch (`claude/pensive-bell-wgm7ks`) for the owner. Nothing in this plan has been built. Figures were computed on 15 November 2026 from `main` at PR [#33](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/33), using the levers page's own data (`build_payload` in `alicia/src/alicia/menu/explorer.py`).*
+*15 November 2026. Drafted by Claude Code on the legislation branch (`claude/pensive-bell-wgm7ks`) for the owner. The owner made the 5 decisions on 15 November 2026 (section 4; DECISIONS E-162). Phase 2's sorting is done ([rules and changes](levers_rules_and_changes.md)); the rest is not yet built. Figures were computed on 15 November 2026 from `main` at PR [#33](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/33), using the levers page's own data (`build_payload` in `alicia/src/alicia/menu/explorer.py`).*
 
 ## 1. What version 2.0 already did
 
@@ -52,8 +52,8 @@ Each phase ends in a pull request, with `alicia validate`, `pytest` and `ruff` p
 
 | # | Phase | Who | Scope | Depends on |
 |---|---|---|---|---|
-| 1 | Settle the method | Owner | The 5 decisions in section 4 | |
-| 2 | Put every change under its rule | This branch; one field from the website session | 144 changes, 47 reform rules | 1 |
+| 1 | Settle the method | Owner | The 5 decisions in section 4 | Done (15 November 2026) |
+| 2 | Put every change under its rule | This branch; one field from the website session | 144 changes, 47 reform rules | Sorted; waits on the field |
 | 3 | Quote and check each rule's coding | This branch; one change from the website session | 102 coded rules; 151 law links | 1 |
 | 4 | Count each rule once, and give it a regime | This branch | 29 candidate pairs; 19 rules | Alongside 2 and 3 |
 | 5 | Sharpen exposure | This branch | 28 coarse rules; 28 upper bounds | 3 |
@@ -75,7 +75,7 @@ Each phase ends in a pull request, with `alicia validate`, `pytest` and `ruff` p
 
 Check these first, without assuming the answer:
 
-- the 7 adoptions of the 2022 building code;
+- the 8 adoptions of the 2022 building code;
 - the 8 transfers to the NDIS Commission;
 - coastal trading (2012);
 - the pharmacy location rules (2018);
@@ -87,6 +87,7 @@ Check these first, without assuming the answer:
 - **Output:** each change linked to its rule, or marked as removing one.
 - **Check:** a test that every change does one or the other.
 - **Today's links:** only families and a requirement's `records`. They join 17 changes.
+- **Result (15 November 2026):** [`levers_rules_and_changes.md`](levers_rules_and_changes.md). Of the 47 reform rules, 25 created their restriction and stay rules, 10 changed a rule already in the register and 12 tightened one that is not (12 standing rules to add). Of the 144 changes, 66 changed a rule in the register, 45 a rule not in it (42 rules to add if their marks are negative), 5 removed a rule, 25 change nothing that weighs on productivity and 3 are not yet in force. The links wait on the field (decision 2); the standing rules wait with them, so that no rule is counted twice.
 
 ### Phase 3. Quote and check each rule's coding
 
@@ -154,15 +155,15 @@ Guidance that is enforced as if it were law ([scoping note](scoping_regulatory_g
 - **Write up:** a short methods note and one decision row for each phase.
 - **Owner's spot check:** a sample of about 20 rules, Severe and Major first. The register is checked by an AI process, not a person.
 
-## 4. Decisions for the owner
+## 4. Decisions (owner, 15 November 2026)
 
-| # | Question | Recommended |
-|---|---|---|
-| 1 | A reform that tightened an existing restriction: add the standing rule as a setting and make the reform its change, or re-mark the reform against no rule? | Add the standing rule. It keeps one counterfactual for each kind of item |
-| 2 | How a change names its rule: an explicit field from the website session, or reuse families for now? | An explicit field. Families mean one policy across governments, and using them for links would blur that |
-| 3 | Where a register item's quoted obligation lives: in a nested requirement, or in new fields in `rule-coding.json`? | A nested requirement. It needs no schema change |
-| 4 | May this branch correct existing entries in `rule-coding.json`, or should it send the corrections to the website session? | Send a list, unless the owner says otherwise. The file is the website session's |
-| 5 | Phase 6 scope: only the highest-scoring kinds, or every kind? | The highest-scoring kinds. They decide the top of the ranking |
+| # | Question | Recommended | Decided |
+|---|---|---|---|
+| 1 | A reform that tightened an existing restriction: add the standing rule as a setting and make the reform its change, or re-mark the reform against no rule? | Add the standing rule. It keeps one counterfactual for each kind of item | Add the standing rule as its own item, make the reform its change, and mark the change |
+| 2 | How a change names its rule: an explicit field from the website session, or reuse families for now? | An explicit field. Families mean one policy across governments, and using them for links would blur that | A dedicated field |
+| 3 | Where a register item's quoted obligation lives: in a nested requirement, or in new fields in `rule-coding.json`? | A nested requirement. It needs no schema change | Attach the requirement |
+| 4 | May this branch correct existing entries in `rule-coding.json`, or should it send the corrections to the website session? | Send a list, unless the owner says otherwise. The file is the website session's | Send a list |
+| 5 | Phase 6 scope: only the highest-scoring kinds, or every kind? | The highest-scoring kinds. They decide the top of the ranking | Only the highest-scoring kinds for now; lower ones may follow later |
 
 ## 5. Limits
 

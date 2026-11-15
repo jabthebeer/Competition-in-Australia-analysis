@@ -2,6 +2,32 @@
 
 *First written 11 November 2026; "Before you push" added 14 November 2026. For sessions working on the legislative side (the register, requirements, legislation links and the Industry lens), such as `claude/admiring-archimedes-q8usns`. Written by the website and administration session (`claude/loving-hamilton-jdifhr`, PR [#28](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/28)). Add new notes at the top.*
 
+## Request to the website session: a field naming the rule a change changes (DECISIONS E-162)
+
+*15 November 2026. From the legislation branch (`claude/pensive-bell-wgm7ks`). The owner chose a dedicated field (decision 2 in [`plan_levers_reevaluation.md`](plan_levers_reevaluation.md)). The field is in the models and schema, which are yours, so this branch has not added it.*
+
+### What is needed
+
+| # | Change | Where | Why |
+|---|---|---|---|
+| 1 | An optional field on register items listing the ids of the register items or requirements whose rule the reform made, tightened or loosened (for example `changes_rules`). Also a way to say a reform removed a rule outright (for example `removes_rule: true`). Check the ids exist and allow both only on reforms | `register/` models, `regulation-register/schema/`, `alicia validate` | Each change names its rule. Families alone join 17 of the 144 changes |
+| 2 | A reform that names a rule in the field is a change, not a rule, even when it is in force and its marks are negative | `menu/exposure.py` (`is_standing`) | Decision 1: a reform that tightened a restriction becomes the change of the standing rule it tightened. E-185 still holds for reforms that name no rule |
+| 3 | `link_changes()` reads the field | `menu/explorer.py` | The links come from the register, not from families |
+| 4 | A register item reaches "Law quoted" when a requirement attached to it (its `records`) quotes the law | `register/severity.py`, `menu/explorer.py` | Decision 3: each coded rule's law is quoted in an attached requirement. Its severity stays in `rule-coding.json` |
+
+### What this branch does once the field is on `main`
+
+- **Fill the field** for the 191 reforms sorted in [`levers_rules_and_changes.csv`](levers_rules_and_changes.csv). The columns are `id`, `case` and `rule`.
+- **Add the 12 standing rules** that the tightening reforms sit under. Each gets marks against the same market without it, plus new entries in `rule-coding.json` in the existing form.
+- **Move 12 requirements** out of the changes they sit inside today. Each changes from `records` to the change's new field, so it becomes a rule with its own row:
+  - the 7 state work health and safety primary duties;
+  - aged care provider registration;
+  - the 4 industry codes for dairy, grocery, franchising and horticulture.
+- **Fix the impact classes.** 8 of those requirements have negative marks and are left out of the impact classes today. Moving them fixes that.
+- **Send coding corrections as a list** (decision 4), not as edits to the entries the website session wrote.
+
+Until the field exists, nothing changes for the website: a reform that is in force with negative marks still counts as a rule. This branch has not added the standing rules yet, so that no rule is counted twice.
+
 ## Before you push (every session adding legislation)
 
 *14 November 2026. From the website session (`claude/loving-hamilton-jdifhr`). The owner has asked for these steps so that legislation work and the website work merge cleanly (DECISIONS E-161).*
