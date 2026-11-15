@@ -1,0 +1,121 @@
+{
+  "id": "act-development-approval",
+  "family": "development-approval",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "planning-and-development",
+  "title": "Get development approval before undertaking development that needs it",
+  "kind": "approval",
+  "what": "Get development approval (a permit) before carrying out development, or starting a use of land, that the planning scheme says needs one, and keep to the approval.",
+  "laws": [
+    {
+      "title": "Planning Act 2023 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "A2023-18",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2023-18/current/PDF/2023-18.PDF",
+      "provisions": "s 403",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Planning Act 2023 (ACT)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2023-18/current/PDF/2023-18.PDF",
+      "locator": "s 403(1) (current republication (R13, from 10 November 2026; Planning Act 2023 | Acts))",
+      "quote": "(1) A person commits an offence if— (a) the person undertakes development without development approval; and (b) the development requires development approval; and (c) the person knows that the development requires development approval. Maximum penalty: (a) for an individual—2 000 penalty units; or (b) for a corporation—2 500 penalty units.",
+      "accessed": "2026-11-15",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019",
+        "6712",
+        "4110"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its development requires development approval",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Planning Act 2023 (ACT)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2023-18/current/PDF/2023-18.PDF",
+          "locator": "s 403(1) (current republication (R13, from 10 November 2026; Planning Act 2023 | Acts))",
+          "quote": "(1) A person commits an offence if— (a) the person undertakes development without development approval; and (b) the development requires development approval; and (c) the person knows that the development requires development approval. Maximum penalty: (a) for an individual—2 000 penalty units; or (b) for a corporation—2 500 penalty units.",
+          "accessed": "2026-11-15",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words make undertaking development that requires approval without it an offence.",
+  "records": [
+    "act-planning-zoning"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Zoning and planning approvals limit how many homes can be built and where businesses can open. They push house prices far above the cost of building, add delays and paperwork, and can shelter existing businesses from new rivals. The Productivity Commission puts the cost of housing regulation at about 1% of GDP a year, mostly from zoning.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "Zoning keeps house prices well above the cost of supply: a large distortion in the largest asset market.",
+        "positions": []
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Zoning and approvals limit the sites open to new businesses; the Harper Review found planning rules can favour incumbents.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Development approvals add paperwork, holding costs and delay to building homes and business premises.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "No city estimate of the zoning premium was found for this jurisdiction; the marks rest on the Productivity Commission's national estimate and the common design of planning systems. Marks copied from the register item act-planning-zoning so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

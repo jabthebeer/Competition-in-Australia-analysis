@@ -1,0 +1,118 @@
+{
+  "id": "cth-small-amount-credit-cost-caps",
+  "family": "small-amount-credit-cost-caps",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "financial-services",
+  "title": "Keep fees on small amount credit contracts within the caps",
+  "kind": "other",
+  "what": "A credit provider may charge on a small amount credit contract only the permitted fees: an establishment fee of at most 20% of the adjusted credit amount and a monthly fee of at most 4%.",
+  "laws": [
+    {
+      "title": "National Consumer Credit Protection Act 2009 (Schedule 1, National Credit Code)",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2009A00134",
+      "register_url": "https://www.legislation.gov.au/C2009A00134/latest/text",
+      "provisions": "Sch 1 s 31A",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "National Consumer Credit Protection Act 2009 (Schedule 1, National Credit Code)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/C2009A00134/latest/text",
+      "locator": "Sch 1 s 31A(2)-(3) (compilation C2026C00340 from 2026-07-01)",
+      "quote": "(2) A permitted establishment fee is a fee or charge the amount of which must not exceed 20% of the adjusted credit amount in relation to the small amount credit contract. Maximum amount of permitted monthly fee (3) The amount of a permitted monthly fee that may be imposed or provided for under a small amount credit contract must not exceed 4% of the adjusted credit amount in relation to the contract.",
+      "accessed": "2026-11-15",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Offering small amount credit contracts",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6230"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it offers small amount credit contracts",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Consumer Credit Protection Act 2009 (Schedule 1, National Credit Code)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C2009A00134/latest/text",
+          "locator": "Sch 1 s 31A(2)-(3) (compilation C2026C00340 from 2026-07-01)",
+          "quote": "(2) A permitted establishment fee is a fee or charge the amount of which must not exceed 20% of the adjusted credit amount in relation to the small amount credit contract. Maximum amount of permitted monthly fee (3) The amount of a permitted monthly fee that may be imposed or provided for under a small amount credit contract must not exceed 4% of the adjusted credit amount in relation to the contract.",
+          "accessed": "2026-11-15",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Code's own words set the caps; they bind only small amount credit contracts.",
+  "records": [
+    "cth-small-amount-credit-caps-2013"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A national regime with caps on the cost of small loans replaced differing state caps. The caps protect borrowers but can push smaller lenders out and ration credit to riskier borrowers.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": 1,
+        "reason": "One national regime replaced differing state caps.",
+        "positions": []
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Binding caps on fees can ration credit to borrowers whose risk costs more to serve.",
+        "positions": []
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Lower allowed margins push some small lenders out.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Marks copied from the register item cth-small-amount-credit-caps-2013 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

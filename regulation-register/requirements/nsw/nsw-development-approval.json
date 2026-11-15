@@ -1,0 +1,121 @@
+{
+  "id": "nsw-development-approval",
+  "family": "development-approval",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "planning-and-development",
+  "title": "Get development consent before carrying out development that needs it",
+  "kind": "approval",
+  "what": "Get development approval (a permit) before carrying out development, or starting a use of land, that the planning scheme says needs one, and keep to the approval.",
+  "laws": [
+    {
+      "title": "Environmental Planning and Assessment Act 1979 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1979-203",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-13/act-1979-203",
+      "provisions": "s 4.2",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environmental Planning and Assessment Act 1979 (NSW)",
+      "publisher": "Official legislation register",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-13/act-1979-203",
+      "locator": "s 4.2(1) (version of 2024-12-13)",
+      "quote": "a person must not carry the development out on land to which the provision applies unless— (a) such a consent has been obtained and is in force, and (b) the development is carried out in accordance with the consent and the instrument. Maximum penalty—Tier 1 monetary penalty.",
+      "accessed": "2026-11-15",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-12-13/act-1979-203"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019",
+        "6712",
+        "4110"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if an environmental planning instrument requires consent for its development",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environmental Planning and Assessment Act 1979 (NSW)",
+          "publisher": "Official legislation register",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-13/act-1979-203",
+          "locator": "s 4.2(1) (version of 2024-12-13)",
+          "quote": "a person must not carry the development out on land to which the provision applies unless— (a) such a consent has been obtained and is in force, and (b) the development is carried out in accordance with the consent and the instrument. Maximum penalty—Tier 1 monetary penalty.",
+          "accessed": "2026-11-15",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-13/act-1979-203"
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words bar carrying out development that needs consent without it. Quoted from the Open Australian Legal Corpus copy of the official text, which is not itself official.",
+  "records": [
+    "nsw-planning-zoning"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Zoning and planning approvals limit how many homes can be built and where businesses can open. They push house prices far above the cost of building, add delays and paperwork, and can shelter existing businesses from new rivals. The Productivity Commission puts the cost of housing regulation at about 1% of GDP a year, mostly from zoning.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "Zoning keeps house prices well above the cost of supply: a large distortion in the largest asset market. The RBA put the premium at 73% in Sydney in 2016.",
+        "positions": []
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Zoning and approvals limit the sites open to new businesses; the Harper Review found planning rules can favour incumbents.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Development approvals add paperwork, holding costs and delay to building homes and business premises.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "Marks copied from the register item nsw-planning-zoning so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

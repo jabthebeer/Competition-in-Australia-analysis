@@ -1,0 +1,121 @@
+{
+  "id": "wa-development-approval",
+  "family": "development-approval",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "planning-and-development",
+  "title": "Carry out development only in line with the planning scheme and its approvals",
+  "kind": "approval",
+  "what": "Get development approval (a permit) before carrying out development, or starting a use of land, that the planning scheme says needs one, and keep to the approval.",
+  "laws": [
+    {
+      "title": "Planning and Development Act 2005 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a9408",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_a9408.html",
+      "provisions": "s 218",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Planning and Development Act 2005 (WA)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49203.docx",
+      "locator": "s 218(a)-(b) (version current from )",
+      "quote": "218. Planning scheme or condition on development, contravening etc. A person who — (a) contravenes the provisions of a planning scheme; or (b) commences, continues or carries out any development in any part of a region the subject of a region planning scheme or any part of an area the subject of a local planning scheme, an improvement scheme or the Swan Valley Planning Scheme otherwise than in accordance with the provisions of the planning scheme;",
+      "accessed": "2026-11-15",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019",
+        "6712",
+        "4110"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its development needs approval under the planning scheme",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Planning and Development Act 2005 (WA)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49203.docx",
+          "locator": "s 218(a)-(b) (version current from )",
+          "quote": "218. Planning scheme or condition on development, contravening etc. A person who — (a) contravenes the provisions of a planning scheme; or (b) commences, continues or carries out any development in any part of a region the subject of a region planning scheme or any part of an area the subject of a local planning scheme, an improvement scheme or the Swan Valley Planning Scheme otherwise than in accordance with the provisions of the planning scheme;",
+          "accessed": "2026-11-15",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words make development otherwise than in line with the planning scheme an offence.",
+  "records": [
+    "wa-planning-zoning"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Zoning and planning approvals limit how many homes can be built and where businesses can open. They push house prices far above the cost of building, add delays and paperwork, and can shelter existing businesses from new rivals. The Productivity Commission puts the cost of housing regulation at about 1% of GDP a year, mostly from zoning.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "Zoning keeps house prices well above the cost of supply: a large distortion in the largest asset market. The RBA put the premium at 54% in Perth in 2016.",
+        "positions": []
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Zoning and approvals limit the sites open to new businesses; the Harper Review found planning rules can favour incumbents.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Development approvals add paperwork, holding costs and delay to building homes and business premises.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "Marks copied from the register item wa-planning-zoning so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

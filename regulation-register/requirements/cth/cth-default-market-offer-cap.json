@@ -1,0 +1,125 @@
+{
+  "id": "cth-default-market-offer-cap",
+  "family": "default-market-offer-cap",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "energy-markets",
+  "title": "Keep standing offer prices within the Default Market Offer",
+  "kind": "other",
+  "what": "An electricity retailer must keep its standing offer prices to small customers in the regions the Code covers at or below the price cap set by the AER (the Default Market Offer).",
+  "laws": [
+    {
+      "title": "Competition and Consumer (Industry Code—Electricity Retail) Regulations 2019",
+      "jurisdiction": "CTH",
+      "kind": "regulation",
+      "register_id": "F2019L00530",
+      "register_url": "https://www.legislation.gov.au/F2019L00530/latest/text",
+      "provisions": "s 10",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Competition and Consumer (Industry Code—Electricity Retail) Regulations 2019",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/F2019L00530/latest/text",
+      "locator": "s 10(2) (compilation F2026C00795 from 2026-08-08)",
+      "quote": "(2) The electricity retailer must ensure that the standing offer prices comply with the price cap on that day. Civil penalty: 300 penalty units.",
+      "accessed": "2026-11-15",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2640"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [
+        "NSW",
+        "QLD",
+        "SA"
+      ],
+      "note": "Electricity retailers in the distribution regions the Code covers (NSW, south-east Queensland and South Australia).",
+      "sources": [
+        {
+          "title": "Competition and Consumer (Industry Code—Electricity Retail) Regulations 2019",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/F2019L00530/latest/text",
+          "locator": "s 10(2) (compilation F2026C00795 from 2026-08-08)",
+          "quote": "(2) The electricity retailer must ensure that the standing offer prices comply with the price cap on that day. Civil penalty: 300 penalty units.",
+          "accessed": "2026-11-15",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Code's own words bind electricity retailers' standing offer prices.",
+  "records": [
+    "cth-default-market-offer-2019"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Caps standing-offer electricity prices in New South Wales, south-east Queensland and South Australia, and makes retailers quote discounts against the same reference price. It protects customers who do not shop around, but a regulated price can compress the margins entrants rely on.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A regulated default price replaces retailer-set standing offers and may sit away from some retailers' costs.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "A common reference price makes offers easier to compare and curbs the 'loyalty tax' on customers who do not switch.",
+        "positions": []
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Lower standing-offer margins can deter smaller retailers from entering or expanding.",
+        "positions": [
+          "entrants",
+          "smaller"
+        ]
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "medium",
+    "confidence_note": "Marks copied from the register item cth-default-market-offer-2019 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

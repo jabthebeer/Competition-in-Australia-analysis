@@ -1,0 +1,106 @@
+{
+  "id": "tas-pharmacy-ownership-restriction",
+  "family": "pharmacy-ownership-restriction",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "pharmacy",
+  "title": "Hold an interest in a pharmacy business only with an eligibility certificate",
+  "kind": "licence",
+  "what": "Only a pharmacist (or another person the Act allows) may own, or hold an interest in, a pharmacy business. In Tasmania a person needs an eligibility certificate, or must be an exempt person, to hold an interest.",
+  "laws": [
+    {
+      "title": "Pharmacy Control Act 2001 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2001-090",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-090",
+      "provisions": "s 62",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Pharmacy Control Act 2001 (Tas)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-090",
+      "locator": "s 62(1) (current)",
+      "quote": "A person must not hold an interest in a pharmacy business unless – (a) the person holds an eligibility certificate; or (b) [Section 62 Subsection (1) amended by No. 22 of 2016, s. 16, Applied:01 Jan 2017] the person is an exempt person. Penalty: Fine not exceeding 200 penalty units and, in the case of a continuing offence, a further fine not exceeding 20 penalty units for each day during which the offence continues.",
+      "accessed": "2026-11-15",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4271"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Pharmacy Control Act 2001 (Tas)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-090",
+          "locator": "s 62(1) (current)",
+          "quote": "A person must not hold an interest in a pharmacy business unless – (a) the person holds an eligibility certificate; or (b) [Section 62 Subsection (1) amended by No. 22 of 2016, s. 16, Applied:01 Jan 2017] the person is an exempt person. Penalty: Fine not exceeding 200 penalty units and, in the case of a continuing offence, a further fine not exceeding 20 penalty units for each day during which the offence continues.",
+          "accessed": "2026-11-15",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words bar holding an interest in a pharmacy business without an eligibility certificate.",
+  "records": [
+    "tas-pharmacy-ownership"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Only pharmacists may own pharmacies, and each may own only a few. It keeps other investors and business models out of community pharmacy; the Harper Review recommended removing the restriction.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "Reserves ownership of pharmacies to pharmacists and caps how many each may own: an exclusive right to enter.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The restriction is explicit; its effect on prices and access has not been measured in Australia. Marks copied from the register item tas-pharmacy-ownership so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "id": "nt-development-approval",
+  "family": "development-approval",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "planning-and-development",
+  "title": "Use or develop land that needs a permit only in line with the permit",
+  "kind": "approval",
+  "what": "Get development approval (a permit) before carrying out development, or starting a use of land, that the planning scheme says needs one, and keep to the approval.",
+  "laws": [
+    {
+      "title": "Planning Act 1999 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "PLANNING-ACT-1999",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12098",
+      "provisions": "s 75B",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Planning Act 1999 (NT)",
+      "publisher": "Official legislation register",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12098",
+      "locator": "s 75B(1) (current reprint)",
+      "quote": "75B Use or development contravenes permit (1) A person must not use or develop land in a manner that is only permitted in accordance with a permit: (a) except in accordance with the permit; and (b) subject to section 56(c), until all the conditions of the permit that must be complied with before the use is permitted have been complied with.",
+      "accessed": "2026-11-15",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019",
+        "6712",
+        "4110"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its use or development of land needs a permit",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Planning Act 1999 (NT)",
+          "publisher": "Official legislation register",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12098",
+          "locator": "s 75B(1) (current reprint)",
+          "quote": "75B Use or development contravenes permit (1) A person must not use or develop land in a manner that is only permitted in accordance with a permit: (a) except in accordance with the permit; and (b) subject to section 56(c), until all the conditions of the permit that must be complied with before the use is permitted have been complied with.",
+          "accessed": "2026-11-15",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words bar using or developing land that needs a permit except in line with it.",
+  "records": [
+    "nt-planning-zoning"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Zoning and planning approvals limit how many homes can be built and where businesses can open. They push house prices far above the cost of building, add delays and paperwork, and can shelter existing businesses from new rivals. The Productivity Commission puts the cost of housing regulation at about 1% of GDP a year, mostly from zoning.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "Zoning keeps house prices well above the cost of supply: a large distortion in the largest asset market.",
+        "positions": []
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Zoning and approvals limit the sites open to new businesses; the Harper Review found planning rules can favour incumbents.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Development approvals add paperwork, holding costs and delay to building homes and business premises.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "low",
+    "confidence_note": "No city estimate of the zoning premium was found for this jurisdiction; the marks rest on the Productivity Commission's national estimate and the common design of planning systems. Marks copied from the register item nt-planning-zoning so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

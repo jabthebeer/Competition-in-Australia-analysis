@@ -1,0 +1,121 @@
+{
+  "id": "qld-development-approval",
+  "family": "development-approval",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "planning-and-development",
+  "title": "Get development approval before carrying out assessable development",
+  "kind": "approval",
+  "what": "Get development approval (a permit) before carrying out development, or starting a use of land, that the planning scheme says needs one, and keep to the approval.",
+  "laws": [
+    {
+      "title": "Planning Act 2016 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2016-025",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2016-025",
+      "provisions": "s 163",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Planning Act 2016 (Qld)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2016-025",
+      "locator": "s 163(1) (current)",
+      "quote": "163 Carrying out assessable development without permit (1) A person must not carry out assessable development, unless all necessary development permits are in effect for the development. Maximum penalty— (a) if the assessable development is on a Queensland heritage place or local heritage place—17,000 penalty units; or (b) otherwise—4,500 penalty units.",
+      "accessed": "2026-11-15",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019",
+        "6712",
+        "4110"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its development is assessable under the planning scheme",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Planning Act 2016 (Qld)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2016-025",
+          "locator": "s 163(1) (current)",
+          "quote": "163 Carrying out assessable development without permit (1) A person must not carry out assessable development, unless all necessary development permits are in effect for the development. Maximum penalty— (a) if the assessable development is on a Queensland heritage place or local heritage place—17,000 penalty units; or (b) otherwise—4,500 penalty units.",
+          "accessed": "2026-11-15",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words make carrying out assessable development without a permit an offence.",
+  "records": [
+    "qld-planning-zoning"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Zoning and planning approvals limit how many homes can be built and where businesses can open. They push house prices far above the cost of building, add delays and paperwork, and can shelter existing businesses from new rivals. The Productivity Commission puts the cost of housing regulation at about 1% of GDP a year, mostly from zoning.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "Zoning keeps house prices well above the cost of supply: a large distortion in the largest asset market. The RBA put the premium at 42% in Brisbane in 2016.",
+        "positions": []
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Zoning and approvals limit the sites open to new businesses; the Harper Review found planning rules can favour incumbents.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Development approvals add paperwork, holding costs and delay to building homes and business premises.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "Marks copied from the register item qld-planning-zoning so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

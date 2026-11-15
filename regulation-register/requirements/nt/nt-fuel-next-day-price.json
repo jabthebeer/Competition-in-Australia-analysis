@@ -1,0 +1,112 @@
+{
+  "id": "nt-fuel-next-day-price",
+  "family": "fuel-next-day-price",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "fuel-retailing",
+  "title": "Report the next day's fuel prices, and only cut them during the day",
+  "kind": "other",
+  "what": "A fuel retailer must report, between 8.30 am and 2 pm, the price each fuel will sell at for the 24 hours from 6 am the next day; during that period it may only report a lower price.",
+  "laws": [
+    {
+      "title": "Consumer Affairs and Fair Trading (Fuel Retailers) Amendment Regulations 2026 (NT)",
+      "jurisdiction": "NT",
+      "kind": "regulation",
+      "register_id": null,
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/SubordinateLegislation/PDF?id=6175",
+      "provisions": "reg 4 (new reg 5)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Consumer Affairs and Fair Trading (Fuel Retailers) Amendment Regulations 2026 (NT)",
+      "publisher": "Northern Territory legislation register",
+      "url": "https://legislation.nt.gov.au/api/sitecore/SubordinateLegislation/PDF?id=6175",
+      "locator": "reg 4, inserting reg 5(1)-(3) of the Consumer Affairs and Fair Trading (Fuel Retailers) Regulations 2017",
+      "quote": "(1) In relation to each day on which the fuel retailer for a service station will offer prescribed fuel for retail sale at the service station, the fuel retailer is required to report to the Commissioner the normal fuel price that will apply to each prescribed fuel offered during the 24 hour period commencing at 6.00 am on that day. (2) A report under subregulation (1) must be made between 8.30 am and 2.00 pm on the day before the 24 hour period commences. (3) If, during the 24 hour period, the fuel retailer wishes to reduce the normal fuel price of a prescribed fuel, the fuel retailer is required to report to the Commissioner: (a) the revised normal fuel price for the prescribed fuel, which must be lower than the price of the prescribed fuel at the time the report is made;",
+      "accessed": "2026-11-15",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4000"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Consumer Affairs and Fair Trading (Fuel Retailers) Amendment Regulations 2026 (NT)",
+          "publisher": "Northern Territory legislation register",
+          "url": "https://legislation.nt.gov.au/api/sitecore/SubordinateLegislation/PDF?id=6175",
+          "locator": "reg 4, inserting reg 5(1)-(3) of the Consumer Affairs and Fair Trading (Fuel Retailers) Regulations 2017",
+          "quote": "(1) In relation to each day on which the fuel retailer for a service station will offer prescribed fuel for retail sale at the service station, the fuel retailer is required to report to the Commissioner the normal fuel price that will apply to each prescribed fuel offered during the 24 hour period commencing at 6.00 am on that day. (2) A report under subregulation (1) must be made between 8.30 am and 2.00 pm on the day before the 24 hour period commences. (3) If, during the 24 hour period, the fuel retailer wishes to reduce the normal fuel price of a prescribed fuel, the fuel retailer is required to report to the Commissioner: (a) the revised normal fuel price for the prescribed fuel, which must be lower than the price of the prescribed fuel at the time the report is made;",
+          "accessed": "2026-11-15",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The regulations' own words bind fuel retailers at service stations.",
+  "records": [
+    "nt-fuel-price-commitment-2026"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Retailers must post tomorrow's price the day before and may only cut it during the day, as in Perth. It ends sudden price jumps, but restricting price changes and publishing commitments in advance can make prices easier to match; Perth's experience does not show a clear fall in average margins.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Limits when retailers can change prices, and advance commitments make rivals' prices easy to match.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Retailers must set and report the next day's price within a daily window.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Marks copied from the register item nt-fuel-price-commitment-2026 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

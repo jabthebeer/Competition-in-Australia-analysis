@@ -1,0 +1,122 @@
+{
+  "id": "qld-pharmacy-ownership-restriction",
+  "family": "pharmacy-ownership-restriction",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "pharmacy",
+  "title": "Own a pharmacy business only as a pharmacist, under a pharmacy business licence",
+  "kind": "licence",
+  "what": "Only a pharmacist (or another person the Act allows) may own, or hold an interest in, a pharmacy business. In Queensland the owner must also hold a pharmacy business licence for the business.",
+  "laws": [
+    {
+      "title": "Pharmacy Business Ownership Act 2024 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2024-009",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2024-009",
+      "provisions": "ss 15, 16",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Pharmacy Business Ownership Act 2024 (Qld)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2024-009",
+      "locator": "s 16 (current)",
+      "quote": "16 Who may hold material interest in pharmacy business A person must not hold a material interest in a pharmacy business unless— (a) the person is a practising pharmacist; or (b) the person is a close adult relative of a practising pharmacist and the practising pharmacist holds an interest in the business. Maximum penalty—200 penalty units.",
+      "accessed": "2026-11-15",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Pharmacy Business Ownership Act 2024 (Qld)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2024-009",
+      "locator": "s 15(1) (current)",
+      "quote": "15 Owner of pharmacy business must hold pharmacy business licence (1) A person must not own a pharmacy business unless the person holds a pharmacy business licence for the business that is in effect. Maximum penalty—200 penalty units.",
+      "accessed": "2026-11-15",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4271"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Pharmacy Business Ownership Act 2024 (Qld)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2024-009",
+          "locator": "s 16 (current)",
+          "quote": "16 Who may hold material interest in pharmacy business A person must not hold a material interest in a pharmacy business unless— (a) the person is a practising pharmacist; or (b) the person is a close adult relative of a practising pharmacist and the practising pharmacist holds an interest in the business. Maximum penalty—200 penalty units.",
+          "accessed": "2026-11-15",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words reserve material interests in pharmacy businesses to pharmacists and their close relatives.",
+  "records": [
+    "qld-pharmacy-business-ownership-2025"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A new licensing regime and council enforce Queensland's rules on who may own a pharmacy. It adds a licensing layer and tightens enforcement of ownership limits that keep out other business models.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A new pharmacy business licence and enforced ownership limits restrict who may open or buy a pharmacy.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Owners must hold a licence and report material interests.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "Marks copied from the register item qld-pharmacy-business-ownership-2025 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

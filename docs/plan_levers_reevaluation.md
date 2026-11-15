@@ -54,7 +54,7 @@ Each phase ends in a pull request, with `alicia validate`, `pytest` and `ruff` p
 |---|---|---|---|---|
 | 1 | Settle the method | Owner | The 5 decisions in section 4 | Done (15 November 2026) |
 | 2 | Put every change under its rule | This branch; one field from the website session | 144 changes, 47 reform rules | Sorted; waits on the field |
-| 3 | Quote and check each rule's coding | This branch; one change from the website session | 102 coded rules; 151 law links | 1 |
+| 3 | Quote and check each rule's coding | This branch; one change from the website session | 102 coded rules; 151 law links | Batch 1 (Severe and Major) done; Minor next |
 | 4 | Count each rule once, and give it a regime | This branch | 29 candidate pairs; 19 rules | Alongside 2 and 3 |
 | 5 | Sharpen exposure | This branch | 28 coarse rules; 28 upper bounds | 3 |
 | 6 | Fill gaps where version 2 scores highest | This branch, with the state branches | Caps, exclusive rights, bans, ownership limits, price controls | 3 |
@@ -111,6 +111,8 @@ Severe and Major rules come first (56), then Minor (46).
 | NSW and SA | Search results, marked unverified, because their sites refused connections from this environment |
 
 **Coding corrections.** Corrections to entries in `rule-coding.json` follow decision 4.
+
+**Batch 1 (15 November 2026):** [`levers_quoted_rules.md`](levers_quoted_rules.md). Of the 56 Severe and Major coded rules, 16 already had a fitting quoted requirement, 19 now have one (18 new and 1 attached; the Default Market Offer gained a second quoting its price cap), 8 have one quoting a different Act (a fix is proposed), 1 was found repealed (the NT minimum price on alcohol, from 1 March 2025), 6 are blocked (Victoria), 2 are policies with no law, 2 are left for later and 2 become changes under phase 2. 27 instruments gained an official register link. Four coding corrections would change a rule's class; they go to the website session as a list.
 
 ### Phase 4. Count each rule once, and give it a regime
 

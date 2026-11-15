@@ -1,0 +1,106 @@
+{
+  "id": "wa-pharmacy-ownership-restriction",
+  "family": "pharmacy-ownership-restriction",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "pharmacy",
+  "title": "Own a pharmacy business only as a pharmacist or another permitted owner",
+  "kind": "other",
+  "what": "Only a pharmacist (or another person the Act allows) may own, or hold an interest in, a pharmacy business.",
+  "laws": [
+    {
+      "title": "Pharmacy Act 2010 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a146779",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_a146779.html",
+      "provisions": "s 54",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Pharmacy Act 2010 (WA)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48837.docx",
+      "locator": "s 54(1) (version current from )",
+      "quote": "54. Ownership of, and interests in, pharmacy business (1) A person must not own, or hold a proprietary interest in, a pharmacy business unless the person is — (a) a pharmacist; or (b) a person who is a partner in a partnership that carries on the business and in which every partner is either — (i) a pharmacist; or (ii) a close family member of a partner who is a pharmacist; or (c) a pharmacist controlled company; or (d) a friendly society; or (e) the preserved company.",
+      "accessed": "2026-11-15",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4271"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Pharmacy Act 2010 (WA)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48837.docx",
+          "locator": "s 54(1) (version current from )",
+          "quote": "54. Ownership of, and interests in, pharmacy business (1) A person must not own, or hold a proprietary interest in, a pharmacy business unless the person is — (a) a pharmacist; or (b) a person who is a partner in a partnership that carries on the business and in which every partner is either — (i) a pharmacist; or (ii) a close family member of a partner who is a pharmacist; or (c) a pharmacist controlled company; or (d) a friendly society; or (e) the preserved company.",
+          "accessed": "2026-11-15",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words reserve ownership of pharmacy businesses to pharmacists and the other owners it lists.",
+  "records": [
+    "wa-pharmacy-ownership"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Only pharmacists may own pharmacies, and each may own only a few. It keeps other investors and business models out of community pharmacy; the Harper Review recommended removing the restriction.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "Reserves ownership of pharmacies to pharmacists and caps how many each may own: an exclusive right to enter.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The restriction is explicit; its effect on prices and access has not been measured in Australia. Marks copied from the register item wa-pharmacy-ownership so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

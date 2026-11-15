@@ -1,0 +1,117 @@
+{
+  "id": "cth-vape-supply-pharmacy-only",
+  "family": "vape-supply-pharmacy-only",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "tobacco-and-vapes",
+  "title": "Supply vapes only as a pharmacist, under the therapeutic goods exceptions",
+  "kind": "other",
+  "what": "Do not supply vaping goods unless an exception applies: for retail supply, the supplier must be a pharmacist (or an authorised medical or nurse practitioner) and the goods must be therapeutic goods entered on the Register or otherwise allowed.",
+  "laws": [
+    {
+      "title": "Therapeutic Goods Act 1989",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A03952",
+      "register_url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+      "provisions": "s 41QB",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Therapeutic Goods Act 1989",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+      "locator": "s 41QB(1) (compilation C2025C00525 from 2025-09-05)",
+      "quote": "(1) A person commits an offence if the person supplies vaping goods in Australia. Penalty: Imprisonment for 7 years or 5,000 penalty units, or both.",
+      "accessed": "2026-11-15",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Therapeutic Goods Act 1989",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+      "locator": "s 41QB(10) (compilation C2025C00525 from 2025-09-05)",
+      "quote": "(10) This subsection applies in relation to the supply of the vaping goods by the person if: (a) the person is a pharmacist;",
+      "accessed": "2026-11-15",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Supplying vaping goods",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4271",
+        "4279"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it would supply vaping goods",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Pharmacies may supply within the exceptions; other retailers may not supply at all.",
+      "sources": [
+        {
+          "title": "Therapeutic Goods Act 1989",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C2004A03952/latest/text",
+          "locator": "s 41QB(1) (compilation C2025C00525 from 2025-09-05)",
+          "quote": "(1) A person commits an offence if the person supplies vaping goods in Australia. Penalty: Imprisonment for 7 years or 5,000 penalty units, or both.",
+          "accessed": "2026-11-15",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words make supplying vaping goods an offence unless an exception applies.",
+  "records": [
+    "cth-vaping-reforms-2024"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Vapes may be sold only by pharmacies for therapeutic use, after bans on imports of disposable and non-therapeutic vapes. It closes other legal retail channels and may push supply to illicit sellers.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "Restricts lawful supply to pharmacies, closing the market to other retailers.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "high",
+    "confidence_note": "Public health benefits, the reason for the policy, are not weighed here. Marks copied from the register item cth-vaping-reforms-2024 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

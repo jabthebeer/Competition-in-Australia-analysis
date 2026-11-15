@@ -1,0 +1,117 @@
+{
+  "id": "cth-book-import-licence",
+  "family": "book-import-licence",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "customs-and-excise",
+  "title": "Import books for sale only with the copyright owner's licence, or under the 30-day rule",
+  "kind": "other",
+  "what": "A bookseller or wholesaler may not import copies of a book for sale without the Australian copyright owner's licence, unless an exception in s 44A applies (such as a book not supplied locally within the set time).",
+  "laws": [
+    {
+      "title": "Copyright Act 1968",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1968A00063",
+      "register_url": "https://www.legislation.gov.au/C1968A00063/latest/text",
+      "provisions": "ss 37, 44A",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Copyright Act 1968",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/C1968A00063/latest/text",
+      "locator": "s 37(1) (compilation C2026C00138 from 2026-04-02)",
+      "quote": "(1) Subject to Division 3, the copyright in a literary, dramatic, musical or artistic work is infringed by a person who, without the licence of the owner of the copyright, imports an article into Australia for the purpose of: (a) selling, letting for hire, or by way of trade offering or exposing for sale or hire, the article;",
+      "accessed": "2026-11-15",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Copyright Act 1968",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/C1968A00063/latest/text",
+      "locator": "s 44A(2) (compilation C2026C00138 from 2026-04-02)",
+      "quote": "(2) Subject to this section, the copyright in: (a) an overseas work first published before the commencing day; or (b) a work first published in Australia, whether before, on or after the commencing day; is not infringed by a person who, without the licence of the owner of the copyright, imports a copy (in this subsection called the imported copy) of a hardback or paperback version of a non-infringing book into Australia for a purpose mentioned in paragraph 37(1)(a), (b) or (c) if:",
+      "accessed": "2026-11-15",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Importing books for sale",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "5413",
+        "4244"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it imports books for sale",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Copyright Act 1968",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C1968A00063/latest/text",
+          "locator": "s 37(1) (compilation C2026C00138 from 2026-04-02)",
+          "quote": "(1) Subject to Division 3, the copyright in a literary, dramatic, musical or artistic work is infringed by a person who, without the licence of the owner of the copyright, imports an article into Australia for the purpose of: (a) selling, letting for hire, or by way of trade offering or exposing for sale or hire, the article;",
+          "accessed": "2026-11-15",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words make importing for sale without the owner's licence an infringement; s 44A sets the exceptions.",
+  "records": [
+    "cth-book-parallel-import-restrictions"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Local publishers can block cheaper imported editions of books. It protects local publishing at the cost of higher prices for readers; the Productivity Commission has twice recommended repeal.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Restricts imports of books published overseas, sheltering local editions from price competition.",
+        "positions": []
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "narrow",
+    "confidence": "high",
+    "confidence_note": "Marks copied from the register item cth-book-parallel-import-restrictions so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

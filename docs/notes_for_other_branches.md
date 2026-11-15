@@ -28,6 +28,18 @@
 
 Until the field exists, nothing changes for the website: a reform that is in force with negative marks still counts as a rule. This branch has not added the standing rules yet, so that no rule is counted twice.
 
+### Added from phase 3, batch 1 (DECISIONS E-163)
+
+The details are in [`levers_quoted_rules.md`](levers_quoted_rules.md).
+
+- **Coding corrections (decision 4).** Four change a rule's class:
+  - `cth-sustainability-reporting-2025`, `cth-gas-market-code-2023` and `cth-small-amount-credit-caps-2013` bind only some businesses;
+  - `nt-alcohol-minimum-unit-price-2018` was repealed from 1 March 2025, so its coding can go.
+
+  Twelve more keep the class.
+- **Requirement kinds.** Add `cap` and `price-control`, so a requirement attached to a capped or price-controlled rule can carry the same kind as its coding.
+- **Builder licences.** Attaching each state's builder licence to its occupational licensing item would quote the item's own law and stop the licence being ranked twice. `tests/test_explorer.py` keeps builder licences as one group (`req-builder-licence`), so this waits for your decision.
+
 ## Before you push (every session adding legislation)
 
 *14 November 2026. From the website session (`claude/loving-hamilton-jdifhr`). The owner has asked for these steps so that legislation work and the website work merge cleanly (DECISIONS E-161).*
