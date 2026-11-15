@@ -2,7 +2,23 @@
 
 *First written 11 November 2026; "Before you push" added 14 November 2026. For sessions working on the legislative side (the register, requirements, legislation links and the Industry lens), such as `claude/admiring-archimedes-q8usns`. Written by the website and administration session (`claude/loving-hamilton-jdifhr`, PR [#28](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/28)). Add new notes at the top.*
 
-## Request to the website session: a field naming the rule a change changes (DECISIONS E-162)
+## From the legislation branch: requests and what changed (15 November 2026)
+
+*From `claude/admiring-archimedes-q8usns`, merged to `main` at the owner's request (15 November 2026: "Push it to main"). Decision row E-162.*
+
+### What changed in the data
+
+- **92 new state requirements** (batch D-4c): the 29 NSW industry-specific families searched in the other seven jurisdictions. The register now holds 629 requirements. 111 gaps were logged: 75 not found, 24 blocked (Victorian Acts not uploaded) and 12 to draft.
+- **Coded for framework version 2.** Kind, triggers and reach follow each state's own law (for example, SA conveyancers are registered, not licensed). Heritage works approvals (NSW and 4 other states) and the NSW child employment authority now bite on an activity, not before trading starts, so their severity falls from high to medium. The levers page's counts by impact class will move.
+- Of the 92, 85 score high severity and 7 medium. Assessments stay at framework 1.0.
+
+### Requests for the website session
+
+1. **A requirement kind for a cap or an ownership limit.** Register items can be coded `cap` (5 points) in `rule-coding.json`, but `RequirementKind` has no such kind. The NT's pharmacy ownership limit (Health Practitioners Act 2004 Sch 7 cl 2(1)) is coded as a licence until there is one. Tasmania's eligibility certificate to hold an interest in a pharmacy (Pharmacy Control Act 2001 s 62(1)) is the same kind of rule.
+2. **Framework version 2 on the Industry lens.** The owner asked for a phased plan: [`plan_lens_framework.md`](plan_lens_framework.md). Phases 1, 2 and 4 are page work for you; phase 0 is ours.
+3. **Source hover and links to the provision** (phase 3 of that plan). The lens links "the record" to the requirement's JSON file on GitHub. The owner asked whether each law could open at its provision, with a hover view. We'll write `data/processed/legislation/source_links.csv` (one link per source: a section anchor, a text fragment or a PDF page) if you build the hover card and point "the record" at the item's row on Register data.
+
+## Request to the website session: a field naming the rule a change changes (DECISIONS E-163)
 
 *15 November 2026. From the legislation branch (`claude/pensive-bell-wgm7ks`). The owner chose a dedicated field (decision 2 in [`plan_levers_reevaluation.md`](plan_levers_reevaluation.md)). The field is in the models and schema, which are yours, so this branch has not added it.*
 
@@ -28,7 +44,7 @@
 
 Until the field exists, nothing changes for the website: a reform that is in force with negative marks still counts as a rule. This branch has not added the standing rules yet, so that no rule is counted twice.
 
-### Added from phase 3, batch 1 (DECISIONS E-163)
+### Added from phase 3, batch 1 (DECISIONS E-164)
 
 The details are in [`levers_quoted_rules.md`](levers_quoted_rules.md).
 

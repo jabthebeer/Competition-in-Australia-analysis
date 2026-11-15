@@ -133,7 +133,8 @@ def src(spec: str) -> tuple[str, str, str, str | None, str]:
             return url, flat(L.corpus_text(vid)), "corpus-copy", vid, f"version of {vid.split(':')[1].split('/')[0]}"
     if kind == "wa":
         url, cur = wa_current(arg)
-        return url, flat(L.fetch_doc(url, _key(url))[0]), "document", None, f"version current from {cur}"
+        note = f"version current from {cur}" if cur else "current version"  # the page does not always give the date
+        return url, flat(L.fetch_doc(url, _key(url))[0]), "document", None, note
     if kind == "act":
         url, v, title = act_latest(arg)
         note = (

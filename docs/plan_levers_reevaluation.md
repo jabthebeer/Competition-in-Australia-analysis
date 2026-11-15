@@ -1,6 +1,6 @@
 # Plan: re-evaluating Legislative levers under framework version 2.0
 
-*15 November 2026. Drafted by Claude Code on the legislation branch (`claude/pensive-bell-wgm7ks`) for the owner. The owner made the 5 decisions on 15 November 2026 (section 4; DECISIONS E-162). Phase 2's sorting is done ([rules and changes](levers_rules_and_changes.md)); the rest is not yet built. Figures were computed on 15 November 2026 from `main` at PR [#33](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/33), using the levers page's own data (`build_payload` in `alicia/src/alicia/menu/explorer.py`).*
+*15 November 2026. Drafted by Claude Code on the legislation branch (`claude/pensive-bell-wgm7ks`) for the owner. The owner made the 5 decisions on 15 November 2026 (section 4; DECISIONS E-163). Phase 2's sorting is done ([rules and changes](levers_rules_and_changes.md)); the rest is not yet built. Figures were computed on 15 November 2026 from `main` at PR [#33](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/33), using the levers page's own data (`build_payload` in `alicia/src/alicia/menu/explorer.py`).*
 
 ## 1. What version 2.0 already did
 

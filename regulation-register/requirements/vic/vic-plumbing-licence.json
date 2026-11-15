@@ -1,0 +1,110 @@
+{
+  "id": "vic-plumbing-licence",
+  "family": "plumbing-licence",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "electrical-plumbing-gas-licensing",
+  "title": "Hold a plumbing licence",
+  "kind": "licence",
+  "what": "Carry out plumbing work of a class or type only if licensed or registered by the Victorian Building Authority for it.",
+  "laws": [
+    {
+      "title": "Building Act 1993 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "93-126aa152",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+      "provisions": "s 221D(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Act 1993 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+      "locator": "s 221D(1) (authorised version 152, saved by the owner)",
+      "quote": "A person must not carry out any plumbing work of a particular class or type unless he or she is licensed or registered by the Authority to carry out work of that class or type.",
+      "accessed": "2026-11-14",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3231"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Act 1993 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+          "locator": "s 221D(1) (authorised version 152, saved by the owner)",
+          "quote": "A person must not carry out any plumbing work of a particular class or type unless he or she is licensed or registered by the Authority to carry out work of that class or type.",
+          "accessed": "2026-11-14",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Carry out plumbing work of a class or type only if licensed or registered by the Victorian Building Authority for it.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can trade.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Qualification or experience tests narrow who may do the work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-14"
+  },
+  "drafted_on": "2026-11-14",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
