@@ -2,7 +2,8 @@
  * from in container._xl, for the Excel export (xlsx.js). */
 const SVGNS = "http://www.w3.org/2000/svg";
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-const fyLabel = (y) => `${y}-${String((y + 1) % 100).padStart(2, "0")}`;
+// A financial year by the year it starts in, with an en dash (Style Manual): 2014 is 2014–15.
+const fyLabel = (y) => `${y}–${String((y + 1) % 100).padStart(2, "0")}`;
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const monthLabel = (t) => { const d = new Date(t); return `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
 const quarterLabel = (t) => { const d = new Date(t); return `${MONTHS[d.getUTCMonth()]}–${MONTHS[d.getUTCMonth() + 2]} ${d.getUTCFullYear()}`; };
@@ -62,6 +63,79 @@ function showTip(html, ev) {
   TIP.style.top = `${Math.max(8, y)}px`;
 }
 const hideTip = () => { TIP.hidden = true; };
+
+/* Tabs: a row of buttons, each showing one panel of a long page.
+ *   <div class="tabs" role="tablist" aria-label="…"><button type="button" role="tab" id="tab-x" aria-controls="panel-x">…</button>…</div>
+ *   <section class="tab-panel" role="tabpanel" id="panel-x" aria-labelledby="tab-x" hidden>…</section>
+ * The address keeps the tab (#x), so a tab can be linked to, and a link on the page to #x opens it. An address that
+ * names something inside a panel (#economic-conditions) opens that panel and scrolls to it. Arrow keys, Home and End
+ * move between tabs. onShow(key) runs when a tab opens. */
+function initTabs(list, opts = {}) {
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  const panelOf = (t) => document.getElementById(t.getAttribute("aria-controls"));
+  const keyOf = (t) => t.id.replace(/^tab-/, "");
+  let current = null;
+  const show = (t, focus) => {
+    const changed = t !== current;
+    current = t;
+    for (const x of tabs) {
+      const on = x === t;
+      x.setAttribute("aria-selected", on ? "true" : "false");
+      x.tabIndex = on ? 0 : -1;
+      panelOf(x).hidden = !on;
+    }
+    // Where the tabs scroll sideways (a phone), bring the open one into view.
+    if (list.scrollWidth > list.clientWidth) list.scrollLeft = Math.max(0, t.offsetLeft - list.offsetLeft - 16);
+    if (focus) t.focus();
+    if (changed && opts.onShow) opts.onShow(keyOf(t));
+    return changed;
+  };
+  const fromHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return { tab: current || tabs[0] };
+    const named = tabs.find((t) => keyOf(t) === id);
+    if (named) return { tab: named };
+    const target = document.getElementById(id), panel = target && target.closest('[role="tabpanel"]');
+    const tab = panel && tabs.find((t) => panelOf(t) === panel);
+    return tab ? { tab, target } : { tab: current || tabs[0], elsewhere: !!target };
+  };
+  // opts.hash false: the page's address holds its own state (the Industry lens), so the tabs leave it alone.
+  const useHash = opts.hash !== false;
+  const pick = (t, focus) => { if (useHash) history.replaceState(null, "", `#${keyOf(t)}`); show(t, focus); };
+  list.addEventListener("click", (e) => { const t = e.target.closest('[role="tab"]'); if (t) pick(t); });
+  list.addEventListener("keydown", (e) => {
+    const i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    const j = { ArrowRight: (i + 1) % tabs.length, ArrowLeft: (i - 1 + tabs.length) % tabs.length, Home: 0, End: tabs.length - 1 }[e.key];
+    if (j === undefined) return;
+    e.preventDefault();
+    pick(tabs[j], true);
+  });
+  // A link on the page to a tab, or to something inside one: open it, then bring it into view.
+  // (Something outside the tabs, such as the sources at the foot, is left to the browser.)
+  if (useHash) window.addEventListener("hashchange", () => {
+    const { tab, target, elsewhere } = fromHash();
+    show(tab);
+    if (!elsewhere) (target || list).scrollIntoView({ block: "start" });
+  });
+  const { tab, target } = useHash ? fromHash() : { tab: tabs.find((x) => x.getAttribute("aria-selected") === "true") || tabs[0] };
+  show(tab);
+  if (target) target.scrollIntoView({ block: "start" });
+  // For the page's own code: open a tab by its key without changing the address.
+  return { open: (key) => { const t = tabs.find((x) => keyOf(x) === key); if (t) show(t); return !!t; }, current: () => keyOf(current) };
+}
+
+/* A few horizontal bars with their values, for a finding card. rows: [{label, value, color, ref (true: a dashed
+ * outline, for a benchmark such as the cost of equity)}]; opts: max (the value a full bar stands for), fmt. */
+function miniBars(container, rows, opts = {}) {
+  const shown = rows.filter((r) => isNum(r.value));
+  const max = opts.max || Math.max(1e-9, ...shown.map((r) => r.value));
+  const f = opts.fmt || ((v) => fmt(v, 1));
+  container.innerHTML = shown.map((r) => {
+    const w = Math.max(0, Math.min(100, (100 * r.value) / max));
+    return `<div class="mb-row"><span>${esc(r.label)}</span><span class="mb-track"><span class="mb-bar${r.ref ? " ref" : ""}" style="width:${w.toFixed(1)}%${r.color && !r.ref ? `;background:${r.color}` : ""}"></span></span><span class="mb-val">${esc(f(r.value))}</span></div>`;
+  }).join("");
+}
 
 /* Charts redraw at their container's width, so text stays legible on phones. */
 const CHARTS = new Map();
@@ -635,7 +709,7 @@ const TERMS = {
   output: ["Output", "The value an industry creates: its sales less what it buys from other businesses to make them (gross value added)."],
   industry: ["Industry", "One of the 19 broad industries the ABS uses, such as Retail Trade or Mining (ANZSIC divisions)."],
   sector: ["Sector", "A narrower part of an industry, such as supermarkets or banks (an ANZSIC class, or a group of classes)."],
-  fy: ["Financial year", "1 July to 30 June. 2014-15 runs from July 2014 to June 2015."],
+  fy: ["Financial year", "1 July to 30 June. 2014–15 runs from July 2014 to June 2015."],
   avgGrowth: ["Average annual growth", "The steady yearly rate that would take the first year's value to the last year's."],
   index100: ["Index", "Each line starts at 100 in the first year, so it shows growth from there: 120 means 20% higher."],
   pp: ["Percentage points", "The difference between two percentages: going from 10% to 12% is a rise of 2 percentage points."],

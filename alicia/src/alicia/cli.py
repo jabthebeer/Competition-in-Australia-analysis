@@ -93,6 +93,21 @@ def cmd_validate(args) -> int:
     problems.extend(family_problems)
     problems.extend(check_families(families, result.records))
     ids = {r.id for r in result.records}
+    # Framework version 2 (DECISIONS E-185): the coded attributes of register items, and each regime's purpose. A
+    # standing item that weighs on productivity but is not coded is a warning: its class then comes from its marks.
+    from .register import severity
+
+    problems.extend(severity.check_coding(severity.load_coding(), ids))
+    purposes, purpose_labels = severity.load_purposes()
+    problems.extend(severity.check_purposes(purposes, purpose_labels, {g.id for g in regimes.regimes}))
+    warnings.extend(
+        f"regime-purposes.json: regime '{g.id}' has no purpose" for g in regimes.regimes if g.id not in purposes
+    )
+    warnings.extend(
+        f"rule-coding.json: '{r.id}' is a {r.kind} that weighs on productivity but has no coded attributes"
+        for r in result.records
+        if r.kind == "setting" and r.assessment and r.assessment.total < 0 and r.id not in severity.load_coding()
+    )
     problems.extend(
         f"{r.id}.json: history: unknown record '{h.record}'"
         for r in result.records
@@ -632,7 +647,7 @@ def main(argv: list[str] | None = None) -> int:
     si.add_argument(
         "--costing",
         default=None,
-        help="add the archived Policy costing tab from its build (regulatory-burden-tool/dist-site, 'npm run build:site')",
+        help="add the archived Policy costing tab from its build (regulatory-burden-tool/dist-site)",
     )
     si.add_argument(
         "--archive",

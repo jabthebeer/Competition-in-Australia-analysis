@@ -593,7 +593,8 @@ function xlFromChart(x) {
 let XL_PAGE = { sources: {}, release: {}, links: [] };
 function excelSetup(cfg) { XL_PAGE = { ...XL_PAGE, ...cfg }; }
 const xlText = (n) => (n ? n.textContent.replace(/\s+/g, " ").trim() : "");
-const xlFile = (s) => s.replace(/\s*:\s*/g, " - ").replace(/[\\/]+/g, "-").replace(/[*?"<>|]+/g, "").replace(/\s+/g, " ").trim().slice(0, 140);
+// (An en dash in a financial year becomes a hyphen in the file name, which some systems handle better.)
+const xlFile = (s) => s.replace(/–/g, "-").replace(/\s*:\s*/g, " - ").replace(/[\\/]+/g, "-").replace(/[*?"<>|]+/g, "").replace(/\s+/g, " ").trim().slice(0, 140);
 
 /* The workbook for a card: a sheet for each chart in it (in page order, each titled by the heading above it), any
  * extra tables, and the About sheet. cfg: {title (), settings () -> [[name, value]], tables () -> [sheet spec],

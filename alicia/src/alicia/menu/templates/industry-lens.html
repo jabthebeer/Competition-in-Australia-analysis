@@ -198,16 +198,6 @@ details.base > summary { cursor: pointer; font-weight: 600; }
     <!--__NAV__-->
     <p class="kicker">ALICIA · Bottom up</p>
     <h1>Industry lens <!--__BETA__--></h1>
-    <nav class="toc" aria-label="On this page">
-      <span class="toc-label">On this page</span>
-      <a href="#h-pain">Pain points</a>
-      <a href="#h-overlap">Regulatory overlap</a>
-      <a href="#h-laws">Laws for this industry</a>
-      <a href="#h-states">Across states</a>
-      <a href="#h-table">Effect on competition</a>
-      <a href="#h-market">Market conditions</a>
-      <a href="#foot">Sources</a>
-    </nav>
   </header>
 
   <p class="notice" id="beta-note"></p>
@@ -230,84 +220,14 @@ details.base > summary { cursor: pointer; font-weight: 600; }
 
   <section class="tiles summary" id="summary" aria-label="Summary for this industry and place"></section>
 
-  <section class="block" aria-labelledby="h-pain">
-    <div class="block-head">
-      <h2 id="h-pain">Pain points</h2>
-      <p class="where" id="pain-where"></p>
-    </div>
-    <div class="cards" id="pain-cards"></div>
-    <div class="more-rows" id="pain-more"></div>
-  </section>
+  <div class="tabs" role="tablist" aria-label="Views of this industry">
+    <button type="button" role="tab" id="tab-market" aria-controls="panel-market" aria-selected="true">Its market</button>
+    <button type="button" role="tab" id="tab-rules" aria-controls="panel-rules" aria-selected="false" tabindex="-1">Its requirements</button>
+    <button type="button" role="tab" id="tab-who" aria-controls="panel-who" aria-selected="false" tabindex="-1">Who it answers to</button>
+    <button type="button" role="tab" id="tab-pain" aria-controls="panel-pain" aria-selected="false" tabindex="-1">Pain points</button>
+  </div>
 
-  <section class="block" aria-labelledby="h-overlap">
-    <div class="block-head">
-      <h2 id="h-overlap">Regulatory overlap</h2>
-      <p class="where" id="overlap-where"></p>
-    </div>
-    <h3 id="h-venn">Levels of government in each regime</h3>
-    <div class="venn-wrap" id="venn"></div>
-    <div class="panel reg-detail" id="reg-detail" aria-live="polite"></div>
-    <h3 id="h-grid">Who does what</h3>
-    <div class="chips" id="grid-scope" role="group" aria-label="Laws in the grid">
-      <button type="button" class="chip" data-scope="industry" aria-pressed="true">This industry's laws</button>
-      <button type="button" class="chip" data-scope="all" aria-pressed="false">All laws, with the baseline</button>
-    </div>
-    <div class="panel tscroll"><table class="data grid" id="who-grid"></table></div>
-    <p class="note">Each cell lists the bodies doing that job, with the number of laws. A red cell has two or more bodies doing the same job for the same law. Bodies are as named in the register.</p>
-  </section>
-
-  <section class="block" aria-labelledby="h-laws">
-    <div class="block-head">
-      <h2 id="h-laws">Laws for this industry</h2>
-      <p class="where" id="laws-where"></p>
-    </div>
-    <div class="chips" id="law-view" role="group" aria-label="View">
-      <button type="button" class="chip" data-view="list" aria-pressed="true">List</button>
-      <button type="button" class="chip" data-view="journey" aria-pressed="false">Business journey</button>
-    </div>
-    <div id="laws"></div>
-  </section>
-
-  <section class="block" aria-labelledby="h-states">
-    <div class="block-head">
-      <h2 id="h-states">Across states</h2>
-      <p class="where" id="states-where"></p>
-    </div>
-    <p class="notice">Early view. It shows where each state's version is recorded. After the state batches (D-3 to D-10) it will compare the versions: fees, thresholds, terms and the regulator.</p>
-    <div class="panel tscroll"><table class="data grid" id="states-table"></table></div>
-  </section>
-
-  <section class="block" aria-labelledby="h-table">
-    <div class="block-head">
-      <h2 id="h-table">Effect of each law on competition</h2>
-      <p class="where" id="where"></p>
-    </div>
-    <div class="tiles lens" id="tiles"></div>
-    <div class="legend-row" id="legend"></div>
-    <div class="toolbar">
-      <label class="check"><input type="checkbox" id="opt-uncoded"> Show laws with no material effect</label>
-      <label class="check"><input type="checkbox" id="opt-indirect" checked> Include register items with an indirect effect</label>
-    </div>
-    <div class="toolbar">
-      <span class="small muted">Level of government</span>
-      <div class="chips" id="tier-filter" role="group" aria-label="Level of government"></div>
-      <label class="check" for="sort-by">Sort by</label>
-      <select id="sort-by">
-        <option value="tier">Level of government</option>
-        <option value="negative">Most negative first</option>
-        <option value="positive">Most positive first</option>
-        <option value="title">Title (A–Z)</option>
-      </select>
-    </div>
-    <div class="panel tscroll">
-      <table class="lens" id="lens-table">
-        <thead id="lens-head"></thead>
-        <tbody id="lens-body"></tbody>
-      </table>
-    </div>
-    <p class="note" id="coverage"></p>
-  </section>
-
+  <div class="tab-panel" role="tabpanel" id="panel-market" aria-labelledby="tab-market">
   <section class="block" aria-labelledby="h-market">
     <div class="block-head">
       <h2 id="h-market">Structural market conditions</h2>
@@ -336,8 +256,100 @@ details.base > summary { cursor: pointer; font-weight: 600; }
     <p class="note" id="market-note"></p>
   </section>
 
+  </div>
+
+  <div class="tab-panel" role="tabpanel" id="panel-rules" aria-labelledby="tab-rules" hidden>
+  <section class="block" aria-labelledby="h-laws">
+    <div class="block-head">
+      <h2 id="h-laws">Laws for this industry</h2>
+      <p class="where" id="laws-where"></p>
+    </div>
+    <div class="chips" id="law-view" role="group" aria-label="View">
+      <button type="button" class="chip" data-view="list" aria-pressed="true">List</button>
+      <button type="button" class="chip" data-view="journey" aria-pressed="false">Business journey</button>
+    </div>
+    <div id="laws"></div>
+  </section>
+
+  <section class="block" aria-labelledby="h-table">
+    <div class="block-head">
+      <h2 id="h-table">Effect of each law on competition</h2>
+      <p class="where" id="where"></p>
+    </div>
+    <div class="tiles lens" id="tiles"></div>
+    <div class="legend-row" id="legend"></div>
+    <div class="toolbar">
+      <label class="check"><input type="checkbox" id="opt-baseline"> Include laws for every business</label>
+      <label class="check"><input type="checkbox" id="opt-uncoded"> Show laws with no material effect</label>
+      <label class="check"><input type="checkbox" id="opt-indirect" checked> Include register items with an indirect effect</label>
+    </div>
+    <div class="toolbar">
+      <span class="small muted">Level of government</span>
+      <div class="chips" id="tier-filter" role="group" aria-label="Level of government"></div>
+      <label class="check" for="sort-by">Sort by</label>
+      <select id="sort-by">
+        <option value="tier">Level of government</option>
+        <option value="negative">Most negative first</option>
+        <option value="positive">Most positive first</option>
+        <option value="title">Title (A–Z)</option>
+      </select>
+    </div>
+    <div class="panel tscroll">
+      <table class="lens" id="lens-table">
+        <thead id="lens-head"></thead>
+        <tbody id="lens-body"></tbody>
+      </table>
+    </div>
+    <p class="note" id="coverage"></p>
+  </section>
+
+  </div>
+
+  <div class="tab-panel" role="tabpanel" id="panel-who" aria-labelledby="tab-who" hidden>
+  <section class="block" aria-labelledby="h-overlap">
+    <div class="block-head">
+      <h2 id="h-overlap">Regulatory overlap</h2>
+      <p class="where" id="overlap-where"></p>
+    </div>
+    <h3 id="h-venn">Levels of government in each regime</h3>
+    <div class="venn-wrap" id="venn"></div>
+    <div class="panel reg-detail" id="reg-detail" aria-live="polite"></div>
+    <h3 id="h-grid">Who does what</h3>
+    <div class="chips" id="grid-scope" role="group" aria-label="Laws in the grid">
+      <button type="button" class="chip" data-scope="industry" aria-pressed="true">This industry's laws</button>
+      <button type="button" class="chip" data-scope="all" aria-pressed="false">All laws, with the baseline</button>
+    </div>
+    <div class="panel tscroll"><table class="data grid" id="who-grid"></table></div>
+    <p class="note">Each cell lists the bodies doing that job, with the number of laws. A red cell has two or more bodies doing the same job for the same law. Bodies are as named in the register.</p>
+  </section>
+
+  </div>
+
+  <div class="tab-panel" role="tabpanel" id="panel-pain" aria-labelledby="tab-pain" hidden>
+  <section class="block" aria-labelledby="h-pain">
+    <div class="block-head">
+      <h2 id="h-pain">Pain points</h2>
+      <p class="where" id="pain-where"></p>
+    </div>
+    <div class="cards" id="pain-cards"></div>
+    <div class="more-rows" id="pain-more"></div>
+  </section>
+
+  <details class="shelf" id="states-shelf"><summary>Across states (early view)</summary>
+  <section class="block" aria-labelledby="h-states">
+    <div class="block-head">
+      <h2 id="h-states">Across states</h2>
+      <p class="where" id="states-where"></p>
+    </div>
+    <p class="notice">Early view. It shows where each state's version is recorded. After the state batches (D-3 to D-10) it will compare the versions: fees, thresholds, terms and the regulator.</p>
+    <div class="panel tscroll"><table class="data grid" id="states-table"></table></div>
+  </section>
+  </details>
+  </div>
+
   <footer class="foot" id="foot"></footer>
 </div>
+<noscript><style>.tab-panel[hidden] { display: grid !important; } .tabs { display: none; }</style></noscript>
 
 <script type="application/json" id="page-data">__PAGE_DATA__</script>
 <script>
@@ -362,6 +374,9 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   const link = (url, text) => url ? `<a href="${esc(url)}" rel="noopener">${esc(text)}</a>` : esc(text);
   const repoFile = (f) => D.repo + f;
 
+  // The four views of the industry sit in tabs, the business's own view first (owner decision, 14 November 2026,
+  // DECISIONS E-159). The address holds the industry and state, so the tabs leave it alone.
+  const viewTabs = initTabs(document.querySelector('.tabs[role="tablist"]'), { hash: false });
   // ---- State: from the address (#division=H&class=4511&state=NSW; the class is optional), else the default.
   const fromHash = () => Object.fromEntries(new URLSearchParams(location.hash.slice(1)));
   const DIVCLS = {};
@@ -373,7 +388,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   let div = cls ? CL[cls].division : (DIVCLS[h.division] ? h.division : D.default.division);
   if (!h.class && !h.division && D.default.class) cls = D.default.class;
   let st = STATE[h.state] ? h.state : D.default.state;
-  const opt = { uncoded: false, indirect: true, tiers: new Set(["cth", "state", "local"]), sort: "tier" };
+  const opt = { baseline: false, uncoded: false, indirect: true, tiers: new Set(["cth", "state", "local"]), sort: "tier" };
   const TIER_ORDER = { cth: 0, state: 1, local: 2 };
   const tierLabel = (r) => (r.tier === "cth" ? "Commonwealth" : r.tier === "state" ? STATE[r.jurisdiction] : `Council · ${r.council}`);
 
@@ -439,7 +454,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
       g.append(c, t); svg.appendChild(g);
     }
   }
-  $("state-chips").innerHTML = D.states.map((s) => `<button type="button" class="chip" data-st="${s.code}" aria-pressed="false" title="${esc(s.name)}">${s.code}</button>`).join("");
+  $("state-chips").innerHTML = D.states.map((s) => `<button type="button" class="chip" data-st="${s.code}" aria-pressed="false" title="${esc(s.name)}">${({ VIC: "Vic", QLD: "Qld", TAS: "Tas" })[s.code] || s.code}</button>`).join("");
   $("state-chips").addEventListener("click", (e) => { const b = e.target.closest("button[data-st]"); if (b) pick(b.dataset.st); });
 
   // ---- Which laws apply to some classes (one class, or every class in a division) in a state, and to which of them.
@@ -531,18 +546,22 @@ details.base > summary { cursor: pointer; font-weight: 600; }
     if (r.tier !== "cth" && Object.keys(FAM[r.family] || {}).length >= 2) out.push(r.tier === "local" ? "local-variation" : "varies");
     return out;
   }
-  function summaryView(reqs, regs) {
+  function summaryView(reqs, regs, sc, state) {
     const ind = reqs.filter((o) => o.specific).length, bt = byTier(reqs.map((o) => o.r));
     const n = TIERS3.reduce((a, t) => a + bt[t].size, 0), ov = reqs.filter((o) => o.r.overlap).length;
     const cov = regs.filter((g) => g.covers), issues = cov.reduce((a, g) => a + g.issues.length, 0), withIssues = cov.filter((g) => g.issues.length).length;
     const tile = (lead, label, v, sub) => `<div class="tile${lead ? " lead" : ""}"><span class="t-label">${label}</span><span class="t-value num">${v}</span><span class="t-sub">${sub}</span></div>`;
-    $("summary").innerHTML = tile(true, "Laws for this industry", ind, "Requirements particular to it") +
+    // The business's own view first: its market, then what the law requires of it, then who it answers to.
+    const m = mkt(sc, state);
+    const market = m ? tile(true, "Businesses", nn(m.total), `In ${esc(STATE[state])}, June ${LAST + 1}`) +
+      tile(false, "New businesses", pc(last(m.entry)), `Of those operating at the start of ${FY(LAST)}`) : "";
+    $("summary").innerHTML = market + tile(!m, "Laws for this industry", ind, "Requirements particular to it") +
       tile(false, "Laws for every business", reqs.length - ind, "The same in every industry") +
       `<div class="tile"><span class="t-label">Bodies involved</span><span class="t-value num">${n}</span>` +
       `<div class="tierbar" aria-hidden="true">${TIERS3.map((t) => `<span style="width:${n ? (100 * bt[t].size) / n : 0}%;background:var(--t-${t})"></span>`).join("")}</div>` +
       `<span class="t-sub">${TIERS3.map((t) => `${tierName(t, true)} ${bt[t].size}`).join(" · ")}</span></div>` +
       tile(false, "Same job, two bodies", ov, ov === 1 ? "Law where two bodies share a job" : "Laws where two bodies share a job") +
-      tile(false, "Problems found by reviews", issues, `In ${withIssues} of the ${count(cov.length, "regime")} covering it`);
+      tile(false, "Problems reviews found", issues, `In ${withIssues} of the ${count(cov.length, "regime")} covering it`);
   }
   // Pain points, ranked (owner, 12 November 2026): problems reviews found in the industry's own regimes, then flags
   // on its own laws, then problems in regimes every business deals with.
@@ -711,7 +730,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   // (ABS 8155.0; RBA RDP 2025-05), which are not published for single classes or states.
   const MK = D.market;
   const LAST = MK.years[MK.years.length - 1];
-  const FY = (y) => `${y}-${String((y + 1) % 100).padStart(2, "0")}`;
+  const FY = (y) => `${y}–${String((y + 1) % 100).padStart(2, "0")}`;
   const pc = (v, d = 1) => (v == null || !Number.isFinite(v) ? "–" : `${fmt(v, d)}%`);
   const nn = (v) => (v == null ? "–" : fmt(v, 0));
   const lvl = (t) => `<span class="lvl">${esc(t)}</span>`;
@@ -728,7 +747,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   function stats(pos, sc, state) {
     const m = mkt(sc, state), ss = MK.sizeSales[sc.division], t4 = MK.top4[sc.division];
     const here = lvl(sc.kind === "class" ? `${sc.code} · ${state} · CABEE` : `Division ${sc.code} · ${state} · CABEE, sum of its classes`);
-    const div = lvl(`Division ${sc.division} · Australia · ${MK.sizeSalesYear} · ABS 8155.0`);
+    const div = lvl(`Division ${sc.division} · Australia · ${String(MK.sizeSalesYear).replace("-", "–")} · ABS 8155.0`);
     if (!m) return `<div class="mk-stats"><span class="line">No business counts for this industry in ${esc(STATE[state])}.</span></div>`;
     const share = (k) => (m.total ? (100 * k) / m.total : null);
     if (pos === "entrants") {
@@ -758,7 +777,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
       parts.map(([n, v], i) => { const w = total ? (100 * v) / total : 0; return `<div class="seg b${i + 1}" style="width:${w}%" title="${esc(n)}: ${pc(w)}">${w >= 9 ? pc(w, 0) : ""}</div>`; }).join("") + `</div></div>`;
     const names = ["Fewer than 20 employees (including none)", "20–199 employees", "200 or more"];
     let html = m ? bar(`Businesses · ${sc.label} in ${state} · June ${LAST + 1}`, [[names[0], m.sizes[0] + m.sizes[1]], [names[1], m.sizes[2]], [names[2], m.sizes[3]]], m.total) : `<p class="note">No business counts for this industry in this state.</p>`;
-    html += ss ? bar(`Sales · Division ${c.division} · Australia · ${MK.sizeSalesYear}`, [[names[0], ss.under20], [names[1], ss["20-199"]], [names[2], ss["200+"]]], ss.total) : `<p class="note">Sales by business size are not published for this division (finance and insurance is not in the ABS table).</p>`;
+    html += ss ? bar(`Sales · Division ${c.division} · Australia · ${String(MK.sizeSalesYear).replace("-", "–")}`, [[names[0], ss.under20], [names[1], ss["20-199"]], [names[2], ss["200+"]]], ss.total) : `<p class="note">Sales by business size are not published for this division (finance and insurance is not in the ABS table).</p>`;
     $("ch-size").innerHTML = html;
     $("lg-size").innerHTML = names.map((n, i) => `<span><span class="sw seg b${i + 1}"></span>${esc(n)}</span>`).join("");
     if (m) lineChart($("ch-entry"), { x: MK.years, xKind: "fy", zero: true, height: 220, yFmt: (v) => fmt(v, 0), tipFmt: (v) => `${fmt(v, 1)}%`,
@@ -867,14 +886,17 @@ details.base > summary { cursor: pointer; font-weight: 600; }
     const found = applicable(codes, st);
     ctx = { reqs: found.filter((o) => o.r.type === "requirement") };
     ctx.regs = regimesFor(codes, ctx.reqs);
-    summaryView(ctx.reqs, ctx.regs);
+    summaryView(ctx.reqs, ctx.regs, sc, st);
     painView();
     vennView();
     gridView();
     lawsView();
     statesView(codes);
     const all = found.filter((o) => (opt.indirect || o.exposure !== "indirect") && opt.tiers.has(o.r.tier));
-    const shown = all.filter((o) => opt.uncoded || coded(o.r));
+    // The table opens on the laws particular to the industry; the laws for every business are one tick away.
+    const own = (o) => (o.r.type === "requirement" ? o.specific : o.exposure === "direct" || (o.exposure === "indirect" && !o.economy));
+    const inScope = all.filter((o) => opt.baseline || own(o));
+    const shown = inScope.filter((o) => opt.uncoded || coded(o.r));
     $("where").textContent = cls ? `Every law for ${cls} ${CL[cls].name} in ${STATE[st]}, marked against the framework in the column of the market players it acts through.`
       : `Every law for any class in division ${div} ${D.divisions[div]} in ${STATE[st]}, tagged with the classes it applies to.`;
 
@@ -898,16 +920,17 @@ details.base > summary { cursor: pointer; font-weight: 600; }
       title: (a, b) => a.r.title.localeCompare(b.r.title),
     };
     const body = [...shown].sort(SORTS[opt.sort]).map((o) => `<tr class="law">${lawCell(o)}${POS.map((p) => cell(o, p)).join("")}</tr>`).join("");
-    const hidden = all.length - shown.length;
-    $("lens-body").innerHTML = body || `<tr><td colspan="4" class="empty">No laws with a marked effect for this industry, place and level of government yet.${hidden ? " Tick “Show laws with no material effect” to see the rest." : ""}</td></tr>`;
+    const hidden = inScope.length - shown.length, baseline = all.length - inScope.length;
+    $("lens-body").innerHTML = body || `<tr><td colspan="4" class="empty">No laws particular to this industry with a marked effect yet, for this place and level of government.${baseline ? " Tick “Include laws for every business” to see those." : ""}${hidden ? " Tick “Show laws with no material effect” to see the rest." : ""}</td></tr>`;
 
     const specific = all.filter((o) => o.specific).length;
-    $("coverage").innerHTML = `${shown.length} of ${all.length} laws shown` + (hidden ? ` (${hidden} with no material effect hidden)` : "") + ". " +
+    $("coverage").innerHTML = `${shown.length} of ${all.length} laws shown` + (baseline || hidden ? ` (${[baseline ? `${baseline} for every business hidden` : "", hidden ? `${hidden} with no material effect hidden` : ""].filter(Boolean).join("; ")})` : "") + ". " +
       (specific ? `${specific} are particular to ${cls ? "this industry" : "some of the division's industries"}.` :
         `<strong>No requirements particular to this industry are recorded yet.</strong> The table shows laws for every business, and register items about the industry.`) +
       ` Councils are capital cities only, for now. ${D.counts.industrySpecific} industry-specific requirements so far.`;
   }
 
+  $("opt-baseline").addEventListener("change", (e) => { opt.baseline = e.target.checked; update(); });
   $("opt-uncoded").addEventListener("change", (e) => { opt.uncoded = e.target.checked; update(); });
   $("opt-indirect").addEventListener("change", (e) => { opt.indirect = e.target.checked; update(); });
   const TIERS = [["cth", "Commonwealth"], ["state", "State or territory"], ["local", "Council"]];
@@ -944,7 +967,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   $("foot").innerHTML =
     `<p>How the marks are placed in the columns, and the limits: ${link(D.repo + "docs/industry_lens.md", "the Industry lens methods note")}. The marking guide: ${link(D.repo + "docs/productivity_framework.md", "the productivity framework")}. Requirements: ${link(D.repo + "regulation-register/requirements", "regulation-register/requirements")}; register items: ${link(D.repo + "regulation-register/records", "regulation-register/records")}.</p>` +
     `<p>Industries: ${link(D.sources.anzsic, "ABS, ANZSIC 2006 (Revision 2.0)")}, CC BY 4.0. Map: ${esc(D.map.source)}, ${esc(D.map.licence)}.</p>` +
-    `<p>Built ${esc(D.built)}. Unofficial research tooling; not an Australian Government product.</p>`;
+    `<p>Built ${esc(new Date(D.built + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" }))}. Unofficial research, not an Australian Government product.</p>`;
 
   fillSelect("");
   update();

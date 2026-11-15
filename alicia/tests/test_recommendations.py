@@ -164,5 +164,5 @@ def test_the_menu_shows_recommendations_and_gaps():
     html = growth.render("explorer.html", data, "menu.html", standalone=True)
     page = json.loads(re.search(r'<script type="application/json" id="page-data">(.*?)</script>', html, re.S).group(1))
     assert page["recommendations"][0]["id"] == "illustrative-recommendation"
-    for hook in ('id="tab-recs"', 'id="reclist"', "What government could do", "rec="):
+    for hook in ('id="tab-recs"', 'id="reclist"', "What others recommend", "rec="):
         assert hook in html
