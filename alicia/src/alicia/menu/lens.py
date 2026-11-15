@@ -27,6 +27,7 @@ from ..register.recommendations import load_recommendations
 from ..register.regimes import BUSINESS_FACING, CONSISTENCY_LABELS, FUNCTION_LABELS, ISSUE_LABELS, load_regimes
 from ..register.requirements import KIND_LABELS, TRIGGER_LABELS, Requirement, load_requirements, reach_classes
 from ..register.schema import ChangeRecord
+from ..register.source_links import deep_link
 
 PAGE = ("industry-lens.html", "Industry lens (beta)")
 ROOT = Path(__file__).resolve().parents[4]
@@ -109,6 +110,34 @@ def _source(s) -> dict:
     return {"title": s.title, "publisher": s.publisher, "url": str(s.url), "locator": s.locator}
 
 
+CHECKED = {
+    "register-text": "Quoted from the official register's text",
+    "document": "Quoted from the official register's document",
+    "corpus-copy": "Quoted from the Open Australian Legal Corpus copy of the law",
+    "web-page": "Quoted from the web page",
+}
+QUOTE_CHARS = 600
+
+
+def cite(s, law_ids: tuple[str, ...]) -> dict:
+    """A quoted source for the hover card: what it says, where, and a link to the provision (source_links.py)."""
+    link = deep_link(str(s.url), s.locator, s.quote, law_ids)
+    quote = " ".join((s.quote or "").split())
+    if len(quote) > QUOTE_CHARS:
+        quote = quote[: quote.rfind(" ", 0, QUOTE_CHARS)] + " …"
+    return {
+        "title": s.title,
+        "publisher": s.publisher,
+        "locator": s.locator,
+        "quote": quote,
+        "checked": CHECKED.get(s.checked, ""),
+        "accessed": s.accessed.isoformat() if hasattr(s.accessed, "isoformat") else s.accessed,
+        "href": link["href"],
+        "how": link["how"],
+        "linkText": link["text"],
+    }
+
+
 def administration(q: Requirement, bodies: dict[str, dict] | None = None) -> list[dict]:
     """Who administers the requirement and what each does; without administration entries, the bodies named in
     administered_by, with the function unknown."""
@@ -146,6 +175,8 @@ def requirement_row(q: Requirement, settings: dict[str, ChangeRecord], bodies: d
         "triggers": [TRIGGER_LABELS[t.type] for t in q.triggers],
         "laws": [_law(law) for law in q.laws],
         "source": _source(q.sources[0]),
+        # Every quoted source, for the hover card (owner, 15 November 2026).
+        "cites": [cite(s, tuple(x.register_id or "" for x in q.laws)) for s in q.sources],
         "reach": reach,
         "marks": C.placed_marks(q.assessment),
         "framework": C.summary(q.assessment),

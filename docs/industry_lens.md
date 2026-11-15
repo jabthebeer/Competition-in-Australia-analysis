@@ -36,6 +36,35 @@ A register item whose framework assessment rates its reach **economy-wide** appe
 
 A requirement that names a register *setting* about the same law (payroll tax, occupational licensing, Australia Post's reserved service) stands for it, so the setting is not listed twice. Laws with no material effect are hidden unless the user asks for them.
 
+## What the law says: quotes and links to the provision (15 November 2026, E-163)
+
+The owner asked why each law linked to a JSON file, and whether a law could open at its provision, with a view on hover.
+
+- **The record link.** Each item's "How it is coded" link now opens its row on Register data (`register-data.html#q=<id>`), not its JSON file on GitHub. The register still keeps each item as one JSON file; Register data shows it as a row.
+- **A law's name** opens the law at the provision quoted. On a screen with a mouse, hovering over the name, or moving to it with the keyboard, shows a preview of the provision and the words quoted.
+- **What the law says** (a button under the law's name) opens a card in place, for touch and keyboard. The card lists every quoted source for the requirement, with:
+  - the provision;
+  - the words quoted (up to 600 characters);
+  - how it was checked and the date it was read;
+  - the link.
+
+**Links.** They are built when the site is built (`alicia/src/alicia/register/source_links.py`) from each source's address, provision and quote. Each kind was tested in a browser on 15 November 2026:
+
+| Where the source is | Link | Tested |
+|---|---|---|
+| Queensland and Tasmanian registers | To the section (`#sec.52`, `#GS6@EN`) | Lands on the section |
+| NSW register | To the section (`#sec.15`), the same system as Queensland | Not tested: the register refuses automated requests |
+| Modern awards and ABLIS | To the words quoted (a text fragment of the longest plain run of words, leaving out clause numbers and list markers) | Lands on the words (4 of 4 sampled) |
+| Federal Register of Legislation | The law's page | A text fragment does not land: the page draws its text after loading |
+| ACT and NT PDFs | A download; the card names the page (from `scripts/source_pages.py`) | The registers send their PDFs as downloads, so a page link has no effect |
+| Other PDFs | To the page (`#page=N`) | — |
+| WA (Word documents) and Victoria (in-force pages) | The law's page on its register | — |
+| SA (RTF documents) | A download | — |
+
+A provision with no section number in its locator (a schedule clause, for example) opens the law's page rather than a phrase, which could match the table of contents first.
+
+On 15 November 2026 the lens's 712 quoted sources link as follows: 142 to the section, 168 to the words quoted, 6 to a PDF page, 277 to the law's page and 119 to a download. `tests/test_source_links.py` checks the rules and that every link belongs to its source.
+
 ## Pain points and regulatory overlap (12 November 2026, E-150)
 
 The page's aim is to give governments regulatory pain points they can act on: duplicated or overlapping administration, and laws that differ between states or councils. It leads with them. In order, after the picker:

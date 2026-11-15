@@ -191,6 +191,18 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   table.lens tr.law td:last-child { border-bottom: 0; }
   table.lens tr.law td[data-label]::before { content: attr(data-label); display: block; font-size: 0.75rem; color: var(--ink-3); font-weight: 600; margin-bottom: 4px; }
 }
+/* What the law says: each law's quoted provisions, with a link to the provision (hover preview; button for tap and keyboard). */
+.cite-btn { margin-top: 4px; padding: 2px 10px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); color: var(--accent); font: inherit; font-size: var(--step--1); cursor: pointer; justify-self: start; }
+.cite-btn:hover, .cite-btn:focus-visible { border-color: var(--accent); }
+.cite-btn[aria-expanded="true"] { background: var(--accent-soft); }
+.cite-card { margin-top: 6px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; display: grid; gap: 10px; max-width: 72ch; }
+.cite-card[hidden] { display: none; }
+.cite-item { display: grid; gap: 4px; font-size: var(--step--1); color: var(--ink-2); min-width: 0; overflow-wrap: anywhere; }
+.cite-item + .cite-item { border-top: 1px solid var(--line); padding-top: 8px; }
+.cite-item blockquote { margin: 0; padding-left: 10px; border-left: 2px solid var(--line-strong); color: var(--ink); }
+.cite-item p { margin: 0; }
+#cite-pop { position: fixed; z-index: 50; width: min(30rem, calc(100vw - 32px)); max-height: 60vh; overflow: auto; margin: 0; pointer-events: none; box-shadow: 0 6px 24px rgb(0 0 0 / 0.18); }
+@media (max-width: 640px) { .cite-btn { min-height: 44px; } }
 </style>
 
 <div class="wrap">
@@ -373,6 +385,33 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   const LEGAL = { "sole-proprietor": "sole traders", partnership: "partnerships", trust: "trusts", company: "companies", "co-operative": "co-operatives", "incorporated-association": "incorporated associations" };
   const link = (url, text) => url ? `<a href="${esc(url)}" rel="noopener">${esc(text)}</a>` : esc(text);
   const repoFile = (f) => D.repo + f;
+  // The item's row on Register data, which shows how it is coded and its sources.
+  const dataLink = (r, text) => `<a href="register-data.html#q=${encodeURIComponent(r.id)}">${esc(text)}</a>`;
+  // What the law says: each quoted provision, with a link that opens the law at it (register/source_links.py).
+  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const shortDate = (d) => { const [y, m, day] = String(d || "").split("-"); return y && m && day ? `${+day} ${MON[+m - 1]} ${y}` : ""; };
+  const citeItem = (c) => `<div class="cite-item"><p><strong>${esc(c.title)}</strong>${c.locator ? ", " + esc(c.locator) : ""}</p>` +
+    (c.quote ? `<blockquote>“${esc(c.quote)}”</blockquote>` : "") +
+    `<p>${esc(c.checked)}${c.accessed ? `, read ${esc(shortDate(c.accessed))}` : ""}.${c.href ? ` <a href="${esc(c.href)}" rel="noopener">${esc(c.linkText)}</a>` : ""}</p></div>`;
+  let CT = 0;
+  const CITES = new Map();
+  function citeBox(r) {
+    if (!(r.cites || []).length) return "";
+    const id = `ct-${++CT}`;
+    return `<div><button type="button" class="cite-btn" aria-expanded="false" aria-controls="${id}">What the law says</button>` +
+      `<div class="cite-card" id="${id}" hidden>${r.cites.map(citeItem).join("")}</div></div>`;
+  }
+  // A law's name opens the law at its provision; hovering over it, or focusing it, shows the words quoted.
+  function lawLinks(r, n) {
+    return (r.laws || []).slice(0, n).map((l, i) => {
+      const cs = r.cites || [];
+      const c = cs.find((x) => x.title === l.title) || (i === 0 ? cs[0] : null);
+      if (!c) return link(l.url, l.title);
+      const key = `${r.id}|${cs.indexOf(c)}`;
+      CITES.set(key, c);
+      return `<a href="${esc(c.href)}" rel="noopener" class="law-link" data-cite="${esc(key)}">${esc(l.title)}</a>`;
+    }).join("; ");
+  }
 
   // The four views of the industry sit in tabs, the business's own view first (owner decision, 14 November 2026,
   // DECISIONS E-159). The address holds the industry and state, so the tabs leave it alone.
@@ -689,8 +728,9 @@ details.base > summary { cursor: pointer; font-weight: 600; }
     }
     const order = (a, b) => lawFlags(b.r).length - lawFlags(a.r).length || TIER_ORDER[a.r.tier] - TIER_ORDER[b.r.tier] || a.r.title.localeCompare(b.r.title);
     const row = (o) => `<div class="law-row"><div class="law-title">${esc(o.r.title)}</div><div class="law-meta">${placeTag(o.r)}<span class="tag">${esc(o.r.kind)}</span>${lawFlags(o.r).map(flag).join("")}</div>` +
-      classTags(o) + `<p class="meta">${esc(names(o.r) || "No body linked yet")}</p>` +
-      `<p class="meta">${esc((D.regimes.find((g) => g.id === o.r.regime) || {}).name || "No regime yet")} · ${link(repoFile(o.r.file), "the record")}</p></div>`;
+      classTags(o) + ((o.r.laws || []).length ? `<p class="meta">${lawLinks(o.r, 3)}</p>` : "") + citeBox(o.r) +
+      `<p class="meta">${esc(names(o.r) || "No body linked yet")}</p>` +
+      `<p class="meta">${esc((D.regimes.find((g) => g.id === o.r.regime) || {}).name || "No regime yet")} · ${dataLink(o.r, "how it is coded")}</p></div>`;
     const byReg = {};
     for (const o of base) { const n = (D.regimes.find((g) => g.id === o.r.regime) || {}).name || "No regime yet"; byReg[n] = (byReg[n] || 0) + 1; }
     $("laws").innerHTML = `<div class="laws">${[...ind].sort(order).map(row).join("") || `<p class="note">None recorded yet. Most industry-specific state laws come in the state batches.</p>`}</div>` +
@@ -832,7 +872,7 @@ details.base > summary { cursor: pointer; font-weight: 600; }
     }
     const fw = r.framework;
     if (fw) tags.push(`<span class="tag" title="Overall framework mark: the sum of the driver marks">Framework ${coded(r) ? signed(fw.total) + " · " : ""}${esc(fw.rating)}${fw.mixed ? " (mixed)" : ""}</span>`);
-    const laws = (r.laws || []).slice(0, 3).map((l) => link(l.url, l.title)).join("; ");
+    const laws = lawLinks(r, 3);
     const quals = [];
     if (o.hits) {
       for (const x of o.hits) {
@@ -848,13 +888,14 @@ details.base > summary { cursor: pointer; font-weight: 600; }
     if (fw) more.push(`<p><strong>Framework assessment:</strong> ${esc(fw.text)}${fw.main ? ` Main driver: ${esc(fw.main)}.` : ""} Reach: ${esc(REACH[fw.reach] || fw.reach)}. Confidence: ${esc(fw.confidence)}.${fw.note ? " " + esc(fw.note) : ""}</p>`);
     if (r.triggers) more.push(`<p>When: ${esc(r.triggers.join("; "))}.</p>`);
     const src = [];
-    if (r.source) src.push(`<li>${link(r.source.url, r.source.title)}${r.source.locator ? ", " + esc(r.source.locator) : ""} (${esc(r.source.publisher)})</li>`);
+    for (const c of r.cites || []) src.push(`<li>${link(c.href, c.title)}${c.locator ? ", " + esc(c.locator) : ""} (${esc(c.publisher)})</li>`);
+    if (!(r.cites || []).length && r.source) src.push(`<li>${link(r.source.url, r.source.title)}${r.source.locator ? ", " + esc(r.source.locator) : ""} (${esc(r.source.publisher)})</li>`);
     for (const u of [...((fw && fw.evidence) || []), ...(r.sources || [])].filter((u, i, a) => a.indexOf(u) === i).slice(0, 5)) src.push(`<li>${link(u, u.replace(/^https?:\/\//, "").slice(0, 70))}</li>`);
     if (src.length) more.push(`<p>Sources:</p><ul>${src.join("")}</ul>`);
-    more.push(`<p>${r.reachConfidence ? `How sure the industries are: ${esc(r.reachConfidence)}. ` : ""}${link(repoFile(r.file), "The record in the register")}.</p>`);
+    more.push(`<p>${r.reachConfidence ? `How sure the industries are: ${esc(r.reachConfidence)}. ` : ""}${dataLink(r, "How this item is coded, on Register data")}.</p>`);
     tags.unshift(`<span class="tier-tag t-${r.tier}" title="${r.tier === "cth" ? "Commonwealth law" : r.tier === "state" ? "State or territory law" : "Council law (capital city councils only, for now)"}">${esc(tierLabel(r))}</span>`);
     return `<td><div class="law-title">${esc(r.title)}</div><div class="law-meta">${tags.join("")}</div>${classTags(o)}` +
-      (laws ? `<p class="law-names">${laws}</p>` : "") + (quals.length ? `<p class="qual">${quals.join(" ")}</p>` : "") +
+      (laws ? `<p class="law-names">${laws}</p>` : "") + citeBox(r) + (quals.length ? `<p class="qual">${quals.join(" ")}</p>` : "") +
       (fw && fw.text ? `<p class="why-short">${esc(fw.text)}</p>` : "") +
       `<details class="more"><summary>Details</summary>${more.join("")}</details></td>`;
   }
@@ -968,6 +1009,44 @@ details.base > summary { cursor: pointer; font-weight: 600; }
     `<p>How the marks are placed in the columns, and the limits: ${link(D.repo + "docs/industry_lens.md", "the Industry lens methods note")}. The marking guide: ${link(D.repo + "docs/productivity_framework.md", "the productivity framework")}. Requirements: ${link(D.repo + "regulation-register/requirements", "regulation-register/requirements")}; register items: ${link(D.repo + "regulation-register/records", "regulation-register/records")}.</p>` +
     `<p>Industries: ${link(D.sources.anzsic, "ABS, ANZSIC 2006 (Revision 2.0)")}, CC BY 4.0. Map: ${esc(D.map.source)}, ${esc(D.map.licence)}.</p>` +
     `<p>Built ${esc(new Date(D.built + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" }))}. Unofficial research, not an Australian Government product.</p>`;
+
+  // The button opens the card in place (tap and keyboard). A law's name shows a preview on hover or focus.
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest(".cite-btn");
+    if (!b) return;
+    const card = document.getElementById(b.getAttribute("aria-controls"));
+    const open = b.getAttribute("aria-expanded") !== "true";
+    b.setAttribute("aria-expanded", String(open));
+    card.hidden = !open;
+  });
+  const pop = document.createElement("div");
+  pop.id = "cite-pop"; pop.className = "cite-card"; pop.setAttribute("role", "tooltip"); pop.hidden = true;
+  document.body.appendChild(pop);
+  let popFor = null;
+  function showPop(a) {
+    const c = CITES.get(a.dataset.cite);
+    if (!c) return;
+    pop.innerHTML = citeItem({ ...c, href: null });
+    pop.hidden = false;
+    popFor = a;
+    a.setAttribute("aria-describedby", "cite-pop");
+    const r = a.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight;
+    const below = r.bottom + 6 + h <= window.innerHeight;
+    pop.style.left = `${Math.max(16, Math.min(r.left, window.innerWidth - w - 16))}px`;
+    pop.style.top = `${below ? r.bottom + 6 : Math.max(8, r.top - h - 6)}px`;
+  }
+  function hidePop() {
+    if (popFor) popFor.removeAttribute("aria-describedby");
+    pop.hidden = true; popFor = null;
+  }
+  const lawAt = (e) => e.target.closest && e.target.closest("a.law-link");
+  document.addEventListener("mouseover", (e) => { const a = lawAt(e); if (a && matchMedia("(hover: hover)").matches) showPop(a); });
+  document.addEventListener("focusin", (e) => { const a = lawAt(e); if (a) showPop(a); });
+  document.addEventListener("mouseout", (e) => { if (lawAt(e) === popFor) hidePop(); });
+  document.addEventListener("focusout", (e) => { if (lawAt(e) === popFor) hidePop(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") hidePop(); });
+  // Scrolling moves the preview with its law (focusing a law can scroll the page).
+  window.addEventListener("scroll", () => { if (popFor) showPop(popFor); }, { passive: true });
 
   fillSelect("");
   update();
