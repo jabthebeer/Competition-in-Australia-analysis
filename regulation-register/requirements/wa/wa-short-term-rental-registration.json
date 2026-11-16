@@ -1,0 +1,114 @@
+{
+  "id": "wa-short-term-rental-registration",
+  "family": "short-term-rental-registration",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "planning-and-development",
+  "title": "Register premises before letting them as short-term rental accommodation",
+  "kind": "registration",
+  "what": "An accommodation provider must register residential premises before offering or arranging them as short-term rental accommodation.",
+  "laws": [
+    {
+      "title": "Short-Term Rental Accommodation Act 2024 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a147427",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/law_a147427.html",
+      "provisions": "s 9",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Short-Term Rental Accommodation Act 2024 (WA)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48185.docx",
+      "locator": "s 9 (current version)",
+      "quote": "9. Short-term rental accommodation must be registered An accommodation provider commits an offence if the accommodation provider enters into, or seeks to enter into, an arrangement to provide residential premises as short-term rental accommodation and the premises are not registered in accordance with this Act. Penalty: a fine of $20 000.",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4400",
+        "6711",
+        "6720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides residential premises as short-term rental accommodation",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Short-Term Rental Accommodation Act 2024 (WA)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48185.docx",
+          "locator": "s 9 (current version)",
+          "quote": "9. Short-term rental accommodation must be registered An accommodation provider commits an offence if the accommodation provider enters into, or seeks to enter into, an arrangement to provide residential premises as short-term rental accommodation and the premises are not registered in accordance with this Act. Penalty: a fine of $20 000.",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words make providing unregistered short-term rental accommodation an offence.",
+  "records": [
+    "wa-stra-register-2025"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A mandatory statewide register for short-term rentals, with planning approvals phased in. It adds costs and conditions for hosts; effects on long-term rental supply are not weighed here.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Hosts must register and show registration numbers on every listing.",
+        "positions": []
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Phased-in planning approvals add a condition for new unhosted short-term rentals.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marks copied from the register item wa-stra-register-2025 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

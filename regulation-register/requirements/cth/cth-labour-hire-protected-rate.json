@@ -1,0 +1,113 @@
+{
+  "id": "cth-labour-hire-protected-rate",
+  "family": "labour-hire-protected-rate",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "employment-law",
+  "title": "Pay labour hire workers at least the host's rate when an order applies",
+  "kind": "standard",
+  "what": "Where a regulated labour hire arrangement order covers a host, the labour hire employer must pay the workers it places there at least the protected rate of pay (in general, the host's enterprise agreement rate).",
+  "laws": [
+    {
+      "title": "Fair Work Act 2009",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2009A00028",
+      "register_url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+      "provisions": "s 306F",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fair Work Act 2009",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+      "locator": "s 306F(2) (compilation C2026C00355 from 2026-07-07)",
+      "quote": "Employer must not pay less than protected rate of pay (2) The employer must pay the regulated employee at no less than the protected rate of pay for the employee in connection with the work performed by the employee for the regulated host.",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Placing workers with a host covered by an order",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7212",
+        "B"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it places workers with a host covered by a regulated labour hire arrangement order",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Work Act 2009",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+          "locator": "s 306F(2) (compilation C2026C00355 from 2026-07-07)",
+          "quote": "Employer must not pay less than protected rate of pay (2) The employer must pay the regulated employee at no less than the protected rate of pay for the employee in connection with the work performed by the employee for the regulated host.",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words bind the employer once an order is in force.",
+  "records": [
+    "cth-same-job-same-pay-2023"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "The Fair Work Commission can order labour-hire firms to pay at least the host's enterprise agreement rates. It raises the cost and reduces the flexibility of labour hire, a way firms scale their workforce.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Reduces the flexibility of labour hire as a way to add workers quickly.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Orders, exemptions and pay comparisons add compliance costs for hosts and providers.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marks copied from the register item cth-same-job-same-pay-2023 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

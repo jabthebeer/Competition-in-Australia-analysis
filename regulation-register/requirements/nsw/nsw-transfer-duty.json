@@ -1,0 +1,114 @@
+{
+  "id": "nsw-transfer-duty",
+  "family": "transfer-duty",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay transfer (stamp) duty when buying land or other dutiable property",
+  "kind": "tax-or-levy",
+  "what": "The buyer (transferee) of land or other dutiable property pays transfer duty on the transfer, at the rates the Act sets.",
+  "laws": [
+    {
+      "title": "Duties Act 1997 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1997-123",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-01/act-1997-123",
+      "provisions": "s 13",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Duties Act 1997 (NSW)",
+      "publisher": "Official legislation register",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-01/act-1997-123",
+      "locator": "s 13 (version of 2025-01-01)",
+      "quote": "13 Who is liable to pay the duty? Duty charged by this Chapter is payable by the transferee, unless this Chapter requires another person to pay the duty.",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2025-01-01/act-1997-123"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Buying land or other dutiable property",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711",
+        "6720",
+        "3011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it buys land or other dutiable property in the state",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Duties Act 1997 (NSW)",
+          "publisher": "Official legislation register",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-01/act-1997-123",
+          "locator": "s 13 (version of 2025-01-01)",
+          "quote": "13 Who is liable to pay the duty? Duty charged by this Chapter is payable by the transferee, unless this Chapter requires another person to pay the duty.",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2025-01-01/act-1997-123"
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words make the buyer (or the parties) liable for the duty. Quoted from the Open Australian Legal Corpus copy of the official text, which is not itself official.",
+  "records": [
+    "nsw-residential-transfer-duty"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A tax on buying a home, paid every time property changes hands. It discourages people from moving, including for work, and is one of the least efficient taxes in Australia; a broad annual land tax raising the same revenue would cost far less.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "A transaction tax in the largest asset market, with an efficiency cost Treasury puts at 72 cents per extra dollar raised.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Raises the cost of moving home, so fewer people move to take better jobs.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "high",
+    "confidence_note": "Marks copied from the register item nsw-residential-transfer-duty so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

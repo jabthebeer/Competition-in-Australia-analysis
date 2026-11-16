@@ -1,0 +1,120 @@
+{
+  "id": "tas-container-refund-supply-arrangement",
+  "family": "container-refund-supply-arrangement",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "container-deposits-and-packaging",
+  "title": "Supply drinks in containers only under a refund scheme supply arrangement",
+  "kind": "registration",
+  "what": "A business that first supplies drinks in eligible containers in the state needs a supply arrangement with the scheme coordinator (under which it pays contributions that fund the refunds) and an approved, marked container before it supplies them.",
+  "laws": [
+    {
+      "title": "Container Refund Scheme Act 2022 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2022-005",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2022-005",
+      "provisions": "s 11(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Container Refund Scheme Act 2022 (Tas)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2022-005",
+      "locator": "s 11(2) (current)",
+      "quote": "(2) The first responsible supplier for an eligible container must not supply the eligible container to another person unless – (a) the container is approved under section 12 ; and (b) the first responsible supplier has entered into a supply agreement with the scheme coordinator in respect of the container; and (c) the container displays the prescribed marks.",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Before first supplying drinks in eligible containers in the state",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1211",
+        "1212",
+        "1214"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it first supplies drinks in eligible containers in the state",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Drink makers and importers who first supply in the state; the register item also lists retailers and recyclers, which the scheme touches in other ways.",
+      "sources": [
+        {
+          "title": "Container Refund Scheme Act 2022 (Tas)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2022-005",
+          "locator": "s 11(2) (current)",
+          "quote": "(2) The first responsible supplier for an eligible container must not supply the eligible container to another person unless – (a) the container is approved under section 12 ; and (b) the first responsible supplier has entered into a supply agreement with the scheme coordinator in respect of the container; and (c) the container displays the prescribed marks.",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words bar first suppliers from supplying without the scheme's arrangement and approval.",
+  "records": [
+    "tas-cds-2025"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Beverage suppliers fund a 10-cent refund on containers. It prices litter and waste more fully, but each state runs its own scheme, with its own registration and costs, which weighs most on small and interstate suppliers.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Suppliers must register every container type and report and pay scheme costs.",
+        "positions": []
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Each state's scheme has its own registration and cost recovery, adding costs to selling in several states.",
+        "positions": []
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": 1,
+        "reason": "The deposit puts a price on littered and landfilled containers, a cost the market otherwise ignores.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "medium",
+    "confidence_note": "Marks copied from the register item tas-cds-2025 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -54,11 +54,12 @@ Each phase ends in a pull request, with `alicia validate`, `pytest` and `ruff` p
 |---|---|---|---|---|
 | 1 | Settle the method | Owner | The 5 decisions in section 4 | Done (15 November 2026) |
 | 2 | Put every change under its rule | This branch; one field from the website session | 144 changes, 47 reform rules | Sorted; waits on the field |
-| 3 | Quote and check each rule's coding | This branch; one change from the website session | 102 coded rules; 151 law links | Batch 1 (Severe and Major) done; Minor next |
+| 3 | Quote and check each rule's coding | This branch; one change from the website session | 102 coded rules; 151 law links | Batches 1 and 2 done; blocked, deferred and policy items remain |
 | 4 | Count each rule once, and give it a regime | This branch | 29 candidate pairs; 19 rules | Alongside 2 and 3 |
 | 5 | Sharpen exposure | This branch | 28 coarse rules; 28 upper bounds | 3 |
 | 6 | Fill gaps where version 2 scores highest | This branch, with the state branches | Caps, exclusive rights, bans, ownership limits, price controls | 3 |
 | 7 | Re-mark, review and publish | This branch; owner's spot check | Only what phases 2 to 6 changed | Each phase |
+| 8 | Cost each licence | This branch; fields and pages from the website session | Fees, waiting time, renewal, qualifications; a pilot of 3 licence families in 8 jurisdictions, then all 233 licences | 8.1 owner decisions ([scoping](scoping_licensing_cost.md)) |
 
 ### Phase 2. Put every change under its rule
 
@@ -114,6 +115,8 @@ Severe and Major rules come first (56), then Minor (46).
 
 **Batch 1 (15 November 2026):** [`levers_quoted_rules.md`](levers_quoted_rules.md). Of the 56 Severe and Major coded rules, 16 already had a fitting quoted requirement, 19 now have one (18 new and 1 attached; the Default Market Offer gained a second quoting its price cap), 8 have one quoting a different Act (a fix is proposed), 1 was found repealed (the NT minimum price on alcohol, from 1 March 2025), 6 are blocked (Victoria), 2 are policies with no law, 2 are left for later and 2 become changes under phase 2. 27 instruments gained an official register link. Four coding corrections would change a rule's class; they go to the website session as a list.
 
+**Batch 2 (16 November 2026):** of the 46 Minor coded rules, 23 now have a new quoted requirement (transfer and insurance duty in 6 states, container deposit schemes in 6, four Commonwealth rules and the WA short-term rental register) and 1 an existing one attached (customs duty). 4 are blocked (Victoria), 2 have no law, the 8 NDIS transfers become changes under phase 2 and the 8 building code adoptions wait for their standing rules. 17 more instruments gained a register link. One proposed correction would change a class: the container deposit schemes make a supply arrangement a condition of supplying, so they may score as a registration before trading (Minor to Major, narrow).
+
 ### Phase 4. Count each rule once, and give it a regime
 
 **Pairs.** Confirm each of the 29 requirements that cite an item's Act without naming the item.
@@ -156,6 +159,15 @@ Guidance that is enforced as if it were law ([scoping note](scoping_regulatory_g
 - **Rebuild and check:** rebuild the generated files, and check the new rows on Register data.
 - **Write up:** a short methods note and one decision row for each phase.
 - **Owner's spot check:** a sample of about 20 rules, Severe and Major first. The register is checked by an AI process, not a person.
+
+### Phase 8. Cost each licence
+
+Added at the owner's request on 16 November 2026. The [scoping note](scoping_licensing_cost.md) sets out the method:
+
+- **Compliance cost** per licence: fees, the time to apply, waiting time, qualifications, insurance and renewal. It is costed with the Office of Impact Analysis's *Regulatory Burden Measurement Framework*, through the calculator already in `regulatory-burden-tool/`. Fees are shown beside the burden figure, because the framework treats them as transfers to government.
+- **Totals:** cost per licence times the number of licence holders.
+- **Economic costs** (entry, prices, productivity): only under "What others found".
+- **Steps:** 8.1 owner decisions; 8.2 cost fields (website session); 8.3 and 8.4 a pilot of builder, plumbing and liquor licences in 8 jurisdictions; 8.5 cost them; 8.6 show them; 8.7 scale up with ABLIS; 8.8 what others found.
 
 ## 4. Decisions (owner, 15 November 2026)
 

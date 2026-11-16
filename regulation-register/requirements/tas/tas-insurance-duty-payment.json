@@ -1,0 +1,107 @@
+{
+  "id": "tas-insurance-duty-payment",
+  "family": "insurance-duty-payment",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay insurance duty on premiums (insurers)",
+  "kind": "tax-or-levy",
+  "what": "An insurer pays duty on the premiums for the insurance it writes in the state, and usually passes it on to the insured.",
+  "laws": [
+    {
+      "title": "Duties Act 2001 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2001-015",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-015",
+      "provisions": "s 167",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Duties Act 2001 (Tas)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-015",
+      "locator": "s 167 (current)",
+      "quote": "The insurer is liable to pay the duty, except as provided by section 168",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6322",
+        "6420"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Duties Act 2001 (Tas)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-015",
+          "locator": "s 167 (current)",
+          "quote": "The insurer is liable to pay the duty, except as provided by section 168",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words make the insurer liable for the duty (in the NT, the quote is the duty to register as an insurer before writing dutiable policies).",
+  "records": [
+    "tas-insurance-duty"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A tax on insurance premiums on top of GST. It discourages people and businesses from insuring and leaves more risk unpooled; the Henry Review recommended abolishing all such taxes.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Raises the price of insurance relative to other services, so people under-insure (Henry Review).",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "The direction is well supported; no official estimate of the efficiency cost of insurance duty was found. Marks copied from the register item tas-insurance-duty so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

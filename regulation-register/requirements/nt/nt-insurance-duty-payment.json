@@ -1,0 +1,107 @@
+{
+  "id": "nt-insurance-duty-payment",
+  "family": "insurance-duty-payment",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay insurance duty on premiums (insurers)",
+  "kind": "tax-or-levy",
+  "what": "An insurer pays duty on the premiums for the insurance it writes in the state, and usually passes it on to the insured.",
+  "laws": [
+    {
+      "title": "Stamp Duty Act 1978 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "STAMP-DUTY-ACT-1978",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11906",
+      "provisions": "s 85(1) (registration of insurers)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Stamp Duty Act 1978 (NT)",
+      "publisher": "Official legislation register",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11906",
+      "locator": "s 85(1) (registration of insurers) (current reprint)",
+      "quote": "(1) An Australian insurer must not grant, issue or renew a policy of insurance in respect of which duty is imposed unless the insurer is registered under this Division. Maximum penalty: 50 penalty units.",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6322",
+        "6420"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Stamp Duty Act 1978 (NT)",
+          "publisher": "Official legislation register",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11906",
+          "locator": "s 85(1) (registration of insurers) (current reprint)",
+          "quote": "(1) An Australian insurer must not grant, issue or renew a policy of insurance in respect of which duty is imposed unless the insurer is registered under this Division. Maximum penalty: 50 penalty units.",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words make the insurer liable for the duty (in the NT, the quote is the duty to register as an insurer before writing dutiable policies).",
+  "records": [
+    "nt-insurance-duty"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A tax on insurance premiums on top of GST. It discourages people and businesses from insuring and leaves more risk unpooled; the Henry Review recommended abolishing all such taxes.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Raises the price of insurance relative to other services, so people under-insure (Henry Review).",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "medium",
+    "confidence_note": "The direction is well supported; no official estimate of the efficiency cost of insurance duty was found. Marks copied from the register item nt-insurance-duty so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

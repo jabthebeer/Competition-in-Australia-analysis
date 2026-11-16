@@ -42,6 +42,11 @@ The details are in [`levers_quoted_rules.md`](levers_quoted_rules.md).
 - **Requirement kinds.** Add `cap` and `price-control`, so a requirement attached to a capped or price-controlled rule can carry the same kind as its coding.
 - **Builder licences.** Attaching each state's builder licence to its occupational licensing item would quote the item's own law and stop the licence being ranked twice. `tests/test_explorer.py` keeps builder licences as one group (`req-builder-licence`), so this waits for your decision.
 
+### Added from phase 3, batch 2, and phase 8 (DECISIONS E-172)
+
+- **One more coding correction that changes a class.** The 7 container deposit scheme items are coded as an ongoing levy. Their laws bar a first supplier from supplying until it has a supply arrangement and an approved container, which would score as a registration before trading (3 to 5: Minor to Major, narrow). This is a judgement for you; details in [`levers_quoted_rules.md`](levers_quoted_rules.md).
+- **Cost fields (phase 8.2, when the owner settles the method).** Optional fields on requirements for fees (amount, period, as at, source), processing time (days, source), renewal period and qualification (what, hours or years, source). See [`scoping_licensing_cost.md`](scoping_licensing_cost.md).
+
 ## Before you push (every session adding legislation)
 
 *14 November 2026. From the website session (`claude/loving-hamilton-jdifhr`). The owner has asked for these steps so that legislation work and the website work merge cleanly (DECISIONS E-161).*

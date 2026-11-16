@@ -1,0 +1,120 @@
+{
+  "id": "wa-container-refund-supply-arrangement",
+  "family": "container-refund-supply-arrangement",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "container-deposits-and-packaging",
+  "title": "Supply drinks in containers only under a refund scheme supply arrangement",
+  "kind": "registration",
+  "what": "A business that first supplies drinks in eligible containers in the state needs a supply arrangement with the scheme coordinator (under which it pays contributions that fund the refunds) and an approved, marked container before it supplies them.",
+  "laws": [
+    {
+      "title": "Waste Avoidance and Resource Recovery Act 2007 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a146643",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48005.docx",
+      "provisions": "s 47E(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Waste Avoidance and Resource Recovery Act 2007 (WA)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48005.docx",
+      "locator": "s 47E(2) (current version)",
+      "quote": "(2) A person who is the first responsible supplier of a beverage product commits an offence when the beverage product is first supplied in the State unless, at that time — (a) a supply agreement is in force between the person and the Coordinator in relation to the beverage product;",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Before first supplying drinks in eligible containers in the state",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1211",
+        "1212",
+        "1214"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it first supplies drinks in eligible containers in the state",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Drink makers and importers who first supply in the state; the register item also lists retailers and recyclers, which the scheme touches in other ways.",
+      "sources": [
+        {
+          "title": "Waste Avoidance and Resource Recovery Act 2007 (WA)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48005.docx",
+          "locator": "s 47E(2) (current version)",
+          "quote": "(2) A person who is the first responsible supplier of a beverage product commits an offence when the beverage product is first supplied in the State unless, at that time — (a) a supply agreement is in force between the person and the Coordinator in relation to the beverage product;",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words bar first suppliers from supplying without the scheme's arrangement and approval.",
+  "records": [
+    "wa-cds-2020"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Beverage suppliers fund a 10-cent refund on containers. It prices litter and waste more fully, but each state runs its own scheme, with its own registration and costs, which weighs most on small and interstate suppliers.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Suppliers must register every container type and report and pay scheme costs.",
+        "positions": []
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Each state's scheme has its own registration and cost recovery, adding costs to selling in several states.",
+        "positions": []
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": 1,
+        "reason": "The deposit puts a price on littered and landfilled containers, a cost the market otherwise ignores.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "medium",
+    "confidence_note": "Marks copied from the register item wa-cds-2020 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

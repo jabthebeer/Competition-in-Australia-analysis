@@ -1,0 +1,114 @@
+{
+  "id": "nt-transfer-duty",
+  "family": "transfer-duty",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay transfer (stamp) duty when buying land or other dutiable property",
+  "kind": "tax-or-levy",
+  "what": "The buyer (transferee) of land or other dutiable property pays transfer duty on the transfer, at the rates the Act sets.",
+  "laws": [
+    {
+      "title": "Stamp Duty Act 1978 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "STAMP-DUTY-ACT-1978",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11906",
+      "provisions": "s 52A(a)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Stamp Duty Act 1978 (NT)",
+      "publisher": "Official legislation register",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11906",
+      "locator": "s 52A(a) (current reprint)",
+      "quote": "(a) duty imposed on a conveyance is payable by the conveyee;",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Buying land or other dutiable property",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711",
+        "6720",
+        "3011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it buys land or other dutiable property in the state",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Stamp Duty Act 1978 (NT)",
+          "publisher": "Official legislation register",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11906",
+          "locator": "s 52A(a) (current reprint)",
+          "quote": "(a) duty imposed on a conveyance is payable by the conveyee;",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words make the buyer (or the parties) liable for the duty.",
+  "records": [
+    "nt-residential-transfer-duty"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "A tax on buying a home, paid every time property changes hands. It discourages people from moving, including for work, and is one of the least efficient taxes in Australia; a broad annual land tax raising the same revenue would cost far less.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "A transaction tax in the largest asset market, with an efficiency cost Treasury puts at 72 cents per extra dollar raised.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Raises the cost of moving home, so fewer people move to take better jobs.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "high",
+    "confidence_note": "Marks copied from the register item nt-residential-transfer-duty so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

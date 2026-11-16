@@ -1,0 +1,108 @@
+{
+  "id": "cth-dumping-duty",
+  "family": "dumping-duty",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "customs-and-excise",
+  "title": "Pay dumping duty on imports the Minister has declared dumped",
+  "kind": "tax-or-levy",
+  "what": "An importer of goods covered by a dumping duty notice pays dumping duty, under the Customs Tariff (Anti-Dumping) Act 1975, on top of any customs duty.",
+  "laws": [
+    {
+      "title": "Customs Act 1901",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C1901A00006",
+      "register_url": "https://www.legislation.gov.au/C1901A00006/latest/text",
+      "provisions": "s 269TG",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Customs Act 1901",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/C1901A00006/latest/text",
+      "locator": "s 269TG(1) (compilation C2026C00484 from 2026-10-27)",
+      "quote": "269TG Dumping duties (1) Subject to section 269TN, where the Minister is satisfied, as to any goods that have been exported to Australia, that: (a) the amount of the export price of the goods is less than the amount of the normal value of those goods; and (b) because of that: (i) material injury to an Australian industry producing like goods has been or is being caused or is threatened, or the establishment of an Australian industry producing like goods has been or may be materially hindered; or (ii) in a case where security has been taken under section 42 in respect of any interim duty that may become payable on the goods under section 8 of the Dumping Duty Act—material injury to an Australian industry producing like goods would or might have been caused if the security had not been taken; the Minister may, by public notice, declare that section 8 of that Act applies:",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Importing goods covered by a dumping duty notice",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2110",
+        "2142",
+        "E"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it imports goods covered by a dumping duty notice",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Customs Act 1901",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C1901A00006/latest/text",
+          "locator": "s 269TG(1) (compilation C2026C00484 from 2026-10-27)",
+          "quote": "269TG Dumping duties (1) Subject to section 269TN, where the Minister is satisfied, as to any goods that have been exported to Australia, that: (a) the amount of the export price of the goods is less than the amount of the normal value of those goods; and (b) because of that: (i) material injury to an Australian industry producing like goods has been or is being caused or is threatened, or the establishment of an Australian industry producing like goods has been or may be materially hindered; or (ii) in a case where security has been taken under section 42 in respect of any interim duty that may become payable on the goods under section 8 of the Dumping Duty Act—material injury to an Australian industry producing like goods would or might have been caused if the security had not been taken; the Minister may, by public notice, declare that section 8 of that Act applies:",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act's own words let the Minister apply dumping duty to dumped goods that injure an Australian industry.",
+  "records": [
+    "cth-anti-dumping-system"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Extra duties on imports found to be dumped or subsidised. They help a few import-competing producers at a greater cost to users of those products; the Productivity Commission judged the net cost to be very small.",
+    "marks": [
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Extra duties shelter some domestic producers from import competition and raise costs for downstream users.",
+        "positions": []
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "multi-sector",
+    "confidence": "high",
+    "confidence_note": "Marks copied from the register item cth-anti-dumping-system so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
