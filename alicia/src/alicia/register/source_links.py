@@ -30,6 +30,8 @@ ROOT = Path(__file__).resolve().parents[4]
 PAGES = ROOT / "data" / "processed" / "legislation" / "source_pages.csv"
 # A locator that starts with a section, clause or regulation number: "s 15(1)", "ss 62(1), 71C", "cl 3", "reg 9(1)".
 SECTION = re.compile(r"^(?:ss?|cll?|regs?|r)\s+(\d+[A-Z]{0,3})\b")
+# The provision as a locator names it, for a link's text: "s 52(1)" from "s 52(1), words naming the body (current)".
+PROVISION = re.compile(r"^((?:ss?|cll?|regs?|r)\s+\d+[A-Z]{0,3}(?:\([0-9A-Za-z]+\))*)")
 WA_LAW = re.compile(r"law_[as]\d+")
 # What each kind of link does, for the card's link text.
 HOW = {
@@ -96,7 +98,8 @@ def deep_link(url: str, locator: str | None, quote: str | None, law_ids: tuple[s
     """The link to the provision: ``href``, ``how`` (section, words, page, law or file) and the link's text."""
     host = urlparse(url).netloc.lower().removeprefix("www.")
     sec = section(locator)
-    where = (locator or "").split(" (")[0]
+    m = PROVISION.match((locator or "").strip())
+    where = m.group(1) if m else (locator or "").split(" (")[0]
     if is_pdf(url):
         page = load_pages().get((url, quote_key(quote))) if quote else None
         if page and host in DOWNLOAD_PDFS:
