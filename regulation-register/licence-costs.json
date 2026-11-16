@@ -44,6 +44,32 @@
         "checked": "web-page",
         "corpus_version_id": null
       }
+    },
+    "NT": {
+      "value": 1.49,
+      "from": "2026-07-01",
+      "to": "2027-06-30",
+      "round": "down-to-dollar",
+      "source": {
+        "title": "Revenue units",
+        "publisher": "Territory Revenue Office, Northern Territory Government",
+        "url": "https://nt.gov.au/employ/money-and-taxes/taxes,-royalties-and-grants/territory-revenue-office/revenue-units",
+        "locator": "Value of a revenue unit table",
+        "quote": "1 July 2026 to 30 June 2027 $1.49 (as given in web search results)",
+        "accessed": "2026-11-16",
+        "checked": "search-result",
+        "corpus_version_id": null
+      },
+      "rounding_source": {
+        "title": "Revenue Units Act 2009 (NT)",
+        "publisher": "Official legislation register",
+        "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11877",
+        "locator": "s 3(2) (current reprint)",
+        "quote": "(2) However, if the amount obtained for the fee or charge is not a multiple of $1, the amount is to be rounded down to the nearest $1.",
+        "accessed": "2026-11-16",
+        "checked": "document",
+        "corpus_version_id": null
+      }
     }
   },
   "items": {
@@ -437,6 +463,579 @@
         }
       ],
       "note": "Fees are in fee units. A 3-year licence costs 765 fee units (sch 1 item 1(b)(ii))."
+    },
+    "nsw-builder-licence": {
+      "licence": "Building contractor licence for an individual, for 1 year",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "New application, 1 year",
+          "when": "entry",
+          "source": {
+            "title": "Fees for contractor licences, supervision and tradesperson certificates",
+            "publisher": "Building Commission NSW (nsw.gov.au)",
+            "url": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade/fees-for-licences-and-certificates",
+            "locator": "Individual: new application (fees for July 2026 - June 2027)",
+            "quote": "Licence type 1 year fee ($) 3 year fee ($) 5 year fee ($) Building contractor licence 883",
+            "accessed": "2026-11-16",
+            "checked": "web-page",
+            "corpus_version_id": null
+          },
+          "amount": 883
+        },
+        {
+          "what": "Renewal, 1 year",
+          "when": "renewal",
+          "source": {
+            "title": "Fees for contractor licences, supervision and tradesperson certificates",
+            "publisher": "Building Commission NSW (nsw.gov.au)",
+            "url": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade/fees-for-licences-and-certificates",
+            "locator": "Individual: renewal (fees for July 2026 - June 2027)",
+            "quote": "Individual - renewal Fees for individuals applying to renew a licence or certificate for 1, 3 or 5 years, listed by licence type and broken into fixed and processing components. Processing component is not refundable if the application is refused or withdrawn. If your licence is cancelled, we will not refund any of the fees paid. Licence type 1 year fee ($) 3 year fee ($) 5 year fee ($) Building contractor licence 592",
+            "accessed": "2026-11-16",
+            "checked": "web-page",
+            "corpus_version_id": null
+          },
+          "amount": 592
+        }
+      ],
+      "note": "Fees for July 2026 - June 2027 (the page's heading). 3-year and 5-year terms cost less a year."
+    },
+    "nsw-plumbing-licence": {
+      "licence": "Trade or specialist contractor licence (plumbing) for an individual, for 1 year",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "New application, 1 year",
+          "when": "entry",
+          "source": {
+            "title": "Fees for contractor licences, supervision and tradesperson certificates",
+            "publisher": "Building Commission NSW (nsw.gov.au)",
+            "url": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade/fees-for-licences-and-certificates",
+            "locator": "Individual: new application (fees for July 2026 - June 2027)",
+            "quote": "Trade or specialist contractor licence 403",
+            "accessed": "2026-11-16",
+            "checked": "web-page",
+            "corpus_version_id": null
+          },
+          "amount": 403
+        },
+        {
+          "what": "Renewal, 1 year",
+          "when": "renewal",
+          "source": {
+            "title": "Fees for contractor licences, supervision and tradesperson certificates",
+            "publisher": "Building Commission NSW (nsw.gov.au)",
+            "url": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade/fees-for-licences-and-certificates",
+            "locator": "Individual: renewal (fees for July 2026 - June 2027)",
+            "quote": "Trade or specialist contractor licence 299",
+            "accessed": "2026-11-16",
+            "checked": "web-page",
+            "corpus_version_id": null
+          },
+          "amount": 299
+        }
+      ],
+      "note": "Plumbing is a specialist work category under the Home Building Act 1989; fees for July 2026 - June 2027."
+    },
+    "nsw-liquor-licence": {
+      "licence": "On-premises licence (restaurants and cafes)",
+      "renewal_years": 1,
+      "renewal_fee_unpublished": true,
+      "fees": [
+        {
+          "what": "Application fee (licensing and processing)",
+          "when": "entry",
+          "source": {
+            "title": "Liquor licence fees guide: fee schedule",
+            "publisher": "Liquor & Gaming NSW (nsw.gov.au)",
+            "url": "https://www.nsw.gov.au/business-and-economy/liquor-and-gaming/liquor-licensing/apply-manage/fees/fee-schedule",
+            "locator": "Licence applications",
+            "quote": "On-premises APP600 / AM0600 $376 $589 $965",
+            "accessed": "2026-11-16",
+            "checked": "web-page",
+            "corpus_version_id": null
+          },
+          "amount": 965
+        }
+      ],
+      "note": "The annual liquor licence fee (a base fee plus risk loadings, recalculated each March) is not stated on the pages read; a restaurant is exempt from the trading hours loading."
+    },
+    "sa-builder-licence": {
+      "licence": "Building work contractor's licence for an individual, general building work (contractor only)",
+      "renewal_years": 1,
+      "renewal_source": {
+        "title": "Renew an occupational licence or registration",
+        "publisher": "Consumer and Business Services (sa.gov.au)",
+        "url": "https://www.sa.gov.au/topics/business-and-trade/licensing/building-and-trades/renew-your-licence",
+        "locator": "Renew an occupational licence or registration",
+        "quote": "licences issued by Consumer and Business Services (CBS) must be renewed every 12 months.",
+        "accessed": "2026-11-16",
+        "checked": "web-page",
+        "corpus_version_id": null
+      },
+      "fees": [
+        {
+          "what": "New licence: application and annual amounts",
+          "when": "entry",
+          "source": {
+            "title": "Building work contractor's licence",
+            "publisher": "Consumer and Business Services (sa.gov.au)",
+            "url": "https://www.sa.gov.au/topics/business-and-trade/licensing/construction/building-work-contractor-s-licence",
+            "locator": "Fees: individual contractor",
+            "quote": "General building work (contractor only) Interstate or NZ licence recognised in SA $864.00",
+            "accessed": "2026-11-16",
+            "checked": "web-page",
+            "corpus_version_id": null
+          },
+          "amount": 864
+        },
+        {
+          "what": "Renewal: general building work",
+          "when": "renewal",
+          "source": {
+            "title": "Renew an occupational licence or registration",
+            "publisher": "Consumer and Business Services (sa.gov.au)",
+            "url": "https://www.sa.gov.au/topics/business-and-trade/licensing/building-and-trades/renew-your-licence",
+            "locator": "Fees: builders",
+            "quote": "Individual contractor General building work $589.00",
+            "accessed": "2026-11-16",
+            "checked": "web-page",
+            "corpus_version_id": null
+          },
+          "amount": 589
+        }
+      ],
+      "note": "The page says the new-licence fees include the application and annual amounts. Holding the supervisor's registration as well costs more ($1,139)."
+    },
+    "sa-plumbing-licence": {
+      "licence": "Plumbing, gas fitting or electrical contractor's licence for an individual",
+      "renewal_years": 1,
+      "renewal_source": {
+        "title": "Renew an occupational licence or registration",
+        "publisher": "Consumer and Business Services (sa.gov.au)",
+        "url": "https://www.sa.gov.au/topics/business-and-trade/licensing/building-and-trades/renew-your-licence",
+        "locator": "Renew an occupational licence or registration",
+        "quote": "licences issued by Consumer and Business Services (CBS) must be renewed every 12 months.",
+        "accessed": "2026-11-16",
+        "checked": "web-page",
+        "corpus_version_id": null
+      },
+      "fees": [
+        {
+          "what": "New individual contractor licence",
+          "when": "entry",
+          "source": {
+            "title": "Plumbing, gas fitting and electrical contractors' licences",
+            "publisher": "Consumer and Business Services (sa.gov.au)",
+            "url": "https://www.sa.gov.au/topics/business-and-trade/licensing/building-and-trade/licensing",
+            "locator": "Fees: new licence fees",
+            "quote": "Individual contractor licence Interstate or NZ licence recognised in SA $779.00",
+            "accessed": "2026-11-16",
+            "checked": "web-page",
+            "corpus_version_id": null
+          },
+          "amount": 779
+        },
+        {
+          "what": "Renewal: individual contractor",
+          "when": "renewal",
+          "source": {
+            "title": "Plumbing, gas fitting and electrical contractors' licences",
+            "publisher": "Consumer and Business Services (sa.gov.au)",
+            "url": "https://www.sa.gov.au/topics/business-and-trade/licensing/building-and-trade/licensing",
+            "locator": "Fees: licence renewal fees",
+            "quote": "Licence renewal fees Contractor licence Type Fee Individual contractor $504.00",
+            "accessed": "2026-11-16",
+            "checked": "web-page",
+            "corpus_version_id": null
+          },
+          "amount": 504
+        }
+      ],
+      "note": "The worker's own registration (a separate requirement) is renewed every 3 years and is not counted here."
+    },
+    "sa-liquor-licence": {
+      "licence": "Restaurant and catering licence",
+      "renewal_years": 1,
+      "renewal_fee_unpublished": true,
+      "fees": [
+        {
+          "what": "New licence",
+          "when": "entry",
+          "source": {
+            "title": "Restaurant and catering liquor licence",
+            "publisher": "Consumer and Business Services (sa.gov.au)",
+            "url": "https://www.sa.gov.au/topics/business-and-trade/liquor/apply/restaurant-and-catering",
+            "locator": "Fees",
+            "quote": "Fees Type Fee New licence $754.00",
+            "accessed": "2026-11-16",
+            "checked": "web-page",
+            "corpus_version_id": null
+          },
+          "amount": 754
+        }
+      ],
+      "note": "The annual fee depends on capacity, trading hours and risk factors and is worked out with the government's calculator, so it is not counted."
+    },
+    "act-builder-licence": {
+      "licence": "Builder licence for an individual, Classes A, B and C, applied for online, for 1 year",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Application fee (online)",
+          "when": "entry",
+          "source": {
+            "title": "Construction Occupations (Licensing) (Fees) Determination 2026 (DI2026-165) (ACT)",
+            "publisher": "ACT Legislation Register",
+            "url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-165/current/DOCX/2026-165.DOCX",
+            "locator": "sch 1 item 2.1 (2026-27 column)",
+            "quote": "Application fee for an individual licence in the construction occupation of Builder Occupation Classes A, B and C, if the application is made online. 938.12 796.89",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 796.89
+        },
+        {
+          "what": "Licence term fee, 1 year",
+          "when": "entry",
+          "source": {
+            "title": "Construction Occupations (Licensing) (Fees) Determination 2026 (DI2026-165) (ACT)",
+            "publisher": "ACT Legislation Register",
+            "url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-165/current/DOCX/2026-165.DOCX",
+            "locator": "sch 1 item 2.19 (2026-27 column)",
+            "quote": "Licence term fee for a period of one (1) year for an individual licence in the construction occupation of Builder (other than Owner-Builder class) and Building Surveyor. 405.92 420.53",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 420.53
+        },
+        {
+          "what": "Licence term fee, 1 year",
+          "when": "renewal",
+          "source": {
+            "title": "Construction Occupations (Licensing) (Fees) Determination 2026 (DI2026-165) (ACT)",
+            "publisher": "ACT Legislation Register",
+            "url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-165/current/DOCX/2026-165.DOCX",
+            "locator": "sch 1 item 2.19 (2026-27 column)",
+            "quote": "Licence term fee for a period of one (1) year for an individual licence in the construction occupation of Builder (other than Owner-Builder class) and Building Surveyor. 405.92 420.53",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 420.53
+        }
+      ],
+      "note": "Each item lists the 2025-26 fee then the 2026-27 fee; the 2026-27 fee is used. A renewed licence pays the licence term fee again; a 3-year term costs $1,139.36 (item 2.26)."
+    },
+    "act-plumbing-licence": {
+      "licence": "Plumber, drainer and gasfitter licence for an individual, applied for online, for 1 year",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Application fee (online)",
+          "when": "entry",
+          "source": {
+            "title": "Construction Occupations (Licensing) (Fees) Determination 2026 (DI2026-165) (ACT)",
+            "publisher": "ACT Legislation Register",
+            "url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-165/current/DOCX/2026-165.DOCX",
+            "locator": "sch 1 item 2.7 (2026-27 column)",
+            "quote": "Application fee for an individual licence in one or more of the construction occupations of Plumber, Drainer and Gasfitter, if the application is made online. 287.04 297.37",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 297.37
+        },
+        {
+          "what": "Licence term fee, 1 year",
+          "when": "entry",
+          "source": {
+            "title": "Construction Occupations (Licensing) (Fees) Determination 2026 (DI2026-165) (ACT)",
+            "publisher": "ACT Legislation Register",
+            "url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-165/current/DOCX/2026-165.DOCX",
+            "locator": "sch 1 item 2.22 (2026-27 column)",
+            "quote": "Licence term fee for a period of one (1) year for one or more of the construction occupations of Drainer, Gasfitter and Plumber. 227.28 235.46",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 235.46
+        },
+        {
+          "what": "Licence term fee, 1 year",
+          "when": "renewal",
+          "source": {
+            "title": "Construction Occupations (Licensing) (Fees) Determination 2026 (DI2026-165) (ACT)",
+            "publisher": "ACT Legislation Register",
+            "url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-165/current/DOCX/2026-165.DOCX",
+            "locator": "sch 1 item 2.22 (2026-27 column)",
+            "quote": "Licence term fee for a period of one (1) year for one or more of the construction occupations of Drainer, Gasfitter and Plumber. 227.28 235.46",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 235.46
+        }
+      ],
+      "note": "2026-27 column. A 3-year term costs $497.10 (item 2.24)."
+    },
+    "act-liquor-licence": {
+      "licence": "On licence, restaurant and cafe, up to 80 people, standard licensed times",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Application for an on licence",
+          "when": "entry",
+          "source": {
+            "title": "Liquor (Fees) Determination 2026 (DI2026-105) (ACT)",
+            "publisher": "ACT Legislation Register",
+            "url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-105/current/DOCX/2026-105.DOCX",
+            "locator": "sch 1 item 500",
+            "quote": "Fee for an application for licence under section 25 of the Liquor Act 2010. $3,759.00 for general licence $3,049.00 for catering licence $3,049.00 for on licence",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 3049
+        },
+        {
+          "what": "Annual licence fee",
+          "when": "renewal",
+          "source": {
+            "title": "Liquor (Fees) Determination 2026 (DI2026-105) (ACT)",
+            "publisher": "ACT Legislation Register",
+            "url": "https://www.legislation.act.gov.au/DownloadFile/di/2026-105/current/DOCX/2026-105.DOCX",
+            "locator": "sch 1 item 501, para 2(a)",
+            "quote": "2) for on licence--restaurant and cafe licence: (a) if total occupancy loading for premises ≤ 80 people $677.00 for standard licensed times",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 677
+        }
+      ],
+      "note": "Later trading hours and larger premises pay more."
+    },
+    "nt-builder-licence": {
+      "licence": "Registration as a building contractor (not already registered in another category)",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Application for registration",
+          "when": "entry",
+          "source": {
+            "title": "Building Regulations 1993 (NT)",
+            "publisher": "Official legislation register",
+            "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11646",
+            "locator": "sch 1 item 2 (application 230; registration 345 a year) (current reprint)",
+            "quote": "In relation to the registration of a building contractor: (a) for an application under section 24A of the Act (b) for registration under section 24B of the Act: 230 (i) if the applicant is not already registered in a category of building contractor 345 per year or part thereof",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "fee_units": 230
+        },
+        {
+          "what": "Registration, per year",
+          "when": "entry",
+          "source": {
+            "title": "Building Regulations 1993 (NT)",
+            "publisher": "Official legislation register",
+            "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11646",
+            "locator": "sch 1 item 2 (application 230; registration 345 a year) (current reprint)",
+            "quote": "In relation to the registration of a building contractor: (a) for an application under section 24A of the Act (b) for registration under section 24B of the Act: 230 (i) if the applicant is not already registered in a category of building contractor 345 per year or part thereof",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "fee_units": 345
+        },
+        {
+          "what": "Registration, per year",
+          "when": "renewal",
+          "source": {
+            "title": "Building Regulations 1993 (NT)",
+            "publisher": "Official legislation register",
+            "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11646",
+            "locator": "sch 1 item 2 (application 230; registration 345 a year) (current reprint)",
+            "quote": "In relation to the registration of a building contractor: (a) for an application under section 24A of the Act (b) for registration under section 24B of the Act: 230 (i) if the applicant is not already registered in a category of building contractor 345 per year or part thereof",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "fee_units": 345
+        }
+      ],
+      "note": "Fees are in revenue units. The PDF's table puts the two amounts after the two descriptions; 230 is the application fee and 345 the registration fee per year."
+    },
+    "nt-plumbing-licence": {
+      "licence": "Advanced tradesman's licence (to work on one's own account), for 3 years",
+      "renewal_years": 3,
+      "renewal_source": {
+        "title": "Plumbers and Drainers Licensing Regulations 1983 (NT)",
+        "publisher": "Official legislation register",
+        "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12104",
+        "locator": "reg 2(2) (current reprint)",
+        "quote": "(2) Subject to subregulation (3), the prescribed fee is payable in respect of a registration card, licence, renewal or re-issue of a registration card or licence, as the case may be, for a period of 3 years",
+        "accessed": "2026-11-16",
+        "checked": "document",
+        "corpus_version_id": null
+      },
+      "fees": [
+        {
+          "what": "Issue of advanced tradesman's licence",
+          "when": "entry",
+          "source": {
+            "title": "Plumbers and Drainers Licensing Regulations 1983 (NT)",
+            "publisher": "Official legislation register",
+            "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12104",
+            "locator": "sch (current reprint)",
+            "quote": "23(1)(c) Issue of advanced tradesman's licence 69",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "fee_units": 69
+        },
+        {
+          "what": "Renewal of advanced tradesman's licence",
+          "when": "renewal",
+          "source": {
+            "title": "Plumbers and Drainers Licensing Regulations 1983 (NT)",
+            "publisher": "Official legislation register",
+            "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12104",
+            "locator": "sch (current reprint)",
+            "quote": "26(3) Renewal of advanced tradesman's licence 69",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "fee_units": 69
+        }
+      ],
+      "note": "Fees are in revenue units, for 3 years to the common expiry date (less if applied for later in the cycle)."
+    },
+    "nt-liquor-licence": {
+      "licence": "Licence with a restaurant authority (low risk)",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Application for a licence and one or more authorities",
+          "when": "entry",
+          "source": {
+            "title": "Liquor Regulations 2019 (NT)",
+            "publisher": "Official legislation register",
+            "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12372",
+            "locator": "sch 1 item 7 (current reprint)",
+            "quote": "7 licence and one or more authorities, other than special event authority 166",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "fee_units": 166
+        },
+        {
+          "what": "Initial fee: base fee for a low-risk authority",
+          "when": "entry",
+          "source": {
+            "title": "Liquor Regulations 2019 (NT)",
+            "publisher": "Official legislation register",
+            "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12372",
+            "locator": "reg 10(4) (current reprint)",
+            "quote": "Risk classification Base fee (revenue units) very high risk 1653 high risk 827 moderate risk 414 low risk 290",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "fee_units": 290
+        },
+        {
+          "what": "Annual fee: base fee for a low-risk authority, before multipliers",
+          "when": "renewal",
+          "source": {
+            "title": "Liquor Regulations 2019 (NT)",
+            "publisher": "Official legislation register",
+            "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12372",
+            "locator": "reg 10(4) (current reprint)",
+            "quote": "Risk classification Base fee (revenue units) very high risk 1653 high risk 827 moderate risk 414 low risk 290",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "fee_units": 290
+        }
+      ],
+      "risk_source": {
+        "title": "Liquor Regulations 2019 (NT)",
+        "publisher": "Official legislation register",
+        "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12372",
+        "locator": "sch 2 (current reprint)",
+        "quote": "low risk 2 restaurant authority",
+        "accessed": "2026-11-16",
+        "checked": "document",
+        "corpus_version_id": null
+      },
+      "note": "Fees are in revenue units. The annual fee multiplies the base fee by volume, hours, discount and breach factors (reg 9); a venue buying under 500 L of pure alcohol a year has a volume multiplier of 0.5, so the base fee is an upper figure for a small restaurant."
+    },
+    "tas-liquor-licence": {
+      "licence": "On-licence for premises operating as a restaurant",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Application for a restaurant on-licence",
+          "when": "entry",
+          "source": {
+            "title": "Liquor Licensing (Fees) Regulations 2025 (Tas)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2025-041",
+            "locator": "sch 1 item 1(b) (current)",
+            "quote": "(b) an on-licence in respect of premises operating as a restaurant 400",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 400
+        },
+        {
+          "what": "Grant of a liquor licence",
+          "when": "entry",
+          "source": {
+            "title": "Liquor Licensing (Fees) Regulations 2025 (Tas)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2025-041",
+            "locator": "sch 1 item 2 (current)",
+            "quote": "2. Section 25(1)(b)(i) Grant of a liquor licence 200",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 200
+        },
+        {
+          "what": "Annual liquor licence fee",
+          "when": "renewal",
+          "source": {
+            "title": "Liquor Licensing (Fees) Regulations 2025 (Tas)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2025-041",
+            "locator": "sch 1 item 4(b) (current)",
+            "quote": "(b) an on-licence in respect of premises operating as a restaurant 260",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 260
+        }
+      ],
+      "note": "Fees are in fee units."
     }
+  },
+  "not_costed": {
+    "vic-builder-licence": "Blocked: the Building and Plumbing Commission (formerly the VBA) and the Victorian register refuse this environment's requests, and no saved copy of the Building Regulations 2018 fee schedule is here.",
+    "vic-plumbing-licence": "Blocked, as for the Victorian builder licence (plumbing licences are issued under the Building Act 1993).",
+    "vic-liquor-licence": "Blocked: Liquor Control Victoria's site did not answer, and the saved Liquor Control Reform Regulations 2023 are not in this environment."
   }
 }

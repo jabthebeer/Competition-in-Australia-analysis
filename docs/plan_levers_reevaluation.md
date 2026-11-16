@@ -181,14 +181,11 @@ Added at the owner's request on 16 November 2026, and decided the same day (DECI
 
 **Progress (16 November 2026):**
 
-- **Built:** the costing in [`licence_costs.md`](licence_costs.md), for a first set of 8 licences (builder and plumbing in Qld, WA and Tas; liquor in Qld and WA).
-- **Still to do for the pilot (16 licences):**
-  - NSW and SA, whose fees are read from the corpus copy or the regulator;
-  - the ACT, whose fees are in separate fee determinations;
-  - the NT;
-  - Victoria, which is blocked;
-  - Tasmanian liquor.
-- **Then:** the other licence families.
+- **Pilot done:** 21 of the 24 licences are costed in [`licence_costs.md`](licence_costs.md). That is builder, plumbing and liquor licences in NSW, Qld, SA, WA, Tas, the ACT and the NT.
+- **Victoria (3 licences):** blocked. Its regulators and register refuse this environment's requests.
+- **Liquor in NSW and SA:** only the entry fee is counted. Neither state publishes the annual fee as an amount.
+- **The NT:** the revenue unit value ($1.49) is from search results, so it is not verified.
+- **Next:** scale to the other licence families.
 
 **Batching is paused** (owner, 16 November 2026) until phase 8 is done, then resumes. It is logged as P-5 in [`parked_items.md`](parked_items.md). The work left, in order:
 

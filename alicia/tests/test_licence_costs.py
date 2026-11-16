@@ -34,9 +34,19 @@ def test_every_licence_is_a_requirement_with_sourced_fees(data):
             assert len(f["source"]["quote"]) >= 20 and f["source"]["url"].startswith("https://"), rid
             if "fee_units" in f:
                 assert reqs[rid].jurisdiction in data["fee_units"], f"{rid}: no fee unit value for its jurisdiction"
+    for rid in data.get("not_costed", {}):
+        assert rid in reqs and rid not in data["items"], rid
     for when in ("entry", "renewal"):
         h = data["assumed_hours"][when]
         assert 0 < h["low"] <= h["central"] <= h["high"]
+
+
+def test_fee_units_convert_as_the_law_says():
+    units = {"QLD": {"value": 1.133}, "NT": {"value": 1.49, "round": "down-to-dollar"}}
+    assert LC.dollars({"fee_units": 442.60}, "QLD", units) == 501.47
+    # NT: 124 revenue units at $1.49 is $184.76, rounded down to $184 (Revenue Units Act 2009 s 3(2)).
+    assert LC.dollars({"fee_units": 124}, "NT", units) == 184.0
+    assert LC.dollars({"amount": 290.0}, "WA", units) == 290.0
 
 
 def test_the_labour_rate_is_the_frameworks_work_rate():
@@ -66,4 +76,5 @@ def test_the_published_costs_are_current():
     # Entry is the entry fees plus the staff time to apply; renewal per year spreads a renewal over its years.
     for r in rows:
         assert r["entry_total"] == pytest.approx(r["entry_fees"] + r["entry_hours"] * 91.54, abs=0.01)
-        assert r["renewal_total_per_year"] == pytest.approx(r["renewal_total"] / r["renewal_years"], abs=0.01)
+        if r["renewal_total"] != "":  # blank where the regulator works the renewal fee out for each licensee
+            assert r["renewal_total_per_year"] == pytest.approx(r["renewal_total"] / r["renewal_years"], abs=0.01)

@@ -20,6 +20,7 @@ from __future__ import annotations
 import csv
 import datetime as dt
 import json
+import math
 import re
 import subprocess
 import sys
@@ -72,10 +73,13 @@ def load() -> dict:
 
 
 def dollars(f: dict, juris: str, units: dict) -> float:
-    """A fee in dollars: its amount, or its fee units at the jurisdiction's fee unit value."""
+    """A fee in dollars: its amount, or its fee units at the jurisdiction's fee unit value. Where the law rounds a
+    unit-based fee down to the dollar (the NT's Revenue Units Act 2009 s 3(2)), so does this."""
     if "amount" in f:
         return float(f["amount"])
-    return round(float(f["fee_units"]) * float(units[juris]["value"]), 2)
+    u = units[juris]
+    value = float(f["fee_units"]) * float(u["value"])
+    return float(math.floor(value + 1e-9)) if u.get("round") == "down-to-dollar" else round(value, 2)
 
 
 def hours(item: dict, data: dict, when: str, scenario: str) -> float:
@@ -174,7 +178,13 @@ def build(use_calculator: bool = True) -> list[dict]:
         j = q.jurisdiction
         k = int(item["renewal_years"])
         entry_fees = round(sum(dollars(f, j, data["fee_units"]) for f in item["fees"] if f["when"] == "entry"), 2)
-        renewal_fees = round(sum(dollars(f, j, data["fee_units"]) for f in item["fees"] if f["when"] == "renewal"), 2)
+        # A renewal fee some regulators do not publish (it is worked out for each licensee) is left blank.
+        published = not item.get("renewal_fee_unpublished")
+        renewal_fees = (
+            round(sum(dollars(f, j, data["fee_units"]) for f in item["fees"] if f["when"] == "renewal"), 2)
+            if published
+            else None
+        )
         eh, rh = hours(item, data, "entry", "central"), hours(item, data, "renewal", "central")
         row = {
             "requirement": rid,
@@ -185,11 +195,11 @@ def build(use_calculator: bool = True) -> list[dict]:
             "entry_hours": eh,
             "entry_time_cost": round(eh * rate, 2),
             "entry_total": round(entry_fees + eh * rate, 2),
-            "renewal_fees": renewal_fees,
+            "renewal_fees": "" if renewal_fees is None else renewal_fees,
             "renewal_hours": rh,
             "renewal_time_cost": round(rh * rate, 2),
-            "renewal_total": round(renewal_fees + rh * rate, 2),
-            "renewal_total_per_year": round((renewal_fees + rh * rate) / k, 2),
+            "renewal_total": "" if renewal_fees is None else round(renewal_fees + rh * rate, 2),
+            "renewal_total_per_year": "" if renewal_fees is None else round((renewal_fees + rh * rate) / k, 2),
             "entry_total_low": round(entry_fees + hours(item, data, "entry", "low") * rate, 2),
             "entry_total_high": round(entry_fees + hours(item, data, "entry", "high") * rate, 2),
             "hours_basis": "sourced" if item.get("hours") else "assumed",
@@ -211,10 +221,14 @@ def build(use_calculator: bool = True) -> list[dict]:
 def sources(data: dict) -> list[tuple[str, dict]]:
     """Every quoted source in the input file, with where it is used."""
     out = [(f"fee unit {j}", u["source"]) for j, u in data["fee_units"].items()]
+    out += [
+        (f"fee unit {j} rounding", u["rounding_source"]) for j, u in data["fee_units"].items() if "rounding_source" in u
+    ]
     for rid, item in data["items"].items():
         out += [(rid, f["source"]) for f in item["fees"]]
-        if item.get("renewal_source"):
-            out.append((rid, item["renewal_source"]))
+        for key in ("renewal_source", "risk_source"):
+            if item.get(key):
+                out.append((rid, item[key]))
         if item.get("hours") and item["hours"].get("source"):
             out.append((rid, item["hours"]["source"]))
     return out
@@ -241,17 +255,21 @@ def check_quotes() -> int:
         elif kind == "corpus-copy":
             key = f"corpus-{s['corpus_version_id']}"
             texts.setdefault(key, C.norm(C.law_text.corpus_text(s["corpus_version_id"])))
+        elif kind == "search-result":  # an official page this environment cannot reach; flagged as unverified
+            print(f"not checked: {where}: {s['locator']} (search results only; {url} refused the request)")
+            continue
         else:
             raise SystemExit(f"{where}: unknown check type {kind}")
         if C.norm(s["quote"]) not in texts[key]:
             missing += 1
             print(f"NOT FOUND: {where}: {s['locator']}: {s['quote'][:90]}")
-    print(f"{len(sources(load())) - missing} quote(s) found, {missing} not found")
+    unchecked = sum(1 for _, s in sources(load()) if s["checked"] == "search-result")
+    print(f"{len(sources(load())) - missing - unchecked} quote(s) found, {missing} not found, {unchecked} not checked")
     return 1 if missing else 0
 
 
-def money(x: float) -> str:
-    return f"${x:,.0f}"
+def money(x: float | str) -> str:
+    return "not published" if x == "" else f"${x:,.0f}"
 
 
 def note(rows: list[dict], data: dict, rate: float, calculator: bool) -> str:
@@ -268,6 +286,12 @@ def note(rows: list[dict], data: dict, rate: float, calculator: bool) -> str:
         "",
         "- **Fees**, quoted from the fee regulations. Where a fee is set in fee units, it is converted at the unit's "
         "current value: " + "; ".join(f"{j} ${u['value']} from {u['from']}" for j, u in sorted(units.items())) + ".",
+        *[
+            f"- **Not verified:** the {j} fee unit value (${u['value']}) is from search results; the official page "
+            "refused this environment's requests, so its quote could not be checked."
+            for j, u in sorted(units.items())
+            if u["source"]["checked"] == "search-result"
+        ],
         f"- **Staff time** to apply and to renew, at ${rate:.2f} an hour: the Office of Impact Analysis's rate for "
         "work time (*Regulatory Burden Measurement Framework*, July 2026, p. 12).",
         "- **Entry** is the fees and time to get the licence. **Renewal** is the fees and time each time it is "
@@ -302,6 +326,15 @@ def note(rows: list[dict], data: dict, rate: float, calculator: bool) -> str:
             f"{r['renewal_years']} year{'s' if r['renewal_years'] > 1 else ''} | {money(r['renewal_total'])} | "
             f"{money(r['renewal_total_per_year'])} | {money(r['rbm_burden_per_year'])} |"
         )
+    if data.get("not_costed"):
+        lines += ["", "## Pilot licences not yet costed", "", "| Licence | Why |", "|---|---|"]
+        lines += [f"| `{rid}` | {why} |" for rid, why in sorted(data["not_costed"].items())]
+    if any(r["renewal_fees"] == "" for r in rows):
+        lines += [
+            "",
+            'Where a renewal fee is "not published", the regulator works the annual fee out for each licensee '
+            "(from capacity, trading hours and risk); only its entry fees are counted.",
+        ]
     lines += [
         "",
         "## Sources",

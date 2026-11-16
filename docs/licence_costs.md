@@ -4,7 +4,8 @@
 
 ## What is counted
 
-- **Fees**, quoted from the fee regulations. Where a fee is set in fee units, it is converted at the unit's current value: QLD $1.133 from 2026-07-01; TAS $1.96 from 2026-07-01.
+- **Fees**, quoted from the fee regulations. Where a fee is set in fee units, it is converted at the unit's current value: NT $1.49 from 2026-07-01; QLD $1.133 from 2026-07-01; TAS $1.96 from 2026-07-01.
+- **Not verified:** the NT fee unit value ($1.49) is from search results; the official page refused this environment's requests, so its quote could not be checked.
 - **Staff time** to apply and to renew, at $91.54 an hour: the Office of Impact Analysis's rate for work time (*Regulatory Burden Measurement Framework*, July 2026, p. 12).
 - **Entry** is the fees and time to get the licence. **Renewal** is the fees and time each time it is renewed, and per year divides that by the years between renewals.
 - **Regulatory burden** is the framework's own measure, worked out by the calculator in `regulatory-burden-tool/`: the yearly average of the staff time over 10 years. The framework leaves out government fees, which are transfers to government, so fees are shown beside it.
@@ -23,21 +24,57 @@ Assumed: no regulator publishes how long an application or a renewal takes (Serv
 
 | Licence | Entry: fees | Entry: time | Entry total (range) | Renewal every | Renewal: fees and time | Renewal per year | Regulatory burden a year |
 |---|---|---|---|---|---|---|---|
+| `act-builder-licence`: Builder licence for an individual, Classes A, B and C, applied for online, for 1 year | $1,217 | $366 | $1,584 ($1,400–$1,950) | 1 year | $512 | $512 | $119 |
+| `act-liquor-licence`: On licence, restaurant and cafe, up to 80 people, standard licensed times | $3,049 | $366 | $3,415 ($3,232–$3,781) | 1 year | $769 | $769 | $119 |
+| `act-plumbing-licence`: Plumber, drainer and gasfitter licence for an individual, applied for online, for 1 year | $533 | $366 | $899 ($716–$1,265) | 1 year | $327 | $327 | $119 |
+| `nsw-builder-licence`: Building contractor licence for an individual, for 1 year | $883 | $366 | $1,249 ($1,066–$1,615) | 1 year | $684 | $684 | $119 |
+| `nsw-liquor-licence`: On-premises licence (restaurants and cafes) | $965 | $366 | $1,331 ($1,148–$1,697) | 1 year | not published | not published | $119 |
+| `nsw-plumbing-licence`: Trade or specialist contractor licence (plumbing) for an individual, for 1 year | $403 | $366 | $769 ($586–$1,135) | 1 year | $391 | $391 | $119 |
+| `nt-builder-licence`: Registration as a building contractor (not already registered in another category) | $856 | $366 | $1,222 ($1,039–$1,588) | 1 year | $606 | $606 | $119 |
+| `nt-liquor-licence`: Licence with a restaurant authority (low risk) | $679 | $366 | $1,045 ($862–$1,411) | 1 year | $524 | $524 | $119 |
+| `nt-plumbing-licence`: Advanced tradesman's licence (to work on one's own account), for 3 years | $102 | $366 | $468 ($285–$834) | 3 years | $194 | $65 | $64 |
 | `qld-builder-licence`: Builder contractor's licence, category SC2 (the smallest builders), held by an individual | $921 | $366 | $1,287 ($1,104–$1,653) | 1 year | $511 | $511 | $119 |
 | `qld-liquor-licence`: Commercial other licence (the licence restaurants and cafes hold), with no extended trading hours | $2,500 | $366 | $2,866 ($2,683–$3,232) | 1 year | $925 | $925 | $119 |
 | `qld-plumbing-licence`: Plumber licence (plumber's licence alone), for 1 year | $168 | $366 | $534 ($351–$900) | 1 year | $180 | $180 | $119 |
+| `sa-builder-licence`: Building work contractor's licence for an individual, general building work (contractor only) | $864 | $366 | $1,230 ($1,047–$1,596) | 1 year | $681 | $681 | $119 |
+| `sa-liquor-licence`: Restaurant and catering licence | $754 | $366 | $1,120 ($937–$1,486) | 1 year | not published | not published | $119 |
+| `sa-plumbing-licence`: Plumbing, gas fitting or electrical contractor's licence for an individual | $779 | $366 | $1,145 ($962–$1,511) | 1 year | $596 | $596 | $119 |
 | `tas-builder-licence`: Building services licence (builder), for an individual, paid yearly | $470 | $366 | $837 ($653–$1,203) | 1 year | $562 | $562 | $119 |
+| `tas-liquor-licence`: On-licence for premises operating as a restaurant | $1,176 | $366 | $1,542 ($1,359–$1,908) | 1 year | $601 | $601 | $119 |
 | `tas-plumbing-licence`: Plumbing contractor licence for one self-employed person aged under 65, for 1 year | $529 | $366 | $895 ($712–$1,262) | 1 year | $621 | $621 | $119 |
 | `wa-builder-licence`: Registration as a building contractor (individual), for 3 years | $854 | $366 | $1,220 ($1,037–$1,586) | 3 years | $656 | $219 | $64 |
 | `wa-liquor-licence`: Restaurant licence | $1,756 | $366 | $2,122 ($1,939–$2,488) | 1 year | $789 | $789 | $119 |
 | `wa-plumbing-licence`: Plumbing contractor's licence, for 3 years | $928 | $366 | $1,294 ($1,111–$1,660) | 3 years | $938 | $313 | $64 |
 
+## Pilot licences not yet costed
+
+| Licence | Why |
+|---|---|
+| `vic-builder-licence` | Blocked: the Building and Plumbing Commission (formerly the VBA) and the Victorian register refuse this environment's requests, and no saved copy of the Building Regulations 2018 fee schedule is here. |
+| `vic-liquor-licence` | Blocked: Liquor Control Victoria's site did not answer, and the saved Liquor Control Reform Regulations 2023 are not in this environment. |
+| `vic-plumbing-licence` | Blocked, as for the Victorian builder licence (plumbing licences are issued under the Building Act 1993). |
+
+Where a renewal fee is "not published", the regulator works the annual fee out for each licensee (from capacity, trading hours and risk); only its entry fees are counted.
+
 ## Sources
 
+- `act-builder-licence`: Construction Occupations (Licensing) (Fees) Determination 2026 (DI2026-165) (ACT) sch 1 item 2.1 (2026-27 column); Construction Occupations (Licensing) (Fees) Determination 2026 (DI2026-165) (ACT) sch 1 item 2.19 (2026-27 column).
+- `act-liquor-licence`: Liquor (Fees) Determination 2026 (DI2026-105) (ACT) sch 1 item 500; Liquor (Fees) Determination 2026 (DI2026-105) (ACT) sch 1 item 501, para 2(a).
+- `act-plumbing-licence`: Construction Occupations (Licensing) (Fees) Determination 2026 (DI2026-165) (ACT) sch 1 item 2.7 (2026-27 column); Construction Occupations (Licensing) (Fees) Determination 2026 (DI2026-165) (ACT) sch 1 item 2.22 (2026-27 column).
+- `nsw-builder-licence`: Fees for contractor licences, supervision and tradesperson certificates Individual: new application (fees for July 2026 - June 2027); Fees for contractor licences, supervision and tradesperson certificates Individual: renewal (fees for July 2026 - June 2027).
+- `nsw-liquor-licence`: Liquor licence fees guide: fee schedule Licence applications.
+- `nsw-plumbing-licence`: Fees for contractor licences, supervision and tradesperson certificates Individual: new application (fees for July 2026 - June 2027); Fees for contractor licences, supervision and tradesperson certificates Individual: renewal (fees for July 2026 - June 2027).
+- `nt-builder-licence`: Building Regulations 1993 (NT) sch 1 item 2 (application 230; registration 345 a year) (current reprint).
+- `nt-liquor-licence`: Liquor Regulations 2019 (NT) sch 1 item 7 (current reprint); Liquor Regulations 2019 (NT) reg 10(4) (current reprint).
+- `nt-plumbing-licence`: Plumbers and Drainers Licensing Regulations 1983 (NT) sch (current reprint).
 - `qld-builder-licence`: Queensland Building and Construction Commission Regulation 2018 (Qld) sch 7 item 1(a)(iii) (current); Queensland Building and Construction Commission Regulation 2018 (Qld) sch 7 item 3(a)(iii) (current).
 - `qld-liquor-licence`: Liquor Regulation 2002 (Qld) sch 1 item 1(c) (current); Liquor Regulation 2002 (Qld) s 36A(3) (current).
 - `qld-plumbing-licence`: Plumbing and Drainage Regulation 2019 (Qld) sch 8 item 1(a) (current); Plumbing and Drainage Regulation 2019 (Qld) sch 8 item 8(c)(i) (current).
+- `sa-builder-licence`: Building work contractor's licence Fees: individual contractor; Renew an occupational licence or registration Fees: builders.
+- `sa-liquor-licence`: Restaurant and catering liquor licence Fees.
+- `sa-plumbing-licence`: Plumbing, gas fitting and electrical contractors' licences Fees: new licence fees; Plumbing, gas fitting and electrical contractors' licences Fees: licence renewal fees.
 - `tas-builder-licence`: Occupational Licensing (Building Services Work) Regulations 2016 (Tas) sch 2 item 3 (current).
+- `tas-liquor-licence`: Liquor Licensing (Fees) Regulations 2025 (Tas) sch 1 item 1(b) (current); Liquor Licensing (Fees) Regulations 2025 (Tas) sch 1 item 2 (current); Liquor Licensing (Fees) Regulations 2025 (Tas) sch 1 item 4(b) (current).
 - `tas-plumbing-licence`: Occupational Licensing (Plumbing Work) Regulations 2021 (Tas) sch 1 item 1(b)(i) (current).
 - `wa-builder-licence`: Building Services (Registration) Regulations 2011 (WA) sch 1 div 2 item 1(b) (current version); Building Services (Registration) Regulations 2011 (WA) sch 1 div 2 item 2(b) (current version).
 - `wa-liquor-licence`: Liquor Control Regulations 1989 (WA) sch 1 item 2 (current version); Liquor Control Regulations 1989 (WA) sch 1 item 4 (current version).
