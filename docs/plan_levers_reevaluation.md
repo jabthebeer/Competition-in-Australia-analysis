@@ -1,6 +1,6 @@
 # Plan: re-evaluating Legislative levers under framework version 2.0
 
-*15 November 2026. Drafted by Claude Code on the legislation branch (`claude/pensive-bell-wgm7ks`) for the owner. The owner made the 5 decisions on 15 November 2026 (section 4; DECISIONS E-163). Phase 2's sorting is done ([rules and changes](levers_rules_and_changes.md)); the rest is not yet built. Figures were computed on 15 November 2026 from `main` at PR [#33](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/33), using the levers page's own data (`build_payload` in `alicia/src/alicia/menu/explorer.py`).*
+*15 November 2026. Drafted by Claude Code on the legislation branch (`claude/pensive-bell-wgm7ks`) for the owner. The owner made the 5 decisions on 15 November 2026 (section 4; DECISIONS E-170). Phase 2's sorting is done ([rules and changes](levers_rules_and_changes.md)); the rest is not yet built. Figures were computed on 15 November 2026 from `main` at PR [#33](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/33), using the levers page's own data (`build_payload` in `alicia/src/alicia/menu/explorer.py`).*
 
 ## 1. What version 2.0 already did
 
@@ -40,7 +40,7 @@ Requirements (537) are in better shape. All are coded in their own files and 398
 
 ## 3. Phases
 
-Each phase ends in a pull request, with `alicia validate`, `pytest` and `ruff` passing after a merge from `main` ([before you push](notes_for_other_branches.md)). Decision rows take E-162 to E-179.
+Each phase ends in a pull request, with `alicia validate`, `pytest` and `ruff` passing after a merge from `main` ([before you push](notes_for_other_branches.md)). Decision rows take E-170 to E-179 (this branch's share of E-162 to E-179).
 
 ### Who does what
 

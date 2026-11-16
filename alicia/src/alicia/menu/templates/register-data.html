@@ -157,6 +157,9 @@ table.rdt tr.ended td { color: var(--ink-3); }
   });
   $("metaLine").textContent = `${DATA.rows.length.toLocaleString("en-AU")} items${DATA.generated ? ` · updated ${new Date(DATA.generated + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" })}` : ""}`;
   $("note").textContent = DATA.note;
+  // A link such as register-data.html#q=nsw-tow-truck-operator-licence opens on that item (the Industry lens links here).
+  const fromHash = new URLSearchParams(location.hash.slice(1)).get("q");
+  if (fromHash) { state.q = fromHash; $("q").value = fromHash; }
   render();
 })();
 </script>
