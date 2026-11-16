@@ -1,0 +1,110 @@
+{
+  "id": "nsw-firearms-dealer-licence",
+  "family": "firearms-dealer-licence",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a firearms dealer licence",
+  "kind": "licence",
+  "what": "Carry on activities as a firearms dealer, or possess firearms as a dealer, only under a firearms dealer licence.",
+  "laws": [
+    {
+      "title": "Firearms Act 1996 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1996-046",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-03-02/act-1996-046",
+      "provisions": "s 43",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Firearms Act 1996 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-03-02/act-1996-046",
+      "locator": "s 43 (version of 2025-03-02)",
+      "quote": "A person must not— (a) carry on activities as a firearms dealer, or (b) possess a firearm in the person's capacity as a firearms dealer, unless authorised to do so by a firearms dealer licence.",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2025-03-02/act-1996-046"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4241"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it deals in firearms",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Firearms Act 1996 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-03-02/act-1996-046",
+          "locator": "s 43 (version of 2025-03-02)",
+          "quote": "A person must not— (a) carry on activities as a firearms dealer, or (b) possess a firearm in the person's capacity as a firearms dealer, unless authorised to do so by a firearms dealer licence.",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2025-03-02/act-1996-046"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section number read from the heading before the offence and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Carry on activities as a firearms dealer, or possess firearms as a dealer, only under a firearms dealer licence.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "id": "vic-building-certifier-registration",
+  "family": "building-certifier-registration",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Register as a building surveyor",
+  "kind": "registration",
+  "what": "Be registered as a building surveyor, in the right category or class, before carrying out building surveying (certification) work.",
+  "laws": [
+    {
+      "title": "Building Act 1993 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "93-126aa152",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+      "provisions": "ss 3 (building practitioner), 169D(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Act 1993 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+      "locator": "s 169D(1) (authorised version 152, saved by the owner)",
+      "quote": "A person must not carry out work that is of a kind prescribed to be carried out by a category or class of building practitioner (other than a builder) unless the person is registered under this Part in that category or class of building practitioner and the registration authorises the carrying out of that kind of work.",
+      "accessed": "2026-11-15",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Act 1993 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+      "locator": "s 3 (authorised version 152, saved by the owner)",
+      "quote": "building practitioner means— * * * * (a) a building surveyor;",
+      "accessed": "2026-11-15",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6923"
+      ],
+      "exclude": [],
+      "activities": [
+        "Building inspection service"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Act 1993 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/building-act-1993",
+          "locator": "s 169D(1) (authorised version 152, saved by the owner)",
+          "quote": "A person must not carry out work that is of a kind prescribed to be carried out by a category or class of building practitioner (other than a builder) unless the person is registered under this Part in that category or class of building practitioner and the registration authorises the carrying out of that kind of work.",
+          "accessed": "2026-11-15",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the authorised PDF the owner saved from the Victorian register (data/raw/vic_legislation/, not committed); the register's documents disallow automated fetching. Building surveyors are building practitioners (s 3); s 169D(1A) adds that work as a building surveyor includes the functions the Act and regulations give a building surveyor. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Be registered as a building surveyor, in the right category or class, before carrying out building surveying (certification) work.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration, accreditation or approval is needed before the business can trade.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Qualification or experience tests narrow who may do the work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-15"
+  },
+  "drafted_on": "2026-11-15",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
