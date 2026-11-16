@@ -85,6 +85,17 @@ Data for comparing Australia with similar economies ([plan](../docs/forward_plan
 | Domestic commercial vessels | Australian Maritime Safety Authority | <https://www.amsa.gov.au/vessels-operators/domestic-commercial-vessels> | 29 Oct 2026 | Public web page | National | Maritime regime | Compiled |
 | Container deposit scheme expansion: consultation summary report (2026) | WA Department of Water and Environmental Regulation | URL in the regime file | 29 Oct 2026 | Public document | WA and other schemes | Container deposits regime | Compiled |
 
+### Compiled for the licence cost pilot (`regulation-register/licence-costs.json`)
+
+What a licence costs the business that holds it, at entry and at renewal: fees quoted from the fee regulations, and staff time valued at the Office of Impact Analysis's work rate (phase 8 of the Legislative levers re-evaluation, DECISIONS E-173; costs in `data/processed/legislation/licence_costs.csv`, written by `alicia/scripts/licence_costs.py`; method in `docs/licence_costs.md`). Each fee quote is re-found in its source by `licence_costs.py --check`.
+
+| Source | Publisher | URL | Accessed | Access / licence | Coverage | Used for | Status |
+|---|---|---|---|---|---|---|---|
+| Fee schedules in licensing regulations (Qld: QBCC Regulation 2018, Plumbing and Drainage Regulation 2019, Liquor Regulation 2002; WA: Building Services (Registration) Regulations 2011, Plumbers Licensing and Plumbing Standards Regulations 2000, Liquor Control Regulations 1989 and the Liquor Control Act 1988; Tas: Occupational Licensing (Building Services Work) Regulations 2016, Occupational Licensing (Plumbing Work) Regulations 2021) | Queensland, WA and Tasmanian official legislation registers | Each law's register URL in `licence-costs.json` | 16 Nov 2026 | Official law text, current versions | Builder, plumbing and liquor licences: Qld, WA, Tas so far | Fees at entry and renewal | Pilot in progress |
+| Value of a fee unit (Qld) | Acts Interpretation (Fee Unit) Regulation 2022 (Qld), s 2 | <https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2022-0039> | 16 Nov 2026 | Official law text | $1.133 from 1 July 2026 to 30 June 2027 | Converting Queensland fees set in fee units | Used |
+| Value of a fee unit (Tas) | Department of Treasury and Finance, Tasmania | <https://www.treasury.tas.gov.au/economy/economic-policy-and-reform/fee-units> | 16 Nov 2026 | Public web page | $1.96 for 2026-27 | Converting Tasmanian fees set in fee units | Used |
+| Work labour rate | Office of Impact Analysis, *Regulatory Burden Measurement Framework* (July 2026), p. 12, as recorded in `regulatory-burden-tool/src/engine/parameters.ts` | <https://oia.pmc.gov.au/sites/default/files/2026-06/regulatory-burden-measurement-framework.pdf> | Recorded by the calculator | Commonwealth guidance | $91.54 an hour | Valuing staff time | Used |
+
 ## Controls (macroeconomic conditions)
 
 Series that evaluations net out rather than outcomes (`alicia/src/alicia/pipeline/controls.py`, forward plan Phase 1). Panels are in `data/processed/controls/` (`state_quarter`, `state_month`, `industry_quarter`, `national_month`) and are left out of the outcome coverage catalogue. ABS Data API queries are recorded in `data/manifests/abs_api.json`.

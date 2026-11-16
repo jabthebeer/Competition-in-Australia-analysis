@@ -45,7 +45,10 @@ The details are in [`levers_quoted_rules.md`](levers_quoted_rules.md).
 ### Added from phase 3, batch 2, and phase 8 (DECISIONS E-172)
 
 - **One more coding correction that changes a class.** The 7 container deposit scheme items are coded as an ongoing levy. Their laws bar a first supplier from supplying until it has a supply arrangement and an approved container, which would score as a registration before trading (3 to 5: Minor to Major, narrow). This is a judgement for you; details in [`levers_quoted_rules.md`](levers_quoted_rules.md).
-- **Cost fields (phase 8.2, when the owner settles the method).** Optional fields on requirements for fees (amount, period, as at, source), processing time (days, source), renewal period and qualification (what, hours or years, source). See [`scoping_licensing_cost.md`](scoping_licensing_cost.md).
+- **Licence costs (phase 8, DECISIONS E-173; the owner has decided the method).**
+  - **Where they are:** per-licence costs at entry and renewal (fees and staff time) are in `data/processed/legislation/licence_costs.csv`, built from the sourced input file `regulation-register/licence-costs.json` by `alicia/scripts/licence_costs.py`. Method: [`licence_costs.md`](licence_costs.md).
+  - **What is needed (step 8.6):** show a licence's entry cost and its renewal cost per year beside its severity, on Legislative levers, the Industry lens and Register data. The CSV's `requirement` column is the requirement id.
+  - **A schema field later, if you prefer:** fees with amount, period, as-at date and source on requirements. The input file can be migrated into it.
 
 ## Before you push (every session adding legislation)
 

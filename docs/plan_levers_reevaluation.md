@@ -59,7 +59,7 @@ Each phase ends in a pull request, with `alicia validate`, `pytest` and `ruff` p
 | 5 | Sharpen exposure | This branch | 28 coarse rules; 28 upper bounds | 3 |
 | 6 | Fill gaps where version 2 scores highest | This branch, with the state branches | Caps, exclusive rights, bans, ownership limits, price controls | 3 |
 | 7 | Re-mark, review and publish | This branch; owner's spot check | Only what phases 2 to 6 changed | Each phase |
-| 8 | Cost each licence | This branch; fields and pages from the website session | Fees, waiting time, renewal, qualifications; a pilot of 3 licence families in 8 jurisdictions, then all 233 licences | 8.1 owner decisions ([scoping](scoping_licensing_cost.md)) |
+| 8 | Cost each licence | This branch; fields and pages from the website session | Fees and staff time at entry and renewal; a pilot of 3 licence families in 8 jurisdictions, then the other licences | In progress (decided 16 November 2026). Phases 2 to 7 paused until it is done |
 
 ### Phase 2. Put every change under its rule
 
@@ -162,12 +162,45 @@ Guidance that is enforced as if it were law ([scoping note](scoping_regulatory_g
 
 ### Phase 8. Cost each licence
 
-Added at the owner's request on 16 November 2026. The [scoping note](scoping_licensing_cost.md) sets out the method:
+Added at the owner's request on 16 November 2026, and decided the same day (DECISIONS E-173). The [scoping note](scoping_licensing_cost.md) has the background.
 
-- **Compliance cost** per licence: fees, the time to apply, waiting time, qualifications, insurance and renewal. It is costed with the Office of Impact Analysis's *Regulatory Burden Measurement Framework*, through the calculator already in `regulatory-burden-tool/`. Fees are shown beside the burden figure, because the framework treats them as transfers to government.
-- **Totals:** cost per licence times the number of licence holders.
-- **Economic costs** (entry, prices, productivity): only under "What others found".
-- **Steps:** 8.1 owner decisions; 8.2 cost fields (website session); 8.3 and 8.4 a pilot of builder, plumbing and liquor licences in 8 jurisdictions; 8.5 cost them; 8.6 show them; 8.7 scale up with ABLIS; 8.8 what others found.
+- **In scope:** what a licence costs the business that holds it, at entry and at each renewal:
+  - its fees;
+  - the direct staff time to apply and renew, valued at the Office of Impact Analysis's labour rate.
+- **How:** each licence is costed through the calculator already in `regulatory-burden-tool/`, which implements the *Regulatory Burden Measurement Framework*. Fees are shown beside the burden figure, because the framework treats them as transfers to government.
+- **Beside, not inside:** costs stand beside a rule's severity and impact class, and do not change them.
+- **Out of scope:** the cost of licensing to the whole economy. Nothing is estimated for entry, prices or productivity, and no economic estimates are attached.
+- **Pilot:** builder, plumbing and liquor licences in the 8 jurisdictions.
+- **Scaling:** the other licence families from the law and regulators' published fees, before ABLIS (the owner applies for the ABLIS key after that).
+- **Steps:**
+  - 8.2 fields for the cost facts (the website session; meanwhile a sourced input file on this branch);
+  - 8.3 and 8.4 the pilot's fees and times;
+  - 8.5 costing;
+  - 8.6 showing costs on the site (the website session);
+  - 8.7 scaling to the other licence families.
+
+**Progress (16 November 2026):**
+
+- **Built:** the costing in [`licence_costs.md`](licence_costs.md), for a first set of 8 licences (builder and plumbing in Qld, WA and Tas; liquor in Qld and WA).
+- **Still to do for the pilot (16 licences):**
+  - NSW and SA, whose fees are read from the corpus copy or the regulator;
+  - the ACT, whose fees are in separate fee determinations;
+  - the NT;
+  - Victoria, which is blocked;
+  - Tasmanian liquor.
+- **Then:** the other licence families.
+
+**Batching is paused** (owner, 16 November 2026) until phase 8 is done, then resumes. It is logged as P-5 in [`parked_items.md`](parked_items.md). The work left, in order:
+
+1. **Phase 3 leftovers:**
+   - Victoria, once the authorised PDFs are saved;
+   - Queensland outside automatic mutual recognition;
+   - the building code adoptions and Queensland's 2am limit, with their standing rules.
+2. **Phase 2:** the links and the 12 standing rules, once the website session adds the field.
+3. **Phase 4:** pairs and the 19 rules without a regime.
+4. **Phase 5:** exposure.
+5. **Phase 6:** the gap screen of the highest-scoring kinds.
+6. **Phase 7:** re-marking and your spot check.
 
 ## 4. Decisions (owner, 15 November 2026)
 

@@ -1,0 +1,442 @@
+{
+  "note": "Phase 8 of the Legislative levers re-evaluation (DECISIONS E-173): sourced facts for costing each licence at entry and at renewal. Fees are quoted from the fee regulations (a fee in fee units is converted at the value in fee_units); renewal_years is how often the licence is renewed. Staff time uses assumed_hours unless an item gives its own, sourced hours. Costs are worked out by alicia/scripts/licence_costs.py. Drafted by AI-assisted desk research; not yet checked by a person.",
+  "drafted_on": "2026-11-16",
+  "assumed_hours": {
+    "entry": {
+      "central": 4,
+      "low": 2,
+      "high": 8
+    },
+    "renewal": {
+      "central": 1,
+      "low": 0.5,
+      "high": 2
+    },
+    "basis": "Assumed: no regulator publishes how long an application or a renewal takes (Service NSW and QBCC pages searched, 16 November 2026). An entry application means gathering identity, qualification and insurance documents, completing the form and, for some licences, attending in person (individual NSW contractor licences are lodged at a Service NSW centre); a renewal is mostly an online payment. Replace with a sourced figure where a regulator publishes one."
+  },
+  "fee_units": {
+    "QLD": {
+      "value": 1.133,
+      "from": "2026-07-01",
+      "to": "2027-06-30",
+      "source": {
+        "title": "Acts Interpretation (Fee Unit) Regulation 2022 (Qld)",
+        "publisher": "Official legislation register",
+        "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2022-0039",
+        "locator": "s 2(c) (current)",
+        "quote": "2 Value of fee unit generally—Act , s 48B The value of a fee unit for an Act, other than an Act or part of an Act mentioned in schedule 1 , is— (a) from 1 July 2023 to 30 June 2025—$1.060; and (b) from 1 July 2025 to 30 June 2026—$1.096; and (c) from 1 July 2026 to 30 June 2027—$1.133;",
+        "accessed": "2026-11-16",
+        "checked": "register-text",
+        "corpus_version_id": null
+      }
+    },
+    "TAS": {
+      "value": 1.96,
+      "from": "2026-07-01",
+      "to": "2027-06-30",
+      "source": {
+        "title": "Fee units",
+        "publisher": "Department of Treasury and Finance, Tasmania",
+        "url": "https://www.treasury.tas.gov.au/economy/economic-policy-and-reform/fee-units",
+        "locator": "2026-27 Fee Unit Value",
+        "quote": "The value of a fee unit for 2026-27 is $1.96,",
+        "accessed": "2026-11-16",
+        "checked": "web-page",
+        "corpus_version_id": null
+      }
+    }
+  },
+  "items": {
+    "qld-builder-licence": {
+      "licence": "Builder contractor's licence, category SC2 (the smallest builders), held by an individual",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Licence application fee",
+          "when": "entry",
+          "source": {
+            "title": "Queensland Building and Construction Commission Regulation 2018 (Qld)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2018-0138",
+            "locator": "sch 7 item 1(a)(iii) (current)",
+            "quote": "1 Licence application fee for an individual ( Act , s 33 (1)(c)(ii)) (s 16(1)(b)(iii))— (a) contractor’s licence— (i) for a trade contractor’s licence or design licence to which category SC1 applies 387.30 (ii) for a trade contractor’s licence or design licence to which category SC2 applies 442.60 (iii) for a builder contractor’s licence to which category SC2 applies 442.60",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 442.6
+        },
+        {
+          "what": "Licence fee for 1 year",
+          "when": "entry",
+          "source": {
+            "title": "Queensland Building and Construction Commission Regulation 2018 (Qld)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2018-0138",
+            "locator": "sch 7 item 3(a)(iii) (current)",
+            "quote": "3 Licence fee for an individual ( Act , ss 33(1)(b) and (c)(ii), 37B (2)(b) and 39 (3)(b)) (s 16(1)(b)(iii))— (a) contractor’s licence, for 1 year— (i) for a trade contractor’s licence or design licence to which category SC1 applies 295.75 (ii) for a trade contractor’s licence or design licence to which category SC2 applies 370.00 (iii) for a builder contractor’s licence to which category SC2 applies 370.00",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 370.0
+        },
+        {
+          "what": "Licence fee for 1 year",
+          "when": "renewal",
+          "source": {
+            "title": "Queensland Building and Construction Commission Regulation 2018 (Qld)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2018-0138",
+            "locator": "sch 7 item 3(a)(iii) (current)",
+            "quote": "3 Licence fee for an individual ( Act , ss 33(1)(b) and (c)(ii), 37B (2)(b) and 39 (3)(b)) (s 16(1)(b)(iii))— (a) contractor’s licence, for 1 year— (i) for a trade contractor’s licence or design licence to which category SC1 applies 295.75 (ii) for a trade contractor’s licence or design licence to which category SC2 applies 370.00 (iii) for a builder contractor’s licence to which category SC2 applies 370.00",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 370.0
+        }
+      ],
+      "note": "Fees are in fee units. The licence fee is for 1 year; contractors in higher categories (larger turnover) pay more."
+    },
+    "qld-plumbing-licence": {
+      "licence": "Plumber licence (plumber's licence alone), for 1 year",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Application for a plumbers licence, granted for 1 year",
+          "when": "entry",
+          "source": {
+            "title": "Plumbing and Drainage Regulation 2019 (Qld)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2019-0042",
+            "locator": "sch 8 item 1(a) (current)",
+            "quote": "1 Application for a plumbers licence alone (Act, s 16(c)(ii)), if the licence is to be granted for— (a) 1 year 148.15",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 148.15
+        },
+        {
+          "what": "Renewal for 1 year",
+          "when": "renewal",
+          "source": {
+            "title": "Plumbing and Drainage Regulation 2019 (Qld)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2019-0042",
+            "locator": "sch 8 item 8(c)(i) (current)",
+            "quote": "(c) for another applicant (Act, s 31(2)(c) or 33(2)(c)), if the licence is to be renewed or restored for— (i) 1 year 78.15",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 78.15
+        }
+      ],
+      "note": "Fees are in fee units. Longer terms (up to 5 years) cost less a year."
+    },
+    "qld-liquor-licence": {
+      "licence": "Commercial other licence (the licence restaurants and cafes hold), with no extended trading hours",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Application for a commercial other licence",
+          "when": "entry",
+          "source": {
+            "title": "Liquor Regulation 2002 (Qld)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2002-0212",
+            "locator": "sch 1 item 1(c) (current)",
+            "quote": "1 Application under section 105 of the Act for— (a) a commercial hotel licence 7,370.00 (b) a commercial special facility licence 7,370.00 (c) a commercial other licence 1,471.00",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 1471.0
+        },
+        {
+          "what": "Base licence fee",
+          "when": "entry",
+          "source": {
+            "title": "Liquor Regulation 2002 (Qld)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2002-0212",
+            "locator": "s 36A(3) (current)",
+            "quote": "(3) For a commercial other licence, other than an artisan producer licence, the base fee is 735.30 fee units.",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 735.3
+        },
+        {
+          "what": "Base licence fee",
+          "when": "renewal",
+          "source": {
+            "title": "Liquor Regulation 2002 (Qld)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2002-0212",
+            "locator": "s 36A(3) (current)",
+            "quote": "(3) For a commercial other licence, other than an artisan producer licence, the base fee is 735.30 fee units.",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 735.3
+        }
+      ],
+      "note": "Fees are in fee units. Risk criteria (such as extended trading hours) add to the base fee; a new licence's first fee is reduced pro rata (s 36)."
+    },
+    "wa-builder-licence": {
+      "licence": "Registration as a building contractor (individual), for 3 years",
+      "renewal_years": 3,
+      "fees": [
+        {
+          "what": "Application fee for registration",
+          "when": "entry",
+          "source": {
+            "title": "Building Services (Registration) Regulations 2011 (WA)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49615.docx",
+            "locator": "sch 1 div 2 item 1(b) (current version)",
+            "quote": "1. Application fee for registration (s. 13(3)(c)(i)) — (a) as a building practitioner 290.00 (b) as a building contractor (individual) 290.00",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 290.0
+        },
+        {
+          "what": "Registration fee for 3 years",
+          "when": "entry",
+          "source": {
+            "title": "Building Services (Registration) Regulations 2011 (WA)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49615.docx",
+            "locator": "sch 1 div 2 item 2(b) (current version)",
+            "quote": "2. Registration fee for 3 years registration (s. 13(3)(c)(ii)) — (a) as a building practitioner 843.00 (b) as a building contractor (individual) 564.00",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 564.0
+        },
+        {
+          "what": "Registration fee for 3 years",
+          "when": "renewal",
+          "source": {
+            "title": "Building Services (Registration) Regulations 2011 (WA)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49615.docx",
+            "locator": "sch 1 div 2 item 2(b) (current version)",
+            "quote": "2. Registration fee for 3 years registration (s. 13(3)(c)(ii)) — (a) as a building practitioner 843.00 (b) as a building contractor (individual) 564.00",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 564.0
+        }
+      ],
+      "note": "Registration runs for 3 years; renewal pays the registration fee again."
+    },
+    "wa-plumbing-licence": {
+      "licence": "Plumbing contractor's licence, for 3 years",
+      "renewal_years": 3,
+      "renewal_source": {
+        "title": "Plumbers Licensing and Plumbing Standards Regulations 2000 (WA)",
+        "publisher": "Official legislation register",
+        "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49686.docx",
+        "locator": "r 21(1) (current version)",
+        "quote": "21. Duration of licence or permit (1) A licence or permit expires on the day that is — (a) in the case of a provisional tradesperson’s licence — the day of the 1st anniversary of the day on which the licence is issued; and (b) otherwise — the day of the 3rd anniversary of the day on which the licence or permit is issued.",
+        "accessed": "2026-11-16",
+        "checked": "document",
+        "corpus_version_id": null
+      },
+      "fees": [
+        {
+          "what": "Application for plumbing contractor's licence",
+          "when": "entry",
+          "source": {
+            "title": "Plumbers Licensing and Plumbing Standards Regulations 2000 (WA)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49686.docx",
+            "locator": "sch 1 div 1 item 1 (current version)",
+            "quote": "1. Application for plumbing contractor’s licence (r. 15) 82.00",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 82.0
+        },
+        {
+          "what": "Issue of plumbing contractor's licence",
+          "when": "entry",
+          "source": {
+            "title": "Plumbers Licensing and Plumbing Standards Regulations 2000 (WA)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49686.docx",
+            "locator": "sch 1 div 1 item 5 (current version)",
+            "quote": "5. Issue of plumbing contractor’s licence (r. 17) 846.00",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 846.0
+        },
+        {
+          "what": "Renewal of plumbing contractor's licence",
+          "when": "renewal",
+          "source": {
+            "title": "Plumbers Licensing and Plumbing Standards Regulations 2000 (WA)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49686.docx",
+            "locator": "sch 1 div 1 item 9 (current version)",
+            "quote": "9. Renewal of plumbing contractor’s licence (r. 19A) 846.00",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 846.0
+        }
+      ],
+      "note": "The licence lasts 3 years (r 21)."
+    },
+    "wa-liquor-licence": {
+      "licence": "Restaurant licence",
+      "renewal_years": 1,
+      "renewal_source": {
+        "title": "Liquor Control Act 1988 (WA)",
+        "publisher": "Official legislation register",
+        "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49949.docx",
+        "locator": "Liquor Control Act 1988 s 127(1) (current version)",
+        "quote": "127. Payment of licence fees (1) Subject to this Act, for so long as a licence is in force (including any period when its operation is suspended) the licence fee prescribed in respect of the licence is payable not later than such day as is prescribed in each year in respect of each licence period.",
+        "accessed": "2026-11-16",
+        "checked": "document",
+        "corpus_version_id": null
+      },
+      "fees": [
+        {
+          "what": "Application for the grant of a restaurant licence",
+          "when": "entry",
+          "source": {
+            "title": "Liquor Control Regulations 1989 (WA)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49973.docx",
+            "locator": "sch 1 item 2 (current version)",
+            "quote": "2. Application for the grant or removal of a small bar licence, club licence, restaurant licence, producer’s licence or wholesaler’s licence 1 058.50",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 1058.5
+        },
+        {
+          "what": "Licence fee",
+          "when": "entry",
+          "source": {
+            "title": "Liquor Control Regulations 1989 (WA)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49973.docx",
+            "locator": "sch 1 item 4 (current version)",
+            "quote": "4. Licence fee for any licence other than a club restricted licence 697.50",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 697.5
+        },
+        {
+          "what": "Licence fee",
+          "when": "renewal",
+          "source": {
+            "title": "Liquor Control Regulations 1989 (WA)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49973.docx",
+            "locator": "sch 1 item 4 (current version)",
+            "quote": "4. Licence fee for any licence other than a club restricted licence 697.50",
+            "accessed": "2026-11-16",
+            "checked": "document",
+            "corpus_version_id": null
+          },
+          "amount": 697.5
+        }
+      ],
+      "note": "The licence fee is payable each year (Liquor Control Act 1988 s 127(1))."
+    },
+    "tas-builder-licence": {
+      "licence": "Building services licence (builder), for an individual, paid yearly",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Annual fee for building services licence",
+          "when": "entry",
+          "source": {
+            "title": "Occupational Licensing (Building Services Work) Regulations 2016 (Tas)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2016-112",
+            "locator": "sch 2 item 3 (current)",
+            "quote": "3. Regulation 12 Annual fee for building services licence in respect of an individual or licensed entity except the occupation of architect 240",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 240
+        },
+        {
+          "what": "Annual fee for building services licence",
+          "when": "renewal",
+          "source": {
+            "title": "Occupational Licensing (Building Services Work) Regulations 2016 (Tas)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2016-112",
+            "locator": "sch 2 item 3 (current)",
+            "quote": "3. Regulation 12 Annual fee for building services licence in respect of an individual or licensed entity except the occupation of architect 240",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 240
+        }
+      ],
+      "note": "Fees are in fee units. A triennial fee of 645 fee units is the alternative (sch 2 item 5). No separate application fee was found in the schedule."
+    },
+    "tas-plumbing-licence": {
+      "licence": "Plumbing contractor licence for one self-employed person aged under 65, for 1 year",
+      "renewal_years": 1,
+      "fees": [
+        {
+          "what": "Issue of plumbing contractor licence, 1 year",
+          "when": "entry",
+          "source": {
+            "title": "Occupational Licensing (Plumbing Work) Regulations 2021 (Tas)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2021-114",
+            "locator": "sch 1 item 1(b)(i) (current)",
+            "quote": "1. Issue or renewal of plumbing contractor licence where one (self-employed) person is able to operate under the licence – (a) in the case of a person aged 65 years or over for a period of – (i) one year – 68 fee units; or (ii) 3 years – 180 fee units; (b) in the case of a person aged under 65 years for a period of – (i) one year – 270 fee units;",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 270
+        },
+        {
+          "what": "Renewal of plumbing contractor licence, 1 year",
+          "when": "renewal",
+          "source": {
+            "title": "Occupational Licensing (Plumbing Work) Regulations 2021 (Tas)",
+            "publisher": "Official legislation register",
+            "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2021-114",
+            "locator": "sch 1 item 1(b)(i) (current)",
+            "quote": "1. Issue or renewal of plumbing contractor licence where one (self-employed) person is able to operate under the licence – (a) in the case of a person aged 65 years or over for a period of – (i) one year – 68 fee units; or (ii) 3 years – 180 fee units; (b) in the case of a person aged under 65 years for a period of – (i) one year – 270 fee units;",
+            "accessed": "2026-11-16",
+            "checked": "register-text",
+            "corpus_version_id": null
+          },
+          "fee_units": 270
+        }
+      ],
+      "note": "Fees are in fee units. A 3-year licence costs 765 fee units (sch 1 item 1(b)(ii))."
+    }
+  }
+}

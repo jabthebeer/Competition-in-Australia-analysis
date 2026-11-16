@@ -2,6 +2,14 @@
 
 *16 November 2026. Scoping only: nothing has been built. Owner request: "scope out potential impact of licensing from a cost perspective, can this be phased into the plan?" Drafted by Claude Code on the legislation branch for the owner and Cowork. Figures marked "register" were counted from the repository on 16 November 2026. Sources marked "search results" were read only in web search summaries, not in the original documents.*
 
+**Decided by the owner, 16 November 2026 (DECISIONS E-173):**
+
+- **In scope:** compliance cost only, meaning fees and direct staff time (hours at the labour rate), for a business entering and at each renewal.
+- **Out of scope:** the cost of licensing to the whole economy. Section 4 is kept as background only, and nothing from it will be built or attached.
+- **The other recommendations stand,** except one: scaling goes ahead from the law and regulators' published fees before ABLIS.
+
+**Built so far:** see [`licence_costs.md`](licence_costs.md) (the costs) and `regulation-register/licence-costs.json` (the sourced inputs).
+
 ## 1. The question
 
 Framework version 2.0 says how hard a licence bites (its severity: a licence needed before trading scores 4 + 2 + 1 = 7 of 8) and how many businesses it reaches. It does not say what a licence costs. The plan for the policy tool already names fees and waiting times as severity attributes waiting on ABLIS ([`plan_policy_tool.md`](plan_policy_tool.md), section 4). This note scopes a fuller answer: what each licence costs the business that holds it, and what licensing costs the economy.
@@ -54,7 +62,7 @@ So a licence's cost is reported in two parts: its **burden** under the framework
 - **Total:** cost per licence × number of licence holders. Holder counts come from regulators' annual reports. Where none is published, ABS business counts give an upper bound, as the levers page already uses ([`plan_policy_tool.md`](plan_policy_tool.md), section 4).
 - **Ranges:** low and high values where a fee varies by class of licence or a time is assumed.
 
-## 4. Economic cost: what others found
+## 4. Economic cost: what others found (out of scope, owner 16 November 2026)
 
 These are other people's estimates, to be shown under "What others found", not computed by the tool.
 
@@ -91,7 +99,7 @@ Steps 8.3 and 8.4 can start before 8.2, keeping the figures in a staging table, 
 | 2 | Cost with the Office of Impact Analysis's method, through the existing calculator? | Yes. It is the Government's own method, already built and tested here |
 | 3 | Should costs change severity, or stand beside it? | Beside it at first. Fee points can join severity once fees cover most licences |
 | 4 | Economic costs: "What others found" only, or revive the archived Policy costing tab to estimate them? | "What others found" only, as principle 6 of the policy-tool plan says |
-| 5 | Wait for ABLIS before scaling up? | Yes for the scale-up (step 8.7); the pilot does not need it |
+| 5 | Wait for ABLIS before scaling up? | Yes for the scale-up (step 8.7); the pilot does not need it. **Owner, 16 November 2026: no; keep scaling from the law and regulators before applying for ABLIS** |
 
 ## 7. Limits
 
