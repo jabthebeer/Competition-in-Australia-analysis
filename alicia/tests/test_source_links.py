@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from urllib.parse import unquote
 
 from alicia.menu import lens
@@ -69,3 +70,20 @@ def test_lens_rows_carry_every_quote_with_a_link():
             assert c["href"].split("#")[0] == str(s.url).split("#")[0] or c["how"] == "law"
             assert c["linkText"]
             assert len(c["quote"]) <= lens.QUOTE_CHARS + 2
+
+
+def test_regulators_carry_their_quoted_provision():
+    """Each administering body on the lens comes with the provision that names it, and a link to it."""
+    raw = (lens.default_register_dir() / "bodies.json").read_text("utf-8")
+    bodies = {b["id"]: b for b in json.loads(raw)}
+    reqs = [q for q in load_requirements().requirements if q.administration]
+    assert reqs
+    for q in reqs:
+        admin = lens.administration(q, bodies)
+        assert len(admin) == len(q.administration)
+        for a, x in zip(admin, q.administration, strict=True):
+            assert a["who"] == x.who and len(a["src"]) == min(1, len(x.sources))
+            for c in a["src"]:
+                assert c["href"] and len(c["quote"]) <= lens.ADMIN_QUOTE_CHARS + 2
+            if a["site"]:
+                assert any(bodies.get(b, {}).get("url") == a["site"] for b in x.bodies)

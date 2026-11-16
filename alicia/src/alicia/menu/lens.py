@@ -119,12 +119,12 @@ CHECKED = {
 QUOTE_CHARS = 600
 
 
-def cite(s, law_ids: tuple[str, ...]) -> dict:
+def cite(s, law_ids: tuple[str, ...], chars: int = QUOTE_CHARS) -> dict:
     """A quoted source for the hover card: what it says, where, and a link to the provision (source_links.py)."""
     link = deep_link(str(s.url), s.locator, s.quote, law_ids)
     quote = " ".join((s.quote or "").split())
-    if len(quote) > QUOTE_CHARS:
-        quote = quote[: quote.rfind(" ", 0, QUOTE_CHARS)] + " …"
+    if len(quote) > chars:
+        quote = quote[: quote.rfind(" ", 0, chars)] + " …"
     return {
         "title": s.title,
         "publisher": s.publisher,
@@ -138,13 +138,24 @@ def cite(s, law_ids: tuple[str, ...]) -> dict:
     }
 
 
+ADMIN_QUOTE_CHARS = 320
+
+
 def administration(q: Requirement, bodies: dict[str, dict] | None = None) -> list[dict]:
-    """Who administers the requirement and what each does; without administration entries, the bodies named in
-    administered_by, with the function unknown."""
-    if q.administration:
-        return [{"who": a.who, "fn": a.function, "tier": a.tier} for a in q.administration]
+    """Who administers the requirement and what each does, with the body's website and the quoted provision that names
+    it (for the "Who administers it" card); without administration entries, the bodies named in administered_by, with
+    the function unknown."""
     names = bodies or {}
-    return [{"who": names.get(b, {}).get("name", b), "tier": q.tier} for b in q.administered_by]
+    if q.administration:
+        law_ids = tuple(x.register_id or "" for x in q.laws)
+        out = []
+        for a in q.administration:
+            site = next((names[b]["url"] for b in a.bodies if names.get(b, {}).get("url")), None)
+            out.append({"who": a.who, "fn": a.function, "tier": a.tier, "note": a.note, "site": site,
+                        "src": [cite(s, law_ids, ADMIN_QUOTE_CHARS) for s in a.sources[:1]]})
+        return out
+    return [{"who": names.get(b, {}).get("name", b), "tier": q.tier, "site": names.get(b, {}).get("url")}
+            for b in q.administered_by]
 
 
 def requirement_row(q: Requirement, settings: dict[str, ChangeRecord], bodies: dict[str, dict] | None = None) -> dict:

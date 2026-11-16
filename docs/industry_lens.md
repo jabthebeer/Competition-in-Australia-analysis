@@ -48,6 +48,14 @@ The owner asked why each law linked to a JSON file, and whether a law could open
   - how it was checked and the date it was read;
   - the link.
 
+- **Who administers it** (a button beside "What the law says", added 16 November 2026, E-165) opens a card listing each body that administers the requirement:
+  - the body's name, linked to its website where `bodies.json` has one;
+  - what it does (sets the rules, licenses, approves, inspects, collects or funds) and its level of government;
+  - the provision that names it, quoted (up to 320 characters), with a link to the provision.
+
+  All 860 administration entries in the register carry a quoted source.
+- **Pain points** (E-165) now quote the law first, from the register: the first quoted provision of the laws behind the pain point, with a link to it. "What the law says" opens every quoted provision behind the card (up to 12 laws), and "Who administers it" every body. What reviews found follows, labelled "What others found". A card about a regime with no requirement for the industry yet says that no law is quoted.
+
 **Links.** They are built when the site is built (`alicia/src/alicia/register/source_links.py`) from each source's address, provision and quote. Each kind was tested in a browser on 15 November 2026:
 
 | Where the source is | Link | Tested |

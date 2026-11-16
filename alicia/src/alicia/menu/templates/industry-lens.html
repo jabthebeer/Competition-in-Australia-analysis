@@ -195,6 +195,9 @@ details.base > summary { cursor: pointer; font-weight: 600; }
 .cite-btn { margin-top: 4px; padding: 2px 10px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); color: var(--accent); font: inherit; font-size: var(--step--1); cursor: pointer; justify-self: start; }
 .cite-btn:hover, .cite-btn:focus-visible { border-color: var(--accent); }
 .cite-btn[aria-expanded="true"] { background: var(--accent-soft); }
+.cite-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+.cite-item .what { color: var(--ink-3); }
+.card .law-quote { display: grid; gap: 4px; }
 .cite-card { margin-top: 6px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; display: grid; gap: 10px; max-width: 72ch; }
 .cite-card[hidden] { display: none; }
 .cite-item { display: grid; gap: 4px; font-size: var(--step--1); color: var(--ink-2); min-width: 0; overflow-wrap: anywhere; }
@@ -395,12 +398,25 @@ details.base > summary { cursor: pointer; font-weight: 600; }
     `<p>${esc(c.checked)}${c.accessed ? `, read ${esc(shortDate(c.accessed))}` : ""}.${c.href ? ` <a href="${esc(c.href)}" rel="noopener">${esc(c.linkText)}</a>` : ""}</p></div>`;
   let CT = 0;
   const CITES = new Map();
-  function citeBox(r) {
-    if (!(r.cites || []).length) return "";
+  // A button that opens a card in place (tap and keyboard).
+  const toggle = (label, inner) => {
     const id = `ct-${++CT}`;
-    return `<div><button type="button" class="cite-btn" aria-expanded="false" aria-controls="${id}">What the law says</button>` +
-      `<div class="cite-card" id="${id}" hidden>${r.cites.map(citeItem).join("")}</div></div>`;
-  }
+    return { btn: `<button type="button" class="cite-btn" aria-expanded="false" aria-controls="${id}">${esc(label)}</button>`,
+      card: `<div class="cite-card" id="${id}" hidden>${inner}</div>` };
+  };
+  const row = (...ts) => { const xs = ts.filter(Boolean); return xs.length ? `<div class="cite-row">${xs.map((t) => t.btn).join("")}</div>${xs.map((t) => t.card).join("")}` : ""; };
+  const lawToggle = (r) => (r.cites || []).length ? toggle("What the law says", r.cites.map(citeItem).join("")) : null;
+  // Who administers it: each body, what it does, its level of government, and the provision that names it.
+  const bodyItem = (a) => {
+    const c = (a.src || [])[0];
+    return `<div class="cite-item"><p><strong>${a.site ? `<a href="${esc(a.site)}" rel="noopener">${esc(a.who)}</a>` : esc(a.who)}</strong></p>` +
+      `<p class="what">${a.fn ? `${esc(FN_VERB[a.fn] || a.fn)[0].toUpperCase()}${esc(FN_VERB[a.fn] || a.fn).slice(1)}` : "Role not yet coded"} · ${esc(tierName(a.tier))}</p>` +
+      (a.note ? `<p>${esc(a.note)}</p>` : "") +
+      (c ? `${c.quote ? `<blockquote>“${esc(c.quote)}”</blockquote>` : ""}<p>${esc(c.title)}${c.locator ? ", " + esc(c.locator) : ""}.${c.href ? ` <a href="${esc(c.href)}" rel="noopener">${esc(c.linkText)}</a>` : ""}</p>` : "") +
+      `</div>`;
+  };
+  const adminToggle = (admin) => (admin || []).length ? toggle("Who administers it", admin.map(bodyItem).join("")) : null;
+  const citeBox = (r) => row(lawToggle(r), adminToggle(r.admin));
   // A law's name opens the law at its provision; hovering over it, or focusing it, shows the words quoted.
   function lawLinks(r, n) {
     return (r.laws || []).slice(0, n).map((l, i) => {
@@ -628,10 +644,25 @@ details.base > summary { cursor: pointer; font-weight: 600; }
   }
   function card(p, i) {
     const remedy = TYPE[p.type][2];
-    const basis = p.ev
-      ? `<span><strong>Source:</strong> ${link(p.ev.url, `${p.ev.pub}${p.ev.year ? ", " + p.ev.year : ""}`)}${p.ev.title ? `, <cite>${esc(p.ev.title)}</cite>` : ""}</span>` +
+    // The law, from the register (owner, 16 November 2026): the first law's first quote, and every law on request.
+    const quoted = p.laws.filter((r) => (r.cites || []).length);
+    const first = quoted.length ? quoted[0].cites[0] : null;
+    const law = first
+      ? `<div class="law-quote"><span><strong>The law:</strong> ${esc(first.title)}${first.locator ? ", " + esc(first.locator.split(" (")[0]) : ""}.${first.href ? ` <a href="${esc(first.href)}" rel="noopener">${esc(first.linkText)}</a>` : ""}</span>` +
+        (first.quote ? `<blockquote>“${esc(clip(first.quote, 280))}”</blockquote>` : "") + `</div>`
+      : `<span><strong>The law:</strong> the register has no requirement in this regime for this industry yet, so no law is quoted.</span>`;
+    const more = quoted.length > 1 || (quoted[0] && quoted[0].cites.length > 1)
+      ? toggle(quoted.length > 1 ? `What the law says (${quoted.length} laws)` : "What the law says",
+          quoted.slice(0, 12).map((r) => `<div class="cite-item"><p><strong>${esc(r.title)}</strong></p></div>` + r.cites.map(citeItem).join("")).join("") +
+          (quoted.length > 12 ? `<p class="small muted">And ${quoted.length - 12} more laws in this regime.</p>` : ""))
+      : null;
+    const bodies = [], seenBody = new Set();
+    for (const r of p.laws) for (const a of r.admin || []) { const k = `${a.who}|${a.fn}|${a.tier}`; if (!seenBody.has(k)) { seenBody.add(k); bodies.push(a); } }
+    const others = p.ev
+      ? `<span><strong>What others found:</strong> ${link(p.ev.url, `${p.ev.pub}${p.ev.year ? ", " + p.ev.year : ""}`)}${p.ev.title ? `, <cite>${esc(p.ev.title)}</cite>` : ""}</span>` +
         (p.ev.quote ? `<blockquote>“${esc(clip(p.ev.quote, 280))}”</blockquote>` : "")
-      : `<span><strong>Source:</strong> the register's links to the law. No review found yet.</span>`;
+      : `<span><strong>What others found:</strong> no review found yet.</span>`;
+    const basis = law + row(more, adminToggle(bodies.slice(0, 20))) + others;
     const act = p.recs.length ? `<strong>Register recommendations:</strong> ${p.recs.slice(0, 3).map((r) => esc(r.title)).join("; ")}` : `<strong>Usual remedy:</strong> ${esc(remedy)}`;
     const who = p.who.length ? `<dl class="who">${p.who.map(([t, v]) => `<dt>${tierTag(t, tierName(t, true))}</dt><dd>${esc(v.slice(0, 6).join("; "))}${v.length > 6 ? `; and ${v.length - 6} more` : ""}</dd>`).join("")}</dl>` : `<p class="small muted">No body linked yet.</p>`;
     const versions = p.versions ? `<details class="more"><summary>Bodies in each state</summary><ul>${p.versions.map(([s, ws]) => `<li>${esc(s)}: ${esc(ws.join("; ") || "none linked yet")}</li>`).join("")}</ul></details>` : "";
