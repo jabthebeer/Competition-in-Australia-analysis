@@ -1,0 +1,110 @@
+{
+  "id": "sa-poisons-wholesale-authority",
+  "family": "poisons-wholesale-authority",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "therapeutic-goods-and-poisons",
+  "title": "Hold a licence to sell by wholesale",
+  "kind": "licence",
+  "what": "Sell poisons, medicines or medical devices by wholesale only under a licence from the Minister (or as a pharmacist).",
+  "laws": [
+    {
+      "title": "Controlled Substances Act 1984 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1984.52.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/controlled%20substances%20act%201984/current/1984.52.un.rtf",
+      "provisions": "s 14(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Controlled Substances Act 1984 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/controlled%20substances%20act%201984/current/1984.52.un.rtf",
+      "locator": "s 14(1) (version of 2024-05-16)",
+      "quote": "A person must not sell by wholesale a poison, medicine or medical device to which this section applies unless the person— (a) is a pharmacist acting in the ordinary course of his or her profession; or (b) is licensed to do so by the Minister",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-05-16/1984.52.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it wholesales scheduled substances or other prescribed therapeutic goods",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Controlled Substances Act 1984 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/controlled%20substances%20act%201984/current/1984.52.un.rtf",
+          "locator": "s 14(1) (version of 2024-05-16)",
+          "quote": "A person must not sell by wholesale a poison, medicine or medical device to which this section applies unless the person— (a) is a pharmacist acting in the ordinary course of his or her profession; or (b) is licensed to do so by the Minister",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-05-16/1984.52.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Sell poisons, medicines or medical devices by wholesale only under a licence from the Minister (or as a pharmacist).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

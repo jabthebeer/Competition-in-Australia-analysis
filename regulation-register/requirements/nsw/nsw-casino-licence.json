@@ -1,0 +1,120 @@
+{
+  "id": "nsw-casino-licence",
+  "family": "casino-licence",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "gambling",
+  "title": "Hold one of the casino licences",
+  "kind": "licence",
+  "what": "Hold one of NSW's casino licences, of which no more than 2 may be in force, and let only games the NSW Independent Casino Commission approves be played.",
+  "laws": [
+    {
+      "title": "Casino Control Act 1992 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1992-015",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1992-015",
+      "provisions": "s 6(1), s 66(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Casino Control Act 1992 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1992-015",
+      "locator": "s 6(1) (version of 2024-08-20)",
+      "quote": "A maximum of 2 casino licences may be in force under this Act at a particular time",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-08-20/act-1992-015"
+    },
+    {
+      "title": "Casino Control Act 1992 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1992-015",
+      "locator": "s 66(2) (version of 2024-08-20)",
+      "quote": "It is a condition of a casino licence that the casino operator must not permit a game to be conducted or played in a casino unless— (a) there is an order in force under this section approving the game,",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-08-20/act-1992-015"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9201"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Casino Control Act 1992 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1992-015",
+          "locator": "s 6(1) (version of 2024-08-20)",
+          "quote": "A maximum of 2 casino licences may be in force under this Act at a particular time",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-20/act-1992-015"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the text and checked by hand. The number of licences is capped (s 6(1)); requirements have no kind for a cap, so it is coded as a licence and its entry mark is -2.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Hold one of NSW's casino licences, of which no more than 2 may be in force, and let only games the NSW Independent Casino Commission approves be played.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "A cap of 2 casino licences in NSW limits who may operate at all.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

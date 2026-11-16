@@ -1,0 +1,108 @@
+{
+  "id": "nt-water-access-licence",
+  "family": "water-access-licence",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "water-access",
+  "title": "Be authorised to take water",
+  "kind": "licence",
+  "what": "Take surface water only as authorised under the Act (such as a water extraction licence).",
+  "laws": [
+    {
+      "title": "Water Act 1992 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "WATER-ACT-1992",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12270",
+      "provisions": "s 44(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Water Act 1992 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12270",
+      "locator": "s 44(1) (current reprint)",
+      "quote": "A person commits an offence if the person: (a) takes water; and (b) is not authorised under this Act to take the water",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it takes water from a regulated river, aquifer or other water source, beyond basic landholder rights",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Water Act 1992 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12270",
+          "locator": "s 44(1) (current reprint)",
+          "quote": "A person commits an offence if the person: (a) takes water; and (b) is not authorised under this Act to take the water",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 16 Nov 2026. Section 44 covers surface water; taking groundwater is dealt with separately (not quoted). Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Take surface water only as authorised under the Act (such as a water extraction licence).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-16"
+  },
+  "drafted_on": "2026-11-16",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
