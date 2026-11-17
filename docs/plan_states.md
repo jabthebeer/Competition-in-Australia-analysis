@@ -117,6 +117,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-4f done 16 Nov 2026 (E-167):** 3 NSW Acts read by hand: the casino licence (a cap of 2, s 6(1)), property agents (s 8(1)) and radiation management licences (s 6(2)). 642 requirements.
 - **D-4g done 16 Nov 2026 (E-168):** the 11 D-4e and D-4f families searched in the other seven jurisdictions: 16 requirements drafted, 31 to draft, 21 not found, 9 blocked (Victoria). 658 requirements. Follow-ups (E-169): 7 to-draft cells drafted (SA casino; SA and ACT radiation; Qld, WA and NT water; ACT gaming machines); 665 requirements. Second round (E-300, 17 Nov 2026): 12 more drafted; 12 D-4g cells remain to draft.
 - **D-4j done 17 Nov 2026 (E-301):** 35 high-signal NSW Acts screened; 5 requirements drafted (non-government schools, gas reticulation, land surveyors, offshore minerals, racecourses); 14 more called Y to draft, 4 L and 13 N. 725 requirements.
+- **D-4k done 17 Nov 2026 (E-302):** 6 more NSW requirements: legal practice, architects, explosives, gaming machine tax, community services portable long service leave and onshore petroleum titles. 731 requirements.
 
 ### D-2: the catalogues and the new estimate
 
