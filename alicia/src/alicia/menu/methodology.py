@@ -50,6 +50,14 @@ RELIANCE = (
         "A ranking anyone can check. The coding is a draft, and fees and waiting times are not yet coded",
     ),
     (
+        "What a licence costs a business",
+        "Fees quoted from fee regulations and regulators' fee pages; staff time assumed and valued at the Office of "
+        "Impact Analysis's rate; regulatory burden worked out by its method",
+        "Each fee's quote is checked against its source, and tests recompute every total",
+        "Fees for one named class of licence. The staff time is an assumption, and training, insurance and waiting "
+        "time are not counted. Beside severity, not part of it",
+    ),
+    (
         "The words of each requirement",
         "Quoted from the official legislation registers",
         "Each quote is checked against the text it was read from",

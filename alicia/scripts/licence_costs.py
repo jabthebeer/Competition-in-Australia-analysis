@@ -25,6 +25,7 @@ import re
 import subprocess
 import sys
 import tempfile
+from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -72,12 +73,25 @@ def load() -> dict:
     return json.loads(INPUT.read_text("utf-8"))
 
 
-def dollars(f: dict, juris: str, units: dict) -> float:
+# Queensland regulations that round a fee in fee units (for example the Liquor Regulation 2002 s 36DA): to 5 cents up
+# to $100, 10 cents up to $1,000 and the dollar up to $5,000, one-half rounding up. The rule goes on to $100,000; the
+# quotes stop at $5,000, so a larger fee is refused rather than guessed.
+QLD_TIERS = ((Decimal(100), Decimal("0.05")), (Decimal(1000), Decimal("0.10")), (Decimal(5000), Decimal(1)))
+
+
+def dollars(f: dict, juris: str, units: dict, rounding: str | None = None) -> float:
     """A fee in dollars: its amount, or its fee units at the jurisdiction's fee unit value. Where the law rounds a
-    unit-based fee down to the dollar (the NT's Revenue Units Act 2009 s 3(2)), so does this."""
+    unit-based fee (the NT's Revenue Units Act 2009 s 3(2) rounds down to the dollar; some Queensland regulations
+    round in tiers, ``rounding="qld-tiered"``), so does this."""
     if "amount" in f:
         return float(f["amount"])
     u = units[juris]
+    if rounding == "qld-tiered":
+        exact = Decimal(str(f["fee_units"])) * Decimal(str(u["value"]))
+        step = next((st for top, st in QLD_TIERS if exact <= top), None)
+        if step is None:
+            raise ValueError(f"fee of ${exact} is above the $5,000 the quoted rounding rule covers")
+        return float((exact / step).quantize(Decimal(1), rounding=ROUND_HALF_UP) * step)
     value = float(f["fee_units"]) * float(u["value"])
     return float(math.floor(value + 1e-9)) if u.get("round") == "down-to-dollar" else round(value, 2)
 
@@ -177,11 +191,12 @@ def build(use_calculator: bool = True) -> list[dict]:
         q = reqs[rid]
         j = q.jurisdiction
         k = int(item["renewal_years"])
-        entry_fees = round(sum(dollars(f, j, data["fee_units"]) for f in item["fees"] if f["when"] == "entry"), 2)
+        rule = (item.get("fee_rounding") or {}).get("rule")
+        entry_fees = round(sum(dollars(f, j, data["fee_units"], rule) for f in item["fees"] if f["when"] == "entry"), 2)
         # A renewal fee some regulators do not publish (it is worked out for each licensee) is left blank.
         published = not item.get("renewal_fee_unpublished")
         renewal_fees = (
-            round(sum(dollars(f, j, data["fee_units"]) for f in item["fees"] if f["when"] == "renewal"), 2)
+            round(sum(dollars(f, j, data["fee_units"], rule) for f in item["fees"] if f["when"] == "renewal"), 2)
             if published
             else None
         )
@@ -226,9 +241,11 @@ def sources(data: dict) -> list[tuple[str, dict]]:
     ]
     for rid, item in data["items"].items():
         out += [(rid, f["source"]) for f in item["fees"]]
-        for key in ("renewal_source", "risk_source"):
+        for key in ("renewal_source", "renewal_rule_source", "risk_source"):
             if item.get(key):
                 out.append((rid, item[key]))
+        if item.get("fee_rounding"):
+            out.append((f"{rid} rounding", item["fee_rounding"]["source"]))
         if item.get("hours") and item["hours"].get("source"):
             out.append((rid, item["hours"]["source"]))
     return out
@@ -292,6 +309,15 @@ def note(rows: list[dict], data: dict, rate: float, calculator: bool) -> str:
             for j, u in sorted(units.items())
             if u["source"]["checked"] == "search-result"
         ],
+        "- **Rounding** follows the law: the NT rounds a fee in revenue units down to the dollar (Revenue Units Act "
+        "2009 s 3(2)), and Queensland regulations that say so round in tiers (to 5 cents up to $100, 10 cents up to "
+        "$1,000 and the dollar up to $5,000): "
+        + ", ".join(
+            f"`{rid}` ({it['fee_rounding']['source']['title']} {it['fee_rounding']['source']['locator']})"
+            for rid, it in sorted(data["items"].items())
+            if it.get("fee_rounding")
+        )
+        + ". Other fees in fee units are shown to the cent.",
         f"- **Staff time** to apply and to renew, at ${rate:.2f} an hour: the Office of Impact Analysis's rate for "
         "work time (*Regulatory Burden Measurement Framework*, July 2026, p. 12).",
         "- **Entry** is the fees and time to get the licence. **Renewal** is the fees and time each time it is "
@@ -327,7 +353,7 @@ def note(rows: list[dict], data: dict, rate: float, calculator: bool) -> str:
             f"{money(r['renewal_total_per_year'])} | {money(r['rbm_burden_per_year'])} |"
         )
     if data.get("not_costed"):
-        lines += ["", "## Pilot licences not yet costed", "", "| Licence | Why |", "|---|---|"]
+        lines += ["", "## Licences not yet costed", "", "| Licence | Why |", "|---|---|"]
         lines += [f"| `{rid}` | {why} |" for rid, why in sorted(data["not_costed"].items())]
     if any(r["renewal_fees"] == "" for r in rows):
         lines += [

@@ -47,6 +47,7 @@ def _row(r: dict, menu: dict, inside: str | None = None) -> dict:
     marks = {m["driver"]: m["mark"] for m in a.get("marks", [])}
     e = r.get("exposure") or {}
     bodies = menu["bodies"]
+    cost = r.get("licenceCost") or {}
     if is_req:
         laws = [(x["title"], x.get("registerId"), x.get("provisions")) for x in r["laws"]]
         sources = r["sources"]
@@ -88,6 +89,10 @@ def _row(r: dict, menu: dict, inside: str | None = None) -> dict:
         "share": e.get("share"),
         "classes": "All" if e.get("allIndustries") else e.get("classes"),
         "industries": industries,
+        "entryCost": cost.get("entryTotal"),
+        "renewalYears": cost.get("renewalYears"),
+        "renewalCostYear": cost.get("renewalPerYear"),
+        "burdenYear": cost.get("burden"),
         "laws": "; ".join(f"{t}{f' ({i})' if i else ''}{f', {p}' if p else ''}" for t, i, p in laws),
         "sources": len(urls),
         "sourceUrls": urls,
@@ -124,7 +129,12 @@ def payload(menu: dict) -> dict:
         "types": list(TYPE_LABELS.values()),
         "roles": list(ROLE_LABELS.values()),
         "evidenceSteps": {k: v.split(":")[0] for k, v in S.EVIDENCE_STEPS.items()},
-        "note": NOTE + (menu.get("exposureNote") or "") + " " + S.NOTE,
+        "note": NOTE
+        + (menu.get("exposureNote") or "")
+        + " "
+        + S.NOTE
+        + " Licence cost: "
+        + (menu.get("licenceCostNote") or ""),
         "exposureYear": menu.get("exposureYear"),
         "generated": menu.get("generated"),
         "repo": None,

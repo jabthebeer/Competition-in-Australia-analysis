@@ -187,7 +187,14 @@ Added at the owner's request on 16 November 2026, and decided the same day (DECI
 - **The NT:** the revenue unit value ($1.49) is from search results, so it is not verified.
 - **Next:** scale to the other licence families.
 
-**Batching is paused** (owner, 16 November 2026) until phase 8 is done, then resumes. It is logged as P-5 in [`parked_items.md`](parked_items.md). The work left, in order:
+**Progress (17 November 2026, DECISIONS E-175):**
+
+- **Scaled:** security business licences (Qld, WA, NSW, ACT) and motor dealer licences (Qld, SA, WA, Tas, ACT, NT): 31 licences in all.
+- **Not costed:** NSW motor dealers, SA, Tas and NT security, and Victoria. The note gives each reason.
+- **Shown (step 8.6):** on Legislative levers, inside each costed requirement, and in Register data. The Industry lens is left to the website session.
+- **Next:** more families when the owner asks (asbestos removal, high-risk work and driving instructors are in all 8 jurisdictions). Batching resumes now.
+
+**Batching was paused** (owner, 16 November 2026) until phase 8 was done, and resumed on 17 November 2026. It is logged as P-5 in [`parked_items.md`](parked_items.md). The work left, in order:
 
 1. **Phase 3 leftovers:**
    - Victoria, once the authorised PDFs are saved;

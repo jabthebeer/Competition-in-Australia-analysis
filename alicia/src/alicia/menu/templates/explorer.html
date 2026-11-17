@@ -636,6 +636,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     helpGlance: ["What weighs on productivity", "Items by their main driver (the driver with the largest mark): those marked negative overall to the left, positive to the right. Each bar is split into laws and policies (solid), requirements (striped) and non-legislative barriers (lined); a key above the chart shows one type only. Requirements are marked mostly on their compliance cost and the hurdle they put before entry, so they lean negative: the marks show effects on productivity and competition, not whether a law is worthwhile. Click a driver to filter. Counts follow the filters below."],
     helpRole: ["Rules and changes", "A rule applies today: a requirement a law places on businesses, a law or policy in place, or a non-legislative barrier. A change is a reform to the rules: in force, passed or proposed. A reform in force that added a restriction counts as a rule, because the restriction applies today. A rule lists the changes made to it, and a change the rule it changes, where the register links them."],
     helpSev: ["Severity", DATA.severityNote || ""],
+    helpBurden: ["Regulatory burden", "The Australian Government's measure of what a rule costs business to comply with, from the Office of Impact Analysis's Regulatory Burden Measurement Framework: here, the staff time to get and renew a licence at $91.54 an hour, averaged over 10 years. It leaves out fees, because they are paid to government, so the fees are shown beside it."],
     helpEvidence: ["Evidence", "What the site itself holds about an item, as facts anyone can check: whether its law is named with a link to the official register, whether the obligation is quoted word for word, whether its attributes are coded, and whether the businesses it reaches are counted. What reviews and other studies found is listed separately, under What others found."],
     helpBig: ["Impact classes", `${(DATA.impactClasses || []).map((c) => `${c.label}: ${c.help.charAt(0).toLowerCase()}${c.help.slice(1)}`).join(" ")} Only rules that apply today and have a negative overall mark are classed. ${DATA.exposureNote || ""}`],
     helpMarks: ["Overall marks", "Each item's marks on the eight drivers added up, split by type as in the chart beside it. Most reforms in the register were first chosen because they could be evaluated with public data, so the register is not yet a balanced sample of everything that weighs on productivity."],
@@ -655,7 +656,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   const info = (key, label) => `<button type="button" class="term info" data-term="${esc(key)}" aria-label="${esc(label || "More detail")}" aria-describedby="def-${esc(key)}">i</button>`;
   const GLOSSARY = ["mainDriver", "overall", "mixed", "reach", "confidence", "employing", "entry", "exit", "avgGrowth", "valueAdded",
     "ebitda", "labourProductivity", "mfp", "topShare", "markupRba", "blade", "noCompetition", "regHampered", "capex", "rd",
-    "administers", "regulates", "policy", "complexity", "regime", "touchpoints", "legislative", "requirement", "mostAffects", "reachSure",
+    "administers", "regulates", "policy", "complexity", "regime", "touchpoints", "legislative", "requirement", "mostAffects", "reachSure", "helpBurden",
     ...Object.keys(DATA.issueTags || {}).map((k) => `cx-${k}`)];
 
   // --- Helpers ------------------------------------------------------------------------------------
@@ -1118,7 +1119,9 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       <p class="rec-meta"><span class="mono">${esc(jl(q.jurisdiction))}</span>${q.council ? `<span>Council: ${esc(q.council)}</span>` : ""}<span>${esc(q.obligation)}</span></p>
       <p>${esc(q.summary)}</p>
       <dl class="req-facts"><dt>The law</dt><dd>${lawsLine(q)}</dd><dt>When it applies</dt><dd>${esc(q.triggers.map((t) => t.label).join("; "))}</dd>
-        <dt>Who it reaches</dt><dd>${reachShort(q)}</dd><dt>Marks</dt><dd>${q.sameMarks ? "The same as this item's" : ratingBadge(q.assessment)}</dd></dl>
+        <dt>Who it reaches</dt><dd>${reachShort(q)}</dd><dt>Marks</dt><dd>${q.sameMarks ? "The same as this item's" : ratingBadge(q.assessment)}</dd>
+        ${q.licenceCost ? `<dt>What it costs</dt><dd>${esc(costShort(q.licenceCost))}</dd>` : ""}</dl>
+      ${q.licenceCost ? `<details class="sub"><summary>What the licence costs a business</summary><div class="sub-body">${costHtml(q.licenceCost)}</div></details>` : ""}
       <details class="sub"><summary>The law's words and sources</summary><div class="sub-body">${quoteList(q.sources)}<p>${esc(draftLine(q))}</p></div></details>
     </article>`).join("")}</div>`;
   }
@@ -1176,6 +1179,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       ${marketHtml(r)}
       ${assessHtml(a)}
       ${fold("Impact: severity and businesses reached", impactHtml(r), exposureShort(r), true)}
+      ${r.licenceCost ? fold("What the licence costs a business", costHtml(r.licenceCost), costShort(r.licenceCost)) : ""}
       ${fold("Changes to this rule", changesHtml(r), `${(r.changedBy || []).length || ""}`)}
       ${fold("The law", `<p class="small">${lawsLine(r)}</p>${quoteList(r.sources)}`, "", true)}
       ${fold("When it applies", triggersHtml(r), "", true)}
@@ -1499,6 +1503,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     <p><strong>Requirements.</strong> A requirement is one thing a law requires a business to do, in one jurisdiction: register, hold a licence, get an approval, pay, report or meet a standard. Each one quotes its law from the official register (for NSW and SA, sometimes from the Open Australian Legal Corpus copy of the official text, which is not itself official) and lists the industries (ANZSIC classes) it reaches. A requirement that belongs to an item on this page (the same law in force) is shown inside that item, not as a row of its own. The same requirements appear on the <a href="industry-lens.html">Industry lens</a>, by industry and state. They are drafts from AI-assisted desk research and have not yet been checked. Method: <code>docs/methods_legislation_links.md</code>.</p>
     <p><strong>Where an item acts in the market.</strong> Each mark is placed with the market players it acts through, as on the Industry lens: entrants, existing competitors, or monopolies and oligopolies. An item most affects the position whose marks weigh most; a tie names each. Method: <code>docs/industry_lens.md</code>.</p>
     <p><strong>Impact classes and businesses reached.</strong> ${esc(DATA.exposureNote || "")} Method: <code>docs/plan_policy_tool.md</code>.</p>
+    ${DATA.licenceCostCount ? `<p><strong>What a licence costs.</strong> ${DATA.licenceCostCount} licences so far show what a business pays to get and renew them, in fees and staff time. ${esc(DATA.licenceCostNote || "")} Method: <code>docs/licence_costs.md</code>.</p>` : ""}
     <p><strong>Industry statistics.</strong> ${esc(DATA.statsNote)} Sources: ${fsrc || "not available in this build"}.</p>
     <p><strong>Who is responsible.</strong> Each item names the department that administers the law (or leads policy on it) and the bodies that regulate under it. Commonwealth, Queensland, Tasmanian, Victorian and ACT departments come from each government's administrative arrangements; other states' from their legislation sites and portfolio lists. Each tag links to its source, and notes say where an allocation was inferred rather than read from an order. Choosing a department in the filter includes the agencies in it.</p>
     <p><strong>Timeline.</strong> Each item's own dates, then later changes to the law or setting (amendments, easings, repeals), each with its source. A repealed or replaced item stays in the register, marked as no longer in force, so its assessment can still be read.</p>
@@ -1554,6 +1559,27 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     return `<dl class="expo"><dt>Impact class</dt><dd>${cls}</dd></dl>${sev}${exposureRows(r)}
       <h4 class="sub-h">${term("helpEvidence", "Evidence the site holds")}</h4>${ev}
       ${r.purpose && r.purpose.length ? `<p class="small muted">Purpose of its regime: ${esc(r.purpose.join("; "))}. Weigh it against the costs above; the law itself is linked under ${isReq(r) ? "The law" : "Sources and checks"}.</p>` : ""}`;
+  }
+  // What a licence costs the business that holds it: fees and staff time, to get it and to renew it. It sits beside
+  // severity and the impact class and does not change them (DECISIONS E-173, E-175).
+  const usd = (v) => `$${Math.round(v).toLocaleString("en-AU")}`;
+  const hrs = (h) => `${fmtNum(h)} hour${h === 1 ? "" : "s"}`;
+  const everyYears = (k) => (k === 1 ? "every year" : `every ${k} years`);
+  const costShort = (c) => `${usd(c.entryTotal)} to get it; ${c.renewalTotal === null ? "renewal fee not published" : `${usd(c.renewalPerYear)} a year to renew`}`;
+  function costHtml(c) {
+    const assumed = c.hoursAssumed ? ", assumed" : "";
+    const range = c.entryHoursLow != null ? ` From ${usd(c.entryLow)} to ${usd(c.entryHigh)} if applying takes ${fmtNum(c.entryHoursLow)} to ${hrs(c.entryHoursHigh)}.` : "";
+    const renew = c.renewalTotal === null
+      ? `Fee not published: the regulator works it out for each licensee. Staff time ${usd(c.renewalTime)} (${hrs(c.renewalHours)}${assumed}), ${everyYears(c.renewalYears)}.`
+      : `<strong>${usd(c.renewalTotal)}</strong> ${everyYears(c.renewalYears)}: fees ${usd(c.renewalFees)} and staff time ${usd(c.renewalTime)} (${hrs(c.renewalHours)}${assumed})${c.renewalYears > 1 ? `. That is ${usd(c.renewalPerYear)} a year` : ""}.`;
+    const src = c.sources.map((x) => `<li>${link(x.url, x.title)}${x.locator ? `, ${esc(x.locator)}` : ""}</li>`).join("");
+    return `<dl class="expo">
+      <dt>Licence costed</dt><dd>${esc(c.licence)}</dd>
+      <dt>To get it</dt><dd><strong>${usd(c.entryTotal)}</strong>: fees ${usd(c.entryFees)} and staff time ${usd(c.entryTime)} (${hrs(c.entryHours)}${assumed}).${range}</dd>
+      <dt>To renew it</dt><dd>${renew}</dd>
+      <dt>${term("helpBurden", "Regulatory burden")}</dt><dd>${usd(c.burden)} a year: staff time only, averaged over 10 years</dd>
+    </dl>${src ? `<h4 class="sub-h">Fees from</h4><ul class="d-list">${src}</ul>` : ""}
+    <p class="small muted">${esc(DATA.licenceCostNote || "")} Method: <code>docs/licence_costs.md</code>.</p>`;
   }
   const byIdAll = Object.fromEntries([...R, ...R.flatMap((x) => x.requirements || [])].map((x) => [x.id, x]));
   function changesHtml(r) {
