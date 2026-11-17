@@ -161,3 +161,42 @@ def test_the_link_cards_do_not_catch_the_chart_notes():
 
     css = (Path(growth.__file__).parent / "templates" / "site.css").read_text("utf-8")
     assert not re.search(r"(?m)^\.more\s*\{", css) and re.search(r"(?m)^\.more-links\s*\{", css)
+
+
+def test_a_size_test_sets_which_businesses_are_counted():
+    """Phase 5 of the levers re-evaluation (DECISIONS E-178): employers only for a rule that starts with the first
+    employee; an upper bound above a payroll, employee, turnover or revenue threshold, except where the counts
+    already apply it (they hold only businesses registered for GST)."""
+    from types import SimpleNamespace as T
+
+    def t(kind, value=None, test=">="):
+        return [T(type=kind, value=value, test=test)]
+
+    assert X.size_basis(t("entry")) == ("all", False)
+    assert X.size_basis(t("first-employee")) == ("employing", False)
+    assert X.size_basis(t("payroll", 1_200_000, ">")) == ("employing", True)  # payroll tax
+    assert X.size_basis(t("payroll", 7_500, ">")) == ("employing", False)  # Victoria's workers' compensation
+    assert X.size_basis(t("employees", 100)) == ("20+", True)  # workplace gender equality reporting
+    assert X.size_basis(t("employees", 200)) == ("200+", False)
+    assert X.size_basis(t("turnover", 75_000)) == ("all", False)  # GST: the counts are GST-registered businesses
+    assert X.size_basis(t("turnover", 3_000_000, ">")) == ("all", True)  # privacy
+    assert X.size_basis(t("revenue", 100_000_000)) == ("all", True)  # modern slavery statements
+
+
+@needs_data
+def test_employers_and_thresholds_are_counted_as_the_rule_binds(panel, page):
+    by_id = {r["id"]: r for r in _rows(page)}
+    nested = {q["id"]: q for r in page["records"] for q in r.get("requirements", [])}
+    # Workers' compensation binds every employer: employing businesses only, exactly, and still wide.
+    wc = by_id["nsw-workers-compensation-insurance"]["exposure"]
+    assert wc["basis"] == "employing" and wc["businesses"] == wc["employing"] and not wc["partial"]
+    assert by_id["nsw-workers-compensation-insurance"]["impactClass"] == "major-wide"
+    # Payroll tax binds employers above a threshold: an upper bound, so never wide, for the item and inside it.
+    for rid in ("nsw-payroll-tax", "vic-payroll-tax"):
+        e = by_id[rid]["exposure"]
+        assert e["basis"] == "employing" and e["partial"] and by_id[rid]["impactClass"] not in ("severe", "major-wide")
+        assert nested[f"{rid}-registration"]["exposure"]["partial"]
+    # GST is applied exactly by the counts; ASIC's fee binds only companies, CATSI reports only CATSI corporations.
+    assert not by_id["cth-gst-registration"]["exposure"]["partial"]
+    assert by_id["cth-asic-annual-review-fee"]["exposure"]["partial"]
+    assert by_id["cth-catsi-corporation-reporting"]["exposure"]["partial"]

@@ -52,6 +52,7 @@ The details are in [`levers_quoted_rules.md`](levers_quoted_rules.md).
   - **A schema field later, if you prefer:** fees with amount, period, as-at date and source on requirements. The input file can be migrated into it.
 
 - **Regimes added in phase 4 (DECISIONS E-177).** 13 new regimes in `regulation-register/regimes/` and a ninth purpose label, `national-interest` ("National interest and security"), in `regime-purposes.json`. The Industry lens and the regulatory overview now count 74 regimes. Details: [`levers_pairs_and_regimes.md`](levers_pairs_and_regimes.md).
+- **Exposure counting changed in phase 5 (DECISIONS E-178).** In your files: `exposure.py` (`Counts.bands`, `size_basis`, `form_limited`, `BASES`, `BASIS_LABELS`, a `basis` argument and field in `measure`, and the note), `explorer.py` (each requirement's size basis, items taking theirs from the requirements inside; `exposureBases` in the payload), `explorer.html` (`exposureRows`, `exposureShort`), `registerdata.py` and `register-data.html` (a Businesses counted column). 12 rules move from Major, wide to Minor, including payroll tax. Please keep these when you change those files; details in [`levers_exposure.md`](levers_exposure.md).
 - **Seen while checking: Industries view at 320 wide.** On Legislative levers, `menu.html#industries` scrolls sideways at 320px (page 359px wide): the filter rows' chips (`.filter-row`, `.chips`) do not wrap. It was the same before phase 4, so it is not from the register; it is left for you.
 
 ## Before you push (every session adding legislation)

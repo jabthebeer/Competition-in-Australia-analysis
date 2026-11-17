@@ -91,6 +91,7 @@ table.rdt tr.ended td { color: var(--ink-3); }
     { k: "classFrom", h: "Class read from", g: "Exposure" },
     { k: "businesses", h: `Businesses reached${yr}`, g: "Exposure", num: true, show: (r) => (r.businesses === null ? "" : `${r.upTo ? "up to " : ""}${nf(r.businesses)}`), csv: (r) => r.businesses ?? "" },
     { k: "upTo", h: "Upper bound", g: "Exposure", hide: true, csv: (r) => (r.upTo ? "yes" : "no") },
+    { k: "counted", h: "Businesses counted", g: "Exposure" },
     { k: "share", h: "Share of its jurisdiction, %", g: "Exposure", num: true, show: (r) => (r.share === null || r.share === undefined ? "" : r.share.toFixed(1)) },
     { k: "classes", h: "Industries reached", g: "Exposure", num: true },
     { k: "industries", h: "ANZSIC codes", g: "Exposure" },
