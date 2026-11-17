@@ -1,0 +1,78 @@
+{
+  "id": "public-space-permits",
+  "name": "Council permits for public spaces",
+  "what": "Get a council permit to busk, film or put outdoor dining on footpaths and other public land, under each council's local laws.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "4511",
+      "4512",
+      "4520",
+      "5511",
+      "5621",
+      "5622",
+      "6991",
+      "9002"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "local",
+      "function": "sets-rules",
+      "who": "Local council (local laws)",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "local",
+      "function": "approves",
+      "who": "Local council (permits)",
+      "bodies": [],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": "Each council sets its own permits, conditions and fees; the register holds 7 councils so far.",
+  "basis": [
+    {
+      "source": "Busking permit council of the city of sydney",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "year": 2026,
+      "url": "https://ablis.business.gov.au/service/nsw/busking-permit-council-of-the-city-of-sydney/15456",
+      "locator": "Description",
+      "quote": "You will need this permit if you intend to busk or perform other forms of entertainment in a public place.",
+      "origin": "australian",
+      "checked": "web-page"
+    },
+    {
+      "source": "Busking or street entertaining permit city of melbourne",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "year": 2026,
+      "url": "https://ablis.business.gov.au/service/vic/busking-or-street-entertaining-permit-city-of-melbourne/29400",
+      "locator": "Description",
+      "quote": "You will require this permit if you intend to busk or perform street theatre or other forms of entertainment on a road or in a public place.",
+      "origin": "australian",
+      "checked": "web-page"
+    },
+    {
+      "source": "Busker street performer permit brisbane city council",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "year": 2026,
+      "url": "https://ablis.business.gov.au/service/qld/busker-street-performer-permit-brisbane-city-council/6012",
+      "locator": "Description",
+      "quote": "You will need this permit to busk or provide entertainment in a public place for money or other type of reward.",
+      "origin": "australian",
+      "checked": "web-page"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

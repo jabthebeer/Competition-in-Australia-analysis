@@ -1,0 +1,92 @@
+{
+  "id": "foreign-investment",
+  "name": "Foreign investment screening",
+  "what": "Notify the Treasurer and wait for a decision before a foreign person takes a substantial interest in an Australian business or acquires an interest in land, above the monetary thresholds.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "75",
+      "76",
+      "7711",
+      "7713",
+      "7714",
+      "7720",
+      "96"
+    ],
+    "note": "Only foreign persons, and the Australian businesses they invest in."
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Treasury (Foreign Investment Division)",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "approves",
+      "who": "Treasurer, on the advice of the Foreign Investment Review Board",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "collects",
+      "who": "Treasury (application fees)",
+      "bodies": [
+        "cth-treasury"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "cth",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Foreign Acquisitions and Takeovers Act 1975",
+      "publisher": "Federal Register of Legislation",
+      "year": 1975,
+      "url": "https://www.legislation.gov.au/C2004A01402/latest/text",
+      "locator": "s 81(1) (compilation C2025C00672 from 2025-12-05)",
+      "quote": "81 Compulsory notice of notifiable actions and notifiable national security actions (1) A foreign person who proposes to take a notifiable action or notifiable national security action (other than because of the operation of section 18A (increasing percentage of interests without acquiring additional interests in securities)) must give a notice to the Treasurer before taking the action.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-foreign-investment-screening"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

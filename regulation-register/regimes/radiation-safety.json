@@ -1,0 +1,99 @@
+{
+  "id": "radiation-safety",
+  "name": "Radiation and nuclear safety",
+  "what": "Hold a state licence to deal with radiation sources, and a Commonwealth permit to possess nuclear material.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "75",
+      "76",
+      "7711",
+      "7713",
+      "7714",
+      "7720",
+      "96"
+    ],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State radiation regulator",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "licenses",
+      "who": "Australian Safeguards and Non-Proliferation Office (nuclear material)",
+      "bodies": [
+        "cth-asno"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": "States license radiation sources under their own laws; nuclear material is Commonwealth only.",
+  "basis": [
+    {
+      "source": "Radiation Protection Act 2006 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "year": 2006,
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2006-33/current/PDF/2006-33.PDF",
+      "locator": "s 59(1) (current republication (R23, from 26 November 2025; Radiation Protection Act 2006 | Acts))",
+      "quote": "A person commits an offence if— (a) the person intentionally deals with a regulated radiation source; and (b) the dealing by the person is not authorised under a licence in relation to the radiation source;",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Protection from Harmful Radiation Act 1990 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "year": 1990,
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-04-25/act-1990-013",
+      "locator": "s 6(2) (version of 2024-04-25)",
+      "quote": "A person responsible for regulated material must hold a radiation management licence in respect of the regulated material and must comply with any conditions to which the licence is subject.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Radiation Safety Act 1999 (Qld)",
+      "publisher": "Queensland Legislation",
+      "year": 1999,
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1999-020",
+      "locator": "s 12(1) (current)",
+      "quote": "A person must not possess a radiation source, unless the person is allowed to possess it under a possession licence",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -51,6 +51,9 @@ The details are in [`levers_quoted_rules.md`](levers_quoted_rules.md).
   - **Still needed from you:** the Industry lens, if you want costs there too. The CSV's `requirement` column is the requirement id.
   - **A schema field later, if you prefer:** fees with amount, period, as-at date and source on requirements. The input file can be migrated into it.
 
+- **Regimes added in phase 4 (DECISIONS E-177).** 13 new regimes in `regulation-register/regimes/` and a ninth purpose label, `national-interest` ("National interest and security"), in `regime-purposes.json`. The Industry lens and the regulatory overview now count 74 regimes. Details: [`levers_pairs_and_regimes.md`](levers_pairs_and_regimes.md).
+- **Seen while checking: Industries view at 320 wide.** On Legislative levers, `menu.html#industries` scrolls sideways at 320px (page 359px wide): the filter rows' chips (`.filter-row`, `.chips`) do not wrap. It was the same before phase 4, so it is not from the register; it is left for you.
+
 ## Before you push (every session adding legislation)
 
 *14 November 2026. From the website session (`claude/loving-hamilton-jdifhr`). The owner has asked for these steps so that legislation work and the website work merge cleanly (DECISIONS E-161).*

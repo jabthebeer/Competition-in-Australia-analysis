@@ -1,0 +1,71 @@
+{
+  "id": "driving-instruction",
+  "name": "Driving instruction",
+  "what": "Hold a licence or accreditation from the state transport agency to give driving lessons for reward.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "8219"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "licenses",
+      "who": "State road transport agency",
+      "bodies": [
+        "nsw-transport",
+        "nt-dli",
+        "qld-tmr",
+        "sa-dit",
+        "vic-dtp",
+        "wa-dtmi"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": "Each state and territory licenses driving instructors under its own road transport law.",
+  "basis": [
+    {
+      "source": "Driving instructor accreditation",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "year": 2026,
+      "url": "https://ablis.business.gov.au/service/act/driving-instructor-accreditation/3858",
+      "locator": "Description",
+      "quote": "You will need this accreditation if you intend to offer driving lessons.",
+      "origin": "australian",
+      "checked": "web-page"
+    },
+    {
+      "source": "Driving Instructors Act 1992 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "year": 1992,
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-01-22/act-1992-003",
+      "locator": "s 6 (version of 2021-01-22)",
+      "quote": "6 Unlicensed driving instruction A person must not act as a driving instructor unless the person is the holder of a licence.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Driving instructor endorsement",
+      "publisher": "Australian Business Licence and Information Service (ABLIS)",
+      "year": 2026,
+      "url": "https://ablis.business.gov.au/service/nt/driving-instructor-endorsement/3323",
+      "locator": "Description",
+      "quote": "You will need this endorsement if you intend to work as a driving instructor.",
+      "origin": "australian",
+      "checked": "web-page"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
