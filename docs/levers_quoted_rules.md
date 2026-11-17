@@ -15,11 +15,11 @@ Each register rule coded in `rule-coding.json` should rest on the law's own word
 | Already had a quoted requirement that fits: checked against the coding | 16 |
 | Has one that quotes a different Act (the 8 occupational licensing items): the state builder licence fits, proposed below | 8 |
 | An existing quoted requirement attached (foreign investment notification) | 1 |
-| A new quoted requirement drafted and attached | 18 (plus a second for the Default Market Offer, quoting its price cap) |
+| A new quoted requirement drafted and attached | 19 (plus a second for the Default Market Offer, quoting its price cap); Queensland outside automatic mutual recognition added on 17 November 2026 |
 | Found no longer in force | 1 (the NT minimum price on alcohol, repealed from 1 March 2025) |
 | Not quoted: blocked (Victoria) | 6 |
 | Not quoted: a policy with no law | 2 (the four pillars policy; WA domestic gas reservation) |
-| Not quoted yet | 2 (Queensland outside automatic mutual recognition; Queensland's 2am liquor limit, deferred to its standing rule in phase 2) |
+| Not quoted yet | 1 (Queensland's 2am liquor limit, deferred to its standing rule in phase 2) |
 | Not quoted as rules: phase 2 makes them changes of rules already quoted | 2 (coastal trading 2012; the 2018 pharmacy location rules) |
 | **Total** | **56** |
 
@@ -157,3 +157,10 @@ The container deposit change is a judgement about which part of the rule bites f
 - **Marks** on the new requirements are copied from their items, so the two agree. They are not a fresh judgement.
 - **Reach** follows the item's industries (except the container deposit requirements, which follow the law); phase 5 narrows it.
 - **Administration** (who licenses, inspects and enforces) is not yet coded on the new requirements.
+
+## Leftover quoted after batching resumed (17 November 2026)
+
+- **Queensland outside automatic mutual recognition** (`qld-amr-not-adopted`): requirement `qld-mutual-recognition-notice`. A worker licensed in another state lodges a notice with the Queensland authority before working there (Mutual Recognition Act 1992 (Cth) s 19(1)); the 2021 amendments that brought in automatic deemed registration do not apply to a "pre-adoption State" (ss 4, 5(3), 42C(3)). The coding agrees (licence, before trading, binds some businesses). Once the notice is lodged the worker is taken to be registered while the authority decides (s 25), which softens the hurdle.
+  - **Still in force:** neither Act names Queensland, so its status is read from the definition and the Queensland Act, which adopts no 2021 amendment. A 2024 Queensland regulation (SL 2024 No. 244) approves only the change to the Administrative Review Tribunal.
+  - **Gaps:** the other 7 jurisdictions are logged as not searched. They are in automatic mutual recognition, but occupations exempted from it (for example, WA electricians under a 2025 declaration) still use the s 19 notice.
+  - All 9 quotes were found in their sources.

@@ -198,7 +198,7 @@ Added at the owner's request on 16 November 2026, and decided the same day (DECI
 
 1. **Phase 3 leftovers:**
    - Victoria, once the authorised PDFs are saved;
-   - Queensland outside automatic mutual recognition;
+   - ~~Queensland outside automatic mutual recognition~~: quoted on 17 November 2026 (`qld-mutual-recognition-notice`);
    - the building code adoptions and Queensland's 2am limit, with their standing rules.
 2. **Phase 2:** the links and the 12 standing rules, once the website session adds the field.
 3. **Phase 4:** pairs and the 19 rules without a regime.
