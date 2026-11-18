@@ -34,7 +34,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Liquor and Gambling Commissioner (SA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gaming Machines Act 1992 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/gaming%20machines%20act%201992/current/1992.49.un.rtf",
+          "locator": "s 16, words naming the body (found 18 Nov 2026)",
+          "quote": "The Commissioner may grant to the holder or former holder of a gaming machine licence a temporary authorisation to possess (but not to operate) gaming machines if the authorisation is necessary or desirable to enable the orderly disposal of gaming machines the holder or former holder is no longer authorised to operate.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2021-12-09/1992.49.un"
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

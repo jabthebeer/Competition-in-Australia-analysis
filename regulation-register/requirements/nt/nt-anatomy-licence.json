@@ -32,9 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "nt-health"
+  ],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Chief Health Officer (NT)",
+      "bodies": [
+        "nt-health"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Transplantation and Anatomy Act 1979 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12234",
+          "locator": "s 22B, words naming the body (found 18 Nov 2026) (current reprint)",
+          "quote": "The Chief Health Officer may, by Gazette notice, authorise the conduct of the following at a school of anatomy of an educational institution: (a) the teaching and study of anatomy;",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

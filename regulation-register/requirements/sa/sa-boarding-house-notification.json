@@ -44,7 +44,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Councils (licensing authority, SA)",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Supported Residential Facilities Act 1992 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/supported%20residential%20facilities%20act%201992/current/1992.90.un.rtf",
+          "locator": "s 9, words naming the body (found 18 Nov 2026)",
+          "quote": "The licensing authority for a particular supported residential facility is as follows: (a) subject to paragraphs (b) and (c), the council for the area in which the facility is situated is the licensing authority;",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2018-10-04/1992.90.un"
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

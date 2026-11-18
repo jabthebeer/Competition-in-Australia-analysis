@@ -93,7 +93,21 @@
     - **an overlap:** two or more bodies doing the same business-facing function for one requirement (licensing, approving, inspecting and enforcing, collecting or funding). An example is the ACL, which the ACCC and the state agencies both enforce. Rules set by more than one body (a department and a regulator, or two departments) are counted separately;
     - **agencies per class:** the distinct bodies behind the requirements that reach each class and state (`data/processed/legislation/agencies_by_class.csv`), with how many of those requirements involve several bodies, overlap, or span the Commonwealth and the states.
 
-    **Limits.** The counts cover bodies the register names, not every agency a business may meet. So far they are almost all Commonwealth: state and council requirements are linked to their regulators in phase D.
+    **Limits.** The counts cover bodies the register names, not every agency a business may meet. Many state entries name an office (such as "the chief executive") rather than a body in `bodies.json`, so they add to the count of requirements with a named body but not to the agencies per class.
+
+14. **Every requirement names who administers it, and every source can be traced to its primary source** (added 18 November 2026, E-313).
+    - **Responsible parties.** 933 of the 936 requirements name who administers them. Of the 442 requirements that had no entry, 439 were linked in one pass by the method in rule 13. Each body is quoted from the requirement's own law:
+      - a definition, for example "Commissioner means the Commissioner for Consumer Affairs";
+      - or a decision clause, for example "The Secretary may grant licences for the purposes of this Act".
+
+      Where the law names an office rather than a body ("the chief executive", "the Minister"), the entry names the office and the law it administers. A body is linked to `bodies.json` only where the names match; otherwise the entry names the body in words. The function follows the requirement's kind (a licence is licensed, a tax collected) unless the law gives the body a different part. For 3 requirements the law quoted names no body. `NO_BODY` in `scripts/check_traceability.py` gives the reason for each.
+    - **Tracing a source.** Each source records the document's address, the provision (its locator), the exact words and the date they were read. Where a link cannot open the provision, a reader can still find the words:
+      - **Commonwealth laws:** the locator names the compilation quoted, for example "compilation C2026C00272". The Federal Register of Legislation keeps every compilation.
+      - **State registers:** the locator names the version. It is "current" with the date read for Queensland, Tasmania, the ACT, Western Australia and the Northern Territory, whose registers keep earlier versions by date. NSW and South Australian copies from the Open Australian Legal Corpus give the version date and the corpus document's ID. Victorian sources name the authorised version the owner saved, because Victoria's register blocks automated downloads.
+      - **PDFs:** `scripts/source_pages.py` finds the page each quote is on. The ACT and NT registers send their PDFs as downloads, so the link's text names the page.
+      - **Web pages and guidance:** the heading the words sit under, and the date read.
+      - **Searching:** every quote is exact, so a reader can search the document for it. `scripts/check_requirement_quotes.py` confirms that each quote is in its source.
+    - **The check.** `scripts/check_traceability.py` reports how the sources are opened and which version each quotes. It fails if a source has no locator, a source on a legislation register names no version, or a requirement names no body without a reason. A test runs the same check.
 
 ## Calibration (phase B)
 

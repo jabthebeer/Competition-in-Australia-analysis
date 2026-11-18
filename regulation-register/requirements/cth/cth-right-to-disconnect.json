@@ -32,9 +32,57 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-fwc",
+    "cth-fwo"
+  ],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Fair Work Commission",
+      "bodies": [
+        "cth-fwc"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Work Act 2009",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+          "locator": "s 620, words naming the body (found 18 Nov 2026) (compilation C2026C00355 from 2026-07-07)",
+          "quote": "FWC means the body continued in existence by section 575.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "inspects",
+      "who": "Fair Work Ombudsman",
+      "bodies": [
+        "cth-fwo"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Work Act 2009",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C2009A00028/latest/text",
+          "locator": "words naming the body (found 18 Nov 2026) (compilation C2026C00355 from 2026-07-07)",
+          "quote": "Fair Work Ombudsman means the body established by section 696.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "first-employee",
