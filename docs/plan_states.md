@@ -119,6 +119,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-4j done 17 Nov 2026 (E-301):** 35 high-signal NSW Acts screened; 5 requirements drafted (non-government schools, gas reticulation, land surveyors, offshore minerals, racecourses); 14 more called Y to draft, 4 L and 13 N. 725 requirements.
 - **D-4k done 17 Nov 2026 (E-302):** 6 more NSW requirements: legal practice, architects, explosives, gaming machine tax, community services portable long service leave and onshore petroleum titles. 731 requirements.
 - **D-4l done 18 Nov 2026 (E-303):** the 11 D-4j and D-4k families searched in the other seven jurisdictions: 48 requirements drafted (Queensland 11, WA 8, SA 8, the ACT 8, Tasmania 7, the NT 5, Victoria 1); 29 cells logged: 12 not found, 9 blocked (Victorian Acts not uploaded) and 8 to draft. 779 requirements.
+- **D-4m done 18 Nov 2026 (E-304):** 5 NSW requirements from Acts called Y but not drafted: point of consumption tax on wagering (Betting Tax Act 2001 s 13C, above $1 million of net NSW wagering revenue), depositing rental bonds (Residential Tenancies Act 2010 s 162(1)), notifying a land lease community (s 16) and its disclosure statement (s 21), and retirement village inquiry and disclosure documents (Retirement Villages Act 1999 s 18). The public lotteries licence and electronic lodgment network operators are noted as worth looking at again. 784 requirements.
 
 ### D-2: the catalogues and the new estimate
 

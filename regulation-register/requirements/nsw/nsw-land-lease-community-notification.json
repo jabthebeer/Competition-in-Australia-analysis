@@ -1,0 +1,114 @@
+{
+  "id": "nsw-land-lease-community-notification",
+  "family": "land-lease-community-notification",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Notify the Commissioner of a land lease community",
+  "kind": "notification",
+  "what": "Notify the Commissioner of the community's particulars for the Register within 30 days of starting to operate it, and of any change within 30 days.",
+  "laws": [
+    {
+      "title": "Residential (Land Lease) Communities Act 2013 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2013-097",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-11/act-2013-097",
+      "provisions": "s 16(1), s 16(4)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Residential (Land Lease) Communities Act 2013 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-11/act-2013-097",
+      "locator": "s 16(1) (version of 2024-12-11)",
+      "quote": "The operator of a community must notify the Commissioner, in accordance with this section, of the following particulars so as to enable the Commissioner to include information about the community in the Register",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-12-11/act-2013-097"
+    },
+    {
+      "title": "Residential (Land Lease) Communities Act 2013 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-11/act-2013-097",
+      "locator": "s 16(4) (version of 2024-12-11)",
+      "quote": "The operator of a community must notify the Commissioner within 30 days of any change to the particulars previously notified",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-12-11/act-2013-097"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a residential land lease community",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential (Land Lease) Communities Act 2013 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-11/act-2013-097",
+          "locator": "s 16(1) (version of 2024-12-11)",
+          "quote": "The operator of a community must notify the Commissioner, in accordance with this section, of the following particulars so as to enable the Commissioner to include information about the community in the Register",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-11/act-2013-097"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Notify the Commissioner of the community's particulars for the Register within 30 days of starting to operate it, and of any change within 30 days.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Particulars of each community must be notified and kept up to date.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
