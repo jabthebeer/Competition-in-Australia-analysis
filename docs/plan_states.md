@@ -139,6 +139,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-5j done 18 Nov 2026 (E-323): mine safety management systems in the other states; 4 requirements.** NSW (cl 18(1)), WA (reg 621(1)), SA (reg 621(1)) and Tasmania (s 20(1)); Victoria blocked; the ACT and the NT not found. 1,042 requirements.
 - **D-5k done 18 Nov 2026 (E-324): commercial fishing and aquaculture; 10 requirements.** Commercial fishing licences for Queensland (s 82 and the regulation's sch 1), Tasmania (s 60(1)) and the NT (s 10), replacing D-4's 'not found' cells; a new family, aquaculture authorities, in every jurisdiction but Victoria (blocked). 1,052 requirements.
 - **D-6a done 18 Nov 2026 (E-325): WA's 'to draft' cells; 10 requirements.** Environment protection, radiation, tobacco retail and wholesale, electrical work, casino employees, firearms dealing, charitable collections, unclaimed money, medicines and poisons, and rail accreditation. Bookmakers and dangerous goods vehicles are still to draft. 1,062 requirements.
+- **D-6b done 18 Nov 2026 (E-326): WA's high band called; 6 requirements.** Cat breeders, veterinary premises and licensed racecourses (earlier 'not found' cells), and three WA-first families: public aquatic facility permits, lobbyist registration and the construction industry training levy. 1,068 requirements.
 
 ### D-2: the catalogues and the new estimate
 

@@ -1,0 +1,125 @@
+{
+  "id": "wa-dog-breeder-registration",
+  "family": "dog-breeder-registration",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "animal-welfare",
+  "title": "Be an approved cat breeder",
+  "kind": "registration",
+  "what": "Breed cats only as an approved cat breeder.",
+  "laws": [
+    {
+      "title": "Cat Act 2011 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a146861",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45452.docx",
+      "provisions": "s 35(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Cat Act 2011 (WA)",
+      "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45452.docx",
+      "locator": "s 35(1) (version of mrdoc_45452)",
+      "quote": "A person must not breed cats unless the person is an approved cat breeder",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "western_australian_legislation:mrdoc_45452/law_a146861"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Local governments (WA), which approve cat breeders",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Cat Act 2011 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45452.docx",
+          "locator": "s 39, words naming the body (found 18 Nov 2026) (version of mrdoc_45452)",
+          "quote": "the local government may give the approved cat breeder a new certificate.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_45452/law_a146861"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0199"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it breeds cats",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Cat Act 2011 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_45452.docx",
+          "locator": "s 35(1) (version of mrdoc_45452)",
+          "quote": "A person must not breed cats unless the person is an approved cat breeder",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_45452/law_a146861"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. WA's Dog Act 1976 has no breeder registration duty (D-5d); the Cat Act 2011 does, for cats. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Breed cats only as an approved cat breeder.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

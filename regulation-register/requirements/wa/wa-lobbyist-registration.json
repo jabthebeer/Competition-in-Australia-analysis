@@ -1,0 +1,131 @@
+{
+  "id": "wa-lobbyist-registration",
+  "family": "lobbyist-registration",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Be registered as a lobbyist",
+  "kind": "registration",
+  "what": "As a business that lobbies government for clients, lobby on a client's behalf only while accredited (registered) as a lobbyist.",
+  "laws": [
+    {
+      "title": "Integrity (Lobbyists) Act 2016 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "western_australian_legislation:mrdoc_29468",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_29468.docx",
+      "provisions": "s 8(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Integrity (Lobbyists) Act 2016 (WA)",
+      "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_29468.docx",
+      "locator": "s 8(1) (version of mrdoc_29468)",
+      "quote": "A person (person A) who is in the business of lobbying must not undertake lobbying activities on behalf of another person unless person A is accredited as a lobbyist",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "western_australian_legislation:mrdoc_29468/law_a147112"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Public Sector Commissioner (WA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Integrity (Lobbyists) Act 2016 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_29468.docx",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (version of mrdoc_29468)",
+          "quote": "Commissioner means the Public Sector Commissioner;",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_29468/law_a147112"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6962"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it lobbies government on behalf of clients",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Integrity (Lobbyists) Act 2016 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_29468.docx",
+          "locator": "s 8(1) (version of mrdoc_29468)",
+          "quote": "A person (person A) who is in the business of lobbying must not undertake lobbying activities on behalf of another person unless person A is accredited as a lobbyist",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_29468/law_a147112"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As a business that lobbies government for clients, lobby on a client's behalf only while accredited (registered) as a lobbyist.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
