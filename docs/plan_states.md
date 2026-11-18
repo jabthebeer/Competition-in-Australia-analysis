@@ -118,6 +118,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-4g done 16 Nov 2026 (E-168):** the 11 D-4e and D-4f families searched in the other seven jurisdictions: 16 requirements drafted, 31 to draft, 21 not found, 9 blocked (Victoria). 658 requirements. Follow-ups (E-169): 7 to-draft cells drafted (SA casino; SA and ACT radiation; Qld, WA and NT water; ACT gaming machines); 665 requirements. Second round (E-300, 17 Nov 2026): 12 more drafted; 12 D-4g cells remain to draft.
 - **D-4j done 17 Nov 2026 (E-301):** 35 high-signal NSW Acts screened; 5 requirements drafted (non-government schools, gas reticulation, land surveyors, offshore minerals, racecourses); 14 more called Y to draft, 4 L and 13 N. 725 requirements.
 - **D-4k done 17 Nov 2026 (E-302):** 6 more NSW requirements: legal practice, architects, explosives, gaming machine tax, community services portable long service leave and onshore petroleum titles. 731 requirements.
+- **D-4l done 18 Nov 2026 (E-303):** the 11 D-4j and D-4k families searched in the other seven jurisdictions: 48 requirements drafted (Queensland 11, WA 8, SA 8, the ACT 8, Tasmania 7, the NT 5, Victoria 1); 29 cells logged: 12 not found, 9 blocked (Victorian Acts not uploaded) and 8 to draft. 779 requirements.
 
 ### D-2: the catalogues and the new estimate
 

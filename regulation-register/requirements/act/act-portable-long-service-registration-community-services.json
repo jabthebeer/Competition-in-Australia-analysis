@@ -1,0 +1,110 @@
+{
+  "id": "act-portable-long-service-registration-community-services",
+  "family": "portable-long-service-registration-community-services",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register for community services portable long service leave",
+  "kind": "registration",
+  "what": "Apply for registration on the employers register within 1 month of becoming an employer in the community sector industry, then lodge returns and pay the levy.",
+  "laws": [
+    {
+      "title": "Long Service Leave (Portable Schemes) Act 2009 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "2009-25",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2009-25/current/PDF/2009-25.PDF",
+      "provisions": "s 31(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Long Service Leave (Portable Schemes) Act 2009 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2009-25/current/PDF/2009-25.PDF",
+      "locator": "s 31(1) (current republication (R30, from 26 November 2025; Long Service Leave (Portable Schemes) Act 2009 | Acts))",
+      "quote": "An employer for a covered industry must apply to the registrar for registration on the employers register not later than— (a) 1 month after becoming an employer for the industry; or (b) the end of any additional time the registrar allows",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8790"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it employs workers doing community service work as the Act defines it",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Long Service Leave (Portable Schemes) Act 2009 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2009-25/current/PDF/2009-25.PDF",
+          "locator": "s 31(1) (current republication (R30, from 26 November 2025; Long Service Leave (Portable Schemes) Act 2009 | Acts))",
+          "quote": "An employer for a covered industry must apply to the registrar for registration on the employers register not later than— (a) 1 month after becoming an employer for the industry; or (b) the end of any additional time the registrar allows",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section 31 applies to employers in each covered industry; that the community sector is one was not quoted. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Apply for registration on the employers register within 1 month of becoming an employer in the community sector industry, then lodge returns and pay the levy.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": 1,
+        "reason": "Workers keep their long service entitlement when they move between employers in the sector.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registration, service returns and the levy.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
