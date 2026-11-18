@@ -1,0 +1,128 @@
+{
+  "id": "sa-rental-bond-deposit",
+  "family": "rental-bond-deposit",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Pay rental bonds to the Commissioner",
+  "kind": "reporting",
+  "what": "Pay each rental bond received to the Commissioner within the period allowed by regulation.",
+  "laws": [
+    {
+      "title": "Residential Tenancies Act 1995 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1995.63.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/residential%20tenancies%20act%201995/current/1995.63.un.rtf",
+      "provisions": "s 62(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Residential Tenancies Act 1995 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/residential%20tenancies%20act%201995/current/1995.63.un.rtf",
+      "locator": "s 62(2) (version of 2024-07-01)",
+      "quote": "A person who receives an amount by way of a bond must pay the amount of the bond to the Commissioner in the manner and form approved by the Commissioner and accompanied by the information determined by the Commissioner within the period allowed by regulation",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-07-01/1995.63.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it lets residential premises and takes a rental bond",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies Act 1995 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/residential%20tenancies%20act%201995/current/1995.63.un.rtf",
+          "locator": "s 62(2) (version of 2024-07-01)",
+          "quote": "A person who receives an amount by way of a bond must pay the amount of the bond to the Commissioner in the manner and form approved by the Commissioner and accompanied by the information determined by the Commissioner within the period allowed by regulation",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-07-01/1995.63.un"
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "6720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it manages residential tenancies and receives rental bonds",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies Act 1995 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/residential%20tenancies%20act%201995/current/1995.63.un.rtf",
+          "locator": "s 62(2) (version of 2024-07-01)",
+          "quote": "A person who receives an amount by way of a bond must pay the amount of the bond to the Commissioner in the manner and form approved by the Commissioner and accompanied by the information determined by the Commissioner within the period allowed by regulation",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-07-01/1995.63.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay each rental bond received to the Commissioner within the period allowed by regulation.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Each bond must be lodged with the Secretary, with a notice, within the deposit period.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

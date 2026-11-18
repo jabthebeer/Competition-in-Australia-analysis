@@ -1,0 +1,115 @@
+{
+  "id": "sa-point-of-consumption-tax",
+  "family": "point-of-consumption-tax",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "gambling",
+  "title": "Pay betting operations tax",
+  "kind": "tax-or-levy",
+  "what": "Pay betting operations tax on net State wagering revenue of $150,000 or more a financial year.",
+  "laws": [
+    {
+      "title": "Authorised Betting Operations Act 2000 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "2000.95.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/authorised%20betting%20operations%20act%202000/current/2000.95.un.rtf",
+      "provisions": "s 40D(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Authorised Betting Operations Act 2000 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/authorised%20betting%20operations%20act%202000/current/2000.95.un.rtf",
+      "locator": "s 40D(1) (version of 2020-12-03)",
+      "quote": "A betting operator is liable to pay tax (betting operations tax) to the Commissioner of State Taxation on the operator's net State wagering revenue for a financial year",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2020-12-03/2000.95.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "revenue",
+      "test": ">=",
+      "value": 150000.0,
+      "unit": "AUD of net State wagering revenue a financial year (no tax below it)",
+      "as_at": "2020-12-03",
+      "note": "As in the version of 3 December 2020; later changes not checked.",
+      "sources": [
+        {
+          "title": "Authorised Betting Operations Act 2000 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/authorised%20betting%20operations%20act%202000/current/2000.95.un.rtf",
+          "locator": "s 40D(2) (version of 2020-12-03)",
+          "quote": "if the net State wagering revenue for the financial year is less than $150 000—no tax is payable; (b) if the net State wagering revenue for the financial year is $150 000 or more—tax is payable at the rate of 15% of the amount of net State wagering revenue in excess of $150 000",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2020-12-03/2000.95.un"
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9209"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it takes bets from people in SA (a betting operator)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Authorised Betting Operations Act 2000 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/authorised%20betting%20operations%20act%202000/current/2000.95.un.rtf",
+          "locator": "s 40D(1) (version of 2020-12-03)",
+          "quote": "A betting operator is liable to pay tax (betting operations tax) to the Commissioner of State Taxation on the operator's net State wagering revenue for a financial year",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2020-12-03/2000.95.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay betting operations tax on net State wagering revenue of $150,000 or more a financial year.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A 15% tax on net NSW wagering revenue above $1 million raises the cost of wagering services.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -400,9 +400,13 @@ def build() -> None:
         # A cited law whose title differs from the list's (e.g. "National Electricity (NSW) Law" listed as "National
         # Electricity") is matched by its register address.
         by_url = {r["url"]: r for r in rows if r.get("url")}
+        # Failing that, by the register id at the end of the address ("current" and dated links differ).
+        ids = Counter(r["register_id"] for r in rows if r.get("register_id"))
+        by_id = {r["register_id"]: r for r in rows if r.get("register_id") and ids[r["register_id"]] == 1}
         unmatched = []
         for name, url, rid in cited.get(state, []):
-            r = by_key.get(norm(name)) or (by_url.get(url) if url else None)
+            r = by_key.get(norm(name)) or (by_url.get(url) if url else None) \
+                or (by_id.get(url.rstrip("/").split("/")[-1]) if url else None)
             if r is None:
                 unmatched.append((name, url, rid))
                 continue

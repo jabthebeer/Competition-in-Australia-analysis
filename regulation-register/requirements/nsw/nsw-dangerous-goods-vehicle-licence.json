@@ -1,0 +1,142 @@
+{
+  "id": "nsw-dangerous-goods-vehicle-licence",
+  "family": "dangerous-goods-vehicle-licence",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "hazardous-chemicals-and-dangerous-goods",
+  "title": "License vehicles that carry dangerous goods in bulk",
+  "kind": "licence",
+  "what": "Use a road vehicle to carry dangerous goods in a receptacle over 500 L, or over 500 kg in a receptacle, only if the vehicle is licensed for those goods (drivers also need a dangerous goods driver licence).",
+  "laws": [
+    {
+      "title": "Dangerous Goods (Road and Rail Transport) Regulation 2022 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "regulation",
+      "register_id": "sl-2022-0464",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-06-16/sl-2022-0464",
+      "provisions": "s 220(1), s 221",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dangerous Goods (Road and Rail Transport) Regulation 2022 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-06-16/sl-2022-0464",
+      "locator": "s 220(1) (version of 2023-06-16)",
+      "quote": "A road vehicle must not be used to transport either of the following unless the vehicle is licensed under this Part to transport the goods— (a) dangerous goods in a receptacle with a capacity of more than 500L, (b) more than 500kg of dangerous goods in a receptacle",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2023-06-16/sl-2022-0464"
+    },
+    {
+      "title": "Dangerous Goods (Road and Rail Transport) Regulation 2022 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-06-16/sl-2022-0464",
+      "locator": "s 221 (version of 2023-06-16)",
+      "quote": "A person must not drive a road vehicle transporting either of the following unless the person holds a dangerous goods driver licence that authorises the person to drive the vehicle with the goods",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2023-06-16/sl-2022-0464"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4610"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries dangerous goods in bulk (a receptacle over 500 L or 500 kg)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Dangerous Goods (Road and Rail Transport) Regulation 2022 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-06-16/sl-2022-0464",
+          "locator": "s 220(1) (version of 2023-06-16)",
+          "quote": "A road vehicle must not be used to transport either of the following unless the vehicle is licensed under this Part to transport the goods— (a) dangerous goods in a receptacle with a capacity of more than 500L, (b) more than 500kg of dangerous goods in a receptacle",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2023-06-16/sl-2022-0464"
+        }
+      ]
+    },
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries its own dangerous goods in bulk by road (such as fuel or chemicals)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Dangerous Goods (Road and Rail Transport) Regulation 2022 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-06-16/sl-2022-0464",
+          "locator": "s 220(1) (version of 2023-06-16)",
+          "quote": "A road vehicle must not be used to transport either of the following unless the vehicle is licensed under this Part to transport the goods— (a) dangerous goods in a receptacle with a capacity of more than 500L, (b) more than 500kg of dangerous goods in a receptacle",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2023-06-16/sl-2022-0464"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Use a road vehicle to carry dangerous goods in a receptacle over 500 L, or over 500 kg in a receptacle, only if the vehicle is licensed for those goods (drivers also need a dangerous goods driver licence).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

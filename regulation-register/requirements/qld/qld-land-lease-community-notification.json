@@ -1,0 +1,104 @@
+{
+  "id": "qld-land-lease-community-notification",
+  "family": "land-lease-community-notification",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Register a residential park",
+  "kind": "registration",
+  "what": "Operate a residential park for manufactured homes only if it is registered.",
+  "laws": [
+    {
+      "title": "Manufactured Homes (Residential Parks) Act 2003 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2003-074",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2003-074",
+      "provisions": "s 18P",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Manufactured Homes (Residential Parks) Act 2003 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2003-074",
+      "locator": "s 18P (current)",
+      "quote": "A person must not operate a residential park that is an unregistered residential park",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a residential park for manufactured homes",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Manufactured Homes (Residential Parks) Act 2003 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2003-074",
+          "locator": "s 18P (current)",
+          "quote": "A person must not operate a residential park that is an unregistered residential park",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Operate a residential park for manufactured homes only if it is registered.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Particulars of each community must be notified and kept up to date.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

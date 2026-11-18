@@ -1,0 +1,113 @@
+{
+  "id": "nt-food-safety-scheme-licence",
+  "family": "food-safety-scheme-licence",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "food-safety",
+  "title": "Hold a meat processing licence",
+  "kind": "licence",
+  "what": "Process meat for sale for human consumption only under a licence (or as a retailer using meat from a licensed supplier).",
+  "laws": [
+    {
+      "title": "Meat Industries Act 1996 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "MEAT-INDUSTRIES-ACT-1996",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11991",
+      "provisions": "s 34(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Meat Industries Act 1996 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11991",
+      "locator": "s 34(2) (current reprint)",
+      "quote": "A person shall not process meat for human consumption that is to be sold: (a) except under a licence;",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1111",
+        "1112",
+        "1113",
+        "4121"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it slaughters animals or processes meat for sale for human consumption",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Meat Industries Act 1996 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11991",
+          "locator": "s 34(2) (current reprint)",
+          "quote": "A person shall not process meat for human consumption that is to be sold: (a) except under a licence;",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. The NT's scheme covers meat only; selling meat for human consumption also needs a licence or licensed supply (s 33). Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Process meat for sale for human consumption only under a licence (or as a retailer using meat from a licensed supplier).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
