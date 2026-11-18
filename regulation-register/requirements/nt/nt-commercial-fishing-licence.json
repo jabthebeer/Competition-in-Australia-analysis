@@ -1,0 +1,135 @@
+{
+  "id": "nt-commercial-fishing-licence",
+  "family": "commercial-fishing-licence",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "fisheries",
+  "title": "Hold a commercial fishing licence",
+  "kind": "licence",
+  "what": "Take fish or aquatic life for sale only under a licence that authorises it.",
+  "laws": [
+    {
+      "title": "Fisheries Act 1988 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "FISHERIES-ACT-1988",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11822",
+      "provisions": "s 10(1)(a), s 10(2)(b)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fisheries Act 1988 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11822",
+      "locator": "s 10(1)(a) (current reprint)",
+      "quote": "A licence may authorise a person to do one or more of the following things: (a) take fish or aquatic life: (i) for sale",
+      "accessed": "2026-11-18",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Fisheries Act 1988 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11822",
+      "locator": "s 10(2)(b) (current reprint)",
+      "quote": "is not authorised by a licence to take the fish or aquatic life for that purpose",
+      "accessed": "2026-11-18",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Director of Fisheries (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fisheries Act 1988 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11822",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current reprint)",
+          "quote": "Director means the Director of Fisheries appointed under section 5, and includes a person who is acting in or performing the duties of the office of Director of Fisheries.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "041"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it takes fish for sale (commercial fishing)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fisheries Act 1988 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11822",
+          "locator": "s 10(1)(a) (current reprint)",
+          "quote": "A licence may authorise a person to do one or more of the following things: (a) take fish or aquatic life: (i) for sale",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Take fish or aquatic life for sale only under a licence that authorises it.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can trade.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
