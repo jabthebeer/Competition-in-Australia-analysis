@@ -72,15 +72,20 @@ def version(s: Source) -> str:
     return ""
 
 
+def an(word: str) -> str:
+    return "an" if word[0] in "aeiou" else "a"
+
+
 def problems(reqs: list[Requirement]) -> list[str]:
     """Sources a reader could not trace, and requirements that name no administering body without a reason."""
     out = []
     for q in reqs:
         for part, s in sources(q):
             if not (s.locator or "").strip():
-                out.append(f"{q.id}: a {part} source has no locator ({s.url})")
+                out.append(f"{q.id}: {an(part)} {part} source has no locator ({s.url})")
             if not version(s):
-                out.append(f"{q.id}: a {part} source on a legislation register names no version ({s.url}, {s.locator})")
+                out.append(f"{q.id}: {an(part)} {part} source on a legislation register names no version "
+                           f"({s.url}, {s.locator})")
         if q.tier != "local" and not q.administration and q.id not in NO_BODY:
             out.append(f"{q.id}: names no body that administers it")
         if q.id in NO_BODY and q.administration:
