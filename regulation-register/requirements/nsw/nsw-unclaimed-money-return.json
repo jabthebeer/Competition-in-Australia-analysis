@@ -1,0 +1,102 @@
+{
+  "id": "nsw-unclaimed-money-return",
+  "family": "unclaimed-money-return",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Lodge a return of unclaimed money",
+  "kind": "reporting",
+  "what": "Lodge a return of unclaimed money held at 30 June within 4 months, and pay the money to the Chief Commissioner.",
+  "laws": [
+    {
+      "title": "Unclaimed Money Act 1995 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1995-075",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-09-04/act-1995-075",
+      "provisions": "s 10(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Unclaimed Money Act 1995 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-09-04/act-1995-075",
+      "locator": "s 10(1) (version of 2023-09-04)",
+      "quote": "An enterprise that holds unclaimed money on 30 June in any year must, within 4 months after that date (or such longer period as the Chief Commissioner may in a particular case allow), lodge with the Chief Commissioner a return relating to that money in a form approved by the Chief Commissioner",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2023-09-04/act-1995-075"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it holds unclaimed money (such as unpresented cheques or unclaimed customer credits) at 30 June",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Unclaimed Money Act 1995 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-09-04/act-1995-075",
+          "locator": "s 10(1) (version of 2023-09-04)",
+          "quote": "An enterprise that holds unclaimed money on 30 June in any year must, within 4 months after that date (or such longer period as the Chief Commissioner may in a particular case allow), lodge with the Chief Commissioner a return relating to that money in a form approved by the Chief Commissioner",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2023-09-04/act-1995-075"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Lodge a return of unclaimed money held at 30 June within 4 months, and pay the money to the Chief Commissioner.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A yearly return, and payment of the unclaimed money.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "id": "nsw-contaminated-land-notification",
+  "family": "contaminated-land-notification",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Notify the EPA of contaminated land",
+  "kind": "notification",
+  "what": "Notify the EPA in writing when the business's activities have contaminated land, or when land it owns is contaminated, as the section requires.",
+  "laws": [
+    {
+      "title": "Contaminated Land Management Act 1997 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1997-140",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-11-21/act-1997-140",
+      "provisions": "s 60(1), s 60(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Contaminated Land Management Act 1997 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-11-21/act-1997-140",
+      "locator": "s 60(1) (version of 2024-11-21)",
+      "quote": "A person whose activities have contaminated land must notify the EPA in writing in accordance with this section that the land has been so contaminated",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-11-21/act-1997-140"
+    },
+    {
+      "title": "Contaminated Land Management Act 1997 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-11-21/act-1997-140",
+      "locator": "s 60(2) (version of 2024-11-21)",
+      "quote": "An owner of land that has been contaminated (whether before or during the owner's ownership of the land) must notify the EPA in writing in accordance with this section that the land has been so contaminated",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-11-21/act-1997-140"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its activities have contaminated land, or it owns land that is contaminated",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Contaminated Land Management Act 1997 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-11-21/act-1997-140",
+          "locator": "s 60(1) (version of 2024-11-21)",
+          "quote": "A person whose activities have contaminated land must notify the EPA in writing in accordance with this section that the land has been so contaminated",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-11-21/act-1997-140"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Notify the EPA in writing when the business's activities have contaminated land, or when land it owns is contaminated, as the section requires.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
