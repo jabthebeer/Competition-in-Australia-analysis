@@ -1,0 +1,145 @@
+{
+  "id": "sa-electricity-generation-authority",
+  "family": "electricity-generation-authority",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "energy-markets",
+  "title": "Hold an authority to generate or transmit electricity",
+  "kind": "licence",
+  "what": "Generate electricity, or operate a transmission or distribution network, only under a licence from the Commission.",
+  "laws": [
+    {
+      "title": "Electricity Act 1996 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1996.96.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/electricity%20act%201996/current/1996.96.un.rtf",
+      "provisions": "s 15(1), s 15(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Electricity Act 1996 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/electricity%20act%201996/current/1996.96.un.rtf",
+      "locator": "s 15(1) (version of 2020-10-01)",
+      "quote": "A person must not carry on operations in the electricity supply industry for which a licence is required unless the person holds a licence under this Part authorising the relevant operations",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2020-10-01/1996.96.un"
+    },
+    {
+      "title": "Electricity Act 1996 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/electricity%20act%201996/current/1996.96.un.rtf",
+      "locator": "s 15(2) (version of 2020-10-01)",
+      "quote": "The operations in the electricity supply industry for which a licence is required are— (a) generation of electricity; or (b) operation of a transmission or distribution network",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2020-10-01/1996.96.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Essential Services Commission of South Australia",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Act 1996 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/electricity%20act%201996/current/1996.96.un.rtf",
+          "locator": "s 4, words naming the body (found 18 Nov 2026) (version of 2020-10-01)",
+          "quote": "Commission means the Essential Services Commission established under the Essential Services Commission Act 2002;",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2020-10-01/1996.96.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2611",
+        "2612",
+        "2619",
+        "2620",
+        "2630"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it generates electricity or operates a transmission or distribution network",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Act 1996 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/electricity%20act%201996/current/1996.96.un.rtf",
+          "locator": "s 15(1) (version of 2020-10-01)",
+          "quote": "A person must not carry on operations in the electricity supply industry for which a licence is required unless the person holds a licence under this Part authorising the relevant operations",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2020-10-01/1996.96.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section 15(2) also licenses retailing of electricity, which is not recorded here. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Generate electricity, or operate a transmission or distribution network, only under a licence from the Commission.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

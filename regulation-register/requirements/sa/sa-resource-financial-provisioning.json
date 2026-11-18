@@ -1,0 +1,143 @@
+{
+  "id": "sa-resource-financial-provisioning",
+  "family": "resource-financial-provisioning",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "mining-and-petroleum-titles",
+  "title": "Pay into the Mining Rehabilitation Fund when required",
+  "kind": "tax-or-levy",
+  "what": "If the Minister requires it, pay into the Mining Rehabilitation Fund the amount the Minister decides, before the tenement ends or within the prescribed period after.",
+  "laws": [
+    {
+      "title": "Mining Act 1971 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1971.109.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/mining%20act%201971/current/1971.109.un.rtf",
+      "provisions": "s 62AA(3)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Mining Act 1971 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/mining%20act%201971/current/1971.109.un.rtf",
+      "locator": "s 62AA(3) (version of 2025-02-13)",
+      "quote": "The Minister may, after taking into account the matters specified in subsection (4), require a tenement holder (or former tenement holder) to pay an amount determined by the Minister into the fund",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2025-02-13/1971.109.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Minister administering the Mining Act 1971 (SA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Mining Act 1971 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/mining%20act%201971/current/1971.109.un.rtf",
+          "locator": "s 62AA, words naming the body (found 18 Nov 2026) (version of 2025-02-13)",
+          "quote": "The Minister must establish a fund entitled the Mining Rehabilitation Fund.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2025-02-13/1971.109.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0600",
+        "0700",
+        "0801",
+        "0802",
+        "0803",
+        "0804",
+        "0805",
+        "0806",
+        "0807",
+        "0809",
+        "0911",
+        "0919",
+        "0990"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it holds a mineral tenement",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Mining Act 1971 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/mining%20act%201971/current/1971.109.un.rtf",
+          "locator": "s 62AA(3) (version of 2025-02-13)",
+          "quote": "The Minister may, after taking into account the matters specified in subsection (4), require a tenement holder (or former tenement holder) to pay an amount determined by the Minister into the fund",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2025-02-13/1971.109.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "If the Minister requires it, pay into the Mining Rehabilitation Fund the amount the Minister decides, before the tenement ends or within the prescribed period after.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Contributions to the scheme fund, or a surety, add to the cost of resource activities.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

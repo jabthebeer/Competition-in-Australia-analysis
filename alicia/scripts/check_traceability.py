@@ -43,6 +43,10 @@ NO_BODY = {
     "it.",
     "nsw-workplace-surveillance-notice": "The Workplace Surveillance Act 2005 names no regulator; its offences are "
     "prosecuted in the courts.",
+    "nsw-land-sales-disclosure": "The Conveyancing Act 1919 enforces off-the-plan disclosure through the purchaser's "
+    "right to rescind (ss 66ZO, 66ZP) and names no body that enforces it.",
+    "wa-land-sales-disclosure": "The Strata Titles Act 1985 enforces disclosure before contract through the buyer's "
+    "right to avoid the contract (s 159) and names no body that enforces it.",
 }
 
 
