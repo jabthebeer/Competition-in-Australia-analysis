@@ -1,0 +1,118 @@
+{
+  "id": "sa-container-refund-supply-arrangement",
+  "family": "container-refund-supply-arrangement",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "container-deposits-and-packaging",
+  "title": "Supply drinks only in approved, refund-marked containers",
+  "kind": "approval",
+  "what": "Supply drinks to retailers, or sell them for consumption, only in category A or B containers bearing the approved refund marking.",
+  "laws": [
+    {
+      "title": "Environment Protection Act 1993 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1993.76.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+      "provisions": "s 69B(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environment Protection Act 1993 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+      "locator": "s 69B(2) (version of 2024-03-01)",
+      "quote": "A person must not— (a) supply a beverage in a container to a retailer for sale by the retailer; or (b) sell a beverage in a container for consumption, unless the container is a category A or category B container and bears the approved refund marking for containers of that class",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-03-01/1993.76.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Before first supplying drinks in eligible containers in the state",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "1211",
+        "1212",
+        "1214"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it first supplies drinks in eligible containers in the state",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Drink makers and importers who first supply in the state; the register item also lists retailers and recyclers, which the scheme touches in other ways.",
+      "sources": [
+        {
+          "title": "Environment Protection Act 1993 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+          "locator": "s 69B(2) (version of 2024-03-01)",
+          "quote": "A person must not— (a) supply a beverage in a container to a retailer for sale by the retailer; or (b) sell a beverage in a container for consumption, unless the container is a category A or category B container and bears the approved refund marking for containers of that class",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-03-01/1993.76.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. South Australia's scheme approves containers (beverage container approvals, whose conditions bind under s 69D) rather than requiring a supply arrangement. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Supply drinks to retailers, or sell them for consumption, only in category A or B containers bearing the approved refund marking.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Suppliers must register every container type and report and pay scheme costs.",
+        "positions": []
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Each state's scheme has its own registration and cost recovery, adding costs to selling in several states.",
+        "positions": []
+      },
+      {
+        "driver": "prices-taxes",
+        "mark": 1,
+        "reason": "The deposit puts a price on littered and landfilled containers, a cost the market otherwise ignores.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "medium",
+    "confidence_note": "Marks copied from the register item nsw-cds-2017 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
