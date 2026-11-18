@@ -1,0 +1,105 @@
+{
+  "id": "nsw-gaming-machine-tax",
+  "family": "gaming-machine-tax",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "gambling",
+  "title": "Pay gaming machine tax",
+  "kind": "tax-or-levy",
+  "what": "Pay tax on the profits from gaming machines kept in the hotel or club.",
+  "laws": [
+    {
+      "title": "Gaming Machine Tax Act 2001 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2001-072",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-11-29/act-2001-072",
+      "provisions": "s 6(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gaming Machine Tax Act 2001 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-11-29/act-2001-072",
+      "locator": "s 6(1) (version of 2021-11-29)",
+      "quote": "A tax is payable on profits from gaming machines kept in a hotel or on the premises of a registered club",
+      "accessed": "2026-11-17",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2021-11-29/act-2001-072"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4520",
+        "4530"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it keeps gaming machines",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gaming Machine Tax Act 2001 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-11-29/act-2001-072",
+          "locator": "s 6(1) (version of 2021-11-29)",
+          "quote": "A tax is payable on profits from gaming machines kept in a hotel or on the premises of a registered club",
+          "accessed": "2026-11-17",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2021-11-29/act-2001-072"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section number read from the heading before the offence and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay tax on the profits from gaming machines kept in the hotel or club.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A tax on gaming machine profits, at rates that rise with profits, raises the cost of the activity.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "drafted_on": "2026-11-17",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

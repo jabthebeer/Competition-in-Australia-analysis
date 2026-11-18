@@ -1,0 +1,115 @@
+{
+  "id": "nsw-point-of-consumption-tax",
+  "family": "point-of-consumption-tax",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "gambling",
+  "title": "Pay point of consumption tax on wagering",
+  "kind": "tax-or-levy",
+  "what": "Pay point of consumption tax, monthly, on net NSW wagering revenue above $1 million a financial year.",
+  "laws": [
+    {
+      "title": "Betting Tax Act 2001 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2001-043",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2022-07-01/act-2001-043",
+      "provisions": "s 13C(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Betting Tax Act 2001 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2022-07-01/act-2001-043",
+      "locator": "s 13C(1) (version of 2022-07-01)",
+      "quote": "A betting operator is liable to pay tax on the operator's net NSW wagering revenue for a financial year (point of consumption tax)",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2022-07-01/act-2001-043"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "revenue",
+      "test": ">",
+      "value": 1000000.0,
+      "unit": "AUD of net NSW wagering revenue a financial year (no tax at or below it)",
+      "as_at": "2022-07-01",
+      "note": "As in the version of 1 July 2022; later changes not checked.",
+      "sources": [
+        {
+          "title": "Betting Tax Act 2001 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2022-07-01/act-2001-043",
+          "locator": "s 13C(2) (version of 2022-07-01)",
+          "quote": "Point of consumption tax is payable in respect of a financial year as follows— (a) if the net NSW wagering revenue for the financial year is $1,000,000 or less—no tax is payable, (b) if the net NSW wagering revenue for the financial year is more than $1,000,000—tax is payable at the rate of 15% of the amount by which the net NSW wagering revenue exceeds $1,000,000",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2022-07-01/act-2001-043"
+        }
+      ]
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9209"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it takes bets from people in NSW (a betting operator)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Betting Tax Act 2001 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2022-07-01/act-2001-043",
+          "locator": "s 13C(1) (version of 2022-07-01)",
+          "quote": "A betting operator is liable to pay tax on the operator's net NSW wagering revenue for a financial year (point of consumption tax)",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2022-07-01/act-2001-043"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay point of consumption tax, monthly, on net NSW wagering revenue above $1 million a financial year.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "A 15% tax on net NSW wagering revenue above $1 million raises the cost of wagering services.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

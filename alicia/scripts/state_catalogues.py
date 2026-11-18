@@ -397,9 +397,12 @@ def build() -> None:
             with path.open(encoding="utf-8", newline="") as fh:
                 kept = {r["url"]: r for r in csv.DictReader(fh) if r.get("call") and r.get("reason")}
         by_key = {norm(r["name"]): r for r in rows}
+        # A cited law whose title differs from the list's (e.g. "National Electricity (NSW) Law" listed as "National
+        # Electricity") is matched by its register address.
+        by_url = {r["url"]: r for r in rows if r.get("url")}
         unmatched = []
         for name, url, rid in cited.get(state, []):
-            r = by_key.get(norm(name))
+            r = by_key.get(norm(name)) or (by_url.get(url) if url else None)
             if r is None:
                 unmatched.append((name, url, rid))
                 continue

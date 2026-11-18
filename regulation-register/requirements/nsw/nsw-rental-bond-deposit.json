@@ -1,0 +1,128 @@
+{
+  "id": "nsw-rental-bond-deposit",
+  "family": "rental-bond-deposit",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Deposit rental bonds with the Secretary",
+  "kind": "reporting",
+  "what": "Deposit each residential rental bond received with the Secretary within the deposit period, with a notice in the approved form.",
+  "laws": [
+    {
+      "title": "Residential Tenancies Act 2010 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2010-042",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-13/act-2010-042",
+      "provisions": "s 162(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Residential Tenancies Act 2010 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-13/act-2010-042",
+      "locator": "s 162(1) (version of 2024-12-13)",
+      "quote": "A landlord, landlord's agent or other person who receives an amount of rental bond must deposit that amount with the Secretary within the deposit period together with a notice in the approved form",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-12-13/act-2010-042"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it lets residential premises and takes a rental bond",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies Act 2010 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-13/act-2010-042",
+          "locator": "s 162(1) (version of 2024-12-13)",
+          "quote": "A landlord, landlord's agent or other person who receives an amount of rental bond must deposit that amount with the Secretary within the deposit period together with a notice in the approved form",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-13/act-2010-042"
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "6720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it manages residential tenancies and receives rental bonds",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies Act 2010 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-13/act-2010-042",
+          "locator": "s 162(1) (version of 2024-12-13)",
+          "quote": "A landlord, landlord's agent or other person who receives an amount of rental bond must deposit that amount with the Secretary within the deposit period together with a notice in the approved form",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-13/act-2010-042"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Deposit each residential rental bond received with the Secretary within the deposit period, with a notice in the approved form.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Each bond must be lodged with the Secretary, with a notice, within the deposit period.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

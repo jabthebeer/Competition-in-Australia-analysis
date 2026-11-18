@@ -1,0 +1,134 @@
+{
+  "id": "tas-pesticide-work-licence",
+  "family": "pesticide-work-licence",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "agvet-chemicals",
+  "title": "Hold a commercial operator licence",
+  "kind": "licence",
+  "what": "Offer a chemical application service for fee or reward (such as spraying) only under a commercial operator licence.",
+  "laws": [
+    {
+      "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 1995 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1995-106",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-106",
+      "provisions": "s 21",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 1995 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-106",
+      "locator": "s 21 (current)",
+      "quote": "A person must not offer a service for fee or reward which involves – (a) the use of a prescribed chemical product; or (b) the use of chemical products of a class that is prescribed; or (c) the use of a chemical product in a prescribed manner – unless that person holds a commercial operator licence",
+      "accessed": "2026-11-17",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7311"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 1995 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-106",
+          "locator": "s 21 (current)",
+          "quote": "A person must not offer a service for fee or reward which involves – (a) the use of a prescribed chemical product; or (b) the use of chemical products of a class that is prescribed; or (c) the use of a chemical product in a prescribed manner – unless that person holds a commercial operator licence",
+          "accessed": "2026-11-17",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "0529"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it applies pesticides for others (such as crop or aerial spraying)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 1995 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-106",
+          "locator": "s 21 (current)",
+          "quote": "A person must not offer a service for fee or reward which involves – (a) the use of a prescribed chemical product; or (b) the use of chemical products of a class that is prescribed; or (c) the use of a chemical product in a prescribed manner – unless that person holds a commercial operator licence",
+          "accessed": "2026-11-17",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 17 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Offer a chemical application service for fee or reward (such as spraying) only under a commercial operator licence.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Training and competency tests narrow who may do the work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "drafted_on": "2026-11-17",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

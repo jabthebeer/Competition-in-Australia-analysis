@@ -1,0 +1,136 @@
+{
+  "id": "nsw-heavy-vehicle-chain-of-responsibility",
+  "family": "heavy-vehicle-chain-of-responsibility",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "heavy-vehicles",
+  "title": "Ensure the safety of heavy vehicle transport activities",
+  "kind": "standard",
+  "what": "As a party in the chain of responsibility for a heavy vehicle (employer, operator, scheduler, consignor, consignee, packer, loading manager, loader or unloader), ensure so far as is reasonably practicable the safety of the business's transport activities relating to the vehicle.",
+  "laws": [
+    {
+      "title": "Heavy Vehicle National Law (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2013-42a",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-02-19/act-2013-42a",
+      "provisions": "s 26C(1), s 5",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Heavy Vehicle National Law (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-02-19/act-2013-42a",
+      "locator": "s 26C(1) (version of 2024-02-19)",
+      "quote": "Each party in the chain of responsibility for a heavy vehicle must ensure, so far as is reasonably practicable, the safety of the party's transport activities relating to the vehicle",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-02-19/act-2013-42a"
+    },
+    {
+      "title": "Heavy Vehicle National Law (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-02-19/act-2013-42a",
+      "locator": "s 5 (version of 2024-02-19)",
+      "quote": "party in the chain of responsibility, for a heavy vehicle, means each of the following persons— (a) if the vehicle's driver is an employed driver—an employer of the driver; (b) if the vehicle's driver is a self-employed driver—a prime contractor for the driver; (c) an operator of the vehicle; (d) a scheduler for the vehicle; (e) a consignor of any goods in the vehicle; (f) a consignee of any goods in the vehicle; (g) a packer of any goods in the vehicle; (h) a loading manager for any goods in the vehicle; (i) a loader of any goods in the vehicle; (j) an unloader of any goods in the vehicle",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-02-19/act-2013-42a"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4610"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates heavy vehicles or employs or schedules their drivers",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Heavy Vehicle National Law (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-02-19/act-2013-42a",
+          "locator": "s 26C(1) (version of 2024-02-19)",
+          "quote": "Each party in the chain of responsibility for a heavy vehicle must ensure, so far as is reasonably practicable, the safety of the party's transport activities relating to the vehicle",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-02-19/act-2013-42a"
+        }
+      ]
+    },
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it consigns, receives, packs, loads or unloads goods carried by a heavy vehicle",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Heavy Vehicle National Law (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-02-19/act-2013-42a",
+          "locator": "s 26C(1) (version of 2024-02-19)",
+          "quote": "Each party in the chain of responsibility for a heavy vehicle must ensure, so far as is reasonably practicable, the safety of the party's transport activities relating to the vehicle",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-02-19/act-2013-42a"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As a party in the chain of responsibility for a heavy vehicle (employer, operator, scheduler, consignor, consignee, packer, loading manager, loader or unloader), ensure so far as is reasonably practicable the safety of the business's transport activities relating to the vehicle.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Safety systems for fatigue, speed, mass and loading must be kept up across every party in the chain.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

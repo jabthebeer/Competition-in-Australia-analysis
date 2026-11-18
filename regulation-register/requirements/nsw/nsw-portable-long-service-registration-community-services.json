@@ -1,0 +1,110 @@
+{
+  "id": "nsw-portable-long-service-registration-community-services",
+  "family": "portable-long-service-registration-community-services",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register for community services portable long service leave",
+  "kind": "registration",
+  "what": "Apply to the Long Service Corporation for registration as an employer within 1 month of becoming an employer of community services workers, then lodge returns and pay the levy.",
+  "laws": [
+    {
+      "title": "Community Services Sector (Portable Long Service Leave) Act 2024 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2024-039",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-06-24/act-2024-039",
+      "provisions": "s 10(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Community Services Sector (Portable Long Service Leave) Act 2024 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-06-24/act-2024-039",
+      "locator": "s 10(2) (version of 2024-06-24)",
+      "quote": "A person must apply to the Corporation for registration as an employer within— (a) for a person who becomes an employer on or after the commencement of this Act—1 month after becoming an employer,",
+      "accessed": "2026-11-17",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-06-24/act-2024-039"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8790"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it employs workers doing community service work as the Act defines it",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Community Services Sector (Portable Long Service Leave) Act 2024 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-06-24/act-2024-039",
+          "locator": "s 10(2) (version of 2024-06-24)",
+          "quote": "A person must apply to the Corporation for registration as an employer within— (a) for a person who becomes an employer on or after the commencement of this Act—1 month after becoming an employer,",
+          "accessed": "2026-11-17",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-06-24/act-2024-039"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section number read from the heading before the offence and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Apply to the Long Service Corporation for registration as an employer within 1 month of becoming an employer of community services workers, then lodge returns and pay the levy.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": 1,
+        "reason": "Workers keep their long service entitlement when they move between employers in the sector.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registration, service returns and the levy.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "drafted_on": "2026-11-17",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

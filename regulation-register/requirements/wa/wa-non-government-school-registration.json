@@ -1,0 +1,113 @@
+{
+  "id": "wa-non-government-school-registration",
+  "family": "non-government-school-registration",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register a non-government school",
+  "kind": "registration",
+  "what": "Establish or conduct a non-government school only if it is registered.",
+  "laws": [
+    {
+      "title": "School Education Act 1999 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a1960",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49345.docx",
+      "provisions": "s 154(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "School Education Act 1999 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49345.docx",
+      "locator": "s 154(1) (current version)",
+      "quote": "A person must not establish or conduct a school for the education of children unless the school is registered under section 160",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8021",
+        "8022",
+        "8023",
+        "8024"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it conducts a non-government school",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "School Education Act 1999 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49345.docx",
+          "locator": "s 154(1) (current version)",
+          "quote": "A person must not establish or conduct a school for the education of children unless the school is registered under section 160",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Establish or conduct a non-government school only if it is registered.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
