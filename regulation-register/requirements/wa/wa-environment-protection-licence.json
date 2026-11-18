@@ -1,0 +1,129 @@
+{
+  "id": "wa-environment-protection-licence",
+  "family": "environment-protection-licence",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Hold an environment protection licence for listed activities",
+  "kind": "licence",
+  "what": "As the occupier of prescribed premises, cause or change emissions from them only under a licence for the premises; works that make premises prescribed premises also need a works approval (s 52).",
+  "laws": [
+    {
+      "title": "Environmental Protection Act 1986 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a252",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47972.docx",
+      "provisions": "s 56(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environmental Protection Act 1986 (WA)",
+      "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47972.docx",
+      "locator": "s 56(1) (version of mrdoc_47972)",
+      "quote": "Subject to this Act, the occupier of any prescribed premises who — (a) causes or increases, or permits to be caused or increased, an emission; or (b) alters or permits to be altered the nature of the waste, noise, odour or electromagnetic radiation emitted, from the prescribed premises commits an offence unless he is the holder of a licence issued in respect of the prescribed premises",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "western_australian_legislation:mrdoc_47972/law_a252"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "CEO of the department administering the Environmental Protection Act 1986 (WA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environmental Protection Act 1986 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47972.docx",
+          "locator": "s 60, words naming the body (found 18 Nov 2026) (version of mrdoc_47972)",
+          "quote": "the CEO may grant or amend a works approval or licence so as to make the works approval or licence subject to conditions which specify standards that are more stringent than those required by or under the approved policy or by prescribed standards;",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_47972/law_a252"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "When the business carries on an activity in the state's list (a schedule to the Act or regulations).",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it occupies prescribed premises (premises the regulations list for activities that can pollute)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Any business carrying on a listed activity (such as large manufacturing, waste, extractive, energy and intensive agriculture activities); the lists differ by state and are not yet coded class by class.",
+      "sources": [
+        {
+          "title": "Environmental Protection Act 1986 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47972.docx",
+          "locator": "s 56(1) (version of mrdoc_47972)",
+          "quote": "Subject to this Act, the occupier of any prescribed premises who — (a) causes or increases, or permits to be caused or increased, an emission; or (b) alters or permits to be altered the nature of the waste, noise, odour or electromagnetic radiation emitted, from the prescribed premises commits an offence unless he is the holder of a licence issued in respect of the prescribed premises",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_47972/law_a252"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As the occupier of prescribed premises, cause or change emissions from them only under a licence for the premises; works that make premises prescribed premises also need a works approval (s 52).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence is needed before the listed activities can start.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Licence conditions, monitoring, reporting and annual fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; the environmental benefit is not counted by the framework.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
