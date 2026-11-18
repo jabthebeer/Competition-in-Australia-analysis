@@ -1,0 +1,133 @@
+{
+  "id": "nsw-agvet-chemical-use",
+  "family": "agvet-chemical-use",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "agvet-chemicals",
+  "title": "Use only registered pesticides",
+  "kind": "standard",
+  "what": "Use a pesticide only if it is registered, unless a permit authorises its use.",
+  "laws": [
+    {
+      "title": "Pesticides Act 1999 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1999-080",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-04-03/act-1999-080",
+      "provisions": "s 13(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Pesticides Act 1999 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-04-03/act-1999-080",
+      "locator": "s 13(1) (version of 2024-04-03)",
+      "quote": "A person must not use an unregistered pesticide unless the person— (a) is authorised to do so by a permit, and (b) complies with the permit",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-04-03/act-1999-080"
+    }
+  ],
+  "administered_by": [
+    "nsw-epa"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "NSW Environment Protection Authority",
+      "bodies": [
+        "nsw-epa"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Pesticides Act 1999 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-04-03/act-1999-080",
+          "locator": "words naming the body (found 18 Nov 2026) (version of 2024-04-03)",
+          "quote": "Environment Protection Authority may direct clean-up action (1) The Environment Protection Authority may, by notice in writing, do either or both of the following— (a) direct a person who is reaso",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-04-03/act-1999-080"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it uses agricultural chemical products",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Pesticides Act 1999 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-04-03/act-1999-080",
+          "locator": "s 13(1) (version of 2024-04-03)",
+          "quote": "A person must not use an unregistered pesticide unless the person— (a) is authorised to do so by a permit, and (b) complies with the permit",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-04-03/act-1999-080"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Use a pesticide only if it is registered, unless a permit authorises its use.",
+    "marks": [
+      {
+        "driver": "innovation",
+        "mark": -1,
+        "reason": "Only registered products may be used, which can delay new chemicals.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "innovation",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

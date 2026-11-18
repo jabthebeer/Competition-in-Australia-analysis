@@ -1,0 +1,136 @@
+{
+  "id": "act-electrical-work-licence",
+  "family": "electrical-work-licence",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "electrical-plumbing-gas-licensing",
+  "title": "Have electrical work done only by licensed electrical workers",
+  "kind": "licence",
+  "what": "Have electrical services provided only by people licensed in the electrician occupation and class.",
+  "laws": [
+    {
+      "title": "Construction Occupations (Licensing) Act 2004 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "2004-12",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-12/current/PDF/2004-12.PDF",
+      "provisions": "s 84(1), s 7 (construction occupations)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Construction Occupations (Licensing) Act 2004 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-12/current/PDF/2004-12.PDF",
+      "locator": "s 84(1) (current republication (R72, from 10 November 2026; Construction Occupations (Licensing) Act 2004 | Acts))",
+      "quote": "A person commits an offence if the person— (a) provides a service (whether as an employee or otherwise) in a construction occupation or occupation class; and (b) either— (i) is not licensed in the occupation or class",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Construction Occupations (Licensing) Act 2004 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-12/current/PDF/2004-12.PDF",
+      "locator": "s 7 (construction occupations) (current republication (R72, from 10 November 2026; Construction Occupations (Licensing) Act 2004 | Acts))",
+      "quote": "(e) electrician; (f) gasfitter",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Construction occupations registrar (ACT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Construction Occupations (Licensing) Act 2004 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-12/current/PDF/2004-12.PDF",
+          "locator": "s 19, words naming the body (found 18 Nov 2026) (current republication (R72, from 10 November 2026; Construction Occupations (Licensing)",
+          "quote": "the registrar must issue, or refuse to issue, the licence.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3232",
+        "3233"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its workers perform or supervise electrical work",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Construction Occupations (Licensing) Act 2004 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-12/current/PDF/2004-12.PDF",
+          "locator": "s 84(1) (current republication (R72, from 10 November 2026; Construction Occupations (Licensing) Act 2004 | Acts))",
+          "quote": "A person commits an offence if the person— (a) provides a service (whether as an employee or otherwise) in a construction occupation or occupation class; and (b) either— (i) is not licensed in the occupation or class",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Have electrical services provided only by people licensed in the electrician occupation and class.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Qualification tests narrow who may do the work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

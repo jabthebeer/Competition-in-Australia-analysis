@@ -1,0 +1,129 @@
+{
+  "id": "nt-agvet-chemical-use",
+  "family": "agvet-chemical-use",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "agvet-chemicals",
+  "title": "Use agricultural chemicals only as the approved label instructs",
+  "kind": "standard",
+  "what": "Use a registered agricultural chemical product only as its approved label instructs, unless a permit authorises otherwise.",
+  "laws": [
+    {
+      "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 2004 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "AGRICULTURAL-AND-VETERINARY-CHEMICALS-CONTROL-OF-USE-ACT-2004",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11586",
+      "provisions": "s 22(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 2004 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11586",
+      "locator": "s 22(1) (current reprint)",
+      "quote": "A person must not use a registered agricultural chemical product in a way that is contrary to the instructions on the approved label unless authorised under a permit",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Minister administering the Agricultural and Veterinary Chemicals (Control of Use) Act 2004 (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 2004 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11586",
+          "locator": "words naming the body (found 18 Nov 2026) (current reprint)",
+          "quote": "The Minister may, by notice in the Gazette, declare: (a) a substance or mixture of substances to be an agricultural chemical product;",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it uses agricultural chemical products",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 2004 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11586",
+          "locator": "s 22(1) (current reprint)",
+          "quote": "A person must not use a registered agricultural chemical product in a way that is contrary to the instructions on the approved label unless authorised under a permit",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. The NT duty found is label compliance; an offence of using unregistered products was not found by pattern. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Use a registered agricultural chemical product only as its approved label instructs, unless a permit authorises otherwise.",
+    "marks": [
+      {
+        "driver": "innovation",
+        "mark": -1,
+        "reason": "Only registered products may be used, which can delay new chemicals.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "innovation",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
