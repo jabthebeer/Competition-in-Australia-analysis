@@ -1,0 +1,128 @@
+{
+  "id": "wa-rental-bond-deposit",
+  "family": "rental-bond-deposit",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Pay security bonds to the bond administrator",
+  "kind": "reporting",
+  "what": "Pay each security bond received to the bond administrator within 14 days, with a receipt to the payer.",
+  "laws": [
+    {
+      "title": "Residential Tenancies Act 1987 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a693",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49316.docx",
+      "provisions": "s 29(4)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Residential Tenancies Act 1987 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49316.docx",
+      "locator": "s 29(4) (current version)",
+      "quote": "A person who receives a security bond paid in relation to a residential tenancy agreement — (a) must, as soon as practicable, give the person who paid the bond a receipt stating the following matters — (i) the date on which the bond was received; (ii) the name of the person who paid the bond; (iii) the amount of bond paid; (iv) the premises to which the bond relates; and (b) must pay the bond to the bond administrator as soon as practicable, and in any event within 14 days, after the day on which the person received the bond",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it lets residential premises and takes a rental bond",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies Act 1987 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49316.docx",
+          "locator": "s 29(4) (current version)",
+          "quote": "A person who receives a security bond paid in relation to a residential tenancy agreement — (a) must, as soon as practicable, give the person who paid the bond a receipt stating the following matters — (i) the date on which the bond was received; (ii) the name of the person who paid the bond; (iii) the amount of bond paid; (iv) the premises to which the bond relates; and (b) must pay the bond to the bond administrator as soon as practicable, and in any event within 14 days, after the day on which the person received the bond",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "6720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it manages residential tenancies and receives rental bonds",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies Act 1987 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49316.docx",
+          "locator": "s 29(4) (current version)",
+          "quote": "A person who receives a security bond paid in relation to a residential tenancy agreement — (a) must, as soon as practicable, give the person who paid the bond a receipt stating the following matters — (i) the date on which the bond was received; (ii) the name of the person who paid the bond; (iii) the amount of bond paid; (iv) the premises to which the bond relates; and (b) must pay the bond to the bond administrator as soon as practicable, and in any event within 14 days, after the day on which the person received the bond",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay each security bond received to the bond administrator within 14 days, with a receipt to the payer.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Each bond must be lodged with the Secretary, with a notice, within the deposit period.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

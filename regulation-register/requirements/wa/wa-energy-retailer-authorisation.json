@@ -1,0 +1,110 @@
+{
+  "id": "wa-energy-retailer-authorisation",
+  "family": "energy-retailer-authorisation",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "energy-markets",
+  "title": "Hold an electricity retail licence",
+  "kind": "licence",
+  "what": "Sell electricity to customers only under a retail licence (or an integrated regional licence).",
+  "laws": [
+    {
+      "title": "Electricity Industry Act 2004 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a7017",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49806.docx",
+      "provisions": "s 7(4)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Electricity Industry Act 2004 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49806.docx",
+      "locator": "s 7(4) (current version)",
+      "quote": "A person must not sell electricity to customers except under the authority of a retail licence or an integrated regional licence",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2640"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells electricity to customers",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Industry Act 2004 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49806.docx",
+          "locator": "s 7(4) (current version)",
+          "quote": "A person must not sell electricity to customers except under the authority of a retail licence or an integrated regional licence",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Gas retailing in WA is licensed under other law, not searched here. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Sell electricity to customers only under a retail licence (or an integrated regional licence).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
