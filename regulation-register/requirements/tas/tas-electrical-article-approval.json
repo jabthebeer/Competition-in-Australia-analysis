@@ -1,0 +1,111 @@
+{
+  "id": "tas-electrical-article-approval",
+  "family": "electrical-article-approval",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "product-standards",
+  "title": "Sell declared electrical articles only if approved",
+  "kind": "approval",
+  "what": "Sell electrical articles covered by the Part only if approved, marked and compliant with the relevant standard.",
+  "laws": [
+    {
+      "title": "Electricity Industry Safety and Administration Act 1997 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1997-072",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-072",
+      "provisions": "s 54",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Electricity Industry Safety and Administration Act 1997 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-072",
+      "locator": "s 54 (current)",
+      "quote": "A person must not in the course of a business sell an electrical article to which this Part applies unless – (a) the article is approved as required under this Part; and (b) the article is marked as required under this Part; and (c) the article complies with the relevant standard for the article",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4221",
+        "3494"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells declared electrical articles",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Industry Safety and Administration Act 1997 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-072",
+          "locator": "s 54 (current)",
+          "quote": "A person must not in the course of a business sell an electrical article to which this Part applies unless – (a) the article is approved as required under this Part; and (b) the article is marked as required under this Part; and (c) the article complies with the relevant standard for the article",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Sell electrical articles covered by the Part only if approved, marked and compliant with the relevant standard.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Each model of a declared article needs approval before it can be sold.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

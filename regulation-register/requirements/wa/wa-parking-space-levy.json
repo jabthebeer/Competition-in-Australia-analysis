@@ -1,0 +1,105 @@
+{
+  "id": "wa-parking-space-levy",
+  "family": "parking-space-levy",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a parking bay licence in the Perth parking management area",
+  "kind": "licence",
+  "what": "Permit parking on non-residential land or buildings in the Perth parking management area only under a parking bay licence (which carries a licence fee).",
+  "laws": [
+    {
+      "title": "Perth Parking Management Act 1999 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a1938",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46919.docx",
+      "provisions": "s 7",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Perth Parking Management Act 1999 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46919.docx",
+      "locator": "s 7 (current version)",
+      "quote": "The owner of land or a building in the Perth parking management area must not permit a vehicle to be parked on the land or in or on the building unless — (a) the land or building is used solely for private residential purposes; or (b) the owner has a parking bay licence that permits the vehicle to be parked there;",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9533",
+        "6712"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns land or a building with parking in the Perth parking management area",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Perth Parking Management Act 1999 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46919.docx",
+          "locator": "s 7 (current version)",
+          "quote": "The owner of land or a building in the Perth parking management area must not permit a vehicle to be parked on the land or in or on the building unless — (a) the land or building is used solely for private residential purposes; or (b) the owner has a parking bay licence that permits the vehicle to be parked there;",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. The licence fee is imposed by the Perth Parking Management (Taxing) Act 1999 (not quoted). Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Permit parking on non-residential land or buildings in the Perth parking management area only under a parking bay licence (which carries a licence fee).",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "An annual levy on parking spaces in the levy districts raises the cost of parking.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "id": "sa-contaminated-land-notification",
+  "family": "contaminated-land-notification",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Notify the EPA of contaminated land",
+  "kind": "notification",
+  "what": "Notify the EPA in writing of site contamination that affects or threatens underground water, as owner or occupier of the site (or as its auditor or consultant).",
+  "laws": [
+    {
+      "title": "Environment Protection Act 1993 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1993.76.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+      "provisions": "s 83A(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environment Protection Act 1993 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+      "locator": "s 83A(2) (version of 2024-03-01)",
+      "quote": "A person to whom this section applies must notify the Authority in writing as soon as reasonably practicable after becoming aware of the existence of site contamination at the site or in the vicinity of the site (whether arising before or after the commencement of this section) that affects or threatens",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-03-01/1993.76.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns or occupies a site with contamination that affects or threatens underground water",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environment Protection Act 1993 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+          "locator": "s 83A(2) (version of 2024-03-01)",
+          "quote": "A person to whom this section applies must notify the Authority in writing as soon as reasonably practicable after becoming aware of the existence of site contamination at the site or in the vicinity of the site (whether arising before or after the commencement of this section) that affects or threatens",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-03-01/1993.76.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Notify the EPA in writing of site contamination that affects or threatens underground water, as owner or occupier of the site (or as its auditor or consultant).",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
