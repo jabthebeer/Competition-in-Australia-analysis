@@ -142,6 +142,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-6b done 18 Nov 2026 (E-326): WA's high band called; 6 requirements.** Cat breeders, veterinary premises and licensed racecourses (earlier 'not found' cells), and three WA-first families: public aquatic facility permits, lobbyist registration and the construction industry training levy. 1,068 requirements.
 - **D-6c done 18 Nov 2026 (E-327): WA's medium band called; 5 requirements.** Abattoir approval and licensed crematoria (earlier 'not found' cells), and three WA-first families: auctioneer licences, pearling and hatchery licences, and industrial hemp licences. 1,073 requirements.
 - **D-6d done 18 Nov 2026 (E-328): WA's low band called; WA fully called; 1 requirement.** 763 low-signal laws called; dangerous goods vehicle licences drafted (reg 215(2)). Every WA law now has a call except those set aside by triage. Bookmaker licences remain to draft. 1,074 requirements.
+- **D-6e done 19 Nov 2026 (E-329): the six WA-first families in the other jurisdictions; 14 requirements.** Public pools (NSW, SA), lobbyists (Qld), construction training levies (SA, Tas, ACT), auctioneers (NSW, Qld, Tas, ACT, NT) and industrial hemp (NSW, SA, Tas). 28 cells logged (21 not found, 4 to draft, 3 blocked). 1,088 requirements.
 
 ### D-2: the catalogues and the new estimate
 

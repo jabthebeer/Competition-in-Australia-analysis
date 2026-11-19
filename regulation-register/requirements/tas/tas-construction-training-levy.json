@@ -1,0 +1,145 @@
+{
+  "id": "tas-construction-training-levy",
+  "family": "construction-training-levy",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay the construction industry training levy",
+  "kind": "tax-or-levy",
+  "what": "As the owner of a construction project, pay the training levy before a building or plumbing permit is issued.",
+  "laws": [
+    {
+      "title": "Building and Construction Industry Training Fund Act 1990 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1990-038",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1990-038",
+      "provisions": "s 25, s 27",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building and Construction Industry Training Fund Act 1990 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1990-038",
+      "locator": "s 25 (current)",
+      "quote": "The project owner in respect of any building or construction work is liable to pay the levy on that building or construction work before the issue of a building permit or plumbing permit in respect of that work",
+      "accessed": "2026-11-19",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building and Construction Industry Training Fund Act 1990 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1990-038",
+      "locator": "s 27 (current)",
+      "quote": "A project owner shall pay the levy to the Board or a collection agency",
+      "accessed": "2026-11-19",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Building and Construction Industry Training Board (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building and Construction Industry Training Fund Act 1990 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1990-038",
+          "locator": "s 3, words naming the body (found 19 Nov 2026) (current)",
+          "quote": "Board means the Tasmanian Building and Construction Industry Training Board continued in existence by virtue of section 4 (1) ;",
+          "accessed": "2026-11-19",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019",
+        "3020",
+        "3101",
+        "3109"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns a building or construction project valued above the levy threshold",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building and Construction Industry Training Fund Act 1990 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1990-038",
+          "locator": "s 25 (current)",
+          "quote": "The project owner in respect of any building or construction work is liable to pay the levy on that building or construction work before the issue of a building permit or plumbing permit in respect of that work",
+          "accessed": "2026-11-19",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 19 Nov 2026. Reach and framework marks follow the WA requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As the owner of a construction project, pay the training levy before a building or plumbing permit is issued.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "The levy adds to the cost of construction projects.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-19"
+  },
+  "drafted_on": "2026-11-19",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
