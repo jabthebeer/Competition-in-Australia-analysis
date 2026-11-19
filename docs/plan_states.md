@@ -144,6 +144,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-6d done 18 Nov 2026 (E-328): WA's low band called; WA fully called; 1 requirement.** 763 low-signal laws called; dangerous goods vehicle licences drafted (reg 215(2)). Every WA law now has a call except those set aside by triage. Bookmaker licences remain to draft. 1,074 requirements.
 - **D-6e done 19 Nov 2026 (E-329): the six WA-first families in the other jurisdictions; 14 requirements.** Public pools (NSW, SA), lobbyists (Qld), construction training levies (SA, Tas, ACT), auctioneers (NSW, Qld, Tas, ACT, NT) and industrial hemp (NSW, SA, Tas). 28 cells logged (21 not found, 4 to draft, 3 blocked). 1,088 requirements.
 - **D-7a done 19 Nov 2026 (E-330): SA's 'to draft' cells and high band; 7 requirements.** Cemeteries and crematoria, dangerous goods vehicles and apprentice employers (SA cells), and four SA-first families: declared air route licences, hydroponic equipment dealers, petroleum products licences and dangerous substances storage licences. 129 high-signal laws called. 1,095 requirements.
+- **D-7b and D-7c done 19 Nov 2026 (E-331): SA's medium (280) and low (519) bands called; SA fully called.** No new requirement; the medium band's licensing duties support requirements already recorded. 1,095 requirements.
 
 ### D-2: the catalogues and the new estimate
 
