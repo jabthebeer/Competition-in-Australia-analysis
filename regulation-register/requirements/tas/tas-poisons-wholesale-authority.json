@@ -1,0 +1,131 @@
+{
+  "id": "tas-poisons-wholesale-authority",
+  "family": "poisons-wholesale-authority",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "therapeutic-goods-and-poisons",
+  "title": "Be authorised to wholesale medicines and poisons",
+  "kind": "licence",
+  "what": "Carry on a business of buying or selling scheduled substances by wholesale only under a wholesale chemist's licence, and of making or refining them for sale only under a manufacturing chemist's licence (both granted by the Minister under s 16).",
+  "laws": [
+    {
+      "title": "Poisons Act 1971 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1971-081",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1971-081",
+      "provisions": "s 18(1)(a)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Poisons Act 1971 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1971-081",
+      "locator": "s 18(1)(a) (current)",
+      "quote": "A person– (a) who– (i) carries on the business of making or refining a scheduled substance for sale while not the holder of a licence under paragraph (a) of subsection (1) of section 16 ; or (ii) carries on the business of buying or selling a scheduled substance in the course of a wholesale dealing while not the holder of a licence under paragraph (b) of that subsection",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Minister administering the Poisons Act 1971 (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Poisons Act 1971 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1971-081",
+          "locator": "s 16, words naming the body (found 20 Nov 2026) (current)",
+          "quote": "The Minister, in his discretion, may, on the application of a person under subsection (1AA) , grant, or refuse to grant, to that person– (a) a licence to carry on business as a manufacturing chemist;",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it buys or sells scheduled substances by wholesale, or makes or refines them for sale",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Poisons Act 1971 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1971-081",
+          "locator": "s 18(1)(a) (current)",
+          "quote": "A person– (a) who– (i) carries on the business of making or refining a scheduled substance for sale while not the holder of a licence under paragraph (a) of subsection (1) of section 16 ; or (ii) carries on the business of buying or selling a scheduled substance in the course of a wholesale dealing while not the holder of a licence under paragraph (b) of that subsection",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 20 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Carry on a business of buying or selling scheduled substances by wholesale only under a wholesale chemist's licence, and of making or refining them for sale only under a manufacturing chemist's licence (both granted by the Minister under s 16).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-20"
+  },
+  "drafted_on": "2026-11-20",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

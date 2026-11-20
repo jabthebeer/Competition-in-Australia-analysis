@@ -1,0 +1,131 @@
+{
+  "id": "tas-child-care-licence",
+  "family": "child-care-licence",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a licence to provide child care",
+  "kind": "licence",
+  "what": "Operate or provide child care, or a child care service, only as authorised by a licence (centre-based or home-based child care) or registration under the Child Care Act 2001.",
+  "laws": [
+    {
+      "title": "Child Care Act 2001 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2001-062",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-062",
+      "provisions": "s 8",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Child Care Act 2001 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-062",
+      "locator": "s 8 (current)",
+      "quote": "A person must not operate or provide child care or a child care service except as authorised by a licence or registration",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Secretary of the Department administering the Child Care Act 2001 (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Child Care Act 2001 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-062",
+          "locator": "s 3, words naming the body (found 20 Nov 2026) (current)",
+          "quote": "Secretary means the Secretary of the Department;",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8710"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates or provides child care or a child care service",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Child Care Act 2001 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-062",
+          "locator": "s 8 (current)",
+          "quote": "A person must not operate or provide child care or a child care service except as authorised by a licence or registration",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 20 Nov 2026. Section numbers read from the heading before each duty. How the Act's coverage fits with services approved under the Education and Care Services National Law was not read.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Operate or provide child care, or a child care service, only as authorised by a licence (centre-based or home-based child care) or registration under the Child Care Act 2001.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-20"
+  },
+  "drafted_on": "2026-11-20",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

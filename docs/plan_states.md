@@ -146,6 +146,8 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-7a done 19 Nov 2026 (E-330): SA's 'to draft' cells and high band; 7 requirements.** Cemeteries and crematoria, dangerous goods vehicles and apprentice employers (SA cells), and four SA-first families: declared air route licences, hydroponic equipment dealers, petroleum products licences and dangerous substances storage licences. 129 high-signal laws called. 1,095 requirements.
 - **D-7b and D-7c done 19 Nov 2026 (E-331): SA's medium (280) and low (519) bands called; SA fully called.** No new requirement; the medium band's licensing duties support requirements already recorded. 1,095 requirements.
 - **D-7d done 20 Nov 2026 (E-332): the four SA-first families in the other jurisdictions; 1 requirement.** NSW intrastate air passenger licences (s 3(1)). 27 cells logged (23 not found, 2 to draft, 2 blocked). 1,096 requirements.
+- **D-8a done 20 Nov 2026 (E-333): Tasmania's 'to draft' cells; 8 requirements.** Public health risk activities, education and care services, gaming machines, wholesale poisons, water licences, explosives permits, onshore petroleum production and poppy grower's licences. 1,104 requirements.
+- **D-8b done 20 Nov 2026 (E-334): Tasmania's high band called; 5 requirements.** Cat breeders (an earlier 'not found' cell) and four Tasmania-first families: child care licences, licences to trade in protected wildlife, deer farm licences and GMO-free area permits. Second laws on the fishing and explosives requirements. 71 high-signal laws called. 1,109 requirements.
 
 ### D-2: the catalogues and the new estimate
 

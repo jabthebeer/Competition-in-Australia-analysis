@@ -1,0 +1,152 @@
+{
+  "id": "tas-petroleum-title-onshore",
+  "family": "petroleum-title-onshore",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "mining-and-petroleum-titles",
+  "title": "Hold a licence to explore for or produce petroleum",
+  "kind": "licence",
+  "what": "Produce petroleum (a Category 4 mineral) only as the holder of a production licence or with the holder's authority, and explore for it on land in a licence only as, or with the authority of, the licence holder.",
+  "laws": [
+    {
+      "title": "Mineral Resources Development Act 1995 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1995-116",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-116",
+      "provisions": "s 67U, s 3, s 30",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Mineral Resources Development Act 1995 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-116",
+      "locator": "s 67U (current)",
+      "quote": "A person must not carry out production activities for Category 4 minerals or Category 6 minerals unless the person – (a) is the holder of a production licence in relation to the minerals",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Mineral Resources Development Act 1995 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-116",
+      "locator": "s 3 (current)",
+      "quote": "Category 4 mineral means any petroleum products except oil shale",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Mineral Resources Development Act 1995 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-116",
+      "locator": "s 30 (current)",
+      "quote": "A person must not, on an area of land comprised in a licence, explore for minerals to which the licence relates, unless the person – (a) is the holder of the licence",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Minister administering the Mineral Resources Development Act 1995 (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Mineral Resources Development Act 1995 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-116",
+          "locator": "s 67L, words naming the body (found 20 Nov 2026) (current)",
+          "quote": "Minister is to issue a petroleum production licence or a geothermal production licence.",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0700",
+        "1011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it explores for or produces petroleum on land in Tasmania",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Mineral Resources Development Act 1995 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-116",
+          "locator": "s 67U (current)",
+          "quote": "A person must not carry out production activities for Category 4 minerals or Category 6 minerals unless the person – (a) is the holder of a production licence in relation to the minerals",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 20 Nov 2026. Exploration licences for all categories of minerals are recorded in the exploration licence family. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Produce petroleum (a Category 4 mineral) only as the holder of a production licence or with the holder's authority, and explore for it on land in a licence only as, or with the authority of, the licence holder.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-20"
+  },
+  "drafted_on": "2026-11-20",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
