@@ -152,6 +152,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-8c done 20 Nov 2026 (E-336): Tasmania's medium band called; 3 requirements.** 246 laws called (7 Y, 36 L, 203 N); three Tasmania-first families: written residential building contracts, certified forest practices plans and non-emergency patient transport licences. 1,122 requirements.
 - **D-8f done 20 Nov 2026 (E-337): the D-8c families in the other jurisdictions; 6 requirements.** Written building contracts (NSW, Qld, WA, SA) and patient transport licences (SA, ACT). 15 cells logged (10 not found, 2 to draft, 3 blocked). 1,128 requirements.
 - **TD-1 done 20 Nov 2026 (E-338): two older 'to draft' cells; 2 requirements.** SA explosives (Explosives Act 1936 ss 12(1), 23(1); the 2024 Act has not come into operation) and NSW private native forestry plans (s 60ZW(1)). 1,130 requirements.
+- **D-8d done 20 Nov 2026 (E-339): Tasmania's low band called; Tasmania fully called.** 810 laws called; no new requirement. Every Tasmanian law now has a call except those set aside by triage. 1,130 requirements.
 
 ### D-2: the catalogues and the new estimate
 
