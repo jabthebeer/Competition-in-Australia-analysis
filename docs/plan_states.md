@@ -149,6 +149,8 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-8a done 20 Nov 2026 (E-333): Tasmania's 'to draft' cells; 8 requirements.** Public health risk activities, education and care services, gaming machines, wholesale poisons, water licences, explosives permits, onshore petroleum production and poppy grower's licences. 1,104 requirements.
 - **D-8b done 20 Nov 2026 (E-334): Tasmania's high band called; 5 requirements.** Cat breeders (an earlier 'not found' cell) and four Tasmania-first families: child care licences, licences to trade in protected wildlife, deer farm licences and GMO-free area permits. Second laws on the fishing and explosives requirements. 71 high-signal laws called. 1,109 requirements.
 - **D-8e done 20 Nov 2026 (E-335): the four Tasmania-first families in the other jurisdictions; 10 requirements.** Child care licences (NSW, Qld, WA, ACT), protected wildlife trade (NSW, WA, SA, ACT) and GM crop bans (SA, ACT). 18 cells logged (12 not found, 2 to draft, 4 blocked). 1,119 requirements.
+- **D-8c done 20 Nov 2026 (E-336): Tasmania's medium band called; 3 requirements.** 246 laws called (7 Y, 36 L, 203 N); three Tasmania-first families: written residential building contracts, certified forest practices plans and non-emergency patient transport licences. 1,122 requirements.
+- **D-8f done 20 Nov 2026 (E-337): the D-8c families in the other jurisdictions; 6 requirements.** Written building contracts (NSW, Qld, WA, SA) and patient transport licences (SA, ACT). 15 cells logged (10 not found, 2 to draft, 3 blocked). 1,128 requirements.
 
 ### D-2: the catalogues and the new estimate
 
