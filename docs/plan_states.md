@@ -145,6 +145,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-6e done 19 Nov 2026 (E-329): the six WA-first families in the other jurisdictions; 14 requirements.** Public pools (NSW, SA), lobbyists (Qld), construction training levies (SA, Tas, ACT), auctioneers (NSW, Qld, Tas, ACT, NT) and industrial hemp (NSW, SA, Tas). 28 cells logged (21 not found, 4 to draft, 3 blocked). 1,088 requirements.
 - **D-7a done 19 Nov 2026 (E-330): SA's 'to draft' cells and high band; 7 requirements.** Cemeteries and crematoria, dangerous goods vehicles and apprentice employers (SA cells), and four SA-first families: declared air route licences, hydroponic equipment dealers, petroleum products licences and dangerous substances storage licences. 129 high-signal laws called. 1,095 requirements.
 - **D-7b and D-7c done 19 Nov 2026 (E-331): SA's medium (280) and low (519) bands called; SA fully called.** No new requirement; the medium band's licensing duties support requirements already recorded. 1,095 requirements.
+- **D-7d done 20 Nov 2026 (E-332): the four SA-first families in the other jurisdictions; 1 requirement.** NSW intrastate air passenger licences (s 3(1)). 27 cells logged (23 not found, 2 to draft, 2 blocked). 1,096 requirements.
 
 ### D-2: the catalogues and the new estimate
 
