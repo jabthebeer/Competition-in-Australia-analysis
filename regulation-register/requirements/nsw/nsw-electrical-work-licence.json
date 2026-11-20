@@ -1,0 +1,130 @@
+{
+  "id": "nsw-electrical-work-licence",
+  "family": "electrical-work-licence",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "electrical-plumbing-gas-licensing",
+  "title": "Have electrical wiring work done only by qualified people",
+  "kind": "licence",
+  "what": "Have electrical wiring work done only by qualified supervisors, or by holders of a tradesperson certificate working under a qualified supervisor's supervision.",
+  "laws": [
+    {
+      "title": "Home Building Act 1989 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1989-147",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1989-147",
+      "provisions": "s 14(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Home Building Act 1989 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1989-147",
+      "locator": "s 14(1) (version of 2024-08-20)",
+      "quote": "An individual must not do any electrical wiring work (whether or not it is also residential building work), except— (a) as a qualified supervisor in respect of that work, or (b) as the holder of a tradesperson certificate authorising its holder to do that work under supervision",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-08-20/act-1989-147"
+    }
+  ],
+  "administered_by": [
+    "nsw-building-commission"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Building Commission NSW (Secretary of the Department of Customer Service)",
+      "bodies": [
+        "nsw-building-commission"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Home Building Act 1989 (NSW)",
+          "publisher": "Official register text via the Open Australian Legal Corpus",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1989-147",
+          "locator": "s 19, words naming the body (found 12 Nov 2026)",
+          "quote": "Secretary may grant contractor licences for the purposes of this Act.",
+          "accessed": "2026-11-12",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-20/act-1989-147"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3232",
+        "3233"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its workers perform or supervise electrical work",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Home Building Act 1989 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1989-147",
+          "locator": "s 14(1) (version of 2024-08-20)",
+          "quote": "An individual must not do any electrical wiring work (whether or not it is also residential building work), except— (a) as a qualified supervisor in respect of that work, or (b) as the holder of a tradesperson certificate authorising its holder to do that work under supervision",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-20/act-1989-147"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Have electrical wiring work done only by qualified supervisors, or by holders of a tradesperson certificate working under a qualified supervisor's supervision.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Qualification tests narrow who may do the work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

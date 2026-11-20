@@ -1,0 +1,131 @@
+{
+  "id": "sa-patient-transport-licence",
+  "family": "patient-transport-licence",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a restricted ambulance service licence",
+  "kind": "licence",
+  "what": "Provide non-emergency ambulance services only under a restricted ambulance service licence, unless SA Ambulance Service carries them out or directs them, or an exemption applies.",
+  "laws": [
+    {
+      "title": "Health Care Act 2008 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "2008.3.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/health%20care%20act%202008/current/2008.3.un.rtf",
+      "provisions": "s 58(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Health Care Act 2008 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/health%20care%20act%202008/current/2008.3.un.rtf",
+      "locator": "s 58(1) (version of 2022-12-08)",
+      "quote": "A person must not provide non‑emergency ambulance services unless— (a) the services are carried out— (i) by SAAS; or (ii) by a person acting under the direction or request of SAAS; or (b) the person holds a licence under this section (a restricted ambulance service licence)",
+      "accessed": "2026-11-20",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2022-12-08/2008.3.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Minister administering the Health Care Act 2008 (SA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Care Act 2008 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/health%20care%20act%202008/current/2008.3.un.rtf",
+          "locator": "s 58(8), words naming the body (found 20 Nov 2026) (version of 2022-12-08)",
+          "quote": "The Minister may grant a licence to a person under this section if, in the Minister's opinion— (a) the services proposed to be provided under the licence are non-emergency ambulance services;",
+          "accessed": "2026-11-20",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2022-12-08/2008.3.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8591"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides non-emergency ambulance (patient transport) services",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Care Act 2008 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/health%20care%20act%202008/current/2008.3.un.rtf",
+          "locator": "s 58(1) (version of 2022-12-08)",
+          "quote": "A person must not provide non‑emergency ambulance services unless— (a) the services are carried out— (i) by SAAS; or (ii) by a person acting under the direction or request of SAAS; or (b) the person holds a licence under this section (a restricted ambulance service licence)",
+          "accessed": "2026-11-20",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2022-12-08/2008.3.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the Tasmanian requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Provide non-emergency ambulance services only under a restricted ambulance service licence, unless SA Ambulance Service carries them out or directs them, or an exemption applies.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-20"
+  },
+  "drafted_on": "2026-11-20",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

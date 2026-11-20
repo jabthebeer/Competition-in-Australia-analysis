@@ -1,0 +1,131 @@
+{
+  "id": "nsw-aquatic-facility-permit",
+  "family": "aquatic-facility-permit",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Notify the council of a public pool before it is used",
+  "kind": "notification",
+  "what": "Notify the local council of a public swimming pool or spa pool before letting anyone use it, and keep it disinfected and clean (s 36).",
+  "laws": [
+    {
+      "title": "Public Health Act 2010 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2010-127",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-31/act-2010-127",
+      "provisions": "s 35(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Public Health Act 2010 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-31/act-2010-127",
+      "locator": "s 35(2) (version of 2025-01-31)",
+      "quote": "The occupier of premises at which a public swimming pool or spa pool is situated must not allow a person to use the pool unless the occupier has caused notice of the pool's existence to be given to the person prescribed by the regulations",
+      "accessed": "2026-11-19",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2025-01-31/act-2010-127"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Local councils (NSW), which keep the register of public pools",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health Regulation 2022 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-09/sl-2022-0502",
+          "locator": "s 31, words naming the body (found 19 Nov 2026) (version of 2024-08-09)",
+          "quote": "A local government authority must maintain a register of public swimming pools and spa pools in the local government authority's area",
+          "accessed": "2026-11-19",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-09/sl-2022-0502"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9112"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a public swimming pool or spa pool",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health Act 2010 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-31/act-2010-127",
+          "locator": "s 35(2) (version of 2025-01-31)",
+          "quote": "The occupier of premises at which a public swimming pool or spa pool is situated must not allow a person to use the pool unless the occupier has caused notice of the pool's existence to be given to the person prescribed by the regulations",
+          "accessed": "2026-11-19",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2025-01-31/act-2010-127"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the WA requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Notify the local council of a public swimming pool or spa pool before letting anyone use it, and keep it disinfected and clean (s 36).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-19"
+  },
+  "drafted_on": "2026-11-19",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

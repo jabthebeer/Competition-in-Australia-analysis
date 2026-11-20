@@ -1,0 +1,133 @@
+{
+  "id": "wa-unclaimed-money-return",
+  "family": "unclaimed-money-return",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay unclaimed money to the Treasurer",
+  "kind": "reporting",
+  "what": "As the holder of unclaimed money that the Treasurer has advertised, pay it to the Treasurer within 14 days after the claim period ends, unless it has been paid to the owner or a valid claim will be met.",
+  "laws": [
+    {
+      "title": "Unclaimed Money Act 1990 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a839",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46080.docx",
+      "provisions": "s 14(1), s 14(1)(b)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Unclaimed Money Act 1990 (WA)",
+      "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46080.docx",
+      "locator": "s 14(1) (version of mrdoc_46080)",
+      "quote": "Where any unclaimed money is advertised under section 11 and on the expiration of the period ending on 31 July next following the date on which it was advertised remains unpaid to the owner, that money",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "western_australian_legislation:mrdoc_46080/law_a839"
+    },
+    {
+      "title": "Unclaimed Money Act 1990 (WA)",
+      "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46080.docx",
+      "locator": "s 14(1)(b) (version of mrdoc_46080)",
+      "quote": "in any other case, within 14 days thereafter, shall, be paid by the holder to the Treasurer",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "western_australian_legislation:mrdoc_46080/law_a839"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Treasurer (WA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Unclaimed Money Act 1990 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46080.docx",
+          "locator": "s 14, words naming the body (found 18 Nov 2026) (version of mrdoc_46080)",
+          "quote": "shall, be paid by the holder to the Treasurer, unless the holder notifies the Treasurer of its payment in accordance with section 8(2) or satisfies the Treasurer that a person has established a valid claim to the money and that the claim will be met.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_46080/law_a839"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it holds unclaimed money (money owed to others and unclaimed for 6 years)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Unclaimed Money Act 1990 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46080.docx",
+          "locator": "s 14(1) (version of mrdoc_46080)",
+          "quote": "Where any unclaimed money is advertised under section 11 and on the expiration of the period ending on 31 July next following the date on which it was advertised remains unpaid to the owner, that money",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_46080/law_a839"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As the holder of unclaimed money that the Treasurer has advertised, pay it to the Treasurer within 14 days after the claim period ends, unless it has been paid to the owner or a valid claim will be met.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A yearly return, and payment of the unclaimed money.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

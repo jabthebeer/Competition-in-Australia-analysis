@@ -44,7 +44,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Local councils (local government authority, NSW)",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health Regulation 2022 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-09/sl-2022-0502",
+          "locator": "s 13, words naming the body (found 18 Nov 2026)",
+          "quote": "(2) The occupier of the premises on which a cooling water system is installed must notify the local government authority for the area, in the approved form, no later than 7 days after a risk assessment required by this Division has been completed.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-09/sl-2022-0502"
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "ongoing",

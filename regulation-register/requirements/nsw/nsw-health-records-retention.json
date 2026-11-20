@@ -1,0 +1,133 @@
+{
+  "id": "nsw-health-records-retention",
+  "family": "health-records-retention",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "health-practitioners-and-facilities",
+  "title": "Keep health records for the required period",
+  "kind": "record-keeping",
+  "what": "As a private health service provider, keep each individual's health information for 7 years from the last service (or until age 25 for a child), and record any disposal.",
+  "laws": [
+    {
+      "title": "Health Records and Information Privacy Act 2002 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2002-071",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-05-27/act-2002-071",
+      "provisions": "s 25(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Health Records and Information Privacy Act 2002 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-05-27/act-2002-071",
+      "locator": "s 25(1) (version of 2024-05-27)",
+      "quote": "A private sector person who is a health service provider must retain health information relating to an individual as follows— (a) in the case of health information collected while the individual was an adult—for 7 years from the last occasion on which a health service was provided to the individual by the health service provider,",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-05-27/act-2002-071"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Privacy Commissioner (NSW)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Records and Information Privacy Act 2002 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-05-27/act-2002-071",
+          "locator": "words naming the body (found 18 Nov 2026)",
+          "quote": "Privacy Commissioner means the Privacy Commissioner appointed under the PPIP Act.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-05-27/act-2002-071"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8511",
+        "8512",
+        "8520",
+        "8531",
+        "8532",
+        "8533",
+        "8534",
+        "8539",
+        "8599"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is a private health service provider",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health Records and Information Privacy Act 2002 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-05-27/act-2002-071",
+          "locator": "s 25(1) (version of 2024-05-27)",
+          "quote": "A private sector person who is a health service provider must retain health information relating to an individual as follows— (a) in the case of health information collected while the individual was an adult—for 7 years from the last occasion on which a health service was provided to the individual by the health service provider,",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-05-27/act-2002-071"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As a private health service provider, keep each individual's health information for 7 years from the last service (or until age 25 for a child), and record any disposal.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

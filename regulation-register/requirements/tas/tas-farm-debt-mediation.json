@@ -1,0 +1,129 @@
+{
+  "id": "tas-farm-debt-mediation",
+  "family": "farm-debt-mediation",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "financial-services",
+  "title": "Offer farm debt mediation before enforcing a farm mortgage",
+  "kind": "other",
+  "what": "Take enforcement action under a farm mortgage only while an exemption certificate is granted and in force for the farm debt.",
+  "laws": [
+    {
+      "title": "Farm Debt Mediation Act 2024 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2024-020",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2024-020",
+      "provisions": "s 14(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Farm Debt Mediation Act 2024 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2024-020",
+      "locator": "s 14(1) (current)",
+      "quote": "A Creditor must not take an enforcement action in respect of a farm mortgage unless an exemption certificate – (a) is granted to the Creditor; and (b) is in force in respect of the relevant farm debt",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Farm Debt Mediation Commissioner (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Farm Debt Mediation Act 2024 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2024-020",
+          "locator": "s 5, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "Commissioner means the Farm Debt Mediation Commissioner appointed under section 11(1) ;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6221",
+        "6222",
+        "6223",
+        "6229",
+        "6230"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it seeks to enforce a farm mortgage",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Farm Debt Mediation Act 2024 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2024-020",
+          "locator": "s 14(1) (current)",
+          "quote": "A Creditor must not take an enforcement action in respect of a farm mortgage unless an exemption certificate – (a) is granted to the Creditor; and (b) is in force in respect of the relevant farm debt",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. The Act commenced on 4 December 2024 (Proclamation under the Farm Debt Mediation Act 2024, SR 2024 No 77, read on 18 Nov 2026). Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Take enforcement action under a farm mortgage only while an exemption certificate is granted and in force for the farm debt.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Mediation must be offered, and a certificate obtained, before a farm mortgage is enforced.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

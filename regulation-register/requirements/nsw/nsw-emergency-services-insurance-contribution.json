@@ -1,0 +1,139 @@
+{
+  "id": "nsw-emergency-services-insurance-contribution",
+  "family": "emergency-services-insurance-contribution",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay the emergency services insurance contribution",
+  "kind": "tax-or-levy",
+  "what": "Pay the emergency services insurance contribution on premiums for relevant insurance, in quarterly instalments.",
+  "laws": [
+    {
+      "title": "Emergency Services Levy Act 2017 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2017-032",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-06-20/act-2017-032",
+      "provisions": "s 6, s 14",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Emergency Services Levy Act 2017 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-06-20/act-2017-032",
+      "locator": "s 6 (version of 2024-06-20)",
+      "quote": "An emergency services insurance contribution is payable in respect of premiums for relevant insurance",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-06-20/act-2017-032"
+    },
+    {
+      "title": "Emergency Services Levy Act 2017 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-06-20/act-2017-032",
+      "locator": "s 14 (version of 2024-06-20)",
+      "quote": "An insurer who is assessed for an initial contribution amount must pay the initial contribution amount to the Chief Commissioner in accordance with this Act",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-06-20/act-2017-032"
+    }
+  ],
+  "administered_by": [
+    "nsw-revenue"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Revenue NSW (Chief Commissioner of State Revenue)",
+      "bodies": [
+        "nsw-revenue"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Emergency Services Levy Act 2017 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-06-20/act-2017-032",
+          "locator": "s 3, words naming the body (found 18 Nov 2026)",
+          "quote": "Chief Commissioner means the Chief Commissioner of State Revenue under the Taxation Administration Act 1996.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-06-20/act-2017-032"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6322"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it writes relevant insurance in NSW",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Emergency Services Levy Act 2017 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-06-20/act-2017-032",
+          "locator": "s 6 (version of 2024-06-20)",
+          "quote": "An emergency services insurance contribution is payable in respect of premiums for relevant insurance",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-06-20/act-2017-032"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay the emergency services insurance contribution on premiums for relevant insurance, in quarterly instalments.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "The contribution is passed on in premiums, which raises the cost of insurance.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

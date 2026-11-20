@@ -1,0 +1,137 @@
+{
+  "id": "tas-short-term-rental-registration",
+  "family": "short-term-rental-registration",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "planning-and-development",
+  "title": "Give booking platforms the premises' required information",
+  "kind": "other",
+  "what": "Give the booking platform the required information about the premises before listing them for short stays.",
+  "laws": [
+    {
+      "title": "Short Stay Accommodation Act 2019 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2019-012",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2019-012",
+      "provisions": "s 6(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Short Stay Accommodation Act 2019 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2019-012",
+      "locator": "s 6(1) (current)",
+      "quote": "A short stay premises provider must not enter into, with a booking platform provider, a short stay booking service arrangement in relation to short stay premises, unless the short stay premises provider, or an agent of the short stay premises provider, has provided to the booking platform provider the relevant information in relation to the short stay premises",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "tas-building-tasmania"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Director of Building Control (Tas)",
+      "bodies": [
+        "tas-building-tasmania"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Short Stay Accommodation Act 2019 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2019-012",
+          "locator": "s 7, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "A booking platform provider must provide to the Director of Building Control, within 30 days after the end of each financial quarter, the required information in relation to each short stay premises in respect of which information has been displayed to the public on a booking platform of the provider during the financial quarter.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4400",
+        "6711",
+        "6720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides residential premises as short-term rental accommodation",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Short Stay Accommodation Act 2019 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2019-012",
+          "locator": "s 6(1) (current)",
+          "quote": "A short stay premises provider must not enter into, with a booking platform provider, a short stay booking service arrangement in relation to short stay premises, unless the short stay premises provider, or an agent of the short stay premises provider, has provided to the booking platform provider the relevant information in relation to the short stay premises",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Tasmania requires information to be given to booking platforms (which must display it, s 5) rather than a state register; the definition of relevant information was not quoted. Reach and framework marks follow the Western Australian requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Give the booking platform the required information about the premises before listing them for short stays.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Hosts must register and show registration numbers on every listing.",
+        "positions": []
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Phased-in planning approvals add a condition for new unhosted short-term rentals.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marks copied from the register item wa-stra-register-2025 so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

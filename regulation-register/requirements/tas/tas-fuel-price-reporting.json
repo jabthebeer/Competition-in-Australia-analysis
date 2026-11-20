@@ -1,0 +1,131 @@
+{
+  "id": "tas-fuel-price-reporting",
+  "family": "fuel-price-reporting",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "fuel-retailing",
+  "title": "Report fuel prices to the price reporting system",
+  "kind": "reporting",
+  "what": "As a registered fuel retailer, report each relevant fuel's standard retail price on the fuel price reporting website, and each change within 30 minutes.",
+  "laws": [
+    {
+      "title": "Australian Consumer Law (Tasmania) (Code of Practice for Fuel Price Reporting) Regulations 2020 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "regulation",
+      "register_id": "sr-2020-053",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2020-053",
+      "provisions": "code cl 3(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Australian Consumer Law (Tasmania) (Code of Practice for Fuel Price Reporting) Regulations 2020 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2020-053",
+      "locator": "code cl 3(1) (current)",
+      "quote": "A fuel retailer registered in accordance with clause 2 must report, on the fuel price reporting website, the standard retail price of each of the relevant fuels offered for sale by the fuel retailer",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Director of Consumer Affairs (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Australian Consumer Law (Tasmania) Act 2010 (Tas)",
+          "publisher": "Tasmanian Legislation Online",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2010-040",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "Director means the person holding the office of Director of Consumer Affairs under the Consumer Affairs Act 1988",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4000"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells fuel by retail",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Australian Consumer Law (Tasmania) (Code of Practice for Fuel Price Reporting) Regulations 2020 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2020-053",
+          "locator": "code cl 3(1) (current)",
+          "quote": "A fuel retailer registered in accordance with clause 2 must report, on the fuel price reporting website, the standard retail price of each of the relevant fuels offered for sale by the fuel retailer",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As a registered fuel retailer, report each relevant fuel's standard retail price on the fuel price reporting website, and each change within 30 minutes.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Published prices let motorists compare service stations.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "id": "nsw-tobacco-retail-notification",
+  "family": "tobacco-retail-notification",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "tobacco-and-vapes",
+  "title": "Notify before selling tobacco",
+  "kind": "notification",
+  "what": "Notify the Secretary before engaging in tobacco retailing, and give wholesalers the retailer identification number.",
+  "laws": [
+    {
+      "title": "Public Health (Tobacco) Act 2008 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2008-094",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2008-094",
+      "provisions": "s 39(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Public Health (Tobacco) Act 2008 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2008-094",
+      "locator": "s 39(1) (version of 2024-12-02)",
+      "quote": "A person must not engage in tobacco retailing unless the person has notified the Secretary, in accordance with this section, that the person intends to engage in tobacco retailing",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-12-02/act-2008-094"
+    }
+  ],
+  "administered_by": [
+    "nsw-health"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Secretary of the Ministry of Health (NSW)",
+      "bodies": [
+        "nsw-health"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health (Tobacco) Act 2008 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2008-094",
+          "locator": "s 4, words naming the body (found 18 Nov 2026)",
+          "quote": "Secretary means the Secretary of the Ministry of Health.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-02/act-2008-094"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4279"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells tobacco products",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health (Tobacco) Act 2008 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2008-094",
+          "locator": "s 39(1) (version of 2024-12-02)",
+          "quote": "A person must not engage in tobacco retailing unless the person has notified the Secretary, in accordance with this section, that the person intends to engage in tobacco retailing",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-02/act-2008-094"
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4110",
+        "4000",
+        "4123"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells tobacco products",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health (Tobacco) Act 2008 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-2008-094",
+          "locator": "s 39(1) (version of 2024-12-02)",
+          "quote": "A person must not engage in tobacco retailing unless the person has notified the Secretary, in accordance with this section, that the person intends to engage in tobacco retailing",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-02/act-2008-094"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Notify the Secretary before engaging in tobacco retailing, and give wholesalers the retailer identification number.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A notice before selling, and the retailer number given to each wholesaler.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

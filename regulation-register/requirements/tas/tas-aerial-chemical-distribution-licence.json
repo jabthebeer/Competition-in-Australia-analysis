@@ -1,0 +1,141 @@
+{
+  "id": "tas-aerial-chemical-distribution-licence",
+  "family": "aerial-chemical-distribution-licence",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "agvet-chemicals",
+  "title": "Distribute agricultural chemicals from the air only under licence",
+  "kind": "licence",
+  "what": "As the operator of an aircraft, allow aerial spraying from it only while holding an agricultural aircraft operator licence, and have it flown only by pilots holding a pilot (chemical rating) licence.",
+  "laws": [
+    {
+      "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 1995 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1995-106",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-106",
+      "provisions": "s 35(2), s 32(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 1995 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-106",
+      "locator": "s 35(2) (current)",
+      "quote": "The operator of an aircraft must not allow aerial spraying to be carried out from that aircraft unless the operator holds an agricultural aircraft operator licence and complies with the conditions attached to that licence",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 1995 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-106",
+      "locator": "s 32(1) (current)",
+      "quote": "A person must not pilot an aircraft to carry out aerial spraying unless the person – (a) holds a pilot (chemical rating) licence granted and in force under this Act",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Deputy Registrar of Chemical Products (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 1995 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-106",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "Deputy Registrar means the Deputy Registrar of Chemical Products appointed under section 17 ;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0529"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries out aerial spraying of chemical products",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Agricultural and Veterinary Chemicals (Control of Use) Act 1995 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-106",
+          "locator": "s 35(2) (current)",
+          "quote": "The operator of an aircraft must not allow aerial spraying to be carried out from that aircraft unless the operator holds an agricultural aircraft operator licence and complies with the conditions attached to that licence",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As the operator of an aircraft, allow aerial spraying from it only while holding an agricultural aircraft operator licence, and have it flown only by pilots holding a pilot (chemical rating) licence.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

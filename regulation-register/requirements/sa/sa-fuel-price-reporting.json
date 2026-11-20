@@ -1,0 +1,135 @@
+{
+  "id": "sa-fuel-price-reporting",
+  "family": "fuel-price-reporting",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "fuel-retailing",
+  "title": "Report fuel prices to the price reporting system",
+  "kind": "reporting",
+  "what": "As the fuel retailer for a petrol station, enter each fuel's normal price and other details into the aggregation system within the time required.",
+  "laws": [
+    {
+      "title": "Fair Trading (Fuel Pricing Information) Regulations 2021 (SA)",
+      "jurisdiction": "SA",
+      "kind": "regulation",
+      "register_id": "2021.11.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/r/fair%20trading%20(fuel%20pricing%20information)%20regulations%202021/current/2021.11.un.rtf",
+      "provisions": "reg 7(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fair Trading (Fuel Pricing Information) Regulations 2021 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/r/fair%20trading%20(fuel%20pricing%20information)%20regulations%202021/current/2021.11.un.rtf",
+      "locator": "reg 7(1) (version of 2021-03-19)",
+      "quote": "The fuel retailer for a petrol station must ensure the following information is entered into the aggregation system in accordance with subregulation (2): (a) the normal fuel price",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2021-03-19/2021.11.un"
+    }
+  ],
+  "administered_by": [
+    "sa-cbs"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Commissioner for Consumer Affairs (SA)",
+      "bodies": [
+        "sa-cbs"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Trading (Fuel Pricing Information) Regulations 2021 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/r/fair%20trading%20(fuel%20pricing%20information)%20regulations%202021/current/2021.11.un.rtf",
+          "locator": "reg 6(1), words naming the body (found 18 Nov 2026) (version of 2021-03-19)",
+          "quote": "The Commissioner, or a person approved by the Commissioner, must establish and maintain an electronic system (the aggregation system) for the purposes of receiving fuel price information under these regulations and disseminating information relating to fuel prices as soon as is reasonably practicable to the public.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2021-03-19/2021.11.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4000"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells fuel by retail at a petrol station",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Trading (Fuel Pricing Information) Regulations 2021 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/r/fair%20trading%20(fuel%20pricing%20information)%20regulations%202021/current/2021.11.un.rtf",
+          "locator": "reg 7(1) (version of 2021-03-19)",
+          "quote": "The fuel retailer for a petrol station must ensure the following information is entered into the aggregation system in accordance with subregulation (2): (a) the normal fuel price",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2021-03-19/2021.11.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As the fuel retailer for a petrol station, enter each fuel's normal price and other details into the aggregation system within the time required.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Published prices let motorists compare service stations.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "id": "sa-boarding-house-notification",
+  "family": "boarding-house-notification",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "License a supported residential facility",
+  "kind": "licence",
+  "what": "Use premises as a supported residential facility only if licensed.",
+  "laws": [
+    {
+      "title": "Supported Residential Facilities Act 1992 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1992.90.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/supported%20residential%20facilities%20act%201992/current/1992.90.un.rtf",
+      "provisions": "s 23(1), s 23(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Supported Residential Facilities Act 1992 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/supported%20residential%20facilities%20act%201992/current/1992.90.un.rtf",
+      "locator": "s 23(1) (version of 2018-10-04)",
+      "quote": "Premises must not be used as a supported residential facility unless licensed under this Act",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2018-10-04/1992.90.un"
+    },
+    {
+      "title": "Supported Residential Facilities Act 1992 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/supported%20residential%20facilities%20act%201992/current/1992.90.un.rtf",
+      "locator": "s 23(2) (version of 2018-10-04)",
+      "quote": "If premises are used as a supported residential facility in contravention of subsection (1), the proprietor of the facility is guilty of an offence",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2018-10-04/1992.90.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Councils (licensing authority, SA)",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Supported Residential Facilities Act 1992 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/supported%20residential%20facilities%20act%201992/current/1992.90.un.rtf",
+          "locator": "s 9, words naming the body (found 18 Nov 2026)",
+          "quote": "The licensing authority for a particular supported residential facility is as follows: (a) subject to paragraphs (b) and (c), the council for the area in which the facility is situated is the licensing authority;",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2018-10-04/1992.90.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4400",
+        "6711"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a supported residential facility",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Supported Residential Facilities Act 1992 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/supported%20residential%20facilities%20act%201992/current/1992.90.un.rtf",
+          "locator": "s 23(1) (version of 2018-10-04)",
+          "quote": "Premises must not be used as a supported residential facility unless licensed under this Act",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2018-10-04/1992.90.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. SA licenses supported residential facilities rather than registering boarding houses. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Use premises as a supported residential facility only if licensed.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Particulars of the boarding house must be notified and kept up to date.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

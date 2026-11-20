@@ -1,0 +1,129 @@
+{
+  "id": "qld-farm-debt-mediation",
+  "family": "farm-debt-mediation",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "financial-services",
+  "title": "Offer farm debt mediation before enforcing a farm mortgage",
+  "kind": "other",
+  "what": "Take enforcement action under a farm mortgage only if the Act does not apply or an exemption certificate is in force (which follows mediation or the farmer's refusal of it).",
+  "laws": [
+    {
+      "title": "Farm Business Debt Mediation Act 2017 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2017-007",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-007",
+      "provisions": "s 12(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Farm Business Debt Mediation Act 2017 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-007",
+      "locator": "s 12(1) (current)",
+      "quote": "A mortgagee must not take enforcement action under a farm mortgage unless— (a) this Act does not apply in relation to the farmer or the farm mortgage; or (b) an exemption certificate is in force for the farm mortgage",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Queensland Rural and Industry Development Authority (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Farm Business Debt Mediation Act 2017 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-007",
+          "locator": "s 92, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "authority means the Queensland Rural and Industry Development Authority established under the Rural and Regional Adjustment Act 1994 .",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6221",
+        "6222",
+        "6223",
+        "6229",
+        "6230"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it seeks to enforce a farm mortgage",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Farm Business Debt Mediation Act 2017 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-007",
+          "locator": "s 12(1) (current)",
+          "quote": "A mortgagee must not take enforcement action under a farm mortgage unless— (a) this Act does not apply in relation to the farmer or the farm mortgage; or (b) an exemption certificate is in force for the farm mortgage",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section numbers read from the heading before each duty.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Take enforcement action under a farm mortgage only if the Act does not apply or an exemption certificate is in force (which follows mediation or the farmer's refusal of it).",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Mediation must be offered, and a certificate obtained, before a farm mortgage is enforced.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

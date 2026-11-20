@@ -1,0 +1,145 @@
+{
+  "id": "tas-electricity-generation-authority",
+  "family": "electricity-generation-authority",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "energy-markets",
+  "title": "Hold an authority to generate or transmit electricity",
+  "kind": "licence",
+  "what": "Generate, transmit or distribute electricity only under a licence from the Regulator.",
+  "laws": [
+    {
+      "title": "Electricity Supply Industry Act 1995 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1995-058",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-058",
+      "provisions": "s 17(1), s 17(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Electricity Supply Industry Act 1995 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-058",
+      "locator": "s 17(1) (current)",
+      "quote": "A person must not carry on operations in the electricity supply industry for which a licence is required unless the person holds a licence under this Act authorising the relevant operations",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Electricity Supply Industry Act 1995 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-058",
+      "locator": "s 17(2) (current)",
+      "quote": "The operations in the electricity supply industry for which a licence is required are – (a) generation of electricity; or (b) transmission of electricity; or (c) distribution of electricity",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Regulator appointed under the Electricity Supply Industry Act 1995 (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Supply Industry Act 1995 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-058",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "Regulator means the person appointed as the Regulator under section 5 ;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2611",
+        "2612",
+        "2619",
+        "2620",
+        "2630"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it generates, transmits or distributes electricity",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Supply Industry Act 1995 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1995-058",
+          "locator": "s 17(1) (current)",
+          "quote": "A person must not carry on operations in the electricity supply industry for which a licence is required unless the person holds a licence under this Act authorising the relevant operations",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Generate, transmit or distribute electricity only under a licence from the Regulator.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

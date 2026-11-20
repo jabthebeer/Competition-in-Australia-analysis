@@ -1,0 +1,126 @@
+{
+  "id": "qld-electrical-work-licence",
+  "family": "electrical-work-licence",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "electrical-plumbing-gas-licensing",
+  "title": "Have electrical work done only by licensed electrical workers",
+  "kind": "licence",
+  "what": "Have electrical work performed or supervised only by holders of an electrical work licence that authorises the work.",
+  "laws": [
+    {
+      "title": "Electrical Safety Act 2002 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2002-042",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-042",
+      "provisions": "s 55(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Electrical Safety Act 2002 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-042",
+      "locator": "s 55(1) (current)",
+      "quote": "A person must not perform or supervise electrical work unless— (a) the person is the holder of an electrical work licence in force under this Act; and (b) the licence authorises the person to perform the work",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Regulator under the Electrical Safety Act 2002 (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electrical Safety Act 2002 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-042",
+          "locator": "s 59, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "The regulator may issue, or refuse to issue, the electrical licence.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3232",
+        "3233"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its workers perform or supervise electrical work",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electrical Safety Act 2002 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-042",
+          "locator": "s 55(1) (current)",
+          "quote": "A person must not perform or supervise electrical work unless— (a) the person is the holder of an electrical work licence in force under this Act; and (b) the licence authorises the person to perform the work",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section numbers read from the heading before each duty.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Have electrical work performed or supervised only by holders of an electrical work licence that authorises the work.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Qualification tests narrow who may do the work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

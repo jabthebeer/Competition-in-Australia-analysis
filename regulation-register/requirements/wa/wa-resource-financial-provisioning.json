@@ -1,0 +1,153 @@
+{
+  "id": "wa-resource-financial-provisioning",
+  "family": "resource-financial-provisioning",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "mining-and-petroleum-titles",
+  "title": "Pay the mining rehabilitation levy",
+  "kind": "tax-or-levy",
+  "what": "As the holder of a mining authorisation, give the CEO assessment information each year and pay the mining rehabilitation levy assessed.",
+  "laws": [
+    {
+      "title": "Mining Rehabilitation Fund Act 2012 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a146907",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46447.docx",
+      "provisions": "s 11(1), s 15(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Mining Rehabilitation Fund Act 2012 (WA)",
+      "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46447.docx",
+      "locator": "s 11(1) (version of mrdoc_46447)",
+      "quote": "A levy called the mining rehabilitation levy is payable in respect of each mining authorisation that is in force",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "western_australian_legislation:mrdoc_46447/law_a146907"
+    },
+    {
+      "title": "Mining Rehabilitation Fund Act 2012 (WA)",
+      "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46447.docx",
+      "locator": "s 15(2) (version of mrdoc_46447)",
+      "quote": "The holder of a mining authorisation must, on or before the prescribed day each year, give to the CEO assessment information",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "western_australian_legislation:mrdoc_46447/law_a146907"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "CEO of the department administering the Mining Rehabilitation Fund Act 2012 (WA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Mining Rehabilitation Fund Act 2012 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46447.docx",
+          "locator": "s 14, words naming the body (found 18 Nov 2026) (version of mrdoc_46447)",
+          "quote": "The CEO must assess the levy amount for each person liable to pay the levy.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_46447/law_a146907"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0600",
+        "0700",
+        "0801",
+        "0802",
+        "0803",
+        "0804",
+        "0805",
+        "0806",
+        "0807",
+        "0809",
+        "0911",
+        "0919",
+        "0990"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it holds a mining authorisation (such as a mining lease)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Mining Rehabilitation Fund Act 2012 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_46447.docx",
+          "locator": "s 11(1) (version of mrdoc_46447)",
+          "quote": "A levy called the mining rehabilitation levy is payable in respect of each mining authorisation that is in force",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_46447/law_a146907"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As the holder of a mining authorisation, give the CEO assessment information each year and pay the mining rehabilitation levy assessed.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Contributions to the scheme fund, or a surety, add to the cost of resource activities.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -44,7 +44,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Australian Energy Market Operator (AEMO)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "National Electricity (NSW) Law",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-05/act-1997-20a",
+          "locator": "s 7, words naming the body (found 18 Nov 2026)",
+          "quote": "AEMO means Australian Energy Market Operator Limited (ACN 072 010 327);",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-05/act-1997-20a"
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

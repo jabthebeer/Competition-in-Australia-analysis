@@ -1,0 +1,130 @@
+{
+  "id": "nsw-boarding-house-notification",
+  "family": "boarding-house-notification",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Notify the Commissioner of a boarding house",
+  "kind": "notification",
+  "what": "Notify the Commissioner for Fair Trading of a registrable boarding house's particulars for the Register, and of changes.",
+  "laws": [
+    {
+      "title": "Boarding Houses Act 2012 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2012-074",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-2012-074",
+      "provisions": "s 9(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Boarding Houses Act 2012 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-2012-074",
+      "locator": "s 9(1) (version of 2023-01-13)",
+      "quote": "A proprietor of boarding premises that are used as a registrable boarding house must notify the Commissioner, in accordance with this section, of the following particulars so as to enable the Commissioner to include information about the boarding house in the Register",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2023-01-13/act-2012-074"
+    }
+  ],
+  "administered_by": [
+    "nsw-dcj"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Secretary of the Department of Communities and Justice (NSW)",
+      "bodies": [
+        "nsw-dcj"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Boarding Houses Act 2012 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-2012-074",
+          "locator": "s 4, words naming the body (found 18 Nov 2026)",
+          "quote": "Secretary means the Secretary of the Department of Communities and Justice.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2023-01-13/act-2012-074"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4400",
+        "6711"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a registrable boarding house",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Boarding Houses Act 2012 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-2012-074",
+          "locator": "s 9(1) (version of 2023-01-13)",
+          "quote": "A proprietor of boarding premises that are used as a registrable boarding house must notify the Commissioner, in accordance with this section, of the following particulars so as to enable the Commissioner to include information about the boarding house in the Register",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2023-01-13/act-2012-074"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Notify the Commissioner for Fair Trading of a registrable boarding house's particulars for the Register, and of changes.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Particulars of the boarding house must be notified and kept up to date.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
