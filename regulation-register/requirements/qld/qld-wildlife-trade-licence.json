@@ -1,0 +1,162 @@
+{
+  "id": "qld-wildlife-trade-licence",
+  "family": "wildlife-trade-licence",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold an authority to take, keep or deal in protected animals",
+  "kind": "licence",
+  "what": "Take, keep, buy or sell protected animals only under an animal authority, such as a dealer licence under the Nature Conservation (Animals) Regulation 2020.",
+  "laws": [
+    {
+      "title": "Nature Conservation Act 1992 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1992-020",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-020",
+      "provisions": "s 88(2), s 88A(1)",
+      "applied": false
+    },
+    {
+      "title": "Nature Conservation (Animals) Regulation 2020 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "regulation",
+      "register_id": "sl-2020-0136",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2020-0136",
+      "provisions": "s 139",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Nature Conservation Act 1992 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-020",
+      "locator": "s 88(2) (current)",
+      "quote": "A person must not take a protected animal unless the person is an authorised person or the taking is authorised under this Act",
+      "accessed": "2026-11-23",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Nature Conservation Act 1992 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-020",
+      "locator": "s 88A(1) (current)",
+      "quote": "a person, other than an authorised person, must not keep or use a protected animal that is either of the following unless the keeping or use is authorised under this Act or the Exhibited Animals Act 2015",
+      "accessed": "2026-11-23",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Nature Conservation (Animals) Regulation 2020 (Qld)",
+      "publisher": "Queensland Legislation (Queensland Parliamentary Counsel)",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2020-0136",
+      "locator": "s 139 (current)",
+      "quote": "The holder of a dealer licence, or a relevant person for the holder, may carry out any of the following activities— (a) buy, accept, or receive an authorised animal for processing the animal",
+      "accessed": "2026-11-23",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "qld-detsi"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Chief executive of the department administering the Nature Conservation Act 1992 (Qld)",
+      "bodies": [
+        "qld-detsi"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Nature Conservation (Animals) Regulation 2020 (Qld)",
+          "publisher": "Queensland Legislation (Queensland Parliamentary Counsel)",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2020-0136",
+          "locator": "s 138(1), words naming the body (found 23 Nov 2026) (current)",
+          "quote": "The chief executive must not grant a dealer licence to a child.",
+          "accessed": "2026-11-23",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it takes, keeps, buys or sells protected native animals",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Nature Conservation Act 1992 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-020",
+          "locator": "s 88(2) (current)",
+          "quote": "A person must not take a protected animal unless the person is an authorised person or the taking is authorised under this Act",
+          "accessed": "2026-11-23",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 23 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Take, keep, buy or sell protected animals only under an animal authority, such as a dealer licence under the Nature Conservation (Animals) Regulation 2020.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

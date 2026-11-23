@@ -1,0 +1,131 @@
+{
+  "id": "sa-portable-long-service-registration-community-services",
+  "family": "portable-long-service-registration-community-services",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register for community services portable long service leave",
+  "kind": "registration",
+  "what": "As an employer of community services workers, apply to the industry board to be registered, then report and pay levies for each worker.",
+  "laws": [
+    {
+      "title": "Portable Long Service Leave Act 2024 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "2024.43.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/portable%20long%20service%20leave%20act%202024/current/2024.43.un.rtf",
+      "provisions": "s 25(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Portable Long Service Leave Act 2024 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/portable%20long%20service%20leave%20act%202024/current/2024.43.un.rtf",
+      "locator": "s 25(1) (version of 2024-10-17)",
+      "quote": "An employer who employs 1 or more designated workers must apply for registration on the register of employers for the relevant designated sector",
+      "accessed": "2026-11-23",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-10-17/2024.43.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Community Services Sector Long Service Leave Board (SA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Portable Long Service Leave Act 2024 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/portable%20long%20service%20leave%20act%202024/current/2024.43.un.rtf",
+          "locator": "sch 1 cl 1, words naming the body (found 23 Nov 2026) (version of 2024-10-17)",
+          "quote": "Community Services Sector Long Service Leave Board The Community Services Sector Long Service Leave Board is established in relation to the community services sector.",
+          "accessed": "2026-11-23",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-10-17/2024.43.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "first-employee",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8790"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it employs workers in the community services sector",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Portable Long Service Leave Act 2024 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/portable%20long%20service%20leave%20act%202024/current/2024.43.un.rtf",
+          "locator": "s 25(1) (version of 2024-10-17)",
+          "quote": "An employer who employs 1 or more designated workers must apply for registration on the register of employers for the relevant designated sector",
+          "accessed": "2026-11-23",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-10-17/2024.43.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Quoted from the corpus copy of 17 Oct 2024. The SA register's legislative history, read on 23 Nov 2026, shows Parts 3, 4 and 7 to 9 and Sch 2 commenced on 1 Oct 2025 (Gazette 17.7.2025 p2650). An industry board may delay an employer's participation (s 7). Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As an employer of community services workers, apply to the industry board to be registered, then report and pay levies for each worker.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": 1,
+        "reason": "Workers keep their long service entitlement when they move between employers in the sector.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registration, service returns and the levy.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

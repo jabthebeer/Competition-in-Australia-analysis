@@ -1,0 +1,131 @@
+{
+  "id": "nsw-energy-savings-obligation",
+  "family": "energy-savings-obligation",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Meet the energy savings target under the Energy Savings Scheme",
+  "kind": "standard",
+  "what": "As an electricity retailer or other scheme participant, meet the yearly energy savings target by surrendering energy savings certificates, or pay the shortfall penalty.",
+  "laws": [
+    {
+      "title": "Electricity Supply Act 1995 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1995-094",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-01/act-1995-094",
+      "provisions": "sch 4A cl 5",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Electricity Supply Act 1995 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-01/act-1995-094",
+      "locator": "sch 4A cl 5 (version of 2025-01-01)",
+      "quote": "Each scheme participant is required to meet its individual energy savings target for each year, in accordance with this Part",
+      "accessed": "2026-11-23",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2025-01-01/act-1995-094"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Scheme Regulator of the Energy Savings Scheme (NSW): IPART unless the Minister appoints another body",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Supply Act 1995 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-01/act-1995-094",
+          "locator": "sch 4A cl 54(2), words naming the body (found 23 Nov 2026) (version of 2025-01-01)",
+          "quote": "The functions of the Scheme Regulator under this Part are to be exercised by the person or body appointed by the Minister as Scheme Regulator or, in the absence of such an appointment, the Tribunal.",
+          "accessed": "2026-11-23",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2025-01-01/act-1995-094"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2640"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is a scheme participant, such as an electricity retailer",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Supply Act 1995 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-01/act-1995-094",
+          "locator": "sch 4A cl 5 (version of 2025-01-01)",
+          "quote": "Each scheme participant is required to meet its individual energy savings target for each year, in accordance with this Part",
+          "accessed": "2026-11-23",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2025-01-01/act-1995-094"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the SA requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As an electricity retailer or other scheme participant, meet the yearly energy savings target by surrendering energy savings certificates, or pay the shortfall penalty.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Retailers must fund and record energy savings activities each period.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "The obligation adds a fixed compliance cost that weighs more on smaller retailers, who may pay a contribution instead.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

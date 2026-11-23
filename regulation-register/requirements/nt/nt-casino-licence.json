@@ -1,0 +1,141 @@
+{
+  "id": "nt-casino-licence",
+  "family": "casino-licence",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "gambling",
+  "title": "Hold a casino licence",
+  "kind": "licence",
+  "what": "Run a casino only under a casino licence granted by the Minister; the licence is what allows casino gaming that the Territory's gaming laws otherwise forbid (s 21).",
+  "laws": [
+    {
+      "title": "Gaming Control Act 1993 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "GAMING-CONTROL-ACT-1993",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11827",
+      "provisions": "s 16(1), s 21",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gaming Control Act 1993 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11827",
+      "locator": "s 16(1) (current reprint)",
+      "quote": "A person may apply to the Minister to be granted a casino licence",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Gaming Control Act 1993 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11827",
+      "locator": "s 21 (current reprint)",
+      "quote": "Subject to this Act, nothing in a law of the Territory prevents a Licensee or a person employed by a Licensee from conducting the business permitted by the casino licence in a casino in accordance with the terms and conditions of the casino licence",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Minister administering the Gaming Control Act 1993 (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gaming Control Act 1993 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11827",
+          "locator": "s 16(1), words naming the body (found 23 Nov 2026) (current reprint)",
+          "quote": "A person may apply to the Minister to be granted a casino licence.",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9201"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a casino",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gaming Control Act 1993 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11827",
+          "locator": "s 16(1) (current reprint)",
+          "quote": "A person may apply to the Minister to be granted a casino licence",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 23 Nov 2026. No offence of running a casino without a licence was found in this Act; s 21 is the provision that lets a Licensee conduct the business despite other Territory laws. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Run a casino only under a casino licence granted by the Minister; the licence is what allows casino gaming that the Territory's gaming laws otherwise forbid (s 21).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "A cap of 2 casino licences in NSW limits who may operate at all.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
