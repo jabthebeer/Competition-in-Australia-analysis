@@ -1,0 +1,133 @@
+{
+  "id": "act-transfer-duty",
+  "family": "transfer-duty",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay transfer (stamp) duty when buying land or other dutiable property",
+  "kind": "tax-or-levy",
+  "what": "Pay duty on a transfer of dutiable property (such as land) or an agreement for its sale or transfer.",
+  "laws": [
+    {
+      "title": "Duties Act 1999 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "1999-7",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/1999-7/current/PDF/1999-7.PDF",
+      "provisions": "s 7(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Duties Act 1999 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/1999-7/current/PDF/1999-7.PDF",
+      "locator": "s 7(1) (current republication (R79, from 16 December 2025; Duties Act 1999 | Acts))",
+      "quote": "This chapter charges duty on— (a) a transfer of dutiable property; and (b) the following transactions: (i) an agreement for the sale or transfer of dutiable property",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "ACT Revenue Office (Commissioner for ACT Revenue)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Duties Act 1999 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/1999-7/current/PDF/1999-7.PDF",
+          "locator": "dict, def commissioner, words naming the body (found 23 Nov 2026) (current republication (R79, from 16 December 2025; Duties Act 1999 | Acts)",
+          "quote": "commissioner means the commissioner for revenue.",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Buying land or other dutiable property",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711",
+        "6720",
+        "3011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it buys land or other dutiable property in the ACT",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Duties Act 1999 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/1999-7/current/PDF/1999-7.PDF",
+          "locator": "s 7(1) (current republication (R79, from 16 December 2025; Duties Act 1999 | Acts))",
+          "quote": "This chapter charges duty on— (a) a transfer of dutiable property; and (b) the following transactions: (i) an agreement for the sale or transfer of dutiable property",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 23 Nov 2026. ACT conveyance duty is being phased down as land tax rises; rates and concessions are not quoted (docs/levers_rules_and_changes.md). Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay duty on a transfer of dutiable property (such as land) or an agreement for its sale or transfer.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -2,
+        "reason": "A transaction tax in the largest asset market, with an efficiency cost Treasury puts at 72 cents per extra dollar raised.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Raises the cost of moving home, so fewer people move to take better jobs.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "economy-wide",
+    "confidence": "high",
+    "confidence_note": "Marks copied from the register item nsw-residential-transfer-duty so the two agree.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
