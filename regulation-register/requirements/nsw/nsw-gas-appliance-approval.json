@@ -1,0 +1,136 @@
+{
+  "id": "nsw-gas-appliance-approval",
+  "family": "gas-appliance-approval",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Sell only certified gas appliances",
+  "kind": "standard",
+  "what": "Sell gas appliances only if they are certified (by the holder of a certification authority) and labelled as the regulations require.",
+  "laws": [
+    {
+      "title": "Gas and Electricity (Consumer Safety) Act 2017 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2017-015",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-2017-015",
+      "provisions": "s 21(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gas and Electricity (Consumer Safety) Act 2017 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-2017-015",
+      "locator": "s 21(1) (version of 2023-01-13)",
+      "quote": "A person must not sell a gas appliance or type of gas appliance unless it is— (a) a certified gas appliance, and (b) labelled in accordance with the regulations",
+      "accessed": "2026-11-23",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2023-01-13/act-2017-015"
+    }
+  ],
+  "administered_by": [
+    "nsw-dcs"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Secretary of the Department of Customer Service (NSW Fair Trading)",
+      "bodies": [
+        "nsw-dcs"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gas and Electricity (Consumer Safety) Act 2017 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-2017-015",
+          "locator": "s 23(2), words naming the body (found 23 Nov 2026) (version of 2023-01-13)",
+          "quote": "The Secretary may determine an application for a certification authority by granting or refusing the application.",
+          "accessed": "2026-11-23",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2023-01-13/act-2017-015"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4221",
+        "3233"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells gas appliances",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gas and Electricity (Consumer Safety) Act 2017 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-2017-015",
+          "locator": "s 21(1) (version of 2023-01-13)",
+          "quote": "A person must not sell a gas appliance or type of gas appliance unless it is— (a) a certified gas appliance, and (b) labelled in accordance with the regulations",
+          "accessed": "2026-11-23",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2023-01-13/act-2017-015"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the ACT requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Sell gas appliances only if they are certified (by the holder of a certification authority) and labelled as the regulations require.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -157,6 +157,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **TD-2 done 23 Nov 2026 (E-341): two older 'to draft' cells; 2 requirements.** WA dangerous goods site licences (reg 25(1)) and SA residential park particulars (s 135(2)). 1,140 requirements.
 - **D-9b and D-9c done 23 Nov 2026 (E-342): two ACT-first families; 2 requirements.** The short-term rental accommodation levy and the utilities network facilities tax; searched elsewhere by title (13 not found, Victoria blocked). 1,142 requirements.
 - **D-9d and D-9e done 23 Nov 2026 (E-343, E-344): from the ACT's low band; 4 requirements.** ACT controlled sports registration (an earlier 'not found'), two ACT-first families (property developer licences, energy savings obligations) and SA's Retailer Energy Productivity Scheme; clinical waste transport as a second law. 1,146 requirements.
+- **D-9f and D-9g done 23 Nov 2026 (E-345, E-346): gas appliance approval; 6 requirements.** An ACT-first family, drafted also for NSW, Qld, WA, SA and Tasmania; the property developer licence gains its development application rule. 1,152 requirements.
 
 ### D-2: the catalogues and the new estimate
 
