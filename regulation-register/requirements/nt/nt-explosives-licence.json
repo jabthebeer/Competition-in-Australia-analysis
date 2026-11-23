@@ -1,0 +1,149 @@
+{
+  "id": "nt-explosives-licence",
+  "family": "explosives-licence",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "hazardous-chemicals-and-dangerous-goods",
+  "title": "Hold a licence to handle explosives",
+  "kind": "licence",
+  "what": "Manufacture, store or sell explosives (and store shopgoods fireworks) only under a licence; importing or exporting prescribed explosives needs the Competent Authority's approval (reg 5C).",
+  "laws": [
+    {
+      "title": "Dangerous Goods Regulations 1985 (NT)",
+      "jurisdiction": "NT",
+      "kind": "regulation",
+      "register_id": "DANGEROUS-GOODS-REGULATIONS-1985",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11753",
+      "provisions": "reg 3(1), reg 4(1), reg 5B(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dangerous Goods Regulations 1985 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11753",
+      "locator": "reg 3(1) (current reprint)",
+      "quote": "A person must not manufacture explosives except under and in accordance with the terms and conditions of a licence",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Dangerous Goods Regulations 1985 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11753",
+      "locator": "reg 4(1) (current reprint)",
+      "quote": "A person must not store explosives on premises except under and in accordance with the terms and conditions of a licence",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Dangerous Goods Regulations 1985 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11753",
+      "locator": "reg 5B(1) (current reprint)",
+      "quote": "A person must not sell explosives (other than safety cartridges, distress signals or propellant for firearms) except under and in accordance with the terms and conditions of a licence",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Competent Authority under the dangerous goods law (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Dangerous Goods Regulations 1985 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11753",
+          "locator": "reg 5C, words naming the body (found 23 Nov 2026) (current reprint)",
+          "quote": "has given the Competent Authority the approved notice of his or her intention to import or export the explosives and has received the approval of the Competent Authority to import or export the explosives.",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it makes, stores or sells explosives or fireworks",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Dangerous Goods Regulations 1985 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11753",
+          "locator": "reg 3(1) (current reprint)",
+          "quote": "A person must not manufacture explosives except under and in accordance with the terms and conditions of a licence",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 23 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Manufacture, store or sell explosives (and store shopgoods fireworks) only under a licence; importing or exporting prescribed explosives needs the Competent Authority's approval (reg 5C).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
