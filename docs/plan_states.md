@@ -156,6 +156,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-9a done 23 Nov 2026 (E-340): the ACT's 'to draft' cells; 8 requirements.** Pool barriers, licensable public health risk activities, education and care services, firearms dealers, conveyance duty, explosives licences, dangerous goods vehicles and home warranty cover. 1,138 requirements.
 - **TD-2 done 23 Nov 2026 (E-341): two older 'to draft' cells; 2 requirements.** WA dangerous goods site licences (reg 25(1)) and SA residential park particulars (s 135(2)). 1,140 requirements.
 - **D-9b and D-9c done 23 Nov 2026 (E-342): two ACT-first families; 2 requirements.** The short-term rental accommodation levy and the utilities network facilities tax; searched elsewhere by title (13 not found, Victoria blocked). 1,142 requirements.
+- **D-9d and D-9e done 23 Nov 2026 (E-343, E-344): from the ACT's low band; 4 requirements.** ACT controlled sports registration (an earlier 'not found'), two ACT-first families (property developer licences, energy savings obligations) and SA's Retailer Energy Productivity Scheme; clinical waste transport as a second law. 1,146 requirements.
 
 ### D-2: the catalogues and the new estimate
 
