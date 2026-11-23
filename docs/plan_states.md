@@ -154,6 +154,8 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **TD-1 done 20 Nov 2026 (E-338): two older 'to draft' cells; 2 requirements.** SA explosives (Explosives Act 1936 ss 12(1), 23(1); the 2024 Act has not come into operation) and NSW private native forestry plans (s 60ZW(1)). 1,130 requirements.
 - **D-8d done 20 Nov 2026 (E-339): Tasmania's low band called; Tasmania fully called.** 810 laws called; no new requirement. Every Tasmanian law now has a call except those set aside by triage. 1,130 requirements.
 - **D-9a done 23 Nov 2026 (E-340): the ACT's 'to draft' cells; 8 requirements.** Pool barriers, licensable public health risk activities, education and care services, firearms dealers, conveyance duty, explosives licences, dangerous goods vehicles and home warranty cover. 1,138 requirements.
+- **TD-2 done 23 Nov 2026 (E-341): two older 'to draft' cells; 2 requirements.** WA dangerous goods site licences (reg 25(1)) and SA residential park particulars (s 135(2)). 1,140 requirements.
+- **D-9b and D-9c done 23 Nov 2026 (E-342): two ACT-first families; 2 requirements.** The short-term rental accommodation levy and the utilities network facilities tax; searched elsewhere by title (13 not found, Victoria blocked). 1,142 requirements.
 
 ### D-2: the catalogues and the new estimate
 

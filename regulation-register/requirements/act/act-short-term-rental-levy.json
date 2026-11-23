@@ -1,0 +1,141 @@
+{
+  "id": "act-short-term-rental-levy",
+  "family": "short-term-rental-levy",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register for and pay the short-term rental accommodation levy",
+  "kind": "tax-or-levy",
+  "what": "As a booking service provider, register with the Commissioner for ACT Revenue and pay the levy on each booking of short-term rental accommodation in the ACT made through the service.",
+  "laws": [
+    {
+      "title": "Short-Term Rental Accommodation Levy Act 2025 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "2025-12",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2025-12/current/PDF/2025-12.PDF",
+      "provisions": "s 13, s 16",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Short-Term Rental Accommodation Levy Act 2025 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2025-12/current/PDF/2025-12.PDF",
+      "locator": "s 13 (current republication (R1, from 1 July 2025; Short-Term Rental Accommodation Levy Act 2025 | Acts))",
+      "quote": "STRA levy imposed on a short-term rental accommodation booking must be paid by the person who provided the booking service (the booking service provider) used to make the booking",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Short-Term Rental Accommodation Levy Act 2025 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2025-12/current/PDF/2025-12.PDF",
+      "locator": "s 16 (current republication (R1, from 1 July 2025; Short-Term Rental Accommodation Levy Act 2025 | Acts))",
+      "quote": "A person commits an offence if— (a) the person is a booking service provider; and (b) the quarter mentioned in section 15 (2) before which the person must apply for registration as a booking service provider has ended",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "ACT Revenue Office (Commissioner for ACT Revenue)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Short-Term Rental Accommodation Levy Act 2025 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2025-12/current/PDF/2025-12.PDF",
+          "locator": "s 15, words naming the body (found 23 Nov 2026) (current republication (R1, from 1 July 2025; Short-Term Rental Accommodation Levy Act 2025 | Acts)",
+          "quote": "The commissioner must register the applicant as a booking service provider.",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7220"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides a booking service for short-term rental accommodation in the ACT",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Short-Term Rental Accommodation Levy Act 2025 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2025-12/current/PDF/2025-12.PDF",
+          "locator": "s 13 (current republication (R1, from 1 July 2025; Short-Term Rental Accommodation Levy Act 2025 | Acts))",
+          "quote": "STRA levy imposed on a short-term rental accommodation booking must be paid by the person who provided the booking service (the booking service provider) used to make the booking",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 23 Nov 2026. Section numbers read from the heading before each duty. The rate (s 12) and the date the levy starts were not quoted.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As a booking service provider, register with the Commissioner for ACT Revenue and pay the levy on each booking of short-term rental accommodation in the ACT made through the service.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "The levy and quarterly returns add cost to each booking.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "A levy on short stays, not on other accommodation, shifts demand between kinds of accommodation.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
