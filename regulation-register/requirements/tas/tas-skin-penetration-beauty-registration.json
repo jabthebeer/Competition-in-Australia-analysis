@@ -1,0 +1,161 @@
+{
+  "id": "tas-skin-penetration-beauty-registration",
+  "family": "skin-penetration-beauty-registration",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "personal-services",
+  "title": "License or register skin penetration and other public health risk activities",
+  "kind": "registration",
+  "what": "Hold a licence to carry out a public health risk activity, and register the premises where it is carried out, once the Director of Public Health has required this by public notice; councils grant the licences and registrations.",
+  "laws": [
+    {
+      "title": "Public Health Act 1997 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1997-086",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-086",
+      "provisions": "s 104(1), s 95(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Public Health Act 1997 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-086",
+      "locator": "s 104(1) (current)",
+      "quote": "The Director, by public notice, may require any person or class of person who carries out a specified public health risk activity to be licensed",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Public Health Act 1997 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-086",
+      "locator": "s 95(1) (current)",
+      "quote": "The Director, by public notice, may require any premises or class of premises in which a specified public health risk activity is carried out to be registered",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Local councils (Tas), which grant the licences and registrations",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health Act 1997 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-086",
+          "locator": "s 105, words naming the body (found 20 Nov 2026) (current)",
+          "quote": "A person may apply to the relevant council for a licence to carry out a public health risk activity.",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9511"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries out a public health risk activity (one that may transmit disease, such as skin penetration) that the Director has required, by public notice, to be licensed or registered",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health Act 1997 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-086",
+          "locator": "s 104(1) (current)",
+          "quote": "The Director, by public notice, may require any person or class of person who carries out a specified public health risk activity to be licensed",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "9539"
+      ],
+      "exclude": [],
+      "activities": [
+        "Tattooing and piercing service"
+      ],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health Act 1997 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-086",
+          "locator": "s 104(1) (current)",
+          "quote": "The Director, by public notice, may require any person or class of person who carries out a specified public health risk activity to be licensed",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 20 Nov 2026. The Director's public notices that name the activities were not read; the Act's transitional provisions carry over premises registered for skin penetration under the repealed Act. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Hold a licence to carry out a public health risk activity, and register the premises where it is carried out, once the Director of Public Health has required this by public notice; councils grant the licences and registrations.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Registration or notification, inspections and infection-control standards.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-20"
+  },
+  "drafted_on": "2026-11-20",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

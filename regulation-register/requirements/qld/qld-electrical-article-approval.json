@@ -1,0 +1,142 @@
+{
+  "id": "qld-electrical-article-approval",
+  "family": "electrical-article-approval",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "product-standards",
+  "title": "Register as a responsible supplier before selling in-scope electrical equipment",
+  "kind": "approval",
+  "what": "As the responsible supplier (manufacturer or importer) of in-scope electrical equipment, sell it only once registered as a responsible supplier, with each level 2 or 3 type also registered, and each item meeting the relevant standard.",
+  "laws": [
+    {
+      "title": "Electrical Safety Regulation 2013 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "regulation",
+      "register_id": "sl-2013-0213",
+      "register_url": "https://legislation.qld.gov.au/view/whole/html/inforce/2025-01-01/sl-2013-0213",
+      "provisions": "s 143(1), s 144(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Electrical Safety Regulation 2013 (Qld)",
+      "publisher": "Queensland Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.qld.gov.au/view/whole/html/inforce/2025-01-01/sl-2013-0213",
+      "locator": "s 143(1) (version of 2025-01-01)",
+      "quote": "A responsible supplier of a type of level 1 in-scope electrical equipment must not sell an item of the type unless— (a) the responsible supplier is a registered responsible supplier",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "queensland_legislation:2025-01-01/sl-2013-0213"
+    },
+    {
+      "title": "Electrical Safety Regulation 2013 (Qld)",
+      "publisher": "Queensland Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.qld.gov.au/view/whole/html/inforce/2025-01-01/sl-2013-0213",
+      "locator": "s 144(1) (version of 2025-01-01)",
+      "quote": "A responsible supplier of a type of level 2 or 3 in-scope electrical equipment must not sell an item of the type unless— (a) the responsible supplier is a registered responsible supplier; and (b) the type is registered in relation to the responsible supplier",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "queensland_legislation:2025-01-01/sl-2013-0213"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "National register of responsible suppliers (Electrical Equipment Safety System)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": "Registration is by entry in the national register; the Queensland regulator under the Electrical Safety Act 2002 enforces the sale rules (not quoted).",
+      "sources": [
+        {
+          "title": "Electrical Safety Regulation 2013 (Qld)",
+          "publisher": "Queensland Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.qld.gov.au/view/whole/html/inforce/2025-01-01/sl-2013-0213",
+          "locator": "s 123, words naming the body (found 18 Nov 2026)",
+          "quote": "A responsible supplier is registered if the supplier is recorded in the part of the national register that records registered responsible suppliers.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "queensland_legislation:2025-01-01/sl-2013-0213"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4221",
+        "3494"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells declared electrical articles",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electrical Safety Regulation 2013 (Qld)",
+          "publisher": "Queensland Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.qld.gov.au/view/whole/html/inforce/2025-01-01/sl-2013-0213",
+          "locator": "s 143(1) (version of 2025-01-01)",
+          "quote": "A responsible supplier of a type of level 1 in-scope electrical equipment must not sell an item of the type unless— (a) the responsible supplier is a registered responsible supplier",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "queensland_legislation:2025-01-01/sl-2013-0213"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. The register refused the request, so the corpus copy of 1 January 2025 is quoted. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As the responsible supplier (manufacturer or importer) of in-scope electrical equipment, sell it only once registered as a responsible supplier, with each level 2 or 3 type also registered, and each item meeting the relevant standard.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Each model of a declared article needs approval before it can be sold.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

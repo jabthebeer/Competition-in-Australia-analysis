@@ -283,3 +283,32 @@ def test_administration_records_who_administers_and_where_it_overlaps():
     # The Biosecurity Act is split between two departments in the Administrative Arrangements Order
     bio = reqs["cth-biosecurity-import-conditions"]
     assert {"cth-daff", "cth-dhda"} <= set(bio.administered_by)
+
+
+def test_every_source_traces_to_its_primary_source_and_every_requirement_names_who_administers_it():
+    """Owner, 18 November 2026: a locator on every source, the version quoted on every legislation-register source,
+    and an administering body on every requirement unless the law quoted names none (NO_BODY in
+    scripts/check_traceability.py)."""
+    import importlib.util
+    from pathlib import Path
+
+    from alicia.register.requirements import load_requirements
+
+    path = Path(__file__).resolve().parents[1] / "scripts" / "check_traceability.py"
+    spec = importlib.util.spec_from_file_location("check_traceability", path)
+    trace = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(trace)
+    NO_BODY, problems, version = trace.NO_BODY, trace.problems, trace.version
+
+    reqs = load_requirements().requirements
+    assert problems(reqs) == []
+    assert len(NO_BODY) <= 5  # the exceptions stay few, and each has its reason
+    frl = {"title": "Example Act", "publisher": "Federal Register of Legislation", "quote": "x" * 20,
+           "url": "https://www.legislation.gov.au/C2004A00001/latest/text", "accessed": "2026-11-18",
+           "checked": "register-text"}
+    from alicia.register.requirements import Source
+
+    assert version(Source.model_validate(frl | {"locator": "s 5"})) == ""
+    assert version(Source.model_validate(frl | {"locator": "s 5 (compilation C2026C00001 from 2026-07-01)"})) == "named"
+    guide = Source.model_validate(frl | {"url": "https://example.org/guide", "locator": "Step 2"})
+    assert version(guide) == "web page as read"

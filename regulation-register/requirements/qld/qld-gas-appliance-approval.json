@@ -1,0 +1,132 @@
+{
+  "id": "qld-gas-appliance-approval",
+  "family": "gas-appliance-approval",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Supply and install only approved gas devices",
+  "kind": "standard",
+  "what": "Supply type A gas devices, or install or use any gas device, only once approved by the chief inspector or a holder of a gas device approval authority, and labelled as the regulation requires.",
+  "laws": [
+    {
+      "title": "Petroleum and Gas (Production and Safety) Act 2004 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2004-025",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2004-025",
+      "provisions": "s 731AA(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Petroleum and Gas (Production and Safety) Act 2004 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2004-025",
+      "locator": "s 731AA(1) (current)",
+      "quote": "A person must not supply a gas device (type A), or install or use any type of gas device, unless— (a) the supply, installation or use has been approved by— (i) the chief inspector; or (ii) a person who holds a gas device approval authority for the gas device",
+      "accessed": "2026-11-23",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Chief inspector, petroleum and gas (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Petroleum and Gas (Production and Safety) Act 2004 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2004-025",
+          "locator": "s 3, words naming the body (found 23 Nov 2026) (current)",
+          "quote": "chief inspector means the person who, under section 735 , holds appointment as the chief inspector, petroleum and gas.",
+          "accessed": "2026-11-23",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4221",
+        "3233"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it supplies, installs or uses gas devices",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Petroleum and Gas (Production and Safety) Act 2004 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2004-025",
+          "locator": "s 731AA(1) (current)",
+          "quote": "A person must not supply a gas device (type A), or install or use any type of gas device, unless— (a) the supply, installation or use has been approved by— (i) the chief inspector; or (ii) a person who holds a gas device approval authority for the gas device",
+          "accessed": "2026-11-23",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 23 Nov 2026. Reach and framework marks follow the ACT requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Supply type A gas devices, or install or use any gas device, only once approved by the chief inspector or a holder of a gas device approval authority, and labelled as the regulation requires.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "id": "tas-patient-transport-licence",
+  "family": "patient-transport-licence",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a licence to provide non-emergency patient transport",
+  "kind": "licence",
+  "what": "Provide non-emergency patient transport services (transport of patients whose medical needs have been assessed as requiring it) only under an NEPT licence from the Secretary, unless part of the Ambulance Service.",
+  "laws": [
+    {
+      "title": "Ambulance Service Act 1982 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1982-105",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1982-105",
+      "provisions": "s 37A(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Ambulance Service Act 1982 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1982-105",
+      "locator": "s 37A(1) (current)",
+      "quote": "A person must not provide non-emergency patient transport services unless the person – (a) holds an NEPT licence; or (b) is providing the service as part of the Ambulance Service",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Secretary of the Department administering the Ambulance Service Act 1982 (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Ambulance Service Act 1982 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1982-105",
+          "locator": "s 35B, words naming the body (found 20 Nov 2026) (current)",
+          "quote": "The Secretary must not grant a licence to provide non-emergency patient transport services unless satisfied that – (a) if the applicant is a natural person, the applicant is a fit and proper person;",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8591"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it provides non-emergency patient transport services",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Ambulance Service Act 1982 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1982-105",
+          "locator": "s 37A(1) (current)",
+          "quote": "A person must not provide non-emergency patient transport services unless the person – (a) holds an NEPT licence; or (b) is providing the service as part of the Ambulance Service",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 20 Nov 2026. Section numbers read from the heading before each duty. The Ambulance Service (Non-emergency Patient Transport) Regulations 2019 set the standards licensees must meet (not quoted).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Provide non-emergency patient transport services (transport of patients whose medical needs have been assessed as requiring it) only under an NEPT licence from the Secretary, unless part of the Ambulance Service.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-20"
+  },
+  "drafted_on": "2026-11-20",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "id": "wa-electrical-article-approval",
+  "family": "electrical-article-approval",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "product-standards",
+  "title": "Sell declared electrical articles only if approved",
+  "kind": "approval",
+  "what": "Sell or hire prescribed classes of electrical appliance only if approved by the Director and labelled as prescribed.",
+  "laws": [
+    {
+      "title": "Electricity Act 1945 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a244",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48277.docx",
+      "provisions": "s 33B(1A)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Electricity Act 1945 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48277.docx",
+      "locator": "s 33B(1A) (current version)",
+      "quote": "The Director may by notice published in the Gazette prescribe any class or type of electrical appliance which shall not after a date specified in the notice be sold, hired or exposed for sale or hire or advertised for sale or hire, unless the electrical appliance of that class or type is approved by the Director and is stamped or labelled if and as prescribed in the regulations",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Director of Energy Safety (WA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Act 1945 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48277.docx",
+          "locator": "s 5, words naming the body (found 18 Nov 2026) (current version)",
+          "quote": "Director means the Director of Energy Safety referred to in section 5 of the Energy Coordination Act 1994;",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4221",
+        "3494"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells declared electrical articles",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Act 1945 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48277.docx",
+          "locator": "s 33B(1A) (current version)",
+          "quote": "The Director may by notice published in the Gazette prescribe any class or type of electrical appliance which shall not after a date specified in the notice be sold, hired or exposed for sale or hire or advertised for sale or hire, unless the electrical appliance of that class or type is approved by the Director and is stamped or labelled if and as prescribed in the regulations",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Sell or hire prescribed classes of electrical appliance only if approved by the Director and labelled as prescribed.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Each model of a declared article needs approval before it can be sold.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

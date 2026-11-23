@@ -32,9 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "wa-health"
+  ],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Chief Health Officer (WA)",
+      "bodies": [
+        "wa-health"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Health (Air-handling and Water Systems) Regulations 1994 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_29678.docx",
+          "locator": "s 6, words naming the body (found 18 Nov 2026) (current version)",
+          "quote": "The Chief Health Officer may amend or cancel an approval granted under this regulation.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

@@ -34,7 +34,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Consent authorities (mostly local councils, NSW)",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environmental Planning and Assessment Act 1979 (NSW)",
+          "publisher": "Official legislation register",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-13/act-1979-203",
+          "locator": "words naming the body (found 18 Nov 2026)",
+          "quote": "consent authority must, in accordance with the environmental planning instrument and the regulations, consult with or obtain the concurrence of the person, unless the consent authority determines to refuse to grant development consent.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-12-13/act-1979-203"
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

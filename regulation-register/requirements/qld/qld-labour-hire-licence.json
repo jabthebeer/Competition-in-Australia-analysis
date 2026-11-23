@@ -1,0 +1,132 @@
+{
+  "id": "qld-labour-hire-licence",
+  "family": "labour-hire-licence",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "labour-hire",
+  "title": "Hold a labour hire licence",
+  "kind": "licence",
+  "what": "Provide labour hire services (supplying workers to do work for other businesses) only while holding a labour hire licence.",
+  "laws": [
+    {
+      "title": "Labour Hire Licensing Act 2017 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2017-033",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-033",
+      "provisions": "s 10(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Labour Hire Licensing Act 2017 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-033",
+      "locator": "s 10(1) (current)",
+      "quote": "A person must not provide labour hire services unless the person is the holder of a licence",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Chief executive of the department administering the Labour Hire Licensing Act 2017 (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Labour Hire Licensing Act 2017 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-033",
+          "locator": "s 14, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "The chief executive may grant an application for a licence only if the chief executive is satisfied— (a) each of the following persons are fit and proper persons to provide labour hire services— (i) each applicant;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7211",
+        "7212"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it supplies its workers to do work for other businesses (labour hire services, as the Act defines them)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Labour Hire Licensing Act 2017 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-033",
+          "locator": "s 10(1) (current)",
+          "quote": "A person must not provide labour hire services unless the person is the holder of a licence",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section numbers read from the heading before each duty.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Provide labour hire services (supplying workers to do work for other businesses) only while holding a labour hire licence.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "id": "wa-firearms-dealer-licence",
+  "family": "firearms-dealer-licence",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a firearms dealer licence",
+  "kind": "licence",
+  "what": "Deal in firearms, major firearm parts, prohibited firearm accessories or ammunition only under a licence that authorises it (such as a Dealer's Licence).",
+  "laws": [
+    {
+      "title": "Firearms Act 1973 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a278",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48119.docx",
+      "provisions": "s 23AE",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Firearms Act 1973 (WA)",
+      "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48119.docx",
+      "locator": "s 23AE (version of mrdoc_48119)",
+      "quote": "A person who deals in a firearm, major firearm part, prohibited firearm accessory or ammunition commits a crime unless the person is authorised by a licence under this Act to do so",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "western_australian_legislation:mrdoc_48119/law_a278"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Western Australia Police Force (Commissioner of Police)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Firearms Act 1973 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48119.docx",
+          "locator": "s 4, words naming the body (found 18 Nov 2026) (version of mrdoc_48119)",
+          "quote": "Commissioner means the Commissioner of Police;",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_48119/law_a278"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4241"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it deals in firearms or ammunition",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Firearms Act 1973 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48119.docx",
+          "locator": "s 23AE (version of mrdoc_48119)",
+          "quote": "A person who deals in a firearm, major firearm part, prohibited firearm accessory or ammunition commits a crime unless the person is authorised by a licence under this Act to do so",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_48119/law_a278"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Deal in firearms, major firearm parts, prohibited firearm accessories or ammunition only under a licence that authorises it (such as a Dealer's Licence).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

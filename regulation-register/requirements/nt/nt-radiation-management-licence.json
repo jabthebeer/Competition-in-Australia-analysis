@@ -32,9 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "nt-health"
+  ],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Chief Health Officer (NT)",
+      "bodies": [
+        "nt-health"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Radiation Protection Act 2004 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12161",
+          "locator": "s 1, words naming the body (found 18 Nov 2026) (current reprint)",
+          "quote": "The Chief Health Officer must either grant, or refuse to grant, the application.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",

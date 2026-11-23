@@ -1,0 +1,125 @@
+{
+  "id": "tas-emergency-services-insurance-contribution",
+  "family": "emergency-services-insurance-contribution",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay the fire service contribution on insurance premiums",
+  "kind": "tax-or-levy",
+  "what": "Pay the State Fire Commission each month the prescribed percentage of premium income from the prescribed classes of insurance.",
+  "laws": [
+    {
+      "title": "Fire Service Act 1979 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1979-035",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1979-035",
+      "provisions": "s 77E(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fire Service Act 1979 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1979-035",
+      "locator": "s 77E(2) (current)",
+      "quote": "insurance company must, not later than 14 days after the end of each month, pay to the Commission an amount equal to the prescribed percentage of the total premium income payable to that insurance company in respect of the prescribed classes of insurance during that month",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "State Fire Commission (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fire Service Act 1979 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1979-035",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "Commission means the State Fire Commission established under section 7 ;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6322"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it writes relevant insurance in NSW",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fire Service Act 1979 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1979-035",
+          "locator": "s 77E(2) (current)",
+          "quote": "insurance company must, not later than 14 days after the end of each month, pay to the Commission an amount equal to the prescribed percentage of the total premium income payable to that insurance company in respect of the prescribed classes of insurance during that month",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay the State Fire Commission each month the prescribed percentage of premium income from the prescribed classes of insurance.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "The contribution is passed on in premiums, which raises the cost of insurance.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

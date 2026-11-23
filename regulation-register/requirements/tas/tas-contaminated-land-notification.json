@@ -1,0 +1,123 @@
+{
+  "id": "tas-contaminated-land-notification",
+  "family": "contaminated-land-notification",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Notify the EPA of contaminated land",
+  "kind": "notification",
+  "what": "As owner or occupier of land that is or is likely to be a contaminated site, stop activities that worsen it and notify the Director of the pollutant and the circumstances.",
+  "laws": [
+    {
+      "title": "Environmental Management and Pollution Control Act 1994 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1994-044",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1994-044",
+      "provisions": "s 74B(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environmental Management and Pollution Control Act 1994 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1994-044",
+      "locator": "s 74B(1) (current)",
+      "quote": "If the owner or occupier of any area of land knows, reasonably believes or should in the circumstances reasonably believe that the area of land is or is likely to be a contaminated site, the owner or occupier – (a) must not commence or continue any activity",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Director, Environment Protection Authority (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environmental Management and Pollution Control Act 1994 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1994-044",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "Director means the Director, Environment Protection Authority appointed under section 18 ;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns or occupies land that is or is likely to be a contaminated site",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environmental Management and Pollution Control Act 1994 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1994-044",
+          "locator": "s 74B(1) (current)",
+          "quote": "If the owner or occupier of any area of land knows, reasonably believes or should in the circumstances reasonably believe that the area of land is or is likely to be a contaminated site, the owner or occupier – (a) must not commence or continue any activity",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As owner or occupier of land that is or is likely to be a contaminated site, stop activities that worsen it and notify the Director of the pollutant and the circumstances.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "id": "tas-gas-appliance-approval",
+  "family": "gas-appliance-approval",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Sell or connect only approved gas appliances",
+  "kind": "standard",
+  "what": "Sell Type A gas appliances, and prescribed components, only if approved, labelled and compliant with the relevant standard.",
+  "laws": [
+    {
+      "title": "Gas Safety Act 2019 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2019-002",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2019-002",
+      "provisions": "s 47(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gas Safety Act 2019 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2019-002",
+      "locator": "s 47(1) (current)",
+      "quote": "A person must not sell a Type A appliance, or a component of a prescribed class, unless the appliance or component – (a) is approved as required under this Division; and (b) is labelled as required under this Division",
+      "accessed": "2026-11-23",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Director of Gas Safety (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gas Safety Act 2019 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2019-002",
+          "locator": "s 3, words naming the body (found 23 Nov 2026) (current)",
+          "quote": "Director means the Director of Gas Safety appointed under section 8 ;",
+          "accessed": "2026-11-23",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4221",
+        "3233"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells gas appliances",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gas Safety Act 2019 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2019-002",
+          "locator": "s 47(1) (current)",
+          "quote": "A person must not sell a Type A appliance, or a component of a prescribed class, unless the appliance or component – (a) is approved as required under this Division; and (b) is labelled as required under this Division",
+          "accessed": "2026-11-23",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 23 Nov 2026. Reach and framework marks follow the ACT requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Sell Type A gas appliances, and prescribed components, only if approved, labelled and compliant with the relevant standard.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

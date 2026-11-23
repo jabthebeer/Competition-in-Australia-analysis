@@ -32,9 +32,54 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "cth-abf"
+  ],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Commissioner of the Australian Trade Remedies Commission",
+      "bodies": [],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Customs Act 1901",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C1901A00006/latest/text",
+          "locator": "s 269T, words naming the body (found 18 Nov 2026) (compilation C2026C00484 from 2026-10-27)",
+          "quote": "Commissioner means the Commissioner of the Australian Trade Remedies Commission referred to in section 269SMB.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "function": "collects",
+      "who": "Australian Border Force",
+      "bodies": [
+        "cth-abf"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Customs Act 1901",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C1901A00006/latest/text",
+          "locator": "(compilation C2026C00484 from 2026-10-27)",
+          "quote": "(1AA) The Comptroller-General of Customs may, by writing, authorise an officer of Customs to exercise the powers or perform the functions of an authorised officer under a specified provision of this Act.",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
