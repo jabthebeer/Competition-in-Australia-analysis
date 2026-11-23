@@ -160,6 +160,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-9f and D-9g done 23 Nov 2026 (E-345, E-346): gas appliance approval; 6 requirements.** An ACT-first family, drafted also for NSW, Qld, WA, SA and Tasmania; the property developer licence gains its development application rule. 1,152 requirements.
 - **D-9h done 23 Nov 2026 (E-347): the ACT fully called.** 440 laws called (17 Y, 105 L, 318 N). Every ACT law now has a call except the 55 set aside by triage. 1,152 requirements.
 - **D-10a done 23 Nov 2026 (E-348): seven of the NT's 'to draft' cells; 7 requirements.** Education and care, gaming machines, racecourses, explosives, apprentice employers, poppies and hemp. 1,159 requirements.
+- **D-10b done 23 Nov 2026 (E-349): two NT corrections; 2 requirements.** Teacher registration for employers (s 72(1)) and casino employee licences (reg 3(1)), replacing earlier 'not found' cells. 1,161 requirements.
 
 ### D-2: the catalogues and the new estimate
 
