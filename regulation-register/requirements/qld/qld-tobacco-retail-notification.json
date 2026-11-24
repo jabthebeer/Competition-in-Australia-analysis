@@ -127,13 +127,19 @@
     "summary": "Sell smoking products only under a retail (or wholesale) licence.",
     "marks": [
       {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A retail or wholesale licence is needed before selling smoking products.",
+        "positions": []
+      },
+      {
         "driver": "burden",
         "mark": -1,
-        "reason": "A notice before selling, and the retailer number given to each wholesaler.",
+        "reason": "Licence conditions and fees add ongoing cost.",
         "positions": []
       }
     ],
-    "main_driver": "burden",
+    "main_driver": "entry-exit",
     "reach": "sector",
     "confidence": "low",
     "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",

@@ -164,6 +164,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-10c done 23 Nov 2026 (E-350): the NT fully called.** 599 laws called (17 Y, 113 L, 469 N); every NT law now has a call except the 30 set aside by triage. Every catalogue except Victoria's is now fully called. 1,161 requirements.
 - **TD-3 done 23 Nov 2026 (E-351, E-352): the last 25 'to draft' cells read by hand; 21 requirements.** 3 NSW cells blocked and 1 Queensland cell not found; no 'to draft' cell is left. The SA corpus lookup read the wrong law for 21 SA catalogue rows that share a register id with another law; they were re-screened (E-352). 1,182 requirements.
 - **D-11a done 24 Nov 2026 (E-353): automated checks of the state requirements.** 4 duty locators and 147 administering-body locators corrected, 15 descriptions trimmed to their quotes, 9 template carry-overs fixed and 30 cut quotes widened. About 200 body locators in NSW, Queensland, the ACT and the NT remain unverified.
+- **D-11b to D-11d done 24 Nov 2026 (E-354, E-355): samples and a re-scan.** A sample of 30 state requirements led to template fixes in 55 records' marks and summaries. A sample of 40 N calls found 2 wrong; a re-scan of every state N law found 4 'not found' cells that the law covers and 7 new families; 11 requirements drafted and 22 catalogue calls corrected. 1,193 requirements.
 
 ### D-2: the catalogues and the new estimate
 
