@@ -1,0 +1,165 @@
+{
+  "id": "nt-home-warranty-insurance",
+  "family": "home-warranty-insurance",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "home-warranty-insurance",
+  "title": "Insure residential building work (home warranty)",
+  "kind": "insurance",
+  "what": "As a residential builder, carry out prescribed residential building work only while an authorised residential building insurance policy or a fidelity certificate is in force for the work, and give the policy document or certificate to the other party to the contract.",
+  "laws": [
+    {
+      "title": "Building Act 1993 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "BUILDING-ACT-1993",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11645",
+      "provisions": "section headed 'Requirement for authorised RBI policy or fidelity certificate', (1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Act 1993 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11645",
+      "locator": "section headed 'Requirement for authorised RBI policy or fidelity certificate', (1) (current reprint)",
+      "quote": "A residential builder must not carry out prescribed residential building work unless: (a) (b) one of the following is in force for the work: (i) an authorised RBI policy; (ii) a fidelity certificate",
+      "accessed": "2026-11-24",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Minister administering the Building Act 1993 (NT) (approves fidelity fund schemes)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Act 1993 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11645",
+          "locator": "s 54CB(1), words naming the body (found 24 Nov 2026) (current reprint)",
+          "quote": "The Minister may, by Gazette notice, approve any of the following to issue authorised RBI policies: 54CB (a) a body corporate authorised under the Insurance Act 1973 (Cth) to carry on insurance business;",
+          "accessed": "2026-11-24",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "Above a contract value set by regulation (not yet quoted).",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is a residential builder doing prescribed residential building work",
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Residential building contractors.",
+      "sources": [
+        {
+          "title": "Building Act 1993 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11645",
+          "locator": "section headed 'Requirement for authorised RBI policy or fidelity certificate', (1) (current reprint)",
+          "quote": "A residential builder must not carry out prescribed residential building work unless: (a) (b) one of the following is in force for the work: (i) an authorised RBI policy; (ii) a fidelity certificate",
+          "accessed": "2026-11-24",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "3221",
+        "3222",
+        "3223",
+        "3224",
+        "3239",
+        "3241",
+        "3242",
+        "3243",
+        "3244",
+        "3245"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is a residential builder doing prescribed residential building work",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Act 1993 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11645",
+          "locator": "section headed 'Requirement for authorised RBI policy or fidelity certificate', (1) (current reprint)",
+          "quote": "A residential builder must not carry out prescribed residential building work unless: (a) (b) one of the following is in force for the work: (i) an authorised RBI policy; (ii) a fidelity certificate",
+          "accessed": "2026-11-24",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 24 Nov 2026. The NT register's text does not keep this section's number, so the locator names the heading (Part 5A, Division 1). Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As a residential builder, carry out prescribed residential building work only while an authorised residential building insurance policy or a fidelity certificate is in force for the work, and give the policy document or certificate to the other party to the contract.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A new builder needs an insurer's eligibility (often set by net assets and track record) before contracting.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Premiums and a certificate for each job.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 7 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-24"
+  },
+  "drafted_on": "2026-11-24",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
