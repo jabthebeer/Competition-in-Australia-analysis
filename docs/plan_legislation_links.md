@@ -156,8 +156,8 @@ Each requirement belongs to a regime. Classes that are mainly government or hous
 - [ ] **16 requirements still rest on an ABLIS listing alone** (rule 5a). Most of the duties are likely in regulations; phase D's screening of each register, regulations included, should reach them.
 - [ ] **Partial ABLIS reach** (owner, 10 Nov 2026: come back to these). The Queensland livestock duty is the Act's, but which entities must register comes from ABLIS. The same applies to the ACT cleaning and security scheme's coverage and the two Victorian long service schemes (administrators' pages).
 - [ ] **NSW and SA quotes come from the corpus copy as at 10 March 2025.** Re-check them against the current text once a source for later NSW changes is found (D2).
-- [ ] **About 200 administering-body locators are unverified** (D-11a, E-353): in NSW, Queensland, the ACT and the NT the linker guessed the section from the last number before the quote, and those texts do not keep headings in a form that can be checked automatically. The quotes are exact. Check them by hand or from the registers' own section markup.
-- [ ] **NT locators use section headings**, because the NT register's PDFs lose section numbers when read as text. Recover the numbers.
+- [x] **About 200 administering-body locators are unverified** (done in D-12b, E-358, 25 Nov 2026: all 435 body locators in NSW, Queensland, the ACT and the NT checked; 75 corrected) (D-11a, E-353): in NSW, Queensland, the ACT and the NT the linker guessed the section from the last number before the quote, and those texts do not keep headings in a form that can be checked automatically. The quotes are exact. Check them by hand or from the registers' own section markup.
+- [x] **NT locators use section headings** (done in D-12b, E-358, 25 Nov 2026: section numbers recovered from the PDFs' page layout for 18 duty locators and their law provisions), because the NT register's PDFs lose section numbers when read as text. Recover the numbers.
 - [ ] **Nothing has been through the AI checking process yet** (E-145). The owner is setting it up in a separate thread; phase G covers this.
 
 **States and councils: coverage**
