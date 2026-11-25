@@ -79,7 +79,7 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 | **D-2** | Build the eight catalogues, triage them, score them for signals, and re-estimate the scale | Measures the work before the bulk of it |
 | **D-3** | Economy-wide state laws across all eight. Candidates for screening include long service leave, land tax, high-risk work and asbestos licences, dangerous goods storage, environment protection licences, retail leases and trading hours | Every class carries these; doing them family by family keeps states consistent |
 | **D-4 to D-10** | Industry-specific laws, state by state, by division: NSW, then Queensland, WA, SA, Tasmania, the ACT and the NT. Victoria runs when the saved Acts are uploaded | NSW is the largest economy and its corpus copy is ready |
-| **D-11** | Quality check of the state phase, gap log review, and an updated plan and estimate | As for the Commonwealth (E-144) |
+| **D-11** | Quality check of the state phase, gap log review, and an updated plan and estimate (done 24 Nov 2026, E-353 to E-356; Victoria left) | As for the Commonwealth (E-144) |
 
 ## Decisions for the owner
 
@@ -159,6 +159,13 @@ The Commonwealth rules apply (methods rules 1 to 13). The changes for the states
 - **D-9d and D-9e done 23 Nov 2026 (E-343, E-344): from the ACT's low band; 4 requirements.** ACT controlled sports registration (an earlier 'not found'), two ACT-first families (property developer licences, energy savings obligations) and SA's Retailer Energy Productivity Scheme; clinical waste transport as a second law. 1,146 requirements.
 - **D-9f and D-9g done 23 Nov 2026 (E-345, E-346): gas appliance approval; 6 requirements.** An ACT-first family, drafted also for NSW, Qld, WA, SA and Tasmania; the property developer licence gains its development application rule. 1,152 requirements.
 - **D-9h done 23 Nov 2026 (E-347): the ACT fully called.** 440 laws called (17 Y, 105 L, 318 N). Every ACT law now has a call except the 55 set aside by triage. 1,152 requirements.
+- **D-10a done 23 Nov 2026 (E-348): seven of the NT's 'to draft' cells; 7 requirements.** Education and care, gaming machines, racecourses, explosives, apprentice employers, poppies and hemp. 1,159 requirements.
+- **D-10b done 23 Nov 2026 (E-349): two NT corrections; 2 requirements.** Teacher registration for employers (s 72(1)) and casino employee licences (reg 3(1)), replacing earlier 'not found' cells. 1,161 requirements.
+- **D-10c done 23 Nov 2026 (E-350): the NT fully called.** 599 laws called (17 Y, 113 L, 469 N); every NT law now has a call except the 30 set aside by triage. Every catalogue except Victoria's is now fully called. 1,161 requirements.
+- **TD-3 done 23 Nov 2026 (E-351, E-352): the last 25 'to draft' cells read by hand; 21 requirements.** 3 NSW cells blocked and 1 Queensland cell not found; no 'to draft' cell is left. The SA corpus lookup read the wrong law for 21 SA catalogue rows that share a register id with another law; they were re-screened (E-352). 1,182 requirements.
+- **D-11a done 24 Nov 2026 (E-353): automated checks of the state requirements.** 4 duty locators and 147 administering-body locators corrected, 15 descriptions trimmed to their quotes, 9 template carry-overs fixed and 30 cut quotes widened. About 200 body locators in NSW, Queensland, the ACT and the NT remain unverified.
+- **D-11b to D-11d done 24 Nov 2026 (E-354, E-355): samples and a re-scan.** A sample of 30 state requirements led to template fixes in 55 records' marks and summaries. A sample of 40 N calls found 2 wrong; a re-scan of every state N law found 4 'not found' cells that the law covers and 7 new families; 11 requirements drafted and 22 catalogue calls corrected. 1,193 requirements.
+- **D-11 done 24 Nov 2026 (E-353 to E-356): the state phase quality check** ([`qa_states_2026-11-24.md`](qa_states_2026-11-24.md)). D-11e corrected 2 more 'not found' cells (Tasmanian bookmakers, NT home warranty). Left in phase D: Victoria (1,176 laws, waiting for uploads), the 7 D-11d families in the other jurisdictions (49 cells) and about 200 unverified body locators. 1,195 requirements.
 
 ### D-2: the catalogues and the new estimate
 
