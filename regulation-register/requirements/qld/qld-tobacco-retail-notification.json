@@ -1,0 +1,157 @@
+{
+  "id": "qld-tobacco-retail-notification",
+  "family": "tobacco-retail-notification",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "tobacco-and-vapes",
+  "title": "Hold a licence to sell smoking products",
+  "kind": "licence",
+  "what": "Sell smoking products only under a retail (or wholesale) licence.",
+  "laws": [
+    {
+      "title": "Tobacco and Other Smoking Products Act 1998 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1998-001",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1998-001",
+      "provisions": "s 65(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Tobacco and Other Smoking Products Act 1998 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1998-001",
+      "locator": "s 65(1) (current)",
+      "quote": "A supplier must not sell a smoking product unless the supplier holds a retail or wholesale licence that authorises that type of sale",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Chief executive of the department administering the Tobacco and Other Smoking Products Act 1998 (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Tobacco and Other Smoking Products Act 1998 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1998-001",
+          "locator": "s 20, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "the chief executive must grant an application for a retail licence (liquor) if the applicant is the liquor licensee for the liquor licensed premises at which smoking products are proposed to be sold.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4279"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells tobacco products",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Tobacco and Other Smoking Products Act 1998 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1998-001",
+          "locator": "s 65(1) (current)",
+          "quote": "A supplier must not sell a smoking product unless the supplier holds a retail or wholesale licence that authorises that type of sale",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4110",
+        "4000",
+        "4123"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells tobacco products",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Tobacco and Other Smoking Products Act 1998 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1998-001",
+          "locator": "s 65(1) (current)",
+          "quote": "A supplier must not sell a smoking product unless the supplier holds a retail or wholesale licence that authorises that type of sale",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Sell smoking products only under a retail (or wholesale) licence.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A retail or wholesale licence is needed before selling smoking products.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Licence conditions and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

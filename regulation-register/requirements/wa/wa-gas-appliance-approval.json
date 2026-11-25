@@ -1,0 +1,132 @@
+{
+  "id": "wa-gas-appliance-approval",
+  "family": "gas-appliance-approval",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Sell or connect only approved gas appliances",
+  "kind": "standard",
+  "what": "Sell, hire, advertise or install Type A gas appliances only if approved by the Director of Energy Safety and marked or labelled as approved.",
+  "laws": [
+    {
+      "title": "Gas Standards Act 1972 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a313",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47134.docx",
+      "provisions": "s 13D(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gas Standards Act 1972 (WA)",
+      "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47134.docx",
+      "locator": "s 13D(1) (version of mrdoc_47134)",
+      "quote": "A person shall not sell, hire, advertise for sale or install a Type A gas appliance unless the appliance — (a) is a gas appliance that is approved by the Director or is of a class or type of gas appliance that is approved by the Director; and (b) is marked, stamped or labelled in the manner approved by the Director",
+      "accessed": "2026-11-23",
+      "checked": "corpus-copy",
+      "corpus_version_id": "western_australian_legislation:mrdoc_47134/law_a313"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Director of Energy Safety (WA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gas Standards Act 1972 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47134.docx",
+          "locator": "s 4, words naming the body (found 23 Nov 2026) (version of mrdoc_47134)",
+          "quote": "Director means the Director of Energy Safety referred to in section 5 of the Energy Coordination Act 1994;",
+          "accessed": "2026-11-23",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_47134/law_a313"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4221",
+        "3233"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells, hires or installs gas appliances",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gas Standards Act 1972 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47134.docx",
+          "locator": "s 13D(1) (version of mrdoc_47134)",
+          "quote": "A person shall not sell, hire, advertise for sale or install a Type A gas appliance unless the appliance — (a) is a gas appliance that is approved by the Director or is of a class or type of gas appliance that is approved by the Director; and (b) is marked, stamped or labelled in the manner approved by the Director",
+          "accessed": "2026-11-23",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_47134/law_a313"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the ACT requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Sell, hire, advertise or install Type A gas appliances only if approved by the Director of Energy Safety and marked or labelled as approved.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

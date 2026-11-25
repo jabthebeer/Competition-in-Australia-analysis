@@ -1,0 +1,126 @@
+{
+  "id": "sa-waste-levy",
+  "family": "waste-levy",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "waste-management",
+  "title": "Pay the waste levy on waste received",
+  "kind": "tax-or-levy",
+  "what": "Pay the EPA the prescribed levy on waste received at a licensed waste depot.",
+  "laws": [
+    {
+      "title": "Environment Protection Act 1993 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1993.76.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+      "provisions": "s 113(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environment Protection Act 1993 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+      "locator": "s 113(1) (version of 2024-03-01)",
+      "quote": "The holder of a licence to conduct a waste depot must pay the prescribed levy to the Authority in respect of waste received at the depot",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-03-01/1993.76.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Environment Protection Authority (SA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environment Protection Act 1993 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+          "locator": "s 3, words naming the body (found 18 Nov 2026)",
+          "quote": "Authority means the Environment Protection Authority established under Division 1 of Part 3;",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-03-01/1993.76.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2921",
+        "2922"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it holds a licence to conduct a waste depot",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environment Protection Act 1993 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/environment%20protection%20act%201993/current/1993.76.un.rtf",
+          "locator": "s 113(1) (version of 2024-03-01)",
+          "quote": "The holder of a licence to conduct a waste depot must pay the prescribed levy to the Authority in respect of waste received at the depot",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-03-01/1993.76.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay the EPA the prescribed levy on waste received at a licensed waste depot.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "The levy raises the cost of disposing of waste, to steer waste to recycling.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

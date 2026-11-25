@@ -1,0 +1,126 @@
+{
+  "id": "vic-waste-levy",
+  "family": "waste-levy",
+  "jurisdiction": "VIC",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "waste-management",
+  "title": "Pay the waste levy on waste received",
+  "kind": "tax-or-levy",
+  "what": "Pay the EPA a waste levy for each tonne of waste received at premises subject to the levy (such as a landfill).",
+  "laws": [
+    {
+      "title": "Environment Protection Act 2017 (Vic)",
+      "jurisdiction": "VIC",
+      "kind": "act",
+      "register_id": "17-51aa023",
+      "register_url": "https://www.legislation.vic.gov.au/in-force/acts/environment-protection-act-2017",
+      "provisions": "s 145(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environment Protection Act 2017 (Vic)",
+      "publisher": "Victorian Legislation (authorised version saved by the owner)",
+      "url": "https://www.legislation.vic.gov.au/in-force/acts/environment-protection-act-2017",
+      "locator": "s 145(1) (authorised version 023, saved by the owner)",
+      "quote": "A liable person must pay to the Authority a waste levy for each tonne of waste (other than priority waste) that is received at premises subject to the waste levy",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "EPA Victoria (Environment Protection Authority)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environment Protection Act 2017 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/environment-protection-act-2017",
+          "locator": "s 5, words naming the body (found 18 Nov 2026) (authorised version 023, saved by the owner)",
+          "quote": "Authority means the Environment Protection Authority continued under section 356;",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2921",
+        "2922"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it runs premises subject to the waste levy (such as a landfill)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environment Protection Act 2017 (Vic)",
+          "publisher": "Victorian Legislation (authorised version saved by the owner)",
+          "url": "https://www.legislation.vic.gov.au/in-force/acts/environment-protection-act-2017",
+          "locator": "s 145(1) (authorised version 023, saved by the owner)",
+          "quote": "A liable person must pay to the Authority a waste levy for each tonne of waste (other than priority waste) that is received at premises subject to the waste levy",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay the EPA a waste levy for each tonne of waste received at premises subject to the levy (such as a landfill).",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "The levy raises the cost of disposing of waste, to steer waste to recycling.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

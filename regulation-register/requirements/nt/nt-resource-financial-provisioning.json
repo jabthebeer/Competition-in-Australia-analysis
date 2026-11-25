@@ -1,0 +1,143 @@
+{
+  "id": "nt-resource-financial-provisioning",
+  "family": "resource-financial-provisioning",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "mining-and-petroleum-titles",
+  "title": "Pay the mining remediation levy",
+  "kind": "tax-or-levy",
+  "what": "As a mining operator under an environmental (mining) licence, pay the annual levy into the Mining Remediation Fund.",
+  "laws": [
+    {
+      "title": "Legacy Mines Remediation Act 2023 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "LEGACY-MINES-REMEDIATION-ACT-2023",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12419",
+      "provisions": "s 13(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Legacy Mines Remediation Act 2023 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12419",
+      "locator": "s 13(1) (current reprint)",
+      "quote": "A mining operator who carries out mining activities under an environmental (mining) licence must pay an annual levy in accordance with this section and the regulations",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Minister administering the Legacy Mines Remediation Act 2023 (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Legacy Mines Remediation Act 2023 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12419",
+          "locator": "s 13, words naming the body (found 18 Nov 2026) (current reprint)",
+          "quote": "The Minister may, by Gazette notice, determine the minimum levy amount that is payable under this Act.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0600",
+        "0700",
+        "0801",
+        "0802",
+        "0803",
+        "0804",
+        "0805",
+        "0806",
+        "0807",
+        "0809",
+        "0911",
+        "0919",
+        "0990"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries out mining activities under an environmental (mining) licence",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Legacy Mines Remediation Act 2023 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12419",
+          "locator": "s 13(1) (current reprint)",
+          "quote": "A mining operator who carries out mining activities under an environmental (mining) licence must pay an annual levy in accordance with this section and the regulations",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. The levy is 1% of the mining security the operator provides (s 13(2)). Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As a mining operator under an environmental (mining) licence, pay the annual levy into the Mining Remediation Fund.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "Contributions to the scheme fund, or a surety, add to the cost of resource activities.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

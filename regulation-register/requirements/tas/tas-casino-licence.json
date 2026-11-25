@@ -34,7 +34,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Tasmanian Liquor and Gaming Commission",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Gaming Control Act 1993 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1993-094",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "Commission means the Tasmanian Liquor and Gaming Commission referred to in section 123 ;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",
@@ -82,7 +103,7 @@
       {
         "driver": "entry-exit",
         "mark": -2,
-        "reason": "A cap of 2 casino licences in NSW limits who may operate at all.",
+        "reason": "Only one high-roller casino licence may be in force in each of the Northern and Southern divisions, which limits who may operate.",
         "positions": []
       },
       {

@@ -1,0 +1,131 @@
+{
+  "id": "nsw-ethanol-mandate",
+  "family": "ethanol-mandate",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "fuel-retailing",
+  "title": "Sell a minimum share of ethanol-blended petrol",
+  "kind": "standard",
+  "what": "As a volume fuel retailer, ensure ethanol is at least the minimum percentage of all petrol sold in each period.",
+  "laws": [
+    {
+      "title": "Biofuels Act 2007 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2007-023",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-11-21/act-2007-023",
+      "provisions": "s 6(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Biofuels Act 2007 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-11-21/act-2007-023",
+      "locator": "s 6(1) (version of 2024-11-21)",
+      "quote": "A volume fuel retailer must ensure that the volume of ethanol sold by the retailer (in petrol-ethanol blend) during a relevant period is not less than the minimum ethanol percentage of the total volume of all petrol (including petrol-ethanol blend) sold by the retailer during the relevant period",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-11-21/act-2007-023"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Secretary of the Department (NSW)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Biofuels Act 2007 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-11-21/act-2007-023",
+          "locator": "s 3, words naming the body (found 18 Nov 2026)",
+          "quote": "Secretary means the Secretary of the Department.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-11-21/act-2007-023"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4000"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is a volume fuel retailer as the Act defines",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Biofuels Act 2007 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-11-21/act-2007-023",
+          "locator": "s 6(1) (version of 2024-11-21)",
+          "quote": "A volume fuel retailer must ensure that the volume of ethanol sold by the retailer (in petrol-ethanol blend) during a relevant period is not less than the minimum ethanol percentage of the total volume of all petrol (including petrol-ethanol blend) sold by the retailer during the relevant period",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-11-21/act-2007-023"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As a volume fuel retailer, ensure ethanol is at least the minimum percentage of all petrol sold in each period.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Retailers must sell a minimum share of ethanol-blended petrol, whatever customers demand.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

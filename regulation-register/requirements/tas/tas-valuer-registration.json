@@ -1,0 +1,131 @@
+{
+  "id": "tas-valuer-registration",
+  "family": "valuer-registration",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Hold the qualifications required to practise as a land valuer",
+  "kind": "standard",
+  "what": "Carry on business, or hold out, as a land valuer only after completing an accredited course and gaining the required practical experience.",
+  "laws": [
+    {
+      "title": "Land Valuers Act 2001 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2001-101",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-101",
+      "provisions": "s 4(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Land Valuers Act 2001 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-101",
+      "locator": "s 4(1) (current)",
+      "quote": "A natural person must not carry on business, or hold himself or herself out, as a land valuer unless he or she has satisfactorily completed an accredited course and has the required practical experience",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Director of Consumer Affairs and Fair Trading (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Land Valuers Act 2001 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-101",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "Director means the Director of Consumer Affairs and Fair Trading;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it values land as a business",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Land Valuers Act 2001 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2001-101",
+          "locator": "s 4(1) (current)",
+          "quote": "A natural person must not carry on business, or hold himself or herself out, as a land valuer unless he or she has satisfactorily completed an accredited course and has the required practical experience",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Carry on business, or hold out, as a land valuer only after completing an accredited course and gaining the required practical experience.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Registration limits who may carry on business as a valuer.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "id": "tas-non-government-school-registration",
+  "family": "non-government-school-registration",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register a non-government school",
+  "kind": "registration",
+  "what": "Operate a non-government school, or a campus of one, only if the school is registered.",
+  "laws": [
+    {
+      "title": "Education Act 2016 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2016-051",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2016-051",
+      "provisions": "s 144",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Education Act 2016 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2016-051",
+      "locator": "s 144 (current)",
+      "quote": "A person or body must not operate a non-government school, or a campus of a non-government school, unless that school is registered under this Part",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Non-Government Schools Registration Board (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Education Act 2016 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2016-051",
+          "locator": "s 5, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "Registration Board means the Non-government Schools Registration Board established under section 229 ;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8021",
+        "8022",
+        "8023",
+        "8024"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it conducts a non-government school",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Education Act 2016 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2016-051",
+          "locator": "s 144 (current)",
+          "quote": "A person or body must not operate a non-government school, or a campus of a non-government school, unless that school is registered under this Part",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Operate a non-government school, or a campus of one, only if the school is registered.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

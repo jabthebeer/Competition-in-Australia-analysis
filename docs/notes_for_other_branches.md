@@ -6,7 +6,7 @@
 
 *15 November 2026. From the legislation branch (`claude/pensive-bell-wgm7ks`). The owner chose a dedicated field (decision 2 in [`plan_levers_reevaluation.md`](plan_levers_reevaluation.md)). The field is in the models and schema, which are yours, so this branch has not added it.*
 
-**Decision numbers.** Two legislation branches share E-162 to E-179 and have collided twice. From 16 November 2026 this branch uses **E-170 to E-179**; `claude/admiring-archimedes-q8usns` keeps **E-162 to E-169**.
+**Decision numbers.** Two legislation branches share E-162 to E-179 and have collided twice. From 16 November 2026 this branch uses **E-170 to E-179**; `claude/admiring-archimedes-q8usns` keeps **E-162 to E-169**. Its E-162 to E-169 are now spent, so from 17 November 2026 `claude/admiring-archimedes-q8usns` uses **E-300 onwards**.
 
 ### What is needed
 

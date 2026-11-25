@@ -1,0 +1,125 @@
+{
+  "id": "sa-land-lease-community-notification",
+  "family": "land-lease-community-notification",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Notify the Commissioner of a land lease community",
+  "kind": "notification",
+  "what": "As a residential park owner, give the Commissioner the particulars of the park for the register.",
+  "laws": [
+    {
+      "title": "Residential Parks Act 2007 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "2007.19.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/residential%20parks%20act%202007/current/2007.19.un.rtf",
+      "provisions": "s 135(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Residential Parks Act 2007 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/residential%20parks%20act%202007/current/2007.19.un.rtf",
+      "locator": "s 135(2) (version of 2024-07-01)",
+      "quote": "A park owner must, by notice in writing, provide the Commissioner with such particulars relating to the residential park as are required to be entered in the register under this section",
+      "accessed": "2026-11-23",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2024-07-01/2007.19.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Commissioner for Consumer Affairs (SA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Parks Act 2007 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/residential%20parks%20act%202007/current/2007.19.un.rtf",
+          "locator": "s 135(1), words naming the body (found 23 Nov 2026) (version of 2024-07-01)",
+          "quote": "The Commissioner must establish and maintain a register including the following information: (a) the name and address of each residential park in the State;",
+          "accessed": "2026-11-23",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-07-01/2007.19.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns a residential park",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Parks Act 2007 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/residential%20parks%20act%202007/current/2007.19.un.rtf",
+          "locator": "s 135(2) (version of 2024-07-01)",
+          "quote": "A park owner must, by notice in writing, provide the Commissioner with such particulars relating to the residential park as are required to be entered in the register under this section",
+          "accessed": "2026-11-23",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-07-01/2007.19.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As a residential park owner, give the Commissioner the particulars of the park for the register.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Particulars of each community must be notified and kept up to date.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

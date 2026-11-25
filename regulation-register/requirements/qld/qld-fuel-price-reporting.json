@@ -1,0 +1,131 @@
+{
+  "id": "qld-fuel-price-reporting",
+  "family": "fuel-price-reporting",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "fuel-retailing",
+  "title": "Report fuel prices to the price reporting system",
+  "kind": "reporting",
+  "what": "As the responsible fuel retailer at a service station, enter each fuel's normal price and other details into the aggregation system within the time required.",
+  "laws": [
+    {
+      "title": "Fair Trading (Fuel Price Reporting) Regulation 2018 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "regulation",
+      "register_id": "sl-2018-0185",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2018-0185",
+      "provisions": "s 6(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fair Trading (Fuel Price Reporting) Regulation 2018 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2018-0185",
+      "locator": "s 6(1) (current)",
+      "quote": "The responsible fuel retailer must ensure the following information is entered into the aggregation system within the period mentioned in subsection (2)— (a) the normal fuel price for the type of fuel",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Chief executive of the department administering the Fair Trading Act 1989 (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Trading Act 1989 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1989-084",
+          "locator": "s 113, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "The chief executive may approve forms for use under this Act",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4000"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells fuel by retail at a service station",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fair Trading (Fuel Price Reporting) Regulation 2018 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2018-0185",
+          "locator": "s 6(1) (current)",
+          "quote": "The responsible fuel retailer must ensure the following information is entered into the aggregation system within the period mentioned in subsection (2)— (a) the normal fuel price for the type of fuel",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section numbers read from the heading before each duty.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As the responsible fuel retailer at a service station, enter each fuel's normal price and other details into the aggregation system within the time required.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Published prices let motorists compare service stations.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "competition",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

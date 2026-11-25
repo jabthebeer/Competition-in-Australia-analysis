@@ -1,0 +1,131 @@
+{
+  "id": "qld-inbound-tour-operator-registration",
+  "family": "inbound-tour-operator-registration",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register as an inbound tour operator",
+  "kind": "registration",
+  "what": "Carry on business as an inbound tour operator (selling Queensland travel packages to overseas wholesalers or retailers) only while registered.",
+  "laws": [
+    {
+      "title": "Tourism Services Act 2003 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2003-061",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2003-061",
+      "provisions": "s 12(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Tourism Services Act 2003 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2003-061",
+      "locator": "s 12(1) (current)",
+      "quote": "A person must not carry on the business of an inbound tour operator unless the person is a registrant whose registration is not suspended",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Chief executive of the department administering the Tourism Services Act 2003 (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Tourism Services Act 2003 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2003-061",
+          "locator": "s 15A, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "The chief executive may require an applicant to pay the reasonable, but no more than actual, costs of obtaining a report under section 15 about the applicant or an associated person of the applicant.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7220"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells Queensland travel packages to overseas wholesalers or retailers (an inbound tour operator)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Tourism Services Act 2003 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2003-061",
+          "locator": "s 12(1) (current)",
+          "quote": "A person must not carry on the business of an inbound tour operator unless the person is a registrant whose registration is not suspended",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section numbers read from the heading before each duty.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Carry on business as an inbound tour operator (selling Queensland travel packages to overseas wholesalers or retailers) only while registered.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

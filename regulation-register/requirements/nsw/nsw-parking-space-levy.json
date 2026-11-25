@@ -1,0 +1,130 @@
+{
+  "id": "nsw-parking-space-levy",
+  "family": "parking-space-levy",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay the parking space levy",
+  "kind": "tax-or-levy",
+  "what": "Pay the annual parking space levy on off-street parking spaces in the levy districts, as the owner at 1 July.",
+  "laws": [
+    {
+      "title": "Parking Space Levy Act 2009 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2009-005",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-12-01/act-2009-005",
+      "provisions": "s 8(3)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Parking Space Levy Act 2009 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-12-01/act-2009-005",
+      "locator": "s 8(3) (version of 2021-12-01)",
+      "quote": "A person who, as at 1 July in any year, is the owner of leviable premises is liable for payment of the levy for the premises",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2021-12-01/act-2009-005"
+    }
+  ],
+  "administered_by": [
+    "nsw-revenue"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Revenue NSW (Chief Commissioner of State Revenue)",
+      "bodies": [
+        "nsw-revenue"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Parking Space Levy Act 2009 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-12-01/act-2009-005",
+          "locator": "s 4, words naming the body (found 18 Nov 2026)",
+          "quote": "Chief Commissioner means the Chief Commissioner of State Revenue referred to in section 60 of the Taxation Administration Act 1996.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2021-12-01/act-2009-005"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9533",
+        "6712"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns leviable parking premises in a levy district",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Parking Space Levy Act 2009 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2021-12-01/act-2009-005",
+          "locator": "s 8(3) (version of 2021-12-01)",
+          "quote": "A person who, as at 1 July in any year, is the owner of leviable premises is liable for payment of the levy for the premises",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2021-12-01/act-2009-005"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay the annual parking space levy on off-street parking spaces in the levy districts, as the owner at 1 July.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "An annual levy on parking spaces in the levy districts raises the cost of parking.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

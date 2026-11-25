@@ -1,0 +1,129 @@
+{
+  "id": "tas-radiation-management-licence",
+  "family": "radiation-management-licence",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a licence for a radiation source",
+  "kind": "licence",
+  "what": "Use, possess, sell or otherwise deal with a radiation source only under a licence.",
+  "laws": [
+    {
+      "title": "Radiation Protection Act 2005 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2005-048",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2005-048",
+      "provisions": "s 13(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Radiation Protection Act 2005 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2005-048",
+      "locator": "s 13(1) (current)",
+      "quote": "A person must not use, manufacture, sell, acquire, possess, store, transport, install, service, repair, dispose of or otherwise deal with a radiation source other than in accordance with a licence",
+      "accessed": "2026-11-17",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Director of Public Health (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Radiation Protection Act 2005 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2005-048",
+          "locator": "s 21, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "The Director of Public Health may grant or refuse to grant an application for an authority.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns, stores, sells or possesses radiation apparatus or radioactive material",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Radiation Protection Act 2005 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2005-048",
+          "locator": "s 13(1) (current)",
+          "quote": "A person must not use, manufacture, sell, acquire, possess, store, transport, install, service, repair, dispose of or otherwise deal with a radiation source other than in accordance with a licence",
+          "accessed": "2026-11-17",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 17 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Use, possess, sell or otherwise deal with a radiation source only under a licence.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      },
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence is needed before the business can hold the equipment or material.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "drafted_on": "2026-11-17",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

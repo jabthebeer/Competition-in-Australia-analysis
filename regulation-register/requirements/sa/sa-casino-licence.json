@@ -34,7 +34,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Liquor and Gambling Commissioner (SA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Casino Act 1997 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/casino%20act%201997/current/1997.31.un.rtf",
+          "locator": "s 14B, words naming the body (found 18 Nov 2026)",
+          "quote": "The Commissioner must not approve a person to become a designated person in relation to the licensee unless satisfied that the person is a fit and proper person to become a designated person in relation to the licensee.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2024-11-21/1997.31.un"
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",
@@ -82,7 +103,7 @@
       {
         "driver": "entry-exit",
         "mark": -2,
-        "reason": "A cap of 2 casino licences in NSW limits who may operate at all.",
+        "reason": "No more than one casino licence may be in force, which limits who may operate at all.",
         "positions": []
       },
       {

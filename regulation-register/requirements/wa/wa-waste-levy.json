@@ -1,0 +1,130 @@
+{
+  "id": "wa-waste-levy",
+  "family": "waste-levy",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "waste-management",
+  "title": "Pay the waste levy on waste received",
+  "kind": "tax-or-levy",
+  "what": "Pay the levy on waste received at licensed disposal premises (such as a landfill).",
+  "laws": [
+    {
+      "title": "Waste Avoidance and Resource Recovery Levy Act 2007 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a146644",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_43481.docx",
+      "provisions": "s 6",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Waste Avoidance and Resource Recovery Levy Act 2007 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_43481.docx",
+      "locator": "s 6 (current version)",
+      "quote": "The holder of a licence in respect of disposal premises, or in the case of disposal premises in respect of which a licence is not in force, an occupier required under the EP Act to hold such licence in respect of the premises, is liable to pay the amount of any levy imposed in respect of waste received at the disposal premises",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "wa-dwer"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "CEO of the department administering the Waste Avoidance and Resource Recovery Act 2007 (WA)",
+      "bodies": [
+        "wa-dwer"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Waste Avoidance and Resource Recovery Act 2007 (WA)",
+          "publisher": "Western Australian Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48005.docx",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current version)",
+          "quote": "CEO means chief executive officer of the department of the Public Service principally assisting in the administration of this Act;",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2921",
+        "2922"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it holds a licence for disposal premises (such as a landfill)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Waste Avoidance and Resource Recovery Levy Act 2007 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_43481.docx",
+          "locator": "s 6 (current version)",
+          "quote": "The holder of a licence in respect of disposal premises, or in the case of disposal premises in respect of which a licence is not in force, an occupier required under the EP Act to hold such licence in respect of the premises, is liable to pay the amount of any levy imposed in respect of waste received at the disposal premises",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay the levy on waste received at licensed disposal premises (such as a landfill).",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "The levy raises the cost of disposing of waste, to steer waste to recycling.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

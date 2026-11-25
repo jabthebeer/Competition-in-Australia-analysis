@@ -18,6 +18,15 @@
       "register_url": "https://www.legislation.act.gov.au/a/2016-51/",
       "provisions": "s 30",
       "applied": false
+    },
+    {
+      "title": "Clinical Waste Act 1990 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "1990-5",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/1990-5/current/PDF/1990-5.PDF",
+      "provisions": "s 30(1)",
+      "applied": false
     }
   ],
   "sources": [
@@ -28,6 +37,16 @@
       "locator": "s 30 (republication of 01/07/2024 (Waste Management and Resource Recovery Act 2016 | Acts))",
       "quote": "Requirement to be registered as waste transporter A person must not operate as a waste transporter unless the person is registered.",
       "accessed": "2026-11-10",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Clinical Waste Act 1990 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/1990-5/current/PDF/1990-5.PDF",
+      "locator": "s 30(1) (current republication (R21, from 6 December 2025; Clinical Waste Act 1990 | Acts))",
+      "quote": "A person commits an offence if the person— (a) conducts a business of transporting clinical waste; and (b) is not licensed to conduct the business",
+      "accessed": "2026-11-23",
       "checked": "document",
       "corpus_version_id": null
     }
@@ -180,7 +199,7 @@
     "39186"
   ],
   "assessment": {
-    "summary": "Transporting regulated waste needs an environmental licence, registration or permit, and each load is tracked.",
+    "summary": "Transporting regulated waste needs an environmental licence, registration or permit.",
     "marks": [
       {
         "driver": "entry-exit",
@@ -191,7 +210,7 @@
       {
         "driver": "burden",
         "mark": -1,
-        "reason": "Load tracking, vehicle conditions and reporting.",
+        "reason": "Licence conditions, records and fees add ongoing cost.",
         "positions": []
       }
     ],

@@ -1,0 +1,146 @@
+{
+  "id": "qld-project-trust-account",
+  "family": "project-trust-account",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "security-of-payment",
+  "title": "Hold progress and retention payments in trust accounts",
+  "kind": "other",
+  "what": "As the head contractor on a contract that needs a project trust, open a project trust account within 20 business days of the first subcontract, and open a retention trust account before withholding retention amounts.",
+  "laws": [
+    {
+      "title": "Building Industry Fairness (Security of Payment) Act 2017 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2017-043",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-043",
+      "provisions": "s 18(1), s 18(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Industry Fairness (Security of Payment) Act 2017 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-043",
+      "locator": "s 18(1) (current)",
+      "quote": "If a project trust is required for a contract under section 12 , the contracted party must open an account at a financial institution for the trust as required by this section",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Industry Fairness (Security of Payment) Act 2017 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-043",
+      "locator": "s 18(2) (current)",
+      "quote": "The project trust account must be opened within 20 business days after the contracted party enters into the first subcontract",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "qld-qbcc"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Queensland Building and Construction Commission",
+      "bodies": [
+        "qld-qbcc"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Industry Fairness (Security of Payment) Act 2017 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-043",
+          "locator": "sch 2, def commissioner, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "commissioner means the commissioner appointed under the Queensland Building and Construction Commission Act 1991 , section 20D .",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is the head contractor on a contract for which a project trust is required",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Industry Fairness (Security of Payment) Act 2017 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2017-043",
+          "locator": "s 18(1) (current)",
+          "quote": "If a project trust is required for a contract under section 12 , the contracted party must open an account at a financial institution for the trust as required by this section",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section numbers read from the heading before each duty.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As the head contractor on a contract that needs a project trust, open a project trust account within 20 business days of the first subcontract, and open a retention trust account before withholding retention amounts.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Trust accounts, records and reports for each contract that needs a project trust.",
+        "positions": []
+      },
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Progress payments are held in trust rather than available as working capital.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

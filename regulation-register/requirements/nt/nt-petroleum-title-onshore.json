@@ -1,0 +1,132 @@
+{
+  "id": "nt-petroleum-title-onshore",
+  "family": "petroleum-title-onshore",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "mining-and-petroleum-titles",
+  "title": "Hold a petroleum title to explore for or produce petroleum",
+  "kind": "licence",
+  "what": "Explore for or recover petroleum onshore only under an exploration permit, retention licence or production licence granted by the Minister.",
+  "laws": [
+    {
+      "title": "Petroleum Act 1984 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "PETROLEUM-ACT-1984",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12087",
+      "provisions": "s 105(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Petroleum Act 1984 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12087",
+      "locator": "s 105(1) (current reprint)",
+      "quote": "A person commits an offence if: (a) the person intentionally engages in conduct; and (b) the conduct is part of carrying out an activity for which an exploration permit, retention licence or production licence is required",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Minister administering the Petroleum Act 1984 (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Petroleum Act 1984 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12087",
+          "locator": "s 20(3), words naming the body (found 23 Nov 2026) (current reprint)",
+          "quote": "The Minister must then determine whether to grant the exploration permit in respect of some or all of the blocks (including part or parts of a block) to which the application relates or refuse to grant the exploration permit.",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0700",
+        "1011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it explores for or produces petroleum onshore in the NT",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Petroleum Act 1984 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12087",
+          "locator": "s 105(1) (current reprint)",
+          "quote": "A person commits an offence if: (a) the person intentionally engages in conduct; and (b) the conduct is part of carrying out an activity for which an exploration permit, retention licence or production licence is required",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 23 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Explore for or recover petroleum onshore only under an exploration permit, retention licence or production licence granted by the Minister.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

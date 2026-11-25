@@ -1,0 +1,131 @@
+{
+  "id": "qld-lobbyist-registration",
+  "family": "lobbyist-registration",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Be registered as a lobbyist",
+  "kind": "registration",
+  "what": "Carry out lobbying activities for third-party clients only while registered as a lobbyist.",
+  "laws": [
+    {
+      "title": "Integrity Act 2009 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2009-052",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2009-052",
+      "provisions": "s 46(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Integrity Act 2009 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2009-052",
+      "locator": "s 46(1) (current)",
+      "quote": "An unregistered person must not carry out a lobbying activity for a third party client",
+      "accessed": "2026-11-19",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Queensland Integrity Commissioner",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Integrity Act 2009 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2009-052",
+          "locator": "sch 2, def commissioner, words naming the body (found 19 Nov 2026) (current)",
+          "quote": "commissioner means the Queensland Integrity Commissioner.",
+          "accessed": "2026-11-19",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6962"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it lobbies government on behalf of clients",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Integrity Act 2009 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2009-052",
+          "locator": "s 46(1) (current)",
+          "quote": "An unregistered person must not carry out a lobbying activity for a third party client",
+          "accessed": "2026-11-19",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 19 Nov 2026. Reach and framework marks follow the WA requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Carry out lobbying activities for third-party clients only while registered as a lobbyist.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-19"
+  },
+  "drafted_on": "2026-11-19",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

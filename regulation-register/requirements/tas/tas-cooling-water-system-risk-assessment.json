@@ -1,0 +1,123 @@
+{
+  "id": "tas-cooling-water-system-risk-assessment",
+  "family": "cooling-water-system-risk-assessment",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Operate and maintain registered water systems",
+  "kind": "standard",
+  "what": "Operate and maintain each registered system (such as a cooling tower or warm-water system) as its registration and the guidelines require.",
+  "laws": [
+    {
+      "title": "Public Health Act 1997 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-1997-086",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-086",
+      "provisions": "s 117(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Public Health Act 1997 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-086",
+      "locator": "s 117(1) (current)",
+      "quote": "The owner of any premises where any registered system is installed must ensure that the system is operated and maintained – (a) in accordance with – (i) any condition of the registration;",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Director of Public Health (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health Act 1997 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-086",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "Director means the Director of Public Health appointed under section 6 ;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if its premises have a cooling water system (such as a cooling tower)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Public Health Act 1997 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-1997-086",
+          "locator": "s 117(1) (current)",
+          "quote": "The owner of any premises where any registered system is installed must ensure that the system is operated and maintained – (a) in accordance with – (i) any condition of the registration;",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Regulated systems include cooling towers and warm-water systems (s 3); they are registered with the council (s 116). Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Operate and maintain each registered system (such as a cooling tower or warm-water system) as its registration and the guidelines require.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Periodic risk assessments, audits and notices for each system.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

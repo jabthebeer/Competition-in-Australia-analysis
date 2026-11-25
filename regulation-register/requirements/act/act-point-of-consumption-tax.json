@@ -1,0 +1,129 @@
+{
+  "id": "act-point-of-consumption-tax",
+  "family": "point-of-consumption-tax",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "gambling",
+  "title": "Pay betting operations tax",
+  "kind": "tax-or-levy",
+  "what": "Pay betting operations tax on net ACT betting revenue each financial year.",
+  "laws": [
+    {
+      "title": "Betting Operations Tax Act 2018 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "2018-35",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2018-35/current/PDF/2018-35.PDF",
+      "provisions": "s 10(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Betting Operations Tax Act 2018 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2018-35/current/PDF/2018-35.PDF",
+      "locator": "s 10(1) (current republication (R2, from 28 March 2019; Betting Operations Tax Act 2018 | Acts))",
+      "quote": "A betting operator is liable to pay tax (a betting operations tax) on the operator’s net ACT betting revenue for a financial year",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "act-cmtedd"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Commissioner for ACT Revenue",
+      "bodies": [
+        "act-cmtedd"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Betting Operations Tax Act 2018 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2018-35/current/PDF/2018-35.PDF",
+          "locator": "s 11, words naming the body (found 18 Nov 2026) (current republication (R2, from 28 March 2019; Betting Operations Tax Act 2018 | Acts)",
+          "quote": "The commissioner must register the applicant as a betting operator.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9209"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it takes bets from people in the ACT (a betting operator)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Betting Operations Tax Act 2018 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2018-35/current/PDF/2018-35.PDF",
+          "locator": "s 10(1) (current republication (R2, from 28 March 2019; Betting Operations Tax Act 2018 | Acts))",
+          "quote": "A betting operator is liable to pay tax (a betting operations tax) on the operator’s net ACT betting revenue for a financial year",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. A threshold amount of $150,000 is defined (s 8); how it applies was not quoted, so the trigger is not coded with a value. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay betting operations tax on net ACT betting revenue each financial year.",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "The tax on wagering revenue raises the cost of wagering services.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

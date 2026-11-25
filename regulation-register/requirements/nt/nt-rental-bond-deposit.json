@@ -1,0 +1,149 @@
+{
+  "id": "nt-rental-bond-deposit",
+  "family": "rental-bond-deposit",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Hold security deposits in trust",
+  "kind": "other",
+  "what": "Hold security deposits in trust, in an agent's trust account or a landlord's account with an ADI.",
+  "laws": [
+    {
+      "title": "Residential Tenancies Act 1999 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "RESIDENTIAL-TENANCIES-ACT-1999",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12173",
+      "provisions": "s 29(4)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Residential Tenancies Act 1999 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12173",
+      "locator": "s 29(4) (current reprint)",
+      "quote": "The landlord must pay money paid to the landlord as a security deposit into an account established for the purposes of section 50 of the Agents Licensing Act 1979 or an account kept by the landlord at: (a) an ADI;",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Commissioner of Tenancies (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies Act 1999 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12173",
+          "locator": "s 4, words naming the body (found 18 Nov 2026) (current reprint)",
+          "quote": "Commissioner means the Commissioner of Tenancies within the meaning of section 13.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it lets residential premises and takes a rental bond",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies Act 1999 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12173",
+          "locator": "s 29(4) (current reprint)",
+          "quote": "The landlord must pay money paid to the landlord as a security deposit into an account established for the purposes of section 50 of the Agents Licensing Act 1979 or an account kept by the landlord at: (a) an ADI;",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "6720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it manages residential tenancies and receives rental bonds",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies Act 1999 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12173",
+          "locator": "s 29(4) (current reprint)",
+          "quote": "The landlord must pay money paid to the landlord as a security deposit into an account established for the purposes of section 50 of the Agents Licensing Act 1979 or an account kept by the landlord at: (a) an ADI;",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. The NT has no bond authority: a security deposit is held by the landlord in trust for the tenant (s 29(3)). Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Hold security deposits in trust, in an agent's trust account or a landlord's account with an ADI.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Security deposits must be held in trust in a set kind of account.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "id": "act-energy-savings-obligation",
+  "family": "energy-savings-obligation",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Meet the retailer energy savings obligation",
+  "kind": "standard",
+  "what": "As an electricity retailer, achieve the energy savings obligation (and, for tier 1 retailers, the priority household obligation) set for each compliance period by carrying out eligible energy efficiency activities, or, for tier 2 retailers, pay the energy savings contribution instead.",
+  "laws": [
+    {
+      "title": "Energy Efficiency (Cost of Living) Improvement Act 2012 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "2012-17",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2012-17/current/PDF/2012-17.PDF",
+      "provisions": "s 14(1), s 11(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Energy Efficiency (Cost of Living) Improvement Act 2012 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2012-17/current/PDF/2012-17.PDF",
+      "locator": "s 14(1) (current republication (R20, from 16 December 2025; Energy Efficiency (Cost of Living) Improvement Act 2012 | Acts))",
+      "quote": "A NERL retailer must achieve the retailer’s energy savings obligation for a compliance period",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Energy Efficiency (Cost of Living) Improvement Act 2012 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2012-17/current/PDF/2012-17.PDF",
+      "locator": "s 11(1) (current republication (R20, from 16 December 2025; Energy Efficiency (Cost of Living) Improvement Act 2012 | Acts))",
+      "quote": "The Minister must determine a contribution (an energy savings contribution) payable by tier 2 NERL retailers for a compliance period in place of the retailer’s requirement to achieve a retailer’s energy savings obligation for the period",
+      "accessed": "2026-11-23",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Administrator of the energy efficiency improvement scheme (ACT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Energy Efficiency (Cost of Living) Improvement Act 2012 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2012-17/current/PDF/2012-17.PDF",
+          "locator": "dict, def administrator, words naming the body (found 23 Nov 2026) (current republication (R20, from 16 December 2025; Energy Efficiency (Cost of Living)",
+          "quote": "administrator means a person appointed as administrator under section 23.",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2640"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it retails electricity in the ACT",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Energy Efficiency (Cost of Living) Improvement Act 2012 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2012-17/current/PDF/2012-17.PDF",
+          "locator": "s 14(1) (current republication (R20, from 16 December 2025; Energy Efficiency (Cost of Living) Improvement Act 2012 | Acts))",
+          "quote": "A NERL retailer must achieve the retailer’s energy savings obligation for a compliance period",
+          "accessed": "2026-11-23",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 23 Nov 2026. Section numbers read from the heading before each duty.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As an electricity retailer, achieve the energy savings obligation (and, for tier 1 retailers, the priority household obligation) set for each compliance period by carrying out eligible energy efficiency activities, or, for tier 2 retailers, pay the energy savings contribution instead.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Retailers must fund and record energy savings activities each period.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "The obligation adds a fixed compliance cost that weighs more on smaller retailers, who may pay a contribution instead.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

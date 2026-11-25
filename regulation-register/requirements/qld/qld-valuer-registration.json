@@ -1,0 +1,131 @@
+{
+  "id": "qld-valuer-registration",
+  "family": "valuer-registration",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Be a registered valuer",
+  "kind": "registration",
+  "what": "Carry on the business of a valuer, or hold out as a registered valuer, only while registered.",
+  "laws": [
+    {
+      "title": "Valuers Registration Act 1992 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1992-002",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-002",
+      "provisions": "s 63(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Valuers Registration Act 1992 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-002",
+      "locator": "s 63(1) (current)",
+      "quote": "a person who is not a registered valuer must not— (a) hold himself or herself out as being a registered valuer; or (b) carry on or attempt to carry on the business of a registered valuer",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Valuers Registration Board of Queensland (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Valuers Registration Act 1992 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-002",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "board means the Valuers Registration Board of Queensland.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it values real estate as a business",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Valuers Registration Act 1992 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1992-002",
+          "locator": "s 63(1) (current)",
+          "quote": "a person who is not a registered valuer must not— (a) hold himself or herself out as being a registered valuer; or (b) carry on or attempt to carry on the business of a registered valuer",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section numbers read from the heading before each duty.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Carry on the business of a valuer, or hold out as a registered valuer, only while registered.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Registration limits who may carry on business as a valuer.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

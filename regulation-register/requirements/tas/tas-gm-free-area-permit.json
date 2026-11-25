@@ -1,0 +1,145 @@
+{
+  "id": "tas-gm-free-area-permit",
+  "family": "gm-free-area-permit",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a permit to deal with GMOs in a GMO-free area",
+  "kind": "licence",
+  "what": "Deal with a genetically modified organism in an area the Minister has declared GMO-free only under a permit (and a Commonwealth GMO licence where the Gene Technology Act 2000 requires one), unless the dealing is exempt.",
+  "laws": [
+    {
+      "title": "Genetically Modified Organisms Control Act 2004 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2004-045",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2004-045",
+      "provisions": "s 7(1), s 3",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Genetically Modified Organisms Control Act 2004 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2004-045",
+      "locator": "s 7(1) (current)",
+      "quote": "A person must not knowingly deal with a GMO in a GMO-free area unless – (a) that person is authorised to so deal with the GMO by – (i) both a permit and a GMO licence",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Genetically Modified Organisms Control Act 2004 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2004-045",
+      "locator": "s 3 (current)",
+      "quote": "GMO-free area means, while an order under section 5 is in force, the whole or the part of Tasmania declared by the Minister in the order to be an area that is free of GMOs",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Secretary of the Department administering the Genetically Modified Organisms Control Act 2004 (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Genetically Modified Organisms Control Act 2004 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2004-045",
+          "locator": "s 9, words naming the body (found 20 Nov 2026) (current)",
+          "quote": "The Secretary may grant a permit to a person who has not applied for one under section 8 if – (a) the Minister has declared an area to be a GMO-free area under section 5 or has notified the Secretary that he or she intends to make such a declaration;",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it deals with a genetically modified organism (such as growing a GM crop) in an area declared GMO-free",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Genetically Modified Organisms Control Act 2004 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2004-045",
+          "locator": "s 7(1) (current)",
+          "quote": "A person must not knowingly deal with a GMO in a GMO-free area unless – (a) that person is authorised to so deal with the GMO by – (i) both a permit and a GMO licence",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 20 Nov 2026. Section numbers read from the heading before each duty. The Minister's order under s 5 that declares the GMO-free area was not read.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Deal with a genetically modified organism in an area the Minister has declared GMO-free only under a permit (and a Commonwealth GMO licence where the Gene Technology Act 2000 requires one), unless the dealing is exempt.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "A GMO-free area keeps genetically modified crops and products out of the declared area.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-20"
+  },
+  "drafted_on": "2026-11-20",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

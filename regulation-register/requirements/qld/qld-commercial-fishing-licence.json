@@ -1,0 +1,144 @@
+{
+  "id": "qld-commercial-fishing-licence",
+  "family": "commercial-fishing-licence",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "fisheries",
+  "title": "Hold a commercial fishing licence",
+  "kind": "licence",
+  "what": "Take fish for trade or commerce only while holding, or acting under, an authority that allows it (the Fisheries (General) Regulation 2019 prescribes the act).",
+  "laws": [
+    {
+      "title": "Fisheries Act 1994 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1994-037",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-037",
+      "provisions": "s 82",
+      "applied": false
+    },
+    {
+      "title": "Fisheries (General) Regulation 2019 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "regulation",
+      "register_id": "sl-2019-0179",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2019-0179",
+      "provisions": "s 20, sch 1",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fisheries Act 1994 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-037",
+      "locator": "s 82 (current)",
+      "quote": "A person must not unlawfully do an act prescribed by regulation or declared by a declaration as an act that must only be done by the holder of an authority",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Fisheries (General) Regulation 2019 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2019-0179",
+      "locator": "sch 1 (current)",
+      "quote": "Prescribed act taking fish for trade or commerce Who has authority to do prescribed act a person who holds, or is acting under, an authority authorising the person to take the fish for trade or commerce",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Chief executive of the department administering the Fisheries Act 1994 (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fisheries (General) Regulation 2019 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2019-0179",
+          "locator": "s 24, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "The chief executive may issue a licence of any of the following types— (a) a primary commercial fishing licence;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "041"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it takes fish for sale (commercial fishing)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fisheries Act 1994 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1994-037",
+          "locator": "s 82 (current)",
+          "quote": "A person must not unlawfully do an act prescribed by regulation or declared by a declaration as an act that must only be done by the holder of an authority",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Take fish for trade or commerce only while holding, or acting under, an authority that allows it (the Fisheries (General) Regulation 2019 prescribes the act).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can trade.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the licence's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

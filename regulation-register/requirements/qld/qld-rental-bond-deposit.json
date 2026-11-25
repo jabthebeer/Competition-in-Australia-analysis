@@ -1,0 +1,149 @@
+{
+  "id": "qld-rental-bond-deposit",
+  "family": "rental-bond-deposit",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "property-agents-and-tenancies",
+  "title": "Pay rental bonds to the authority",
+  "kind": "reporting",
+  "what": "Pay each rental bond received to the authority within 10 days, with a notice in the approved form.",
+  "laws": [
+    {
+      "title": "Residential Tenancies and Rooming Accommodation Act 2008 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2008-073",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2008-073",
+      "provisions": "s 116(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Residential Tenancies and Rooming Accommodation Act 2008 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2008-073",
+      "locator": "s 116(1) (current)",
+      "quote": "A person receiving an amount that is to be applied to a rental bond must, within 10 days of receiving it— (a) pay it to the authority; and (b) give the authority a notice, in the approved form, about the rental bond",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Residential Tenancies Authority (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies and Rooming Accommodation Act 2008 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2008-073",
+          "locator": "sch 2, def authority, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "authority means the Residential Tenancies Authority.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6711"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it lets residential premises and takes a rental bond",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies and Rooming Accommodation Act 2008 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2008-073",
+          "locator": "s 116(1) (current)",
+          "quote": "A person receiving an amount that is to be applied to a rental bond must, within 10 days of receiving it— (a) pay it to the authority; and (b) give the authority a notice, in the approved form, about the rental bond",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "6720"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it manages residential tenancies and receives rental bonds",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Residential Tenancies and Rooming Accommodation Act 2008 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2008-073",
+          "locator": "s 116(1) (current)",
+          "quote": "A person receiving an amount that is to be applied to a rental bond must, within 10 days of receiving it— (a) pay it to the authority; and (b) give the authority a notice, in the approved form, about the rental bond",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Pay each rental bond received to the authority within 10 days, with a notice in the approved form.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Each bond must be paid to the Residential Tenancies Authority, with a notice, within 10 days.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

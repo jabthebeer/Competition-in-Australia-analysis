@@ -1,0 +1,158 @@
+{
+  "id": "act-food-safety-supervisor",
+  "family": "food-safety-supervisor",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "food-safety",
+  "title": "Appoint a food safety supervisor",
+  "kind": "standard",
+  "what": "Have a food safety supervisor for the registered food business within 30 days of registration, and keep one.",
+  "laws": [
+    {
+      "title": "Food Act 2001 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "2001-66",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2001-66/current/PDF/2001-66.PDF",
+      "provisions": "s 117(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Food Act 2001 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2001-66/current/PDF/2001-66.PDF",
+      "locator": "s 117(1) (current republication (R31, from 16 December 2025; Food Act 2001 | Acts))",
+      "quote": "A registered food business must have a food safety supervisor",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "act-hcsd"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Chief health officer (ACT)",
+      "bodies": [
+        "act-hcsd"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2001 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2001-66/current/PDF/2001-66.PDF",
+          "locator": "s 93, words naming the body (found 18 Nov 2026) (current republication (R31, from 16 December 2025; Food Act 2001 | Acts)",
+          "quote": "The chief health officer may register or refuse to register the food business.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4511",
+        "4512",
+        "4513"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is a registered food business",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2001 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2001-66/current/PDF/2001-66.PDF",
+          "locator": "s 117(1) (current republication (R31, from 16 December 2025; Food Act 2001 | Acts))",
+          "quote": "A registered food business must have a food safety supervisor",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4110",
+        "4121",
+        "4122",
+        "4129"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is a registered food business",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2001 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2001-66/current/PDF/2001-66.PDF",
+          "locator": "s 117(1) (current republication (R31, from 16 December 2025; Food Act 2001 | Acts))",
+          "quote": "A registered food business must have a food safety supervisor",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Have a food safety supervisor for the registered food business within 30 days of registration, and keep one.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A certified supervisor for each premises.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

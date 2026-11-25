@@ -32,9 +32,34 @@
       "corpus_version_id": null
     }
   ],
-  "administered_by": [],
+  "administered_by": [
+    "nt-health"
+  ],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Chief Health Officer (NT)",
+      "bodies": [
+        "nt-health"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Medicines, Poisons and Therapeutic Goods Act 2012 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11995",
+          "locator": "s 49, words naming the body (found 18 Nov 2026) (current reprint)",
+          "quote": "CHO may issue a Schedule 8 exemption to an authorised health practitioner for the possession of a restricted Schedule 8 substance for its supply for an authorised purpose.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

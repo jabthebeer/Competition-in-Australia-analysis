@@ -1,0 +1,145 @@
+{
+  "id": "sa-construction-training-levy",
+  "family": "construction-training-levy",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Pay the construction industry training levy",
+  "kind": "tax-or-levy",
+  "what": "As the owner of a construction project, pay the construction industry training levy before building approval is given (or before work starts, if none is needed).",
+  "laws": [
+    {
+      "title": "Construction Industry Training Fund Act 1993 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "1993.17.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/construction%20industry%20training%20fund%20act%201993/current/1993.17.un.rtf",
+      "provisions": "s 24(1), s 24(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Construction Industry Training Fund Act 1993 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/construction%20industry%20training%20fund%20act%201993/current/1993.17.un.rtf",
+      "locator": "s 24(1) (version of 2025-01-01)",
+      "quote": "The project owner in respect of any building or construction work is liable to pay the levy on that building or construction work",
+      "accessed": "2026-11-19",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2025-01-01/1993.17.un"
+    },
+    {
+      "title": "Construction Industry Training Fund Act 1993 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/construction%20industry%20training%20fund%20act%201993/current/1993.17.un.rtf",
+      "locator": "s 24(2) (version of 2025-01-01)",
+      "quote": "The project owner must pay the levy to the Board or a collection agency— (a) before obtaining building approval for the relevant building or construction work",
+      "accessed": "2026-11-19",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2025-01-01/1993.17.un"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Construction Industry Training Board (SA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Construction Industry Training Fund Act 1993 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/construction%20industry%20training%20fund%20act%201993/current/1993.17.un.rtf",
+          "locator": "s 3, words naming the body (found 19 Nov 2026) (version of 2025-01-01)",
+          "quote": "Board means the Construction Industry Training Board constituted under this Act;",
+          "accessed": "2026-11-19",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2025-01-01/1993.17.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011",
+        "3019",
+        "3020",
+        "3101",
+        "3109"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns a building or construction project valued above the levy threshold",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Construction Industry Training Fund Act 1993 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/construction%20industry%20training%20fund%20act%201993/current/1993.17.un.rtf",
+          "locator": "s 24(1) (version of 2025-01-01)",
+          "quote": "The project owner in respect of any building or construction work is liable to pay the levy on that building or construction work",
+          "accessed": "2026-11-19",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2025-01-01/1993.17.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the WA requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "As the owner of a construction project, pay the construction industry training levy before building approval is given (or before work starts, if none is needed).",
+    "marks": [
+      {
+        "driver": "prices-taxes",
+        "mark": -1,
+        "reason": "The levy adds to the cost of construction projects.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "prices-taxes",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-19"
+  },
+  "drafted_on": "2026-11-19",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

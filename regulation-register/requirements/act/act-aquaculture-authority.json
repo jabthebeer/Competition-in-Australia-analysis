@@ -1,0 +1,133 @@
+{
+  "id": "act-aquaculture-authority",
+  "family": "aquaculture-authority",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "fisheries",
+  "title": "Hold a licence for aquaculture above the capacity limit",
+  "kind": "licence",
+  "what": "Undertake aquaculture above the aquaculture capacity limit only under a licence, and follow the aquaculture guidelines.",
+  "laws": [
+    {
+      "title": "Fisheries Act 2000 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "2000-38",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2000-38/current/PDF/2000-38.PDF",
+      "provisions": "s 49(2)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fisheries Act 2000 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2000-38/current/PDF/2000-38.PDF",
+      "locator": "s 49(2) (current republication (R26, from 26 November 2025; Fisheries Act 2000 | Acts))",
+      "quote": "(b) the capacity of the structure used to contain fish for the aquaculture is more than the aquaculture capacity limit; and (c) the person does not hold a licence authorising the person to undertake the aquaculture",
+      "accessed": "2026-11-18",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Conservator of Flora and Fauna (ACT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fisheries Act 2000 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2000-38/current/PDF/2000-38.PDF",
+          "locator": "s 22, words naming the body (found 18 Nov 2026) (current republication (R26, from 26 November 2025; Fisheries Act 2000 | Acts)",
+          "quote": "The conservator may issue the licence to the applicant only if reasonably satisfied that— (a) the applicant, and each member of the group for the licence, is a suitable person to hold a fisheries licence;",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0201",
+        "0202",
+        "0203"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries out aquaculture",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Fisheries Act 2000 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2000-38/current/PDF/2000-38.PDF",
+          "locator": "s 49(2) (current republication (R26, from 26 November 2025; Fisheries Act 2000 | Acts))",
+          "quote": "(b) the capacity of the structure used to contain fish for the aquaculture is more than the aquaculture capacity limit; and (c) the person does not hold a licence authorising the person to undertake the aquaculture",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Undertake aquaculture above the aquaculture capacity limit only under a licence, and follow the aquaculture guidelines.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

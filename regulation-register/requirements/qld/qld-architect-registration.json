@@ -1,0 +1,125 @@
+{
+  "id": "qld-architect-registration",
+  "family": "architect-registration",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Use the title architect only when registered",
+  "kind": "registration",
+  "what": "Use the title architect or registered architect only if registered as an architect.",
+  "laws": [
+    {
+      "title": "Architects Act 2002 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2002-053",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-053",
+      "provisions": "s 114(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Architects Act 2002 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-053",
+      "locator": "s 114(1) (current)",
+      "quote": "A person who is not an architect must not use— (a) the title ‘architect’ or ‘registered architect’;",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Board of Architects of Queensland (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Architects Act 2002 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-053",
+          "locator": "s 145, def board, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "board means the Board of Architects of Queensland established under the repealed Act.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6921"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it represents itself or its staff as architects",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Architects Act 2002 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-053",
+          "locator": "s 114(1) (current)",
+          "quote": "A person who is not an architect must not use— (a) the title ‘architect’ or ‘registered architect’;",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Use the title architect or registered architect only if registered as an architect.",
+    "marks": [
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Only registered architects may use the title, which needs qualifications and experience.",
+        "positions": []
+      }
+    ],
+    "main_driver": "labour",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

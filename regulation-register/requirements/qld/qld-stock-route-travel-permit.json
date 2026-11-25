@@ -1,0 +1,129 @@
+{
+  "id": "qld-stock-route-travel-permit",
+  "family": "stock-route-travel-permit",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a stock route travel permit to drive stock",
+  "kind": "licence",
+  "what": "Drive stock on foot on stock routes and other relevant land only under a stock route travel permit from the local government, unless the movement is exempt.",
+  "laws": [
+    {
+      "title": "Stock Route Management Act 2002 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2002-012",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-012",
+      "provisions": "s 132",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Stock Route Management Act 2002 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-012",
+      "locator": "s 132 (current)",
+      "quote": "Subject to section 133 , a person must not drive stock on foot on relevant land in a local government’s area unless a local government has issued a permit (a stock route travel permit ) for the stock movement",
+      "accessed": "2026-11-18",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Local governments (Qld)",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Stock Route Management Act 2002 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-012",
+          "locator": "s 132, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "unless a local government has issued a permit (a stock route travel permit ) for the stock movement.",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0141",
+        "0142",
+        "0143",
+        "0144",
+        "0145"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it drives stock on foot on a stock route or other relevant land",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Stock Route Management Act 2002 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2002-012",
+          "locator": "s 132 (current)",
+          "quote": "Subject to section 133 , a person must not drive stock on foot on relevant land in a local government’s area unless a local government has issued a permit (a stock route travel permit ) for the stock movement",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section numbers read from the heading before each duty. A local government issues the permit; the requirement is a state one administered by councils.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Drive stock on foot on stock routes and other relevant land only under a stock route travel permit from the local government, unless the movement is exempt.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

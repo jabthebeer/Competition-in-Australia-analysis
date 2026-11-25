@@ -34,7 +34,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Regulator under the Work Health and Safety Act 2011 (Workplace Health and Safety Queensland)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Work Health and Safety Regulation 2011 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/sl-2011-0240",
+          "locator": "s 31B, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "The regulator may grant an application made under section 31B if the regulator is satisfied— (a) the applicant has successfully completed— (i) an approved work health and safety officer course;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "activity",
@@ -75,12 +96,12 @@
   "records": [],
   "ablis": [],
   "assessment": {
-    "summary": "A business storing or handling hazardous chemicals above set (manifest) quantities must tell the work safety regulator, or in WA license the site. It adds paperwork, and in WA a licence and fee, for larger stores.",
+    "summary": "A business storing or handling hazardous chemicals above set (manifest) quantities must tell the work safety regulator. It adds paperwork for larger stores.",
     "marks": [
       {
         "driver": "burden",
         "mark": -1,
-        "reason": "Notice to the regulator (in WA, a site licence) adds paperwork and cost for sites holding large quantities.",
+        "reason": "Notice to the regulator adds paperwork and cost for sites holding large quantities.",
         "positions": []
       }
     ],

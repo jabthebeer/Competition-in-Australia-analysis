@@ -1,0 +1,131 @@
+{
+  "id": "wa-pet-shop-approval",
+  "family": "pet-shop-approval",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a pet shop approval to sell dogs",
+  "kind": "approval",
+  "what": "Conduct a pet shop business that sells dogs (a relevant pet shop business) only with a pet shop approval from the local government.",
+  "laws": [
+    {
+      "title": "Dog Act 1976 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a230",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47983.docx",
+      "provisions": "s 38B",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dog Act 1976 (WA)",
+      "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47983.docx",
+      "locator": "s 38B (version of mrdoc_47983)",
+      "quote": "A person must not conduct a relevant pet shop business unless the person holds a pet shop approval for the pet shop granted by the local government in whose district the pet shop is located",
+      "accessed": "2026-11-24",
+      "checked": "corpus-copy",
+      "corpus_version_id": "western_australian_legislation:mrdoc_47983/law_a230"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Local government in whose district the pet shop is located (WA)",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Dog Act 1976 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47983.docx",
+          "locator": "s 38B, words naming the body (found 24 Nov 2026) (version of mrdoc_47983)",
+          "quote": "a pet shop approval for the pet shop granted by the local government in whose district the pet shop is located.",
+          "accessed": "2026-11-24",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_47983/law_a230"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4279"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells dogs from a pet shop",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Dog Act 1976 (WA)",
+          "publisher": "WA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_47983.docx",
+          "locator": "s 38B (version of mrdoc_47983)",
+          "quote": "A person must not conduct a relevant pet shop business unless the person holds a pet shop approval for the pet shop granted by the local government in whose district the pet shop is located",
+          "accessed": "2026-11-24",
+          "checked": "corpus-copy",
+          "corpus_version_id": "western_australian_legislation:mrdoc_47983/law_a230"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty. Inserted by the Dog Amendment (Stop Puppy Farming) Act 2021 (No. 29 of 2021).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Conduct a pet shop business that sells dogs (a relevant pet shop business) only with a pet shop approval from the local government.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-24"
+  },
+  "drafted_on": "2026-11-24",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

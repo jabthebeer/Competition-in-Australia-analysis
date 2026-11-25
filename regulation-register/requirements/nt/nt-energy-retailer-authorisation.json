@@ -1,0 +1,141 @@
+{
+  "id": "nt-energy-retailer-authorisation",
+  "family": "energy-retailer-authorisation",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "energy-markets",
+  "title": "Hold an electricity retail licence",
+  "kind": "licence",
+  "what": "Sell electricity only under a licence from the Utilities Commission (generation and networks are also licensed).",
+  "laws": [
+    {
+      "title": "Electricity Reform Act 2000 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "ELECTRICITY-REFORM-ACT-2000",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11781",
+      "provisions": "s 14(1), s 14(3)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Electricity Reform Act 2000 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11781",
+      "locator": "s 14(1) (current reprint)",
+      "quote": "A person must not carry on operations in the electricity supply industry for which a licence is required unless the person holds a licence under this Part authorising the relevant operations",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Electricity Reform Act 2000 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11781",
+      "locator": "s 14(3) (current reprint)",
+      "quote": "The operations in the electricity supply industry for which a licence is required are: (a) generation of electricity; (b) owning or operating an electricity network or a dedicated connection asset; (c) selling electricity;",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Utilities Commission (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Reform Act 2000 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11781",
+          "locator": "s 1, words naming the body (found 18 Nov 2026) (current reprint)",
+          "quote": "Commission means the Utilities Commission established by the Utilities Commission Act 2000.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2640"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it sells electricity to customers",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Electricity Reform Act 2000 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11781",
+          "locator": "s 14(1) (current reprint)",
+          "quote": "A person must not carry on operations in the electricity supply industry for which a licence is required unless the person holds a licence under this Part authorising the relevant operations",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section 14 also licenses generation and networks; gas retailing was not searched. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Sell electricity only under a licence from the Utilities Commission (generation and networks are also licensed).",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

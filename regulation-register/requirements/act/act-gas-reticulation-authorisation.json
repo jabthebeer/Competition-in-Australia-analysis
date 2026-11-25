@@ -1,0 +1,131 @@
+{
+  "id": "act-gas-reticulation-authorisation",
+  "family": "gas-reticulation-authorisation",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "energy-markets",
+  "title": "Hold a utility licence",
+  "kind": "licence",
+  "what": "Provide a utility service, such as gas distribution, only under a licence.",
+  "laws": [
+    {
+      "title": "Utilities Act 2000 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "2000-65",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2000-65/current/PDF/2000-65.PDF",
+      "provisions": "s 21(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Utilities Act 2000 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2000-65/current/PDF/2000-65.PDF",
+      "locator": "s 21(1) (current republication (R71, from 26 November 2025; Utilities Act 2000 | Acts))",
+      "quote": "A person must not provide a utility service except in accordance with a licence",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Independent Competition and Regulatory Commission (ACT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Utilities Act 2000 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2000-65/current/PDF/2000-65.PDF",
+          "locator": "s 25, words naming the body (found 18 Nov 2026) (current republication (R71, from 26 November 2025; Utilities Act 2000 | Acts)",
+          "quote": "any other condition stated in the licence by ICRC that is not inconsistent with a requirement of, or under, this Act or any other law of the Territory.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "2700"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a gas distribution pipeline",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Utilities Act 2000 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2000-65/current/PDF/2000-65.PDF",
+          "locator": "s 21(1) (current republication (R71, from 26 November 2025; Utilities Act 2000 | Acts))",
+          "quote": "A person must not provide a utility service except in accordance with a licence",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Section 21 covers every utility service the Act defines (gas distribution is one); the definition was not quoted. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Provide a utility service, such as gas distribution, only under a licence.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

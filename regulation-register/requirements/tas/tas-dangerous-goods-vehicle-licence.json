@@ -1,0 +1,153 @@
+{
+  "id": "tas-dangerous-goods-vehicle-licence",
+  "family": "dangerous-goods-vehicle-licence",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "hazardous-chemicals-and-dangerous-goods",
+  "title": "License vehicles that carry dangerous goods in bulk",
+  "kind": "licence",
+  "what": "Use a road vehicle to carry dangerous goods in a receptacle over 500 litres, or over 500 kilograms in a receptacle, only if the vehicle is licensed.",
+  "laws": [
+    {
+      "title": "Dangerous Goods (Road and Rail Transport) Regulations 2021 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "regulation",
+      "register_id": "sr-2021-099",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2021-099",
+      "provisions": "reg 206(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dangerous Goods (Road and Rail Transport) Regulations 2021 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2021-099",
+      "locator": "reg 206(1) (current)",
+      "quote": "A road vehicle must not be used to transport – (a) dangerous goods in a receptacle with a capacity of more than 500 litres; or (b) more than 500 kilograms of dangerous goods in a receptacle;",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Competent Authority under the dangerous goods transport law (Tas)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Dangerous Goods (Road and Rail Transport) Regulations 2021 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2021-099",
+          "locator": "s 203, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "licensing authority means – (a) the Competent Authority appointed in respect of road transport;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4610"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries dangerous goods in bulk (a receptacle over 500 L or 500 kg)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Dangerous Goods (Road and Rail Transport) Regulations 2021 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2021-099",
+          "locator": "reg 206(1) (current)",
+          "quote": "A road vehicle must not be used to transport – (a) dangerous goods in a receptacle with a capacity of more than 500 litres; or (b) more than 500 kilograms of dangerous goods in a receptacle;",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    },
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries its own dangerous goods in bulk by road (such as fuel or chemicals)",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Dangerous Goods (Road and Rail Transport) Regulations 2021 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2021-099",
+          "locator": "reg 206(1) (current)",
+          "quote": "A road vehicle must not be used to transport – (a) dangerous goods in a receptacle with a capacity of more than 500 litres; or (b) more than 500 kilograms of dangerous goods in a receptacle;",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Use a road vehicle to carry dangerous goods in a receptacle over 500 litres, or over 500 kilograms in a receptacle, only if the vehicle is licensed.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

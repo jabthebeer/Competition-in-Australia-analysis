@@ -1,0 +1,154 @@
+{
+  "id": "nsw-food-safety-supervisor",
+  "family": "food-safety-supervisor",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "food-safety",
+  "title": "Appoint a food safety supervisor",
+  "kind": "standard",
+  "what": "Appoint at least one certified food safety supervisor for each premises before processing and selling by retail food the Division covers (ready-to-eat, potentially hazardous food), and keep one appointed.",
+  "laws": [
+    {
+      "title": "Food Act 2003 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2003-043",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-09/act-2003-043",
+      "provisions": "s 106C(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Food Act 2003 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-09/act-2003-043",
+      "locator": "s 106C(1) (version of 2024-08-09)",
+      "quote": "The proprietor of a food business must ensure that before any food to which this Division applies is processed and sold by retail on premises in the course of carrying on the business at least one food safety supervisor has been appointed for the premises",
+      "accessed": "2026-11-18",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-08-09/act-2003-043"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "NSW Food Authority",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2003 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-09/act-2003-043",
+          "locator": "s 4, def Food Authority, words naming the body (found 18 Nov 2026)",
+          "quote": "Food Authority means the NSW Food Authority constituted under Part 9.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-09/act-2003-043"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4511",
+        "4512",
+        "4513"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it processes and sells by retail food the Division covers",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2003 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-09/act-2003-043",
+          "locator": "s 106C(1) (version of 2024-08-09)",
+          "quote": "The proprietor of a food business must ensure that before any food to which this Division applies is processed and sold by retail on premises in the course of carrying on the business at least one food safety supervisor has been appointed for the premises",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-09/act-2003-043"
+        }
+      ]
+    },
+    {
+      "scope": "listed",
+      "classes": [
+        "4110",
+        "4121",
+        "4122",
+        "4129"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it processes and sells by retail ready-to-eat food the Division covers",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Food Act 2003 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-09/act-2003-043",
+          "locator": "s 106C(1) (version of 2024-08-09)",
+          "quote": "The proprietor of a food business must ensure that before any food to which this Division applies is processed and sold by retail on premises in the course of carrying on the business at least one food safety supervisor has been appointed for the premises",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-09/act-2003-043"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section numbers read from the heading before each duty and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Appoint at least one certified food safety supervisor for each premises before processing and selling by retail food the Division covers (ready-to-eat, potentially hazardous food), and keep one appointed.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A certified supervisor for each premises, with the certificate renewed every 5 years.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

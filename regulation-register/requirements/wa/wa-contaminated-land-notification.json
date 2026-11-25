@@ -1,0 +1,127 @@
+{
+  "id": "wa-contaminated-land-notification",
+  "family": "contaminated-land-notification",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "environment-protection",
+  "title": "Notify the EPA of contaminated land",
+  "kind": "notification",
+  "what": "Report to the CEO, within 21 days, any site the business (as owner, occupier or polluter) knows or suspects is contaminated.",
+  "laws": [
+    {
+      "title": "Contaminated Sites Act 2003 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a6987",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48863.docx",
+      "provisions": "s 11(3)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Contaminated Sites Act 2003 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48863.docx",
+      "locator": "s 11(3) (current version)",
+      "quote": "Except as provided in subsection (5), a person referred to in subsection (4) must report to the CEO any site that the person — (a) knows is contaminated, within 21 days after the day on which the person first knew that the site was contaminated",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "wa-dwer"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "CEO of the department administering the Contaminated Sites Act 2003 (WA)",
+      "bodies": [
+        "wa-dwer"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Contaminated Sites Act 2003 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48863.docx",
+          "locator": "s 3, words naming the body (found 18 Nov 2026) (current version)",
+          "quote": "CEO means the chief executive officer of the Department;",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it owns or occupies, or has contaminated, a site it knows or suspects is contaminated",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Contaminated Sites Act 2003 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_48863.docx",
+          "locator": "s 11(3) (current version)",
+          "quote": "Except as provided in subsection (5), a person referred to in subsection (4) must report to the CEO any site that the person — (a) knows is contaminated, within 21 days after the day on which the person first knew that the site was contaminated",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Who must report is set by s 11(4) (not quoted). Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Report to the CEO, within 21 days, any site the business (as owner, occupier or polluter) knows or suspects is contaminated.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

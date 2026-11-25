@@ -6,7 +6,7 @@
   "lga": null,
   "lga_name": null,
   "regime": "mining-and-petroleum-titles",
-  "title": "Hold a petroleum production licence (NSW coastal waters)",
+  "title": "Hold a petroleum production licence (coastal waters)",
   "kind": "licence",
   "what": "Hold a production licence before recovering petroleum in the Northern Territory's coastal waters (the adjacent area).",
   "laws": [
@@ -34,7 +34,28 @@
   ],
   "administered_by": [],
   "administered_by_councils": false,
-  "administration": [],
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Minister administering the Petroleum (Submerged Lands) Act 1981 (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Petroleum (Submerged Lands) Act 1981 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12091",
+          "locator": "s 25, words naming the body (found 18 Nov 2026) (current reprint)",
+          "quote": "the Minister may reject or grant the application.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
   "triggers": [
     {
       "type": "entry",

@@ -1,0 +1,144 @@
+{
+  "id": "qld-forest-practices-plan",
+  "family": "forest-practices-plan",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Follow the native forest practice code and notify before harvesting",
+  "kind": "approval",
+  "what": "Conduct a native forest practice (selective timber harvesting in native forest) only in line with the accepted development vegetation clearing code, including notifying the chief executive beforehand; otherwise a development approval is needed.",
+  "laws": [
+    {
+      "title": "Vegetation Management Act 1999 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1999-090",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1999-090",
+      "provisions": "s 19Q(2), s 19O(3)(i)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Vegetation Management Act 1999 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1999-090",
+      "locator": "s 19Q(2) (current)",
+      "quote": "For the Planning Act , the activity is accepted development only if and to the extent the activity complies with the code",
+      "accessed": "2026-11-23",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Vegetation Management Act 1999 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1999-090",
+      "locator": "s 19O(3)(i) (current)",
+      "quote": "giving notice to the chief executive of the intended clearing or native forest practice to be conducted under the code",
+      "accessed": "2026-11-23",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Chief executive of the department administering the Vegetation Management Act 1999 (Qld)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Vegetation Management Act 1999 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1999-090",
+          "locator": "s 19O(3)(i), words naming the body (found 23 Nov 2026) (current)",
+          "quote": "giving notice to the chief executive of the intended clearing or native forest practice to be conducted under the code.",
+          "accessed": "2026-11-23",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0301",
+        "0302",
+        "0411",
+        "0413"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it harvests timber from native forest on freehold or leasehold land",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Vegetation Management Act 1999 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1999-090",
+          "locator": "s 19Q(2) (current)",
+          "quote": "For the Planning Act , the activity is accepted development only if and to the extent the activity complies with the code",
+          "accessed": "2026-11-23",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 23 Nov 2026. The code itself, made by the Minister under s 19O, was not read; the notice duty is quoted from the Act's list of what a code may require. Reach and framework marks follow the Tasmanian requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Conduct a native forest practice (selective timber harvesting in native forest) only in line with the accepted development vegetation clearing code, including notifying the chief executive beforehand; otherwise a development approval is needed.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-23"
+  },
+  "drafted_on": "2026-11-23",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

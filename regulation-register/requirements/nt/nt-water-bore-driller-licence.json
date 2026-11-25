@@ -1,0 +1,129 @@
+{
+  "id": "nt-water-bore-driller-licence",
+  "family": "water-bore-driller-licence",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "water-access",
+  "title": "Hold a drilling licence",
+  "kind": "licence",
+  "what": "Do bore work only under a drilling licence.",
+  "laws": [
+    {
+      "title": "Water Act 1992 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "WATER-ACT-1992",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12270",
+      "provisions": "s 48(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Water Act 1992 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12270",
+      "locator": "s 48(1) (current reprint)",
+      "quote": "A person commits an offence if the person: (a) does bore work; and (b) does not hold a drilling licence that authorises the bore work",
+      "accessed": "2026-11-16",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Controller of Water Resources (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Water Act 1992 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12270",
+          "locator": "s 4, def Controller, words naming the body (found 18 Nov 2026) (current reprint)",
+          "quote": "Controller means the Controller of Water Resources appointed under section 18.",
+          "accessed": "2026-11-18",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it does bore work",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Water Act 1992 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=12270",
+          "locator": "s 48(1) (current reprint)",
+          "quote": "A person commits an offence if the person: (a) does bore work; and (b) does not hold a drilling licence that authorises the bore work",
+          "accessed": "2026-11-16",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Do bore work only under a drilling licence.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "labour",
+        "mark": -1,
+        "reason": "Qualification and experience tests narrow who may do the work.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "id": "tas-dog-breeder-registration",
+  "family": "dog-breeder-registration",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "animal-welfare",
+  "title": "Be a registered cat breeder",
+  "kind": "registration",
+  "what": "Breed cats only as a registered breeder or under a cat breeding permit.",
+  "laws": [
+    {
+      "title": "Cat Management Act 2009 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2009-089",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2009-089",
+      "provisions": "s 29(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Cat Management Act 2009 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2009-089",
+      "locator": "s 29(1) (current)",
+      "quote": "A person must not breed a cat unless he or she – (a) is a registered breeder; or (b) holds a cat breeding permit in relation to the cat",
+      "accessed": "2026-11-20",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Secretary of the Department administering the Cat Management Act 2009 (Tas), or the council's general manager, who issue cat breeding permits",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Cat Management Act 2009 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2009-089",
+          "locator": "s 31, words naming the body (found 20 Nov 2026) (current)",
+          "quote": "A person may apply to the Secretary, or to the general manager of the council for the municipal area in which the cat is situated, for a permit to breed a cat (a cat breeding permit ).",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "0199"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it breeds cats",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Cat Management Act 2009 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2009-089",
+          "locator": "s 29(1) (current)",
+          "quote": "A person must not breed a cat unless he or she – (a) is a registered breeder; or (b) holds a cat breeding permit in relation to the cat",
+          "accessed": "2026-11-20",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 20 Nov 2026. Reach and framework marks follow the WA requirement for this family (also about cats); to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Breed cats only as a registered breeder or under a cat breeding permit.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-20"
+  },
+  "drafted_on": "2026-11-20",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

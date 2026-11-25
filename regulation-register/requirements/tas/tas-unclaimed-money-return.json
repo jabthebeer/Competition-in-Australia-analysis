@@ -1,0 +1,127 @@
+{
+  "id": "tas-unclaimed-money-return",
+  "family": "unclaimed-money-return",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Keep a register of unclaimed money",
+  "kind": "reporting",
+  "what": "Keep a register of unclaimed money and deal with it as the Act requires (including paying it to the Treasurer, s 7).",
+  "laws": [
+    {
+      "title": "Unclaimed Money Act 2015 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2015-040",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2015-040",
+      "provisions": "s 5(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Unclaimed Money Act 2015 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2015-040",
+      "locator": "s 5(1) (current)",
+      "quote": "A holder of unclaimed money to which this Part applies must – (a) establish, in the prescribed form, a register, of all unclaimed money, that is at or readily accessible from its principal office or place of business;",
+      "accessed": "2026-11-16",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "tas-dtf"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Treasurer (Tas)",
+      "bodies": [
+        "tas-dtf"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Unclaimed Money Act 2015 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2015-040",
+          "locator": "s 4, words naming the body (found 18 Nov 2026) (current)",
+          "quote": "The Treasurer may – (a) by notice, determine a relevant minimum amount, in relation to holders generally, for the purposes of subsection (2)(c) ;",
+          "accessed": "2026-11-18",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it holds unclaimed money to which the Act applies",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Unclaimed Money Act 2015 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2015-040",
+          "locator": "s 5(1) (current)",
+          "quote": "A holder of unclaimed money to which this Part applies must – (a) establish, in the prescribed form, a register, of all unclaimed money, that is at or readily accessible from its principal office or place of business;",
+          "accessed": "2026-11-16",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 18 Nov 2026. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Keep a register of unclaimed money and deal with it as the Act requires (including paying it to the Treasurer, s 7).",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A yearly return, and payment of the unclaimed money.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

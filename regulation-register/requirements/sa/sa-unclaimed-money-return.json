@@ -1,0 +1,137 @@
+{
+  "id": "sa-unclaimed-money-return",
+  "family": "unclaimed-money-return",
+  "jurisdiction": "SA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register and pay unclaimed money",
+  "kind": "reporting",
+  "what": "Keep a register of unclaimed money in the form the Treasurer sets, and pay money still unclaimed to the Treasurer within 4 months after the anniversary the Act sets.",
+  "laws": [
+    {
+      "title": "Unclaimed Money Act 2021 (SA)",
+      "jurisdiction": "SA",
+      "kind": "act",
+      "register_id": "2021.45.un",
+      "register_url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/unclaimed%20money%20act%202021/current/2021.45.un.rtf",
+      "provisions": "s 4(1), s 5(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Unclaimed Money Act 2021 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/unclaimed%20money%20act%202021/current/2021.45.un.rtf",
+      "locator": "s 4(1) (version of 2023-11-25)",
+      "quote": "A corporation to which this section applies must— (a) maintain a register of unclaimed money in a form determined by the Treasurer;",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2023-11-25/2021.45.un"
+    },
+    {
+      "title": "Unclaimed Money Act 2021 (SA)",
+      "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/unclaimed%20money%20act%202021/current/2021.45.un.rtf",
+      "locator": "s 5(1) (version of 2023-11-25)",
+      "quote": "must be paid by the corporation to the Treasurer within 4 months after that anniversary",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "south_australian_legislation:2023-11-25/2021.45.un"
+    }
+  ],
+  "administered_by": [
+    "sa-dtf"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "collects",
+      "who": "Treasurer (SA)",
+      "bodies": [
+        "sa-dtf"
+      ],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Unclaimed Money Act 2021 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/unclaimed%20money%20act%202021/current/2021.45.un.rtf",
+          "locator": "s 6, words naming the body (found 18 Nov 2026)",
+          "quote": "the Treasurer may require in relation to the payment.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2023-11-25/2021.45.un"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it is a corporation the Act applies to and holds unclaimed money",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Unclaimed Money Act 2021 (SA)",
+          "publisher": "SA Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://www.legislation.sa.gov.au/__legislation/lz/c/a/unclaimed%20money%20act%202021/current/2021.45.un.rtf",
+          "locator": "s 4(1) (version of 2023-11-25)",
+          "quote": "A corporation to which this section applies must— (a) maintain a register of unclaimed money in a form determined by the Treasurer;",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "south_australian_legislation:2023-11-25/2021.45.un"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the NSW requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Keep a register of unclaimed money in the form the Treasurer sets, and pay money still unclaimed to the Treasurer within 4 months after the anniversary the Act sets.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A yearly return, and payment of the unclaimed money.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

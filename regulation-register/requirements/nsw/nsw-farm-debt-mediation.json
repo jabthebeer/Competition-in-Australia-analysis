@@ -1,0 +1,129 @@
+{
+  "id": "nsw-farm-debt-mediation",
+  "family": "farm-debt-mediation",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "financial-services",
+  "title": "Offer farm debt mediation before enforcing a farm mortgage",
+  "kind": "other",
+  "what": "Take enforcement action under a farm mortgage only while an exemption certificate is in force for the farm debt (granted after mediation, or if the farmer declines it).",
+  "laws": [
+    {
+      "title": "Farm Debt Mediation Act 1994 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1994-091",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2018-09-03/act-1994-091",
+      "provisions": "s 8(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Farm Debt Mediation Act 1994 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2018-09-03/act-1994-091",
+      "locator": "s 8(1) (version of 2018-09-03)",
+      "quote": "A creditor must not take enforcement action in respect of a farm mortgage unless an exemption certificate granted to the creditor is in force in respect of the farm debt concerned",
+      "accessed": "2026-11-16",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2018-09-03/act-1994-091"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "NSW Rural Assistance Authority",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Farm Debt Mediation Act 1994 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2018-09-03/act-1994-091",
+          "locator": "s 4, words naming the body (found 18 Nov 2026) (version of 2018-09-03)",
+          "quote": "Authority means the New South Wales Rural Assistance Authority constituted by the Rural Assistance Act 1989.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2018-09-03/act-1994-091"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "6221",
+        "6222",
+        "6223",
+        "6229",
+        "6230"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it seeks to enforce a farm mortgage",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Farm Debt Mediation Act 1994 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2018-09-03/act-1994-091",
+          "locator": "s 8(1) (version of 2018-09-03)",
+          "quote": "A creditor must not take enforcement action in respect of a farm mortgage unless an exemption certificate granted to the creditor is in force in respect of the farm debt concerned",
+          "accessed": "2026-11-16",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2018-09-03/act-1994-091"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Reach and framework marks follow the Queensland requirement for this family; to check.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Take enforcement action under a farm mortgage only while an exemption certificate is in force for the farm debt (granted after mediation, or if the farmer declines it).",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Mediation must be offered, and a certificate obtained, before a farm mortgage is enforced.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-18"
+  },
+  "drafted_on": "2026-11-18",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

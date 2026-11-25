@@ -1,0 +1,134 @@
+{
+  "id": "nsw-non-government-school-registration",
+  "family": "non-government-school-registration",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Register a non-government school",
+  "kind": "registration",
+  "what": "Conduct a non-government school for children of compulsory school age only if the school is registered.",
+  "laws": [
+    {
+      "title": "Education Act 1990 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-1990-008",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2020-12-11/act-1990-008",
+      "provisions": "s 65(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Education Act 1990 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2020-12-11/act-1990-008",
+      "locator": "s 65(1) (version of 2020-12-11)",
+      "quote": "A person must not conduct or knowingly permit or assist in the conduct of a school (other than a government school) for the education of children of compulsory school-age unless the school is registered under this Division",
+      "accessed": "2026-11-17",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2020-12-11/act-1990-008"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "NSW Education Standards Authority",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Education Act 1990 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2020-12-11/act-1990-008",
+          "locator": "s 3, words naming the body (found 18 Nov 2026)",
+          "quote": "Authority means the NSW Education Standards Authority constituted under the Education Standards Authority Act 2013.",
+          "accessed": "2026-11-18",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2020-12-11/act-1990-008"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "8021",
+        "8022",
+        "8023",
+        "8024"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it conducts a non-government school",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Education Act 1990 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2020-12-11/act-1990-008",
+          "locator": "s 65(1) (version of 2020-12-11)",
+          "quote": "A person must not conduct or knowingly permit or assist in the conduct of a school (other than a government school) for the education of children of compulsory school-age unless the school is registered under this Division",
+          "accessed": "2026-11-17",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2020-12-11/act-1990-008"
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the Open Australian Legal Corpus copy of the version shown (DECISIONS E-118); later changes not checked. Section number read from the heading before the offence and checked by hand.",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Conduct a non-government school for children of compulsory school age only if the school is registered.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, permit or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "drafted_on": "2026-11-17",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
