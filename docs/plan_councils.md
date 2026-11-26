@@ -1,6 +1,6 @@
 # Plan for councils (phase E)
 
-*Part of the [legislation-links plan](plan_legislation_links.md), phase E. Drafted 25 November 2026, after the state phase (D-1 to D-12). For the owner's approval before the first batch. Victoria's councils wait until the Victorian state batch.*
+*Part of the [legislation-links plan](plan_legislation_links.md), phase E. Drafted 25 November 2026, after the state phase (D-1 to D-12). Approved by the owner on 26 November 2026 (E-360). Victoria's councils wait until the Victorian state batch.*
 
 ## Goal
 
@@ -47,7 +47,7 @@ The ABLIS API key would allow every council to be covered. Whether the API carri
 There are 3 councils in each state: the capital city, a regional city and a rural council. That makes 21 councils, or 18 without Victoria. The 7 capital cities are already chosen (ABS LGA codes 17200, 24600, 31000, 40070, 57080, 62810, 71000).
 
 Rule for the other 2 in each state, so the choice can be repeated:
-- **Regional city:** the council with the most businesses outside the state's greater capital city area, from ABS counts of businesses by local government area.
+- **Regional city:** the council with the most businesses outside the state's greater capital city area and outside the ABS major cities class, from ABS counts of businesses by local government area. The major cities test was added in E-1 (E-361), because without it the rule picked Newcastle and the Gold Coast.
 - **Rural council:** in each state, the council with the median number of businesses among those in outer regional, remote or very remote areas.
 
 All codes are checked against ASGS 2021.
@@ -99,6 +99,30 @@ E-2 and E-3 can start straight away. E-5 and E-6 depend on reaching council webs
 | E3 | Council websites and planning portals are blocked in the cloud. Allow each sample council's host when E-1 lists them (about 20 hosts), or save the local laws yourself? | Allow the hosts. Saving the files by hand is the fallback for sites that refuse automated requests |
 | E4 | Leave Victoria's councils until the Victorian state batch? | Yes, as you asked on 25 November 2026 |
 | E5 | Decision numbers for this phase: continue the states range from E-360? | Yes, so the states range E-300 to E-399 stays with one thread |
+
+**Answers (owner, 26 November 2026):** E1 to E5 accepted as recommended. The owner asked for all council hosts to be allowed rather than saving files, and for E-1 and E-2 to start (E-360).
+
+## Progress
+
+- **E-1 done 26 Nov 2026 (E-361).** The sample was chosen by `alicia/scripts/council_sample.py` from ABS counts of businesses at 30 June 2025 and the ASGS 2021 allocation files. It is saved in `data/processed/legislation/council_sample.csv`.
+
+  | State | Capital | Regional | Rural |
+  |---|---|---|---|
+  | NSW | Sydney (17200) | Shoalhaven (16950) | Temora (17350) |
+  | Queensland | Brisbane (31000) | Toowoomba (36910) | Winton (37400) |
+  | SA | Adelaide (40070) | Alexandrina (40220) | Mount Remarkable (44830) |
+  | WA | Perth (57080) | Busselton (51260) | Victoria Plains (58540) |
+  | Tasmania | Hobart (62810) | Launceston (64010) | Break O'Day (60210) |
+  | NT | Darwin (71000) | Alice Springs (70200) | Victoria Daly (74550) |
+  | Victoria (later) | Melbourne (24600) | Ballarat (20570) | Gannawarra (22250) |
+
+  The owner allowed the hosts of these councils and of the planning sites and gazettes on 26 Nov 2026. A check on that day found 3 kinds of site:
+  - **Readable:** Sydney, Brisbane, Darwin, Shoalhaven, Temora, Toowoomba, Winton, Busselton, Victoria Plains, Launceston, Hobart, Break O'Day and Victoria Daly; the WA Gazette (on the WA register), wa.gov.au (WA scheme texts) and the ABS;
+  - **Refused by the site's bot protection, even when allowed:** Perth, Adelaide, Alexandrina, Mount Remarkable, PlanSA and the Planning and Design Code, Tasmania's planning site and Gazette, the SA Government Gazette and Tasmania's council by-laws directory. For these, the fallback is ABLIS's listing (which names each permit's local law) and the councils' documents where a search finds a direct link;
+  - **Redirected to a host not yet allowed:** Alice Springs (www.alicesprings.nt.gov.au) and the NSW planning portal (www2.planning.nsw.gov.au). These go in the next host request.
+
+  So SA is the hardest state: all 3 SA councils, PlanSA and the SA Gazette refuse automated requests.
+- **E-2 done 26 Nov 2026 (E-362).** The 834 state requirements outside Victoria were searched for laws that make councils an issuing, registering or enforcing body. 26 more requirements are now marked as council-administered (34 in all, of 1,200): 23 that already quoted the law naming councils, and 3 with a new quote (NSW food safety supervisors, Food Act 2003 s 111(4); WA development approval, Planning and Development Act 2005 s 4; Tasmanian cooling water systems, Public Health Act 1997 s 114(1)). Definitions alone, such as "local authority" in the WHS Acts, did not count.
 
 ## Limits
 
