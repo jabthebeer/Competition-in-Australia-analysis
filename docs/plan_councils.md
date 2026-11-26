@@ -124,6 +124,10 @@ E-2 and E-3 can start straight away. E-5 and E-6 depend on reaching council webs
   So SA is the hardest state: all 3 SA councils, PlanSA and the SA Gazette refuse automated requests.
 - **E-2 done 26 Nov 2026 (E-362).** The 834 state requirements outside Victoria were searched for laws that make councils an issuing, registering or enforcing body. 26 more requirements are now marked as council-administered (34 in all, of 1,200): 23 that already quoted the law naming councils, and 3 with a new quote (NSW food safety supervisors, Food Act 2003 s 111(4); WA development approval, Planning and Development Act 2005 s 4; Tasmanian cooling water systems, Public Health Act 1997 s 114(1)). Definitions alone, such as "local authority" in the WHS Acts, did not count.
 
+- **E-3 done 26 Nov 2026 (E-363).** `alicia/scripts/land_use_terms.py` reads the standard land-use definitions of Queensland (Planning Regulation 2017, schedules 3 and 24: 91 use terms), WA (model provisions, schedule 1 cl 38: 77 terms), NSW (the Standard Instrument definitions in the Shoalhaven LEP 2014 dictionary: 190 terms) and the ACT (Territory Plan 2023, Part G, Table 1: 131 terms). Every quote is checked word for word against its source. Each of the 506 classes is matched to the terms through about 100 use types, in `data/processed/legislation/land_use_terms.csv` (2,673 rows: 985 high, 833 medium and 750 low confidence, and 105 with no premises use or no standard term). Definitions are in `land_use_definitions.csv`.
+  - **Not covered:** the NT, whose planning scheme site (nt.gov.au) refuses automated requests even when allowed, and SA and Tasmania (batch E-4), for the same reason. Victoria waits for its batch.
+  - **Limits:** the match says which term a class most likely falls under, not whether the use is allowed in a zone. Queensland's industry terms (low, medium, high impact) depend on thresholds each council sets, so those matches are low confidence. Mining is not a Queensland planning use.
+
 ## Limits
 
 - A sample of 21 councils, from about 540 in total, shows how much councils vary. It cannot give a complete count for every council.
