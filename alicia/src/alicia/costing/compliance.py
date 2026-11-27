@@ -1,5 +1,5 @@
 """Compliance cost: the staff time each requirement on the register costs the businesses it binds, a year
-(DECISIONS E-500; methods note ``docs/compliance_costs.md``).
+(DECISIONS E-700; methods note ``docs/compliance_costs.md``).
 
 The method follows the Office of Impact Analysis (OIA) *Regulatory Burden Measurement Framework* (July 2026). Its
 labour formula (p. 9, traceability R-39) is time required × labour cost × times performed × number of entities. Here,

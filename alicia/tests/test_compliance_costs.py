@@ -1,4 +1,4 @@
-"""Compliance cost: the staff time each requirement costs the businesses it binds, a year (DECISIONS E-500)."""
+"""Compliance cost: the staff time each requirement costs the businesses it binds, a year (DECISIONS E-700)."""
 
 from __future__ import annotations
 

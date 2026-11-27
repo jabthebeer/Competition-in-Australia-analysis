@@ -403,7 +403,7 @@ def build_payload(
         d["purpose"] = purpose([q.regime] if q.regime else [])
         # Fees and staff time to get and renew a licence: beside severity, not part of it (DECISIONS E-173).
         d["licenceCost"] = licence_costs.get(q.id)
-        # Staff time a year for the businesses it binds (DECISIONS E-500): beside severity, not part of it.
+        # Staff time a year for the businesses it binds (DECISIONS E-700): beside severity, not part of it.
         d["complianceCost"] = compliance_costs.get(q.id)
         for x in homes:
             nested.setdefault(x, []).append(d)

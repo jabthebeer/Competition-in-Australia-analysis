@@ -95,7 +95,7 @@ def _row(r: dict, menu: dict, inside: str | None = None) -> dict:
         "renewalYears": cost.get("renewalYears"),
         "renewalCostYear": cost.get("renewalPerYear"),
         "burdenYear": cost.get("burden"),
-        # Compliance cost (DECISIONS E-500): staff time a year for the businesses bound, central and range.
+        # Compliance cost (DECISIONS E-700): staff time a year for the businesses bound, central and range.
         "ccYear": round(cc["cost"]["central"]) if cc.get("costed") else None,
         "ccLow": round(cc["cost"]["low"]) if cc.get("costed") else None,
         "ccHigh": round(cc["cost"]["high"]) if cc.get("costed") else None,
