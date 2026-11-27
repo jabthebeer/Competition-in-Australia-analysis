@@ -104,7 +104,7 @@ What a licence costs the business that holds it, at entry and at renewal: fees q
 
 ### Built for the National Construction Code work (`data/processed/ncc/`)
 
-Adoption, state variations, other legislation and referenced standards for the National Construction Code (NCC), and the regulatory map data (DECISIONS E-500; [`docs/plan_ncc_ingestion.md`](../docs/plan_ncc_ingestion.md), [`docs/ncc_variability.md`](../docs/ncc_variability.md)). Built by `alicia/scripts/ncc_data.py`; raw files in `data/raw/ncc/` (not committed), hashes in `data/processed/ncc/sources.json`. Attribution: "The National Construction Code 2025 was provided by the Australian Building Codes Board under the CC BY 4.0 licence."
+Adoption, state variations, other legislation and referenced standards for the National Construction Code (NCC), and the regulatory map data (DECISIONS E-700; [`docs/plan_ncc_ingestion.md`](../docs/plan_ncc_ingestion.md), [`docs/ncc_variability.md`](../docs/ncc_variability.md)). Built by `alicia/scripts/ncc_data.py`; raw files in `data/raw/ncc/` (not committed), hashes in `data/processed/ncc/sources.json`. Attribution: "The National Construction Code 2025 was provided by the Australian Building Codes Board under the CC BY 4.0 licence."
 
 | Source | Publisher | URL | Accessed | Access / licence | Coverage | Key variables | Status |
 |---|---|---|---|---|---|---|---|
