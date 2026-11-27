@@ -9,7 +9,7 @@ Methods note, 27 November 2026, for the owner and Cowork. Built by `alicia/scrip
 - **One code, adopted 8 ways.** The National Construction Code (NCC) is a single national code, but each state and territory gives it legal effect through its own law and writes its own variations into it.
 - **States vary hundreds of provisions.** In NCC 2025, Tasmania varies 274 provisions and New South Wales 272. South Australia varies 149, the Northern Territory 135, Victoria 72, Western Australia 56 and Queensland 30. The ACT's count is 0 because it publishes its variations separately, not because it has none.
 - **Adoption dates moved together until NCC 2025, but key provisions did not.** From 2002 to NCC 2022, every jurisdiction adopted each edition on the national date, except the ACT's month-late start for NCC 2019. NCC 2025 broke the pattern: New South Wales, Queensland and South Australia (for building) adopt it a year late, on 1 May 2027, and the Northern Territory has not adopted it.
-- **The 2022 energy and accessibility changes split 8 ways.** States brought in the NCC 2022 energy efficiency, condensation and livable housing provisions on 5 different dates between October 2023 and May 2025 (the ABCB page does not date Queensland's). New South Wales and Western Australia did not adopt livable housing, Tasmania did not adopt housing energy efficiency, and the Northern Territory kept housing at 5 stars.
+- **The 2022 energy and accessibility changes split 8 ways.** States brought in the NCC 2022 energy efficiency, condensation and livable housing provisions on 5 different dates between October 2023 and May 2025 (Queensland's 2 dates, from the Queensland Building and Construction Commission, are among them). New South Wales and Western Australia did not adopt livable housing, Tasmania did not adopt housing energy efficiency, and the Northern Territory kept housing at 5 stars.
 
 ## Sources and method
 
@@ -92,7 +92,7 @@ Housing Provisions parts with 3 or fewer variations in total, and Volume Three P
 | Victoria | 1 May 2026 | None |
 | Western Australia | 1 May 2026 | 12 months |
 
-**The two ABCB sources disagree on Tasmania.** The adoption page gives 1 May 2027 with a temporary adoption, but the history tables in the NCC 2025 dataset (version 1.2, June 2026) give 1 May 2026. The tables keep both as published. Check the Tasmanian determination before quoting a date.
+**Tasmania applied NCC 2025 for 5 weeks, then went back to NCC 2022.** The Building Act 2016 (Tas) defined the code as the ABCB's series 'as amended or substituted from time to time', so NCC 2025 applied from its publication on 1 May 2026. The [Building Amendment Act 2026](https://www.legislation.tas.gov.au/view/whole/html/asmade/act-2026-006) (Tas), in force from its assent on 5 June 2026, redefined the code as NCC 2022 (as amended to 29 July 2025) until 30 April 2027 and the latest edition from 1 May 2027 (s 5). This explains why the two ABCB sources differ: the adoption page gives 1 May 2027 with the temporary adoption, while the history tables in the NCC 2025 dataset (version 1.2, June 2026) still give 1 May 2026. The tables keep both as published; the register record `tas-ncc-2025-2027` follows the Act.
 
 **NCC 2022 provisions.** The edition date was 1 May 2023 everywhere, but the energy efficiency, condensation and livable housing provisions had their own transitions:
 
@@ -104,7 +104,7 @@ Housing Provisions parts with 3 or fewer variations in total, and Volume Three P
 | Condensation management | 15 Jan 2024 | 1 Oct 2023 | 1 Oct 2023 | See Queensland site | 1 Oct 2024 | 1 Oct 2023 | 1 May 2024 | 1 May 2025 |
 | Livable housing design | 15 Jan 2024 | Not adopted | 1 Oct 2023 | See Queensland site | 1 Oct 2024 | 1 Oct 2024 | 1 May 2024 | Not adopted |
 
-Source: ABCB, correct as at 22 September 2023, shortened. The ABCB's own wording is in `adoption_2022.csv`. The ABCB page refers to the Queensland Modern Homes website for Queensland's dates; that site has not been read yet.
+Source: ABCB, correct as at 22 September 2023, shortened. The ABCB's own wording is in `adoption_2022.csv`. The ABCB page refers to the Queensland Modern Homes website for Queensland's dates; that site refuses automated requests. The [Queensland Building and Construction Commission](https://qbcc.qld.gov.au/news/ncc-2022-update) gives them instead: livable housing (accessibility), condensation management and the provisions for future solar, battery and electric vehicle charging equipment from 1 October 2023, and energy efficiency from 1 May 2024, for houses through the Queensland Development Code. The register record `qld-ncc-2022-2024` uses these dates.
 
 ## What the counts do not show
 

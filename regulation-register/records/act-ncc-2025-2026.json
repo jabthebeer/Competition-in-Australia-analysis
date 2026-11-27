@@ -1,0 +1,130 @@
+{
+  "id": "act-ncc-2025-2026",
+  "kind": "reform",
+  "family": "ncc-2025-adoption",
+  "title": "2025 building code adopted (ACT)",
+  "jurisdiction": "ACT",
+  "summary": "The ACT adopted NCC 2025 on its national start date, 1 May 2026, with a 12-month transition in which NCC 2022 may still be used. The ACT's own variations sit in the ACT Appendix, published on the ACT Legislation Register rather than in the NCC text.",
+  "instruments": [
+    {
+      "title": "National Construction Code 2025",
+      "register_url": "https://data.gov.au/data/dataset/national-construction-code-2025-version-1-2",
+      "register_id": null,
+      "role": "code",
+      "provisions": "Volumes One, Two and Three, the ABCB Housing Provisions and the Livable Housing Design Standard, with the state's variations in its schedule"
+    },
+    {
+      "title": "Building Act 2004 (ACT)",
+      "register_url": "https://www.legislation.act.gov.au/a/2004-11/",
+      "register_id": "A2004-11",
+      "role": "principal",
+      "provisions": "the ACT Appendix to the BCA forms part of the ACT Building Code published under this Act"
+    },
+    {
+      "title": "Water and Sewerage Act 2000 (ACT)",
+      "register_url": "https://www.legislation.act.gov.au/a/2000-68/",
+      "register_id": "A2000-68",
+      "role": "principal",
+      "provisions": "the ACT Appendix to the PCA forms part of the ACT Plumbing Code under this Act"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": [
+      {
+        "date": "2026-05-01",
+        "what": "NCC 2025 adopted, with a 12-month transition period",
+        "source": "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-state-and-territory-adoption-information",
+        "primary": true
+      }
+    ]
+  },
+  "direction": "weakening",
+  "direction_rationale": "NCC 2025's largest changes are for commercial buildings: the regulated energy allowance for Class 3 and 5 to 9 buildings is roughly halved, on-site solar panels become mandatory, and fabric, services, carpark sprinkler, water management and condensation rules are tightened. These add design and construction costs that are partly fixed per project and may weigh most on smaller builders, lowering entry.",
+  "direction_sources": [
+    "https://www.abcb.gov.au/news/2026/ncc-2025-released",
+    "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-key-changes/ncc-2025-commercial-energy-efficiency-changes"
+  ],
+  "channels": [
+    "barriers",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "3020",
+      "name": "Non-Residential Building Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3019",
+      "name": "Other Residential Building Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3011",
+      "name": "House Construction",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Staggered adoption: the ACT, Victoria and Western Australia from 1 May 2026; New South Wales, Queensland, South Australia (building) and Tasmania from 1 May 2027; the Northern Territory not adopted",
+  "confounders": [
+    "building cost inflation",
+    "interest rate changes from 2025",
+    "the pause on residential code changes announced in August 2025",
+    "builder insolvencies"
+  ],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Date and transition period from the ABCB's NCC 2025 adoption page (read 27 November 2026; data/processed/ncc/adoption_2025.csv); the 'History of adoption' tables in the NCC 2025 dataset (version 1.2, June 2026) agree."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 27 November 2026 from the ABCB's NCC 2025 adoption page and dataset (docs/plan_ncc_ingestion.md, phase N2; DECISIONS E-501). Not yet checked: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Adopts the 2025 National Construction Code, whose main changes tighten energy efficiency for commercial buildings and require on-site solar panels. The changes cut energy use and emissions, which are not weighed here; they also add to the cost of building.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Adds design and construction costs to new commercial and apartment buildings, mainly through the tighter energy efficiency rules and mandatory on-site solar."
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "No impact analysis for NCC 2025 was found in this search; the marks follow the 2022 adoption records and the Productivity Commission's finding that several code changes were adopted despite a net cost.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf",
+      "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-key-changes/ncc-2025-commercial-energy-efficiency-changes"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "responsible": [
+    {
+      "body": "act-ced",
+      "role": "administers",
+      "source": "https://www.legislation.act.gov.au/ni/2026-407/",
+      "note": null
+    },
+    {
+      "body": "nat-abcb",
+      "role": "policy",
+      "source": "https://www.abcb.gov.au/",
+      "note": "Produces the National Construction Code that each jurisdiction adopts."
+    }
+  ],
+  "history": []
+}

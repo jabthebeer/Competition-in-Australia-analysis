@@ -139,7 +139,8 @@ def test_every_register_item_is_assessed_against_the_current_framework():
 def test_records_of_one_reform_family_share_a_main_driver_unless_they_differ():
     """Members of a family are the same reform in different places, so their main drivers should agree; the known
     exceptions are where a member genuinely differs (Tasmania's ride-share law also let new taxi licences be
-    suspended; the industry codes family holds different codes)."""
+    suspended; the industry codes family holds different codes; the Northern Territory has not adopted the 2025
+    building code, so its item is about a divergence, not an added cost)."""
     exceptions = {
         "industry-codes",
         "pharmacy-regulation",
@@ -156,6 +157,7 @@ def test_records_of_one_reform_family_share_a_main_driver_unless_they_differ():
         "harper-cca-2017",
         "point-to-point-licensing",
         "gaming-market-structure",
+        "ncc-2025-adoption",
     }
     by_family: dict[str, set] = {}
     for r in load_records().records:
