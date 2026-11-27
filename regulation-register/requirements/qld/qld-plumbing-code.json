@@ -1,0 +1,139 @@
+{
+  "id": "qld-plumbing-code",
+  "family": "plumbing-code",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Do plumbing and drainage work to the plumbing code (NCC Volume Three)",
+  "kind": "standard",
+  "what": "Carry out plumbing and drainage work to the code requirements: the Queensland Plumbing and Wastewater Code, the provisions of the Plumbing Code of Australia (NCC Volume Three) prescribed by regulation, and parts of the Queensland Development Code. The edition in force is NCC 2022 until NCC 2025 is adopted on 1 May 2027. Its schedule in NCC 2025 varies 6 national provisions, mostly water services.",
+  "laws": [
+    {
+      "title": "Plumbing and Drainage Act 2018 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-2018-017",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2018-017",
+      "provisions": "ss 9(1), 64(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Plumbing and Drainage Act 2018 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2018-017",
+      "locator": "s 64(1) (current)",
+      "quote": "64 Complying with code requirements for plumbing and drainage work (1) A person who carries out plumbing or drainage work must ensure the work complies with the code requirements for the work.",
+      "accessed": "2026-11-27",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Plumbing and Drainage Act 2018 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2018-017",
+      "locator": "s 9(1)(a)-(b) (current)",
+      "quote": "9 Code requirements (1) The code requirements , for plumbing or drainage work, are the requirements about the plumbing or drainage work under— (a) the Queensland Plumbing and Wastewater Code; and (b) a provision of the Plumbing Code of Australia prescribed by regulation;",
+      "accessed": "2026-11-27",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": true,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Local governments (Qld), through the inspectors they appoint",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Plumbing and Drainage Act 2018 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2018-017",
+          "locator": "s 39(1), words naming the body (found 27 Nov 2026) (current)",
+          "quote": "39 Appointment and qualifications (1) A local government may appoint an authorised person as an inspector under this Act",
+          "accessed": "2026-11-27",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "when carrying out plumbing or drainage work",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3231"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Volume Three, the Plumbing Code of Australia, covers plumbing and drainage work.",
+      "sources": [
+        {
+          "title": "Plumbing and Drainage Act 2018 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2018-017",
+          "locator": "s 64(1) (current)",
+          "quote": "64 Complying with code requirements for plumbing and drainage work (1) A person who carries out plumbing or drainage work must ensure the work complies with the code requirements for the work.",
+          "accessed": "2026-11-27",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The law's own words require building or plumbing work to comply with the code. Drafted on 27 November 2026 for the NCC work (docs/plan_ncc_ingestion.md, phase N3); the variation counts are from the NCC 2025 dataset.",
+  "records": [
+    "qld-ncc-2025-2027"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Work must meet the National Construction Code (Volume Three, the Plumbing Code of Australia) as Queensland applies it. The code sets minimum safety, health, amenity, accessibility and energy standards, whose benefits are not weighed here; meeting and certifying them adds to the cost of every project.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Designing, documenting and certifying each project against the code adds cost, and the state's own variations add to it for builders who work in several states.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked to agree with the NCC adoption records (burden -1); the Productivity Commission finds several code changes were adopted although their impact analyses showed a net cost. No evaluation of the requirement itself was found.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

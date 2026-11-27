@@ -1,0 +1,139 @@
+{
+  "id": "tas-plumbing-code",
+  "family": "plumbing-code",
+  "jurisdiction": "TAS",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Do plumbing and drainage work to the plumbing code (NCC Volume Three)",
+  "kind": "standard",
+  "what": "Ensure plumbing work complies with the Building Act 2016 and all applicable provisions of the National Construction Code (Volume Three, the Plumbing Code of Australia, with the Tasmanian variations). The edition in force is NCC 2022 until 30 April 2027 and the latest edition from 1 May 2027, under the Building Amendment Act 2026. Its schedule in NCC 2025 varies 87 national provisions, the most of any state, mostly sanitary plumbing and drainage and facilities.",
+  "laws": [
+    {
+      "title": "Building Act 2016 (Tas)",
+      "jurisdiction": "TAS",
+      "kind": "act",
+      "register_id": "act-2016-025",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2016-025",
+      "provisions": "ss 4(1), 11(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Act 2016 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2016-025",
+      "locator": "s 11(1) (current)",
+      "quote": "11. All work must comply with Act and National Construction Code (1) A person performing building work, plumbing work or demolition work must ensure that the work complies with – (a) this Act; and (b) all of the applicable provisions of the National Construction Code, unless otherwise authorised under this Act.",
+      "accessed": "2026-11-27",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Act 2016 (Tas)",
+      "publisher": "Tasmanian Legislation",
+      "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2016-025",
+      "locator": "s 4(1), def National Construction Code (current)",
+      "quote": "National Construction Code means – (a) until 30 April 2027 – the edition of the National Construction Code published by the Australian Building Codes Board entitled NCC 2022, and as last amended by NCC 2022 Amendment 2 on 29 July 2025; and (b) on and from 1 May 2027 – the latest edition of that code published by the Australian Building Codes Board, including as amended, from time to time.",
+      "accessed": "2026-11-27",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Permit authorities (Tas)",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": "Councils' permit authorities; to check against the Act's definition.",
+      "sources": [
+        {
+          "title": "Building Act 2016 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2016-025",
+          "locator": "s 25(1), words naming the body (found 27 Nov 2026) (current)",
+          "quote": "25. Functions of permit authorities (1) A permit authority has the following functions in respect of building work, plumbing work or demolition work: (a) to accept applications submitted to it under this Act",
+          "accessed": "2026-11-27",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "when carrying out plumbing or drainage work",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3231"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Volume Three, the Plumbing Code of Australia, covers plumbing and drainage work.",
+      "sources": [
+        {
+          "title": "Building Act 2016 (Tas)",
+          "publisher": "Tasmanian Legislation",
+          "url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2016-025",
+          "locator": "s 11(1) (current)",
+          "quote": "11. All work must comply with Act and National Construction Code (1) A person performing building work, plumbing work or demolition work must ensure that the work complies with – (a) this Act; and (b) all of the applicable provisions of the National Construction Code, unless otherwise authorised under this Act.",
+          "accessed": "2026-11-27",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The law's own words require building or plumbing work to comply with the code. Drafted on 27 November 2026 for the NCC work (docs/plan_ncc_ingestion.md, phase N3); the variation counts are from the NCC 2025 dataset.",
+  "records": [
+    "tas-ncc-2025-2027"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Work must meet the National Construction Code (Volume Three, the Plumbing Code of Australia) as Tasmania applies it. The code sets minimum safety, health, amenity, accessibility and energy standards, whose benefits are not weighed here; meeting and certifying them adds to the cost of every project.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Designing, documenting and certifying each project against the code adds cost, and the state's own variations add to it for builders who work in several states.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked to agree with the NCC adoption records (burden -1); the Productivity Commission finds several code changes were adopted although their impact analyses showed a net cost. No evaluation of the requirement itself was found.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
