@@ -1,72 +1,117 @@
 # Plan: ingesting National Construction Code data into ALICIA
 
-Plan for the owner, 26 November 2026. **Status: draft, for approval.** Nothing is built yet. Written by Claude Code on branch `claude/project-thread-pg3toc`; it touches no register file, so it cannot clash with PR [#41](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/41).
+Plan for the owner. First written 26 November 2026; **revised 27 November 2026** after the owner's answers (DECISIONS E-500). Phases N0, N1, N4 and the regulatory map data are built; the register phases (N2, N3) are next. Results: [`ncc_variability.md`](ncc_variability.md).
 
-> **Source check.** The cloud environment's network policy blocks `abcb.gov.au`, `ncc.abcb.gov.au`, `oia.pmc.gov.au` and `data.gov.au`, so no Australian Building Codes Board (ABCB) page was read directly for this plan. What section 2 says about the code comes from web search results that quote those pages, plus state government pages. Each fact is marked **(to verify)** until phase N0 reads the page itself. No figure in this plan should be quoted until then.
+**Purpose (owner, 27 November 2026).** Show how unevenly the National Construction Code (NCC) is adopted, so state-based differences come first. Find a middle ground on scope between one item for the whole code and one for each standard. Use the NCC as the first example of a regulatory map: a main law linked to the instruments that sit within it.
 
-## 1. How the NCC appears in ALICIA now
+## 1. How the NCC appeared in ALICIA before this work
 
 | Where | What | Gap |
 |---|---|---|
-| `regulation-register/records/*-ncc-2022-*.json` (8 records, family `ncc-2022-adoption`) | One reform per state: adoption of the NCC 2022 residential energy efficiency (7-star) and livable housing provisions, with its primary commencement, marks (burden −1, market integration −1) and the bodies responsible | Instruments are generic ("NCC 2022 … as adopted in Victoria") with no register id or URL, except NSW (BASIX SEPP, dates not checked). Queensland's livable housing date is "not confirmed". Only one commencement each; condensation, commercial energy efficiency and the transition periods are not recorded. No `history` |
-| `families.json` | "Inconsistent adoption of the 2022 building code standards" | Covers NCC 2022 only |
-| `rule-coding.json` | All 8 coded `standard`, `operating`, `all` | None |
-| `regimes/building-licensing-and-approvals.json` | ABCB sets rules; states vary the code; consistency `harmonised` | The "state variations" layer names no bodies and no source for how much states vary the code |
-| `recommendations/building-code-net-benefit-test.json` | Independent review of building regulation; net-benefit test for code changes (PC 2025); progress notes the August 2025 pause on residential changes to mid-2029 | The pause is not a register event |
-| `regulation-register/requirements/` | Builder, plumbing and electrical licences, home warranty insurance, building contracts, pool barriers, fire safety statements | **No requirement to build to the code.** The core obligation is absent from the Industry lens |
-| `data/SOURCES.md` | No ABCB entry | Licence and access not recorded |
+| `regulation-register/records/*-ncc-2022-*.json` (8 records, family `ncc-2022-adoption`) | One reform per state: adoption of the NCC 2022 energy efficiency (7-star) and livable housing provisions | Generic instruments with no register id (except NSW); one commencement each; Queensland's livable housing date unconfirmed; no `history` |
+| `families.json`, `rule-coding.json`, `regimes/building-licensing-and-approvals.json`, `recommendations/building-code-net-benefit-test.json` | Family name, coding, the regime's "state variations" layer, the PC 2025 net-benefit recommendation | NCC 2022 only; the regime's variations layer names no source |
+| `regulation-register/requirements/` | Licences, warranty insurance, contracts, pool barriers | **No requirement to build to the code** |
 
-So the register holds one change (NCC 2022) and none of the standing obligation, the earlier or later editions, or the state variations.
+## 2. What the ABCB publishes (checked 27 November 2026)
 
-## 2. What the ABCB publishes (to verify)
-
-| Item | What the search results show | Use in ALICIA |
+| Item | Finding | Used |
 |---|---|---|
-| **Volumes** | Volume One: Class 2 to 9 buildings (apartments, commercial, public). Volume Two: Class 1 and 10 (houses, sheds), with the ABCB Housing Provisions Standard from 2022. Volume Three: the Plumbing Code of Australia | Each volume maps to different ANZSIC classes (section 4, N3) |
-| **Editions** | NCC 2016, 2019 (with Amendment 1), 2022 and 2025 online at `ncc.abcb.gov.au/editions/...`; 2022 PDFs at `abcb.gov.au/system/files/ncc/ncc2022-volume-one-20230501b.pdf` and similar | Edition-by-edition adoption table (N1) |
-| **Adoption dates** | Page "NCC 2022 state and territory adoption dates", a table by state and provision (energy efficiency, condensation, livable housing), "correct as at 22 September 2023". National adoption 1 May 2023 with transitions. Each edition also has a "History of adoption" table, for which jurisdictions supplied NCC 2025 dates by 31 March 2026 (Treasury FOI 4242) | Main source for N1 and the records' commencements |
-| **NCC 2025** | Preview 1 February 2026, final 1 May 2026; states may adopt from 1 May 2026. Reported: NSW, Queensland and SA from 1 May 2027; ACT from 1 May 2026 with a 6-month transition; Tasmania paused some measures; NT gazetted that NCC 2025 does not apply. Building ministers paused residential changes (except safety and quality) to mid-2029 | A new family `ncc-2025-adoption` and a `history` event for the pause |
-| **State variations** | Each volume has a schedule of state and territory variations and additions (for example Queensland's in Schedule 7, carried into NCC 2025) | Variation counts by state and edition (N4) |
-| **Impact analyses** | Decision RIS, NCC 2022 residential energy efficiency (September 2022; CIE cost-benefit analysis; also on the OIA site); RISs for livable housing and other changes listed under "Regulation impact statements" on `ncc.abcb.gov.au/resources` | Substantive compliance cost per dwelling for the costing work (section 5) |
-| **Structured data** | None found: no API, CSV or dataset. The code is HTML and PDF; the adoption tables are HTML | ALICIA builds its own tables, each row quoting its page |
-| **Licence** | ABCB FAQ: NCC 2022 "is now available under the Creative Commons Attribution 4.0 International Licence" and most ABCB material is CC BY 4.0. NCC 2022 was first CC BY-ND, later changed; NCC 2016 was CC BY-NC-ND 4.0. Logos and third-party material are excluded. Suggested attribution: "The National Construction Code 2022 was provided by the Australian Building Codes Board under the CC BY licence." | Quoting and deriving tables is allowed for 2022 and 2025 if confirmed. Record each edition's notice in `SOURCES.md`; treat 2016 (and 2019 until checked) as no-derivatives: quote only, no restructured text |
+| **Structured data** | The ABCB publishes the NCC as XML on data.gov.au: [NCC 2025 v1.2](https://data.gov.au/data/dataset/national-construction-code-2025-version-1-2) (June 2026, one file per volume, with an XML schema) and [NCC 2022](https://data.gov.au/data/dataset/national-construction-code-ncc-2022) (11,331 fragment files). Every state and territory variation is tagged with its jurisdiction and type (insert, replace, delete) | NCC 2025 in full; NCC 2022 later (N4b) |
+| **Licence** | CC BY 4.0, except third-party material, trade marks, images and photographs. NCC 2022 Amendment 1 changed NCC 2022 from CC BY-ND to CC BY. Required attribution: "The National Construction Code 2025 was provided by the Australian Building Codes Board under the CC BY 4.0 licence." | Recorded in `data/SOURCES.md` and `sources.json` |
+| **Volumes** | Volume One (Class 2 to 9 buildings), Volume Two (Class 1 and 10) with the ABCB Housing Provisions, Volume Three (the Plumbing Code of Australia), the Livable Housing Design Standard | All read |
+| **Adoption history** | Each volume's preface has a "History of adoption" table: every edition since BCA 96, by jurisdiction | `adoption_history.csv` |
+| **Adoption pages** | [NCC 2022 adoption dates](https://www.abcb.gov.au/ncc-2022-state-and-territory-adoption-dates) by provision area (as at 22 September 2023); [NCC 2025 adoption information](https://ncc.abcb.gov.au/ncc-2025/ncc-2025-state-and-territory-adoption-information) with transition periods | `adoption_2022.csv`, `adoption_2025.csv` |
+| **State appendices** | Each state's schedule names the laws that give the code effect, lists "other legislation affecting buildings" with the administering agency, and lists the state's referenced documents | `other_legislation.csv`, the map |
+| **Referenced documents** | Schedule 2 lists 173 standards with the clauses that cite them | `referenced_documents.csv`, the map |
+| **Impact analyses** | Regulation impact statements are listed on `ncc.abcb.gov.au/resources`; the NCC 2022 energy efficiency Decision RIS is also on the OIA site | N5 |
 
-## 3. Principles
+Two corrections to the first version of this plan: there is a structured dataset (the first version said none was found), and the ACT publishes its variations in the ACT Appendix on the ACT Legislation Register, not in the NCC text.
 
-- Fit the current schema and folders exactly (`notes_for_other_branches.md`, "Keep to the current schema"). No new fields, no model changes. If a field is needed, write the request at the top of that file instead.
-- Every date and quote is read from the official page (ABCB first, then the state's own adoption instrument or regulator), with a locator. Secondary sources (HIA, MBA) are leads only, as coding protocol rule 2 says.
-- PDFs are cached under `data/raw/abcb/` but **not committed** (the volumes are tens of megabytes). A manifest with URL, date and SHA-256 is committed.
-- The scripts are Python in `alicia/scripts/`, under the ALICIA exception in `CLAUDE.md`.
-- Draft status throughout; nothing is marked reviewed.
+## 3. Scope: the middle ground
+
+One item for the whole code hides the state differences; one item per standard would mean hundreds of files. The middle ground has 3 layers:
+
+| Layer | Grain | Where it lives | Count |
+|---|---|---|---|
+| **Requirement** | One per jurisdiction per code: building to Volume One (Class 2 to 9), building to Volume Two and the Housing Provisions (houses), plumbing to Volume Three | `regulation-register/requirements/<state>/`, families `building-code-class-2-9`, `building-code-housing`, `plumbing-code` | Up to 24 |
+| **Technical area** | One per section of each volume (for example Volume One J Energy efficiency, Volume Two H8 Livable housing design) | `variation_counts.csv` and map nodes; each requirement's description names the areas its state varies most | About 40 areas |
+| **Provision** | Each varied clause | `variations.csv` and the map, not the register | 1,305 tagged changes |
+
+So the register gains a small number of items a business deals with, and the standards are still accounted for, as sourced data under each item.
 
 ## 4. Phases
 
-| Phase | What | Files | Size |
-|---|---|---|---|
-| **N0. Access and licence** | Allow the hosts (section 6, question 1). Read the copyright notice of each edition and the ABCB copyright page; add an ABCB entry to `data/SOURCES.md`. Write `alicia/scripts/abcb_fetch.py` to cache the adoption pages, schedules and RIS PDFs with a manifest. Confirm or correct every "(to verify)" fact in section 2 | `data/SOURCES.md`, `data/raw/abcb/manifest.json`, script | Small |
-| **N1. Adoption table** | One row per edition × jurisdiction × provision area (residential energy efficiency, condensation, livable housing, commercial energy efficiency, other) with: date applied, status (adopted, adopted with variation, deferred, not adopted), the instrument, the ABCB source and the state source, each with a quote | `data/processed/ncc/adoption.csv` | NCC 2019, 2022, 2025 × 9 jurisdictions |
-| **N2. Register records** | (a) Fix the 8 `ncc-2022-adoption` records: real instruments with register ids (for example Queensland Development Code MP 4.1, the Victorian Building Regulations, the NSW BASIX SEPP), one commencement per provision with the competition-relevant one `primary`, Queensland's livable housing date confirmed or removed, `alicia dates` run. (b) Add family `ncc-2025-adoption`: one reform per jurisdiction, including deferrals and the NT's non-application (no commencement where not in force). (c) Add a `history` event "announced" for the 2025 pause on residential changes, linked from the recommendation's `progress`. (d) Update `families.json` summaries | `records/`, `families.json`, `rule-coding.json` entries for any new standing item | ~9 new, 8 edited |
-| **N3. Requirements** | Add the missing standing obligation. Family `building-code-compliance`: one requirement per state, kind `standard`, "build to the NCC as adopted, with this state's variations", quoting the state law that adopts the code. Reach by volume: Volume Two to 3011; Volume One to 3019 and 3020; Volume Three to a separate family `plumbing-code-compliance` (3231). Consider `energy-rating-assessment` (NatHERS or BASIX certificate before approval) as a third family, trigger `entry` for each building. Link `records` to the adoption reforms so the lens does not list them twice. Marks reuse the existing records' marks. Log any state with no separate adopting provision in `requirement-gaps.json` | `requirements/<state>/`, `requirement-gaps.json`; rebuild `links.csv.gz` | 16 to 27 files |
-| **N4. Variations measure** | From each edition's schedules, count each state's variations and additions by volume and part, and classify them (stricter, looser, administrative). This gives a measure of how far each state departs from the national code over time, a public-data indicator of the market-integration mark. It supports the family summaries, the regime's `consistency_note` and a chart | `data/processed/ncc/variations.csv`, a short methods note in `docs/` | Counts are mechanical; the classification needs care |
-| **N5. Cost inputs** | Extract the RIS figures (section 5) into a quoted table | `data/processed/costing/ncc_ris.csv` | A few RISs |
-| **N6. Checks and PR** | `uv run alicia validate`, `check_requirement_quotes.py`, `requirement_links.py`, `pytest -q`; site build and look at the Industry lens for 3011 in each state. One DECISIONS row per phase in a range the owner assigns | | |
-
-Order: N0, then N1 and N2 together (N2 reads N1), then N3, N4 and N5 in any order. N2 and N3 touch the same folders as PR #41, so start them after #41 merges and merge `main` first.
+| Phase | What | Status |
+|---|---|---|
+| **N0. Access and licence** | Hosts reachable; licence read; `alicia/scripts/ncc_data.py --download` caches the inputs in `data/raw/ncc/` (not committed); `sources.json` records URL, date and SHA-256; `data/SOURCES.md` entry | **Done** |
+| **N1. Adoption tables** | `adoption_history.csv`, `adoption_2022.csv`, `adoption_2025.csv` | **Done** |
+| **N4a. Variations, NCC 2025** | `variations.csv`, `variation_counts.csv`, method in [`ncc_variability.md`](ncc_variability.md) | **Done** |
+| **Map data (beta)** | `regulatory_map.json` (section 7) | **Done**; page to be built by a website-side thread |
+| **N2. Register records** | (a) Revise the 8 `ncc-2022-adoption` records: provision-level commencements from `adoption_2022.csv`, real instruments (the adopting laws in the map, with register ids), Queensland's dates from the Queensland source the ABCB cites. (b) New family `ncc-2025-adoption`: one reform per jurisdiction from `adoption_2025.csv`, including the Northern Territory's non-adoption and the one-year delays. (c) `history` event for the August 2025 pause on residential changes. (d) Family summaries cite the variation counts | Next |
+| **N3. Requirements** | The 3 families in section 3, quoting each state's adopting provision (for example Building Act 1975 (Qld) section 37, named in the Queensland appendix). Reach: 3019 and 3020 for Volume One, 3011 for Volume Two, 3231 for Volume Three. `records` link to the adoption reforms | Next |
+| **N4b. Variations, NCC 2022** | Parse the 2022 fragment files the same way, so the counts can be compared across editions | Later |
+| **N5. Cost inputs** | RIS figures (section 5) | Later |
+| **N6. Checks** | `alicia validate`, quote checks, links table, tests; Industry lens for 3011 by state | With N2 and N3 |
 
 ## 5. Where the NCC feeds the compliance cost figure
 
-The compliance cost plan ([thread](https://claude.ai/code/artifact/0ab7b54b-625e-4708-bde3-c43ba1d30489)) costs paperwork time only: hours × $91.54 × frequency × businesses bound. It says the cost of meeting a standard is not counted. The NCC is the clearest case where that cost dominates, and it is the one where official estimates exist:
+The compliance cost plan ([thread](https://claude.ai/code/artifact/0ab7b54b-625e-4708-bde3-c43ba1d30489)) costs paperwork time only. The NCC is where the cost of meeting a standard is largest, and where official estimates exist:
 
-1. **Substantive compliance cost per new dwelling.** The OIA framework counts substantive compliance costs as well as administrative ones (to verify against the RBM text already cached in `regulatory-burden-tool/data/`). The NCC 2022 energy efficiency Decision RIS and the livable housing RIS estimate the added construction cost per dwelling, by state and dwelling type. N5 extracts those with locators.
-2. **Volume.** Multiply by new dwellings commenced by state (ABS *Building Activity*, cat. 8752.0, or *Building Approvals*, cat. 8731.0, via `readabs`; not yet in the repo, so add to `SOURCES.md`), for each state from the date it adopted (N1). The adoption dates also give the counterfactual: states that deferred or did not adopt bear no cost for that provision.
-3. **Administrative part.** The energy-rating certificate (NatHERS or BASIX) is a paperwork cost per building that fits the other thread's formula directly, with its fee from the assessor market, if a public source exists.
-4. **Keep the two apart.** Show substantive costs as a separate line, labelled as the RIS's own estimate (ex ante, not measured), so the paperwork figure keeps its meaning. RIS figures are national averages for some provisions; say where a state figure is not available.
+1. **Substantive compliance cost per new dwelling** from the NCC 2022 energy efficiency Decision RIS and the livable housing RIS, with locators (N5). The OIA framework counts substantive compliance costs as well as administrative ones (to verify against the RBM text cached in `regulatory-burden-tool/data/`).
+2. **Volume and timing:** new dwellings by state (ABS *Building Activity*, cat. 8752.0, not yet in the repo), from each state's adoption date in `adoption_2022.csv`. A state that did not adopt a provision bears no cost for it.
+3. **Administrative part:** the energy rating certificate (NatHERS or BASIX) fits the paperwork formula directly.
+4. **Kept apart:** substantive costs as a separate line, labelled as the RIS's own ex ante estimate.
 
-The building requirement in N3 is the row the cost figure would attach to. Tell the compliance cost thread when N3 and N5 land.
+The N3 requirements are the rows the cost figure would attach to.
 
-## 6. Questions for the owner
+## 6. Decisions
 
-1. **Network.** Allow `abcb.gov.au`, `ncc.abcb.gov.au`, `consultation.abcb.gov.au` and `oia.pmc.gov.au` in the legislation environment (Project settings, Cloud environment). Nothing in N0 to N5 can start without it.
-2. **Scope of the code.** Recommended: one standing requirement per state for the whole code, plus reform records only for the changes the register is about (energy, livable housing, and later editions). The alternative, a requirement per NCC part (fire, structure, energy, access), would add about 100 files and duplicate a standard most builders meet through a certifier.
-3. **NCC 2019 and earlier.** Recommended: adoption rows in N1 only, no register records, because the register's reforms start from changes with competition relevance and public data.
-4. **Decision numbers.** This work needs a DECISIONS range (for example E-450 onwards).
+| # | Question | Answer |
+|---|---|---|
+| 1 | Network access | Owner opened all networks (27 November 2026) |
+| 2 | Scope | Middle ground (owner); the 3 layers in section 3 (this revision) |
+| 3 | NCC 2019 and earlier | Adoption dates only (in `adoption_history.csv`), no register records |
+| 4 | Decision numbers | This work uses E-500 onwards (noted in `notes_for_other_branches.md`); E-600 onwards is the regulatory map page's and E-700 onwards the compliance cost work's |
+| 5 | Regulatory map | Owner asked for it, with the NCC as the first example; the coordinator will start a website-side thread for the page once this data is in place |
+
+## 7. Regulatory map: data shape and beta view
+
+**Purpose.** Show a main law and the instruments that sit within it, and let a reader move from a state's building law to the code, to that state's variations, to the standards the code calls up, and to the other laws a builder must also meet. The view is a force-directed node-and-link graph, like Obsidian's graph view.
+
+**File.** `data/processed/ncc/regulatory_map.json`, written by `alicia/scripts/ncc_data.py`. Later regulatory maps (for example work health and safety, food) should use the same shape, one file per map, so the page can load any of them.
+
+```json
+{
+  "note": "...", "built_on": "2026-11-27",
+  "node_types": ["adoption", "area", "code", "edition", "law", "other-law", "standard", "variation-set", "volume"],
+  "relations": ["adopted-as", "consolidated-into", "contains", "edition", "gives-effect-to", "read-with", "references", "varies", "varies-area"],
+  "nodes": [{"id": "law-qld-building-act-1975", "type": "law", "label": "Building Act 1975", "jurisdiction": "QLD", "register_id": "act-1975-011", "url": "...", "matched": "title"}],
+  "links": [{"source": "law-qld-building-act-1975", "target": "ncc-2025-qld", "relation": "gives-effect-to", "jurisdiction": "QLD",
+             "basis": {"source": "...", "locator": "Volume One, Queensland schedule, 'QLD Introduction'", "quote": "Section 37 of the Building Act 1975 continues to apply ..."}}]
+}
+```
+
+**Nodes.** Every node has a stable `id`, a `type`, a `label` and a `jurisdiction` (`national` or a state code). Optional fields: `url`, `register_id` (the state register's id, joined from `data/processed/legislation/<state>_catalogue.csv`; ids repeat between states, so join on `jurisdiction` and `register_id` together), `matched` (how the join was made), `register_records` (ALICIA register items), `source`, and counts on variation sets.
+
+| Type | Example | Count |
+|---|---|---|
+| `code` | National Construction Code | 1 |
+| `edition` | NCC 2022, NCC 2025 | 2 |
+| `volume` | NCC 2025 Volume One | 5 |
+| `area` | Volume One, J Energy efficiency | 46 |
+| `adoption` | NCC 2025 in Queensland (date, transition) | 16 |
+| `law` | Building Act 1975 (Qld) | 19 |
+| `variation-set` | NSW variations: Energy efficiency (Volume One), 30 provisions | 169 |
+| `other-law` | Food Regulation 2025 (NSW), with agency and topic | 251 |
+| `standard` | AS 3600 (2018) | 170 |
+
+**Links** run from parent to child and are typed: `edition` (code to edition), `contains` (edition to volume, volume to area), `adopted-as` (edition to a state's adoption), `gives-effect-to` (state law to its adoption, quoting the state appendix), `consolidated-into` (a law whose rules were moved into the state appendix), `varies` (adoption to variation set, weight = provisions varied), `varies-area` (variation set to the national area it changes), `read-with` (adoption to other legislation the state lists) and `references` (area to standard, weight = citing clauses). 1,161 links in all.
+
+**Beta view (for the website-side thread).**
+
+- Force-directed graph; node size by degree or weight, colour by type, state filter that hides other jurisdictions' adoptions, variation sets and laws.
+- Start collapsed at the code, editions and the 8 adoptions; expand a node to show its children. Standards and other laws start hidden behind a toggle (421 nodes).
+- Selecting a node shows its label, jurisdiction, counts, the quoted basis and links to the register record or requirement where one exists.
+- No schema change is needed for the beta, because the map is a separate file. A later field on register items (for example `parent_instrument`) should be the website session's change.
+
+**Limits.** The map shows the structure the NCC itself describes. It does not show councils, the full ACT Appendix, or rules a state sets outside the code (the Queensland Development Code, BASIX), except where a state appendix names them. Laws not found in a state catalogue (61 of 251) have no register id yet.
