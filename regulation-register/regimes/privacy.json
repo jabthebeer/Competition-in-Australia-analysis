@@ -1,0 +1,81 @@
+{
+  "id": "privacy",
+  "name": "Privacy",
+  "what": "Handle personal information under the Australian Privacy Principles. Businesses with turnover above $3 million are covered, and health service providers whatever their size.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "75",
+      "76",
+      "7711",
+      "7713",
+      "7714",
+      "7720",
+      "96"
+    ],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Attorney-General's Department",
+      "bodies": [
+        "cth-agd"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "Office of the Australian Information Commissioner",
+      "bodies": [
+        "cth-oaic"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "cth",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Privacy Act 1988",
+      "publisher": "Federal Register of Legislation",
+      "year": 1988,
+      "url": "https://www.legislation.gov.au/C2004A03712/latest/text",
+      "locator": "s 15 (compilation C2026C00227, in force from 2026-06-04)",
+      "quote": "An APP entity must not do an act, or engage in a practice, that breaches an Australian Privacy Principle.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

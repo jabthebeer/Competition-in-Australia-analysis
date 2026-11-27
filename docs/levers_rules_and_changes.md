@@ -15,8 +15,8 @@ Nothing here changes the site yet. The field belongs to the website session (req
 | Rule | Created its restriction | 25 | Stays a rule. Its marks are already against no rule |
 | Rule | Changed a rule in the register | 10 | Becomes that rule's change |
 | Rule | Tightened a rule not in the register | 12 | The standing rule is added as an existing setting, marked against the same market without it. The reform becomes its change, marked against what it replaced |
-| Change | Changed a rule in the register | 66 | Names that rule |
-| Change | Changed a rule not in the register | 45 | The rule is added if its marks are negative |
+| Change | Changed a rule in the register | 75 | Names that rule (66 when sorted; 9 more on 17 November 2026, whose rules the states batches have since drafted) |
+| Change | Changed a rule not in the register | 36 | The rule is added if its marks are negative |
 | Change | Removed a rule outright | 5 | Stays in the history |
 | Change | Changed nothing that weighs on productivity | 25 | Stands alone: a rule marked positive, a funding program, competition law |
 | Change | Not yet in force | 3 | Named when it starts |
@@ -63,7 +63,6 @@ Many of these are requirements a state places on businesses: they belong with th
 | act-heavy-vehicle-national-law (requirement) | `act-heavy-vehicle-national-law-2014` |
 | act-energy-retailer-authorisation (requirement) | `act-necf-2012` |
 | act-pharmacist-prescribing-limits (setting) | `act-pharmacist-uti-2023` |
-| act-point-to-point-licensing (requirement) | `act-rideshare-2015` |
 | cth-card-surcharging-standard (requirement) | `cth-card-surcharging-2016` |
 | food safety supervisor requirement in each state and territory (8 requirements) | `cth-food-safety-tools-2023` |
 | cth-insolvent-trading-duty (requirement) | `cth-insolvency-safe-harbour-2017` |
@@ -75,8 +74,6 @@ Many of these are requirements a state places on businesses: they belong with th
 | nsw-energy-retailer-authorisation (requirement) | `nsw-necf-2013` |
 | nsw-pharmacist-prescribing-limits (setting) | `nsw-pharmacist-uti-2023` |
 | nt-pharmacist-prescribing-limits (setting) | `nt-pharmacist-uti-2024` |
-| nt-point-to-point-licensing (requirement) | `nt-rideshare-2017` |
-| qld-point-to-point-licensing (requirement) | `qld-booked-hire-licences-2017`, `qld-rideshare-2016` |
 | qld-heavy-vehicle-national-law (requirement) | `qld-heavy-vehicle-national-law-2014` |
 | qld-energy-retailer-authorisation (requirement) | `qld-necf-2015` |
 | qld-pharmacist-prescribing-limits (setting) | `qld-pharmacist-uti-2020` |
@@ -84,20 +81,16 @@ Many of these are requirements a state places on businesses: they belong with th
 | sa-heavy-vehicle-national-law (requirement) | `sa-heavy-vehicle-national-law-2014` |
 | sa-energy-retailer-authorisation (requirement) | `sa-necf-2013` |
 | sa-pharmacist-prescribing-limits (setting) | `sa-pharmacist-uti-2024` |
-| sa-point-to-point-licensing (requirement) | `sa-rideshare-2016`, `sa-taxi-licence-reform-2025` |
 | tas-gaming-machine-entitlements (setting) | `tas-future-gaming-market-2023` |
 | tas-heavy-vehicle-national-law (requirement) | `tas-heavy-vehicle-national-law-2014` |
 | tas-energy-retailer-authorisation (requirement) | `tas-necf-2012` |
 | tas-pharmacist-prescribing-limits (setting) | `tas-pharmacist-uti-2024` |
-| tas-point-to-point-licensing (requirement) | `tas-rideshare-2016` |
 | vic-commercial-industrial-property-tax (setting) | `vic-commercial-industrial-property-tax-2024` |
 | vic-gaming-machine-entitlements (setting) | `vic-gaming-venue-operator-2012` |
 | vic-heavy-vehicle-national-law (requirement) | `vic-heavy-vehicle-national-law-2014` |
 | vic-pharmacist-prescribing-limits (setting) | `vic-pharmacist-uti-2023` |
 | vic-rail-operator-accreditation (requirement) | `vic-rail-safety-regulator-2019` |
 | vic-point-to-point-licensing (requirement) | `vic-rideshare-2017` |
-| wa-education-care-service-approval (requirement) | `wa-nqf-childcare-2012` |
-| wa-point-to-point-licensing (requirement) | `wa-on-demand-transport-2019` |
 | wa-pharmacist-prescribing-limits (setting) | `wa-pharmacist-uti-2023` |
 | wa-rail-operator-accreditation (requirement) | `wa-rail-safety-national-law-2024` |
 
@@ -229,7 +222,7 @@ Many of these are requirements a state places on businesses: they belong with th
 | `act-heavy-vehicle-national-law-2014` | 2 | Changed a rule not in the register | act-heavy-vehicle-national-law (requirement) | Applied the national law. Rule to add: heavy vehicle access permits and mass, dimension and fatigue rules (ACT). |
 | `act-necf-2012` | 2 | Changed a rule not in the register | act-energy-retailer-authorisation (requirement) | Applied the National Energy Retail Law. Rule to add: hold a retailer authorisation from the AER (ACT). |
 | `act-pharmacist-uti-2023` | 2 | Changed a rule not in the register | act-pharmacist-prescribing-limits (setting) | Widened what pharmacists may treat. Rule to add, if its marks are negative: the limits on who may prescribe in the state's medicines and poisons law (ACT). |
-| `act-rideshare-2015` | 4 | Changed a rule not in the register | act-point-to-point-licensing (requirement) | Legalised ride-share. Rule to add: the state's licences for taxi, hire and booking services (ACT). |
+| `act-rideshare-2015` | 4 | Changed a rule in the register | `act-taxi-booking-service-authorisation` | Legalised ride-share. The rule, first listed as one to add, has since been drafted by the states batches (phase 4, 17 November 2026). |
 | `cth-card-surcharging-2016` | 2 | Changed a rule not in the register | cth-card-surcharging-standard (requirement) | Limited surcharges to the cost of acceptance. Rule to add, if its marks are negative: the RBA's surcharging rules. |
 | `cth-food-safety-tools-2023` | 0 | Changed a rule not in the register | food safety supervisor requirement in each state and territory (8 requirements) | Rule to add, if its marks are negative: a certified food safety supervisor and trained food handlers (Standard 3.2.2A). |
 | `cth-insolvency-safe-harbour-2017` | 1 | Changed a rule not in the register | cth-insolvent-trading-duty (requirement) | Rule to add, if its marks are negative: directors' duty to prevent insolvent trading (Corporations Act s 588G). |
@@ -241,31 +234,31 @@ Many of these are requirements a state places on businesses: they belong with th
 | `nsw-necf-2013` | 2 | Changed a rule not in the register | nsw-energy-retailer-authorisation (requirement) | Applied the National Energy Retail Law. Rule to add: hold a retailer authorisation from the AER (NSW). |
 | `nsw-pharmacist-uti-2023` | 2 | Changed a rule not in the register | nsw-pharmacist-prescribing-limits (setting) | Widened what pharmacists may treat. Rule to add, if its marks are negative: the limits on who may prescribe in the state's medicines and poisons law (NSW). |
 | `nt-pharmacist-uti-2024` | 2 | Changed a rule not in the register | nt-pharmacist-prescribing-limits (setting) | Widened what pharmacists may treat. Rule to add, if its marks are negative: the limits on who may prescribe in the state's medicines and poisons law (NT). |
-| `nt-rideshare-2017` | 3 | Changed a rule not in the register | nt-point-to-point-licensing (requirement) | Legalised ride-share. Rule to add: the state's licences for taxi, hire and booking services (NT). |
-| `qld-booked-hire-licences-2017` | 2 | Changed a rule not in the register | qld-point-to-point-licensing (requirement) | Rule to add: Queensland's booked hire licences. |
+| `nt-rideshare-2017` | 3 | Changed a rule in the register | `nt-taxi-booking-service-authorisation` | Legalised ride-share. The rule, first listed as one to add, has since been drafted by the states batches (phase 4, 17 November 2026). |
+| `qld-booked-hire-licences-2017` | 2 | Changed a rule in the register | `qld-taxi-booking-service-authorisation` | The rule, first listed as one to add, has since been drafted by the states batches (phase 4, 17 November 2026). |
 | `qld-heavy-vehicle-national-law-2014` | 2 | Changed a rule not in the register | qld-heavy-vehicle-national-law (requirement) | Applied the national law. Rule to add: heavy vehicle access permits and mass, dimension and fatigue rules (Qld). |
 | `qld-necf-2015` | 2 | Changed a rule not in the register | qld-energy-retailer-authorisation (requirement) | Applied the National Energy Retail Law. Rule to add: hold a retailer authorisation from the AER (Qld). |
 | `qld-pharmacist-uti-2020` | 2 | Changed a rule not in the register | qld-pharmacist-prescribing-limits (setting) | Widened what pharmacists may treat. Rule to add, if its marks are negative: the limits on who may prescribe in the state's medicines and poisons law (Qld). |
-| `qld-rideshare-2016` | 4 | Changed a rule not in the register | qld-point-to-point-licensing (requirement) | Legalised ride-share. Rule to add: the state's licences for taxi, hire and booking services (Qld). |
+| `qld-rideshare-2016` | 4 | Changed a rule in the register | `qld-taxi-booking-service-authorisation` | Legalised ride-share. The rule, first listed as one to add, has since been drafted by the states batches (phase 4, 17 November 2026). |
 | `sa-ctp-price-competition-2019` | 3 | Changed a rule not in the register | sa-ctp-insurer-licence (requirement) | Rule to add: licensing of CTP insurers (SA). |
 | `sa-heavy-vehicle-national-law-2014` | 2 | Changed a rule not in the register | sa-heavy-vehicle-national-law (requirement) | Applied the national law. Rule to add: heavy vehicle access permits and mass, dimension and fatigue rules (SA). |
 | `sa-necf-2013` | 2 | Changed a rule not in the register | sa-energy-retailer-authorisation (requirement) | Applied the National Energy Retail Law. Rule to add: hold a retailer authorisation from the AER (SA). |
 | `sa-pharmacist-uti-2024` | 2 | Changed a rule not in the register | sa-pharmacist-prescribing-limits (setting) | Widened what pharmacists may treat. Rule to add, if its marks are negative: the limits on who may prescribe in the state's medicines and poisons law (SA). |
-| `sa-rideshare-2016` | 3 | Changed a rule not in the register | sa-point-to-point-licensing (requirement) | Legalised ride-share. Rule to add: the state's licences for taxi, hire and booking services (SA). |
-| `sa-taxi-licence-reform-2025` | 3 | Changed a rule not in the register | sa-point-to-point-licensing (requirement) | Replaced perpetual taxi licences with annual ones. Rule to add: South Australia's taxi licences. |
+| `sa-rideshare-2016` | 3 | Changed a rule in the register | `sa-taxi-booking-service-authorisation` | Legalised ride-share. The rule, first listed as one to add, has since been drafted by the states batches (phase 4, 17 November 2026). |
+| `sa-taxi-licence-reform-2025` | 3 | Changed a rule in the register | `sa-taxi-booking-service-authorisation` | Replaced perpetual taxi licences with annual ones. The rule, first listed as one to add, has since been drafted by the states batches (phase 4, 17 November 2026). |
 | `tas-future-gaming-market-2023` | 1 | Changed a rule not in the register | tas-gaming-machine-entitlements (setting) | Ended the monopoly on gaming machines outside casinos. Rule to add: the state's licences and caps on gaming machines (a cap, so a high score). |
 | `tas-heavy-vehicle-national-law-2014` | 2 | Changed a rule not in the register | tas-heavy-vehicle-national-law (requirement) | Applied the national law. Rule to add: heavy vehicle access permits and mass, dimension and fatigue rules (Tas). |
 | `tas-necf-2012` | 2 | Changed a rule not in the register | tas-energy-retailer-authorisation (requirement) | Applied the National Energy Retail Law. Rule to add: hold a retailer authorisation from the AER (Tas). |
 | `tas-pharmacist-uti-2024` | 2 | Changed a rule not in the register | tas-pharmacist-prescribing-limits (setting) | Widened what pharmacists may treat. Rule to add, if its marks are negative: the limits on who may prescribe in the state's medicines and poisons law (Tas). |
-| `tas-rideshare-2016` | 3 | Changed a rule not in the register | tas-point-to-point-licensing (requirement) | Legalised ride-share. Rule to add: the state's licences for taxi, hire and booking services (Tas). |
+| `tas-rideshare-2016` | 3 | Changed a rule in the register | `tas-taxi-booking-service-authorisation` | Legalised ride-share. The rule, first listed as one to add, has since been drafted by the states batches (phase 4, 17 November 2026). |
 | `vic-commercial-industrial-property-tax-2024` | 3 | Changed a rule not in the register | vic-commercial-industrial-property-tax (setting) | Replaced duty with an annual tax on entry. Rule to add: Victoria's commercial and industrial property tax. |
 | `vic-gaming-venue-operator-2012` | 1 | Changed a rule not in the register | vic-gaming-machine-entitlements (setting) | Replaced the operator duopoly with venue entitlements. Rule to add: the state's entitlements and caps on gaming machines (a cap, so a high score). |
 | `vic-heavy-vehicle-national-law-2014` | 2 | Changed a rule not in the register | vic-heavy-vehicle-national-law (requirement) | Applied the national law. Rule to add: heavy vehicle access permits and mass, dimension and fatigue rules (Vic). |
 | `vic-pharmacist-uti-2023` | 2 | Changed a rule not in the register | vic-pharmacist-prescribing-limits (setting) | Widened what pharmacists may treat. Rule to add, if its marks are negative: the limits on who may prescribe in the state's medicines and poisons law (Vic). |
 | `vic-rail-safety-regulator-2019` | 2 | Changed a rule not in the register | vic-rail-operator-accreditation (requirement) | Rule to add: rail operator accreditation (Vic). |
 | `vic-rideshare-2017` | 3 | Changed a rule not in the register | vic-point-to-point-licensing (requirement) | Legalised ride-share. Rule to add: the state's licences for taxi, hire and booking services (Vic). |
-| `wa-nqf-childcare-2012` | 0 | Changed a rule not in the register | wa-education-care-service-approval (requirement) | Rule to add: approval as a provider of an education and care service (WA). |
-| `wa-on-demand-transport-2019` | 3 | Changed a rule not in the register | wa-point-to-point-licensing (requirement) | Legalised ride-share. Rule to add: the state's licences for taxi, hire and booking services (WA). |
+| `wa-nqf-childcare-2012` | 0 | Changed a rule in the register | `wa-education-care-service-approval` | The rule, first listed as one to add, has since been drafted by the states batches (phase 4, 17 November 2026). |
+| `wa-on-demand-transport-2019` | 3 | Changed a rule in the register | `wa-taxi-booking-service-authorisation` | Legalised ride-share and changed the booking rules. The rule, first listed as one to add, has since been drafted (phase 4, 17 November 2026). |
 | `wa-pharmacist-uti-2023` | 2 | Changed a rule not in the register | wa-pharmacist-prescribing-limits (setting) | Widened what pharmacists may treat. Rule to add, if its marks are negative: the limits on who may prescribe in the state's medicines and poisons law (WA). |
 | `wa-rail-safety-national-law-2024` | 2 | Changed a rule not in the register | wa-rail-operator-accreditation (requirement) | Rule to add: rail operator accreditation (WA). |
 | `act-insurance-duty-abolition-2016` | 1 | Removed a rule |  | Abolished insurance duty. |

@@ -1,0 +1,85 @@
+{
+  "id": "cth-qantas-ownership-limits",
+  "kind": "setting",
+  "family": null,
+  "title": "Foreign ownership limit on Qantas",
+  "jurisdiction": "CTH",
+  "summary": "The Qantas Sale Act 1992 requires Qantas's constitution to keep foreign persons' interests to no more than 49% of its issued share capital.",
+  "instruments": [
+    {
+      "title": "Qantas Sale Act 1992",
+      "register_url": "https://www.legislation.gov.au/C2004A04487/latest/text",
+      "register_id": "C2004A04487",
+      "role": "principal",
+      "provisions": "s 7"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "A statutory cap on foreign ownership of one firm limits who can own and finance it.",
+  "direction_sources": [
+    "https://www.legislation.gov.au/C2004A04487/latest/text"
+  ],
+  "channels": [
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "4900",
+      "name": "Air and Space Transport",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no dates. The 25% and 35% limits the Act once set are no longer in its text."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 17 November 2026 (phase 6 of the levers re-evaluation, batch 1) from the law quoted. Not yet checked: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Caps foreign ownership of Qantas at 49%, written into its constitution by law. It narrows the pool of capital and owners for one airline; other airlines face no such cap under this Act.",
+    "marks": [
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Shuts foreign investors out of majority ownership of one major airline."
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The cap is explicit; its effect on Qantas's cost of capital has not been measured.",
+    "evidence": [
+      "https://www.legislation.gov.au/C2004A04487/latest/text"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "responsible": [
+    {
+      "body": "cth-ditrdcsa",
+      "role": "administers",
+      "source": "https://www.legislation.gov.au/C2004A04487/latest/text",
+      "note": "The department responsible for aviation; not checked against the administrative arrangements order."
+    }
+  ],
+  "history": []
+}

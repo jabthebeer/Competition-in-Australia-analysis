@@ -1,0 +1,58 @@
+{
+  "id": "postal-services",
+  "name": "Postal services",
+  "what": "Australia Post alone may carry letters within Australia, up to a weight and price limit; other carriers may carry parcels and letters outside that reservation.",
+  "scope": "sector",
+  "coverage": {
+    "anzsic": [
+      "5101",
+      "5102"
+    ],
+    "exclude": [],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "ACCC (prices of reserved services)",
+      "bodies": [
+        "cth-accc"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "cth",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Australian Postal Corporation Act 1989",
+      "publisher": "Federal Register of Legislation",
+      "year": 1989,
+      "url": "https://www.legislation.gov.au/C2004A03812/latest/text",
+      "locator": "s 29(1) (compilation C2025C00040, in force from 2025-01-09)",
+      "quote": "Subject to section 30, Australia Post has the exclusive right to carry letters within Australia, whether the letters originated within or outside Australia.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "cth-australia-post-reserved-services"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

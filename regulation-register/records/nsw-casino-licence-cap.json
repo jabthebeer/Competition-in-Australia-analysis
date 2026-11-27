@@ -1,0 +1,97 @@
+{
+  "id": "nsw-casino-licence-cap",
+  "kind": "setting",
+  "family": null,
+  "title": "Cap of two casino licences (New South Wales)",
+  "jurisdiction": "NSW",
+  "summary": "The Casino Control Act 1992 (NSW) allows no more than two casino licences to be in force at a time.",
+  "instruments": [
+    {
+      "title": "Casino Control Act 1992 (NSW)",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1992-015",
+      "register_id": "act-1992-015",
+      "role": "principal",
+      "provisions": "s 6(1)"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "A legislated cap on the number of casino licences.",
+  "direction_sources": [
+    "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1992-015"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "9201",
+      "name": "Casino Operation",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no dates. Quoted from the corpus copy of the Act (August 2024)."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 17 November 2026 (phase 6 of the levers re-evaluation, batch 1) from the law quoted. Not yet checked: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "No more than two casino licences may be in force in New South Wales. A legislated cap on numbers that shields the licensees from new entrants.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "A cap of two on casino licences: no other casino can enter."
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Two licensees face no new rivals in their market."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "high",
+    "confidence_note": "The cap is explicit in the Act.",
+    "evidence": [
+      "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1992-015"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "responsible": [
+    {
+      "body": "nsw-dciths",
+      "role": "administers",
+      "source": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1992-015",
+      "note": "Liquor & Gaming NSW sits in this department; not checked against the NSW administrative arrangements."
+    },
+    {
+      "body": "nsw-ilga",
+      "role": "regulates",
+      "source": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-1992-015",
+      "note": "The NSW Independent Casino Commission licenses casinos; the body in the register closest to it is used. Not checked."
+    }
+  ],
+  "history": []
+}

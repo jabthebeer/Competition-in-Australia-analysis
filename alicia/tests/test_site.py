@@ -188,6 +188,7 @@ def test_build_site_writes_the_linked_pages_and_nothing_archived(tmp_path):
         "menu.html",
         "methodology.html",
         "register-data.html",
+        "regulatory-map.html",
         "regulatory-overview.html",
     ]
     pages = [n for n in names if n != "conditions.html"]
@@ -209,10 +210,11 @@ def test_build_site_writes_the_linked_pages_and_nothing_archived(tmp_path):
     # they are for, under short labels. The regulatory overview is built (overhaul phase 5), so it is a link.
     nav = index[index.index('<nav class="site-nav"') : index.index("</nav>")]
     assert re.findall(r'<p class="nav-label" id="[^"]+">([^<]+)</p>', nav) == ["Top down", "Bottom up", "About"]
-    built = ["index.html", "growth.html", "menu.html", "industry-lens.html", "regulatory-overview.html"]
+    built = ["index.html", "growth.html", "menu.html", "regulatory-map.html", "industry-lens.html"]
+    built += ["regulatory-overview.html"]
     built += ["framework.html", "methodology.html", "register-data.html"]
     assert re.findall(r'<a (?:class="brand" )?href="([^"#]+)"', nav) == built
-    short = ["Competitive conditions", "Legislative levers", "Industry lens", "Regulatory overview"]
+    short = ["Competitive conditions", "Legislative levers", "Regulatory map", "Industry lens", "Regulatory overview"]
     short += ["Framework", "Methodology", "Register data"]
     assert re.findall(r'<a href="[^"]+"[^>]*>([^<]+)</a>', nav) == short
     assert 'title="Structural competitive conditions"' in nav  # a short label carries the page's full name
