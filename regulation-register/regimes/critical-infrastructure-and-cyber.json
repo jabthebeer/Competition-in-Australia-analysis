@@ -1,0 +1,91 @@
+{
+  "id": "critical-infrastructure-and-cyber",
+  "name": "Critical infrastructure and cyber security",
+  "what": "Keep a risk management program for a critical infrastructure asset, and report a ransomware payment.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "75",
+      "76",
+      "7711",
+      "7713",
+      "7714",
+      "7720",
+      "96"
+    ],
+    "note": null
+  },
+  "layers": [
+    {
+      "tier": "cth",
+      "function": "sets-rules",
+      "who": "Department of Home Affairs",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "jurisdictions": []
+    },
+    {
+      "tier": "cth",
+      "function": "inspects",
+      "who": "Cyber and Infrastructure Security Centre (Home Affairs)",
+      "bodies": [
+        "cth-home-affairs"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "cth",
+  "consistency_note": null,
+  "basis": [
+    {
+      "source": "Security of Critical Infrastructure Act 2018",
+      "publisher": "Federal Register of Legislation",
+      "year": 2018,
+      "url": "https://www.legislation.gov.au/C2018A00029/latest/text",
+      "locator": "s 30AC (compilation C2026C00213 from 2026-06-04)",
+      "quote": "30AC Responsible entity must have a critical infrastructure risk management program If an entity is the responsible entity for one or more critical infrastructure assets, the entity must: (a) adopt; and (b) maintain; a critical infrastructure risk management program",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Cyber Security Act 2024",
+      "publisher": "Federal Register of Legislation",
+      "year": 2024,
+      "url": "https://www.legislation.gov.au/C2024A00098/latest/text",
+      "locator": "s 27(1) (compilation C2024A00098 from 2024-11-29)",
+      "quote": "27 Obligation to report following a ransomware payment (1) The reporting business entity must give the designated Commonwealth body a report (a ransomware payment report) that complies with the requirements of this section within 72 hours of making the ransomware payment or becoming aware that the ransomware payment has been made (whichever is applicable).",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

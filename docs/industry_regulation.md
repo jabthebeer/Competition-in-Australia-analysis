@@ -6,7 +6,7 @@ Regulation can be burdensome because of how much of it there is and how it is or
 
 ## Method
 
-1. **Regimes.** 61 regulatory regimes, each a body of regulation a business deals with as one task (7 cross-cutting, such as payroll tax and work health and safety, and 54 specific to some industries, such as food safety or liquor licensing). Each regime records its layers: which tier of government (Commonwealth, state or territory, local council) performs each function, and through which body; and how consistent it is across states. Each description cites official sources, quoted word for word (business.gov.au industry guidance, Productivity Commission reviews, regulator pages).
+1. **Regimes.** 74 regulatory regimes, each a body of regulation a business deals with as one task (15 cross-cutting, such as payroll tax and work health and safety, and 59 specific to some industries, such as food safety or liquor licensing). Each regime records its layers: which tier of government (Commonwealth, state or territory, local council) performs each function, and through which body; and how consistent it is across states. Each description cites official sources, quoted word for word (business.gov.au industry guidance, Productivity Commission reviews, regulator pages).
 2. **Industries.** Each regime names the ANZSIC codes it applies to, at division, subdivision, group or class level, with exclusions. Every class is mapped through those codes.
 3. **Measures for each class** (`data/processed/industry_regulation/class_profiles.csv`):
    - *regimes* and *sector_regimes*: how many regimes apply, and how many are specific to the industry;
@@ -52,9 +52,17 @@ Function and consistency categories:
 |---|---|---|---|---|---|---|
 | Australian Consumer Law | cross-cutting | One national law or regulator | Commonwealth, State or territory | inspects | 492 | 0 |
 | Business and tax registration | cross-cutting | Commonwealth only | Commonwealth | none | 492 | 0 |
+| Company reporting and disclosure | cross-cutting | Commonwealth only | Commonwealth | none | 492 | 0 |
+| Council permits for public spaces | cross-cutting | Each state and territory has its own law | Local council | none | 8 | 0 |
+| Critical infrastructure and cyber security | cross-cutting | Commonwealth only | Commonwealth | none | 492 | 0 |
 | Employment law and awards | cross-cutting | One national law or regulator | Commonwealth, State or territory | sets | 503 | 1 |
+| Foreign investment screening | cross-cutting | Commonwealth only | Commonwealth | none | 492 | 0 |
+| Land tax | cross-cutting | Each state and territory has its own law | State or territory | none | 492 | 0 |
 | Payroll tax | cross-cutting | Each state and territory has its own law | State or territory | none | 492 | 2 |
 | Planning and development approval | cross-cutting | Each state and territory has its own law | State or territory, Local council | approves | 503 | 3 |
+| Privacy | cross-cutting | Commonwealth only | Commonwealth | none | 492 | 0 |
+| Radiation and nuclear safety | cross-cutting | Each state and territory has its own law | Commonwealth, State or territory | licenses, | 492 | 0 |
+| Transfer and insurance duty | cross-cutting | Each state and territory has its own law | State or territory | none | 492 | 0 |
 | Work health and safety | cross-cutting | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | sets, inspects | 506 | 2 |
 | Workers' compensation | cross-cutting | Each state and territory has its own law | Commonwealth, State or territory | none | 503 | 2 |
 | Accommodation premises | sector | Each state and territory has its own law | State or territory, Local council | none | 1 | 0 |
@@ -69,12 +77,14 @@ Function and consistency categories:
 | Conveyancing and land titles | sector | Model law or national code, adopted state by state with variations | State or territory | none | 2 | 0 |
 | Customs, excise and trade | sector | Commonwealth only | Commonwealth | none | 49 | 0 |
 | Disability services (NDIS) | sector | One national law or regulator | Commonwealth, State or territory | licenses, | 2 | 2 |
+| Driving instruction | sector | Each state and territory has its own law | State or territory | none | 1 | 0 |
 | Early childhood education and care | sector | One national law or regulator | Commonwealth, State or territory | none | 2 | 2 |
 | Electrical, plumbing and gas licensing and equipment safety | sector | State laws differ, but registrations are recognised across states | State or territory | none | 9 | 1 |
 | Electricity and gas market regulation | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | sets, licenses, | 7 | 1 |
 | Environment protection licences and approvals | sector | Each state and territory has its own law | Commonwealth, State or territory, Local council | inspects | 227 | 1 |
 | Film, game and publication classification | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory | none | 4 | 0 |
 | Financial services, credit and prudential regulation | sector | Commonwealth only | Commonwealth | none | 14 | 0 |
+| Firearms and weapons | sector | Each state and territory has its own law | State or territory | none | 2 | 0 |
 | Fisheries and aquaculture | sector | Each state and territory has its own law | Commonwealth, State or territory | licenses, | 8 | 1 |
 | Food safety | sector | Model law or national code, adopted state by state with variations | Commonwealth, State or territory, Local council | licenses,, inspects | 44 | 4 |
 | Fuel retailing | sector | Each state and territory has its own law | Commonwealth, State or territory | inspects | 1 | 0 |
@@ -94,9 +104,12 @@ Function and consistency categories:
 | Native vegetation and land clearing | sector | Each state and territory has its own law | Commonwealth, State or territory, Local council | approves | 39 | 2 |
 | Passenger transport accreditation | sector | Each state and territory has its own law | State or territory | none | 4 | 0 |
 | Pharmacy ownership, premises and PBS approval | sector | Each state and territory has its own law | Commonwealth, State or territory | none | 1 | 1 |
+| Portable long service leave | sector | Each state and territory has its own law | State or territory | none | 26 | 0 |
+| Postal services | sector | Commonwealth only | Commonwealth | none | 2 | 0 |
 | Primary production food safety and export controls | sector | Each state and territory has its own law | Commonwealth, State or territory | licenses,, inspects | 33 | 1 |
 | Property agents and residential tenancies | sector | Each state and territory has its own law | State or territory | none | 2 | 1 |
 | Rail safety and access | sector | One national law or regulator | Commonwealth, State or territory | approves | 2 | 1 |
+| Retail leases | sector | Each state and territory has its own law | State or territory | none | 1 | 0 |
 | Retail trading hours | sector | Each state and territory has its own law | State or territory | none | 34 | 1 |
 | Security industry licensing | sector | State laws differ, but registrations are recognised across states | State or territory | none | 1 | 1 |
 | Security of payment in construction | sector | Each state and territory has its own law | State or territory | none | 24 | 0 |
@@ -122,20 +135,20 @@ Medians across the classes in each division, industry-specific regimes only.
 | B Mining | 16 | 3 | 9 | 3 | 3 |
 | C Manufacturing | 143 | 2 | 5 | 2 | 2 |
 | D Electricity, Gas, Water and Waste Services | 13 | 3 | 6 | 3 | 2 |
-| E Construction | 24 | 3 | 6 | 3 | 1 |
+| E Construction | 24 | 4 | 8 | 4 | 1 |
 | F Wholesale Trade | 39 | 2 | 7 | 1 | 1 |
 | G Retail Trade | 37 | 2 | 4 | 2 | 1 |
 | H Accommodation and Food Services | 6 | 2.5 | 8 | 2.5 | 1 |
 | I Transport, Postal and Warehousing | 23 | 1 | 4 | 0 | 0 |
 | J Information Media and Telecommunications | 24 | 0 | 0 | 0 | 0 |
 | K Financial and Insurance Services | 14 | 1 | 4 | 0 | 0 |
-| L Rental, Hiring and Real Estate Services | 10 | 0 | 0 | 0 | 0 |
+| L Rental, Hiring and Real Estate Services | 10 | 0.5 | 0.5 | 0.5 | 0 |
 | M Professional, Scientific and Technical Services | 16 | 0 | 0 | 0 | 0 |
-| N Administrative and Support Services | 12 | 0 | 0 | 0 | 0 |
+| N Administrative and Support Services | 12 | 0.5 | 0.5 | 0.5 | 0 |
 | O Public Administration and Safety | 13 | 0 | 0 | 0 | 0 |
 | P Education and Training | 11 | 1 | 4 | 1 | 0 |
 | Q Health Care and Social Assistance | 16 | 1 | 4 | 0 | 0 |
-| R Arts and Recreation Services | 17 | 0 | 0 | 0 | 0 |
+| R Arts and Recreation Services | 17 | 1 | 1 | 1 | 0 |
 | S Other Services | 23 | 0 | 0 | 0 | 0 |
 
 ## Classes facing the most industry-specific regulation
@@ -175,7 +188,7 @@ Medians across the classes in each division, industry-specific regimes only.
 - **Status.** *Current*: the source reports the problem and no later fix was found. *Partly addressed*: a later reform covers part of it (the note says what). Older evidence is marked 'not rechecked' where no newer source was found; such issues may since have been dealt with.
 - **Counts.** A class's *issues* count (in `class_profiles.csv`) sums the issues not yet addressed across the regimes that apply to it; the `issue_*` columns split it by tag.
 - **Where reviews have looked.** Counts reflect where reviews have gathered evidence as well as where the problems are: agriculture, for example, had a dedicated Productivity Commission inquiry in 2016. Every class also carries the issues in cross-cutting regimes (payroll tax, workers' compensation, work health and safety, awards and planning), so compare classes on the industry-specific measures.
-- **No issue found** is not the same as no problem: these regimes had no evidenced issue in the sources searched: Accommodation premises, Australian Consumer Law, Aviation and airports, Business and tax registration, Commercial agents and debt collectors, Conveyancing and land titles, Customs, excise and trade, Film, game and publication classification, Financial services, credit and prudential regulation, Fuel retailing, Health practitioner registration and facility licensing, Home warranty insurance, Legal profession, Maritime safety and ports, Passenger transport accreditation, Security of payment in construction, Supermarket and agricultural codes of conduct, Tax agents, BAS agents and auditors, Telecommunications, broadcasting and online services, Tobacco and vape sales, Veterinary registration and premises, Waste management and levies, Water and sewerage utility regulation.
+- **No issue found** is not the same as no problem: these regimes had no evidenced issue in the sources searched: Accommodation premises, Australian Consumer Law, Aviation and airports, Business and tax registration, Commercial agents and debt collectors, Company reporting and disclosure, Conveyancing and land titles, Council permits for public spaces, Critical infrastructure and cyber security, Customs, excise and trade, Driving instruction, Film, game and publication classification, Financial services, credit and prudential regulation, Firearms and weapons, Foreign investment screening, Fuel retailing, Health practitioner registration and facility licensing, Home warranty insurance, Land tax, Legal profession, Maritime safety and ports, Passenger transport accreditation, Portable long service leave, Postal services, Privacy, Radiation and nuclear safety, Retail leases, Security of payment in construction, Supermarket and agricultural codes of conduct, Tax agents, BAS agents and auditors, Telecommunications, broadcasting and online services, Tobacco and vape sales, Transfer and insurance duty, Veterinary registration and premises, Waste management and levies, Water and sewerage utility regulation.
 
 | Tag | Meaning | Issues |
 |---|---|---|

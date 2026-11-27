@@ -39,9 +39,10 @@ RELIANCE = (
     ),
     (
         "Businesses each rule reaches",
-        "ABS business counts, for the industries and states each rule names",
+        "ABS business counts by size, for the industries and states each rule names",
         "Tests recount them from the ABS file",
-        "A count. An upper bound where a rule binds only some businesses in an industry",
+        "A count. Employers only where a rule binds employers; an upper bound where it binds only some businesses "
+        "(above a size threshold, of one legal form, or doing an activity)",
     ),
     (
         "Severity and impact classes",
@@ -62,6 +63,14 @@ RELIANCE = (
         "Quoted from the official legislation registers",
         "Each quote is checked against the text it was read from",
         "What the law says. Which industries it reaches is a draft judgement",
+    ),
+    (
+        "The regulatory map: how a law's parts link, and each state's variations",
+        "Read from the code's own published data and its publisher's adoption pages (the National Construction Code "
+        "first)",
+        "Tests check the counts against the map file; the reading of the data is a draft",
+        "The structure the code describes. A count of provisions varied says how much a state changes, not what it "
+        "costs",
     ),
     (
         "Company returns by barrier group",

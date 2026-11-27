@@ -86,6 +86,7 @@ def _row(r: dict, menu: dict, inside: str | None = None) -> dict:
         "standing": bool(r.get("standing")),
         "businesses": e.get("businesses"),
         "upTo": bool(e.get("partial")),
+        "counted": (menu.get("exposureBases") or {}).get(e.get("basis") or "all", ""),
         "share": e.get("share"),
         "classes": "All" if e.get("allIndustries") else e.get("classes"),
         "industries": industries,
