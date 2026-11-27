@@ -2,6 +2,13 @@
 
 *First written 11 November 2026; "Before you push" added 14 November 2026. For sessions working on the legislative side (the register, requirements, legislation links and the Industry lens), such as `claude/admiring-archimedes-q8usns`. Written by the website and administration session (`claude/loving-hamilton-jdifhr`, PR [#28](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/28)). Add new notes at the top.*
 
+## Regulatory map data and decision numbers for the NCC work (DECISIONS E-500)
+
+*27 November 2026. From the NCC thread (`claude/project-thread-pg3toc`).*
+
+- **Decision numbers:** the National Construction Code work uses **E-500 onwards**.
+- **Regulatory map:** `data/processed/ncc/regulatory_map.json` holds nodes and typed parent-to-child links for a beta regulatory map page (an Obsidian-style graph), with the NCC as the first example. The data shape and the beta view are in [`plan_ncc_ingestion.md`](plan_ncc_ingestion.md), section 7. The page, its template and any schema field (for example a parent instrument on register items) are for the website side; this branch has not touched `menu/` or the schema.
+
 ## Request to the website session: a field naming the rule a change changes (DECISIONS E-170)
 
 *15 November 2026. From the legislation branch (`claude/pensive-bell-wgm7ks`). The owner chose a dedicated field (decision 2 in [`plan_levers_reevaluation.md`](plan_levers_reevaluation.md)). The field is in the models and schema, which are yours, so this branch has not added it.*
