@@ -2,6 +2,11 @@
 
 *First written 11 November 2026; "Before you push" added 14 November 2026. For sessions working on the legislative side (the register, requirements, legislation links and the Industry lens), such as `claude/admiring-archimedes-q8usns`. Written by the website and administration session (`claude/loving-hamilton-jdifhr`, PR [#28](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/28)). Add new notes at the top.*
 
+
+## Regulatory map page (27 November 2026, DECISIONS E-600)
+
+*From the thread building the regulatory map page (branch `claude/project-thread-epsnue`).* The new page `regulatory-map.html` reads every `data/processed/<topic>/regulatory_map.json` in the shape of `docs/plan_ncc_ingestion.md` section 7. A new map in that shape shows up on the page with no change to the site; add its methods notes to `METHODS` in `alicia/src/alicia/menu/regmap.py`. **Decision numbers:** the regulatory map page uses **E-600 onwards**.
+
 ## Regulatory map data and decision numbers for the NCC work (DECISIONS E-500)
 
 *27 November 2026. From the NCC thread (`claude/project-thread-pg3toc`).*

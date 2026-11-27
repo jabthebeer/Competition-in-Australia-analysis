@@ -1,0 +1,557 @@
+<title>ALICIA (beta): Regulatory map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
+<style>
+/*__SITE_CSS__*/
+/* Layout: Regulatory map. A principal law and the instruments under it as a node-and-link graph, with the selected
+   node's details beside it (below it on a phone), then the variations and adoption dates by jurisdiction. The graph
+   is laid out once for each change and then rests: nothing moves on its own. */
+.rm { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.rm-tools { display: grid; gap: 10px; margin-bottom: 12px; }
+.rm-tools .row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.rm-tools .row > .lab { font-size: var(--step--1); color: var(--ink-3); }
+.rm-tools input[type="search"] { min-height: 36px; min-width: min(100%, 16rem); }
+.rm-tools select { min-height: 36px; }
+.rm-tools .btn { min-height: 36px; padding: 0 12px; font-size: var(--step--1); }
+.rm-tools .key { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+.rm-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem); gap: 14px; align-items: start; }
+@media (max-width: 900px) { .rm-body { grid-template-columns: minmax(0, 1fr); } }
+.rm-stage { position: relative; min-width: 0; }
+.rm-svg { display: block; width: 100%; height: min(72vh, 660px); min-height: 360px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; touch-action: none; cursor: grab; user-select: none; }
+.rm-svg:active { cursor: grabbing; }
+.rm-svg:focus:not(:focus-visible) { outline: none; }
+.rm-svg .lk { stroke: var(--line-strong); stroke-opacity: 0.7; fill: none; }
+.rm-svg .lk.hi { stroke: var(--ink-2); stroke-opacity: 1; }
+.rm-svg .lk.dim { stroke-opacity: 0.15; }
+.rm-svg .nd { cursor: pointer; }
+.rm-svg .nd .sh { stroke: var(--surface); stroke-width: 1.5; }
+.rm-svg .nd.exp .sh { stroke: var(--ink); stroke-width: 2; }
+.rm-svg .nd.sel .sh { stroke: var(--accent); stroke-width: 3; }
+.rm-svg .nd.dim { opacity: 0.22; }
+.rm-svg .nd text { font: 400 var(--step--1)/1 var(--font-body); fill: var(--ink-2); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+.rm-svg .nd.major text { fill: var(--ink); font-weight: 500; }
+.rm-zoom { position: absolute; right: 8px; top: 8px; display: grid; gap: 4px; }
+.rm-zoom button { width: 44px; height: 44px; border-radius: 6px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink-2); font: 600 var(--step-1)/1 var(--font-body); cursor: pointer; }
+.rm-zoom button:hover, .rm-zoom button:focus-visible { border-color: var(--accent); color: var(--accent); }
+.rm-zoom button.fit { font-size: var(--step--1); }
+.rm-count { margin: 6px 0 0; }
+.rm-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 10px; font-size: var(--step--1); color: var(--ink-2); }
+.rm-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.rm-legend svg { width: 14px; height: 14px; }
+.rm-legend svg * { fill: var(--ink-3); }
+.rm-side { display: grid; gap: 10px; align-content: start; max-height: min(72vh, 660px); overflow: auto; }
+@media (max-width: 900px) { .rm-side { max-height: none; } }
+.rm-side h3 { overflow-wrap: anywhere; }
+.rm-side .what { margin: 0; font-size: var(--step--1); color: var(--ink-3); }
+.rm-side dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 10px; margin: 0; font-size: var(--step--1); }
+.rm-side dt { color: var(--ink-3); }
+.rm-side dd { margin: 0; overflow-wrap: anywhere; }
+.rm-side .grp { display: grid; gap: 4px; }
+.rm-side .grp h4 { margin: 0; font-size: var(--step--1); font-weight: 600; color: var(--ink-2); }
+.rm-side ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: var(--step--1); }
+.rm-side li .w { color: var(--ink-3); font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.rm-side li .sw { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 0.05em; }
+.rm-side blockquote { margin: 2px 0 4px 14px; padding-left: 8px; border-left: 2px solid var(--line-strong); color: var(--ink-2); font-size: var(--step--1); }
+.rm-side blockquote cite { display: block; font-style: normal; color: var(--ink-3); }
+.rm-side .acts { display: flex; flex-wrap: wrap; gap: 8px; }
+table.rm-heat { border-collapse: separate; border-spacing: 2px; font-size: var(--step--1); width: 100%; }
+table.rm-heat th { font-weight: 500; color: var(--ink-3); padding: 4px 6px; text-align: center; }
+table.rm-heat th.row { text-align: left; position: sticky; left: 0; background: var(--surface); }
+table.rm-heat td { padding: 6px 4px; text-align: center; border-radius: 6px; font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--ink); min-width: 4rem; }
+table.rm-heat td.tot { font-weight: 600; }
+table.rm-heat th.row .lnk { min-height: 32px; }
+table.rm-adopt td { white-space: normal; min-width: 9rem; }
+#sources, .rm .source { overflow-wrap: anywhere; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <!--__NAV__-->
+    <p class="kicker">ALICIA · Top down</p>
+    <h1>Regulatory map <!--__BETA__--></h1>
+    <p class="lede">See how a principal law links to the instruments that sit within it, and how each state and territory adopts, varies and adds to a national code. The National Construction Code is the first map.</p>
+    <div class="meta-line" id="metaLine"></div>
+  </header>
+
+  <main class="rm">
+    <p class="notice"><strong>An early version.</strong> The map shows the structure the code itself describes, as read from its published data by AI-assisted desk research. It is a draft until a person has checked it. Choose a node to see what it is and how it links; choose a state or territory to see only its part.</p>
+
+    <section class="block" aria-labelledby="h-map">
+      <div class="block-head">
+        <div class="title-row"><h2 id="h-map">How the parts fit together</h2><button type="button" class="info" data-for="mapHint" aria-describedby="mapHint" aria-label="About this map">i</button></div>
+        <p class="sub" id="mapSub"></p>
+      </div>
+      <p id="mapHint" hidden>Each dot is a law, part of the code, a state’s adoption or variations, or a standard the code calls up. Lines run from a part to the parts within it. Colour shows the jurisdiction; shape shows the kind of part.</p>
+      <div class="panel">
+        <div class="rm-tools">
+          <div class="row" id="mapRow"><label class="lab" for="f-map">Map</label><select id="f-map"></select></div>
+          <div class="row"><span class="lab" id="lab-j">Jurisdiction</span><div class="chips" id="jChips" role="group" aria-labelledby="lab-j"></div></div>
+          <div class="row"><span class="lab" id="lab-show">Also show</span><div class="chips" id="tChips" role="group" aria-labelledby="lab-show"></div>
+            <button type="button" class="btn" id="expandAll">Show every link</button>
+            <button type="button" class="btn" id="collapseAll">Start again</button></div>
+          <div class="row"><label class="lab" for="q">Find a part</label><input id="q" type="search" list="qList" placeholder="A law, area, standard or state" autocomplete="off"><datalist id="qList"></datalist><button type="button" class="btn" id="qGo">Find</button></div>
+        </div>
+        <div class="rm-body">
+          <div class="rm-stage">
+            <svg class="rm-svg" id="svg" role="img" aria-labelledby="h-map mapSub" tabindex="0"><g id="vp"><g id="lks"></g><g id="nds"></g></g></svg>
+            <div class="rm-zoom"><button type="button" id="zIn" aria-label="Zoom in">+</button><button type="button" id="zOut" aria-label="Zoom out">−</button><button type="button" class="fit" id="zFit" aria-label="Fit the map to the view">Fit</button></div>
+            <p class="note rm-count" id="count" aria-live="polite"></p>
+            <div class="rm-legend" id="legend"></div>
+          </div>
+          <aside class="rm-side panel" id="side" aria-live="polite" aria-label="The selected part"></aside>
+        </div>
+        <p class="source" id="mapSrc"></p>
+        <details class="more"><summary>About this map</summary><p id="mapNote"></p>
+          <p>Choose a dot to see its details, and double-click it (or use “Show its links”) to open the parts linked to it. Drag a dot to move it; drag the background to move the map; scroll or use the buttons to zoom. Choosing a state or territory hides the others’ adoptions, variations and laws, and opens that jurisdiction’s adoptions and variations. Standards and other laws start hidden because there are many of them.</p>
+          <p>The map does not show councils’ rules, or rules a state sets outside the code (such as Queensland’s own development code or New South Wales’s BASIX), except where a state’s appendix to the code names them. A law that could not be matched to a state register has no register id yet.</p></details>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="h-var">
+      <div class="block-head">
+        <div class="title-row"><h2 id="h-var">How much each state and territory varies the code</h2><button type="button" class="info" data-for="varHint" aria-describedby="varHint" aria-label="About this table">i</button></div>
+        <p class="sub">Provisions varied, by volume. Darker cells vary more provisions. Choose a jurisdiction to see its part of the map.</p>
+      </div>
+      <p id="varHint" hidden>A provision is varied when a state or territory inserts, replaces or deletes it in its appendix to the code. Laws giving effect: the state laws that adopt the code. Other laws listed: the other legislation the state’s appendix says a builder must also meet.</p>
+      <div class="panel">
+        <div class="tscroll"><table class="rm-heat" id="heat"></table></div>
+        <p class="source" id="varSrc"></p>
+        <details class="more"><summary>About these figures</summary><p>Each count is the number of provisions a jurisdiction’s variations insert, replace or delete in that volume, summed over the code’s areas. A count says how much of the code a state changes, not how much each change costs. A jurisdiction with no variations in the data shows 0. Variation counts are for the latest edition in the data.</p></details>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="h-adopt">
+      <div class="block-head">
+        <div class="title-row"><h2 id="h-adopt">When each edition takes effect</h2></div>
+        <p class="sub">Adoption dates and transition periods, as the code’s publisher lists them. Choose a jurisdiction to see its part of the map.</p>
+      </div>
+      <div class="panel">
+        <div class="tscroll"><table class="data rm-adopt" id="adopt"></table></div>
+        <p class="source" id="adoptSrc"></p>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="h-src">
+      <h2 id="h-src">Data sources</h2>
+      <ul id="sources"></ul>
+    </section>
+    <!--__FOOT__-->
+  </main>
+</div>
+
+<script type="application/json" id="page-data">__PAGE_DATA__</script>
+<script>
+/*__CHARTS_JS__*/
+</script>
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById("page-data").textContent);
+  const $ = (id) => document.getElementById(id);
+  const SV = "http://www.w3.org/2000/svg";
+  const ST = DATA.states;
+  const nf = (v) => Math.round(v).toLocaleString("en-AU");
+  const jShort = (j) => (j === "national" ? "National" : ST[j] || j);
+  const jColour = (j) => (ST[j] ? `var(--s-${j})` : "var(--ink-3)");
+  // What each kind of node is called, its shape and size, and whether it shows from the start.
+  const TYPES = {
+    code: { label: "Code", shape: "circle", r: 15, base: true },
+    edition: { label: "Edition", shape: "circle", r: 11, base: true },
+    volume: { label: "Volume", shape: "circle", r: 8 },
+    area: { label: "Technical area", shape: "circle", r: 5 },
+    adoption: { label: "Adoption by a state or territory", shape: "square", r: 8, base: true },
+    law: { label: "Law giving effect", shape: "diamond", r: 8, base: true },
+    "variation-set": { label: "Set of variations", shape: "triangle", r: 4 },
+    "other-law": { label: "Other law to meet", shape: "diamond", r: 4, toggle: "Other laws" },
+    standard: { label: "Standard called up", shape: "dot", r: 3, toggle: "Standards" },
+  };
+  const tOf = (n) => TYPES[n.type] || { label: n.type, shape: "circle", r: 5 };
+  // How a link reads from each end: [from the parent, from the child].
+  const REL = {
+    edition: ["Editions", "Edition of"],
+    contains: ["Contains", "Part of"],
+    "adopted-as": ["Adopted as", "Adoption of"],
+    "gives-effect-to": ["Gives effect to", "Given effect by"],
+    "consolidated-into": ["Rules moved into", "Takes in rules from"],
+    varies: ["Variations", "Variations made in"],
+    "varies-area": ["Varies", "Varied by"],
+    "read-with": ["Other laws to meet", "Listed by"],
+    references: ["Standards called up", "Called up by"],
+  };
+  const WEIGHT = { varies: "provisions", "varies-area": "provisions", references: "clauses" };
+  const LEN = { contains: 55, references: 34, "read-with": 46, varies: 42, "varies-area": 70, edition: 90, "adopted-as": 80, "gives-effect-to": 50, "consolidated-into": 50 };
+
+  const state = { m: null, j: "", show: new Set(), expanded: new Set(), found: new Set(), sel: null, pos: new Map(), view: { x: 0, y: 0, k: 1 } };
+  let M, N, ADJ;
+
+  // Deterministic jitter, so the same choices give the same layout.
+  const hash = (s) => { let h = 2166136261; for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619); return ((h >>> 0) % 10000) / 10000; };
+
+  function loadMap(i) {
+    M = DATA.maps[i];
+    N = new Map(M.nodes.map((n) => [n.id, n]));
+    ADJ = new Map(M.nodes.map((n) => [n.id, []]));
+    M.links.forEach((l) => { if (N.has(l.source) && N.has(l.target)) { ADJ.get(l.source).push({ l, o: l.target, out: true }); ADJ.get(l.target).push({ l, o: l.source, out: false }); } });
+    state.m = i; state.sel = null; state.pos = new Map(); state.found = new Set();
+    state.expanded = new Set(M.nodes.filter((n) => n.type === "edition").map((n) => n.id));
+    const counts = {};
+    M.nodes.forEach((n) => { counts[n.type] = (counts[n.type] || 0) + 1; });
+    $("tChips").innerHTML = Object.entries(TYPES).filter(([k, t]) => t.toggle && counts[k]).map(([k, t]) => `<button type="button" class="chip" data-t="${k}" aria-pressed="${state.show.has(k)}">${esc(t.toggle)} <span class="num">${nf(counts[k])}</span></button>`).join("");
+    $("tChips").querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => {
+      const t = b.dataset.t; if (state.show.has(t)) state.show.delete(t); else state.show.add(t);
+      b.setAttribute("aria-pressed", state.show.has(t)); update();
+    }));
+    const js = [...new Set(M.nodes.map((n) => n.jurisdiction).filter((j) => ST[j]))].sort((a, b) => Object.keys(ST).indexOf(a) - Object.keys(ST).indexOf(b));
+    $("jChips").innerHTML = [`<button type="button" class="chip" data-j="" aria-pressed="true">All</button>`].concat(js.map((j) => `<button type="button" class="chip" data-j="${j}" aria-pressed="false"><span class="key" style="background:${jColour(j)}"></span>${esc(ST[j])}</button>`)).join("");
+    $("jChips").querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => setJ(b.dataset.j)));
+    $("qList").innerHTML = M.nodes.map((n) => `<option value="${esc(n.label)}">${esc(`${tOf(n).label}, ${jShort(n.jurisdiction)}`)}</option>`).join("");
+    $("mapSub").textContent = `${M.title}: ${nf(M.nodes.length)} parts and ${nf(M.links.length)} links. Choose a jurisdiction, or choose a dot to see what it is.`;
+    $("mapNote").textContent = M.note;
+    const srcs = new Map();
+    M.nodes.forEach((n) => { if (n.source && n.source.url && !srcs.has(n.source.url)) srcs.set(n.source.url, n.source); });
+    const file = `${DATA.repo || ""}${M.file}`;
+    const host = (u) => u.replace(/^https?:\/\/(www\.)?/, "").split("/")[0];
+    $("mapSrc").innerHTML = `Sources: ${[...srcs.values()].map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.publisher)}, ${esc(host(s.url))}</a>${s.licence ? ` (${esc(s.licence)})` : ""}`).join("; ")}. Map data: <a href="${esc(file)}" target="_blank" rel="noopener">${esc(M.file)}</a>${M.builtOn ? `, built ${esc(longDate(M.builtOn))}` : ""}.`;
+    $("varSrc").innerHTML = $("adoptSrc").innerHTML = $("mapSrc").innerHTML;
+    $("sources").innerHTML = [...srcs.values()].map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.publisher)}: ${esc(s.url.replace(/^https?:\/\//, ""))}</a>${s.licence ? `, ${esc(s.licence)}` : ""}${s.as_at ? `, as at ${esc(longDate(s.as_at))}` : ""}</li>`).join("")
+      + `<li>Map data: <a href="${esc(file)}" target="_blank" rel="noopener">${esc(M.file)}</a>. How it is built and its limits: ${(M.methods || []).map((d) => `<a href="${esc((DATA.repo || "") + d)}" target="_blank" rel="noopener">${esc(d)}</a>`).join(" and ")}.</li>`;
+    tables();
+  }
+
+  const longDate = (s) => new Date(`${s}T00:00:00`).toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" });
+  const eligible = (n) => (!TYPES[n.type] || !TYPES[n.type].toggle || state.show.has(n.type)) && (!state.j || !ST[n.jurisdiction] || n.jurisdiction === state.j);
+
+  // Visible: the nodes shown from the start and any found, then every eligible neighbour of a visible node that is
+  // open, repeated until nothing more is added.
+  function visible() {
+    const vis = new Set(M.nodes.filter((n) => (tOf(n).base || state.found.has(n.id)) && eligible(n)).map((n) => n.id));
+    let grew = true;
+    while (grew) {
+      grew = false;
+      for (const id of [...vis]) {
+        if (!state.expanded.has(id)) continue;
+        for (const a of ADJ.get(id)) { const o = N.get(a.o); if (!vis.has(o.id) && eligible(o)) { vis.add(o.id); grew = true; } }
+      }
+    }
+    return vis;
+  }
+
+  // Where each jurisdiction's nodes are drawn towards: national at the centre, the states on a ring around it.
+  function anchors() {
+    const js = Object.keys(ST), out = { national: [0, 0] };
+    js.forEach((j, i) => { const a = (i / js.length) * 2 * Math.PI - Math.PI / 2; out[j] = state.j ? [0, 0] : [Math.cos(a) * 260, Math.sin(a) * 260]; });
+    return out;
+  }
+
+  function radius(n) {
+    const t = tOf(n);
+    if (n.type === "variation-set") return Math.min(12, 3 + Math.sqrt(n.provisions_varied || 1) * 1.1);
+    return t.r;
+  }
+
+  // A force layout, run to rest before it is drawn: nodes push apart, links pull together, and each node is drawn
+  // gently towards its jurisdiction's anchor. Nodes placed before keep their places as the starting point.
+  function layout(ids) {
+    const A = anchors();
+    const P = ids.map((id) => {
+      const n = N.get(id), old = state.pos.get(id);
+      if (old) return { id, n, x: old.x, y: old.y, vx: 0, vy: 0, fixed: old.fixed };
+      const nb = ADJ.get(id).map((a) => state.pos.get(a.o)).find(Boolean);
+      const [ax, ay] = nb ? [nb.x, nb.y] : A[n.jurisdiction] || [0, 0];
+      return { id, n, x: ax + (hash(id) - 0.5) * 60, y: ay + (hash(id + "y") - 0.5) * 60, vx: 0, vy: 0 };
+    });
+    const at = new Map(P.map((p, i) => [p.id, i]));
+    const L = [];
+    ids.forEach((id) => ADJ.get(id).forEach((a) => { if (a.out && at.has(a.o)) L.push([at.get(id), at.get(a.o), LEN[a.l.relation] || 60]); }));
+    const fresh = P.some((p) => !state.pos.has(p.id));
+    const ticks = !fresh ? 0 : P.length > 400 ? 160 : 260;
+    let alpha = state.pos.size ? 0.5 : 1;
+    for (let t = 0; t < ticks; t++) {
+      for (let i = 0; i < P.length; i++) {
+        const p = P[i];
+        for (let k = i + 1; k < P.length; k++) {
+          const q = P[k];
+          let dx = p.x - q.x, dy = p.y - q.y, d2 = dx * dx + dy * dy;
+          if (d2 > 90000) continue;
+          if (d2 < 1) { dx = hash(p.id + q.id) - 0.5; dy = 0.5 - hash(q.id + p.id); d2 = 1; }
+          const f = (alpha * 420) / d2;
+          p.vx += dx * f; p.vy += dy * f; q.vx -= dx * f; q.vy -= dy * f;
+        }
+      }
+      for (const [i, k, len] of L) {
+        const p = P[i], q = P[k];
+        const dx = q.x - p.x, dy = q.y - p.y, d = Math.sqrt(dx * dx + dy * dy) || 1;
+        const f = ((d - len) / d) * 0.08 * alpha;
+        p.vx += dx * f; p.vy += dy * f; q.vx -= dx * f; q.vy -= dy * f;
+      }
+      for (const p of P) {
+        const [ax, ay] = A[p.n.jurisdiction] || [0, 0];
+        p.vx += (ax - p.x) * 0.012 * alpha; p.vy += (ay - p.y) * 0.012 * alpha;
+        if (p.fixed) { p.vx = p.vy = 0; continue; }
+        p.vx *= 0.6; p.vy *= 0.6;
+        p.x += Math.max(-30, Math.min(30, p.vx)); p.y += Math.max(-30, Math.min(30, p.vy));
+      }
+      alpha *= 0.985;
+    }
+    const pos = new Map();
+    P.forEach((p) => pos.set(p.id, { x: p.x, y: p.y, fixed: p.fixed }));
+    state.pos = pos;
+  }
+
+  function shape(n, r, cls = "sh") {
+    const s = tOf(n).shape;
+    if (s === "square") return `<rect class="${cls}" x="${-r}" y="${-r}" width="${2 * r}" height="${2 * r}" rx="2"/>`;
+    if (s === "diamond") return `<path class="${cls}" d="M0 ${-r * 1.25}L${r * 1.25} 0L0 ${r * 1.25}L${-r * 1.25} 0Z"/>`;
+    if (s === "triangle") return `<path class="${cls}" d="M0 ${-r * 1.3}L${r * 1.15} ${r * 0.75}L${-r * 1.15} ${r * 0.75}Z"/>`;
+    return `<circle class="${cls}" r="${r}"/>`;
+  }
+  const short = (n) => {
+    if (n.type === "adoption") return `${n.label.replace(/ in .*$/, "")} (${jShort(n.jurisdiction)})`;
+    if (n.type === "variation-set") return n.label.replace(/ variations:/, ":");
+    return n.label.length > 42 ? `${n.label.slice(0, 40)}…` : n.label;
+  };
+  const MAJOR = new Set(["code", "edition", "volume", "adoption", "law"]);
+
+  let VIS = new Set();
+  function update(keepView) {
+    VIS = visible();
+    const ids = [...VIS];
+    layout(ids);
+    draw();
+    if (!keepView) fit();
+    const byType = {};
+    ids.forEach((id) => { const t = N.get(id).type; byType[t] = (byType[t] || 0) + 1; });
+    $("count").textContent = `Showing ${nf(ids.length)} of ${nf(M.nodes.length)} parts${state.j ? ` for ${ST[state.j]} and the national code` : ""}. ` + Object.entries(TYPES).filter(([k]) => byType[k]).map(([k, t]) => `${t.label}: ${nf(byType[k])}`).join("; ") + ".";
+    if (state.sel && !VIS.has(state.sel)) state.sel = null;
+    side();
+  }
+
+  function draw() {
+    const near = new Set();
+    if (state.sel) { near.add(state.sel); ADJ.get(state.sel).forEach((a) => near.add(a.o)); }
+    const k = state.view.k;
+    let lks = "";
+    M.links.forEach((l) => {
+      if (!VIS.has(l.source) || !VIS.has(l.target)) return;
+      const a = state.pos.get(l.source), b = state.pos.get(l.target);
+      const on = state.sel && (l.source === state.sel || l.target === state.sel);
+      const w = l.weight ? Math.min(4, 0.8 + Math.log10(1 + l.weight) * 1.4) : 1;
+      lks += `<line class="lk${on ? " hi" : state.sel ? " dim" : ""}" x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke-width="${(on ? w + 1 : w).toFixed(2)}"${l.jurisdiction && ST[l.jurisdiction] && !on ? ` style="stroke:${jColour(l.jurisdiction)}"` : ""}/>`;
+    });
+    let nds = "";
+    VIS.forEach((id) => {
+      const n = N.get(id), p = state.pos.get(id), r = radius(n);
+      const major = MAJOR.has(n.type);
+      const label = major || near.has(id) || k >= 2.2 || state.found.has(id);
+      const cls = `nd${major ? " major" : ""}${state.expanded.has(id) ? " exp" : ""}${id === state.sel ? " sel" : ""}${state.sel && !near.has(id) ? " dim" : ""}`;
+      nds += `<g class="${cls}" data-id="${esc(id)}" transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)})" style="fill:${jColour(n.jurisdiction)}"><title>${esc(`${n.label} (${tOf(n).label}, ${jShort(n.jurisdiction)})`)}</title>${shape(n, r)}${label ? `<text x="${r + 4}" y="4">${esc(short(n))}</text>` : ""}</g>`;
+    });
+    $("lks").innerHTML = lks;
+    $("nds").innerHTML = nds;
+  }
+
+  function applyView() {
+    const v = state.view;
+    $("vp").setAttribute("transform", `translate(${v.x.toFixed(1)},${v.y.toFixed(1)}) scale(${v.k.toFixed(3)})`);
+  }
+  function fit() {
+    const svg = $("svg"), W = svg.clientWidth || 800, H = svg.clientHeight || 600;
+    const ps = [...VIS].map((id) => state.pos.get(id));
+    if (!ps.length) return;
+    const x0 = Math.min(...ps.map((p) => p.x)) - 30, x1 = Math.max(...ps.map((p) => p.x)) + 140;
+    const y0 = Math.min(...ps.map((p) => p.y)) - 30, y1 = Math.max(...ps.map((p) => p.y)) + 30;
+    const k = Math.max(0.15, Math.min(2.5, Math.min(W / (x1 - x0), H / (y1 - y0))));
+    state.view = { k, x: W / 2 - ((x0 + x1) / 2) * k, y: H / 2 - ((y0 + y1) / 2) * k };
+    applyView();
+    draw();
+  }
+  function zoom(f, cx, cy) {
+    const svg = $("svg"), v = state.view;
+    cx = cx ?? svg.clientWidth / 2; cy = cy ?? svg.clientHeight / 2;
+    const k = Math.max(0.1, Math.min(6, v.k * f));
+    const labelsChange = (v.k >= 2.2) !== (k >= 2.2);
+    state.view = { k, x: cx - ((cx - v.x) * k) / v.k, y: cy - ((cy - v.y) * k) / v.k };
+    applyView();
+    if (labelsChange) draw();
+  }
+
+  function select(id, reveal) {
+    if (!id || !N.has(id)) { state.sel = null; draw(); side(); return; }
+    const n = N.get(id);
+    if (!VIS.has(id) || reveal) {
+      if (!eligible(n)) { if (TYPES[n.type] && TYPES[n.type].toggle) { state.show.add(n.type); syncChips(); } if (state.j && ST[n.jurisdiction] && n.jurisdiction !== state.j) setJ("", true); }
+      state.found.add(id);
+      state.sel = id;
+      update(true);
+      centreOn(id);
+      return;
+    }
+    state.sel = id; draw(); side();
+  }
+  function centreOn(id) {
+    const p = state.pos.get(id), svg = $("svg"), v = state.view;
+    if (!p) return;
+    state.view = { k: v.k, x: svg.clientWidth / 2 - p.x * v.k, y: svg.clientHeight / 2 - p.y * v.k };
+    applyView();
+  }
+  function toggleExpand(id) {
+    if (state.expanded.has(id)) state.expanded.delete(id); else state.expanded.add(id);
+    state.sel = id;
+    update(true);
+  }
+  function syncChips() {
+    $("tChips").querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", state.show.has(b.dataset.t)));
+    $("jChips").querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", b.dataset.j === state.j));
+  }
+  // Choosing a jurisdiction shows only its part, with its adoptions and variation sets open.
+  function setJ(j, quiet) {
+    state.j = j;
+    state.pos = new Map();
+    if (j) M.nodes.forEach((n) => { if (n.jurisdiction === j && (n.type === "adoption" || n.type === "variation-set")) state.expanded.add(n.id); });
+    syncChips();
+    if (!quiet) { update(); history.replaceState(null, "", j ? `#j=${j}` : location.pathname + location.search); }
+  }
+
+  function side() {
+    const el = $("side");
+    if (!state.sel) {
+      el.innerHTML = `<h3>Choose a part</h3><p class="what">Choose a dot on the map, or find a part by name. Its details and the parts it links to show here.</p>`
+        + `<p class="what">A dot with a dark ring is open: the parts linked to it are shown.</p>`;
+      return;
+    }
+    const n = N.get(state.sel), t = tOf(n);
+    const f = [];
+    if (n.title && n.title !== n.label) f.push(["Title", esc(n.title)]);
+    if (n.code) f.push(["Clause or part", esc(n.code)]);
+    if (n.industry) f.push(["Buildings", esc(n.industry)]);
+    if (n.adoption) f.push(["Adoption", esc(n.adoption)]);
+    if (n.transition) f.push(["Transition", esc(n.transition)]);
+    if (n.provisions_varied !== undefined) f.push(["Provisions varied", `<span class="num">${nf(n.provisions_varied)}</span>${["inserted", "replaced", "deleted"].map((k) => (n[k] ? `, ${nf(n[k])} ${k}` : "")).join("")}`]);
+    if (n.agency) f.push(["Administered by", esc(n.agency)]);
+    if (n.topic) f.push(["Topic", esc(n.topic)]);
+    if (n.register_id) f.push(["Register id", n.url ? `<a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.register_id)}</a>` : esc(n.register_id)]);
+    else if (n.url) f.push(["Official text", `<a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.url.replace(/^https?:\/\//, "").slice(0, 48))}</a>`]);
+    if (n.alicia) f.push(["In the register", n.alicia.map((a) => `<a href="menu.html#${encodeURIComponent(a.id)}">${esc(a.title)}</a>`).join("<br>")]);
+    else if (["law", "other-law"].includes(n.type)) f.push(["In the register", n.register_id ? "No ALICIA item cites this law yet" : "Not matched to a state register yet"]);
+    if (n.source && n.source.url) f.push(["Source", `<a href="${esc(n.source.url)}" target="_blank" rel="noopener">${esc(n.source.publisher || "Source")}</a>`]);
+    // The links, grouped by what they are, as buttons that move to the other end.
+    const groups = new Map();
+    ADJ.get(n.id).forEach((a) => {
+      const key = `${a.l.relation}|${a.out}`;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(a);
+    });
+    const hidden = [...groups.values()].flat().filter((a) => !VIS.has(a.o)).length;
+    const grp = [...groups.entries()].map(([key, as]) => {
+      const [rel, out] = key.split("|");
+      const head = (REL[rel] || [rel, rel])[out === "true" ? 0 : 1];
+      as.sort((x, y) => (y.l.weight || 0) - (x.l.weight || 0) || N.get(x.o).label.localeCompare(N.get(y.o).label));
+      const item = (a) => {
+        const o = N.get(a.o);
+        const w = a.l.weight ? ` <span class="w">${nf(a.l.weight)} ${WEIGHT[a.l.relation] || ""}</span>` : "";
+        const q = a.l.basis && a.l.basis.quote ? `<blockquote>“${esc(a.l.basis.quote)}”<cite>${esc(a.l.basis.locator || "")}</cite></blockquote>` : a.l.basis && a.l.basis.locator && rel !== "read-with" ? `<blockquote><cite>${esc(a.l.basis.locator)}</cite></blockquote>` : "";
+        return `<li><span class="sw" style="background:${jColour(o.jurisdiction)}"></span><button type="button" class="lnk" data-go="${esc(o.id)}">${esc(o.label)}</button>${a.l.topic ? ` <span class="w">${esc(a.l.topic)}</span>` : ""}${w}${q}</li>`;
+      };
+      const first = as.slice(0, 12).map(item).join("");
+      const rest = as.length > 12 ? `<li><details><summary>${nf(as.length - 12)} more</summary><ul>${as.slice(12).map(item).join("")}</ul></details></li>` : "";
+      return `<div class="grp"><h4>${esc(head)} <span class="w num">${nf(as.length)}</span></h4><ul>${first}${rest}</ul></div>`;
+    }).join("");
+    const open = state.expanded.has(n.id);
+    el.innerHTML = `<h3>${esc(n.label)}</h3><p class="what"><span class="sw" style="display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:${jColour(n.jurisdiction)}"></span>${esc(t.label)} · ${esc(n.jurisdiction === "national" ? "National" : ST[n.jurisdiction] || n.jurisdiction)}</p>`
+      + (f.length ? `<dl>${f.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join("")}</dl>` : "")
+      + `<div class="acts"><button type="button" class="btn" id="sExp">${open ? "Hide its links" : "Show its links"}</button>${hidden ? `<span class="what">${nf(hidden)} linked part${hidden === 1 ? " is" : "s are"} not on the map now</span>` : ""}</div>`
+      + grp;
+    $("sExp").addEventListener("click", () => toggleExpand(n.id));
+    el.querySelectorAll("[data-go]").forEach((b) => b.addEventListener("click", () => select(b.dataset.go, !VIS.has(b.dataset.go))));
+  }
+
+  function tables() {
+    const S = M.summary;
+    const heat = $("heat"), adopt = $("adopt");
+    if (!S.rows.length) { heat.innerHTML = adopt.innerHTML = ""; return; }
+    const vols = S.volumes;
+    const max = Math.max(1, ...S.rows.flatMap((r) => vols.map((v) => r.byVolume[v.id] || 0)));
+    const maxT = Math.max(1, ...S.rows.map((r) => r.provisions));
+    heat.innerHTML = `<thead><tr><th class="row" scope="col">Jurisdiction</th>${vols.map((v) => `<th scope="col">${esc(v.label.replace(/^NCC \d{4} /, ""))}</th>`).join("")}<th scope="col">All volumes</th><th scope="col">Sets of variations</th><th scope="col">Laws giving effect</th><th scope="col">Other laws listed</th></tr></thead><tbody>`
+      + S.rows.map((r) => `<tr><th class="row" scope="row"><button type="button" class="lnk" data-j="${r.j}">${esc(ST[r.j] || r.j)}</button></th>${vols.map((v) => { const x = r.byVolume[v.id] || 0; return `<td style="background:${heatColor(x, max, "seq")}">${nf(x)}</td>`; }).join("")}<td class="tot" style="background:${heatColor(r.provisions, maxT, "seq")}">${nf(r.provisions)}</td><td>${nf(r.sets)}</td><td>${nf(r.laws)}</td><td>${nf(r.otherLaws)}</td></tr>`).join("") + "</tbody>";
+    heat.querySelectorAll("[data-j]").forEach((b) => b.addEventListener("click", () => { setJ(b.dataset.j); $("h-map").scrollIntoView({ block: "start" }); }));
+    const eds = S.editions;
+    adopt.innerHTML = `<thead><tr><th scope="col">Jurisdiction</th>${eds.map((e) => `<th scope="col">${esc(e)}</th><th scope="col">${esc(e)} transition</th>`).join("")}</tr></thead><tbody>`
+      + S.rows.map((r) => `<tr><td><button type="button" class="lnk" data-j="${r.j}">${esc(ST[r.j] || r.j)}</button></td>${eds.map((e) => { const a = r.adoptions.find((x) => x.edition === e); return a ? `<td>${esc((a.adoption || "").replace(/^NCC: /, ""))}</td><td>${esc(a.transition || "")}</td>` : "<td>–</td><td></td>"; }).join("")}</tr>`).join("") + "</tbody>";
+    adopt.querySelectorAll("[data-j]").forEach((b) => b.addEventListener("click", () => { setJ(b.dataset.j); $("h-map").scrollIntoView({ block: "start" }); }));
+  }
+
+  // Legend: colour by jurisdiction is on the chips; shapes by kind of part here.
+  $("legend").innerHTML = Object.entries(TYPES).map(([k, t]) => `<span><svg viewBox="-8 -8 16 16" aria-hidden="true">${shape({ type: k }, t.shape === "dot" ? 3 : 5.5, "")}</svg>${esc(t.label)}</span>`).join("") + `<span><svg viewBox="-8 -8 16 16" aria-hidden="true"><circle r="5.5" style="fill:var(--ink-3)"/></svg>National, in grey</span>`;
+
+  // Pointer: drag a node to move it (it stays where it is put), drag the background to pan, wheel to zoom, click to
+  // select, double-click to open or close.
+  const svg = $("svg");
+  let drag = null;
+  const pt = (e) => { const r = svg.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  svg.addEventListener("pointerdown", (e) => {
+    const g = e.target.closest(".nd");
+    const [x, y] = pt(e);
+    drag = { id: g ? g.dataset.id : null, x, y, vx: state.view.x, vy: state.view.y, moved: false };
+    svg.setPointerCapture(e.pointerId);
+  });
+  svg.addEventListener("pointermove", (e) => {
+    if (!drag) return;
+    const [x, y] = pt(e);
+    if (Math.abs(x - drag.x) + Math.abs(y - drag.y) > 4) drag.moved = true;
+    if (!drag.moved) return;
+    if (drag.id) {
+      const v = state.view, p = state.pos.get(drag.id);
+      p.x = (x - v.x) / v.k; p.y = (y - v.y) / v.k; p.fixed = true;
+      draw();
+    } else {
+      state.view.x = drag.vx + x - drag.x; state.view.y = drag.vy + y - drag.y; applyView();
+    }
+  });
+  svg.addEventListener("pointerup", () => {
+    if (drag && !drag.moved) select(drag.id);
+    drag = null;
+  });
+  svg.addEventListener("dblclick", (e) => { const g = e.target.closest(".nd"); if (g) toggleExpand(g.dataset.id); });
+  svg.addEventListener("wheel", (e) => { e.preventDefault(); const [x, y] = pt(e); zoom(e.deltaY < 0 ? 1.15 : 1 / 1.15, x, y); }, { passive: false });
+  svg.addEventListener("keydown", (e) => {
+    if (e.key === "+" || e.key === "=") zoom(1.25); else if (e.key === "-") zoom(0.8);
+    else if (e.key.startsWith("Arrow")) { const d = 40; state.view.x += e.key === "ArrowLeft" ? d : e.key === "ArrowRight" ? -d : 0; state.view.y += e.key === "ArrowUp" ? d : e.key === "ArrowDown" ? -d : 0; applyView(); }
+    else return;
+    e.preventDefault();
+  });
+  $("zIn").addEventListener("click", () => zoom(1.3));
+  $("zOut").addEventListener("click", () => zoom(1 / 1.3));
+  $("zFit").addEventListener("click", fit);
+  $("expandAll").addEventListener("click", () => { M.nodes.forEach((n) => state.expanded.add(n.id)); state.pos = new Map(); update(); });
+  $("collapseAll").addEventListener("click", () => { loadMapKeep(); });
+  const find = () => {
+    const q = $("q").value.trim().toLowerCase();
+    if (!q) return;
+    const hit = M.nodes.find((n) => n.label.toLowerCase() === q) || M.nodes.find((n) => n.label.toLowerCase().includes(q) || (n.register_id || "").toLowerCase() === q || (n.title || "").toLowerCase().includes(q));
+    if (hit) select(hit.id, true); else $("count").textContent = `Nothing on this map matches “${$("q").value.trim()}”.`;
+  };
+  $("qGo").addEventListener("click", find);
+  $("q").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); find(); } });
+  $("q").addEventListener("change", () => { if (M.nodes.some((n) => n.label === $("q").value)) find(); });
+  function loadMapKeep() { const j = state.j; loadMap(state.m); state.show = new Set(); syncChips(); setJ(j); }
+
+  $("f-map").innerHTML = DATA.maps.map((m, i) => `<option value="${i}">${esc(m.title)}</option>`).join("");
+  $("mapRow").hidden = DATA.maps.length < 2;
+  $("f-map").addEventListener("change", (e) => { state.j = ""; loadMap(+e.target.value); update(); });
+  initTerms();
+  if (!DATA.maps.length) {
+    $("side").innerHTML = "<p>No regulatory map has been built yet.</p>";
+    return;
+  }
+  $("metaLine").textContent = `${DATA.maps.length} map${DATA.maps.length === 1 ? "" : "s"}${DATA.maps[0].builtOn ? ` · data built ${new Date(DATA.maps[0].builtOn + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" })}` : ""}`;
+  loadMap(0);
+  // #j=<state> opens a jurisdiction; #node=<id> opens a part.
+  const h = new URLSearchParams(location.hash.slice(1));
+  if (h.get("j") && ST[h.get("j")]) setJ(h.get("j"), true);
+  update();
+  if (h.get("node") && N.has(h.get("node"))) select(h.get("node"), true);
+  if (window.ResizeObserver) { let w = svg.clientWidth; new ResizeObserver(() => { if (Math.abs(svg.clientWidth - w) > 40) { w = svg.clientWidth; fit(); } }).observe(svg); }
+})();
+</script>
