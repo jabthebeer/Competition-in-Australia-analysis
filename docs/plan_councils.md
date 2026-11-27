@@ -128,6 +128,11 @@ E-2 and E-3 can start straight away. E-5 and E-6 depend on reaching council webs
   - **Not covered:** the NT, whose planning scheme site (nt.gov.au) refuses automated requests even when allowed, and SA and Tasmania (batch E-4), for the same reason. Victoria waits for its batch.
   - **Limits:** the match says which term a class most likely falls under, not whether the use is allowed in a zone. Queensland's industry terms (low, medium, high impact) depend on thresholds each council sets, so those matches are low confidence. Mining is not a Queensland planning use.
 
+- **E-5 done 27 Nov 2026 (E-364).** Capital-city local laws outside Victoria.
+  - **Quoted:** the local law behind 7 of the 13 existing permits. Darwin outdoor dining (by-law 96), Brisbane busking, outdoor dining and filming (Public Land and Council Assets Local Law 2014; Footpath Dining Local Law 2011), Sydney filming (Local Government Act 1993 ss 114 and 115), and Perth busking and outdoor dining (from the Government Gazette). 4 are now high confidence. Brisbane filming stays medium because the local law does not name filming. Perth stays medium because only the law as made could be read.
+  - **New:** 5 requirements. Darwin street food (by-law 106) and market licence (by-law 108), Brisbane street trading (s 23, sch 2) and advertising signs (Advertising Devices Local Law 2021 s 40), and Perth street trading (Public Trading Local Law 2005 cll 3.1 and 3.2). The register now holds 25 local requirements.
+  - **Not done:** Adelaide (its website and the SA Gazette refuse automated requests) and Hobart (its Public Spaces By-law is a scanned image with no text layer). Perth filming has no matching provision in the Local Government Property Local Law 2005. Sydney's other approvals (goods on footways, mobile food vending) are made under s 68 of the state Act, so by methods rule 7 they belong with the NSW state requirements, not here.
+
 ## Limits
 
 - A sample of 21 councils, from about 540 in total, shows how much councils vary. It cannot give a complete count for every council.
