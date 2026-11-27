@@ -1,0 +1,91 @@
+{
+  "id": "qld-wagering-exclusivity",
+  "kind": "setting",
+  "family": null,
+  "title": "Exclusive race and sports wagering licences (Queensland)",
+  "jurisdiction": "QLD",
+  "summary": "The Wagering Act 1998 (Qld) lets the Minister grant race and sports wagering licences only to UBET during an exclusivity period running 30 years from 1 July 2014.",
+  "instruments": [
+    {
+      "title": "Wagering Act 1998 (Qld)",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1998-015",
+      "register_id": "act-1998-015",
+      "role": "principal",
+      "provisions": "ss 4, 16, 17, 22"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "An exclusive licence keeps all other operators out of the licensed wagering market.",
+  "direction_sources": [
+    "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1998-015"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "9209",
+      "name": "Other Gambling Activities",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no dates."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 17 November 2026 (phase 6 of the levers re-evaluation, batch 1) from the law quoted. Not yet checked: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Until 30 June 2044, only UBET, the company the Act names, may be granted Queensland's race and sports wagering licences. A statutory exclusive right; interstate and online bookmakers compete for bets, but not under these licences.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "No one but UBET may be granted a race or sports wagering licence until 2044."
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Shelters the totalizator and retail wagering business from local rivals."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "high",
+    "confidence_note": "The exclusivity and its 30-year period are explicit.",
+    "evidence": [
+      "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1998-015"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "responsible": [
+    {
+      "body": "qld-justice",
+      "role": "administers",
+      "source": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1998-015",
+      "note": "The Office of Liquor and Gaming Regulation sits in the department; not checked against the administrative arrangements order."
+    }
+  ],
+  "history": []
+}

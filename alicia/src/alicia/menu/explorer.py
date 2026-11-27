@@ -335,11 +335,12 @@ def build_payload(
         council: bool = False,
         partial: bool = False,
         sev: dict | None = None,
+        basis: str = "all",
     ) -> dict:
         """A row's exposure, whether it is a rule that applies today or a change to one, and its impact class with
         what its size of effect was read from (framework version 2, DECISIONS E-185)."""
         total = assessment["total"] if assessment else None
-        exp = X.measure(pairs, jurisdiction, counts, council, partial)
+        exp = X.measure(pairs, jurisdiction, counts, council, partial, basis)
         standing = X.is_standing(kind, total, ended, in_force)
         cls, source = X.impact_class(total, exp, sev) if standing else (None, None)
         role = "rule" if standing else "ended" if ended else "change"
@@ -370,10 +371,16 @@ def build_payload(
     record_marks = {r.id: [m.model_dump(mode="json") for m in r.assessment.marks] for r in records if r.assessment}
     nested: dict[str, list[dict]] = {}
     rows_req = []
+    # Which businesses each requirement's size test lets it bind, and whether that is only an upper bound
+    # (phase 5 of the levers re-evaluation, DECISIONS E-178). An item takes it from the requirements inside it.
+    sized: dict[str, tuple[str, bool]] = {}
     for q in reqs:
         homes = [x for x in q.records if x in by_id]
         d = requirement_dict(q, reg_by_id, {x: record_marks.get(x) for x in homes})
         d["severity"] = severity(q)
+        basis, upper = X.size_basis(q.triggers)
+        upper = upper or X.form_limited(q)
+        sized[q.id] = (basis, upper or X.conditional(q))
         d.update(
             impact(
                 "requirement",
@@ -383,8 +390,9 @@ def build_payload(
                 False,
                 True,
                 q.tier == "local",
-                X.conditional(q) or d["severity"]["bound"] == "some",
+                X.conditional(q) or d["severity"]["bound"] == "some" or upper,
                 d["severity"],
+                basis,
             )
         )
         d["exposure"]["beyond"] = X.beyond(q)
@@ -430,6 +438,9 @@ def build_payload(
         data["industries"] = [{**i, "division": anzsic.division(i["anzsic"])} for i in data["industries"]]
         sev = record_severity(r.id)
         data["severity"] = sev
+        # The widest size basis among the requirements inside it; an upper bound if any of them is one.
+        inner = [sized[q["id"]] for q in data["requirements"] if q["id"] in sized]
+        basis = min((b for b, _ in inner), key=X.BASES.index, default="all")
         data.update(
             impact(
                 r.kind,
@@ -438,8 +449,9 @@ def build_payload(
                 r.jurisdiction,
                 bool(data["ended"]),
                 bool(eff and eff.date <= today),
-                partial=bool(sev and sev["bound"] == "some"),
+                partial=bool(sev and sev["bound"] == "some") or any(u for _, u in inner),
                 sev=sev,
+                basis=basis,
             )
         )
         data["evidence"] = S.evidence(
@@ -501,6 +513,7 @@ def build_payload(
         "severityKinds": S.KIND_LABELS,
         "evidenceSteps": S.EVIDENCE_STEPS,
         "exposureNote": X.NOTE,
+        "exposureBases": X.BASIS_LABELS,
         "licenceCostNote": LC.NOTE,
         "licenceCostCount": sum(1 for q in reqs if q.id in licence_costs),
         "exposureYear": counts.year if counts else None,

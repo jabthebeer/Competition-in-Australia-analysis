@@ -1,0 +1,106 @@
+{
+  "id": "cth-financial-sector-ownership-limit",
+  "kind": "setting",
+  "family": null,
+  "title": "Shareholding limit on banks and insurers",
+  "jurisdiction": "CTH",
+  "summary": "The Financial Sector (Shareholdings) Act 1998 bars any person from holding more than 20% of a financial sector company without the Treasurer's approval.",
+  "instruments": [
+    {
+      "title": "Financial Sector (Shareholdings) Act 1998",
+      "register_url": "https://www.legislation.gov.au/C2004A00315/latest/text",
+      "register_id": "C2004A00315",
+      "role": "principal",
+      "provisions": "ss 10, 11"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "A limit on large stakes, lifted only with the Treasurer's approval, restricts who may own financial institutions.",
+  "direction_sources": [
+    "https://www.legislation.gov.au/C2004A00315/latest/text"
+  ],
+  "channels": [
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "6221",
+      "name": "Banking",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6310",
+      "name": "Life Insurance",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "6322",
+      "name": "General Insurance",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no dates. The requirement inside it quotes s 11."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 17 November 2026 (phase 6 of the levers re-evaluation, batch 1) from the law quoted. Not yet checked: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "No one may hold more than 20% of a bank, insurer or their holding company without the Treasurer's approval. It makes takeovers of financial institutions harder, which shelters incumbents from the discipline of a takeover.",
+    "marks": [
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "An approval hurdle on large stakes in financial institutions."
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Weakens the threat of takeover that disciplines incumbent managers."
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The limit and its approval route are explicit; the four pillars policy is applied through it.",
+    "evidence": [
+      "https://www.legislation.gov.au/C2004A00315/latest/text"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "responsible": [
+    {
+      "body": "cth-treasury",
+      "role": "administers",
+      "source": "https://www.legislation.gov.au/C2004A00315/latest/text",
+      "note": "Not checked against the administrative arrangements order."
+    },
+    {
+      "body": "cth-apra",
+      "role": "regulates",
+      "source": "https://www.legislation.gov.au/C2004A00315/latest/text",
+      "note": "APRA administers applications under the Act."
+    }
+  ],
+  "history": []
+}

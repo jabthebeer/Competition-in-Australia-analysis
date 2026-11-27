@@ -23,7 +23,7 @@ classed as wide. Only rules that apply today and that the marks judge to weigh o
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from functools import lru_cache
 
 from .. import anzsic
@@ -52,9 +52,12 @@ CLASS_HELP = {
 NOTE = (
     "Businesses are counted from the ABS Counts of Australian Businesses, by detailed industry and state, for the "
     "industries and states each rule reaches. For a register item, these are the industries it names as directly "
-    "affected. A rule that binds only some businesses in an industry (those above a threshold, or doing one "
-    "activity) is counted as reaching the whole industry, so its figure is an upper bound, shown as 'up to'; a rule "
-    "that follows an activity is never classed as wide. Where a rule binds some whole industries and, elsewhere, "
+    "affected, and it counts the businesses the requirements inside it bind. A rule that binds only employers counts "
+    "only businesses with employees. A rule that binds only some businesses in an industry (those above a size "
+    "threshold, of one legal form, or doing one activity) is counted at the narrowest size band sure to include them, "
+    "so its figure is an upper bound, shown as 'up to', and it is never classed as wide. The counts include only "
+    "businesses registered for GST, so a turnover threshold no higher than GST's is applied exactly. "
+    "Where a rule binds some whole industries and, elsewhere, "
     "only businesses doing an activity, the whole industries are counted. "
     f"A rule is wide when it reaches at least {WIDE_SHARE:.0f}% of the businesses in its jurisdiction; a state's "
     "rule is judged within its state. The size of a rule's effect on each business is its severity, scored from "
@@ -70,6 +73,8 @@ class Counts:
     all: dict[tuple[str, str], float]
     employing: dict[tuple[str, str], float]
     year: int  # the June the counts are for
+    # Employing businesses by size: "20+" (20 or more employees) and "200+" (200 or more).
+    bands: dict[str, dict[tuple[str, str], float]] = field(default_factory=dict)
 
     @property
     def classes(self) -> tuple[str, ...]:
@@ -99,7 +104,11 @@ def counts_from(df) -> Counts | None:
     everyone = table(bands)
     if not everyone:
         return None
-    return Counts(everyone, employing, int(last.year) + 1)
+    sized = {
+        "20+": table(bands[bands["breakdown"].isin(["20-199 employees", "200+ employees"])]),
+        "200+": table(bands[bands["breakdown"] == "200+ employees"]),
+    }
+    return Counts(everyone, employing, int(last.year) + 1, sized)
 
 
 @lru_cache(maxsize=1)
@@ -159,6 +168,50 @@ def record_pairs(r: ChangeRecord) -> set[tuple[str, str]]:
     return {(c, s) for c in classes for s in states if s in schema.STATES}
 
 
+# What a size test lets a rule bind (phase 5 of the levers re-evaluation, DECISIONS E-178). The ABS counts only
+# businesses remitting GST, so a turnover test at or below the GST registration threshold binds every business
+# counted. A payroll test below SMALL_PAYROLL a year, a few weeks' full-time wages, is counted as binding every
+# employer (Victoria's $7,500 for workers' compensation).
+GST_TURNOVER = 75_000
+SMALL_PAYROLL = 10_000
+BASES = ("all", "employing", "20+", "200+")  # widest first
+BASIS_LABELS = {
+    "all": "every business",
+    "employing": "employing businesses",
+    "20+": "businesses with 20 or more employees",
+    "200+": "businesses with 200 or more employees",
+}
+
+
+def size_basis(triggers) -> tuple[str, bool]:
+    """Which businesses in a rule's industries its size test lets it bind, and whether that count is only an upper
+    bound: every employer for a rule that starts with the first employee (exact); employers, or the larger size
+    bands, above a payroll or employee threshold; every business above a turnover, revenue or asset threshold the
+    counts don't already apply. A rule with no size test binds every business (exact)."""
+    for t in triggers:
+        v = t.value
+        if t.type == "first-employee":
+            return "employing", False
+        if t.type == "payroll":
+            return "employing", not (v is not None and v < SMALL_PAYROLL)
+        if t.type == "employees":
+            if v is None or v < 20:
+                return "employing", not (v is not None and v <= 1 and t.test == ">=")
+            if v < 200:
+                return "20+", not (v == 20 and t.test == ">=")
+            return "200+", not (v == 200 and t.test == ">=")
+        if t.type in ("turnover", "revenue", "assets"):
+            return "all", not (t.type == "turnover" and v is not None and v <= GST_TURNOVER)
+    return "all", False
+
+
+def form_limited(q: Requirement) -> bool:
+    """Whether every part of a requirement's reach is limited to legal forms that leave out sole traders (ASIC's
+    annual review fee binds only companies). The counts are not split by legal form, so its count is an upper
+    bound. An award that names companies in one part and sole traders, partnerships and trusts in another is not."""
+    return bool(q.reach) and all(r.legal_forms and "sole-proprietor" not in r.legal_forms for r in q.reach)
+
+
 def conditional(q: Requirement) -> bool:
     """Whether a requirement binds only the businesses doing some activity: every part of its reach carries a
     condition or lists activities."""
@@ -166,10 +219,16 @@ def conditional(q: Requirement) -> bool:
 
 
 def measure(
-    pairs: set[tuple[str, str]], jurisdiction: str, counts: Counts | None, council: bool = False, partial: bool = False
+    pairs: set[tuple[str, str]],
+    jurisdiction: str,
+    counts: Counts | None,
+    council: bool = False,
+    partial: bool = False,
+    basis: str = "all",
 ) -> dict:
-    """The exposure figures for a rule: the industries it reaches, the businesses in them, and their share of the
-    businesses in the rule's jurisdiction and in Australia. ``None`` figures when the counts are not built."""
+    """The exposure figures for a rule: the industries it reaches, the businesses in them that its size test lets it
+    bind (``basis``, one of ``BASES``), and their share of all the businesses in the rule's jurisdiction and in
+    Australia. ``None`` figures when the counts are not built."""
     classes = {c for c, _ in pairs}
     out = {
         "classes": len(classes),
@@ -177,6 +236,7 @@ def measure(
         "states": sorted({s for _, s in pairs}, key=schema.STATES.index),
         "council": council,
         "partial": partial or council,
+        "basis": basis,
         "businesses": None,
         "employing": None,
         "share": None,
@@ -186,7 +246,8 @@ def measure(
     }
     if not counts or not pairs:
         return out
-    n = sum(counts.all.get(p, 0.0) for p in pairs)
+    src = {"all": counts.all, "employing": counts.employing}.get(basis) or counts.bands[basis]
+    n = sum(src.get(p, 0.0) for p in pairs)
     emp = sum(counts.employing.get(p, 0.0) for p in pairs)
     home = schema.STATES if jurisdiction == "CTH" else (jurisdiction,)
     base, aus = counts.total(home), counts.total(schema.STATES)

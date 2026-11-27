@@ -1,0 +1,109 @@
+{
+  "id": "cth-qantas-foreign-ownership-limit",
+  "family": "qantas-foreign-ownership-limit",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "aviation",
+  "title": "Keep foreign ownership of Qantas within 49%",
+  "kind": "standard",
+  "what": "Qantas must restrict the issue and ownership of its shares so that foreign persons' interests stay within 49% of its issued share capital.",
+  "laws": [
+    {
+      "title": "Qantas Sale Act 1992",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04487",
+      "register_url": "https://www.legislation.gov.au/C2004A04487/latest/text",
+      "provisions": "s 7(1)(a)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Qantas Sale Act 1992 (Cth)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/C2004A04487/latest/text",
+      "locator": "s 7(1)(a) (compilation C2026C00417 from 2026-09-19)",
+      "quote": "(a) impose restrictions on the issue and ownership (including joint ownership) of shares in Qantas so as to prevent foreign persons having relevant interests in shares in Qantas that represent, in total, more than 49% of the total value of the issued share capital of Qantas;",
+      "accessed": "2026-11-17",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
+  "administered_by_councils": false,
+  "administration": [],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4900"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "only Qantas Airways Limited",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Qantas Sale Act 1992 (Cth)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C2004A04487/latest/text",
+          "locator": "s 7(1)(a) (compilation C2026C00417 from 2026-09-19)",
+          "quote": "(a) impose restrictions on the issue and ownership (including joint ownership) of shares in Qantas so as to prevent foreign persons having relevant interests in shares in Qantas that represent, in total, more than 49% of the total value of the issued share capital of Qantas;",
+          "accessed": "2026-11-17",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The Act names the company and the limit.",
+  "records": [
+    "cth-qantas-ownership-limits"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Caps foreign ownership of Qantas at 49%, written into its constitution by law. It narrows the pool of capital and owners for one airline; other airlines face no such cap under this Act.",
+    "marks": [
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Shuts foreign investors out of majority ownership of one major airline."
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The cap is explicit; its effect on Qantas's cost of capital has not been measured.",
+    "evidence": [
+      "https://www.legislation.gov.au/C2004A04487/latest/text"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "drafted_on": "2026-11-17",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

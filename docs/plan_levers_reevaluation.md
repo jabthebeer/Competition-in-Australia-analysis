@@ -201,9 +201,9 @@ Added at the owner's request on 16 November 2026, and decided the same day (DECI
    - ~~Queensland outside automatic mutual recognition~~: quoted on 17 November 2026 (`qld-mutual-recognition-notice`);
    - the building code adoptions and Queensland's 2am limit, with their standing rules.
 2. **Phase 2:** the links and the 12 standing rules, once the website session adds the field.
-3. **Phase 4:** pairs and the 19 rules without a regime.
-4. **Phase 5:** exposure.
-5. **Phase 6:** the gap screen of the highest-scoring kinds.
+3. ~~**Phase 4:** pairs and the 19 rules without a regime~~: done on 17 November 2026 ([note](levers_pairs_and_regimes.md)). No pair nested; all 19 items and 74 of 84 requirement rows given a regime.
+4. ~~**Phase 5:** exposure~~: done on 17 November 2026 ([note](levers_exposure.md)). Employer and threshold rules counted as they bind; 12 rules move from Major, wide to Minor.
+5. **Phase 6:** the gap screen of the highest-scoring kinds. Batch 1 done on 17 November 2026 ([note](levers_gap_screen.md)): 10 items; next, the same families in the other states, then price controls.
 6. **Phase 7:** re-marking and your spot check.
 
 ## 4. Decisions (owner, 15 November 2026)

@@ -1,0 +1,97 @@
+{
+  "id": "nsw-lottery-exclusivity",
+  "kind": "setting",
+  "family": null,
+  "title": "Exclusive public lottery licence (New South Wales)",
+  "jurisdiction": "NSW",
+  "summary": "The Public Lotteries Act 1996 (NSW) lets the Minister grant an exclusive operator licence, during which no other operator licence may be granted.",
+  "instruments": [
+    {
+      "title": "Public Lotteries Act 1996 (NSW)",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/current/act-1996-086",
+      "register_id": "act-1996-086",
+      "role": "principal",
+      "provisions": "s 18"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "An exclusive licence keeps all other operators out.",
+  "direction_sources": [
+    "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-1996-086"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "9202",
+      "name": "Lottery Operation",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no dates. Quoted from the Open Australian Legal Corpus copy of January 2023 (not itself official); a later change would not show."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 17 November 2026 (phase 6 of the levers re-evaluation, batch 1) from the law quoted. Not yet checked: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "An operator licence for public lotteries may be granted as an exclusive licence, and no other operator licence may then be granted during its exclusivity period (keno aside). A statutory exclusive right to run lotteries.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "No other lottery operator may be licensed during the exclusivity period."
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "The exclusive operator faces no rival in its market."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The Act allows exclusivity; whether the current licence is exclusive, and to when, is not quoted here.",
+    "evidence": [
+      "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-1996-086"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "responsible": [
+    {
+      "body": "nsw-dciths",
+      "role": "administers",
+      "source": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-1996-086",
+      "note": "Liquor & Gaming NSW sits in this department; not checked against the NSW administrative arrangements."
+    },
+    {
+      "body": "nsw-liquor-gaming",
+      "role": "regulates",
+      "source": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-1996-086",
+      "note": "Not checked against the NSW administrative arrangements."
+    }
+  ],
+  "history": []
+}
