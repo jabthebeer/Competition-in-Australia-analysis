@@ -1,0 +1,102 @@
+{
+  "id": "cth-media-ownership-limits",
+  "kind": "setting",
+  "family": null,
+  "title": "Limits on control of commercial television and radio licences",
+  "jurisdiction": "CTH",
+  "summary": "A person may control no more than one commercial television licence, and no more than two commercial radio licences, in the same licence area.",
+  "instruments": [
+    {
+      "title": "Broadcasting Services Act 1992",
+      "register_url": "https://www.legislation.gov.au/C2004A04401/latest/text",
+      "register_id": "C2004A04401",
+      "role": "principal",
+      "provisions": "ss 53, 54"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Ownership limits within a licence area cap how many licences one owner may hold.",
+  "direction_sources": [
+    "https://www.legislation.gov.au/C2004A04401/latest/text"
+  ],
+  "channels": [
+    "number-or-type",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "5610",
+      "name": "Radio Broadcasting",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "5621",
+      "name": "Free-to-Air Television Broadcasting",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no dates."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 17 November 2026 (phase 6 of the levers re-evaluation, batch 1) from the law quoted. Not yet checked: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "No one may control more than one commercial television licence, or more than two commercial radio licences, in the same licence area. The limits aim at diversity of voices; they also block mergers that might lower costs, and the number of licences in each area is itself limited.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Stops one owner taking every commercial licence in an area."
+      },
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Blocks consolidation within a licence area, which could lower costs for regional broadcasters."
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Whether the limits raise or lower productivity is contested; the marks offset.",
+    "evidence": [
+      "https://www.legislation.gov.au/C2004A04401/latest/text"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "responsible": [
+    {
+      "body": "cth-ditrdcsa",
+      "role": "administers",
+      "source": "https://www.legislation.gov.au/C2004A04401/latest/text",
+      "note": "Not checked against the administrative arrangements order."
+    },
+    {
+      "body": "cth-acma",
+      "role": "regulates",
+      "source": "https://www.legislation.gov.au/C2004A04401/latest/text",
+      "note": "The ACMA applies the control rules."
+    }
+  ],
+  "history": []
+}

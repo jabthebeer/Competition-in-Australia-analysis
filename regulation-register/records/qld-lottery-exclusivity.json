@@ -1,0 +1,91 @@
+{
+  "id": "qld-lottery-exclusivity",
+  "kind": "setting",
+  "family": null,
+  "title": "Exclusive lottery licence (Queensland)",
+  "jurisdiction": "QLD",
+  "summary": "The Lotteries Act 1997 (Qld) lets the lottery licence issued to the corporation be exclusive for a specified term.",
+  "instruments": [
+    {
+      "title": "Lotteries Act 1997 (Qld)",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1997-034",
+      "register_id": "act-1997-034",
+      "role": "principal",
+      "provisions": "s 237"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "An exclusive licence keeps other lottery operators out.",
+  "direction_sources": [
+    "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1997-034"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "9202",
+      "name": "Lottery Operation",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no dates."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 17 November 2026 (phase 6 of the levers re-evaluation, batch 1) from the law quoted. Not yet checked: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "The lottery licence first issued to the corporation the Act names may be exclusive for a set term. A statutory route to an exclusive right to run lotteries.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "An exclusive lottery licence keeps other operators out for its term."
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "The licensee faces no lottery rival in Queensland."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The Act allows exclusivity; the current licence's term is not quoted here.",
+    "evidence": [
+      "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1997-034"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "responsible": [
+    {
+      "body": "qld-justice",
+      "role": "administers",
+      "source": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1997-034",
+      "note": "Not checked against the administrative arrangements order."
+    }
+  ],
+  "history": []
+}

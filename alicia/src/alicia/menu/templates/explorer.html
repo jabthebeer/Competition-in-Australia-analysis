@@ -1525,7 +1525,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
   const expoYear = DATA.exposureYear ? `June ${DATA.exposureYear}` : "";
   function exposureShort(r) {
     const e = r.exposure;
-    return e && e.businesses !== null ? `${nf(e.businesses)} businesses` : "";
+    return e && e.businesses !== null ? `${e.partial ? "up to " : ""}${nf(e.businesses)} businesses` : "";
   }
   function exposureRows(r) {
     const e = r.exposure;
@@ -1533,12 +1533,12 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     const where = r.jurisdiction === "CTH" ? "Australia" : (DATA.places[r.jurisdiction] || r.jurisdiction);
     return `<dl class="expo">
       <dt>Businesses in the industries it reaches</dt><dd>${e.partial ? "up to " : ""}${nf(e.businesses)} (${esc(expoYear)})</dd>
-      <dt>Of which, with employees</dt><dd>${nf(e.employing)}</dd>
+      ${e.basis && e.basis !== "all" ? `<dt>Counted</dt><dd>Only ${esc((DATA.exposureBases || {})[e.basis] || e.basis)}</dd>` : `<dt>Of which, with employees</dt><dd>${nf(e.employing)}</dd>`}
       <dt>Share of businesses in ${esc(where)}</dt><dd>${pct(e.share)}</dd>
       ${r.jurisdiction === "CTH" ? "" : `<dt>Share of businesses in Australia</dt><dd>${pct(e.shareAus)}</dd>`}
       <dt>Detailed industries reached</dt><dd>${e.allIndustries ? "All" : `${e.classes} of ${IND.length || 506}`}</dd>
     </dl>
-    <p class="small muted">${e.council ? "Counted for the whole state: business counts by council are not held. " : e.partial ? "This rule binds only the businesses doing the activity it names, so the count is an upper bound and the rule is not classed as wide. " : e.beyond ? "It also binds some businesses in other industries, where they do the activity it names; they are not counted. " : "An upper bound where the rule binds only some businesses in an industry. "}Source: ABS, Counts of Australian Businesses.</p>`;
+    <p class="small muted">${e.council ? "Counted for the whole state: business counts by council are not held. " : e.partial ? "This rule binds only some of the businesses counted (those above a size threshold, of one legal form, or doing the activity it names), so the count is an upper bound and the rule is not classed as wide. " : e.beyond ? "It also binds some businesses in other industries, where they do the activity it names; they are not counted. " : e.basis === "employing" ? "Only businesses with employees are counted: the rule binds every employer. " : "An upper bound where the rule binds only some businesses in an industry. "}Source: ABS, Counts of Australian Businesses.</p>`;
   }
   // How much an item matters (framework version 2, DECISIONS E-185): its class, from severity and the businesses it
   // reaches; then the evidence the site holds, and the purpose of its regime (a secondary field).

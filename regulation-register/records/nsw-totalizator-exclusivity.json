@@ -1,0 +1,97 @@
+{
+  "id": "nsw-totalizator-exclusivity",
+  "kind": "setting",
+  "family": null,
+  "title": "Exclusive off-course totalizator licence (New South Wales)",
+  "jurisdiction": "NSW",
+  "summary": "The Totalizator Act 1997 (NSW) entitles the TAB to the off-course totalizator licence and bars anyone else from one during the exclusivity period.",
+  "instruments": [
+    {
+      "title": "Totalizator Act 1997 (NSW)",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/current/act-1997-045",
+      "register_id": "act-1997-045",
+      "role": "principal",
+      "provisions": "s 14"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "An exclusive licence keeps all other totalizator operators out.",
+  "direction_sources": [
+    "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-1997-045"
+  ],
+  "channels": [
+    "barriers",
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "9209",
+      "name": "Other Gambling Activities",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no dates. Quoted from the Open Australian Legal Corpus copy of January 2023 (not itself official)."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 17 November 2026 (phase 6 of the levers re-evaluation, batch 1) from the law quoted. Not yet checked: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Only the TAB may hold the off-course totalizator licence during the exclusivity period. A statutory exclusive right to pool betting off course.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -2,
+        "reason": "No other person may be licensed to run an off-course totalizator during the exclusivity period."
+      },
+      {
+        "driver": "competition",
+        "mark": -1,
+        "reason": "Shelters the TAB's pool betting from rival totalizators, though fixed-odds bookmakers compete."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The exclusivity is explicit; its end date depends on a gazetted operative date, not quoted here.",
+    "evidence": [
+      "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-1997-045"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "responsible": [
+    {
+      "body": "nsw-dciths",
+      "role": "administers",
+      "source": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-1997-045",
+      "note": "Liquor & Gaming NSW sits in this department; not checked against the NSW administrative arrangements."
+    },
+    {
+      "body": "nsw-liquor-gaming",
+      "role": "regulates",
+      "source": "https://legislation.nsw.gov.au/view/whole/html/inforce/2023-01-13/act-1997-045",
+      "note": "Not checked against the NSW administrative arrangements."
+    }
+  ],
+  "history": []
+}

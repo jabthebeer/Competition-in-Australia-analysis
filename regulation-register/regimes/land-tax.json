@@ -1,0 +1,90 @@
+{
+  "id": "land-tax",
+  "name": "Land tax",
+  "what": "Pay land tax each year on land held above the state's tax-free threshold, under each state's land tax law.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "75",
+      "76",
+      "7711",
+      "7713",
+      "7714",
+      "7720",
+      "96"
+    ],
+    "note": "Every business that owns taxable land; a home is usually exempt."
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State treasury",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "collects",
+      "who": "State revenue office",
+      "bodies": [
+        "nsw-revenue",
+        "sa-revenuesa"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": "Each state and territory sets its own thresholds, rates and exemptions.",
+  "basis": [
+    {
+      "source": "Land Tax Act 2010 (Qld)",
+      "publisher": "Queensland Legislation",
+      "year": 2010,
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2010-015",
+      "locator": "s 8 (current)",
+      "quote": "The owner of taxable land when a liability for land tax arises is liable to pay the tax.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Land Tax Management Act 1956 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "year": 1956,
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-12-02/act-1956-026",
+      "locator": "s 9(1) (version of 2024-12-02)",
+      "quote": "(1) Land tax is payable by the owner of land on the taxable value of all the land owned by that owner which is not exempt from taxation under this Act.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

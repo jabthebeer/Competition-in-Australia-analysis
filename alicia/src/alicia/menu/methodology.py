@@ -39,9 +39,10 @@ RELIANCE = (
     ),
     (
         "Businesses each rule reaches",
-        "ABS business counts, for the industries and states each rule names",
+        "ABS business counts by size, for the industries and states each rule names",
         "Tests recount them from the ABS file",
-        "A count. An upper bound where a rule binds only some businesses in an industry",
+        "A count. Employers only where a rule binds employers; an upper bound where it binds only some businesses "
+        "(above a size threshold, of one legal form, or doing an activity)",
     ),
     (
         "Severity and impact classes",

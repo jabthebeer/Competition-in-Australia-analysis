@@ -1,0 +1,158 @@
+{
+  "id": "cth-media-control-limits",
+  "family": "media-control-limits",
+  "jurisdiction": "CTH",
+  "tier": "cth",
+  "lga": null,
+  "lga_name": null,
+  "regime": "telecommunications-and-media",
+  "title": "Control no more than one TV, or two radio, licences in an area",
+  "kind": "standard",
+  "what": "A person must not be in a position to control more than one commercial television licence, or more than two commercial radio licences, in the same licence area.",
+  "laws": [
+    {
+      "title": "Broadcasting Services Act 1992",
+      "jurisdiction": "CTH",
+      "kind": "act",
+      "register_id": "C2004A04401",
+      "register_url": "https://www.legislation.gov.au/C2004A04401/latest/text",
+      "provisions": "ss 53, 54",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Broadcasting Services Act 1992 (Cth)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/C2004A04401/latest/text",
+      "locator": "s 53 (compilation C2026C00414 from 2026-09-19)",
+      "quote": "53 Limitation on control of commercial television broadcasting licences A person must not be in a position to exercise control of more than one commercial television broadcasting licence in the same licence area.",
+      "accessed": "2026-11-17",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Broadcasting Services Act 1992 (Cth)",
+      "publisher": "Official legislation register",
+      "url": "https://www.legislation.gov.au/C2004A04401/latest/text",
+      "locator": "s 54 (compilation C2026C00414 from 2026-09-19)",
+      "quote": "54 Limitation on control of commercial radio broadcasting licences A person must not be in a position to exercise control of more than 2 commercial radio broadcasting licences in the same licence area.",
+      "accessed": "2026-11-17",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [
+    "cth-ditrdcsa"
+  ],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "sets-rules",
+      "who": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "bodies": [
+        "cth-ditrdcsa"
+      ],
+      "tier": "cth",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Administrative Arrangements Order",
+          "publisher": "Federal Register of Legislation",
+          "url": "https://www.legislation.gov.au/C2025Q00003/latest/text",
+          "locator": "Part 12 (Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts), legislation administered by the Minister (compilation C2025Q00005 from 2025-07-01)",
+          "quote": "Broadcasting Services Act 1992 Broadcasting Services (Transitional Provisions and Consequential Amendments) Act 1992",
+          "accessed": "2026-11-12",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "ongoing",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "5610",
+        "5621"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "only owners of commercial broadcasting licences",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Broadcasting Services Act 1992 (Cth)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C2004A04401/latest/text",
+          "locator": "s 53 (compilation C2026C00414 from 2026-09-19)",
+          "quote": "53 Limitation on control of commercial television broadcasting licences A person must not be in a position to exercise control of more than one commercial television broadcasting licence in the same licence area.",
+          "accessed": "2026-11-17",
+          "checked": "register-text",
+          "corpus_version_id": null
+        },
+        {
+          "title": "Broadcasting Services Act 1992 (Cth)",
+          "publisher": "Official legislation register",
+          "url": "https://www.legislation.gov.au/C2004A04401/latest/text",
+          "locator": "s 54 (compilation C2026C00414 from 2026-09-19)",
+          "quote": "54 Limitation on control of commercial radio broadcasting licences A person must not be in a position to exercise control of more than 2 commercial radio broadcasting licences in the same licence area.",
+          "accessed": "2026-11-17",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The limits are explicit.",
+  "records": [
+    "cth-media-ownership-limits"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "No one may control more than one commercial television licence, or more than two commercial radio licences, in the same licence area. The limits aim at diversity of voices; they also block mergers that might lower costs, and the number of licences in each area is itself limited.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Stops one owner taking every commercial licence in an area."
+      },
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Blocks consolidation within a licence area, which could lower costs for regional broadcasters."
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Whether the limits raise or lower productivity is contested; the marks offset.",
+    "evidence": [
+      "https://www.legislation.gov.au/C2004A04401/latest/text"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "drafted_on": "2026-11-17",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

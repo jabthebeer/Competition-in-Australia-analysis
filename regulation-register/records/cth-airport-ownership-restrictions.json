@@ -1,0 +1,90 @@
+{
+  "id": "cth-airport-ownership-restrictions",
+  "kind": "setting",
+  "family": null,
+  "title": "Ownership limits on major airports",
+  "jurisdiction": "CTH",
+  "summary": "The Airports Act 1996 limits airline ownership of airport-operator companies and cross-ownership of airports.",
+  "instruments": [
+    {
+      "title": "Airports Act 1996",
+      "register_url": "https://www.legislation.gov.au/C2004A05061/latest/text",
+      "register_id": "C2004A05061",
+      "role": "principal",
+      "provisions": "Part 2, Divisions 3 to 5"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "Ownership limits restrict who may own an airport operator.",
+  "direction_sources": [
+    "https://www.legislation.gov.au/C2004A05061/latest/text"
+  ],
+  "channels": [
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "5220",
+      "name": "Airport Operations and Other Air Transport Support Services",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no dates. The requirement inside it quotes the airline-ownership rule."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 17 November 2026 (phase 6 of the levers re-evaluation, batch 1) from the law quoted. Not yet checked: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "Airlines may own no more than a small share of a major airport's operator, and the Sydney airports may not be owned together. The limits stop airlines controlling the airports their rivals use, and stop one owner holding every Sydney airport; they also narrow who may invest.",
+    "marks": [
+      {
+        "driver": "competition",
+        "mark": 1,
+        "reason": "Keeps airlines from controlling the airports their rivals depend on."
+      },
+      {
+        "driver": "capital",
+        "mark": -1,
+        "reason": "Narrows the owners who may invest in a major airport."
+      }
+    ],
+    "main_driver": "capital",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "The limits protect competition between airlines while limiting investment; the marks offset.",
+    "evidence": [
+      "https://www.legislation.gov.au/C2004A05061/latest/text"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "responsible": [
+    {
+      "body": "cth-ditrdcsa",
+      "role": "administers",
+      "source": "https://www.legislation.gov.au/C2004A05061/latest/text",
+      "note": "Not checked against the administrative arrangements order."
+    }
+  ],
+  "history": []
+}

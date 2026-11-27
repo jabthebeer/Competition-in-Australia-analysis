@@ -1,0 +1,115 @@
+{
+  "id": "state-duties",
+  "name": "Transfer and insurance duty",
+  "what": "Pay duty on transfers of land and other dutiable property, and on general insurance premiums (collected by insurers), under each state's duties law.",
+  "scope": "cross-cutting",
+  "coverage": {
+    "anzsic": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S"
+    ],
+    "exclude": [
+      "75",
+      "76",
+      "7711",
+      "7713",
+      "7714",
+      "7720",
+      "96"
+    ],
+    "note": "Every business that buys land or dutiable property, or insures a risk."
+  },
+  "layers": [
+    {
+      "tier": "state",
+      "function": "sets-rules",
+      "who": "State treasury",
+      "bodies": [],
+      "jurisdictions": []
+    },
+    {
+      "tier": "state",
+      "function": "collects",
+      "who": "State revenue office",
+      "bodies": [
+        "nsw-revenue",
+        "sa-revenuesa"
+      ],
+      "jurisdictions": []
+    }
+  ],
+  "consistency": "varies",
+  "consistency_note": "Each state and territory has its own duties law, with its own rates, thresholds and concessions.",
+  "basis": [
+    {
+      "source": "Duties Act 2001 (Qld)",
+      "publisher": "Official legislation register",
+      "year": 2001,
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-2001-071",
+      "locator": "s 17 (current)",
+      "quote": "17 Who is liable to pay transfer duty (1) Transfer duty imposed on a statutory dutiable transaction must be paid by the statutory entity under the transaction. (2) Transfer duty imposed on another dutiable transaction must be paid by the parties to the transaction.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Duties Act 1997 (NSW)",
+      "publisher": "Official legislation register",
+      "year": 1997,
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-01-01/act-1997-123",
+      "locator": "s 235 (version of 2025-01-01)",
+      "quote": "235 Who is liable to pay the duty? The general insurer is liable to pay the duty, except as provided by section 236.",
+      "origin": "australian",
+      "checked": "full-text"
+    },
+    {
+      "source": "Duties Act 2008 (WA)",
+      "publisher": "Official legislation register",
+      "year": 2008,
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49928.docx",
+      "locator": "s 20 (current version)",
+      "quote": "20. Who is liable to pay duty The person liable to pay duty chargeable on a dutiable transaction described in Schedule 1 column 2 is the person described opposite that transaction in Schedule 1 column 4, unless another person is required under this Chapter to pay the duty.",
+      "origin": "australian",
+      "checked": "full-text"
+    }
+  ],
+  "records": [
+    "nsw-insurance-duty",
+    "nsw-residential-transfer-duty",
+    "nt-insurance-duty",
+    "nt-residential-transfer-duty",
+    "qld-insurance-duty",
+    "qld-residential-transfer-duty",
+    "sa-insurance-duty",
+    "sa-residential-transfer-duty",
+    "tas-insurance-duty",
+    "tas-residential-transfer-duty",
+    "vic-insurance-duty",
+    "vic-residential-transfer-duty",
+    "wa-insurance-duty",
+    "wa-residential-transfer-duty"
+  ],
+  "issues": [],
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

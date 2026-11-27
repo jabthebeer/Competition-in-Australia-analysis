@@ -1,0 +1,90 @@
+{
+  "id": "qld-gaming-machine-numbers-cap",
+  "kind": "setting",
+  "family": null,
+  "title": "Cap on gaming machines in each venue (Queensland)",
+  "jurisdiction": "QLD",
+  "summary": "The Gaming Machine Act 1991 (Qld) limits the gaming machines a licence may fix for a venue to the maximum prescribed for its category of premises.",
+  "instruments": [
+    {
+      "title": "Gaming Machine Act 1991 (Qld)",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1991-007",
+      "register_id": "act-1991-007",
+      "role": "principal",
+      "provisions": "s 55"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "A cap on the number of machines each venue may run.",
+  "direction_sources": [
+    "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1991-007"
+  ],
+  "channels": [
+    "number-or-type"
+  ],
+  "industries": [
+    {
+      "anzsic": "4520",
+      "name": "Pubs, Taverns and Bars",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "4530",
+      "name": "Clubs (Hospitality)",
+      "exposure": "direct"
+    }
+  ],
+  "comparison": null,
+  "confounders": [],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": false,
+    "notes": "An existing setting: no dates. The section number is read from the current Act's text."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 17 November 2026 (phase 6 of the levers re-evaluation, batch 1) from the law quoted. Not yet checked: verify the description, industries and assessment before use."
+  },
+  "assessment": {
+    "summary": "A gaming machine licence fixes how many machines a venue may run, never more than the maximum prescribed for its category of premises. A cap on numbers for each hotel and club, set for harm minimisation.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "Caps how many gaming machines each venue may run."
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "narrow",
+    "confidence": "medium",
+    "confidence_note": "The cap is explicit; the prescribed maximums are in the regulation, not quoted here.",
+    "evidence": [
+      "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1991-007"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-17"
+  },
+  "responsible": [
+    {
+      "body": "qld-justice",
+      "role": "administers",
+      "source": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1991-007",
+      "note": "Not checked against the administrative arrangements order."
+    }
+  ],
+  "history": []
+}
