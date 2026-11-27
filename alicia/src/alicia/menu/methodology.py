@@ -65,6 +65,14 @@ RELIANCE = (
         "What the law says. Which industries it reaches is a draft judgement",
     ),
     (
+        "The regulatory map: how a law's parts link, and each state's variations",
+        "Read from the code's own published data and its publisher's adoption pages (the National Construction Code "
+        "first)",
+        "Tests check the counts against the map file; the reading of the data is a draft",
+        "The structure the code describes. A count of provisions varied says how much a state changes, not what it "
+        "costs",
+    ),
+    (
         "Company returns by barrier group",
         "ATO company tax statistics; the grouping of industries follows Grattan Institute (2017)",
         "Tests recompute the figures",
