@@ -11,7 +11,7 @@
 
 *27 November 2026. From the NCC thread (`claude/project-thread-pg3toc`).*
 
-- **Decision numbers:** the National Construction Code work uses **E-500 onwards**.
+- **Decision numbers:** the National Construction Code work uses **E-500 onwards** (E-600 onwards is the regulatory map page's; E-700 onwards the compliance cost work's).
 - **Regulatory map:** `data/processed/ncc/regulatory_map.json` holds nodes and typed parent-to-child links for a beta regulatory map page (an Obsidian-style graph), with the NCC as the first example. The data shape and the beta view are in [`plan_ncc_ingestion.md`](plan_ncc_ingestion.md), section 7. The page, its template and any schema field (for example a parent instrument on register items) are for the website side; this branch has not touched `menu/` or the schema.
 
 ## Request to the website session: a field naming the rule a change changes (DECISIONS E-170)

@@ -68,18 +68,42 @@ DATASET_2025 = "https://data.gov.au/data/dataset/national-construction-code-2025
 _B = "https://data.gov.au/data/dataset/9655eee9-da6a-4727-8514-83bab03ec318/resource/"
 VOLUMES_2025 = {
     # key: (file, url)
-    "vol1": ("ncc-2025-volume-one-v1.2.zip", _B + "2ae4c72d-99b3-4956-97d3-a7eabffe8da8/download/ncc-2025-volume-one-v1.2.zip"),
-    "vol2": ("ncc-2025-volume-two-v1.2.zip", _B + "14f03bed-e205-4dc4-bb37-32c83b314824/download/ncc-2025-volume-two-v1.2.zip"),
-    "vol3": ("ncc-2025-volume-three-v1.2.zip", _B + "b7ccc1ea-03c3-458e-a9eb-ce545a268bed/download/ncc-2025-volume-three-v1.2.zip"),
-    "housing": ("ncc-2025-housing-provisions-v1.2.zip", _B + "7adb04c2-8435-4b46-8a34-110213aa1b1e/download/ncc-2025-housing-provisions-v1.2.zip"),
-    "livable": ("ncc-2025-livable-housing-design-v1.2.zip", _B + "94649762-d98a-4ee8-96ce-958051d193af/download/ncc-2025-livable-housing-design-v1.2.zip"),
+    "vol1": (
+        "ncc-2025-volume-one-v1.2.zip",
+        _B + "2ae4c72d-99b3-4956-97d3-a7eabffe8da8/download/ncc-2025-volume-one-v1.2.zip",
+    ),
+    "vol2": (
+        "ncc-2025-volume-two-v1.2.zip",
+        _B + "14f03bed-e205-4dc4-bb37-32c83b314824/download/ncc-2025-volume-two-v1.2.zip",
+    ),
+    "vol3": (
+        "ncc-2025-volume-three-v1.2.zip",
+        _B + "b7ccc1ea-03c3-458e-a9eb-ce545a268bed/download/ncc-2025-volume-three-v1.2.zip",
+    ),
+    "housing": (
+        "ncc-2025-housing-provisions-v1.2.zip",
+        _B + "7adb04c2-8435-4b46-8a34-110213aa1b1e/download/ncc-2025-housing-provisions-v1.2.zip",
+    ),
+    "livable": (
+        "ncc-2025-livable-housing-design-v1.2.zip",
+        _B + "94649762-d98a-4ee8-96ce-958051d193af/download/ncc-2025-livable-housing-design-v1.2.zip",
+    ),
 }
 PAGES = {
-    "adoption_2022": ("abcb_ncc2022_adoption_dates.html", "https://www.abcb.gov.au/ncc-2022-state-and-territory-adoption-dates"),
-    "adoption_2025": ("abcb_ncc2025_adoption_information.html", "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-state-and-territory-adoption-information"),
+    "adoption_2022": (
+        "abcb_ncc2022_adoption_dates.html",
+        "https://www.abcb.gov.au/ncc-2022-state-and-territory-adoption-dates",
+    ),
+    "adoption_2025": (
+        "abcb_ncc2025_adoption_information.html",
+        "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-state-and-territory-adoption-information",
+    ),
 }
 LICENCE = "CC BY 4.0"
-ATTRIBUTION = "The National Construction Code 2025 was provided by the Australian Building Codes Board under the CC BY 4.0 licence."
+ATTRIBUTION = (
+    "The National Construction Code 2025 was provided by the Australian Building Codes Board "
+    "under the CC BY 4.0 licence."
+)
 
 # Existing register items about NCC adoption (regulation-register/records/).
 NCC2022_RECORDS = {
@@ -121,10 +145,22 @@ def parse_date(s: str) -> str:
     day, mon, year = m.groups()
     for fmt in ("%d %b %Y", "%d %B %Y"):
         try:
-            return dt.datetime.strptime(f"{int(day)} {mon[:3] if fmt == '%d %b %Y' else mon} {year}", fmt).date().isoformat()
+            return (
+                dt.datetime.strptime(f"{int(day)} {mon[:3] if fmt == '%d %b %Y' else mon} {year}", fmt)
+                .date()
+                .isoformat()
+            )
         except ValueError:
             continue
     return ""
+
+
+def long_date(iso: str) -> str:
+    """'2027-05-01' -> '1 May 2027', the form the ABCB pages use."""
+    if not iso:
+        return ""
+    d = dt.date.fromisoformat(iso)
+    return f"{d.day} {d.strftime('%B')} {d.year}"
 
 
 def write_csv(path: Path, rows: list[dict], fields: list[str]) -> None:
@@ -189,7 +225,7 @@ def adoption_history(vols: dict[str, ET.Element]) -> list[dict]:
         header, body = rows[0], rows[1:]
         for r in body:
             edition = r[0]
-            cells = dict(zip(header[1:], r[1:]))
+            cells = dict(zip(header[1:], r[1:], strict=False))
             national = parse_date(cells.get("Commonwealth", ""))
             for jur, cell in cells.items():
                 iso = parse_date(cell)
@@ -290,11 +326,16 @@ def adoption_2022() -> list[dict]:
     out = []
     for r in table[1:]:
         st = state_code(r[0])
-        for area, cell in zip(header[1:], r[1:]):
+        for area, cell in zip(header[1:], r[1:], strict=False):
             if area.lower().startswith("further"):
                 continue
             # Some cells end with a link to the government's page; keep only the adoption wording.
-            cell = re.sub(r"\s*(?:Northern Territory|Western Australian|South Australian|Tasmanian|Victorian|NSW|ACT) Government$", "", cell)
+            cell = re.sub(
+                r"\s*(?:Northern Territory|Western Australian|South Australian|Tasmanian|Victorian|NSW|ACT)"
+                r" Government$",
+                "",
+                cell,
+            )
             out.append(
                 {
                     "jurisdiction": st,
@@ -381,7 +422,7 @@ def variations(vols: dict[str, ET.Element]) -> list[dict]:
         sections, parts = area_index(root)
         parent = {c: p for p in root.iter() for c in p}
 
-        def ancestor(el, tag):
+        def ancestor(el, tag, parent=parent):
             while el in parent:
                 el = parent[el]
                 if el.tag == tag:
@@ -480,7 +521,11 @@ def law_names(s: str, state: str = "") -> list[str]:
     for m in LAW_RE.findall(s):
         n = re.sub(r"\s\([A-Z&]+\)", "", m)  # drop '(EP&A)' style abbreviations
         n = re.sub(r"^(?:In|The|Section \d+ of the|Section \d+ of)\s+", "", n)
-        n = re.sub(r"^.*?\b(?:of|by) the\s+", "", n) if " of the " in n and not n.startswith(("Environmental", "Building")) else n
+        n = (
+            re.sub(r"^.*?\b(?:of|by) the\s+", "", n)
+            if " of the " in n and not n.startswith(("Environmental", "Building"))
+            else n
+        )
         if n not in names:
             names.append(n)
     return names
@@ -555,7 +600,7 @@ def referenced_documents(vols: dict[str, ET.Element]) -> list[dict]:
     header, body = rows[0], rows[1:]
     out = []
     for r in body:
-        d = dict(zip(header, r))
+        d = dict(zip(header, r, strict=False))
         if not d.get("No."):
             continue
         out.append(
@@ -587,12 +632,24 @@ def build_map(vols, history, ad22, ad25, var_counts, intros, others, refdocs, ca
         links.append({"source": source, "target": target, "relation": relation, **kw})
 
     abcb = {"publisher": "Australian Building Codes Board", "url": DATASET_2025, "licence": LICENCE}
-    node("ncc", type="code", label="National Construction Code", jurisdiction="national", body="nat-abcb",
-         url="https://ncc.abcb.gov.au/", source=abcb)
+    node(
+        "ncc",
+        type="code",
+        label="National Construction Code",
+        jurisdiction="national",
+        body="nat-abcb",
+        url="https://ncc.abcb.gov.au/",
+        source=abcb,
+    )
 
     # Editions
-    node("ncc-2022", type="edition", label="NCC 2022", jurisdiction="national",
-         source={"publisher": "Australian Building Codes Board", "url": PAGES["adoption_2022"][1]})
+    node(
+        "ncc-2022",
+        type="edition",
+        label="NCC 2022",
+        jurisdiction="national",
+        source={"publisher": "Australian Building Codes Board", "url": PAGES["adoption_2022"][1]},
+    )
     node("ncc-2025", type="edition", label="NCC 2025", jurisdiction="national", source=abcb)
     link("ncc", "ncc-2022", "edition")
     link("ncc", "ncc-2025", "edition")
@@ -601,15 +658,27 @@ def build_map(vols, history, ad22, ad25, var_counts, intros, others, refdocs, ca
     vol_ids = {}
     for key, root in vols.items():
         label = root.attrib.get("short-title") or title_of(root) or key
-        vid = node(f"ncc-2025-{key}", type="volume", label=f"NCC 2025 {label}", jurisdiction="national",
-                   industry=root.attrib.get("industry", ""), source=abcb)
+        vid = node(
+            f"ncc-2025-{key}",
+            type="volume",
+            label=f"NCC 2025 {label}",
+            jurisdiction="national",
+            industry=root.attrib.get("industry", ""),
+            source=abcb,
+        )
         vol_ids[label] = vid
         link("ncc-2025", vid, "contains")
     for r in var_counts:
         vid = vol_ids[r["volume"]]
-        aid = node(f"{vid}-{slug(r['area'])}", type="area", label=r["area_title"] or r["area"],
-                   code=r["area"], jurisdiction="national", source=abcb)
-        if not any(l["source"] == vid and l["target"] == aid for l in links):
+        aid = node(
+            f"{vid}-{slug(r['area'])}",
+            type="area",
+            label=r["area_title"] or r["area"],
+            code=r["area"],
+            jurisdiction="national",
+            source=abcb,
+        )
+        if not any(x["source"] == vid and x["target"] == aid for x in links):
             link(vid, aid, "contains")
 
     # State adoption of NCC 2025
@@ -625,10 +694,18 @@ def build_map(vols, history, ad22, ad25, var_counts, intros, others, refdocs, ca
 
     for st in STATES:
         rows = ad25_by.get(st, [])
-        status = "; ".join(f"{r['code']}: {r['cell'] if r['code'] == 'NCC' else (r['date'] or r['status'])}" for r in rows)
-        aid = node(f"ncc-2025-{st.lower()}", type="adoption", label=f"NCC 2025 in {STATE_NAMES[st]}", jurisdiction=st,
-                   adoption=status, transition=(rows[0]["transition"] if rows else ""),
-                   source={"publisher": "Australian Building Codes Board", "url": PAGES["adoption_2025"][1]})
+        status = "; ".join(
+            f"{r['code']}: {r['cell'] if r['code'] == 'NCC' else (long_date(r['date']) or r['status'])}" for r in rows
+        )
+        aid = node(
+            f"ncc-2025-{st.lower()}",
+            type="adoption",
+            label=f"NCC 2025 in {STATE_NAMES[st]}",
+            jurisdiction=st,
+            adoption=status,
+            transition=(rows[0]["transition"] if rows else ""),
+            source={"publisher": "Australian Building Codes Board", "url": PAGES["adoption_2025"][1]},
+        )
         link("ncc-2025", aid, "adopted-as", jurisdiction=st)
         # Laws that give the code legal effect, named in the state's own schedule
         seen = set()
@@ -639,23 +716,45 @@ def build_map(vols, history, ad22, ad25, var_counts, intros, others, refdocs, ca
                 seen.add(name)
                 c, matched = find_law(cat, st, name)
                 label = c["name"] if c and name in NO_YEAR.get(st, []) else name
-                lid = node(f"law-{st.lower()}-{slug(label)}", type="law", label=label, jurisdiction=st,
-                           register_id=(c or {}).get("register_id", ""), url=(c or {}).get("url", ""), matched=matched)
+                lid = node(
+                    f"law-{st.lower()}-{slug(label)}",
+                    type="law",
+                    label=label,
+                    jurisdiction=st,
+                    register_id=(c or {}).get("register_id", ""),
+                    url=(c or {}).get("url", ""),
+                    matched=matched,
+                )
                 quote = next((s for s in re.split(r"(?<=[.;])\s+", intro["text"]) if name in s), "")
                 relation = "consolidated-into" if "consolidated into" in quote else "gives-effect-to"
-                link(lid, aid, relation, jurisdiction=st,
-                     basis={"source": DATASET_2025, "locator": f"{intro['volume']}, {STATE_NAMES[st]} schedule, '{intro['page']}'",
-                            "quote": quote[:400]})
+                link(
+                    lid,
+                    aid,
+                    relation,
+                    jurisdiction=st,
+                    basis={
+                        "source": DATASET_2025,
+                        "locator": f"{intro['volume']}, {STATE_NAMES[st]} schedule, '{intro['page']}'",
+                        "quote": quote[:400],
+                    },
+                )
         # Variations by technical area
         for r in var_counts:
             if r["jurisdiction"] != st:
                 continue
             vid = vol_ids[r["volume"]]
             area_id = f"{vid}-{slug(r['area'])}"
-            sid = node(f"{area_id}-{st.lower()}", type="variation-set",
-                       label=f"{st} variations: {r['area_title'] or r['area']} ({r['volume']})", jurisdiction=st,
-                       provisions_varied=r["provisions_varied"], inserted=r["inserted"], replaced=r["replaced"],
-                       deleted=r["deleted"], source=abcb)
+            sid = node(
+                f"{area_id}-{st.lower()}",
+                type="variation-set",
+                label=f"{st} variations: {r['area_title'] or r['area']} ({r['volume']})",
+                jurisdiction=st,
+                provisions_varied=r["provisions_varied"],
+                inserted=r["inserted"],
+                replaced=r["replaced"],
+                deleted=r["deleted"],
+                source=abcb,
+            )
             link(aid, sid, "varies", jurisdiction=st, weight=r["provisions_varied"])
             link(sid, area_id, "varies-area", jurisdiction=st, weight=r["provisions_varied"])
         # Other legislation affecting buildings, as listed by the state
@@ -663,11 +762,31 @@ def build_map(vols, history, ad22, ad25, var_counts, intros, others, refdocs, ca
             if o["jurisdiction"] != st:
                 continue
             c, matched = find_law(cat, st, o["legislation"])
-            lid = node(f"law-{st.lower()}-{slug(o['legislation'])}", type="other-law", label=o["legislation"],
-                       jurisdiction=st, agency=o["agency"], topic=o["topic"],
-                       register_id=(c or {}).get("register_id", ""), url=o["url"] or (c or {}).get("url", ""), matched=matched)
-            link(aid, lid, "read-with", jurisdiction=st, topic=o["topic"],
-                 basis={"source": DATASET_2025, "locator": f"{o['volume']}, {STATE_NAMES[st]} schedule, 'Other legislation affecting buildings', {o['topic']}"})
+            lid = node(
+                f"law-{st.lower()}-{slug(o['legislation'])}",
+                type="other-law",
+                label=o["legislation"],
+                jurisdiction=st,
+                agency=o["agency"],
+                topic=o["topic"],
+                register_id=(c or {}).get("register_id", ""),
+                url=o["url"] or (c or {}).get("url", ""),
+                matched=matched,
+            )
+            link(
+                aid,
+                lid,
+                "read-with",
+                jurisdiction=st,
+                topic=o["topic"],
+                basis={
+                    "source": DATASET_2025,
+                    "locator": (
+                        f"{o['volume']}, {STATE_NAMES[st]} schedule, "
+                        f"'Other legislation affecting buildings', {o['topic']}"
+                    ),
+                },
+            )
 
     # State adoption of NCC 2022, joined to the register's records
     by22 = collections.defaultdict(list)
@@ -675,11 +794,19 @@ def build_map(vols, history, ad22, ad25, var_counts, intros, others, refdocs, ca
         by22[r["jurisdiction"]].append(r)
     for st in STATES:
         rows = by22.get(st, [])
-        aid = node(f"ncc-2022-{st.lower()}", type="adoption", label=f"NCC 2022 in {STATE_NAMES[st]}", jurisdiction=st,
-                   adoption="; ".join(f"{r['provision_area']}: {r['cell']}" for r in rows),
-                   register_records=[NCC2022_RECORDS[st]],
-                   source={"publisher": "Australian Building Codes Board", "url": PAGES["adoption_2022"][1],
-                           "as_at": rows[0]["as_at"] if rows else ""})
+        aid = node(
+            f"ncc-2022-{st.lower()}",
+            type="adoption",
+            label=f"NCC 2022 in {STATE_NAMES[st]}",
+            jurisdiction=st,
+            adoption="; ".join(f"{r['provision_area']}: {r['cell']}" for r in rows),
+            register_records=[NCC2022_RECORDS[st]],
+            source={
+                "publisher": "Australian Building Codes Board",
+                "url": PAGES["adoption_2022"][1],
+                "as_at": rows[0]["as_at"] if rows else "",
+            },
+        )
         link("ncc-2022", aid, "adopted-as", jurisdiction=st)
 
     # Referenced documents (standards) by technical area
@@ -688,10 +815,21 @@ def build_map(vols, history, ad22, ad25, var_counts, intros, others, refdocs, ca
         sections, parts = area_index(root)
         label = root.attrib.get("short-title") or key
         area_of_clause[label] = (key, sections, parts)
-    col_volume = {"volume_one": "Volume One", "volume_two": "Volume Two", "housing_provisions": "Housing Provisions", "volume_three": "Volume Three"}
+    col_volume = {
+        "volume_one": "Volume One",
+        "volume_two": "Volume Two",
+        "housing_provisions": "Housing Provisions",
+        "volume_three": "Volume Three",
+    }
     for d in refdocs:
-        did = node(f"std-{slug(d['document'])}-{slug(d['date'])}", type="standard", label=f"{d['document']} ({d['date']})",
-                   title=d["title"], jurisdiction="national", source=abcb)
+        did = node(
+            f"std-{slug(d['document'])}-{slug(d['date'])}",
+            type="standard",
+            label=f"{d['document']} ({d['date']})",
+            title=d["title"],
+            jurisdiction="national",
+            source=abcb,
+        )
         for col, vlabel in col_volume.items():
             refs = [x.strip() for x in d[col].split(",") if x.strip() and x.strip() != "N/A"]
             if vlabel not in vol_ids or not refs:
@@ -703,20 +841,30 @@ def build_map(vols, history, ad22, ad25, var_counts, intros, others, refdocs, ca
                 if area:
                     counts[area] += 1
             for (code, ttl), n in counts.items():
-                area_id = node(f"{vol_ids[vlabel]}-{slug(code)}", type="area", label=ttl or code, code=code,
-                               jurisdiction="national", source=abcb)
-                if not any(l["source"] == vol_ids[vlabel] and l["target"] == area_id for l in links):
+                area_id = node(
+                    f"{vol_ids[vlabel]}-{slug(code)}",
+                    type="area",
+                    label=ttl or code,
+                    code=code,
+                    jurisdiction="national",
+                    source=abcb,
+                )
+                if not any(x["source"] == vol_ids[vlabel] and x["target"] == area_id for x in links):
                     link(vol_ids[vlabel], area_id, "contains")
                 link(area_id, did, "references", weight=n)
 
     return {
-        "note": ("Regulatory map data for the National Construction Code (beta). Nodes are laws, the code, its editions, "
-                 "volumes, technical areas, state adoptions, state variation sets, other legislation and referenced standards; "
-                 "links run from parent to child and are typed. Built by alicia/scripts/ncc_data.py from the NCC 2025 dataset "
-                 "(data.gov.au) and ABCB adoption pages. Spec: docs/plan_ncc_ingestion.md, section 7. " + ATTRIBUTION),
+        "note": (
+            "Regulatory map data for the National Construction Code (beta). Nodes are laws, the code, its editions, "
+            "volumes, technical areas, state adoptions, state variation sets, other legislation and "
+            "referenced standards; "
+            "links run from parent to child and are typed. Built by alicia/scripts/ncc_data.py from "
+            "the NCC 2025 dataset "
+            "(data.gov.au) and ABCB adoption pages. Spec: docs/plan_ncc_ingestion.md, section 7. " + ATTRIBUTION
+        ),
         "built_on": dt.date.today().isoformat(),
         "node_types": sorted({n["type"] for n in nodes.values()}),
-        "relations": sorted({l["relation"] for l in links}),
+        "relations": sorted({x["relation"] for x in links}),
         "nodes": list(nodes.values()),
         "links": links,
     }
@@ -762,28 +910,70 @@ def build() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
     hist = adoption_history(vols)
-    write_csv(OUT / "adoption_history.csv", hist,
-              ["volume", "edition", "jurisdiction", "cell", "date", "status", "lag_days_vs_commonwealth", "source"])
+    write_csv(
+        OUT / "adoption_history.csv",
+        hist,
+        ["volume", "edition", "jurisdiction", "cell", "date", "status", "lag_days_vs_commonwealth", "source"],
+    )
     ad22 = adoption_2022()
-    write_csv(OUT / "adoption_2022.csv", ad22,
-              ["jurisdiction", "provision_area", "cell", "date", "status", "as_at", "register_record", "source"])
+    write_csv(
+        OUT / "adoption_2022.csv",
+        ad22,
+        ["jurisdiction", "provision_area", "cell", "date", "status", "as_at", "register_record", "source"],
+    )
     ad25 = adoption_2025()
-    write_csv(OUT / "adoption_2025.csv", ad25, ["jurisdiction", "code", "cell", "date", "status", "transition", "source"])
+    write_csv(
+        OUT / "adoption_2025.csv", ad25, ["jurisdiction", "code", "cell", "date", "status", "transition", "source"]
+    )
 
     var = variations(vols)
-    write_csv(OUT / "variations.csv", var,
-              ["edition", "volume", "jurisdiction", "element", "type", "provision", "area", "area_title", "title", "where", "xml_id"])
+    write_csv(
+        OUT / "variations.csv",
+        var,
+        [
+            "edition",
+            "volume",
+            "jurisdiction",
+            "element",
+            "type",
+            "provision",
+            "area",
+            "area_title",
+            "title",
+            "where",
+            "xml_id",
+        ],
+    )
     counts = variation_counts(var)
-    write_csv(OUT / "variation_counts.csv", counts,
-              ["edition", "volume", "jurisdiction", "area", "area_title", "provisions_varied", "variations",
-               "inserted", "replaced", "deleted", "other"])
+    write_csv(
+        OUT / "variation_counts.csv",
+        counts,
+        [
+            "edition",
+            "volume",
+            "jurisdiction",
+            "area",
+            "area_title",
+            "provisions_varied",
+            "variations",
+            "inserted",
+            "replaced",
+            "deleted",
+            "other",
+        ],
+    )
 
     intros, others = state_schedules(vols)
     others = merge_volumes(others, ["jurisdiction", "topic", "legislation"])
-    write_csv(OUT / "other_legislation.csv", others, ["jurisdiction", "topic", "agency", "legislation", "url", "volume"])
+    write_csv(
+        OUT / "other_legislation.csv", others, ["jurisdiction", "topic", "agency", "legislation", "url", "volume"]
+    )
     refdocs = referenced_documents(vols)
-    write_csv(OUT / "referenced_documents.csv", refdocs,
-              ["document", "date", "title", "volume_one", "volume_two", "housing_provisions", "volume_three"])
+    write_csv(
+        OUT / "referenced_documents.csv",
+        refdocs,
+        ["document", "date", "title", "volume_one", "volume_two", "housing_provisions", "volume_three"],
+    )
 
     m = build_map(vols, hist, ad22, ad25, counts, intros, others, refdocs, load_catalogue())
     (OUT / "regulatory_map.json").write_text(json.dumps(m, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -792,14 +982,26 @@ def build() -> None:
     sources = []
     for name, url in list(VOLUMES_2025.values()) + list(PAGES.values()):
         p = RAW / name
-        sources.append({"file": name, "url": url, "retrieved_at": retrieved.get(name, {}).get("retrieved_at", ""),
-                        "bytes": p.stat().st_size, "sha256": sha256(p),
-                        "licence": LICENCE, "publisher": "Australian Building Codes Board"})
-    (OUT / "sources.json").write_text(json.dumps({"attribution": ATTRIBUTION, "dataset": DATASET_2025, "files": sources}, indent=1) + "\n")
+        sources.append(
+            {
+                "file": name,
+                "url": url,
+                "retrieved_at": retrieved.get(name, {}).get("retrieved_at", ""),
+                "bytes": p.stat().st_size,
+                "sha256": sha256(p),
+                "licence": LICENCE,
+                "publisher": "Australian Building Codes Board",
+            }
+        )
+    (OUT / "sources.json").write_text(
+        json.dumps({"attribution": ATTRIBUTION, "dataset": DATASET_2025, "files": sources}, indent=1) + "\n"
+    )
 
-    print(f"adoption_history {len(hist)}, adoption_2022 {len(ad22)}, adoption_2025 {len(ad25)}, variations {len(var)}, "
-          f"variation_counts {len(counts)}, other_legislation {len(others)}, referenced_documents {len(refdocs)}, "
-          f"map {len(m['nodes'])} nodes / {len(m['links'])} links")
+    print(
+        f"adoption_history {len(hist)}, adoption_2022 {len(ad22)}, adoption_2025 {len(ad25)}, variations {len(var)}, "
+        f"variation_counts {len(counts)}, other_legislation {len(others)}, referenced_documents {len(refdocs)}, "
+        f"map {len(m['nodes'])} nodes / {len(m['links'])} links"
+    )
 
 
 if __name__ == "__main__":

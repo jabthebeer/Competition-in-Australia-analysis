@@ -71,7 +71,7 @@ The N3 requirements are the rows the cost figure would attach to.
 | 1 | Network access | Owner opened all networks (27 November 2026) |
 | 2 | Scope | Middle ground (owner); the 3 layers in section 3 (this revision) |
 | 3 | NCC 2019 and earlier | Adoption dates only (in `adoption_history.csv`), no register records |
-| 4 | Decision numbers | This work uses E-500 onwards (noted in `notes_for_other_branches.md`) |
+| 4 | Decision numbers | This work uses E-500 onwards (noted in `notes_for_other_branches.md`); E-600 onwards is the regulatory map page's and E-700 onwards the compliance cost work's |
 | 5 | Regulatory map | Owner asked for it, with the NCC as the first example; the coordinator will start a website-side thread for the page once this data is in place |
 
 ## 7. Regulatory map: data shape and beta view
@@ -91,7 +91,7 @@ The N3 requirements are the rows the cost figure would attach to.
 }
 ```
 
-**Nodes.** Every node has a stable `id`, a `type`, a `label` and a `jurisdiction` (`national` or a state code). Optional fields: `url`, `register_id` (the state register's id, joined from `data/processed/legislation/<state>_catalogue.csv`), `matched` (how the join was made), `register_records` (ALICIA register items), `source`, and counts on variation sets.
+**Nodes.** Every node has a stable `id`, a `type`, a `label` and a `jurisdiction` (`national` or a state code). Optional fields: `url`, `register_id` (the state register's id, joined from `data/processed/legislation/<state>_catalogue.csv`; ids repeat between states, so join on `jurisdiction` and `register_id` together), `matched` (how the join was made), `register_records` (ALICIA register items), `source`, and counts on variation sets.
 
 | Type | Example | Count |
 |---|---|---|
