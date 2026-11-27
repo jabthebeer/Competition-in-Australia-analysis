@@ -1,0 +1,125 @@
+{
+  "id": "lga-51260-council-busking-permit",
+  "family": "council-busking-permit",
+  "jurisdiction": "WA",
+  "tier": "local",
+  "lga": "51260",
+  "lga_name": "Busselton",
+  "regime": null,
+  "title": "Get a permit to busk or perform in public places",
+  "kind": "licence",
+  "what": "Get the council's permit before busking or performing in streets or other public places.",
+  "laws": [
+    {
+      "title": "City of Busselton Activities in Thoroughfares and Public Places and Trading Local Law 2026",
+      "jurisdiction": "WA",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://www.busselton.wa.gov.au/documents/13994/activities-in-thoroughfares-and-public-places-and-trading-local-law",
+      "provisions": "cl 5.10",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "City of Busselton Activities in Thoroughfares and Public Places and Trading Local Law 2026",
+      "publisher": "City of Busselton",
+      "url": "https://www.busselton.wa.gov.au/documents/13994/activities-in-thoroughfares-and-public-places-and-trading-local-law",
+      "locator": "cl 5.10(1), Gazette No. 41, 23 April 2026",
+      "quote": "A person shall not perform in a public place without a permit.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Busselton",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "City of Busselton Activities in Thoroughfares and Public Places and Trading Local Law 2026",
+          "publisher": "City of Busselton",
+          "url": "https://www.busselton.wa.gov.au/documents/13994/activities-in-thoroughfares-and-public-places-and-trading-local-law",
+          "locator": "cl 5.10(1), Gazette No. 41, 23 April 2026",
+          "quote": "A person shall not perform in a public place without a permit.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "performs in a public place",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "9002"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it performs in a public place",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "City of Busselton Activities in Thoroughfares and Public Places and Trading Local Law 2026",
+          "publisher": "City of Busselton",
+          "url": "https://www.busselton.wa.gov.au/documents/13994/activities-in-thoroughfares-and-public-places-and-trading-local-law",
+          "locator": "cl 5.10(1), Gazette No. 41, 23 April 2026",
+          "quote": "A person shall not perform in a public place without a permit.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Performing in public places needs the council's permit.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A permit, set areas and times to perform.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 27 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
