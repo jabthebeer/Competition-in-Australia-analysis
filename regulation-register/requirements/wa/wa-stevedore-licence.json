@@ -1,0 +1,141 @@
+{
+  "id": "wa-stevedore-licence",
+  "family": "stevedore-licence",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": null,
+  "title": "Hold a service provider's licence for stevedoring in a port",
+  "kind": "licence",
+  "what": "Provide stevedoring (and towage, line boat, bunkering or mooring) services in a WA port only under a service provider's licence from the port authority that runs the port.",
+  "laws": [
+    {
+      "title": "Port Authorities Regulations 2001 (WA)",
+      "jurisdiction": "WA",
+      "kind": "regulation",
+      "register_id": "law_s611",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49760.docx",
+      "provisions": "Sch 1 cll 5A, 5U, 24, 33, 60, 64E, 95, 106A, 110A",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Port Authorities Regulations 2001 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49760.docx",
+      "locator": "Sch 1 cl 5A (Port of Albany; the same duty is in cll 5U, 24, 33, 60, 64E, 95, 106A and 110A for the other ports) (current version (mrdoc_49760), read 25 Nov 2026)",
+      "quote": "a person must not provide a towage service, line boat service, bunkering service, stevedoring service, mooring service, transport service, bulk handling service or fish handling service in the port except — (a) under the authority of a service provider’s licence issued by the port authority;",
+      "accessed": "2026-11-25",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Port Authorities Regulations 2001 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49760.docx",
+      "locator": "Sch 1 cl 95 (Port of Fremantle) (current version (mrdoc_49760), read 25 Nov 2026)",
+      "quote": "a person must not provide in the port a service listed in subclause (2) except — (a) under the authority of a service provider’s licence issued by the port authority;",
+      "accessed": "2026-11-25",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Port authority that controls and manages the port (WA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Port Authorities Regulations 2001 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49760.docx",
+          "locator": "r 3, def port authority, words naming the body (found 25 Nov 2026) (current version (mrdoc_49760), read 25 Nov 2026)",
+          "quote": "port authority, in relation to a port, means the port authority that controls and manages the port;",
+          "accessed": "2026-11-25",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "entry",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": null,
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "5211"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it carries on stevedoring in a WA port",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Port Authorities Regulations 2001 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49760.docx",
+          "locator": "Sch 1 cl 5A (Port of Albany; the same duty is in cll 5U, 24, 33, 60, 64E, 95, 106A and 110A for the other ports) (current version (mrdoc_49760), read 25 Nov 2026)",
+          "quote": "a person must not provide a towage service, line boat service, bunkering service, stevedoring service, mooring service, transport service, bulk handling service or fish handling service in the port except — (a) under the authority of a service provider’s licence issued by the port authority;",
+          "accessed": "2026-11-25",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "medium",
+  "confidence_note": "Quoted from the register's current version, read on 25 Nov 2026. Section numbers read from the heading before each duty. Fees: up to $1,000 to apply and up to $10,000 a year, set by the port authority (cl 5B).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Provide stevedoring (and towage, line boat, bunkering or mooring) services in a WA port only under a service provider's licence from the port authority that runs the port.",
+    "marks": [
+      {
+        "driver": "entry-exit",
+        "mark": -1,
+        "reason": "A licence, registration or approval is needed before the business can do this work.",
+        "positions": []
+      },
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Conditions, records and fees add ongoing cost.",
+        "positions": []
+      }
+    ],
+    "main_driver": "entry-exit",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked from the requirement's design against the framework's guide; no evaluation was found.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-25"
+  },
+  "drafted_on": "2026-11-25",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
