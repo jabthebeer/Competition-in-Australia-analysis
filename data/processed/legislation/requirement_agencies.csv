@@ -1,4 +1,5 @@
 requirement,jurisdiction,regime,who,function,tier,function_shared,business_facing,bodies_in_requirement
+act-adoption-service-accreditation,ACT,,Director-general (ACT),approves,state,,yes,1
 act-animal-display-licence,ACT,animal-welfare,Animal Welfare Authority (ACT),licenses,state,,yes,1
 act-animal-research-accreditation,ACT,animal-welfare,Animal Welfare Authority (ACT),licenses,state,,yes,1
 act-aquaculture-authority,ACT,fisheries,Conservator of Flora and Fauna (ACT),licenses,state,,yes,1
@@ -855,8 +856,10 @@ nsw-firearms-dealer-licence,NSW,firearms-and-weapons,NSW Police Force (Commissio
 nsw-food-business-registration,NSW,food-safety,NSW Food Authority,licenses,state,yes,yes,2
 nsw-food-business-registration,NSW,food-safety,Local councils,licenses,local,yes,yes,2
 nsw-food-safety-scheme-licence,NSW,food-safety,NSW Food Authority,licenses,state,,yes,1
-nsw-food-safety-supervisor,NSW,food-safety,NSW Food Authority,inspects,state,,yes,1
+nsw-food-safety-supervisor,NSW,food-safety,NSW Food Authority,inspects,state,yes,yes,2
+nsw-food-safety-supervisor,NSW,food-safety,"Local councils (NSW), appointed as enforcement agencies",inspects,local,yes,yes,2
 nsw-forest-practices-plan,NSW,,Local Land Services (NSW),approves,state,,yes,1
+nsw-foster-care-agency-licence,NSW,,Children's Guardian (NSW),licenses,state,,yes,1
 nsw-fuel-price-reporting,NSW,fuel-retailing,NSW Department of Customer Service (the Secretary),collects,state,,yes,1
 nsw-funeral-fund-registration,NSW,,NSW Department of Customer Service (the Secretary),licenses,state,,yes,1
 nsw-funeral-price-disclosure,NSW,consumer-law,NSW Department of Customer Service (the Secretary),inspects,state,,yes,1
@@ -1180,6 +1183,7 @@ qld-wildlife-trade-licence,QLD,,Chief executive of the department administering 
 qld-workers-accommodation,QLD,employment-law,"Minister administering the Workers' Accommodation Act 1952 (Qld), and its inspectors",inspects,state,,yes,1
 qld-workers-compensation-insurance,QLD,workers-compensation,Workers' Compensation Regulator (Qld),inspects,state,,yes,1
 qld-working-with-children-check,QLD,working-with-children-checks,Blue Card Services (Queensland),licenses,state,,yes,1
+sa-adoption-service-accreditation,SA,,Chief Executive of the Department (SA),approves,state,,yes,1
 sa-agvet-chemical-use,SA,agvet-chemicals,Minister administering the Agricultural and Veterinary Products (Control of Use) Act 2002 (SA),inspects,state,,yes,1
 sa-air-route-service-licence,SA,,Minister administering the Air Transport (Route Licensing—Passenger Services) Act 2002 (SA),licenses,state,,yes,1
 sa-animal-research-accreditation,SA,animal-welfare,Minister administering the Animal Welfare Act 1985 (SA),licenses,state,,yes,1
@@ -1325,7 +1329,8 @@ tas-construction-training-levy,TAS,,Building and Construction Industry Training 
 tas-container-refund-supply-arrangement,TAS,container-deposits-and-packaging,Secretary of the Department administering the Container Refund Scheme Act 2022 (Tas),licenses,state,,yes,1
 tas-contaminated-land-notification,TAS,environment-protection,"Director, Environment Protection Authority (Tas)",inspects,state,,yes,1
 tas-conveyancer-licence,TAS,conveyancing-and-land-titles,Director of Consumer Affairs and Fair Trading (Tas),licenses,state,,yes,1
-tas-cooling-water-system-risk-assessment,TAS,,Director of Public Health (Tas),inspects,state,,yes,1
+tas-cooling-water-system-risk-assessment,TAS,,Director of Public Health (Tas),inspects,state,,yes,2
+tas-cooling-water-system-risk-assessment,TAS,,"Councils (Tas), which register regulated systems",licenses,local,,yes,2
 tas-cultural-heritage-duty-of-care,TAS,,Director of National Parks and Wildlife (Tas),approves,state,,yes,1
 tas-dangerous-goods-vehicle-licence,TAS,hazardous-chemicals-and-dangerous-goods,Competent Authority under the dangerous goods transport law (Tas),licenses,state,,yes,1
 tas-deer-farm-licence,TAS,,Secretary of the Department administering the Nature Conservation Act 2002 (Tas),licenses,state,,yes,1
@@ -1447,6 +1452,7 @@ vic-waste-transport-licence,VIC,waste-management,EPA Victoria,licenses,state,,ye
 vic-whs-primary-duty,VIC,work-health-and-safety,WorkSafe Victoria,inspects,state,,yes,1
 vic-workers-compensation-insurance,VIC,workers-compensation,WorkSafe Victoria,inspects,state,,yes,1
 vic-working-with-children-check,VIC,working-with-children-checks,Working with Children Check Victoria,licenses,state,,yes,1
+wa-adoption-service-accreditation,WA,,Minister administering the Adoption Act 1994 (WA),licenses,state,,yes,1
 wa-aerial-chemical-distribution-licence,WA,agvet-chemicals,Director General of the department administering the Biosecurity and Agriculture Management Act 2007 (WA),approves,state,,yes,1
 wa-air-route-service-licence,WA,,Minister administering the Road and Air Transport Commission Act 1966 (WA),licenses,state,,yes,1
 wa-anatomy-licence,WA,,Chief Health Officer (WA),licenses,state,,yes,1
@@ -1476,7 +1482,8 @@ wa-cooling-water-system-risk-assessment,WA,,Chief Health Officer (WA),approves,s
 wa-cultural-heritage-duty-of-care,WA,,Registrar of Aboriginal Sites and the Minister (WA),approves,state,,yes,1
 wa-dangerous-goods-vehicle-licence,WA,hazardous-chemicals-and-dangerous-goods,Chief Officer under the Dangerous Goods Safety Act 2004 (WA),licenses,state,,yes,1
 wa-dangerous-substances-storage-licence,WA,,Chief Officer under the Dangerous Goods Safety Act 2004 (WA),licenses,state,,yes,1
-wa-development-approval,WA,planning-and-development,Western Australian Planning Commission (WA),approves,state,,yes,1
+wa-development-approval,WA,planning-and-development,Western Australian Planning Commission (WA),approves,state,yes,yes,2
+wa-development-approval,WA,planning-and-development,"Local governments (WA), the responsible authority for local planning schemes",approves,local,yes,yes,2
 wa-dog-breeder-registration,WA,animal-welfare,"Local governments (WA), which approve cat breeders",approves,local,,yes,1
 wa-domestic-building-contract,WA,,Building Commissioner (WA),inspects,state,,yes,1
 wa-driving-instructor-licence,WA,driving-instruction,Department of Transport (WA),licenses,state,,yes,1
@@ -1551,6 +1558,7 @@ wa-second-hand-dealer-licence,WA,,Western Australia Police Force (Commissioner o
 wa-security-licence,WA,security-industry,WA Police Force (Commissioner of Police),licenses,state,,yes,1
 wa-short-term-rental-registration,WA,planning-and-development,Commissioner for Consumer Protection (WA),licenses,state,,yes,1
 wa-skin-penetration-beauty-registration,WA,personal-services,Local councils,licenses,local,,yes,1
+wa-stevedore-licence,WA,,Port authority that controls and manages the port (WA),licenses,state,,yes,1
 wa-swimming-pool-barrier,WA,,Local governments (WA),inspects,local,,yes,1
 wa-taxi-booking-service-authorisation,WA,passenger-transport,CEO under the Road Traffic (Administration) Act 2008 (WA),licenses,state,,yes,1
 wa-teacher-accreditation-employer,WA,early-childhood-education-and-care,Teacher Registration Board of Western Australia (WA),inspects,state,,yes,1
