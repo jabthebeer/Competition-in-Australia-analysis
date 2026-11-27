@@ -72,6 +72,9 @@ table.ovt a.go { white-space: nowrap; }
   const nf = (v) => (v === null || v === undefined ? "–" : Math.round(v).toLocaleString("en-AU"));
   const one = (v) => (v === null || v === undefined ? "–" : v.toFixed(1));
   const med = (v) => (v === null || v === undefined ? "–" : Number.isInteger(v) ? `${v}` : v.toFixed(1));
+  const sig2 = (v) => { if (!v) return 0; const p = Math.pow(10, Math.floor(Math.log10(Math.abs(v))) - 1); return Math.round(v / p) * p; };
+  const aud = (v) => { if (v === null || v === undefined) return "–"; const x = sig2(v), f = (n) => n.toLocaleString("en-AU", { maximumFractionDigits: 1 });
+    return x >= 1e9 ? `$${f(x / 1e9)}b` : x >= 1e6 ? `$${f(x / 1e6)}m` : `$${Math.round(x).toLocaleString("en-AU")}`; };
   const fy = (y) => `${y}–${String((y + 1) % 100).padStart(2, "0")}`;
   const COLS = [
     { k: "name", label: "Industry", text: true },
@@ -82,6 +85,8 @@ table.ovt a.go { white-space: nowrap; }
     { k: "varying", label: "Regimes that differ between states", fmt: med },
     { k: "major", label: "Major Commonwealth rules", fmt: nf },
     { k: "minor", label: "Minor Commonwealth rules", fmt: nf },
+    { k: "cost", label: "Compliance cost a year, Commonwealth rules", fmt: aud },
+    { k: "costPer", label: "Compliance cost a year for each business", fmt: aud },
   ];
   const state = { sort: "major", dir: -1, open: new Set(), q: "" };
   const byDiv = {};
@@ -120,15 +125,16 @@ table.ovt a.go { white-space: nowrap; }
   const top = (k) => { const m = Math.max(...DATA.divisions.map((d) => d[k] ?? -Infinity)); return { m, ds: DATA.divisions.filter((d) => d[k] === m) }; };
   const names = (ds) => ds.map((d) => d.name).join("; ");
   const tile = (label, value, what, k) => `<button type="button" class="tile" data-k="${k}"><span class="t-label">${esc(label)}</span><span class="t-value">${esc(value)}</span><span class="t-sub">${esc(what)}</span></button>`;
-  const a = top("major"), b = top("bodies"), c = top("varying");
+  const a = top("major"), b = top("bodies"), c = top("varying"), d = top("costPer");
   $("tiles").innerHTML = tile("Most major Commonwealth rules", nf(a.m), names(a.ds), "major")
     + tile("Most government bodies", med(b.m), `${names(b.ds)} (a typical business)`, "bodies")
-    + tile("Most regimes that differ between states", med(c.m), `${names(c.ds)} (a typical business)`, "varying");
+    + tile("Most regimes that differ between states", med(c.m), `${names(c.ds)} (a typical business)`, "varying")
+    + (DATA.costTotal ? tile("Highest compliance cost for each business", `${aud(d.m)} a year`, `${names(d.ds)} (Commonwealth rules; staff time, hours assumed)`, "costPer") : "");
   $("tiles").querySelectorAll(".tile").forEach((t) => t.addEventListener("click", () => { state.sort = t.dataset.k; state.dir = -1; render(); $("h-table").scrollIntoView({ block: "start" }); }));
   $("metaLine").textContent = `${DATA.divisions.length} divisions and ${DATA.classes.length} detailed industries${DATA.generated ? ` · updated ${new Date(DATA.generated + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" })}` : ""}`;
   $("src").innerHTML = `Sources: <a href="https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/latest-release" target="_blank" rel="noopener">ABS, Counts of Australian Businesses, including Entries and Exits</a>; ALICIA register and regulatory regimes (drafts). The rules are listed on <a href="${esc(DATA.levers)}">Legislative levers</a>.`;
   $("note").textContent = DATA.note;
-  $("note2").textContent = "For a division, the regime figures are the median of its detailed industries, and its rules are those that reach any of them. The entry rate is for businesses with employees. Major and Minor are the impact classes used on Legislative levers.";
+  $("note2").textContent = "For a division, the regime figures are the median of its detailed industries, and its rules are those that reach any of them. The entry rate is for businesses with employees. Major and Minor are the impact classes used on Legislative levers. Compliance cost (draft): the staff time a year the Commonwealth requirements take the industry's businesses, at $91.54 an hour, with hours assumed for each kind of requirement; for each business, that total divided by every business in the industry. Rules counted only as an upper bound are left out, as are the cost of meeting a standard, waiting time and fees. Method: docs/compliance_costs.md.";
   render();
 })();
 </script>

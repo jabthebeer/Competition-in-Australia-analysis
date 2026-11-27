@@ -1,0 +1,67 @@
+{
+  "note": "Assumptions for the compliance cost of each requirement (DECISIONS E-500). A requirement's cost a year is the staff time it takes, valued at the Office of Impact Analysis's work rate, for the businesses it binds: hours when a business starts (or first becomes bound) times the new businesses a year, plus hours each year times the businesses operating. Hours come from the requirement's kind unless 'overrides' or the licence costs (licence-costs.json) give them for that requirement. Every hours figure here is assumed: no regulator or Office of Impact Analysis publication gives standard hours for these tasks. Replace a row's hours, and its basis, when a sourced figure is found. Drafted by AI-assisted desk research; not yet checked by a person.",
+  "drafted_on": "2026-11-27",
+  "approved": "Owner, 27 November 2026: 'Happy with your decisions, can you start building?' (the plan of 25 November 2026)",
+  "kinds": {
+    "licence": {
+      "task": "Apply for the licence, then renew it",
+      "start_hours": {"low": 2, "central": 4, "high": 8},
+      "yearly_hours": {"low": 0.5, "central": 1, "high": 2},
+      "basis": "Assumed, as for the licence costs (E-175): an application means gathering identity, qualification and insurance documents and completing the form; a renewal, taken as yearly, is mostly an online payment."
+    },
+    "registration": {
+      "task": "Register, then keep the details up to date",
+      "start_hours": {"low": 0.5, "central": 1, "high": 3},
+      "yearly_hours": {"low": 0.25, "central": 0.5, "high": 1},
+      "basis": "Assumed: most registrations are a short online form; updating details is occasional."
+    },
+    "approval": {
+      "task": "Prepare and lodge an application for approval",
+      "start_hours": {"low": 0, "central": 0, "high": 0},
+      "yearly_hours": {"low": 4, "central": 10, "high": 40},
+      "basis": "Assumed: an approval is sought for each project, premises or product, so it is counted as one application a year for each business bound. Plans, reports and fees paid to consultants are not counted."
+    },
+    "notification": {
+      "task": "Notify the regulator",
+      "start_hours": {"low": 0, "central": 0, "high": 0},
+      "yearly_hours": {"low": 0.25, "central": 0.5, "high": 2},
+      "basis": "Assumed: one notice a year, mostly a short form."
+    },
+    "reporting": {
+      "task": "Prepare and lodge a report or return",
+      "start_hours": {"low": 0, "central": 0, "high": 0},
+      "yearly_hours": {"low": 2, "central": 8, "high": 40},
+      "basis": "Assumed: one report or return a year. Reports the law requires more often, or audited reports, cost more."
+    },
+    "record-keeping": {
+      "task": "Keep the records the law requires",
+      "start_hours": {"low": 0, "central": 0, "high": 0},
+      "yearly_hours": {"low": 5, "central": 12, "high": 26},
+      "basis": "Assumed: about an hour a month (central), from 5 hours to half an hour a week."
+    },
+    "tax-or-levy": {
+      "task": "Work out and pay the tax, levy or fee (the time, not the amount)",
+      "start_hours": {"low": 0, "central": 0, "high": 0},
+      "yearly_hours": {"low": 1, "central": 4, "high": 12},
+      "basis": "Assumed: from one yearly payment to a monthly or quarterly return. The amount paid is a transfer to government and is left out (Regulatory Burden Measurement Framework, p. 4)."
+    },
+    "insurance": {
+      "task": "Arrange and renew the insurance (the time, not the premium)",
+      "start_hours": {"low": 0, "central": 0, "high": 0},
+      "yearly_hours": {"low": 1, "central": 2, "high": 4},
+      "basis": "Assumed: a yearly renewal. The premium is a substantive cost and is not counted."
+    },
+    "standard": {
+      "task": "Learn the standard and check the business meets it (paperwork and checking only)",
+      "start_hours": {"low": 0, "central": 0, "high": 0},
+      "yearly_hours": {"low": 2, "central": 8, "high": 20},
+      "basis": "Assumed: keeping up with the standard and checking against it. The cost of meeting it (equipment, building work, training) is not counted."
+    },
+    "other": {
+      "task": "Not costed: the obligation varies too much to assume hours",
+      "costed": false,
+      "basis": "No default: hours are assumed only where the obligation's kind says what the business does."
+    }
+  },
+  "overrides": {}
+}

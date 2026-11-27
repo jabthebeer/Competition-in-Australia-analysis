@@ -59,6 +59,15 @@ RELIANCE = (
         "time are not counted. Beside severity, not part of it",
     ),
     (
+        "Compliance cost of each requirement",
+        "Staff time assumed for each kind of requirement, valued at the Office of Impact Analysis's rate ($91.54 an "
+        "hour), for the businesses the ABS counts in the industries and states the rule binds",
+        "Tests recompute every figure from its working, and check the committed figures are current",
+        "A rough guide to the paperwork time a rule takes, not a measured cost. The hours are assumptions; the cost of "
+        "meeting a standard, waiting time and fees are not counted; 'up to' where only some businesses are bound. "
+        "Beside severity, not part of it",
+    ),
+    (
         "The words of each requirement",
         "Quoted from the official legislation registers",
         "Each quote is checked against the text it was read from",
