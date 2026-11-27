@@ -1,6 +1,6 @@
 # Plan: ingesting National Construction Code data into ALICIA
 
-Plan for the owner. First written 26 November 2026; **revised 27 November 2026** after the owner's answers (DECISIONS E-700). Phases N0, N1, N4 and the regulatory map data are built; the register phases (N2, N3) are next. Results: [`ncc_variability.md`](ncc_variability.md).
+Plan for the owner. First written 26 November 2026; **revised 27 November 2026** after the owner's answers (DECISIONS E-500). Phases N0, N1, N4 and the regulatory map data are built; the register phases (N2, N3) are next. Results: [`ncc_variability.md`](ncc_variability.md).
 
 **Purpose (owner, 27 November 2026).** Show how unevenly the National Construction Code (NCC) is adopted, so state-based differences come first. Find a middle ground on scope between one item for the whole code and one for each standard. Use the NCC as the first example of a regulatory map: a main law linked to the instruments that sit within it.
 
@@ -71,7 +71,7 @@ The N3 requirements are the rows the cost figure would attach to.
 | 1 | Network access | Owner opened all networks (27 November 2026) |
 | 2 | Scope | Middle ground (owner); the 3 layers in section 3 (this revision) |
 | 3 | NCC 2019 and earlier | Adoption dates only (in `adoption_history.csv`), no register records |
-| 4 | Decision numbers | This work uses E-700 onwards (noted in `notes_for_other_branches.md`); E-500 onwards is the compliance cost work's and E-600 onwards the regulatory map page's |
+| 4 | Decision numbers | This work uses E-500 onwards (noted in `notes_for_other_branches.md`); E-600 onwards is the regulatory map page's and E-700 onwards the compliance cost work's |
 | 5 | Regulatory map | Owner asked for it, with the NCC as the first example; the coordinator will start a website-side thread for the page once this data is in place |
 
 ## 7. Regulatory map: data shape and beta view
