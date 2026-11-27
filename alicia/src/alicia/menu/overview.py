@@ -14,7 +14,7 @@ Every figure is worked out here when the site is built:
 - **Commonwealth rules particular to the industry**, by impact class, from the register and the requirements
   (``exposure``);
 - **compliance cost**: the staff time a year the Commonwealth requirements cost the industry's businesses, in total
-  and per business, counted exactly (upper bounds left out), from ``compliancecost`` (DECISIONS E-700).
+  and per business, counted exactly (upper bounds left out), from ``compliancecost`` (DECISIONS E-500).
 
 State and council rules are left out of the comparison, because far less of their law has been recorded and the
 amount differs between states; they show on the Industry lens, one state at a time.

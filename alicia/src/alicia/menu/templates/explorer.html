@@ -1587,7 +1587,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     </dl>${src ? `<h4 class="sub-h">Fees from</h4><ul class="d-list">${src}</ul>` : ""}
     <p class="small muted">${esc(DATA.licenceCostNote || "")} Method: <code>docs/licence_costs.md</code>.</p>`;
   }
-  // Compliance cost (DECISIONS E-700): the staff time a rule takes the businesses it binds, a year, with its working.
+  // Compliance cost (DECISIONS E-500): the staff time a rule takes the businesses it binds, a year, with its working.
   // It sits beside severity and the impact class and does not change them.
   const sig2 = (v) => { if (!v) return 0; const p = Math.pow(10, Math.floor(Math.log10(Math.abs(v))) - 1); return Math.round(v / p) * p; };
   const aud = (v) => { const x = sig2(v), f = (n) => n.toLocaleString("en-AU", { maximumFractionDigits: 1 });

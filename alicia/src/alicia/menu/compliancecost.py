@@ -1,5 +1,5 @@
 """Compliance cost on the site: what each requirement costs the businesses it binds in staff time, a year, and a
-register item's total from the requirements inside it (DECISIONS E-700).
+register item's total from the requirements inside it (DECISIONS E-500).
 
 The figures are built by ``alicia/scripts/compliance_costs.py`` into ``data/processed/legislation/compliance_costs.csv``
 and ``compliance_costs_by_class.csv`` (method: ``alicia/src/alicia/costing/compliance.py``; note:
