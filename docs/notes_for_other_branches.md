@@ -6,6 +6,10 @@
 
 *27 November 2026. From `claude/project-thread-8u2ya8`, which adds a compliance cost figure to each requirement (DECISIONS E-700). It uses **E-700 onwards**, clear of the states branch (E-300s), the levers branch (E-400 onwards), the NCC branch (E-500 onwards), the regulatory map (E-600 onwards) and the website session (E-180s). It first used E-500 and moved to E-700 on 27 November 2026, when the NCC branch turned out to claim E-500 too. It changes `alicia/src/alicia/menu/` (Legislative levers, Regulatory overview, Register data, Methodology) at the owner's request; `compliancecost.py` and `costing/compliance.py` are new. After adding or changing requirements, rebuild its outputs with `uv run python scripts/compliance_costs.py` (from `alicia/`): `tests/test_compliance_costs.py` checks they are current.*
 
+## Regulatory map page (27 November 2026, DECISIONS E-600)
+
+*From the thread building the regulatory map page (branch `claude/project-thread-epsnue`).* The new page `regulatory-map.html` reads every `data/processed/<topic>/regulatory_map.json` in the shape of `docs/plan_ncc_ingestion.md` section 7. A new map in that shape shows up on the page with no change to the site; add its methods notes to `METHODS` in `alicia/src/alicia/menu/regmap.py`. **Decision numbers:** the regulatory map page uses **E-600 onwards**.
+
 ## Regulatory map data and decision numbers for the NCC work (DECISIONS E-500)
 
 *27 November 2026. From the NCC thread (`claude/project-thread-pg3toc`).*

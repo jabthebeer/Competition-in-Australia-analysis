@@ -52,12 +52,16 @@ FRAMEWORK_PAGE = ("framework.html", "Framework")
 METHODOLOGY_PAGE = ("methodology.html", "Methodology")
 # How every rule is coded, in one plain table (owner decision, 14 Nov 2026, DECISIONS E-161).
 REGISTER_PAGE = ("register-data.html", "Register data")
+# A principal law and the instruments under it, as a graph; the National Construction Code first (owner request,
+# 27 Nov 2026, DECISIONS E-600).
+MAP_PAGE = ("regulatory-map.html", "Regulatory map")
 # Every page the site builds, in nav order (owner decision, 11 Nov 2026, DECISIONS E-135). Pages keep their addresses
 # when renamed, so links made before still work.
 PAGES = (
     HOME_PAGE,
     COMPETITION_PAGE,
     MENU_PAGE,
+    MAP_PAGE,
     LENS_PAGE,
     OVERVIEW_PAGE,
     FRAMEWORK_PAGE,
@@ -67,7 +71,7 @@ PAGES = (
 # The nav groups the pages by what they are for: the two views, then how the site is made. A page the build does
 # not write (the regulatory overview, until it is built) shows as coming soon, without a link.
 NAV_GROUPS = (
-    ("Top down", (COMPETITION_PAGE, MENU_PAGE)),
+    ("Top down", (COMPETITION_PAGE, MENU_PAGE, MAP_PAGE)),
     ("Bottom up", (LENS_PAGE, OVERVIEW_PAGE)),
     ("About", (FRAMEWORK_PAGE, METHODOLOGY_PAGE, REGISTER_PAGE)),
 )
@@ -695,7 +699,7 @@ def build_site(
     from pathlib import Path
 
     from . import framework as framework_page
-    from . import home, lens, methodology, overview, registerdata
+    from . import home, lens, methodology, overview, registerdata, regmap
     from .archive import ARCHIVE_PAGE, build_archive
     from .explorer import build_explorer, menu_payload
 
@@ -756,6 +760,11 @@ def build_site(
     path = out / REGISTER_PAGE[0]
     data = registerdata.payload(menu) | {"repo": data_base}
     html = render(REGISTER_PAGE[0], data, REGISTER_PAGE[0], standalone, pages)
+    path.write_text(html.replace("<!--__FOOT__-->", site_foot()), encoding="utf-8")
+    written.append(path)
+    # Regulatory map: each principal law and the instruments under it (the NCC first).
+    path = out / MAP_PAGE[0]
+    html = render(MAP_PAGE[0], regmap.payload(menu, data_base), MAP_PAGE[0], standalone, pages)
     path.write_text(html.replace("<!--__FOOT__-->", site_foot()), encoding="utf-8")
     written.append(path)
     if costing_dist:
