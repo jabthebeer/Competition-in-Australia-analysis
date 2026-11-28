@@ -9,7 +9,7 @@ Each requirement's **compliance cost** is the staff time it takes the businesses
 > cost a year = $91.54 an hour × (hours to start × new businesses a year + hours each year × businesses operating)
 
 - **$91.54 an hour** is the OIA's default rate for work time: $52.31 × 1.75 for on-costs and overheads (framework, p. 12). It is read from the burden calculator in `regulatory-burden-tool/`.
-- **Hours** are set for each kind of requirement (table below). Every one is **assumed**: no regulator or OIA publication gives standard hours for these tasks. The exceptions are the costings taken from a source, listed below. The 31 costed licences use the licence costs' hours (`docs/licence_costs.md`, E-175), with renewal hours spread over the years between renewals.
+- **Hours** are set for each kind of requirement (table below). Every one is **assumed**: no regulator or OIA publication gives standard hours for these tasks. How often a task is done is read from the requirement's own words where they say, and the exceptions to assumed hours are the costings taken from a source, both listed below. The 31 costed licences use the licence costs' hours (`docs/licence_costs.md`, E-175), with renewal hours spread over the years between renewals.
 - **Businesses** are from the ABS *Counts of Australian Businesses* by industry class, state and employment size, for the classes and states each requirement reaches. A state's rule counts that state's businesses; a Commonwealth rule counts every state's. Its size test picks the size bands, as for the impact classes (E-178): a rule from the first employee counts employing businesses only. **New businesses** are the ABS entries over the year in the same bands.
 - **Low and high** values use the low and high hours. The rate and the counts are the same in each.
 - Figures are shown to 2 significant figures, because the hours are assumed.
@@ -62,6 +62,49 @@ Analogue: taken from the impact statement for the Banking Executive Accountabili
 - Source: Parliament of Australia (Federal Register of Legislation), [Financial Accountability Regime Bill 2023: Explanatory Memorandum](https://www.legislation.gov.au/bills/C2023B00023EM_1.pdf), General outline, Impact Analysis.
 - Card: `regulation-register/costings/cth-financial-accountability-regime.json`, review status draft.
 
+## Frequencies read from the register
+
+25 requirements say in their own words how often their recurring task is done (E-703). Their hours each year are the hours each time, assumed for the kind, times the number of times a year the words give, in place of the kind's default. The phrase is searched for in the requirement's *what* first, then its title, then the quotes from its law (`regulation-register/compliance-tasks.json`). Every other requirement keeps the default times a year for its kind:
+
+| Kind | Recurring task | Hours each time | Default times a year |
+|---|---|---|---:|
+| Hold a licence, permit or accreditation | Renew the licence | 1 (0.5 to 2) | 1 |
+| Register | Keep the registration up to date, or renew it | 0.5 (0.25 to 1) | 1 |
+| Get an approval for premises, a project or a product | Prepare and lodge an application for approval | 10 (4 to 40) | 1 |
+| Notify a regulator | Notify the regulator | 0.5 (0.25 to 2) | 1 |
+| Report or lodge | Prepare and lodge the report or return | 8 (2 to 40) | 1 |
+| Pay a tax, levy or fee | Work out and pay the amount, with any return | 1 (0.25 to 3) | 4 |
+| Hold insurance | Arrange or renew the insurance | 2 (1 to 4) | 1 |
+| Meet a standard or code | Check the business meets the standard | 8 (2 to 20) | 1 |
+
+| Requirement | Times a year | Words that set it | Hours each year (central) | Cost a year |
+|---|---:|---|---:|---|
+| `cth-payment-times-reporting` | 1 | 've the Regulator a payment times report for each reporting period.' (what) | 8 | $2 billion |
+| `cth-workplace-gender-equality-reporting` | 1 | 'ic report on gender equality indicators each year, once the business employs 100 or more' (what) | 8 | up to $54 million |
+| `cth-cslr-levy` | 1 | 'in the subsectors the Act covers pay an annual levy that funds the compensation scheme' (what) | 1 | up to $6.3 million |
+| `nsw-parking-space-levy` | 1 | 'Pay the annual parking space levy on off-street parkin' (what) | 1 | up to $5.2 million |
+| `nsw-portable-long-service-registration-construction` | 1 | 'a certificate of each worker's service every year and when they leave.' (what) | 0.5 | up to $3.8 million |
+| `qld-ethanol-mandate` | 4 | 'inable biobased petrol (ethanol blends) each quarter, as a liable fuel seller.' (what) | 32 | up to $2.3 million |
+| `qld-gaming-machine-tax` | 12 | 'Pay gaming machine tax each month on the licensed premises.' (what) | 12 | up to $2 million |
+| `cth-marriage-celebrant-charge` | 1 | 'h-registered marriage celebrants pay an annual registration charge (s 39FA of the Marr' (what) | 1 | up to $1.8 million |
+| `cth-medical-devices-listing-levy` | 1 | 'A levy is imposed each financial year for the ongoing listing of each listed' (what) | 1 | up to $790,000 |
+| `tas-gaming-machine-tax` | 12 | 'Pay tax each month on the gross profits from gaming machin' (what) | 12 | up to $310,000 |
+| `nsw-point-of-consumption-tax` | 12 | 'Pay point of consumption tax, monthly, on net NSW wagering revenue above $1 m' (what) | 12 | up to $250,000 |
+| `cth-major-bank-levy` | 4 | 'A levy is imposed each quarter on an ADI whose total liabilities excee' (what) | 4 | up to $110,000 |
+| `nt-gaming-machine-tax` | 12 | 'Pay gaming machine tax each month on the licensed premises.' (what) | 12 | up to $97,000 |
+| `wa-resource-financial-provisioning` | 1 | 'on, give the CEO assessment information each year and pay the mining rehabilitation levy' (what) | 1 | up to $90,000 |
+| `sa-gaming-machine-tax` | 1 | 'Pay gaming tax each financial year on the net gambling revenue from the li' (what) | 1 | up to $85,000 |
+| `cth-higher-education-tuition-protection-levy` | 1 | 'A levy is imposed each year on a body that is a leviable provider u' (what) | 1 | up to $65,000 |
+| `nsw-energy-savings-obligation` | 1 | 'r or other scheme participant, meet the yearly energy savings target by surrendering e' (what) | 8 | up to $56,000 |
+| `tas-waste-levy` | 12 | 'Pay the waste levy for each month on waste received at a landfill facilit' (what) | 12 | up to $54,000 |
+| `nsw-emergency-services-insurance-contribution` | 4 | 'on premiums for relevant insurance, in quarterly instalments.' (what) | 4 | up to $42,000 |
+| `sa-working-with-children-check` | 0.2 | 'e working with children check conducted at least every 5 years (1) An employer must not continue to em' (quote from s 18(1) (version of 2019-07-01)) | 0.1 | $28,000 |
+| `sa-energy-savings-obligation` | 1 | 'ailer above the thresholds, achieve the annual energy productivity target set for reta' (what) | 8 | up to $15,000 |
+| `nt-point-of-consumption-tax` | 12 | 'Pay wagering tax to the Territory each month as a wagering licensee.' (what) | 12 | up to $6,600 |
+| `tas-emergency-services-insurance-contribution` | 12 | 'Pay the State Fire Commission each month the prescribed percentage of premium in' (what) | 12 | up to $6,600 |
+| `nt-resource-financial-provisioning` | 1 | 'environmental (mining) licence, pay the annual levy into the Mining Remediation Fund.' (what) | 1 | up to $5,200 |
+| `act-point-of-consumption-tax` | 1 | 'erations tax on net ACT betting revenue each financial year.' (what) | 1 | up to $920 |
+
 ## Totals
 
 Of 1,243 requirements, 977 are costed: 382 exactly and 595 as upper bounds. 182 are not counted because their upper bound covers a quarter or more of their jurisdiction's businesses, and 84 are councils' rules or of kind other.
@@ -71,7 +114,7 @@ Of 1,243 requirements, 977 are costed: 382 exactly and 595 as upper bounds. 182 
 | Commonwealth requirements, counted exactly | $3 billion | $11 billion | $35 billion |
 | State and territory requirements, counted exactly | $770 million | $2.8 billion | $6.9 billion |
 | **All requirements counted exactly** | $3.8 billion | **$14 billion** | $42 billion |
-| Upper bounds, apart (up to) | $710 million | $2.4 billion | $7.5 billion |
+| Upper bounds, apart (up to) | $700 million | $2.3 billion | $7.4 billion |
 
 How the exact total is evidenced:
 
@@ -79,7 +122,8 @@ How the exact total is evidenced:
 |---|---:|---:|
 | Sourced | 0 | $0 (0.0%) |
 | Analogue | 1 | $25 million (0.2%) |
-| Assumed | 381 | $14 billion (99.8%) |
+| Calculated | 2 | $2 billion (14.5%) |
+| Assumed | 379 | $12 billion (85.3%) |
 
 The total is a sum of assumed paperwork time, not an estimate of the burden of regulation. It leaves out substantive compliance costs, the rules not counted, and every law not yet on the register (Victoria has only 32 requirements so far). State totals are not compared, because each state's law is recorded to a different extent.
 

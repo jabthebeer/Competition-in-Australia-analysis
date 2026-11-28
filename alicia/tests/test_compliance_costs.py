@@ -241,3 +241,41 @@ def test_the_site_shows_the_cost_without_changing_severity_or_class():
         assert a[k].get("impactClass") == b[k].get("impactClass"), k
         assert a[k].get("severity") == b[k].get("severity"), k
     assert with_cost["complianceCostCount"] > 900
+
+
+def test_a_kinds_default_frequency_reproduces_its_hours_each_year():
+    """With no frequency in its words, a requirement costs what the kind's hours say (E-703)."""
+    a = C.load_assumptions()
+    for k, v in a["tasks"]["kinds"].items():
+        for s in ("low", "central", "high"):
+            assert v["hours_a_time"][s] * v["times_a_year"] == pytest.approx(a["kinds"][k]["yearly_hours"][s]), k
+
+
+def test_frequency_is_read_from_the_requirements_own_words():
+    from types import SimpleNamespace as NS
+
+    rules = C.load_assumptions()["tasks"]
+
+    def q(what, quote="x" * 20):
+        return NS(what=what, title="t", sources=[NS(locator="s 1", title="Act", quote=quote)])
+
+    assert C.frequency(q("Pay gaming machine tax each month on the premises."), rules)["times"] == 12
+    assert C.frequency(q("Pay the levy in quarterly instalments."), rules)["times"] == 4
+    assert C.frequency(q("Lodge a report each financial year."), rules)["times"] == 1
+    assert C.frequency(q("Renew it.", "a check conducted at least every 5 years"), rules)["times"] == 0.2
+    # A frequency word that describes something else is not a frequency.
+    assert C.frequency(q("Comply once annual turnover passes $3 million."), rules) is None
+    assert C.frequency(q("Charge a monthly fee of at most 4%."), rules) is None
+    # The 'what' wins over the quotes.
+    f = C.frequency(q("Pay tax each month.", "an annual return"), rules)
+    assert f["times"] == 12 and f["where"] == "what"
+
+
+def test_a_calculated_figure_uses_the_frequency_it_quotes(published):
+    a = C.load_assumptions()
+    rows = [r for r in published if r["evidence"] == "calculated"]
+    assert rows
+    for r in rows:
+        task = a["tasks"]["kinds"][r["kind"]]
+        assert float(r["yearly_hours"]) == pytest.approx(task["hours_a_time"]["central"] * float(r["times_a_year"]))
+        assert r["frequency_phrase"] and r["frequency_from"], r["requirement"]

@@ -1,0 +1,24 @@
+{
+  "note": "How often each requirement's recurring task is done, read from the register's own words (DECISIONS E-703). For each kind, the recurring task, its hours each time it is done (assumed, as for the kinds in compliance-cost-assumptions.json) and how many times a year it is done when the requirement's words don't say. A requirement's 'what' is searched first, then its title, then the quotes from its law; the first frequency phrase found sets the times a year, unless the words after it show it describes something else ('annual turnover'). Hours each time × the kind's default times a year equal the kind's hours each year, so a requirement whose words name no frequency costs what it did before. Drafted by AI-assisted desk research; not yet checked by a person.",
+  "drafted_on": "2026-11-28",
+  "approved": "Owner, 28 November 2026: chose 'Calculate first, source to check' (hours from the register first, sources to check)",
+  "kinds": {
+    "licence": {"task": "Renew the licence", "hours_a_time": {"low": 0.5, "central": 1, "high": 2}, "times_a_year": 1},
+    "registration": {"task": "Keep the registration up to date, or renew it", "hours_a_time": {"low": 0.25, "central": 0.5, "high": 1}, "times_a_year": 1},
+    "approval": {"task": "Prepare and lodge an application for approval", "hours_a_time": {"low": 4, "central": 10, "high": 40}, "times_a_year": 1},
+    "notification": {"task": "Notify the regulator", "hours_a_time": {"low": 0.25, "central": 0.5, "high": 2}, "times_a_year": 1},
+    "reporting": {"task": "Prepare and lodge the report or return", "hours_a_time": {"low": 2, "central": 8, "high": 40}, "times_a_year": 1},
+    "tax-or-levy": {"task": "Work out and pay the amount, with any return", "hours_a_time": {"low": 0.25, "central": 1, "high": 3}, "times_a_year": 4},
+    "insurance": {"task": "Arrange or renew the insurance", "hours_a_time": {"low": 1, "central": 2, "high": 4}, "times_a_year": 1},
+    "standard": {"task": "Check the business meets the standard", "hours_a_time": {"low": 2, "central": 8, "high": 20}, "times_a_year": 1}
+  },
+  "frequencies": [
+    {"name": "every few years", "pattern": "\\b(?:at least )?every (\\d+|two|three|four|five|ten) years\\b", "times_a_year": "1/n"},
+    {"name": "monthly", "pattern": "\\bmonthly\\b|\\b(?:each|every|for each) (?:calendar )?month\\b", "times_a_year": 12},
+    {"name": "quarterly", "pattern": "\\bquarterly\\b|\\b(?:each|every|for each) (?:calendar )?quarter\\b", "times_a_year": 4},
+    {"name": "half-yearly", "pattern": "\\bhalf[- ]yearly\\b|\\b(?:each|every) half[- ]year\\b", "times_a_year": 2},
+    {"name": "yearly", "pattern": "\\bannual(?:ly)?\\b|\\byearly\\b|\\bon an annual basis\\b|\\b(?:each|every|for each|in each) (?:financial |calendar )?year\\b|\\bfor each reporting period\\b|\\beach reporting period\\b", "times_a_year": 1}
+  ],
+  "not_a_frequency": "^\\W*(?:turnover|income|revenue|threshold|fee|fees|grant|chargeable|leave|salary|wages?|subsidy|value|amount)\\b",
+  "numbers": {"two": 2, "three": 3, "four": 4, "five": 5, "ten": 10}
+}

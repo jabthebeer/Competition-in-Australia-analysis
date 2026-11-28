@@ -49,7 +49,8 @@ from ..register.severity import severity
 ROOT = Path(__file__).resolve().parents[4]
 ASSUMPTIONS = ROOT / "regulation-register" / "compliance-cost-assumptions.json"
 COSTINGS = ROOT / "regulation-register" / "costings"
-EVIDENCE = ("sourced", "analogue", "assumed")
+TASKS = ROOT / "regulation-register" / "compliance-tasks.json"
+EVIDENCE = ("sourced", "analogue", "calculated", "assumed")
 PARAMETERS = ROOT / "regulatory-burden-tool" / "src" / "engine" / "parameters.ts"
 SCENARIOS = ("low", "central", "high")
 CLASS_TIERS = ("cth", "state", "cthUpper", "stateUpper")  # exact figures, and upper bounds apart
@@ -87,11 +88,43 @@ def load_cards(folder: Path = COSTINGS, rate: float | None = None) -> tuple[dict
     return by_req, by_family
 
 
-def load_assumptions(path: Path = ASSUMPTIONS, cards: Path = COSTINGS) -> dict:
-    """The hours for each kind, with the costing cards beside them (``overrides`` by requirement id, ``families``)."""
+def load_assumptions(path: Path = ASSUMPTIONS, cards: Path = COSTINGS, tasks: Path = TASKS) -> dict:
+    """The hours for each kind, with the costing cards beside them (``overrides`` by requirement id, ``families``)
+    and the recurring task of each kind with the frequency phrases (``tasks``, E-703)."""
     a = json.loads(path.read_text("utf-8"))
     a["overrides"], a["families"] = load_cards(cards)
+    a["tasks"] = json.loads(tasks.read_text("utf-8")) if tasks.exists() else None
     return a
+
+
+def frequency(q: Requirement, rules: dict) -> dict | None:
+    """How often the requirement's recurring task is done, from its own words (E-703): its ``what`` first, then its
+    title, then the quotes from its law. ``{"times", "name", "phrase", "where"}``, or None when no frequency phrase
+    is found."""
+    texts = [("what", q.what), ("title", q.title)]
+    texts += [(f"quote from {s.locator or s.title}", s.quote or "") for s in q.sources]
+    skip = re.compile(rules["not_a_frequency"], re.I)
+    for where, text in texts:
+        found = []
+        for f in rules["frequencies"]:
+            for m in re.finditer(f["pattern"], text, re.I):
+                if skip.match(text[m.end() :]):
+                    continue
+                times = f["times_a_year"]
+                if times == "1/n":
+                    n = m.group(1).lower()
+                    times = 1 / float(rules["numbers"].get(n, n))
+                lo, hi = max(0, m.start() - 40), min(len(text), m.end() + 40)
+                found.append(
+                    (
+                        m.start(),
+                        {"times": float(times), "name": f["name"], "phrase": text[lo:hi].strip(), "where": where},
+                    )
+                )
+                break
+        if found:
+            return min(found, key=lambda x: x[0])[1]
+    return None
 
 
 @dataclass(frozen=True)
@@ -186,6 +219,23 @@ def hours_for(q: Requirement, assumptions: dict, licences: dict[str, dict]) -> d
     kind = assumptions["kinds"].get(q.kind)
     if not kind or kind.get("costed") is False:
         return None
+    rules = assumptions.get("tasks")
+    task = (rules or {}).get("kinds", {}).get(q.kind)
+    freq = frequency(q, rules) if task else None
+    if freq:
+        times = freq["times"]
+        return {
+            "start": kind["start_hours"],
+            "yearly": {s: task["hours_a_time"][s] * times for s in SCENARIOS},
+            "from": "tasks",
+            "basis": f"{task['task']}, {freq['name']} ({times:g} times a year), as the requirement's {freq['where']} "
+            f"says: '{freq['phrase']}'. The hours each time are assumed.",
+            "task": f"{task['task']} ({freq['name']})",
+            "feesStart": None,
+            "feesYearly": None,
+            "evidence": "calculated",
+            "frequency": {**freq, "hoursATime": task["hours_a_time"]},
+        }
     return {
         "start": kind["start_hours"],
         "yearly": kind["yearly_hours"],
@@ -268,6 +318,7 @@ def cost_requirement(q: Requirement, flows: Flows | None, assumptions: dict, lic
             "hoursFrom": h["from"],
             "evidence": h.get("evidence", "assumed"),
             "card": h.get("card"),
+            "frequency": h.get("frequency"),
             "basisText": h["basis"],
             "rate": rate,
             "sizeBasis": basis,
