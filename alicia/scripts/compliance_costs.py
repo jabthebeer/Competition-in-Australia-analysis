@@ -43,6 +43,7 @@ FIELDS = (
     "task",
     "hours_from",
     "size_basis",
+    "counts_from",
     "upper_bound",
     "upper_why",
     "classes",
@@ -108,6 +109,7 @@ def row_out(r: dict) -> dict:
         task=r["task"],
         hours_from=r["hoursFrom"],
         size_basis=r["sizeBasis"],
+        counts_from=r["countsFrom"],
         upper_bound="yes" if r["upper"] else "no",
         upper_why="; ".join(r["upperWhy"]),
         classes=r["classes"],
@@ -217,7 +219,8 @@ def note(out: dict, assumptions: dict) -> str:
         f"- **${rate:.2f} an hour** is the OIA's default rate for work time: $52.31 × 1.75 for on-costs and overheads "
         "(framework, p. 12). It is read from the burden calculator in `regulatory-burden-tool/`.",
         "- **Hours** are set for each kind of requirement (table below). Every one is **assumed**: no regulator or OIA "
-        "publication gives standard hours for these tasks. The 31 costed licences use the licence costs' hours "
+        "publication gives standard hours for these tasks. The exceptions are the costings taken from a source, "
+        "listed below. The 31 costed licences use the licence costs' hours "
         "(`docs/licence_costs.md`, E-175), with renewal hours spread over the years between renewals.",
         "- **Businesses** are from the ABS *Counts of Australian Businesses* by industry class, state and employment "
         "size, for the classes and states each requirement reaches. A state's rule counts that state's businesses; "
@@ -269,6 +272,45 @@ def note(out: dict, assumptions: dict) -> str:
             f"| {KIND_LABELS[k]} | {len(rs)} | {sum(1 for r in rs if r['costed'])} | {a['task']} | "
             f"{hrs(a['start_hours'])} | {hrs(a['yearly_hours'])} | {a['basis']} |"
         )
+    overrides = assumptions.get("overrides", {})
+    if overrides:
+        lines += [
+            "",
+            "## Costings taken from a source",
+            "",
+            "These requirements take their figures from a source in place of the hours for their kind (E-701). A "
+            "source may give dollars, not hours: the dollars are then turned into hours at the work rate, so that the "
+            "working reads the same way. A regulator's list of the entities bound, where there is one, replaces the "
+            "ABS counts, and the figure is then counted exactly.",
+        ]
+        byid = {r["id"]: r for r in rows}
+        for rid, o in sorted(overrides.items()):
+            r = byid.get(rid)
+            lines += ["", f"### `{rid}`" + (f": {r['title']}" if r else ""), "", o["basis"], ""]
+            dv = o.get("derivation")
+            if dv:
+                per = dv["cost_a_year"] / dv["entities"]
+                lines.append(
+                    f"- **Hours:** ${dv['cost_a_year']:,.0f} a year ÷ {dv['entities']:,} entities = ${per:,.0f} an "
+                    f"entity ({dv['price_year']} prices) ÷ ${dv['rate']:.2f} an hour = "
+                    f"{o['yearly_hours']['central']:g} hours a year ({o['yearly_hours']['low']:g} to "
+                    f"{o['yearly_hours']['high']:g})."
+                )
+            ents = o.get("entities")
+            if ents:
+                groups = "; ".join(f"{g['name']} {g['count']:,}" for g in ents["groups"])
+                total = sum(g["count"] for g in ents["groups"])
+                src = ents["source"]
+                lines.append(
+                    f"- **Entities bound:** {total:,} {ents['label']} ({groups}), from {src['publisher']}, "
+                    f"[{src['title']}]({src['url']}). {ents['note']}"
+                )
+            if r and r["costed"]:
+                lines.append(
+                    f"- **Result:** {working(r)} ({C.money(r['cost']['low'])} to {C.money(r['cost']['high'])})."
+                )
+            for s in o.get("sources", []):
+                lines.append(f"- Source: {s['publisher']}, [{s['title']}]({s['url']}), {s['locator']}.")
     withheld = [r for r in rows if r.get("withheld")]
     lines += [
         "",
