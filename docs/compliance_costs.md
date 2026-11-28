@@ -37,8 +37,8 @@ In a steady state every entrant pays the start-up hours once, so this is the fra
 | Kind | Requirements | Costed | Task costed | Hours to start | Hours each year | Basis |
 |---|---:|---:|---|---|---|---|
 | Register | 136 | 127 | Register, then keep the details up to date | 1 (0.5 to 3) | 0.5 (0.25 to 1) | Assumed: most registrations are a short online form; updating details is occasional. |
-| Hold a licence, permit or accreditation | 524 | 418 | Apply for the licence, then renew it | 4 (2 to 8) | 1 (0.5 to 2) | Assumed, as for the licence costs (E-175): an application means gathering identity, qualification and insurance documents and completing the form; a renewal, taken as yearly, is mostly an online payment. |
-| Get an approval for premises, a project or a product | 63 | 46 | Prepare and lodge an application for approval | 0 (0 to 0) | 10 (4 to 40) | Assumed: an approval is sought for each project, premises or product, so it is counted as one application a year for each business bound. Plans, reports and fees paid to consultants are not counted. |
+| Hold a licence, permit or accreditation | 943 | 418 | Apply for the licence, then renew it | 4 (2 to 8) | 1 (0.5 to 2) | Assumed, as for the licence costs (E-175): an application means gathering identity, qualification and insurance documents and completing the form; a renewal, taken as yearly, is mostly an online payment. |
+| Get an approval for premises, a project or a product | 68 | 46 | Prepare and lodge an application for approval | 0 (0 to 0) | 10 (4 to 40) | Assumed: an approval is sought for each project, premises or product, so it is counted as one application a year for each business bound. Plans, reports and fees paid to consultants are not counted. |
 | Notify a regulator | 22 | 9 | Notify the regulator | 0 (0 to 0) | 0.5 (0.25 to 2) | Assumed: one notice a year, mostly a short form. |
 | Pay a tax, levy or fee | 90 | 69 | Work out and pay the tax, levy or fee (the time, not the amount) | 0 (0 to 0) | 4 (1 to 12) | Assumed: from one yearly payment to a monthly or quarterly return. The amount paid is a transfer to government and is left out (Regulatory Burden Measurement Framework, p. 4). |
 | Hold insurance | 16 | 16 | Arrange and renew the insurance (the time, not the premium) | 0 (0 to 0) | 2 (1 to 4) | Assumed: a yearly renewal. The premium is a substantive cost and is not counted. |
@@ -63,7 +63,7 @@ Sourced, from the impact statement for the Banking Executive Accountability Regi
 
 ## Totals
 
-Of 1,243 requirements, 977 are costed: 382 exactly and 595 as upper bounds. 182 are not counted because their upper bound covers a quarter or more of their jurisdiction's businesses, and 84 are councils' rules or of kind other.
+Of 1,667 requirements, 977 are costed: 382 exactly and 595 as upper bounds. 182 are not counted because their upper bound covers a quarter or more of their jurisdiction's businesses, and 508 are councils' rules or of kind other.
 
 | | Low | Central | High |
 |---|---|---|---|

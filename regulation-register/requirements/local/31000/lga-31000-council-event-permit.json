@@ -1,0 +1,146 @@
+{
+  "id": "lga-31000-council-event-permit",
+  "family": "council-temporary-event-approval",
+  "jurisdiction": "QLD",
+  "tier": "local",
+  "lga": "31000",
+  "lga_name": "Brisbane",
+  "regime": null,
+  "title": "Get a permit to run a large event",
+  "kind": "approval",
+  "what": "Get the council's permit before running an event expected to draw 2,000 people or more, or 1,000 or more with risks such as amplified music, late hours or alcohol, or any event with firearms or motorsport.",
+  "laws": [
+    {
+      "title": "Events Local Law 2022",
+      "jurisdiction": "QLD",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/events-local-law-2022.pdf",
+      "provisions": "s 6, sch (dictionary)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Events Local Law 2022",
+      "publisher": "Brisbane City Council",
+      "url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/events-local-law-2022.pdf",
+      "locator": "s 6",
+      "quote": "A person must not undertake a prescribed event unless a permit for that prescribed event has been issued by Council under this local law and remains in force.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Events Local Law 2022",
+      "publisher": "Brisbane City Council",
+      "url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/events-local-law-2022.pdf",
+      "locator": "sch, definition of assessable event, para (c)",
+      "quote": "where there is an expected attendance of 1,000 people or more over the duration of the event and the event includes one or more assessable risks.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Events Local Law 2022",
+      "publisher": "Brisbane City Council",
+      "url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/events-local-law-2022.pdf",
+      "locator": "sch, definition of self-assessable event",
+      "quote": "self-assessable event means an event where there is an expected attendance of 2,000 or more people over the duration of the event but the event does not include any assessable risk.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Brisbane",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Events Local Law 2022",
+          "publisher": "Brisbane City Council",
+          "url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/events-local-law-2022.pdf",
+          "locator": "s 6",
+          "quote": "A person must not undertake a prescribed event unless a permit for that prescribed event has been issued by Council under this local law and remains in force.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "runs an event expected to draw 1,000 people or more",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7299",
+        "9003"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it runs an event expected to draw 1,000 people or more",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Events Local Law 2022",
+          "publisher": "Brisbane City Council",
+          "url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/events-local-law-2022.pdf",
+          "locator": "sch, definition of assessable event, para (c)",
+          "quote": "where there is an expected attendance of 1,000 people or more over the duration of the event and the event includes one or more assessable risks.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Events without assessable risks can get their permit by self-assessment (s 7).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Larger temporary events need the council's approval, with venue plans and conditions.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A permit or approval with plans and conditions; the size that triggers it differs by council.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 27 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
