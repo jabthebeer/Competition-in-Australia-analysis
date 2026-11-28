@@ -134,6 +134,7 @@ def hours_for(q: Requirement, assumptions: dict, licences: dict[str, dict]) -> d
             "task": over.get("task") or assumptions["kinds"][q.kind]["task"],
             "feesStart": None,
             "feesYearly": None,
+            "entities": over.get("entities"),
         }
     lic = licences.get(q.id)
     if lic:
@@ -205,8 +206,14 @@ def cost_requirement(q: Requirement, flows: Flows | None, assumptions: dict, lic
     basis, _ = X.size_basis(q.triggers)
     upper, why_upper = upper_bound(q)
     pairs = X.requirement_pairs(q)
-    stock = flows.sum("stock", basis, pairs)
-    new = flows.sum("entries", basis, pairs)
+    ents = h.get("entities")
+    if ents:
+        # A regulator's list of the entities bound replaces the ABS counts, so the count is exact (DECISIONS E-701).
+        alloc = entity_classes(ents, flows)
+        stock, new, upper, why_upper = sum(alloc.values()), 0.0, False, []
+    else:
+        stock = flows.sum("stock", basis, pairs)
+        new = flows.sum("entries", basis, pairs)
     home = schema.STATES if q.jurisdiction == "CTH" else (q.jurisdiction,)
     base = sum(v for (_, s), v in sorted(flows.stock["all"].items()) if s in home)
     share = 100 * stock / base if base else 0.0
@@ -232,11 +239,12 @@ def cost_requirement(q: Requirement, flows: Flows | None, assumptions: dict, lic
             "basisText": h["basis"],
             "rate": rate,
             "sizeBasis": basis,
-            "sizeBasisLabel": X.BASIS_LABELS[basis],
+            "sizeBasisLabel": ents["label"] if ents else X.BASIS_LABELS[basis],
+            "countsFrom": ents["label"] if ents else "abs",
             "upper": upper,
             "upperWhy": why_upper,
             "states": sorted({s for _, s in pairs}, key=schema.STATES.index),
-            "classes": len({c for c, _ in pairs}),
+            "classes": len(alloc) if ents else len({c for c, _ in pairs}),
             "businesses": round(stock),
             "share": round(share, 1),
             "newPerYear": round(new),
@@ -252,6 +260,10 @@ def cost_requirement(q: Requirement, flows: Flows | None, assumptions: dict, lic
         }
     )
     by_class: dict[str, dict[str, float]] = {}
+    if ents:
+        for c, n in sorted(alloc.items()):
+            by_class[c] = {k: per_year[k] * n for k in SCENARIOS}
+        return row, by_class
     for c, s in sorted(pairs):
         st = flows.stock[basis].get((c, s), 0.0)
         en = flows.entries[basis].get((c, s), 0.0)
@@ -261,6 +273,19 @@ def cost_requirement(q: Requirement, flows: Flows | None, assumptions: dict, lic
         for k in SCENARIOS:
             acc[k] += per_start[k] * en + per_year[k] * st
     return row, by_class
+
+
+def entity_classes(ents: dict, flows: Flows) -> dict[str, float]:
+    """The entities a regulator lists, by ANZSIC class: each group's count goes to its classes in proportion to the
+    ABS businesses in them (evenly where the ABS counts none)."""
+    out: dict[str, float] = {}
+    for g in ents["groups"]:
+        cs = sorted(g["classes"])
+        w = {c: flows.all_by_class.get(c, 0.0) for c in cs}
+        tot = sum(w.values())
+        for c in cs:
+            out[c] = out.get(c, 0.0) + g["count"] * (w[c] / tot if tot else 1 / len(cs))
+    return out
 
 
 def load_licences(path: Path | None = None, inputs: Path | None = None) -> dict[str, dict]:

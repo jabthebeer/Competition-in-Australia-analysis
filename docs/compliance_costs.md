@@ -9,7 +9,7 @@ Each requirement's **compliance cost** is the staff time it takes the businesses
 > cost a year = $91.54 an hour × (hours to start × new businesses a year + hours each year × businesses operating)
 
 - **$91.54 an hour** is the OIA's default rate for work time: $52.31 × 1.75 for on-costs and overheads (framework, p. 12). It is read from the burden calculator in `regulatory-burden-tool/`.
-- **Hours** are set for each kind of requirement (table below). Every one is **assumed**: no regulator or OIA publication gives standard hours for these tasks. The 31 costed licences use the licence costs' hours (`docs/licence_costs.md`, E-175), with renewal hours spread over the years between renewals.
+- **Hours** are set for each kind of requirement (table below). Every one is **assumed**: no regulator or OIA publication gives standard hours for these tasks. The exceptions are the costings taken from a source, listed below. The 31 costed licences use the licence costs' hours (`docs/licence_costs.md`, E-175), with renewal hours spread over the years between renewals.
 - **Businesses** are from the ABS *Counts of Australian Businesses* by industry class, state and employment size, for the classes and states each requirement reaches. A state's rule counts that state's businesses; a Commonwealth rule counts every state's. Its size test picks the size bands, as for the impact classes (E-178): a rule from the first employee counts employing businesses only. **New businesses** are the ABS entries over the year in the same bands.
 - **Low and high** values use the low and high hours. The rate and the counts are the same in each.
 - Figures are shown to 2 significant figures, because the hours are assumed.
@@ -47,9 +47,23 @@ In a steady state every entrant pays the start-up hours once, so this is the fra
 | Meet a standard or code | 304 | 266 | Learn the standard and check the business meets it (paperwork and checking only) | 0 (0 to 0) | 8 (2 to 20) | Assumed: keeping up with the standard and checking against it. The cost of meeting it (equipment, building work, training) is not counted. |
 | Other | 48 | 0 | Not costed: the obligation varies too much to assume hours | – | – | No default: hours are assumed only where the obligation's kind says what the business does. |
 
+## Costings taken from a source
+
+These requirements take their figures from a source in place of the hours for their kind (E-701). A source may give dollars, not hours: the dollars are then turned into hours at the work rate, so that the working reads the same way. A regulator's list of the entities bound, where there is one, replaces the ABS counts, and the figure is then counted exactly.
+
+### `cth-financial-accountability-regime`: Meet the Financial Accountability Regime obligations
+
+Sourced, from the impact statement for the Banking Executive Accountability Regime (BEAR), which the Financial Accountability Regime (FAR) replaced: Treasury estimated BEAR would cost $11.5 million a year for 149 authorised deposit-taking institutions (4 large, 20 medium, 125 small), upfront costs included, and the Office of Best Practice Regulation agreed the estimate. That is $77,181 an institution a year, taken here as 843 hours at today's work rate. It is in 2017 prices and not indexed. FAR also binds insurers and superannuation trustees, each assumed to cost the same as an average institution under BEAR. The low and high values (half and double) are assumed. No impact analysis costed FAR itself: its explanatory memorandum relies on the Royal Commission's final report, certified in place of one.
+
+- **Hours:** $11,500,000 a year ÷ 149 entities = $77,181 an entity (2017 prices) ÷ $91.54 an hour = 843.1 hours a year (421.6 to 1686.3).
+- **Entities bound:** 329 accountable entities APRA regulates, 31 March 2026 (Authorised deposit-taking institutions 128; General insurers 88; Life insurers and friendly societies 32; Private health insurers 28; RSE licensees 53), from Australian Prudential Regulation Authority, [APRA Corporate Plan 2026-27: accessible infographics](https://www.apra.gov.au/apra-corporate-plan-2026-27-accessible-infographics). Non-operating holding companies are also accountable entities but are not counted; APRA's page gives no count of them. ADIs are split across the 4 deposit-taking classes in proportion to the ABS counts.
+- **Result:** 843.1 hours × $91.54 × 329 businesses = $25 million ($13 million to $51 million).
+- Source: Department of the Treasury (published by the Office of Impact Analysis), [Banking Executive Accountability Regime: Regulation Impact Statement](https://oia.pmc.gov.au/published-impact-analyses-and-reports/banking-executive-accountability-regime), Section 4, Table 2 (regulatory burden estimate) and Appendix B (general assumptions).
+- Source: Parliament of Australia (Federal Register of Legislation), [Financial Accountability Regime Bill 2023: Explanatory Memorandum](https://www.legislation.gov.au/bills/C2023B00023EM_1.pdf), General outline, Impact Analysis.
+
 ## Totals
 
-Of 1,243 requirements, 977 are costed: 381 exactly and 596 as upper bounds. 182 are not counted because their upper bound covers a quarter or more of their jurisdiction's businesses, and 84 are councils' rules or of kind other.
+Of 1,243 requirements, 977 are costed: 382 exactly and 595 as upper bounds. 182 are not counted because their upper bound covers a quarter or more of their jurisdiction's businesses, and 84 are councils' rules or of kind other.
 
 | | Low | Central | High |
 |---|---|---|---|

@@ -88,6 +88,8 @@ def test_an_employer_rule_counts_only_employers_and_upper_bounds_are_flagged(pub
         q = reqs[r["requirement"]]
         basis, size_upper = X.size_basis(q.triggers)
         assert r["size_basis"] == basis, r["requirement"]
+        if r["counts_from"] != "abs":
+            continue  # a regulator's list of the entities bound: counted exactly (E-701)
         if size_upper or X.conditional(q) or X.form_limited(q):
             assert r["upper_bound"] == "yes", r["requirement"]
 
@@ -110,6 +112,30 @@ def test_the_counts_are_recounted_from_the_abs_file():
     # The ABS perturbs cells, so the bands need not add exactly to the total.
     assert row["businesses"] == pytest.approx(end, rel=0.02)
     assert row["newPerYear"] == pytest.approx(new, rel=0.05)
+
+
+def test_a_sourced_costing_follows_its_source_and_counts_the_entities_listed(published):
+    """FAR (E-701): BEAR's $11.5 million a year for 149 ADIs, an entity, for the 329 entities APRA lists."""
+    a = C.load_assumptions()
+    o = a["overrides"]["cth-financial-accountability-regime"]
+    dv = o["derivation"]
+    hours = dv["cost_a_year"] / dv["entities"] / dv["rate"]
+    assert o["yearly_hours"]["central"] == pytest.approx(hours, abs=0.05)
+    assert o["yearly_hours"]["low"] == pytest.approx(hours * dv["range"]["low"], abs=0.05)
+    assert o["yearly_hours"]["high"] == pytest.approx(hours * dv["range"]["high"], abs=0.05)
+    assert dv["rate"] == C.work_rate()
+    r = next(x for x in published if x["requirement"] == "cth-financial-accountability-regime")
+    assert r["hours_from"] == "override" and r["upper_bound"] == "no"
+    assert int(r["businesses"]) == sum(g["count"] for g in o["entities"]["groups"]) == 329
+    assert r["counts_from"] == o["entities"]["label"]
+    # Every class it is spread over is one the requirement reaches, and the classes add up to its cost.
+    q = next(q for q in load_requirements().requirements if q.id == r["requirement"])
+    reach = {c for c, _ in X.requirement_pairs(q)}
+    _, by_class = C.cost_requirement(q, C.load_flows(), a, C.load_licences(), C.work_rate())
+    assert set(by_class) <= reach
+    assert sum(v["central"] for v in by_class.values()) == pytest.approx(float(r["cost"]), rel=1e-6)
+    for overridden in a["overrides"].values():
+        assert overridden["basis"].startswith("Sourced") and overridden["sources"]
 
 
 def test_fees_are_shown_beside_the_figure_never_in_it():
