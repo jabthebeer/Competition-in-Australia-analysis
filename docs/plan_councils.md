@@ -150,7 +150,7 @@ E-2 and E-3 can start straight away. E-5 and E-6 depend on reaching council webs
   - **New:** 10 requirements. Darwin advertising signs, a Brisbane event permit, Toowoomba temporary events and caravan parks, Victoria Plains events on council property, and 5 Alice Springs by-laws (read as text from the NT legislation register). The register now holds 46 local requirements.
   - **Variation:** [`council_variation.md`](council_variation.md) and `data/processed/legislation/council_variation.csv`, built by `alicia/scripts/council_variation.py`. Councils differ in whether a requirement exists, in the approval it needs and in its trigger. Event thresholds, for example, range from any size to 2,000 people.
   - **To fix:** Sydney's busking, filming and outdoor dining permits should be NSW state requirements under methods rule 7. Street trading, markets, signs, events and caravan parks need a regime.
-  - **D4:** put to the owner on 28 Nov 2026. The recommendation is to wait for the ABLIS API key rather than read every council's laws by hand.
+  - **D4:** decided 28 Nov 2026 (E-367). The owner chose to pilot every council in one state now. WA is the pilot: see [`plan_councils_wa.md`](plan_councils_wa.md).
 
 ## Limits
 
