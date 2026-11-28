@@ -1,0 +1,150 @@
+{
+  "id": "qld-building-code-housing",
+  "family": "building-code-housing",
+  "jurisdiction": "QLD",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Build houses to the building code (NCC Volume Two and the Housing Provisions)",
+  "kind": "standard",
+  "what": "Design and build houses and other Class 1 and 10 buildings to the Building Code of Australia (NCC Volume Two, with the Queensland Appendix) and the Queensland Development Code, which are among the building assessment provisions building work is assessed against. The edition in force is NCC 2022 until NCC 2025 is adopted on 1 May 2027. Its schedule in NCC 2025 varies 12 national provisions, 5 of them in structure.",
+  "laws": [
+    {
+      "title": "Building Act 1975 (Qld)",
+      "jurisdiction": "QLD",
+      "kind": "act",
+      "register_id": "act-1975-011",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1975-011",
+      "provisions": "ss 12, 30, 31(1), 45",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Act 1975 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1975-011",
+      "locator": "s 30 (current)",
+      "quote": "30 Meaning of building assessment provisions The following laws and other documents are the building assessment provisions — (a) chapter 3 and this chapter; (b) the fire safety standard; (c) the fire safety standard (RCB); (d) any provisions of a regulation made under this Act relating to building assessment work or accepted building work; (e) any relevant local law, local planning instrument or resolution made under section 32 or any relevant provision under section 33 ; (f) the BCA; (g) subject to section 33 , the QDC.",
+      "accessed": "2026-11-27",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Act 1975 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1975-011",
+      "locator": "s 12(1) (current)",
+      "quote": "12 What is the Building Code of Australia (or BCA ) (1) The Building Code of Australia (or BCA ) is the document called ‘National Construction Code’, volume 1 and volume 2 (including the Queensland Appendixes) published by the entity known as the Australian Building Codes Board",
+      "accessed": "2026-11-27",
+      "checked": "register-text",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Act 1975 (Qld)",
+      "publisher": "Queensland Legislation",
+      "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1975-011",
+      "locator": "s 31(1) (current)",
+      "quote": "31 Building assessment provisions are assessment benchmarks for Planning Act (1) Each of the building assessment provisions is an assessment benchmark for the Planning Act for the assessment of building work that is assessable development under section 20 .",
+      "accessed": "2026-11-27",
+      "checked": "register-text",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Building certifiers (Qld), who carry out building assessment work",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Act 1975 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1975-011",
+          "locator": "s 45, words naming the body (found 27 Nov 2026) (current)",
+          "quote": "45 Generally a building certifier must assess Subject to section 46 , building assessment work must be carried out by a building certifier.",
+          "accessed": "2026-11-27",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "when carrying out building work on a Class 1 or 10 building (houses, townhouses, sheds, garages, pools)",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Volume Two and the ABCB Housing Provisions cover Class 1 and 10 buildings. Building trades doing such work are bound too; only house builders are coded here.",
+      "sources": [
+        {
+          "title": "Building Act 1975 (Qld)",
+          "publisher": "Queensland Legislation",
+          "url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1975-011",
+          "locator": "s 30 (current)",
+          "quote": "30 Meaning of building assessment provisions The following laws and other documents are the building assessment provisions — (a) chapter 3 and this chapter; (b) the fire safety standard; (c) the fire safety standard (RCB); (d) any provisions of a regulation made under this Act relating to building assessment work or accepted building work; (e) any relevant local law, local planning instrument or resolution made under section 32 or any relevant provision under section 33 ; (f) the BCA; (g) subject to section 33 , the QDC.",
+          "accessed": "2026-11-27",
+          "checked": "register-text",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The law's own words require building or plumbing work to comply with the code. Drafted on 27 November 2026 for the NCC work (docs/plan_ncc_ingestion.md, phase N3); the variation counts are from the NCC 2025 dataset.",
+  "records": [
+    "qld-ncc-2022-2024",
+    "qld-ncc-2025-2027"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Work must meet the National Construction Code (Volume Two and the Housing Provisions) as Queensland applies it. The code sets minimum safety, health, amenity, accessibility and energy standards, whose benefits are not weighed here; meeting and certifying them adds to the cost of every project.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Designing, documenting and certifying each project against the code adds cost, and the state's own variations add to it for builders who work in several states.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked to agree with the NCC adoption records (burden -1); the Productivity Commission finds several code changes were adopted although their impact analyses showed a net cost. No evaluation of the requirement itself was found.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

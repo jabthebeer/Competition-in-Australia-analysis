@@ -1,0 +1,140 @@
+{
+  "id": "act-building-code-housing",
+  "family": "building-code-housing",
+  "jurisdiction": "ACT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Build houses to the building code (NCC Volume Two and the Housing Provisions)",
+  "kind": "standard",
+  "what": "As a licensed builder, carry out building work on houses and other Class 1 and 10 buildings so that the building complies with the building code: the Building Code of Australia (NCC Volume Two and the Housing Provisions) with the ACT Appendix. The edition in force is NCC 2025 since 1 May 2026, with a 12-month transition. The ACT's variations are in the ACT Appendix on the ACT Legislation Register, not counted here.",
+  "laws": [
+    {
+      "title": "Building Act 2004 (ACT)",
+      "jurisdiction": "ACT",
+      "kind": "act",
+      "register_id": "2004-11",
+      "register_url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-11/current/PDF/2004-11.PDF",
+      "provisions": "ss 30(1), 49(2), 136(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Act 2004 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-11/current/PDF/2004-11.PDF",
+      "locator": "s 49(2) (current republication (R57, from 10 November 2026; Building Act 2004 | Acts))",
+      "quote": "(2) A person commits an offence if— (a) the person is a licensed builder; and (b) the person carries out building work; and (c) the building work does not, or will not, result in a building that complies with the building code.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Act 2004 (ACT)",
+      "publisher": "ACT Legislation Register",
+      "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-11/current/PDF/2004-11.PDF",
+      "locator": "s 136(1) (current republication (R57, from 10 November 2026; Building Act 2004 | Acts))",
+      "quote": "136 Building code (1) In this Act: building code means— (a) the Building Code of Australia prepared and published by the Australian Building Codes Board as amended from time to time by— (i) the Australian Building Codes Board; and (ii) the Australian Capital Territory Appendix to the Building Code of Australia; and (b) a document prescribed by regulation.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Certifiers (ACT), who issue building approvals",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Act 2004 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-11/current/PDF/2004-11.PDF",
+          "locator": "s 30(1), words naming the body (found 27 Nov 2026) (current republication (R57, from 10 November 2026; Building Act 2004 | Acts))",
+          "quote": "30 When building approvals not to be issued—general (1) A certifier must not issue a building approval if carrying out the site work to which the application for the approval relates would result in the contravention of this Act or any other law in force in the ACT",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "when carrying out building work on a Class 1 or 10 building (houses, townhouses, sheds, garages, pools)",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Volume Two and the ABCB Housing Provisions cover Class 1 and 10 buildings. Building trades doing such work are bound too; only house builders are coded here.",
+      "sources": [
+        {
+          "title": "Building Act 2004 (ACT)",
+          "publisher": "ACT Legislation Register",
+          "url": "https://www.legislation.act.gov.au/DownloadFile/a/2004-11/current/PDF/2004-11.PDF",
+          "locator": "s 49(2) (current republication (R57, from 10 November 2026; Building Act 2004 | Acts))",
+          "quote": "(2) A person commits an offence if— (a) the person is a licensed builder; and (b) the person carries out building work; and (c) the building work does not, or will not, result in a building that complies with the building code.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The law's own words require building or plumbing work to comply with the code. Drafted on 27 November 2026 for the NCC work (docs/plan_ncc_ingestion.md, phase N3); the variation counts are from the NCC 2025 dataset.",
+  "records": [
+    "act-ncc-2022-2024",
+    "act-ncc-2025-2026"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Work must meet the National Construction Code (Volume Two and the Housing Provisions) as the ACT applies it. The code sets minimum safety, health, amenity, accessibility and energy standards, whose benefits are not weighed here; meeting and certifying them adds to the cost of every project.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Designing, documenting and certifying each project against the code adds cost, and the state's own variations add to it for builders who work in several states.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked to agree with the NCC adoption records (burden -1); the Productivity Commission finds several code changes were adopted although their impact analyses showed a net cost. No evaluation of the requirement itself was found.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

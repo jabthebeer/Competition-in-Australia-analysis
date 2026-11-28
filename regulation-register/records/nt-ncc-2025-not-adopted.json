@@ -1,0 +1,121 @@
+{
+  "id": "nt-ncc-2025-not-adopted",
+  "kind": "setting",
+  "family": "ncc-2025-adoption",
+  "title": "2025 building code not adopted (Northern Territory)",
+  "jurisdiction": "NT",
+  "summary": "The Northern Territory has not adopted NCC 2025, the only jurisdiction not to, and stays on NCC 2022. It already varied NCC 2022 more than most: homes stay at 5 stars and commercial buildings on the 2019 energy provisions. Its schedule in the 2025 text varies 135 provisions.",
+  "instruments": [
+    {
+      "title": "National Construction Code 2025",
+      "register_url": "https://data.gov.au/data/dataset/national-construction-code-2025-version-1-2",
+      "register_id": null,
+      "role": "code",
+      "provisions": "Volumes One, Two and Three, the ABCB Housing Provisions and the Livable Housing Design Standard, with the state's variations in its schedule"
+    },
+    {
+      "title": "Building Act 1993 (NT)",
+      "register_url": "https://legislation.nt.gov.au/en/Legislation/BUILDING-ACT-1993",
+      "register_id": "BUILDING-ACT-1993",
+      "role": "principal",
+      "provisions": "named without a year in the NT schedule; matched to the register by title"
+    },
+    {
+      "title": "Building Regulations 1993 (NT)",
+      "register_url": "https://legislation.nt.gov.au/en/Legislation/BUILDING-REGULATIONS-1993",
+      "register_id": "BUILDING-REGULATIONS-1993",
+      "role": "regulation",
+      "provisions": "named without a year in the NT schedule; matched to the register by title"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "mixed",
+  "direction_rationale": "Staying on NCC 2022 spares Territory builders the 2025 commercial energy efficiency and solar costs, but leaves them on a different code from the states, which raises the cost of working across borders and of national product and design approvals.",
+  "direction_sources": [
+    "https://www.abcb.gov.au/news/2026/ncc-2025-released",
+    "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-key-changes/ncc-2025-commercial-energy-efficiency-changes"
+  ],
+  "channels": [
+    "barriers",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "3020",
+      "name": "Non-Residential Building Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3019",
+      "name": "Other Residential Building Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3011",
+      "name": "House Construction",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Staggered adoption: the ACT, Victoria and Western Australia from 1 May 2026; New South Wales, Queensland, South Australia (building) and Tasmania from 1 May 2027; the Northern Territory not adopted",
+  "confounders": [
+    "building cost inflation",
+    "interest rate changes from 2025",
+    "the pause on residential code changes announced in August 2025",
+    "builder insolvencies"
+  ],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Status from the ABCB's NCC 2025 adoption page (read 27 November 2026: 'Not adopted') and the 'History of adoption' tables in the NCC 2025 dataset (version 1.2), which agree. No commencement: a setting, not a change."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 27 November 2026 from the ABCB's NCC 2025 adoption page and dataset (docs/plan_ncc_ingestion.md, phase N2; DECISIONS E-501). Not yet checked: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "The Northern Territory has not adopted the 2025 National Construction Code and stays on NCC 2022, itself adopted with lower energy settings. Builders there avoid the 2025 costs, but work to a different code from the rest of the country.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": 1,
+        "reason": "Builders avoid the added costs of the 2025 commercial energy efficiency and solar rules."
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Leaves the Territory on a different edition from the states that adopt NCC 2025, so designs and products must be checked against two codes."
+      }
+    ],
+    "main_driver": "market-integration",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "The ABCB's page says only 'Not adopted', with no end date; the Territory's own page refused automated requests.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "responsible": [
+    {
+      "body": "nat-abcb",
+      "role": "policy",
+      "source": "https://www.abcb.gov.au/",
+      "note": "Produces the National Construction Code that each jurisdiction adopts."
+    }
+  ],
+  "history": []
+}

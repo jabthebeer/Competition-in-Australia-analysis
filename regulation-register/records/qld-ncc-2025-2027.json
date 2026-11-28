@@ -1,0 +1,121 @@
+{
+  "id": "qld-ncc-2025-2027",
+  "kind": "reform",
+  "family": "ncc-2025-adoption",
+  "title": "2025 building code to be adopted in 2027 (Queensland)",
+  "jurisdiction": "QLD",
+  "summary": "Queensland will adopt NCC 2025 on 1 May 2027, a year after its national start date. Until then NCC 2022 applies. Its schedule varies only 30 provisions of the national text, the fewest of any state that publishes variations there, but Queensland sets some rules in its own Queensland Development Code.",
+  "instruments": [
+    {
+      "title": "National Construction Code 2025",
+      "register_url": "https://data.gov.au/data/dataset/national-construction-code-2025-version-1-2",
+      "register_id": null,
+      "role": "code",
+      "provisions": "Volumes One, Two and Three, the ABCB Housing Provisions and the Livable Housing Design Standard, with the state's variations in its schedule"
+    },
+    {
+      "title": "Building Act 1975 (Qld)",
+      "register_url": "https://www.legislation.qld.gov.au/view/whole/html/inforce/current/act-1975-011",
+      "register_id": "act-1975-011",
+      "role": "principal",
+      "provisions": "s 37 (the edition of the BCA that applies), named in the Queensland schedule"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": null,
+      "source": null
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "NCC 2025's largest changes are for commercial buildings: the regulated energy allowance for Class 3 and 5 to 9 buildings is roughly halved, on-site solar panels become mandatory, and fabric, services, carpark sprinkler, water management and condensation rules are tightened. These add design and construction costs that are partly fixed per project and may weigh most on smaller builders, lowering entry.",
+  "direction_sources": [
+    "https://www.abcb.gov.au/news/2026/ncc-2025-released",
+    "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-key-changes/ncc-2025-commercial-energy-efficiency-changes"
+  ],
+  "channels": [
+    "barriers",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "3020",
+      "name": "Non-Residential Building Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3019",
+      "name": "Other Residential Building Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3011",
+      "name": "House Construction",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Staggered adoption: the ACT, Victoria and Western Australia from 1 May 2026; New South Wales, Queensland, South Australia (building) and Tasmania from 1 May 2027; the Northern Territory not adopted",
+  "confounders": [
+    "building cost inflation",
+    "interest rate changes from 2025",
+    "the pause on residential code changes announced in August 2025",
+    "builder insolvencies"
+  ],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Not yet in force, so no commencement is recorded. Date from the ABCB's NCC 2025 adoption page (read 27 November 2026); the 'History of adoption' tables in the NCC 2025 dataset (version 1.2) agree."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 27 November 2026 from the ABCB's NCC 2025 adoption page and dataset (docs/plan_ncc_ingestion.md, phase N2; DECISIONS E-501). Not yet checked: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Adopts the 2025 National Construction Code, whose main changes tighten energy efficiency for commercial buildings and require on-site solar panels. The changes cut energy use and emissions, which are not weighed here; they also add to the cost of building. Queensland delays it by a year.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Adds design and construction costs to new commercial and apartment buildings, mainly through the tighter energy efficiency rules and mandatory on-site solar."
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Keeps the state on the 2022 code for a year after others moved to 2025, so builders working across states meet two editions."
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "No impact analysis for NCC 2025 was found in this search; the marks follow the 2022 adoption records and the Productivity Commission's finding that several code changes were adopted despite a net cost.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf",
+      "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-key-changes/ncc-2025-commercial-energy-efficiency-changes"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "responsible": [
+    {
+      "body": "qld-dhpw",
+      "role": "administers",
+      "source": "https://www.qld.gov.au/__data/assets/pdf_file/0023/908411/administrative-arrangements-order-no.-1-2026.pdf",
+      "note": "Administers the Building Act 1975."
+    },
+    {
+      "body": "nat-abcb",
+      "role": "policy",
+      "source": "https://www.abcb.gov.au/",
+      "note": "Produces the National Construction Code that each jurisdiction adopts."
+    }
+  ],
+  "history": []
+}

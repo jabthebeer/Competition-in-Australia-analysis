@@ -1,0 +1,129 @@
+{
+  "id": "nsw-plumbing-code",
+  "family": "plumbing-code",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Do plumbing and drainage work to the plumbing code (NCC Volume Three)",
+  "kind": "standard",
+  "what": "As the responsible person for plumbing and drainage work, ensure the work complies with the Plumbing Code of Australia (NCC Volume Three, with the NSW variations) and any other standards the regulations prescribe. The edition in force is NCC 2022 until NCC 2025 is adopted on 1 May 2027. Its schedule in NCC 2025 varies 31 national provisions, mostly water services.",
+  "laws": [
+    {
+      "title": "Plumbing and Drainage Act 2011 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "act",
+      "register_id": "act-2011-059",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-2011-059",
+      "provisions": "s 7(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Plumbing and Drainage Act 2011 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-2011-059",
+      "locator": "s 7(1) (version of 2024-08-20)",
+      "quote": "7 Plumbing and drainage work to comply with certain standards (1) The responsible person for plumbing and drainage work must ensure the work complies with— (a) the Plumbing Code of Australia, and (b) any other standards or requirements prescribed by the regulations.",
+      "accessed": "2026-11-27",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2024-08-20/act-2011-059"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Plumbing regulator: the Secretary of the department administering the Plumbing and Drainage Act 2011 (NSW)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Plumbing and Drainage Act 2011 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-2011-059",
+          "locator": "s 3, def plumbing regulator, words naming the body (found 27 Nov 2026) (version of 2024-08-20)",
+          "quote": "plumbing regulatormeans the Secretary of the department in which this Act is administered.",
+          "accessed": "2026-11-27",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-20/act-2011-059"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "when carrying out plumbing or drainage work",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3231"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Volume Three, the Plumbing Code of Australia, covers plumbing and drainage work.",
+      "sources": [
+        {
+          "title": "Plumbing and Drainage Act 2011 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2024-08-20/act-2011-059",
+          "locator": "s 7(1) (version of 2024-08-20)",
+          "quote": "7 Plumbing and drainage work to comply with certain standards (1) The responsible person for plumbing and drainage work must ensure the work complies with— (a) the Plumbing Code of Australia, and (b) any other standards or requirements prescribed by the regulations.",
+          "accessed": "2026-11-27",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2024-08-20/act-2011-059"
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The law's own words require building or plumbing work to comply with the code. Drafted on 27 November 2026 for the NCC work (docs/plan_ncc_ingestion.md, phase N3); the variation counts are from the NCC 2025 dataset. Quoted from the corpus copy of the official text (NSW register as at 2024).",
+  "records": [
+    "nsw-ncc-2025-2027"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Work must meet the National Construction Code (Volume Three, the Plumbing Code of Australia) as New South Wales applies it. The code sets minimum safety, health, amenity, accessibility and energy standards, whose benefits are not weighed here; meeting and certifying them adds to the cost of every project.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Designing, documenting and certifying each project against the code adds cost, and the state's own variations add to it for builders who work in several states.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked to agree with the NCC adoption records (burden -1); the Productivity Commission finds several code changes were adopted although their impact analyses showed a net cost. No evaluation of the requirement itself was found.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
