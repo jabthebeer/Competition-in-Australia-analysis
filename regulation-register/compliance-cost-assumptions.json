@@ -1,5 +1,5 @@
 {
-  "note": "Assumptions for the compliance cost of each requirement (DECISIONS E-700). A requirement's cost a year is the staff time it takes, valued at the Office of Impact Analysis's work rate, for the businesses it binds: hours when a business starts (or first becomes bound) times the new businesses a year, plus hours each year times the businesses operating. Hours come from the requirement's kind unless 'overrides' or the licence costs (licence-costs.json) give them for that requirement. Every hours figure under 'kinds' is assumed: no regulator or Office of Impact Analysis publication gives standard hours for these tasks. An 'overrides' entry takes its figures from a source for one requirement, and may count the entities bound from a regulator's list in place of the ABS counts ('entities'); its basis says what was sourced and what assumed (DECISIONS E-701). Replace a row's hours, and its basis, when a sourced figure is found. Drafted by AI-assisted desk research; not yet checked by a person.",
+  "note": "Assumptions for the compliance cost of each requirement (DECISIONS E-700). A requirement's cost a year is the staff time it takes, valued at the Office of Impact Analysis's work rate, for the businesses it binds: hours when a business starts (or first becomes bound) times the new businesses a year, plus hours each year times the businesses operating. Hours come from the requirement's kind unless 'overrides' or the licence costs (licence-costs.json) give them for that requirement. Every hours figure under 'kinds' is assumed: no regulator or Office of Impact Analysis publication gives standard hours for these tasks. A costing card in regulation-register/costings/ replaces these hours for one requirement or a family with figures from a source, and may count the entities bound from a regulator's list in place of the ABS counts (DECISIONS E-701, E-702). Replace a row's hours, and its basis, when a sourced figure is found. Drafted by AI-assisted desk research; not yet checked by a person.",
   "drafted_on": "2026-11-27",
   "approved": "Owner, 27 November 2026: 'Happy with your decisions, can you start building?' (the plan of 25 November 2026)",
   "kinds": {
@@ -61,101 +61,6 @@
       "task": "Not costed: the obligation varies too much to assume hours",
       "costed": false,
       "basis": "No default: hours are assumed only where the obligation's kind says what the business does."
-    }
-  },
-  "overrides": {
-    "cth-financial-accountability-regime": {
-      "task": "Register accountable persons with APRA and ASIC, keep accountability maps and statements up to date, notify changes, and defer senior executives' variable pay",
-      "start_hours": {
-        "low": 0,
-        "central": 0,
-        "high": 0
-      },
-      "yearly_hours": {
-        "low": 421.6,
-        "central": 843.1,
-        "high": 1686.3
-      },
-      "derivation": {
-        "cost_a_year": 11500000,
-        "entities": 149,
-        "price_year": 2017,
-        "range": {
-          "low": 0.5,
-          "high": 2
-        },
-        "rate": 91.54
-      },
-      "basis": "Sourced, from the impact statement for the Banking Executive Accountability Regime (BEAR), which the Financial Accountability Regime (FAR) replaced: Treasury estimated BEAR would cost $11.5 million a year for 149 authorised deposit-taking institutions (4 large, 20 medium, 125 small), upfront costs included, and the Office of Best Practice Regulation agreed the estimate. That is $77,181 an institution a year, taken here as 843 hours at today's work rate. It is in 2017 prices and not indexed. FAR also binds insurers and superannuation trustees, each assumed to cost the same as an average institution under BEAR. The low and high values (half and double) are assumed. No impact analysis costed FAR itself: its explanatory memorandum relies on the Royal Commission's final report, certified in place of one.",
-      "sources": [
-        {
-          "title": "Banking Executive Accountability Regime: Regulation Impact Statement",
-          "publisher": "Department of the Treasury (published by the Office of Impact Analysis)",
-          "url": "https://oia.pmc.gov.au/published-impact-analyses-and-reports/banking-executive-accountability-regime",
-          "locator": "Section 4, Table 2 (regulatory burden estimate) and Appendix B (general assumptions)",
-          "quote": "it has been estimated that Option 3 would increase compliance costs by $11.5 million per year",
-          "accessed": "2026-11-28"
-        },
-        {
-          "title": "Financial Accountability Regime Bill 2023: Explanatory Memorandum",
-          "publisher": "Parliament of Australia (Federal Register of Legislation)",
-          "url": "https://www.legislation.gov.au/bills/C2023B00023EM_1.pdf",
-          "locator": "General outline, Impact Analysis",
-          "quote": "The Financial Services Royal Commission Final Report has been certified as being informed by a process and analysis equivalent to an Impact Analysis",
-          "accessed": "2026-11-28"
-        }
-      ],
-      "entities": {
-        "label": "accountable entities APRA regulates, 31 March 2026",
-        "source": {
-          "title": "APRA Corporate Plan 2026-27: accessible infographics",
-          "publisher": "Australian Prudential Regulation Authority",
-          "url": "https://www.apra.gov.au/apra-corporate-plan-2026-27-accessible-infographics",
-          "locator": "Banking, insurance and superannuation snapshots ('Figures as at 31 March 2026')",
-          "accessed": "2026-11-28"
-        },
-        "groups": [
-          {
-            "name": "Authorised deposit-taking institutions",
-            "count": 128,
-            "classes": [
-              "6221",
-              "6222",
-              "6223",
-              "6229"
-            ]
-          },
-          {
-            "name": "General insurers",
-            "count": 88,
-            "classes": [
-              "6322"
-            ]
-          },
-          {
-            "name": "Life insurers and friendly societies",
-            "count": 32,
-            "classes": [
-              "6310"
-            ]
-          },
-          {
-            "name": "Private health insurers",
-            "count": 28,
-            "classes": [
-              "6321"
-            ]
-          },
-          {
-            "name": "RSE licensees",
-            "count": 53,
-            "classes": [
-              "6330"
-            ]
-          }
-        ],
-        "note": "Non-operating holding companies are also accountable entities but are not counted; APRA's page gives no count of them. ADIs are split across the 4 deposit-taking classes in proportion to the ABS counts."
-      }
     }
   }
 }

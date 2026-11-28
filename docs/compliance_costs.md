@@ -49,17 +49,18 @@ In a steady state every entrant pays the start-up hours once, so this is the fra
 
 ## Costings taken from a source
 
-These requirements take their figures from a source in place of the hours for their kind (E-701). A source may give dollars, not hours: the dollars are then turned into hours at the work rate, so that the working reads the same way. A regulator's list of the entities bound, where there is one, replaces the ABS counts, and the figure is then counted exactly.
+These requirements take their figures from a costing card in `regulation-register/costings/` in place of the hours for their kind (E-701, E-702). A card is **sourced** when the figure comes from the law's own impact analysis or a regulator, and **analogue** when it is borrowed from a similar regime. A source may give dollars, not hours: the dollars are then turned into hours at the work rate, so that the working reads the same way. A regulator's list of the entities bound, where there is one, replaces the ABS counts, and the figure is then counted exactly.
 
-### `cth-financial-accountability-regime`: Meet the Financial Accountability Regime obligations
+### `cth-financial-accountability-regime`: Meet the Financial Accountability Regime obligations (analogue)
 
-Sourced, from the impact statement for the Banking Executive Accountability Regime (BEAR), which the Financial Accountability Regime (FAR) replaced: Treasury estimated BEAR would cost $11.5 million a year for 149 authorised deposit-taking institutions (4 large, 20 medium, 125 small), upfront costs included, and the Office of Best Practice Regulation agreed the estimate. That is $77,181 an institution a year, taken here as 843 hours at today's work rate. It is in 2017 prices and not indexed. FAR also binds insurers and superannuation trustees, each assumed to cost the same as an average institution under BEAR. The low and high values (half and double) are assumed. No impact analysis costed FAR itself: its explanatory memorandum relies on the Royal Commission's final report, certified in place of one.
+Analogue: taken from the impact statement for the Banking Executive Accountability Regime (BEAR), which the Financial Accountability Regime (FAR) replaced: Treasury estimated BEAR would cost $11.5 million a year for 149 authorised deposit-taking institutions (4 large, 20 medium, 125 small), upfront costs included, and the Office of Best Practice Regulation agreed the estimate. That is $77,181 an institution a year, taken here as 843 hours at today's work rate. It is in 2017 prices and not indexed. FAR also binds insurers and superannuation trustees, each assumed to cost the same as an average institution under BEAR. The low and high values (half and double) are assumed. No impact analysis costed FAR itself: its explanatory memorandum relies on the Royal Commission's final report, certified in place of one.
 
-- **Hours:** $11,500,000 a year ÷ 149 entities = $77,181 an entity (2017 prices) ÷ $91.54 an hour = 843.1 hours a year (421.6 to 1686.3).
+- **Hours:** $11,500,000 a year ÷ 149 entities = $77,181 an entity (2017 prices, not indexed) ÷ $91.54 an hour = 843.1 hours a year (421.6 to 1686.3).
 - **Entities bound:** 329 accountable entities APRA regulates, 31 March 2026 (Authorised deposit-taking institutions 128; General insurers 88; Life insurers and friendly societies 32; Private health insurers 28; RSE licensees 53), from Australian Prudential Regulation Authority, [APRA Corporate Plan 2026-27: accessible infographics](https://www.apra.gov.au/apra-corporate-plan-2026-27-accessible-infographics). Non-operating holding companies are also accountable entities but are not counted; APRA's page gives no count of them. ADIs are split across the 4 deposit-taking classes in proportion to the ABS counts.
 - **Result:** 843.1 hours × $91.54 × 329 businesses = $25 million ($13 million to $51 million).
 - Source: Department of the Treasury (published by the Office of Impact Analysis), [Banking Executive Accountability Regime: Regulation Impact Statement](https://oia.pmc.gov.au/published-impact-analyses-and-reports/banking-executive-accountability-regime), Section 4, Table 2 (regulatory burden estimate) and Appendix B (general assumptions).
 - Source: Parliament of Australia (Federal Register of Legislation), [Financial Accountability Regime Bill 2023: Explanatory Memorandum](https://www.legislation.gov.au/bills/C2023B00023EM_1.pdf), General outline, Impact Analysis.
+- Card: `regulation-register/costings/cth-financial-accountability-regime.json`, review status draft.
 
 ## Totals
 
@@ -71,6 +72,14 @@ Of 1,243 requirements, 977 are costed: 382 exactly and 595 as upper bounds. 182 
 | State and territory requirements, counted exactly | $770 million | $2.8 billion | $6.9 billion |
 | **All requirements counted exactly** | $3.8 billion | **$14 billion** | $42 billion |
 | Upper bounds, apart (up to) | $710 million | $2.4 billion | $7.5 billion |
+
+How the exact total is evidenced:
+
+| Evidence | Requirements counted exactly | Exact total (central) |
+|---|---:|---:|
+| Sourced | 0 | $0 (0.0%) |
+| Analogue | 1 | $25 million (0.2%) |
+| Assumed | 381 | $14 billion (99.8%) |
 
 The total is a sum of assumed paperwork time, not an estimate of the burden of regulation. It leaves out substantive compliance costs, the rules not counted, and every law not yet on the register (Victoria has only 32 requirements so far). State totals are not compared, because each state's law is recorded to a different extent.
 

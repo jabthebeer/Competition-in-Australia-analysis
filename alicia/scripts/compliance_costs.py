@@ -44,6 +44,8 @@ FIELDS = (
     "hours_from",
     "size_basis",
     "counts_from",
+    "evidence",
+    "card",
     "upper_bound",
     "upper_why",
     "classes",
@@ -110,6 +112,8 @@ def row_out(r: dict) -> dict:
         hours_from=r["hoursFrom"],
         size_basis=r["sizeBasis"],
         counts_from=r["countsFrom"],
+        evidence=r["evidence"],
+        card=r["card"] or "",
         upper_bound="yes" if r["upper"] else "no",
         upper_why="; ".join(r["upperWhy"]),
         classes=r["classes"],
@@ -272,27 +276,39 @@ def note(out: dict, assumptions: dict) -> str:
             f"| {KIND_LABELS[k]} | {len(rs)} | {sum(1 for r in rs if r['costed'])} | {a['task']} | "
             f"{hrs(a['start_hours'])} | {hrs(a['yearly_hours'])} | {a['basis']} |"
         )
-    overrides = assumptions.get("overrides", {})
-    if overrides:
+    cards = sorted(
+        [(rid, o) for rid, o in assumptions.get("overrides", {}).items()]
+        + [(f"family {fam}", o) for fam, o in assumptions.get("families", {}).items()]
+    )
+    if cards:
         lines += [
             "",
             "## Costings taken from a source",
             "",
-            "These requirements take their figures from a source in place of the hours for their kind (E-701). A "
-            "source may give dollars, not hours: the dollars are then turned into hours at the work rate, so that the "
-            "working reads the same way. A regulator's list of the entities bound, where there is one, replaces the "
-            "ABS counts, and the figure is then counted exactly.",
+            "These requirements take their figures from a costing card in `regulation-register/costings/` in place of "
+            "the hours for their kind (E-701, E-702). A card is **sourced** when the figure comes from the law's own "
+            "impact analysis or a regulator, and **analogue** when it is borrowed from a similar regime. A source may "
+            "give dollars, not hours: the dollars are then turned into hours at the work rate, so that the working "
+            "reads the same way. A regulator's list of the entities bound, where there is one, replaces the ABS "
+            "counts, and the figure is then counted exactly.",
         ]
         byid = {r["id"]: r for r in rows}
-        for rid, o in sorted(overrides.items()):
+        for rid, o in cards:
             r = byid.get(rid)
-            lines += ["", f"### `{rid}`" + (f": {r['title']}" if r else ""), "", o["basis"], ""]
-            dv = o.get("derivation")
-            if dv:
-                per = dv["cost_a_year"] / dv["entities"]
+            lines += [
+                "",
+                f"### `{rid}`" + (f": {r['title']}" if r else "") + f" ({o['evidence']})",
+                "",
+                o["basis"],
+                "",
+            ]
+            sc = o.get("source_cost")
+            if sc:
+                per = sc["cost_a_year"] / sc["entities"]
+                prices = f"{sc['price_year']} prices" + ("" if sc.get("indexed") else ", not indexed")
                 lines.append(
-                    f"- **Hours:** ${dv['cost_a_year']:,.0f} a year ÷ {dv['entities']:,} entities = ${per:,.0f} an "
-                    f"entity ({dv['price_year']} prices) ÷ ${dv['rate']:.2f} an hour = "
+                    f"- **Hours:** ${sc['cost_a_year']:,.0f} a year ÷ {sc['entities']:,} entities = ${per:,.0f} an "
+                    f"entity ({prices}) ÷ ${rate:.2f} an hour = "
                     f"{o['yearly_hours']['central']:g} hours a year ({o['yearly_hours']['low']:g} to "
                     f"{o['yearly_hours']['high']:g})."
                 )
@@ -311,6 +327,7 @@ def note(out: dict, assumptions: dict) -> str:
                 )
             for s in o.get("sources", []):
                 lines.append(f"- Source: {s['publisher']}, [{s['title']}]({s['url']}), {s['locator']}.")
+            lines.append(f"- Card: `regulation-register/costings/{o['file']}`, review status {o['review']['status']}.")
     withheld = [r for r in rows if r.get("withheld")]
     lines += [
         "",
@@ -332,6 +349,16 @@ def note(out: dict, assumptions: dict) -> str:
         f"{C.money(t['exact']['high'])} |",
         f"| Upper bounds, apart (up to) | {C.money(t['upper']['low'])} | {C.money(t['upper']['central'])} | "
         f"{C.money(t['upper']['high'])} |",
+        "",
+        "How the exact total is evidenced:",
+        "",
+        "| Evidence | Requirements counted exactly | Exact total (central) |",
+        "|---|---:|---:|",
+        *[
+            f"| {e.capitalize()} | {n['byEvidence'][e]:,} | {C.money(t['byEvidence'][e]['central'])} "
+            f"({100 * t['byEvidence'][e]['central'] / t['exact']['central']:.1f}%) |"
+            for e in C.EVIDENCE
+        ],
         "",
         "The total is a sum of assumed paperwork time, not an estimate of the burden of regulation. It leaves out "
         "substantive compliance costs, the rules not counted, and every law not yet on the register (Victoria has "

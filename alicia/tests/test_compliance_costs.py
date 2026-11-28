@@ -118,14 +118,13 @@ def test_a_sourced_costing_follows_its_source_and_counts_the_entities_listed(pub
     """FAR (E-701): BEAR's $11.5 million a year for 149 ADIs, an entity, for the 329 entities APRA lists."""
     a = C.load_assumptions()
     o = a["overrides"]["cth-financial-accountability-regime"]
-    dv = o["derivation"]
-    hours = dv["cost_a_year"] / dv["entities"] / dv["rate"]
+    sc = o["source_cost"]
+    hours = sc["cost_a_year"] / sc["entities"] / C.work_rate()
     assert o["yearly_hours"]["central"] == pytest.approx(hours, abs=0.05)
-    assert o["yearly_hours"]["low"] == pytest.approx(hours * dv["range"]["low"], abs=0.05)
-    assert o["yearly_hours"]["high"] == pytest.approx(hours * dv["range"]["high"], abs=0.05)
-    assert dv["rate"] == C.work_rate()
+    assert o["yearly_hours"]["low"] == pytest.approx(hours * sc["range"]["low"], abs=0.05)
+    assert o["yearly_hours"]["high"] == pytest.approx(hours * sc["range"]["high"], abs=0.05)
     r = next(x for x in published if x["requirement"] == "cth-financial-accountability-regime")
-    assert r["hours_from"] == "override" and r["upper_bound"] == "no"
+    assert r["hours_from"] == "override" and r["upper_bound"] == "no" and r["evidence"] == "analogue"
     assert int(r["businesses"]) == sum(g["count"] for g in o["entities"]["groups"]) == 329
     assert r["counts_from"] == o["entities"]["label"]
     # Every class it is spread over is one the requirement reaches, and the classes add up to its cost.
@@ -134,8 +133,59 @@ def test_a_sourced_costing_follows_its_source_and_counts_the_entities_listed(pub
     _, by_class = C.cost_requirement(q, C.load_flows(), a, C.load_licences(), C.work_rate())
     assert set(by_class) <= reach
     assert sum(v["central"] for v in by_class.values()) == pytest.approx(float(r["cost"]), rel=1e-6)
-    for overridden in a["overrides"].values():
-        assert overridden["basis"].startswith("Sourced") and overridden["sources"]
+
+
+def test_every_costing_card_is_well_formed():
+    """Each card (E-702) points at a requirement or family on the register, says how good its evidence is, and
+    quotes a source."""
+    reqs = load_requirements().requirements
+    ids, families = {q.id for q in reqs}, {q.family for q in reqs}
+    by_req, by_family = C.load_cards()
+    assert by_req, "the FAR card is missing"
+    for key, card in [*by_req.items(), *by_family.items()]:
+        assert key in (ids if key in by_req else families), card["file"]
+        assert card["evidence"] in ("sourced", "analogue"), card["file"]
+        assert card["basis"] and card["task"], card["file"]
+        assert ("source_cost" in card) or ("yearly_hours" in card), card["file"]
+        for when in ("start_hours", "yearly_hours"):
+            h = card[when]
+            assert 0 <= h["low"] <= h["central"] <= h["high"], card["file"]
+        assert card["sources"], card["file"]
+        for s in card["sources"]:
+            assert s["url"].startswith("https://") and s["quote"] and s["locator"] and s["accessed"], card["file"]
+        assert card["review"]["status"] in ("draft", "checked"), card["file"]
+
+
+def test_a_family_card_costs_each_member_and_counts_only_its_states(tmp_path):
+    """A card for a family applies to every member without a card of its own; a group limited to some states
+    counts only for those states' requirements."""
+    q = next(q for q in load_requirements().requirements if q.id == "qld-builder-licence")
+    card = {
+        "applies_to": {"family": q.family},
+        "evidence": "sourced",
+        "task": "t",
+        "basis": "b",
+        "start_hours": {"low": 0, "central": 0, "high": 0},
+        "yearly_hours": {"low": 1, "central": 2, "high": 3},
+        "entities": {
+            "label": "holders",
+            "source": {},
+            "note": "",
+            "groups": [
+                {"name": "Qld", "count": 100, "classes": ["3020"], "states": ["QLD"]},
+                {"name": "NSW", "count": 900, "classes": ["3020"], "states": ["NSW"]},
+            ],
+        },
+        "sources": [],
+        "review": {"status": "draft"},
+    }
+    (tmp_path / "x.json").write_text(__import__("json").dumps(card))
+    a = C.load_assumptions(cards=tmp_path)
+    assert q.family in a["families"] and not a["overrides"]
+    row, by_class = C.cost_requirement(q, C.load_flows(), a, C.load_licences(), 91.54)
+    assert row["evidence"] == "sourced" and row["businesses"] == 100 and not row["upper"]
+    assert row["cost"]["central"] == pytest.approx(2 * 91.54 * 100)
+    assert set(by_class) == {"3020"}
 
 
 def test_fees_are_shown_beside_the_figure_never_in_it():
