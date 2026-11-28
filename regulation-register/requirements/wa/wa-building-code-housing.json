@@ -1,0 +1,159 @@
+{
+  "id": "wa-building-code-housing",
+  "family": "building-code-housing",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Build houses to the building code (NCC Volume Two and the Housing Provisions)",
+  "kind": "standard",
+  "what": "As the builder named on a building permit, ensure the finished house or other Class 1 or 10 building complies with each applicable building standard: the technical requirements of the Building Code of Australia (NCC Volume Two and the Housing Provisions), as the regulations modify it, in the edition in effect when the permit application was made or 12 months before. The edition in force is NCC 2025 since 1 May 2026, with a 12-month transition. Its schedule in NCC 2025 varies 37 national provisions, mostly fire safety and water use.",
+  "laws": [
+    {
+      "title": "Building Act 2011 (WA)",
+      "jurisdiction": "WA",
+      "kind": "act",
+      "register_id": "law_a146834",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49441.docx",
+      "provisions": "s 37(1)",
+      "applied": false
+    },
+    {
+      "title": "Building Regulations 2012 (WA)",
+      "jurisdiction": "WA",
+      "kind": "regulation",
+      "register_id": "law_s43955",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49954.docx",
+      "provisions": "rr 3A, 31A",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Act 2011 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49441.docx",
+      "locator": "s 37(1) (current version)",
+      "quote": "37. All buildings to comply with applicable building standards (1) The person who is named as the builder on a building permit must ensure, on completion of the building or incidental structure to which the permit applies, that the building or incidental structure complies with each applicable building standard.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Regulations 2012 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49954.docx",
+      "locator": "r 31A(2) (current version)",
+      "quote": "(2) For subregulation (1), the applicable building standards for a building or incidental structure are the requirements in relation to the technical aspects of the construction of a building or incidental structure of that building or incidental structure’s classification that are — (a) set out in the edition of the Building Code that is in effect at the time the application for the building permit is made; or (b) set out in the edition of the Building Code that was in effect 12 months before the time the application for the building permit is made.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Regulations 2012 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49954.docx",
+      "locator": "r 3A(1) (current version)",
+      "quote": "3A. Building Code (1) Building Code means the Building Code of Australia which is Volumes One and Two of the National Construction Code, published by, or on behalf of, the Australian Building Codes Board.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Building surveyors (WA), who certify design compliance",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Act 2011 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49441.docx",
+          "locator": "s 19(3), words naming the body (found 27 Nov 2026) (current version)",
+          "quote": "(3) A certificate must contain a statement of the building surveyor signing the certificate to the effect that if the building or incidental structure that is the subject of the application is completed in accordance with the plans and specifications that are specified in the certificate, the building (including each incidental structure associated with the building) or incidental structure will comply with each applicable building standard.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "when carrying out building work on a Class 1 or 10 building (houses, townhouses, sheds, garages, pools)",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Volume Two and the ABCB Housing Provisions cover Class 1 and 10 buildings. Building trades doing such work are bound too; only house builders are coded here.",
+      "sources": [
+        {
+          "title": "Building Act 2011 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49441.docx",
+          "locator": "s 37(1) (current version)",
+          "quote": "37. All buildings to comply with applicable building standards (1) The person who is named as the builder on a building permit must ensure, on completion of the building or incidental structure to which the permit applies, that the building or incidental structure complies with each applicable building standard.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The law's own words require building or plumbing work to comply with the code. Drafted on 27 November 2026 for the NCC work (docs/plan_ncc_ingestion.md, phase N3); the variation counts are from the NCC 2025 dataset.",
+  "records": [
+    "wa-ncc-2022-2025",
+    "wa-ncc-2025-2026"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Work must meet the National Construction Code (Volume Two and the Housing Provisions) as Western Australia applies it. The code sets minimum safety, health, amenity, accessibility and energy standards, whose benefits are not weighed here; meeting and certifying them adds to the cost of every project.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Designing, documenting and certifying each project against the code adds cost, and the state's own variations add to it for builders who work in several states.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked to agree with the NCC adoption records (burden -1); the Productivity Commission finds several code changes were adopted although their impact analyses showed a net cost. No evaluation of the requirement itself was found.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

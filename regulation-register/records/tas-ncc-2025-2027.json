@@ -1,0 +1,143 @@
+{
+  "id": "tas-ncc-2025-2027",
+  "kind": "reform",
+  "family": "ncc-2025-adoption",
+  "title": "2025 building code applied for 5 weeks, then deferred to 2027 (Tasmania)",
+  "jurisdiction": "TAS",
+  "summary": "NCC 2025 applied in Tasmania from 1 May to 4 June 2026, because the Building Act 2016 defined the code as the ABCB's series 'as amended or substituted from time to time'. The Building Amendment Act 2026, in force from 5 June 2026, put NCC 2022 back in place until 30 April 2027 and the latest edition from 1 May 2027. Tasmania's schedule varies 274 provisions of the national text, the most of any state.",
+  "instruments": [
+    {
+      "title": "National Construction Code 2025",
+      "register_url": "https://data.gov.au/data/dataset/national-construction-code-2025-version-1-2",
+      "register_id": null,
+      "role": "code",
+      "provisions": "Volumes One, Two and Three, the ABCB Housing Provisions and the Livable Housing Design Standard, with the state's variations in its schedule"
+    },
+    {
+      "title": "Building Act 2016 (Tas)",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/act-2016-025",
+      "register_id": "act-2016-025",
+      "role": "principal",
+      "provisions": "s 4(1), definition of National Construction Code"
+    },
+    {
+      "title": "Building Amendment Act 2026 (Tas)",
+      "register_url": "https://www.legislation.tas.gov.au/view/whole/html/asmade/act-2026-006",
+      "register_id": "act-2026-006",
+      "role": "amending",
+      "provisions": "s 5 (definition of National Construction Code: NCC 2022 until 30 April 2027, the latest edition from 1 May 2027)"
+    }
+  ],
+  "dates": {
+    "announced": {
+      "date": null,
+      "source": null
+    },
+    "assent_or_made": {
+      "date": "2026-06-05",
+      "source": "https://www.legislation.tas.gov.au/view/whole/html/asmade/act-2026-006"
+    },
+    "commenced": []
+  },
+  "direction": "weakening",
+  "direction_rationale": "NCC 2025's largest changes are for commercial buildings: the regulated energy allowance for Class 3 and 5 to 9 buildings is roughly halved, on-site solar panels become mandatory, and fabric, services, carpark sprinkler, water management and condensation rules are tightened. These add design and construction costs that are partly fixed per project and may weigh most on smaller builders, lowering entry.",
+  "direction_sources": [
+    "https://www.abcb.gov.au/news/2026/ncc-2025-released",
+    "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-key-changes/ncc-2025-commercial-energy-efficiency-changes"
+  ],
+  "channels": [
+    "barriers",
+    "ability-incentive"
+  ],
+  "industries": [
+    {
+      "anzsic": "3020",
+      "name": "Non-Residential Building Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3019",
+      "name": "Other Residential Building Construction",
+      "exposure": "direct"
+    },
+    {
+      "anzsic": "3011",
+      "name": "House Construction",
+      "exposure": "indirect"
+    }
+  ],
+  "comparison": "Staggered adoption: the ACT, Victoria and Western Australia from 1 May 2026; New South Wales, Queensland, South Australia (building) and Tasmania from 1 May 2027; the Northern Territory not adopted",
+  "confounders": [
+    "building cost inflation",
+    "interest rate changes from 2025",
+    "the pause on residential code changes announced in August 2025",
+    "builder insolvencies"
+  ],
+  "price_series": null,
+  "notes": null,
+  "verified": {
+    "dates": true,
+    "notes": "Not yet in force (NCC 2022 applies until 30 April 2027), so no commencement is recorded; the 5-week application is in the history. Dates from the Building Amendment Act 2026 (Tas), s 2 and s 5, read on the Tasmanian register on 27 November 2026, and the ABCB's NCC 2025 adoption page ('1 May 2027 (Temporarily adopted: 1 May - 4 June 2026)'). The earlier definition of the code is from the Act's version in force on 1 May 2026. The 'History of adoption' tables in the NCC 2025 dataset (version 1.2, June 2026) still give 1 May 2026."
+  },
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": "Drafted by AI-assisted desk research on 27 November 2026 from the ABCB's NCC 2025 adoption page and dataset (docs/plan_ncc_ingestion.md, phase N2; DECISIONS E-501). Not yet checked: verify dates, industries and the direction hypothesis before use."
+  },
+  "assessment": {
+    "summary": "Adopts the 2025 National Construction Code, whose main changes tighten energy efficiency for commercial buildings and require on-site solar panels. The changes cut energy use and emissions, which are not weighed here; they also add to the cost of building. Tasmania applied it for 5 weeks, then deferred it by a year.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Adds design and construction costs to new commercial and apartment buildings, mainly through the tighter energy efficiency rules and mandatory on-site solar."
+      },
+      {
+        "driver": "market-integration",
+        "mark": -1,
+        "reason": "Keeps the state on the 2022 code for a year after others moved to 2025, so builders working across states meet two editions."
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "No impact analysis for NCC 2025 was found in this search; the marks follow the 2022 adoption records and the Productivity Commission's finding that several code changes were adopted despite a net cost.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf",
+      "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-key-changes/ncc-2025-commercial-energy-efficiency-changes"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "responsible": [
+    {
+      "body": "tas-justice",
+      "role": "administers",
+      "source": "https://www.legislation.tas.gov.au/view/whole/html/inforce/current/sr-2025-039",
+      "note": "Administers the Building Act 2016."
+    },
+    {
+      "body": "nat-abcb",
+      "role": "policy",
+      "source": "https://www.abcb.gov.au/",
+      "note": "Produces the National Construction Code that each jurisdiction adopts."
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-05-01",
+      "kind": "announced",
+      "what": "NCC 2025 applied in Tasmania from its publication, under the Building Act 2016's definition of the code as the ABCB's series 'as amended or substituted from time to time' (the ABCB lists it as 'Temporarily adopted: 1 May - 4 June 2026').",
+      "source": "https://ncc.abcb.gov.au/ncc-2025/ncc-2025-state-and-territory-adoption-information",
+      "record": null
+    },
+    {
+      "date": "2026-06-05",
+      "kind": "amended",
+      "what": "The Building Amendment Act 2026 redefined the code as NCC 2022 (as amended to 29 July 2025) until 30 April 2027 and the latest edition from 1 May 2027. The Act repeals itself after a year.",
+      "source": "https://www.legislation.tas.gov.au/view/whole/html/asmade/act-2026-006",
+      "record": null
+    }
+  ]
+}

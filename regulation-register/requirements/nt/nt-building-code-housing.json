@@ -1,0 +1,159 @@
+{
+  "id": "nt-building-code-housing",
+  "family": "building-code-housing",
+  "jurisdiction": "NT",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Build houses to the building code (NCC Volume Two and the Housing Provisions)",
+  "kind": "standard",
+  "what": "Carry out building work on houses and other Class 1 and 10 buildings under a building permit, to the Building Code (NCC Volume Two and the Housing Provisions, with the Northern Territory variations), which the regulations apply to all buildings and building work. Homes are held to a 5-star energy standard, below the 7 stars elsewhere. The edition in force is NCC 2022; the Territory has not adopted NCC 2025. Its schedule in NCC 2025 varies 83 national provisions, the most of any state, 38 of them in housing energy efficiency.",
+  "laws": [
+    {
+      "title": "Building Act 1993 (NT)",
+      "jurisdiction": "NT",
+      "kind": "act",
+      "register_id": "BUILDING-ACT-1993",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11645",
+      "provisions": "ss 55, 72B(1)",
+      "applied": false
+    },
+    {
+      "title": "Building Regulations 1993 (NT)",
+      "jurisdiction": "NT",
+      "kind": "regulation",
+      "register_id": "BUILDING-REGULATIONS-1993",
+      "register_url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11646",
+      "provisions": "regs 3, 4(1)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Building Regulations 1993 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11646",
+      "locator": "reg 4(1) (current reprint)",
+      "quote": "4 Building Code and other codes adopted (1) Subject to these Regulations, the following apply to any building that can be classified according to use under Part A6 of the Building Code and to any building work referred to in the Act or in the Building Code: (a) the Building Code; (b) the Plumbing Code; (c) the Code of Practice for Wastewater Management.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Regulations 1993 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11646",
+      "locator": "reg 3, def Building Code (current reprint)",
+      "quote": "Building Code means the Building Code of Australia set out in Volume One and Volume Two of the National Construction Code.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Building Act 1993 (NT)",
+      "publisher": "NT Legislation",
+      "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11645",
+      "locator": "s 55 (current reprint)",
+      "quote": "A person must not carry out building work unless a building permit in respect of the work has been granted and is in force under this Act and the work is carried out in accordance with the permit.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Building certifiers (NT)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Building Act 1993 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11645",
+          "locator": "s 72B(1), words naming the body (found 27 Nov 2026) (current reprint)",
+          "quote": "72B Granting certificate of substantial compliance (1) A building certifier must not grant a certificate of substantial compliance in relation to building work unless: (a) the certificate applies to a building of a class prescribed for section 72A(2)(a); and (b) the building, or the part of the building to which the certificate applies, is suitable for occupation; and (c) the building work meets the relevant technical standards;",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "when carrying out building work on a Class 1 or 10 building (houses, townhouses, sheds, garages, pools)",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Volume Two and the ABCB Housing Provisions cover Class 1 and 10 buildings. Building trades doing such work are bound too; only house builders are coded here.",
+      "sources": [
+        {
+          "title": "Building Regulations 1993 (NT)",
+          "publisher": "NT Legislation",
+          "url": "https://legislation.nt.gov.au/api/sitecore/Act/PDF?id=11646",
+          "locator": "reg 4(1) (current reprint)",
+          "quote": "4 Building Code and other codes adopted (1) Subject to these Regulations, the following apply to any building that can be classified according to use under Part A6 of the Building Code and to any building work referred to in the Act or in the Building Code: (a) the Building Code; (b) the Plumbing Code; (c) the Code of Practice for Wastewater Management.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The law's own words require building or plumbing work to comply with the code. Drafted on 27 November 2026 for the NCC work (docs/plan_ncc_ingestion.md, phase N3); the variation counts are from the NCC 2025 dataset.",
+  "records": [
+    "nt-ncc-2022-2023",
+    "nt-ncc-2025-not-adopted"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Work must meet the National Construction Code (Volume Two and the Housing Provisions) as the Northern Territory applies it. The code sets minimum safety, health, amenity, accessibility and energy standards, whose benefits are not weighed here; meeting and certifying them adds to the cost of every project.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Designing, documenting and certifying each project against the code adds cost, and the state's own variations add to it for builders who work in several states.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked to agree with the NCC adoption records (burden -1); the Productivity Commission finds several code changes were adopted although their impact analyses showed a net cost. No evaluation of the requirement itself was found.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

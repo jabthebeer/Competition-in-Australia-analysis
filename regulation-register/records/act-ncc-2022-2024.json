@@ -4,14 +4,28 @@
   "family": "ncc-2022-adoption",
   "title": "2022 building code energy and accessibility standards adopted (the ACT)",
   "jurisdiction": "ACT",
-  "summary": "The ACT applied the NCC 2022 residential energy efficiency (7-star) and livable housing provisions from 15 January 2024.",
+  "summary": "The ACT applied the NCC 2022 energy efficiency (7-star for homes), condensation management and livable housing provisions from 15 January 2024, about 3 months after the earliest states.",
   "instruments": [
     {
-      "title": "National Construction Code 2022 (residential energy efficiency and livable housing) as adopted in the ACT",
-      "register_url": null,
+      "title": "National Construction Code 2022",
+      "register_url": "https://data.gov.au/data/dataset/national-construction-code-ncc-2022",
       "register_id": null,
       "role": "code",
-      "provisions": "state adoption of NCC 2022 Volume Two and the Livable Housing Design Standard (instrument not checked)"
+      "provisions": "energy efficiency, condensation management and livable housing design provisions (Volumes One and Two, the ABCB Housing Provisions and the Livable Housing Design Standard)"
+    },
+    {
+      "title": "Building Act 2004 (ACT)",
+      "register_url": "https://www.legislation.act.gov.au/a/2004-11/",
+      "register_id": "A2004-11",
+      "role": "principal",
+      "provisions": "the ACT Appendix to the BCA forms part of the ACT Building Code published under this Act"
+    },
+    {
+      "title": "Water and Sewerage Act 2000 (ACT)",
+      "register_url": "https://www.legislation.act.gov.au/a/2000-68/",
+      "register_id": "A2000-68",
+      "role": "principal",
+      "provisions": "the ACT Appendix to the PCA forms part of the ACT Plumbing Code under this Act"
     }
   ],
   "dates": {
@@ -25,9 +39,15 @@
     },
     "commenced": [
       {
+        "date": "2023-05-01",
+        "what": "NCC 2022 adopted as a whole; its energy efficiency, condensation management and livable housing provisions started later (the dates below)",
+        "source": "https://data.gov.au/data/dataset/national-construction-code-2025-version-1-2",
+        "primary": false
+      },
+      {
         "date": "2024-01-15",
-        "what": "NCC 2022 energy efficiency and livable housing provisions applied",
-        "source": "https://abcb.gov.au/ncc-2022-state-and-territory-adoption-dates",
+        "what": "Housing, apartment and commercial energy efficiency, condensation management and livable housing design provisions applied",
+        "source": "https://www.abcb.gov.au/ncc-2022-state-and-territory-adoption-dates",
         "primary": true
       }
     ]
@@ -53,7 +73,7 @@
       "exposure": "direct"
     }
   ],
-  "comparison": "Staggered and partial adoption 2023-2025 (NSW and WA did not adopt the livable housing provisions)",
+  "comparison": "Staggered and partial adoption, October 2023 to May 2025 (NSW and WA did not adopt livable housing; Tasmania did not adopt housing energy efficiency; the NT kept 5 stars)",
   "confounders": [
     "building cost inflation 2021-24",
     "HomeBuilder grant pipeline (2020-21)",
@@ -64,13 +84,13 @@
   "notes": null,
   "verified": {
     "dates": true,
-    "notes": "Read on the ABCB adoption-dates table (correct as at 22 September 2023)."
+    "notes": "Dates by provision area from the ABCB adoption-dates table (correct as at 22 September 2023; data/processed/ncc/adoption_2022.csv); the whole-edition date from the 'History of adoption' table in the NCC 2025 dataset (version 1.2). Adopting laws are those the state's schedule in NCC 2025 names (data/processed/ncc/regulatory_map.json)."
   },
   "review": {
     "status": "draft",
     "by": null,
     "on": null,
-    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked: verify dates, industries and the direction hypothesis before use."
+    "notes": "Drafted by AI-assisted desk research on 18 October 2026 (legislation gap scan, docs/legislation_gap_scan.md) from the sources cited. Not yet checked: verify dates, industries and the direction hypothesis before use. Revised on 27 November 2026 from the ABCB's NCC datasets and adoption pages (docs/plan_ncc_ingestion.md, phase N2; DECISIONS E-501): commencements by provision area, the adopting laws, and the 2025 pause."
   },
   "assessment": {
     "summary": "Adopts the 2022 National Construction Code's higher energy efficiency (7-star) and livable housing standards for new homes. Both sets of provisions were adopted. The standards cut running costs and improve access, which are not weighed here; they also add to the cost of building.",
@@ -105,5 +125,13 @@
       "note": "Produces the National Construction Code that each jurisdiction adopts."
     }
   ],
-  "history": []
+  "history": [
+    {
+      "date": "2025-08-24",
+      "kind": "announced",
+      "what": "The Australian Government announced a pause on further residential changes to the NCC until mid-2029, after NCC 2025, except essential safety and quality changes, keeping the 2022 residential standards, including 7-star energy efficiency.",
+      "source": "https://ministers.treasury.gov.au/ministers/clare-oneil-2025/media-releases/action-red-tape-and-approvals-build-more-homes-more",
+      "record": null
+    }
+  ]
 }

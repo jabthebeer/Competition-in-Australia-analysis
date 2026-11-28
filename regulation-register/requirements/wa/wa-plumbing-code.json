@@ -1,0 +1,139 @@
+{
+  "id": "wa-plumbing-code",
+  "family": "plumbing-code",
+  "jurisdiction": "WA",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Do plumbing and drainage work to the plumbing code (NCC Volume Three)",
+  "kind": "standard",
+  "what": "As the responsible person, ensure plumbing work complies with the plumbing standards, which adopt only selected parts of the Plumbing Code of Australia (NCC Volume Three: Section A and Parts B1, B2, B3, B5, B6, C1 and C2, with some clauses left out). The edition in force is NCC 2025 since 1 May 2026, with a 12-month transition. Its schedule in NCC 2025 varies 6 national provisions.",
+  "laws": [
+    {
+      "title": "Plumbers Licensing and Plumbing Standards Regulations 2000 (WA)",
+      "jurisdiction": "WA",
+      "kind": "regulation",
+      "register_id": "law_s1820",
+      "register_url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49686.docx",
+      "provisions": "rr 48, 50",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Plumbers Licensing and Plumbing Standards Regulations 2000 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49686.docx",
+      "locator": "r 50 (current version)",
+      "quote": "A person must ensure that plumbing work for which the person is a responsible person — (a) complies with the plumbing standards that apply to the plumbing work; and (b) is carried out with reasonable care and skill.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Plumbers Licensing and Plumbing Standards Regulations 2000 (WA)",
+      "publisher": "WA Legislation",
+      "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49686.docx",
+      "locator": "r 48(2) (current version)",
+      "quote": "(2) For the purposes of subregulation (1)(a), the requirements are those — (a) set out in the following provisions of the Plumbing Code — (i) Section A; (ii) Parts B1, B2 (other than clauses B2P12 and B2D4), B3, B5 and B6; [(iii) deleted] (iv) Parts C1 and C2;",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "inspects",
+      "who": "Plumbing compliance officers (WA)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Plumbers Licensing and Plumbing Standards Regulations 2000 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49686.docx",
+          "locator": "r 71(1), words naming the body (found 27 Nov 2026) (current version)",
+          "quote": "71. Rectification notices (1) A plumbing compliance officer may give a rectification notice in respect of plumbing work if the officer is satisfied that — (a) the plumbing work was not carried out in accordance with the plumbing standards that applied to the work at the time it was carried out;",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "when carrying out plumbing or drainage work",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3231"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Volume Three, the Plumbing Code of Australia, covers plumbing and drainage work.",
+      "sources": [
+        {
+          "title": "Plumbers Licensing and Plumbing Standards Regulations 2000 (WA)",
+          "publisher": "WA Legislation",
+          "url": "https://www.legislation.wa.gov.au/legislation/statutes.nsf/RedirectURL?OpenAgent&query=mrdoc_49686.docx",
+          "locator": "r 50 (current version)",
+          "quote": "A person must ensure that plumbing work for which the person is a responsible person — (a) complies with the plumbing standards that apply to the plumbing work; and (b) is carried out with reasonable care and skill.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The law's own words require building or plumbing work to comply with the code. Drafted on 27 November 2026 for the NCC work (docs/plan_ncc_ingestion.md, phase N3); the variation counts are from the NCC 2025 dataset.",
+  "records": [
+    "wa-ncc-2025-2026"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Work must meet the National Construction Code (Volume Three, the Plumbing Code of Australia) as Western Australia applies it. The code sets minimum safety, health, amenity, accessibility and energy standards, whose benefits are not weighed here; meeting and certifying them adds to the cost of every project.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Designing, documenting and certifying each project against the code adds cost, and the state's own variations add to it for builders who work in several states.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked to agree with the NCC adoption records (burden -1); the Productivity Commission finds several code changes were adopted although their impact analyses showed a net cost. No evaluation of the requirement itself was found.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

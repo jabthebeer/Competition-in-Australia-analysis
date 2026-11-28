@@ -1,0 +1,140 @@
+{
+  "id": "nsw-building-code-housing",
+  "family": "building-code-housing",
+  "jurisdiction": "NSW",
+  "tier": "state",
+  "lga": null,
+  "lga_name": null,
+  "regime": "building-licensing-and-approvals",
+  "title": "Build houses to the building code (NCC Volume Two and the Housing Provisions)",
+  "kind": "standard",
+  "what": "Carry out building work on houses and other Class 1 and 10 buildings in accordance with the Building Code of Australia (NCC Volume Two and the Housing Provisions, with the NSW variations), a condition of every development consent and complying development certificate for building work. Energy standards for homes are set by BASIX instead of the code's. The edition in force is NCC 2022 until NCC 2025 is adopted on 1 May 2027. Its schedule in NCC 2025 varies 53 national provisions.",
+  "laws": [
+    {
+      "title": "Environmental Planning and Assessment Regulation 2021 (NSW)",
+      "jurisdiction": "NSW",
+      "kind": "regulation",
+      "register_id": "sl-2021-0759",
+      "register_url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-02-13/sl-2021-0759",
+      "provisions": "ss 69(1), 137(1), 146(1)(a)",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Environmental Planning and Assessment Regulation 2021 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-02-13/sl-2021-0759",
+      "locator": "s 69(1) (version of 2025-02-13)",
+      "quote": "69 Compliance with Building Code of Australia and insurance requirements under Home Building Act 1989 (1) It is a condition of a development consent for development that involves building work that the work must be carried out in accordance with the requirements of the Building Code of Australia.",
+      "accessed": "2026-11-27",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2025-02-13/sl-2021-0759"
+    },
+    {
+      "title": "Environmental Planning and Assessment Regulation 2021 (NSW)",
+      "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+      "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-02-13/sl-2021-0759",
+      "locator": "s 146(1)(a) (version of 2025-02-13)",
+      "quote": "146 Compliance with Building Code of Australia and insurance requirements under Home Building Act 1989 (1) A complying development certificate for development that involves building work must be issued subject to the following conditions— (a) the work must be carried out in accordance with the requirements of the Building Code of Australia,",
+      "accessed": "2026-11-27",
+      "checked": "corpus-copy",
+      "corpus_version_id": "nsw_legislation:2025-02-13/sl-2021-0759"
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Certifiers (NSW)",
+      "bodies": [],
+      "tier": "state",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Environmental Planning and Assessment Regulation 2021 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-02-13/sl-2021-0759",
+          "locator": "s 137(1), words naming the body (found 27 Nov 2026) (version of 2025-02-13)",
+          "quote": "137 Compliance with Building Code of Australia (1) A certifier must not issue a complying development certificate for building work unless the building, not including a temporary building, will comply with the relevant requirements of the Building Code of Australia, as in force at the time the application for the certificate was made.",
+          "accessed": "2026-11-27",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2025-02-13/sl-2021-0759"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "when carrying out building work on a Class 1 or 10 building (houses, townhouses, sheds, garages, pools)",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "3011"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": null,
+      "legal_forms": [],
+      "in_states": [],
+      "note": "Volume Two and the ABCB Housing Provisions cover Class 1 and 10 buildings. Building trades doing such work are bound too; only house builders are coded here.",
+      "sources": [
+        {
+          "title": "Environmental Planning and Assessment Regulation 2021 (NSW)",
+          "publisher": "NSW Legislation (via the Open Australian Legal Corpus)",
+          "url": "https://legislation.nsw.gov.au/view/whole/html/inforce/2025-02-13/sl-2021-0759",
+          "locator": "s 69(1) (version of 2025-02-13)",
+          "quote": "69 Compliance with Building Code of Australia and insurance requirements under Home Building Act 1989 (1) It is a condition of a development consent for development that involves building work that the work must be carried out in accordance with the requirements of the Building Code of Australia.",
+          "accessed": "2026-11-27",
+          "checked": "corpus-copy",
+          "corpus_version_id": "nsw_legislation:2025-02-13/sl-2021-0759"
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "The law's own words require building or plumbing work to comply with the code. Drafted on 27 November 2026 for the NCC work (docs/plan_ncc_ingestion.md, phase N3); the variation counts are from the NCC 2025 dataset. Quoted from the corpus copy of the official text (NSW register as at early 2025).",
+  "records": [
+    "nsw-ncc-2022-2023",
+    "nsw-ncc-2025-2027"
+  ],
+  "ablis": [],
+  "assessment": {
+    "summary": "Work must meet the National Construction Code (Volume Two and the Housing Provisions) as New South Wales applies it. The code sets minimum safety, health, amenity, accessibility and energy standards, whose benefits are not weighed here; meeting and certifying them adds to the cost of every project.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "Designing, documenting and certifying each project against the code adds cost, and the state's own variations add to it for builders who work in several states.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "sector",
+    "confidence": "low",
+    "confidence_note": "Marked to agree with the NCC adoption records (burden -1); the Productivity Commission finds several code changes were adopted although their impact analyses showed a net cost. No evaluation of the requirement itself was found.",
+    "evidence": [
+      "https://assets.pc.gov.au/research/completed/housing-construction/housing-construction.pdf"
+    ],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
