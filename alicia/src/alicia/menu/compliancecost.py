@@ -53,6 +53,7 @@ def load(path: Path = CSV) -> dict[str, dict]:
                 "task": r["task"],
                 "hoursFrom": r["hours_from"],
                 "basis": r["size_basis"],
+                "countsFrom": r["counts_from"],
                 "upper": r["upper_bound"] == "yes",
                 "upperWhy": [x for x in r["upper_why"].split("; ") if x],
                 "businesses": int(r["businesses"]),

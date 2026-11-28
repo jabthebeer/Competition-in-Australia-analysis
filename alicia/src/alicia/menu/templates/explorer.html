@@ -1594,7 +1594,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     return x >= 1e9 ? `$${f(x / 1e9)} billion` : x >= 1e6 ? `$${f(x / 1e6)} million` : `$${Math.round(x).toLocaleString("en-AU")}`; };
   const num = (v) => Math.round(v).toLocaleString("en-AU");
   const ccShort = (c) => (c.costed ? `${c.upper ? "up to " : ""}${aud(c.cost.central)} a year` : "not costed");
-  const HOURS_FROM = { kind: "assumed for every requirement of this kind", licence: "from the licence costs, where they are assumed (DECISIONS E-175)", override: "sourced for this requirement" };
+  const HOURS_FROM = { kind: "assumed for every requirement of this kind", licence: "from the licence costs, where they are assumed (DECISIONS E-175)", override: "taken from a source for this requirement: see its basis in docs/compliance_costs.md" };
   function ccHtml(c) {
     const note = `<p class="small muted">${esc(DATA.complianceCostNote || "")} Method and every assumption: <code>docs/compliance_costs.md</code>.</p>`;
     if (!c.costed) return `<p>${esc(c.why)}</p>${note}`;
@@ -1612,7 +1612,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
       <dt>${term("helpCompliance", "Compliance cost")}</dt><dd><strong>${up}${aud(c.cost.central)} a year</strong> (${range})</dd>
       <dt>What a business does</dt><dd>${esc(c.task)}</dd>
       <dt>Each business</dt><dd>${per}</dd>
-      <dt>Businesses bound</dt><dd>${num(c.businesses)} (${esc((DATA.exposureBases || {})[c.basis] || c.basis)}, June ${c.year})${sh ? `; ${num(c.newPerYear)} new a year` : ""}${c.upper ? `. Up to: ${esc(c.upperWhy.join("; "))}` : ""}</dd>
+      <dt>Businesses bound</dt><dd>${num(c.businesses)} (${c.countsFrom && c.countsFrom !== "abs" ? esc(c.countsFrom) : `${esc((DATA.exposureBases || {})[c.basis] || c.basis)}, June ${c.year}`})${sh ? `; ${num(c.newPerYear)} new a year` : ""}${c.upper ? `. Up to: ${esc(c.upperWhy.join("; "))}` : ""}</dd>
     </dl>
     <h4 class="sub-h">How this is worked out</h4><ul class="d-list">${lines.join("")}</ul>
     <p class="small">Hours ${esc(HOURS_FROM[c.hoursFrom] || c.hoursFrom)}. The range uses ${c.startHours.low !== c.startHours.high ? `${fmtNum(c.startHours.low)} to ${hrs(c.startHours.high)} to start and ` : ""}${fmtNum(c.yearlyHours.low)} to ${hrs(c.yearlyHours.high)} each year.${c.fees ? ` Fees paid to government are not counted; they add about ${aud(c.fees)} a year.` : ""}</p>${note}`;
