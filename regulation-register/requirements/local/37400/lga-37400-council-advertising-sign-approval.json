@@ -1,0 +1,152 @@
+{
+  "id": "lga-37400-council-advertising-sign-approval",
+  "family": "council-advertising-sign-approval",
+  "jurisdiction": "QLD",
+  "tier": "local",
+  "lga": "37400",
+  "lga_name": "Winton",
+  "regime": null,
+  "title": "Get approval for an advertising sign",
+  "kind": "approval",
+  "what": "Get the council's approval before putting up a sign that can be seen from a road or public place, unless the planning scheme regulates it or it is a permitted type.",
+  "laws": [
+    {
+      "title": "Local Law No. 1 (Administration) 2011",
+      "jurisdiction": "QLD",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+      "provisions": "s 6, sch 2 (installation of advertising devices)",
+      "applied": false
+    },
+    {
+      "title": "Subordinate Local Law No. 1 (Administration) 2024",
+      "jurisdiction": "QLD",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/01_subordinate_local_law_no_1__administration__2024___adopted_18_01_2024.pdf",
+      "provisions": "sch 10",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Local Law No. 1 (Administration) 2011",
+      "publisher": "Winton Shire Council",
+      "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+      "locator": "s 6(2)",
+      "quote": "A person must not undertake the prescribed activity without a current approval granted by the local government.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Local Law No. 1 (Administration) 2011",
+      "publisher": "Winton Shire Council",
+      "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+      "locator": "sch 2 pt 2, definition of installation of advertising devices",
+      "quote": "installation of advertising devices means the installation, erection or display of an advertisement or sign that is visible from a road or other public place.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Subordinate Local Law No. 1 (Administration) 2024",
+      "publisher": "Winton Shire Council",
+      "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/01_subordinate_local_law_no_1__administration__2024___adopted_18_01_2024.pdf",
+      "locator": "sch 10 s 2(1)",
+      "quote": "an advertising device that is regulated by the local government’s planning scheme; or",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Winton",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Local Law No. 1 (Administration) 2011",
+          "publisher": "Winton Shire Council",
+          "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+          "locator": "s 6(2)",
+          "quote": "A person must not undertake the prescribed activity without a current approval granted by the local government.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "puts up a sign visible from a road or public place",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it displays a sign visible from a road or public place",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Local Law No. 1 (Administration) 2011",
+          "publisher": "Winton Shire Council",
+          "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+          "locator": "sch 2 pt 2, definition of installation of advertising devices",
+          "quote": "installation of advertising devices means the installation, erection or display of an advertisement or sign that is visible from a road or other public place.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Signs regulated by the planning scheme, and permitted signs such as small A-frame signs, need no approval (sch 10 s 2).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Business signs need the council's approval unless they are an exempt type.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "An approval, fees and design rules for business signs.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 27 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

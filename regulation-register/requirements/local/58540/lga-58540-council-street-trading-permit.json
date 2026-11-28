@@ -1,0 +1,136 @@
+{
+  "id": "lga-58540-council-street-trading-permit",
+  "family": "council-street-trading-permit",
+  "jurisdiction": "WA",
+  "tier": "local",
+  "lga": "58540",
+  "lga_name": "Victoria Plains",
+  "regime": null,
+  "title": "Get a licence to trade on council property",
+  "kind": "licence",
+  "what": "Get the council's licence before trading on council property, unless trading at a licensed function or under another permit.",
+  "laws": [
+    {
+      "title": "Shire of Victoria Plains Public Places and Local Government Property Local Law 2018",
+      "jurisdiction": "WA",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://www.victoriaplains.wa.gov.au/Profiles/vicplains/Assets/ClientData/Images/Gallery/Public_Places___Local_Government_Property_Local_Law_2018.pdf",
+      "provisions": "cl 2.1",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Shire of Victoria Plains Public Places and Local Government Property Local Law 2018",
+      "publisher": "Shire of Victoria Plains",
+      "url": "https://www.victoriaplains.wa.gov.au/Profiles/vicplains/Assets/ClientData/Images/Gallery/Public_Places___Local_Government_Property_Local_Law_2018.pdf",
+      "locator": "cl 2.1(1), Gazette 4 September 2018",
+      "quote": "A person must not without a licence—",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Shire of Victoria Plains Public Places and Local Government Property Local Law 2018",
+      "publisher": "Shire of Victoria Plains",
+      "url": "https://www.victoriaplains.wa.gov.au/Profiles/vicplains/Assets/ClientData/Images/Gallery/Public_Places___Local_Government_Property_Local_Law_2018.pdf",
+      "locator": "cl 2.1(1)(f), Gazette 4 September 2018",
+      "quote": "(f) carry on any trading on local government property unless the trading is conducted—",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "licenses",
+      "who": "Victoria Plains",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Shire of Victoria Plains Public Places and Local Government Property Local Law 2018",
+          "publisher": "Shire of Victoria Plains",
+          "url": "https://www.victoriaplains.wa.gov.au/Profiles/vicplains/Assets/ClientData/Images/Gallery/Public_Places___Local_Government_Property_Local_Law_2018.pdf",
+          "locator": "cl 2.1(1), Gazette 4 September 2018",
+          "quote": "A person must not without a licence—",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "trades on council property",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4512",
+        "4310"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it trades on council property",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Shire of Victoria Plains Public Places and Local Government Property Local Law 2018",
+          "publisher": "Shire of Victoria Plains",
+          "url": "https://www.victoriaplains.wa.gov.au/Profiles/vicplains/Assets/ClientData/Images/Gallery/Public_Places___Local_Government_Property_Local_Law_2018.pdf",
+          "locator": "cl 2.1(1)(f), Gazette 4 September 2018",
+          "quote": "(f) carry on any trading on local government property unless the trading is conducted—",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Trading on council property needs the council's licence.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "A licence and conditions to trade on council property.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 27 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
