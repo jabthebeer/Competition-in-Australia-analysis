@@ -1,0 +1,133 @@
+{
+  "id": "lga-31000-council-advertising-sign-approval",
+  "family": "council-advertising-sign-approval",
+  "jurisdiction": "QLD",
+  "tier": "local",
+  "lga": "31000",
+  "lga_name": "Brisbane",
+  "regime": null,
+  "title": "Get approval for an advertising sign",
+  "kind": "approval",
+  "what": "Get the council's approval before putting up or displaying an advertising sign that can be seen from a road or public place, unless the sign is a permitted type.",
+  "laws": [
+    {
+      "title": "Advertising Devices Local Law 2021",
+      "jurisdiction": "QLD",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/advertising-devices-local-law-2021.pdf",
+      "provisions": "ss 7, 40",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Advertising Devices Local Law 2021",
+      "publisher": "Brisbane City Council",
+      "url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/advertising-devices-local-law-2021.pdf",
+      "locator": "s 40(1)",
+      "quote": "A person must not, without approval from Council, install, erect or display an advertising device, other than an advertising device that is a permitted advertising device.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Advertising Devices Local Law 2021",
+      "publisher": "Brisbane City Council",
+      "url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/advertising-devices-local-law-2021.pdf",
+      "locator": "s 40(2)(c)",
+      "quote": "within or on any building, structure or land if the advertising device is not visible from a road or any public place.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Brisbane",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Advertising Devices Local Law 2021",
+          "publisher": "Brisbane City Council",
+          "url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/advertising-devices-local-law-2021.pdf",
+          "locator": "s 40(1)",
+          "quote": "A person must not, without approval from Council, install, erect or display an advertising device, other than an advertising device that is a permitted advertising device.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "puts up an advertising sign visible from a road or public place",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "all",
+      "classes": [],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it displays an advertising sign visible from a road or public place",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Advertising Devices Local Law 2021",
+          "publisher": "Brisbane City Council",
+          "url": "https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/laws-and-permits-/documents/advertising-devices-local-law-2021.pdf",
+          "locator": "s 40(1)",
+          "quote": "A person must not, without approval from Council, install, erect or display an advertising device, other than an advertising device that is a permitted advertising device.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": "Some signs are permitted without approval, and some can be self-assessed (ss 8–10).",
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Business signs visible from a road need the council's approval unless they are a permitted type.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "An approval, fees and design rules for business signs.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "multi-sector",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 27 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

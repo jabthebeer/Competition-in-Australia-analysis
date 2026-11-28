@@ -1,0 +1,155 @@
+{
+  "id": "lga-37400-council-temporary-event-approval",
+  "family": "council-temporary-event-approval",
+  "jurisdiction": "QLD",
+  "tier": "local",
+  "lga": "37400",
+  "lga_name": "Winton",
+  "regime": null,
+  "title": "Get approval to run a temporary entertainment event",
+  "kind": "approval",
+  "what": "Get the council's approval before opening a temporary entertainment event to the public, unless fewer than 250 people are expected.",
+  "laws": [
+    {
+      "title": "Local Law No. 1 (Administration) 2011",
+      "jurisdiction": "QLD",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+      "provisions": "s 6, sch 2 (operation of temporary entertainment events)",
+      "applied": false
+    },
+    {
+      "title": "Subordinate Local Law No. 1 (Administration) 2024",
+      "jurisdiction": "QLD",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/01_subordinate_local_law_no_1__administration__2024___adopted_18_01_2024.pdf",
+      "provisions": "sch 18",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Local Law No. 1 (Administration) 2011",
+      "publisher": "Winton Shire Council",
+      "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+      "locator": "s 6(2)",
+      "quote": "A person must not undertake the prescribed activity without a current approval granted by the local government.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Local Law No. 1 (Administration) 2011",
+      "publisher": "Winton Shire Council",
+      "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+      "locator": "sch 2 pt 2, definition of operation of temporary entertainment events",
+      "quote": "operation of temporary entertainment events means the opening to the public, or the preparation for opening to the public, of an entertainment event and for which the opening to the public does not constitute development under the Planning Act.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Subordinate Local Law No. 1 (Administration) 2024",
+      "publisher": "Winton Shire Council",
+      "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/01_subordinate_local_law_no_1__administration__2024___adopted_18_01_2024.pdf",
+      "locator": "sch 18 s 2",
+      "quote": "A temporary entertainment event held on private property or in a local government controlled area that is expected to be attended by less than 250 people.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Winton",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Local Law No. 1 (Administration) 2011",
+          "publisher": "Winton Shire Council",
+          "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+          "locator": "s 6(2)",
+          "quote": "A person must not undertake the prescribed activity without a current approval granted by the local government.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "opens a temporary entertainment event to the public",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "7299",
+        "9003"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it runs an event expected to draw 250 people or more",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Local Law No. 1 (Administration) 2011",
+          "publisher": "Winton Shire Council",
+          "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+          "locator": "sch 2 pt 2, definition of operation of temporary entertainment events",
+          "quote": "operation of temporary entertainment events means the opening to the public, or the preparation for opening to the public, of an entertainment event and for which the opening to the public does not constitute development under the Planning Act.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Larger temporary events need the council's approval, with venue plans and conditions.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "An approval with venue plans, structural details and conditions.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 27 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}

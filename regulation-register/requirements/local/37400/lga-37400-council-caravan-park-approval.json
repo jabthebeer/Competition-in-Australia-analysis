@@ -1,0 +1,154 @@
+{
+  "id": "lga-37400-council-caravan-park-approval",
+  "family": "council-caravan-park-approval",
+  "jurisdiction": "QLD",
+  "tier": "local",
+  "lga": "37400",
+  "lga_name": "Winton",
+  "regime": null,
+  "title": "Get approval to run a caravan park",
+  "kind": "approval",
+  "what": "Get the council's approval before operating a caravan park on a commercial basis. The council must be satisfied the operator is suitable and a manager lives on or near the site.",
+  "laws": [
+    {
+      "title": "Local Law No. 1 (Administration) 2011",
+      "jurisdiction": "QLD",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+      "provisions": "s 6, sch 2 (operation of caravan parks)",
+      "applied": false
+    },
+    {
+      "title": "Subordinate Local Law No. 1 (Administration) 2024",
+      "jurisdiction": "QLD",
+      "kind": "local-law",
+      "register_id": null,
+      "register_url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/01_subordinate_local_law_no_1__administration__2024___adopted_18_01_2024.pdf",
+      "provisions": "sch 14",
+      "applied": false
+    }
+  ],
+  "sources": [
+    {
+      "title": "Local Law No. 1 (Administration) 2011",
+      "publisher": "Winton Shire Council",
+      "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+      "locator": "s 6(2)",
+      "quote": "A person must not undertake the prescribed activity without a current approval granted by the local government.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Local Law No. 1 (Administration) 2011",
+      "publisher": "Winton Shire Council",
+      "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+      "locator": "sch 2 pt 2, definition of operation of caravan parks",
+      "quote": "operation of caravan parks means to operate, on a commercial basis, a place for parking and residing in caravans, including a place that provides also for complementary accommodation.",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    },
+    {
+      "title": "Subordinate Local Law No. 1 (Administration) 2024",
+      "publisher": "Winton Shire Council",
+      "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/01_subordinate_local_law_no_1__administration__2024___adopted_18_01_2024.pdf",
+      "locator": "sch 14 s 4(d)",
+      "quote": "the proposed operator is a suitable person to be operating a caravan park; and",
+      "accessed": "2026-11-27",
+      "checked": "document",
+      "corpus_version_id": null
+    }
+  ],
+  "administered_by": [],
+  "administered_by_councils": false,
+  "administration": [
+    {
+      "function": "approves",
+      "who": "Winton",
+      "bodies": [],
+      "tier": "local",
+      "jurisdictions": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Local Law No. 1 (Administration) 2011",
+          "publisher": "Winton Shire Council",
+          "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+          "locator": "s 6(2)",
+          "quote": "A person must not undertake the prescribed activity without a current approval granted by the local government.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "type": "activity",
+      "test": null,
+      "value": null,
+      "unit": null,
+      "as_at": null,
+      "note": "operates a caravan park",
+      "sources": []
+    }
+  ],
+  "reach": [
+    {
+      "scope": "listed",
+      "classes": [
+        "4400"
+      ],
+      "exclude": [],
+      "activities": [],
+      "condition": "if it operates a caravan park",
+      "legal_forms": [],
+      "in_states": [],
+      "note": null,
+      "sources": [
+        {
+          "title": "Local Law No. 1 (Administration) 2011",
+          "publisher": "Winton Shire Council",
+          "url": "https://www.winton.qld.gov.au/files/assets/public/v/1/council/governance/local-laws/documents/local_law_1_administration_2011_2023_09_15.pdf",
+          "locator": "sch 2 pt 2, definition of operation of caravan parks",
+          "quote": "operation of caravan parks means to operate, on a commercial basis, a place for parking and residing in caravans, including a place that provides also for complementary accommodation.",
+          "accessed": "2026-11-27",
+          "checked": "document",
+          "corpus_version_id": null
+        }
+      ]
+    }
+  ],
+  "confidence": "high",
+  "confidence_note": null,
+  "records": [],
+  "ablis": [],
+  "assessment": {
+    "summary": "Running a caravan park needs the council's approval, on top of any planning approval.",
+    "marks": [
+      {
+        "driver": "burden",
+        "mark": -1,
+        "reason": "An approval, a suitability test for the operator and facility standards.",
+        "positions": []
+      }
+    ],
+    "main_driver": "burden",
+    "reach": "narrow",
+    "confidence": "low",
+    "confidence_note": "Economic reasoning and desk research only; no evaluation of this requirement found. Drafted 27 Nov 2026, not yet checked.",
+    "evidence": [],
+    "framework": "1.0",
+    "assessed_on": "2026-11-27"
+  },
+  "drafted_on": "2026-11-27",
+  "review": {
+    "status": "draft",
+    "by": null,
+    "on": null,
+    "notes": null
+  }
+}
