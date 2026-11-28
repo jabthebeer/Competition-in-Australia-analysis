@@ -48,6 +48,7 @@ def _row(r: dict, menu: dict, inside: str | None = None) -> dict:
     e = r.get("exposure") or {}
     bodies = menu["bodies"]
     cost = r.get("licenceCost") or {}
+    cc = r.get("complianceCost") or {}
     if is_req:
         laws = [(x["title"], x.get("registerId"), x.get("provisions")) for x in r["laws"]]
         sources = r["sources"]
@@ -94,6 +95,13 @@ def _row(r: dict, menu: dict, inside: str | None = None) -> dict:
         "renewalYears": cost.get("renewalYears"),
         "renewalCostYear": cost.get("renewalPerYear"),
         "burdenYear": cost.get("burden"),
+        # Compliance cost (DECISIONS E-700): staff time a year for the businesses bound, central and range.
+        "ccYear": round(cc["cost"]["central"]) if cc.get("costed") else None,
+        "ccLow": round(cc["cost"]["low"]) if cc.get("costed") else None,
+        "ccHigh": round(cc["cost"]["high"]) if cc.get("costed") else None,
+        "ccUpTo": bool(cc.get("upper")),
+        "ccPerBusiness": round(cc["perYear"]) if cc.get("costed") and cc.get("perYear") is not None else None,
+        "ccNot": "" if cc.get("costed") or not cc else cc.get("why", ""),
         "laws": "; ".join(f"{t}{f' ({i})' if i else ''}{f', {p}' if p else ''}" for t, i, p in laws),
         "sources": len(urls),
         "sourceUrls": urls,
@@ -135,7 +143,9 @@ def payload(menu: dict) -> dict:
         + " "
         + S.NOTE
         + " Licence cost: "
-        + (menu.get("licenceCostNote") or ""),
+        + (menu.get("licenceCostNote") or "")
+        + " Compliance cost: "
+        + (menu.get("complianceCostNote") or ""),
         "exposureYear": menu.get("exposureYear"),
         "generated": menu.get("generated"),
         "repo": None,

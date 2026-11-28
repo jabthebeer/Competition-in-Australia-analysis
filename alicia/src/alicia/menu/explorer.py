@@ -62,6 +62,7 @@ from ..register.schema import CHANNEL_LABELS, ROLE_LABELS, ChangeRecord
 from ..register.severity import record_severity, requirement_evidence, severity
 from ..register.timeline import changed_by_index, changes_list, ended_dict, timeline
 from ..timing import timing
+from . import compliancecost as CC
 from . import exposure as X
 from . import licencecost as LC
 from .archive import CHECK_NOTE, FAMILY_LABELS, _humanise, _short
@@ -315,6 +316,7 @@ def build_payload(
     requirements: list[Requirement] | None = None,
     counts: X.Counts | None = None,
     licence_costs: dict[str, dict] | None = None,
+    compliance_costs: dict[str, dict] | None = None,
 ) -> dict:
     """``stats`` defaults to the committed panels (``IndustryStats.load``), ``bodies`` to the committed registry
     (``load_bodies``) and ``recommendations``, ``gaps``, ``regimes`` and ``requirements`` to the committed ones; pass
@@ -322,6 +324,7 @@ def build_payload(
     ``licence_costs`` what each costed licence costs to hold (``licencecost.load``)."""
     stats = IndustryStats.load() if stats is None else stats
     licence_costs = LC.load() if licence_costs is None else licence_costs
+    compliance_costs = CC.load() if compliance_costs is None else compliance_costs
     counts = X.load_counts() if counts is None else counts
     today = generated or dt.date.today()
 
@@ -400,10 +403,13 @@ def build_payload(
         d["purpose"] = purpose([q.regime] if q.regime else [])
         # Fees and staff time to get and renew a licence: beside severity, not part of it (DECISIONS E-173).
         d["licenceCost"] = licence_costs.get(q.id)
+        # Staff time a year for the businesses it binds (DECISIONS E-700): beside severity, not part of it.
+        d["complianceCost"] = compliance_costs.get(q.id)
         for x in homes:
             nested.setdefault(x, []).append(d)
         if not homes:
             rows_req.append(d)
+    record_costs = CC.record_totals(compliance_costs, {k: [q["id"] for q in v] for k, v in nested.items()})
     out = []
     for r in records:
         eff = r.effective_commencement
@@ -462,6 +468,7 @@ def build_payload(
         )
         data["purpose"] = purpose(data["regimes"])
         data["othersFound"] = len(r.assessment.evidence) if r.assessment else 0
+        data["complianceCost"] = record_costs.get(r.id)
         out.append(data)
     out += rows_req
     link_changes(out, reqs)
@@ -516,6 +523,8 @@ def build_payload(
         "exposureBases": X.BASIS_LABELS,
         "licenceCostNote": LC.NOTE,
         "licenceCostCount": sum(1 for q in reqs if q.id in licence_costs),
+        "complianceCostNote": CC.NOTE,
+        "complianceCostCount": sum(1 for q in reqs if compliance_costs.get(q.id, {}).get("costed")),
         "exposureYear": counts.year if counts else None,
     }
 

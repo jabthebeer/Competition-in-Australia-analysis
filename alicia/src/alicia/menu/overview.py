@@ -12,8 +12,12 @@ Every figure is worked out here when the site is built:
 - **regimes**, **government bodies** and **regimes that differ between states** from the 61 regulatory regimes
   (``regulation-register/regimes/``; ``docs/industry_regulation.md``);
 - **Commonwealth rules particular to the industry**, by impact class, from the register and the requirements
-  (``exposure``). State and council rules are left out of the comparison, because far less of their law has been
-  recorded and the amount differs between states; they show on the Industry lens, one state at a time.
+  (``exposure``);
+- **compliance cost**: the staff time a year the Commonwealth requirements cost the industry's businesses, in total
+  and per business, counted exactly (upper bounds left out), from ``compliancecost`` (DECISIONS E-700).
+
+State and council rules are left out of the comparison, because far less of their law has been recorded and the
+amount differs between states; they show on the Industry lens, one state at a time.
 
 For a division, the regime measures are the median of its detailed industries, and its rules are those that reach any
 of them.
@@ -28,6 +32,7 @@ from ..pipeline import schema, store
 from ..register.regimes import Regime, industry_profiles, load_regimes
 from ..register.requirements import Requirement, load_requirements
 from ..register.schema import ChangeRecord
+from . import compliancecost as CC
 from . import exposure as X
 
 NOTE = (
@@ -36,7 +41,9 @@ NOTE = (
     "checked. Rules are those the Commonwealth sets that apply today, are marked as weighing on productivity and are "
     "particular to some industries; rules for every business are left out, since they do not tell industries "
     "apart. State and council rules are left out of this comparison because much less of their law has been "
-    "recorded; the Industry lens shows them, one state at a time."
+    "recorded; the Industry lens shows them, one state at a time. Compliance cost is the staff time a year the "
+    "Commonwealth's requirements take the industry's businesses, at $91.54 an hour, with hours assumed for each kind "
+    "of requirement; rules counted only as an upper bound are left out, as is the cost of meeting a standard."
 )
 
 
@@ -87,6 +94,7 @@ def payload(
     requirements: list[Requirement] | None = None,
     counts: X.Counts | None = None,
     entry: tuple | None = None,
+    compliance: dict[str, dict] | None = None,
 ) -> dict:
     """The page's data: one row for each division and each detailed industry."""
     regimes = load_regimes().regimes if regimes is None else regimes
@@ -94,6 +102,14 @@ def payload(
     counts = X.load_counts() if counts is None else counts
     rates, entry_year = _load_entry() if entry is None else entry
     rules = commonwealth_rules(menu, records, requirements)
+    compliance = CC.load_classes() if compliance is None else compliance
+
+    def cost(classes) -> float | None:
+        vals = [compliance[c]["cth"] for c in classes if c in compliance and compliance[c]["cth"] is not None]
+        return round(sum(vals)) if vals else None
+
+    def per(total, n) -> float | None:
+        return round(total / n) if total is not None and n else None
 
     def businesses(classes) -> int | None:
         if not counts:
@@ -121,8 +137,10 @@ def payload(
                 "varying": p["sector_varying"],
                 "major": len(mine["major-narrow"]),
                 "minor": len(mine["minor"]),
+                "cost": cost({c}),
             }
         )
+        classes[-1]["costPer"] = per(classes[-1]["cost"], classes[-1]["businesses"])
     divisions = []
     for d in sorted({c["division"] for c in classes}):
         inside = [c for c in classes if c["division"] == d]
@@ -141,14 +159,18 @@ def payload(
                 "varying": median(c["varying"] for c in inside),
                 "major": len(major),
                 "minor": len(minor),
+                "cost": cost(codes),
             }
         )
+        divisions[-1]["costPer"] = per(divisions[-1]["cost"], divisions[-1]["businesses"])
     return {
         "divisions": divisions,
         "classes": classes,
         "year": counts.year if counts else None,
         "entryYear": entry_year,
         "note": NOTE,
+        "costNote": CC.NOTE,
+        "costTotal": cost(set(compliance)),
         "generated": menu.get("generated"),
         "lens": "industry-lens.html",
         "levers": "menu.html",

@@ -2,6 +2,9 @@
 
 *First written 11 November 2026; "Before you push" added 14 November 2026. For sessions working on the legislative side (the register, requirements, legislation links and the Industry lens), such as `claude/admiring-archimedes-q8usns`. Written by the website and administration session (`claude/loving-hamilton-jdifhr`, PR [#28](https://github.com/jabthebeer/Competition-in-Australia-analysis/pull/28)). Add new notes at the top.*
 
+## Decision numbers for the compliance cost work (E-700 onwards)
+
+*27 November 2026. From `claude/project-thread-8u2ya8`, which adds a compliance cost figure to each requirement (DECISIONS E-700). It uses **E-700 onwards**, clear of the states branch (E-300s), the levers branch (E-400 onwards), the NCC branch (E-500 onwards), the regulatory map (E-600 onwards) and the website session (E-180s). It first used E-500 and moved to E-700 on 27 November 2026, when the NCC branch turned out to claim E-500 too. It changes `alicia/src/alicia/menu/` (Legislative levers, Regulatory overview, Register data, Methodology) at the owner's request; `compliancecost.py` and `costing/compliance.py` are new. After adding or changing requirements, rebuild its outputs with `uv run python scripts/compliance_costs.py` (from `alicia/`): `tests/test_compliance_costs.py` checks they are current.*
 
 ## Regulatory map page (27 November 2026, DECISIONS E-600)
 
@@ -123,6 +126,7 @@ These files are written by scripts. If `git merge` reports a conflict in one, ta
 |---|---|
 | `data/processed/legislation/links.csv.gz`, `links_summary.csv` | `uv run python scripts/requirement_links.py` |
 | `data/processed/legislation/agencies_by_class.csv`, `requirement_agencies.csv` | `uv run python scripts/agency_overlap.py` |
+| `data/processed/legislation/compliance_costs.csv`, `compliance_costs_by_class.csv`, `docs/compliance_costs.md` | `uv run python scripts/compliance_costs.py` (after `licence_costs.py`, if licences changed) |
 | `data/processed/legislation/*_catalogue.csv`, `state_catalogue_estimate.csv` | the script that wrote them (`state_catalogues.py`, `frl_catalogue.py`, `legislation_estimate.py`) |
 | `data/processed/industry_regulation/` and `docs/industry_regulation.md` | `uv run python scripts/industry_regulation.py` |
 | `docs/productivity_framework.md` | `uv run alicia framework -o ../docs/productivity_framework.md` (website session only) |
