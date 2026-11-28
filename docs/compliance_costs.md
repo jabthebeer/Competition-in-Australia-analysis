@@ -44,18 +44,18 @@ In a steady state every entrant pays the start-up hours once, so this is the fra
 | Hold insurance | 16 | 16 | Arrange and renew the insurance (the time, not the premium) | 0 (0 to 0) | 2 (1 to 4) | Assumed: a yearly renewal. The premium is a substantive cost and is not counted. |
 | Report or lodge | 36 | 23 | Prepare and lodge a report or return | 0 (0 to 0) | 8 (2 to 40) | Assumed: one report or return a year. Reports the law requires more often, or audited reports, cost more. |
 | Keep records | 4 | 3 | Keep the records the law requires | 0 (0 to 0) | 12 (5 to 26) | Assumed: about an hour a month (central), from 5 hours to half an hour a week. |
-| Meet a standard or code | 284 | 246 | Learn the standard and check the business meets it (paperwork and checking only) | 0 (0 to 0) | 8 (2 to 20) | Assumed: keeping up with the standard and checking against it. The cost of meeting it (equipment, building work, training) is not counted. |
+| Meet a standard or code | 304 | 266 | Learn the standard and check the business meets it (paperwork and checking only) | 0 (0 to 0) | 8 (2 to 20) | Assumed: keeping up with the standard and checking against it. The cost of meeting it (equipment, building work, training) is not counted. |
 | Other | 48 | 0 | Not costed: the obligation varies too much to assume hours | – | – | No default: hours are assumed only where the obligation's kind says what the business does. |
 
 ## Totals
 
-Of 1,223 requirements, 957 are costed: 361 exactly and 596 as upper bounds. 182 are not counted because their upper bound covers a quarter or more of their jurisdiction's businesses, and 84 are councils' rules or of kind other.
+Of 1,243 requirements, 977 are costed: 381 exactly and 596 as upper bounds. 182 are not counted because their upper bound covers a quarter or more of their jurisdiction's businesses, and 84 are councils' rules or of kind other.
 
 | | Low | Central | High |
 |---|---|---|---|
 | Commonwealth requirements, counted exactly | $3 billion | $11 billion | $35 billion |
-| State and territory requirements, counted exactly | $750 million | $2.7 billion | $6.7 billion |
-| **All requirements counted exactly** | $3.7 billion | **$14 billion** | $42 billion |
+| State and territory requirements, counted exactly | $770 million | $2.8 billion | $6.9 billion |
+| **All requirements counted exactly** | $3.8 billion | **$14 billion** | $42 billion |
 | Upper bounds, apart (up to) | $710 million | $2.4 billion | $7.5 billion |
 
 The total is a sum of assumed paperwork time, not an estimate of the burden of regulation. It leaves out substantive compliance costs, the rules not counted, and every law not yet on the register (Victoria has only 32 requirements so far). State totals are not compared, because each state's law is recorded to a different extent.
@@ -91,26 +91,26 @@ The total is a sum of assumed paperwork time, not an estimate of the burden of r
 
 | Requirement | Hours from | Businesses bound | Working (central) | Upper bound? |
 |---|---|---|---|---|
-| `act-health-practitioner-registration`: Use only registered health practitioners | kind | 2,891 (every business) | 4 hours × $91.54 × 388 new businesses a year + 1 hour × $91.54 × 2,891 businesses = $410,000 | no |
-| `act-land-surveyor-registration`: Be a registered surveyor | kind | 55 (every business) | 1 hour × $91.54 × 3 new businesses a year + 0.5 hours × $91.54 × 55 businesses = $2,800 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `cth-asic-pio-binary-options`: Do not issue binary options to retail clients | kind | 60,303 (every business) | 8 hours × $91.54 × 60,303 businesses = $44 million | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `cth-award-ma000061`: Employ staff under the Gas Industry Award 2020 | kind | 74 (employing businesses) | 8 hours × $91.54 × 74 businesses = $54,000 | no |
-| `cth-award-ma000077`: Employ staff under the Educational Services (Teachers) Award 2020 | kind | 7,949 (employing businesses) | 8 hours × $91.54 × 7,949 businesses = $5.8 million | no |
-| `cth-award-ma000082`: Employ staff under the Sporting Organisations Award 2020 | kind | 222 (employing businesses) | 8 hours × $91.54 × 222 businesses = $160,000 | no |
-| `cth-food-grocery-code`: Deal with suppliers under the Food and Grocery Code (large grocery businesses) | kind | 11,026 (every business) | 8 hours × $91.54 × 11,026 businesses = $8.1 million | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `cth-life-insurer-registration`: Register with APRA before carrying on life insurance business | kind | 62 (every business) | 1 hour × $91.54 × 13 new businesses a year + 0.5 hours × $91.54 × 62 businesses = $4,000 | no |
-| `cth-media-control-limits`: Control no more than one TV, or two radio, licences in an area | kind | 277 (every business) | 8 hours × $91.54 × 277 businesses = $200,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `cth-offshore-petroleum-title`: Hold a petroleum title to explore for or recover petroleum offshore | kind | 691 (every business) | 4 hours × $91.54 × 51 new businesses a year + 1 hour × $91.54 × 691 businesses = $82,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `cth-registered-financial-corporation`: Give APRA the documents to register as a registered financial corporation | kind | 3,017 (every business) | 1 hour × $91.54 × 656 new businesses a year + 0.5 hours × $91.54 × 3,017 businesses = $200,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `nsw-gaming-machine-tax`: Pay gaming machine tax | kind | 3,614 (every business) | 4 hours × $91.54 × 3,614 businesses = $1.3 million | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `nt-animal-research-accreditation`: Register to use animals for scientific purposes | kind | 36 (every business) | 1 hour × $91.54 × 7 new businesses a year + 0.5 hours × $91.54 × 36 businesses = $2,300 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `qld-boarding-house-notification`: Register a residential service | kind | 13,476 (every business) | 1 hour × $91.54 × 1,201 new businesses a year + 0.5 hours × $91.54 × 13,476 businesses = $730,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `qld-long-service-leave`: Give employees long service leave | kind | 199,206 (employing businesses) | 8 hours × $91.54 × 199,206 businesses = $150 million | no |
-| `tas-portable-long-service-registration-construction`: Register with the construction industry long service scheme | kind | 3,104 (employing businesses) | 1 hour × $91.54 × 249 new businesses a year + 0.5 hours × $91.54 × 3,104 businesses = $160,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `tas-working-with-children-check`: Hold registration to work with vulnerable people | kind | 399 (every business) | 1 hour × $91.54 × 40 new businesses a year + 0.5 hours × $91.54 × 399 businesses = $22,000 | no |
-| `vic-whs-primary-duty`: Meet the employer's general health and safety duty | kind | 250,001 (employing businesses) | 8 hours × $91.54 × 250,001 businesses = $180 million | no |
-| `wa-security-licence`: Hold a security business licence | licence | 976 (every business) | 4 hours × $91.54 × 141 new businesses a year + 0.333333 hours × $91.54 × 976 businesses = $81,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
-| `wa-tobacco-retail-notification`: Hold a tobacco retailer's or wholesaler's licence | kind | 2,681 (every business) | 4 hours × $91.54 × 384 new businesses a year + 1 hour × $91.54 × 2,681 businesses = $390,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
+| `act-home-warranty-insurance`: Insure residential building work (home warranty) | kind | 4,212 (every business) | 2 hours × $91.54 × 4,212 businesses = $770,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
+| `cth-antarctic-activity-authorisation`: Be authorised before carrying on activities in the Antarctic | kind | 10,792 (every business) | 10 hours × $91.54 × 10,792 businesses = $9.9 million | up to: it binds only the businesses doing some activity, and the whole industry is counted |
+| `cth-award-ma000058`: Employ staff under the Registered and Licensed Clubs Award 2020 | kind | 2,742 (employing businesses) | 8 hours × $91.54 × 2,742 businesses = $2 million | no |
+| `cth-award-ma000074`: Employ staff under the Poultry Processing Award 2020 | kind | 128 (employing businesses) | 8 hours × $91.54 × 128 businesses = $94,000 | no |
+| `cth-award-ma000079`: Employ staff under the Architects Award 2020 | kind | 6,352 (employing businesses) | 8 hours × $91.54 × 6,352 businesses = $4.7 million | no |
+| `cth-fair-work-employment-terms`: Meet the National Employment Standards and award terms | kind | 993,931 (employing businesses) | 8 hours × $91.54 × 993,931 businesses = $730 million | no |
+| `cth-interactive-wagering-cost-recovery-levy`: Pay the interactive wagering cost recovery levy | kind | 681 (every business) | 4 hours × $91.54 × 681 businesses = $250,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
+| `cth-marine-navigation-levy`: Pay the marine navigation levy on sea-going ships | kind | 721 (every business) | 4 hours × $91.54 × 721 businesses = $260,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
+| `cth-nuclear-material-permit`: Hold a permit to possess nuclear material | kind | 9,726 (every business) | 4 hours × $91.54 × 1,643 new businesses a year + 1 hour × $91.54 × 9,726 businesses = $1.5 million | up to: it binds only the businesses doing some activity, and the whole industry is counted |
+| `cth-radiocommunications-licence`: Operate radiocommunications devices only under a licence | kind | 2,481 (every business) | 4 hours × $91.54 × 369 new businesses a year + 1 hour × $91.54 × 2,481 businesses = $360,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
+| `nsw-forest-practices-plan`: Have an approved private native forestry plan | kind | 1,023 (every business) | 10 hours × $91.54 × 1,023 businesses = $940,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
+| `nsw-whs-primary-duty`: Meet the primary duty of care for health and safety | kind | 916,110 (every business) | 8 hours × $91.54 × 916,110 businesses = $670 million | no |
+| `nt-workers-compensation-insurance`: Insure workers for workers' compensation | kind | 6,887 (employing businesses) | 2 hours × $91.54 × 6,887 businesses = $1.3 million | no |
+| `qld-inbound-tour-operator-registration`: Register as an inbound tour operator | kind | 1,715 (every business) | 1 hour × $91.54 × 285 new businesses a year + 0.5 hours × $91.54 × 1,715 businesses = $100,000 | up to: it binds only the businesses doing some activity, and the whole industry is counted |
+| `tas-long-service-leave`: Give employees long service leave | kind | 17,131 (employing businesses) | 8 hours × $91.54 × 17,131 businesses = $13 million | no |
+| `tas-racecourse-licence`: Hold race meetings only on a registered racecourse | kind | 0 (every business) | 1 hour × $91.54 × 0 new businesses a year + 0.5 hours × $91.54 × 0 businesses = $0 | no |
+| `vic-exploration-licence`: Hold an exploration licence | kind | 233 (every business) | 4 hours × $91.54 × 24 new businesses a year + 1 hour × $91.54 × 233 businesses = $30,000 | no |
+| `wa-plumbing-licence`: Hold a plumbing licence | licence | 3,045 (every business) | 4 hours × $91.54 × 464 new businesses a year + 0.333333 hours × $91.54 × 3,045 businesses = $260,000 | no |
+| `wa-teacher-accreditation-employer`: Employ only registered teachers | kind | 201 (every business) | 8 hours × $91.54 × 201 businesses = $150,000 | no |
+| `wa-workers-compensation-insurance`: Insure workers for workers' compensation | kind | 94,117 (employing businesses) | 2 hours × $91.54 × 94,117 businesses = $17 million | no |
 
 ## Rules not counted because their upper bound is too wide
 
