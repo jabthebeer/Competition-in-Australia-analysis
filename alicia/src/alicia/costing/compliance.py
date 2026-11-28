@@ -48,6 +48,9 @@ from ..register.severity import severity
 
 ROOT = Path(__file__).resolve().parents[4]
 ASSUMPTIONS = ROOT / "regulation-register" / "compliance-cost-assumptions.json"
+COSTINGS = ROOT / "regulation-register" / "costings"
+TASKS = ROOT / "regulation-register" / "compliance-tasks.json"
+EVIDENCE = ("sourced", "analogue", "calculated", "assumed")
 PARAMETERS = ROOT / "regulatory-burden-tool" / "src" / "engine" / "parameters.ts"
 SCENARIOS = ("low", "central", "high")
 CLASS_TIERS = ("cth", "state", "cthUpper", "stateUpper")  # exact figures, and upper bounds apart
@@ -62,8 +65,66 @@ def work_rate(path: Path = PARAMETERS) -> float:
     return float(m.group(1)) if m else FALLBACK_RATE
 
 
-def load_assumptions(path: Path = ASSUMPTIONS) -> dict:
-    return json.loads(path.read_text("utf-8"))
+def load_cards(folder: Path = COSTINGS, rate: float | None = None) -> tuple[dict[str, dict], dict[str, dict]]:
+    """The costing cards (E-702), as ``(by requirement id, by family)``. A card that gives dollars gets its hours
+    here: the dollars an entity a year ÷ the work rate, split into hours to start and each year by ``start_share``."""
+    rate = work_rate() if rate is None else rate
+    by_req: dict[str, dict] = {}
+    by_family: dict[str, dict] = {}
+    if not folder.exists():
+        return by_req, by_family
+    for f in sorted(folder.glob("*.json")):
+        card = json.loads(f.read_text("utf-8"))
+        card["file"] = f.name
+        sc = card.get("source_cost")
+        if sc:
+            per = sc["cost_a_year"] / sc["entities"] / rate
+            mult = {"low": sc["range"]["low"], "central": 1.0, "high": sc["range"]["high"]}
+            share = sc.get("start_share", 0)
+            card["start_hours"] = {s: round(per * mult[s] * share, 1) for s in SCENARIOS}
+            card["yearly_hours"] = {s: round(per * mult[s] * (1 - share), 1) for s in SCENARIOS}
+        target = card["applies_to"]
+        (by_req if "requirement" in target else by_family)[target.get("requirement") or target["family"]] = card
+    return by_req, by_family
+
+
+def load_assumptions(path: Path = ASSUMPTIONS, cards: Path = COSTINGS, tasks: Path = TASKS) -> dict:
+    """The hours for each kind, with the costing cards beside them (``overrides`` by requirement id, ``families``)
+    and the recurring task of each kind with the frequency phrases (``tasks``, E-703)."""
+    a = json.loads(path.read_text("utf-8"))
+    a["overrides"], a["families"] = load_cards(cards)
+    a["tasks"] = json.loads(tasks.read_text("utf-8")) if tasks.exists() else None
+    return a
+
+
+def frequency(q: Requirement, rules: dict) -> dict | None:
+    """How often the requirement's recurring task is done, from its own words (E-703): its ``what`` first, then its
+    title, then the quotes from its law. ``{"times", "name", "phrase", "where"}``, or None when no frequency phrase
+    is found."""
+    texts = [("what", q.what), ("title", q.title)]
+    texts += [(f"quote from {s.locator or s.title}", s.quote or "") for s in q.sources]
+    skip = re.compile(rules["not_a_frequency"], re.I)
+    for where, text in texts:
+        found = []
+        for f in rules["frequencies"]:
+            for m in re.finditer(f["pattern"], text, re.I):
+                if skip.match(text[m.end() :]):
+                    continue
+                times = f["times_a_year"]
+                if times == "1/n":
+                    n = m.group(1).lower()
+                    times = 1 / float(rules["numbers"].get(n, n))
+                lo, hi = max(0, m.start() - 40), min(len(text), m.end() + 40)
+                found.append(
+                    (
+                        m.start(),
+                        {"times": float(times), "name": f["name"], "phrase": text[lo:hi].strip(), "where": where},
+                    )
+                )
+                break
+        if found:
+            return min(found, key=lambda x: x[0])[1]
+    return None
 
 
 @dataclass(frozen=True)
@@ -124,7 +185,7 @@ def load_flows() -> Flows | None:
 def hours_for(q: Requirement, assumptions: dict, licences: dict[str, dict]) -> dict | None:
     """The hours to start and each year (low, central, high), the fees beside them, and where the hours come from;
     None when the requirement's kind is not costed."""
-    over = assumptions.get("overrides", {}).get(q.id)
+    over = assumptions.get("overrides", {}).get(q.id) or assumptions.get("families", {}).get(q.family or "")
     if over:
         return {
             "start": over["start_hours"],
@@ -135,6 +196,8 @@ def hours_for(q: Requirement, assumptions: dict, licences: dict[str, dict]) -> d
             "feesStart": None,
             "feesYearly": None,
             "entities": over.get("entities"),
+            "evidence": over["evidence"],
+            "card": over["file"],
         }
     lic = licences.get(q.id)
     if lic:
@@ -156,6 +219,23 @@ def hours_for(q: Requirement, assumptions: dict, licences: dict[str, dict]) -> d
     kind = assumptions["kinds"].get(q.kind)
     if not kind or kind.get("costed") is False:
         return None
+    rules = assumptions.get("tasks")
+    task = (rules or {}).get("kinds", {}).get(q.kind)
+    freq = frequency(q, rules) if task else None
+    if freq:
+        times = freq["times"]
+        return {
+            "start": kind["start_hours"],
+            "yearly": {s: task["hours_a_time"][s] * times for s in SCENARIOS},
+            "from": "tasks",
+            "basis": f"{task['task']}, {freq['name']} ({times:g} times a year), as the requirement's {freq['where']} "
+            f"says: '{freq['phrase']}'. The hours each time are assumed.",
+            "task": f"{task['task']} ({freq['name']})",
+            "feesStart": None,
+            "feesYearly": None,
+            "evidence": "calculated",
+            "frequency": {**freq, "hoursATime": task["hours_a_time"]},
+        }
     return {
         "start": kind["start_hours"],
         "yearly": kind["yearly_hours"],
@@ -209,7 +289,7 @@ def cost_requirement(q: Requirement, flows: Flows | None, assumptions: dict, lic
     ents = h.get("entities")
     if ents:
         # A regulator's list of the entities bound replaces the ABS counts, so the count is exact (DECISIONS E-701).
-        alloc = entity_classes(ents, flows)
+        alloc = entity_classes(ents, flows, q.jurisdiction)
         stock, new, upper, why_upper = sum(alloc.values()), 0.0, False, []
     else:
         stock = flows.sum("stock", basis, pairs)
@@ -236,6 +316,9 @@ def cost_requirement(q: Requirement, flows: Flows | None, assumptions: dict, lic
             "costed": True,
             "task": h["task"],
             "hoursFrom": h["from"],
+            "evidence": h.get("evidence", "assumed"),
+            "card": h.get("card"),
+            "frequency": h.get("frequency"),
             "basisText": h["basis"],
             "rate": rate,
             "sizeBasis": basis,
@@ -275,11 +358,14 @@ def cost_requirement(q: Requirement, flows: Flows | None, assumptions: dict, lic
     return row, by_class
 
 
-def entity_classes(ents: dict, flows: Flows) -> dict[str, float]:
+def entity_classes(ents: dict, flows: Flows, jurisdiction: str = "CTH") -> dict[str, float]:
     """The entities a regulator lists, by ANZSIC class: each group's count goes to its classes in proportion to the
-    ABS businesses in them (evenly where the ABS counts none)."""
+    ABS businesses in them (evenly where the ABS counts none). A group limited to some ``states`` counts only for a
+    requirement of one of them (or a Commonwealth one)."""
     out: dict[str, float] = {}
     for g in ents["groups"]:
+        if g.get("states") and jurisdiction != "CTH" and jurisdiction not in g["states"]:
+            continue
         cs = sorted(g["classes"])
         w = {c: flows.all_by_class.get(c, 0.0) for c in cs}
         tot = sum(w.values())
@@ -361,6 +447,7 @@ def cost_all(
             "exactCth": total([r for r in exact if r["jurisdiction"] == "CTH"]),
             "exactState": total([r for r in exact if r["jurisdiction"] != "CTH"]),
             "upper": total([r for r in costed if r["upper"]]),
+            "byEvidence": {e: total([r for r in exact if r["evidence"] == e]) for e in EVIDENCE},
         },
         "counts": {
             "requirements": len(rows),
@@ -368,6 +455,7 @@ def cost_all(
             "upper": sum(1 for r in costed if r["upper"]),
             "withheld": sum(1 for r in rows if r.get("withheld")),
             "licence": sum(1 for r in costed if r["hoursFrom"] == "licence"),
+            "byEvidence": {e: sum(1 for r in exact if r["evidence"] == e) for e in EVIDENCE},
         },
     }
 

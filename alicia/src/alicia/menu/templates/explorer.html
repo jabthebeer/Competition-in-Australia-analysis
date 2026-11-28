@@ -1594,7 +1594,8 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     return x >= 1e9 ? `$${f(x / 1e9)} billion` : x >= 1e6 ? `$${f(x / 1e6)} million` : `$${Math.round(x).toLocaleString("en-AU")}`; };
   const num = (v) => Math.round(v).toLocaleString("en-AU");
   const ccShort = (c) => (c.costed ? `${c.upper ? "up to " : ""}${aud(c.cost.central)} a year` : "not costed");
-  const HOURS_FROM = { kind: "assumed for every requirement of this kind", licence: "from the licence costs, where they are assumed (DECISIONS E-175)", override: "taken from a source for this requirement: see its basis in docs/compliance_costs.md" };
+  const HOURS_FROM = { kind: "assumed for every requirement of this kind", licence: "from the licence costs, where they are assumed (DECISIONS E-175)", override: "taken from a source for this requirement: see its basis in docs/compliance_costs.md", tasks: "each time assumed for this kind, times how often the requirement's own words say it is done" };
+  const EVIDENCE = { sourced: "Sourced: from the law's own impact analysis or a regulator", analogue: "Analogue: borrowed from a similar regime's impact analysis", calculated: "Calculated: how often it is done is read from the requirement's own words; the hours each time are assumed", assumed: "Assumed: hours assumed for every requirement of this kind" };
   function ccHtml(c) {
     const note = `<p class="small muted">${esc(DATA.complianceCostNote || "")} Method and every assumption: <code>docs/compliance_costs.md</code>.</p>`;
     if (!c.costed) return `<p>${esc(c.why)}</p>${note}`;
@@ -1611,6 +1612,7 @@ table.sc tr.sc-member th.item button { padding-left: 1.4rem; }
     return `<dl class="expo">
       <dt>${term("helpCompliance", "Compliance cost")}</dt><dd><strong>${up}${aud(c.cost.central)} a year</strong> (${range})</dd>
       <dt>What a business does</dt><dd>${esc(c.task)}</dd>
+      <dt>Evidence</dt><dd>${esc(EVIDENCE[c.evidence] || EVIDENCE.assumed)}</dd>
       <dt>Each business</dt><dd>${per}</dd>
       <dt>Businesses bound</dt><dd>${num(c.businesses)} (${c.countsFrom && c.countsFrom !== "abs" ? esc(c.countsFrom) : `${esc((DATA.exposureBases || {})[c.basis] || c.basis)}, June ${c.year}`})${sh ? `; ${num(c.newPerYear)} new a year` : ""}${c.upper ? `. Up to: ${esc(c.upperWhy.join("; "))}` : ""}</dd>
     </dl>

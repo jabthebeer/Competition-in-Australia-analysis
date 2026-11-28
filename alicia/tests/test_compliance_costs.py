@@ -118,14 +118,13 @@ def test_a_sourced_costing_follows_its_source_and_counts_the_entities_listed(pub
     """FAR (E-701): BEAR's $11.5 million a year for 149 ADIs, an entity, for the 329 entities APRA lists."""
     a = C.load_assumptions()
     o = a["overrides"]["cth-financial-accountability-regime"]
-    dv = o["derivation"]
-    hours = dv["cost_a_year"] / dv["entities"] / dv["rate"]
+    sc = o["source_cost"]
+    hours = sc["cost_a_year"] / sc["entities"] / C.work_rate()
     assert o["yearly_hours"]["central"] == pytest.approx(hours, abs=0.05)
-    assert o["yearly_hours"]["low"] == pytest.approx(hours * dv["range"]["low"], abs=0.05)
-    assert o["yearly_hours"]["high"] == pytest.approx(hours * dv["range"]["high"], abs=0.05)
-    assert dv["rate"] == C.work_rate()
+    assert o["yearly_hours"]["low"] == pytest.approx(hours * sc["range"]["low"], abs=0.05)
+    assert o["yearly_hours"]["high"] == pytest.approx(hours * sc["range"]["high"], abs=0.05)
     r = next(x for x in published if x["requirement"] == "cth-financial-accountability-regime")
-    assert r["hours_from"] == "override" and r["upper_bound"] == "no"
+    assert r["hours_from"] == "override" and r["upper_bound"] == "no" and r["evidence"] == "analogue"
     assert int(r["businesses"]) == sum(g["count"] for g in o["entities"]["groups"]) == 329
     assert r["counts_from"] == o["entities"]["label"]
     # Every class it is spread over is one the requirement reaches, and the classes add up to its cost.
@@ -134,8 +133,59 @@ def test_a_sourced_costing_follows_its_source_and_counts_the_entities_listed(pub
     _, by_class = C.cost_requirement(q, C.load_flows(), a, C.load_licences(), C.work_rate())
     assert set(by_class) <= reach
     assert sum(v["central"] for v in by_class.values()) == pytest.approx(float(r["cost"]), rel=1e-6)
-    for overridden in a["overrides"].values():
-        assert overridden["basis"].startswith("Sourced") and overridden["sources"]
+
+
+def test_every_costing_card_is_well_formed():
+    """Each card (E-702) points at a requirement or family on the register, says how good its evidence is, and
+    quotes a source."""
+    reqs = load_requirements().requirements
+    ids, families = {q.id for q in reqs}, {q.family for q in reqs}
+    by_req, by_family = C.load_cards()
+    assert by_req, "the FAR card is missing"
+    for key, card in [*by_req.items(), *by_family.items()]:
+        assert key in (ids if key in by_req else families), card["file"]
+        assert card["evidence"] in ("sourced", "analogue"), card["file"]
+        assert card["basis"] and card["task"], card["file"]
+        assert ("source_cost" in card) or ("yearly_hours" in card), card["file"]
+        for when in ("start_hours", "yearly_hours"):
+            h = card[when]
+            assert 0 <= h["low"] <= h["central"] <= h["high"], card["file"]
+        assert card["sources"], card["file"]
+        for s in card["sources"]:
+            assert s["url"].startswith("https://") and s["quote"] and s["locator"] and s["accessed"], card["file"]
+        assert card["review"]["status"] in ("draft", "checked"), card["file"]
+
+
+def test_a_family_card_costs_each_member_and_counts_only_its_states(tmp_path):
+    """A card for a family applies to every member without a card of its own; a group limited to some states
+    counts only for those states' requirements."""
+    q = next(q for q in load_requirements().requirements if q.id == "qld-builder-licence")
+    card = {
+        "applies_to": {"family": q.family},
+        "evidence": "sourced",
+        "task": "t",
+        "basis": "b",
+        "start_hours": {"low": 0, "central": 0, "high": 0},
+        "yearly_hours": {"low": 1, "central": 2, "high": 3},
+        "entities": {
+            "label": "holders",
+            "source": {},
+            "note": "",
+            "groups": [
+                {"name": "Qld", "count": 100, "classes": ["3020"], "states": ["QLD"]},
+                {"name": "NSW", "count": 900, "classes": ["3020"], "states": ["NSW"]},
+            ],
+        },
+        "sources": [],
+        "review": {"status": "draft"},
+    }
+    (tmp_path / "x.json").write_text(__import__("json").dumps(card))
+    a = C.load_assumptions(cards=tmp_path)
+    assert q.family in a["families"] and not a["overrides"]
+    row, by_class = C.cost_requirement(q, C.load_flows(), a, C.load_licences(), 91.54)
+    assert row["evidence"] == "sourced" and row["businesses"] == 100 and not row["upper"]
+    assert row["cost"]["central"] == pytest.approx(2 * 91.54 * 100)
+    assert set(by_class) == {"3020"}
 
 
 def test_fees_are_shown_beside_the_figure_never_in_it():
@@ -191,3 +241,41 @@ def test_the_site_shows_the_cost_without_changing_severity_or_class():
         assert a[k].get("impactClass") == b[k].get("impactClass"), k
         assert a[k].get("severity") == b[k].get("severity"), k
     assert with_cost["complianceCostCount"] > 900
+
+
+def test_a_kinds_default_frequency_reproduces_its_hours_each_year():
+    """With no frequency in its words, a requirement costs what the kind's hours say (E-703)."""
+    a = C.load_assumptions()
+    for k, v in a["tasks"]["kinds"].items():
+        for s in ("low", "central", "high"):
+            assert v["hours_a_time"][s] * v["times_a_year"] == pytest.approx(a["kinds"][k]["yearly_hours"][s]), k
+
+
+def test_frequency_is_read_from_the_requirements_own_words():
+    from types import SimpleNamespace as NS
+
+    rules = C.load_assumptions()["tasks"]
+
+    def q(what, quote="x" * 20):
+        return NS(what=what, title="t", sources=[NS(locator="s 1", title="Act", quote=quote)])
+
+    assert C.frequency(q("Pay gaming machine tax each month on the premises."), rules)["times"] == 12
+    assert C.frequency(q("Pay the levy in quarterly instalments."), rules)["times"] == 4
+    assert C.frequency(q("Lodge a report each financial year."), rules)["times"] == 1
+    assert C.frequency(q("Renew it.", "a check conducted at least every 5 years"), rules)["times"] == 0.2
+    # A frequency word that describes something else is not a frequency.
+    assert C.frequency(q("Comply once annual turnover passes $3 million."), rules) is None
+    assert C.frequency(q("Charge a monthly fee of at most 4%."), rules) is None
+    # The 'what' wins over the quotes.
+    f = C.frequency(q("Pay tax each month.", "an annual return"), rules)
+    assert f["times"] == 12 and f["where"] == "what"
+
+
+def test_a_calculated_figure_uses_the_frequency_it_quotes(published):
+    a = C.load_assumptions()
+    rows = [r for r in published if r["evidence"] == "calculated"]
+    assert rows
+    for r in rows:
+        task = a["tasks"]["kinds"][r["kind"]]
+        assert float(r["yearly_hours"]) == pytest.approx(task["hours_a_time"]["central"] * float(r["times_a_year"]))
+        assert r["frequency_phrase"] and r["frequency_from"], r["requirement"]
