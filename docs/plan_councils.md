@@ -145,6 +145,13 @@ E-2 and E-3 can start straight away. E-5 and E-6 depend on reaching council webs
     - Victoria Daly publishes no by-laws.
     - Shoalhaven and Temora approve these activities under s 68 of the state Act, so by methods rule 7 they belong with the NSW state requirements.
 
+- **E-7 done 28 Nov 2026 (E-366).** Quality check, variation note and coverage question.
+  - **Checked:** all 192 quotes in the local requirements were found word for word in their sources.
+  - **New:** 10 requirements. Darwin advertising signs, a Brisbane event permit, Toowoomba temporary events and caravan parks, Victoria Plains events on council property, and 5 Alice Springs by-laws (read as text from the NT legislation register). The register now holds 46 local requirements.
+  - **Variation:** [`council_variation.md`](council_variation.md) and `data/processed/legislation/council_variation.csv`, built by `alicia/scripts/council_variation.py`. Councils differ in whether a requirement exists, in the approval it needs and in its trigger. Event thresholds, for example, range from any size to 2,000 people.
+  - **To fix:** Sydney's busking, filming and outdoor dining permits should be NSW state requirements under methods rule 7. Street trading, markets, signs, events and caravan parks need a regime.
+  - **D4:** put to the owner on 28 Nov 2026. The recommendation is to wait for the ABLIS API key rather than read every council's laws by hand.
+
 ## Limits
 
 - A sample of 21 councils, from about 540 in total, shows how much councils vary. It cannot give a complete count for every council.
