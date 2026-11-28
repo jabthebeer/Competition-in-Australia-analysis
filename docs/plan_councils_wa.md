@@ -39,6 +39,14 @@ Queensland was the other option. Its local laws database refuses automated searc
 - **Copyright.** Gazettes are State of WA copyright. The register keeps short quotes and summaries only, in line with the data legality review of 28 November 2026.
 - **Effort.** Several working sessions. Each batch is committed and opened as a PR on its own.
 
+## Progress
+
+- **E-8 to E-10 done 28 Nov 2026 (E-368).** All 6,968 Gazettes from 1996 to 2026 read. 4,279 local laws listed for 134 councils, 328 taken as in force, and 811 permit clauses found in 109 councils. 414 requirements filed, all medium confidence. Results in [`council_variation.md`](council_variation.md).
+- **E-11 still to do:**
+  - check a sample against the councils' own consolidated copies, where their websites can be reached;
+  - read the amendments behind 176 requirements;
+  - look again at the 20 councils with no local law found, and the 10 drafts held back.
+
 ## Decision numbers
 
 E-367 records D4 and this plan. Batches E-8 to E-11 take E-368 to E-371.

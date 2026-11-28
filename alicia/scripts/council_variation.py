@@ -28,6 +28,9 @@ LOCAL = ROOT / "regulation-register" / "requirements" / "local"
 SAMPLE = ROOT / "data" / "processed" / "legislation" / "council_sample.csv"
 OUT = ROOT / "data" / "processed" / "legislation" / "council_variation.csv"
 SUMMARY = ROOT / "data" / "processed" / "legislation" / "council_variation_summary.csv"
+WA_LAWS = ROOT / "data" / "processed" / "legislation" / "wa_local_laws_in_force.csv"
+WA_CLAUSES = ROOT / "data" / "processed" / "legislation" / "wa_permit_clauses.csv"
+WA_OUT = ROOT / "data" / "processed" / "legislation" / "council_variation_wa.csv"
 
 FAMILIES = {
     "council-busking-permit": "Busking",
@@ -104,7 +107,6 @@ CELLS: dict[str, dict[str, tuple[str, str]]] = {
     },
     "57080": {  # Perth
         "council-market-licence": ("to-check", "Other City of Perth local laws not reachable"),
-        "council-advertising-sign-approval": ("to-check", "Other City of Perth local laws not reachable"),
         "council-temporary-event-approval": (
             "to-check",
             "Local Government Property Local Law 2005 cl 29(1)(h) (conduct a function) not yet drafted",
@@ -120,7 +122,6 @@ CELLS: dict[str, dict[str, tuple[str, str]]] = {
             "Not in the Activities in Thoroughfares and Public Places and Trading Local Law 2026",
         ),
         "council-market-licence": ("to-check", "Property Local Law 2010 not read"),
-        "council-temporary-event-approval": ("to-check", "Property Local Law 2010 not read"),
         "council-caravan-park-approval": (
             "state-act",
             "Caravan Parks and Camping Grounds Act 1995 (WA); not checked against the WA state requirements",
@@ -134,10 +135,6 @@ CELLS: dict[str, dict[str, tuple[str, str]]] = {
         "council-outdoor-dining-permit": (
             "to-check",
             "Food sales licence named in cl 1.8(d); the clause requiring it not located",
-        ),
-        "council-market-licence": (
-            "to-check",
-            "Market licence named in cl 1.8(b); the clause requiring it not located",
         ),
         "council-filming-permit": (
             "not-found",
@@ -272,10 +269,59 @@ def main() -> None:
             f"kinds {s['kinds']}  regimes {s['regimes']}"
         )
     print(f"{len(reqs)} council requirements; {len(rows)} cells")
+    wa_coverage(reqs)
     for p in problems:
         print("PROBLEM:", p)
     if problems:
         raise SystemExit(1)
+
+
+def wa_coverage(reqs: dict[tuple[str, str], dict]) -> None:
+    """Every WA council by family, for the WA pilot (E-8): from the Gazette tables built by wa_local_laws.py."""
+    laws = [r for r in csv.DictReader(WA_LAWS.open(encoding="utf-8")) if not r["repealed_by"]]
+    clauses = {(r["family"], r["lga"]) for r in csv.DictReader(WA_CLAUSES.open(encoding="utf-8"))}
+    with_laws = {r["lga"] for r in laws}
+    names = {r["lga"]: r["council"] for r in laws}
+    names |= {lga: d["lga_name"] for (_f, lga), d in reqs.items() if d["jurisdiction"] == "WA"}
+    from wa_local_laws import councils  # ABS LGA 2021 names and codes for WA
+
+    abs_wa = {code: name for name, code in councils().items()}
+    names = abs_wa | names
+    codes = sorted(abs_wa)
+    rows = []
+    for fam in ALL:
+        for lga in codes:
+            d = reqs.get((fam, lga))
+            if d:
+                status = "recorded"
+            elif fam == "council-caravan-park-approval":
+                status = "state-act"
+            elif (fam, lga) in clauses:
+                status = "clause-not-filed"
+            elif lga in with_laws:
+                status = "not-found"
+            else:
+                status = "no-law-found"
+            rows.append(
+                {
+                    "family": fam,
+                    "family_name": FAMILIES[fam],
+                    "lga_code": lga,
+                    "lga_name": names.get(lga, ""),
+                    "status": status,
+                    "requirement": d["id"] if d else "",
+                    "confidence": d["confidence"] if d else "",
+                    "provisions": "; ".join(f"{x['title']} {x['provisions']}" for x in d["laws"]) if d else "",
+                }
+            )
+    with WA_OUT.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+        w.writeheader()
+        w.writerows(rows)
+    print(f"WA: {len(codes)} councils")
+    for fam in ALL:
+        st = Counter(r["status"] for r in rows if r["family"] == fam)
+        print(f"  {FAMILIES[fam]:<26} " + "  ".join(f"{k} {v}" for k, v in sorted(st.items())))
 
 
 if __name__ == "__main__":

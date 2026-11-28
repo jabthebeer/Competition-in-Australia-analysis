@@ -152,6 +152,8 @@ E-2 and E-3 can start straight away. E-5 and E-6 depend on reaching council webs
   - **To fix:** Sydney's busking, filming and outdoor dining permits should be NSW state requirements under methods rule 7. Street trading, markets, signs, events and caravan parks need a regime.
   - **D4:** decided 28 Nov 2026 (E-367). The owner chose to pilot every council in one state now. WA is the pilot: see [`plan_councils_wa.md`](plan_councils_wa.md).
 
+- **WA pilot, E-8 to E-10 done 28 Nov 2026 (E-368).** Every WA council's local laws read from the Gazette, 1996 to 2026. 414 WA council requirements filed in 109 councils, so the register now holds 460 local requirements. See [`plan_councils_wa.md`](plan_councils_wa.md).
+
 ## Limits
 
 - A sample of 21 councils, from about 540 in total, shows how much councils vary. It cannot give a complete count for every council.

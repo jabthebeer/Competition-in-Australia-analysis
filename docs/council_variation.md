@@ -59,13 +59,44 @@ Adelaide and Hobart still have 5 requirements between them, taken from ABLIS lis
 - **Regimes:** the busking, filming and outdoor dining families belong to the "Council permits for public spaces" regime. Street trading, markets, signs, events and caravan parks have no regime yet.
 - **Kinds:** street trading, signs and events are recorded as approvals in Queensland and as licences or permits in WA and the NT. This follows the words each law uses.
 
+## Every council in Western Australia
+
+On 28 November 2026 the owner chose to pilot full coverage in one state (decision D4, E-367). WA was read first, from every Government Gazette since 1996 ([`plan_councils_wa.md`](plan_councils_wa.md)). The table is `data/processed/legislation/council_variation_wa.csv`, built from `wa_local_laws.py` and `council_variation.py`.
+
+| Family | Councils with it | Laws read, none found | Clause found, not yet filed | No local law found |
+|---|---|---|---|---|
+| Busking | 61 | 56 | 0 | 20 |
+| Filming | 12 | 105 | 0 | 20 |
+| Outdoor dining | 24 | 93 | 0 | 20 |
+| Street trading and stalls | 103 | 9 | 5 | 20 |
+| Markets | 23 | 89 | 5 | 20 |
+| Advertising signs | 106 | 9 | 2 | 20 |
+| Temporary events | 96 | 19 | 2 | 20 |
+
+Caravan parks are licensed under a state Act in WA, so no council has that family. The table covers all 137 WA councils.
+
+**What the whole state shows that the sample could not:**
+- **Most WA councils need the same 3 approvals.** 7 to 8 in every 10 councils need a permit or licence to trade in a public place, to put up an advertising sign, and to hold a function on council property. These come from 2 model local laws that most councils copied: one on activities in thoroughfares and public places, and one on council property.
+- **Busking, dining, markets and filming are less common.** Busking permits are found in 61 councils, outdoor dining in 24, markets in 23 and filming in 12.
+- **No size threshold in WA.** Every WA event clause found applies to any function on council property, whatever its size. In Queensland the threshold runs from 50 to 2,000 people.
+- **Many councils adopt another council's law.** 34 laws were adopted from another council with changes, mostly from the Shires of Kojonup, Exmouth and Moora. 71 requirements rest on such a law.
+- **Wording differs, not substance.** 359 requirements say "permit" and 55 say "licence" for the same kind of approval.
+
+**Limits of the WA count:**
+- **As made.** Every WA requirement quotes the law as made. 176 of the 414 new requirements rest on a law that was amended later, and the amendments were not read.
+- **In force.** A law is taken as in force when no later Gazette names it in a repeal clause. A repeal worded another way would be missed.
+- **Pattern search.** Clauses were found by pattern. All 1,121 quotes in the new requirements were found word for word in their Gazettes. A check of 30 drafts by hand found 2 problems, both fixed: a sign clause matched as filming, and a quote that was not part of the requirement.
+- **No local law found.** For 20 councils, no local law on these topics was found since 1996. Some of them may still rely on by-laws made before 1996, or their notices may have used headings the parser missed.
+
 ## What this means for decision D4
 
 Councils differ in whether a requirement exists, in what approval it needs, and in its trigger. A sample can show this. It cannot count how many businesses face each version.
 
 Covering every council would add about 8,700 requirements (range 5,700 to 12,500), from the phase B estimate. Reading each council's laws one by one is slow, and 7 of the 18 sample councils could not be read at all.
 
-The ABLIS API key would list each council's permits with their legal basis. It is the practical route to full coverage.
+The ABLIS API key would list each council's permits with their legal basis. It is the practical route to full coverage in the other states.
+
+The owner chose to pilot one state now (E-367). The WA pilot above shows that in WA, Gazette text and the model laws make a full count practical.
 
 ## Limits
 
